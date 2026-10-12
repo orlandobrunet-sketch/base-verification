@@ -1,0 +1,273 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 10144,
+  "sourceReportSHA256": "91aec62d765909c92f857d302624bbe552998435e5405964a22ac8ee3cc7a5b9",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_GROUP_B_HANDOFF_VALIDATION_V1",
+    "checkedAtUTC": "2026-10-12T18:12:52Z",
+    "result": "PASS",
+    "outputs": [
+      {
+        "file": "output-001.json",
+        "bytes": 139883,
+        "sha256": "f9abc070cada27be5a60140d3f84d40ac13eaa94ba2b0e678aa53b247e096552"
+      },
+      {
+        "file": "output-002.json",
+        "bytes": 128920,
+        "sha256": "897feeb64cb89536ec54ad3446c17a59c62ce12980694272077f6b2d19e74762"
+      },
+      {
+        "file": "output-003.json",
+        "bytes": 153483,
+        "sha256": "59d4248877496432c2261a7fd6d45c5e22256bb1f861d2424a8bf621fcab375e"
+      }
+    ],
+    "checks": [
+      "JSON UTF-8 dos três pareceres e entradas parseado.",
+      "24 BEFORE confrontados com as entradas e SHA canônico.",
+      "24 AFTER e patches confrontados com SHA, gabarito, quatro opções, qid/título/categoria/dificuldade preservados.",
+      "21 versões LIBERADA conferidas pela fórmula Handbook 18.4; nenhum eliminatório disparado nelas.",
+      "Escores e dez dimensões 0–2 consistentes.",
+      "IDs e campos dos cards das propostas liberadas correspondem às refs do AFTER como conjunto completo, sem exigir ordem de apresentação dos cards.",
+      "Pins dos arquivos primários locais conferidos.",
+      "Parecer independente B001 é o pin exato aceito; qid66905ee2 permanece excluída.",
+      "Contagem deriva dos outputs reais: 24 revisadas, não 222 aprovadas."
+    ],
+    "limitations": [
+      "Validação estrutural e de rastreabilidade não substitui a revisão clínica registrada nem a revisão independente pendente.",
+      "Não foi executado teste de produto, CI ou navegador nesta revisão; apenas pareceres e evidência de fontes.",
+      "Nenhuma integração, alteração de banco/cards, commit, push ou publicação executados pelo agente B."
+    ],
+    "counts": {
+      "totalAssigned": 222,
+      "reviewed": 24,
+      "changedProposalsReleasedByAuthorReview": 20,
+      "unchangedApprovedByAuthorReview": 1,
+      "independentlyAcceptedExactB001Questions": 7,
+      "decisivePending": 3,
+      "notReviewed": 198,
+      "implemented": 0
+    },
+    "questions": [
+      {
+        "qid": "f7ef303f",
+        "batch": 1,
+        "beforeSHA256": "b135024704371c0cb11c0dfa9a4d3c8dbe9623cc858ce3523e6675e9efdcee70",
+        "afterSHA256": "d3bbaed572a7b8517df3cff579ac558db17202d5437afa1c67ab0750bda86c34",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "60efeb87",
+        "batch": 1,
+        "beforeSHA256": "e20e1ac4ccb9ff488cd44e3b4948c4eaab74f67518a59cc40b021fcf67ec3d7d",
+        "afterSHA256": "f27c9089c049c9f832a0b4c681a0bc19b16cfa374c7ce3a6ab71a80cc0701b02",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "fbb4edd0",
+        "batch": 1,
+        "beforeSHA256": "bf25432e4062e7c52d871a9fb930cbdb77617b09f03460b0f137f84dcafd6aa6",
+        "afterSHA256": "9b47347c9e9864a952a1ac277570fea647951bb70c7f7a1b206e6aa79081748b",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "0e102752",
+        "batch": 1,
+        "beforeSHA256": "5d1ab51c3d6d96dd6c189f1315db53e21b590b8a208015509827a974536619cb",
+        "afterSHA256": "03b19ee8704dd5a557bd81f169977fa78334f0da02da640c27a0b6beb5a0550d",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "e4d4db47",
+        "batch": 1,
+        "beforeSHA256": "84bfc47af0a2f373a506298ec6d4af10bf93115e6db1ab01e60b90b54aaf1a5d",
+        "afterSHA256": "534b48acf69eed71be1996ab0cf4298a83ac764fc55721669eac8db903d422be",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "66905ee2",
+        "batch": 1,
+        "beforeSHA256": "33d77935626ed6e56b6f86a2d77508d01b33c4ea8b08607ae4d0f7b78cc57a54",
+        "afterSHA256": "47e6bf3925b2e346c2a77dbd55312dbe943d543dc369461c48988a6254559ecf",
+        "publication": "BLOQUEADA",
+        "materialChange": true,
+        "pending": "DECISIVA"
+      },
+      {
+        "qid": "7dbc02ce",
+        "batch": 1,
+        "beforeSHA256": "59d7f7f1ab164c4f6284090343cf7ac9201f7a52109d0a7bd53a91a1cfba3bd7",
+        "afterSHA256": "07bfc7b6a5bc98408695980dd4ab5a0bdce25b771a911b821c47f102fd8cb90d",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "d43f9988",
+        "batch": 1,
+        "beforeSHA256": "d0cc08e28a7d91079bc177256ee6fb1f188df71590c747201ad3793fc3ba2070",
+        "afterSHA256": "8c850b7c391050dd4a8f61d8d742378368196b86aa8b3027a95713b9b10971d3",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "ac8a042e",
+        "batch": 2,
+        "beforeSHA256": "5d1e1e6c566a8f84816b3d6e7248990c13e3463ad24b8a8aaeeec2e2cf61ec0b",
+        "afterSHA256": "a191555f734eebfbde4c05565dbc3df4b079eab139bef560382dc6463988e669",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "cd455e49",
+        "batch": 2,
+        "beforeSHA256": "5a0ec1010bcc8239a0478d2ea933f1c8a4e059f495ccbd18f5d28d84c0533f77",
+        "afterSHA256": "4cb7ae98bc5b6d2726ea7ebc9c199f438ea94b528e9d6e31ae37d1fefa5f9a24",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "d81defbb",
+        "batch": 2,
+        "beforeSHA256": "c375779e5b4d883252586388304b0541bdb406a90bafc9741fd21b8d68ae2c88",
+        "afterSHA256": "db57a48be2a9c1afdef8f6c19a020fdab48bf51a1d5b91010c7f60525d6b18fa",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "1fd6a5cf",
+        "batch": 2,
+        "beforeSHA256": "6418e6a8c873c6b5fb336d64c7b6d146f21ebde0d899b3304c211a897e8e1c8d",
+        "afterSHA256": "6e677793fabb07b36f01030e69eea401a75671338e65f23ffd1e4629e129142d",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "0f7d97f3",
+        "batch": 2,
+        "beforeSHA256": "9daa82baeb6f27cc4192075e22d4aa25a37f9daab178c7a8468e963f09f94c01",
+        "afterSHA256": "9daa82baeb6f27cc4192075e22d4aa25a37f9daab178c7a8468e963f09f94c01",
+        "publication": "BLOQUEADA",
+        "materialChange": false,
+        "pending": "DECISIVA"
+      },
+      {
+        "qid": "2af04ec7",
+        "batch": 2,
+        "beforeSHA256": "d81d6a04703183fda4cc03efd2e4238df91ada3491d413396e403339c91b71b0",
+        "afterSHA256": "d81d6a04703183fda4cc03efd2e4238df91ada3491d413396e403339c91b71b0",
+        "publication": "LIBERADA",
+        "materialChange": false,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "2be4ea1f",
+        "batch": 2,
+        "beforeSHA256": "5c26b3e72b727a86810fdae2b43ef0dcf2481af5a2d6d8634b80f6fd906feb68",
+        "afterSHA256": "2f6b8583e0e2bc5da0520e98dd93c653fc4aac3e4f8ea1669cdafa65c751595a",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "ce79d609",
+        "batch": 2,
+        "beforeSHA256": "cb69780349ebbf5c52ba4e14acf194d6d7a72a8a59b30431007d7dbc44ffdfcb",
+        "afterSHA256": "cb69780349ebbf5c52ba4e14acf194d6d7a72a8a59b30431007d7dbc44ffdfcb",
+        "publication": "BLOQUEADA",
+        "materialChange": false,
+        "pending": "DECISIVA"
+      },
+      {
+        "qid": "d2a32c19",
+        "batch": 3,
+        "beforeSHA256": "849d15322188a91dd54e3507a7e70617d6ffcb643c9f9b7ed31606f89144b450",
+        "afterSHA256": "5cfdf894d6726ac122033c1ee30b3bb2e2297ab2756d3fed94fe1eebb729815a",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "91355bed",
+        "batch": 3,
+        "beforeSHA256": "1ad7603e734955932cc6e5221663e973208d262aa71cb0166225a91432e4fe78",
+        "afterSHA256": "0c53c537ed44e8e2c68e0c93d3a26b660548f0874423e75c08f64b37e6c8b927",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "d1e9ed7e",
+        "batch": 3,
+        "beforeSHA256": "8386b5ff8c390b9165100c048c8580a34e681eb8af1d3cbbe72ae65f2ee48735",
+        "afterSHA256": "b7a9ca922490e7a7f95e687ffe712a3765cff2be8f2ae70041241f477b7e4ed6",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "d80edb37",
+        "batch": 3,
+        "beforeSHA256": "62e0fddbe0b4c1768101a08c2add0f59c2125c37b52e6f2cd3991c3e190d3148",
+        "afterSHA256": "7c3139396868b3f508b54ab894ff2ca05805fb215d10bd24712fdff4dfd49047",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "9fd2cfdb",
+        "batch": 3,
+        "beforeSHA256": "cac134169e14123f684ee77973d454e5d939ad92812c84a70ab6fff1662af8c7",
+        "afterSHA256": "faea4c19ea520e45c8f05753004261201936b67ce695efbe14b6ebebb5cf6bc6",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "b7a28d0b",
+        "batch": 3,
+        "beforeSHA256": "9f3126588f0e2058d509cf5a709abade9ffa6dee5f4c9284f25fbc6861c61057",
+        "afterSHA256": "d369189f83632e4892da1f361b3de1bee838de3d7bdb3aa6063693a9841cfb58",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "00d410e2",
+        "batch": 3,
+        "beforeSHA256": "cde5bfaa5454844fb1ed2bd6be6350063ef80904c97aceb5b0d3c946605734fb",
+        "afterSHA256": "5f392871be64b5e7489fae1c6b0788f2c95e01560ca7381e3fc74f1e5c43aa04",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      },
+      {
+        "qid": "ccd15912",
+        "batch": 3,
+        "beforeSHA256": "87d45a307f384c089afc1de294e9b238a8cb05cecf3a85d8af0ed586cc433bc2",
+        "afterSHA256": "9b55573701682c0e610d88f7bf48e66824c4e53929891d004c88dcfeb8dd1a67",
+        "publication": "LIBERADA",
+        "materialChange": true,
+        "pending": "NENHUMA"
+      }
+    ]
+  }
+}

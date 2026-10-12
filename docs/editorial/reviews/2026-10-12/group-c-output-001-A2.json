@@ -1,0 +1,2241 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 126015,
+  "sourceReportSHA256": "9803217ddf8b4d03677be35621ff64006585d91b6be9aeb255c6f772548203a4",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_FORMAL_BATCH_REVIEW_v2",
+    "group": "c",
+    "batch": "001",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "bankLF_SHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "input": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 24495,
+      "sha256": "947575dc0ad4efe825ad8dd5a31f982d39695f22e6bc69ea0e7b5b17be926a1d"
+    },
+    "reviewedUTC": "2026-10-12T17:05:10Z",
+    "normativeSources": [
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      }
+    ],
+    "sourceRegistry": {
+      "kdigo_ckd": {
+        "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+        "opened": true,
+        "version": "KDIGO 2024 CKD",
+        "locations": [
+          "Table 31, PDF p.131 / S247",
+          "Table 26, PDF p.110 / S226",
+          "Practice Points 3.6.3 and 3.6.5"
+        ],
+        "verifiedScope": "Mecanismo hemodinâmico dos AINEs; classes que favorecem hipercalemia; preservar bloqueio do SRAA quando possível e tratar causas corrigíveis."
+      },
+      "ici_aki_cortazar_multicenter_2020": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7003302/",
+        "opened": true,
+        "version": "Cortazar et al., JASN 2020;31:435–446",
+        "locations": [
+          "Abstract",
+          "Results: rechallenge",
+          "Discussion"
+        ],
+        "verifiedScope": "Coorte de 138 casos e 276 controles; 93% dos 60 biopsiados com nefrite tubulointersticial; associação, não causalidade, entre corticosteroide e recuperação; recidiva em 23% dos 31 reexpostos."
+      },
+      "ason_ici_nephrotoxicity_2025": {
+        "url": "https://doi.org/10.1016/j.kint.2024.09.017",
+        "opened": false,
+        "metadataOnly": "PubMed 39455026 e registro bibliográfico dos autores identificam artigo; texto integral DOI/Kidney International retornou Internal Error.",
+        "verifiedScope": "Identidade bibliográfica; recomendações específicas não verificadas no texto integral."
+      },
+      "cisplatina_hidratacao_sikking_2024": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10836314/",
+        "opened": true,
+        "version": "Sikking et al., The Oncologist 2024;29:e173–e186",
+        "locations": [
+          "Results: search results",
+          "Discussion"
+        ],
+        "verifiedScope": "27 estudos, heterogeneidade relevante e predominância de desenho retrospectivo; hidratação e adjuvantes não são intercambiáveis."
+      },
+      "eviq_184": {
+        "url": "https://www.eviq.org.au/clinical-resources/side-effect-and-toxicity-management/prophylaxis-and-treatment/184-prevention-and-management-of-cisplatin-induced",
+        "opened": true,
+        "version": "eviQ ID 184 v4; revisão 20/11/2023; próxima 31/12/2027",
+        "locations": [
+          "Management: diuresis induction with intravenous sodium chloride 0.9%",
+          "Assessment",
+          "Supplementation"
+        ],
+        "verifiedScope": "Hidratação salina isotônica é base preventiva; avaliar volemia e contraindicações; magnésio como adjuvante."
+      },
+      "gentamicina_anvisa": {
+        "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+        "opened": true,
+        "version": "Gentamicin, Fresenius Kabi Brasil, bula profissional disponível no fabricante",
+        "locations": [
+          "Advertências e precauções, PDF p.4–5",
+          "Reações adversas, PDF p.9"
+        ],
+        "verifiedScope": "Nefrotoxicidade/ototoxicidade, maior risco na disfunção renal, vigilância renal/auditiva e níveis séricos quando possível, ajustar ou suspender se toxicidade."
+      },
+      "contraste_esur_pcaki_2018": {
+        "url": "https://link.springer.com/article/10.1007/s00330-017-5247-4",
+        "opened": true,
+        "version": "van der Molen et al., European Radiology 2018;28:2856–2869",
+        "locations": [
+          "Hydration",
+          "Conclusion",
+          "ESUR guidelines v10: https://esur-cm.org/index.php/b-renal-adverse-reactions-2"
+        ],
+        "verifiedScope": "Salina/bicarbonato como hidratação preventiva; ausência de superioridade do bicarbonato; fármacos sem proteção consistente; ausência de indicação de diálise profilática."
+      },
+      "tramadol_fda_label_2019": {
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/020281s041lbl.pdf",
+        "opened": true,
+        "version": "ULTRAM FDA, abril/2019, Reference ID 4415796",
+        "locations": [
+          "2.2 Initial dosage",
+          "5.9 Increased risk of seizure",
+          "12.3 Renal impairment"
+        ],
+        "verifiedScope": "Excreção reduzida de tramadol/M1 na disfunção renal; ajuste por depuração de creatinina; risco convulsivo. A própria bula avisa que pode não ser a mais recente."
+      },
+      "roy_pain_ckd_2020": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7753951/",
+        "opened": false,
+        "failure": "PMC retornou reCAPTCHA em duas aberturas. Não usar como texto integral conferido."
+      },
+      "gadolinio_acr_manual_2026": {
+        "url": "https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/Clinical/Contrast-Manual/ACR-Manual-on-Contrast-Media.pdf",
+        "opened": true,
+        "version": "ACR Manual on Contrast Media 2026; capítulo NSF atualizado em 2025",
+        "locations": [
+          "PDF pp.84–86: End-stage renal disease and Table 1",
+          "PDF p.89: esclarecimento Grupo II*"
+        ],
+        "verifiedScope": "Grupo II preferido, Grupo I contraindicado na DRC avançada, planejar perto da sessão regular sem acrescentar diálise; gadopiclenol permanece II* provisório."
+      }
+    },
+    "summary": [
+      {
+        "qid": "10f8730b",
+        "OP": "Explicar a LRA hemodinâmica por AINE em paciente com insuficiência cardíaca, distinguindo o mecanismo vascular de toxicidade tubular.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminatory": false,
+        "publication": "LIBERADA",
+        "legacy": "REESCREVER",
+        "action": "Proposta revisada; implementar só LIBERADA"
+      },
+      {
+        "qid": "2acaa158",
+        "OP": "Escolher manejo inicial de nefrite intersticial confirmada por biópsia durante tratamento com anti-PD-1, preservando decisão oncológica individualizada.",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "verdict": "revisão maior",
+        "score": 14,
+        "eliminatory": true,
+        "publication": "BLOQUEADA",
+        "legacy": "REESCREVER",
+        "action": "Proposta revisada; implementar só LIBERADA"
+      },
+      {
+        "qid": "9545bb60",
+        "OP": "Identificar hidratação salina como base da prevenção da nefrotoxicidade por cisplatina, sem substituir a base por um adjuvante.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 18,
+        "eliminatory": false,
+        "publication": "LIBERADA",
+        "legacy": "REESCREVER",
+        "action": "Proposta revisada; implementar só LIBERADA"
+      },
+      {
+        "qid": "586405f9",
+        "OP": "Selecionar monitorização renal, auditiva e farmacocinética da gentamicina em DRC avançada, evitando falsa segurança após ajuste inicial.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 20,
+        "eliminatory": false,
+        "publication": "LIBERADA",
+        "legacy": "REESCREVER",
+        "action": "Proposta revisada; implementar só LIBERADA"
+      },
+      {
+        "qid": "b9e26e47",
+        "OP": "Selecionar prevenção da LRA pós-contraste intra-arterial em DRC avançada, diferenciando hidratação de fármacos e diálise profilática.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 20,
+        "eliminatory": false,
+        "publication": "LIBERADA",
+        "legacy": "REESCREVER",
+        "action": "Proposta revisada; implementar só LIBERADA"
+      },
+      {
+        "qid": "5bfb77d2",
+        "OP": "Reconhecer possível neurotoxicidade do tramadol na DRC e retirar a exposição suspeita após crise convulsiva, sem troca automática de opioide.",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "verdict": "revisão maior",
+        "score": 17,
+        "eliminatory": false,
+        "publication": "BLOQUEADA",
+        "legacy": "REESCREVER",
+        "action": "Proposta revisada; implementar só LIBERADA"
+      },
+      {
+        "qid": "4c428915",
+        "OP": "Explicar menor secreção distal de potássio por redução do estímulo aldosterônico com IECA/BRA, evitando confundir mecanismos de outras classes.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminatory": false,
+        "publication": "LIBERADA",
+        "legacy": "REESCREVER",
+        "action": "Proposta revisada; implementar só LIBERADA"
+      },
+      {
+        "qid": "03b3db65",
+        "OP": "Escolher agente de gadolínio e manejo dialítico para RM necessária em hemodiálise, diferenciando risco de FSN por grupo.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminatory": false,
+        "publication": "LIBERADA",
+        "legacy": "REESCREVER",
+        "action": "Proposta revisada; implementar só LIBERADA"
+      }
+    ],
+    "questions": [
+      {
+        "qid": "10f8730b",
+        "sourceLine": 306,
+        "sourceQuestionSHA256": "1e5b37d9340a942ae3d3305fe2bb2055dc231a6c2ac6e13512832b472e43908a",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Explicar a LRA hemodinâmica por AINE em paciente com insuficiência cardíaca, distinguindo o mecanismo vascular de toxicidade tubular.",
+        "classification": {
+          "primaryCompetence": "mecanismo",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Explicar a LRA hemodinâmica por AINE em paciente com insuficiência cardíaca, distinguindo o mecanismo vascular de toxicidade tubular.",
+          "hiddenPremisesResolved": false
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Explicação usa A/B/D e correta traz justificativa seletiva."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Título original menciona diuréticos, mas item mede nefrotoxicidade de AINEs."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Card Whelton contém contraindicação absoluta não sustentada pelo trecho atual KDIGO; removido deste item, sem alterar globalmente o card compartilhado."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "qid": "10f8730b",
+            "q": "Paciente masculino, 68 anos, hipertenso e com insuficiência cardíaca congestiva, apresenta oligúria e elevação da creatinina sérica (de 1,2 para 2,5 mg/dL) após 5 dias de uso de ibuprofeno para dor lombar. Qual a principal razão para a nefrotoxicidade induzida por AINEs nesse paciente?",
+            "opts": [
+              "A ativação do sistema renina-angiotensina-aldosterona pelos AINEs provoca vasoconstrição das arteríolas e redução do débito urinário.",
+              "A interferência na reabsorção de sódio e água pelos AINEs aumenta a diurese, causando desidratação e lesão renal aguda.",
+              "A inibição da síntese de prostaglandinas reduz o fluxo sanguíneo renal, especialmente em pacientes com perfusão renal comprometida, levando à lesão renal aguda.",
+              "A indução de lesão tubular direta pelos AINEs causa necrose tubular aguda, principalmente em pacientes com hipertensão arterial."
+            ],
+            "ans": 2,
+            "exp": "Os AINEs inibem a ciclooxigenase e reduzem a síntese de prostaglandinas renais, principalmente PGE2 e PGI2, que dilatam a arteríola aferente e preservam a perfusão glomerular quando o rim depende desse mecanismo compensatório. Em pacientes com insuficiência cardíaca, hipovolemia, doença renal crônica ou outras situações de baixo fluxo renal, a inibição dessas prostaglandinas causa vasoconstrição da arteríola aferente, queda da taxa de filtração glomerular e lesão renal aguda funcional. As alternativas A, B e D estão incorretas porque não representam o mecanismo principal dos AINEs: eles não ativam o SRAA, não causam diurese por bloqueio de reabsorção e, em geral, não provocam necrose tubular aguda por toxicidade tubular direta.",
+            "cat": "farmacologia",
+            "diff": "medium",
+            "refs": [
+              "kdigo_aki",
+              "kdigo_ckd",
+              "nsaid_nephrotoxicity_whelton"
+            ],
+            "t": "Diuréticos na Insuficiência Cardíaca com DRC"
+          },
+          "AFTER": {
+            "qid": "10f8730b",
+            "q": "Paciente masculino, 68 anos, hipertenso e com insuficiência cardíaca congestiva, apresenta oligúria e elevação da creatinina sérica (de 1,2 para 2,5 mg/dL) após 5 dias de uso de ibuprofeno para dor lombar. Qual é a principal razão para a nefrotoxicidade induzida por anti-inflamatórios não esteroidais (AINEs) nesse paciente?",
+            "opts": [
+              "Ativação da angiotensina II, com vasoconstrição renal e menor filtração.",
+              "Perda de sódio e água, com redução do volume circulante e da perfusão renal.",
+              "Inibição das prostaglandinas, com vasoconstrição da arteríola aferente.",
+              "Toxicidade tubular direta, com perda de integridade das células tubulares."
+            ],
+            "ans": 2,
+            "exp": "A inibição de prostaglandinas renais favorece vasoconstrição aferente e queda da filtração neste contexto. A insuficiência cardíaca torna a perfusão mais dependente desses mecanismos compensatórios. Ativação da angiotensina II, diurese com depleção de volume e necrose tubular direta não descrevem o principal efeito hemodinâmico dos anti-inflamatórios não esteroidais (AINEs). Outros padrões de lesão por AINEs existem; o mecanismo deve ser interpretado com a cronologia, o sedimento e o estado volêmico.",
+            "cat": "farmacologia",
+            "diff": "medium",
+            "refs": [
+              "kdigo_ckd"
+            ],
+            "t": "Nefrotoxicidade dos AINEs na Insuficiência Cardíaca"
+          },
+          "afterQuestionSHA256": "8e09b0f793c8777ff2358450715da4e3904c1246dbaee22dcdcb9091b46bdd73",
+          "correctAnswer": {
+            "canonicalIndex": 2,
+            "canonicalLetter": "C",
+            "text": "Inibição das prostaglandinas, com vasoconstrição da arteríola aferente."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "kdigo_ckd",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO 2024 CKD",
+              "locations": [
+                "Table 31, PDF p.131 / S247",
+                "Table 26, PDF p.110 / S226",
+                "Practice Points 3.6.3 and 3.6.5"
+              ],
+              "verifiedScope": "Mecanismo hemodinâmico dos AINEs; classes que favorecem hipercalemia; preservar bloqueio do SRAA quando possível e tratar causas corrigíveis."
+            },
+            "supports": "Mecanismo hemodinâmico dos AINEs; classes que favorecem hipercalemia; preservar bloqueio do SRAA quando possível e tratar causas corrigíveis.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_ckd": {
+            "label": "KDIGO CKD 2024",
+            "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "journal": "Kidney International",
+            "ano": 2024,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "icon": "📋",
+            "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+            "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+            "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "t",
+            "opts",
+            "exp",
+            "refs",
+            "q"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            133,
+            119,
+            160,
+            128
+          ],
+          "afterLengths": [
+            72,
+            76,
+            71,
+            74
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "exactVersionReevaluation": {
+          "evidenceRechecked": true,
+          "pendingRechecked": true,
+          "answerAndOPRechecked": true,
+          "exactAfterSHA256": "8e09b0f793c8777ff2358450715da4e3904c1246dbaee22dcdcb9091b46bdd73",
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Expansão da sigla na primeira ocorrência; mecanismo, população, valores e gabarito são idênticos ao conteúdo já conferido no KDIGO2024 Table31. Recurso/segurança/score da nova versão foram reavaliados.",
+          "publicationDerivation": "Handbook18.4Regra7(a), sem herança automática de autorização."
+        },
+        "reviewScope": "Decisão principal refere-se ao AFTER proposto e exato. BEFORE não foi aprovado retroativamente."
+      },
+      {
+        "qid": "2acaa158",
+        "sourceLine": 354,
+        "sourceQuestionSHA256": "bb3a96b2288838c148043b96b4a08c476836c918dbf87a783df89baef713f37c",
+        "verdictV2": "revisão maior",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "moderada",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "OP": "Escolher manejo inicial de nefrite intersticial confirmada por biópsia durante tratamento com anti-PD-1, preservando decisão oncológica individualizada.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Avaliar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "avançada"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Escolher manejo inicial de nefrite intersticial confirmada por biópsia durante tratamento com anti-PD-1, preservando decisão oncológica individualizada.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "CRÍTICO",
+            "problem": "Texto original atribui estágio KDIGO sem explicitar a janela aguda da creatinina."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Diurético para melhorar função renal, plasmaférese e antibiótico sem infecção são distratores excessivamente afastados da decisão real."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Consenso terapêutico decisivo não abriu; coorte não substitui verificação da conduta atual."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Sem janela de deterioração não é demonstrado o estágio KDIGO alegado; faltam opções próximas de manejo."
+          ],
+          "after": [
+            "VERIFICAÇÃO NECESSÁRIA: abrir texto integral ASON 2025 e conferir interrupção temporária, indicação de corticosteroide e gravidade. Confirmar também definição temporal/estágio na diretriz LRA vigente. Não implementar o rascunho."
+          ],
+          "resolvedBeforeApproval": false
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [
+            5,
+            8
+          ],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 1,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 1,
+            "Distratores": 1,
+            "Explicação": 1,
+            "Referências": 1,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 14,
+          "band": "Recuperável",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "PARCIALMENTE VERIFICADA / DECISIVA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "em_revisão",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — RASCUNHO BLOQUEADO",
+          "BEFORE": {
+            "t": "Nefrite Intersticial Aguda por Inibidores de Checkpoint Imunológico",
+            "qid": "2acaa158",
+            "q": "Um paciente com carcinoma metastático em uso de inibidor de checkpoint imunológico (anti-PD-1) apresenta, após cerca de 8 semanas, elevação da creatinina sérica de 0,9 para 2,6 mg/dL (aumento de 2,9 vezes o valor basal), proteinúria leve e leucocitúria, sem sinais de infecção ou hipovolemia. A biópsia renal, já realizada, revela nefrite tubulointersticial aguda com eosinófilos, sem necrose tubular. Qual é a conduta mais adequada?",
+            "opts": [
+              "Manter o inibidor de checkpoint e iniciar diuréticos para controlar o edema e melhorar a função renal.",
+              "Suspender temporariamente o inibidor de checkpoint, retirar outros fármacos potencialmente associados à nefrite intersticial e iniciar corticosteroide sistêmico, com monitorização da função renal.",
+              "Realizar plasmaférese para remover o agente imunoterápico e iniciar diálise precoce.",
+              "Manter o inibidor de checkpoint e iniciar antibióticos empíricos por suspeita de nefrite intersticial infecciosa."
+            ],
+            "ans": 1,
+            "exp": "O aumento da creatinina de 0,9 para 2,6 mg/dL corresponde a lesão renal aguda KDIGO estágio 2 pelo critério de creatinina (2,0–2,9 vezes o basal), com biópsia mostrando nefrite tubulointersticial aguda — o padrão predominante da lesão renal por inibidores de checkpoint. A conduta é: suspender temporariamente o inibidor de checkpoint (a suspensão definitiva não é regra universal e depende da gravidade, da resposta e da necessidade oncológica); retirar outros fármacos que também causam nefrite intersticial (por exemplo, inibidor de bomba de prótons, anti-inflamatório não esteroidal e antibióticos); e iniciar corticosteroide sistêmico, com a dose ajustada à gravidade conforme a diretriz, sob monitorização da função renal. Neste caso a biópsia já foi realizada e confirmou o diagnóstico; quando o diagnóstico é incerto, a biópsia idealmente precede a escalada terapêutica. Diuréticos (A) não tratam a inflamação intersticial. Plasmaférese e diálise precoce (C) não estão indicadas sem indicação dialítica, pois a patogênese não envolve anticorpos circulantes removíveis. Antibiótico empírico (D) é inadequado na ausência de infecção. O rechallenge com o inibidor de checkpoint, quando considerado, é individualizado — em séries observacionais, cerca de um quarto dos pacientes reexpostos apresenta recidiva da lesão renal.",
+            "diff": "hard",
+            "cat": "farmacologia",
+            "refs": [
+              "ici_aki_cortazar_multicenter_2020",
+              "ason_ici_nephrotoxicity_2025"
+            ]
+          },
+          "AFTER": {
+            "t": "Nefrite Intersticial Aguda por Inibidores de Checkpoint Imunológico",
+            "qid": "2acaa158",
+            "q": "Paciente com carcinoma metastático em uso de inibidor de checkpoint imunológico anti-PD-1 há oito semanas apresenta aumento da creatinina de 0,9 para 2,6 mg/dL em cinco dias. Não há sinais de infecção ou hipovolemia. Biópsia renal confirma nefrite tubulointersticial aguda. Qual é a conduta inicial mais adequada?",
+            "opts": [
+              "Manter o anti-PD-1 e observar a função renal antes de decidir por imunossupressão.",
+              "Interromper temporariamente o anti-PD-1, retirar fármacos associados e iniciar corticosteroide.",
+              "Interromper definitivamente o anti-PD-1 e adiar corticosteroide até haver necessidade de diálise.",
+              "Manter o anti-PD-1, retirar outros fármacos e observar resposta antes de iniciar corticosteroide."
+            ],
+            "ans": 1,
+            "exp": "A nefrite intersticial confirmada requer discutir a interrupção temporária do inibidor de checkpoint e o tratamento com corticosteroide, retirando também outros fármacos potencialmente associados e monitorando a função renal. O aumento agudo da creatinina é relevante para a gravidade; a interrupção definitiva e uma eventual reexposição dependem do curso renal e da necessidade oncológica. A associação observacional entre corticosteroide e recuperação renal não estabelece causalidade. RASCUNHO BLOQUEADO: conferir os pontos de prática específicos no texto integral ASON 2025 antes de implementação.",
+            "diff": "hard",
+            "cat": "farmacologia",
+            "refs": [
+              "ici_aki_cortazar_multicenter_2020",
+              "ason_ici_nephrotoxicity_2025"
+            ]
+          },
+          "afterQuestionSHA256": "8a1bf3da4e20ff71ff39d85e164c397f6f616c26881b1bcd185cc58830cf2e71",
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "Interromper temporariamente o anti-PD-1, retirar fármacos associados e iniciar corticosteroide."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "ici_aki_cortazar_multicenter_2020",
+            "source": {
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7003302/",
+              "opened": true,
+              "version": "Cortazar et al., JASN 2020;31:435–446",
+              "locations": [
+                "Abstract",
+                "Results: rechallenge",
+                "Discussion"
+              ],
+              "verifiedScope": "Coorte de 138 casos e 276 controles; 93% dos 60 biopsiados com nefrite tubulointersticial; associação, não causalidade, entre corticosteroide e recuperação; recidiva em 23% dos 31 reexpostos."
+            },
+            "supports": "Coorte de 138 casos e 276 controles; 93% dos 60 biopsiados com nefrite tubulointersticial; associação, não causalidade, entre corticosteroide e recuperação; recidiva em 23% dos 31 reexpostos.",
+            "status": "VERIFICADA"
+          },
+          {
+            "sourceId": "ason_ici_nephrotoxicity_2025",
+            "source": {
+              "url": "https://doi.org/10.1016/j.kint.2024.09.017",
+              "opened": false,
+              "metadataOnly": "PubMed 39455026 e registro bibliográfico dos autores identificam artigo; texto integral DOI/Kidney International retornou Internal Error.",
+              "verifiedScope": "Identidade bibliográfica; recomendações específicas não verificadas no texto integral."
+            },
+            "supports": "Identidade bibliográfica; recomendações específicas não verificadas no texto integral.",
+            "status": "VERIFICAÇÃO NECESSÁRIA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "ici_aki_cortazar_multicenter_2020": {
+            "label": "Cortazar et al. — LRA por Inibidores de Checkpoint: estudo multicêntrico (2020)",
+            "url": "https://doi.org/10.1681/ASN.2019070676",
+            "journal": "Journal of the American Society of Nephrology",
+            "ano": 2020,
+            "tipo": "Coorte",
+            "badge": "COHORT",
+            "badgeColor": "#f59e0b",
+            "impacto": "Nefrite intersticial predomina; rechallenge exige avaliação individualizada.",
+            "icon": "🔬",
+            "resumo": "Coorte multicêntrica de 138 casos de LRA por inibidores de checkpoint e 276 controles. Nefrite tubulointersticial em 93% dos 60 biopsiados. Corticosteroide associou-se a recuperação; não demonstra causalidade. Recidiva em 23% dos 31 reexpostos.",
+            "conclusao": "A coorte descreve apresentação e desfechos; não substitui consenso terapêutico atual.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [
+          "VERIFICAÇÃO NECESSÁRIA: abrir texto integral ASON 2025 e conferir interrupção temporária, indicação de corticosteroide e gravidade. Confirmar também definição temporal/estágio na diretriz LRA vigente. Não implementar o rascunho."
+        ],
+        "comparison": {
+          "beforeLengths": [
+            102,
+            196,
+            84,
+            113
+          ],
+          "afterLengths": [
+            82,
+            95,
+            97,
+            97
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Decisão principal refere-se ao AFTER proposto e exato. BEFORE não foi aprovado retroativamente."
+      },
+      {
+        "qid": "9545bb60",
+        "sourceLine": 371,
+        "sourceQuestionSHA256": "e99347e42ae4ed6b613d76aef1cfdd023f07073beba1f1543a920df1bd6ce09d",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Identificar hidratação salina como base da prevenção da nefrotoxicidade por cisplatina, sem substituir a base por um adjuvante.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Identificar hidratação salina como base da prevenção da nefrotoxicidade por cisplatina, sem substituir a base por um adjuvante.",
+          "hiddenPremisesResolved": false
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Explicação usa letras; distratores repetem dispensar hidratação."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Correta reúne qualificações ausentes nos demais textos."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 18,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Nefrotoxicidade por Cisplatina: Mecanismo e Prevenção",
+            "qid": "9545bb60",
+            "q": "Um paciente com carcinoma de testículo iniciará quimioterapia com cisplatina. Considerando que a nefrotoxicidade da cisplatina decorre de dano tubular direto, qual é a pedra angular da prevenção da lesão renal aguda associada?",
+            "opts": [
+              "Uso isolado de diurético de alça para acelerar a eliminação tubular da cisplatina.",
+              "Hidratação intravenosa adequada com solução salina isotônica no período peri-infusão.",
+              "Uso isolado de amifostina, dispensando a hidratação.",
+              "Reposição isolada de magnésio, dispensando a hidratação intravenosa."
+            ],
+            "ans": 1,
+            "exp": "A pedra angular da prevenção da nefrotoxicidade por cisplatina — mediada por dano tubular direto — é a hidratação intravenosa adequada com solução salina isotônica no período peri-infusão, que reduz a concentração e o tempo de contato do fármaco com o epitélio tubular. Como medidas adicionais à hidratação: a suplementação de magnésio associou-se a menor nefrotoxicidade (benefício sugerido, evidência predominantemente observacional) e o manitol tem uso selecionado, com evidência inconsistente; esquemas curtos de hidratação foram associados a menor ou semelhante nefrotoxicidade em relação aos prolongados, com heterogeneidade entre os estudos. As demais opções dispensam ou substituem a hidratação: o diurético de alça isolado (A) pode causar hipovolemia; a amifostina (C) tem uso limitado e não substitui a hidratação; e o magnésio (D), embora benéfico como adjuvante, não substitui a hidratação intravenosa.",
+            "diff": "hard",
+            "cat": "farmacologia",
+            "refs": [
+              "cisplatina_hidratacao_sikking_2024",
+              "cisplatina_magnesio_meta_li_2023"
+            ]
+          },
+          "AFTER": {
+            "t": "Nefrotoxicidade por Cisplatina: Mecanismo e Prevenção",
+            "qid": "9545bb60",
+            "q": "Um paciente com carcinoma de testículo iniciará quimioterapia com cisplatina. Considerando que a nefrotoxicidade da cisplatina decorre de dano tubular direto, qual é a pedra angular da prevenção da lesão renal aguda associada?",
+            "opts": [
+              "Furosemida antes de cada infusão, como medida preventiva principal em paciente euvolêmico.",
+              "Hidratação intravenosa com solução salina isotônica no período peri-infusão.",
+              "Amifostina antes da infusão, como medida preventiva principal de nefrotoxicidade.",
+              "Magnésio intravenoso nas infusões, como medida preventiva principal de nefrotoxicidade."
+            ],
+            "ans": 1,
+            "exp": "A hidratação intravenosa salina é a base preventiva. Volume e duração precisam considerar volemia, função renal e protocolo oncológico; não há um esquema universal demonstrado para todos os pacientes. Magnésio é um adjuvante, e o uso de manitol é selecionado. Os dados comparativos são heterogêneos e não autorizam substituir hidratação por diurético, amifostina ou magnésio isolados.",
+            "diff": "hard",
+            "cat": "farmacologia",
+            "refs": [
+              "cisplatina_hidratacao_sikking_2024"
+            ]
+          },
+          "afterQuestionSHA256": "2252567b9d24de8cca5111fed772522b5e3f0a4a5da1665a784c6daa8f60521e",
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "Hidratação intravenosa com solução salina isotônica no período peri-infusão."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "cisplatina_hidratacao_sikking_2024",
+            "source": {
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10836314/",
+              "opened": true,
+              "version": "Sikking et al., The Oncologist 2024;29:e173–e186",
+              "locations": [
+                "Results: search results",
+                "Discussion"
+              ],
+              "verifiedScope": "27 estudos, heterogeneidade relevante e predominância de desenho retrospectivo; hidratação e adjuvantes não são intercambiáveis."
+            },
+            "supports": "27 estudos, heterogeneidade relevante e predominância de desenho retrospectivo; hidratação e adjuvantes não são intercambiáveis.",
+            "status": "VERIFICADA"
+          },
+          {
+            "sourceId": "eviq_184",
+            "source": {
+              "url": "https://www.eviq.org.au/clinical-resources/side-effect-and-toxicity-management/prophylaxis-and-treatment/184-prevention-and-management-of-cisplatin-induced",
+              "opened": true,
+              "version": "eviQ ID 184 v4; revisão 20/11/2023; próxima 31/12/2027",
+              "locations": [
+                "Management: diuresis induction with intravenous sodium chloride 0.9%",
+                "Assessment",
+                "Supplementation"
+              ],
+              "verifiedScope": "Hidratação salina isotônica é base preventiva; avaliar volemia e contraindicações; magnésio como adjuvante."
+            },
+            "supports": "Hidratação salina isotônica é base preventiva; avaliar volemia e contraindicações; magnésio como adjuvante.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "cisplatina_hidratacao_sikking_2024": {
+            "label": "Sikking et al. — Hidratação na nefrotoxicidade por cisplatina (2024)",
+            "url": "https://doi.org/10.1093/oncolo/oyad297",
+            "journal": "The Oncologist",
+            "ano": 2024,
+            "tipo": "Revisão sistemática",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Hidratação IV é a base da prevenção da nefrotoxicidade por cisplatina; magnésio e manitol como medidas adjuntas",
+            "icon": "🔬",
+            "resumo": "Revisão sistemática de 27 estudos sobre hidratação na quimioterapia com cisplatina. Estudos heterogêneos, muitos retrospectivos. Analisa duração/volume, diuréticos, magnésio e via de hidratação; não estabelece um único esquema universal.",
+            "conclusao": "Hidratação é a base; adjuvantes não autorizam dispensá-la. Esquema deve considerar volemia e protocolo oncológico.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "opts",
+            "exp",
+            "refs"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            82,
+            85,
+            52,
+            68
+          ],
+          "afterLengths": [
+            90,
+            76,
+            81,
+            87
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Decisão principal refere-se ao AFTER proposto e exato. BEFORE não foi aprovado retroativamente."
+      },
+      {
+        "qid": "586405f9",
+        "sourceLine": 442,
+        "sourceQuestionSHA256": "5676c5891ca3142de68c19499ce7c2490195c85c04178d2368ba996c12e026d0",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Selecionar monitorização renal, auditiva e farmacocinética da gentamicina em DRC avançada, evitando falsa segurança após ajuste inicial.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Selecionar monitorização renal, auditiva e farmacocinética da gentamicina em DRC avançada, evitando falsa segurança após ajuste inicial.",
+          "hiddenPremisesResolved": false
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta tem 260 caracteres e três distratores negam fatos básicos ou invocam eliminação hepática."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Explicação dependente de letras."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Distratores ausência de nefrotoxicidade e eliminação hepática permitem acerto por descarte sem escolher estratégia de segurança."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [
+            5
+          ],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 20,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Aminoglicosídeos na Disfunção Renal — Toxicidade e Monitorização",
+            "qid": "586405f9",
+            "q": "Paciente com doença renal crônica avançada necessita de gentamicina para uma infecção grave por Gram-negativo sensível, como parte de um esquema apropriado. Qual princípio orienta corretamente o uso e a monitorização da gentamicina nesse contexto?",
+            "opts": [
+              "Os aminoglicosídeos não são nefrotóxicos na doença renal crônica, dispensando monitorização da função renal",
+              "A gentamicina é nefro e ototóxica, com risco maior na disfunção renal, em doses altas e no tratamento prolongado; exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade",
+              "Os aminoglicosídeos são absolutamente contraindicados em qualquer grau de doença renal crônica e nunca devem ser usados",
+              "A monitorização deve basear-se apenas na função hepática, pois a gentamicina é eliminada pelo fígado"
+            ],
+            "ans": 1,
+            "exp": "A gentamicina é um aminoglicosídeo bactericida com potencial nefrotóxico e ototóxico. O risco de nefrotoxicidade é maior em pacientes com função renal comprometida, doses altas ou tratamento prolongado, e pode haver ototoxicidade vestibular e auditiva. Por isso, a bula recomenda vigilância da função renal e do oitavo par craniano, determinação periódica de ureia, creatinina ou depuração de creatinina, audiogramas seriados e monitorização dos níveis séricos, com modificação da dose ou suspensão diante de sinais de toxicidade. Afirmar que não há nefrotoxicidade (A), contraindicar de forma absoluta em qualquer doença renal crônica (C) ou basear a monitorização na função hepática (D) são condutas incorretas — a gentamicina é eliminada por via renal e pode ser usada com monitorização e ajuste apropriados.",
+            "diff": "medium",
+            "cat": "farmacologia",
+            "refs": [
+              "gentamicina_anvisa"
+            ]
+          },
+          "AFTER": {
+            "t": "Aminoglicosídeos na Disfunção Renal — Toxicidade e Monitorização",
+            "qid": "586405f9",
+            "q": "Paciente com doença renal crônica avançada necessita de gentamicina para uma infecção grave por Gram-negativo sensível, como parte de um esquema apropriado. Qual princípio orienta corretamente o uso e a monitorização da gentamicina nesse contexto?",
+            "opts": [
+              "Monitorar creatinina e sintomas auditivos, dispensando níveis séricos após ajuste renal.",
+              "Monitorar função renal, audição e níveis séricos, individualizando exposição e ajuste.",
+              "Monitorar níveis séricos e manter o esquema se a creatinina permanecer estável.",
+              "Monitorar função renal e reservar a avaliação auditiva para tratamentos prolongados."
+            ],
+            "ans": 1,
+            "exp": "A gentamicina exige vigilância renal e auditiva e monitorização de níveis séricos quando disponível, com ajuste da exposição e reavaliação se houver toxicidade. A disfunção renal aumenta o risco, e uma creatinina estável não exclui ototoxicidade. Ajustar inicialmente a dose não dispensa acompanhamento; adiar a avaliação auditiva até tratamento prolongado perde um componente de segurança. A bula não estabelece contraindicação absoluta a toda DRC.",
+            "diff": "medium",
+            "cat": "farmacologia",
+            "refs": [
+              "gentamicina_anvisa"
+            ]
+          },
+          "afterQuestionSHA256": "3ed540e5f8f9fb86852be5d2b646699ca335d0544ea6c8947a5359cbc0bd2cd6",
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "Monitorar função renal, audição e níveis séricos, individualizando exposição e ajuste."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "gentamicina_anvisa",
+            "source": {
+              "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+              "opened": true,
+              "version": "Gentamicin, Fresenius Kabi Brasil, bula profissional disponível no fabricante",
+              "locations": [
+                "Advertências e precauções, PDF p.4–5",
+                "Reações adversas, PDF p.9"
+              ],
+              "verifiedScope": "Nefrotoxicidade/ototoxicidade, maior risco na disfunção renal, vigilância renal/auditiva e níveis séricos quando possível, ajustar ou suspender se toxicidade."
+            },
+            "supports": "Nefrotoxicidade/ototoxicidade, maior risco na disfunção renal, vigilância renal/auditiva e níveis séricos quando possível, ajustar ou suspender se toxicidade.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "gentamicina_anvisa": {
+            "label": "Gentamicin (sulfato de gentamicina) — Bula Profissional (ANVISA, Fresenius Kabi Brasil)",
+            "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+            "journal": "ANVISA — Bula Profissional (Fresenius Kabi Brasil Ltda., Reg. MS 1.0041.0210)",
+            "ano": 2015,
+            "tipo": "Bula profissional aprovada pela ANVISA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Gentamicina — nefro e ototoxicidade na disfunção renal; monitorização de função renal, oitavo par craniano e níveis séricos",
+            "icon": "📋",
+            "resumo": "Bula profissional brasileira de Gentamicin: risco renal e auditivo maior na disfunção renal e na exposição elevada ou prolongada. Orienta vigilância renal e do oitavo par craniano, níveis séricos quando possível e ajuste ou suspensão se houver toxicidade.",
+            "conclusao": "Na disfunção renal, a gentamicina exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            107,
+            250,
+            119,
+            100
+          ],
+          "afterLengths": [
+            88,
+            86,
+            79,
+            84
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Decisão principal refere-se ao AFTER proposto e exato. BEFORE não foi aprovado retroativamente."
+      },
+      {
+        "qid": "b9e26e47",
+        "sourceLine": 446,
+        "sourceQuestionSHA256": "4a767e29a0130f9b7fa2b734f6859a0f600f60d11e96cdfd9d94b674dbf10fc9",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Selecionar prevenção da LRA pós-contraste intra-arterial em DRC avançada, diferenciando hidratação de fármacos e diálise profilática.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Selecionar prevenção da LRA pós-contraste intra-arterial em DRC avançada, diferenciando hidratação de fármacos e diálise profilática.",
+          "hiddenPremisesResolved": false
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta isolada é mais longa e explicação cita B/C/D."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 20,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Lesão Renal Aguda Associada a Contraste — Prevenção",
+            "qid": "b9e26e47",
+            "q": "Homem de 68 anos, diabético, com doença renal crônica estágio 4 (TFGe 26 mL/min/1,73m²), será submetido a coronariografia (contraste iodado por via intra-arterial). Qual é a medida com melhor respaldo para reduzir o risco de lesão renal aguda associada ao contraste neste paciente de alto risco?",
+            "opts": [
+              "Expansão volêmica intravenosa com solução salina isotônica (NaCl 0,9%) no período peri-procedimento.",
+              "N-acetilcisteína oral como profilaxia de rotina.",
+              "Bicarbonato de sódio intravenoso, por ser superior à salina isotônica.",
+              "Hemodiálise profilática logo após o exame para remover o agente iodado."
+            ],
+            "ans": 0,
+            "exp": "Em pacientes de alto risco (doença renal crônica avançada e diabetes) submetidos a contraste iodado, a medida com melhor respaldo é a expansão volêmica intravenosa com solução salina isotônica no período peri-procedimento, ajustando-se a taxa de infusão quando há risco de congestão (por exemplo, insuficiência cardíaca). A salina isotônica e o bicarbonato de sódio intravenoso têm eficácia equivalente, de modo que o bicarbonato não é superior (C); nenhum fármaco reduz consistentemente o risco, incluindo a N-acetilcisteína (B). A hemodiálise profilática (D) não previne a lesão e não está indicada, e os esquemas de diálise não precisam ser alterados pela administração de contraste. Como medidas complementares, usa-se o menor volume possível de contraste de baixa ou de iso-osmolaridade (evitando os de alta osmolaridade) e evitam-se outros nefrotóxicos no período.",
+            "diff": "hard",
+            "cat": "farmacologia",
+            "refs": [
+              "contraste_esur_pcaki_2018"
+            ]
+          },
+          "AFTER": {
+            "t": "Lesão Renal Aguda Associada a Contraste — Prevenção",
+            "qid": "b9e26e47",
+            "q": "Homem de 68 anos, diabético, com doença renal crônica estágio 4 (TFGe 26 mL/min/1,73m²), será submetido a coronariografia (contraste iodado por via intra-arterial). Qual é a medida com melhor respaldo para reduzir o risco de lesão renal aguda associada ao contraste neste paciente de alto risco?",
+            "opts": [
+              "Salina isotônica intravenosa no período peri-procedimento, ajustada à volemia.",
+              "N-acetilcisteína oral no período peri-procedimento, substituindo hidratação venosa.",
+              "Bicarbonato intravenoso no período peri-procedimento, por ser superior à salina.",
+              "Hemodiálise após o procedimento, sem outra indicação, para prevenir lesão renal."
+            ],
+            "ans": 0,
+            "exp": "A hidratação intravenosa isotônica é a estratégia sustentada neste paciente de risco, com ajuste se houver risco de congestão. A diretriz ESUR não demonstra superioridade do bicarbonato sobre a salina nem proteção farmacológica consistente pela N-acetilcisteína. Remover contraste por hemodiálise não equivale a prevenir lesão e não justifica sessão profilática. Deve-se ainda minimizar a exposição ao contraste sem comprometer o diagnóstico.",
+            "diff": "hard",
+            "cat": "farmacologia",
+            "refs": [
+              "contraste_esur_pcaki_2018"
+            ]
+          },
+          "afterQuestionSHA256": "7c087c66a7648e0fbaf32fcdbbf4b4d66aeff757cc2d87c4fb4ed8e873d61c5d",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Salina isotônica intravenosa no período peri-procedimento, ajustada à volemia."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "contraste_esur_pcaki_2018",
+            "source": {
+              "url": "https://link.springer.com/article/10.1007/s00330-017-5247-4",
+              "opened": true,
+              "version": "van der Molen et al., European Radiology 2018;28:2856–2869",
+              "locations": [
+                "Hydration",
+                "Conclusion",
+                "ESUR guidelines v10: https://esur-cm.org/index.php/b-renal-adverse-reactions-2"
+              ],
+              "verifiedScope": "Salina/bicarbonato como hidratação preventiva; ausência de superioridade do bicarbonato; fármacos sem proteção consistente; ausência de indicação de diálise profilática."
+            },
+            "supports": "Salina/bicarbonato como hidratação preventiva; ausência de superioridade do bicarbonato; fármacos sem proteção consistente; ausência de indicação de diálise profilática.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "contraste_esur_pcaki_2018": {
+            "label": "ESUR — Lesão renal aguda pós-contraste (guideline, 2018)",
+            "url": "https://doi.org/10.1007/s00330-017-5247-4",
+            "journal": "European Radiology",
+            "ano": 2018,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Em DRC, hidratação reduz o risco; salina e bicarbonato equivalentes; nenhum fármaco reduz consistentemente",
+            "icon": "📋",
+            "resumo": "Diretriz atualizada do Comitê de Segurança de Meios de Contraste da European Society of Urogenital Radiology (van der Molen et al., European Radiology 2018, em duas partes), abrangendo contraste intravenoso e intra-arterial. Termo preferido: lesão renal aguda pós-contraste. O risco de LRA por contraste intravascular foi superestimado; principais fatores de risco são doença renal crônica e desidratação. Na doença renal crônica, a hidratação reduz o risco; salina isotônica intravenosa e bicarbonato de sódio intravenoso são igualmente eficazes; nenhum fármaco reduz consistentemente o risco. Suspender metformina a partir da administração do contraste se TFGe inferior a 30 mL/min/1,73m². Os esquemas de diálise não precisam ser alterados quando se administra contraste intravascular.",
+            "conclusao": "A expansão volêmica com salina isotônica é a base da prevenção da lesão renal aguda pós-contraste em pacientes de risco; o bicarbonato não é superior à salina e nenhum fármaco (incluindo N-acetilcisteína) reduz consistentemente o risco.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            100,
+            48,
+            70,
+            71
+          ],
+          "afterLengths": [
+            78,
+            83,
+            80,
+            80
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Decisão principal refere-se ao AFTER proposto e exato. BEFORE não foi aprovado retroativamente."
+      },
+      {
+        "qid": "5bfb77d2",
+        "sourceLine": 597,
+        "sourceQuestionSHA256": "7bd1fe35e2d5f4b18fc524a02b4ad46c115ed98c0923a9b3228624ce521d38eb",
+        "verdictV2": "revisão maior",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "moderada",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "OP": "Reconhecer possível neurotoxicidade do tramadol na DRC e retirar a exposição suspeita após crise convulsiva, sem troca automática de opioide.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Reconhecer possível neurotoxicidade do tramadol na DRC e retirar a exposição suspeita após crise convulsiva, sem troca automática de opioide.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Explicação aplica limiar de depuração de creatinina a TFGe sem declarar a estimativa relevante."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Correta muito longa e distratores sobre morfina/codeína expressam ausência absoluta de metabolismo renal."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Bula atual não foi obtida e revisão Roy retornou reCAPTCHA."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "TFGe e depuração de creatinina não são parâmetros automaticamente idênticos para ajuste da bula."
+          ],
+          "after": [
+            "VERIFICAÇÃO NECESSÁRIA: confirmar versão corrente da bula de tramadol e abrir a revisão renal de analgesia ou fonte primária equivalente para os riscos de morfina/codeína. Fonte FDA 2019 é histórica, não confirmação de vigência."
+          ],
+          "resolvedBeforeApproval": false
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 1,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 1,
+            "Referências": 1,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 17,
+          "band": "Boa com reparos",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "PARCIALMENTE VERIFICADA / DECISIVA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "em_revisão",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — RASCUNHO BLOQUEADO",
+          "BEFORE": {
+            "t": "Tramadol na DRC — Neurotoxicidade e Conduta",
+            "qid": "5bfb77d2",
+            "q": "Paciente com doença renal crônica estágio 4, taxa de filtração glomerular estimada de 22 mL/min/1,73 m², usa tramadol de liberação imediata 100 mg a cada 8 horas para dor crônica. Após alguns dias, apresenta crise convulsiva generalizada. Não há história prévia de epilepsia nem uso concomitante de medicamentos serotoninérgicos. Qual é a interpretação e a conduta farmacológica mais apropriadas?",
+            "opts": [
+              "Manter o tramadol em dose menor e iniciar anticonvulsivante, pois a crise não exige suspensão do analgésico.",
+              "Reconhecer possível neurotoxicidade favorecida pela redução da excreção renal do tramadol e de seu metabólito ativo, suspender o fármaco e reavaliar a estratégia analgésica.",
+              "Substituir o tramadol por morfina, cujos metabólitos não se acumulam na doença renal crônica.",
+              "Substituir o tramadol por codeína, que não depende de conversão metabólica nem de eliminação renal."
+            ],
+            "ans": 1,
+            "exp": "A crise convulsiva exige suspensão do tramadol e reavaliação do tratamento (alternativa B). Na disfunção renal grave, diminuem a excreção do tramadol e de seu metabólito ativo M1; além disso, o esquema apresentado não respeita o intervalo recomendado quando a depuração de creatinina é inferior a 30 mL/min. O tramadol pode causar convulsões mesmo em doses recomendadas, com risco maior quando a exposição aumenta. A resposta não deve determinar automaticamente outro opioide: primeiro é necessário caracterizar a dor, priorizar estratégias não farmacológicas e não opioides e, se um opioide continuar indicado, selecionar e titular uma opção compatível com a função renal. Manter o tramadol após a crise (A) perpetua a exposição suspeita; morfina (C) e codeína (D) têm metabólitos ativos com risco de acúmulo na doença renal avançada.",
+            "diff": "medium",
+            "cat": "farmacologia",
+            "refs": [
+              "roy_pain_ckd_2020",
+              "tramadol_fda_label_2019"
+            ]
+          },
+          "AFTER": {
+            "t": "Tramadol na DRC — Neurotoxicidade e Conduta",
+            "qid": "5bfb77d2",
+            "q": "Paciente com doença renal crônica estágio 4, depuração de creatinina estimada de 22 mL/min, usa tramadol de liberação imediata 100 mg a cada oito horas. Após alguns dias apresenta crise convulsiva generalizada, já controlada. Não há história prévia de epilepsia nem uso concomitante de medicamentos serotoninérgicos. Qual é a conduta farmacológica mais adequada diante da suspeita de neurotoxicidade?",
+            "opts": [
+              "Reduzir a dose do tramadol e associar anticonvulsivante, mantendo o analgésico suspeito.",
+              "Suspender o tramadol e reavaliar a analgesia, considerando acúmulo na disfunção renal.",
+              "Trocar por morfina em dose equianalgésica, sem considerar os metabólitos renais.",
+              "Trocar por codeína em dose equianalgésica, sem reavaliar a necessidade de opioide."
+            ],
+            "ans": 1,
+            "exp": "A exposição ao tramadol deve ser suspensa e a analgesia reavaliada após a crise suspeita. A bula FDA aberta de 2019 descreve excreção reduzida de tramadol e M1 na disfunção renal e risco de convulsão; o parâmetro de ajuste é a depuração de creatinina, não uma TFGe automaticamente intercambiável. RASCUNHO BLOQUEADO: confirmar a bula atual e o manejo analgésico na DRC, incluindo os riscos das trocas propostas, antes de implementar.",
+            "diff": "medium",
+            "cat": "farmacologia",
+            "refs": [
+              "roy_pain_ckd_2020",
+              "tramadol_fda_label_2019"
+            ]
+          },
+          "afterQuestionSHA256": "0ef1df5656b59a745ddb1894c15a463da56cb402020ea5595a2858352565d61d",
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "Suspender o tramadol e reavaliar a analgesia, considerando acúmulo na disfunção renal."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "tramadol_fda_label_2019",
+            "source": {
+              "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/020281s041lbl.pdf",
+              "opened": true,
+              "version": "ULTRAM FDA, abril/2019, Reference ID 4415796",
+              "locations": [
+                "2.2 Initial dosage",
+                "5.9 Increased risk of seizure",
+                "12.3 Renal impairment"
+              ],
+              "verifiedScope": "Excreção reduzida de tramadol/M1 na disfunção renal; ajuste por depuração de creatinina; risco convulsivo. A própria bula avisa que pode não ser a mais recente."
+            },
+            "supports": "Excreção reduzida de tramadol/M1 na disfunção renal; ajuste por depuração de creatinina; risco convulsivo. A própria bula avisa que pode não ser a mais recente.",
+            "status": "VERIFICADA"
+          },
+          {
+            "sourceId": "roy_pain_ckd_2020",
+            "source": {
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7753951/",
+              "opened": false,
+              "failure": "PMC retornou reCAPTCHA em duas aberturas. Não usar como texto integral conferido."
+            },
+            "supports": null,
+            "status": "VERIFICAÇÃO NECESSÁRIA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "tramadol_fda_label_2019": {
+            "label": "ULTRAM (tramadol) — Prescribing Information FDA (2019)",
+            "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/020281s041lbl.pdf",
+            "journal": "FDA — Prescribing Information (Janssen Pharmaceuticals)",
+            "ano": 2019,
+            "tipo": "Bula profissional aprovada pela FDA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Tramadol em CrCl <30: intervalo de 12 h; risco de convulsão mesmo em doses recomendadas",
+            "icon": "📋",
+            "resumo": "Informação de prescrição do ULTRAM (tramadol) revisada em abril de 2019. Em depuração de creatinina inferior a 30 mL/min, recomenda aumentar o intervalo de dose para 12 horas e limitar a dose diária máxima a 200 mg. A farmacocinética descreve redução da excreção de tramadol e do metabólito ativo M1 na disfunção renal. A bula também registra convulsões com tramadol dentro da faixa posológica recomendada, com maior risco quando a exposição aumenta ou quando há fatores que reduzem o limiar convulsivo.",
+            "conclusao": "No paciente com DRC avançada e crise convulsiva em uso de tramadol, a exposição deve ser considerada insegura: suspender o fármaco e reavaliar a analgesia, em vez de manter apenas com ajuste de dose.",
+            "curiosidade": "A bula ressalta que opioides devem ser reservados para dor suficientemente intensa quando alternativas não opioides forem inadequadas ou não toleradas."
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [
+          "VERIFICAÇÃO NECESSÁRIA: confirmar versão corrente da bula de tramadol e abrir a revisão renal de analgesia ou fonte primária equivalente para os riscos de morfina/codeína. Fonte FDA 2019 é histórica, não confirmação de vigência."
+        ],
+        "comparison": {
+          "beforeLengths": [
+            108,
+            173,
+            93,
+            99
+          ],
+          "afterLengths": [
+            88,
+            86,
+            80,
+            82
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Decisão principal refere-se ao AFTER proposto e exato. BEFORE não foi aprovado retroativamente."
+      },
+      {
+        "qid": "4c428915",
+        "sourceLine": 601,
+        "sourceQuestionSHA256": "ba0b8f04cc8e9480b8cbf8516351de952f152341a85c0566ed96becc1d4fdf5d",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Explicar menor secreção distal de potássio por redução do estímulo aldosterônico com IECA/BRA, evitando confundir mecanismos de outras classes.",
+        "classification": {
+          "primaryCompetence": "mecanismo",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "básica"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Explicar menor secreção distal de potássio por redução do estímulo aldosterônico com IECA/BRA, evitando confundir mecanismos de outras classes.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta original atribui redução de angiotensina II tanto a IECA quanto a BRA, omitindo distinção formação/ação."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Comprimento e precisão ROMK seletivos; explicação cita alternativa C."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Farmacologia Renal",
+            "qid": "4c428915",
+            "q": "Qual é o principal mecanismo da hipercalemia associada ao uso de IECA ou BRA em pacientes com doença renal crônica?",
+            "opts": [
+              "Lesão tubular direta pelos IECA/BRA, com necrose das células principais do ducto coletor.",
+              "Aumento da carga filtrada de potássio pela hiperfiltração glomerular induzida por essas drogas.",
+              "Redução da angiotensina II, com queda da síntese de aldosterona e menor secreção distal de potássio pelo canal ROMK no ducto coletor.",
+              "Inibição direta da bomba Na+/K+-ATPase tubular, deslocando potássio para o compartimento extracelular."
+            ],
+            "ans": 2,
+            "exp": "Os IECA e BRA reduzem a formação ou a ação da angiotensina II e, com isso, a síntese de aldosterona; com menos aldosterona, cai a secreção de potássio pelo canal ROMK nas células principais do ducto coletor, elevando o potássio sérico (alternativa C). Como aplicação clínica, o manejo prioriza preservar o bloqueio do SRAA sempre que possível: revisar medicamentos e causas corrigíveis, orientar dieta individualizada, otimizar diurético, corrigir a acidose metabólica e, quando necessário, usar agentes de troca de potássio (patiromer, ciclossilicato de zircônio sódico); a redução ou suspensão do IECA/BRA fica reservada à hipercalemia que permanece não controlada. As demais alternativas descrevem mecanismos inexistentes para essa classe.",
+            "diff": "medium",
+            "cat": "farmacologia",
+            "refs": [
+              "kdigo_ckd"
+            ]
+          },
+          "AFTER": {
+            "t": "Farmacologia Renal",
+            "qid": "4c428915",
+            "q": "Qual é o principal mecanismo da hipercalemia associada a inibidores da enzima conversora de angiotensina (IECA) ou bloqueadores do receptor de angiotensina (BRA) em pessoas com doença renal crônica?",
+            "opts": [
+              "Redução da reabsorção proximal de sódio, com menor fluxo de potássio ao ducto coletor.",
+              "Aumento do potássio filtrado, com saturação dos mecanismos de secreção distal.",
+              "Menor estímulo à produção de aldosterona, reduzindo a secreção distal de potássio.",
+              "Bloqueio dos canais de sódio do ducto coletor, reduzindo a secreção de potássio."
+            ],
+            "ans": 2,
+            "exp": "O menor estímulo aldosterônico reduz a secreção distal de potássio. IECA reduzem a formação de angiotensina II; BRA bloqueiam sua ação, sem exigir queda da concentração da angiotensina. Não se trata de bloqueio direto dos canais de sódio ou de toxicidade tubular. A KDIGO 2024 orienta tratar causas corrigíveis de hipercalemia para preservar o bloqueio do sistema renina-angiotensina quando possível; hipercalemia não controlada apesar do tratamento exige reavaliação.",
+            "diff": "medium",
+            "cat": "farmacologia",
+            "refs": [
+              "kdigo_ckd"
+            ]
+          },
+          "afterQuestionSHA256": "91c19ace1a9b2aaaf95e1eb205d16db0838e8ab9a0ae4a0b8996c8d12962e9b6",
+          "correctAnswer": {
+            "canonicalIndex": 2,
+            "canonicalLetter": "C",
+            "text": "Menor estímulo à produção de aldosterona, reduzindo a secreção distal de potássio."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "kdigo_ckd",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO 2024 CKD",
+              "locations": [
+                "Table 31, PDF p.131 / S247",
+                "Table 26, PDF p.110 / S226",
+                "Practice Points 3.6.3 and 3.6.5"
+              ],
+              "verifiedScope": "Mecanismo hemodinâmico dos AINEs; classes que favorecem hipercalemia; preservar bloqueio do SRAA quando possível e tratar causas corrigíveis."
+            },
+            "supports": "Mecanismo hemodinâmico dos AINEs; classes que favorecem hipercalemia; preservar bloqueio do SRAA quando possível e tratar causas corrigíveis.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_ckd": {
+            "label": "KDIGO CKD 2024",
+            "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "journal": "Kidney International",
+            "ano": 2024,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "icon": "📋",
+            "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+            "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+            "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            89,
+            95,
+            133,
+            102
+          ],
+          "afterLengths": [
+            86,
+            78,
+            82,
+            80
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Decisão principal refere-se ao AFTER proposto e exato. BEFORE não foi aprovado retroativamente."
+      },
+      {
+        "qid": "03b3db65",
+        "sourceLine": 603,
+        "sourceQuestionSHA256": "a3187e6211b4f7b5a8e3fd5f97c8d969d073bf2ec7e845de7a7c4f88381439ba",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Escolher agente de gadolínio e manejo dialítico para RM necessária em hemodiálise, diferenciando risco de FSN por grupo.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Escolher agente de gadolínio e manejo dialítico para RM necessária em hemodiálise, diferenciando risco de FSN por grupo.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta concentra duas decisões e risco enquanto outras alternativas são mais curtas; explicação dependente de letras."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Explicação original inclui gadopiclenol no Grupo II sem ressalva II* provisório presente no próprio card."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Gadolínio e Fibrose Sistêmica Nefrogênica",
+            "qid": "03b3db65",
+            "q": "Paciente com doença renal crônica estágio 5 em hemodiálise necessita de ressonância magnética com contraste de gadolínio. Qual afirmação está correta quanto ao risco renal e à conduta?",
+            "opts": [
+              "O principal risco é a fibrose sistêmica nefrogênica; deve-se preferir um agente do Grupo II, cujo risco é muito baixo, sem necessidade de iniciar ou intensificar a diálise apenas por causa do exame.",
+              "O principal risco renal dos agentes de gadolínio nas doses usuais é uma lesão renal aguda tubular dose-dependente semelhante à causada pelo contraste iodado.",
+              "Os agentes lineares do Grupo I são preferidos por apresentarem menor risco de fibrose sistêmica nefrogênica na doença renal avançada.",
+              "Deve-se agendar uma sessão adicional de hemodiálise imediatamente após o exame para remover o gadolínio e prevenir a fibrose sistêmica nefrogênica."
+            ],
+            "ans": 0,
+            "exp": "O principal risco do gadolínio na doença renal avançada é a fibrose sistêmica nefrogênica (FSN); nas doses usuais, o gadolínio não causa lesão tubular dose-dependente como o contraste iodado (por isso B é incorreta). O ACR Manual on Contrast Media (2026) classifica os agentes por risco de FSN: o Grupo I (lineares — gadodiamida, gadopentetato, gadoversetamida) concentra o maior número de casos e é contraindicado na doença renal avançada, sendo incorreto preferi-lo (C). O Grupo II (macrocíclicos — gadobutrol, gadoterato, gadoteridol —, o gadobenato e, desde 2024, o gadoxetato e o gadopiclenol) é fortemente preferido em pacientes de risco, com risco de FSN muito baixo independentemente da função renal ou do status de diálise. Em pacientes em hemodiálise, recomenda-se realizar o exame o mais próximo possível de uma sessão regular, mas não se deve iniciar, intensificar nem acrescentar sessões de diálise apenas para remover o gadolínio (por isso D é incorreta).",
+            "diff": "medium",
+            "cat": "farmacologia",
+            "refs": [
+              "gadolinio_acr_manual_2026"
+            ]
+          },
+          "AFTER": {
+            "t": "Gadolínio e Fibrose Sistêmica Nefrogênica",
+            "qid": "03b3db65",
+            "q": "Paciente com doença renal crônica estágio 5 em hemodiálise precisa de ressonância magnética com contraste após avaliação da indicação. Segundo o ACR Manual on Contrast Media 2026, qual é a conduta mais adequada?",
+            "opts": [
+              "Preferir um agente do Grupo II e manter o esquema habitual de hemodiálise.",
+              "Preferir um agente do Grupo II e acrescentar hemodiálise após cada exame.",
+              "Usar agente do Grupo I após hemodiálise, para reduzir a exposição prolongada.",
+              "Evitar qualquer agente de gadolínio, mesmo quando o exame contrastado é necessário."
+            ],
+            "ans": 0,
+            "exp": "Prefere-se agente do Grupo II, com exame eletivo próximo da sessão regular; não se acrescenta diálise apenas para removê-lo. O risco de fibrose sistêmica nefrogênica é muito baixo com os agentes tradicionais desse grupo, e o Grupo I é contraindicado nesse contexto. O gadopiclenol tem classificação provisória II*, com menos dados clínicos na DRC avançada, conforme o manual ACR 2026. A necessidade do contraste e a seleção do agente devem ser avaliadas antes do exame.",
+            "diff": "medium",
+            "cat": "farmacologia",
+            "refs": [
+              "gadolinio_acr_manual_2026"
+            ]
+          },
+          "afterQuestionSHA256": "ece9cd76a65e0f3e22e4e56c46f9de7b42529e245ea5d31249246dfab84b7ede",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Preferir um agente do Grupo II e manter o esquema habitual de hemodiálise."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "gadolinio_acr_manual_2026",
+            "source": {
+              "url": "https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/Clinical/Contrast-Manual/ACR-Manual-on-Contrast-Media.pdf",
+              "opened": true,
+              "version": "ACR Manual on Contrast Media 2026; capítulo NSF atualizado em 2025",
+              "locations": [
+                "PDF pp.84–86: End-stage renal disease and Table 1",
+                "PDF p.89: esclarecimento Grupo II*"
+              ],
+              "verifiedScope": "Grupo II preferido, Grupo I contraindicado na DRC avançada, planejar perto da sessão regular sem acrescentar diálise; gadopiclenol permanece II* provisório."
+            },
+            "supports": "Grupo II preferido, Grupo I contraindicado na DRC avançada, planejar perto da sessão regular sem acrescentar diálise; gadopiclenol permanece II* provisório.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "gadolinio_acr_manual_2026": {
+            "label": "ACR Manual on Contrast Media (2026) — FSN e agentes de gadolínio",
+            "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+            "journal": "American College of Radiology",
+            "ano": 2026,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Grupo II preferido em DRC avançada, LRA e diálise; risco de FSN muito baixo; não iniciar ou alterar a diálise pelo exame",
+            "icon": "📋",
+            "resumo": "Manual ACR 2026, capítulo FSN atualizado em 2025: em DRC avançada e hemodiálise, preferir agente do Grupo II e planejar o exame próximo da sessão regular. Não iniciar ou intensificar diálise pelo contraste. Gadopiclenol é Grupo II* provisório.",
+            "conclusao": "Avaliar a necessidade do exame e escolher o agente adequado; sessão adicional não é profilaxia recomendada.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            198,
+            157,
+            133,
+            147
+          ],
+          "afterLengths": [
+            74,
+            73,
+            77,
+            83
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Decisão principal refere-se ao AFTER proposto e exato. BEFORE não foi aprovado retroativamente."
+      }
+    ],
+    "counts": {
+      "reviewed": 8,
+      "publicationReleased": 6,
+      "publicationBlocked": 2,
+      "implemented": 0
+    },
+    "limits": [
+      "Revisor único com etapa adversarial interna; não alegar revisão independente externa.",
+      "Nenhum banco, checkout ou git editado.",
+      "Lotes 002–035 permanecem NÃO REVISADOS até saída própria.",
+      "Métrica de comprimento não estabelece qualidade clínica.",
+      "Sources read through web tool; no user browser profile or external-account messaging."
+    ],
+    "cardPatches": [
+      {
+        "id": "ici_aki_cortazar_multicenter_2020",
+        "action": "UPDATE_EXISTING_CARD_IF_DEPENDENT_RELEASED_ITEM_APPLIED",
+        "BEFORE": {
+          "label": "Cortazar et al. — LRA por Inibidores de Checkpoint: estudo multicêntrico (2020)",
+          "url": "https://doi.org/10.1681/ASN.2019070676",
+          "journal": "Journal of the American Society of Nephrology",
+          "ano": 2020,
+          "tipo": "Coorte multicêntrica",
+          "badge": "COORTE",
+          "badgeColor": "#f59e0b",
+          "impacto": "Maior série de LRA por inibidores de checkpoint (n=138): NTIA predominante; corticosteroide associado a melhor recuperação renal",
+          "icon": "🔬",
+          "resumo": "Estudo multicêntrico (Cortazar et al., Journal of the American Society of Nephrology 2020; n=138 pacientes com LRA associada a inibidores de checkpoint, definida por aumento de pelo menos 2 vezes na creatinina ou necessidade de diálise, além de 276 controles). Fatores de risco independentes: menor TFGe basal, uso de inibidor de bomba de prótons e imunoterapia combinada. Tempo mediano do início do inibidor de checkpoint à LRA de 14 semanas (6–37). A nefrite tubulointersticial foi a lesão dominante em 93% dos 60 pacientes biopsiados. A maioria (86%) recebeu corticosteroide; recuperação renal completa, parcial ou ausente em 40%, 45% e 15%. O tratamento com corticosteroide associou-se a melhor prognóstico renal (associação observacional). Rechallenge com inibidor de checkpoint em 22%, com recidiva da LRA em 23% desses.",
+          "conclusao": "Maior evidência sobre a LRA por inibidores de checkpoint: predomínio de nefrite tubulointersticial, associação observacional entre corticosteroide e melhor recuperação, e recidiva em cerca de um quarto dos pacientes reexpostos — sustentando conduta individualizada de rechallenge.",
+          "curiosidade": ""
+        },
+        "AFTER": {
+          "label": "Cortazar et al. — LRA por Inibidores de Checkpoint: estudo multicêntrico (2020)",
+          "url": "https://doi.org/10.1681/ASN.2019070676",
+          "journal": "Journal of the American Society of Nephrology",
+          "ano": 2020,
+          "tipo": "Coorte",
+          "badge": "COHORT",
+          "badgeColor": "#f59e0b",
+          "impacto": "Nefrite intersticial predomina; rechallenge exige avaliação individualizada.",
+          "icon": "🔬",
+          "resumo": "Coorte multicêntrica de 138 casos de LRA por inibidores de checkpoint e 276 controles. Nefrite tubulointersticial em 93% dos 60 biopsiados. Corticosteroide associou-se a recuperação; não demonstra causalidade. Recidiva em 23% dos 31 reexpostos.",
+          "conclusao": "A coorte descreve apresentação e desfechos; não substitui consenso terapêutico atual.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "62da72bcb99282c24f839004926b127ef157ae816e0f469616cc522ce11d5fba",
+        "afterSHA256": "eb239435eef83902c0405b3ceaaadaa3baf97fd2aba01faae266156714495ae6",
+        "usedByQids": [
+          "2acaa158"
+        ],
+        "exactSourceReferenceSnapshot": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 202834,
+          "sha256": "67a8b14bc4ac2592fc591c715ff41bc5c921fd2f9d301688c45c0e4b5337e7d5"
+        },
+        "evidenceSources": [
+          {
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7003302/",
+            "opened": true,
+            "version": "Cortazar et al., JASN 2020;31:435–446",
+            "locations": [
+              "Abstract",
+              "Results: rechallenge",
+              "Discussion"
+            ],
+            "verifiedScope": "Coorte de 138 casos e 276 controles; 93% dos 60 biopsiados com nefrite tubulointersticial; associação, não causalidade, entre corticosteroide e recuperação; recidiva em 23% dos 31 reexpostos."
+          }
+        ],
+        "newExactVersionReview": {
+          "verdictV2": "aprovada com pequenos ajustes",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4Regra7(a): conteúdo do AFTER exato conferido na fonte aberta; sem pendência decisiva e veredito de aprovação.",
+          "advogadoDoRecurso": "Nenhuma afirmação causal indevida, dose inventada ou recomendação não conferida no AFTER. O resumo delimita população/desenho e não pretende rever todo conteúdo original do card.",
+          "eliminatorsTriggered": []
+        },
+        "implementation": "Não sobrescrever card com BEFORE divergente. A aprovação do card não libera o item clínico bloqueado; aplicar só ao integrar proposta de questão LIBERADA que o utiliza."
+      },
+      {
+        "id": "cisplatina_hidratacao_sikking_2024",
+        "action": "UPDATE_EXISTING_CARD_IF_DEPENDENT_RELEASED_ITEM_APPLIED",
+        "BEFORE": {
+          "label": "Sikking et al. — Hidratação na nefrotoxicidade por cisplatina (2024)",
+          "url": "https://doi.org/10.1093/oncolo/oyad297",
+          "journal": "The Oncologist",
+          "ano": 2024,
+          "tipo": "Revisão sistemática",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Hidratação IV é a base da prevenção da nefrotoxicidade por cisplatina; magnésio e manitol como medidas adjuntas",
+          "icon": "🔬",
+          "resumo": "Revisão sistemática (Sikking et al., The Oncologist 2024; 27 estudos, heterogêneos) sobre esquemas de hidratação para prevenir a nefrotoxicidade por cisplatina. Esquemas curtos foram associados a menor ou semelhante nefrotoxicidade em comparação aos prolongados nos estudos incluídos, com heterogeneidade metodológica; o manitol foi protetor em parte dos estudos (4 de 7); a suplementação de magnésio associou-se a menor nefrotoxicidade (7 de 9); a hidratação oral não aumentou a nefrotoxicidade (3 estudos). Faltam comparações diretas (furosemida versus manitol; doses de manitol e magnésio).",
+          "conclusao": "A hidratação intravenosa com solução salina isotônica é a base da prevenção; o magnésio (associação favorável, evidência sobretudo observacional) e o manitol (uso selecionado, evidência inconsistente) são medidas adjuntas.",
+          "curiosidade": ""
+        },
+        "AFTER": {
+          "label": "Sikking et al. — Hidratação na nefrotoxicidade por cisplatina (2024)",
+          "url": "https://doi.org/10.1093/oncolo/oyad297",
+          "journal": "The Oncologist",
+          "ano": 2024,
+          "tipo": "Revisão sistemática",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Hidratação IV é a base da prevenção da nefrotoxicidade por cisplatina; magnésio e manitol como medidas adjuntas",
+          "icon": "🔬",
+          "resumo": "Revisão sistemática de 27 estudos sobre hidratação na quimioterapia com cisplatina. Estudos heterogêneos, muitos retrospectivos. Analisa duração/volume, diuréticos, magnésio e via de hidratação; não estabelece um único esquema universal.",
+          "conclusao": "Hidratação é a base; adjuvantes não autorizam dispensá-la. Esquema deve considerar volemia e protocolo oncológico.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "d53ca24f1fafb27eea5832f26250243ea6de015ac2077f1c6af0eb035b0d0d6f",
+        "afterSHA256": "3cbb32601b577df7690b0322d539dbad4fb0b604d0da2adefefc3bc941d48c1c",
+        "usedByQids": [
+          "9545bb60"
+        ],
+        "exactSourceReferenceSnapshot": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 202834,
+          "sha256": "67a8b14bc4ac2592fc591c715ff41bc5c921fd2f9d301688c45c0e4b5337e7d5"
+        },
+        "evidenceSources": [
+          {
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10836314/",
+            "opened": true,
+            "version": "Sikking et al., The Oncologist 2024;29:e173–e186",
+            "locations": [
+              "Results: search results",
+              "Discussion"
+            ],
+            "verifiedScope": "27 estudos, heterogeneidade relevante e predominância de desenho retrospectivo; hidratação e adjuvantes não são intercambiáveis."
+          }
+        ],
+        "newExactVersionReview": {
+          "verdictV2": "aprovada com pequenos ajustes",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4Regra7(a): conteúdo do AFTER exato conferido na fonte aberta; sem pendência decisiva e veredito de aprovação.",
+          "advogadoDoRecurso": "Nenhuma afirmação causal indevida, dose inventada ou recomendação não conferida no AFTER. O resumo delimita população/desenho e não pretende rever todo conteúdo original do card.",
+          "eliminatorsTriggered": []
+        },
+        "implementation": "Não sobrescrever card com BEFORE divergente. A aprovação do card não libera o item clínico bloqueado; aplicar só ao integrar proposta de questão LIBERADA que o utiliza."
+      },
+      {
+        "id": "gentamicina_anvisa",
+        "action": "UPDATE_EXISTING_CARD_IF_DEPENDENT_RELEASED_ITEM_APPLIED",
+        "BEFORE": {
+          "label": "Gentamicin (sulfato de gentamicina) — Bula Profissional (ANVISA, Fresenius Kabi Brasil)",
+          "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+          "journal": "ANVISA — Bula Profissional (Fresenius Kabi Brasil Ltda., Reg. MS 1.0041.0210)",
+          "ano": 2015,
+          "tipo": "Bula profissional aprovada pela ANVISA",
+          "badge": "BULA",
+          "badgeColor": "#64748b",
+          "impacto": "Gentamicina — nefro e ototoxicidade na disfunção renal; monitorização de função renal, oitavo par craniano e níveis séricos",
+          "icon": "📋",
+          "resumo": "Bula profissional da Gentamicin (sulfato de gentamicina) aprovada pela ANVISA (Fresenius Kabi Brasil, Reg. MS 1.0041.0210; Bula Padrão de 10/11/2015). Aminoglicosídeo bactericida; o risco de nefrotoxicidade é maior em pacientes com função renal comprometida, dose alta ou tratamento prolongado, podendo haver ototoxicidade vestibular e auditiva. Recomenda vigilância da função renal e do oitavo par craniano, determinação periódica de ureia/creatinina/depuração de creatinina, audiogramas seriados e monitorização dos níveis séricos; sinais de oto ou nefrotoxicidade exigem modificação da dose ou suspensão. Admite esquema de dose única diária.",
+          "conclusao": "Na disfunção renal, a gentamicina exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade.",
+          "curiosidade": ""
+        },
+        "AFTER": {
+          "label": "Gentamicin (sulfato de gentamicina) — Bula Profissional (ANVISA, Fresenius Kabi Brasil)",
+          "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+          "journal": "ANVISA — Bula Profissional (Fresenius Kabi Brasil Ltda., Reg. MS 1.0041.0210)",
+          "ano": 2015,
+          "tipo": "Bula profissional aprovada pela ANVISA",
+          "badge": "BULA",
+          "badgeColor": "#64748b",
+          "impacto": "Gentamicina — nefro e ototoxicidade na disfunção renal; monitorização de função renal, oitavo par craniano e níveis séricos",
+          "icon": "📋",
+          "resumo": "Bula profissional brasileira de Gentamicin: risco renal e auditivo maior na disfunção renal e na exposição elevada ou prolongada. Orienta vigilância renal e do oitavo par craniano, níveis séricos quando possível e ajuste ou suspensão se houver toxicidade.",
+          "conclusao": "Na disfunção renal, a gentamicina exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "8cbc0d8db4bce57c1c0dc81f75bb42458daf9f44c782de254338fd2a7a6e95b4",
+        "afterSHA256": "9c198f424d5016860b57d577ad2221bb70851313394c8bae852f1225fffcca21",
+        "usedByQids": [
+          "586405f9"
+        ],
+        "exactSourceReferenceSnapshot": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 202834,
+          "sha256": "67a8b14bc4ac2592fc591c715ff41bc5c921fd2f9d301688c45c0e4b5337e7d5"
+        },
+        "evidenceSources": [
+          {
+            "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+            "opened": true,
+            "version": "Gentamicin, Fresenius Kabi Brasil, bula profissional disponível no fabricante",
+            "locations": [
+              "Advertências e precauções, PDF p.4–5",
+              "Reações adversas, PDF p.9"
+            ],
+            "verifiedScope": "Nefrotoxicidade/ototoxicidade, maior risco na disfunção renal, vigilância renal/auditiva e níveis séricos quando possível, ajustar ou suspender se toxicidade."
+          }
+        ],
+        "newExactVersionReview": {
+          "verdictV2": "aprovada com pequenos ajustes",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4Regra7(a): conteúdo do AFTER exato conferido na fonte aberta; sem pendência decisiva e veredito de aprovação.",
+          "advogadoDoRecurso": "Nenhuma afirmação causal indevida, dose inventada ou recomendação não conferida no AFTER. O resumo delimita população/desenho e não pretende rever todo conteúdo original do card.",
+          "eliminatorsTriggered": []
+        },
+        "implementation": "Não sobrescrever card com BEFORE divergente. A aprovação do card não libera o item clínico bloqueado; aplicar só ao integrar proposta de questão LIBERADA que o utiliza."
+      },
+      {
+        "id": "gadolinio_acr_manual_2026",
+        "action": "UPDATE_EXISTING_CARD_IF_DEPENDENT_RELEASED_ITEM_APPLIED",
+        "BEFORE": {
+          "label": "ACR Manual on Contrast Media (2026) — FSN e agentes de gadolínio",
+          "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+          "journal": "American College of Radiology",
+          "ano": 2026,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Grupo II preferido em DRC avançada, LRA e diálise; risco de FSN muito baixo; não iniciar ou alterar a diálise pelo exame",
+          "icon": "📋",
+          "resumo": "ACR Manual on Contrast Media, edição 2026 (capítulo Fibrose Sistêmica Nefrogênica, atualização de 2025, Tabela 1). Grupo I (gadodiamida, gadopentetato, gadoversetamida — maior número de casos de FSN; contraindicados em DRC avançada, LRA e diálise). Grupo II (gadobenato, gadobutrol, gadoterato, gadoteridol, gadopiclenol* e gadoxetato dissódico — poucos ou nenhum caso não confundido). O Grupo III está vazio ('nenhum agente', desde abril de 2024): gadoxetato e gadopiclenol foram reclassificados para o Grupo II no início de 2024, com o gadopiclenol em status provisório (Grupo II*). O Grupo II é fortemente preferido em pacientes de risco, com risco de FSN muito baixo independentemente da função renal ou do status de diálise. Em doença renal terminal em hemodiálise, recomenda-se realizar o exame o mais próximo possível de uma sessão regular, mas não se deve iniciar nem alterar o esquema de diálise (nem sessões diárias ou múltiplas por dia) apenas pela administração — recomendação conjunta com a National Kidney Foundation.",
+          "conclusao": "Em DRC avançada, LRA ou diálise, prefira um agente de gadolínio do Grupo II, cujo risco de FSN é muito baixo; não se deve iniciar, intensificar nem acrescentar sessões de diálise apenas para remover o gadolínio.",
+          "curiosidade": "A classificação de risco depende do quelato específico, não apenas da palavra “gadolínio”; tratar todos os agentes como equivalentes perpetua restrições baseadas nos antigos agentes lineares do Grupo I."
+        },
+        "AFTER": {
+          "label": "ACR Manual on Contrast Media (2026) — FSN e agentes de gadolínio",
+          "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+          "journal": "American College of Radiology",
+          "ano": 2026,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Grupo II preferido em DRC avançada, LRA e diálise; risco de FSN muito baixo; não iniciar ou alterar a diálise pelo exame",
+          "icon": "📋",
+          "resumo": "Manual ACR 2026, capítulo FSN atualizado em 2025: em DRC avançada e hemodiálise, preferir agente do Grupo II e planejar o exame próximo da sessão regular. Não iniciar ou intensificar diálise pelo contraste. Gadopiclenol é Grupo II* provisório.",
+          "conclusao": "Avaliar a necessidade do exame e escolher o agente adequado; sessão adicional não é profilaxia recomendada.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "dfa15c0251516f50bef5ced274a953b0e45bbbc3b5a261907a9b4c5f2e7781f4",
+        "afterSHA256": "0f7785d97da31f4ab780f3c16ad5a0a50afd2bc390f2743e6c045e5cd9229008",
+        "usedByQids": [
+          "03b3db65"
+        ],
+        "exactSourceReferenceSnapshot": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 202834,
+          "sha256": "67a8b14bc4ac2592fc591c715ff41bc5c921fd2f9d301688c45c0e4b5337e7d5"
+        },
+        "evidenceSources": [
+          {
+            "url": "https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/Clinical/Contrast-Manual/ACR-Manual-on-Contrast-Media.pdf",
+            "opened": true,
+            "version": "ACR Manual on Contrast Media 2026; capítulo NSF atualizado em 2025",
+            "locations": [
+              "PDF pp.84–86: End-stage renal disease and Table 1",
+              "PDF p.89: esclarecimento Grupo II*"
+            ],
+            "verifiedScope": "Grupo II preferido, Grupo I contraindicado na DRC avançada, planejar perto da sessão regular sem acrescentar diálise; gadopiclenol permanece II* provisório."
+          }
+        ],
+        "newExactVersionReview": {
+          "verdictV2": "aprovada com pequenos ajustes",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4Regra7(a): conteúdo do AFTER exato conferido na fonte aberta; sem pendência decisiva e veredito de aprovação.",
+          "advogadoDoRecurso": "Nenhuma afirmação causal indevida, dose inventada ou recomendação não conferida no AFTER. O resumo delimita população/desenho e não pretende rever todo conteúdo original do card.",
+          "eliminatorsTriggered": []
+        },
+        "implementation": "Não sobrescrever card com BEFORE divergente. A aprovação do card não libera o item clínico bloqueado; aplicar só ao integrar proposta de questão LIBERADA que o utiliza."
+      }
+    ],
+    "referenceCardPolicy": "Objetos em referenceCardsVerified são cards AFTER propostos quando diferentes de refs.js. Cada diferença agora tem patch explícito BEFORE/AFTER/pins e nova revisão; objeto não é falsamente declarado idêntico ao card real. Cards sem patch permanecem idênticos ao snapshot.",
+    "supersedes": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 103194,
+      "sha256": "78f8ea64839b427569d2c8a0392c7c5500ea08619fefdf81a78fa40d59ca46d8"
+    },
+    "revision": "A2: siglaAINEs expandida no primeiro enunciado e patches de cards explícitos; nova versão exata reavaliada. As contagens clínicas permanecem6LIBERADA/2BLOQUEADA. Nenhum banco alterado.",
+    "sourceSnapshot": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 202834,
+      "sha256": "67a8b14bc4ac2592fc591c715ff41bc5c921fd2f9d301688c45c0e4b5337e7d5"
+    }
+  }
+}

@@ -977,6 +977,7 @@
       const ritualResults = [];
       let ritualFinished = false;
       let step = 0, band = 'medium', correctCount = 0, hardCorrect = 0, hardFaced = 0, current = null;
+      let currentPresentation = null;
       const letras = ['A', 'B', 'C', 'D', 'E'];
       const desenhar = (html, foco) => {
         if (!currentPage()) return;
@@ -1029,11 +1030,15 @@
           if (step === 0) return showIntro('Não há questões disponíveis para o Ritual agora. Tente de novo mais tarde. Nada foi registrado.');
           return showResult();
         }
+        const opts = current.o || current.opts || [];
+        const ans = (current.a !== undefined) ? current.a : current.ans;
+        const authored = { id: current.qid || current.id, q: current.q || '', o: [...opts], a: ans, e: current.e || current.exp || '' };
+        currentPresentation = window.NQAnswers ? window.NQAnswers.present(authored) : authored;
+        if (!currentPresentation) return showIntro('Não foi possível conferir as alternativas. Nada foi registrado.');
         used.add(current.qid || current.id);
         step++;
         if (band === 'hard') hardFaced++;
-        const opts = current.o || current.opts || [];
-        const ans = (current.a !== undefined) ? current.a : current.ans;
+        const presentation = currentPresentation;
         desenhar(`
           <p class="nq-exam-titulo">Ritual de Iniciação</p>
           <div class="nq-exam-progresso" role="progressbar" aria-label="Progresso do Ritual" aria-valuemin="0" aria-valuemax="${RITUAL_LEN}" aria-valuenow="${step - 1}">
@@ -1043,17 +1048,19 @@
             <h1 id="ritualQuestao" tabindex="-1">Questão ${step} de ${RITUAL_LEN}</h1>
             <p class="nq-exam-enunciado">${_ritualEsc(current.q || '')}</p>
             <div id="ritualOpts" class="nq-exam-opcoes">
-              ${opts.map((opt, i) => `<button type="button" class="nq-exam-opcao" data-i="${i}">
+              ${presentation.o.map((opt, i) => `<button type="button" class="nq-exam-opcao" data-i="${i}">
                 <span class="nq-exam-letra" aria-hidden="true">${letras[i]}</span><span>${_ritualEsc(opt)}</span></button>`).join('')}
             </div>
             <p id="ritualVeredito" class="nq-exam-veredito" role="status" aria-live="polite"></p>
           </article>`, '#ritualQuestao');
         pagina.querySelectorAll('#ritualOpts button').forEach(b =>
-          b.addEventListener('click', () => answer(Number(b.dataset.i), ans), { once: true }));
+          b.addEventListener('click', () => answer(Number(b.dataset.i), presentation), { once: true }));
       }
 
-      function answer(escolha, ans) {
+      function answer(escolha, presentation) {
         if (!currentPage() || ritualFinished) return;
+        if (presentation !== currentPresentation || !Number.isInteger(escolha) || escolha < 0 || escolha >= presentation.o.length) return;
+        const ans = presentation.a;
         const botoes = [...pagina.querySelectorAll('#ritualOpts button')];
         // Resposta única: desabilitar de verdade, não só para o mouse.
         if (botoes.some(b => b.disabled)) return;
@@ -1068,7 +1075,11 @@
         marcar(ans, 'certa', isCorrect ? 'Sua escolha — correta' : 'Resposta correta');
         if (!isCorrect) marcar(escolha, 'errada', 'Sua escolha');
         pagina.querySelector('#ritualVeredito').textContent = isCorrect ? 'Correto.' : `Incorreto. A resposta certa é a ${letras[ans]}.`;
-        ritualResults.push({ qid: current.qid || current.id, isCorrect });
+        ritualResults.push({
+          qid: current.qid || current.id, isCorrect,
+          authoredChoice: window.NQAnswers ? window.NQAnswers.originalIndex(presentation, escolha) : escolha,
+          optionId: window.NQAnswers ? window.NQAnswers.optionId(presentation, escolha) : null
+        });
         if (isCorrect) {
           correctCount++;
           if (band === 'hard') hardCorrect++;
@@ -1177,7 +1188,7 @@
           </header>
           <div class="modal-scroll-body nqreview-reading" role="region" tabindex="0" aria-label="Revisão dos erros da sessão">
             ${wrongs.map((q, qi) => {
-              const opts = q.o || [];
+              const opts = Array.isArray(q.o) ? [...q.o] : [];
               const hasChoice = Number.isInteger(q.chosen) && q.chosen >= 0 && q.chosen < opts.length;
               return `<article class="nqreview-question-card" aria-labelledby="sessionReviewQuestion${qi}">
                 <p class="nqreview-index">Questão ${qi+1} de ${wrongs.length}</p>

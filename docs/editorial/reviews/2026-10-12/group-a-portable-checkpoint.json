@@ -1,0 +1,763 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 38768,
+  "sourceReportSHA256": "91358b5c37886138277cdb64c760fe153fd439e874a12b46574ea997b7c12e89",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_GROUP_A_PORTABLE_CHECKPOINT_A1",
+    "checkpointUTC": "2026-10-12T18:06:18Z",
+    "owner": "clinical_review_a",
+    "status": "PAUSED_AT_END_OF_BATCH_004_BY_ROOT",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "bankLF_SHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "counts": {
+      "queued": 243,
+      "reviewed": 32,
+      "releasedProposals": 22,
+      "blockedProposals": 10,
+      "notReviewed": 211,
+      "nextBatch": 5
+    },
+    "authoritativeOutputs": [
+      {
+        "path": "docs/editorial/reviews/2026-10-12/group-a-output-001.json",
+        "bytes": 95560,
+        "sha256": "64bf5cabfe631640a41099f34968253286c4a0fcfd02ef1a087b69e63924bb41"
+      },
+      {
+        "path": "docs/editorial/reviews/2026-10-12/group-a-output-002.json",
+        "bytes": 86909,
+        "sha256": "6f0a22f88e36cadb23a9c6ca47c79c72626efc37cd323b9eb8ee7ae352ef7c57"
+      },
+      {
+        "path": "docs/editorial/reviews/2026-10-12/group-a-output-003-A2.json",
+        "bytes": 140451,
+        "sha256": "8ed59bf4bb76d0086f268e70e6d8d6061341435cbe3d68a4b3b86ae869679fb4"
+      },
+      {
+        "path": "docs/editorial/reviews/2026-10-12/group-a-output-004.json",
+        "bytes": 123610,
+        "sha256": "295fe7b63e2ca56e268a7a439a58b95f3a7d628a5bc7a2631a598a6bd5e3a6bf"
+      }
+    ],
+    "preservedSupersededReview": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 132342,
+      "sha256": "72027ee16d5c339627f2cd6415ca078568602557920e98ac4574223f04b0d4a4"
+    },
+    "statusIndex": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 1677,
+      "sha256": "692638f3601f44223a074df3c4a8d2df0ea1df5af8b77da4ef62c34cd2a21067"
+    },
+    "artifactValidation": {
+      "path": "docs/editorial/reviews/2026-10-12/group-a-artifact-validation-checkpoint.json",
+      "bytes": 1497,
+      "sha256": "3d16c102a7b215c96810ea4676e9b61a705e7d59d017efc83e06f48bc6faec38"
+    },
+    "independentCrossReview": {
+      "authoritative": {
+        "path": "docs/editorial/reviews/2026-10-12/group-a-independent-c001-A2.json",
+        "bytes": 61044,
+        "sha256": "360adaed4e23388073d532631da013fae97c3e7320315b41eafeaf5fb5fa5b12"
+      },
+      "preservedA1": {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 33933,
+        "sha256": "a56a9c4ff8e27cae84322b4854e37580761733a808a9b8caffb4fdb8c1b9d004"
+      },
+      "scope": "Seis AFTER e três CardPatches liberados do C001-A2. Cortazar e2acaa158 explicitamente excluídos; não contam nos32 do grupoA."
+    },
+    "releasedQuestionPins": [
+      {
+        "qid": "86ad6fc4",
+        "batch": 1,
+        "reviewFile": "output-001.json",
+        "exactAfterSHA256": "c99e41f34b2a44c469cb5d99740a18be7858e285169f3e53d1041929521ee1e7",
+        "refs": [
+          "magnesium_sulfate_toxicity_ahrq"
+        ],
+        "OP": "Reconhecer redução dos reflexos profundos como alerta neuromuscular de toxicidade por magnésio, antes de comprometimento respiratório."
+      },
+      {
+        "qid": "b933be69",
+        "batch": 1,
+        "reviewFile": "output-001.json",
+        "exactAfterSHA256": "9f1cd0d99445d9738b39e013e217e65f467127caab0e3b92d00ccfdb520df05b",
+        "refs": [
+          "gitelman_kdigo_2017"
+        ],
+        "OP": "Identificar o NCC como transportador com perda de função na síndrome de Gitelman associada à hipocalciúria."
+      },
+      {
+        "qid": "a79c0cc3",
+        "batch": 1,
+        "reviewFile": "output-001.json",
+        "exactAfterSHA256": "a5582413024abe1db558b7090c6e5a42221bd47f72b6f6e03554eab41717da70",
+        "refs": [
+          "gitelman_kdigo_2017"
+        ],
+        "OP": "Interpretar o magnésio sérico no diagnóstico diferencial de Bartter clássico e Gitelman sem usar um valor isolado como exclusão."
+      },
+      {
+        "qid": "ac2d05ad",
+        "batch": 1,
+        "reviewFile": "output-001.json",
+        "exactAfterSHA256": "f33cf8e4ac7de44d2188f941c686ccde327006562602bd56ac3110c97691dbc6",
+        "refs": [
+          "kdigo_ckd"
+        ],
+        "OP": "Escolher manejo ambulatorial individualizado da acidose metabólica persistente na DRC, evitando alcalose e sobrecarga."
+      },
+      {
+        "qid": "fe10a36e",
+        "batch": 2,
+        "reviewFile": "output-002.json",
+        "exactAfterSHA256": "ccc141504c8fca028049d4896a28853601822fcbf0d9c68bd578d73cf788cb63",
+        "refs": [
+          "gitelman_kdigo_2017",
+          "bartter_china_consensus_2023"
+        ],
+        "OP": "Reconhecer o padrão ácido-base/eletrolítico típico compartilhado por Bartter e Gitelman."
+      },
+      {
+        "qid": "6e1db964",
+        "batch": 2,
+        "reviewFile": "output-002.json",
+        "exactAfterSHA256": "2a2732b4019decf9cf4faaac1235691bf0803ecc93864c80a01434c2a95b9ebe",
+        "refs": [
+          "gitelman_kdigo_2017"
+        ],
+        "OP": "Interpretar excreção renal inadequadamente elevada de Mg na presença de hipomagnesemia e função renal preservada."
+      },
+      {
+        "qid": "a108228e",
+        "batch": 2,
+        "reviewFile": "output-002.json",
+        "exactAfterSHA256": "c7a6021c7fc08140a3a65e8793a4cc74287e58f451e3e66f4308ace288e0d793",
+        "refs": [
+          "seys_bartter3_2017"
+        ],
+        "OP": "Reconhecer a variabilidade clínica de Bartter por CLCNKB e sua sobreposição com Gitelman."
+      },
+      {
+        "qid": "854d257a",
+        "batch": 2,
+        "reviewFile": "output-002.json",
+        "exactAfterSHA256": "0951f7727e592b42fd11da6a4a36cc04a7441e51eb25e075ece0916a3348634a",
+        "refs": [
+          "srlf_sfmu_acidosis_2019"
+        ],
+        "OP": "Aplicar a fórmula de Winter à acidose metabólica e obter o intervalo esperado de PaCO2 arterial."
+      },
+      {
+        "qid": "1e5e88e9",
+        "batch": 3,
+        "reviewFile": "output-003-A2.json",
+        "exactAfterSHA256": "8e076b33b3a0b0896c46266085475b2a9eea1daef8584733bb41ae2f6c014ec3",
+        "refs": [
+          "ats_idsa_cap_2019"
+        ],
+        "OP": "Escolher cobertura empírica adicional guiada por patógeno respiratório prévio na pneumonia comunitária grave em hemodiálise."
+      },
+      {
+        "qid": "e0853fac",
+        "batch": 3,
+        "reviewFile": "output-003-A2.json",
+        "exactAfterSHA256": "ebd84eb37aa6c3df8f793cb85ddd710355cc72c2c31474988896b510782fd5ff",
+        "refs": [
+          "ukka_hyperkalemia_update_2026",
+          "kdigo_ckd"
+        ],
+        "OP": "Reconhecer a utilidade dos quelantes para hipercalemia recorrente que limita terapias cardiorrenais indicadas."
+      },
+      {
+        "qid": "68b630ba",
+        "batch": 3,
+        "reviewFile": "output-003-A2.json",
+        "exactAfterSHA256": "0a40a7ece1a82a09b64f5959cb96dbc53da3194f658b8313ecb67595de7da117",
+        "refs": [
+          "ispd_peritonitis_guideline"
+        ],
+        "OP": "Aplicar os critérios diagnósticos ISPD de peritonite em diálise peritoneal antes do resultado da cultura."
+      },
+      {
+        "qid": "646b9077",
+        "batch": 3,
+        "reviewFile": "output-003-A2.json",
+        "exactAfterSHA256": "48dee6c584622e5616b3f22891f1187f69dcf030aee33482660270ca8ff3af81",
+        "refs": [
+          "phase_angle_hd_2014"
+        ],
+        "OP": "Interpretar ângulo de fase como marcador complementar em HD, distinguindo associação de diagnóstico ou causalidade."
+      },
+      {
+        "qid": "53814952",
+        "batch": 3,
+        "reviewFile": "output-003-A2.json",
+        "exactAfterSHA256": "a02b32473eac04e20c0154ba5725fbf33de8bc2b4e11739542ade8671afed256",
+        "refs": [
+          "extrip_lithium_2015"
+        ],
+        "OP": "Indicar remoção extracorpórea na toxicidade neurológica grave atribuída ao lítio, sem aguardar limiar sérico isolado."
+      },
+      {
+        "qid": "efba1640",
+        "batch": 3,
+        "reviewFile": "output-003-A2.json",
+        "exactAfterSHA256": "4f521bb083b8d21424ad77026ecc12c2782ff8339d967d44804c23729300eb6f",
+        "refs": [
+          "fgf23_cric_isakova_2011",
+          "fgf23_shimada_jci_2004"
+        ],
+        "OP": "Reconhecer FGF23 como adaptação hormonal precoce com fosfatúria e redução de calcitriol na DRC."
+      },
+      {
+        "qid": "8fee305a",
+        "batch": 3,
+        "reviewFile": "output-003-A2.json",
+        "exactAfterSHA256": "827778a2ee5eaae29f7550868640b8cfe727396c50f2c4f97cda67a8a67b7d9f",
+        "refs": [
+          "ispd_membrane_dysfunction_2021"
+        ],
+        "OP": "Ajustar a prescrição de DP para transporte rápido de solutos com baixa ultrafiltração nas permanências longas com glicose."
+      },
+      {
+        "qid": "7e4990d5",
+        "batch": 4,
+        "reviewFile": "output-004.json",
+        "exactAfterSHA256": "fd40dd9d4d5c0cd105f89874acb3b3a11b2eba655a4c0f789670324f32f1499d",
+        "refs": [
+          "gitelman_kdigo_2017"
+        ],
+        "OP": "Comparar o padrão típico de calciúria em Gitelman e Bartter, reconhecendo sobreposição."
+      },
+      {
+        "qid": "b5f6baf9",
+        "batch": 4,
+        "reviewFile": "output-004.json",
+        "exactAfterSHA256": "fd888683d35f29693fa2359733b69f97c47d2d55483bacbae73f8e14588f2dad",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "OP": "Inferir baixo turnover a partir de PTH/fosfatase óssea baixos sem confirmar histologia."
+      },
+      {
+        "qid": "8b80b0a9",
+        "batch": 4,
+        "reviewFile": "output-004.json",
+        "exactAfterSHA256": "e81efd1edfbc57eaed8219672ed7a550c1737e7d4cdb049627877494b414ea3a",
+        "refs": [
+          "ukka_hyperkalemia_update_2026"
+        ],
+        "OP": "Reconhecer alterações eletrocardiográficas clássicas da hipercalemia sem inferir progressão obrigatória."
+      },
+      {
+        "qid": "71a9210e",
+        "batch": 4,
+        "reviewFile": "output-004.json",
+        "exactAfterSHA256": "3fa64ff2d83f10f637b6923e79a497e7da157b602c7f437d362b594d4cf83edb",
+        "refs": [
+          "liddle_nlm_genetics_2013"
+        ],
+        "OP": "Relacionar fenótipo de Liddle e variante patogênica SCNN1B ao ganho de atividade de ENaC."
+      },
+      {
+        "qid": "cb6c4aae",
+        "batch": 4,
+        "reviewFile": "output-004.json",
+        "exactAfterSHA256": "6c2fb99d713146849102c20ba186703919811338f20191f9177798e40658f67e",
+        "refs": [
+          "hdf_eudial_era_2025"
+        ],
+        "OP": "Explicar ampliação de remoção de moléculas médias pela convecção associada à difusão na HDF online."
+      },
+      {
+        "qid": "09451637",
+        "batch": 4,
+        "reviewFile": "output-004.json",
+        "exactAfterSHA256": "947766f087dd76ef9d8c3618620bf14608f3ddd93dd4499e61e557998454ee72",
+        "refs": [
+          "tpp_medlineplus_2026",
+          "ukka_hyperkalemia_update_2026"
+        ],
+        "OP": "Reconhecer carga de carboidratos como gatilho alimentar de paralisia periódica tireotóxica."
+      },
+      {
+        "qid": "28b53ff8",
+        "batch": 4,
+        "reviewFile": "output-004.json",
+        "exactAfterSHA256": "0649e34d92a450088030ad6cc98396051e069321a0097dd598f55374d37d4b3e",
+        "refs": [
+          "ispd_peritonitis_guideline",
+          "ispd_catheter_infection_2023"
+        ],
+        "OP": "Reconhecer foco concomitante do cateter na peritonite S.aureus e orientar antibiótico e controle de fonte."
+      }
+    ],
+    "blockedQuestions": [
+      {
+        "qid": "f676438e",
+        "batch": 1,
+        "reviewFile": "output-001.json",
+        "OP": "Relacionar hipomagnesemia crônica à condrocalcinose na síndrome de Gitelman.",
+        "pendingNature": "DECISIVA",
+        "verificationPending": [
+          {
+            "nature": "DECISIVA",
+            "claim": "Abrir fonte primária ou consenso específico de CPPD que confirme o mecanismo molecular da alternativa, e então equilibrar as quatro opções sem mudar o OP.",
+            "blocksPublication": true
+          }
+        ],
+        "problems": [
+          "MAIOR — justificativa molecular de nucleação/precipitação exige fonte específica; o consenso aberto confirma a complicação e papel de reposição, sem esse mecanismo completo.",
+          "MAIOR — referências genéricas originais inadequadas.",
+          "MENOR — referência à letra e correta exclusivamente mais longa."
+        ]
+      },
+      {
+        "qid": "b8666d0a",
+        "batch": 1,
+        "reviewFile": "output-001.json",
+        "OP": "Identificar ganho de função do CaSR como causa de fenótipo de perda salina associado à hipocalcemia.",
+        "pendingNature": "DECISIVA",
+        "verificationPending": [
+          {
+            "nature": "DECISIVA",
+            "claim": "Recuperar ERKNet Bartter 2021 e fonte específica de hipocalcemia autossômica dominante; resolver nomenclatura sem mudar silenciosamente a identidade pedagógica.",
+            "blocksPublication": true
+          }
+        ],
+        "problems": [
+          "CRÍTICO — denominação Bartter tipo5 para CaSR precisa ser confrontada com classificação atual de Bartter/hipocalcemia autossômica dominante.",
+          "MAIOR — texto atribui hipocalcemia apenas à hipercalciúria, omitindo regulação do PTH; não validado pelo consenso específico.",
+          "MAIOR — refs de DRC/livro genérico não bastam; letra fixa."
+        ]
+      },
+      {
+        "qid": "10d210a3",
+        "batch": 1,
+        "reviewFile": "output-001.json",
+        "OP": "Reconhecer polidrâmnio por poliúria fetal como apresentação pré-natal de Bartter tipo1.",
+        "pendingNature": "DECISIVA",
+        "verificationPending": [
+          {
+            "nature": "DECISIVA",
+            "claim": "Abrir consenso ERKNet e confirmar fenótipo antenatal por SLC12A1/NKCC2; não usar o relato2025 como autoridade decisiva.",
+            "blocksPublication": true
+          }
+        ],
+        "problems": [
+          "MAIOR — faltou recuperar consenso específico para validar tipo1 e a formulação do mecanismo.",
+          "MAIOR — distratores com qualificações decorativas e correta com justificativa embutida.",
+          "MENOR — letra fixa na explicação."
+        ]
+      },
+      {
+        "qid": "e0448d0b",
+        "batch": 1,
+        "reviewFile": "output-001.json",
+        "OP": "Relacionar hipomagnesemia à desinibição de ROMK e perda renal de potássio.",
+        "pendingNature": "DECISIVA",
+        "verificationPending": [
+          {
+            "nature": "DECISIVA",
+            "claim": "Abrir Yang/Frindt/Palmer2010 e fonte primária recente sobre a interação Mg–ROMK–ENaC; validar todos os distratores, não apenas retirar a letra.",
+            "blocksPublication": true
+          }
+        ],
+        "problems": [
+          "MAIOR — artigo primário sobre ROMK não abriu; fonte genérica não valida diretamente o mecanismo.",
+          "MAIOR — a explicação trata o mecanismo isolado como suficiente; papel de entrega distal de Na/ENaC precisa delimitação.",
+          "MENOR — letra fixa na explicação."
+        ]
+      },
+      {
+        "qid": "50166346",
+        "batch": 2,
+        "reviewFile": "output-002.json",
+        "OP": "Identificar hipoaldosteronismo hiporreninêmico associado a diabetes como causa de ATR hipercalêmica.",
+        "pendingNature": "DECISIVA",
+        "verificationPending": [
+          {
+            "nature": "DECISIVA",
+            "claim": "Abrir diretriz/revisão específica de ATR e conferir causa e afirmação de frequência; formular caso com acidose de ânion gap normal e medicações relevantes.",
+            "blocksPublication": true
+          }
+        ],
+        "problems": [
+          "MAIOR — comando pergunta pela causa mais comum universal, enquanto o caso já traz renina e aldosterona baixas.",
+          "MAIOR — ânion gap não informado; bicarbonato reduzido isolado não confirma ATR.",
+          "MAIOR — fonte específica/card original não recuperados; restrição causal e frequência exigem confirmação."
+        ]
+      },
+      {
+        "qid": "22142814",
+        "batch": 2,
+        "reviewFile": "output-002.json",
+        "OP": "Relacionar defeito de bartina à tubulopatia de Bartter com surdez neurossensorial.",
+        "pendingNature": "DECISIVA",
+        "verificationPending": [
+          {
+            "nature": "DECISIVA",
+            "claim": "Conferir ERKNet/primário sobre bartina e distinguir tipo4a de4b no enunciado antes de aprovar.",
+            "blocksPublication": true
+          }
+        ],
+        "problems": [
+          "MAIOR — tipo4 inclui variantes de classificação que exigem delimitação, como BSND versus perda combinada de ClC-Ka/ClC-Kb.",
+          "MAIOR — fonte original e consenso específicos não recuperados; livro genérico sem seção conferida.",
+          "MENOR — letra fixa e explicação mais ampla que o comando."
+        ]
+      },
+      {
+        "qid": "d49c5c3c",
+        "batch": 2,
+        "reviewFile": "output-002.json",
+        "OP": "Estimar a compensação metabólica da acidose respiratória crônica e reconhecer a dependência da regra/população utilizada.",
+        "pendingNature": "DECISIVA",
+        "verificationPending": [
+          {
+            "nature": "DECISIVA",
+            "claim": "Adjudicar a convenção de compensação e a população; não trocar gabarito automaticamente. Confrontar referência clássica e dado primário atual com enunciado suficiente; preservação do conceito exige nova versão formal.",
+            "blocksPublication": true
+          }
+        ],
+        "problems": [
+          "CRÍTICO — alternativa0,5×ΔPaCO2 é descartada como fórmula exclusiva de alcalose, mas dados primários2018 apoiam esse coeficiente na hipercapnia crônica estável.",
+          "MAIOR — comando não delimita regra clássica/população;0,35 e0,5 podem ser defensáveis conforme fonte.",
+          "MAIOR — três a cinco dias de adaptação derivados de animais são apresentados como humanos sem ressalva."
+        ]
+      },
+      {
+        "qid": "74179a29",
+        "batch": 2,
+        "reviewFile": "output-002.json",
+        "OP": "Calcular osmolaridade com fórmula especificada e distinguir ureia de BUN nas unidades.",
+        "pendingNature": "DECISIVA",
+        "verificationPending": [
+          {
+            "nature": "DECISIVA",
+            "claim": "Validar fonte específica da fórmula e das conversões ureia/BUN, corrigir unidades e remover regra universal. A aritmética isolada não constitui aprovação clínica.",
+            "blocksPublication": true
+          }
+        ],
+        "problems": [
+          "MAIOR — termo osmolaridade acompanha mOsm/kg; padronizar medida e unidade.",
+          "MAIOR — explicação chama divisor6 de regra universal; há diferentes equações e osmolaridade calculada não é medida direta.",
+          "MAIOR — o cálculo288 está correto, mas os cards originais não foram abertos para a fórmula/conversão e a afirmação de uso universal.",
+          "MENOR — referências às letras; não é item para correção A–D posicional porque opções numéricas devem manter ordem."
+        ]
+      },
+      {
+        "qid": "63040771",
+        "batch": 3,
+        "reviewFile": "output-003-A2.json",
+        "OP": "Selecionar estratégia farmacológica dirigida à entrada de lítio nas células principais no diabetes insipidus nefrogênico.",
+        "pendingNature": "DECISIVA",
+        "verificationPending": [
+          {
+            "nature": "DECISIVA",
+            "claim": "Recuperar Bedford2008 e/ou mecanismo experimental Kortenoeven2009 em fonte primária; verificar card e selecionar distratores reais. Retirar parcial não demonstrado; não produzir AFTER liberado antes dessa checagem.",
+            "blocksPublication": true
+          }
+        ],
+        "problems": [
+          "ELIMINATÓRIO2: fonte primária clínica não recuperada; título/metadados e snippets não autorizam confirmação de mecanismo, eficácia ou card completo.",
+          "ELIMINATÓRIO8: resposta quase ausente à desmopressina não sustenta especificamente o adjetivo parcial sem protocolo e dados adicionais.",
+          "MAIOR: distratores restrição hídrica rigorosa, antagonismoV2 e reposição de sódio são pouco plausíveis; nova proposta precisa comparar terapias reais e limitar mecanismo, após abertura da fonte."
+        ]
+      },
+      {
+        "qid": "43b59c52",
+        "batch": 4,
+        "reviewFile": "output-004.json",
+        "OP": "Reconhecer toxicidade acumulativa de tiocianato na disfunção renal e sua possibilidade de remoção dialítica.",
+        "pendingNature": "DECISIVA",
+        "verificationPending": [
+          {
+            "nature": "DECISIVA",
+            "claim": "Reformular o caso para distinguir toxicidades sem apagar dado útil de acidose; explicação deve reconhecer urgência do cianeto e limites da HD. Corrigir card em revisão formal específica, com BEFORE/AFTER exatos e nova versão reavaliada. Nenhum AFTER aprovado nesta rodada.",
+            "blocksPublication": true
+          }
+        ],
+        "problems": [
+          "CRÍTICO: acidose e confusão sob nitroprussiato tornam toxicidade por cianeto uma possibilidade clinicamente relevante; DRC/infusão prolongada não a excluem.",
+          "ELIMINATÓRIO4: a explicação descarta cianeto como fora do foco, apesar de a bula exigir tratamento já na suspeita.",
+          "ELIMINATÓRIOS1/8: caso não permite atribuição exclusiva da toxicidade a tiocianato; dados discriminativos faltam.",
+          "ELIMINATÓRIO5: metanol não é metabólito do nitroprussiato; distratores de origem metabólica são pouco plausíveis.",
+          "MAIOR: card ano2023 diverge de Updated31/12/2022/Revised11/2021.",
+          "MAIOR: título nomeia tiocianato e pode entregar a resposta antes da análise clínica; reparar juntamente com o caso."
+        ]
+      }
+    ],
+    "newCardPins": [
+      {
+        "id": "bartter_china_consensus_2023",
+        "exactCardSHA256": "a0cdbb12a4ed0d5ab731c30eeaba93dd3a664233920414fc0f695d2d52c6e07b",
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "sourceReviewFile": "output-002.json",
+        "url": "https://www.sciopen.com/article/10.12290/xhyxzz.2023-0207",
+        "ano": 2023
+      },
+      {
+        "id": "seys_bartter3_2017",
+        "exactCardSHA256": "afc271cece2644733bcc17e799763e151622d56e38082186c512992b7755f5fc",
+        "tipo": "Coorte",
+        "badge": "COHORT",
+        "sourceReviewFile": "output-002.json",
+        "url": "https://discovery.ucl.ac.uk/id/eprint/1571867/",
+        "ano": 2017
+      },
+      {
+        "id": "srlf_sfmu_acidosis_2019",
+        "exactCardSHA256": "cfd2ec54126f1e677594abb7fa8ef03ee6a20d42f06e3f9c0ebed6122e7ecbae",
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "sourceReviewFile": "output-002.json",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6695455/",
+        "ano": 2019
+      },
+      {
+        "id": "ukka_hyperkalemia_update_2026",
+        "exactCardSHA256": "bb111fd74e616ca7d59a15353fc53ffc06d118a7b036c4453e2f76d85036f843",
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "sourceReviewFile": "output-003-A2.json",
+        "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+        "ano": 2026
+      },
+      {
+        "id": "fgf23_cric_isakova_2011",
+        "exactCardSHA256": "cba9d2b9e57e7241dad19028a1ce19754c8676a2afb9ecbc54bbcca44b41e229",
+        "tipo": "Coorte",
+        "badge": "COHORT",
+        "sourceReviewFile": "output-003-A2.json",
+        "url": "https://pure.johnshopkins.edu/en/publications/fibroblast-growth-factor-23-is-elevated-before-parathyroid-hormon-3/",
+        "ano": 2011
+      },
+      {
+        "id": "fgf23_shimada_jci_2004",
+        "exactCardSHA256": "511dc77b4ddaa402e4cc0baeb879c619911feb000f6b4d73f362354f93dc727f",
+        "tipo": "Estudo experimental em animais",
+        "badge": "EXPERIMENTAL",
+        "sourceReviewFile": "output-003-A2.json",
+        "url": "https://www.jci.org/articles/view/19081",
+        "ano": 2004
+      },
+      {
+        "id": "liddle_nlm_genetics_2013",
+        "exactCardSHA256": "a871c631d76f6ac61ada9134c4c3c7405195ce9f6948a2208cbb06c98f609d2a",
+        "tipo": "Revisão genética oficial",
+        "badge": "REVIEW",
+        "sourceReviewFile": "output-004.json",
+        "url": "https://medlineplus.gov/genetics/condition/liddle-syndrome/",
+        "ano": 2013
+      },
+      {
+        "id": "hdf_eudial_era_2025",
+        "exactCardSHA256": "35fba317dfa37c3b8204b1b7d1720afde346a0886e5a077d5dc39e348934a53d",
+        "tipo": "Consenso clínico baseado em revisão sistemática",
+        "badge": "GUIDELINE",
+        "sourceReviewFile": "output-004.json",
+        "url": "https://academic.oup.com/ndt/article/40/8/1590/8003757",
+        "ano": 2025
+      },
+      {
+        "id": "tpp_medlineplus_2026",
+        "exactCardSHA256": "fe880e4b2c90d84bf3091842c10042b6840ac3e144e4f8e72d62bd98e60bbfbc",
+        "tipo": "Síntese clínica oficial",
+        "badge": "REVIEW",
+        "sourceReviewFile": "output-004.json",
+        "url": "https://medlineplus.gov/ency/article/000319.htm",
+        "ano": 2026
+      }
+    ],
+    "cardPatches": [
+      {
+        "id": "magnesium_sulfate_toxicity_ahrq",
+        "action": "UPDATE_EXISTING_ONLY_IF_ITEM_IS_APPLIED",
+        "before": {
+          "label": "AHRQ — Safe Medication Administration: Magnesium Sulfate",
+          "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+          "journal": "Agency for Healthcare Research and Quality",
+          "ano": 2024,
+          "tipo": "Guia de Segurança Medicamentosa",
+          "badge": "SAFETY",
+          "badgeColor": "#f97316",
+          "impacto": "Sinais de toxicidade por sulfato de magnésio e resposta com gluconato de cálcio",
+          "icon": "⚠️",
+          "resumo": "Ferramenta de segurança perinatal sobre administração de sulfato de magnésio. Lista faixa terapêutica, progressão clínica da toxicidade e resposta operacional: perda de reflexo patelar como sinal precoce, seguida por sonolência, depressão respiratória, paralisia, alteração de condução cardíaca e parada em níveis muito elevados. Recomenda acesso rápido ao antídoto, gluconato de cálcio, além de suspender a infusão e oferecer suporte ventilatório quando houver toxicidade.",
+          "conclusao": "A monitorização clínica do reflexo patelar e da respiração é central durante MgSO4; toxicidade exige suspender magnésio e administrar gluconato de cálcio se houver depressão significativa.",
+          "curiosidade": "O magnésio é terapêutico na pré-eclâmpsia justamente por modular excitabilidade neuromuscular; quando passa do ponto, a mesma fisiologia vira toxicidade."
+        },
+        "after": {
+          "label": "AHRQ — Safe Medication Administration: Magnesium Sulfate",
+          "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+          "journal": "Agency for Healthcare Research and Quality",
+          "ano": 2023,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Monitorização dos reflexos e da respiração durante infusão de magnésio",
+          "icon": "📋",
+          "resumo": "Guia oficial de segurança perinatal da AHRQ, revisado em julho2023. Orienta monitorização clínica durante infusão de sulfato de magnésio e apresenta perda do reflexo patelar antes de depressão respiratória na progressão da toxicidade. A suspeita exige interromper a infusão, avaliar a respiração e acionar resposta apropriada. Não é ensaio clínico nem recomendação GRADE.",
+          "conclusao": "A redução dos reflexos profundos é sinal de alerta e deve ser interpretada junto à monitorização respiratória e ao contexto clínico.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "924de1a8b0444feaa7a33f2f66f96aca24933ee7740a0b48a411511b72410067",
+        "afterSHA256": "f986338d2f7e44dd4ea48eb49bb83c23613f5e9e1c4c3d0dd7894f23f049b2e2",
+        "verifiedSourceIds": [
+          "ahrq_mg"
+        ],
+        "reason": "Corrigir ano2024 não sustentado pela página e adequar taxonomia; manter ID estável."
+      }
+    ],
+    "referenceIntegrityAlerts": [
+      {
+        "id": "phosphate_binders_ckd",
+        "currentCard": {
+          "label": "Block GA et al. — Phosphate Binders in Moderate CKD (JASN 2012)",
+          "url": "https://jasn.asnjournals.org/content/23/8/1407",
+          "journal": "J Am Soc Nephrol 2012;23(8):1407-1415",
+          "ano": 2012,
+          "tipo": "Ensaio Clínico RCT",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Quelantes de fósforo em DRC moderada (TFG 20-45): reduziram progressão da calcificação coronariana vs placebo",
+          "icon": "🔬",
+          "resumo": "ECR piloto prospectivo multicêntrico de 9 meses (Block GA et al., JASN 2012, n = 148 pacientes com DRC estágios 3-4 e fósforo sérico normal, mas com níveis elevados de paratormônio - PTH ou FGF-23). Randomizou os participantes para receber quelantes de fósforo ativos (acetato de cálcio, carbonato de sevelamer ou carbonato de lantanio) versus placebo. Desfecho primário: variação nos níveis séricos de fósforo urinário e biomarcadores minerais. Resultados: Quelantes ativos reduziram significativamente o fósforo urinário e atenuaram a progressão do PTH e FGF-23 séricos. No entanto, houve um aumento marcante e inesperado na calcificação arterial coronariana medida por tomografia computadorizada na coorte tratada com quelantes à base de cálcio em comparação com o placebo.",
+          "conclusao": "O estudo piloto de Block acendeu o sinal de alerta de que o uso agressivo de quelantes de fósforo contendo cálcio em pacientes com DRC não dialítica pode acelerar a calcificação vascular, desencorajando seu uso rotineiro no Reino.",
+          "curiosidade": "FGF-23 (Fator de Crescimento de Fibroblastos 23) é um hormônio segregado pelos osteócitos do tecido ósseo que atua no túbulo proximal estimulando a excreção de fósforo urinário via co-transportadores NaPi-2a/c. Seus níveis elevam-se precocemente na DRC antes do fósforo plasmático subir, agindo como preditor independente e precoce de hipertrofia ventricular esquerda e mortalidade cardiovascular."
+        },
+        "currentCardSHA256": "8016c79db5be6302cf2c51728a2a6953e9914246dc0ff52b1ed61862ddcfe43d",
+        "sourceId": "block2012_alert",
+        "status": "KNOWN_MATERIAL_ERROR_REQUIRES_FOCUSED_CARD_REVIEW",
+        "divergences": [
+          "impacto inverte sentido da calcificação coronária",
+          "estudo foi unicêntrico, não multicêntrico",
+          "desfecho primário é fósforo sérico médio",
+          "FGF23 C-terminal sem efeito significativo no grupo global",
+          "progressão vascular do conjunto ativo não deve ser restringida somente ao acetato de cálcio"
+        ],
+        "actionInThisBatch": "Retirar do AFTER FGF23 e substituir por referências específicas; nenhum CardPatch Block emitido ou aplicado.",
+        "blocksFuturePublicationOfUncorrectedCard": true
+      },
+      {
+        "id": "nitroprusside_thiocyanate_label",
+        "currentCard": {
+          "label": "Sodium Nitroprusside — DailyMed Prescribing Information",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=72a9b7df-3a2f-4c16-93a9-b645bc0e8143",
+          "journal": "DailyMed / U.S. National Library of Medicine",
+          "ano": 2023,
+          "tipo": "Bula profissional",
+          "badge": "BULA",
+          "badgeColor": "#64748b",
+          "impacto": "Nitroprussiato — toxicidade por tiocianato e remoção por hemodiálise",
+          "icon": "📋",
+          "resumo": "Bula profissional do nitroprussiato de sódio no DailyMed. Descreve metabolismo para cianeto e tiocianato, maior risco de acúmulo de tiocianato na disfunção renal, sintomas neurotóxicos e limites de velocidade de infusão em TFGe <30 mL/min/1,73 m² e anúria. Especifica que a hemodiálise renal pode eliminar tiocianato em toxicidade grave, enquanto não remove eficazmente cianeto.",
+          "conclusao": "Em toxicidade acumulativa por nitroprussiato na DRC, o metabólito-chave é o tiocianato; suspender a droga e considerar hemodiálise quando a toxicidade for relevante.",
+          "curiosidade": "O rótulo distingue explicitamente toxicidade por cianeto, que exige antídotos, da toxicidade por tiocianato, que é favorecida por disfunção renal e é dializável."
+        },
+        "currentCardSHA256": "d7e91dd818a10c60a0fbbd9b7f4b8b2894d1f1afd2d5b168255e8985eaa033e2",
+        "sourceIds": [
+          "nitro_label"
+        ],
+        "status": "CARD_REVISION_REQUIRED_NOT_A_READY_PATCH",
+        "issues": [
+          "Ano2023 diverge de Updated2022/Revised2021",
+          "Revisão precisa distinguir tiocianato/cianeto e não excluir urgência clínica da suspeita de cianeto"
+        ],
+        "implementation": "Não integrar novo card ou questão deste item bloqueado sem CardPatch e nova revisão exata."
+      },
+      {
+        "id": "liddle_syndrome_review_2019",
+        "currentCard": {
+          "label": "Tetti M et al. — Liddle's Syndrome: Mechanisms, Diagnosis and Management (2019)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6731958/",
+          "journal": "Integr Blood Press Control 2019;12:13-22",
+          "ano": 2019,
+          "tipo": "Revisão Clínica",
+          "badge": "REVIEW",
+          "badgeColor": "#0ea5e9",
+          "impacto": "Mecanismo da síndrome de Liddle: ganho de função do ENaC com hipertensão, hipocalemia, alcalose metabólica, renina e aldosterona baixas",
+          "icon": "📖",
+          "resumo": "Revisão sobre síndrome de Liddle, causa monogênica rara de hipertensão de início precoce por ganho de função do canal epitelial de sódio (ENaC), geralmente por variantes em SCNN1B ou SCNN1G que reduzem a degradação do canal. A maior reabsorção distal de sódio expande volume, suprime renina e aldosterona e aumenta a secreção distal de potássio e H+, produzindo hipocalemia e alcalose metabólica. O tratamento fisiologicamente dirigido bloqueia ENaC com amilorida ou triantereno; antagonistas de aldosterona são menos úteis quando a aldosterona está suprimida.",
+          "conclusao": "Hipertensão jovem com hipocalemia, alcalose metabólica e renina/aldosterona baixas aponta para pseudohiperaldosteronismo por ENaC; o alvo terapêutico é ENaC, não o receptor mineralocorticoide.",
+          "curiosidade": "A doença parece hiperaldosteronismo, mas é quase o espelho laboratorial dele: o rim age como se houvesse aldosterona demais, enquanto a própria aldosterona está baixa."
+        },
+        "currentCardSHA256": "4427824d54615d01b398b9504aa7f819d7a470a8244d36ff95b55aa7d6752e8a",
+        "sourceIds": [
+          "liddle2019_failed"
+        ],
+        "status": "BIBLIOGRAPHIC_IDENTITY_PENDING",
+        "issues": [
+          "LabelTetti incompatível com Enslow2019 indexado para PMC6731958; recuperar publicação integral e corrigir autoria em revisão de card específica"
+        ],
+        "implementation": "Nenhum patch ou aprovação do card atual; AFTERLiddle usa documento NLM específico verificado."
+      }
+    ],
+    "normativePins": [
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      }
+    ],
+    "skillsRead": [
+      "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "[local evidence locator omitted; retain its adjacent hash and source citations]"
+    ],
+    "publicationState": {
+      "actuallyPublished": false,
+      "bankChangesApplied": false,
+      "commitMadeByReviewer": false,
+      "technical16_08MustNotIncludeTheseTexts": true
+    },
+    "nextConcreteStep": [
+      "Retomar exclusivamente input-005.json do grupoA; não repetir lotes1-4 ou diagnóstico global.",
+      "Antes de integrar conteúdo médico, comparar BEFORE com banco/refs reais, reconciliar IDs novos/cardpatches pelo hash e manter qid/ordem/índice de gabarito.",
+      "Aplicar somente AFTER e cards com autorização formal LIBERADA; qualquer alteração material exige nova revisão exata.",
+      "Tratar os10 bloqueados e três alertas de referência por revisões focadas, sem regex de letras ou aprovação por métrica.",
+      "Coordenar o transporte dos arquivos referenciados com root; este manifesto não publica nem cria commit."
+    ],
+    "taxonomyNotes": [
+      "EXPERIMENTAL de Shimada2004 identifica experimento animal; tabela padrão tem seis desenhos e não abrange esse caso. Não converter para RCT/coorte/revisão para satisfazer UI.",
+      "EuDial2025 é consenso baseado em revisão sistemática, explicitamente não padrão obrigatório; badgeGUIDELINE é visual, tipo declara o desenho.",
+      "Documentos NLM são sínteses oficiais genética/clínica, não estudos experimentais primários. Limites descritos nos cards/fontes.",
+      "UKKA2026 repete o mesmo objeto aprovado em A003 e A004; registrar uma única vez ou conferir igualdade exata."
+    ],
+    "verificationLimits": [
+      "Validação própria de artefatos PASS; nenhum novo teste de leitor/CI/runtime foi executado por este agente.",
+      "Nenhum checkout, banco, Git, conta ou navegador do usuário foi alterado/usado. Fontes foram abertas pelo serviço de pesquisa.",
+      "A revisão integral permanece pendente; checkpoint é limite de lote solicitado pelo root, não cancelamento."
+    ]
+  }
+}

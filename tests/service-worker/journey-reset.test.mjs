@@ -9,6 +9,8 @@ import vm from 'node:vm';
 // reproducing the save/reset algorithm in the test.
 const gamePath = process.env.NQ_GAME_SOURCE || new URL('../../js/game.js', import.meta.url);
 const source = readFileSync(gamePath, 'utf8');
+const answersSource = source.includes('function _questionSaveExtras(')
+  ? readFileSync(new URL('../../js/answer-presentation.js', import.meta.url), 'utf8') : '';
 function between(name, nextName) {
   const start = source.search(new RegExp(`^\\s*function ${name}\\(`, 'm'));
   const end = source.indexOf(`function ${nextName}(`, start);
@@ -20,6 +22,8 @@ const canonical = [
   // extract the real domain guard while retaining every normal-save assertion.
   ...(source.includes('function isCharacterPilot(')
     ? [between('isCharacterPilot', '_pilotOrigin')] : []),
+  ...(source.includes('function _questionSaveExtras(')
+    ? [between('_answerChoice', '_normalCharacterSaveValid')] : []),
   between('_currentSaveOwner', '_prepareProgressOwner'),
   between('_stopLocalJourney', '_mirrorLegacySave'),
   between('_mirrorLegacySave', '_showGuestSaveRecovery'),
@@ -38,6 +42,8 @@ const CANONICAL = 'nefroquest-save-v7';
 const ANNOUNCED = 'nefroquest-announced-badges';
 const COUNT = 'nefroquest-journey-count';
 const copy = value => JSON.parse(JSON.stringify(value));
+const question = id => ({id, q: 'Synthetic journey fixture',
+  o: ['Synthetic correct', 'Synthetic distractor'], a: 0, e: 'Synthetic explanation'});
 const persistentHistory = {
   'nefroquest-badge-history': '[{"id":"badge1","journey":2}]',
   'nefroquest-stats': '{"gamesPlayed":3,"bestLevel":4,"questionsAnsweredAllTime":21}',
@@ -49,8 +55,8 @@ const persistentHistory = {
 };
 function stateFor(character = 'aquaria') {
   return {
-    gameStarted: false, gameOver: false, character, current: { id: 'q-new' },
-    queue: [{ id: 'q-new' }, { id: 'q-next' }], idx: 0,
+    gameStarted: false, gameOver: false, character, current: question('q-new'),
+    queue: [question('q-new'), question('q-next')], idx: 0,
     level: 1, xp: 0, xpToNext: 200, score: 0, lives: 3, maxLives: 3,
     streak: 0, gold: 0, bonusUses: 0, correctTotal: 0, narrativeShown: 0,
     bossIntroShown: false, battleFinalShown: false, difficulty: 'hard',
@@ -98,6 +104,7 @@ function environment({ kind = 'legacy', owner = null, removalFails = false, tomb
     _saveBaseline: undefined, _saveOwner: undefined, _legacySaveBaseline: undefined,
     _saveCleanupBlocked: false, _guestRecoveryAccepted: null, _progressEpoch: 7,
     _normalJourneyStaging: false,
+    _sessionWrongAnswers: [], _pilotAnswerTransaction: null,
     _continueGameCleanup: null,
     _autoSaveTimer: 'auto', _saveTimer: 'save', _cloudSyncTimer: 'cloud', _cloudLoadSyncTimer: 'cloud-load',
     SAVE_KEY: LEGACY, CANONICAL_SAVE_KEY: CANONICAL, SAVE_SCHEMA_VERSION: 7,
@@ -131,12 +138,19 @@ function environment({ kind = 'legacy', owner = null, removalFails = false, tomb
   function run(code) {
     return vm.runInContext(code, context, { timeout: 500, filename: 'canonical journey reset/save' });
   }
+  if (answersSource) run(answersSource);
   run(canonical);
   return {
     run, context, state, storage, writes, removed, cancelledTimers, calls, oldRaw,
     mainClasses, welcomeClasses,
     drain: () => run('while (__microtasks.length) __microtasks.shift()();'),
-    start: () => { Object.assign(state, stateFor(), { gameStarted: true }); },
+    start: () => {
+      Object.assign(state, stateFor(), { gameStarted: true });
+      if (answersSource) Object.assign(state, {
+        current: context.window.NQAnswers.present(state.current, {preserveOrder: true}),
+        answered: false, questionAnswer: null,
+      });
+    },
     baselines: () => copy(run('({canonical:_saveBaseline, owner:_saveOwner, legacy:_legacySaveBaseline})')),
   };
 }

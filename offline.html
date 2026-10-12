@@ -248,6 +248,7 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
   </div>
 
   <!-- Banco de dados de questões (topics) em cache -->
+  <script src="/js/answer-presentation.js?v=16.09"></script>
   <script src="/data/topics.js"></script>
   <script>
     // Inicialização da sessão
@@ -255,6 +256,9 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
     let currentIndex = 0;
     let correctCount = 0;
     let isAnswered = false;
+    let currentPresentation = null;
+    let offlineAnswer = null;
+    const OFFLINE_STUDY_SAVE_KEY = 'nefroquest-offline-study-state';
 
     const cardContainer = document.getElementById('nqOffCard');
     const correctVal = document.getElementById('nqOffCorrectCount');
@@ -278,6 +282,63 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
       return array;
     }
 
+    function offlineCanonical(q) {
+      return { id: q.qid, q: q.q, o: [...q.opts], a: q.ans, e: q.exp || q.e || '' };
+    }
+
+    function saveOfflineSession() {
+      if (!currentPresentation || !sessionQuestions[currentIndex]) return;
+      const question = window.NQAnswers ? window.NQAnswers.snapshot(currentPresentation) : currentPresentation;
+      if (!question) return;
+      try {
+        localStorage.setItem(OFFLINE_STUDY_SAVE_KEY, JSON.stringify({
+          version: 1, questionIds: sessionQuestions.map(q => q.qid),
+          index: currentIndex, correctCount, question, answer: offlineAnswer
+        }));
+      } catch (e) {}
+    }
+
+    function restoreOfflineSession() {
+      let raw;
+      try { raw = localStorage.getItem(OFFLINE_STUDY_SAVE_KEY); } catch (e) { return null; }
+      if (!raw) return null;
+      try {
+        const saved = JSON.parse(raw);
+        if (saved.version !== 1 || !Array.isArray(saved.questionIds) || !saved.questionIds.length ||
+            !Number.isInteger(saved.index) || saved.index < 0 || saved.index >= saved.questionIds.length ||
+            !Number.isSafeInteger(saved.correctCount) || saved.correctCount < 0) return false;
+        const byId = new Map(topics.map(q => [q.qid, q]));
+        const questions = saved.questionIds.map(id => byId.get(id));
+        if (questions.some(q => !q)) return false;
+        const authored = offlineCanonical(questions[saved.index]);
+        const presentation = window.NQAnswers ? window.NQAnswers.restore(saved.question, authored)
+          : (!saved.question?._answerPresentation ? saved.question : null);
+        if (!presentation) return false;
+        const answer = saved.answer;
+        if (answer) {
+          if (!Number.isInteger(answer.chosen) || answer.chosen < 0 || answer.chosen >= presentation.o.length ||
+              answer.correct !== (answer.chosen === presentation.a) ||
+              answer.authoredChoice !== (window.NQAnswers ? window.NQAnswers.originalIndex(presentation, answer.chosen) : answer.chosen) ||
+              answer.optionId !== (window.NQAnswers ? window.NQAnswers.optionId(presentation, answer.chosen) : null)) return false;
+        }
+        sessionQuestions = questions;
+        currentIndex = saved.index;
+        correctCount = saved.correctCount;
+        currentPresentation = presentation;
+        offlineAnswer = answer || null;
+        return true;
+      } catch (e) { return false; }
+    }
+
+    function startNewOfflineSession() {
+      sessionQuestions = shuffle([...topics]);
+      currentIndex = 0;
+      correctCount = 0;
+      currentPresentation = null;
+      offlineAnswer = null;
+      renderQuestion();
+    }
+
     function initOfflineStudy() {
       if (typeof topics === 'undefined' || !Array.isArray(topics) || topics.length === 0) {
         cardContainer.innerHTML = `
@@ -291,29 +352,40 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
         return;
       }
 
-      // Filtrar e embaralhar questões
-      sessionQuestions = shuffle([...topics]);
-      currentIndex = 0;
-      correctCount = 0;
-      
-      renderQuestion();
+      const restored = restoreOfflineSession();
+      if (restored === false) {
+        cardContainer.innerHTML = '<p role="alert">Não foi possível conferir a sessão offline salva. Ela foi preservada.</p><button class="btn-next" onclick="startNewOfflineSession()">Iniciar nova sessão offline</button>';
+        return;
+      }
+      if (restored) renderQuestion(true);
+      else startNewOfflineSession();
     }
 
-    function renderQuestion() {
+    function renderQuestion(restoring = false) {
       if (currentIndex >= sessionQuestions.length) {
         // Reiniciar se acabar
         sessionQuestions = shuffle([...topics]);
         currentIndex = 0;
       }
 
-      isAnswered = false;
       const q = sessionQuestions[currentIndex];
+      if (!restoring) {
+        const authored = offlineCanonical(q);
+        currentPresentation = window.NQAnswers ? window.NQAnswers.present(authored) : authored;
+        offlineAnswer = null;
+      }
+      if (!currentPresentation) {
+        cardContainer.innerHTML = '<p role="alert">Não foi possível conferir as alternativas desta questão.</p>';
+        return;
+      }
+      isAnswered = !!offlineAnswer;
+      correctVal.textContent = correctCount;
       
       cardContainer.innerHTML = `
         <div class="nq-off-topic">${escapeHtml(q.cat || 'Geral')}</div>
         <div class="nq-off-question">${escapeHtml(q.q)}</div>
         <div class="nq-off-options" id="nqOffOptions">
-          ${q.opts.map((opt, idx) => `
+          ${currentPresentation.o.map((opt, idx) => `
             <button class="nq-off-btn" data-idx="${idx}">
               <span>${escapeHtml(opt)}</span>
               <span style="font-size:0.75rem; opacity:0.6; margin-left:10px;">${String.fromCharCode(65 + idx)}</span>
@@ -331,20 +403,30 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
           answerQuestion(idx, btn);
         });
       });
+      if (offlineAnswer) displayOfflineAnswer(offlineAnswer.chosen, null, false);
+      saveOfflineSession();
     }
 
     function answerQuestion(selectedIdx, clickedBtn) {
-      if (isAnswered) return;
+      if (isAnswered || !currentPresentation || !Number.isInteger(selectedIdx) || selectedIdx < 0 || selectedIdx >= currentPresentation.o.length) return;
       isAnswered = true;
+      offlineAnswer = {
+        chosen: selectedIdx, correct: selectedIdx === currentPresentation.a,
+        authoredChoice: window.NQAnswers ? window.NQAnswers.originalIndex(currentPresentation, selectedIdx) : selectedIdx,
+        optionId: window.NQAnswers ? window.NQAnswers.optionId(currentPresentation, selectedIdx) : null
+      };
+      displayOfflineAnswer(selectedIdx, clickedBtn, true);
+    }
 
+    function displayOfflineAnswer(selectedIdx, clickedBtn, recordProgress) {
       const q = sessionQuestions[currentIndex];
-      const isCorrect = selectedIdx === q.ans;
+      const isCorrect = offlineAnswer.correct;
 
       // Desabilitar botões e pintar cores
       const btns = document.querySelectorAll('.nq-off-btn');
       btns.forEach((btn, idx) => {
         btn.disabled = true;
-        if (idx === q.ans) {
+        if (idx === currentPresentation.a) {
           btn.classList.add('correct');
         } else if (idx === selectedIdx && !isCorrect) {
           btn.classList.add('wrong');
@@ -358,15 +440,16 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
         x = rect.left + rect.width / 2;
         y = rect.top + rect.height / 2;
       }
-      showFloatingText(isCorrect ? '✓ Correto!' : '✗ Incorreto', isCorrect, x, y);
+      if (recordProgress) showFloatingText(isCorrect ? '✓ Correto!' : '✗ Incorreto', isCorrect, x, y);
 
-      if (isCorrect) {
+      if (recordProgress && isCorrect) {
         correctCount++;
         correctVal.textContent = correctCount;
       }
 
       // Persistir progresso localmente
-      persistProgress(q, isCorrect);
+      if (recordProgress) persistProgress(q, isCorrect);
+      saveOfflineSession();
 
       // Exibir feedback
       const feedbackArea = document.getElementById('nqOffFeedbackArea');
@@ -374,7 +457,7 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
       feedbackArea.innerHTML = `
         <div class="nq-off-feedback ${isCorrect ? 'good' : 'bad'}">
           <strong style="display:block; margin-bottom:6px;">${isCorrect ? '✅ Resposta Correta!' : '❌ Resposta Incorreta'}</strong>
-          <p>${escapeHtml(q.exp || q.e || 'A resposta correta é a alternativa ' + String.fromCharCode(65 + q.ans) + '.')}</p>
+          <p>${escapeHtml(currentPresentation.e || 'A resposta correta é a alternativa ' + String.fromCharCode(65 + currentPresentation.a) + '.')}</p>
         </div>
         <button class="btn-next" onclick="nextQuestion()">Próxima Questão</button>
       `;

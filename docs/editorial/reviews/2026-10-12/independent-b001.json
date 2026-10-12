@@ -1,0 +1,1462 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 80136,
+  "sourceReportSHA256": "06c680ace42457e5f3a350ed1fe5e79d352bc4d24bf4da9b8ddde64889676a07",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_INDEPENDENT_CLINICAL_REVIEW_B001_V1",
+    "reviewer": "/root/answer_presentation_core; independent of group-b author",
+    "completedAtUTC": "2026-10-12T14:39:21.332692+00:00",
+    "scope": {
+      "requestedQids": [
+        "f7ef303f",
+        "60efeb87",
+        "fbb4edd0",
+        "0e102752",
+        "e4d4db47",
+        "7dbc02ce",
+        "d43f9988"
+      ],
+      "excludedQid": "66905ee2",
+      "excludedStatus": "REMAINS_BLOCKED; no prognostic clearance requested or granted",
+      "notIncluded": [
+        "bank/code edits",
+        "clinical publication",
+        "commits",
+        "global clinical audit",
+        "technical16.08 release clearance"
+      ]
+    },
+    "independence": {
+      "clinicalConclusionsDerivedFromOpenedSources": true,
+      "authorScoresNotInherited": true,
+      "automatedLengthAndHashChecksAreOnlySupportingChecks": true,
+      "authorDefectsChallengedBeforeFinalAcceptance": [
+        "current EMPAVELI8/2026 indication/function results",
+        "implausible anti-MBG and prudence cue in fbb predecessor",
+        "available HR/CI and direction in MAINRITSAN card"
+      ]
+    },
+    "skillsReadBeforeEvaluation": [
+      {
+        "name": "NefroQuestReviewer",
+        "resource": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "status": "READ_EARLIER_IN_THIS_REVIEW; cloud catalog later became unavailable"
+      },
+      {
+        "name": "medical-evidence-verifier",
+        "resource": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "status": "READ_EARLIER_IN_THIS_REVIEW; focused external clinical verification applied"
+      }
+    ],
+    "normativeSources": [
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef",
+        "readBeforeEvaluation": true
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913",
+        "readBeforeEvaluation": true
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df",
+        "readBeforeEvaluation": true
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe",
+        "readBeforeEvaluation": true
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b",
+        "readBeforeEvaluation": true
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc",
+        "readBeforeEvaluation": true
+      }
+    ],
+    "authorVersions": [
+      {
+        "role": "initial_requested_version",
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 133218,
+        "sha256": "ac39729a462b34c5e90c4bf508bc043d83b3401b18d303223423dacea0d24fea",
+        "decision": "SUPERSEDED; e4 current-label and card correction required"
+      },
+      {
+        "role": "intermediate_source_correction",
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 136735,
+        "sha256": "7d4df1249843a07106aa06fdbbb8ad328c06c293fa2fbaece25116556f3f9c31",
+        "decision": "SUPERSEDED; fbb distractor repair and MAINRITSAN numerical card repair required"
+      },
+      {
+        "role": "exact_final_reviewed_bundle",
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 139883,
+        "sha256": "f9abc070cada27be5a60140d3f84d40ac13eaa94ba2b0e678aa53b247e096552",
+        "decision": "Seven exact AFTER questions clinically accepted; see integration qualifications"
+      }
+    ],
+    "questionHashEncoding": "SHA256 of UTF8 JSON ensure_ascii=False,separators=(comma,colon), insertion order as exact author AFTER. Each independently reproduced author hash; file-level SHA additionally binds the full bundle.",
+    "summary": {
+      "acceptedExactCurrentQuestions": 7,
+      "questionsStillRequiringClinicalChangesWithinRequestedSeven": 0,
+      "excludedBlockedQuestions": 1,
+      "scores": {
+        "f7ef303f": 19,
+        "60efeb87": 18,
+        "fbb4edd0": 18,
+        "0e102752": 19,
+        "e4d4db47": 18,
+        "7dbc02ce": 18,
+        "d43f9988": 19
+      },
+      "clinicalEvidencePending": []
+    },
+    "reviews": [
+      {
+        "qid": "f7ef303f",
+        "sourceLine": 11,
+        "BEFORE_SHA256": "b135024704371c0cb11c0dfa9a4d3c8dbe9623cc858ce3523e6675e9efdcee70",
+        "AFTER_SHA256": "d3bbaed572a7b8517df3cff579ac558db17202d5437afa1c67ab0750bda86c34",
+        "exactProposal": {
+          "t": "C3G — Inibição da Via Alternativa do Complemento",
+          "qid": "f7ef303f",
+          "q": "Adulto com glomerulopatia C3 e proteinúria persistente pergunta sobre iptacopano. Qual afirmação descreve corretamente a evidência e o alvo do fármaco?",
+          "refs": [
+            "fabhalta_iptacopan_label_2025",
+            "c3g_consensus"
+          ],
+          "opts": [
+            "Inibe o fator B; na C3G adulta, a indicação da FDA é reduzir proteinúria.",
+            "Inibe o fator B; na C3G adulta, a indicação da FDA é prevenir falência renal terminal.",
+            "Bloqueia C5; na C3G adulta, a indicação da FDA é reduzir proteinúria.",
+            "Bloqueia C3; na C3G adulta, a indicação da FDA é reduzir proteinúria."
+          ],
+          "ans": 0,
+          "exp": "Na C3G, o iptacopano inibe o fator B e tem indicação nos EUA para reduzir proteinúria em adultos. O APPEAR-C3G demonstrou redução de proteinúria; esse resultado não deve ser apresentado como comprovação definitiva de prevenção de falência renal ou mortalidade. O fármaco não bloqueia diretamente C5 ou C3. A investigação etiológica continua necessária, e o risco de infecção por bactérias encapsuladas exige vacinação e demais precauções da bula.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "independentOutcome": "ACCEPTED_EXACT_CURRENT_QUESTION",
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationScope": "Apenas esta questão e o conteúdo clínico dos cards pinados. Não executa integração nem supera a qualificação de taxonomia do bundle.",
+        "derivedGate": "Handbook18.4: evidênciaVERIFICADA/pendênciaNENHUMA; sem eliminatório; score18-20 => aprovada/LIBERADA.",
+        "actualLifecycle": "PROPOSTA_NAO_IMPLEMENTADA",
+        "confidence": "alta",
+        "OP": "Distinguir alvo e alcance da evidência regulatória do iptacopano na C3G adulta.",
+        "OPPreserved": true,
+        "qidPreserved": true,
+        "canonicalAnswerPreserved": true,
+        "classification": {
+          "competency": "Interpretação de evidência terapêutica",
+          "bloom": "Compreender/Analisar",
+          "miller": "Sabe como",
+          "difficulty": "Intermediária"
+        },
+        "difficultyNote": "Classificação independente para interpretação do nível cognitivo; não exige alterar diff nem autoriza edição silenciosa.",
+        "independentlyDerivedCorrectIndex": 0,
+        "independentlyDerivedCorrectText": "Inibe o fator B; na C3G adulta, a indicação da FDA é reduzir proteinúria.",
+        "singleBestAnswerReason": "Fator B e indicação de redução da proteinúria na C3G adulta são confirmados na bula atual. Prevenção comprovada de falência renal não é a indicação desse contexto; C3 e C5 são alvos distintos.",
+        "optionChallenge": [
+          "A: mecanismo e indicação corretos.",
+          "B: mecanismo correto, extrapolação incorreta do desfecho.",
+          "C: confusão com inibição terminal de C5.",
+          "D: confusão com inibição proximal de C3."
+        ],
+        "lawyerOfAppeal": {
+          "result": "Considerei atualização regulatória e diferenças entre indicações C3G e IgAN na mesma bula. A permanece única; a indicação atual de IgAN não altera a pergunta sobre C3G.",
+          "secondDefensibleAnswerFound": false
+        },
+        "eliminators": {
+          "triggered": [],
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          }
+        },
+        "editorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "annulledByEliminator": false,
+          "independentRationale": "19/20: a repetição da cláusula regulatória deixa o conjunto algo mecânico, mas os três erros são clinicamente reconhecíveis; não há eliminatório."
+        },
+        "lengthAndGranularityReview": {
+          "characters": [
+            73,
+            86,
+            69,
+            69
+          ],
+          "sameComparisonAxis": true,
+          "noApprovalDerivedFromMetrics": true,
+          "finding": "Comprimento não cria segunda resposta e não foi usado como prova de qualidade. Distratores foram avaliados por erro clínico e comparabilidade; limitações constam na justificativa do escore."
+        },
+        "explanationReview": "Compatível com a chave e as fontes indicadas; ressalvas e limites de extrapolação conferidos. Não acrescenta promessa de desfecho duro não demonstrado.",
+        "claimRegister": [
+          {
+            "claim": "Fator B / via alternativa",
+            "source": "fabhalta",
+            "sourceURL": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
+            "locator": "12.1",
+            "status": "VERIFICADA"
+          },
+          {
+            "claim": "C3G adulta: reduzir proteinúria; sem extrapolar para ESKD/morte",
+            "source": "fabhalta",
+            "sourceURL": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
+            "locator": "1.3 / 14.3",
+            "status": "VERIFICADA"
+          },
+          {
+            "claim": "Precauções por bactérias encapsuladas e vacinação",
+            "source": "fabhalta",
+            "sourceURL": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
+            "locator": "5.1",
+            "status": "VERIFICADA"
+          }
+        ],
+        "verificationPending": [],
+        "referenceCards": [
+          {
+            "id": "c3g_consensus",
+            "exactCardSHA256": "27de0a8b7dfed93edd7e5a2ee6ceb18f940ffc5a3ad0f20e7f586fb7a34e3157",
+            "sourceURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+            "badge": "REVIEW"
+          },
+          {
+            "id": "fabhalta_iptacopan_label_2025",
+            "exactCardSHA256": "700420c861c1f9554457eb288d17bb7f73745c46d7fee338c03b22235d55b25e",
+            "sourceURL": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
+            "badge": "BULA"
+          }
+        ],
+        "referenceCount": 2,
+        "resolvedPredecessor": null
+      },
+      {
+        "qid": "60efeb87",
+        "sourceLine": 146,
+        "BEFORE_SHA256": "e20e1ac4ccb9ff488cd44e3b4948c4eaab74f67518a59cc40b021fcf67ec3d7d",
+        "AFTER_SHA256": "f27c9089c049c9f832a0b4c681a0bc19b16cfa374c7ce3a6ab71a80cc0701b02",
+        "exactProposal": {
+          "t": "MAINRITSAN — Manutenção após Indução",
+          "qid": "60efeb87",
+          "q": "Qual conclusão sobre manutenção da vasculite ANCA é sustentada pelo MAINRITSAN e pela KDIGO 2024?",
+          "refs": [
+            "mainritsan_trial",
+            "kdigo_anca_2024"
+          ],
+          "opts": [
+            "Rituximabe reduziu recidivas maiores; a KDIGO mantém rituximabe ou azatioprina como opções individualizadas.",
+            "Azatioprina reduziu mais recidivas maiores; a KDIGO a prefere após indução com ciclofosfamida.",
+            "Rituximabe reduziu infecções graves; a KDIGO dispensa considerar imunoglobulinas na manutenção.",
+            "Os esquemas tiveram recidivas equivalentes; a KDIGO considera apenas o acesso para escolher manutenção."
+          ],
+          "ans": 0,
+          "exp": "Rituximabe em esquema fixo reduziu recidivas maiores no MAINRITSAN. Após indução com ciclofosfamida e glicocorticoide, o ensaio comparou rituximabe 500 mg nos dias 0 e 14 e meses 6, 12 e 18 com azatioprina até o mês 22; recidiva maior no mês 28 ocorreu em 5% versus 29%. Eventos adversos graves persistiram nos dois grupos. A KDIGO 2024 recomenda rituximabe ou azatioprina com baixa dose de glicocorticoide; a escolha considera risco de recaída, PR3-ANCA, imunoglobulinas, fragilidade e disponibilidade. Vantagem em eficácia não equivale a ausência de toxicidade.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "independentOutcome": "ACCEPTED_EXACT_CURRENT_QUESTION",
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationScope": "Apenas esta questão e o conteúdo clínico dos cards pinados. Não executa integração nem supera a qualificação de taxonomia do bundle.",
+        "derivedGate": "Handbook18.4: evidênciaVERIFICADA/pendênciaNENHUMA; sem eliminatório; score18-20 => aprovada/LIBERADA.",
+        "actualLifecycle": "PROPOSTA_NAO_IMPLEMENTADA",
+        "confidence": "alta",
+        "OP": "Aplicar MAINRITSAN e a recomendação de manutenção KDIGO 2024 sem transformar superioridade em obrigatoriedade universal ou ausência de toxicidade.",
+        "OPPreserved": true,
+        "qidPreserved": true,
+        "canonicalAnswerPreserved": true,
+        "classification": {
+          "competency": "Interpretação de evidência terapêutica",
+          "bloom": "Analisar",
+          "miller": "Sabe como",
+          "difficulty": "Intermediária/Avançada"
+        },
+        "difficultyNote": "Classificação independente para interpretação do nível cognitivo; não exige alterar diff nem autoriza edição silenciosa.",
+        "independentlyDerivedCorrectIndex": 0,
+        "independentlyDerivedCorrectText": "Rituximabe reduziu recidivas maiores; a KDIGO mantém rituximabe ou azatioprina como opções individualizadas.",
+        "singleBestAnswerReason": "MAINRITSAN encontrou menos recidiva maior com RTX; recomendação 9.3.2.1 mantém RTX ou AZA e a figura 13 individualiza a escolha. IgG e segurança continuam relevantes.",
+        "optionChallenge": [
+          "A: resultado e recomendação corretos.",
+          "B: inverte eficácia e preferência; não corresponde ao ensaio.",
+          "C: confunde eficácia e infecção; dispensa IgG indevidamente.",
+          "D: supõe equivalência de recaídas e reduz indevidamente a individualização a acesso."
+        ],
+        "lawyerOfAppeal": {
+          "result": "A presença de AZA na diretriz não prova equivalência no MAINRITSAN nem torna B correta. A não implica RTX universal. C e D são mais fáceis de eliminar pela redação, limitação editorial reconhecida sem segunda resposta defensável.",
+          "secondDefensibleAnswerFound": false
+        },
+        "eliminators": {
+          "triggered": [],
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          }
+        },
+        "editorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 1,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 18,
+          "annulledByEliminator": false,
+          "independentRationale": "18/20: duas proposições por alternativa e termos dispensa/apenas deixam pistas de redação. Os erros ainda distinguem interpretação do ensaio, toxicidade e individualização, sem distrator clinicamente absurdo."
+        },
+        "lengthAndGranularityReview": {
+          "characters": [
+            108,
+            94,
+            95,
+            103
+          ],
+          "sameComparisonAxis": true,
+          "noApprovalDerivedFromMetrics": true,
+          "finding": "Comprimento não cria segunda resposta e não foi usado como prova de qualidade. Distratores foram avaliados por erro clínico e comparabilidade; limitações constam na justificativa do escore."
+        },
+        "explanationReview": "Compatível com a chave e as fontes indicadas; ressalvas e limites de extrapolação conferidos. Não acrescenta promessa de desfecho duro não demonstrado.",
+        "claimRegister": [
+          {
+            "claim": "500 mg nos dias0/14 e meses6/12/18; AZA até22; major relapse5% vs29% em28 meses",
+            "source": "mainritsan",
+            "sourceURL": "https://pubmed.ncbi.nlm.nih.gov/25372085/",
+            "locator": "Methods/Results",
+            "status": "VERIFICADA"
+          },
+          {
+            "claim": "HR AZA versus RTX6.61, IC95%1.56-27.96, P=.002; ambos com eventos graves",
+            "source": "mainritsan",
+            "sourceURL": "https://pubmed.ncbi.nlm.nih.gov/25372085/",
+            "locator": "Results",
+            "status": "VERIFICADA"
+          },
+          {
+            "claim": "Desenho aberto",
+            "source": "mainritsan_registry",
+            "sourceURL": "https://clinicaltrials.gov/api/v2/studies/NCT00748644",
+            "locator": "masking NONE",
+            "status": "VERIFICADA"
+          },
+          {
+            "claim": "RTX ou AZA + baixa dose GC; individualização",
+            "source": "anca",
+            "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2024-ANCA-Vasculitis-Guideline-Update.pdf",
+            "locator": "9.3.2.1 / Figures12-14",
+            "status": "VERIFICADA"
+          }
+        ],
+        "verificationPending": [],
+        "referenceCards": [
+          {
+            "id": "mainritsan_trial",
+            "exactCardSHA256": "d21cacdfe1064930977745735283e7689f493ae2bb92af6547d9095f70339f12",
+            "sourceURL": "https://www.nejm.org/doi/full/10.1056/NEJMoa1404231",
+            "badge": "RCT"
+          },
+          {
+            "id": "kdigo_anca_2024",
+            "exactCardSHA256": "c50f966b1288bb0afa2b55726edcb91fa7d37b98bff4cb44abd1c268388359ef",
+            "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2024-ANCA-Vasculitis-Guideline-Update.pdf",
+            "badge": "GUIDELINE"
+          }
+        ],
+        "referenceCount": 2,
+        "resolvedPredecessor": null
+      },
+      {
+        "qid": "fbb4edd0",
+        "sourceLine": 263,
+        "BEFORE_SHA256": "bf25432e4062e7c52d871a9fb930cbdb77617b09f03460b0f137f84dcafd6aa6",
+        "AFTER_SHA256": "9b47347c9e9864a952a1ac277570fea647951bb70c7f7a1b206e6aa79081748b",
+        "exactProposal": {
+          "qid": "fbb4edd0",
+          "q": "Três semanas após faringite, paciente apresenta síndrome nefrítica, C3 baixo e C4 normal. Como interpretar esse perfil?",
+          "opts": [
+            "Sugere ativação predominante da via alternativa; C3 baixo além do curso pós-infeccioso esperado exige reavaliar a hipótese.",
+            "Sugere ativação predominante da via clássica; C3 baixo além do curso pós-infeccioso esperado exige reavaliar a hipótese.",
+            "Sugere ativação predominante da via alternativa; a queda inicial de C3 distingue C3G de GN pós-infecciosa.",
+            "Sugere ativação predominante da via clássica; a queda inicial de C3 distingue C3G de GN pós-infecciosa."
+          ],
+          "ans": 0,
+          "exp": "C3 baixo com C4 relativamente preservado sugere ativação predominante da via alternativa e é frequente na fase aguda da glomerulonefrite pós-infecciosa. O padrão apoia, mas não confirma sozinho, o diagnóstico: momento da infecção, culturas ou sorologias, curso clínico e histologia podem ser necessários. Na evolução típica, o C3 se recupera em semanas; ausência de normalização em aproximadamente 8–12 semanas deve levar à revisão do diagnóstico e à investigação de ativação persistente do complemento.",
+          "refs": [
+            "kdigo_gn",
+            "c3g_consensus"
+          ],
+          "cat": "glomerular",
+          "diff": "hard",
+          "t": "GN Pós-infecciosa — Trajetória do Complemento"
+        },
+        "independentOutcome": "ACCEPTED_EXACT_CURRENT_QUESTION",
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationScope": "Apenas esta questão e o conteúdo clínico dos cards pinados. Não executa integração nem supera a qualificação de taxonomia do bundle.",
+        "derivedGate": "Handbook18.4: evidênciaVERIFICADA/pendênciaNENHUMA; sem eliminatório; score18-20 => aprovada/LIBERADA.",
+        "actualLifecycle": "PROPOSTA_NAO_IMPLEMENTADA",
+        "confidence": "alta",
+        "OP": "Interpretar C3 baixo/C4 normal após infecção usando mecanismo e evolução do complemento para reconsiderar o diagnóstico.",
+        "OPPreserved": true,
+        "qidPreserved": true,
+        "canonicalAnswerPreserved": true,
+        "classification": {
+          "competency": "Interpretação diagnóstica",
+          "bloom": "Analisar",
+          "miller": "Sabe como",
+          "difficulty": "Intermediária"
+        },
+        "difficultyNote": "Classificação independente para interpretação do nível cognitivo; não exige alterar diff nem autoriza edição silenciosa.",
+        "independentlyDerivedCorrectIndex": 0,
+        "independentlyDerivedCorrectText": "Sugere ativação predominante da via alternativa; C3 baixo além do curso pós-infeccioso esperado exige reavaliar a hipótese.",
+        "singleBestAnswerReason": "C3 baixo com C4 preservado sugere predomínio da via alternativa; o perfil inicial não distingue sozinho C3G de GN pós-infecciosa. Persistência fora da trajetória esperada exige reavaliação.",
+        "optionChallenge": [
+          "A: mecanismo sugerido e interpretação longitudinal corretos.",
+          "B: seguimento correto, mas mecanismo predominante sugerido incorreto.",
+          "C: mecanismo correto, mas falsa capacidade discriminatória do C3 inicial.",
+          "D: combina os dois erros."
+        ],
+        "lawyerOfAppeal": {
+          "result": "C4 normal não exclui absolutamente toda ativação clássica; a alternativa diz sugere predominância, e não exclui. Assim B não se torna defensável. A/B compartilham a conduta prudente; A/C compartilham o mecanismo, removendo o atalho anterior. O OP e o conceito correto continuam reconhecíveis no mesmo qid.",
+          "secondDefensibleAnswerFound": false
+        },
+        "eliminators": {
+          "triggered": [],
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          }
+        },
+        "editorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 18,
+          "annulledByEliminator": false,
+          "independentRationale": "18/20: a estrutura2x2 é construída e D reúne dois erros, mas os erros de via e de discriminação temporal são plausíveis. Nenhum eliminatório na versão9b47347c."
+        },
+        "lengthAndGranularityReview": {
+          "characters": [
+            123,
+            120,
+            106,
+            103
+          ],
+          "sameComparisonAxis": true,
+          "noApprovalDerivedFromMetrics": true,
+          "finding": "Comprimento não cria segunda resposta e não foi usado como prova de qualidade. Distratores foram avaliados por erro clínico e comparabilidade; limitações constam na justificativa do escore."
+        },
+        "explanationReview": "Compatível com a chave e as fontes indicadas; ressalvas e limites de extrapolação conferidos. Não acrescenta promessa de desfecho duro não demonstrado.",
+        "claimRegister": [
+          {
+            "claim": "C3 baixo / C4 preservado e interpretação da via alternativa",
+            "source": "c3g",
+            "sourceURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+            "locator": "Complement investigations",
+            "status": "VERIFICADA"
+          },
+          {
+            "claim": "C3 inicial não distingue GN pós-infecciosa/C3G; normalização esperada8-12 semanas e reconsideração se persistência",
+            "source": "c3g",
+            "sourceURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+            "locator": "PIGN differential / longitudinal assessment",
+            "status": "VERIFICADA"
+          }
+        ],
+        "verificationPending": [],
+        "referenceCards": [
+          {
+            "id": "c3g_consensus",
+            "exactCardSHA256": "27de0a8b7dfed93edd7e5a2ee6ceb18f940ffc5a3ad0f20e7f586fb7a34e3157",
+            "sourceURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+            "badge": "REVIEW"
+          },
+          {
+            "id": "kdigo_gn",
+            "exactCardSHA256": "e097883fe71795fbaa1c5730b35495efb5573fb1bea5c308d5adfb86f8fc687b",
+            "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+            "badge": "GUIDELINE"
+          }
+        ],
+        "referenceCount": 2,
+        "resolvedPredecessor": "O AFTER f0b90ca2 tinha anti-MBG/C3 como distrator pouco plausível e três opções que permitiam escolher a única prudente. Rejeitei esse conjunto; não foi aprovado por semelhança de comprimento. O novo AFTER9b47347c foi avaliado novamente."
+      },
+      {
+        "qid": "0e102752",
+        "sourceLine": 559,
+        "BEFORE_SHA256": "5d1ab51c3d6d96dd6c189f1315db53e21b590b8a208015509827a974536619cb",
+        "AFTER_SHA256": "03b19ee8704dd5a557bd81f169977fa78334f0da02da640c27a0b6beb5a0550d",
+        "exactProposal": {
+          "t": "C3 Glomerulopatia — Doença de Depósitos Densos",
+          "qid": "0e102752",
+          "q": "Biópsia mostra C3 glomerular dominante sem imunoglobulina e, na microscopia eletrônica, depósitos intramembranosos extremamente eletrondensos em faixa na membrana basal. C3NeF está presente. Qual é o diagnóstico?",
+          "refs": [
+            "c3g_consensus",
+            "kdigo_gn"
+          ],
+          "opts": [
+            "Doença de depósitos densos, um subtipo de glomerulopatia C3.",
+            "Glomerulonefrite relacionada à infecção, com depósitos subepiteliais.",
+            "Glomerulonefrite por imunocomplexos, com padrão membranoproliferativo.",
+            "Glomerulonefrite com C3 dominante, do subtipo C3GN."
+          ],
+          "ans": 0,
+          "exp": "O diagnóstico é doença de depósitos densos. O achado decisivo é material intramembranoso muito eletrondenso em faixa, integrado à deposição glomerular dominante de C3. A microscopia eletrônica distingue esse subtipo da C3GN, cujos depósitos não têm a densidade característica. C3NeF estabiliza a C3-convertase da via alternativa e apoia desregulação do complemento, mas não define isoladamente o subtipo morfológico. A interpretação combina imunofluorescência, ultraestrutura e contexto clínico.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "independentOutcome": "ACCEPTED_EXACT_CURRENT_QUESTION",
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationScope": "Apenas esta questão e o conteúdo clínico dos cards pinados. Não executa integração nem supera a qualificação de taxonomia do bundle.",
+        "derivedGate": "Handbook18.4: evidênciaVERIFICADA/pendênciaNENHUMA; sem eliminatório; score18-20 => aprovada/LIBERADA.",
+        "actualLifecycle": "PROPOSTA_NAO_IMPLEMENTADA",
+        "confidence": "alta",
+        "OP": "Identificar DDD pelo padrão ultraestrutural entre doenças com depósitos glomerulares e complemento.",
+        "OPPreserved": true,
+        "qidPreserved": true,
+        "canonicalAnswerPreserved": true,
+        "classification": {
+          "competency": "Interpretação anatomopatológica",
+          "bloom": "Analisar",
+          "miller": "Sabe como",
+          "difficulty": "Intermediária/Avançada"
+        },
+        "difficultyNote": "Classificação independente para interpretação do nível cognitivo; não exige alterar diff nem autoriza edição silenciosa.",
+        "independentlyDerivedCorrectIndex": 0,
+        "independentlyDerivedCorrectText": "Doença de depósitos densos, um subtipo de glomerulopatia C3.",
+        "singleBestAnswerReason": "Depósitos intramembranosos extremamente densos em faixa definem o padrão DDD, integrado ao C3 dominante. C3NeF apoia desregulação, mas não define o subtipo.",
+        "optionChallenge": [
+          "A: padrão característico de DDD.",
+          "B: depósitos subepiteliais não correspondem ao achado descrito.",
+          "C: imunocomplexos com imunoglobulinas não correspondem ao perfil informado.",
+          "D: C3GN é o diferencial próximo, sem densidade característica da DDD."
+        ],
+        "lawyerOfAppeal": {
+          "result": "A sobreposição inicial C3G/infecciosa e C3NeF positivo não eliminam a especificidade da ultraestrutura dada. O diagnóstico não é derivado apenas de C3NeF. A permanece única.",
+          "secondDefensibleAnswerFound": false
+        },
+        "eliminators": {
+          "triggered": [],
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          }
+        },
+        "editorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 1,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "annulledByEliminator": false,
+          "independentRationale": "19/20: explicação diferencia bem DDD/C3GN e papel do C3NeF; a distinção dos demais padrões é mais implícita, sem comprometer a resposta."
+        },
+        "lengthAndGranularityReview": {
+          "characters": [
+            60,
+            69,
+            70,
+            51
+          ],
+          "sameComparisonAxis": true,
+          "noApprovalDerivedFromMetrics": true,
+          "finding": "Comprimento não cria segunda resposta e não foi usado como prova de qualidade. Distratores foram avaliados por erro clínico e comparabilidade; limitações constam na justificativa do escore."
+        },
+        "explanationReview": "Compatível com a chave e as fontes indicadas; ressalvas e limites de extrapolação conferidos. Não acrescenta promessa de desfecho duro não demonstrado.",
+        "claimRegister": [
+          {
+            "claim": "DDD: densidade intramembranosa característica; C3GN distinta",
+            "source": "c3g",
+            "sourceURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+            "locator": "Definition / ultrastructure",
+            "status": "VERIFICADA"
+          },
+          {
+            "claim": "C3NeF estabiliza a convertase alternativa sem definir morfologia",
+            "source": "c3g",
+            "sourceURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+            "locator": "Complement investigations",
+            "status": "VERIFICADA"
+          },
+          {
+            "claim": "Integração histológica/IF/EM e exclusão de infecção",
+            "source": "gn",
+            "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+            "locator": "S189-S190",
+            "status": "VERIFICADA"
+          }
+        ],
+        "verificationPending": [],
+        "referenceCards": [
+          {
+            "id": "c3g_consensus",
+            "exactCardSHA256": "27de0a8b7dfed93edd7e5a2ee6ceb18f940ffc5a3ad0f20e7f586fb7a34e3157",
+            "sourceURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+            "badge": "REVIEW"
+          },
+          {
+            "id": "kdigo_gn",
+            "exactCardSHA256": "e097883fe71795fbaa1c5730b35495efb5573fb1bea5c308d5adfb86f8fc687b",
+            "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+            "badge": "GUIDELINE"
+          }
+        ],
+        "referenceCount": 2,
+        "resolvedPredecessor": null
+      },
+      {
+        "qid": "e4d4db47",
+        "sourceLine": 678,
+        "BEFORE_SHA256": "84bfc47af0a2f373a506298ec6d4af10bf93115e6db1ab01e60b90b54aaf1a5d",
+        "AFTER_SHA256": "534b48acf69eed71be1996ab0cf4298a83ac764fc55721669eac8db903d422be",
+        "exactProposal": {
+          "t": "Pegcetacoplano (VALIANT) — racional do alvo C3",
+          "qid": "e4d4db47",
+          "q": "Por que a inibição de C3 pelo pegcetacoplano é um alvo plausível em C3G e IC-MPGN primária?",
+          "opts": [
+            "Porque C3/C3b participa da ativação do complemento e da deposição de C3 nessas doenças.",
+            "Porque C3/C3b controla a produção de IgA1 deficiente em galactose nessas doenças.",
+            "Porque C3/C3b causa vasoconstrição e reproduz o efeito hemodinâmico dos bloqueadores do SRAA.",
+            "Porque C3/C3b ativa linfócitos B e sua inibição depleta diretamente essas células."
+          ],
+          "ans": 0,
+          "exp": "Inibir C3/C3b atua no mecanismo do complemento nessas glomerulopatias. Na C3G predomina deposição glomerular de C3 por desregulação da via alternativa; na IC-MPGN primária, imunocomplexos e complemento participam da lesão. Pegcetacoplano liga-se a C3/C3b e reduz a geração de efetores do complemento. No APL2-C3G-310/VALIANT, o desfecho primário foi redução de proteinúria e houve menor perda de função renal medida pela TFGe em 26 semanas. A bula dos EUA atualizada em agosto de 2026 inclui reduzir proteinúria e perda de função renal; esses resultados não equivalem a demonstração definitiva de prevenção de falência renal ou mortalidade. O fármaco não controla diretamente a produção de IgA1, não reproduz o bloqueio hemodinâmico do SRAA e não depleta diretamente linfócitos B.",
+          "diff": "medium",
+          "cat": "glomerular",
+          "refs": [
+            "empaveli_pegcetacoplan_label_2025",
+            "kdigo_gn"
+          ]
+        },
+        "independentOutcome": "ACCEPTED_EXACT_CURRENT_QUESTION",
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationScope": "Apenas esta questão e o conteúdo clínico dos cards pinados. Não executa integração nem supera a qualificação de taxonomia do bundle.",
+        "derivedGate": "Handbook18.4: evidênciaVERIFICADA/pendênciaNENHUMA; sem eliminatório; score18-20 => aprovada/LIBERADA.",
+        "actualLifecycle": "PROPOSTA_NAO_IMPLEMENTADA",
+        "confidence": "alta",
+        "OP": "Relacionar o alvo C3/C3b à patogênese de C3G e IC-MPGN primária sem confundir o mecanismo com outros tratamentos renais.",
+        "OPPreserved": true,
+        "qidPreserved": true,
+        "canonicalAnswerPreserved": true,
+        "classification": {
+          "competency": "Racional farmacológico",
+          "bloom": "Compreender/Analisar",
+          "miller": "Sabe como",
+          "difficulty": "Intermediária"
+        },
+        "difficultyNote": "Classificação independente para interpretação do nível cognitivo; não exige alterar diff nem autoriza edição silenciosa.",
+        "independentlyDerivedCorrectIndex": 0,
+        "independentlyDerivedCorrectText": "Porque C3/C3b participa da ativação do complemento e da deposição de C3 nessas doenças.",
+        "singleBestAnswerReason": "Pegcetacoplano liga-se a C3/C3b e reduz efetores do complemento. A e sua explicação respeitam o mecanismo e a indicação atual, incluindo função renal em26 semanas.",
+        "optionChallenge": [
+          "A: complemento/C3 participa da lesão descrita.",
+          "B: confunde com a fisiopatologia de IgAN e controle de produção de Gd-IgA1.",
+          "C: confunde inibição do complemento com efeito hemodinâmico do SRAA.",
+          "D: liga ativação imune a uma suposta depleção direta de células B, que não é esse mecanismo."
+        ],
+        "lawyerOfAppeal": {
+          "result": "O papel imunológico amplo do complemento não torna B ou D corretas: a pergunta é o mecanismo plausível do pegcetacoplano e as opções afirmam controle/depleção direta. A é única. A versão2025 não podia receber aprovação de atualidade por herança.",
+          "secondDefensibleAnswerFound": false
+        },
+        "eliminators": {
+          "triggered": [],
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          }
+        },
+        "editorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 18,
+          "annulledByEliminator": false,
+          "independentRationale": "18/20: alternativas simétricas e distratores hemodinâmico/depleção B são menos próximos que o alvo correto, mas representam confusões de classes terapêuticas; sem eliminatório."
+        },
+        "lengthAndGranularityReview": {
+          "characters": [
+            87,
+            81,
+            93,
+            82
+          ],
+          "sameComparisonAxis": true,
+          "noApprovalDerivedFromMetrics": true,
+          "finding": "Comprimento não cria segunda resposta e não foi usado como prova de qualidade. Distratores foram avaliados por erro clínico e comparabilidade; limitações constam na justificativa do escore."
+        },
+        "explanationReview": "Compatível com a chave e as fontes indicadas; ressalvas e limites de extrapolação conferidos. Não acrescenta promessa de desfecho duro não demonstrado.",
+        "claimRegister": [
+          {
+            "claim": "Ligação a C3/C3b e redução de efetores do complemento",
+            "source": "empaveli",
+            "sourceURL": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+            "locator": "12.1",
+            "status": "VERIFICADA"
+          },
+          {
+            "claim": "Proteinúria e perda de função renal, C3G/IC-MPGN primária >=12anos",
+            "source": "empaveli",
+            "sourceURL": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+            "locator": "1.2 current8/2026",
+            "status": "VERIFICADA"
+          },
+          {
+            "claim": "VALIANT124;68%UPCR; eGFR6.31(IC.50-12.12) em26 semanas",
+            "source": "empaveli",
+            "sourceURL": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+            "locator": "14.2",
+            "status": "VERIFICADA"
+          },
+          {
+            "claim": "IC-MPGN e mecanismos de imunocomplexos/complemento",
+            "source": "gn",
+            "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+            "locator": "Chapter8",
+            "status": "VERIFICADA"
+          }
+        ],
+        "verificationPending": [],
+        "referenceCards": [
+          {
+            "id": "empaveli_pegcetacoplan_label_2025",
+            "exactCardSHA256": "71da7053f3603ed72e48542114e64cca2e3dfd59d86fe0f4e32551290424a8fa",
+            "sourceURL": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+            "badge": "BULA"
+          },
+          {
+            "id": "kdigo_gn",
+            "exactCardSHA256": "e097883fe71795fbaa1c5730b35495efb5573fb1bea5c308d5adfb86f8fc687b",
+            "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+            "badge": "GUIDELINE"
+          }
+        ],
+        "referenceCount": 2,
+        "resolvedPredecessor": "A versão inicial usava informação de2025 e não incorporava o benefício funcional/indicação8/2026. O AFTER534b48ac e o card atual foram conferidos novamente; não extrapolam para ESKD/morte."
+      },
+      {
+        "qid": "7dbc02ce",
+        "sourceLine": 706,
+        "BEFORE_SHA256": "59d7f7f1ab164c4f6284090343cf7ac9201f7a52109d0a7bd53a91a1cfba3bd7",
+        "AFTER_SHA256": "07bfc7b6a5bc98408695980dd4ab5a0bdce25b771a911b821c47f102fd8cb90d",
+        "exactProposal": {
+          "t": "Primeiro Ensaio Clínico de Rim Suíno — FDA 2025",
+          "qid": "7dbc02ce",
+          "q": "Qual marco regulatório histórico o FDA atingiu em 2025 no campo da xenotransplantação renal?",
+          "opts": [
+            "Registro definitivo para uso rotineiro, condicionado a acompanhamento após comercialização.",
+            "Autorização de ensaio clínico em humanos, sem aprovação para uso rotineiro como terapia padrão.",
+            "Aprovação acelerada para uso rotineiro, condicionada a ensaio confirmatório de eficácia posterior.",
+            "Autorização restrita a acesso expandido individual, sem ensaio clínico prospectivo estruturado."
+          ],
+          "ans": 1,
+          "exp": "O marco de 2025 foi a autorização para ensaio clínico humano de rim suíno geneticamente editado. O comunicado primário de 3 de fevereiro registra liberação da IND do UKidney para avaliar segurança e eficácia com vistas a eventual pedido futuro de licença biológica. Isso não equivale a aprovação definitiva ou acelerada para cuidado rotineiro e difere de acesso expandido individual. O candidato a transplante deve compreender que autorização de pesquisa e demonstração de segurança/eficácia para terapia padrão são etapas distintas.",
+          "diff": "easy",
+          "cat": "transplante",
+          "refs": [
+            "ukidney_ind_authorization_2025"
+          ]
+        },
+        "independentOutcome": "ACCEPTED_EXACT_CURRENT_QUESTION",
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationScope": "Apenas esta questão e o conteúdo clínico dos cards pinados. Não executa integração nem supera a qualificação de taxonomia do bundle.",
+        "derivedGate": "Handbook18.4: evidênciaVERIFICADA/pendênciaNENHUMA; sem eliminatório; score18-20 => aprovada/LIBERADA.",
+        "actualLifecycle": "PROPOSTA_NAO_IMPLEMENTADA",
+        "confidence": "alta",
+        "OP": "Distinguir autorização de pesquisa da aprovação de xenotransplante como cuidado rotineiro.",
+        "OPPreserved": true,
+        "qidPreserved": true,
+        "canonicalAnswerPreserved": true,
+        "classification": {
+          "competency": "Interpretação regulatória e comunicação ao candidato",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "difficulty": "Básica"
+        },
+        "difficultyNote": "Classificação independente para interpretação do nível cognitivo; não exige alterar diff nem autoriza edição silenciosa.",
+        "independentlyDerivedCorrectIndex": 1,
+        "independentlyDerivedCorrectText": "Autorização de ensaio clínico em humanos, sem aprovação para uso rotineiro como terapia padrão.",
+        "singleBestAnswerReason": "O comunicado de3Feb2025 relata IND liberada para ensaio humano, visando possível futura BLA. Não relata registro comercial, aprovação acelerada rotineira nem apenas acesso expandido.",
+        "optionChallenge": [
+          "A: confunde autorização para pesquisa e registro definitivo.",
+          "B: identifica a etapa regulatória relatada.",
+          "C: confunde IND com aprovação acelerada comercial.",
+          "D: confunde ensaio prospectivo e acesso expandido individual."
+        ],
+        "lawyerOfAppeal": {
+          "result": "A pergunta é histórica de2025, por isso não infiro o estado regulatório atual de2026. Fonte é primária do patrocinador e essa limitação está explícita no card. A distinção pesquisa/cuidado padrão tem consequência na informação ao candidato, evitando eliminatório por trivia.",
+          "secondDefensibleAnswerFound": false
+        },
+        "eliminators": {
+          "triggered": [],
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          }
+        },
+        "editorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 1,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 1
+          },
+          "total": 18,
+          "annulledByEliminator": false,
+          "independentRationale": "18/20: enunciado amplo e histórico pode favorecer memorização; explicação conecta a informação à comunicação clínica. Distingue quatro etapas regulatórias plausíveis, sem resposta dupla."
+        },
+        "lengthAndGranularityReview": {
+          "characters": [
+            91,
+            95,
+            98,
+            95
+          ],
+          "sameComparisonAxis": true,
+          "noApprovalDerivedFromMetrics": true,
+          "finding": "Comprimento não cria segunda resposta e não foi usado como prova de qualidade. Distratores foram avaliados por erro clínico e comparabilidade; limitações constam na justificativa do escore."
+        },
+        "explanationReview": "Compatível com a chave e as fontes indicadas; ressalvas e limites de extrapolação conferidos. Não acrescenta promessa de desfecho duro não demonstrado.",
+        "claimRegister": [
+          {
+            "claim": "IND do UKidney para ensaio humano em3Feb2025, possível pedido futuroBLA",
+            "source": "ukidney",
+            "sourceURL": "https://ir.unither.com/~/media/Files/U/United-Therapeutics-IR/documents/press-releases/2025/2025-02-03-xeno-ind.pdf",
+            "locator": "pages1-2",
+            "status": "VERIFICADA"
+          },
+          {
+            "claim": "Não se trata de autorização para tratamento rotineiro ou apenas acesso individual",
+            "source": "ukidney",
+            "sourceURL": "https://ir.unither.com/~/media/Files/U/United-Therapeutics-IR/documents/press-releases/2025/2025-02-03-xeno-ind.pdf",
+            "locator": "prospective study / intended future BLA",
+            "status": "VERIFICADA"
+          }
+        ],
+        "verificationPending": [],
+        "referenceCards": [
+          {
+            "id": "ukidney_ind_authorization_2025",
+            "exactCardSHA256": "c92f592cb58ac28db084eaad4f5ca666227e63ed52c69922817861d3bae54374",
+            "sourceURL": "https://ir.unither.com/~/media/Files/U/United-Therapeutics-IR/documents/press-releases/2025/2025-02-03-xeno-ind.pdf",
+            "badge": "NEWS"
+          }
+        ],
+        "referenceCount": 1,
+        "resolvedPredecessor": null
+      },
+      {
+        "qid": "d43f9988",
+        "sourceLine": 714,
+        "BEFORE_SHA256": "d0cc08e28a7d91079bc177256ee6fb1f188df71590c747201ad3793fc3ba2070",
+        "AFTER_SHA256": "8c850b7c391050dd4a8f61d8d742378368196b86aa8b3027a95713b9b10971d3",
+        "exactProposal": {
+          "t": "IC-MPGN Primária — Patogênese",
+          "qid": "d43f9988",
+          "q": "Após biópsia com padrão membranoproliferativo mediado por imunocomplexos, qual achado favorece IC-MPGN primária em vez de MPGN secundária?",
+          "opts": [
+            "Depósitos de imunoglobulinas e complemento atribuídos a infecção crônica identificada.",
+            "Depósitos de imunoglobulinas e complemento sem causa secundária após investigação adequada.",
+            "Depósitos monoclonais de imunoglobulina associados a clone hematológico identificado.",
+            "Depósitos dominantes de C3 atribuídos a desregulação da via alternativa do complemento."
+          ],
+          "ans": 1,
+          "exp": "IC-MPGN primária é um diagnóstico de exclusão. Há lesão mediada por imunocomplexos com imunoglobulinas e complemento, mas investigação adequada não identifica causa secundária, como infecção, autoimunidade ou processo clonal. A KDIGO orienta pesquisar esses mecanismos, e considerar desregulação do complemento quando a investigação inicial não encontra etiologia. Infecção crônica identificada define causa secundária; depósitos monoclonais direcionam a investigação clonal; predominância de C3 exige avaliação de doença mediada por complemento. O padrão membranoproliferativo isolado não estabelece a causa.",
+          "diff": "hard",
+          "cat": "glomerular",
+          "refs": [
+            "kdigo_gn"
+          ]
+        },
+        "independentOutcome": "ACCEPTED_EXACT_CURRENT_QUESTION",
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationScope": "Apenas esta questão e o conteúdo clínico dos cards pinados. Não executa integração nem supera a qualificação de taxonomia do bundle.",
+        "derivedGate": "Handbook18.4: evidênciaVERIFICADA/pendênciaNENHUMA; sem eliminatório; score18-20 => aprovada/LIBERADA.",
+        "actualLifecycle": "PROPOSTA_NAO_IMPLEMENTADA",
+        "confidence": "alta",
+        "OP": "Classificar IC-MPGN primária versus causas secundárias após investigação etiológica adequada.",
+        "OPPreserved": true,
+        "qidPreserved": true,
+        "canonicalAnswerPreserved": true,
+        "classification": {
+          "competency": "Interpretação diagnóstica",
+          "bloom": "Analisar",
+          "miller": "Sabe como",
+          "difficulty": "Intermediária"
+        },
+        "difficultyNote": "Classificação independente para interpretação do nível cognitivo; não exige alterar diff nem autoriza edição silenciosa.",
+        "independentlyDerivedCorrectIndex": 1,
+        "independentlyDerivedCorrectText": "Depósitos de imunoglobulinas e complemento sem causa secundária após investigação adequada.",
+        "singleBestAnswerReason": "IC-MPGN primária/idiopática pressupõe ausência de causa após investigação adequada. Infecção identificada e clone associado são causas secundárias; predominância de C3 aponta outro eixo diagnóstico.",
+        "optionChallenge": [
+          "A: causa infecciosa identificada, portanto secundária.",
+          "B: critério de exclusão etiológica adequado.",
+          "C: mecanismo monoclonal identificado, portanto não primária.",
+          "D: mecanismo C3/complemento, não estabelece IC-MPGN primária por imunocomplexos."
+        ],
+        "lawyerOfAppeal": {
+          "result": "Considerar desregulação do complemento em ICGN sem etiologia é recomendado, mas não transforma depósito dominante deC3 em comprovação da classeIC-MPGN. O padrãoMPGN é uma lesão e não causa. A pergunta BEFORE já fazia essa distinção; título não é prova de troca deOP.",
+          "secondDefensibleAnswerFound": false
+        },
+        "eliminators": {
+          "triggered": [],
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          }
+        },
+        "editorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "annulledByEliminator": false,
+          "independentRationale": "19/20: paralelismo de depósitos/atribuição é um pouco mecânico, mas mantém mesma granulação etiológica e erros plausíveis; sem eliminatório."
+        },
+        "lengthAndGranularityReview": {
+          "characters": [
+            86,
+            91,
+            85,
+            87
+          ],
+          "sameComparisonAxis": true,
+          "noApprovalDerivedFromMetrics": true,
+          "finding": "Comprimento não cria segunda resposta e não foi usado como prova de qualidade. Distratores foram avaliados por erro clínico e comparabilidade; limitações constam na justificativa do escore."
+        },
+        "explanationReview": "Compatível com a chave e as fontes indicadas; ressalvas e limites de extrapolação conferidos. Não acrescenta promessa de desfecho duro não demonstrado.",
+        "claimRegister": [
+          {
+            "claim": "MPGN é padrão; investigar infecção, autoimunidade e monoclonalidade",
+            "source": "gn",
+            "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+            "locator": "S188-S190 /8.1.1-8.1.2",
+            "status": "VERIFICADA"
+          },
+          {
+            "claim": "Ausência de etiologia após workup, considerar complemento",
+            "source": "gn",
+            "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+            "locator": "8.1.3",
+            "status": "VERIFICADA"
+          }
+        ],
+        "verificationPending": [],
+        "referenceCards": [
+          {
+            "id": "kdigo_gn",
+            "exactCardSHA256": "e097883fe71795fbaa1c5730b35495efb5573fb1bea5c308d5adfb86f8fc687b",
+            "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+            "badge": "GUIDELINE"
+          }
+        ],
+        "referenceCount": 1,
+        "resolvedPredecessor": null
+      }
+    ],
+    "verifiedExactCards": [
+      {
+        "id": "c3g_consensus",
+        "exactCardSHA256": "27de0a8b7dfed93edd7e5a2ee6ceb18f940ffc5a3ad0f20e7f586fb7a34e3157",
+        "sourceURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+        "badge": "REVIEW",
+        "card": {
+          "label": "Pickering MC et al. — C3 Glomerulopathy Consensus (Kidney Int 2013)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+          "journal": "Kidney Int 2013;84(6):1079-1089",
+          "ano": 2013,
+          "tipo": "Consenso clínico",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Integra C3 dominante, ultraestrutura e curso clínico no diagnóstico de C3G.",
+          "icon": "🔬",
+          "resumo": "Consenso internacional de 2013 sobre definição histopatológica e investigação de C3G. Distingue depósitos intramembranosos muito densos da doença de depósitos densos dos depósitos da C3GN. A recuperação de C3 em 8–12 semanas apoia o curso pós-infeccioso; persistência exige reconsideração diagnóstica. Descreve C3NeF como autoanticorpo estabilizador da convertase e reconhece recorrência no enxerto. É consenso, não ensaio de tratamento.",
+          "conclusao": "C3 dominante e C3NeF isolados não substituem integração morfológica e clínica; acompanhar o complemento evita confundir GN pós-infecciosa e C3G.",
+          "curiosidade": ""
+        },
+        "authorAction": "VERIFIED_SCOPE_CARD_PROPOSAL; do not silently overwrite shared registry",
+        "clinicalContentVerified": true
+      },
+      {
+        "id": "fabhalta_iptacopan_label_2025",
+        "exactCardSHA256": "700420c861c1f9554457eb288d17bb7f73745c46d7fee338c03b22235d55b25e",
+        "sourceURL": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
+        "badge": "BULA",
+        "card": {
+          "label": "FABHALTA (iptacopan) — Prescribing Information FDA/DailyMed (2026)",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
+          "journal": "DailyMed / U.S. FDA Prescribing Information",
+          "ano": 2026,
+          "tipo": "Bula profissional aprovada pela FDA",
+          "badge": "BULA",
+          "badgeColor": "#64748b",
+          "impacto": "Iptacopano: fator B, 200 mg duas vezes ao dia e prevenção de infecção encapsulada.",
+          "icon": "📋",
+          "resumo": "Bula do FABHALTA atualizada em julho de 2026. Iptacopano inibe o fator B. Em adultos com C3G, a indicação nos EUA é reduzir proteinúria. O APPEAR-C3G avaliou proteinúria como desfecho primário; a bula não transforma esse resultado em prevenção definitiva de falência renal ou morte. Alerta para infecções graves por bactérias encapsuladas, vacinação e programa REMS.",
+          "conclusao": "Distinguir o alvo fator B e a indicação baseada em proteinúria na C3G dos demais inibidores de complemento; não extrapolar essa evidência para desfechos duros.",
+          "curiosidade": "A indicação de IgAN na mesma bula é distinta da indicação de C3G."
+        },
+        "authorAction": "VERIFIED_SCOPE_CARD_PROPOSAL; do not silently overwrite shared registry",
+        "clinicalContentVerified": true
+      },
+      {
+        "id": "mainritsan_trial",
+        "exactCardSHA256": "d21cacdfe1064930977745735283e7689f493ae2bb92af6547d9095f70339f12",
+        "sourceURL": "https://www.nejm.org/doi/full/10.1056/NEJMoa1404231",
+        "badge": "RCT",
+        "card": {
+          "label": "MAINRITSAN Trial (Rituximabe vs Azatioprina em ANCA)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1404231",
+          "journal": "N Engl J Med 2014;371(19):1771-1780",
+          "ano": 2014,
+          "tipo": "Ensaio clínico randomizado",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Rituximabe superior à azatioprina na manutenção de remissão em vasculite ANCA",
+          "icon": "🔬",
+          "resumo": "MAINRITSAN 2014: 115 pacientes com vasculite ANCA em remissão após ciclofosfamida e glicocorticoide. Rituximabe 500 mg nos dias 0 e 14 e meses 6, 12 e 18 versus azatioprina até o mês 22. Recidiva maior no mês 28: 3/57 (5%) versus 17/58 (29%). HR de recidiva para azatioprina versus rituximabe: 6,61 (IC95% 1,56–27,96; P=0,002). Eventos adversos graves ocorreram em ambos os grupos. Desenho aberto e população específica limitam extrapolação.",
+          "conclusao": "O esquema fixo de rituximabe reduziu recidiva maior nessa população; não eliminou toxicidade nem torna azatioprina inválida.",
+          "curiosidade": ""
+        },
+        "authorAction": "VERIFIED_SCOPE_CARD_PROPOSAL; do not silently overwrite shared registry",
+        "clinicalContentVerified": true
+      },
+      {
+        "id": "kdigo_anca_2024",
+        "exactCardSHA256": "c50f966b1288bb0afa2b55726edcb91fa7d37b98bff4cb44abd1c268388359ef",
+        "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2024-ANCA-Vasculitis-Guideline-Update.pdf",
+        "badge": "GUIDELINE",
+        "card": {
+          "label": "KDIGO — Vasculite Associada ao ANCA (2024)",
+          "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2024-ANCA-Vasculitis-Guideline-Update.pdf",
+          "journal": "Kidney Int. 2024;105(Suppl 3S):S71-S116",
+          "ano": 2024,
+          "tipo": "Diretriz internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Indução, troca plasmática, manutenção e redução de toxicidade na vasculite ANCA",
+          "icon": "📋",
+          "resumo": "KDIGO 2024 para vasculite ANCA, PDF atualizado em maio após corrigendas: recomendação 9.3.2.1 (1C) orienta manutenção com rituximabe ou azatioprina com baixa dose de glicocorticoide após indução de remissão. Figuras 12–14 individualizam risco de recaída, PR3-ANCA, IgG, fragilidade, disponibilidade e esquemas. Esta revisão usa a seção de manutenção; não valida avacopan nem recomendações fora desse escopo.",
+          "conclusao": "Escolher manutenção por risco e segurança; a vantagem de rituximabe em recaídas não determina uso universal.",
+          "curiosidade": ""
+        },
+        "authorAction": "VERIFIED_SCOPE_CARD_PROPOSAL; do not silently overwrite shared registry",
+        "clinicalContentVerified": true
+      },
+      {
+        "id": "kdigo_gn",
+        "exactCardSHA256": "e097883fe71795fbaa1c5730b35495efb5573fb1bea5c308d5adfb86f8fc687b",
+        "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+        "badge": "GUIDELINE",
+        "card": {
+          "label": "KDIGO Glomerular Diseases 2021",
+          "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+          "journal": "Kidney Int 2021;100(4S):S1-S276",
+          "ano": 2021,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Referência global para diagnóstico e tratamento das glomerulopatias",
+          "icon": "📋",
+          "resumo": "KDIGO 2021, capítulo 8: a GNMP é um padrão de lesão, não uma etiologia. GN mediada por imunocomplexos exige investigação de infecção, autoimunidade e gamopatia; casos sem causa após investigação extensa são idiopáticos. Distingue C3G e doença de depósitos densos pela imunofluorescência e microscopia eletrônica. Os capítulos atualizados de ANCA, lúpus e IgAN devem ser consultados em suas versões próprias.",
+          "conclusao": "Atribuir a etiologia após investigação adequada; não definir IC-MPGN primária apenas pelo padrão morfológico.",
+          "curiosidade": ""
+        },
+        "authorAction": "VERIFIED_SCOPE_CARD_PROPOSAL; do not silently overwrite shared registry",
+        "clinicalContentVerified": true
+      },
+      {
+        "id": "empaveli_pegcetacoplan_label_2025",
+        "exactCardSHA256": "71da7053f3603ed72e48542114e64cca2e3dfd59d86fe0f4e32551290424a8fa",
+        "sourceURL": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+        "badge": "BULA",
+        "card": {
+          "label": "EMPAVELI (pegcetacoplano) — Prescribing Information FDA/DailyMed (2026)",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+          "journal": "DailyMed / U.S. FDA Prescribing Information",
+          "ano": 2026,
+          "tipo": "Bula profissional aprovada pela FDA",
+          "badge": "BULA",
+          "badgeColor": "#64748b",
+          "impacto": "Pegcetacoplano inibe C3/C3b; reduz proteinúria e perda funcional renal em C3G/IC-MPGN.",
+          "icon": "📋",
+          "resumo": "Bula profissional revisada em agosto de 2026, atualizada no DailyMed em 21 de agosto. Pegcetacoplano liga-se a C3/C3b; nos EUA é indicado para reduzir proteinúria e perda de função renal em C3G ou IC-MPGN primária a partir de 12 anos. APL2-C3G-310/VALIANT randomizou 124 participantes para fármaco ou placebo. Na semana 26, a redução relativa de UPCR versus placebo foi de 68% (P<0,0001) e a diferença de TFGe foi de 6,31 mL/min/1,73 m² (IC95% 0,50–12,12). O seguimento controlado não estabelece prevenção definitiva de falência renal ou morte.",
+          "conclusao": "Sustenta mecanismo C3/C3b, redução de proteinúria e menor perda de função renal medida pela TFGe em 26 semanas; manter precauções infecciosas e não extrapolar para falência renal/mortalidade definitivas.",
+          "curiosidade": ""
+        },
+        "authorAction": "VERIFIED_SCOPE_CARD_PROPOSAL; do not silently overwrite shared registry",
+        "clinicalContentVerified": true
+      },
+      {
+        "id": "ukidney_ind_authorization_2025",
+        "exactCardSHA256": "c92f592cb58ac28db084eaad4f5ca666227e63ed52c69922817861d3bae54374",
+        "sourceURL": "https://ir.unither.com/~/media/Files/U/United-Therapeutics-IR/documents/press-releases/2025/2025-02-03-xeno-ind.pdf",
+        "badge": "NEWS",
+        "card": {
+          "label": "UKidney — autorização de ensaio clínico pela FDA (2025)",
+          "url": "https://ir.unither.com/~/media/Files/U/United-Therapeutics-IR/documents/press-releases/2025/2025-02-03-xeno-ind.pdf",
+          "journal": "United Therapeutics Corporation — comunicado primário",
+          "ano": 2025,
+          "tipo": "Comunicado regulatório primário",
+          "badge": "NEWS",
+          "badgeColor": "#64748b",
+          "impacto": "Autorização para ensaio não equivale a aprovação para uso rotineiro.",
+          "icon": "📋",
+          "resumo": "Comunicado primário de 3 de fevereiro de 2025 registra a autorização da IND para ensaio clínico do UKidney, rim suíno geneticamente editado. O estudo prospectivo avalia segurança e eficácia para eventual pedido futuro de licença biológica. Não apresenta resultados de eficácia nem aprovação como tratamento rotineiro. Trata-se do relato do patrocinador, não de documento público de aprovação comercial da FDA.",
+          "conclusao": "A autorização de pesquisa não deve ser apresentada ao candidato a transplante como terapia padrão aprovada.",
+          "curiosidade": ""
+        },
+        "authorAction": "ADD_NEW_REFERENCE",
+        "clinicalContentVerified": true
+      }
+    ],
+    "integrationQualifications": [
+      {
+        "status": "PENDING_FORMAT_POLICY_RESOLUTION",
+        "ids": [
+          "fabhalta_iptacopan_label_2025",
+          "empaveli_pegcetacoplan_label_2025",
+          "ukidney_ind_authorization_2025"
+        ],
+        "finding": "BULA/NEWS corretamente identificam os tipos reais e já existem no runtime, mas output-contract5/6 limita badge aGUIDELINE/RCT/META/REVIEW/COHORT/TEXTBOOK e lista tipo sem bula/comunicado.",
+        "requiredAction": "Resolver explicitamente a divergência editorial da taxonomia antes de considerar esses objetos integralmente conformes ao contrato. Não reclassificar bula/comunicado como ensaio ou diretriz e não afirmar autorização implícita por existência no runtime.",
+        "medicalEvidencePending": false
+      },
+      {
+        "status": "PENDING_ATOMIC_REFERENCE_REGISTRATION",
+        "id": "ukidney_ind_authorization_2025",
+        "finding": "Novo ID não estava no refsDB real durante esta revisão.",
+        "requiredAction": "Registrar o card exato verificado junto da questão, antes de qualquer publicação; não publicar referência órfã."
+      },
+      {
+        "status": "PINNED_CARD_SCOPE_REQUIRED",
+        "finding": "Cards compartilhados propostos foram conferidos apenas no escopo descrito, sem herdar texto extra do registro antigo.",
+        "requiredAction": "Integrar somente as versões exatas pinadas; verificar consumidores afetados de cards compartilhados e não aplicar substituição global silenciosa. Alteração clínica material requer nova revisão exata."
+      },
+      {
+        "status": "NO_PUBLICATION_PERFORMED",
+        "finding": "A autorização clínica das sete questões não afirma publicação, merge ou inclusão na release técnica16.08.",
+        "requiredAction": "Coordenação editorial decide o lote clínico posterior e seus gates de publicação."
+      }
+    ],
+    "sourceRegistry": {
+      "fabhalta": {
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a76b5845-6e21-4d3b-ad07-cd8df1b60bee",
+        "openedIndependently": true,
+        "method": "web retrieval; prescribing information text read",
+        "version": "Updated 16 July 2026 / Revised 7/2026",
+        "locators": [
+          "1.3 C3G indication",
+          "2.2 oral 200 mg twice daily",
+          "5.1 encapsulated bacterial infections",
+          "12.1 factor B / alternative pathway",
+          "14.3 APPEAR-C3G"
+        ],
+        "limits": "C3G proteinuria indication is distinguished from the current IgAN kidney-function indication. No claim of proven prevention of ESKD or death."
+      },
+      "empaveli": {
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c23d89e9-b00b-4520-e053-2995a90a95af",
+        "openedIndependently": true,
+        "method": "web retrieval; current prescribing information text read",
+        "version": "Updated 21 August 2026 / Revised 8/2026",
+        "locators": [
+          "1.2 age >=12 C3G / primary IC-MPGN, proteinuria AND loss of kidney function",
+          "12.1 binding C3/C3b",
+          "14.2 APL2-C3G-310/VALIANT, week-26 results"
+        ],
+        "verifiedNumbers": {
+          "randomized": 124,
+          "relativeUPCRReductionVsPlaceboPercent": 68,
+          "UPCR_P": "<0.0001",
+          "eGFR_LSMeanDifference": 6.31,
+          "eGFR_CI95": [
+            0.5,
+            12.12
+          ],
+          "followupWeeks": 26
+        },
+        "limits": "Short controlled follow-up and eGFR results do not establish definitive prevention of ESKD or mortality."
+      },
+      "anca": {
+        "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2024-ANCA-Vasculitis-Guideline-Update.pdf",
+        "openedIndependently": true,
+        "method": "official PDF opened through web; maintenance recommendation and figures read",
+        "version": "May 2024 corrected PDF",
+        "locators": [
+          "9.3.2.1 maintenance with rituximab OR azathioprine plus low-dose glucocorticoids, 1C",
+          "Figures 12-14 relapse risks, individualization and regimens"
+        ],
+        "limits": "This review covers maintenance claims. It does not certify avacopan, induction or plasma-exchange claims elsewhere in the shared registry."
+      },
+      "anca_correction": {
+        "url": "https://kdigo.org/guidelines/antineutrophilic-cytoplasmic-antibody-anca-associated-vasculitis-aav/",
+        "openedIndependently": true,
+        "method": "official guideline landing page read",
+        "locators": [
+          "May corrigenda notice, including Figure 13"
+        ],
+        "limits": "Older February PDF was not used as the final card link."
+      },
+      "gn": {
+        "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+        "openedIndependently": true,
+        "method": "independent public GET; pypdf text extracted and read",
+        "locators": [
+          "Chapter 8, printed S188-S190 / zero-based PDF pages 192-194",
+          "MPGN pattern versus etiology",
+          "8.1.1-8.1.5 secondary-cause, monoclonal and complement workup",
+          "C3G / DDD ultrastructural definitions"
+        ],
+        "localPin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 11320223,
+          "sha256": "8ed871ec098c7eba1cfb0ff6bf2355a6c422166b2691aac138f0273307b2acff"
+        },
+        "limits": "Diagnostic chapter only; no blanket endorsement of superseded treatment chapters."
+      },
+      "c3g": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+        "retrievalURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=3842953",
+        "openedIndependently": true,
+        "method": "PMC web captcha avoided by official NCBI full-text JATS GET; relevant body paragraphs and metadata read",
+        "version": "Pickering et al., Kidney Int 2013;84(6):1079-1089; DOI 10.1038/ki.2013.377",
+        "locators": [
+          "Definition / DDD and C3GN",
+          "Complement investigations / C3NeF",
+          "PIGN differential and C3 normalization within 8-12 weeks"
+        ],
+        "localPin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 93706,
+          "sha256": "59ef4bcaa319c61bdef5f560dec6a9da01eed60918652f4e14c2b3549970cca9"
+        },
+        "limits": "Consensus diagnostic definitions remain useful; no recurrence risk estimate or prognostic clearance of qid66905ee2 is inferred."
+      },
+      "mainritsan": {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/25372085/",
+        "articleURL": "https://www.nejm.org/doi/full/10.1056/NEJMoa1404231",
+        "retrievalURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=25372085&retmode=xml",
+        "openedIndependently": true,
+        "method": "official NCBI primary abstract XML GET; complete Methods/Results and bibliographic metadata read",
+        "locators": [
+          "Methods",
+          "Results",
+          "N Engl J Med 2014;371(19):1771-1780, DOI10.1056/NEJMoa1404231"
+        ],
+        "verifiedNumbers": {
+          "publishedPatients": 115,
+          "majorRelapseRTX": "3/57 (5%)",
+          "majorRelapseAZA": "17/58 (29%)",
+          "month": 28,
+          "HR_AZA_vs_RTX": 6.61,
+          "HR_CI95": [
+            1.56,
+            27.96
+          ],
+          "P": 0.002
+        },
+        "localPin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 20084,
+          "sha256": "06eb013182db6cc68ac8fc62a9ff966fe0d43e368625469da0f4c17d2b8c2c3f"
+        },
+        "limits": "Both groups had serious adverse events. The finding does not support absence of toxicity or an obligatory universal regimen."
+      },
+      "mainritsan_registry": {
+        "url": "https://clinicaltrials.gov/api/v2/studies/NCT00748644",
+        "openedIndependently": true,
+        "method": "official study API JSON GET and designModule read",
+        "locators": [
+          "identificationModule: NCT00748644 MAINRITSAN",
+          "designModule.designInfo: RANDOMIZED, PARALLEL, masking NONE"
+        ],
+        "localPin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 13930,
+          "sha256": "9e3bae61ae0d9ecf91e03b73a260fa8c6cc12db5ced4a6151c604057954ee342"
+        },
+        "limits": "Registry reports 117 enrollment; the card correctly uses 115 in the published analysis. Registry is used here to verify open-label design, not to replace published denominators."
+      },
+      "ukidney": {
+        "url": "https://ir.unither.com/~/media/Files/U/United-Therapeutics-IR/documents/press-releases/2025/2025-02-03-xeno-ind.pdf",
+        "openedIndependently": true,
+        "method": "original sponsor regulatory announcement PDF opened and pages 1-2 read",
+        "version": "3 February 2025",
+        "locators": [
+          "IND clearance to initiate UKidney prospective human clinical trial; intended future BLA"
+        ],
+        "limits": "Primary sponsor report, not a public FDA commercial approval instrument and not an efficacy result. Question is expressly historical 2025."
+      }
+    },
+    "supportingReceipts": [
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1575,
+        "sha256": "28eda077272945ced7251fcd7d6325ce64a34142e58eb808d169f7291d0a39d6"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 302,
+        "sha256": "e9c3ff612770dc6998c0e9d201557be945bc9c192074148f6cc93e5b81ab7029"
+      }
+    ],
+    "remainingBlockers": [
+      "qid66905ee2 remains outside scope and blocked",
+      "BULA/NEWS contract-versus-runtime policy divergence must be resolved for exact card integration",
+      "New UKidney reference must be registered atomically before publication"
+    ],
+    "noProductEdits": true,
+    "noBArtifactEdits": true,
+    "noCommit": true,
+    "noPublication": true,
+    "browserUsed": "No personal browser. Web retrieval tool for official source reads; explicit Python for official public GETs only."
+  }
+}

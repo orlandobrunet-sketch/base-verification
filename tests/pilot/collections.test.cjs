@@ -59,7 +59,7 @@ function fixture(files, { realPilot = false } = {}) {
   };
   vm.createContext(ctx);
   if (realPilot) vm.runInContext(fs.readFileSync(path.join(__dirname, '../../js/pilot.js'), 'utf8'), ctx, { filename: 'pilot.js' });
-  for (const file of files) {
+  for (const file of ['answer-presentation.js', ...files]) {
     let source = fs.readFileSync(path.join(__dirname, '../../js', file), 'utf8');
     if (file === 'minigame-acidbase.js') source = source.replace('  window.showAcidBaseMinigame =', '  window.__acid = { _loadProgress, _markCompleted, _renderSummary };\n  window.showAcidBaseMinigame =');
     if (file === 'dashboard.js') source = source.replace('  window.openDashboard =', '  window.__dash = { _readJson, _progressStorage, setBinding: value => { _dashboardBinding = value; } };\n  window.openDashboard =');
@@ -87,7 +87,7 @@ test('study resume, expiry and clear use only the selected progress domain', () 
   const f = fixture(['study-mode.js']);
   f.normal.set('nefroquest-study-state', '{"legacy":"untouched"}');
   const before = f.snapshot(); f.activate();
-  f.run("_studyProgressBinding = NQPilot.captureBinding(); studyModeActive = true; studyModeQuestions = [{ qid: 'synthetic-1' }]; studyModeCorrect = 1; _saveStudyState();");
+  f.run("_studyProgressBinding = NQPilot.captureBinding(); studyModeActive = true; studyModeQuestions = [{ qid: 'synthetic-1', q: 'Synthetic study fixture', opts: ['Synthetic correct', 'Synthetic distractor'], ans: 0, exp: 'Synthetic explanation' }]; _studyPresentations = studyModeQuestions.map(q => _studyPresent(q)); _studyAnswers = _studyPresentations.map(q => ({chosen:q.a, correct:true, authoredChoice:NQAnswers.originalIndex(q,q.a), optionId:NQAnswers.optionId(q,q.a)})); studyModeCorrect = 1; _saveStudyState();");
   assert.equal(f.ctx._loadStudyState().correct, 1);
   assert.equal(f.pilot.has('nefroquest-study-state'), true);
   assert.equal(f.snapshot(), before);
@@ -183,7 +183,7 @@ test('the real pilot module commits all auxiliary producers without consuming bo
   f.normal.set('nefroquest-sr-data', '{"legacy":{"reps":2}}');
   f.normal.set('nq-acidbase-progress', '{"completed":["normal-only"]}');
   const before = f.snapshot(); await f.activate();
-  f.run("_studyProgressBinding=NQPilot.captureBinding(); studyModeActive=true; studyModeQuestions=[{qid:'actual-study'}]; _saveStudyState(); _examProgressBinding=NQPilot.captureBinding(); _examState={questions:[{id:'actual-exam'}],idx:0,answers:[],startTime:Date.now()}; _saveExamState();");
+  f.run("_studyProgressBinding=NQPilot.captureBinding(); studyModeActive=true; studyModeQuestions=[{qid:'actual-study',q:'Synthetic study fixture',opts:['Synthetic correct','Synthetic distractor'],ans:0,exp:'Synthetic explanation'}]; _studyPresentations=studyModeQuestions.map(q=>_studyPresent(q)); _studyAnswers=studyModeQuestions.map(()=>null); _saveStudyState(); _examProgressBinding=NQPilot.captureBinding(); _examState={questions:[{id:'actual-exam'}],idx:0,answers:[],startTime:Date.now()}; _saveExamState();");
   f.ctx.updateSRData('actual-study', true); f.ctx._unlockRefsFromQuestion(['actual-ref']);
   assert.equal(f.ctx.saveUnlockedAchievements(['actual-badge']), true);
   assert.equal(f.ctx.__acid._markCompleted('actual-case', 0, f.ctx.NQPilot.captureBinding()), true);

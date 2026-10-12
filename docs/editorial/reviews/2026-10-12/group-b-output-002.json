@@ -1,0 +1,2276 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 128920,
+  "sourceReportSHA256": "897feeb64cb89536ec54ad3446c17a59c62ce12980694272077f6b2d19e74762",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_EDITORIAL_BATCH_REVIEW_V2",
+    "group": "b",
+    "batch": 2,
+    "reviewer": "clinical_review_b",
+    "reviewMode": "Formal individual review and exact-proposal re-review,notmetricapproval",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "sourceBankSHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "inputFile": "input-002.json",
+    "inputSHA256": "5fcf8555b9f5fe86dbe1f2c97a1ef1ea27340bab8db6b1acc72936c9d1b3de7b",
+    "verifiedAtUTC": "2026-10-12T17:27:00Z",
+    "timestampQualification": "Clock captured during body verification; not a substitute for exact source retrieval timestamps.",
+    "normativeSources": [
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      }
+    ],
+    "summaryTable": [
+      {
+        "qid": "ac8a042e",
+        "OP": "Reconhecer barreiras imunológicas e de segurança que impedem inferir aplicação ampla a partir dos xenotransplantes iniciais.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "legacyAux": "MANTER",
+        "action": "SUBSTITUIR A QUESTÃO POR"
+      },
+      {
+        "qid": "cd455e49",
+        "OP": "Interpretar o risco de erro amostral na GESF e integrar biópsia e fenótipo sem diagnosticar etiologia por um método isolado.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "legacyAux": "MANTER",
+        "action": "SUBSTITUIR A QUESTÃO POR"
+      },
+      {
+        "qid": "d81defbb",
+        "OP": "Ponderar benefício e toxicidade do glicocorticoide sistêmico na IgAN sem acesso a Nefecon, incorporando dose reduzida, profilaxia e risco individual.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "legacyAux": "MANTER",
+        "action": "SUBSTITUIR A QUESTÃO POR"
+      },
+      {
+        "qid": "1fd6a5cf",
+        "OP": "Interpretar RITUXVAS como estudo de regime combinado e evitar atribuição causal ao rituximabe isolado ou equivalência não demonstrada.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 20,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "legacyAux": "MANTER",
+        "action": "SUBSTITUIR A QUESTÃO POR"
+      },
+      {
+        "qid": "0f7d97f3",
+        "OP": "Selecionar o fenótipo renal/cardíaco inexplicado que justifica considerar investigação de Fabry sem exigir angioqueratomas.",
+        "evidence": "NÃO VERIFICADA",
+        "pending": "DECISIVA",
+        "verdict": "revisão maior",
+        "score": 13,
+        "eliminator": "científico não certificável",
+        "publicationAuthorization": "BLOQUEADA",
+        "legacyAux": "REESCREVER",
+        "action": "PENDENTE_NÃO_IMPLEMENTAR"
+      },
+      {
+        "qid": "2af04ec7",
+        "OP": "Aplicar critérios ultrassonográficos etários de DRPAD a familiares em risco com gene familiar desconhecido, sem extrapolar para outra população.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 18,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "legacyAux": "MANTER",
+        "action": "MANTER_SEM_ALTERAÇÃO"
+      },
+      {
+        "qid": "2be4ea1f",
+        "OP": "Escolher tipagem de depósitos sugestivos de amiloide, sem inferir precursor AL/AA pela coloração ou gamopatia concomitante.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 20,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "legacyAux": "MANTER",
+        "action": "SUBSTITUIR A QUESTÃO POR"
+      },
+      {
+        "qid": "ce79d609",
+        "OP": "Interpretar lesões MEST-C como informação prognóstica integrada à clínica, sem prescrever terapia automaticamente pelo escore.",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "verdict": "revisão maior",
+        "score": 15,
+        "eliminator": "científico não certificável",
+        "publicationAuthorization": "BLOQUEADA",
+        "legacyAux": "REESCREVER",
+        "action": "PENDENTE_NÃO_IMPLEMENTAR"
+      }
+    ],
+    "reviews": [
+      {
+        "qid": "ac8a042e",
+        "sourceLine": 718,
+        "sourceQuestionSHA256": "5d1e1e6c566a8f84816b3d6e7248990c13e3463ad24b8a8aaeeec2e2cf61ec0b",
+        "beforeCanonicalSHA256": "5d1e1e6c566a8f84816b3d6e7248990c13e3463ad24b8a8aaeeec2e2cf61ec0b",
+        "afterCanonicalSHA256": "a191555f734eebfbde4c05565dbc3df4b079eab139bef560382dc6463988e669",
+        "BEFORE": {
+          "t": "Xenotransplante Renal — Perspectiva Futura",
+          "qid": "ac8a042e",
+          "q": "No xenotransplante renal de porcos geneticamente modificados para humanos, qual é um dos principais desafios que ainda limita sua aplicação clínica ampla?",
+          "opts": [
+            "Barreiras imunológicas e biológicas entre espécies, incluindo rejeição, lesão endotelial/coagulação e vigilância infecciosa",
+            "Substituição completa e imediata dos transplantes de doadores humanos",
+            "Ausência de necessidade de imunossupressão após edição genética do porco",
+            "Aprovação definitiva como terapia padrão de cuidado em todos os pacientes com DRC terminal"
+          ],
+          "ans": 0,
+          "exp": "A alternativa A é a melhor resposta: apesar dos avanços com edição genética e dos primeiros estudos em humanos, o xenotransplante renal ainda depende de superar barreiras de imunogenicidade, lesão endotelial, distúrbios de coagulação, durabilidade do enxerto e biossegurança infecciosa/zoonótica. As demais alternativas são absolutas demais: o xenotransplante não substitui imediatamente o transplante humano, a edição genética não elimina a necessidade de imunossupressão e ainda não existe aprovação como terapia padrão ampla.",
+          "diff": "medium",
+          "cat": "transplante",
+          "refs": [
+            "porcine_kidney_xeno_nejm_2025",
+            "pig_kidney_trial_ap_2025"
+          ]
+        },
+        "AFTER": {
+          "t": "Xenotransplante Renal — Perspectiva Futura",
+          "qid": "ac8a042e",
+          "q": "No xenotransplante renal de porcos geneticamente modificados para humanos, qual é um dos principais desafios que ainda limita sua aplicação clínica ampla?",
+          "opts": [
+            "Rejeição e risco infeccioso, com incerteza sobre segurança e durabilidade do enxerto.",
+            "Ausência de função filtrante no rim suíno, mesmo após resolver compatibilidade imunológica.",
+            "Impossibilidade de adicionar genes humanos, pois a edição só permite retirar genes suínos.",
+            "Risco limitado à rejeição celular, sem participação de mecanismos vasculares ou infecciosos."
+          ],
+          "ans": 0,
+          "exp": "Barreiras imunológicas e de segurança permanecem após a edição genética. No relato humano de 2025, o rim suíno funcionou inicialmente, mas um episódio de rejeição celular exigiu intensificação da imunossupressão. O próprio programa clínico de UKidney prevê avaliação de segurança, função do enxerto e vigilância infecciosa. Esses dados iniciais não garantem durabilidade nem uso clínico amplo. Edição pode incluir inserção de genes humanos, além de inativação de genes suínos; não torna o órgão incapaz de filtrar nem elimina a necessidade de imunossupressão.",
+          "diff": "medium",
+          "cat": "transplante",
+          "refs": [
+            "porcine_kidney_xeno_nejm_2025"
+          ]
+        },
+        "sourceAssessment": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Reconhecer barreiras imunológicas e de segurança que impedem inferir aplicação ampla a partir dos xenotransplantes iniciais.",
+          "classification": {
+            "competency": "Interpretação de evidência translacional",
+            "bloom": "Compreender",
+            "miller": "Sabe",
+            "difficulty": "Intermediária"
+          },
+          "problems": [
+            "MAIOR — referência fixa à alternativaA na explicação.",
+            "MAIOR — três alternativas não descrevem desafios e fazem afirmações absolutas; a correta é a única resposta coerente com o comando."
+          ],
+          "lawyerOfAppeal": "Os distratores não são desafios e permitem acerto apenas pela forma; a letraA precisa desaparecer para embaralhar.",
+          "eliminators": [
+            5
+          ],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 1,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": null,
+            "annulledByEliminator": true
+          },
+          "lifecycle": "em_reparo"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Reconhecer barreiras imunológicas e de segurança que impedem inferir aplicação ampla a partir dos xenotransplantes iniciais.",
+          "classification": {
+            "competency": "Interpretação de evidência translacional",
+            "bloom": "Compreender",
+            "miller": "Sabe",
+            "difficulty": "Intermediária"
+          },
+          "justification": "A proposta usa conteúdo em vez de letra e descreve desafios clinicamente reais. O relato individual e o protocolo investigacional sustentam viabilidade e limitações, sem alegar eficácia generalizada ou aprovação atual universal.",
+          "problems": [
+            "MAIOR — referência fixa à alternativaA na explicação.",
+            "MAIOR — três alternativas não descrevem desafios e fazem afirmações absolutas; a correta é a única resposta coerente com o comando."
+          ],
+          "lawyerOfAppeal": {
+            "result": "Nenhum argumento plausível de anulação após correção/conferência da versão exata.",
+            "checks": [
+              "Segundaresposta defensável buscada no contexto exato.",
+              "Inferência de superioridade/equivalência ou causalidade indevida procurada.",
+              "Explicação confrontada com conteúdo de cada alternativa.",
+              "Referências avaliadas por população/desenho e apoio decisivo."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": false,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": false,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": false
+            },
+            "qualification": "Dez critérios avaliados; nenhum disparado."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 1,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 19,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "0:VERIFICADA/NENHUMA;1:sem eliminatório;2:sem recurso plausível;3:score18–20;aprovada/LIBERADA.",
+          "lifecycle": "publicado",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; destino da árvore não é alegação de publicação real.",
+          "claimRegister": [
+            {
+              "claim": "Função inicial de rim editado; rejeição celular tratada com mais imunossupressão",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=39927618&retmode=xml",
+              "locator": "Abstract primário",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            },
+            {
+              "claim": "Vigilância infecciosa e segurança em programa investigacional",
+              "sourceURL": "https://ir.unither.com/~/media/Files/U/United-Therapeutics-IR/documents/press-releases/2025/2025-02-03-xeno-ind.pdf",
+              "locator": "Study endpoints,PDFp2",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            },
+            {
+              "claim": "Inserção de genes humanos e inativação de genes suínos",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=39927618&retmode=xml",
+              "locator": "Abstract primário",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            }
+          ],
+          "verificationPending": [],
+          "referenceCards": [
+            {
+              "id": "porcine_kidney_xeno_nejm_2025",
+              "card": {
+                "label": "Kawai et al. — Porcine Kidney Xenotransplantation (NEJM 2025)",
+                "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412747",
+                "journal": "N Engl J Med 2025; 392(19): 1933-1940",
+                "ano": 2025,
+                "tipo": "Relato/Estudo Clínico",
+                "badge": "STUDY",
+                "badgeColor": "#0ea5e9",
+                "impacto": "Xenotransplante renal suíno geneticamente editado em receptor humano com DRC terminal; viabilidade inicial, mas evidência ainda precoce",
+                "icon": "🔬",
+                "resumo": "Kawai et al., NEJM 2025: relato de um receptor humano em diálise que recebeu rim suíno geneticamente editado. Houve função imediata e suspensão de diálise. Rejeição mediada por célulasT exigiu intensificação da imunossupressão. O relato individual demonstra viabilidade inicial, mas não estabelece segurança e durabilidade generalizáveis. Não é ensaio randomizado.",
+                "conclusao": "Edição genética não elimina rejeição nem a necessidade de imunossupressão; viabilidade inicial não equivale a terapia amplamente validada.",
+                "curiosidade": ""
+              },
+              "action": "VERIFIED_SCOPE_CARD_PROPOSAL; do not silently overwrite shared registry",
+              "verifiedScope": "Asserções do card acima, sem herdar números adicionais do card antigo."
+            }
+          ],
+          "readabilityRecheck": "A versão exata após espaços entre palavras,números e unidades foi relida. Mesmos valores,fontes,OP,ans e significado; evidência/pendência reavaliadas e permanecem VERIFICADA/NENHUMA; publicação derivada LIBERADA."
+        },
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "materialChange": true,
+        "patchEditorialSuggested": {
+          "operation": "SUBSTITUIR A QUESTÃO POR",
+          "question": {
+            "t": "Xenotransplante Renal — Perspectiva Futura",
+            "qid": "ac8a042e",
+            "q": "No xenotransplante renal de porcos geneticamente modificados para humanos, qual é um dos principais desafios que ainda limita sua aplicação clínica ampla?",
+            "opts": [
+              "Rejeição e risco infeccioso, com incerteza sobre segurança e durabilidade do enxerto.",
+              "Ausência de função filtrante no rim suíno, mesmo após resolver compatibilidade imunológica.",
+              "Impossibilidade de adicionar genes humanos, pois a edição só permite retirar genes suínos.",
+              "Risco limitado à rejeição celular, sem participação de mecanismos vasculares ou infecciosos."
+            ],
+            "ans": 0,
+            "exp": "Barreiras imunológicas e de segurança permanecem após a edição genética. No relato humano de 2025, o rim suíno funcionou inicialmente, mas um episódio de rejeição celular exigiu intensificação da imunossupressão. O próprio programa clínico de UKidney prevê avaliação de segurança, função do enxerto e vigilância infecciosa. Esses dados iniciais não garantem durabilidade nem uso clínico amplo. Edição pode incluir inserção de genes humanos, além de inativação de genes suínos; não torna o órgão incapaz de filtrar nem elimina a necessidade de imunossupressão.",
+            "diff": "medium",
+            "cat": "transplante",
+            "refs": [
+              "porcine_kidney_xeno_nejm_2025"
+            ]
+          },
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "fullText": "Rejeição e risco infeccioso, com incerteza sobre segurança e durabilidade do enxerto."
+          },
+          "implementation": "Preservarqid,ordem,ans,diff,cat/tipo,históricoeFSRS. Alteração clínica somente desta versão exata LIBERADA. Não substituir cards compartilhados sem revisar impacto; sourceURL verificada está no registro declaims."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": true,
+          "proposalHasFixedLetter": false,
+          "numericalOrderQualification": null
+        },
+        "duplicateReview": "Oito itens comparados: xenotransplante,amostragemGESF,TESTING,RITUXVAS,Fabry,critériosDRPAD,tipagemamiloide,MEST-C medem decisões distintas. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            123,
+            69,
+            72,
+            90
+          ],
+          "afterCharacters": [
+            85,
+            91,
+            90,
+            92
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": false
+        },
+        "noBankEdits": true
+      },
+      {
+        "qid": "cd455e49",
+        "sourceLine": 8,
+        "sourceQuestionSHA256": "5a0ec1010bcc8239a0478d2ea933f1c8a4e059f495ccbd18f5d28d84c0533f77",
+        "beforeCanonicalSHA256": "5a0ec1010bcc8239a0478d2ea933f1c8a4e059f495ccbd18f5d28d84c0533f77",
+        "afterCanonicalSHA256": "4cb7ae98bc5b6d2726ea7ebc9c199f438ea94b528e9d6e31ae37d1fefa5f9a24",
+        "BEFORE": {
+          "t": "GESF — Amostragem e Integração da Biópsia",
+          "qid": "cd455e49",
+          "q": "Por que uma biópsia renal com poucos glomérulos pode não excluir glomeruloesclerose segmentar e focal (GESF), e qual é a interpretação adequada?",
+          "refs": [
+            "kdigo_gn",
+            "de_vriese_fsgs_2018"
+          ],
+          "opts": [
+            "A lesão é focal e pode não estar nos glomérulos amostrados; deve-se integrar microscopia óptica, imunofluorescência, microscopia eletrônica e fenótipo clínico",
+            "A ausência de esclerose em um único glomérulo exclui GESF mesmo diante de síndrome nefrótica",
+            "A microscopia eletrônica isolada define a etiologia primária sempre que houver apagamento de pedicelos",
+            "Amostra predominantemente medular é suficiente porque a GESF não envolve o córtex"
+          ],
+          "ans": 0,
+          "exp": "Focal significa que apenas parte dos glomérulos está acometida, e segmentar, que apenas parte do tufo apresenta a lesão; uma amostra pequena pode, portanto, não captá-la. Representação cortical adequada, inclusive de córtex profundo, aumenta a chance diagnóstica. Microscopia óptica identifica esclerose, imunofluorescência avalia depósitos e microscopia eletrônica quantifica a lesão podocitária, mas nenhum método isolado estabelece a causa. Até apagamento difuso dos pedicelos deve ser interpretado junto à síndrome nefrótica, às causas secundárias e à possibilidade genética.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "AFTER": {
+          "t": "GESF — Amostragem e Integração da Biópsia",
+          "qid": "cd455e49",
+          "q": "Por que uma biópsia renal com poucos glomérulos pode não excluir glomeruloesclerose segmentar e focal (GESF), e qual é a interpretação adequada?",
+          "refs": [
+            "kdigo_gn",
+            "de_vriese_fsgs_2018"
+          ],
+          "opts": [
+            "A distribuição focal permite erro amostral; a biópsia deve ser integrada ao fenótipo clínico.",
+            "Ausência de esclerose exclui GESF; apagamento de pedicelos indica doença de lesões mínimas.",
+            "Apagamento difuso de pedicelos identifica GESF primária; a microscopia eletrônica basta.",
+            "A esclerose amostrada define a etiologia; a clínica serve apenas para graduar a gravidade."
+          ],
+          "ans": 0,
+          "exp": "Focal significa que apenas parte dos glomérulos está acometida, e segmentar, que apenas parte do tufo apresenta a lesão; uma amostra pequena pode, portanto, não captá-la. Representação cortical adequada, inclusive de córtex profundo, aumenta a chance diagnóstica. Microscopia óptica identifica esclerose, imunofluorescência avalia depósitos e microscopia eletrônica quantifica a lesão podocitária, mas nenhum método isolado estabelece a causa. Até apagamento difuso dos pedicelos deve ser interpretado junto à síndrome nefrótica, às causas secundárias e à possibilidade genética.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "sourceAssessment": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Interpretar o risco de erro amostral na GESF e integrar biópsia e fenótipo sem diagnosticar etiologia por um método isolado.",
+          "classification": {
+            "competency": "Interpretação anatomopatológica",
+            "bloom": "Analisar",
+            "miller": "Sabe como",
+            "difficulty": "Intermediária"
+          },
+          "problems": [
+            "MAIOR — correta longa lista todos os métodos; distrator de amostra medular dispensa córtex é absurdo."
+          ],
+          "lawyerOfAppeal": "A resposta pode ser escolhida como única integração cautelosa e por comprimento, sem conhecer a distribuição focal.",
+          "eliminators": [
+            5
+          ],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 1,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": null,
+            "annulledByEliminator": true
+          },
+          "lifecycle": "em_reparo"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Interpretar o risco de erro amostral na GESF e integrar biópsia e fenótipo sem diagnosticar etiologia por um método isolado.",
+          "classification": {
+            "competency": "Interpretação anatomopatológica",
+            "bloom": "Analisar",
+            "miller": "Sabe como",
+            "difficulty": "Intermediária"
+          },
+          "justification": "O caráter focal permite inferir qualitativamente que poucos glomérulos podem não conter a lesão; não se inventa probabilidade de erro. KDIGO e revisão clinicopatológica verificadas sustentam a integração e os limites da microscopia eletrônica.",
+          "problems": [
+            "MAIOR — correta longa lista todos os métodos; distrator de amostra medular dispensa córtex é absurdo."
+          ],
+          "lawyerOfAppeal": {
+            "result": "Nenhum argumento plausível de anulação após correção/conferência da versão exata.",
+            "checks": [
+              "Segundaresposta defensável buscada no contexto exato.",
+              "Inferência de superioridade/equivalência ou causalidade indevida procurada.",
+              "Explicação confrontada com conteúdo de cada alternativa.",
+              "Referências avaliadas por população/desenho e apoio decisivo."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": false,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": false,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": false
+            },
+            "qualification": "Dez critérios avaliados; nenhum disparado."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 1,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 19,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "0:VERIFICADA/NENHUMA;1:sem eliminatório;2:sem recurso plausível;3:score18–20;aprovada/LIBERADA.",
+          "lifecycle": "publicado",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; destino da árvore não é alegação de publicação real.",
+          "claimRegister": [
+            {
+              "claim": "GESF é padrão histológico; causa primária/genética/secundária requer integração clínica",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=5827609",
+              "locator": "Abstract da revisão primária",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            },
+            {
+              "claim": "Microscopia eletrônica isolada não define etiologia",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=5827609",
+              "locator": "Abstract",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            },
+            {
+              "claim": "Síndrome nefrótica, esclerose e apagamento difuso integram definição primária",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+              "locator": "Chapter6 Definitions,PDF166",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            },
+            {
+              "claim": "Erro amostral possível na distribuição focal",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+              "locator": "Definição focal; inferência lógica qualitativa, sem taxa/probabilidade numérica",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            }
+          ],
+          "verificationPending": [],
+          "referenceCards": [
+            {
+              "id": "kdigo_gn",
+              "card": {
+                "label": "KDIGO Glomerular Diseases 2021",
+                "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+                "journal": "Kidney Int 2021; 100(4S): S1-S276",
+                "ano": 2021,
+                "tipo": "Diretriz Internacional",
+                "badge": "GUIDELINE",
+                "badgeColor": "#6366f1",
+                "impacto": "Referência global para diagnóstico e tratamento das glomerulopatias",
+                "icon": "📋",
+                "resumo": "KDIGO 2021, capítulo 8: a GNMP é um padrão de lesão, não uma etiologia. GN mediada por imunocomplexos exige investigação de infecção, autoimunidade e gamopatia; casos sem causa após investigação extensa são idiopáticos. Distingue C3G e doença de depósitos densos pela imunofluorescência e microscopia eletrônica. Os capítulos atualizados de ANCA, lúpus e IgAN devem ser consultados em suas versões próprias.",
+                "conclusao": "Atribuir a etiologia após investigação adequada; não definir IC-MPGN primária apenas pelo padrão morfológico.",
+                "curiosidade": ""
+              },
+              "action": "VERIFIED_SCOPE_CARD_PROPOSAL; do not silently overwrite shared registry",
+              "verifiedScope": "Asserções do card acima, sem herdar números adicionais do card antigo."
+            },
+            {
+              "id": "de_vriese_fsgs_2018",
+              "card": {
+                "label": "De Vriese et al. — Diferenciação Clinicopatológica da GESF (2018)",
+                "url": "https://doi.org/10.1681/ASN.2017090958",
+                "journal": "J Am Soc Nephrol. 2018; 29(3): 759-774",
+                "ano": 2018,
+                "tipo": "Revisão clinicopatológica",
+                "badge": "REVIEW",
+                "badgeColor": "#8b5cf6",
+                "impacto": "Integra síndrome nefrótica, etiologia, microscopia eletrônica e padrão histológico na classificação da GESF",
+                "icon": "🔬",
+                "resumo": "Revisão clinicopatológica de 2018 que distingue GESF primária, genética e secundária. Nenhum achado isolado de microscopia óptica identifica sua etiologia; apagamento de pedicelos é útil, mas deve ser combinado a fenótipo clínico e avaliação etiológica. A forma genética pode não ser reconhecida pela extensão do apagamento.",
+                "conclusao": "Integrar padrão histológico, síndrome nefrótica, causas secundárias e genética quando indicada; não inferir a etiologia apenas pela microscopia eletrônica.",
+                "curiosidade": ""
+              },
+              "action": "VERIFIED_SCOPE_CARD_PROPOSAL; do not silently overwrite shared registry",
+              "verifiedScope": "Asserções do card acima, sem herdar números adicionais do card antigo."
+            }
+          ],
+          "readabilityRecheck": "A versão exata após espaços entre palavras,números e unidades foi relida. Mesmos valores,fontes,OP,ans e significado; evidência/pendência reavaliadas e permanecem VERIFICADA/NENHUMA; publicação derivada LIBERADA."
+        },
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "materialChange": true,
+        "patchEditorialSuggested": {
+          "operation": "SUBSTITUIR A QUESTÃO POR",
+          "question": {
+            "t": "GESF — Amostragem e Integração da Biópsia",
+            "qid": "cd455e49",
+            "q": "Por que uma biópsia renal com poucos glomérulos pode não excluir glomeruloesclerose segmentar e focal (GESF), e qual é a interpretação adequada?",
+            "refs": [
+              "kdigo_gn",
+              "de_vriese_fsgs_2018"
+            ],
+            "opts": [
+              "A distribuição focal permite erro amostral; a biópsia deve ser integrada ao fenótipo clínico.",
+              "Ausência de esclerose exclui GESF; apagamento de pedicelos indica doença de lesões mínimas.",
+              "Apagamento difuso de pedicelos identifica GESF primária; a microscopia eletrônica basta.",
+              "A esclerose amostrada define a etiologia; a clínica serve apenas para graduar a gravidade."
+            ],
+            "ans": 0,
+            "exp": "Focal significa que apenas parte dos glomérulos está acometida, e segmentar, que apenas parte do tufo apresenta a lesão; uma amostra pequena pode, portanto, não captá-la. Representação cortical adequada, inclusive de córtex profundo, aumenta a chance diagnóstica. Microscopia óptica identifica esclerose, imunofluorescência avalia depósitos e microscopia eletrônica quantifica a lesão podocitária, mas nenhum método isolado estabelece a causa. Até apagamento difuso dos pedicelos deve ser interpretado junto à síndrome nefrótica, às causas secundárias e à possibilidade genética.",
+            "diff": "medium",
+            "cat": "glomerular"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "fullText": "A distribuição focal permite erro amostral; a biópsia deve ser integrada ao fenótipo clínico."
+          },
+          "implementation": "Preservarqid,ordem,ans,diff,cat/tipo,históricoeFSRS. Alteração clínica somente desta versão exata LIBERADA. Não substituir cards compartilhados sem revisar impacto; sourceURL verificada está no registro declaims."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": false,
+          "proposalHasFixedLetter": false,
+          "numericalOrderQualification": null
+        },
+        "duplicateReview": "Oito itens comparados: xenotransplante,amostragemGESF,TESTING,RITUXVAS,Fabry,critériosDRPAD,tipagemamiloide,MEST-C medem decisões distintas. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            158,
+            92,
+            102,
+            81
+          ],
+          "afterCharacters": [
+            93,
+            91,
+            88,
+            90
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": true
+        },
+        "noBankEdits": true
+      },
+      {
+        "qid": "d81defbb",
+        "sourceLine": 12,
+        "sourceQuestionSHA256": "c375779e5b4d883252586388304b0541bdb406a90bafc9741fd21b8d68ae2c88",
+        "beforeCanonicalSHA256": "c375779e5b4d883252586388304b0541bdb406a90bafc9741fd21b8d68ae2c88",
+        "afterCanonicalSHA256": "db57a48be2a9c1afdef8f6c19a020fdab48bf51a1d5b91010c7f60525d6b18fa",
+        "BEFORE": {
+          "t": "IgAN — TESTING e Corticoide Sistêmico",
+          "qid": "d81defbb",
+          "q": "Pessoa com IgAN sob risco de progressão não tem acesso a Nefecon. Ao discutir metilprednisolona sistêmica, qual síntese é mais adequada?",
+          "refs": [
+            "testing_study",
+            "kdigo_igan_igav_2025"
+          ],
+          "opts": [
+            "O TESTING mostrou benefício renal, mas aumentou eventos adversos graves; se escolhida, a KDIGO favorece esquema reduzido com profilaxia e seleção individual de risco",
+            "A dose plena foi isenta de infecções graves e deve ser usada universalmente",
+            "Proteinúria acima de 0,5 g/d torna o corticoide obrigatório, independentemente de diabetes, obesidade, infecção ou TFGe",
+            "A profilaxia contra Pneumocystis é desnecessária no esquema reduzido"
+          ],
+          "ans": 0,
+          "exp": "No TESTING, metilprednisolona reduziu o composto de queda de função renal, falência renal ou morte renal, mas eventos adversos graves foram mais frequentes, sobretudo no protocolo de dose plena. A redução para 0,4 mg/kg/dia, máximo de 32 mg/dia, e a profilaxia contra Pneumocystis mitigaram, sem eliminar, a toxicidade. Na KDIGO 2025, Nefecon é a opção preferida quando disponível; corticoide sistêmico reduzido é alternativa que exige decisão compartilhada, profilaxia e atenção especial a TFGe abaixo de 30, diabetes, obesidade, infecções, úlcera, doença psiquiátrica, osteoporose e catarata.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "AFTER": {
+          "t": "IgAN — TESTING e Corticoide Sistêmico",
+          "qid": "d81defbb",
+          "q": "Pessoa com IgAN sob risco de progressão não tem acesso a Nefecon. Ao discutir metilprednisolona sistêmica, qual síntese é mais adequada?",
+          "refs": [
+            "testing_study",
+            "kdigo_igan_igav_2025"
+          ],
+          "opts": [
+            "Benefício renal com toxicidade relevante; considerar dose reduzida, profilaxia e risco individual.",
+            "Benefício renal com pouca toxicidade; preferir dose plena para evitar perda de eficácia.",
+            "Sem benefício renal demonstrado; reservar dose plena para proteinúria persistente.",
+            "Benefício restrito à proteinúria; usar dose reduzida sem profilaxia antimicrobiana."
+          ],
+          "ans": 0,
+          "exp": "Metilprednisolona reduziu desfechos renais no TESTING, mas aumentou eventos adversos graves, sobretudo no protocolo inicial de dose plena. Após excesso de infecções, o estudo passou a dose reduzida e profilaxia contra Pneumocystis; não foi uma comparação randomizada direta entre doses. Quando Nefecon não está disponível, a KDIGO 2025 sugere glicocorticoide sistêmico reduzido com profilaxia e decisão individual. O esquema descrito é metilprednisolona0,4 mg/kg/dia, máximo 32 mg/dia, por 2 meses, seguida de redução de 4 mg/dia a cada mês, por 6–9 meses no total. Risco de toxicidade aumenta com TFGe abaixo de 30 mL/min/1,73 m², diabetes, obesidade, infecção latente, úlcera ativa, doença psiquiátrica não controlada, osteoporose ou catarata. Dose reduzida não elimina toxicidade.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "sourceAssessment": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Ponderar benefício e toxicidade do glicocorticoide sistêmico na IgAN sem acesso a Nefecon, incorporando dose reduzida, profilaxia e risco individual.",
+          "classification": {
+            "competency": "Interpretação terapêutica de evidência",
+            "bloom": "Avaliar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "problems": [
+            "MAIOR — correta extensa e qualificada versus distratores absolutos de toxicidade zero/obrigatoriedade.",
+            "MENOR — resumo não deve transformar modificação do protocolo em comparação randomizada entre dose plena e reduzida."
+          ],
+          "lawyerOfAppeal": "O ensaio não randomizou diretamente a escolha entre doses; comparar segurança de subcoortes como superioridade entre doses extrapola desenho.",
+          "eliminators": [
+            5
+          ],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 1,
+              "Valor pedagógico": 2
+            },
+            "total": null,
+            "annulledByEliminator": true
+          },
+          "lifecycle": "em_reparo"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Ponderar benefício e toxicidade do glicocorticoide sistêmico na IgAN sem acesso a Nefecon, incorporando dose reduzida, profilaxia e risco individual.",
+          "classification": {
+            "competency": "Interpretação terapêutica de evidência",
+            "bloom": "Avaliar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "justification": "A proposta compara benefício, toxicidade e estratégia sem uso universal. Dados e doses foram conferidos; explicita que subcoortes de dose não constituem ensaio entre doses.",
+          "problems": [
+            "MAIOR — correta extensa e qualificada versus distratores absolutos de toxicidade zero/obrigatoriedade.",
+            "MENOR — resumo não deve transformar modificação do protocolo em comparação randomizada entre dose plena e reduzida."
+          ],
+          "lawyerOfAppeal": {
+            "result": "Nenhum argumento plausível de anulação após correção/conferência da versão exata.",
+            "checks": [
+              "Segundaresposta defensável buscada no contexto exato.",
+              "Inferência de superioridade/equivalência ou causalidade indevida procurada.",
+              "Explicação confrontada com conteúdo de cada alternativa.",
+              "Referências avaliadas por população/desenho e apoio decisivo."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": false,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": false,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": false
+            },
+            "qualification": "Dez critérios avaliados; nenhum disparado."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 1,
+              "Valor pedagógico": 2
+            },
+            "total": 19,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "0:VERIFICADA/NENHUMA;1:sem eliminatório;2:sem recurso plausível;3:score18–20;aprovada/LIBERADA.",
+          "lifecycle": "publicado",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; destino da árvore não é alegação de publicação real.",
+          "claimRegister": [
+            {
+              "claim": "Benefício no composto renal e aumento de eventos graves; alteração não randomizada de doses",
+              "sourceURL": "https://jamanetwork.com/journals/jama/fullarticle/2792252",
+              "locator": "Abstract eMethods/Interventions",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            },
+            {
+              "claim": "Nefecon indisponível: reduzido+profilaxia,2B",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+              "locator": "Recommendation1.4.3.2",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            },
+            {
+              "claim": "0,4mg/kg/dia máximo32/2meses; redução4mg/dia/mês total6–9meses",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+              "locator": "PP1.4.3.2",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            },
+            {
+              "claim": "Pneumocystis e fatores de toxicidade inclusiveTFGe<30",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+              "locator": "PP1.4.3.2–1.4.3.3",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            }
+          ],
+          "verificationPending": [],
+          "referenceCards": [
+            {
+              "id": "testing_study",
+              "card": {
+                "label": "TESTING Trial",
+                "url": "https://jamanetwork.com/journals/jama/fullarticle/2792252",
+                "journal": "JAMA",
+                "ano": 2022,
+                "tipo": "Ensaio clínico randomizado",
+                "badge": "RCT",
+                "badgeColor": "#10b981",
+                "impacto": "Metilprednisolona reduziu desfecho renal na IgAN de alto risco, com aumento de eventos adversos graves",
+                "icon": "🔬",
+                "resumo": "TESTING 2022: 503 adultos com IgAN e proteinúria persistente, randomizados para metilprednisolona oral ou placebo após suporte otimizado. Desfecho primário: queda sustentada de 40% da TFGe, falência renal ou morte renal. HR 0,53 (IC95% 0,39–0,72; P < 0,001). Eventos adversos graves: 10,9% versus 2,8%, sobretudo com dose plena. O protocolo passou a dose reduzida e profilaxia contra Pneumocystis; essa mudança não foi comparação randomizada direta entre doses.",
+                "conclusao": "Benefício renal exige ponderar toxicidade e aplicabilidade; redução de dose e profilaxia não zeram risco.",
+                "curiosidade": ""
+              },
+              "action": "VERIFIED_SCOPE_CARD_PROPOSAL; do not silently overwrite shared registry",
+              "verifiedScope": "Asserções do card acima, sem herdar números adicionais do card antigo."
+            },
+            {
+              "id": "kdigo_igan_igav_2025",
+              "card": {
+                "label": "KDIGO 2025 IgAN/IgAV Guideline",
+                "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+                "journal": "Kidney International",
+                "ano": 2025,
+                "tipo": "Diretriz clínica",
+                "badge": "GUIDELINE",
+                "badgeColor": "#6366f1",
+                "impacto": "Referência central atual para manejo da NIgA.",
+                "icon": "📋",
+                "resumo": "KDIGO 2025 para IgAN/IgAV. Quando Nefecon não está disponível, sugere glicocorticoide sistêmico reduzido com profilaxia antimicrobiana em pessoas sob risco de perda progressiva de função renal (recomendação1.4.3.2,2B). PP 1.4.3.2 descreve metilprednisolona0,4 mg/kg/dia, máximo 32 mg/dia por 2 meses, com redução mensal de 4 mg/dia por 6–9 meses no total. A escolha deve avaliar risco de toxicidade. O MEST-C contribui para prognóstico, mas não tem validação para prescrição automática de fármaco.",
+                "conclusao": "Individualizar tratamento e profilaxia; histologia e limiares de proteinúria não tornam imunossupressão uma obrigação universal.",
+                "curiosidade": ""
+              },
+              "action": "VERIFIED_SCOPE_CARD_PROPOSAL; do not silently overwrite shared registry",
+              "verifiedScope": "Asserções do card acima, sem herdar números adicionais do card antigo."
+            }
+          ],
+          "readabilityRecheck": "A versão exata após espaços entre palavras,números e unidades foi relida. Mesmos valores,fontes,OP,ans e significado; evidência/pendência reavaliadas e permanecem VERIFICADA/NENHUMA; publicação derivada LIBERADA."
+        },
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "materialChange": true,
+        "patchEditorialSuggested": {
+          "operation": "SUBSTITUIR A QUESTÃO POR",
+          "question": {
+            "t": "IgAN — TESTING e Corticoide Sistêmico",
+            "qid": "d81defbb",
+            "q": "Pessoa com IgAN sob risco de progressão não tem acesso a Nefecon. Ao discutir metilprednisolona sistêmica, qual síntese é mais adequada?",
+            "refs": [
+              "testing_study",
+              "kdigo_igan_igav_2025"
+            ],
+            "opts": [
+              "Benefício renal com toxicidade relevante; considerar dose reduzida, profilaxia e risco individual.",
+              "Benefício renal com pouca toxicidade; preferir dose plena para evitar perda de eficácia.",
+              "Sem benefício renal demonstrado; reservar dose plena para proteinúria persistente.",
+              "Benefício restrito à proteinúria; usar dose reduzida sem profilaxia antimicrobiana."
+            ],
+            "ans": 0,
+            "exp": "Metilprednisolona reduziu desfechos renais no TESTING, mas aumentou eventos adversos graves, sobretudo no protocolo inicial de dose plena. Após excesso de infecções, o estudo passou a dose reduzida e profilaxia contra Pneumocystis; não foi uma comparação randomizada direta entre doses. Quando Nefecon não está disponível, a KDIGO 2025 sugere glicocorticoide sistêmico reduzido com profilaxia e decisão individual. O esquema descrito é metilprednisolona0,4 mg/kg/dia, máximo 32 mg/dia, por 2 meses, seguida de redução de 4 mg/dia a cada mês, por 6–9 meses no total. Risco de toxicidade aumenta com TFGe abaixo de 30 mL/min/1,73 m², diabetes, obesidade, infecção latente, úlcera ativa, doença psiquiátrica não controlada, osteoporose ou catarata. Dose reduzida não elimina toxicidade.",
+            "diff": "hard",
+            "cat": "glomerular"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "fullText": "Benefício renal com toxicidade relevante; considerar dose reduzida, profilaxia e risco individual."
+          },
+          "implementation": "Preservarqid,ordem,ans,diff,cat/tipo,históricoeFSRS. Alteração clínica somente desta versão exata LIBERADA. Não substituir cards compartilhados sem revisar impacto; sourceURL verificada está no registro declaims."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": false,
+          "proposalHasFixedLetter": false,
+          "numericalOrderQualification": null
+        },
+        "duplicateReview": "Oito itens comparados: xenotransplante,amostragemGESF,TESTING,RITUXVAS,Fabry,critériosDRPAD,tipagemamiloide,MEST-C medem decisões distintas. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            165,
+            75,
+            119,
+            68
+          ],
+          "afterCharacters": [
+            98,
+            88,
+            82,
+            83
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": true
+        },
+        "noBankEdits": true
+      },
+      {
+        "qid": "1fd6a5cf",
+        "sourceLine": 14,
+        "sourceQuestionSHA256": "6418e6a8c873c6b5fb336d64c7b6d146f21ebde0d899b3304c211a897e8e1c8d",
+        "beforeCanonicalSHA256": "6418e6a8c873c6b5fb336d64c7b6d146f21ebde0d899b3304c211a897e8e1c8d",
+        "afterCanonicalSHA256": "6e677793fabb07b36f01030e69eea401a75671338e65f23ffd1e4629e129142d",
+        "BEFORE": {
+          "t": "RITUXVAS — Indução na Vasculite ANCA Renal Grave",
+          "qid": "1fd6a5cf",
+          "q": "Qual descrição do RITUXVAS evita atribuir ao rituximabe um efeito que o desenho do ensaio não isolou?",
+          "refs": [
+            "rituxvas_study",
+            "kdigo_anca_2024"
+          ],
+          "opts": [
+            "Rituximabe semanal por quatro doses mais dois pulsos de ciclofosfamida obteve remissão semelhante ao esquema convencional, sem demonstrar superioridade nem testar rituximabe isolado",
+            "Rituximabe isolado eliminou a necessidade de glicocorticoide e ciclofosfamida em todos os participantes",
+            "O ensaio excluiu comprometimento renal avançado e avaliou apenas doença recidivante leve",
+            "O regime baseado em rituximabe reduziu eventos adversos graves a zero"
+          ],
+          "ans": 0,
+          "exp": "O RITUXVAS incluiu 44 pacientes com vasculite ANCA recém-diagnosticada e envolvimento renal, muitos com disfunção grave. O braço experimental recebeu rituximabe 375 mg/m² semanal por quatro semanas, dois pulsos intravenosos de ciclofosfamida e glicocorticoide; o controle recebeu ciclofosfamida intravenosa seguida de azatioprina e glicocorticoide. Remissão sustentada em 12 meses foi semelhante, mas o estudo não mostrou superioridade nem economia clara de eventos adversos e não permite atribuir o resultado a rituximabe sem a ciclofosfamida concomitante.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "AFTER": {
+          "t": "RITUXVAS — Indução na Vasculite ANCA Renal Grave",
+          "qid": "1fd6a5cf",
+          "q": "Qual descrição do RITUXVAS evita atribuir ao rituximabe um efeito que o desenho do ensaio não isolou?",
+          "refs": [
+            "rituxvas_study"
+          ],
+          "opts": [
+            "Regime combinado com rituximabe e ciclofosfamida: remissão semelhante, sem superioridade demonstrada.",
+            "Regime com rituximabe isolado: remissão semelhante, com menor toxicidade grave demonstrada.",
+            "Regime com rituximabe isolado: superioridade demonstrada, mesmo sem glicocorticoide.",
+            "Regime combinado com rituximabe e ciclofosfamida: inferioridade demonstrada na remissão sustentada."
+          ],
+          "ans": 0,
+          "exp": "O RITUXVAS avaliou um regime combinado, não rituximabe isolado. Foram 44 pacientes com vasculite ANCA recém-diagnosticada e envolvimento renal. O braço experimental recebeu rituximabe375 mg/m² semanal por 4 semanas, dois pulsos intravenosos de ciclofosfamida e glicocorticoide; o controle recebeu ciclofosfamida intravenosa seguida de azatioprina e glicocorticoide. As taxas observadas de remissão sustentada em 12 meses foram semelhantes, sem superioridade ou redução de eventos adversos graves demonstradas. O estudo pequeno não isola o efeito de rituximabe nem prova equivalência entre quaisquer regimes.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "sourceAssessment": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Interpretar RITUXVAS como estudo de regime combinado e evitar atribuição causal ao rituximabe isolado ou equivalência não demonstrada.",
+          "classification": {
+            "competency": "Interpretação de desenho de ensaio",
+            "bloom": "Analisar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "problems": [
+            "MAIOR — correta comprida e única qualificada; alternativas prometem eliminação de outras drogas ou de todos os eventos.",
+            "MENOR — remissão semelhante é descrição, não prova formal de equivalência."
+          ],
+          "lawyerOfAppeal": "O braço experimental inclui ciclofosfamida; atribuição a rituximabe isolado não é permitida. Ausência de significância em ensaio pequeno não demonstra equivalência.",
+          "eliminators": [
+            5
+          ],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": null,
+            "annulledByEliminator": true
+          },
+          "lifecycle": "em_reparo"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Interpretar RITUXVAS como estudo de regime combinado e evitar atribuição causal ao rituximabe isolado ou equivalência não demonstrada.",
+          "classification": {
+            "competency": "Interpretação de desenho de ensaio",
+            "bloom": "Analisar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "justification": "A proposta mantém regime e comparador exatos, preserva doses confirmadas e explicita limite de causalidade/equivalência. Cada distrator expressa um erro de leitura do desenho.",
+          "problems": [
+            "MAIOR — correta comprida e única qualificada; alternativas prometem eliminação de outras drogas ou de todos os eventos.",
+            "MENOR — remissão semelhante é descrição, não prova formal de equivalência."
+          ],
+          "lawyerOfAppeal": {
+            "result": "Nenhum argumento plausível de anulação após correção/conferência da versão exata.",
+            "checks": [
+              "Segundaresposta defensável buscada no contexto exato.",
+              "Inferência de superioridade/equivalência ou causalidade indevida procurada.",
+              "Explicação confrontada com conteúdo de cada alternativa.",
+              "Referências avaliadas por população/desenho e apoio decisivo."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": false,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": false,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": false
+            },
+            "qualification": "Dez critérios avaliados; nenhum disparado."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 20,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "0:VERIFICADA/NENHUMA;1:sem eliminatório;2:sem recurso plausível;3:score18–20;aprovada/LIBERADA.",
+          "lifecycle": "publicado",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; destino da árvore não é alegação de publicação real.",
+          "claimRegister": [
+            {
+              "claim": "n44/ANCA nova renal;375mg/m²/semana4vezes+2pulsosCYC+GC",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20647198&retmode=xml",
+              "locator": "Methods",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            },
+            {
+              "claim": "Sem superioridade; remissão12meses eeventos graves",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20647198&retmode=xml",
+              "locator": "Results/Conclusions",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            },
+            {
+              "claim": "Não isola efeito doRTX nem prova equivalência ampla",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20647198&retmode=xml",
+              "locator": "Inferência do desenho,3:1/n44 eabsence superiority",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            }
+          ],
+          "verificationPending": [],
+          "referenceCards": [
+            {
+              "id": "rituxvas_study",
+              "card": {
+                "label": "Jones et al. — RITUXVAS (NEJM 2010)",
+                "url": "https://doi.org/10.1056/NEJMoa0909169",
+                "journal": "N Engl J Med. 2010; 363(3): 211-220",
+                "ano": 2010,
+                "tipo": "Ensaio clínico randomizado",
+                "badge": "RCT",
+                "badgeColor": "#10b981",
+                "impacto": "Regime baseado em rituximabe na vasculite ANCA recém-diagnosticada com envolvimento renal grave",
+                "icon": "🔬",
+                "resumo": "RITUXVAS 2010: 44 pacientes com vasculite ANCA recém-diagnosticada e envolvimento renal. Regime combinado de rituximabe375 mg/m²/semana por 4 semanas, dois pulsos de ciclofosfamida e glicocorticoide versus ciclofosfamida seguida de azatioprina e glicocorticoide. Remissão sustentada em 12 meses: 76% versus 82%,P = 0,68. Eventos adversos graves: 42% versus 36%,P = 0,77. O estudo pequeno não demonstrou superioridade, redução de eventos graves ou efeito isolado de rituximabe.",
+                "conclusao": "Interpretar o tratamento combinado e evitar atribuir ao rituximabe isolado um efeito que não foi isolado pelo desenho.",
+                "curiosidade": ""
+              },
+              "action": "VERIFIED_SCOPE_CARD_PROPOSAL; do not silently overwrite shared registry",
+              "verifiedScope": "Asserções do card acima, sem herdar números adicionais do card antigo."
+            }
+          ],
+          "readabilityRecheck": "A versão exata após espaços entre palavras,números e unidades foi relida. Mesmos valores,fontes,OP,ans e significado; evidência/pendência reavaliadas e permanecem VERIFICADA/NENHUMA; publicação derivada LIBERADA.",
+          "sourceVersionReReview": {
+            "status": "EXACT_REFERENCES_RE_REVIEWED",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "v2verdict": "aprovada",
+            "score": 20,
+            "publicationAuthorization": "LIBERADA",
+            "derivedBy": "Handbook §18.4 Regra7",
+            "appeal": "A explicação cobra desenho e resultados do RITUXVAS; o artigo primário aberto sustenta todas as afirmações. A referência de manutenção ANCA foi removida por não ser necessária para o OP de indução do ensaio."
+          }
+        },
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "materialChange": true,
+        "patchEditorialSuggested": {
+          "operation": "SUBSTITUIR A QUESTÃO POR",
+          "question": {
+            "t": "RITUXVAS — Indução na Vasculite ANCA Renal Grave",
+            "qid": "1fd6a5cf",
+            "q": "Qual descrição do RITUXVAS evita atribuir ao rituximabe um efeito que o desenho do ensaio não isolou?",
+            "refs": [
+              "rituxvas_study"
+            ],
+            "opts": [
+              "Regime combinado com rituximabe e ciclofosfamida: remissão semelhante, sem superioridade demonstrada.",
+              "Regime com rituximabe isolado: remissão semelhante, com menor toxicidade grave demonstrada.",
+              "Regime com rituximabe isolado: superioridade demonstrada, mesmo sem glicocorticoide.",
+              "Regime combinado com rituximabe e ciclofosfamida: inferioridade demonstrada na remissão sustentada."
+            ],
+            "ans": 0,
+            "exp": "O RITUXVAS avaliou um regime combinado, não rituximabe isolado. Foram 44 pacientes com vasculite ANCA recém-diagnosticada e envolvimento renal. O braço experimental recebeu rituximabe375 mg/m² semanal por 4 semanas, dois pulsos intravenosos de ciclofosfamida e glicocorticoide; o controle recebeu ciclofosfamida intravenosa seguida de azatioprina e glicocorticoide. As taxas observadas de remissão sustentada em 12 meses foram semelhantes, sem superioridade ou redução de eventos adversos graves demonstradas. O estudo pequeno não isola o efeito de rituximabe nem prova equivalência entre quaisquer regimes.",
+            "diff": "hard",
+            "cat": "glomerular"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "fullText": "Regime combinado com rituximabe e ciclofosfamida: remissão semelhante, sem superioridade demonstrada."
+          },
+          "implementation": "Preservarqid,ordem,ans,diff,cat/tipo,históricoeFSRS. Alteração clínica somente desta versão exata LIBERADA. Não substituir cards compartilhados sem revisar impacto; sourceURL verificada está no registro declaims."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": false,
+          "proposalHasFixedLetter": false,
+          "numericalOrderQualification": null
+        },
+        "duplicateReview": "Oito itens comparados: xenotransplante,amostragemGESF,TESTING,RITUXVAS,Fabry,critériosDRPAD,tipagemamiloide,MEST-C medem decisões distintas. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            181,
+            103,
+            88,
+            69
+          ],
+          "afterCharacters": [
+            101,
+            91,
+            84,
+            99
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": true
+        },
+        "noBankEdits": true
+      },
+      {
+        "qid": "0f7d97f3",
+        "sourceLine": 16,
+        "sourceQuestionSHA256": "9daa82baeb6f27cc4192075e22d4aa25a37f9daab178c7a8468e963f09f94c01",
+        "beforeCanonicalSHA256": "9daa82baeb6f27cc4192075e22d4aa25a37f9daab178c7a8468e963f09f94c01",
+        "afterCanonicalSHA256": "9daa82baeb6f27cc4192075e22d4aa25a37f9daab178c7a8468e963f09f94c01",
+        "BEFORE": {
+          "t": "Doença de Fabry e Triagem Renal",
+          "qid": "0f7d97f3",
+          "q": "Em qual cenário a triagem para doença de Fabry deve ser fortemente considerada na prática nefrológica?",
+          "refs": [
+            "fabry_genereviews_2024"
+          ],
+          "opts": [
+            "Homem com doença renal crônica ou proteinúria de etiologia indeterminada associada a hipertrofia ventricular esquerda inexplicada",
+            "Pessoa com diabetes tipo 1 de longa data, retinopatia típica e albuminúria compatível com nefropatia diabética",
+            "Paciente com glomerulonefrite pós-infecciosa comprovada em biópsia recente e complemento baixo transitório",
+            "Triagem indicada apenas quando há angioqueratomas; fenótipos renais ou cardíacos isolados não justificam investigação"
+          ],
+          "ans": 0,
+          "exp": "A doença de Fabry deve ser lembrada quando há combinação de doença renal crônica ou proteinúria sem causa clara com sinais sistêmicos sugestivos, como hipertrofia ventricular esquerda inexplicada, dor neuropática, hipohidrose/anhidrose, história familiar compatível ou achados cutâneos/oculares. O diagnóstico não exige angioqueratomas: apresentações predominantemente renais ou cardíacas podem ocorrer. Diabetes com retinopatia típica já oferece explicação forte para albuminúria, e glomerulonefrite pós-infecciosa comprovada mede outro processo. Como a doença é ligada ao X, homens tendem a fenótipo mais grave, mas mulheres heterozigotas também podem manifestar doença clinicamente relevante.",
+          "diff": "medium",
+          "cat": "genetica"
+        },
+        "AFTER": {
+          "t": "Doença de Fabry e Triagem Renal",
+          "qid": "0f7d97f3",
+          "q": "Em qual cenário a triagem para doença de Fabry deve ser fortemente considerada na prática nefrológica?",
+          "refs": [
+            "fabry_genereviews_2024"
+          ],
+          "opts": [
+            "Homem com doença renal crônica ou proteinúria de etiologia indeterminada associada a hipertrofia ventricular esquerda inexplicada",
+            "Pessoa com diabetes tipo 1 de longa data, retinopatia típica e albuminúria compatível com nefropatia diabética",
+            "Paciente com glomerulonefrite pós-infecciosa comprovada em biópsia recente e complemento baixo transitório",
+            "Triagem indicada apenas quando há angioqueratomas; fenótipos renais ou cardíacos isolados não justificam investigação"
+          ],
+          "ans": 0,
+          "exp": "A doença de Fabry deve ser lembrada quando há combinação de doença renal crônica ou proteinúria sem causa clara com sinais sistêmicos sugestivos, como hipertrofia ventricular esquerda inexplicada, dor neuropática, hipohidrose/anhidrose, história familiar compatível ou achados cutâneos/oculares. O diagnóstico não exige angioqueratomas: apresentações predominantemente renais ou cardíacas podem ocorrer. Diabetes com retinopatia típica já oferece explicação forte para albuminúria, e glomerulonefrite pós-infecciosa comprovada mede outro processo. Como a doença é ligada ao X, homens tendem a fenótipo mais grave, mas mulheres heterozigotas também podem manifestar doença clinicamente relevante.",
+          "diff": "medium",
+          "cat": "genetica"
+        },
+        "sourceAssessment": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "baixa",
+          "evidence": "NÃO VERIFICADA",
+          "pending": "DECISIVA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Selecionar o fenótipo renal/cardíaco inexplicado que justifica considerar investigação de Fabry sem exigir angioqueratomas.",
+          "classification": {
+            "competency": "Reconhecimento de hipótese diagnóstica",
+            "bloom": "Aplicar",
+            "miller": "Sabe como",
+            "difficulty": "Intermediária"
+          },
+          "problems": [
+            "DECISIVA — GeneReviews/NBK1292 não abriu conteúdo clínico; HTML/PDF retornaram reCAPTCHA. Não confirmar fenótipo/triagem com memória isolada."
+          ],
+          "lawyerOfAppeal": "A pertinência de triagem e a ausência de sinal cutâneo precisam ser sustentadas pela fonte clínica exata; o acesso não foi obtido.",
+          "eliminators": [],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 1,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 1,
+              "Distratores": 1,
+              "Explicação": 1,
+              "Referências": 0,
+              "Ausência de cara de IA": 1,
+              "Valor pedagógico": 2
+            },
+            "total": 13,
+            "annulledByEliminator": false
+          },
+          "lifecycle": "em_revisão"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "baixa",
+          "evidence": "NÃO VERIFICADA",
+          "pending": "DECISIVA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Selecionar o fenótipo renal/cardíaco inexplicado que justifica considerar investigação de Fabry sem exigir angioqueratomas.",
+          "classification": {
+            "competency": "Reconhecimento de hipótese diagnóstica",
+            "bloom": "Aplicar",
+            "miller": "Sabe como",
+            "difficulty": "Intermediária"
+          },
+          "justification": "Questão lida e avaliada editorialmente, mas o gabarito não recebe certificação científica sem fonte decisiva. Não gerar substituição clínica por plausibilidade.",
+          "problems": [
+            "DECISIVA — GeneReviews/NBK1292 não abriu conteúdo clínico; HTML/PDF retornaram reCAPTCHA. Não confirmar fenótipo/triagem com memória isolada."
+          ],
+          "lawyerOfAppeal": {
+            "result": "Verificação decisiva pendente; não há aprovação.",
+            "checks": [
+              "Segundaresposta defensável buscada no contexto exato.",
+              "Inferência de superioridade/equivalência ou causalidade indevida procurada.",
+              "Explicação confrontada com conteúdo de cada alternativa.",
+              "Referências avaliadas por população/desenho e apoio decisivo."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": null,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": null,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": null
+            },
+            "qualification": "Null significa impossibilidade de certificar critério científico por falta da evidência decisiva; não equivale a aprovação."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 1,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 1,
+              "Distratores": 1,
+              "Explicação": 1,
+              "Referências": 0,
+              "Ausência de cara de IA": 1,
+              "Valor pedagógico": 2
+            },
+            "total": 13,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "0:teto de revisão maior por evidência/pendência; BLOQUEADA.",
+          "lifecycle": "em_revisão",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; destino da árvore não é alegação de publicação real.",
+          "claimRegister": [],
+          "verificationPending": [
+            {
+              "claim": "Abrir GeneReviews Fabry ou diretriz específica atual para confirmar triagem do fenótipo DRC/proteinúria+HVE inexplicadas, heterozigotas e apresentações sem angioqueratomas.",
+              "nature": "DECISIVA",
+              "blocksPublication": true
+            }
+          ],
+          "referenceCards": [],
+          "referenceCardPending": "Não gerar cards prontos até concluir a verificação bibliográfica decisiva.",
+          "unverifiedClaims": [
+            {
+              "claim": "Abrir GeneReviews Fabry ou diretriz específica atual para confirmar triagem do fenótipo DRC/proteinúria+HVE inexplicadas, heterozigotas e apresentações sem angioqueratomas.",
+              "attemptedURL": "https://www.ncbi.nlm.nih.gov/books/NBK1292/",
+              "status": "NÃO VERIFICADA;challenge page,notclinicalbody"
+            }
+          ]
+        },
+        "v2verdict": "revisão maior",
+        "evidence": "NÃO VERIFICADA",
+        "pending": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "materialChange": false,
+        "patchEditorialSuggested": {
+          "operation": "PENDENTE_NÃO_IMPLEMENTAR",
+          "question": {
+            "t": "Doença de Fabry e Triagem Renal",
+            "qid": "0f7d97f3",
+            "q": "Em qual cenário a triagem para doença de Fabry deve ser fortemente considerada na prática nefrológica?",
+            "refs": [
+              "fabry_genereviews_2024"
+            ],
+            "opts": [
+              "Homem com doença renal crônica ou proteinúria de etiologia indeterminada associada a hipertrofia ventricular esquerda inexplicada",
+              "Pessoa com diabetes tipo 1 de longa data, retinopatia típica e albuminúria compatível com nefropatia diabética",
+              "Paciente com glomerulonefrite pós-infecciosa comprovada em biópsia recente e complemento baixo transitório",
+              "Triagem indicada apenas quando há angioqueratomas; fenótipos renais ou cardíacos isolados não justificam investigação"
+            ],
+            "ans": 0,
+            "exp": "A doença de Fabry deve ser lembrada quando há combinação de doença renal crônica ou proteinúria sem causa clara com sinais sistêmicos sugestivos, como hipertrofia ventricular esquerda inexplicada, dor neuropática, hipohidrose/anhidrose, história familiar compatível ou achados cutâneos/oculares. O diagnóstico não exige angioqueratomas: apresentações predominantemente renais ou cardíacas podem ocorrer. Diabetes com retinopatia típica já oferece explicação forte para albuminúria, e glomerulonefrite pós-infecciosa comprovada mede outro processo. Como a doença é ligada ao X, homens tendem a fenótipo mais grave, mas mulheres heterozigotas também podem manifestar doença clinicamente relevante.",
+            "diff": "medium",
+            "cat": "genetica"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "fullText": "Homem com doença renal crônica ou proteinúria de etiologia indeterminada associada a hipertrofia ventricular esquerda inexplicada"
+          },
+          "implementation": "Preservarqid,ordem,ans,diff,cat/tipo,históricoeFSRS. Alteração clínica somente desta versão exata LIBERADA. Não substituir cards compartilhados sem revisar impacto; sourceURL verificada está no registro declaims."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": false,
+          "proposalHasFixedLetter": false,
+          "numericalOrderQualification": null
+        },
+        "duplicateReview": "Oito itens comparados: xenotransplante,amostragemGESF,TESTING,RITUXVAS,Fabry,critériosDRPAD,tipagemamiloide,MEST-C medem decisões distintas. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            129,
+            110,
+            106,
+            117
+          ],
+          "afterCharacters": [
+            129,
+            110,
+            106,
+            117
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": true
+        },
+        "noBankEdits": true
+      },
+      {
+        "qid": "2af04ec7",
+        "sourceLine": 23,
+        "sourceQuestionSHA256": "d81d6a04703183fda4cc03efd2e4238df91ada3491d413396e403339c91b71b0",
+        "beforeCanonicalSHA256": "d81d6a04703183fda4cc03efd2e4238df91ada3491d413396e403339c91b71b0",
+        "afterCanonicalSHA256": "d81d6a04703183fda4cc03efd2e4238df91ada3491d413396e403339c91b71b0",
+        "BEFORE": {
+          "t": "DRPAD — Critérios Ultrassonográficos Unificados",
+          "qid": "2af04ec7",
+          "q": "Em pessoas com risco de 50% para doença renal policística autossômica dominante e genótipo familiar desconhecido, qual conjunto de critérios ultrassonográficos confirma o diagnóstico conforme a idade?",
+          "refs": [
+            "kdigo_adpkd_2025"
+          ],
+          "opts": [
+            "15–39 anos: pelo menos 3 cistos no total; 40–59 anos: pelo menos 2 em cada rim; 60 anos ou mais: pelo menos 4 em cada rim",
+            "15–39 anos: pelo menos 1 cisto em cada rim; 40–59 anos: pelo menos 3 no total; 60 anos ou mais: qualquer cisto hepático",
+            "Em qualquer idade: pelo menos 10 cistos em cada rim, sem considerar história familiar",
+            "Em qualquer idade: um cisto renal e hipertensão são suficientes para confirmar DRPAD"
+          ],
+          "ans": 0,
+          "exp": "Nos critérios ultrassonográficos unificados para familiares em risco com genótipo desconhecido, são diagnósticos pelo menos 3 cistos renais no total, uni ou bilaterais, entre 15 e 39 anos; pelo menos 2 em cada rim entre 40 e 59; e pelo menos 4 em cada rim a partir dos 60. A exigência cresce com a idade porque cistos simples tornam-se mais comuns. Esses limiares não devem ser extrapolados sem ajuste para pessoas sem história familiar ou para situações em que outra doença cística seja plausível.",
+          "diff": "hard",
+          "cat": "genetica"
+        },
+        "AFTER": {
+          "t": "DRPAD — Critérios Ultrassonográficos Unificados",
+          "qid": "2af04ec7",
+          "q": "Em pessoas com risco de 50% para doença renal policística autossômica dominante e genótipo familiar desconhecido, qual conjunto de critérios ultrassonográficos confirma o diagnóstico conforme a idade?",
+          "refs": [
+            "kdigo_adpkd_2025"
+          ],
+          "opts": [
+            "15–39 anos: pelo menos 3 cistos no total; 40–59 anos: pelo menos 2 em cada rim; 60 anos ou mais: pelo menos 4 em cada rim",
+            "15–39 anos: pelo menos 1 cisto em cada rim; 40–59 anos: pelo menos 3 no total; 60 anos ou mais: qualquer cisto hepático",
+            "Em qualquer idade: pelo menos 10 cistos em cada rim, sem considerar história familiar",
+            "Em qualquer idade: um cisto renal e hipertensão são suficientes para confirmar DRPAD"
+          ],
+          "ans": 0,
+          "exp": "Nos critérios ultrassonográficos unificados para familiares em risco com genótipo desconhecido, são diagnósticos pelo menos 3 cistos renais no total, uni ou bilaterais, entre 15 e 39 anos; pelo menos 2 em cada rim entre 40 e 59; e pelo menos 4 em cada rim a partir dos 60. A exigência cresce com a idade porque cistos simples tornam-se mais comuns. Esses limiares não devem ser extrapolados sem ajuste para pessoas sem história familiar ou para situações em que outra doença cística seja plausível.",
+          "diff": "hard",
+          "cat": "genetica"
+        },
+        "sourceAssessment": {
+          "v2verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Aplicar critérios ultrassonográficos etários de DRPAD a familiares em risco com gene familiar desconhecido, sem extrapolar para outra população.",
+          "classification": {
+            "competency": "Aplicação de critério diagnóstico",
+            "bloom": "Aplicar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "problems": [],
+          "lawyerOfAppeal": "Conferidos população em risco, grupo etário, número total versus porrim e restrição de extrapolação; nenhum recurso plausível.",
+          "eliminators": [],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 1,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 1,
+              "Valor pedagógico": 2
+            },
+            "total": 18,
+            "annulledByEliminator": false
+          },
+          "lifecycle": "publicado"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Aplicar critérios ultrassonográficos etários de DRPAD a familiares em risco com gene familiar desconhecido, sem extrapolar para outra população.",
+          "classification": {
+            "competency": "Aplicação de critério diagnóstico",
+            "bloom": "Aplicar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "justification": "MANTER. As alternativas representam conjuntos inteiros de critérios, com categoria e granularidade comparáveis. A correta ligeiramente mais longa não cria por si só defeito clínico. A aplicação do limiar depende da população familiar explicitada.",
+          "problems": [],
+          "lawyerOfAppeal": {
+            "result": "Nenhum argumento plausível de anulação após correção/conferência da versão exata.",
+            "checks": [
+              "Segundaresposta defensável buscada no contexto exato.",
+              "Inferência de superioridade/equivalência ou causalidade indevida procurada.",
+              "Explicação confrontada com conteúdo de cada alternativa.",
+              "Referências avaliadas por população/desenho e apoio decisivo."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": false,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": false,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": false
+            },
+            "qualification": "Dez critérios avaliados; nenhum disparado."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 1,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 1,
+              "Valor pedagógico": 2
+            },
+            "total": 18,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "0:VERIFICADA/NENHUMA;1:sem eliminatório;2:sem recurso plausível;3:score18–20;aprovada/LIBERADA.",
+          "lifecycle": "publicado",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; destino da árvore não é alegação de publicação real.",
+          "claimRegister": [
+            {
+              "claim": "15–39:≥3total;40–59:≥2cada;≥60:≥4cada",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2025/01/KDIGO-2025-ADPKD-Guideline.pdf",
+              "locator": "Figure3/PP1.3.5",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            },
+            {
+              "claim": "Usar emfamília positiva; não extrapolar diretamentesem história",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2025/01/KDIGO-2025-ADPKD-Guideline.pdf",
+              "locator": "PP1.3.5–1.3.7 eFigure3",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            },
+            {
+              "claim": "Risco familiar50% de doençaautossômicadominante",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2025/01/KDIGO-2025-ADPKD-Guideline.pdf",
+              "locator": "Chapter1 definição/herança",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            }
+          ],
+          "verificationPending": [],
+          "referenceCards": [
+            {
+              "id": "kdigo_adpkd_2025",
+              "card": {
+                "label": "KDIGO ADPKD 2025 (Rim Policístico Autossômico Dominante)",
+                "url": "https://kdigo.org/wp-content/uploads/2025/01/KDIGO-2025-ADPKD-Guideline.pdf",
+                "journal": "Kidney International 2025; 107(Suppl 2S): S1-S239",
+                "ano": 2025,
+                "tipo": "Diretriz Internacional",
+                "badge": "GUIDELINE",
+                "badgeColor": "#6366f1",
+                "impacto": "Diagnóstico, prognóstico, tolvaptana e complicações renais e extrarrenais da DRPAD",
+                "icon": "📋",
+                "resumo": "KDIGO 2025 para DRPAD, figura 3/PP 1.3.5: em adultos com história familiar positiva, diagnóstico ultrassonográfico usa critérios etários. Gene familiar desconhecido: 15–39 anos, pelo menos3 cistos no total; 40–59 anos, pelo menos2em cada rim; 60anosoumais, pelo menos4em cada rim. Imagem/genética adicional pode esclarecer casos equívocos. Critérios não devem ser transplantados para população sem história familiar.",
+                "conclusao": "Interpretar número de cistos na faixa etária e no contexto familiar apropriados; não confundir critérios de diagnóstico com exclusão.",
+                "curiosidade": ""
+              },
+              "action": "VERIFIED_SCOPE_CARD_PROPOSAL; do not silently overwrite shared registry",
+              "verifiedScope": "Asserções do card acima, sem herdar números adicionais do card antigo."
+            }
+          ]
+        },
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "materialChange": false,
+        "patchEditorialSuggested": {
+          "operation": "MANTER_SEM_ALTERAÇÃO",
+          "question": {
+            "t": "DRPAD — Critérios Ultrassonográficos Unificados",
+            "qid": "2af04ec7",
+            "q": "Em pessoas com risco de 50% para doença renal policística autossômica dominante e genótipo familiar desconhecido, qual conjunto de critérios ultrassonográficos confirma o diagnóstico conforme a idade?",
+            "refs": [
+              "kdigo_adpkd_2025"
+            ],
+            "opts": [
+              "15–39 anos: pelo menos 3 cistos no total; 40–59 anos: pelo menos 2 em cada rim; 60 anos ou mais: pelo menos 4 em cada rim",
+              "15–39 anos: pelo menos 1 cisto em cada rim; 40–59 anos: pelo menos 3 no total; 60 anos ou mais: qualquer cisto hepático",
+              "Em qualquer idade: pelo menos 10 cistos em cada rim, sem considerar história familiar",
+              "Em qualquer idade: um cisto renal e hipertensão são suficientes para confirmar DRPAD"
+            ],
+            "ans": 0,
+            "exp": "Nos critérios ultrassonográficos unificados para familiares em risco com genótipo desconhecido, são diagnósticos pelo menos 3 cistos renais no total, uni ou bilaterais, entre 15 e 39 anos; pelo menos 2 em cada rim entre 40 e 59; e pelo menos 4 em cada rim a partir dos 60. A exigência cresce com a idade porque cistos simples tornam-se mais comuns. Esses limiares não devem ser extrapolados sem ajuste para pessoas sem história familiar ou para situações em que outra doença cística seja plausível.",
+            "diff": "hard",
+            "cat": "genetica"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "fullText": "15–39 anos: pelo menos 3 cistos no total; 40–59 anos: pelo menos 2 em cada rim; 60 anos ou mais: pelo menos 4 em cada rim"
+          },
+          "implementation": "Preservarqid,ordem,ans,diff,cat/tipo,históricoeFSRS. Alteração clínica somente desta versão exata LIBERADA. Não substituir cards compartilhados sem revisar impacto; sourceURL verificada está no registro declaims."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": false,
+          "proposalHasFixedLetter": false,
+          "numericalOrderQualification": "Os limiares e as faixas etárias internas de cada alternativa são inseparáveis. Não reordenar números dentro de cada conjunto; a identidade de cada alternativa é o conjunto completo."
+        },
+        "duplicateReview": "Oito itens comparados: xenotransplante,amostragemGESF,TESTING,RITUXVAS,Fabry,critériosDRPAD,tipagemamiloide,MEST-C medem decisões distintas. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            121,
+            119,
+            85,
+            84
+          ],
+          "afterCharacters": [
+            121,
+            119,
+            85,
+            84
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": true
+        },
+        "noBankEdits": true
+      },
+      {
+        "qid": "2be4ea1f",
+        "sourceLine": 31,
+        "sourceQuestionSHA256": "5c26b3e72b727a86810fdae2b43ef0dcf2481af5a2d6d8634b80f6fd906feb68",
+        "beforeCanonicalSHA256": "5c26b3e72b727a86810fdae2b43ef0dcf2481af5a2d6d8634b80f6fd906feb68",
+        "afterCanonicalSHA256": "2f6b8583e0e2bc5da0520e98dd93c653fc4aac3e4f8ea1669cdafa65c751595a",
+        "BEFORE": {
+          "t": "Amiloidose Renal — Confirmação e Tipagem",
+          "qid": "2be4ea1f",
+          "q": "Paciente com síndrome nefrótica tem depósitos glomerulares que coram pelo vermelho Congo e exibem birrefringência verde-maçã sob luz polarizada. Qual é o próximo princípio diagnóstico?",
+          "refs": [
+            "renal_amyloidosis_diagnosis_2022",
+            "ikmg_mgrs_consensus_2019"
+          ],
+          "opts": [
+            "O achado confirma amiloide, mas não define o precursor; é necessário tipar a proteína, recorrendo a espectrometria de massa quando imunofluorescência ou imuno-histoquímica forem inconclusivas",
+            "O achado confirma automaticamente amiloidose AL e dispensa investigação clonal",
+            "O achado diferencia amiloidose AL de AA apenas pela intensidade da cor",
+            "O achado é específico de glomerulonefrite fibrilar e exclui amiloidose"
+          ],
+          "ans": 0,
+          "exp": "Vermelho Congo com birrefringência verde-maçã confirma a natureza amiloide do depósito, mas não identifica a proteína precursora. Essa distinção é decisiva porque AL, AA, transtirretina e formas hereditárias têm tratamentos diferentes. A tipagem começa com métodos validados de imunofluorescência ou imuno-histoquímica; microdissecção a laser com espectrometria de massa é o método de referência em casos indeterminados ou discordantes. Não se deve chamar todo depósito Congo positivo de AL apenas porque existe uma gamopatia concomitante.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "AFTER": {
+          "t": "Amiloidose Renal — Confirmação e Tipagem",
+          "qid": "2be4ea1f",
+          "q": "Paciente com síndrome nefrótica tem depósitos glomerulares que coram pelo vermelho Congo e exibem birrefringência verde-maçã sob luz polarizada. Qual é o próximo princípio diagnóstico?",
+          "refs": [
+            "ikmg_mgrs_consensus_2019"
+          ],
+          "opts": [
+            "Tipar a proteína dos depósitos, usando espectrometria de massa se a imunomarcação for inconclusiva.",
+            "Classificar os depósitos como AL pela coloração e direcionar investigação à discrasia plasmocitária.",
+            "Classificar os depósitos como AA pela coloração e direcionar investigação à doença inflamatória.",
+            "Priorizar glomerulonefrite fibrilar pela coloração, sem necessidade de tipar a proteína dos depósitos."
+          ],
+          "ans": 0,
+          "exp": "O padrão descrito é típico de amiloide, mas a coloração não identifica a proteína precursora. É preciso integrar morfologia, imunomarcação e ultraestrutura e tipar os depósitos antes de escolher tratamento. Microdissecção a laser com espectrometria de massa é método de referência, particularmente quando imunofluorescência ou imuno-histoquímica são inconclusivas ou discordantes. O consenso IKMG também recomenda essa técnica para distinguir amiloidose de raras formas de glomerulonefrite fibrilar congofílica. A presença de uma gamopatia concomitante não basta para rotular o depósito como AL; tampouco a intensidade da cor distingue AL de AA.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "sourceAssessment": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Escolher tipagem de depósitos sugestivos de amiloide, sem inferir precursor AL/AA pela coloração ou gamopatia concomitante.",
+          "classification": {
+            "competency": "Conduta diagnóstica anatomopatológica",
+            "bloom": "Aplicar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "problems": [
+            "MAIOR — correta longa e diagnósticos conclusivos na cor induzem pista de comprimento.",
+            "MAIOR — dizer que Congo positivo isoladamente confirma amiloide omite rara GN fibrilar congofílica; o próprio consenso prevê diferenciação em casos discordantes."
+          ],
+          "lawyerOfAppeal": "A afirmação absoluta de confirmação pela coloração permite recurso em GN fibrilar congofílica; tipagem e integração ultraestrutural resolvem a questão sem alterar o OP.",
+          "eliminators": [],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 20,
+            "annulledByEliminator": false
+          },
+          "lifecycle": "em_reparo"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Escolher tipagem de depósitos sugestivos de amiloide, sem inferir precursor AL/AA pela coloração ou gamopatia concomitante.",
+          "classification": {
+            "competency": "Conduta diagnóstica anatomopatológica",
+            "bloom": "Aplicar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "justification": "A proposta preserva a decisão de tipagem e torna a explicação mais precisa. Nenhuma alternativa alternativa rotula precursor apenas pela cor; a única conduta adequada é identificar a proteína.",
+          "problems": [
+            "MAIOR — correta longa e diagnósticos conclusivos na cor induzem pista de comprimento.",
+            "MAIOR — dizer que Congo positivo isoladamente confirma amiloide omite rara GN fibrilar congofílica; o próprio consenso prevê diferenciação em casos discordantes."
+          ],
+          "lawyerOfAppeal": {
+            "result": "Nenhum argumento plausível de anulação após correção/conferência da versão exata.",
+            "checks": [
+              "Segundaresposta defensável buscada no contexto exato.",
+              "Inferência de superioridade/equivalência ou causalidade indevida procurada.",
+              "Explicação confrontada com conteúdo de cada alternativa.",
+              "Referências avaliadas por população/desenho e apoio decisivo."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": false,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": false,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": false
+            },
+            "qualification": "Dez critérios avaliados; nenhum disparado."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 20,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "0:VERIFICADA/NENHUMA;1:sem eliminatório;2:sem recurso plausível;3:score18–20;aprovada/LIBERADA.",
+          "lifecycle": "publicado",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; destino da árvore não é alegação de publicação real.",
+          "claimRegister": [
+            {
+              "claim": "Coloração não tipa precursor; integração clínica/IF/EM",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=7136169",
+              "locator": "MGRS diagnosis;Table2",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            },
+            {
+              "claim": "LC-MS método dereferência eimunomarcação inconclusiva/discordante",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=7136169",
+              "locator": "Ancillary techniques;Table2",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            },
+            {
+              "claim": "GNfibrilar ocasionalmenteCongo+,diferenciarAH/AHL",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=7136169",
+              "locator": "Organizeddeposits;Table2",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            }
+          ],
+          "verificationPending": [],
+          "referenceCards": [
+            {
+              "id": "ikmg_mgrs_consensus_2019",
+              "card": {
+                "label": "Leung et al. — Consenso IKMG sobre MGRS (2019)",
+                "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136169/",
+                "journal": "Nature Reviews Nephrology 2019; 15(1): 45-59",
+                "ano": 2019,
+                "tipo": "Consenso internacional",
+                "badge": "REVIEW",
+                "badgeColor": "#8b5cf6",
+                "impacto": "Definição, classificação e investigação da gamopatia monoclonal de significado renal",
+                "icon": "🔬",
+                "resumo": "Consenso IKMG 2019 sobre lesões relacionadas a imunoglobulinas monoclonais. Recomenda integrar microscopia óptica, imunomarcação e ultraestrutura. Microdissecção a laser com cromatografia/espectrometria de massa é método de referência para tipagem de amiloide e é especialmente indicada quando imunomarcação é negativa, equívoca ou discordante e para distinguir amiloidose de GN fibrilar congofílica.",
+                "conclusao": "Coloração não define o precursor; tipagem adequada evita tratar erroneamente um depósito como AL pela presença de gamopatia concomitante.",
+                "curiosidade": ""
+              },
+              "action": "VERIFIED_SCOPE_CARD_PROPOSAL; do not silently overwrite shared registry",
+              "verifiedScope": "Asserções do card acima, sem herdar números adicionais do card antigo."
+            }
+          ],
+          "readabilityRecheck": "A versão exata após espaços entre palavras,números e unidades foi relida. Mesmos valores,fontes,OP,ans e significado; evidência/pendência reavaliadas e permanecem VERIFICADA/NENHUMA; publicação derivada LIBERADA."
+        },
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "materialChange": true,
+        "patchEditorialSuggested": {
+          "operation": "SUBSTITUIR A QUESTÃO POR",
+          "question": {
+            "t": "Amiloidose Renal — Confirmação e Tipagem",
+            "qid": "2be4ea1f",
+            "q": "Paciente com síndrome nefrótica tem depósitos glomerulares que coram pelo vermelho Congo e exibem birrefringência verde-maçã sob luz polarizada. Qual é o próximo princípio diagnóstico?",
+            "refs": [
+              "ikmg_mgrs_consensus_2019"
+            ],
+            "opts": [
+              "Tipar a proteína dos depósitos, usando espectrometria de massa se a imunomarcação for inconclusiva.",
+              "Classificar os depósitos como AL pela coloração e direcionar investigação à discrasia plasmocitária.",
+              "Classificar os depósitos como AA pela coloração e direcionar investigação à doença inflamatória.",
+              "Priorizar glomerulonefrite fibrilar pela coloração, sem necessidade de tipar a proteína dos depósitos."
+            ],
+            "ans": 0,
+            "exp": "O padrão descrito é típico de amiloide, mas a coloração não identifica a proteína precursora. É preciso integrar morfologia, imunomarcação e ultraestrutura e tipar os depósitos antes de escolher tratamento. Microdissecção a laser com espectrometria de massa é método de referência, particularmente quando imunofluorescência ou imuno-histoquímica são inconclusivas ou discordantes. O consenso IKMG também recomenda essa técnica para distinguir amiloidose de raras formas de glomerulonefrite fibrilar congofílica. A presença de uma gamopatia concomitante não basta para rotular o depósito como AL; tampouco a intensidade da cor distingue AL de AA.",
+            "diff": "hard",
+            "cat": "glomerular"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "fullText": "Tipar a proteína dos depósitos, usando espectrometria de massa se a imunomarcação for inconclusiva."
+          },
+          "implementation": "Preservarqid,ordem,ans,diff,cat/tipo,históricoeFSRS. Alteração clínica somente desta versão exata LIBERADA. Não substituir cards compartilhados sem revisar impacto; sourceURL verificada está no registro declaims."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": false,
+          "proposalHasFixedLetter": false,
+          "numericalOrderQualification": null
+        },
+        "duplicateReview": "Oito itens comparados: xenotransplante,amostragemGESF,TESTING,RITUXVAS,Fabry,critériosDRPAD,tipagemamiloide,MEST-C medem decisões distintas. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            191,
+            78,
+            70,
+            70
+          ],
+          "afterCharacters": [
+            99,
+            100,
+            96,
+            102
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": false
+        },
+        "noBankEdits": true
+      },
+      {
+        "qid": "ce79d609",
+        "sourceLine": 36,
+        "sourceQuestionSHA256": "cb69780349ebbf5c52ba4e14acf194d6d7a72a8a59b30431007d7dbc44ffdfcb",
+        "beforeCanonicalSHA256": "cb69780349ebbf5c52ba4e14acf194d6d7a72a8a59b30431007d7dbc44ffdfcb",
+        "afterCanonicalSHA256": "cb69780349ebbf5c52ba4e14acf194d6d7a72a8a59b30431007d7dbc44ffdfcb",
+        "BEFORE": {
+          "t": "IgAN — Oxford MEST-C sem Prescrição Automática",
+          "qid": "ce79d609",
+          "q": "Biópsia de nefropatia por IgA é descrita como M1 E0 S1 T2 C0. Qual interpretação é mais adequada?",
+          "refs": [
+            "kdigo_igan_igav_2025"
+          ],
+          "opts": [
+            "T2 indica atrofia tubular/fibrose intersticial em mais de 50% do córtex; o conjunto contribui para prognóstico, mas não seleciona sozinho uma terapia específica",
+            "E0 exclui atividade da doença e torna desnecessário acompanhar proteinúria e TFGe",
+            "C0 impede progressão renal e anula o valor prognóstico dos demais componentes",
+            "M1 e S1 obrigam imunossupressão, independentemente de proteinúria, TFGe e evolução clínica"
+          ],
+          "ans": 0,
+          "exp": "No MEST-C, M é hipercelularidade mesangial, E hipercelularidade endocapilar, S esclerose segmentar, T atrofia tubular/fibrose intersticial e C crescentes celulares ou fibrocelulares. T2 corresponde a envolvimento superior a 50% e expressa dano crônico importante. O escore deve ser integrado a TFGe, proteinúria, pressão e trajetória clínica para estimar risco. A KDIGO ressalta que nem o MEST-C nem a presença isolada de crescentes foram validados para escolher automaticamente um fármaco; histologia não substitui avaliação clínica dinâmica.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "AFTER": {
+          "t": "IgAN — Oxford MEST-C sem Prescrição Automática",
+          "qid": "ce79d609",
+          "q": "Biópsia de nefropatia por IgA é descrita como M1 E0 S1 T2 C0. Qual interpretação é mais adequada?",
+          "refs": [
+            "kdigo_igan_igav_2025"
+          ],
+          "opts": [
+            "T2 indica atrofia tubular/fibrose intersticial em mais de 50% do córtex; o conjunto contribui para prognóstico, mas não seleciona sozinho uma terapia específica",
+            "E0 exclui atividade da doença e torna desnecessário acompanhar proteinúria e TFGe",
+            "C0 impede progressão renal e anula o valor prognóstico dos demais componentes",
+            "M1 e S1 obrigam imunossupressão, independentemente de proteinúria, TFGe e evolução clínica"
+          ],
+          "ans": 0,
+          "exp": "No MEST-C, M é hipercelularidade mesangial, E hipercelularidade endocapilar, S esclerose segmentar, T atrofia tubular/fibrose intersticial e C crescentes celulares ou fibrocelulares. T2 corresponde a envolvimento superior a 50% e expressa dano crônico importante. O escore deve ser integrado a TFGe, proteinúria, pressão e trajetória clínica para estimar risco. A KDIGO ressalta que nem o MEST-C nem a presença isolada de crescentes foram validados para escolher automaticamente um fármaco; histologia não substitui avaliação clínica dinâmica.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "sourceAssessment": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "moderada",
+          "evidence": "PARCIALMENTE VERIFICADA",
+          "pending": "DECISIVA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Interpretar lesões MEST-C como informação prognóstica integrada à clínica, sem prescrever terapia automaticamente pelo escore.",
+          "classification": {
+            "competency": "Interpretação histológica e prognóstico",
+            "bloom": "Analisar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "problems": [
+            "DECISIVA — o componenteT2>50% é central ao gabarito; foi recuperado o abstract primário Oxford2016, mas a tabela de definição não abriu.",
+            "O limite de prescrição automática está confirmado na KDIGO2025; isso não confirma por si só o ponto de corte histológico."
+          ],
+          "lawyerOfAppeal": "A assertiva numérica central exige a definição Oxford aberta; a memória não supre esse gate.",
+          "eliminators": [],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 1,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 1,
+              "Distratores": 1,
+              "Explicação": 2,
+              "Referências": 1,
+              "Ausência de cara de IA": 1,
+              "Valor pedagógico": 2
+            },
+            "total": 15,
+            "annulledByEliminator": false
+          },
+          "lifecycle": "em_revisão"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "moderada",
+          "evidence": "PARCIALMENTE VERIFICADA",
+          "pending": "DECISIVA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook§18.4 Regra7",
+          "OP": "Interpretar lesões MEST-C como informação prognóstica integrada à clínica, sem prescrever terapia automaticamente pelo escore.",
+          "classification": {
+            "competency": "Interpretação histológica e prognóstico",
+            "bloom": "Analisar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "justification": "Revisão pendente: não remover o corte correto por conveniência nem certificar número sem tabela de fonte. Manter a redação original como rascunho bloqueado até confirmarT2.",
+          "problems": [
+            "DECISIVA — o componenteT2>50% é central ao gabarito; foi recuperado o abstract primário Oxford2016, mas a tabela de definição não abriu.",
+            "O limite de prescrição automática está confirmado na KDIGO2025; isso não confirma por si só o ponto de corte histológico."
+          ],
+          "lawyerOfAppeal": {
+            "result": "Verificação decisiva pendente; não há aprovação.",
+            "checks": [
+              "Segundaresposta defensável buscada no contexto exato.",
+              "Inferência de superioridade/equivalência ou causalidade indevida procurada.",
+              "Explicação confrontada com conteúdo de cada alternativa.",
+              "Referências avaliadas por população/desenho e apoio decisivo."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": null,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": null,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": null
+            },
+            "qualification": "Null significa impossibilidade de certificar critério científico por falta da evidência decisiva; não equivale a aprovação."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 1,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 1,
+              "Distratores": 1,
+              "Explicação": 2,
+              "Referências": 1,
+              "Ausência de cara de IA": 1,
+              "Valor pedagógico": 2
+            },
+            "total": 15,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "0:teto de revisão maior por evidência/pendência; BLOQUEADA.",
+          "lifecycle": "em_revisão",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; destino da árvore não é alegação de publicação real.",
+          "claimRegister": [
+            {
+              "claim": "MEST-C não determina sozinho fármaco; integrarclinicalfeatures",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+              "locator": "PP1.4.1.4/PDFp18 e36",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            },
+            {
+              "claim": "Revisão Oxford2016: M/E/S/T/C eprognóstico",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28341274&retmode=xml",
+              "locator": "Abstract primário; semtabelaT2",
+              "verificationStatus": "VERIFICADA",
+              "support": "Fonte aberta e afirmação indicada conferida; inferências explicitamente rotuladas."
+            }
+          ],
+          "verificationPending": [
+            {
+              "claim": "Abrir tabela da classificação Oxford/MEST-C (T2:grau deatrofia/fibrose>50%) emfonte primária ou norma oficial. O abstract recuperado não contém esse número.",
+              "nature": "DECISIVA",
+              "blocksPublication": true
+            }
+          ],
+          "referenceCards": [],
+          "referenceCardPending": "Não gerar cards prontos até concluir a verificação bibliográfica decisiva."
+        },
+        "v2verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "materialChange": false,
+        "patchEditorialSuggested": {
+          "operation": "PENDENTE_NÃO_IMPLEMENTAR",
+          "question": {
+            "t": "IgAN — Oxford MEST-C sem Prescrição Automática",
+            "qid": "ce79d609",
+            "q": "Biópsia de nefropatia por IgA é descrita como M1 E0 S1 T2 C0. Qual interpretação é mais adequada?",
+            "refs": [
+              "kdigo_igan_igav_2025"
+            ],
+            "opts": [
+              "T2 indica atrofia tubular/fibrose intersticial em mais de 50% do córtex; o conjunto contribui para prognóstico, mas não seleciona sozinho uma terapia específica",
+              "E0 exclui atividade da doença e torna desnecessário acompanhar proteinúria e TFGe",
+              "C0 impede progressão renal e anula o valor prognóstico dos demais componentes",
+              "M1 e S1 obrigam imunossupressão, independentemente de proteinúria, TFGe e evolução clínica"
+            ],
+            "ans": 0,
+            "exp": "No MEST-C, M é hipercelularidade mesangial, E hipercelularidade endocapilar, S esclerose segmentar, T atrofia tubular/fibrose intersticial e C crescentes celulares ou fibrocelulares. T2 corresponde a envolvimento superior a 50% e expressa dano crônico importante. O escore deve ser integrado a TFGe, proteinúria, pressão e trajetória clínica para estimar risco. A KDIGO ressalta que nem o MEST-C nem a presença isolada de crescentes foram validados para escolher automaticamente um fármaco; histologia não substitui avaliação clínica dinâmica.",
+            "diff": "hard",
+            "cat": "glomerular"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "fullText": "T2 indica atrofia tubular/fibrose intersticial em mais de 50% do córtex; o conjunto contribui para prognóstico, mas não seleciona sozinho uma terapia específica"
+          },
+          "implementation": "Preservarqid,ordem,ans,diff,cat/tipo,históricoeFSRS. Alteração clínica somente desta versão exata LIBERADA. Não substituir cards compartilhados sem revisar impacto; sourceURL verificada está no registro declaims."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": false,
+          "proposalHasFixedLetter": false,
+          "numericalOrderQualification": null
+        },
+        "duplicateReview": "Oito itens comparados: xenotransplante,amostragemGESF,TESTING,RITUXVAS,Fabry,critériosDRPAD,tipagemamiloide,MEST-C medem decisões distintas. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            160,
+            81,
+            77,
+            90
+          ],
+          "afterCharacters": [
+            160,
+            81,
+            77,
+            90
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": true
+        },
+        "noBankEdits": true
+      }
+    ],
+    "counts": {
+      "reviewed": 8,
+      "exactChangedProposalsReleased": 5,
+      "unchangedApproved": 1,
+      "pendingDecisive": 2,
+      "implemented": 0
+    },
+    "sourceAccess": [
+      {
+        "URL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=39927618&retmode=xml",
+        "openedClinicalBody": true,
+        "locator": "NCBI primary abstract,DOI matched"
+      },
+      {
+        "URL": "https://ir.unither.com/~/media/Files/U/United-Therapeutics-IR/documents/press-releases/2025/2025-02-03-xeno-ind.pdf",
+        "openedClinicalBody": true,
+        "locator": "Official sponsorPDFstudy endpoints"
+      },
+      {
+        "URL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+        "openedClinicalBody": true,
+        "locator": "Official fullPDFchapter6"
+      },
+      {
+        "URL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=5827609",
+        "openedClinicalBody": true,
+        "locator": "NCBIabstract; nofullbody returned"
+      },
+      {
+        "URL": "https://jamanetwork.com/journals/jama/fullarticle/2792252",
+        "openedClinicalBody": true,
+        "locator": "JAMAfulltextAbstract/Methods"
+      },
+      {
+        "URL": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+        "openedClinicalBody": true,
+        "locator": "OfficialPDFRecommendation1.4.3.2/PP1.4.1.4/PP1.4.3.2–3"
+      },
+      {
+        "URL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=20647198&retmode=xml",
+        "openedClinicalBody": true,
+        "locator": "NCBIprimaryabstractMethodsResults"
+      },
+      {
+        "URL": "https://kdigo.org/wp-content/uploads/2025/01/KDIGO-2025-ADPKD-Guideline.pdf",
+        "openedClinicalBody": true,
+        "locator": "OfficialPDFfigure3/PP1.3.5"
+      },
+      {
+        "URL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=7136169",
+        "openedClinicalBody": true,
+        "locator": "OfficialJATSbodyandTable2"
+      },
+      {
+        "URL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=28341274&retmode=xml",
+        "openedClinicalBody": true,
+        "locator": "NCBIprimaryabstract; T2tableunavailable"
+      }
+    ],
+    "sourceFailureQualification": [
+      "GeneReviewsFabry returnedchallengeHTML even atPDFURL; notclinical evidence.",
+      "KDIGOIgAN/ADPKD urllib403: PDFs nevertheless opened/read throughweb tool; rawHTTPfailurepreserved.",
+      "FSGS2018 efetchreturnedabstractmetadata only; nofullbodyclaim.",
+      "Oxford2016 publisher403; primaryabstractlacksT2cutoff:DECISIVA."
+    ],
+    "localSourcePins": [
+      {
+        "file": "find-primary-002-receipt.json",
+        "bytes": 11254,
+        "sha256": "cdcedd547eb4c2139369c1d9adec0d7878f45d53ebeed9086700fab99c48bbd0"
+      },
+      {
+        "file": "fsgs_vriese_jats.xml",
+        "bytes": 8699,
+        "sha256": "a04e92a45776e22d7556447940cae0185d36780390124e5f1f600d05ac5e4279"
+      },
+      {
+        "file": "ikmg_2019_jats.xml",
+        "bytes": 198128,
+        "sha256": "065474abab9aec35489f0adb960ba3a01649527288defa0d2a174396e1aea838"
+      },
+      {
+        "file": "oxford_2016_pubmed.xml",
+        "bytes": 14891,
+        "sha256": "c5faad13ebcdae796e80883dcf41820a1160af43bc262dee6b9a848a673ec292"
+      },
+      {
+        "file": "rituxvas_2010_pubmed.xml",
+        "bytes": 12855,
+        "sha256": "202a6a008f92301acb2a4706fd663f6897f55b8a670a7ad8b2450fe45f0eaff7"
+      },
+      {
+        "file": "sources-002-retrieval-receipt.json",
+        "bytes": 20244,
+        "sha256": "41f8e170aa42da29b5f8cecef6801ad772fa36505ccd21423b67fb6e7a729866"
+      },
+      {
+        "file": "xeno_2025-pubmed.xml",
+        "bytes": 18316,
+        "sha256": "26a6b2fc07fd703baca6d1ec3a7726821801981182a433ba89e2fbd0fd1f204e"
+      }
+    ],
+    "limitations": [
+      "Semedição de banco/Git.",
+      "Reavaliação formal é desta skill/revisor; revisão independente pelo integrador ainda não concluída.",
+      "Não interpretar fonte consultada parcialmente como livro/texto integral lido.",
+      "611prioridadesdecomprimento nãosão611questões clinicamenteaprovadas.",
+      "Doisitemspendentes não receberão publicação por conveniência deembaralhamento."
+    ],
+    "readabilityClarification": {
+      "previousOutputFile": "output-002-before-readability-a1.json",
+      "previousOutputSHA256": "67c03d46b412ebaa3debc6b9807a0cf4b52ece18149cd512ba95a6e5c54cd7d1",
+      "scope": "Espaços tipográficos nos textos propostos e cards; fontes, números,doses,gabaritos e decisões preservados. Nenhuma edição de BEFORE/banco."
+    },
+    "sourceVersionCorrection": {
+      "previousFile": "output-002-before-source-version-correction-a2.json",
+      "previousSHA256": "46fee73004966745b12eb1ad97133418a869c3d53b07ede736d05cdc78b87374",
+      "observedUTC": "2026-10-12T17:37:20Z",
+      "independentFinding": "answer_presentation_core apontou dataEMPAVELI e PDFANCA anterior; autor abriu as versões atuais e reavaliou os itens afetados.",
+      "changes": [
+        "EMPAVELI:2026/Updated21Aug2026; indicação para proteinúria e perda funcional renal, não apenas proteinúria.",
+        "e4d4db47: explicação explicita TFGe em26semanas e separa falência renal/mortalidade definitivas; qid/ans/OP preservados.",
+        "ANCA: May2024 apóscorrigendas; recomendação9.3.2.1(1C) novamente conferida.",
+        "1fd6a5cf: referência de manutenção não necessária removida; primárioRITUXVAS completo para o OP."
+      ],
+      "countsUnchanged": true,
+      "independentApprovalStillPending": true
+    }
+  }
+}

@@ -1,0 +1,2804 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 123610,
+  "sourceReportSHA256": "295fe7b63e2ca56e268a7a439a58b95f3a7d628a5bc7a2631a598a6bd5e3a6bf",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_FORMAL_BATCH_REVIEW_A1",
+    "group": "a",
+    "batch": 4,
+    "reviewedAtOfficialUTC": "2026-10-12T17:58:27Z",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "bankLF_SHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "input": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 15463,
+      "sha256": "73407384592c4269da9c003b0b5a57261fd9e55d494b385ee7effc38b807cb23"
+    },
+    "reviewer": "clinical_review_a",
+    "normativePins": [
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      }
+    ],
+    "cloudSkillResourcesReadEarlier": [
+      "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "[local evidence locator omitted; retain its adjacent hash and source citations]"
+    ],
+    "cloudAvailabilityNote": "Skills cloud foram retiradas durante execução; instruções já lidas e normativas locais continuaram aplicadas, sem reinstalação ou nova autorização.",
+    "sourceRegistry": {
+      "gitelman2017": {
+        "title": "Gitelman syndrome: consensus and guidance from a KDIGO Controversies Conference",
+        "url": "https://kdigo.org/wp-content/uploads/2017/02/KDIGO-Gitelman-conf-report.pdf",
+        "organization": "KDIGO; Kidney International 91:24–33",
+        "year": 2017,
+        "doi": "10.1016/j.kint.2016.09.046",
+        "opened": true,
+        "locator": "pp.24–26: SLC12A3/NCC, fenótipo e diferencial com Bartter; p.29: condrocalcinose",
+        "supports": "Gitelman decorre de perda de função do NCC; hipocalciúria/hipomagnesemia são características; Bartter clássico pode ter Mg normal ou sobreposição Gitelman-like.",
+        "limits": "Consenso de doença rara; não confirma a alegação de reabsorção passiva de cálcio distal nem todos os detalhes moleculares de CPPD."
+      },
+      "mbd2017": {
+        "title": "KDIGO2017 CKD-MBD Guideline Update",
+        "url": "https://kdigo.org/wp-content/uploads/2017/02/2017-KDIGO-CKD-MBD-GL-Update.pdf",
+        "year": 2017,
+        "opened": true,
+        "locators": [
+          "Recommendations3.2.2-3.2.3 PDFp15 lines514-518",
+          "Rationale PDFpp23-24 lines1099-1146",
+          "PTH2-9 times upper limit PDFp17"
+        ],
+        "supports": "PTH/fosfatase alcalina óssea extremos predizem turnover; marcadores não definem sozinhos histologia individual. Biópsia razoável quando mudará decisão.",
+        "verificationScope": "Documento oficial aberto; não trata PTH<2vezes como diagnóstico definitivo."
+      },
+      "ukka2026": {
+        "title": "UKKA Clinical Practice Guideline – Management of Hyperkalaemia in Adults – July 2026",
+        "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+        "year": 2026,
+        "opened": true,
+        "locators": [
+          "Guidelines9.1-9.3 PDFp45, lines1830-1848",
+          "Guidelines10.1-10.3 PDFp50, lines2063-2079",
+          "Step1 protect heart, PDFpp75-76",
+          "Guidelines2.3-2.5 monitoring, PDFp28",
+          "Purpose July2026, PDFp4",
+          "ECG Guidelines14.1-14.2 rationale PDFpp64-66 lines2677-2685 and2731-2756",
+          "Insulin mechanism PDFp86 lines3510-3515"
+        ],
+        "supports": "Quelantes podem permitir otimização do bloqueio do SRAA em adultos selecionados com hipercalemia persistente; não substituem proteção cardíaca urgente ou monitorização. Alterações ECG clássicas não ocorrem sempre em sequência; ECG normal não exclui hipercalemia grave. Insulina promove captação celular de potássio pela Na/K-ATPase.",
+        "verificationScope": "Utilidade geral e segurança, sem transpor critérios de financiamento NICE, limiares ou doses para regra universal. Atualização2026 foi aberta, não tratada como publicação2023."
+      },
+      "nitro_label": {
+        "title": "Sodium Nitroprusside injection, Hainan Poly Pharm., prescribing information",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=72a9b7df-3a2f-4c16-93a9-b645bc0e8143",
+        "year": 2022,
+        "opened": true,
+        "locators": [
+          "Updated31/12/2022 line165; Revised11/2021 line218",
+          "Sections5.3 and12.3 lines357-360 and482-494",
+          "Section10 lines432-440"
+        ],
+        "supports": "Tiocianato neurotóxico é eliminado pelos rins e removível por HD na toxicidade grave; cianeto pode causar confusão/acidose láctica e suspeita já exige tratamento, sem remoção eficaz por HD.",
+        "verificationScope": "Não confirma diagnóstico exclusivo de tiocianato no caso misto. Não reproduz doses de antídoto."
+      },
+      "liddle_nlm": {
+        "title": "Liddle syndrome – MedlinePlus Genetics",
+        "url": "https://medlineplus.gov/genetics/condition/liddle-syndrome/",
+        "year": 2013,
+        "opened": true,
+        "locators": [
+          "Description and Causes lines44-56",
+          "Last updated line144"
+        ],
+        "supports": "SCNN1B/SCNN1G alteram ENaC; mais canais na superfície e maior reabsorção de sódio/água causam hipertensão/hipocalemia.",
+        "verificationScope": "Documento genético oficial NLM, atualizado2013 e disponível no serviço atual; fundamento estável de mecanismo, sem recomendação farmacológica, dose ou frequência. Não é estudo primário experimental."
+      },
+      "liddle2019_failed": {
+        "title": "Liddle syndrome review linked by the existing card",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6731958/",
+        "opened": false,
+        "failure": "PMC CAPTCHA, PubMed texto não recuperado. Metadados indexados apontam Enslow/Stockand/Berman, não Tetti do label; fonte completa necessita recuperação antes de corrigir card.",
+        "verificationScope": "Não utilizado como card verificado. Alerta separado não é patch pronto."
+      },
+      "hdf_eudial2025": {
+        "title": "Haemodiafiltration versus high-flux haemodialysis—a Consensus Statement from the EuDial Working Group of the ERA",
+        "url": "https://academic.oup.com/ndt/article/40/8/1590/8003757",
+        "resolvedFullTextURL": "https://oup.silverchair-cdn.com/article-minimal/8003757",
+        "doi": "10.1093/ndt/gfaf024",
+        "year": 2025,
+        "opened": true,
+        "locators": [
+          "Metadata lines440-457",
+          "Introduction lines469-482",
+          "Middle molecule clearance lines1096-1110",
+          "Technical requirements lines1223-1225"
+        ],
+        "supports": "HDF combina difusão e convecção, com reposição do filtrado excedente por solução estéril e apirogênica; amplia clearance de moléculas médias.",
+        "verificationScope": "Consenso oficial ERA, não padrão obrigatório nem benefício universal; clearance não garante concentração pré-diálise menor. CONVINCE não foi usado para provar mecanismo."
+      },
+      "tpp_nlm2026": {
+        "title": "Thyrotoxic periodic paralysis – MedlinePlus Medical Encyclopedia",
+        "url": "https://medlineplus.gov/ency/article/000319.htm",
+        "year": 2026,
+        "opened": true,
+        "locators": [
+          "Symptoms lines56-64",
+          "Treatment lines120-136",
+          "Review date25/01/2026 lines169-171"
+        ],
+        "supports": "Refeições ricas em carboidratos podem precipitar crises; tratar tireotoxicose previne episódios.",
+        "verificationScope": "Síntese clínica oficial hospedada NLM, não estudo experimental primário. Empregada para gatilho alimentar estabelecido, sem teste provocativo, esquema de reposição ou dose de betabloqueador."
+      },
+      "ispd2022": {
+        "title": "ISPD peritonitis guideline recommendations: 2022 update on prevention and treatment",
+        "url": "https://ispd.org/wp-content/uploads/2025/09/LI-ET-1.pdf",
+        "doi": "10.1177/08968608221080586",
+        "year": 2022,
+        "opened": true,
+        "locators": [
+          "PDFp2 lines159-175",
+          "PDFpp9-10 lines809-870",
+          "PDFp3 lines274-299",
+          "PDFp26 lines1867-1874",
+          "S.aureus PDFp21 lines1608-1629:3semanas2C e considerar retirada com foco concomitante"
+        ],
+        "supports": "Pelo menos dois de três critérios: clínica, citologia >100/µL após ≥2h com >50% PMN, cultura. Critérios clínico/citológico bastam. Critério equivalente >0,1×10^9/L confirma unidade µL apesar da falha OCR mL. Cultura negativa não exclui. APD com ciclo curto usa fração PMN.",
+        "verificationScope": "Números decisivos diagnósticos conferidos; metas anuais e conduta fúngica do card existente também checadas no PDF."
+      },
+      "ispd2023": {
+        "title": "ISPD Catheter-related Infection Recommendations:2023 Update",
+        "url": "https://ispd.org/wp-content/uploads/2025/09/ISPD-Catheter-related-Infection-Recommendations-2023-Update.pdf",
+        "doi": "10.1177/08968608231172740",
+        "year": 2023,
+        "opened": true,
+        "locators": [
+          "Definitions PDFpp1-2",
+          "Monitoring/duration PDFp8 lines692-705",
+          "Removal for same organism peritonitis PDFp10 lines823-837"
+        ],
+        "supports": "Secreção purulenta define infecção de óstio; inflamação de trajeto define túnel. Infecção concomitante com peritonite pelo mesmo organismo favorece retirada (2C); não trocar simultaneamente na peritonite não resolvida.",
+        "verificationScope": "Critério do mesmo organismo deve integrar o caso; duração3semanas da peritonite S.aureus conferida separadamente na ISPD2022."
+      }
+    },
+    "referenceInput": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 15072,
+      "sha256": "0d163ad2dfd0cb2fbcc91901e09eeecdac8b2588650879db069981d432ba56b0"
+    },
+    "verifiedExistingCards": {
+      "gitelman_kdigo_2017": {
+        "label": "Blanchard A et al. — Gitelman Syndrome: KDIGO Controversies Conference (2017)",
+        "url": "https://discovery.ucl.ac.uk/id/eprint/1534450/",
+        "journal": "Kidney Int 2017;91(1):24-33",
+        "ano": 2017,
+        "tipo": "Consenso KDIGO",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Diagnóstico e manejo da síndrome de Gitelman: hipocalemia, alcalose metabólica, hipomagnesemia, hipocalciúria e SLC12A3/NCC",
+        "icon": "📋",
+        "resumo": "Consenso de conferência KDIGO sobre síndrome de Gitelman, uma tubulopatia perdedora de sal causada por mutações inativantes em SLC12A3, gene do cotransportador NaCl sensível a tiazídicos (NCC) no túbulo contornado distal. Caracteriza o fenótipo clássico por alcalose metabólica hipocalêmica, hipomagnesemia e hipocalciúria, geralmente com apresentação mais tardia que Bartter. O manejo é individualizado e costuma combinar liberalização de sal, suplementação de potássio e magnésio e seguimento para sintomas, qualidade de vida, arritmias e complicações.",
+        "conclusao": "Gitelman deve ser reconhecida pelo padrão de hipocalemia + alcalose metabólica + hipomagnesemia + hipocalciúria, distinguindo-se de Bartter pela localização distal/NCC e pelo perfil cálcio-magnésio.",
+        "curiosidade": "O fenótipo de Gitelman imita um 'tiazídico genético': o defeito fica no mesmo cotransportador que a hidroclorotiazida bloqueia, mas com consequências crônicas sobre magnésio e cálcio urinário."
+      },
+      "kdigo_ckd_mbd_2017": {
+        "label": "KDIGO CKD-MBD Update 2017",
+        "url": "https://kdigo.org/guidelines/ckd-mbd/",
+        "journal": "Kidney Int Suppl 2017;7(1):1-59",
+        "ano": 2017,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Metas de PTH (2-9× LSN), fósforo e cálcio em DRC; preferência por quelantes não cálcicos; calcitriol/análogos em estágios 3-5D",
+        "icon": "📋",
+        "resumo": "Atualização KDIGO para distúrbio mineral e ósseo da DRC. Em DRC G3a–G5 não dialítica com PTH progressivamente elevado, recomenda avaliar primeiro hiperfosfatemia, alta ingestão de fósforo, hipocalcemia e deficiência de vitamina D; calcitriol ou análogos ficam reservados ao hiperparatireoidismo grave e progressivo em G4–G5. Em G5D, sugere manter PTH aproximadamente entre 2 e 9 vezes o limite superior do ensaio e escolher calcimimético, calcitriol ou análogo conforme cálcio e fósforo. Para hiperparatireoidismo grave que não responde à terapia clínica ou farmacológica, sugere paratireoidectomia.",
+        "conclusao": "O manejo deve seguir tendências de PTH, cálcio e fósforo, corrigir fatores modificáveis e reservar cirurgia ao hiperparatireoidismo grave refratário, sem transformar um limiar isolado de PTH em indicação automática.",
+        "curiosidade": "A diretriz não identifica uma estratégia única de primeira linha para reduzir PTH em diálise; a escolha deve considerar simultaneamente cálcio, fósforo, tratamentos concomitantes, tolerabilidade e resposta."
+      },
+      "ispd_peritonitis_guideline": {
+        "label": "ISPD — Peritonitis Guideline 2022",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/35264029/",
+        "journal": "Peritoneal Dialysis International 2022;42(2):110-153",
+        "ano": 2022,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Referência internacional para prevenção, diagnóstico, terapia empírica e manejo por organismo da peritonite associada à DP",
+        "icon": "📋",
+        "resumo": "A ISPD 2022 define peritonite em DP pela presença de pelo menos dois entre três critérios: quadro clínico compatível, como dor abdominal ou efluente turvo; leucócitos no efluente acima de 100/µL após permanência de pelo menos 2 horas, com mais de 50% de polimorfonucleares; ou cultura positiva. Após coleta microbiológica, recomenda antibiótico empírico imediato e específico do centro cobrindo gram-positivos e gram-negativos, preferencialmente por via intraperitoneal quando possível e na ausência de sepse. Para peritonite fúngica, recomenda retirada imediata do cateter e antifúngico por pelo menos 2 semanas após a remoção.",
+        "conclusao": "Suspeita de peritonite em DP exige coleta adequada e tratamento empírico sem aguardar cultura; agente, resposta clínica e presença de foco no cateter determinam ajuste, duração e necessidade de retirada.",
+        "curiosidade": "A diretriz propõe como metas anuais taxa global não superior a 0,40 episódio por paciente-ano e mais de 80% dos pacientes livres de peritonite."
+      },
+      "ispd_catheter_infection_2023": {
+        "label": "ISPD — Catheter-related Infection (2023)",
+        "url": "https://journals.sagepub.com/doi/10.1177/08968608231172740",
+        "journal": "Peritoneal Dialysis International 2023;43(3):201-219",
+        "ano": 2023,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Atualiza diagnóstico e tratamento de infecção de óstio/túnel do cateter de DP",
+        "icon": "📋",
+        "resumo": "Recomendações 2023 da International Society for Peritoneal Dialysis (ISPD) para infecções relacionadas ao cateter de diálise peritoneal. Define infecção definitiva de óstio pela presença de secreção purulenta, com ou sem eritema, e infecção de túnel por inflamação ao longo do trajeto, com ou sem coleção ao ultrassom. Recomenda antibiótico oral empírico cobrindo Staphylococcus aureus, como cefalosporina de primeira geração ou penicilina antiestafilocócica, salvo risco de MRSA ou Pseudomonas. A duração deve considerar resposta clínica, cultura e sensibilidade; curso fixo de 2 semanas pode ser encurtado para 7–10 dias se houver resolução precoce, enquanto Pseudomonas e infecção de túnel exigem pelo menos 3 semanas.",
+        "conclusao": "Infecção simples de óstio por MSSA sem túnel/peritonite não exige remoção imediata do cateter nem curso fixo de 21 dias; o tratamento oral antiestafilocócico deve ser monitorado e ajustado pela resposta.",
+        "curiosidade": "A ISPD passou a explicitar que eritema isolado ao redor do cateter não basta para diagnóstico definitivo de infecção de óstio, pois trauma e reação ao curativo podem imitar infecção."
+      }
+    },
+    "newVerifiedCards": {
+      "ukka_hyperkalemia_update_2026": {
+        "label": "UKKA – Hipercalemia em adultos, atualização julho 2026",
+        "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+        "journal": "UK Kidney Association, Clinical Practice Guideline, July 2026",
+        "ano": 2026,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Quelantes apoiam controle crônico de potássio e otimização do bloqueio do SRAA",
+        "icon": "📋",
+        "resumo": "Atualização UKKA 2026 para adultos. As recomendações 9.1 e 10.1 (1A) contemplam patiromer e ciclosilicato de zircônio sódico em populações selecionadas com hipercalemia persistente que limita o bloqueio do sistema renina-angiotensina-aldosterona (SRAA). O tratamento exige monitorização. Critérios de elegibilidade e financiamento do Reino Unido não constituem regra universal; quelantes não substituem cálcio intravenoso quando é necessária proteção cardíaca urgente.",
+        "conclusao": "Controlar hipercalemia recorrente pode favorecer manutenção de terapias indicadas; individualizar e acompanhar potássio, sem confundir manutenção com a resposta urgente.",
+        "curiosidade": ""
+      },
+      "liddle_nlm_genetics_2013": {
+        "label": "NLM MedlinePlus Genetics – Síndrome de Liddle",
+        "url": "https://medlineplus.gov/genetics/condition/liddle-syndrome/",
+        "journal": "National Library of Medicine, MedlinePlus Genetics; atualização 01/03/2013",
+        "ano": 2013,
+        "tipo": "Revisão genética oficial",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "SCNN1B/SCNN1G e atividade excessiva de ENaC explicam o fenótipo",
+        "icon": "📖",
+        "resumo": "Síntese genética oficial sobre Liddle. Variantes de SCNN1B ou SCNN1G podem impedir degradação de subunidades de ENaC, aumentando canais na superfície e reabsorção renal de sódio e água. O fenótipo inclui hipertensão precoce e hipocalemia, podendo haver alcalose. O documento foi recuperado para verificar mecanismo e fenótipo, pois o texto da revisão específica ligada anteriormente não abriu; não é ensaio clínico nem fonte de dose.",
+        "conclusao": "Relacionar o fenótipo e a variante patogênica ao aumento de atividade de ENaC; não generalizar para qualquer variante desses genes sem interpretar sua consequência.",
+        "curiosidade": ""
+      },
+      "hdf_eudial_era_2025": {
+        "label": "EuDial/ERA – HDF versus HD de alto fluxo (2025)",
+        "url": "https://academic.oup.com/ndt/article/40/8/1590/8003757",
+        "journal": "Nephrology Dialysis Transplantation 2025;40(8):1590-1614",
+        "ano": 2025,
+        "tipo": "Consenso clínico baseado em revisão sistemática",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "HDF combina difusão e convecção com reposição estéril e apirogênica",
+        "icon": "📋",
+        "resumo": "Consenso EuDial/ERA 2025, desenvolvido com busca sistemática e processo mini-Delphi. Para o mecanismo, descreve transporte difusivo e convectivo, com reposição do filtrado excedente por solução estéril e apirogênica. HDF amplia clearance de moléculas médias, mas isso não assegura menor concentração pré-diálise nem benefício clínico universal. Os pontos de consenso orientam decisões e não definem padrão obrigatório de cuidado.",
+        "conclusao": "Distinguir mecanismo de depuração de demonstração de benefício clínico; a produção online exige requisitos de qualidade da água e do fluido.",
+        "curiosidade": ""
+      },
+      "tpp_medlineplus_2026": {
+        "label": "MedlinePlus – Paralisia periódica tireotóxica (2026)",
+        "url": "https://medlineplus.gov/ency/article/000319.htm",
+        "journal": "MedlinePlus Medical Encyclopedia; revisão 25/01/2026",
+        "ano": 2026,
+        "tipo": "Síntese clínica oficial",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Refeições ricas em carboidratos são gatilho reconhecido de crises",
+        "icon": "📖",
+        "resumo": "Síntese clínica revisada em 2026, hospedada na National Library of Medicine, sobre episódios de fraqueza associados à tireotoxicose. Reconhece refeições ricas em carboidratos como gatilho e destaca controle da doença tireoidiana para prevenção. Foi necessária para confirmar o fato clínico em fonte específica aberta, em lugar do livro genérico não recuperado. Não é estudo primário de mecanismo nem protocolo de reposição de potássio.",
+        "conclusao": "Reconhecer o gatilho alimentar e tratar a tireotoxicose; não extrapolar esta síntese para doses ou testes de provocação.",
+        "curiosidade": ""
+      }
+    },
+    "reusedPendingCardPackage": {
+      "id": "ukka_hyperkalemia_update_2026",
+      "sourceReview": {
+        "path": "docs/editorial/reviews/2026-10-12/group-a-output-003-A2.json",
+        "bytes": 140451,
+        "sha256": "8ed59bf4bb76d0086f268e70e6d8d6061341435cbe3d68a4b3b86ae869679fb4"
+      },
+      "exactCardSHA256": "bb111fd74e616ca7d59a15353fc53ffc06d118a7b036c4453e2f76d85036f843",
+      "actualRegistryEntryExists": false,
+      "instruction": "Este ID já proposto em A003 não pode ser duplicado nem redefinido; reconciliar pelo hash se pacote anterior for integrado."
+    },
+    "cardExactVersionReviews": [
+      {
+        "id": "gitelman_kdigo_2017",
+        "exactCardSHA256": "5f49f8152b8e3f4b94588d1bf491f4c6b4eef18a2feb818762ee75cc0504a2b8",
+        "action": "KEEP_EXISTING",
+        "sourceIds": [
+          "gitelman2017"
+        ],
+        "metadataAndClaimsWithinDeclaredScopeVerified": true,
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "legacyAux": "MANTER",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): card exato conferido em fonte aberta com desenho e limites declarados.",
+          "eliminatorsTriggered": []
+        }
+      },
+      {
+        "id": "kdigo_ckd_mbd_2017",
+        "exactCardSHA256": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+        "action": "KEEP_EXISTING",
+        "sourceIds": [
+          "mbd2017"
+        ],
+        "metadataAndClaimsWithinDeclaredScopeVerified": true,
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "legacyAux": "MANTER",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): card exato conferido em fonte aberta com desenho e limites declarados.",
+          "eliminatorsTriggered": []
+        }
+      },
+      {
+        "id": "ispd_peritonitis_guideline",
+        "exactCardSHA256": "5e20480a5aa473f955b5028a13df0776d266b0f2adf0003a32894b65ee5ae064",
+        "action": "KEEP_EXISTING",
+        "sourceIds": [
+          "ispd2022"
+        ],
+        "metadataAndClaimsWithinDeclaredScopeVerified": true,
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "legacyAux": "MANTER",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): card exato conferido em fonte aberta com desenho e limites declarados.",
+          "eliminatorsTriggered": []
+        }
+      },
+      {
+        "id": "ispd_catheter_infection_2023",
+        "exactCardSHA256": "eec59fc3e233fa044279343d31f071b3920b4eff7a6e294e3e3ee62fc3c772c4",
+        "action": "KEEP_EXISTING",
+        "sourceIds": [
+          "ispd2023"
+        ],
+        "metadataAndClaimsWithinDeclaredScopeVerified": true,
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "legacyAux": "MANTER",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): card exato conferido em fonte aberta com desenho e limites declarados.",
+          "eliminatorsTriggered": []
+        }
+      },
+      {
+        "id": "ukka_hyperkalemia_update_2026",
+        "exactCardSHA256": "bb111fd74e616ca7d59a15353fc53ffc06d118a7b036c4453e2f76d85036f843",
+        "action": "REGISTER_NEW_IF_ABSENT_OR_RECONCILE_EXACT_CARD",
+        "sourceIds": [
+          "ukka2026"
+        ],
+        "metadataAndClaimsWithinDeclaredScopeVerified": true,
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "legacyAux": "MANTER",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): card exato conferido em fonte aberta com desenho e limites declarados.",
+          "eliminatorsTriggered": []
+        }
+      },
+      {
+        "id": "liddle_nlm_genetics_2013",
+        "exactCardSHA256": "a871c631d76f6ac61ada9134c4c3c7405195ce9f6948a2208cbb06c98f609d2a",
+        "action": "REGISTER_NEW_IF_ABSENT_OR_RECONCILE_EXACT_CARD",
+        "sourceIds": [
+          "liddle_nlm"
+        ],
+        "metadataAndClaimsWithinDeclaredScopeVerified": true,
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "legacyAux": "MANTER",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): card exato conferido em fonte aberta com desenho e limites declarados.",
+          "eliminatorsTriggered": []
+        }
+      },
+      {
+        "id": "hdf_eudial_era_2025",
+        "exactCardSHA256": "35fba317dfa37c3b8204b1b7d1720afde346a0886e5a077d5dc39e348934a53d",
+        "action": "REGISTER_NEW_IF_ABSENT_OR_RECONCILE_EXACT_CARD",
+        "sourceIds": [
+          "hdf_eudial2025"
+        ],
+        "metadataAndClaimsWithinDeclaredScopeVerified": true,
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "legacyAux": "MANTER",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): card exato conferido em fonte aberta com desenho e limites declarados.",
+          "eliminatorsTriggered": []
+        }
+      },
+      {
+        "id": "tpp_medlineplus_2026",
+        "exactCardSHA256": "fe880e4b2c90d84bf3091842c10042b6840ac3e144e4f8e72d62bd98e60bbfbc",
+        "action": "REGISTER_NEW_IF_ABSENT_OR_RECONCILE_EXACT_CARD",
+        "sourceIds": [
+          "tpp_nlm2026"
+        ],
+        "metadataAndClaimsWithinDeclaredScopeVerified": true,
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "legacyAux": "MANTER",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): card exato conferido em fonte aberta com desenho e limites declarados.",
+          "eliminatorsTriggered": []
+        }
+      }
+    ],
+    "referenceIntegrityAlerts": [
+      {
+        "id": "nitroprusside_thiocyanate_label",
+        "currentCard": {
+          "label": "Sodium Nitroprusside — DailyMed Prescribing Information",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=72a9b7df-3a2f-4c16-93a9-b645bc0e8143",
+          "journal": "DailyMed / U.S. National Library of Medicine",
+          "ano": 2023,
+          "tipo": "Bula profissional",
+          "badge": "BULA",
+          "badgeColor": "#64748b",
+          "impacto": "Nitroprussiato — toxicidade por tiocianato e remoção por hemodiálise",
+          "icon": "📋",
+          "resumo": "Bula profissional do nitroprussiato de sódio no DailyMed. Descreve metabolismo para cianeto e tiocianato, maior risco de acúmulo de tiocianato na disfunção renal, sintomas neurotóxicos e limites de velocidade de infusão em TFGe <30 mL/min/1,73 m² e anúria. Especifica que a hemodiálise renal pode eliminar tiocianato em toxicidade grave, enquanto não remove eficazmente cianeto.",
+          "conclusao": "Em toxicidade acumulativa por nitroprussiato na DRC, o metabólito-chave é o tiocianato; suspender a droga e considerar hemodiálise quando a toxicidade for relevante.",
+          "curiosidade": "O rótulo distingue explicitamente toxicidade por cianeto, que exige antídotos, da toxicidade por tiocianato, que é favorecida por disfunção renal e é dializável."
+        },
+        "currentCardSHA256": "d7e91dd818a10c60a0fbbd9b7f4b8b2894d1f1afd2d5b168255e8985eaa033e2",
+        "sourceIds": [
+          "nitro_label"
+        ],
+        "status": "CARD_REVISION_REQUIRED_NOT_A_READY_PATCH",
+        "issues": [
+          "Ano2023 diverge de Updated2022/Revised2021",
+          "Revisão precisa distinguir tiocianato/cianeto e não excluir urgência clínica da suspeita de cianeto"
+        ],
+        "implementation": "Não integrar novo card ou questão deste item bloqueado sem CardPatch e nova revisão exata."
+      },
+      {
+        "id": "liddle_syndrome_review_2019",
+        "currentCard": {
+          "label": "Tetti M et al. — Liddle's Syndrome: Mechanisms, Diagnosis and Management (2019)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6731958/",
+          "journal": "Integr Blood Press Control 2019;12:13-22",
+          "ano": 2019,
+          "tipo": "Revisão Clínica",
+          "badge": "REVIEW",
+          "badgeColor": "#0ea5e9",
+          "impacto": "Mecanismo da síndrome de Liddle: ganho de função do ENaC com hipertensão, hipocalemia, alcalose metabólica, renina e aldosterona baixas",
+          "icon": "📖",
+          "resumo": "Revisão sobre síndrome de Liddle, causa monogênica rara de hipertensão de início precoce por ganho de função do canal epitelial de sódio (ENaC), geralmente por variantes em SCNN1B ou SCNN1G que reduzem a degradação do canal. A maior reabsorção distal de sódio expande volume, suprime renina e aldosterona e aumenta a secreção distal de potássio e H+, produzindo hipocalemia e alcalose metabólica. O tratamento fisiologicamente dirigido bloqueia ENaC com amilorida ou triantereno; antagonistas de aldosterona são menos úteis quando a aldosterona está suprimida.",
+          "conclusao": "Hipertensão jovem com hipocalemia, alcalose metabólica e renina/aldosterona baixas aponta para pseudohiperaldosteronismo por ENaC; o alvo terapêutico é ENaC, não o receptor mineralocorticoide.",
+          "curiosidade": "A doença parece hiperaldosteronismo, mas é quase o espelho laboratorial dele: o rim age como se houvesse aldosterona demais, enquanto a própria aldosterona está baixa."
+        },
+        "currentCardSHA256": "4427824d54615d01b398b9504aa7f819d7a470a8244d36ff95b55aa7d6752e8a",
+        "sourceIds": [
+          "liddle2019_failed"
+        ],
+        "status": "BIBLIOGRAPHIC_IDENTITY_PENDING",
+        "issues": [
+          "LabelTetti incompatível com Enslow2019 indexado para PMC6731958; recuperar publicação integral e corrigir autoria em revisão de card específica"
+        ],
+        "implementation": "Nenhum patch ou aprovação do card atual; AFTERLiddle usa documento NLM específico verificado."
+      }
+    ],
+    "summary": {
+      "inputQuestions": 8,
+      "reviewed": 8,
+      "originalApprovedWithMinorAdjustments": 1,
+      "proposalsReleased": 7,
+      "proposalsBlocked": 1,
+      "actualBankEdits": 0
+    },
+    "items": [
+      {
+        "qid": "7e4990d5",
+        "sourceLine": 28,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4 Regra7(b)/(c): revisão maior ou falta decisiva impede liberação da versão original.",
+        "OP": "Comparar o padrão típico de calciúria em Gitelman e Bartter, reconhecendo sobreposição.",
+        "classification": {
+          "primaryCompetency": "interpretação de fenótipo tubular",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "MAIOR: referência genérica não sustenta diferencial; mecanismo distal de hipocalciúria não foi verificado como apresentado.",
+          "ELIMINATÓRIO5: acidose em alternativa sobre excreção de cálcio não é distrator paralelo.",
+          "MAIOR: calciúria tem sobreposição e não deve determinar diagnóstico isolado."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "MAIOR: referência genérica não sustenta diferencial; mecanismo distal de hipocalciúria não foi verificado como apresentado.",
+            "ELIMINATÓRIO5: acidose em alternativa sobre excreção de cálcio não é distrator paralelo.",
+            "MAIOR: calciúria tem sobreposição e não deve determinar diagnóstico isolado."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": true
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [],
+          "total": null,
+          "annulled": true
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_revisão",
+          "path": [
+            "evidência e compatibilidade",
+            "eliminatórios/recurso",
+            "banda individual ou score anulado"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "OPs do lote004 e lotes A anteriores, sem diagnóstico global repetido",
+          "finding": "Gitelman/Bartter reaparece com OP especificamente calciúria; nenhuma fusão determinada por mera coincidência temática."
+        },
+        "sources": [
+          {
+            "sourceId": "gitelman2017",
+            "opened": true,
+            "claimSupport": "Gitelman decorre de perda de função do NCC; hipocalciúria/hipomagnesemia são características; Bartter clássico pode ter Mg normal ou sobreposição Gitelman-like."
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Síndrome de Bartter vs. Síndrome de Gitelman",
+            "qid": "7e4990d5",
+            "q": "Qual alteração na excreção urinária de cálcio ajuda a diferenciar clinicamente a Síndrome de Gitelman da Síndrome de Bartter?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Gitelman apresenta hipocalciúria; Bartter apresenta hipercalciúria (ou normocalciúria)",
+              "Bartter apresenta hipocalciúria; Gitelman apresenta hipercalciúria",
+              "Gitelman cursa com acidose metabólica, facilitando o diagnóstico",
+              "Ambas apresentam hipercalciúria grave"
+            ],
+            "ans": 0,
+            "exp": "A Síndrome de Gitelman é caracterizada por hipocalciúria, enquanto a Síndrome de Bartter geralmente apresenta hipercalciúria. Na Síndrome de Gitelman, a mutação afeta o cotransportador Na-Cl no túbulo distal, resultando em maior reabsorção de cálcio no túbulo distal e, portanto, menor excreção urinária de cálcio. Já na Síndrome de Bartter, a mutação ocorre no ramo ascendente espesso da alça de Henle, onde o cálcio não é reabsorvido de forma eficiente, levando a hipercalciúria. Assim, a hipocalciúria é uma característica distintiva da Síndrome de Gitelman.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "after": {
+            "t": "Síndrome de Bartter vs. Síndrome de Gitelman",
+            "qid": "7e4990d5",
+            "q": "Qual padrão de excreção urinária de cálcio é típico no diferencial entre as síndromes de Gitelman e Bartter, embora possa haver sobreposição?",
+            "refs": [
+              "gitelman_kdigo_2017"
+            ],
+            "opts": [
+              "Hipocalciúria em Gitelman; calciúria normal ou alta em Bartter.",
+              "Calciúria alta em Gitelman; hipocalciúria em Bartter.",
+              "Calciúria alta em Gitelman; calciúria normal ou alta em Bartter.",
+              "Calciúria normal em Gitelman; hipocalciúria em Bartter."
+            ],
+            "ans": 0,
+            "exp": "Gitelman tipicamente apresenta hipocalciúria; Bartter costuma apresentar calciúria normal ou elevada. O padrão ajuda no diferencial, mas há sobreposição, especialmente em doença associada a CLCNKB, e a hipocalciúria é variável em Gitelman. Integrar calciúria a magnesemia, história clínica e investigação genética quando indicada. Não afirmar que o achado isolado distingue todos os pacientes.",
+            "diff": "easy",
+            "cat": "eletrólitos"
+          },
+          "beforeSHA256": "9101d49323d9656e02a625e5a65fe75608d69070e42af68dc24f0941f5dfb79a",
+          "afterSHA256": "fd40dd9d4d5c0cd105f89874acb3b3a11b2eba655a4c0f789670324f32f1499d",
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 0,
+            "sourceLetter": "A",
+            "text": "Hipocalciúria em Gitelman; calciúria normal ou alta em Bartter."
+          },
+          "implementation": "Somente AFTER exato LIBERADA; preservar qid, posição e gabarito clínico. Registrar/reconciliar cards antes dos vínculos sem referências órfãs. Fonte, conteúdo ou hash materialmente diferente exige nova revisão. Nenhum banco editado neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "fd40dd9d4d5c0cd105f89874acb3b3a11b2eba655a4c0f789670324f32f1499d",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): fontes decisivas abertas e aprovação formal da versão exata, sem pendência.",
+          "appeal": {
+            "plausible": false,
+            "finding": "O comando pergunta pelo padrão típico e explicita sobreposição. As quatro alternativas comparam somente calciúria, sem segundo gabarito típico. A explicação não repete mecanismo distal não conferido."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente"
+          },
+          "decision": {
+            "path": [
+              "VERIFICADA/NENHUMA",
+              "sem eliminatório depois do reparo",
+              "recurso específico resolvido",
+              "19/20, aprovada"
+            ],
+            "lifeCycle": "em_reparo"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": true,
+            "decisiveSourcesOpened": true,
+            "lengthDoesNotAuthorizeClinicalApproval": true
+          },
+          "verificationPending": []
+        }
+      },
+      {
+        "qid": "b5f6baf9",
+        "sourceLine": 48,
+        "reviewStatus": "REVIEWED",
+        "verdict": "aprovada com pequenos ajustes",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4 Regra7(a): aprovação com ajustes menores da versão original verificada; integração usa novo AFTER.",
+        "OP": "Inferir baixo turnover a partir de PTH/fosfatase óssea baixos sem confirmar histologia.",
+        "classification": {
+          "primaryCompetency": "interpretação de biomarcadores ósseos",
+          "bloom": "Analisar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "MENOR: correta inclui interpretação, ressalva e biópsia, tornando-a desproporcional.",
+          "MENOR: opções devem comparar inferências sobre o mesmo perfil, mantendo biópsia na explicação.",
+          "MENOR: interpretar marcador não requer dificuldade hard."
+        ],
+        "appealOriginal": {
+          "plausible": false,
+          "arguments": [
+            "MENOR: correta inclui interpretação, ressalva e biópsia, tornando-a desproporcional.",
+            "MENOR: opções devem comparar inferências sobre o mesmo perfil, mantendo biópsia na explicação.",
+            "MENOR: interpretar marcador não requer dificuldade hard."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": false
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 1
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 1
+            },
+            {
+              "dimension": "Distratores",
+              "score": 1
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 16,
+          "annulled": false
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_reparo",
+          "path": [
+            "evidência e compatibilidade",
+            "eliminatórios/recurso",
+            "banda individual ou score anulado"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "OPs do lote004 e lotes A anteriores, sem diagnóstico global repetido",
+          "finding": "Gitelman/Bartter reaparece com OP especificamente calciúria; nenhuma fusão determinada por mera coincidência temática."
+        },
+        "sources": [
+          {
+            "sourceId": "mbd2017",
+            "opened": true,
+            "claimSupport": "PTH/fosfatase alcalina óssea extremos predizem turnover; marcadores não definem sozinhos histologia individual. Biópsia razoável quando mudará decisão."
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "DMO-DRC — Suspeita de Baixo Turnover Ósseo",
+            "qid": "b5f6baf9",
+            "q": "Paciente em hemodiálise apresenta, em medidas seriadas, PTH intacto abaixo de duas vezes o limite superior do ensaio e fosfatase alcalina óssea baixa. Qual é a interpretação mais adequada?",
+            "refs": [
+              "kdigo_ckd_mbd_2017"
+            ],
+            "opts": [
+              "O perfil sugere baixo turnover ósseo, mas não confirma sozinho doença óssea adinâmica; biópsia pode ser considerada se o tipo de osteodistrofia mudar a conduta",
+              "O perfil confirma osteíte fibrosa de alto turnover e indica intensificar imediatamente vitamina D ativa",
+              "A fosfatase alcalina óssea baixa confirma osteomalácia por alumínio, independentemente da exposição e da histologia",
+              "PTH e fosfatase alcalina não fornecem nenhuma informação sobre turnover ósseo na DRC"
+            ],
+            "ans": 0,
+            "exp": "Valores marcadamente baixos ou altos de PTH e fosfatase alcalina óssea ajudam a estimar o turnover na DRC, e o conjunto descrito sugere baixo turnover. Entretanto, nenhum biomarcador isolado ou combinação bioquímica classifica com segurança a histologia óssea de cada paciente. A biópsia óssea continua sendo o padrão para definir o tipo de osteodistrofia e pode ser considerada quando o resultado mudaria decisões terapêuticas. PTH alto com fosfatase alcalina elevada favoreceria alto turnover; osteomalácia é um defeito de mineralização e não pode ser atribuída automaticamente ao alumínio.",
+            "diff": "hard",
+            "cat": "dialise"
+          },
+          "after": {
+            "t": "Interpretação de marcadores ósseos na hemodiálise",
+            "qid": "b5f6baf9",
+            "q": "Paciente em hemodiálise apresenta, em medidas seriadas, paratormônio (PTH) intacto abaixo de duas vezes o limite superior do ensaio e fosfatase alcalina óssea baixa. Qual é a interpretação mais adequada?",
+            "refs": [
+              "kdigo_ckd_mbd_2017"
+            ],
+            "opts": [
+              "Sugere baixo turnover, sem definir sozinho a histologia óssea.",
+              "Sugere alto turnover, por indicar intensa atividade osteoblástica.",
+              "Sugere osteomalácia por alumínio, mesmo sem história de exposição.",
+              "Sugere turnover normal, porque o PTH permanece detectável."
+            ],
+            "ans": 0,
+            "exp": "O perfil sugere baixo turnover ósseo, sem confirmar sozinho doença óssea adinâmica. Valores marcadamente baixos ou altos de paratormônio (PTH) e fosfatase alcalina óssea ajudam a estimar turnover na doença renal crônica (DRC), mas não definem com segurança a histologia de cada paciente. A biópsia pode ser considerada quando identificar o tipo de osteodistrofia mudará a conduta. Alto turnover seria favorecido por PTH e fosfatase elevados; osteomalácia é defeito de mineralização e não pode ser atribuída automaticamente ao alumínio.",
+            "diff": "medium",
+            "cat": "dialise"
+          },
+          "beforeSHA256": "3ab4d7a0fa707bcd92508324c28ed3647db49018be95ea2639f4f0fc58bd8c0c",
+          "afterSHA256": "fd888683d35f29693fa2359733b69f97c47d2d55483bacbae73f8e14588f2dad",
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [
+            "t",
+            "q",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 0,
+            "sourceLetter": "A",
+            "text": "Sugere baixo turnover, sem definir sozinho a histologia óssea."
+          },
+          "implementation": "Somente AFTER exato LIBERADA; preservar qid, posição e gabarito clínico. Registrar/reconciliar cards antes dos vínculos sem referências órfãs. Fonte, conteúdo ou hash materialmente diferente exige nova revisão. Nenhum banco editado neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "fd888683d35f29693fa2359733b69f97c47d2d55483bacbae73f8e14588f2dad",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): fontes decisivas abertas e aprovação formal da versão exata, sem pendência.",
+          "appeal": {
+            "plausible": false,
+            "finding": "Baixos marcadores seriados favorecem baixo turnover, sem diagnóstico histológico definitivo. PTH detectável não é sinônimo de turnover normal e não confirma alto turnover/mineralização alterada. Biópsia depende de mudança de conduta, não de valor isolado."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente"
+          },
+          "decision": {
+            "path": [
+              "VERIFICADA/NENHUMA",
+              "sem eliminatório depois do reparo",
+              "recurso específico resolvido",
+              "19/20, aprovada"
+            ],
+            "lifeCycle": "em_reparo"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": true,
+            "decisiveSourcesOpened": true,
+            "lengthDoesNotAuthorizeClinicalApproval": true
+          },
+          "verificationPending": []
+        }
+      },
+      {
+        "qid": "8b80b0a9",
+        "sourceLine": 58,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4 Regra7(b)/(c): revisão maior ou falta decisiva impede liberação da versão original.",
+        "OP": "Reconhecer alterações eletrocardiográficas clássicas da hipercalemia sem inferir progressão obrigatória.",
+        "classification": {
+          "primaryCompetency": "interpretação eletrocardiográfica",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "MAIOR: explicação omite que a sequência não é obrigatória e ECG pode ser normal em hipercalemia grave.",
+          "MAIOR: opções têm número e detalhamento de etapas diferentes; alargamento do QRS não deve ser substituído por encurtamento como progressão clássica.",
+          "MENOR: usar fonte atual2026 e retirar livro genérico não recuperado."
+        ],
+        "appealOriginal": {
+          "plausible": false,
+          "arguments": [
+            "MAIOR: explicação omite que a sequência não é obrigatória e ECG pode ser normal em hipercalemia grave.",
+            "MAIOR: opções têm número e detalhamento de etapas diferentes; alargamento do QRS não deve ser substituído por encurtamento como progressão clássica.",
+            "MENOR: usar fonte atual2026 e retirar livro genérico não recuperado."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": false
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 1
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 1
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 1
+            },
+            {
+              "dimension": "Distratores",
+              "score": 1
+            },
+            {
+              "dimension": "Explicação",
+              "score": 1
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 14,
+          "annulled": false
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_revisão",
+          "path": [
+            "evidência e compatibilidade",
+            "eliminatórios/recurso",
+            "banda individual ou score anulado"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "OPs do lote004 e lotes A anteriores, sem diagnóstico global repetido",
+          "finding": "Gitelman/Bartter reaparece com OP especificamente calciúria; nenhuma fusão determinada por mera coincidência temática."
+        },
+        "sources": [
+          {
+            "sourceId": "ukka2026",
+            "opened": true,
+            "claimSupport": "Quelantes podem permitir otimização do bloqueio do SRAA em adultos selecionados com hipercalemia persistente; não substituem proteção cardíaca urgente ou monitorização. Alterações ECG clássicas não ocorrem sempre em sequência; ECG normal não exclui hipercalemia grave. Insulina promove captação celular de potássio pela Na/K-ATPase."
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Hipercalemia e ECG",
+            "qid": "8b80b0a9",
+            "q": "Qual sequência eletrocardiográfica é mais compatível com hipercalemia progressiva?",
+            "refs": [
+              "ukka_hyperkalemia_2023",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Ondas T apiculadas → prolongamento do PR/achatamento da onda P → alargamento do QRS → padrão sinusoidal",
+              "Onda U proeminente → depressão do ST → prolongamento do QT → torsades de pointes",
+              "Supradesnivelamento difuso do ST → onda Q patológica → inversão tardia da onda T",
+              "Bloqueio atrioventricular completo isolado → fibrilação atrial → encurtamento progressivo do QRS"
+            ],
+            "ans": 0,
+            "exp": "A sequência clássica da hipercalemia progressiva começa com ondas T altas e apiculadas, seguida por lentificação da condução atrioventricular/intraventricular (prolongamento do PR, achatamento ou desaparecimento da onda P), alargamento do QRS e, em toxicidade extrema, padrão sinusoidal ou parada. Onda U e prolongamento de QT apontam mais para hipocalemia; supradesnivelamento de ST e ondas Q pertencem a outro raciocínio diagnóstico.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "after": {
+            "t": "Hipercalemia e eletrocardiograma",
+            "qid": "8b80b0a9",
+            "q": "Qual sequência esquemática descreve o padrão eletrocardiográfico clássico associado à piora da hipercalemia, sem representar uma progressão obrigatória em cada paciente?",
+            "refs": [
+              "ukka_hyperkalemia_update_2026"
+            ],
+            "opts": [
+              "T apiculada → PR prolongado/P reduzida → QRS largo/padrão sinusoidal.",
+              "T achatada → onda U proeminente → intervalo QT prolongado.",
+              "T apiculada → PR encurtado/P aumentada → QRS progressivamente estreito.",
+              "Q patológica → ST persistentemente elevado → inversão tardia da onda T."
+            ],
+            "ans": 0,
+            "exp": "O padrão clássico inclui T apiculada, redução da onda P e prolongamento do PR, seguido de alargamento do QRS e possível padrão sinusoidal. As alterações podem ocorrer juntas ou fora dessa sequência; eletrocardiograma normal não exclui hipercalemia grave. As outras combinações não descrevem o padrão clássico solicitado. Avaliar o exame junto ao potássio sérico, sua velocidade de elevação e o estado clínico, sem esperar toda a sequência para reconhecer toxicidade.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "beforeSHA256": "b6990004c340b218d98ff7e7fedf86e30b13987da6770775cc431a1d49080ff2",
+          "afterSHA256": "e81efd1edfbc57eaed8219672ed7a550c1737e7d4cdb049627877494b414ea3a",
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [
+            "t",
+            "q",
+            "refs",
+            "opts",
+            "exp"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 0,
+            "sourceLetter": "A",
+            "text": "T apiculada → PR prolongado/P reduzida → QRS largo/padrão sinusoidal."
+          },
+          "implementation": "Somente AFTER exato LIBERADA; preservar qid, posição e gabarito clínico. Registrar/reconciliar cards antes dos vínculos sem referências órfãs. Fonte, conteúdo ou hash materialmente diferente exige nova revisão. Nenhum banco editado neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "e81efd1edfbc57eaed8219672ed7a550c1737e7d4cdb049627877494b414ea3a",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): fontes decisivas abertas e aprovação formal da versão exata, sem pendência.",
+          "appeal": {
+            "plausible": false,
+            "finding": "O comando preserva reconhecimento do padrão clássico e a explicação impede uso como relógio de gravidade. Todas as alternativas têm três blocos; nenhuma interpretação de ECG normal como exclusão permanece."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente"
+          },
+          "decision": {
+            "path": [
+              "VERIFICADA/NENHUMA",
+              "sem eliminatório depois do reparo",
+              "recurso específico resolvido",
+              "19/20, aprovada"
+            ],
+            "lifeCycle": "em_reparo"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": true,
+            "decisiveSourcesOpened": true,
+            "lengthDoesNotAuthorizeClinicalApproval": true
+          },
+          "verificationPending": []
+        }
+      },
+      {
+        "qid": "43b59c52",
+        "sourceLine": 61,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "moderada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4 Regra7(b)/(c): revisão maior ou falta decisiva impede liberação da versão original.",
+        "OP": "Reconhecer toxicidade acumulativa de tiocianato na disfunção renal e sua possibilidade de remoção dialítica.",
+        "classification": {
+          "primaryCompetency": "diagnóstico toxicológico e manejo",
+          "bloom": "Analisar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "CRÍTICO: acidose e confusão sob nitroprussiato tornam toxicidade por cianeto uma possibilidade clinicamente relevante; DRC/infusão prolongada não a excluem.",
+          "ELIMINATÓRIO4: a explicação descarta cianeto como fora do foco, apesar de a bula exigir tratamento já na suspeita.",
+          "ELIMINATÓRIOS1/8: caso não permite atribuição exclusiva da toxicidade a tiocianato; dados discriminativos faltam.",
+          "ELIMINATÓRIO5: metanol não é metabólito do nitroprussiato; distratores de origem metabólica são pouco plausíveis.",
+          "MAIOR: card ano2023 diverge de Updated31/12/2022/Revised11/2021.",
+          "MAIOR: título nomeia tiocianato e pode entregar a resposta antes da análise clínica; reparar juntamente com o caso."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "CRÍTICO: acidose e confusão sob nitroprussiato tornam toxicidade por cianeto uma possibilidade clinicamente relevante; DRC/infusão prolongada não a excluem.",
+            "ELIMINATÓRIO4: a explicação descarta cianeto como fora do foco, apesar de a bula exigir tratamento já na suspeita.",
+            "ELIMINATÓRIOS1/8: caso não permite atribuição exclusiva da toxicidade a tiocianato; dados discriminativos faltam.",
+            "ELIMINATÓRIO5: metanol não é metabólito do nitroprussiato; distratores de origem metabólica são pouco plausíveis.",
+            "MAIOR: card ano2023 diverge de Updated31/12/2022/Revised11/2021.",
+            "MAIOR: título nomeia tiocianato e pode entregar a resposta antes da análise clínica; reparar juntamente com o caso."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": true
+          },
+          {
+            "number": 2,
+            "triggered": false
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": true
+          },
+          {
+            "number": 5,
+            "triggered": true
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": true
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [],
+          "total": null,
+          "annulled": true
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_revisão",
+          "path": [
+            "evidência e compatibilidade",
+            "eliminatórios/recurso",
+            "banda individual ou score anulado"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "OPs do lote004 e lotes A anteriores, sem diagnóstico global repetido",
+          "finding": "Gitelman/Bartter reaparece com OP especificamente calciúria; nenhuma fusão determinada por mera coincidência temática."
+        },
+        "sources": [
+          {
+            "sourceId": "nitro_label",
+            "opened": true,
+            "claimSupport": "Tiocianato neurotóxico é eliminado pelos rins e removível por HD na toxicidade grave; cianeto pode causar confusão/acidose láctica e suspeita já exige tratamento, sem remoção eficaz por HD."
+          }
+        ],
+        "patch": {
+          "instruction": "PENDENTE – NÃO IMPLEMENTAR",
+          "before": {
+            "t": "Toxicidade por Nitroprussiato e Tiocianato",
+            "qid": "43b59c52",
+            "q": "Paciente com DRC avançada recebe nitroprussiato de sódio em infusão prolongada e evolui com confusão mental, zumbido, náuseas e acidose metabólica. Qual metabólito explica melhor a toxicidade acumulativa nesse contexto e qual medida remove esse metabólito?",
+            "refs": [
+              "nitroprusside_thiocyanate_label",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Tiocianato; suspender o nitroprussiato e considerar hemodiálise se toxicidade relevante",
+              "Ureia; intensificar diálise peritoneal como estratégia preferencial",
+              "Metanol; administrar etanol intravenoso como antídoto específico",
+              "Lactato; corrigir exclusivamente com bicarbonato de sódio intravenoso"
+            ],
+            "ans": 0,
+            "exp": "Em infusão prolongada de nitroprussiato, especialmente na disfunção renal, o tiocianato pode se acumular e causar toxicidade neurológica. A conduta é suspender o nitroprussiato, dar suporte e considerar hemodiálise quando há toxicidade relevante, pois o tiocianato é dializável. A intoxicação aguda por cianeto é outro quadro do nitroprussiato e exige antídotos específicos, mas não é o foco deste item, que cobra a toxicidade acumulativa por tiocianato na DRC.",
+            "diff": "medium",
+            "cat": "acido_base"
+          },
+          "after": null,
+          "beforeSHA256": "2f9a4a9ec76059a890ff475b43eef8cffd3a88a123f9c98450fea6c150706db7",
+          "afterSHA256": null,
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [],
+          "correctAnswer": null,
+          "implementation": "Somente AFTER exato LIBERADA; preservar qid, posição e gabarito clínico. Registrar/reconciliar cards antes dos vínculos sem referências órfãs. Fonte, conteúdo ou hash materialmente diferente exige nova revisão. Nenhum banco editado neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": null,
+          "reviewStatus": "NO_PROPOSAL_PENDING_CLINICAL_ADJUDICATION",
+          "verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "evidence": "PARCIALMENTE VERIFICADA",
+          "pendingNature": "DECISIVA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivation": "Handbook18.4 Regra7(b)/(c): caso clínico não adjudicado, sem proposta aprovada.",
+          "appeal": {
+            "plausible": true,
+            "finding": "Reformular o caso para distinguir toxicidades sem apagar dado útil de acidose; explicação deve reconhecer urgência do cianeto e limites da HD. Corrigir card em revisão formal específica, com BEFORE/AFTER exatos e nova versão reavaliada. Nenhum AFTER aprovado nesta rodada."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": true
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": true
+            },
+            {
+              "number": 5,
+              "triggered": true
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": true
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [],
+            "total": null,
+            "annulled": true,
+            "band": "anulado"
+          },
+          "decision": {
+            "path": [
+              "pendência clínica decisiva",
+              "score anulado",
+              "bloqueio mantido"
+            ],
+            "lifeCycle": "em_revisão"
+          },
+          "finalAudit": {
+            "fourAlternatives": false,
+            "singleBestAnswerVerified": false,
+            "answerIndexAndTextMatch": false,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": false,
+            "decisiveSourcesOpened": false,
+            "lengthDoesNotAuthorizeClinicalApproval": true
+          },
+          "verificationPending": [
+            {
+              "nature": "DECISIVA",
+              "claim": "Reformular o caso para distinguir toxicidades sem apagar dado útil de acidose; explicação deve reconhecer urgência do cianeto e limites da HD. Corrigir card em revisão formal específica, com BEFORE/AFTER exatos e nova versão reavaliada. Nenhum AFTER aprovado nesta rodada.",
+              "blocksPublication": true
+            }
+          ]
+        }
+      },
+      {
+        "qid": "71a9210e",
+        "sourceLine": 76,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4 Regra7(b)/(c): revisão maior ou falta decisiva impede liberação da versão original.",
+        "OP": "Relacionar fenótipo de Liddle e variante patogênica SCNN1B ao ganho de atividade de ENaC.",
+        "classification": {
+          "primaryCompetency": "interpretação genótipo-fenótipo",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "ELIMINATÓRIO2: card ligado tem autoria incompatível com publicação indexada; conteúdo completo não foi recuperado.",
+          "MAIOR: os distratores misturam genética, deficiência de renina e resistência hormonal com níveis diferentes de descrição.",
+          "MENOR: restringir a explicação ao mecanismo/variante do caso e substituir a referência por documento oficial conferido."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "ELIMINATÓRIO2: card ligado tem autoria incompatível com publicação indexada; conteúdo completo não foi recuperado.",
+            "MAIOR: os distratores misturam genética, deficiência de renina e resistência hormonal com níveis diferentes de descrição.",
+            "MENOR: restringir a explicação ao mecanismo/variante do caso e substituir a referência por documento oficial conferido."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [],
+          "total": null,
+          "annulled": true
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_revisão",
+          "path": [
+            "evidência e compatibilidade",
+            "eliminatórios/recurso",
+            "banda individual ou score anulado"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "OPs do lote004 e lotes A anteriores, sem diagnóstico global repetido",
+          "finding": "Gitelman/Bartter reaparece com OP especificamente calciúria; nenhuma fusão determinada por mera coincidência temática."
+        },
+        "sources": [
+          {
+            "sourceId": "liddle_nlm",
+            "opened": true,
+            "claimSupport": "SCNN1B/SCNN1G alteram ENaC; mais canais na superfície e maior reabsorção de sódio/água causam hipertensão/hipocalemia."
+          },
+          {
+            "sourceId": "liddle2019_failed",
+            "opened": false,
+            "claimSupport": "PMC CAPTCHA, PubMed texto não recuperado. Metadados indexados apontam Enslow/Stockand/Berman, não Tetti do label; fonte completa necessita recuperação antes de corrigir card."
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Síndrome de Liddle — ENaC e Pseudohiperaldosteronismo",
+            "qid": "71a9210e",
+            "q": "Jovem de 19 anos tem hipertensão grave, hipocalemia (K 2,8 mEq/L) e alcalose metabólica. Renina e aldosterona estão suprimidas, e o teste genético identifica variante patogênica em SCNN1B. Qual mecanismo explica o quadro?",
+            "refs": [
+              "liddle_syndrome_review_2019",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Perda de função do cotransportador NKCC2 no ramo ascendente espesso da alça de Henle",
+              "Deficiência adquirida de renina com hipotensão, hiponatremia e hipercalemia",
+              "Ganho de função do canal epitelial de sódio (ENaC) no néfron distal, com expansão volêmica",
+              "Resistência periférica à aldosterona, com perda renal de sódio e hipercalemia persistente"
+            ],
+            "ans": 2,
+            "exp": "A síndrome de Liddle é um pseudohiperaldosteronismo por ganho de função do ENaC no néfron distal. A reabsorção excessiva de sódio expande o volume extracelular, causa hipertensão e suprime renina e aldosterona; o maior fluxo eletrogênico favorece secreção de K+ e H+, levando a hipocalemia e alcalose metabólica. NKCC2 defeituoso sugere Bartter; resistência à aldosterona cursaria com padrão oposto, especialmente hipercalemia.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "after": {
+            "t": "Hipertensão precoce com renina e aldosterona suprimidas",
+            "qid": "71a9210e",
+            "q": "Jovem de 19 anos tem hipertensão grave, hipocalemia (K 2,8 mEq/L) e alcalose metabólica. Renina e aldosterona estão suprimidas, e o teste genético identifica variante patogênica em SCNN1B. Qual mecanismo explica o quadro?",
+            "refs": [
+              "liddle_nlm_genetics_2013"
+            ],
+            "opts": [
+              "Perda de função do canal epitelial de sódio no néfron distal.",
+              "Ganho de função do receptor mineralocorticoide no néfron distal.",
+              "Ganho de função do canal epitelial de sódio (ENaC) no néfron distal.",
+              "Perda de função do receptor mineralocorticoide no néfron distal."
+            ],
+            "ans": 2,
+            "exp": "O quadro corresponde à atividade excessiva do canal epitelial de sódio (ENaC), compatível com síndrome de Liddle. Variantes causadoras em SCNN1B podem reduzir a degradação do canal e aumentar sua presença na superfície celular, elevando a reabsorção renal de sódio e água. Isso explica hipertensão com renina e aldosterona suprimidas, além de hipocalemia e alcalose. Perda de função de ENaC produziria padrão oposto de transporte; defeitos do receptor mineralocorticoide não explicam a variante SCNN1B declarada. Interpretar a consequência da variante, sem generalizar para qualquer alteração nesse gene.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "beforeSHA256": "4b71fd1ffcc0a5ae8f71286524d2de093556bcd35db928bcc12c2950433285fa",
+          "afterSHA256": "3fa64ff2d83f10f637b6923e79a497e7da157b602c7f437d362b594d4cf83edb",
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [
+            "t",
+            "refs",
+            "opts",
+            "exp"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 2,
+            "sourceLetter": "C",
+            "text": "Ganho de função do canal epitelial de sódio (ENaC) no néfron distal."
+          },
+          "implementation": "Somente AFTER exato LIBERADA; preservar qid, posição e gabarito clínico. Registrar/reconciliar cards antes dos vínculos sem referências órfãs. Fonte, conteúdo ou hash materialmente diferente exige nova revisão. Nenhum banco editado neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "3fa64ff2d83f10f637b6923e79a497e7da157b602c7f437d362b594d4cf83edb",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): fontes decisivas abertas e aprovação formal da versão exata, sem pendência.",
+          "appeal": {
+            "plausible": false,
+            "finding": "A variante é declarada patogênica e o fenótipo confirma direção de função. O gene também pode ter variantes com outras consequências; o AFTER evita equiparar qualquer variante a Liddle. Nenhuma conduta farmacológica não recuperada foi mantida."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente"
+          },
+          "decision": {
+            "path": [
+              "VERIFICADA/NENHUMA",
+              "sem eliminatório depois do reparo",
+              "recurso específico resolvido",
+              "19/20, aprovada"
+            ],
+            "lifeCycle": "em_reparo"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": true,
+            "decisiveSourcesOpened": true,
+            "lengthDoesNotAuthorizeClinicalApproval": true
+          },
+          "verificationPending": []
+        }
+      },
+      {
+        "qid": "cb6c4aae",
+        "sourceLine": 80,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4 Regra7(b)/(c): revisão maior ou falta decisiva impede liberação da versão original.",
+        "OP": "Explicar ampliação de remoção de moléculas médias pela convecção associada à difusão na HDF online.",
+        "classification": {
+          "primaryCompetency": "mecanismo de terapia dialítica",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "ELIMINATÓRIO5: osmose reversa diretamente no sangue é distrator absurdo e não mecanismo dialítico plausível.",
+          "MAIOR: correta longa empilha mecanismo, água e reposição; opções precisam comparar transportes.",
+          "MAIOR: fluido exige esterilidade e ausência de pirogênios; CONVINCE não é referência específica para mecanismo e não abriu."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "ELIMINATÓRIO5: osmose reversa diretamente no sangue é distrator absurdo e não mecanismo dialítico plausível.",
+            "MAIOR: correta longa empilha mecanismo, água e reposição; opções precisam comparar transportes.",
+            "MAIOR: fluido exige esterilidade e ausência de pirogênios; CONVINCE não é referência específica para mecanismo e não abriu."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": true
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [],
+          "total": null,
+          "annulled": true
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_revisão",
+          "path": [
+            "evidência e compatibilidade",
+            "eliminatórios/recurso",
+            "banda individual ou score anulado"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "OPs do lote004 e lotes A anteriores, sem diagnóstico global repetido",
+          "finding": "Gitelman/Bartter reaparece com OP especificamente calciúria; nenhuma fusão determinada por mera coincidência temática."
+        },
+        "sources": [
+          {
+            "sourceId": "hdf_eudial2025",
+            "opened": true,
+            "claimSupport": "HDF combina difusão e convecção, com reposição do filtrado excedente por solução estéril e apirogênica; amplia clearance de moléculas médias."
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Hemodiafiltração — Difusão e Convecção",
+            "qid": "cb6c4aae",
+            "q": "Qual característica da hemodiafiltração online amplia a remoção de moléculas médias em relação à hemodiálise convencional de alto fluxo?",
+            "refs": [
+              "daugirdas_handbook_of_dialysis",
+              "convince_study"
+            ],
+            "opts": [
+              "Associação da difusão à convecção, com arraste de solutos pelo fluxo de água através da membrana e reposição de volume por fluido estéril",
+              "Uso exclusivo de difusão, sem ultrafiltração além da necessária para controlar o peso",
+              "Osmose reversa aplicada diretamente ao sangue para retirar toxinas urêmicas",
+              "Adsorção inespecífica como único mecanismo de depuração, sem transporte de água pela membrana"
+            ],
+            "ans": 0,
+            "exp": "A hemodiafiltração mantém a difusão, eficiente para pequenos solutos, e acrescenta convecção em grande volume. Na convecção, o fluxo transmembrana de água carrega solutos por arraste de solvente, favorecendo a depuração de moléculas médias; o volume removido além da perda de peso desejada é reposto com fluido de substituição estéril. Osmose reversa pertence ao tratamento da água, e adsorção não é o mecanismo definidor da HDF.",
+            "diff": "medium",
+            "cat": "dialise"
+          },
+          "after": {
+            "t": "Hemodiafiltração e remoção de solutos",
+            "qid": "cb6c4aae",
+            "q": "Qual componente da hemodiafiltração (HDF) online amplia a remoção de moléculas médias em relação à hemodiálise convencional de alto fluxo?",
+            "refs": [
+              "hdf_eudial_era_2025"
+            ],
+            "opts": [
+              "Convecção acrescentada à difusão, com reposição do filtrado excedente.",
+              "Difusão ampliada sem reposição, mantendo apenas a perda de peso desejada.",
+              "Convecção exclusiva sem difusão, com reposição do filtrado excedente.",
+              "Difusão associada à adsorção, sem componente de transporte convectivo."
+            ],
+            "ans": 0,
+            "exp": "A HDF associa difusão à convecção em maior volume: o fluxo de água pela membrana carrega solutos por arraste de solvente. O filtrado além da perda de peso desejada é reposto com solução estéril e apirogênica. A hemodiálise de alto fluxo também pode ter transporte convectivo interno; a diferença não é ausência absoluta de convecção nela. A ampliação do clearance de moléculas médias não implica automaticamente menor concentração pré-diálise ou benefício clínico universal.",
+            "diff": "easy",
+            "cat": "dialise"
+          },
+          "beforeSHA256": "ba7e25f2918874c3c196652f6199779d1a371de313333f7d1a017d29e380fcbd",
+          "afterSHA256": "6c2fb99d713146849102c20ba186703919811338f20191f9177798e40658f67e",
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [
+            "t",
+            "q",
+            "refs",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 0,
+            "sourceLetter": "A",
+            "text": "Convecção acrescentada à difusão, com reposição do filtrado excedente."
+          },
+          "implementation": "Somente AFTER exato LIBERADA; preservar qid, posição e gabarito clínico. Registrar/reconciliar cards antes dos vínculos sem referências órfãs. Fonte, conteúdo ou hash materialmente diferente exige nova revisão. Nenhum banco editado neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "6c2fb99d713146849102c20ba186703919811338f20191f9177798e40658f67e",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): fontes decisivas abertas e aprovação formal da versão exata, sem pendência.",
+          "appeal": {
+            "plausible": false,
+            "finding": "A questão mede mecanismo, não mortalidade nem concentração pré-diálise. Mantém difusão e reposição na correta; convecção exclusiva descreve outro método. Não afirma que HD de alto fluxo tem zero convecção."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente"
+          },
+          "decision": {
+            "path": [
+              "VERIFICADA/NENHUMA",
+              "sem eliminatório depois do reparo",
+              "recurso específico resolvido",
+              "19/20, aprovada"
+            ],
+            "lifeCycle": "em_reparo"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": true,
+            "decisiveSourcesOpened": true,
+            "lengthDoesNotAuthorizeClinicalApproval": true
+          },
+          "verificationPending": []
+        }
+      },
+      {
+        "qid": "09451637",
+        "sourceLine": 81,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4 Regra7(b)/(c): revisão maior ou falta decisiva impede liberação da versão original.",
+        "OP": "Reconhecer carga de carboidratos como gatilho alimentar de paralisia periódica tireotóxica.",
+        "classification": {
+          "primaryCompetency": "reconhecimento de gatilho metabólico",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "ELIMINATÓRIO2: somente livro genérico não recuperado como referência; fonte específica necessária para gatilho.",
+          "ELIMINATÓRIO5: betabloqueador descrito como estimulante da bomba e sódio deslocando K para fora são distratores farmacológicos/metabólicos pouco plausíveis.",
+          "MAIOR: correta contém mecanismo completo e comparação desproporcional; evitar dose ou prescrição fora do OP."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "ELIMINATÓRIO2: somente livro genérico não recuperado como referência; fonte específica necessária para gatilho.",
+            "ELIMINATÓRIO5: betabloqueador descrito como estimulante da bomba e sódio deslocando K para fora são distratores farmacológicos/metabólicos pouco plausíveis.",
+            "MAIOR: correta contém mecanismo completo e comparação desproporcional; evitar dose ou prescrição fora do OP."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": true
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [],
+          "total": null,
+          "annulled": true
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_revisão",
+          "path": [
+            "evidência e compatibilidade",
+            "eliminatórios/recurso",
+            "banda individual ou score anulado"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "OPs do lote004 e lotes A anteriores, sem diagnóstico global repetido",
+          "finding": "Gitelman/Bartter reaparece com OP especificamente calciúria; nenhuma fusão determinada por mera coincidência temática."
+        },
+        "sources": [
+          {
+            "sourceId": "tpp_nlm2026",
+            "opened": true,
+            "claimSupport": "Refeições ricas em carboidratos podem precipitar crises; tratar tireotoxicose previne episódios."
+          },
+          {
+            "sourceId": "ukka2026",
+            "opened": true,
+            "claimSupport": "Quelantes podem permitir otimização do bloqueio do SRAA em adultos selecionados com hipercalemia persistente; não substituem proteção cardíaca urgente ou monitorização. Alterações ECG clássicas não ocorrem sempre em sequência; ECG normal não exclui hipercalemia grave. Insulina promove captação celular de potássio pela Na/K-ATPase."
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Hipocalemia e Paralisia Periódica Tirotóxica",
+            "qid": "09451637",
+            "q": "Qual é um gatilho metabólico comum que precipita crises de paralisia na paralisia periódica tireotóxica?",
+            "refs": [
+              "brenner_rector"
+            ],
+            "opts": [
+              "Jejum prolongado isolado, sem estímulo hormonal ou adrenérgico relevante",
+              "Ingestão rica em carboidratos, com aumento de insulina e deslocamento de potássio para o meio intracelular",
+              "Uso de betabloqueador não seletivo em dose terapêutica, por estimular a bomba Na+/K+-ATPase",
+              "Excesso habitual de sódio na dieta, por deslocar potássio para o meio extracelular"
+            ],
+            "ans": 1,
+            "exp": "Na paralisia periódica tireotóxica, crises de fraqueza ocorrem por deslocamento transcelular de potássio para o meio intracelular, favorecido pelo excesso de hormônio tireoidiano e pela maior atividade da Na+/K+-ATPase. Refeição rica em carboidratos é gatilho clássico porque aumenta insulina, que intensifica a entrada de potássio nas células. O problema central não é perda corporal total de potássio; por isso a reposição deve ser cautelosa. Betabloqueador não seletivo, como propranolol, tende a tratar o deslocamento adrenérgico, não precipitá-lo em dose terapêutica.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "after": {
+            "t": "Hipocalemia e Paralisia Periódica Tirotóxica",
+            "qid": "09451637",
+            "q": "Qual gatilho alimentar é clássico para crises de paralisia periódica tireotóxica?",
+            "refs": [
+              "tpp_medlineplus_2026",
+              "ukka_hyperkalemia_update_2026"
+            ],
+            "opts": [
+              "Refeição predominantemente lipídica, sem carga expressiva de carboidratos.",
+              "Refeição rica em carboidratos, com aumento do estímulo insulínico.",
+              "Jejum prolongado, com queda do estímulo insulínico pós-prandial.",
+              "Refeição de baixo valor calórico, sem aumento da carga de carboidratos."
+            ],
+            "ans": 1,
+            "exp": "Refeições ricas em carboidratos são um gatilho reconhecido. A elevação de insulina favorece a entrada de potássio nas células; esse efeito celular é documentado na diretriz de hipercalemia, enquanto a fonte clínica específica confirma o gatilho alimentar na tireotoxicose. O mecanismo de redistribuição não deve ser confundido automaticamente com depleção corporal total de potássio. O controle da tireotoxicose previne episódios; o item não estabelece dose de reposição ou betabloqueador.",
+            "diff": "easy",
+            "cat": "eletrólitos"
+          },
+          "beforeSHA256": "3a2195039ced4fa7108634dba1fa5a21b23908b03bcebeee22057c56a5a7f954",
+          "afterSHA256": "947766f087dd76ef9d8c3618620bf14608f3ddd93dd4499e61e557998454ee72",
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 1,
+            "sourceLetter": "B",
+            "text": "Refeição rica em carboidratos, com aumento do estímulo insulínico."
+          },
+          "implementation": "Somente AFTER exato LIBERADA; preservar qid, posição e gabarito clínico. Registrar/reconciliar cards antes dos vínculos sem referências órfãs. Fonte, conteúdo ou hash materialmente diferente exige nova revisão. Nenhum banco editado neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "947766f087dd76ef9d8c3618620bf14608f3ddd93dd4499e61e557998454ee72",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): fontes decisivas abertas e aprovação formal da versão exata, sem pendência.",
+          "appeal": {
+            "plausible": false,
+            "finding": "A pergunta especifica gatilho alimentar clássico, não lista todos os precipitantes possíveis. Evitou colocar refeição salgada ou repouso após exercício como distratores falsos, pois também são gatilhos reconhecidos. Insulina/captação celular está sustentada por fonte fisiológica oficial separada; não se inventa estudo causal primário de TPP."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente"
+          },
+          "decision": {
+            "path": [
+              "VERIFICADA/NENHUMA",
+              "sem eliminatório depois do reparo",
+              "recurso específico resolvido",
+              "19/20, aprovada"
+            ],
+            "lifeCycle": "em_reparo"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": true,
+            "decisiveSourcesOpened": true,
+            "lengthDoesNotAuthorizeClinicalApproval": true
+          },
+          "verificationPending": []
+        }
+      },
+      {
+        "qid": "28b53ff8",
+        "sourceLine": 94,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4 Regra7(b)/(c): revisão maior ou falta decisiva impede liberação da versão original.",
+        "OP": "Reconhecer foco concomitante do cateter na peritonite S.aureus e orientar antibiótico e controle de fonte.",
+        "classification": {
+          "primaryCompetency": "manejo de infecção relacionada à diálise",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "ELIMINATÓRIO8: cultura de efluente isolada não define peritonite e cultura do óstio pelo mesmo organismo não está informada, embora usada na explicação.",
+          "ELIMINATÓRIO5: laparotomia independente do exame/cultura é distrator absurdo.",
+          "MAIOR: correta empilha origem, antibiótico/duração e controle de foco; comparar estratégias do mesmo manejo."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "ELIMINATÓRIO8: cultura de efluente isolada não define peritonite e cultura do óstio pelo mesmo organismo não está informada, embora usada na explicação.",
+            "ELIMINATÓRIO5: laparotomia independente do exame/cultura é distrator absurdo.",
+            "MAIOR: correta empilha origem, antibiótico/duração e controle de foco; comparar estratégias do mesmo manejo."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": false
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": true
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": true
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [],
+          "total": null,
+          "annulled": true
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_revisão",
+          "path": [
+            "evidência e compatibilidade",
+            "eliminatórios/recurso",
+            "banda individual ou score anulado"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "OPs do lote004 e lotes A anteriores, sem diagnóstico global repetido",
+          "finding": "Gitelman/Bartter reaparece com OP especificamente calciúria; nenhuma fusão determinada por mera coincidência temática."
+        },
+        "sources": [
+          {
+            "sourceId": "ispd2022",
+            "opened": true,
+            "claimSupport": "Pelo menos dois de três critérios: clínica, citologia >100/µL após ≥2h com >50% PMN, cultura. Critérios clínico/citológico bastam. Critério equivalente >0,1×10^9/L confirma unidade µL apesar da falha OCR mL. Cultura negativa não exclui. APD com ciclo curto usa fração PMN."
+          },
+          {
+            "sourceId": "ispd2023",
+            "opened": true,
+            "claimSupport": "Secreção purulenta define infecção de óstio; inflamação de trajeto define túnel. Infecção concomitante com peritonite pelo mesmo organismo favorece retirada (2C); não trocar simultaneamente na peritonite não resolvida."
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Peritonite por S. aureus — Avaliação do Cateter",
+            "qid": "28b53ff8",
+            "q": "Paciente em diálise peritoneal tem cultura do efluente positiva para Staphylococcus aureus, secreção purulenta no óstio e dor ao longo do túnel do cateter. Qual princípio deve orientar o manejo?",
+            "refs": [
+              "ispd_peritonitis_guideline",
+              "ispd_catheter_infection_2023"
+            ],
+            "opts": [
+              "Tratar como provável fonte relacionada ao cateter, usar antibiótico efetivo por 3 semanas e considerar retirada do cateter diante da infecção concomitante de óstio/túnel",
+              "Ignorar o óstio e tratar apenas o efluente por 5 dias, pois os dois sítios não se relacionam",
+              "Presumir perfuração intestinal e indicar laparotomia independentemente do exame ou das culturas",
+              "Manter o cateter obrigatoriamente, porque biofilme por S. aureus não modifica a chance de falha terapêutica"
+            ],
+            "ans": 0,
+            "exp": "Peritonite por S. aureus é frequentemente associada a infecção do óstio ou do túnel, embora contaminação por toque também possa ocorrer. A ISPD sugere antibiótico efetivo por 3 semanas, ajustado à sensibilidade; quando há infecção concomitante do óstio ou túnel pelo mesmo organismo, deve-se considerar retirada do cateter por possível foco persistente e biofilme. O trajeto precisa ser examinado e pode exigir ultrassom. Isso não equivale a remover todo cateter em qualquer episódio isolado nem a presumir origem intestinal.",
+            "diff": "hard",
+            "cat": "dialise"
+          },
+          "after": {
+            "t": "Peritonite por S. aureus — Avaliação do Cateter",
+            "qid": "28b53ff8",
+            "q": "Paciente em diálise peritoneal tem peritonite confirmada, secreção purulenta no óstio e dor ao longo do túnel do cateter. Culturas do efluente e do óstio isolam Staphylococcus aureus. Qual princípio deve orientar o manejo?",
+            "refs": [
+              "ispd_peritonitis_guideline",
+              "ispd_catheter_infection_2023"
+            ],
+            "opts": [
+              "Antibiótico efetivo e avaliação da retirada do cateter por foco concomitante.",
+              "Antibiótico por 5 dias e preservação do cateter enquanto houver drenagem.",
+              "Antibiótico oral apenas para o óstio e esperar nova cultura do efluente.",
+              "Antibiótico por 3 semanas e preservar o cateter sem considerar retirada."
+            ],
+            "ans": 0,
+            "exp": "O manejo deve combinar antibiótico efetivo com avaliação da retirada do cateter como controle de fonte. A International Society for Peritoneal Dialysis (ISPD) sugere 3 semanas de antibiótico para peritonite por S. aureus (2C) e retirada quando infecção de óstio/túnel coexiste com peritonite pelo mesmo organismo (2C). Examinar o trajeto e considerar ultrassom. Tratar apenas o óstio, encurtar para 5 dias ou desconsiderar o foco persistente são inadequados. Isso não determina retirada em toda peritonite isolada por S. aureus, e não se recomenda troca simultânea do cateter enquanto a peritonite está sem resolução.",
+            "diff": "medium",
+            "cat": "dialise"
+          },
+          "beforeSHA256": "a510e01af819058aeb4dbb779e5caf47346be54556d6031a9ed485fc9905e069",
+          "afterSHA256": "0649e34d92a450088030ad6cc98396051e069321a0097dd598f55374d37d4b3e",
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [
+            "q",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 0,
+            "sourceLetter": "A",
+            "text": "Antibiótico efetivo e avaliação da retirada do cateter por foco concomitante."
+          },
+          "implementation": "Somente AFTER exato LIBERADA; preservar qid, posição e gabarito clínico. Registrar/reconciliar cards antes dos vínculos sem referências órfãs. Fonte, conteúdo ou hash materialmente diferente exige nova revisão. Nenhum banco editado neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "0649e34d92a450088030ad6cc98396051e069321a0097dd598f55374d37d4b3e",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): fontes decisivas abertas e aprovação formal da versão exata, sem pendência.",
+          "appeal": {
+            "plausible": false,
+            "finding": "Peritonite é declarada confirmada e mesmo organismo nos dois sítios foi incorporado ao caso. A duração3semanas e avaliação de retirada são fontes distintas conferidas; remover cedo por foco concomitante não é obrigação universal para episódio isolado."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente"
+          },
+          "decision": {
+            "path": [
+              "VERIFICADA/NENHUMA",
+              "sem eliminatório depois do reparo",
+              "recurso específico resolvido",
+              "19/20, aprovada"
+            ],
+            "lifeCycle": "em_reparo"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": true,
+            "decisiveSourcesOpened": true,
+            "lengthDoesNotAuthorizeClinicalApproval": true
+          },
+          "verificationPending": []
+        }
+      }
+    ],
+    "limits": [
+      "Fontes NLM são documentos clínicos/genéticos oficiais, não experimentos primários; desenho declarado sem fingir ensaio ou diretriz formal.",
+      "Consenso EuDial é GUIDE/consenso identificado e não padrão obrigatório.",
+      "Não autoriza correção automática dos cards alertados.",
+      "Checkpoint ao final deA004 por instrução do root; A005 não foi aberto."
+    ]
+  }
+}

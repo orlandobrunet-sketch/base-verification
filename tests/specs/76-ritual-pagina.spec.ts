@@ -39,7 +39,13 @@ async function abrir(page: Page, opcoes: { largura?: number; bloquearBanco?: boo
 const gabarito = (page: Page) => page.evaluate(() => {
   const q = document.querySelector('#ritualPage .nq-exam-enunciado')?.textContent || '';
   const bank = (0, eval)('questionBank') as any[];
-  return bank.find(x => x.q === q)?.a as number;
+  const authored = bank.find(x => x.q === q);
+  const correctText = authored?.o[authored.a];
+  // O índice autoral não é a letra exibida depois do embaralhamento.
+  const displayed = [...document.querySelectorAll('#ritualOpts button > span:last-child')]
+    .findIndex(option => option.textContent === correctText);
+  if (displayed < 0) throw new Error('Alternativa correta autoral não encontrada no Ritual.');
+  return displayed;
 });
 
 test('é página, e a jornada fica fora de alcance', async ({ page }) => {

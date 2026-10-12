@@ -1011,8 +1011,29 @@
     const STUDY_SAVE_KEY = 'nefroquest-study-state';
     const STUDY_TTL_MS   = 24 * 60 * 60 * 1000; // 24h
 
+    // O banco permanece autoral. A sessão guarda a apresentação que a pessoa
+    // viu, para que pausar ou recarregar não troque a alternativa escolhida.
+    let _studyPresentations = [];
+    let _studyAnswers = [];
+    function _studyQuestionId(q) { return q.qid || q.id || q.q.substring(0, 40); }
+    function _studyCanonical(q) {
+      return { id: _studyQuestionId(q), q: q.q, o: [...q.opts], a: q.ans, e: q.exp || '', refs: [...(q.refs || [])] };
+    }
+    function _studyPresent(q, preserveOrder = false) {
+      const authored = _studyCanonical(q);
+      return window.NQAnswers ? window.NQAnswers.present(authored, { preserveOrder }) : authored;
+    }
+    function _studyAnswerValid(answer, presentation) {
+      if (!answer || !presentation || !Number.isInteger(answer.chosen) || answer.chosen < 0 || answer.chosen >= presentation.o.length) return false;
+      if (answer.correct !== (answer.chosen === presentation.a)) return false;
+      const authoredChoice = window.NQAnswers ? window.NQAnswers.originalIndex(presentation, answer.chosen) : answer.chosen;
+      const optionId = window.NQAnswers ? window.NQAnswers.optionId(presentation, answer.chosen) : null;
+      return answer.authoredChoice === authoredChoice && answer.optionId === optionId;
+    }
+
     function _saveStudyState(nextIndex = studyModeIndex) {
       if (!studyModeActive || !studyModeQuestions.length || !_studyBindingCurrent()) return;
+      if (_studyPresentations.length !== studyModeQuestions.length || _studyPresentations.some(q => !q)) return;
       try {
         _studyProgressStorage().setItem(STUDY_SAVE_KEY, JSON.stringify({
           questions: studyModeQuestions.map(q => q.qid || q.id || q.q.substring(0, 40)),
@@ -1020,6 +1041,12 @@
           correct: studyModeCorrect,
           wrong: studyModeWrong,
           axisStats: _studyAxisStats,
+          presentationVersion: 1,
+          presentations: studyModeQuestions.map((q, i) => ({
+            id: _studyQuestionId(q),
+            question: window.NQAnswers ? window.NQAnswers.snapshot(_studyPresentations[i]) : _studyPresentations[i],
+            answer: _studyAnswers[i] || null
+          })),
           savedAt: Date.now()
         }));
       } catch(e) { console.error('[NQ] _saveStudyState failed', e); }
@@ -1070,19 +1097,40 @@
     function resumeSavedStudyMode() {
       const saved = _loadStudyState();
       if (!saved) return false;
+      if (saved.presentationVersion !== undefined && saved.presentationVersion !== 1) return false;
       if (saved.index >= saved.questions.length) { _clearStudyState(); return false; }
       const byId = new Map(topics.map(question => [question.qid || question.id || question.q.substring(0, 40), question]));
-      const restored = saved.questions.map(id => byId.get(id)).filter(Boolean);
+      const restoredEntries = saved.questions.map((id, savedIndex) => ({ question: byId.get(id), savedIndex })).filter(entry => entry.question);
+      const restored = restoredEntries.map(entry => entry.question);
       if (!restored.length) return false;
+      if (saved.presentationVersion === 1 && (restored.length !== saved.questions.length ||
+          !Array.isArray(saved.presentations) || saved.presentations.length !== saved.questions.length)) return false;
+      const presentations = [], answers = [];
+      for (const { question, savedIndex } of restoredEntries) {
+        if (saved.presentationVersion === 1) {
+          const entry = saved.presentations?.[savedIndex];
+          if (!entry || entry.id !== _studyQuestionId(question)) return false;
+          const presentation = window.NQAnswers
+            ? window.NQAnswers.restore(entry.question, _studyCanonical(question))
+            : (!entry.question?._answerPresentation ? entry.question : null);
+          if (!presentation || (entry.answer && !_studyAnswerValid(entry.answer, presentation))) return false;
+          presentations.push(presentation);
+          answers.push(entry.answer || null);
+        } else {
+          presentations.push(_studyPresent(question, savedIndex === saved.index));
+          answers.push(null);
+        }
+      }
       studyModeQuestions = restored;
-      const currentId = saved.questions[Math.min(saved.index, saved.questions.length - 1)];
-      const currentIndex = restored.findIndex(question => (question.qid || question.id || question.q.substring(0, 40)) === currentId);
+      _studyPresentations = presentations;
+      _studyAnswers = answers;
+      const currentIndex = restoredEntries.findIndex(entry => entry.savedIndex === saved.index);
       studyModeIndex = currentIndex >= 0 ? currentIndex : Math.min(saved.index, restored.length - 1);
       studyModeCorrect = saved.correct;
       studyModeWrong = saved.wrong;
       _studyAxisStats = saved.axisStats;
       studyModeActive = true;
-      showStudyModePage();
+      showStudyModePage(undefined, true);
       return true;
     }
 
@@ -1360,7 +1408,16 @@
       showStudyModePage();
     }
     
-    function showStudyModePage(sessionLabel) {
+    function showStudyModePage(sessionLabel, restoringPresentation = false) {
+      if (!restoringPresentation) {
+        _studyPresentations = studyModeQuestions.map(q => _studyPresent(q));
+        _studyAnswers = studyModeQuestions.map(() => null);
+      }
+      if (_studyPresentations.some(q => !q)) {
+        _toast('Não foi possível conferir as alternativas desta sessão.', 'warning');
+        studyModeActive = false;
+        return;
+      }
       document.querySelectorAll('.study-mode-popup').forEach(element => element.remove());
       
       // Remover página anterior se existir
@@ -1397,6 +1454,8 @@
       }
       
       const q = studyModeQuestions[studyModeIndex];
+      const presentation = _studyPresentations[studyModeIndex];
+      if (!presentation) return;
       const area = document.getElementById('studyQuestionArea');
       
       area.innerHTML = `
@@ -1411,7 +1470,7 @@
         </h3>
 
         <div id="studyOptions" style="display:grid;gap:10px;">
-          ${q.opts.map((opt, idx) => `
+          ${presentation.o.map((opt, idx) => `
             <button class="study-option-btn" data-action="answerStudyQuestion" data-arg="${idx}" data-arg-type="number"
                     data-kbd-hint="${idx + 1}"
                     style="display:flex; justify-content:space-between; align-items:center; background:linear-gradient(180deg,#1e293b,#0f172a);border:2px solid #334155;border-radius:10px;padding:14px 18px;text-align:left;color:var(--txt);font-size:0.95rem;cursor:pointer;transition:all 0.2s;"
@@ -1429,12 +1488,27 @@
       `;
       
       document.getElementById('studyProgress').textContent = studyModeIndex + 1;
+      const answer = _studyAnswers[studyModeIndex];
+      if (answer) _displayStudyAnswer(answer.chosen, answer.correct, false);
     }
     
     function answerStudyQuestion(selectedIdx) {
       if (!_studyBindingCurrent() || !studyModeActive || studyModeIndex >= studyModeQuestions.length || document.querySelector('#studyModePage [data-action="nextStudyQuestion"]')) return;
+      const presentation = _studyPresentations[studyModeIndex];
+      if (_studyAnswers[studyModeIndex] || !presentation || !Number.isInteger(selectedIdx) || selectedIdx < 0 || selectedIdx >= presentation.o.length) return;
+      const isCorrect = selectedIdx === presentation.a;
+      _studyAnswers[studyModeIndex] = {
+        chosen: selectedIdx,
+        authoredChoice: window.NQAnswers ? window.NQAnswers.originalIndex(presentation, selectedIdx) : selectedIdx,
+        optionId: window.NQAnswers ? window.NQAnswers.optionId(presentation, selectedIdx) : null,
+        correct: isCorrect
+      };
+      _displayStudyAnswer(selectedIdx, isCorrect, true);
+    }
+
+    function _displayStudyAnswer(selectedIdx, isCorrect, recordProgress) {
       const q = studyModeQuestions[studyModeIndex];
-      const isCorrect = selectedIdx === q.ans;
+      const presentation = _studyPresentations[studyModeIndex];
       
       // Desabilitar botões
       document.querySelectorAll('.study-option-btn').forEach((btn, idx) => {
@@ -1442,8 +1516,11 @@
         btn.style.cursor = 'default';
         btn.onmouseover = null;
         btn.onmouseout = null;
+        btn.classList.toggle('is-correct', idx === presentation.a);
+        btn.classList.toggle('is-wrong', idx === selectedIdx && !isCorrect);
+        btn.classList.toggle('is-chosen', idx === selectedIdx);
         
-        if (idx === q.ans) {
+        if (idx === presentation.a) {
           btn.style.borderColor = '#34d399';
           btn.style.background = 'rgba(52,211,153,0.15)';
         } else if (idx === selectedIdx && !isCorrect) {
@@ -1461,14 +1538,14 @@
         y = rect.top + rect.height / 2;
       }
 
-      if (isCorrect) {
+      if (recordProgress && isCorrect) {
         if (typeof window.showFloatingFeedback === 'function') {
           window.showFloatingFeedback('✓ Correto!', true, x, y);
         }
         if (typeof window.triggerHapticFeedback === 'function') {
           window.triggerHapticFeedback('correct');
         }
-      } else {
+      } else if (recordProgress) {
         if (typeof window.showFloatingFeedback === 'function') {
           window.showFloatingFeedback('✗ Incorreto', false, x, y);
         }
@@ -1478,23 +1555,26 @@
       }
       
       // Atualizar contadores
-      updateSRData(q.qid, isCorrect);
-      _studyProgressStorage().setItem('nq_last_study', Date.now().toString());
-      if (typeof trackQuestionAnswer === 'function') {
-        trackQuestionAnswer(q, isCorrect, 0);
-      }
-      if (isCorrect) {
-        studyModeCorrect++;
-        document.getElementById('studyCorrect').textContent = studyModeCorrect;
-      } else {
-        studyModeWrong++;
-        document.getElementById('studyWrong').textContent = studyModeWrong;
-      }
+      if (recordProgress) {
+        updateSRData(q.qid, isCorrect);
+        _studyProgressStorage().setItem('nq_last_study', Date.now().toString());
+        if (typeof trackQuestionAnswer === 'function') {
+          trackQuestionAnswer(q, isCorrect, 0);
+        }
+        if (isCorrect) {
+          studyModeCorrect++;
+          document.getElementById('studyCorrect').textContent = studyModeCorrect;
+        } else {
+          studyModeWrong++;
+          document.getElementById('studyWrong').textContent = studyModeWrong;
+        }
 
-      // Rastrear desempenho por eixo temático
-      if (q.cat) {
-        _studyAxisStats[q.cat] = _studyAxisStats[q.cat] || { correct: 0, wrong: 0 };
-        _studyAxisStats[q.cat][isCorrect ? 'correct' : 'wrong']++;
+        // Rastrear desempenho por eixo temático
+        if (q.cat) {
+          _studyAxisStats[q.cat] = _studyAxisStats[q.cat] || { correct: 0, wrong: 0 };
+          _studyAxisStats[q.cat][isCorrect ? 'correct' : 'wrong']++;
+        }
+        _saveStudyState();
       }
 
       // Botão de mentor (apenas em erros)
@@ -1518,7 +1598,7 @@
             ${isCorrect ? '✓ Correto!' : '✗ Incorreto'}
           </div>
           <div style="color:var(--txt);font-size:0.9rem;line-height:1.5;">
-            ${escapeHtml(q.exp || 'A resposta correta é a alternativa ' + String.fromCharCode(65 + q.ans) + '.')}
+            ${escapeHtml(presentation.e || 'A resposta correta é a alternativa ' + String.fromCharCode(65 + presentation.a) + '.')}
           </div>
           ${(q.refs||[]).length ? `<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">${(q.refs||[]).map(k => refsDB[k] ? `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(refsDB[k].label)}" target="_blank" rel="noopener" style="color:var(--blue);font-size:0.72rem;text-decoration:none;border:1px solid rgba(96,165,250,0.3);padding:2px 9px;border-radius:12px;white-space:nowrap;">🔗 ${escapeHtml(refsDB[k].label)}</a>` : '').filter(Boolean).join('')}</div>` : ''}
         </div>
@@ -1533,7 +1613,7 @@
       // Guardar questão atual para o mentor
       window.setMentorQuestion(q);
 
-      playSound(isCorrect ? 'correct' : 'wrong');
+      if (recordProgress) playSound(isCorrect ? 'correct' : 'wrong');
     }
     
     let _loadingStudyNext = false;

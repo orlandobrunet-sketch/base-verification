@@ -28,6 +28,9 @@ jobs:
       - name: Optional character pilot storage and ranking isolation
         run: node --test tests/pilot/*.test.cjs
 
+      - name: Answer presentation identity and distribution
+        run: node --test tests/answers/*.test.cjs
+
       - name: Editorial batch scope gate
         run: >-
           node scripts/editorial-batch-validator.mjs

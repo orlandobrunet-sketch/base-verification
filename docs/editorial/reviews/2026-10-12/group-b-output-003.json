@@ -1,0 +1,2504 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 153483,
+  "sourceReportSHA256": "59d4248877496432c2261a7fd6d45c5e22256bb1f861d2424a8bf621fcab375e",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_EDITORIAL_BATCH_REVIEW_V2",
+    "group": "b",
+    "batch": 3,
+    "reviewer": "clinical_review_b",
+    "reviewMode": "Revisão clínica/editorial individual com reavaliação formal de cada proposta exata; métricas não conferem aprovação.",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "sourceBankSHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "inputFile": "input-003.json",
+    "inputSHA256": "6a36825747d1e4da37e19f9b898ae722a6e6c3977d552316aa59acea52f3615b",
+    "verifiedAtUTC": "2026-10-12T18:06:18Z",
+    "timestampQualification": "Relógio da ferramenta observado no fechamento da leitura de fontes; não se declara timestamp de publicação ou de revisão independente.",
+    "normativeSources": [
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      }
+    ],
+    "summaryTable": [
+      {
+        "qid": "d2a32c19",
+        "OP": "Classificar o padrão MPGN pelos depósitos e orientar a investigação etiológica, sem converter morfologia isolada em doença primária ou C3G.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "SUBSTITUIR A QUESTÃO POR",
+        "integration": "PENDENTE; não implementada"
+      },
+      {
+        "qid": "91355bed",
+        "OP": "Avaliar a confiabilidade dos resultados ADVOCATE após retratação e readjudicação inadequada, sem inferir eficácia ou ineficácia universal.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "score": 20,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "SUBSTITUIR A QUESTÃO POR",
+        "integration": "PENDENTE; não implementada"
+      },
+      {
+        "qid": "d1e9ed7e",
+        "OP": "Associar Alport ligado ao X a COL4A5 e à perda auditiva neurossensorial clássica, distinguindo outras heranças e tipo de perda auditiva.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "score": 18,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "SUBSTITUIR A QUESTÃO POR",
+        "integration": "PENDENTE; não implementada"
+      },
+      {
+        "qid": "d80edb37",
+        "OP": "Interpretar o desfecho primário e o tratamento adicional do REGENCY, ponderando significância e segurança.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "SUBSTITUIR A QUESTÃO POR",
+        "integration": "PENDENTE; não implementada"
+      },
+      {
+        "qid": "9fd2cfdb",
+        "OP": "Interpretar a nefroproteção e os limites de extrapolação do subgrupo IgAN pré-especificado no DAPA-CKD.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "score": 20,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "SUBSTITUIR A QUESTÃO POR",
+        "integration": "PENDENTE; não implementada"
+      },
+      {
+        "qid": "b7a28d0b",
+        "OP": "Selecionar pessoa com DRPAD típica e risco rápido elegível para iniciar tolvaptana, distinguindo critérios de início e continuação.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "score": 20,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "SUBSTITUIR A QUESTÃO POR",
+        "integration": "PENDENTE; não implementada"
+      },
+      {
+        "qid": "00d410e2",
+        "OP": "Programar vacina viva indicada antes de imunossupressão potente, respeitando intervalo e contraindicação durante tratamento.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "score": 20,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "SUBSTITUIR A QUESTÃO POR",
+        "integration": "PENDENTE; não implementada"
+      },
+      {
+        "qid": "ccd15912",
+        "OP": "Distinguir compressão radiológica incidental da síndrome de Nutcracker, correlacionando manifestações clínicas antes de intervenção.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "SUBSTITUIR A QUESTÃO POR",
+        "integration": "PENDENTE; não implementada"
+      }
+    ],
+    "reviews": [
+      {
+        "qid": "d2a32c19",
+        "sourceLine": 37,
+        "sourceQuestionSHA256": "849d15322188a91dd54e3507a7e70617d6ffcb643c9f9b7ed31606f89144b450",
+        "beforeCanonicalSHA256": "849d15322188a91dd54e3507a7e70617d6ffcb643c9f9b7ed31606f89144b450",
+        "afterCanonicalSHA256": "5cfdf894d6726ac122033c1ee30b3bb2e2297ab2756d3fed94fe1eebb729815a",
+        "BEFORE": {
+          "t": "Padrão MPGN — Classificação por Depósitos",
+          "qid": "d2a32c19",
+          "q": "A biópsia renal mostra hipercelularidade mesangial e endocapilar com duplo contorno da membrana basal, descrita como padrão membranoproliferativo. Qual abordagem classifica melhor esse achado e orienta a investigação?",
+          "refs": [
+            "kdigo_gn",
+            "mpgn_fervenza"
+          ],
+          "opts": [
+            "Reconhecer MPGN como padrão de lesão e usar a imunofluorescência para separar depósitos por imunocomplexos de deposição dominante de complemento, investigando infecção, autoimunidade, gamopatia monoclonal e desregulação do complemento conforme o grupo",
+            "Aplicar apenas a classificação histórica em tipos I, II e III, pois a etiologia não modifica a avaliação nem o tratamento",
+            "Considerar todo padrão MPGN como C3 glomerulopatia mesmo quando imunoglobulinas policlonais predominam",
+            "Definir MPGN primária pela microscopia óptica e dispensar imunofluorescência, microscopia eletrônica e investigação sistêmica"
+          ],
+          "ans": 0,
+          "exp": "MPGN descreve um padrão de lesão na microscopia óptica, não uma etiologia única. A imunofluorescência direciona a classificação: imunoglobulinas com complemento favorecem glomerulonefrite mediada por imunocomplexos, enquanto C3 dominante levanta C3 glomerulopatia e outras doenças com ativação predominante do complemento. Depois disso, a investigação procura causas secundárias, incluindo infecções crônicas, autoimunidade e gamopatia monoclonal, ou anormalidades da via do complemento. Microscopia eletrônica e contexto clínico completam a interpretação; o padrão isolado não autoriza chamar toda MPGN de C3G ou primária.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "AFTER": {
+          "t": "Padrão MPGN — Classificação por Depósitos",
+          "qid": "d2a32c19",
+          "q": "A biópsia renal mostra hipercelularidade mesangial e endocapilar com duplo contorno da membrana basal, descrita como padrão membranoproliferativo. Qual abordagem classifica melhor esse achado e orienta a investigação?",
+          "refs": [
+            "kdigo_gn"
+          ],
+          "opts": [
+            "Classificar pela imunofluorescência: Ig, complemento dominante ou IF negativa; investigar a etiologia do grupo.",
+            "Classificar pela microscopia óptica em tipos I, II e III e investigar causas conforme a extensão da hipercelularidade.",
+            "Classificar pelo duplo contorno como C3 glomerulopatia e investigar primeiro alterações da via alternativa.",
+            "Classificar pelos depósitos imunoglobulínicos como MPGN primária e investigar complemento após excluir C3 glomerulopatia."
+          ],
+          "ans": 0,
+          "exp": "MPGN descreve um padrão de lesão na microscopia óptica, não uma etiologia única. A imunofluorescência direciona a classificação: imunoglobulinas com complemento favorecem glomerulonefrite mediada por imunocomplexos, enquanto C3 dominante levanta C3 glomerulopatia e outras doenças com ativação predominante do complemento. Na ausência de depósitos significativos de imunoglobulinas e complemento, considerar lesões como microangiopatia trombótica. Depois disso, a investigação procura causas secundárias, incluindo infecções crônicas, autoimunidade e gamopatia monoclonal, ou anormalidades da via do complemento. Microscopia eletrônica e contexto clínico completam a interpretação; o padrão isolado não autoriza chamar toda MPGN de C3G ou primária.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "sourceAssessment": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Classificar o padrão MPGN pelos depósitos e orientar a investigação etiológica, sem converter morfologia isolada em doença primária ou C3G.",
+          "classification": {
+            "competency": "Interpretação anatomopatológica e etiológica",
+            "bloom": "Analisar",
+            "miller": "Sabe como",
+            "difficulty": "Intermediária"
+          },
+          "problems": [
+            "MAIOR — correta extensa contraposta a três exclusões absolutas de métodos ou etiologia.",
+            "MAIOR — distratores permitem acerto pela prudência e pelo formato.",
+            "MENOR — a classificação original não explicita o subgrupo IF negativo do padrão MPGN, descrito na fonte oficial."
+          ],
+          "lawyerOfAppeal": "A correta é a única que admite investigação sistêmica; os demais algoritmos dispensam dados essenciais de modo ostensivo.",
+          "eliminators": [
+            5
+          ],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 0,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 0,
+              "Distratores": 0,
+              "Explicação": 2,
+              "Referências": 1,
+              "Ausência de cara de IA": 0,
+              "Valor pedagógico": 1
+            },
+            "total": null,
+            "annulledByEliminator": true
+          },
+          "lifecycle": "em_reparo"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Classificar o padrão MPGN pelos depósitos e orientar a investigação etiológica, sem converter morfologia isolada em doença primária ou C3G.",
+          "classification": {
+            "competency": "Interpretação anatomopatológica e etiológica",
+            "bloom": "Analisar",
+            "miller": "Sabe como",
+            "difficulty": "Intermediária"
+          },
+          "justification": "A proposta preserva a classificação etiológica e a investigação no texto explicativo, sem encurtar a conduta. A revisão não usa a antiga revisão de Fervenza como fonte verificada; o capítulo oficial aberto sustenta a versão proposta.",
+          "problems": [],
+          "lawyerOfAppeal": {
+            "result": "Conferido também o subgrupo IF negativo do padrão MPGN. A nova correta abrange Ig, complemento dominante e IF negativa; os distratores atribuem etiologia ou classificação à microscopia óptica ou definem primária sem investigação. Nenhuma segunda resposta é defensável.",
+            "checks": [
+              "Buscada segunda resposta defensável no caso e no comando exatos.",
+              "Comparabilidade de categoria, estrutura e granularidade confrontada em todas as alternativas.",
+              "Dados, desenho, população e limites confrontados com as fontes indicadas.",
+              "Explicação relida depois de fixar o texto e a ordem das alternativas."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": false,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": false,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": false
+            },
+            "qualification": "Os dez critérios foram avaliados individualmente nesta versão exata; nenhum disparado."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 1,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 19,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "Evidência VERIFICADA/NENHUMA; sem eliminatório; sem recurso plausível; escore 18–20; aprovada; LIBERADA pela fórmula.",
+          "lifecycle": "publicado",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; publicado é destino da árvore, sem publicação real.",
+          "claimRegister": [
+            {
+              "claim": "MPGN é padrão de lesão, não etiologia; a imunofluorescência dirige a classificação.",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+              "locator": "Chapter 8: definitions; PDF pp.191–194",
+              "verificationStatus": "VERIFICADA",
+              "support": "O capítulo diferencia GN por imunocomplexos, depósitos monoclonais e complemento. A interpretação requer IF, EM e contexto."
+            },
+            {
+              "claim": "Investigar infecção/autoimunidade, clone monoclonal e desregulação de complemento conforme os depósitos.",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+              "locator": "PP 8.1.1–8.1.5; Figures 68–70",
+              "verificationStatus": "VERIFICADA",
+              "support": "Prática 8.1.1 busca doença subjacente; 8.1.2 investiga depósitos monoclonais; 8.1.3–5 incluem complemento e imitadores de C3G."
+            },
+            {
+              "claim": "Duplo contorno ou depósitos de Ig não estabelecem isoladamente C3G ou MPGN primária.",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+              "locator": "Definitions and PP 8.1.1–4",
+              "verificationStatus": "VERIFICADA",
+              "support": "Inferência diagnóstica explicitada pela classificação e exigência de investigação; não se assume causa apenas pela microscopia óptica."
+            },
+            {
+              "claim": "Padrão MPGN também pode ser IF negativo; ausência/traços de Ig ou C3 sugere microangiopatia trombótica.",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+              "locator": "Chapter 8 Nomenclature; printed S187 / PDF p.192",
+              "verificationStatus": "VERIFICADA",
+              "support": "Página integral efetivamente relida. KDIGO divide MPGN em subgrupos IF negativo, complemento dominante e Ig; não reduzir a classificação a somente dois grupos."
+            }
+          ],
+          "verificationPending": [],
+          "referenceCards": [
+            {
+              "id": "kdigo_gn",
+              "card": {
+                "label": "KDIGO Glomerular Diseases 2021",
+                "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+                "journal": "Kidney Int 2021;100(4S):S1-S276",
+                "ano": 2021,
+                "tipo": "Diretriz Internacional",
+                "badge": "GUIDELINE",
+                "badgeColor": "#6366f1",
+                "impacto": "Classificação e investigação etiológica do padrão MPGN; escopo conferido no capítulo 8.",
+                "icon": "📋",
+                "resumo": "KDIGO 2021, capítulo 8 no PDF consolidado de 2024: MPGN é padrão de lesão, incluindo subgrupo IF negativo que sugere microangiopatia trombótica. Imunofluorescência, ultraestrutura e contexto clínico orientam investigação de imunocomplexos, depósitos monoclonais e predomínio de complemento. Procurar doença subjacente antes de classificar como primária.",
+                "conclusao": "O padrão óptico não define etiologia; investigar conforme os depósitos e excluir imitadores de C3G.",
+                "curiosidade": ""
+              },
+              "canonicalSHA256": "b25c0c76b02b7d1f87582c2ac89e3f1c80fcb286e1107212cf31356d460f02bf",
+              "action": "PROPOSTA_DE_CARD_COM_ESCOPO_VERIFICADO; não sobrescrever registro compartilhado sem revisar impacto.",
+              "verifiedScope": "Apenas as afirmações no card proposto, verificadas no conteúdo aberto e indicado no registro de claims."
+            }
+          ],
+          "formalReviewQualification": "Revisão formal do autor pela skill, depois da formulação completa do AFTER. Não é uma segunda revisão independente; não herda aprovação de métricas ou de versões anteriores.",
+          "integrationPending": [
+            "Revisão independente e liberação de integração continuam com o coordenador; release 16.08 é técnica, sem banco/cards."
+          ],
+          "finalExactReReview": {
+            "deltas": [
+              "Correta e explicação abrangem IF negativa/TMA da classificação oficial; card e claim incluídos."
+            ],
+            "canonicalQuestionSHA256": "5cfdf894d6726ac122033c1ee30b3bb2e2297ab2756d3fed94fe1eebb729815a",
+            "performed": true,
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "v2verdict": "aprovada",
+            "publicationAuthorization": "LIBERADA",
+            "publicationDerivedBy": "Handbook §18.4 Regra 7",
+            "justification": "Depois dos deltas, a versão inteira foi relida contra fontes, OP, quatro alternativas e explicação. Gabarito único preservado; dez eliminatórios reavaliados, nenhum disparado. Não herdar silenciosamente a decisão anterior. Escore continua o mesmo pelas dimensões explicitadas. Ainda exige revisão independente e gates de integração."
+          }
+        },
+        "v2verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "materialChange": true,
+        "patchEditorialSuggested": {
+          "operation": "SUBSTITUIR A QUESTÃO POR",
+          "question": {
+            "t": "Padrão MPGN — Classificação por Depósitos",
+            "qid": "d2a32c19",
+            "q": "A biópsia renal mostra hipercelularidade mesangial e endocapilar com duplo contorno da membrana basal, descrita como padrão membranoproliferativo. Qual abordagem classifica melhor esse achado e orienta a investigação?",
+            "refs": [
+              "kdigo_gn"
+            ],
+            "opts": [
+              "Classificar pela imunofluorescência: Ig, complemento dominante ou IF negativa; investigar a etiologia do grupo.",
+              "Classificar pela microscopia óptica em tipos I, II e III e investigar causas conforme a extensão da hipercelularidade.",
+              "Classificar pelo duplo contorno como C3 glomerulopatia e investigar primeiro alterações da via alternativa.",
+              "Classificar pelos depósitos imunoglobulínicos como MPGN primária e investigar complemento após excluir C3 glomerulopatia."
+            ],
+            "ans": 0,
+            "exp": "MPGN descreve um padrão de lesão na microscopia óptica, não uma etiologia única. A imunofluorescência direciona a classificação: imunoglobulinas com complemento favorecem glomerulonefrite mediada por imunocomplexos, enquanto C3 dominante levanta C3 glomerulopatia e outras doenças com ativação predominante do complemento. Na ausência de depósitos significativos de imunoglobulinas e complemento, considerar lesões como microangiopatia trombótica. Depois disso, a investigação procura causas secundárias, incluindo infecções crônicas, autoimunidade e gamopatia monoclonal, ou anormalidades da via do complemento. Microscopia eletrônica e contexto clínico completam a interpretação; o padrão isolado não autoriza chamar toda MPGN de C3G ou primária.",
+            "diff": "hard",
+            "cat": "glomerular"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "fullText": "Classificar pela imunofluorescência: Ig, complemento dominante ou IF negativa; investigar a etiologia do grupo."
+          },
+          "implementation": "Preservar qid, posição, ans, tipo, dificuldade, categoria, histórico e FSRS. Implementar somente versão exata com gates de integração concluídos. Nenhuma edição do banco foi executada."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": false,
+          "proposalHasFixedLetter": false,
+          "sourceDiagnosticLetterLead": false,
+          "qualification": "Revisão textual não identificou remissão fixa a A/B/C/D. Os dados internos de cada alternativa permanecem unidos; nenhuma permutação aplicada."
+        },
+        "duplicateReview": "Comparadas as oito competências: classificação MPGN, validade ADVOCATE, gene/audição Alport, resultado REGENCY, subgrupo DAPA-CKD, elegibilidade tolvaptana, calendário de vacina viva e achado incidental venoso. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            251,
+            121,
+            102,
+            125
+          ],
+          "afterCharacters": [
+            111,
+            118,
+            107,
+            121
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": false,
+          "qualification": "Medição apenas dos oito textos finalizados para documentar o delta; não é evidência clínica nem auditoria nova da fila global."
+        },
+        "noBankEdits": true
+      },
+      {
+        "qid": "91355bed",
+        "sourceLine": 39,
+        "sourceQuestionSHA256": "1ad7603e734955932cc6e5221663e973208d262aa71cb0166225a91432e4fe78",
+        "beforeCanonicalSHA256": "1ad7603e734955932cc6e5221663e973208d262aa71cb0166225a91432e4fe78",
+        "afterCanonicalSHA256": "0c53c537ed44e8e2c68e0c93d3a26b660548f0874423e75c08f64b37e6c8b927",
+        "BEFORE": {
+          "t": "ADVOCATE — Retratação e Validade da Evidência",
+          "qid": "91355bed",
+          "q": "Após a retratação do artigo ADVOCATE pelo NEJM em junho de 2026 e a proposta de retirada regulatória da FDA, como seus resultados de eficácia devem ser tratados?",
+          "refs": [
+            "advocate_study",
+            "advocate_retraction_2026",
+            "fda_tavneos_nooh_2026"
+          ],
+          "opts": [
+            "Não devem ser apresentados como evidência confiável de superioridade ou não inferioridade, pois houve readjudicação de desfechos após fechamento e descegamento do banco",
+            "Continuam plenamente válidos porque uma retratação altera apenas a formatação editorial",
+            "Provam que avacopan é ineficaz em toda pessoa e exigem interrupção abrupta sem avaliação clínica",
+            "Podem ser usados sem ressalva desde que se omita a análise da semana 52"
+          ],
+          "ans": 0,
+          "exp": "O NEJM retratou o artigo após investigação identificar readjudicação dos desfechos primários de nove participantes depois do fechamento do banco e do descegamento, sem divulgação. A FDA afirmou que os dados não eram confiáveis para estabelecer eficácia e propôs retirar a aprovação, com processo ainda em curso. Isso invalida ensinar os números do ADVOCATE como prova verificada. Não equivale, por si só, a demonstrar ineficácia universal nem orienta interrupção individual abrupta; decisões clínicas e regulatórias exigem avaliação atualizada.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "AFTER": {
+          "t": "ADVOCATE — Retratação e Validade da Evidência",
+          "qid": "91355bed",
+          "q": "Após a retratação do artigo ADVOCATE pelo NEJM em junho de 2026 e a proposta de retirada regulatória da FDA, como seus resultados de eficácia devem ser tratados?",
+          "refs": [
+            "advocate_retraction_2026",
+            "fda_tavneos_nooh_2026"
+          ],
+          "opts": [
+            "Resultados não confiáveis para alegações de eficácia; a readjudicação após descegamento comprometeu a inferência.",
+            "Resultados válidos para não inferioridade; a readjudicação compromete somente a alegação de superioridade.",
+            "Resultados válidos após excluir os casos readjudicados; a exclusão basta para validar a análise publicada.",
+            "Resultados não confiáveis para a FDA; a publicação anterior continua suficiente para a inferência clínica."
+          ],
+          "ans": 0,
+          "exp": "O artigo ADVOCATE foi formalmente retratado em 29 de junho de 2026. Na notificação de 27 de abril de 2026, a FDA documentou readjudicações de nove participantes após fechamento e descegamento do banco, alterações não divulgadas na submissão e dados incapazes de sustentar evidência substancial de eficácia. A retratação está confirmada no registro oficial da nota; os detalhes da readjudicação foram conferidos no documento da FDA. Esses resultados não devem ser ensinados como prova confiável de superioridade ou não inferioridade. Excluir casos não valida automaticamente a análise publicada. Isso tampouco demonstra ineficácia em toda pessoa ou determina interrupção individual abrupta; decisões clínicas exigem avaliação atualizada.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "sourceAssessment": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidence": "PARCIALMENTE VERIFICADA",
+          "pending": "NÃO DECISIVA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Avaliar a confiabilidade dos resultados ADVOCATE após retratação e readjudicação inadequada, sem inferir eficácia ou ineficácia universal.",
+          "classification": {
+            "competency": "Interpretação crítica de evidência",
+            "bloom": "Avaliar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "problems": [
+            "MAIOR — distratores de formatação e interrupção universal são pouco plausíveis.",
+            "MENOR — a expressão processo ainda em curso é temporalmente instável e não foi confirmada como situação atual nos EUA.",
+            "MENOR — atribuição dos detalhes à nota NEJM precisa ser separada: o registro confirma a retratação, e a FDA aberta documenta a readjudicação."
+          ],
+          "lawyerOfAppeal": "A validade da inferência clínica está comprometida, mas não é legítimo deduzir ineficácia universal ou reconstruir uma análise válida apenas excluindo casos. A etapa regulatória atual exige fonte atual própria.",
+          "eliminators": [
+            5
+          ],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 1,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 0,
+              "Distratores": 0,
+              "Explicação": 1,
+              "Referências": 1,
+              "Ausência de cara de IA": 0,
+              "Valor pedagógico": 2
+            },
+            "total": null,
+            "annulledByEliminator": true
+          },
+          "lifecycle": "em_reparo"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Avaliar a confiabilidade dos resultados ADVOCATE após retratação e readjudicação inadequada, sem inferir eficácia ou ineficácia universal.",
+          "classification": {
+            "competency": "Interpretação crítica de evidência",
+            "bloom": "Avaliar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "justification": "A reavaliação formal usa duas fontes primárias complementares, com atribuição limitada ao conteúdo efetivamente aberto. A frase sobre etapa atual foi retirada por ser desnecessária ao OP e sem confirmação atual. Nenhuma conclusão de eficácia do artigo retratado foi herdada.",
+          "problems": [],
+          "lawyerOfAppeal": {
+            "result": "Nenhum distrator fornece análise confirmatória válida. Não inferioridade também depende de dados confiáveis; descartar nove casos sem nova análise válida não recupera automaticamente os resultados. A referência datada da FDA não é apresentada como status atual.",
+            "checks": [
+              "Buscada segunda resposta defensável no caso e no comando exatos.",
+              "Comparabilidade de categoria, estrutura e granularidade confrontada em todas as alternativas.",
+              "Dados, desenho, população e limites confrontados com as fontes indicadas.",
+              "Explicação relida depois de fixar o texto e a ordem das alternativas."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": false,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": false,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": false
+            },
+            "qualification": "Os dez critérios foram avaliados individualmente nesta versão exata; nenhum disparado."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 20,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "Evidência VERIFICADA/NENHUMA; sem eliminatório; sem recurso plausível; escore 18–20; aprovada; LIBERADA pela fórmula.",
+          "lifecycle": "publicado",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; publicado é destino da árvore, sem publicação real.",
+          "claimRegister": [
+            {
+              "claim": "Retratação ADVOCATE em 29/06/2026; DOI da nota 10.1056/NEJMe2608684.",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42377355&retmode=xml",
+              "locator": "PubmedArticle MedlineCitation/Article and CommentsCorrections",
+              "verificationStatus": "VERIFICADA",
+              "support": "Registro NLM PMID 42377355 identifica Retraction Notice e ligação ao artigo PMID 33596356. Não há abstract nem texto integral da nota recuperado."
+            },
+            {
+              "claim": "Nove participantes readjudicados após fechamento/descegamento; alterações não divulgadas.",
+              "sourceURL": "https://www.fda.gov/media/192160/download",
+              "locator": "Document dated 27/04/2026; pp.4,7–10; Table 1",
+              "verificationStatus": "VERIFICADA",
+              "support": "A tabela mostra três controles e seis tratados; texto refere nove readjudicações não permitidas após descegamento e ausência de divulgação na submissão."
+            },
+            {
+              "claim": "Dados não confiáveis para eficácia; exclusão não valida automaticamente inferência nem prova ineficácia universal.",
+              "sourceURL": "https://www.fda.gov/media/192160/download",
+              "locator": "Sections C–E, pp.4–14",
+              "verificationStatus": "VERIFICADA",
+              "support": "FDA conclui que o estudo não sustenta evidência substancial de eficácia. Os limites adicionais são inferências do desenho/validade, expressamente distintos de uma prova de ineficácia."
+            }
+          ],
+          "verificationPending": [],
+          "referenceCards": [
+            {
+              "id": "advocate_retraction_2026",
+              "card": {
+                "label": "NEJM — Retratação do ADVOCATE (2026)",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/42377355/",
+                "journal": "N Engl J Med. Publicado em 29 jun 2026",
+                "ano": 2026,
+                "tipo": "Nota formal de retratação",
+                "badge": "RETRACTION",
+                "badgeColor": "#dc2626",
+                "impacto": "Invalida o artigo pivotal do ADVOCATE como evidência confiável de eficácia",
+                "icon": "⚠️",
+                "resumo": "Registro oficial NLM da nota de Eric J. Rubin publicada em 29 de junho de 2026, DOI 10.1056/NEJMe2608684. Identifica a retratação do artigo ADVOCATE de 2021, PMID 33596356. O registro não contém abstract; o texto integral da nota não foi obtido.",
+                "conclusao": "Confirma formalmente a retratação e sua data. Os fatos da readjudicação são sustentados separadamente pelo documento primário da FDA.",
+                "curiosidade": ""
+              },
+              "canonicalSHA256": "eb72bec4fdbe1818e19497860dff9cfb4c21d8cf280886d59d805755165b04e2",
+              "action": "PROPOSTA_DE_CARD_COM_ESCOPO_VERIFICADO; não sobrescrever registro compartilhado sem revisar impacto.",
+              "verifiedScope": "Apenas as afirmações no card proposto, verificadas no conteúdo aberto e indicado no registro de claims."
+            },
+            {
+              "id": "fda_tavneos_nooh_2026",
+              "card": {
+                "label": "FDA — Proposta de Retirada do Tavneos (2026)",
+                "url": "https://www.fda.gov/media/192160/download",
+                "journal": "U.S. Food and Drug Administration, FDA-2026-N-1321",
+                "ano": 2026,
+                "tipo": "Notificação regulatória",
+                "badge": "REG",
+                "badgeColor": "#2563eb",
+                "impacto": "Questiona eficácia, integridade do dossiê e segurança do avacopan",
+                "icon": "🏛️",
+                "resumo": "FDA, notificação de 27 de abril de 2026, docket FDA-2026-N-1321: propõe retirar a aprovação de Tavneos. Documenta nove casos readjudicados após fechamento e descegamento, alterações não divulgadas e dados incapazes de sustentar evidência substancial de eficácia.",
+                "conclusao": "Documento primário da proposta datada; não comprova a etapa atual do processo nem demonstra ineficácia universal.",
+                "curiosidade": ""
+              },
+              "canonicalSHA256": "c81b7e67c16c3662054fb7f1e0260404e8db5d5231876f956739a2777ac759a7",
+              "action": "PROPOSTA_DE_CARD_COM_ESCOPO_VERIFICADO; não sobrescrever registro compartilhado sem revisar impacto.",
+              "verifiedScope": "Apenas as afirmações no card proposto, verificadas no conteúdo aberto e indicado no registro de claims."
+            }
+          ],
+          "formalReviewQualification": "Revisão formal do autor pela skill, depois da formulação completa do AFTER. Não é uma segunda revisão independente; não herda aprovação de métricas ou de versões anteriores.",
+          "integrationPending": [
+            "Badges RETRACTION/REG reais do registro local divergem da enumeração reduzida do contrato; não reclassificar como RCT ou guideline para forçar integração.",
+            "Revisão independente e liberação de integração continuam com o coordenador; release 16.08 é técnica, sem banco/cards."
+          ],
+          "additionalVerifiedContext": {
+            "URL": "https://www.ema.europa.eu/en/medicines/human/EPAR/tavneos",
+            "fact": "EPAR atual registra revogação pela Comissão Europeia em 04/08/2026.",
+            "use": "Contexto consultado para evitar generalização regulatória; não adicionado ao item e não usado para afirmar situação atual da FDA."
+          },
+          "finalExactReReview": {
+            "deltas": [
+              "Nome do badge FDA descrito exatamente como REG, conforme o card existente."
+            ],
+            "canonicalQuestionSHA256": "0c53c537ed44e8e2c68e0c93d3a26b660548f0874423e75c08f64b37e6c8b927",
+            "performed": true,
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "v2verdict": "aprovada",
+            "publicationAuthorization": "LIBERADA",
+            "publicationDerivedBy": "Handbook §18.4 Regra 7",
+            "justification": "Depois dos deltas, a versão inteira foi relida contra fontes, OP, quatro alternativas e explicação. Gabarito único preservado; dez eliminatórios reavaliados, nenhum disparado. Não herdar silenciosamente a decisão anterior. Escore continua o mesmo pelas dimensões explicitadas. Ainda exige revisão independente e gates de integração."
+          }
+        },
+        "v2verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "materialChange": true,
+        "patchEditorialSuggested": {
+          "operation": "SUBSTITUIR A QUESTÃO POR",
+          "question": {
+            "t": "ADVOCATE — Retratação e Validade da Evidência",
+            "qid": "91355bed",
+            "q": "Após a retratação do artigo ADVOCATE pelo NEJM em junho de 2026 e a proposta de retirada regulatória da FDA, como seus resultados de eficácia devem ser tratados?",
+            "refs": [
+              "advocate_retraction_2026",
+              "fda_tavneos_nooh_2026"
+            ],
+            "opts": [
+              "Resultados não confiáveis para alegações de eficácia; a readjudicação após descegamento comprometeu a inferência.",
+              "Resultados válidos para não inferioridade; a readjudicação compromete somente a alegação de superioridade.",
+              "Resultados válidos após excluir os casos readjudicados; a exclusão basta para validar a análise publicada.",
+              "Resultados não confiáveis para a FDA; a publicação anterior continua suficiente para a inferência clínica."
+            ],
+            "ans": 0,
+            "exp": "O artigo ADVOCATE foi formalmente retratado em 29 de junho de 2026. Na notificação de 27 de abril de 2026, a FDA documentou readjudicações de nove participantes após fechamento e descegamento do banco, alterações não divulgadas na submissão e dados incapazes de sustentar evidência substancial de eficácia. A retratação está confirmada no registro oficial da nota; os detalhes da readjudicação foram conferidos no documento da FDA. Esses resultados não devem ser ensinados como prova confiável de superioridade ou não inferioridade. Excluir casos não valida automaticamente a análise publicada. Isso tampouco demonstra ineficácia em toda pessoa ou determina interrupção individual abrupta; decisões clínicas exigem avaliação atualizada.",
+            "diff": "hard",
+            "cat": "glomerular"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "fullText": "Resultados não confiáveis para alegações de eficácia; a readjudicação após descegamento comprometeu a inferência."
+          },
+          "implementation": "Preservar qid, posição, ans, tipo, dificuldade, categoria, histórico e FSRS. Implementar somente versão exata com gates de integração concluídos. Nenhuma edição do banco foi executada."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": false,
+          "proposalHasFixedLetter": false,
+          "sourceDiagnosticLetterLead": false,
+          "qualification": "Revisão textual não identificou remissão fixa a A/B/C/D. Os dados internos de cada alternativa permanecem unidos; nenhuma permutação aplicada."
+        },
+        "duplicateReview": "Comparadas as oito competências: classificação MPGN, validade ADVOCATE, gene/audição Alport, resultado REGENCY, subgrupo DAPA-CKD, elegibilidade tolvaptana, calendário de vacina viva e achado incidental venoso. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            168,
+            87,
+            96,
+            71
+          ],
+          "afterCharacters": [
+            113,
+            106,
+            106,
+            106
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": true,
+          "qualification": "Medição apenas dos oito textos finalizados para documentar o delta; não é evidência clínica nem auditoria nova da fila global."
+        },
+        "noBankEdits": true
+      },
+      {
+        "qid": "d1e9ed7e",
+        "sourceLine": 40,
+        "sourceQuestionSHA256": "8386b5ff8c390b9165100c048c8580a34e681eb8af1d3cbbe72ae65f2ee48735",
+        "beforeCanonicalSHA256": "8386b5ff8c390b9165100c048c8580a34e681eb8af1d3cbbe72ae65f2ee48735",
+        "afterCanonicalSHA256": "b7a9ca922490e7a7f95e687ffe712a3765cff2be8f2ae70041241f477b7e4ed6",
+        "BEFORE": {
+          "t": "Síndrome de Alport: Genética e Clínica",
+          "qid": "d1e9ed7e",
+          "q": "Qual é o gene mais frequentemente envolvido na forma mais comum da síndrome de Alport e qual manifestação extra-renal é clássica?",
+          "refs": [
+            "alport_genereviews_2025"
+          ],
+          "opts": [
+            "Gene do receptor de vitamina D; osteomalácia",
+            "COL4A5, com herança ligada ao X; perda auditiva neurossensorial",
+            "PKD1; aneurismas intracranianos como manifestação principal",
+            "COL4A3 bialélico como forma mais comum; catarata congênita"
+          ],
+          "ans": 1,
+          "exp": "A forma mais comum da síndrome de Alport é a ligada ao X, causada por variantes em COL4A5. Além da hematúria/proteinúria e progressão renal, a perda auditiva neurossensorial é uma manifestação extra-renal clássica, especialmente em formas mais graves. COL4A3 e COL4A4 também causam Alport, em padrões autossômicos recessivo ou dominante, mas não são a forma mais frequente. PKD1 remete à doença renal policística autossômica dominante, e receptor de vitamina D/osteomalácia não pertence a esse quadro.",
+          "diff": "medium",
+          "cat": "genetica"
+        },
+        "AFTER": {
+          "t": "Síndrome de Alport: Genética e Clínica",
+          "qid": "d1e9ed7e",
+          "q": "Na forma ligada ao X da síndrome de Alport, qual associação de gene e manifestação extrarrenal é clássica?",
+          "refs": [
+            "alport_erknet_era_espn_guideline_2024"
+          ],
+          "opts": [
+            "COL4A3; perda auditiva neurossensorial.",
+            "COL4A5; perda auditiva neurossensorial.",
+            "COL4A5; perda auditiva condutiva.",
+            "COL4A4; perda auditiva condutiva."
+          ],
+          "ans": 1,
+          "exp": "A forma ligada ao X decorre de variantes patogênicas em COL4A5, localizado no cromossomo X. Perda auditiva neurossensorial é uma manifestação clássica, com penetrância e expressão variáveis; sua ausência não exclui o diagnóstico. COL4A3 e COL4A4 participam das formas autossômicas. A forma recessiva resulta de variantes bialélicas; variantes heterozigotas também podem causar doença renal no espectro COL4A3/4/5. A perda auditiva condutiva não é a manifestação auditiva clássica desse espectro. O enunciado especifica a herança para não confundir frequência populacional de variantes com prevalência das apresentações clássicas.",
+          "diff": "medium",
+          "cat": "genetica"
+        },
+        "sourceAssessment": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Associar Alport ligado ao X a COL4A5 e à perda auditiva neurossensorial clássica, distinguindo outras heranças e tipo de perda auditiva.",
+          "classification": {
+            "competency": "Associação genótipo/fenótipo para diagnóstico e aconselhamento",
+            "bloom": "Compreender",
+            "miller": "Sabe",
+            "difficulty": "Intermediária"
+          },
+          "problems": [
+            "MAIOR — genes de doenças distintas produzem distratores muito distantes do construto.",
+            "MAIOR — forma mais comum sem delimitar classificação pode confundir formas clássicas com o espectro amplo COL4A3/4/5 e frequência de variantes heterozigotas."
+          ],
+          "lawyerOfAppeal": "O enquadramento de frequência depende da nomenclatura/população; o conhecimento decisivo da questão é gene e manifestação na forma ligada ao X, que deve ser explicitada.",
+          "eliminators": [
+            5
+          ],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 1,
+              "Validade de construto": 0,
+              "Qualidade do enunciado": 1,
+              "Alternativas": 0,
+              "Distratores": 0,
+              "Explicação": 1,
+              "Referências": 1,
+              "Ausência de cara de IA": 0,
+              "Valor pedagógico": 1
+            },
+            "total": null,
+            "annulledByEliminator": true
+          },
+          "lifecycle": "em_reparo"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Associar Alport ligado ao X a COL4A5 e à perda auditiva neurossensorial clássica, distinguindo outras heranças e tipo de perda auditiva.",
+          "classification": {
+            "competency": "Associação genótipo/fenótipo para diagnóstico e aconselhamento",
+            "bloom": "Compreender",
+            "miller": "Sabe",
+            "difficulty": "Intermediária"
+          },
+          "justification": "Preserva qid, gabarito e conceito gene/herança/manifestações. Os distratores agora usam genes do mesmo espectro e duas categorias auditivas comparáveis. A mudança do enunciado elimina uma qualificação epidemiológica desnecessária à competência.",
+          "problems": [],
+          "lawyerOfAppeal": {
+            "result": "A especificação da forma ligada ao X torna COL4A5 decisivo; as duas alternativas COL4A5 diferem no tipo de perda auditiva. Não se exige que toda pessoa tenha surdez. A ambiguidade de frequência foi removida.",
+            "checks": [
+              "Buscada segunda resposta defensável no caso e no comando exatos.",
+              "Comparabilidade de categoria, estrutura e granularidade confrontada em todas as alternativas.",
+              "Dados, desenho, população e limites confrontados com as fontes indicadas.",
+              "Explicação relida depois de fixar o texto e a ordem das alternativas."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": false,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": false,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": false
+            },
+            "qualification": "Os dez critérios foram avaliados individualmente nesta versão exata; nenhum disparado."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 1,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 1,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 18,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "Evidência VERIFICADA/NENHUMA; sem eliminatório; sem recurso plausível; escore 18–20; aprovada; LIBERADA pela fórmula.",
+          "lifecycle": "publicado",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; publicado é destino da árvore, sem publicação real.",
+          "claimRegister": [
+            {
+              "claim": "COL4A5 no X causa XLAS; COL4A3/4 bialélicos causam ARAS.",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=12209846",
+              "locator": "Full body Q1",
+              "verificationStatus": "VERIFICADA",
+              "support": "Diretriz define os genes, cromossomos e padrões de herança; o identificador novo aponta para essa diretriz efetivamente aberta."
+            },
+            {
+              "claim": "Perda auditiva neurossensorial clássica e expressão variável; não obrigatória em todo caso.",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=12209846",
+              "locator": "Introduction; Q4 and hearing recommendations",
+              "verificationStatus": "VERIFICADA",
+              "support": "A tríade e a variabilidade estão explícitas no texto. Distratores condutivos não descrevem o tipo clássico."
+            },
+            {
+              "claim": "Heterozigotas COL4A3/4 são frequentes e podem ter manifestações; nomenclatura não equivale a frequência de formas clássicas.",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=12209846",
+              "locator": "Q2",
+              "verificationStatus": "VERIFICADA",
+              "support": "Diretriz discute nomenclaturas e penetrância; nenhuma porcentagem populacional foi transferida para a questão."
+            }
+          ],
+          "verificationPending": [],
+          "referenceCards": [
+            {
+              "id": "alport_erknet_era_espn_guideline_2024",
+              "card": {
+                "label": "Torra et al. — Alport: diretriz ERKNet/ERA/ESPN 2024 (edição 2025)",
+                "url": "https://academic.oup.com/ndt/article/40/6/1091/7915083",
+                "journal": "Nephrol Dial Transplant. 2025;40(6):1091–1106. DOI 10.1093/ndt/gfae265",
+                "ano": 2025,
+                "tipo": "Diretriz clínica internacional",
+                "badge": "GUIDELINE",
+                "badgeColor": "#6366f1",
+                "icon": "📋",
+                "impacto": "Integra herança, diagnóstico e manifestações das doenças COL4A3/4/5.",
+                "resumo": "Diretriz 2024, publicada inicialmente em dezembro de 2024 e na edição de junho de 2025. COL4A5 causa Alport ligado ao X; COL4A3/4 podem causar formas autossômicas. A tríade clássica inclui doença renal progressiva, perda auditiva neurossensorial e manifestações oculares, com expressão variável.",
+                "conclusao": "Relacionar gene e herança sem confundir frequência de variantes heterozigotas com prevalência das formas clássicas.",
+                "curiosidade": ""
+              },
+              "canonicalSHA256": "6e0b28413bc52d1a9a16e87710ee5af37124138eefb7c0efc646168c1736e14f",
+              "action": "PROPOSTA_DE_CARD_COM_ESCOPO_VERIFICADO; não sobrescrever registro compartilhado sem revisar impacto.",
+              "verifiedScope": "Apenas as afirmações no card proposto, verificadas no conteúdo aberto e indicado no registro de claims."
+            }
+          ],
+          "formalReviewQualification": "Revisão formal do autor pela skill, depois da formulação completa do AFTER. Não é uma segunda revisão independente; não herda aprovação de métricas ou de versões anteriores.",
+          "integrationPending": [
+            "Novo card alport_erknet_era_espn_guideline_2024 ausente no registro: adicionar atomicamente com o item aprovado, após conferência editorial; não deixar referência órfã.",
+            "Revisão independente e liberação de integração continuam com o coordenador; release 16.08 é técnica, sem banco/cards."
+          ]
+        },
+        "v2verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "materialChange": true,
+        "patchEditorialSuggested": {
+          "operation": "SUBSTITUIR A QUESTÃO POR",
+          "question": {
+            "t": "Síndrome de Alport: Genética e Clínica",
+            "qid": "d1e9ed7e",
+            "q": "Na forma ligada ao X da síndrome de Alport, qual associação de gene e manifestação extrarrenal é clássica?",
+            "refs": [
+              "alport_erknet_era_espn_guideline_2024"
+            ],
+            "opts": [
+              "COL4A3; perda auditiva neurossensorial.",
+              "COL4A5; perda auditiva neurossensorial.",
+              "COL4A5; perda auditiva condutiva.",
+              "COL4A4; perda auditiva condutiva."
+            ],
+            "ans": 1,
+            "exp": "A forma ligada ao X decorre de variantes patogênicas em COL4A5, localizado no cromossomo X. Perda auditiva neurossensorial é uma manifestação clássica, com penetrância e expressão variáveis; sua ausência não exclui o diagnóstico. COL4A3 e COL4A4 participam das formas autossômicas. A forma recessiva resulta de variantes bialélicas; variantes heterozigotas também podem causar doença renal no espectro COL4A3/4/5. A perda auditiva condutiva não é a manifestação auditiva clássica desse espectro. O enunciado especifica a herança para não confundir frequência populacional de variantes com prevalência das apresentações clássicas.",
+            "diff": "medium",
+            "cat": "genetica"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "fullText": "COL4A5; perda auditiva neurossensorial."
+          },
+          "implementation": "Preservar qid, posição, ans, tipo, dificuldade, categoria, histórico e FSRS. Implementar somente versão exata com gates de integração concluídos. Nenhuma edição do banco foi executada."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": false,
+          "proposalHasFixedLetter": false,
+          "sourceDiagnosticLetterLead": false,
+          "qualification": "Revisão textual não identificou remissão fixa a A/B/C/D. Os dados internos de cada alternativa permanecem unidos; nenhuma permutação aplicada."
+        },
+        "duplicateReview": "Comparadas as oito competências: classificação MPGN, validade ADVOCATE, gene/audição Alport, resultado REGENCY, subgrupo DAPA-CKD, elegibilidade tolvaptana, calendário de vacina viva e achado incidental venoso. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            44,
+            63,
+            59,
+            58
+          ],
+          "afterCharacters": [
+            39,
+            39,
+            33,
+            33
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": false,
+          "qualification": "Medição apenas dos oito textos finalizados para documentar o delta; não é evidência clínica nem auditoria nova da fila global."
+        },
+        "noBankEdits": true
+      },
+      {
+        "qid": "d80edb37",
+        "sourceLine": 43,
+        "sourceQuestionSHA256": "62e0fddbe0b4c1768101a08c2add0f59c2125c37b52e6f2cd3991c3e190d3148",
+        "beforeCanonicalSHA256": "62e0fddbe0b4c1768101a08c2add0f59c2125c37b52e6f2cd3991c3e190d3148",
+        "afterCanonicalSHA256": "7c3139396868b3f508b54ab894ff2ca05805fb215d10bd24712fdff4dfd49047",
+        "BEFORE": {
+          "t": "Obinutuzumabe na Nefrite Lúpica — REGENCY",
+          "qid": "d80edb37",
+          "q": "Após o sinal de eficácia do NOBILITY, o REGENCY randomizou 271 adultos com nefrite lúpica ativa para obinutuzumabe ou placebo, ambos sobre terapia padrão. Qual resultado interpreta corretamente o desfecho primário na semana 76?",
+          "refs": [
+            "nobility_study",
+            "regency_obinutuzumab_2025",
+            "gazyva_lupus_nephritis_fda_2025"
+          ],
+          "opts": [
+            "Resposta renal completa ocorreu em 46,4% com obinutuzumabe e 33,1% com placebo, favorecendo a terapia adicional",
+            "Obinutuzumabe não modificou a resposta renal completa e o estudo foi interrompido por futilidade",
+            "O benefício ocorreu apenas com obinutuzumabe em monoterapia, sem micofenolato ou glicocorticoide",
+            "A resposta renal completa foi de 100%, sem eventos adversos graves no grupo obinutuzumabe"
+          ],
+          "ans": 0,
+          "exp": "No REGENCY, resposta renal completa na semana 76 ocorreu em 46,4% dos participantes que receberam obinutuzumabe e em 33,1% dos que receberam placebo, diferença ajustada de 13,4 pontos percentuais (IC95% 2,0–24,8; P=0,02). Todos receberam micofenolato e glicocorticoide em desmame, portanto o ensaio demonstrou benefício como terapia adicional, não como monoterapia. Eventos adversos graves, sobretudo infecções e COVID-19, foram mais frequentes com obinutuzumabe, embora não tenha surgido sinal inesperado. Em outubro de 2025, a FDA incluiu nefrite lúpica ativa em adultos que recebem terapia padrão entre as indicações do fármaco.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "AFTER": {
+          "t": "Obinutuzumabe na Nefrite Lúpica — REGENCY",
+          "qid": "d80edb37",
+          "q": "Após o sinal de eficácia do NOBILITY, o REGENCY randomizou 271 adultos com nefrite lúpica ativa para obinutuzumabe ou placebo, ambos sobre terapia padrão. Qual resultado interpreta corretamente o desfecho primário na semana 76?",
+          "refs": [
+            "nobility_study",
+            "regency_obinutuzumab_2025",
+            "gazyva_lupus_nephritis_fda_2025"
+          ],
+          "opts": [
+            "Maior resposta renal completa: 46,4% versus 33,1%, com obinutuzumabe adicionado à terapia padrão.",
+            "Menor resposta renal completa: 33,1% versus 46,4%, com obinutuzumabe adicionado à terapia padrão.",
+            "Maior resposta renal completa: 46,4% versus 33,1%, com obinutuzumabe usado em monoterapia.",
+            "Maior resposta renal completa: 46,4% versus 33,1%, sem diferença estatisticamente significativa."
+          ],
+          "ans": 0,
+          "exp": "No REGENCY, resposta renal completa na semana 76 ocorreu em 46,4% dos participantes que receberam obinutuzumabe e em 33,1% dos que receberam placebo, diferença ajustada de 13,4 pontos percentuais (IC95% 2,0–24,8; P=0,02). Todos receberam micofenolato e glicocorticoide em desmame, portanto o ensaio demonstrou benefício como terapia adicional, não como monoterapia. Eventos adversos graves, sobretudo infecções e COVID-19, foram mais frequentes com obinutuzumabe, embora não tenha surgido sinal inesperado. Em outubro de 2025, a FDA incluiu nefrite lúpica ativa em adultos que recebem terapia padrão entre as indicações do fármaco.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "sourceAssessment": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Interpretar o desfecho primário e o tratamento adicional do REGENCY, ponderando significância e segurança.",
+          "classification": {
+            "competency": "Interpretação de ensaio terapêutico",
+            "bloom": "Analisar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "problems": [
+            "MAIOR — distrator de 100% sem eventos e monoterapia sem comparabilidade favorecem reconhecimento formal."
+          ],
+          "lawyerOfAppeal": "O ensaio avalia obinutuzumabe adicionado ao tratamento padrão; taxas, direção da comparação e significância precisam ser reconhecidas separadamente.",
+          "eliminators": [
+            5
+          ],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 1,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 1,
+              "Distratores": 0,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 0,
+              "Valor pedagógico": 2
+            },
+            "total": null,
+            "annulledByEliminator": true
+          },
+          "lifecycle": "em_reparo"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Interpretar o desfecho primário e o tratamento adicional do REGENCY, ponderando significância e segurança.",
+          "classification": {
+            "competency": "Interpretação de ensaio terapêutico",
+            "bloom": "Analisar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "justification": "Mantém integralmente os números, contexto e segurança na explicação. As alternativas comparáveis exigem leitura do resultado e desenho, sem promessa de resposta total ou ausência de eventos.",
+          "problems": [],
+          "lawyerOfAppeal": {
+            "result": "As alternativas compartilham desfecho e números; erro de direção, monoterapia ou ausência de significância é incompatível com o ensaio. P=0,02 do artigo e P=0,0232 da bula representam arredondamento consistente. A explicação de risco permanece.",
+            "checks": [
+              "Buscada segunda resposta defensável no caso e no comando exatos.",
+              "Comparabilidade de categoria, estrutura e granularidade confrontada em todas as alternativas.",
+              "Dados, desenho, população e limites confrontados com as fontes indicadas.",
+              "Explicação relida depois de fixar o texto e a ordem das alternativas."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": false,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": false,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": false
+            },
+            "qualification": "Os dez critérios foram avaliados individualmente nesta versão exata; nenhum disparado."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 1,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 19,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "Evidência VERIFICADA/NENHUMA; sem eliminatório; sem recurso plausível; escore 18–20; aprovada; LIBERADA pela fórmula.",
+          "lifecycle": "publicado",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; publicado é destino da árvore, sem publicação real.",
+          "claimRegister": [
+            {
+              "claim": "NOBILITY fase II forneceu sinal; seu alfa pré-especificado foi 0,2.",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=34615636&retmode=xml",
+              "locator": "Primary abstract Methods/Results",
+              "verificationStatus": "VERIFICADA",
+              "support": "125 pacientes; semana 52, 35% versus 23%, P=0,115. Não tratar como superioridade convencional P<0,05 nessa visita."
+            },
+            {
+              "claim": "REGENCY: n=271, CRR semana 76, 46,4% versus 33,1%; diferença ajustada 13,4 pontos percentuais, IC 95% 2,0–24,8; P=0,02.",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=39927615&retmode=xml",
+              "locator": "Primary abstract Methods/Results",
+              "verificationStatus": "VERIFICADA",
+              "support": "Resultados conferidos no abstract primário. FDA Table 19 usa P=0,0232; P=0,02 na publicação é arredondamento compatível, não dado conflitante."
+            },
+            {
+              "claim": "Todos receberam micofenolato e prednisona em desmame; mais eventos graves sobretudo infecções/COVID-19.",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=39927615&retmode=xml",
+              "locator": "Methods/Results/Conclusions",
+              "verificationStatus": "VERIFICADA",
+              "support": "O comparador é placebo sobre a mesma terapia padrão; a publicação não sustenta monoterapia nem ausência de risco."
+            },
+            {
+              "claim": "Indicação FDA para adultos com LN ativa em terapia padrão, mudança da bula em outubro de 2025.",
+              "sourceURL": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/125486s037s038lbl.pdf",
+              "locator": "Highlights recent major changes; §1.3; §14.3/Table 19",
+              "verificationStatus": "VERIFICADA",
+              "support": "A data é a mudança de indicação impressa na bula. Não inferir primeira aprovação histórica da molécula em 2025."
+            }
+          ],
+          "verificationPending": [],
+          "referenceCards": [
+            {
+              "id": "nobility_study",
+              "card": {
+                "label": "Furie et al. — NOBILITY (Annals of the Rheumatic Diseases 2022)",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/34615636/",
+                "journal": "Annals of the Rheumatic Diseases 2022;81(1):100-107",
+                "ano": 2022,
+                "tipo": "Ensaio Clínico Fase II",
+                "badge": "RCT",
+                "badgeColor": "#10b981",
+                "impacto": "Gerou o sinal randomizado inicial de resposta renal com obinutuzumabe adicional na nefrite lúpica proliferativa.",
+                "icon": "💊",
+                "resumo": "NOBILITY, fase II duplo-cego: 125 pacientes com nefrite lúpica proliferativa receberam obinutuzumabe ou placebo adicionais a micofenolato e corticosteroide. Resposta renal completa na semana 52: 35% versus 23%, P=0,115 sob alfa pré-especificado de 0,2. O resultado foi um sinal para confirmação em fase III.",
+                "conclusao": "Interpretar o desenho exploratório e o alfa do estudo; não extrapolar para superioridade sobre outro anti-CD20.",
+                "curiosidade": ""
+              },
+              "canonicalSHA256": "88b3d923a9a00ff34efefcfd15c168639c199a97813668e56a3a788b7b025382",
+              "action": "PROPOSTA_DE_CARD_COM_ESCOPO_VERIFICADO; não sobrescrever registro compartilhado sem revisar impacto.",
+              "verifiedScope": "Apenas as afirmações no card proposto, verificadas no conteúdo aberto e indicado no registro de claims."
+            },
+            {
+              "id": "regency_obinutuzumab_2025",
+              "card": {
+                "label": "Rovin et al. — REGENCY (NEJM 2025)",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/39927615/",
+                "journal": "New England Journal of Medicine 2025",
+                "ano": 2025,
+                "tipo": "Ensaio Clínico Fase III",
+                "badge": "RCT",
+                "badgeColor": "#10b981",
+                "impacto": "Confirmou maior resposta renal completa com obinutuzumabe adicionado à terapia padrão na nefrite lúpica ativa.",
+                "icon": "🔬",
+                "resumo": "REGENCY: 271 adultos com nefrite lúpica ativa, obinutuzumabe ou placebo adicionais a micofenolato e prednisona. Resposta renal completa na semana 76: 46,4% versus 33,1%; diferença ajustada 13,4 pontos percentuais, IC 95% 2,0–24,8; P=0,02. Eventos adversos graves, sobretudo infecções/COVID-19, foram mais frequentes com obinutuzumabe.",
+                "conclusao": "Benefício de terapia adicional, com ponderação de segurança; o desenho não testa monoterapia.",
+                "curiosidade": ""
+              },
+              "canonicalSHA256": "2e748eb4b32431e20e39236600fb1804ca0dc9c0ec492d855c4410313b917b70",
+              "action": "PROPOSTA_DE_CARD_COM_ESCOPO_VERIFICADO; não sobrescrever registro compartilhado sem revisar impacto.",
+              "verifiedScope": "Apenas as afirmações no card proposto, verificadas no conteúdo aberto e indicado no registro de claims."
+            },
+            {
+              "id": "gazyva_lupus_nephritis_fda_2025",
+              "card": {
+                "label": "FDA — Gazyva (obinutuzumabe), bula para nefrite lúpica (2025)",
+                "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/125486s037s038lbl.pdf",
+                "journal": "U.S. Food and Drug Administration",
+                "ano": 2025,
+                "tipo": "Informação Regulatória",
+                "badge": "LABEL",
+                "badgeColor": "#6366f1",
+                "impacto": "Incluiu nefrite lúpica ativa em adultos que recebem terapia padrão entre as indicações regulatórias do obinutuzumabe.",
+                "icon": "📋",
+                "resumo": "Bula FDA com mudança de indicação datada de outubro de 2025: obinutuzumabe para adultos com nefrite lúpica ativa que recebem terapia padrão (§1.3). Mantém alertas em caixa para reativação de hepatite B e leucoencefalopatia multifocal progressiva.",
+                "conclusao": "A indicação inclui terapia padrão; não autoriza monoterapia universal nem dispensa avaliação de segurança.",
+                "curiosidade": ""
+              },
+              "canonicalSHA256": "e09bddd6579d0bbff0506e9c4a058b4970e00fcdcc958ec1fec5dbe02885954c",
+              "action": "PROPOSTA_DE_CARD_COM_ESCOPO_VERIFICADO; não sobrescrever registro compartilhado sem revisar impacto.",
+              "verifiedScope": "Apenas as afirmações no card proposto, verificadas no conteúdo aberto e indicado no registro de claims."
+            }
+          ],
+          "formalReviewQualification": "Revisão formal do autor pela skill, depois da formulação completa do AFTER. Não é uma segunda revisão independente; não herda aprovação de métricas ou de versões anteriores.",
+          "integrationPending": [
+            "Badge LABEL existente é informação regulatória verdadeira, fora da enumeração reduzida do contrato local; resolver taxonomia explicitamente antes da integração.",
+            "Revisão independente e liberação de integração continuam com o coordenador; release 16.08 é técnica, sem banco/cards."
+          ]
+        },
+        "v2verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "materialChange": true,
+        "patchEditorialSuggested": {
+          "operation": "SUBSTITUIR A QUESTÃO POR",
+          "question": {
+            "t": "Obinutuzumabe na Nefrite Lúpica — REGENCY",
+            "qid": "d80edb37",
+            "q": "Após o sinal de eficácia do NOBILITY, o REGENCY randomizou 271 adultos com nefrite lúpica ativa para obinutuzumabe ou placebo, ambos sobre terapia padrão. Qual resultado interpreta corretamente o desfecho primário na semana 76?",
+            "refs": [
+              "nobility_study",
+              "regency_obinutuzumab_2025",
+              "gazyva_lupus_nephritis_fda_2025"
+            ],
+            "opts": [
+              "Maior resposta renal completa: 46,4% versus 33,1%, com obinutuzumabe adicionado à terapia padrão.",
+              "Menor resposta renal completa: 33,1% versus 46,4%, com obinutuzumabe adicionado à terapia padrão.",
+              "Maior resposta renal completa: 46,4% versus 33,1%, com obinutuzumabe usado em monoterapia.",
+              "Maior resposta renal completa: 46,4% versus 33,1%, sem diferença estatisticamente significativa."
+            ],
+            "ans": 0,
+            "exp": "No REGENCY, resposta renal completa na semana 76 ocorreu em 46,4% dos participantes que receberam obinutuzumabe e em 33,1% dos que receberam placebo, diferença ajustada de 13,4 pontos percentuais (IC95% 2,0–24,8; P=0,02). Todos receberam micofenolato e glicocorticoide em desmame, portanto o ensaio demonstrou benefício como terapia adicional, não como monoterapia. Eventos adversos graves, sobretudo infecções e COVID-19, foram mais frequentes com obinutuzumabe, embora não tenha surgido sinal inesperado. Em outubro de 2025, a FDA incluiu nefrite lúpica ativa em adultos que recebem terapia padrão entre as indicações do fármaco.",
+            "diff": "hard",
+            "cat": "glomerular"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "fullText": "Maior resposta renal completa: 46,4% versus 33,1%, com obinutuzumabe adicionado à terapia padrão."
+          },
+          "implementation": "Preservar qid, posição, ans, tipo, dificuldade, categoria, histórico e FSRS. Implementar somente versão exata com gates de integração concluídos. Nenhuma edição do banco foi executada."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": false,
+          "proposalHasFixedLetter": false,
+          "sourceDiagnosticLetterLead": false,
+          "qualification": "Revisão textual não identificou remissão fixa a A/B/C/D. Os dados internos de cada alternativa permanecem unidos; nenhuma permutação aplicada."
+        },
+        "duplicateReview": "Comparadas as oito competências: classificação MPGN, validade ADVOCATE, gene/audição Alport, resultado REGENCY, subgrupo DAPA-CKD, elegibilidade tolvaptana, calendário de vacina viva e achado incidental venoso. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            111,
+            96,
+            96,
+            89
+          ],
+          "afterCharacters": [
+            97,
+            97,
+            90,
+            96
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": false,
+          "qualification": "Medição apenas dos oito textos finalizados para documentar o delta; não é evidência clínica nem auditoria nova da fila global."
+        },
+        "noBankEdits": true
+      },
+      {
+        "qid": "9fd2cfdb",
+        "sourceLine": 50,
+        "sourceQuestionSHA256": "cac134169e14123f684ee77973d454e5d939ad92812c84a70ab6fff1662af8c7",
+        "beforeCanonicalSHA256": "cac134169e14123f684ee77973d454e5d939ad92812c84a70ab6fff1662af8c7",
+        "afterCanonicalSHA256": "faea4c19ea520e45c8f05753004261201936b67ce695efbe14b6ebebb5cf6bc6",
+        "BEFORE": {
+          "t": "DAPA-CKD na IgAN — Benefício e Cautela",
+          "qid": "9fd2cfdb",
+          "q": "Na análise pré-especificada do DAPA-CKD em 270 participantes com nefropatia por IgA, qual interpretação é mais correta?",
+          "refs": [
+            "dapa_ckd_igan_2021",
+            "kdigo_igan_igav_2025"
+          ],
+          "opts": [
+            "O desfecho composto ocorreu em 6 participantes com dapagliflozina e 20 com placebo (HR 0,29), mas foram apenas 26 eventos em uma população com DRC estabelecida; o resultado apoia nefroproteção sem provar efeito idêntico em toda IgAN",
+            "A redução relativa de 71% prova que a dapagliflozina modifica diretamente a produção de IgA1 galactose-deficiente",
+            "O estudo avaliou hematúria como desfecho primário e demonstrou sua remissão com dapagliflozina",
+            "O subgrupo incluiu apenas adultos jovens com TFGe acima de 90 mL/min/1,73 m²"
+          ],
+          "ans": 0,
+          "exp": "No subgrupo pré-especificado, 254 dos 270 participantes (94%) tinham confirmação histológica; a TFGe média era 43,8 mL/min/1,73 m², a idade média 51 anos e a UACR mediana 900 mg/g. Em 2,1 anos, o composto renal ocorreu em 6 de 137 versus 20 de 133 participantes, HR 0,29 (IC 95% 0,12–0,73), e a UACR caiu 26% em relação ao placebo. O resultado sustenta nefroproteção na IgAN proteinúrica com DRC estabelecida, mas deriva de apenas 26 eventos e não demonstra mecanismo imunológico específico nem autoriza extrapolação automática para jovens com TFGe preservada.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "AFTER": {
+          "t": "DAPA-CKD na IgAN — Benefício e Cautela",
+          "qid": "9fd2cfdb",
+          "q": "Na análise pré-especificada do DAPA-CKD em 270 participantes com nefropatia por IgA, qual interpretação é mais correta?",
+          "refs": [
+            "dapa_ckd_igan_2021"
+          ],
+          "opts": [
+            "Apoia nefroproteção na IgAN com DRC; não estabelece benefício idêntico em toda apresentação de IgAN.",
+            "Apoia terapia imunológica da IgAN; a redução de eventos confirma menor produção de IgA1 anômala.",
+            "Apoia tratar IgAN com função preservada; o subgrupo representa jovens com TFGe acima de 90 mL/min/1,73 m².",
+            "Apoia controlar hematúria da IgAN; a redução de eventos corresponde à remissão desse desfecho."
+          ],
+          "ans": 0,
+          "exp": "O subgrupo pré-especificado incluiu 270 participantes, 254 (94%) com confirmação por biópsia. A idade média foi 51,2 anos, a TFGe média 43,8 mL/min/1,73 m² e a UACR mediana 900 mg/g. Durante mediana de seguimento de 2,1 anos, o composto de queda sustentada da TFGe ≥50%, doença renal terminal ou morte renal/cardiovascular ocorreu em 6/137 com dapagliflozina e 20/133 com placebo: HR 0,29, IC 95% 0,12–0,73. A UACR caiu 26% em relação ao placebo. Esses 26 eventos sustentam nefroproteção na população estudada, sem demonstrar mecanismo imunológico específico ou benefício idêntico em jovens com função preservada.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "sourceAssessment": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Interpretar a nefroproteção e os limites de extrapolação do subgrupo IgAN pré-especificado no DAPA-CKD.",
+          "classification": {
+            "competency": "Aplicabilidade de evidência de subgrupo",
+            "bloom": "Avaliar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "problems": [
+            "MAIOR — correta reúne muitos números e ressalvas; outras alternativas mudam mecanismo, desfecho ou população de modo ostensivo.",
+            "MENOR — composto renal é abreviação que oculta o componente de morte cardiovascular."
+          ],
+          "lawyerOfAppeal": "Um HR no subgrupo não comprova mecanismo imunológico nem efeito idêntico em população ausente; o desfecho composto precisa incluir morte cardiovascular quando descrito.",
+          "eliminators": [],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 1,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 1,
+              "Distratores": 1,
+              "Explicação": 1,
+              "Referências": 2,
+              "Ausência de cara de IA": 0,
+              "Valor pedagógico": 2
+            },
+            "total": 14,
+            "annulledByEliminator": false
+          },
+          "lifecycle": "em_reparo"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Interpretar a nefroproteção e os limites de extrapolação do subgrupo IgAN pré-especificado no DAPA-CKD.",
+          "classification": {
+            "competency": "Aplicabilidade de evidência de subgrupo",
+            "bloom": "Avaliar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "justification": "A proposta distribui a carga explicativa no comentário, preserva todos os resultados e corrige a descrição do composto. Ref secundária não necessária foi retirada; a fonte primária cobre a versão exata.",
+          "problems": [],
+          "lawyerOfAppeal": {
+            "result": "Distinção entre ausência de prova e prova de ausência buscada: a correta não nega benefício fora do ensaio. Os três distratores extrapolam mecanismo, população ou desfecho; nenhum é inferência sustentada.",
+            "checks": [
+              "Buscada segunda resposta defensável no caso e no comando exatos.",
+              "Comparabilidade de categoria, estrutura e granularidade confrontada em todas as alternativas.",
+              "Dados, desenho, população e limites confrontados com as fontes indicadas.",
+              "Explicação relida depois de fixar o texto e a ordem das alternativas."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": false,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": false,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": false
+            },
+            "qualification": "Os dez critérios foram avaliados individualmente nesta versão exata; nenhum disparado."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 20,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "Evidência VERIFICADA/NENHUMA; sem eliminatório; sem recurso plausível; escore 18–20; aprovada; LIBERADA pela fórmula.",
+          "lifecycle": "publicado",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; publicado é destino da árvore, sem publicação real.",
+          "claimRegister": [
+            {
+              "claim": "270; 254/94% por biópsia; idade média 51,2; TFGe 43,8; UACR 900; mediana 2,1 anos.",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=33878338&retmode=xml",
+              "locator": "Primary abstract",
+              "verificationStatus": "VERIFICADA",
+              "support": "Todos os valores e a distinção média/mediana foram confrontados com a publicação primária."
+            },
+            {
+              "claim": "Composto inclui queda ≥50%, ESKD, morte renal ou cardiovascular; 6/137 versus 20/133, HR 0,29, IC 95% 0,12–0,73; UACR −26%.",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=33878338&retmode=xml",
+              "locator": "Primary abstract Methods/Results",
+              "verificationStatus": "VERIFICADA",
+              "support": "O texto original foi tornado preciso quanto ao composto. Vinte e seis eventos é soma explícita, não novo resultado inferencial."
+            },
+            {
+              "claim": "Aplicabilidade limitada: não foi ensaio de IgA1 nem população de jovens com TFGe >90.",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=33878338&retmode=xml",
+              "locator": "Population: eGFR 25–75, UACR 200–5000; primary endpoint",
+              "verificationStatus": "VERIFICADA",
+              "support": "Inferência do desenho e da população. Não afirma inexistência de benefício fora do estudo; apenas ausência de prova de efeito idêntico."
+            }
+          ],
+          "verificationPending": [],
+          "referenceCards": [
+            {
+              "id": "dapa_ckd_igan_2021",
+              "card": {
+                "label": "Wheeler et al. — DAPA-CKD na Nefropatia por IgA",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/33878338/",
+                "journal": "Kidney Int. 2021;100(1):215-224",
+                "ano": 2021,
+                "tipo": "Análise pré-especificada de ensaio clínico",
+                "badge": "RCT",
+                "badgeColor": "#10b981",
+                "impacto": "Dapagliflozina reduziu eventos renais no subgrupo IgAN, com número pequeno de eventos e população de DRC estabelecida",
+                "icon": "🔬",
+                "resumo": "Análise pré-especificada do DAPA-CKD: 270 participantes com IgAN e DRC, TFGe média 43,8 mL/min/1,73 m². Composto primário: 6/137 versus 20/133; HR 0,29, IC 95% 0,12–0,73, mediana de 2,1 anos. Foram 26 eventos; o composto inclui morte cardiovascular. Não demonstra mecanismo imunológico específico.",
+                "conclusao": "Sustenta nefroproteção na população estudada, com limites de precisão e extrapolação.",
+                "curiosidade": ""
+              },
+              "canonicalSHA256": "f3d8086fb89474c42d3a1d28ba9f867f09da1b55bdb36155c8c7b98eb7af63a4",
+              "action": "PROPOSTA_DE_CARD_COM_ESCOPO_VERIFICADO; não sobrescrever registro compartilhado sem revisar impacto.",
+              "verifiedScope": "Apenas as afirmações no card proposto, verificadas no conteúdo aberto e indicado no registro de claims."
+            }
+          ],
+          "formalReviewQualification": "Revisão formal do autor pela skill, depois da formulação completa do AFTER. Não é uma segunda revisão independente; não herda aprovação de métricas ou de versões anteriores.",
+          "integrationPending": [
+            "Revisão independente e liberação de integração continuam com o coordenador; release 16.08 é técnica, sem banco/cards."
+          ],
+          "finalExactReReview": {
+            "deltas": [
+              "Unidade explícita de TFGe na alternativa e no card; qualificado que 2,1 anos é mediana de seguimento."
+            ],
+            "canonicalQuestionSHA256": "faea4c19ea520e45c8f05753004261201936b67ce695efbe14b6ebebb5cf6bc6",
+            "performed": true,
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "v2verdict": "aprovada",
+            "publicationAuthorization": "LIBERADA",
+            "publicationDerivedBy": "Handbook §18.4 Regra 7",
+            "justification": "Depois dos deltas, a versão inteira foi relida contra fontes, OP, quatro alternativas e explicação. Gabarito único preservado; dez eliminatórios reavaliados, nenhum disparado. Não herdar silenciosamente a decisão anterior. Escore continua o mesmo pelas dimensões explicitadas. Ainda exige revisão independente e gates de integração."
+          }
+        },
+        "v2verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "materialChange": true,
+        "patchEditorialSuggested": {
+          "operation": "SUBSTITUIR A QUESTÃO POR",
+          "question": {
+            "t": "DAPA-CKD na IgAN — Benefício e Cautela",
+            "qid": "9fd2cfdb",
+            "q": "Na análise pré-especificada do DAPA-CKD em 270 participantes com nefropatia por IgA, qual interpretação é mais correta?",
+            "refs": [
+              "dapa_ckd_igan_2021"
+            ],
+            "opts": [
+              "Apoia nefroproteção na IgAN com DRC; não estabelece benefício idêntico em toda apresentação de IgAN.",
+              "Apoia terapia imunológica da IgAN; a redução de eventos confirma menor produção de IgA1 anômala.",
+              "Apoia tratar IgAN com função preservada; o subgrupo representa jovens com TFGe acima de 90 mL/min/1,73 m².",
+              "Apoia controlar hematúria da IgAN; a redução de eventos corresponde à remissão desse desfecho."
+            ],
+            "ans": 0,
+            "exp": "O subgrupo pré-especificado incluiu 270 participantes, 254 (94%) com confirmação por biópsia. A idade média foi 51,2 anos, a TFGe média 43,8 mL/min/1,73 m² e a UACR mediana 900 mg/g. Durante mediana de seguimento de 2,1 anos, o composto de queda sustentada da TFGe ≥50%, doença renal terminal ou morte renal/cardiovascular ocorreu em 6/137 com dapagliflozina e 20/133 com placebo: HR 0,29, IC 95% 0,12–0,73. A UACR caiu 26% em relação ao placebo. Esses 26 eventos sustentam nefroproteção na população estudada, sem demonstrar mecanismo imunológico específico ou benefício idêntico em jovens com função preservada.",
+            "diff": "hard",
+            "cat": "glomerular"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "fullText": "Apoia nefroproteção na IgAN com DRC; não estabelece benefício idêntico em toda apresentação de IgAN."
+          },
+          "implementation": "Preservar qid, posição, ans, tipo, dificuldade, categoria, histórico e FSRS. Implementar somente versão exata com gates de integração concluídos. Nenhuma edição do banco foi executada."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": false,
+          "proposalHasFixedLetter": false,
+          "sourceDiagnosticLetterLead": false,
+          "qualification": "Revisão textual não identificou remissão fixa a A/B/C/D. Os dados internos de cada alternativa permanecem unidos; nenhuma permutação aplicada."
+        },
+        "duplicateReview": "Comparadas as oito competências: classificação MPGN, validade ADVOCATE, gene/audição Alport, resultado REGENCY, subgrupo DAPA-CKD, elegibilidade tolvaptana, calendário de vacina viva e achado incidental venoso. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            232,
+            113,
+            94,
+            76
+          ],
+          "afterCharacters": [
+            100,
+            96,
+            106,
+            94
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": false,
+          "qualification": "Medição apenas dos oito textos finalizados para documentar o delta; não é evidência clínica nem auditoria nova da fila global."
+        },
+        "noBankEdits": true
+      },
+      {
+        "qid": "b7a28d0b",
+        "sourceLine": 53,
+        "sourceQuestionSHA256": "9f3126588f0e2058d509cf5a709abade9ffa6dee5f4c9284f25fbc6861c61057",
+        "beforeCanonicalSHA256": "9f3126588f0e2058d509cf5a709abade9ffa6dee5f4c9284f25fbc6861c61057",
+        "afterCanonicalSHA256": "d369189f83632e4892da1f361b3de1bee838de3d7bdb3aa6063693a9841cfb58",
+        "BEFORE": {
+          "t": "Tolvaptana na DRPAD — Seleção pelo Risco",
+          "qid": "b7a28d0b",
+          "q": "Paciente de 43 anos com DRPAD de morfologia típica, TFGe de 52 mL/min/1,73 m² e classificação de imagem de Mayo 1D não apresenta contraindicação ao fármaco. Qual é a interpretação mais adequada sobre tolvaptana?",
+          "refs": [
+            "kdigo_adpkd_2025"
+          ],
+          "opts": [
+            "Deve ser oferecida após decisão compartilhada, pois TFGe ≥25 e risco de progressão rápida atendem ao algoritmo de seleção",
+            "Deve ser adiada até o início da diálise, quando o efeito antiproliferativo é maior",
+            "É indicada apenas se houver aneurisma intracraniano ou doença hepática policística sintomática",
+            "Mayo 1D contraindica o tratamento por representar rins excessivamente grandes"
+          ],
+          "ans": 0,
+          "exp": "A KDIGO recomenda oferecer tolvaptana a adultos com DRPAD, TFGe de pelo menos 25 mL/min/1,73 m² e risco de progressão rápida, identificado por Mayo 1C–1E ou declínio histórico da TFGe de pelo menos 3 mL/min/1,73 m² ao ano. Mayo 1D fornece evidência forte de risco no fenótipo típico. Antes de iniciar, devem ser revistas contraindicações, função hepática, capacidade de lidar com aquarese e preferências do paciente. O tratamento busca retardar progressão antes da falência renal e não depende de aneurisma ou doença hepática sintomática.",
+          "diff": "hard",
+          "cat": "genetica"
+        },
+        "AFTER": {
+          "t": "Tolvaptana na DRPAD — Seleção pelo Risco",
+          "qid": "b7a28d0b",
+          "q": "Paciente de 43 anos com DRPAD de morfologia típica, TFGe de 52 mL/min/1,73 m² e classificação de imagem de Mayo 1D não apresenta contraindicação ao fármaco. Qual é a interpretação mais adequada sobre tolvaptana?",
+          "refs": [
+            "kdigo_adpkd_2025"
+          ],
+          "opts": [
+            "Oferecer após decisão compartilhada: Mayo 1D indica risco rápido e a TFGe é ≥25 mL/min/1,73 m².",
+            "Adiar até provar declínio ≥3 mL/min/1,73 m²/ano: Mayo 1D sem trajetória não basta.",
+            "Adiar até TFGe <25 mL/min/1,73 m²: esse é o limiar de início para quem tem risco rápido.",
+            "Adiar até atingir Mayo 1E: a classe 1D não atende ao critério de risco rápido para início."
+          ],
+          "ans": 0,
+          "exp": "A KDIGO 2025 recomenda iniciar tolvaptana em adultos com DRPAD, TFGe ≥25 mL/min/1,73 m² e risco de progressão rápida (1B). O algoritmo aceita Mayo 1C–1E ou declínio histórico da TFGe ≥3 mL/min/1,73 m²/ano; os dois não precisam coexistir. Alguns casos Mayo 1C exigem informação adicional e julgamento individual para confirmar progressão rápida. No fenótipo típico, Mayo 1D sustenta esse risco. A decisão deve considerar contraindicações, função hepática, aquarese e preferências. Continuar tratamento já iniciado quando a TFGe cai abaixo de 25 é uma possibilidade distinta, não o limiar para começar. O objetivo é retardar progressão antes da necessidade de terapia renal substitutiva.",
+          "diff": "hard",
+          "cat": "genetica"
+        },
+        "sourceAssessment": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Selecionar pessoa com DRPAD típica e risco rápido elegível para iniciar tolvaptana, distinguindo critérios de início e continuação.",
+          "classification": {
+            "competency": "Seleção terapêutica por risco",
+            "bloom": "Aplicar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "problems": [
+            "MAIOR — diálise, aneurisma e tamanho como contraindicação são distratores distantes da decisão solicitada."
+          ],
+          "lawyerOfAppeal": "O caso atende ao limiar de início e ao risco rápido por Mayo 1D; declínio histórico não precisa coexistir com a classe de imagem elegível. Continuação abaixo de 25 não muda o limiar de início.",
+          "eliminators": [
+            5
+          ],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 1,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 1,
+              "Distratores": 0,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 0,
+              "Valor pedagógico": 2
+            },
+            "total": null,
+            "annulledByEliminator": true
+          },
+          "lifecycle": "em_reparo"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Selecionar pessoa com DRPAD típica e risco rápido elegível para iniciar tolvaptana, distinguindo critérios de início e continuação.",
+          "classification": {
+            "competency": "Seleção terapêutica por risco",
+            "bloom": "Aplicar",
+            "miller": "Sabe como",
+            "difficulty": "Avançada"
+          },
+          "justification": "Os distratores agora representam erros plausíveis de critérios e do operador lógico. Mantém a oferta individualizada e as condições de segurança; não transforma elegibilidade em prescrição automática.",
+          "problems": [],
+          "lawyerOfAppeal": {
+            "result": "Considerada continuação abaixo de 25: não torna correta a alternativa de adiar o início até abaixo de 25. Nenhum outro motivo de declínio é apresentado; risco pela imagem já é suficiente no caso. Oferta não equivale a uso obrigatório sem decisão compartilhada.",
+            "checks": [
+              "Buscada segunda resposta defensável no caso e no comando exatos.",
+              "Comparabilidade de categoria, estrutura e granularidade confrontada em todas as alternativas.",
+              "Dados, desenho, população e limites confrontados com as fontes indicadas.",
+              "Explicação relida depois de fixar o texto e a ordem das alternativas."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": false,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": false,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": false
+            },
+            "qualification": "Os dez critérios foram avaliados individualmente nesta versão exata; nenhum disparado."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 20,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "Evidência VERIFICADA/NENHUMA; sem eliminatório; sem recurso plausível; escore 18–20; aprovada; LIBERADA pela fórmula.",
+          "lifecycle": "publicado",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; publicado é destino da árvore, sem publicação real.",
+          "claimRegister": [
+            {
+              "claim": "Início: adulto, TFGe ≥25 e risco rápido, recomendação 1B; Mayo 1C–1E OU declínio histórico ≥3/ano.",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2025/01/KDIGO-2025-ADPKD-Guideline.pdf",
+              "locator": "Recommendation 4.1.1.1; Figure 25",
+              "verificationStatus": "VERIFICADA",
+              "support": "Algoritmo e operador OR verificados no PDF oficial. Mayo 1D no caso típico é elegível; não é preciso aguardar 1E."
+            },
+            {
+              "claim": "Revisar contraindicações, função hepática, aquarese e preferências.",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2025/01/KDIGO-2025-ADPKD-Guideline.pdf",
+              "locator": "PP 4.1.2.1; PP 4.1.4.1–3; PP 4.1.5.1; PP 10.1",
+              "verificationStatus": "VERIFICADA",
+              "support": "Conferidas recomendações de segurança e decisão compartilhada. Não se adiciona dose ou calendário de exames sem necessidade do OP."
+            },
+            {
+              "claim": "Continuação abaixo de TFGe 25 após início difere de critério de início; antes de KRT.",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2025/01/KDIGO-2025-ADPKD-Guideline.pdf",
+              "locator": "PP 4.1.3.4–5; PP 4.1.6.5",
+              "verificationStatus": "VERIFICADA",
+              "support": "A diretriz permite continuação individualizada abaixo de 25; não inverter esse limiar para iniciação."
+            },
+            {
+              "claim": "Mayo 1C pode conter progressão lenta e precisar informação adicional; isso não muda a elegibilidade 1D do caso.",
+              "sourceURL": "https://kdigo.org/wp-content/uploads/2025/01/KDIGO-2025-ADPKD-Guideline.pdf",
+              "locator": "Figure 25 footnote dagger; PDF p.36",
+              "verificationStatus": "VERIFICADA",
+              "support": "Nota da figura relida na fonte oficial: julgamento individual e dados adicionais especialmente perto do limite 1B/1C. A proposta não torna todas as classes 1C elegíveis automaticamente."
+            }
+          ],
+          "verificationPending": [],
+          "referenceCards": [
+            {
+              "id": "kdigo_adpkd_2025",
+              "card": {
+                "label": "KDIGO ADPKD 2025 (Rim Policístico Autossômico Dominante)",
+                "url": "https://kdigo.org/wp-content/uploads/2025/01/KDIGO-2025-ADPKD-Guideline.pdf",
+                "journal": "Kidney International 2025;107(Suppl 2S):S1-S239",
+                "ano": 2025,
+                "tipo": "Diretriz Internacional",
+                "badge": "GUIDELINE",
+                "badgeColor": "#6366f1",
+                "impacto": "Diagnóstico, prognóstico, tolvaptana e complicações renais e extrarrenais da DRPAD",
+                "icon": "📋",
+                "resumo": "KDIGO 2025: iniciar tolvaptana em adultos com DRPAD, TFGe ≥25 mL/min/1,73 m² e risco de progressão rápida (1B). A figura 25 usa Mayo 1C–1E ou declínio histórico ≥3 mL/min/1,73 m²/ano. Mayo 1C pode exigir evidência adicional. Revisar contraindicações, aquarese, função hepática e preferências. Continuação abaixo de 25 após início é questão distinta.",
+                "conclusao": "Selecionar pelo risco e pela elegibilidade para início; não confundir início e continuação do tratamento.",
+                "curiosidade": ""
+              },
+              "canonicalSHA256": "c67da9a61508f8154598fcde3b313c9b2bef511f06b43bcd87d4f91cff32be92",
+              "action": "PROPOSTA_DE_CARD_COM_ESCOPO_VERIFICADO; não sobrescrever registro compartilhado sem revisar impacto.",
+              "verifiedScope": "Apenas as afirmações no card proposto, verificadas no conteúdo aberto e indicado no registro de claims."
+            }
+          ],
+          "formalReviewQualification": "Revisão formal do autor pela skill, depois da formulação completa do AFTER. Não é uma segunda revisão independente; não herda aprovação de métricas ou de versões anteriores.",
+          "integrationPending": [
+            "Revisão independente e liberação de integração continuam com o coordenador; release 16.08 é técnica, sem banco/cards."
+          ],
+          "finalExactReReview": {
+            "deltas": [
+              "Unidades de TFGe/declínio explícitas nas opções; explicação e card incorporam a ressalva de Mayo 1C da nota da figura 25."
+            ],
+            "canonicalQuestionSHA256": "d369189f83632e4892da1f361b3de1bee838de3d7bdb3aa6063693a9841cfb58",
+            "performed": true,
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "v2verdict": "aprovada",
+            "publicationAuthorization": "LIBERADA",
+            "publicationDerivedBy": "Handbook §18.4 Regra 7",
+            "justification": "Depois dos deltas, a versão inteira foi relida contra fontes, OP, quatro alternativas e explicação. Gabarito único preservado; dez eliminatórios reavaliados, nenhum disparado. Não herdar silenciosamente a decisão anterior. Escore continua o mesmo pelas dimensões explicitadas. Ainda exige revisão independente e gates de integração."
+          }
+        },
+        "v2verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "materialChange": true,
+        "patchEditorialSuggested": {
+          "operation": "SUBSTITUIR A QUESTÃO POR",
+          "question": {
+            "t": "Tolvaptana na DRPAD — Seleção pelo Risco",
+            "qid": "b7a28d0b",
+            "q": "Paciente de 43 anos com DRPAD de morfologia típica, TFGe de 52 mL/min/1,73 m² e classificação de imagem de Mayo 1D não apresenta contraindicação ao fármaco. Qual é a interpretação mais adequada sobre tolvaptana?",
+            "refs": [
+              "kdigo_adpkd_2025"
+            ],
+            "opts": [
+              "Oferecer após decisão compartilhada: Mayo 1D indica risco rápido e a TFGe é ≥25 mL/min/1,73 m².",
+              "Adiar até provar declínio ≥3 mL/min/1,73 m²/ano: Mayo 1D sem trajetória não basta.",
+              "Adiar até TFGe <25 mL/min/1,73 m²: esse é o limiar de início para quem tem risco rápido.",
+              "Adiar até atingir Mayo 1E: a classe 1D não atende ao critério de risco rápido para início."
+            ],
+            "ans": 0,
+            "exp": "A KDIGO 2025 recomenda iniciar tolvaptana em adultos com DRPAD, TFGe ≥25 mL/min/1,73 m² e risco de progressão rápida (1B). O algoritmo aceita Mayo 1C–1E ou declínio histórico da TFGe ≥3 mL/min/1,73 m²/ano; os dois não precisam coexistir. Alguns casos Mayo 1C exigem informação adicional e julgamento individual para confirmar progressão rápida. No fenótipo típico, Mayo 1D sustenta esse risco. A decisão deve considerar contraindicações, função hepática, aquarese e preferências. Continuar tratamento já iniciado quando a TFGe cai abaixo de 25 é uma possibilidade distinta, não o limiar para começar. O objetivo é retardar progressão antes da necessidade de terapia renal substitutiva.",
+            "diff": "hard",
+            "cat": "genetica"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "fullText": "Oferecer após decisão compartilhada: Mayo 1D indica risco rápido e a TFGe é ≥25 mL/min/1,73 m²."
+          },
+          "implementation": "Preservar qid, posição, ans, tipo, dificuldade, categoria, histórico e FSRS. Implementar somente versão exata com gates de integração concluídos. Nenhuma edição do banco foi executada."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": false,
+          "proposalHasFixedLetter": false,
+          "sourceDiagnosticLetterLead": false,
+          "qualification": "Revisão textual não identificou remissão fixa a A/B/C/D. Os dados internos de cada alternativa permanecem unidos; nenhuma permutação aplicada."
+        },
+        "duplicateReview": "Comparadas as oito competências: classificação MPGN, validade ADVOCATE, gene/audição Alport, resultado REGENCY, subgrupo DAPA-CKD, elegibilidade tolvaptana, calendário de vacina viva e achado incidental venoso. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            121,
+            82,
+            94,
+            77
+          ],
+          "afterCharacters": [
+            95,
+            82,
+            88,
+            90
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": true,
+          "qualification": "Medição apenas dos oito textos finalizados para documentar o delta; não é evidência clínica nem auditoria nova da fila global."
+        },
+        "noBankEdits": true
+      },
+      {
+        "qid": "00d410e2",
+        "sourceLine": 54,
+        "sourceQuestionSHA256": "cde5bfaa5454844fb1ed2bd6be6350063ef80904c97aceb5b0d3c946605734fb",
+        "beforeCanonicalSHA256": "cde5bfaa5454844fb1ed2bd6be6350063ef80904c97aceb5b0d3c946605734fb",
+        "afterCanonicalSHA256": "5f392871be64b5e7489fae1c6b0788f2c95e01560ca7381e3fc74f1e5c43aa04",
+        "BEFORE": {
+          "t": "Glomerulopatia — Planejamento de Vacinas Vivas",
+          "qid": "00d410e2",
+          "q": "Paciente com síndrome nefrótica iniciará rituximabe e prednisona 40 mg/dia por período prolongado. Ao revisar a indicação de vacina contra febre amarela, qual plano é mais adequado?",
+          "refs": [
+            "kdigo_gn",
+            "cdc_immunocompromised_travelers_2026"
+          ],
+          "opts": [
+            "Aplicar durante o tratamento, porque o rituximabe reduz apenas a resposta vacinal e não altera a segurança de vacinas vivas",
+            "Se a imunossupressão puder aguardar, aplicar a vacina viva indicada pelo menos 4 semanas antes; durante imunossupressão potente, não aplicá-la e reavaliar depois conforme recuperação imune e terapia usada",
+            "Aplicar assim que a albumina superar 2,5 g/dL, pois esse valor elimina o risco de disseminação do vírus vacinal",
+            "Substituir a vacina por imunoglobulina específica de rotina e manter qualquer viagem planejada, independentemente do risco de exposição"
+          ],
+          "ans": 1,
+          "exp": "Vacinas vivas, como a de febre amarela, são contraindicadas durante imunossupressão moderada ou grave, incluindo rituximabe e corticosteroide sistêmico em alta dose. Quando a vacina está realmente indicada e o tratamento pode ser programado sem prejuízo clínico, a CDC orienta administrá-la pelo menos 4 semanas antes do início da imunossupressão. Depois do tratamento, o momento seguro não é definido pela albumina nem por um intervalo único: depende do agente, do tempo desde a última dose e da recuperação imune. Se a terapia for urgente, não se deve atrasá-la automaticamente por uma vacina eletiva; exposição e viagem precisam ser replanejadas individualmente.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "AFTER": {
+          "t": "Glomerulopatia — Planejamento de Vacinas Vivas",
+          "qid": "00d410e2",
+          "q": "Paciente com síndrome nefrótica iniciará rituximabe e prednisona 40 mg/dia por período prolongado. Ao revisar a indicação de vacina contra febre amarela, qual plano é mais adequado?",
+          "refs": [
+            "cdc_immunocompromised_travelers_2026"
+          ],
+          "opts": [
+            "Aplicar a vacina viva indicada duas semanas antes da terapia; esse intervalo é suficiente para vacinas vivas.",
+            "Aplicar a vacina viva indicada pelo menos quatro semanas antes, se a terapia puder aguardar sem prejuízo.",
+            "Aplicar a vacina viva indicada na primeira semana de rituximabe, antes de surgir depleção de células B.",
+            "Aplicar a vacina viva indicada um mês após o rituximabe, usando o intervalo dos corticosteroides."
+          ],
+          "ans": 1,
+          "exp": "A vacina contra febre amarela é viva. Durante imunossupressão relevante, como rituximabe ou prednisona ≥20 mg/dia por ≥2 semanas, sua administração é contraindicada. Quando a indicação está confirmada e o tratamento pode ser programado sem prejuízo, a CDC orienta vacinas vivas ≥4 semanas antes da imunossupressão; ≥2 semanas é o intervalo prévio de vacinas inativadas. Após o tratamento, a elegibilidade depende do agente e da recuperação imune. O intervalo de um mês usado após corticosteroide não deve ser transferido ao rituximabe. Se não for possível completar a programação, exposição e viagem precisam ser reavaliadas junto ao plano terapêutico.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "sourceAssessment": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Programar vacina viva indicada antes de imunossupressão potente, respeitando intervalo e contraindicação durante tratamento.",
+          "classification": {
+            "competency": "Prevenção e segurança de imunossupressão",
+            "bloom": "Aplicar",
+            "miller": "Sabe como",
+            "difficulty": "Intermediária"
+          },
+          "problems": [
+            "MAIOR — albumina como garantia e imunoglobulina específica rotineira são distratores implausíveis.",
+            "MAIOR — correta acumula cronograma pré e pós-terapia, enquanto os distratores não comparam cronogramas."
+          ],
+          "lawyerOfAppeal": "O intervalo de duas semanas é de vacina inativada, não viva. Um mês após corticosteroide não substitui a avaliação de recuperação após rituximabe.",
+          "eliminators": [
+            5
+          ],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 1,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 0,
+              "Distratores": 0,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 0,
+              "Valor pedagógico": 2
+            },
+            "total": null,
+            "annulledByEliminator": true
+          },
+          "lifecycle": "em_reparo"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Programar vacina viva indicada antes de imunossupressão potente, respeitando intervalo e contraindicação durante tratamento.",
+          "classification": {
+            "competency": "Prevenção e segurança de imunossupressão",
+            "bloom": "Aplicar",
+            "miller": "Sabe como",
+            "difficulty": "Intermediária"
+          },
+          "justification": "A proposta transforma todos os distratores em cronogramas comparáveis e mantém segurança, indicação real e individualização no comentário. Não se usa a albumina como critério imune nem se promete imunoglobulina preventiva inespecífica.",
+          "problems": [],
+          "lawyerOfAppeal": {
+            "result": "Todos os cronogramas foram confrontados com o tipo de vacina e agente. A opção correta condiciona o planejamento à ausência de prejuízo clínico, sem atrasar automaticamente terapia urgente. As incorretas transferem intervalo ou permitem vacinação durante terapia contraindicante.",
+            "checks": [
+              "Buscada segunda resposta defensável no caso e no comando exatos.",
+              "Comparabilidade de categoria, estrutura e granularidade confrontada em todas as alternativas.",
+              "Dados, desenho, população e limites confrontados com as fontes indicadas.",
+              "Explicação relida depois de fixar o texto e a ordem das alternativas."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": false,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": false,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": false
+            },
+            "qualification": "Os dez critérios foram avaliados individualmente nesta versão exata; nenhum disparado."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 20,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "Evidência VERIFICADA/NENHUMA; sem eliminatório; sem recurso plausível; escore 18–20; aprovada; LIBERADA pela fórmula.",
+          "lifecycle": "publicado",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; publicado é destino da árvore, sem publicação real.",
+          "claimRegister": [
+            {
+              "claim": "Febre amarela viva; contraindicação durante imunossupressão grave.",
+              "sourceURL": "https://www.cdc.gov/yellow-book/hcp/travelers-with-additional-considerations/immunocompromised-travelers.html",
+              "locator": "Table 2.2.2; Yellow fever Contraindications",
+              "verificationStatus": "VERIFICADA",
+              "support": "CDC classifica YF como contraindicada em imunossupressão grave, por risco de doença vacinal grave."
+            },
+            {
+              "claim": "Prednisona ≥20 mg/dia por ≥2 semanas e depletores B como rituximabe; ≥4 semanas antes para vacina viva, ≥2 para inativada.",
+              "sourceURL": "https://www.cdc.gov/yellow-book/hcp/travelers-with-additional-considerations/immunocompromised-travelers.html",
+              "locator": "Vaccine Considerations; Box 2.2.2; Medications that compromise the immune system",
+              "verificationStatus": "VERIFICADA",
+              "support": "Limiares e calendário explicitamente conferidos no corpo público do Yellow Book."
+            },
+            {
+              "claim": "Esperar conforme agente/recuperação; um mês pós-corticosteroide não define segurança pós-rituximabe.",
+              "sourceURL": "https://www.cdc.gov/yellow-book/hcp/travelers-with-additional-considerations/immunocompromised-travelers.html",
+              "locator": "Timing of administration following immunosuppressive therapy; High-dose corticosteroids",
+              "verificationStatus": "VERIFICADA",
+              "support": "CDC diferencia ≥1 mês após corticosteroides de ≥6 meses após depletores, com recomendação IDSA ≥1 ano citada. O item não promete liberação por um único intervalo."
+            },
+            {
+              "claim": "Reavaliar risco de exposição e viagem quando vacina viva contraindicada.",
+              "sourceURL": "https://www.cdc.gov/yellow-book/hcp/travelers-with-additional-considerations/immunocompromised-travelers.html",
+              "locator": "Pre-travel consultations; Yellow fever Contraindications",
+              "verificationStatus": "VERIFICADA",
+              "support": "O texto recomenda avaliar itinerário, exposição, adiamento ou isenção conforme o caso; não garante viagem sem risco."
+            }
+          ],
+          "verificationPending": [],
+          "referenceCards": [
+            {
+              "id": "cdc_immunocompromised_travelers_2026",
+              "card": {
+                "label": "CDC Yellow Book — Viajantes Imunocomprometidos (2026)",
+                "url": "https://www.cdc.gov/yellow-book/hcp/travelers-with-additional-considerations/immunocompromised-travelers.html",
+                "journal": "CDC Yellow Book 2026",
+                "ano": 2026,
+                "tipo": "Diretriz de Saúde Pública",
+                "badge": "GUIDELINE",
+                "badgeColor": "#6366f1",
+                "impacto": "Planejamento de vacinas vivas e inativadas antes, durante e após terapias imunossupressoras",
+                "icon": "📋",
+                "resumo": "CDC Yellow Book 2026: prednisona ≥20 mg/dia por ≥2 semanas e agentes depletores de células B caracterizam imunossupressão relevante. Vacinas vivas são contraindicadas nesse contexto. Quando viável, administrá-las ≥4 semanas antes da imunossupressão. O intervalo após tratamento depende do agente e da recuperação imune.",
+                "conclusao": "Antecipar a vacina viva indicada e reavaliar exposição/viagem quando a imunossupressão impedir vacinação segura.",
+                "curiosidade": ""
+              },
+              "canonicalSHA256": "3afc28c1dac160e4298860c8d3d53350b703d4fa0b1c23cd8e82671f5d1fa017",
+              "action": "PROPOSTA_DE_CARD_COM_ESCOPO_VERIFICADO; não sobrescrever registro compartilhado sem revisar impacto.",
+              "verifiedScope": "Apenas as afirmações no card proposto, verificadas no conteúdo aberto e indicado no registro de claims."
+            }
+          ],
+          "formalReviewQualification": "Revisão formal do autor pela skill, depois da formulação completa do AFTER. Não é uma segunda revisão independente; não herda aprovação de métricas ou de versões anteriores.",
+          "integrationPending": [
+            "Revisão independente e liberação de integração continuam com o coordenador; release 16.08 é técnica, sem banco/cards."
+          ]
+        },
+        "v2verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "materialChange": true,
+        "patchEditorialSuggested": {
+          "operation": "SUBSTITUIR A QUESTÃO POR",
+          "question": {
+            "t": "Glomerulopatia — Planejamento de Vacinas Vivas",
+            "qid": "00d410e2",
+            "q": "Paciente com síndrome nefrótica iniciará rituximabe e prednisona 40 mg/dia por período prolongado. Ao revisar a indicação de vacina contra febre amarela, qual plano é mais adequado?",
+            "refs": [
+              "cdc_immunocompromised_travelers_2026"
+            ],
+            "opts": [
+              "Aplicar a vacina viva indicada duas semanas antes da terapia; esse intervalo é suficiente para vacinas vivas.",
+              "Aplicar a vacina viva indicada pelo menos quatro semanas antes, se a terapia puder aguardar sem prejuízo.",
+              "Aplicar a vacina viva indicada na primeira semana de rituximabe, antes de surgir depleção de células B.",
+              "Aplicar a vacina viva indicada um mês após o rituximabe, usando o intervalo dos corticosteroides."
+            ],
+            "ans": 1,
+            "exp": "A vacina contra febre amarela é viva. Durante imunossupressão relevante, como rituximabe ou prednisona ≥20 mg/dia por ≥2 semanas, sua administração é contraindicada. Quando a indicação está confirmada e o tratamento pode ser programado sem prejuízo, a CDC orienta vacinas vivas ≥4 semanas antes da imunossupressão; ≥2 semanas é o intervalo prévio de vacinas inativadas. Após o tratamento, a elegibilidade depende do agente e da recuperação imune. O intervalo de um mês usado após corticosteroide não deve ser transferido ao rituximabe. Se não for possível completar a programação, exposição e viagem precisam ser reavaliadas junto ao plano terapêutico.",
+            "diff": "medium",
+            "cat": "glomerular"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "fullText": "Aplicar a vacina viva indicada pelo menos quatro semanas antes, se a terapia puder aguardar sem prejuízo."
+          },
+          "implementation": "Preservar qid, posição, ans, tipo, dificuldade, categoria, histórico e FSRS. Implementar somente versão exata com gates de integração concluídos. Nenhuma edição do banco foi executada."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": false,
+          "proposalHasFixedLetter": false,
+          "sourceDiagnosticLetterLead": false,
+          "qualification": "Revisão textual não identificou remissão fixa a A/B/C/D. Os dados internos de cada alternativa permanecem unidos; nenhuma permutação aplicada."
+        },
+        "duplicateReview": "Comparadas as oito competências: classificação MPGN, validade ADVOCATE, gene/audição Alport, resultado REGENCY, subgrupo DAPA-CKD, elegibilidade tolvaptana, calendário de vacina viva e achado incidental venoso. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            123,
+            204,
+            111,
+            135
+          ],
+          "afterCharacters": [
+            109,
+            105,
+            103,
+            97
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": false,
+          "qualification": "Medição apenas dos oito textos finalizados para documentar o delta; não é evidência clínica nem auditoria nova da fila global."
+        },
+        "noBankEdits": true
+      },
+      {
+        "qid": "ccd15912",
+        "sourceLine": 55,
+        "sourceQuestionSHA256": "87d45a307f384c089afc1de294e9b238a8cb05cecf3a85d8af0ed586cc433bc2",
+        "beforeCanonicalSHA256": "87d45a307f384c089afc1de294e9b238a8cb05cecf3a85d8af0ed586cc433bc2",
+        "afterCanonicalSHA256": "9b55573701682c0e610d88f7bf48e66824c4e53929891d004c88dcfeb8dd1a67",
+        "BEFORE": {
+          "t": "Nutcracker — Fenômeno Radiológico vs Síndrome",
+          "qid": "ccd15912",
+          "q": "Uma pessoa de 22 anos, sem hematúria, dor no flanco, sintomas pélvicos ou varicocele, realiza tomografia por outro motivo. O exame mostra compressão da veia renal esquerda entre a aorta e a artéria mesentérica superior. Como esse achado deve ser interpretado?",
+          "refs": [
+            "heilijgers_nutcracker_delphi_2025"
+          ],
+          "opts": [
+            "Como fenômeno de Nutcracker: a compressão anatômica isolada não estabelece a síndrome, que requer manifestações clínicas atribuíveis à obstrução venosa",
+            "Como síndrome de Nutcracker confirmada, pois a imagem isolada basta para o diagnóstico e indica correção invasiva",
+            "Como estenose de artéria renal, mesmo sem hipertensão, porque o vaso comprimido é arterial",
+            "Como obstrução da junção ureteropélvica, independentemente de não haver hidronefrose"
+          ],
+          "ans": 0,
+          "exp": "Compressão radiológica assintomática da veia renal esquerda é denominada fenômeno de Nutcracker e pode ser encontrada incidentalmente. Síndrome de Nutcracker pressupõe sintomas ou sinais compatíveis — como dor no flanco, hematúria ou manifestações de hipertensão venosa pélvica — atribuíveis à compressão e avaliados após exclusão de causas alternativas. A imagem confirma a anatomia, mas não há um ponto de corte universal que transforme, sozinho, um achado incidental em síndrome; portanto, ela não cria indicação automática de intervenção.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "AFTER": {
+          "t": "Nutcracker — Fenômeno Radiológico vs Síndrome",
+          "qid": "ccd15912",
+          "q": "Uma pessoa de 22 anos, sem hematúria, dor no flanco, sintomas pélvicos ou varicocele, realiza tomografia por outro motivo. O exame mostra compressão da veia renal esquerda entre a aorta e a artéria mesentérica superior. Como esse achado deve ser interpretado?",
+          "refs": [
+            "heilijgers_nutcracker_delphi_2025"
+          ],
+          "opts": [
+            "Fenômeno de Nutcracker; não há síndrome clínica estabelecida nem indicação automática de intervenção.",
+            "Fenômeno de Nutcracker; a compressão confirmada indica correção venosa antes de aparecerem sintomas.",
+            "Síndrome de Nutcracker; compressão confirmada em imagem é suficiente para estabelecer o diagnóstico.",
+            "Síndrome de Nutcracker; a ausência de hematúria é compensada pela idade e pelo achado tomográfico."
+          ],
+          "ans": 0,
+          "exp": "Compressão radiológica assintomática da veia renal esquerda é denominada fenômeno de Nutcracker e pode ser encontrada incidentalmente. Síndrome de Nutcracker pressupõe sintomas ou sinais compatíveis — como dor no flanco, hematúria ou manifestações de hipertensão venosa pélvica — atribuíveis à compressão e avaliados após exclusão de causas alternativas. A imagem confirma a anatomia, mas não há um ponto de corte universal que transforme, sozinho, um achado incidental em síndrome; portanto, ela não cria indicação automática de intervenção.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "sourceAssessment": {
+          "v2verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Distinguir compressão radiológica incidental da síndrome de Nutcracker, correlacionando manifestações clínicas antes de intervenção.",
+          "classification": {
+            "competency": "Interpretação de achado incidental e diagnóstico",
+            "bloom": "Aplicar",
+            "miller": "Sabe como",
+            "difficulty": "Intermediária"
+          },
+          "problems": [
+            "MAIOR — artéria renal e junção ureteropélvica são estruturas diferentes do vaso explicitado, produzindo distratores absurdos."
+          ],
+          "lawyerOfAppeal": "A imagem descreve veia renal esquerda; não é plausível testar erro sobre artéria ou ureter. A diferença útil é anatomia versus manifestações atribuíveis e necessidade de tratamento.",
+          "eliminators": [
+            5
+          ],
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 1,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 0,
+              "Distratores": 0,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 0,
+              "Valor pedagógico": 2
+            },
+            "total": null,
+            "annulledByEliminator": true
+          },
+          "lifecycle": "em_reparo"
+        },
+        "formalReReviewOfExactProposal": {
+          "v2verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pending": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivedBy": "Handbook §18.4 Regra 7",
+          "OP": "Distinguir compressão radiológica incidental da síndrome de Nutcracker, correlacionando manifestações clínicas antes de intervenção.",
+          "classification": {
+            "competency": "Interpretação de achado incidental e diagnóstico",
+            "bloom": "Aplicar",
+            "miller": "Sabe como",
+            "difficulty": "Intermediária"
+          },
+          "justification": "Os quatro textos tratam da mesma compressão venosa e suas implicações. Preserva a explicação clínica e a falta de corte universal, sem transformar o consenso em diretriz randomizada ou critério absoluto.",
+          "problems": [],
+          "lawyerOfAppeal": {
+            "result": "A ausência de manifestações está explícita. Não se exclui uma futura síndrome nem se exige hematúria obrigatória; a conclusão é apenas que a imagem atual não estabelece a síndrome ou intervenção automática.",
+            "checks": [
+              "Buscada segunda resposta defensável no caso e no comando exatos.",
+              "Comparabilidade de categoria, estrutura e granularidade confrontada em todas as alternativas.",
+              "Dados, desenho, população e limites confrontados com as fontes indicadas.",
+              "Explicação relida depois de fixar o texto e a ordem das alternativas."
+            ]
+          },
+          "eliminators": {
+            "triggered": [],
+            "all10Checked": {
+              "Mais de uma resposta defensável": false,
+              "A referência não sustenta o gabarito": false,
+              "Mede outro OP": false,
+              "Conduta insegura premiada": false,
+              "Distrator absurdo": false,
+              "Trivia sem consequência clínica": false,
+              "Explicação contradiz gabarito": false,
+              "Dado decisivo ausente": false,
+              "Protocolo local não informado": false,
+              "Desatualização científica relevante": false
+            },
+            "qualification": "Os dez critérios foram avaliados individualmente nesta versão exata; nenhum disparado."
+          },
+          "editorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 1,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 19,
+            "annulledByEliminator": false
+          },
+          "decisionTree": "Evidência VERIFICADA/NENHUMA; sem eliminatório; sem recurso plausível; escore 18–20; aprovada; LIBERADA pela fórmula.",
+          "lifecycle": "publicado",
+          "actualLifecycle": "PROPOSTA_NÃO_IMPLEMENTADA; publicado é destino da árvore, sem publicação real.",
+          "claimRegister": [
+            {
+              "claim": "Compressão assintomática é fenômeno; síndrome exige manifestações atribuíveis à estenose venosa.",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=11764206",
+              "locator": "Full body Introduction; Table II statements 1.1.1–1.1.3",
+              "verificationStatus": "VERIFICADA",
+              "support": "Consenso diferencia fenômeno anatômico da síndrome clínica. O caso não apresenta nenhum sintoma compatível."
+            },
+            {
+              "claim": "Imagem confirma anatomia; não existe corte único universal consensual; excluir causas alternativas.",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=11764206",
+              "locator": "Introduction; Table IV; Discussion",
+              "verificationStatus": "VERIFICADA",
+              "support": "Painel não concordou em limites diagnósticos universais. Diagnóstico é por integração e exclusão de outras causas."
+            },
+            {
+              "claim": "Ausência de indicação automática de intervenção em achado incidental.",
+              "sourceURL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=11764206",
+              "locator": "Table II section 2; Discussion",
+              "verificationStatus": "VERIFICADA",
+              "support": "Inferência da ausência de síndrome e da preferência por tratamento conservador inicial mesmo na síndrome; não se recomenda intervenção profilática automática."
+            }
+          ],
+          "verificationPending": [],
+          "referenceCards": [
+            {
+              "id": "heilijgers_nutcracker_delphi_2025",
+              "card": {
+                "label": "Heilijgers et al. — Síndrome de Nutcracker: Consenso Delphi (2025)",
+                "url": "https://pubmed.ncbi.nlm.nih.gov/39362632/",
+                "journal": "J Vasc Surg Venous Lymphat Disord 2025;13(1):101970",
+                "ano": 2025,
+                "tipo": "Consenso Delphi",
+                "badge": "REVIEW",
+                "badgeColor": "#8b5cf6",
+                "impacto": "Consenso internacional sobre diagnóstico, manejo e seguimento da síndrome de Nutcracker",
+                "icon": "📋",
+                "resumo": "Consenso Delphi internacional, publicado na edição de 2025. Distingue compressão assintomática da veia renal esquerda, fenômeno de Nutcracker, da síndrome com sinais/sintomas atribuíveis à compressão. A imagem confirma a anatomia, mas o painel não concordou em pontos de corte diagnósticos universais.",
+                "conclusao": "Correlacionar manifestações e anatomia e excluir causas alternativas; compressão incidental não cria indicação automática de intervenção.",
+                "curiosidade": ""
+              },
+              "canonicalSHA256": "f281be5747e03400c1641ee53ef9ba46616b21b8d9ca73ace82afde3830cd121",
+              "action": "PROPOSTA_DE_CARD_COM_ESCOPO_VERIFICADO; não sobrescrever registro compartilhado sem revisar impacto.",
+              "verifiedScope": "Apenas as afirmações no card proposto, verificadas no conteúdo aberto e indicado no registro de claims."
+            }
+          ],
+          "formalReviewQualification": "Revisão formal do autor pela skill, depois da formulação completa do AFTER. Não é uma segunda revisão independente; não herda aprovação de métricas ou de versões anteriores.",
+          "integrationPending": [
+            "Revisão independente e liberação de integração continuam com o coordenador; release 16.08 é técnica, sem banco/cards."
+          ]
+        },
+        "v2verdict": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "materialChange": true,
+        "patchEditorialSuggested": {
+          "operation": "SUBSTITUIR A QUESTÃO POR",
+          "question": {
+            "t": "Nutcracker — Fenômeno Radiológico vs Síndrome",
+            "qid": "ccd15912",
+            "q": "Uma pessoa de 22 anos, sem hematúria, dor no flanco, sintomas pélvicos ou varicocele, realiza tomografia por outro motivo. O exame mostra compressão da veia renal esquerda entre a aorta e a artéria mesentérica superior. Como esse achado deve ser interpretado?",
+            "refs": [
+              "heilijgers_nutcracker_delphi_2025"
+            ],
+            "opts": [
+              "Fenômeno de Nutcracker; não há síndrome clínica estabelecida nem indicação automática de intervenção.",
+              "Fenômeno de Nutcracker; a compressão confirmada indica correção venosa antes de aparecerem sintomas.",
+              "Síndrome de Nutcracker; compressão confirmada em imagem é suficiente para estabelecer o diagnóstico.",
+              "Síndrome de Nutcracker; a ausência de hematúria é compensada pela idade e pelo achado tomográfico."
+            ],
+            "ans": 0,
+            "exp": "Compressão radiológica assintomática da veia renal esquerda é denominada fenômeno de Nutcracker e pode ser encontrada incidentalmente. Síndrome de Nutcracker pressupõe sintomas ou sinais compatíveis — como dor no flanco, hematúria ou manifestações de hipertensão venosa pélvica — atribuíveis à compressão e avaliados após exclusão de causas alternativas. A imagem confirma a anatomia, mas não há um ponto de corte universal que transforme, sozinho, um achado incidental em síndrome; portanto, ela não cria indicação automática de intervenção.",
+            "diff": "medium",
+            "cat": "glomerular"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "fullText": "Fenômeno de Nutcracker; não há síndrome clínica estabelecida nem indicação automática de intervenção."
+          },
+          "implementation": "Preservar qid, posição, ans, tipo, dificuldade, categoria, histórico e FSRS. Implementar somente versão exata com gates de integração concluídos. Nenhuma edição do banco foi executada."
+        },
+        "orderDependency": {
+          "sourceHasFixedLetter": false,
+          "proposalHasFixedLetter": false,
+          "sourceDiagnosticLetterLead": false,
+          "qualification": "Revisão textual não identificou remissão fixa a A/B/C/D. Os dados internos de cada alternativa permanecem unidos; nenhuma permutação aplicada."
+        },
+        "duplicateReview": "Comparadas as oito competências: classificação MPGN, validade ADVOCATE, gene/audição Alport, resultado REGENCY, subgrupo DAPA-CKD, elegibilidade tolvaptana, calendário de vacina viva e achado incidental venoso. Não alegar auditoria global de duplicidade.",
+        "lengthMetrics": {
+          "beforeCharacters": [
+            151,
+            113,
+            90,
+            84
+          ],
+          "afterCharacters": [
+            101,
+            100,
+            100,
+            98
+          ],
+          "beforeCorrectUniquelyLongest": true,
+          "afterCorrectUniquelyLongest": true,
+          "qualification": "Medição apenas dos oito textos finalizados para documentar o delta; não é evidência clínica nem auditoria nova da fila global."
+        },
+        "noBankEdits": true
+      }
+    ],
+    "counts": {
+      "reviewed": 8,
+      "exactChangedProposalsReleased": 8,
+      "unchangedApproved": 0,
+      "pendingDecisive": 0,
+      "implemented": 0
+    },
+    "sourceAccess": [
+      {
+        "URL": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+        "openedClinicalBody": true,
+        "extent": "PDF oficial completo recuperado; capítulo 8 efetivamente lido, sem certificar terapias de capítulos marcados desatualizados."
+      },
+      {
+        "URL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=42377355&retmode=xml",
+        "openedClinicalBody": false,
+        "extent": "Metadados oficiais e ligação de retratação efetivamente lidos; não contém abstract. Suficiente para existência/data, não para motivo."
+      },
+      {
+        "URL": "https://www.fda.gov/media/192160/download",
+        "openedClinicalBody": true,
+        "extent": "PDF primário da FDA, pp.1–14 com atenção a pp.4,7–10 e Table 1. Afirmações limitadas ao documento de 27/04/2026."
+      },
+      {
+        "URL": "https://www.ema.europa.eu/en/medicines/human/EPAR/tavneos",
+        "openedClinicalBody": true,
+        "extent": "EPAR atual: revogação em 04/08/2026. Contexto adicional, não integrado à questão nem extrapolado para FDA."
+      },
+      {
+        "URL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=12209846",
+        "openedClinicalBody": true,
+        "extent": "Texto integral oficial JATS e página da editora; Introduction/Q1/Q2/audição efetivamente lidos."
+      },
+      {
+        "URL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=39927615&retmode=xml",
+        "openedClinicalBody": true,
+        "extent": "Abstract primário; não afirmar leitura integral de NEJM. Desenho, população, endpoints, números e segurança presentes no abstract."
+      },
+      {
+        "URL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=34615636&retmode=xml",
+        "openedClinicalBody": true,
+        "extent": "Abstract primário, inclusive alfa 0,2; não foi necessário recuperar o texto integral para as afirmações do card proposto."
+      },
+      {
+        "URL": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/125486s037s038lbl.pdf",
+        "openedClinicalBody": true,
+        "extent": "Bula oficial recuperada: Highlights, §1.3 e §14.3/Table 19; números não essenciais do restante da bula não transferidos."
+      },
+      {
+        "URL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=33878338&retmode=xml",
+        "openedClinicalBody": true,
+        "extent": "Abstract primário com população, composto, números e aplicabilidade; não é alegação de texto integral lido."
+      },
+      {
+        "URL": "https://kdigo.org/wp-content/uploads/2025/01/KDIGO-2025-ADPKD-Guideline.pdf",
+        "openedClinicalBody": true,
+        "extent": "PDF oficial via web; recomendação 4.1.1.1, figura 25, PP 4.1.2.1, 4.1.3.4–5, 4.1.4–5 e 10.1."
+      },
+      {
+        "URL": "https://www.cdc.gov/yellow-book/hcp/travelers-with-additional-considerations/immunocompromised-travelers.html",
+        "openedClinicalBody": true,
+        "extent": "Corpo da orientação pública CDC: tabelas, Box 2.2.2, timing e contraindicações YF."
+      },
+      {
+        "URL": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=11764206",
+        "openedClinicalBody": true,
+        "extent": "Texto integral JATS, Introduction/Tables II–IV/Discussion, efetivamente lidos."
+      }
+    ],
+    "sourceFailureQualification": [
+      "Nota NEJM em DOI/full/PDF não abriu; o registro NLM confirma sua data e natureza, sem abstract. O detalhe sobre nove casos foi confirmado na FDA, não atribuído ao corpo não lido da nota.",
+      "A consulta exata esearch por DOI chegou ao mesmo PMID 42377355; metadados não substituem o texto clínico.",
+      "KDIGO ADPKD foi lida via web; a falha urllib anterior permanece no recibo do lote B002 e não foi convertida em sucesso de download."
+    ],
+    "localSourcePins": [
+      {
+        "file": "primary-003-pubmed.xml",
+        "bytes": 145603,
+        "sha256": "8a7eca61f59b728e43bf85ca43bd4b20c7d4f92b96efae967341ce72c8a34472"
+      },
+      {
+        "file": "primary-003-retrieval-receipt.json",
+        "bytes": 18641,
+        "sha256": "11067ad37cf75aa7fdad939fb20a0343f700c5dfd142f16457aa785f3f0bea55"
+      },
+      {
+        "file": "nutcracker_2025_jats.xml",
+        "bytes": 103452,
+        "sha256": "9554d93418f28bb0ed1458755b44b1eec7e6f0b3687f8dd050aeab59be89a8b2"
+      },
+      {
+        "file": "alport_2024_guideline_jats.xml",
+        "bytes": 195860,
+        "sha256": "43b86c12cf7123f095c3702739c876059b94045d10b40b3fb1bfc98011f6bd0b"
+      },
+      {
+        "file": "extra-003-retrieval-receipt.json",
+        "bytes": 1186,
+        "sha256": "c6b3675c8eb128850e7037a36073def37b45c9ef6cd259477d465ca65bdf5ac7"
+      },
+      {
+        "file": "advocate_retraction_esearch.xml",
+        "bytes": 387,
+        "sha256": "650974bfc587718b207636bad4b5adc227e91bb587f6da4f658d0f9ae60b6322"
+      },
+      {
+        "file": "fda_tavneos_nooh_2026-retrieved.pdf",
+        "bytes": 959310,
+        "sha256": "10505c28ce9c5cb6c0874be9f0260bbb232ff41019482fc22242e9c0711d4110"
+      },
+      {
+        "file": "gazyva_fda_2025-retrieved.pdf",
+        "bytes": 1736954,
+        "sha256": "df0c81960df8bc33e1bd17a501f85e6981fcc6538747eee9cc742558d3d939d7"
+      },
+      {
+        "file": "advocate_retraction_2026-pubmed.xml",
+        "bytes": 2460,
+        "sha256": "15f07f709c239bcace3455bda19a494de0c05e219bfba260f085652fb729d2a1"
+      },
+      {
+        "file": "regulatory-003-retrieval-receipt.json",
+        "bytes": 866,
+        "sha256": "8cac1965df7e3a0a7dc5a223678b30f09805fbd7ac168ad4abf95fbdf9ef769b"
+      },
+      {
+        "file": "kdigo_gn_2024_chapters-retrieved.pdf",
+        "bytes": 11320223,
+        "sha256": "8ed871ec098c7eba1cfb0ff6bf2355a6c422166b2691aac138f0273307b2acff"
+      }
+    ],
+    "referenceTaxonomyQualification": "Mantidos tipos verdadeiros dos cards regulatórios/retratação existentes. Diferenças da enumeração local são pendências formais de integração; não foram resolvidas falsamente classificando regulações como ensaio ou diretriz. Consenso Nutcracker recebe badge REVIEW com tipo Consenso Delphi explícito, não RCT.",
+    "limitations": [
+      "Sem edição de banco, checkout ou Git.",
+      "A fórmula editorial LIBERADA descreve somente a versão proposta e não autoriza a integração sem os gates adicionais do coordenador.",
+      "Revisão independente de B003 ainda não realizada.",
+      "Novo card Alport precisa de registro atômico; badges de retratação/regulação precisam de decisão taxonômica explícita.",
+      "Não se inicia B004 neste computador: checkpoint de troca de PC solicitado pelo coordenador."
+    ],
+    "supersedes": {
+      "file": "output-003-before-source-qualification-a1.json",
+      "sha256": "90b9e22e2ce856b658339bc162e7b51c6612ee1a8fdadcca903240a29c3ce135",
+      "reason": "Complemento de subgrupo IF negativo, ressalva Mayo 1C e precisão de unidades depois de releitura de fontes; revisão formal da versão final registrada."
+    }
+  }
+}

@@ -2177,6 +2177,31 @@
     // Cada partida sorteia uma instância nova: gas + atos + alvos
     // (Winter, AG) recalculados, mantendo a narrativa e os tipos de acto.
     const instance = meta.build();
+    // MC tem uma apresentação por instância/ato. Os objetos autorais continuam
+    // ligados ao gabarito; rever um ato reutiliza a mesma ordem e identidade.
+    instance.acts = instance.acts.map((act, actIdx) => {
+      if (act.kind !== 'mc') return act;
+      const authored = {
+        id: `${meta.id}:${actIdx}`, q: act.prompt || '',
+        o: act.options.map(option => option.label),
+        a: act.options.findIndex(option => option.correct), e: act.explainCorrect || ''
+      };
+      const presentation = window.NQAnswers ? window.NQAnswers.present(authored) : authored;
+      if (!presentation) return null;
+      const order = presentation._answerPresentation?.order || act.options.map((_, i) => i);
+      return {
+        ...act,
+        options: order.map((authoredIndex, displayIndex) => ({
+          ...act.options[authoredIndex], authoredIndex,
+          optionId: window.NQAnswers ? window.NQAnswers.optionId(presentation, displayIndex) : null
+        })),
+        _mcPresentation: presentation
+      };
+    });
+    if (instance.acts.some(act => !act)) {
+      if (typeof _toast === 'function') _toast('Não foi possível conferir as alternativas deste caso.', 'warning');
+      return;
+    }
     // chapter (= "Caso I — Título") + título visível (= personagem) consolidados
     // p/ que o header e o summary continuem usando kase.chapter / kase.title.
     const kase = Object.assign({}, meta, instance, {
@@ -2430,11 +2455,16 @@
   function _handleAnswerMC(overlay, kase, sess, pickIdx){
     if (!_abCurrent(overlay)) return;
     const act = kase.acts[sess.actIdx];
+    if (act.kind !== 'mc' || !Number.isInteger(pickIdx) || pickIdx < 0 || pickIdx >= act.options.length) return;
     sess.actResults = sess.actResults || {};
     if (!sess.actResults[sess.actIdx]) {            // conta o erro só na 1ª resposta
       const picked = act.options[pickIdx];
       if (!picked.correct) sess.wrongAttempts++;
-      sess.actResults[sess.actIdx] = { kind: 'mc', pickIdx, correct: picked.correct };
+      sess.actResults[sess.actIdx] = {
+        kind: 'mc', pickIdx, correct: picked.correct,
+        authoredChoice: picked.authoredIndex ?? pickIdx,
+        optionId: picked.optionId ?? null
+      };
     }
     _renderAct(overlay, kase, sess);                // re-renderiza em modo respondido
   }

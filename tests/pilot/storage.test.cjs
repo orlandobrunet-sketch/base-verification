@@ -5,6 +5,7 @@ const path = require('node:path');
 const vm = require('node:vm');
 const source = fs.readFileSync(path.join(__dirname, '../../js/pilot.js'), 'utf8');
 const gameSource = fs.readFileSync(path.join(__dirname, '../../js/game.js'), 'utf8');
+const answersSource = fs.readFileSync(path.join(__dirname, '../../js/answer-presentation.js'), 'utf8');
 const KEY = 'nefroquest-pilot-v1';
 const clean = value => value == null ? value : JSON.parse(JSON.stringify(value));
 
@@ -39,7 +40,9 @@ function fixture(shared = sharedStorage(), {owner = null, locks = true} = {}) {
     authUser: owner ? {id: owner} : null, Date, Math,
     addEventListener(name, fn) { listeners.set(name, fn); }};
   ctx.window = ctx;
-  vm.createContext(ctx); vm.runInContext(source, ctx);
+  vm.createContext(ctx);
+  vm.runInContext(answersSource, ctx, {filename: 'answer-presentation.js'});
+  vm.runInContext(source, ctx);
   return {ctx, pilot: ctx.NQPilot, storage, shared,
     progress: () => ctx.nqProgressStorage(),
     event: key => listeners.get('storage')?.({key, storageArea: storage}),
@@ -560,6 +563,7 @@ test('the public resume engine still continues an initialized live pilot', async
 
 test('restore refuses closed or incomplete pilot saves before mutating gameplay', () => {
   const f = fixture(); f.ctx.state = {gold: 77};
+  vm.runInContext(sourceSection('    function _answerChoice(', '    function _normalCharacterSaveValid('), f.ctx);
   vm.runInContext(sourceSection('    function restoreGame(selectedSave)', '    function initWelcomeScreen()'), f.ctx);
   for (const save of [{gameStarted: false}, {gameStarted: true, gameOver: true},
     {gameStarted: true, gameCompleted: true}, {gameStarted: true, completedGame: true},
