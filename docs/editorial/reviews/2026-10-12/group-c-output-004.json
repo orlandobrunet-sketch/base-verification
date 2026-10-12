@@ -1,0 +1,2031 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 107865,
+  "sourceReportSHA256": "dd75299c1e8dc7ffebedd396b42aa36149386877298b95874d0f45f7c049a629",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_FORMAL_BATCH_REVIEW_v2",
+    "group": "c",
+    "batch": "004",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "bankLF_SHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "input": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 15649,
+      "sha256": "a8c37c76f3a431bb5ba8441e365d7e09af02d2ded3e66885a33819c81554ce84"
+    },
+    "reviewedAtOfficialUTC": "2026-10-12T17:46:17Z",
+    "normativeSources": [
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      }
+    ],
+    "sourceRegistry": {
+      "nostone_study": {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/36856614/",
+        "opened": true,
+        "version": "Dhayat et al., NEJM 2023;388:781–791, DOI 10.1056/NEJMoa2209275",
+        "locations": [
+          "Abstract Methods/Results/Conclusions, lines 243–248"
+        ],
+        "verifiedScope": "416 participantes; doses 12,5/25/50 mg uma vez ao dia; composto sintomático ou radiológico; sem relação dose-resposta (P=0,66), sem diferença substancial vs placebo e mais eventos metabólicos. Fonte primária: abstract completo, sem inferir proibição de toda classe."
+      },
+      "kdigo_ckd": {
+        "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+        "opened": true,
+        "version": "KDIGO CKD 2024",
+        "locations": [
+          "Table 6 PDF p.58 / S174",
+          "Table 16 PDF p.75 / S191",
+          "PP 3.7.3 PDF p.98 / S214",
+          "PDF p.101 / S217"
+        ],
+        "verifiedScope": "Proteínas não albumina podem não ser detectadas por tiras de albumina; métodos específicos para cadeias leves e eletroforese/imunofixação na investigação etiológica. Queda inicial reversível de filtração geralmente não exige suspensão. Diretriz não comprova todo o mecanismo molecular de sódio na mácula densa."
+      },
+      "kdigo_aki": {
+        "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+        "opened": true,
+        "version": "KDIGO AKI 2012, versão final vigente no portal; atualização 2026 ainda em preparação após revisão pública",
+        "locations": [
+          "Recommendation 2.1.1, Table 2, PDF p.10 / p.8",
+          "Table 3 and text PDF p.23 / p.21"
+        ],
+        "verifiedScope": "Aumento >=0,3 mg/dL em 48h define LRA; estágio 1. Rotas creatinina e diurese independentes. Fonte de status: https://kdigo.org/guidelines/acute-kidney-injury/ (atualização 2026 é draft, não substituição final)."
+      },
+      "bproad": {
+        "url": "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2412006.pdf",
+        "opened": true,
+        "version": "Bi et al., BPROAD, DOI 10.1056/NEJMoa2412006",
+        "locations": [
+          "Methods, eligibility and trial interventions, PDF pp.2–4"
+        ],
+        "verifiedScope": "Adultos >=50 anos com DM2, hipertensão e maior risco cardiovascular; alvo sistólico <120 vs <140 mmHg. Não população exclusiva em diálise nem comparação de hipoglicemiantes."
+      },
+      "tumor_lysis_howard_nejm_2011": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3437249/",
+        "opened": true,
+        "version": "Howard et al. NEJM 2011;364:1844–1854",
+        "locations": [
+          "Prevention of acute kidney injury, lines 195–204"
+        ],
+        "verifiedScope": "Allopurinol previne formação, não remove urato existente; rasburicase converte urato em alantoína. Contraindicação em deficiência G6PD."
+      },
+      "eviq_108": {
+        "url": "https://www.eviq.org.au/clinical-resources/side-effect-and-toxicity-management/prophylaxis-and-treatment/108-prevention-of-tumour-lysis-syndrome",
+        "opened": true,
+        "version": "eviQ ID108 v6, revisão 20/08/2025 e atualização G6PD 22/10/2025",
+        "locations": [
+          "Hypouricaemic agents, lines 169–191"
+        ],
+        "verifiedScope": "Rasburicase preferida com hiperuricemia existente/alto risco; degrada urato em alantoína; testar deficiência de G6PD e não usar se deficiente. Hidratação/monitorização seguem necessárias, sem dose nova neste item."
+      },
+      "sglt2i_aki_meta_2020": {
+        "url": "https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002983",
+        "opened": true,
+        "version": "Menne et al., PLoS Med 2019;16(12):e1002983, DOI 10.1371/journal.pmed.1002983",
+        "locations": [
+          "Abstract lines 141–144",
+          "Methods and results, full text"
+        ],
+        "verifiedScope": "112 ECRs totais, 96.722 participantes; 30 ensaios reportaram 410 eventos graves por LRA, OR0,64 IC95%0,53–0,78. Eventos de qualquer gravidade:41 ensaios, OR0,75 IC95%0,66–0,84. Mais eventos de hipovolemia. Não converter odds em risco absoluto nem apresentar120 ensaios/ano2020/Kidney International."
+      },
+      "empa_kidney": {
+        "url": "https://link.springer.com/article/10.1007/s10157-024-02489-4",
+        "opened": true,
+        "version": "Nangaku et al., autores do EMPA-KIDNEY, Clin Exp Nephrol 2024;28:588–595; análise primária post-hoc regional",
+        "locations": [
+          "Methods lines 78–81; Results 92–102"
+        ],
+        "verifiedScope": "Protocolo global:TFGe >=20 <45 independente de albuminúria; >=45 <90 exige RAC>=200mg/g. Ambos com/sem diabetes; RAS quando indicado/tolerado. Resultados regionais são post-hoc e não base para afirmar vantagem por região. Elegibilidade e números gerais declarados diretamente pelos autores; relatório original NEJM não acessível nesta checagem."
+      },
+      "red_trial": {
+        "url": "https://repub.eur.nl/pub/122432/",
+        "opened": true,
+        "version": "van Bommel et al., RED trial, Kidney International DOI 10.1016/j.kint.2019.09.013",
+        "locations": [
+          "Author repository full abstract lines 28–31"
+        ],
+        "verifiedScope": "44 participantes DM2 em metformina; redução de filtração/fração de filtração sem aumento de resistência renal; sugere vasodilatação pós-glomerular. Não comprova mecanismo aferente universal na DRC."
+      }
+    },
+    "summary": [
+      {
+        "qid": "23c732a4",
+        "OP": "Interpretar eficácia e riscos da hidroclorotiazida no NOSTONE, limitando a conclusão ao ensaio.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "b5bfaf2c",
+        "OP": "Reconhecer limitação da fita para proteínas não albumina em suspeita de cadeias leves.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "4d3d7a7f",
+        "OP": "Diagnosticar e estadiar LRA pelo aumento absoluto de creatinina, independentemente da diurese.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "a6886e4e",
+        "OP": "Identificar população e alvos estudados no BPROAD para avaliar aplicabilidade.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "4daef72a",
+        "OP": "Distinguir degradação de urato existente de prevenção de nova formação na lise tumoral de alto risco.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "2777c29d",
+        "OP": "Interpretar redução populacional de eventos graves por LRA com SGLT2 sem assumir segurança individual absoluta.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "a5c73397",
+        "OP": "Explicar queda inicial de filtração por hemodinâmica glomerular, distinguindo-a de toxicidade tubular.",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "verdict": "revisão maior",
+        "score": 16,
+        "publication": "BLOQUEADA"
+      },
+      {
+        "qid": "6cd39dfb",
+        "OP": "Aplicar os dois caminhos de elegibilidade renal do EMPA-KIDNEY sem apagar restrição por albuminúria.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      }
+    ],
+    "questions": [
+      {
+        "qid": "23c732a4",
+        "sourceLine": 13,
+        "sourceQuestionSHA256": "d620ac8e91a4af01842dbcce4bac5d4c31c11cf0728168db8364f53baf813d7f",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Interpretar eficácia e riscos da hidroclorotiazida no NOSTONE, limitando a conclusão ao ensaio.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Interpretar eficácia e riscos da hidroclorotiazida no NOSTONE, limitando a conclusão ao ensaio.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta é única a combinar resultado e segurança; distractores usam imposição de citrato e efeitos grandes não sustentados."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Card NOSTONE está com ano2022 e classificação faseIII não confirmada; ensaio publicado2023."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Conclusão não pode ser extrapolada a todos os tiazídicos ou todos os fenótipos; o comando deve delimitar composto e estudo."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Nefrolitíase e Diuréticos Tiazídicos (Estudo NOSTONE)",
+            "qid": "23c732a4",
+            "q": "O estudo NOSTONE (2023) avaliou a hidroclorotiazida para prevenir recorrência de cálculos renais contendo cálcio. Qual foi a conclusão principal?",
+            "refs": [
+              "nostone_study",
+              "eau_urolithiasis_medical_2025"
+            ],
+            "opts": [
+              "A hidroclorotiazida apresentou benefício robusto apenas quando combinada obrigatoriamente ao citrato de potássio",
+              "A dose de 50 mg foi claramente superior às doses de 12,5 mg e 25 mg, com relação dose-resposta protetora",
+              "A hidroclorotiazida reduziu a recorrência em aproximadamente 50%, independentemente da dose",
+              "Não houve redução substancial da recorrência com hidroclorotiazida em comparação ao placebo, e eventos adversos metabólicos foram mais comuns"
+            ],
+            "ans": 3,
+            "exp": "O NOSTONE (NEJM, 2023) randomizou 416 pacientes com cálculos renais recorrentes contendo cálcio para hidroclorotiazida 12,5 mg, 25 mg ou 50 mg uma vez ao dia versus placebo. A incidência de recorrência sintomática ou radiológica não diferiu substancialmente entre os grupos, e não houve relação dose-resposta protetora. Além disso, hipocalemia, gota, diabetes de início recente, alergia cutânea e aumento de creatinina foram mais frequentes com hidroclorotiazida. Assim, o estudo enfraquece o uso rotineiro de hidroclorotiazida como prevenção universal de recorrência.",
+            "diff": "medium",
+            "cat": "litíase"
+          },
+          "AFTER": {
+            "t": "Nefrolitíase e Diuréticos Tiazídicos (Estudo NOSTONE)",
+            "qid": "23c732a4",
+            "q": "No NOSTONE (2023), hidroclorotiazida em três doses foi comparada a placebo em pessoas com cálculos renais recorrentes contendo cálcio. Qual resultado sobre o composto de recorrência sintomática ou radiológica foi encontrado?",
+            "refs": [
+              "nostone_study"
+            ],
+            "opts": [
+              "Benefício restrito à associação com citrato de potássio, obrigatória em todos os braços.",
+              "Benefício progressivo com a dose, com superioridade comprovada do esquema de 50 mg.",
+              "Redução próxima de metade dos eventos em todas as doses, sem diferença de segurança.",
+              "Ausência de diferença substancial vs placebo, com mais eventos adversos metabólicos."
+            ],
+            "ans": 3,
+            "exp": "O ensaio incluiu 416 pessoas e comparou 12,5, 25 e 50 mg uma vez ao dia a placebo. Não houve relação dose-resposta para o composto primário (P=0,66); a recorrência não diferiu substancialmente. Hipocalemia, gota, diabetes novo e elevação de creatinina foram mais comuns. Esse resultado não demonstra que nenhum tiazídico beneficia qualquer fenótipo de litíase.",
+            "diff": "medium",
+            "cat": "litíase"
+          },
+          "afterQuestionSHA256": "a7ca3504d9547ab063588d806b7639b9c341e6eb5546b203268d9ddb4ac7d32d",
+          "correctAnswer": {
+            "canonicalIndex": 3,
+            "canonicalLetter": "D",
+            "text": "Ausência de diferença substancial vs placebo, com mais eventos adversos metabólicos."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "nostone_study",
+            "source": {
+              "url": "https://pubmed.ncbi.nlm.nih.gov/36856614/",
+              "opened": true,
+              "version": "Dhayat et al., NEJM 2023;388:781–791, DOI 10.1056/NEJMoa2209275",
+              "locations": [
+                "Abstract Methods/Results/Conclusions, lines 243–248"
+              ],
+              "verifiedScope": "416 participantes; doses 12,5/25/50 mg uma vez ao dia; composto sintomático ou radiológico; sem relação dose-resposta (P=0,66), sem diferença substancial vs placebo e mais eventos metabólicos. Fonte primária: abstract completo, sem inferir proibição de toda classe."
+            },
+            "supports": "416 participantes; doses 12,5/25/50 mg uma vez ao dia; composto sintomático ou radiológico; sem relação dose-resposta (P=0,66), sem diferença substancial vs placebo e mais eventos metabólicos. Fonte primária: abstract completo, sem inferir proibição de toda classe.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "nostone_study": {
+            "label": "NOSTONE Trial",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2209275",
+            "journal": "New England Journal of Medicine",
+            "ano": 2023,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "NOSTONE: sem diferença substancial no composto primário entre hidroclorotiazida e placebo",
+            "icon": "🔬",
+            "resumo": "ECR multicêntrico duplo-cego (NOSTONE, n = 416 pacientes com cálculos renais recorrentes contendo cálcio). Comparou hidroclorotiazida oral 12,5 mg, 25 mg ou 50 mg uma vez ao dia versus placebo, com mediana de seguimento de 2,9 anos. O desfecho primário composto foi recorrência sintomática ou radiológica. Não houve relação dose-resposta para o desfecho primário (P = 0,66), e a incidência de recorrência não diferiu substancialmente entre hidroclorotiazida e placebo. Hipocalemia, gota, diabetes mellitus de início recente, alergia cutânea e elevação de creatinina foram mais comuns com hidroclorotiazida.",
+            "conclusao": "O resultado do NOSTONE limita o suporte ao uso indiscriminado de hidroclorotiazida para recorrência; não prova ausência de benefício de toda classe em todo fenótipo.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes. Cards sem patch preservados; verificação focal cobre somente as afirmações decisivas dos itens. Fonte original inacessível não é declarada lida.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp",
+            "refs"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            112,
+            104,
+            91,
+            141
+          ],
+          "afterLengths": [
+            88,
+            83,
+            84,
+            84
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito e §18.4 aplicados ao AFTER exato após revisão material; nenhuma autorização retroativa ao BEFORE."
+      },
+      {
+        "qid": "b5bfaf2c",
+        "sourceLine": 21,
+        "sourceQuestionSHA256": "5fcc9d3a0eb38c62e8544d36e8977e9ca38550ca5bebb588b4b4409e120cc43c",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Reconhecer limitação da fita para proteínas não albumina em suspeita de cadeias leves.",
+        "classification": {
+          "primaryCompetence": "interpretação laboratorial",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Reconhecer limitação da fita para proteínas não albumina em suspeita de cadeias leves.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Distratores originais usam exclusões absolutas e confundem fita com teste específico de cadeias leves."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Siglas DRC/LRA e métodos históricos ampliam a explicação sem necessidade para o objetivo."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Fita negativa não permite excluir proteínas não albumina. Fonte Clinical Methods retornou reCAPTCHA; verificar princípio no KDIGO2024, sem declarar livro lido."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Proteinúria de Bence-Jones — Fita Negativa",
+            "qid": "b5bfaf2c",
+            "q": "Paciente com DRC/LRA inexplicada, anemia e suspeita de mieloma múltiplo tem fita urinária negativa para proteína, mas há forte suspeita de proteinúria por cadeias leves. Qual é a explicação mais importante para a fita poder ser falsamente negativa?",
+            "refs": [
+              "clinical_methods_proteinuria",
+              "brenner_rector"
+            ],
+            "opts": [
+              "A fita urinária convencional detecta principalmente albumina e tem baixa sensibilidade para cadeias leves livres",
+              "As cadeias leves só aparecem na urina quando a albuminúria também é nefrótica",
+              "A fita urinária detecta preferencialmente proteínas monoclonais e por isso deve ser positiva no mieloma",
+              "A ausência de proteína na fita exclui proteinúria clinicamente relevante em pacientes com suspeita de mieloma"
+            ],
+            "ans": 0,
+            "exp": "A fita urinária convencional é sobretudo um teste de albumina. Na proteinúria de Bence-Jones, a proteína urinária pode ser composta por cadeias leves livres kappa ou lambda, que podem não reagir adequadamente no dipstick; por isso a fita pode ser negativa apesar de proteinúria relevante. Quando o contexto sugere mieloma, a investigação deve usar métodos que detectem proteína não albumina, como relação proteína/creatinina, teste com ácido sulfossalicílico, eletroforese/imunofixação urinária e dosagem de cadeias leves, conforme disponibilidade. As demais alternativas erram porque transformam a fita em teste sensível para cadeias leves ou usam uma fita negativa para excluir doença monoclonal.",
+            "diff": "medium",
+            "cat": "drc"
+          },
+          "AFTER": {
+            "t": "Proteinúria de Bence-Jones — Fita Negativa",
+            "qid": "b5bfaf2c",
+            "q": "Pessoa com disfunção renal inexplicada, anemia e suspeita de mieloma apresenta fita urinária convencional negativa, apesar da suspeita de proteinúria por cadeias leves. Qual limitação analítica explica esse resultado?",
+            "refs": [
+              "kdigo_ckd"
+            ],
+            "opts": [
+              "Maior sensibilidade para albumina que para proteínas como as cadeias leves livres.",
+              "Maior sensibilidade para cadeias leves que para albumina, exigindo albuminúria maciça.",
+              "Reação exclusiva com proteínas monoclonais intactas, excluindo imunoglobulinas normais.",
+              "Reação equivalente com todas as proteínas, limitada apenas pela cor da urina."
+            ],
+            "ans": 0,
+            "exp": "Tiras voltadas à albumina podem não detectar proteínas não albumina. Portanto, resultado negativo não exclui proteinúria por cadeias leves. Na suspeita de doença monoclonal, a investigação pode incluir cadeias leves séricas e eletroforese/imunofixação sérica e urinária; quantificar albumina isoladamente não substitui essa avaliação.",
+            "diff": "medium",
+            "cat": "drc"
+          },
+          "afterQuestionSHA256": "9fcec91d4699239bc6a5346e4be78e8b9330575dfc9a227240a55f72090514eb",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Maior sensibilidade para albumina que para proteínas como as cadeias leves livres."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "kdigo_ckd",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO CKD 2024",
+              "locations": [
+                "Table 6 PDF p.58 / S174",
+                "Table 16 PDF p.75 / S191",
+                "PP 3.7.3 PDF p.98 / S214",
+                "PDF p.101 / S217"
+              ],
+              "verifiedScope": "Proteínas não albumina podem não ser detectadas por tiras de albumina; métodos específicos para cadeias leves e eletroforese/imunofixação na investigação etiológica. Queda inicial reversível de filtração geralmente não exige suspensão. Diretriz não comprova todo o mecanismo molecular de sódio na mácula densa."
+            },
+            "supports": "Proteínas não albumina podem não ser detectadas por tiras de albumina; métodos específicos para cadeias leves e eletroforese/imunofixação na investigação etiológica. Queda inicial reversível de filtração geralmente não exige suspensão. Diretriz não comprova todo o mecanismo molecular de sódio na mácula densa.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_ckd": {
+            "label": "KDIGO CKD 2024",
+            "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "journal": "Kidney International",
+            "ano": 2024,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "icon": "📋",
+            "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+            "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+            "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes. Cards sem patch preservados; verificação focal cobre somente as afirmações decisivas dos itens. Fonte original inacessível não é declarada lida.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp",
+            "refs"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            112,
+            77,
+            103,
+            109
+          ],
+          "afterLengths": [
+            82,
+            86,
+            87,
+            77
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito e §18.4 aplicados ao AFTER exato após revisão material; nenhuma autorização retroativa ao BEFORE."
+      },
+      {
+        "qid": "4d3d7a7f",
+        "sourceLine": 26,
+        "sourceQuestionSHA256": "72775bfa6815a76b6d1c36837476f94b2339187eb7abf8c3ef5bd7f70130d035",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Diagnosticar e estadiar LRA pelo aumento absoluto de creatinina, independentemente da diurese.",
+        "classification": {
+          "primaryCompetence": "diagnóstico e classificação",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "básica"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Diagnosticar e estadiar LRA pelo aumento absoluto de creatinina, independentemente da diurese.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta original reúne dois limiares explícitos seletivos; alternativas podem ser comparáveis sem remover os dados decisivos do enunciado."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Definir LRA e atribuir versão final da diretriz. Portal oficial ainda descreve2026como draft."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Não há obrigação de oligúria concomitante; o comando deve considerar gravidade atingida até o momento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Critério Absoluto de LRA",
+            "qid": "4d3d7a7f",
+            "q": "Paciente internado tem creatinina basal de 0,9 mg/dL e, 36 horas depois, creatinina de 1,2 mg/dL. A diurese permaneceu acima de 0,5 mL/kg/h. Como classificar esse achado pelos critérios KDIGO?",
+            "refs": [
+              "kdigo_aki"
+            ],
+            "opts": [
+              "Não há LRA, porque a creatinina não aumentou pelo menos 1,5 vez",
+              "Há LRA estágio 1, porque a creatinina aumentou pelo menos 0,3 mg/dL em até 48 horas",
+              "Há LRA estágio 2, porque qualquer aumento absoluto em 48 horas define esse estágio",
+              "Não há LRA, porque o critério de creatinina exige oligúria simultânea"
+            ],
+            "ans": 1,
+            "exp": "O aumento absoluto de 0,3 mg/dL em 36 horas preenche um critério diagnóstico independente de LRA e, nessa magnitude, classifica estágio 1. Não é necessário haver oligúria simultânea: creatinina e débito urinário são rotas alternativas de diagnóstico e o estágio final é o mais grave atingido por qualquer uma delas. O critério relativo de pelo menos 1,5 vez o basal em sete dias também define LRA, mas não invalida o critério absoluto já preenchido.",
+            "diff": "easy",
+            "cat": "lra"
+          },
+          "AFTER": {
+            "t": "Critério Absoluto de LRA",
+            "qid": "4d3d7a7f",
+            "q": "Adulto internado tem creatinina basal de 0,9 mg/dL e, 36 horas depois, 1,2 mg/dL. A diurese permaneceu acima de 0,5 mL/kg/h. Segundo a definição e o estadiamento KDIGO 2012, como classificar o episódio até esse momento?",
+            "refs": [
+              "kdigo_aki"
+            ],
+            "opts": [
+              "Sem lesão renal aguda, pois o aumento relativo é menor que 1,5 vez o basal.",
+              "Lesão renal aguda estágio 1, pelo aumento absoluto de creatinina em 48 horas.",
+              "Lesão renal aguda estágio 2, pelo aumento de creatinina em menos de dois dias.",
+              "Sem lesão renal aguda, pois não se documentou oligúria concomitante."
+            ],
+            "ans": 1,
+            "exp": "A elevação de 0,3 mg/dL em 36 horas preenche a rota diagnóstica absoluta e o estágio 1. O critério de diurese é independente, não requisito simultâneo. A gravidade acompanha o pior critério atingido ao longo do episódio; a razão de 1,33 não impede o diagnóstico pelo aumento absoluto.",
+            "diff": "easy",
+            "cat": "lra"
+          },
+          "afterQuestionSHA256": "37d51eab3b22c81f1b68f4a74cd11cb0901618cb3a3d433b9a49da5d9e043764",
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "Lesão renal aguda estágio 1, pelo aumento absoluto de creatinina em 48 horas."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "kdigo_aki",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+              "opened": true,
+              "version": "KDIGO AKI 2012, versão final vigente no portal; atualização 2026 ainda em preparação após revisão pública",
+              "locations": [
+                "Recommendation 2.1.1, Table 2, PDF p.10 / p.8",
+                "Table 3 and text PDF p.23 / p.21"
+              ],
+              "verifiedScope": "Aumento >=0,3 mg/dL em 48h define LRA; estágio 1. Rotas creatinina e diurese independentes. Fonte de status: https://kdigo.org/guidelines/acute-kidney-injury/ (atualização 2026 é draft, não substituição final)."
+            },
+            "supports": "Aumento >=0,3 mg/dL em 48h define LRA; estágio 1. Rotas creatinina e diurese independentes. Fonte de status: https://kdigo.org/guidelines/acute-kidney-injury/ (atualização 2026 é draft, não substituição final).",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_aki": {
+            "label": "KDIGO AKI 2012",
+            "url": "https://kdigo.org/wp-content/uploads/2017/04/KDIGO-AKI-Guideline_Cass-2014.pdf",
+            "journal": "Kidney International Supplements",
+            "ano": 2012,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Diretriz que estabeleceu a definição e o estadiamento universais da lesão renal aguda",
+            "icon": "📋",
+            "resumo": "Define LRA por qualquer uma de três rotas: aumento da creatinina sérica ≥0,3 mg/dL em 48 horas; aumento para ≥1,5 vez o basal, conhecido ou presumido nos sete dias anteriores; ou diurese <0,5 mL/kg/h por seis horas. Estratifica a gravidade em três estágios pela creatinina e pela diurese. O estágio 3 inclui creatinina ≥3 vezes o basal, valor ≥4,0 mg/dL, início de terapia renal substitutiva ou, em menores de 18 anos, TFGe <35 mL/min/1,73 m².",
+            "conclusao": "Os critérios de creatinina e diurese da KDIGO 2012 devem ser aplicados de forma independente: basta uma rota diagnóstica, e o maior estágio atingido define a gravidade.",
+            "curiosidade": "A classificação KDIGO harmonizou os sistemas RIFLE e AKIN, permitindo que estudos e serviços comparassem incidência e desfechos de LRA com uma linguagem comum."
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes. Cards sem patch preservados; verificação focal cobre somente as afirmações decisivas dos itens. Fonte original inacessível não é declarada lida.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            63,
+            83,
+            82,
+            69
+          ],
+          "afterLengths": [
+            75,
+            77,
+            78,
+            68
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito e §18.4 aplicados ao AFTER exato após revisão material; nenhuma autorização retroativa ao BEFORE."
+      },
+      {
+        "qid": "a6886e4e",
+        "sourceLine": 30,
+        "sourceQuestionSHA256": "b74faadbf3c49e622c8b18ee4af9e6cab51a6a038cb1ddfe7822086b41c3293a",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Identificar população e alvos estudados no BPROAD para avaliar aplicabilidade.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Identificar população e alvos estudados no BPROAD para avaliar aplicabilidade.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Opções misturam desenho de pressão com fármaco SGLT2, permitindo descartar por eixo diferente."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "PAS/DM2/DRC/TFGe não expandidas na primeira ocorrência."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "A opção de empagliflozina responde a outro eixo; alternativas devem comparar população e alvos."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "BPROAD — alvo pressórico e população",
+            "qid": "a6886e4e",
+            "q": "Qual interpretação resume melhor o desenho do BPROAD para controle pressórico em diabetes tipo 2?",
+            "refs": [
+              "bproad"
+            ],
+            "opts": [
+              "Comparou alvo de PAS <120 mmHg versus <140 mmHg em adultos com DM2, hipertensão e alto risco cardiovascular",
+              "Comparou alvo de PAS <120 mmHg versus <140 mmHg exclusivamente em DRC G5 em diálise",
+              "Testou empagliflozina versus placebo em DRC proteinúrica com TFGe ≥20 mL/min/1,73m²",
+              "Comparou alvo de PAS <130 mmHg versus <150 mmHg em pacientes sem diabetes"
+            ],
+            "ans": 0,
+            "exp": "O BPROAD randomizou adultos com diabetes tipo 2, hipertensão e alto risco cardiovascular para tratamento intensivo com alvo de pressão arterial sistólica (PAS) <120 mmHg versus tratamento padrão com alvo <140 mmHg. O ensaio não foi um estudo de diálise, não testou iSGLT2 e não avaliou uma população sem diabetes. Esse enquadramento é essencial para não extrapolar o alvo intensivo para pacientes frágeis, diálise crônica ou contextos fora da população estudada.",
+            "diff": "medium",
+            "cat": "drc"
+          },
+          "AFTER": {
+            "t": "BPROAD — alvo pressórico e população",
+            "qid": "a6886e4e",
+            "q": "Qual combinação de população e alvos de pressão arterial sistólica corresponde ao desenho do BPROAD?",
+            "refs": [
+              "bproad"
+            ],
+            "opts": [
+              "Diabetes tipo 2, hipertensão e maior risco cardiovascular: <120 vs <140 mmHg.",
+              "Diabetes tipo 2 e diálise obrigatória para inclusão: <120 vs <140 mmHg.",
+              "Diabetes tipo 2, hipertensão e maior risco cardiovascular: <130 vs <150 mmHg.",
+              "Ausência de diabetes, com hipertensão e maior risco cardiovascular: <120 vs <140 mmHg."
+            ],
+            "ans": 0,
+            "exp": "O BPROAD incluiu adultos com diabetes tipo 2, hipertensão e maior risco cardiovascular, com alvos sistólicos <120 vs <140 mmHg. O protocolo incluiu pessoas a partir de 50 anos. Aplicabilidade depende da população estudada e da forma de medir e monitorar a pressão; o desenho não estabelece um alvo universal.",
+            "diff": "medium",
+            "cat": "drc"
+          },
+          "afterQuestionSHA256": "50719677685d5d1d65566f109e6aa5bd3690e5a5bb18222b6cfc2c09918daf67",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Diabetes tipo 2, hipertensão e maior risco cardiovascular: <120 vs <140 mmHg."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "bproad",
+            "source": {
+              "url": "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2412006.pdf",
+              "opened": true,
+              "version": "Bi et al., BPROAD, DOI 10.1056/NEJMoa2412006",
+              "locations": [
+                "Methods, eligibility and trial interventions, PDF pp.2–4"
+              ],
+              "verifiedScope": "Adultos >=50 anos com DM2, hipertensão e maior risco cardiovascular; alvo sistólico <120 vs <140 mmHg. Não população exclusiva em diálise nem comparação de hipoglicemiantes."
+            },
+            "supports": "Adultos >=50 anos com DM2, hipertensão e maior risco cardiovascular; alvo sistólico <120 vs <140 mmHg. Não população exclusiva em diálise nem comparação de hipoglicemiantes.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "bproad": {
+            "label": "BPROAD Trial",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412006",
+            "journal": "N Engl J Med 2025;392(12):1155-1167",
+            "ano": 2025,
+            "tipo": "Ensaio Clínico Fase III",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "12.821 participantes: meta de PAS <120 mmHg reduziu o composto cardiovascular, com segurança renal grave semelhante entre os grupos",
+            "icon": "💊",
+            "resumo": "ECR multicêntrico chinês com 12.821 adultos com diabetes tipo 2, hipertensão e alto risco cardiovascular, comparando PAS alvo <120 mmHg versus <140 mmHg. O composto de AVC não fatal, IAM não fatal, tratamento ou internação por insuficiência cardíaca e morte cardiovascular ocorreu em 393 versus 492 participantes (HR 0,79; IC 95% 0,69–0,90). Eventos adversos graves foram semelhantes; insuficiência renal aguda ocorreu em 4 versus 5 participantes. Hipotensão sintomática e hipercalemia foram mais frequentes no grupo intensivo.",
+            "conclusao": "O BPROAD sustenta benefício cardiovascular do alvo intensivo na população estudada, com monitorização de hipotensão e potássio. Não demonstrou aumento de insuficiência renal aguda.",
+            "curiosidade": "Ao contrário do SPRINT, o BPROAD incluiu apenas pessoas com diabetes tipo 2 e testou diretamente a meta de PAS abaixo de 120 mmHg."
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes. Cards sem patch preservados; verificação focal cobre somente as afirmações decisivas dos itens. Fonte original inacessível não é declarada lida.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            107,
+            83,
+            83,
+            73
+          ],
+          "afterLengths": [
+            77,
+            71,
+            77,
+            86
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito e §18.4 aplicados ao AFTER exato após revisão material; nenhuma autorização retroativa ao BEFORE."
+      },
+      {
+        "qid": "4daef72a",
+        "sourceLine": 32,
+        "sourceQuestionSHA256": "fed7602a3442a0363fa5e1c9a67672bd0e652f841dbddee60c288bcb66fbbdb6",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Distinguir degradação de urato existente de prevenção de nova formação na lise tumoral de alto risco.",
+        "classification": {
+          "primaryCompetence": "conduta farmacológica",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Distinguir degradação de urato existente de prevenção de nova formação na lise tumoral de alto risco.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "CRÍTICO",
+            "problem": "Escolha terapêutica original omite contraindicação decisiva de rasburicase em deficiência de G6PD."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Comando original reúne reconhecer quatro alterações e escolher fármaco; opções absurdas em eixos diferentes. Padrão metabólico foi deslocado ao caso, mantendo a decisão farmacológica central."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Rasburicase não é escolha indiscriminada em todo alto risco: falta excluir deficiência de G6PD."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [
+            5
+          ],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Síndrome de Lise Tumoral (SLT)",
+            "qid": "4daef72a",
+            "q": "Qual combinação resume corretamente a síndrome de lise tumoral e a opção uricolítica preferida quando o risco é alto e a uricemia já está muito elevada?",
+            "refs": [
+              "tumor_lysis_howard_nejm_2011"
+            ],
+            "opts": [
+              "Hipouricemia e hipercalcemia; alopurinol, porque remove rapidamente o ácido úrico já formado",
+              "Hiperuricemia, hipercalemia, hiperfosfatemia e hipocalcemia; rasburicase, por degradar rapidamente o ácido úrico",
+              "Hipocalemia e hipofosfatemia; hidratação isolada, porque a lesão renal é predominantemente pré-renal",
+              "Hipernatremia e acidose respiratória; bicarbonato de sódio, porque alcalinização urinária é sempre protetora"
+            ],
+            "ans": 1,
+            "exp": "A lise tumoral libera conteúdo intracelular em grande volume: potássio, fósforo e precursores de ácido úrico. O padrão clássico é hiperuricemia, hipercalemia, hiperfosfatemia e hipocalcemia secundária à ligação cálcio-fósforo. Em paciente de alto risco, especialmente com uricemia já alta ou LRA, a rasburicase é preferida porque converte ácido úrico em alantoína e reduz rapidamente o ácido úrico existente. O alopurinol previne nova formação de ácido úrico, mas não remove com rapidez o ácido úrico já acumulado. Hidratação e monitorização eletrolítica continuam essenciais, mas não substituem uricolítico quando o risco é alto.",
+            "diff": "medium",
+            "cat": "oncologia_renal"
+          },
+          "AFTER": {
+            "t": "Síndrome de Lise Tumoral (SLT)",
+            "qid": "4daef72a",
+            "q": "Paciente onco-hematológico com síndrome de lise tumoral apresenta hiperuricemia importante, hipercalemia, hiperfosfatemia e hipocalcemia. É de alto risco; a deficiência de glicose-6-fosfato desidrogenase foi excluída. Qual opção reduz rapidamente o ácido úrico já formado, como parte do manejo?",
+            "refs": [
+              "tumor_lysis_howard_nejm_2011"
+            ],
+            "opts": [
+              "Alopurinol, por converter o ácido úrico já acumulado em alantoína.",
+              "Rasburicase, por converter o ácido úrico já acumulado em alantoína.",
+              "Alopurinol, por estimular a excreção tubular do ácido úrico acumulado.",
+              "Rasburicase, por bloquear a formação de urato pela xantina oxidase."
+            ],
+            "ans": 1,
+            "exp": "Rasburicase é urato oxidase: degrada ácido úrico em alantoína. Alopurinol inibe xantina oxidase e previne nova formação, mas não remove o urato existente. Hidratação e vigilância dos eletrólitos seguem essenciais. Rasburicase não deve ser usada na deficiência de glicose-6-fosfato desidrogenase; o enunciado exclui essa contraindicação.",
+            "diff": "medium",
+            "cat": "oncologia_renal"
+          },
+          "afterQuestionSHA256": "44efd239042a3d51e9f51d34c3564b5735c2dec24b1f9cf4acbf99263fd5d1a0",
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "Rasburicase, por converter o ácido úrico já acumulado em alantoína."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "tumor_lysis_howard_nejm_2011",
+            "source": {
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3437249/",
+              "opened": true,
+              "version": "Howard et al. NEJM 2011;364:1844–1854",
+              "locations": [
+                "Prevention of acute kidney injury, lines 195–204"
+              ],
+              "verifiedScope": "Allopurinol previne formação, não remove urato existente; rasburicase converte urato em alantoína. Contraindicação em deficiência G6PD."
+            },
+            "supports": "Allopurinol previne formação, não remove urato existente; rasburicase converte urato em alantoína. Contraindicação em deficiência G6PD.",
+            "status": "VERIFICADA"
+          },
+          {
+            "sourceId": "eviq_108",
+            "source": {
+              "url": "https://www.eviq.org.au/clinical-resources/side-effect-and-toxicity-management/prophylaxis-and-treatment/108-prevention-of-tumour-lysis-syndrome",
+              "opened": true,
+              "version": "eviQ ID108 v6, revisão 20/08/2025 e atualização G6PD 22/10/2025",
+              "locations": [
+                "Hypouricaemic agents, lines 169–191"
+              ],
+              "verifiedScope": "Rasburicase preferida com hiperuricemia existente/alto risco; degrada urato em alantoína; testar deficiência de G6PD e não usar se deficiente. Hidratação/monitorização seguem necessárias, sem dose nova neste item."
+            },
+            "supports": "Rasburicase preferida com hiperuricemia existente/alto risco; degrada urato em alantoína; testar deficiência de G6PD e não usar se deficiente. Hidratação/monitorização seguem necessárias, sem dose nova neste item.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "tumor_lysis_howard_nejm_2011": {
+            "label": "Howard SC et al. — The Tumor Lysis Syndrome (NEJM 2011)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3437249/",
+            "journal": "N Engl J Med 2011;364(19):1844-1854",
+            "ano": 2011,
+            "tipo": "Revisão Clínica",
+            "badge": "REVIEW",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Critérios de Cairo-Bishop para síndrome de lise tumoral laboratorial e clínica",
+            "icon": "📖",
+            "resumo": "Revisão clínica do NEJM sobre síndrome de lise tumoral. Organiza prevenção, reconhecimento e tratamento da lise tumoral em neoplasias de alto risco, especialmente hematológicas. Resume a classificação de Cairo-Bishop: síndrome de lise tumoral laboratorial requer pelo menos duas alterações metabólicas típicas — hiperuricemia, hipercalemia, hiperfosfatemia ou hipocalcemia — no período de 3 dias antes até 7 dias após o início da terapia; síndrome clínica acrescenta consequências como elevação de creatinina, convulsões, arritmia ou morte. O artigo também discute refinamentos práticos, como evitar supervalorizar mudanças percentuais pequenas sem relevância clínica.",
+            "conclusao": "A lise tumoral laboratorial é diagnóstico bioquímico; lesão renal, arritmia, convulsão ou morte transformam o quadro em lise tumoral clínica.",
+            "curiosidade": "A hipocalcemia da lise tumoral não é 'falta' primária de cálcio: ela reflete precipitação/complexação com o excesso de fósforo liberado por células tumorais lisadas."
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes. Cards sem patch preservados; verificação focal cobre somente as afirmações decisivas dos itens. Fonte original inacessível não é declarada lida.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            92,
+            112,
+            100,
+            108
+          ],
+          "afterLengths": [
+            66,
+            67,
+            70,
+            67
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito e §18.4 aplicados ao AFTER exato após revisão material; nenhuma autorização retroativa ao BEFORE."
+      },
+      {
+        "qid": "2777c29d",
+        "sourceLine": 33,
+        "sourceQuestionSHA256": "0d629081adcef72b3b7842562edcbc0294175ae8320471326c5de45a5acaa70e",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Interpretar redução populacional de eventos graves por LRA com SGLT2 sem assumir segurança individual absoluta.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Interpretar redução populacional de eventos graves por LRA com SGLT2 sem assumir segurança individual absoluta.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "CRÍTICO",
+            "problem": "URL do card abre estudo de anticorpo SCF/c-kit, sem relação com SGLT2. Periódico/ano também incorretos."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "120ensaios está errado:112totais. OR0,64 é de eventos graves em30ensaios, não de toda LRA no total. Corrigir questão e card conjuntamente."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "O número de ensaios, o desfecho que gera36% e a referência bibliográfica precisam ser corrigidos."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [
+            6
+          ],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "iSGLT2 e Risco de LRA",
+            "qid": "2777c29d",
+            "q": "Paciente com diabetes tipo 2 e DRC estável hesita em iniciar um inibidor de SGLT2 por receio de lesão renal aguda. Qual interpretação melhor representa a evidência de ensaios clínicos randomizados?",
+            "refs": [
+              "sglt2i_aki_meta_2020"
+            ],
+            "opts": [
+              "A classe aumentou LRA em cerca de 30% e deve ser evitada em toda DRC",
+              "A classe reduziu as odds de LRA em cerca de 36% no conjunto dos ensaios, sem eliminar o risco individual em doença aguda ou hipovolemia",
+              "Não houve diferença em LRA, e o efeito renal se restringiu a participantes sem diabetes",
+              "A redução de LRA foi demonstrada apenas em estudos observacionais, não nos ensaios randomizados"
+            ],
+            "ans": 1,
+            "exp": "Na meta-análise de 120 ensaios randomizados, com 96.722 participantes, os iSGLT2 se associaram a menor ocorrência de LRA (OR 0,64; IC 95% 0,53–0,78). Esse resultado de classe não significa risco zero para cada paciente nem autoriza ignorar hipovolemia, doença aguda ou outros fatores clínicos. Também não prova todos os mecanismos propostos: o achado principal é a redução de eventos de LRA no conjunto dos ensaios.",
+            "diff": "medium",
+            "cat": "lra"
+          },
+          "AFTER": {
+            "t": "iSGLT2 e Risco de LRA",
+            "qid": "2777c29d",
+            "q": "Na meta-análise de Menne e colaboradores (2019), qual leitura dos eventos graves por lesão renal aguda em ensaios de inibidores do cotransportador de sódio-glicose 2 (SGLT2) é correta?",
+            "refs": [
+              "sglt2i_aki_meta_2020"
+            ],
+            "opts": [
+              "Houve aumento dos eventos graves, justificando excluir a classe de toda doença renal crônica.",
+              "Houve redução dos eventos graves, mantendo avaliação individual de hipovolemia e doença aguda.",
+              "Houve efeito neutro nos ensaios, com redução de eventos limitada aos dados observacionais.",
+              "Houve redução de eventos apenas em pessoas sem diabetes, sem efeito nos ensaios de diabetes."
+            ],
+            "ans": 1,
+            "exp": "Nos 30 ensaios que reportaram eventos graves por lesão renal aguda, a razão de chances foi 0,64 (IC 95% 0,53–0,78): 36% menores odds. Para eventos de qualquer gravidade, o resultado foi 0,75 em 41 ensaios. São desfechos distintos; não traduzir odds em redução absoluta do risco. A revisão incluiu 112 ensaios no total, e a avaliação de hipovolemia segue necessária.",
+            "diff": "medium",
+            "cat": "lra"
+          },
+          "afterQuestionSHA256": "a01b83dc442bb12da8d5929ca3342d757bb3bad1677cafb98fb94f628da813b9",
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "Houve redução dos eventos graves, mantendo avaliação individual de hipovolemia e doença aguda."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "sglt2i_aki_meta_2020",
+            "source": {
+              "url": "https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002983",
+              "opened": true,
+              "version": "Menne et al., PLoS Med 2019;16(12):e1002983, DOI 10.1371/journal.pmed.1002983",
+              "locations": [
+                "Abstract lines 141–144",
+                "Methods and results, full text"
+              ],
+              "verifiedScope": "112 ECRs totais, 96.722 participantes; 30 ensaios reportaram 410 eventos graves por LRA, OR0,64 IC95%0,53–0,78. Eventos de qualquer gravidade:41 ensaios, OR0,75 IC95%0,66–0,84. Mais eventos de hipovolemia. Não converter odds em risco absoluto nem apresentar120 ensaios/ano2020/Kidney International."
+            },
+            "supports": "112 ECRs totais, 96.722 participantes; 30 ensaios reportaram 410 eventos graves por LRA, OR0,64 IC95%0,53–0,78. Eventos de qualquer gravidade:41 ensaios, OR0,75 IC95%0,66–0,84. Mais eventos de hipovolemia. Não converter odds em risco absoluto nem apresentar120 ensaios/ano2020/Kidney International.",
+            "status": "VERIFICADA"
+          },
+          {
+            "sourceId": "kdigo_ckd",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO CKD 2024",
+              "locations": [
+                "Table 6 PDF p.58 / S174",
+                "Table 16 PDF p.75 / S191",
+                "PP 3.7.3 PDF p.98 / S214",
+                "PDF p.101 / S217"
+              ],
+              "verifiedScope": "Proteínas não albumina podem não ser detectadas por tiras de albumina; métodos específicos para cadeias leves e eletroforese/imunofixação na investigação etiológica. Queda inicial reversível de filtração geralmente não exige suspensão. Diretriz não comprova todo o mecanismo molecular de sódio na mácula densa."
+            },
+            "supports": "Proteínas não albumina podem não ser detectadas por tiras de albumina; métodos específicos para cadeias leves e eletroforese/imunofixação na investigação etiológica. Queda inicial reversível de filtração geralmente não exige suspensão. Diretriz não comprova todo o mecanismo molecular de sódio na mácula densa.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "sglt2i_aki_meta_2020": {
+            "label": "Menne et al. — SGLT2 e eventos de LRA (PLoS Medicine 2019)",
+            "url": "https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002983",
+            "journal": "PLoS Medicine 2019;16(12):e1002983",
+            "ano": 2019,
+            "tipo": "Meta-análise",
+            "badge": "META",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Menores odds de LRA nos ensaios; distinguir eventos graves de eventos de qualquer gravidade",
+            "icon": "🔬",
+            "resumo": "Revisão de 112 ensaios randomizados (96.722 participantes no total) e quatro estudos observacionais. Eventos graves por LRA:30 ensaios, OR0,64 (IC95%0,53–0,78). Eventos de qualquer gravidade:41 ensaios, OR0,75 (IC95%0,66–0,84). Houve mais eventos de hipovolemia. Definições e registro de eventos variaram entre estudos.",
+            "conclusao": "Os resultados dos ensaios apoiam menor ocorrência de LRA, sem eliminar avaliação individual de hipovolemia. Uma redução de odds não é redução absoluta do risco.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes. Cards sem patch preservados; verificação focal cobre somente as afirmações decisivas dos itens. Fonte original inacessível não é declarada lida.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            68,
+            135,
+            87,
+            95
+          ],
+          "afterLengths": [
+            93,
+            94,
+            90,
+            92
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito e §18.4 aplicados ao AFTER exato após revisão material; nenhuma autorização retroativa ao BEFORE."
+      },
+      {
+        "qid": "a5c73397",
+        "sourceLine": 34,
+        "sourceQuestionSHA256": "3f57bd1c2cf79260d13f65e7da5a0927ff33835b3cbedeaea4f104b0581e5d39",
+        "verdictV2": "revisão maior",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "moderada",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "OP": "Explicar queda inicial de filtração por hemodinâmica glomerular, distinguindo-a de toxicidade tubular.",
+        "classification": {
+          "primaryCompetence": "mecanismo clínico",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Explicar queda inicial de filtração por hemodinâmica glomerular, distinguindo-a de toxicidade tubular.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Distratores originais descrevem cristais de glicose e necrose obrigatória; fonte de eficácia não comprova mecanismo."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Explicação generaliza sobretudo aumento do tônus aferente, apesar da heterogeneidade hemodinâmica por população."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "ECRs de desfechos não verificam mecanismo aferente universal; a explicação deve qualificar população."
+          ],
+          "after": [
+            "DECISIVA: fonte mecanística primária aberta precisa sustentar a cadeia de sódio distal/feedback. KDIGO e abstract RED apoiam hemodinâmica/heterogeneidade, não toda essa cadeia. Reavaliar AFTER e referência apropriada antes de publicar."
+          ],
+          "resolvedBeforeApproval": false
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 1,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 1,
+            "Referências": 1,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 16,
+          "band": "Boa com reparos",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "PARCIALMENTE VERIFICADA / DECISIVA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "em_revisão",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — RASCUNHO BLOQUEADO",
+          "BEFORE": {
+            "t": "iSGLT2 — Efeito \"Dip\" Inicial da TFGe",
+            "qid": "a5c73397",
+            "q": "Após iniciar um inibidor de SGLT2 em paciente com DRC albuminúrica, observa-se queda discreta inicial da TFGe. Qual mecanismo explica melhor esse \"dip\" hemodinâmico esperado?",
+            "refs": [
+              "dapa",
+              "empa_kidney",
+              "credence",
+              "canvas_program",
+              "empa_reg_outcome",
+              "declare_timi58"
+            ],
+            "opts": [
+              "Aumento da entrega de sódio à mácula densa, reativando feedback túbulo-glomerular e reduzindo pressão intraglomerular",
+              "Necrose tubular direta por glicosúria, exigindo suspensão imediata em qualquer queda de TFGe",
+              "Hiperfiltração por vasodilatação aferente persistente, com aumento sustentado da pressão intraglomerular",
+              "Obstrução tubular por cristais de glicose, corrigida por aumento obrigatório da ingestão de sal"
+            ],
+            "ans": 0,
+            "exp": "O \"dip\" inicial da TFGe com inibidores de SGLT2 costuma ser hemodinâmico, não nefrotoxicidade tubular. Ao reduzir reabsorção proximal de sódio e glicose, a classe aumenta a entrega de sódio à mácula densa, reativa o feedback túbulo-glomerular e reduz a pressão intraglomerular, sobretudo por aumento do tônus aferente. Em paciente clinicamente estável, queda discreta e esperada não deve levar à suspensão automática; é preciso avaliar volemia, diuréticos, anti-inflamatórios e magnitude da queda. O benefício de longo prazo em DRC foi demonstrado em ensaios como CREDENCE, DAPA-CKD e EMPA-KIDNEY.",
+            "diff": "medium",
+            "cat": "nefropatia_diabetica"
+          },
+          "AFTER": {
+            "t": "iSGLT2 — Efeito \"Dip\" Inicial da TFGe",
+            "qid": "a5c73397",
+            "q": "Após iniciar um inibidor do cotransportador de sódio-glicose 2 (SGLT2) em pessoa estável com doença renal crônica albuminúrica, há queda discreta da filtração glomerular estimada. Qual mecanismo hemodinâmico participa dessa resposta inicial?",
+            "refs": [
+              "kdigo_ckd"
+            ],
+            "opts": [
+              "Menor reabsorção proximal de sódio, com maior entrega distal e modulação do feedback tubuloglomerular.",
+              "Maior reabsorção proximal de sódio, com menor entrega distal e reforço da hiperfiltração glomerular.",
+              "Maior reabsorção distal de glicose, elevando a pressão de filtração e a hiperfiltração glomerular.",
+              "Menor reabsorção de água por bloqueio de vasopressina, sem modulação da hemodinâmica glomerular."
+            ],
+            "ans": 0,
+            "exp": "RASCUNHO BLOQUEADO: a queda inicial pode refletir redução hemodinâmica da hiperfiltração, mas não atribuir todo o efeito a constrição aferente em qualquer população. O RED em diabetes tipo 2 sugere mecanismo pós-glomerular. A cadeia sódio-mácula densa-feedback precisa de fonte mecanística primária adequada antes de liberar esta versão.",
+            "diff": "medium",
+            "cat": "nefropatia_diabetica"
+          },
+          "afterQuestionSHA256": "057677ccbc48c0e2cb8992acf24220fa4c8c03bb534ffbaa0f7bcfb99e26727b",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Menor reabsorção proximal de sódio, com maior entrega distal e modulação do feedback tubuloglomerular."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "kdigo_ckd",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO CKD 2024",
+              "locations": [
+                "Table 6 PDF p.58 / S174",
+                "Table 16 PDF p.75 / S191",
+                "PP 3.7.3 PDF p.98 / S214",
+                "PDF p.101 / S217"
+              ],
+              "verifiedScope": "Proteínas não albumina podem não ser detectadas por tiras de albumina; métodos específicos para cadeias leves e eletroforese/imunofixação na investigação etiológica. Queda inicial reversível de filtração geralmente não exige suspensão. Diretriz não comprova todo o mecanismo molecular de sódio na mácula densa."
+            },
+            "supports": "Proteínas não albumina podem não ser detectadas por tiras de albumina; métodos específicos para cadeias leves e eletroforese/imunofixação na investigação etiológica. Queda inicial reversível de filtração geralmente não exige suspensão. Diretriz não comprova todo o mecanismo molecular de sódio na mácula densa.",
+            "status": "VERIFICADA"
+          },
+          {
+            "sourceId": "red_trial",
+            "source": {
+              "url": "https://repub.eur.nl/pub/122432/",
+              "opened": true,
+              "version": "van Bommel et al., RED trial, Kidney International DOI 10.1016/j.kint.2019.09.013",
+              "locations": [
+                "Author repository full abstract lines 28–31"
+              ],
+              "verifiedScope": "44 participantes DM2 em metformina; redução de filtração/fração de filtração sem aumento de resistência renal; sugere vasodilatação pós-glomerular. Não comprova mecanismo aferente universal na DRC."
+            },
+            "supports": "44 participantes DM2 em metformina; redução de filtração/fração de filtração sem aumento de resistência renal; sugere vasodilatação pós-glomerular. Não comprova mecanismo aferente universal na DRC.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_ckd": {
+            "label": "KDIGO CKD 2024",
+            "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "journal": "Kidney International",
+            "ano": 2024,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "icon": "📋",
+            "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+            "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+            "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes. Cards sem patch preservados; verificação focal cobre somente as afirmações decisivas dos itens. Fonte original inacessível não é declarada lida.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp",
+            "refs"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [
+          "DECISIVA: fonte mecanística primária aberta precisa sustentar a cadeia de sódio distal/feedback. KDIGO e abstract RED apoiam hemodinâmica/heterogeneidade, não toda essa cadeia. Reavaliar AFTER e referência apropriada antes de publicar."
+        ],
+        "comparison": {
+          "beforeLengths": [
+            117,
+            92,
+            104,
+            95
+          ],
+          "afterLengths": [
+            102,
+            100,
+            98,
+            96
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito e §18.4 aplicados ao AFTER exato após revisão material; nenhuma autorização retroativa ao BEFORE."
+      },
+      {
+        "qid": "6cd39dfb",
+        "sourceLine": 38,
+        "sourceQuestionSHA256": "5f4f134b1904dec769d22ece2ff3d1894610430e6c4978188bf554167b02643f",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Aplicar os dois caminhos de elegibilidade renal do EMPA-KIDNEY sem apagar restrição por albuminúria.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Aplicar os dois caminhos de elegibilidade renal do EMPA-KIDNEY sem apagar restrição por albuminúria.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta original não explicita a condição de albuminúria na faixa maior de filtração. Distratores em populações muito diferentes."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Siglas e anglicismo trials sem necessidade."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "A inclusão não é simplesmente TFGe>=20 para todo nível de albuminúria; explicitar ambas as rotas."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "EMPA-KIDNEY — população ampliada",
+            "qid": "6cd39dfb",
+            "q": "Qual característica do EMPA-KIDNEY ampliou a aplicabilidade dos inibidores de SGLT2 em comparação com trials prévios de DRC mais albuminúrica?",
+            "refs": [
+              "empa_kidney",
+              "dapa"
+            ],
+            "opts": [
+              "Incluiu DRC com TFGe a partir de 20 mL/min/1,73m² e uma população mais ampla quanto à albuminúria",
+              "Incluiu apenas pacientes com diabetes tipo 1 e albuminúria nefrótica",
+              "Exigiu TFGe acima de 60 mL/min/1,73m² em todos os participantes",
+              "Testou empagliflozina como monoterapia inicial em transplantados renais"
+            ],
+            "ans": 0,
+            "exp": "O EMPA-KIDNEY incluiu pacientes com TFGe 20–<45 mL/min/1,73m² independentemente da albuminúria e pacientes com TFGe 45–<90 mL/min/1,73m² se ACR ≥200 mg/g. Isso ampliou a evidência para DRC mais avançada e etiologias mais variadas, incluindo muitos pacientes sem diabetes. As demais alternativas descrevem populações que não foram o desenho do estudo.",
+            "diff": "medium",
+            "cat": "drc"
+          },
+          "AFTER": {
+            "t": "EMPA-KIDNEY — população ampliada",
+            "qid": "6cd39dfb",
+            "q": "No EMPA-KIDNEY, qual combinação de filtração glomerular estimada e albuminúria caracteriza os critérios de inclusão que ampliaram a população estudada?",
+            "refs": [
+              "empa_kidney"
+            ],
+            "opts": [
+              "20–<45 mL/min/1,73 m², independentemente da albuminúria; ou 45–<90 com albumina/creatinina ≥200 mg/g.",
+              "20–<45 mL/min/1,73 m², apenas com albumina/creatinina ≥200 mg/g; ou 45–<90 sem exigir albuminúria.",
+              "25–<75 mL/min/1,73 m², independentemente da albuminúria; sem outro critério para filtração preservada.",
+              "45–<90 mL/min/1,73 m², apenas sem diabetes e com albuminúria nefrótica; sem inclusão abaixo de 45."
+            ],
+            "ans": 0,
+            "exp": "Havia duas rotas: filtração ≥20 e <45, independentemente da albuminúria; ou ≥45 e <90 com relação albumina/creatinina ≥200 mg/g. Pessoas com e sem diabetes participaram. A amplitude não significa inclusão irrestrita de toda doença renal; bloqueio do sistema renina-angiotensina era usado quando indicado e tolerado.",
+            "diff": "medium",
+            "cat": "drc"
+          },
+          "afterQuestionSHA256": "6cb0401426da1ce86aec526a248d5e78d1cb37b3bed3139c26d8defb139e11d7",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "20–<45 mL/min/1,73 m², independentemente da albuminúria; ou 45–<90 com albumina/creatinina ≥200 mg/g."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "empa_kidney",
+            "source": {
+              "url": "https://link.springer.com/article/10.1007/s10157-024-02489-4",
+              "opened": true,
+              "version": "Nangaku et al., autores do EMPA-KIDNEY, Clin Exp Nephrol 2024;28:588–595; análise primária post-hoc regional",
+              "locations": [
+                "Methods lines 78–81; Results 92–102"
+              ],
+              "verifiedScope": "Protocolo global:TFGe >=20 <45 independente de albuminúria; >=45 <90 exige RAC>=200mg/g. Ambos com/sem diabetes; RAS quando indicado/tolerado. Resultados regionais são post-hoc e não base para afirmar vantagem por região. Elegibilidade e números gerais declarados diretamente pelos autores; relatório original NEJM não acessível nesta checagem."
+            },
+            "supports": "Protocolo global:TFGe >=20 <45 independente de albuminúria; >=45 <90 exige RAC>=200mg/g. Ambos com/sem diabetes; RAS quando indicado/tolerado. Resultados regionais são post-hoc e não base para afirmar vantagem por região. Elegibilidade e números gerais declarados diretamente pelos autores; relatório original NEJM não acessível nesta checagem.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "empa_kidney": {
+            "label": "Herrington WG et al. — EMPA-KIDNEY (NEJM 2023)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2204233",
+            "journal": "N Engl J Med 2023;388(2):117-127",
+            "ano": 2023,
+            "tipo": "Ensaio Clínico RCT",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Empagliflozin ↓28% progressão renal ou morte CV em DRC ampla (TFG 20-45, com ou sem DM)",
+            "icon": "🔬",
+            "resumo": "ECR multicêntrico, n=6.609, avaliou empagliflozina 10 mg/dia em DRC ampla: TFGe 20–<45 independente de albuminúria ou TFGe 45–<90 com ACR ≥200 mg/g. Reduziu progressão renal ou morte cardiovascular: 13,1% vs 16,9%; HR 0,72, IC 95% 0,64–0,82, P<0,001. Benefício consistente em diabéticos e não diabéticos e nas faixas de TFGe estudadas.",
+            "conclusao": "EMPA-KIDNEY consolidou os iSGLT2 como nefroproteção central em DRC ampla, inclusive não diabética, com TFGe ≥20 dentro dos critérios do estudo.",
+            "curiosidade": "Foi o grande trial de iSGLT2 com maior heterogeneidade etiológica e incluiu proporção expressiva de pacientes sem diabetes."
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes. Cards sem patch preservados; verificação focal cobre somente as afirmações decisivas dos itens. Fonte original inacessível não é declarada lida.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp",
+            "refs"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            97,
+            68,
+            63,
+            71
+          ],
+          "afterLengths": [
+            101,
+            98,
+            102,
+            98
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito e §18.4 aplicados ao AFTER exato após revisão material; nenhuma autorização retroativa ao BEFORE."
+      }
+    ],
+    "cardPatches": [
+      {
+        "id": "nostone_study",
+        "BEFORE": {
+          "label": "NOSTONE Trial",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2209275",
+          "journal": "New England Journal of Medicine",
+          "ano": 2022,
+          "tipo": "Ensaio Clínico Fase III",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Hidroclorotiazida não reduziu recorrência de nefrolitíase vs placebo",
+          "icon": "🔬",
+          "resumo": "ECR multicêntrico duplo-cego (NOSTONE, n = 416 pacientes com cálculos renais recorrentes contendo cálcio). Comparou hidroclorotiazida oral 12,5 mg, 25 mg ou 50 mg uma vez ao dia versus placebo, com mediana de seguimento de 2,9 anos. O desfecho primário composto foi recorrência sintomática ou radiológica. Não houve relação dose-resposta para o desfecho primário (P = 0,66), e a incidência de recorrência não diferiu substancialmente entre hidroclorotiazida e placebo. Hipocalemia, gota, diabetes mellitus de início recente, alergia cutânea e elevação de creatinina foram mais comuns com hidroclorotiazida.",
+          "conclusao": "O NOSTONE enfraquece a ideia de que hidroclorotiazida deve ser usada rotineiramente para prevenir recorrência de cálculos contendo cálcio; a decisão deve ponderar benefício incerto e risco metabólico.",
+          "curiosidade": "Fisiologicamente, os tiazídicos bloqueiam o cotransportador de cloreto de sódio (NCC) no túbulo contorcido distal. A consequente depleção leve de volume de sódio estimula a reabsorção passiva de cálcio no túbulo proximal, reduzindo a excreção urinária de cálcio (hipercalciúria). Contudo, o NOSTONE sugere que essa alteração bioquímica urinária isolada não se traduz necessariamente em redução de eventos clínicos macroscópicos de cristalização."
+        },
+        "AFTER": {
+          "label": "NOSTONE Trial",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2209275",
+          "journal": "New England Journal of Medicine",
+          "ano": 2023,
+          "tipo": "Ensaio clínico randomizado",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "NOSTONE: sem diferença substancial no composto primário entre hidroclorotiazida e placebo",
+          "icon": "🔬",
+          "resumo": "ECR multicêntrico duplo-cego (NOSTONE, n = 416 pacientes com cálculos renais recorrentes contendo cálcio). Comparou hidroclorotiazida oral 12,5 mg, 25 mg ou 50 mg uma vez ao dia versus placebo, com mediana de seguimento de 2,9 anos. O desfecho primário composto foi recorrência sintomática ou radiológica. Não houve relação dose-resposta para o desfecho primário (P = 0,66), e a incidência de recorrência não diferiu substancialmente entre hidroclorotiazida e placebo. Hipocalemia, gota, diabetes mellitus de início recente, alergia cutânea e elevação de creatinina foram mais comuns com hidroclorotiazida.",
+          "conclusao": "O resultado do NOSTONE limita o suporte ao uso indiscriminado de hidroclorotiazida para recorrência; não prova ausência de benefício de toda classe em todo fenótipo.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "8644ed4f61d50c27734e556b4537c7b37fc5cef481b09a5b2e18abca3c04bd26",
+        "afterSHA256": "1e63edfa39c5fff4df40a033c8c0124d2bb762415a31dabb16d6fed445c5c7a0",
+        "usedByQids": [
+          "23c732a4"
+        ],
+        "sources": [
+          {
+            "url": "https://pubmed.ncbi.nlm.nih.gov/36856614/",
+            "opened": true,
+            "version": "Dhayat et al., NEJM 2023;388:781–791, DOI 10.1056/NEJMoa2209275",
+            "locations": [
+              "Abstract Methods/Results/Conclusions, lines 243–248"
+            ],
+            "verifiedScope": "416 participantes; doses 12,5/25/50 mg uma vez ao dia; composto sintomático ou radiológico; sem relação dose-resposta (P=0,66), sem diferença substancial vs placebo e mais eventos metabólicos. Fonte primária: abstract completo, sem inferir proibição de toda classe."
+          }
+        ],
+        "newExactVersionReview": {
+          "verdictV2": "aprovada com pequenos ajustes",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "reason": "Card AFTER completo reavaliado nas afirmações mantidas; corrigida bibliografia e removidas afirmações acessórias sem suporte focal. Questão dependente também reavaliada.",
+          "derivation": "Handbook §18.4 regra 7(a)."
+        },
+        "implementation": "Somente se hash do BEFORE real conferir; questão dependente e card devem integrar juntos. ID legado é preservado, embora sufixo2020seja bibliograficamente desatualizado."
+      },
+      {
+        "id": "sglt2i_aki_meta_2020",
+        "BEFORE": {
+          "label": "SGLT2i e IRA — Meta-análise (Kidney Int 2020)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/32437800/",
+          "journal": "Kidney International",
+          "ano": 2020,
+          "tipo": "Meta-análise",
+          "badge": "META",
+          "badgeColor": "#0ea5e9",
+          "impacto": "120 ECRs (n=96.722) e 4 estudos observacionais (n=83.934); quantifica a associação dos iSGLT2 com menor ocorrência de LRA",
+          "icon": "🔬",
+          "resumo": "Meta-análise de 120 ensaios randomizados, com 96.722 participantes, e quatro coortes observacionais, com 83.934 participantes. Nos ensaios, os iSGLT2 se associaram a menor ocorrência de LRA (OR 0,64; IC 95% 0,53–0,78). Nas coortes, a associação também favoreceu a classe (OR 0,40; IC 95% 0,33–0,48), embora dados observacionais estejam mais sujeitos a confundimento.",
+          "conclusao": "No conjunto dos ensaios, os iSGLT2 não aumentaram LRA e se associaram a redução de eventos. O resultado populacional não elimina avaliação individual de hipovolemia, doença aguda e outros fatores de risco.",
+          "curiosidade": "A queda inicial e reversível da TFGe após iniciar um iSGLT2 é um efeito hemodinâmico distinto de LRA clínica e não deve ser interpretada automaticamente como toxicidade tubular."
+        },
+        "AFTER": {
+          "label": "Menne et al. — SGLT2 e eventos de LRA (PLoS Medicine 2019)",
+          "url": "https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002983",
+          "journal": "PLoS Medicine 2019;16(12):e1002983",
+          "ano": 2019,
+          "tipo": "Meta-análise",
+          "badge": "META",
+          "badgeColor": "#0ea5e9",
+          "impacto": "Menores odds de LRA nos ensaios; distinguir eventos graves de eventos de qualquer gravidade",
+          "icon": "🔬",
+          "resumo": "Revisão de 112 ensaios randomizados (96.722 participantes no total) e quatro estudos observacionais. Eventos graves por LRA:30 ensaios, OR0,64 (IC95%0,53–0,78). Eventos de qualquer gravidade:41 ensaios, OR0,75 (IC95%0,66–0,84). Houve mais eventos de hipovolemia. Definições e registro de eventos variaram entre estudos.",
+          "conclusao": "Os resultados dos ensaios apoiam menor ocorrência de LRA, sem eliminar avaliação individual de hipovolemia. Uma redução de odds não é redução absoluta do risco.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "6da9dfb270aad3042bc00063e018721a788a34b69c5d4d8e4d53103cd67749a7",
+        "afterSHA256": "d4b143a40baa6da2349aac957aa53e72c160e7518d177a61dfcfc5f3b9081c8d",
+        "usedByQids": [
+          "2777c29d"
+        ],
+        "sources": [
+          {
+            "url": "https://journals.plos.org/plosmedicine/article?id=10.1371/journal.pmed.1002983",
+            "opened": true,
+            "version": "Menne et al., PLoS Med 2019;16(12):e1002983, DOI 10.1371/journal.pmed.1002983",
+            "locations": [
+              "Abstract lines 141–144",
+              "Methods and results, full text"
+            ],
+            "verifiedScope": "112 ECRs totais, 96.722 participantes; 30 ensaios reportaram 410 eventos graves por LRA, OR0,64 IC95%0,53–0,78. Eventos de qualquer gravidade:41 ensaios, OR0,75 IC95%0,66–0,84. Mais eventos de hipovolemia. Não converter odds em risco absoluto nem apresentar120 ensaios/ano2020/Kidney International."
+          }
+        ],
+        "newExactVersionReview": {
+          "verdictV2": "aprovada com pequenos ajustes",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "reason": "Card AFTER completo reavaliado nas afirmações mantidas; corrigida bibliografia e removidas afirmações acessórias sem suporte focal. Questão dependente também reavaliada.",
+          "derivation": "Handbook §18.4 regra 7(a)."
+        },
+        "implementation": "Somente se hash do BEFORE real conferir; questão dependente e card devem integrar juntos. ID legado é preservado, embora sufixo2020seja bibliograficamente desatualizado."
+      }
+    ],
+    "counts": {
+      "reviewed": 8,
+      "publicationReleased": 7,
+      "publicationBlocked": 1,
+      "implemented": 0
+    },
+    "limits": [
+      "Nenhuma alteração no banco/checkouts/git.",
+      "Mecanismo molecular do dip permanece bloqueado por suporte primário incompleto.",
+      "EMPA-KIDNEY: elegibilidade verificada em publicação dos próprios investigadores, análise regional post-hoc; não inferir superioridade regional.",
+      "Segundo revisor ainda precisa conferir os AFTER exatos deste lote.",
+      "Lotes005-035 não revisados."
+    ]
+  }
+}

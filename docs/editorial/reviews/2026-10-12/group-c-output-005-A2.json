@@ -1,0 +1,2181 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 121344,
+  "sourceReportSHA256": "fcd2981cb9424dc4c31344acc5d551673bb47077e7151f6aa0c3b78ad1d1e5a5",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_FORMAL_BATCH_REVIEW_v2",
+    "group": "c",
+    "batch": "005",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "bankLF_SHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "input": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 15555,
+      "sha256": "9a27f65fa8d6c41abcf85dabb33802b4eb702301936b69cd5ee5ff81b7d0e894"
+    },
+    "reviewedAtOfficialUTC": "2026-10-12T17:52:01Z",
+    "normativeSources": [
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      }
+    ],
+    "sourceRegistry": {
+      "oxalate_nephropathy_review_2022": {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34508834/",
+        "opened": true,
+        "access": "Abstract bibliográfico primário; texto integral da revisão não recuperado. Suporte detalhado vem das publicações primárias adicionais abaixo.",
+        "version": "Demoulin et al., AJKD 2022;79:717–727",
+        "verifiedScope": "Identidade e tema da revisão. Não declarar toda a revisão ou todas as afirmações de card compartilhado verificadas."
+      },
+      "oxalate_bariatric_primary": {
+        "url": "https://indianjnephrol.org/oxalate-nephropathy-an-important-cause-of-renal-failure-after-bariatric-surgery/",
+        "opened": true,
+        "version": "Nagaraju, Gupta, McCormick. Indian J Nephrol 2013;23:316–318, DOI10.4103/0971-4065.114493",
+        "locations": [
+          "Texto integral do editor, lines540–546/564"
+        ],
+        "verifiedScope": "Relato de duodenal switch, não Roux-en-Y: cristais intratubulares fortemente birrefringentes e nefropatia por oxalato. Confirma morfologia diagnóstica; não estimar incidência nem prognóstico de outro procedimento.",
+        "verificationAgent": "source_check_esc_oxalate"
+      },
+      "oxalate_roux_primary": {
+        "url": "https://cdn02.spnefro.pt/advaccess/2/n3_2016_pjnh_06.pdf",
+        "opened": true,
+        "version": "Verdelho et al., Port J Nephrol Hypert2016;30(3):180–184",
+        "locations": [
+          "PDFp2/181 lines84–89,108–116",
+          "PDFp3/182 Figure4"
+        ],
+        "verifiedScope": "Caso após gastrectomia por câncer e reconstrução Roux-en-Y, não cirurgia bariátrica: cristais intratubulares de oxalato de cálcio brilhantes sob polarização. Complementa a associação anatômica, sem generalizar incidência/prognóstico.",
+        "verificationAgent": "source_check_esc_oxalate"
+      },
+      "oxalate_crohn_primary": {
+        "url": "https://mdpi-res.com/d_attachment/nutrients/nutrients-16-00264/article_deploy/nutrients-16-00264.pdf",
+        "opened": true,
+        "version": "Siener et al., Nutrients2024;16:264, DOI10.3390/nu16020264",
+        "locations": [
+          "PDFpp1–2, lines61–70",
+          "PDFp10, lines503–523"
+        ],
+        "verifiedScope": "27 pessoas Crohn e27controles; absorção/excreção de oxalato relacionadas à extensão de ressecção ileal. Cadeia fisiopatológica: gorduras não absorvidas ligam cálcio, liberando oxalato; sais biliares/gorduras aumentam permeabilidade colônica. Não afirma causalidade experimental isolada nem fornece dose terapêutica."
+      },
+      "esc_peripheral_aortic_2024": {
+        "url": "https://ancam.org.mx/wp-content/uploads/2025/04/4.-ESC-GUIDELINES-FOR-THE-MANAGEMENT-OF-PERIPHERAL-ARTERIAL-AND-AORTIC-DISEASES.pdf",
+        "opened": true,
+        "version": "Mazzolai et al., ESC PAAD2024, Eur Heart J45:3538–3700, DOI10.1093/eurheartj/ehae179",
+        "locations": [
+          "§8.3.2.1.3, p3598/PDFp61, lines4843–4850",
+          "Tables30–31 p3600/PDFp63, lines5024–5078"
+        ],
+        "verifiedScope": "PSV>200cm/s sustenta estenose>50%; razão renal/aórtica>3,5 sustenta estenose>=60%. Figura19usa>=200 em vez de>200, sem afetar caso225. Duplex não determina indicação de stent. Cópia integral da publicação primária hospedada pela ANCAM, capa/autores/DOI conferidos; acesso direto OUP falhou.",
+        "verificationAgent": "source_check_esc_oxalate"
+      },
+      "rhabdo_review_2023": {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34836603/",
+        "opened": true,
+        "version": "Sawhney et al., EAST practice management guideline2022, DOI10.1016/j.amjsurg.2021.11.022",
+        "locations": [
+          "Abstract Methods/Results/Conclusion, lines252–257"
+        ],
+        "verifiedScope": "12 estudos, maioria retrospectiva, evidência muito baixa. Recomendação condicional de fluidos IV e contra bicarbonato/manitol rotineiros para prevenir insuficiência renal/diálise. Não confundir melhor suporte com evidência de alta certeza."
+      },
+      "roxadustat_trial": {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31340089/",
+        "opened": true,
+        "version": "Chen et al., NEJM2019;381:1001–1010, DOI10.1056/NEJMoa1813599",
+        "locations": [
+          "Abstract lines237–241"
+        ],
+        "verifiedScope": "154 pacientes não dialíticos; fase3duplo-cega8semanas com hepcidina menor e Hb maior; não mede segurança clínica universal."
+      },
+      "roxadustat_ema_mechanism": {
+        "url": "https://www.ema.europa.eu/en/documents/assessment-report/evrenzo-epar-public-assessment-report_en.pdf",
+        "opened": true,
+        "version": "EMA/CHMP/393136/2021, public assessment report",
+        "locations": [
+          "PDFp50/section2.4.3, lines2531–2539"
+        ],
+        "verifiedScope": "Inibição reversível da HIF-prolil-hidroxilase, estabilização HIF, aumento de EPO endógena, regulação de transportadores de ferro e redução de hepcidina. Fonte para mecanismo estável, não indicação/dose atual de qualquer país."
+      },
+      "kdigo_anemia_2026": {
+        "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+        "opened": true,
+        "version": "KDIGO 2026 Anemia in CKD; Kidney International109(Suppl1S):S1–S99",
+        "locations": [
+          "Rec 3.2.1; p.50: início AEE em HD/DP",
+          "Rec 3.3.1; p.53: alvo Hb abaixo de11,5",
+          "PP3.1.2; p.48: causas corrigíveis",
+          "PP3.5.1; p.56: não combinar AEE/HIF-PHI",
+          "PP4.4 e texto p.66: transfusão",
+          "Rec2.4; p.19: escolha via ferro"
+        ],
+        "verifiedScope": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual."
+      },
+      "tumor_lysis_howard_nejm_2011": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3437249/",
+        "opened": true,
+        "version": "Howard et al. NEJM 2011;364:1844–1854",
+        "locations": [
+          "Prevention of acute kidney injury, lines 195–204"
+        ],
+        "verifiedScope": "Allopurinol previne formação, não remove urato existente; rasburicase converte urato em alantoína. Contraindicação em deficiência G6PD."
+      },
+      "eviq_108": {
+        "url": "https://www.eviq.org.au/clinical-resources/side-effect-and-toxicity-management/prophylaxis-and-treatment/108-prevention-of-tumour-lysis-syndrome",
+        "opened": true,
+        "version": "eviQ ID108 v6, revisão 20/08/2025 e atualização G6PD 22/10/2025",
+        "locations": [
+          "Hypouricaemic agents, lines 169–191"
+        ],
+        "verifiedScope": "Rasburicase preferida com hiperuricemia existente/alto risco; degrada urato em alantoína; testar deficiência de G6PD e não usar se deficiente. Hidratação/monitorização seguem necessárias, sem dose nova neste item."
+      },
+      "elitek_fda_label_2016": {
+        "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2016/103946s5097lbl.pdf",
+        "opened": true,
+        "version": "Elitek FDA label2016, histórico, não afirmar última bula",
+        "locations": [
+          "Boxed warning, contraindications PDFpp1–4",
+          "12.1PDFp9"
+        ],
+        "verifiedScope": "Contraindicação G6PD, hemólise/metemoglobinemia, conversão urato-alantoína. Conduta atual também cotejada com eviQ108v6. Nenhuma dose nova."
+      },
+      "scai_ciaki_qi_2025": {
+        "url": "https://www.scai.org/quality-improvement-tools/qi-tips/quality-initiatives-prevention-contrast-induced-acute-kidney-0",
+        "opened": true,
+        "version": "SCAI QI Tip,23/01/2025; não diretriz formal com grau",
+        "locations": [
+          "Limit contrast volume, lines47–50"
+        ],
+        "verifiedScope": "Angiografia/PCI:volume de contraste/clearance calculado(Cockcroft-Gault)<3, idealmente<2; registrar limite e técnicas para reduzir volume. Não razão universal de qualquer TC nem garantia de risco zero."
+      },
+      "sustain6": {
+        "url": "https://www.acc.org/-/media/Non-Clinical/Files-PDFs-Excel-MS-Word-etc/Tools-and-Practice-Support/Quality-Programs/Diabetes-Roundtable-2017/SupplementalReading/4-Semaglutide-and-Cardiovascular-Outcomes-in-Patients-with-Type-2-Diabetes-SUSTAIN6.pdf",
+        "opened": true,
+        "version": "Marso et al., NEJM2016;375:1834–1844, DOI10.1056/NEJMoa1607141, publicação primária integral hospedada pela ACC",
+        "locations": [
+          "Table2 PDFp7, lines540–569",
+          "Discussion PDFp10, lines754–766,793–802"
+        ],
+        "verifiedScope": "Composto nefropatia HR0,64 IC0,46–0,88 P0,005, sobretudo macroalbuminúria; ensaio primário CVde não inferioridade. Retinopatia HR1,76 IC1,11–2,78 P0,02, sem atribuir causalidade comprovada à queda glicêmica. DOI do card atual é LEADER, não SUSTAIN-6."
+      },
+      "oxalate_rygb_primary": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5073683/",
+        "opened": true,
+        "version": "Agrawal et al., Case Rep Nephrol Dial2016;6(3):114–119, DOI10.1159/000449128, PMID27781207",
+        "locations": [
+          "Case Report lines102–107",
+          "Figure1 line112",
+          "Discussion line124"
+        ],
+        "verifiedScope": "RYGB bariátrico16meses antes; lesão tubular aguda com cristais claros fortemente polarizáveis intratubulares/intersticiais, nefropatia por oxalato. Mecanismo presumido de gordura ligada ao cálcio favorece absorção colônica de oxalato. Relato único não estima incidência nem impõe reversão cirúrgica como conduta geral.",
+        "verificationAgent": "source_check_esc_oxalate"
+      }
+    },
+    "summary": [
+      {
+        "qid": "e0a71d46",
+        "OP": "Integrar má absorção e cristais tubulares birrefringentes ao diagnóstico de nefropatia por oxalato.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 18,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "23abaa1e",
+        "OP": "Interpretar critérios concordantes do duplex renal sem inferir revascularização automática.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "df6821b6",
+        "OP": "Selecionar fluidoterapia titulada na prevenção de lesão renal por rabdomiólise, reconhecendo baixa certeza da evidência.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "32661acb",
+        "OP": "Explicar ação HIF-PHI sobre eritropoiese endógena e disponibilidade de ferro.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "0b6377a2",
+        "OP": "Reduzir urato existente antes da quimioterapia de alto risco, respeitando contraindicação G6PD.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "fundir",
+        "score": 15,
+        "publication": "BLOQUEADA"
+      },
+      {
+        "qid": "3e67777e",
+        "OP": "Explicar maior absorção de oxalato na má absorção de gorduras com cólon em continuidade.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 18,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "1fd0fd0d",
+        "OP": "Planejar volume de contraste em intervenção coronária pela depuração de creatinina, preservando qualidade diagnóstica.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "516ec2a6",
+        "OP": "Interpretar o sinal renal albuminúrico do SUSTAIN-6 sem convertê-lo em ensaio renal dedicado.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      }
+    ],
+    "questions": [
+      {
+        "qid": "e0a71d46",
+        "sourceLine": 41,
+        "sourceQuestionSHA256": "2a269b37b7ae9fbf3489f2c5adb6abee4ada7b39259c5eac3adc5fdde0cf2d70",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Integrar má absorção e cristais tubulares birrefringentes ao diagnóstico de nefropatia por oxalato.",
+        "classification": {
+          "primaryCompetence": "diagnóstico",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Integrar má absorção e cristais tubulares birrefringentes ao diagnóstico de nefropatia por oxalato.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Distratores originais incluem GN do bypass sem entidade definida e causas em planos anatômicos diferentes."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Expandir LRA na primeira ocorrência; explicar inferência sem declarar inevitável perda renal."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Cristais não são explicados exclusivamente pela hipovolemia; integrar contexto e morfologia, sem inferir desfecho individual."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 1,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 18,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Nefropatia por Oxalato após Cirurgia Bariátrica",
+            "qid": "e0a71d46",
+            "q": "Paciente com bypass gástrico em Y de Roux, esteatorreia e desidratação desenvolve LRA. A biópsia mostra cristais tubulares fortemente birrefringentes à luz polarizada. Qual diagnóstico integra melhor os achados?",
+            "refs": [
+              "oxalate_nephropathy_review_2022"
+            ],
+            "opts": [
+              "Nefropatia por oxalato secundária a hiperoxalúria entérica",
+              "Necrose cortical causada exclusivamente por hipovolemia",
+              "Glomerulonefrite por imunocomplexos do bypass",
+              "Nefropatia por ácido úrico sem síndrome de lise tumoral"
+            ],
+            "ans": 0,
+            "exp": "Cirurgias disabsortivas, incluindo o bypass em Y de Roux, podem causar hiperoxalúria entérica. O oxalato absorvido é filtrado e forma cristais de oxalato de cálcio nos túbulos, associados a lesão tubular e inflamação intersticial. Desidratação pode precipitar o episódio, mas não explica sozinha os cristais birrefringentes. A apresentação pode ser LRA, LRA sobre DRC ou perda renal progressiva, e o reconhecimento precoce é importante porque a recuperação nem sempre é completa.",
+            "diff": "medium",
+            "cat": "lra"
+          },
+          "AFTER": {
+            "t": "Nefropatia por Oxalato após Cirurgia Bariátrica",
+            "qid": "e0a71d46",
+            "q": "Paciente com bypass gástrico em Y de Roux, esteatorreia e desidratação desenvolve lesão renal aguda. A biópsia mostra cristais tubulares fortemente birrefringentes à luz polarizada. Qual diagnóstico integra melhor os achados?",
+            "refs": [
+              "oxalate_nephropathy_review_2022"
+            ],
+            "opts": [
+              "Deposição tubular de oxalato de cálcio por hiperoxalúria entérica.",
+              "Deposição tubular de fosfato de cálcio por sobrecarga de fosfato.",
+              "Deposição tubular de ácido úrico por produção aumentada de urato.",
+              "Deposição tubular de cistina por defeito hereditário de transporte."
+            ],
+            "ans": 0,
+            "exp": "Má absorção de gordura favorece hiperabsorção de oxalato, e cristais de oxalato de cálcio podem produzir lesão tubular. A birrefringência intensa e o contexto disabsortivo favorecem esse diagnóstico entre as opções. Desidratação pode agravar o episódio, mas não explica a deposição cristalina por si só. Relatos após bypass confirmam essa apresentação; não permitem estimar prognóstico individual pela cirurgia.",
+            "diff": "medium",
+            "cat": "lra"
+          },
+          "afterQuestionSHA256": "1477477677a021fed6cc6c786072c8b4c74fc79a199ed9b34411e275f8e0cfb2",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Deposição tubular de oxalato de cálcio por hiperoxalúria entérica."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "oxalate_rygb_primary",
+            "source": {
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5073683/",
+              "opened": true,
+              "version": "Agrawal et al., Case Rep Nephrol Dial2016;6(3):114–119, DOI10.1159/000449128, PMID27781207",
+              "locations": [
+                "Case Report lines102–107",
+                "Figure1 line112",
+                "Discussion line124"
+              ],
+              "verifiedScope": "RYGB bariátrico16meses antes; lesão tubular aguda com cristais claros fortemente polarizáveis intratubulares/intersticiais, nefropatia por oxalato. Mecanismo presumido de gordura ligada ao cálcio favorece absorção colônica de oxalato. Relato único não estima incidência nem impõe reversão cirúrgica como conduta geral.",
+              "verificationAgent": "source_check_esc_oxalate"
+            },
+            "supports": "RYGB bariátrico16meses antes; lesão tubular aguda com cristais claros fortemente polarizáveis intratubulares/intersticiais, nefropatia por oxalato. Mecanismo presumido de gordura ligada ao cálcio favorece absorção colônica de oxalato. Relato único não estima incidência nem impõe reversão cirúrgica como conduta geral.",
+            "status": "VERIFICADA"
+          },
+          {
+            "sourceId": "oxalate_bariatric_primary",
+            "source": {
+              "url": "https://indianjnephrol.org/oxalate-nephropathy-an-important-cause-of-renal-failure-after-bariatric-surgery/",
+              "opened": true,
+              "version": "Nagaraju, Gupta, McCormick. Indian J Nephrol 2013;23:316–318, DOI10.4103/0971-4065.114493",
+              "locations": [
+                "Texto integral do editor, lines540–546/564"
+              ],
+              "verifiedScope": "Relato de duodenal switch, não Roux-en-Y: cristais intratubulares fortemente birrefringentes e nefropatia por oxalato. Confirma morfologia diagnóstica; não estimar incidência nem prognóstico de outro procedimento.",
+              "verificationAgent": "source_check_esc_oxalate"
+            },
+            "supports": "Relato de duodenal switch, não Roux-en-Y: cristais intratubulares fortemente birrefringentes e nefropatia por oxalato. Confirma morfologia diagnóstica; não estimar incidência nem prognóstico de outro procedimento.",
+            "status": "VERIFICADA"
+          },
+          {
+            "sourceId": "oxalate_crohn_primary",
+            "source": {
+              "url": "https://mdpi-res.com/d_attachment/nutrients/nutrients-16-00264/article_deploy/nutrients-16-00264.pdf",
+              "opened": true,
+              "version": "Siener et al., Nutrients2024;16:264, DOI10.3390/nu16020264",
+              "locations": [
+                "PDFpp1–2, lines61–70",
+                "PDFp10, lines503–523"
+              ],
+              "verifiedScope": "27 pessoas Crohn e27controles; absorção/excreção de oxalato relacionadas à extensão de ressecção ileal. Cadeia fisiopatológica: gorduras não absorvidas ligam cálcio, liberando oxalato; sais biliares/gorduras aumentam permeabilidade colônica. Não afirma causalidade experimental isolada nem fornece dose terapêutica."
+            },
+            "supports": "27 pessoas Crohn e27controles; absorção/excreção de oxalato relacionadas à extensão de ressecção ileal. Cadeia fisiopatológica: gorduras não absorvidas ligam cálcio, liberando oxalato; sais biliares/gorduras aumentam permeabilidade colônica. Não afirma causalidade experimental isolada nem fornece dose terapêutica.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "oxalate_nephropathy_review_2022": {
+            "label": "Demoulin et al. — Hiperoxalúria e nefropatia por oxalato (AJKD 2022)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/34508834/",
+            "journal": "Am J Kidney Dis. 2022;79(5):717-727",
+            "ano": 2022,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Integra hiperoxalúria primária, entérica e por precursores como vitamina C à lesão tubular cristalina",
+            "icon": "📖",
+            "resumo": "Revisão sobre fisiopatologia e manejo da hiperoxalúria e da nefropatia por oxalato. Na hiperoxalúria entérica, má absorção de gordura sequestra cálcio intestinal, deixa oxalato solúvel para absorção colônica e aumenta sua excreção urinária. Cirurgia bariátrica disabsortiva, doença ileal e insuficiência pancreática são causas relevantes. Vitamina C em alta exposição é precursor metabólico de oxalato. A deposição de cristais de oxalato de cálcio produz obstrução, lesão tubular e inflamação intersticial, podendo se manifestar como LRA ou perda renal crônica.",
+            "conclusao": "Cristais tubulares birrefringentes em paciente com má absorção ou alta carga de precursor devem suscitar nefropatia por oxalato; reconhecer a fonte é essencial para interromper exposição e reduzir absorção.",
+            "curiosidade": "A mesma cirurgia que melhora diabetes e obesidade pode, quando causa má absorção relevante, criar um novo eixo de risco renal por hiperoxalúria entérica."
+          }
+        },
+        "referenceCardPolicy": "Cards reais preservados sem alteração exceto patches explícitos. Verificação focal de cards preservados cobre afirmações decisivas; não é revisão global de cada tópico de card compartilhado.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            58,
+            55,
+            45,
+            55
+          ],
+          "afterLengths": [
+            66,
+            65,
+            65,
+            67
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "AFTER exato material e tipograficamente reavaliado. BEFORE não recebe aprovação retroativa."
+      },
+      {
+        "qid": "23abaa1e",
+        "sourceLine": 42,
+        "sourceQuestionSHA256": "71bd793ea08038cd6205ff07f0eaa76d7facf845267ae69a7ce8346493926c0e",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Interpretar critérios concordantes do duplex renal sem inferir revascularização automática.",
+        "classification": {
+          "primaryCompetence": "interpretação de imagem",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Interpretar critérios concordantes do duplex renal sem inferir revascularização automática.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta concentra duas justificações numéricas; distractores com apenas/obrigatório são fracos."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Limiar quantitativo exige confirmação externa: concluída no texto integral da publicação primária ESC2024. Diferença > versus >=200 entre texto/figura não afeta225cm/s."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Duplex anormal não é indicação automática de stent; é necessário conferir os dois limiares e qualificar interpretação."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Duplex de Artérias Renais — Critérios de Estenose",
+            "qid": "23abaa1e",
+            "q": "Em paciente com hipertensão resistente, o duplex mostra velocidade de pico sistólico de 225 cm/s na artéria renal direita e relação entre as velocidades renal e aórtica de 4,0. Qual é a interpretação mais adequada?",
+            "refs": [
+              "esc_peripheral_aortic_2024"
+            ],
+            "opts": [
+              "Os achados sustentam estenose relevante da artéria renal, pois a velocidade supera 200 cm/s e a relação renal-aórtica supera 3,5",
+              "O exame é normal, porque apenas o índice de resistividade intrarrenal pode identificar estenose da artéria renal",
+              "A estenose só pode ser considerada se o rim ipsilateral estiver aumentado, independentemente das velocidades medidas",
+              "É obrigatório confirmar o achado por cintilografia com captopril antes de prosseguir a investigação anatômica"
+            ],
+            "ans": 0,
+            "exp": "Velocidade de pico sistólico acima de 200 cm/s sustenta estenose superior a 50%, e relação renal-aórtica acima de 3,5 tem boa acurácia para estenose de pelo menos 60%. Os dois critérios concordantes tornam o duplex anormal e justificam correlação anatômica e clínica. O índice de resistividade e o tamanho renal são complementares, não critérios exclusivos; cintilografia com captopril não é recomendada na avaliação atual da estenose de artéria renal.",
+            "diff": "medium",
+            "cat": "hipertensao"
+          },
+          "AFTER": {
+            "t": "Duplex de Artérias Renais — Critérios de Estenose",
+            "qid": "23abaa1e",
+            "q": "Em pessoa com hipertensão resistente, duplex mostra pico sistólico de 225 cm/s na artéria renal direita e razão renal/aórtica 4,0. Qual interpretação desses achados é adequada?",
+            "refs": [
+              "esc_peripheral_aortic_2024"
+            ],
+            "opts": [
+              "Sustentam estenose da artéria renal, exigindo correlação clínica e anatômica.",
+              "Excluem estenose, pois as velocidades não são critérios válidos nesse exame.",
+              "Confirmam indicação de stent, sem avaliar repercussão clínica ou viabilidade renal.",
+              "Exigem cintilografia com captopril como confirmação obrigatória antes de outras imagens."
+            ],
+            "ans": 0,
+            "exp": "Pico sistólico >200 cm/s sustenta estenose >50%; razão renal/aórtica >3,5 sustenta estenose ≥60% na ESC 2024. Os valores de 225 cm/s e 4,0 são concordantes com estenose relevante. Isso orienta correlação clínica e eventual imagem anatômica, sem definir revascularização apenas pelo duplex. Cintilografia com captopril não é confirmação obrigatória nesse algoritmo.",
+            "diff": "medium",
+            "cat": "hipertensao"
+          },
+          "afterQuestionSHA256": "eb983b9158edfd846f3a88a3958bf380330ea92521061c7ae2ec339ced7a417a",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Sustentam estenose da artéria renal, exigindo correlação clínica e anatômica."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "esc_peripheral_aortic_2024",
+            "source": {
+              "url": "https://ancam.org.mx/wp-content/uploads/2025/04/4.-ESC-GUIDELINES-FOR-THE-MANAGEMENT-OF-PERIPHERAL-ARTERIAL-AND-AORTIC-DISEASES.pdf",
+              "opened": true,
+              "version": "Mazzolai et al., ESC PAAD2024, Eur Heart J45:3538–3700, DOI10.1093/eurheartj/ehae179",
+              "locations": [
+                "§8.3.2.1.3, p3598/PDFp61, lines4843–4850",
+                "Tables30–31 p3600/PDFp63, lines5024–5078"
+              ],
+              "verifiedScope": "PSV>200cm/s sustenta estenose>50%; razão renal/aórtica>3,5 sustenta estenose>=60%. Figura19usa>=200 em vez de>200, sem afetar caso225. Duplex não determina indicação de stent. Cópia integral da publicação primária hospedada pela ANCAM, capa/autores/DOI conferidos; acesso direto OUP falhou.",
+              "verificationAgent": "source_check_esc_oxalate"
+            },
+            "supports": "PSV>200cm/s sustenta estenose>50%; razão renal/aórtica>3,5 sustenta estenose>=60%. Figura19usa>=200 em vez de>200, sem afetar caso225. Duplex não determina indicação de stent. Cópia integral da publicação primária hospedada pela ANCAM, capa/autores/DOI conferidos; acesso direto OUP falhou.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "esc_peripheral_aortic_2024": {
+            "label": "ESC — Peripheral Arterial and Aortic Diseases Guideline 2024",
+            "url": "https://academic.oup.com/eurheartj/article/45/36/3538/7738955",
+            "journal": "Eur Heart J. 2024;45(36):3538-3700",
+            "ano": 2024,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Diagnóstico por duplex e seleção de alto risco na doença arterial renal",
+            "icon": "📋",
+            "resumo": "Diretriz ESC 2024 para doenças arteriais periféricas e da aorta. Na avaliação da artéria renal, recomenda começar por função renal, pressão dentro e fora do consultório e duplex. Velocidade de pico sistólico renal acima de 200 cm/s identifica estenose superior a 50%, e relação entre velocidades renal e aórtica acima de 3,5 tem alta especificidade para estenose de pelo menos 60%. Cintilografia renal e testes de renina antes/depois de inibidor da enzima conversora não são considerados para avaliar estenose. Hipertensão rapidamente progressiva ou resistente, perda rápida de função renal, edema pulmonar súbito e rim único são apresentações de alto risco.",
+            "conclusao": "O duplex combina critérios de velocidade e relação renal-aórtica; testes funcionais com captopril foram substituídos por avaliação hemodinâmica e imagem anatômica.",
+            "curiosidade": "Uma estenose anatômica moderada pode não limitar o fluxo renal; por isso gravidade visual e relevância clínica não são sinônimos."
+          }
+        },
+        "referenceCardPolicy": "Cards reais preservados sem alteração exceto patches explícitos. Verificação focal de cards preservados cobre afirmações decisivas; não é revisão global de cada tópico de card compartilhado.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            128,
+            112,
+            116,
+            109
+          ],
+          "afterLengths": [
+            77,
+            76,
+            83,
+            88
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "AFTER exato material e tipograficamente reavaliado. BEFORE não recebe aprovação retroativa."
+      },
+      {
+        "qid": "df6821b6",
+        "sourceLine": 45,
+        "sourceQuestionSHA256": "0ba82dacf79b88f7cc1679970983683f0d17df5e838598c32b72299a148d5d95",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Selecionar fluidoterapia titulada na prevenção de lesão renal por rabdomiólise, reconhecendo baixa certeza da evidência.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Selecionar fluidoterapia titulada na prevenção de lesão renal por rabdomiólise, reconhecendo baixa certeza da evidência.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta é única com cautelas; opções se apoiam em sempre/independentemente/profilaxia. Comparar estratégias plausíveis sem retirar limite de volume."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Explicação omite qualidade muito baixa e natureza condicional da recomendação."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Melhor suporte não significa evidência forte; fluidos não devem produzir sobrecarga."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Prevenção de LRA na Rabdomiólise",
+            "qid": "df6821b6",
+            "q": "Paciente com rabdomiólise após esmagamento apresenta CK muito elevada, hipercalemia corrigida e diurese preservada, sem sobrecarga. Qual estratégia tem melhor suporte para reduzir o risco de LRA?",
+            "refs": [
+              "rhabdo_review_2023"
+            ],
+            "opts": [
+              "Cristaloide intravenoso precoce e ajustado à resposta, sem bicarbonato ou manitol rotineiros",
+              "Bicarbonato até pH urinário acima de 6,5 em todos os pacientes, mesmo sem acidemia",
+              "Manitol associado a diurético de alça para forçar diurese independentemente da volemia",
+              "Hemodiálise profilática para remover mioglobina antes do aumento da creatinina"
+            ],
+            "ans": 0,
+            "exp": "A conduta sustentada pela diretriz é expansão com cristaloide intravenoso precoce, titulada por perfusão, diurese e risco de sobrecarga. Revisões sistemáticas não demonstraram benefício adicional de bicarbonato ou manitol para prevenir LRA ou diálise, portanto não se recomenda alcalinização urinária rotineira. Terapia renal substitutiva é reservada às indicações clínicas usuais, não à remoção profilática de mioglobina.",
+            "diff": "medium",
+            "cat": "lra"
+          },
+          "AFTER": {
+            "t": "Prevenção de LRA na Rabdomiólise",
+            "qid": "df6821b6",
+            "q": "Paciente com rabdomiólise por esmagamento apresenta creatinoquinase muito elevada, hipercalemia corrigida e diurese preservada, sem sobrecarga de volume. Qual estratégia preventiva renal tem melhor suporte na diretriz EAST?",
+            "refs": [
+              "rhabdo_review_2023"
+            ],
+            "opts": [
+              "Administrar cristaloide intravenoso precoce, titulado à perfusão, diurese e risco de sobrecarga.",
+              "Administrar bicarbonato intravenoso para alcalinizar rotineiramente a urina e reduzir dano renal.",
+              "Administrar manitol para produzir diurese osmótica preventiva, após corrigir a perfusão inicial.",
+              "Iniciar diálise precoce pela carga de mioglobina, antes de surgirem indicações clínicas usuais."
+            ],
+            "ans": 0,
+            "exp": "A EAST recomenda condicionalmente fluidos intravenosos para reduzir insuficiência renal e necessidade de diálise. A evidência é de muito baixa certeza, em grande parte retrospectiva. Não há suporte para bicarbonato ou manitol rotineiros como prevenção renal. Fluido deve ser ajustado à resposta e à tolerância de volume; não usar a formulação como justificativa para expansão indiscriminada.",
+            "diff": "medium",
+            "cat": "lra"
+          },
+          "afterQuestionSHA256": "d37e451111b135f603345e98a61dca2889205e1cddff430ae2c8bea8cbf0bebc",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Administrar cristaloide intravenoso precoce, titulado à perfusão, diurese e risco de sobrecarga."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "rhabdo_review_2023",
+            "source": {
+              "url": "https://pubmed.ncbi.nlm.nih.gov/34836603/",
+              "opened": true,
+              "version": "Sawhney et al., EAST practice management guideline2022, DOI10.1016/j.amjsurg.2021.11.022",
+              "locations": [
+                "Abstract Methods/Results/Conclusion, lines252–257"
+              ],
+              "verifiedScope": "12 estudos, maioria retrospectiva, evidência muito baixa. Recomendação condicional de fluidos IV e contra bicarbonato/manitol rotineiros para prevenir insuficiência renal/diálise. Não confundir melhor suporte com evidência de alta certeza."
+            },
+            "supports": "12 estudos, maioria retrospectiva, evidência muito baixa. Recomendação condicional de fluidos IV e contra bicarbonato/manitol rotineiros para prevenir insuficiência renal/diálise. Não confundir melhor suporte com evidência de alta certeza.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "rhabdo_review_2023": {
+            "label": "EAST — Diretriz de Manejo da Rabdomiólise",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/34836603/",
+            "journal": "American Journal of Surgery",
+            "ano": 2022,
+            "tipo": "Diretriz baseada em revisão sistemática",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Revisão sistemática e diretriz sobre fluidos, bicarbonato e manitol para prevenir LRA e diálise na rabdomiólise",
+            "icon": "📖",
+            "resumo": "Diretriz da Eastern Association for the Surgery of Trauma baseada em revisão sistemática. A administração de fluidos intravenosos em maior volume se associou a menor incidência de insuficiência renal aguda e menor necessidade de diálise. Bicarbonato e manitol não demonstraram melhora desses desfechos.",
+            "conclusao": "Recomenda-se hidratação intravenosa precoce e guiada pela resposta; bicarbonato e manitol não devem ser usados rotineiramente para prevenir LRA na rabdomiólise.",
+            "curiosidade": "A plausibilidade de alcalinizar a urina é antiga, mas a diretriz separa mecanismo teórico de benefício clínico demonstrado — e o segundo não foi confirmado."
+          }
+        },
+        "referenceCardPolicy": "Cards reais preservados sem alteração exceto patches explícitos. Verificação focal de cards preservados cobre afirmações decisivas; não é revisão global de cada tópico de card compartilhado.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            92,
+            82,
+            86,
+            78
+          ],
+          "afterLengths": [
+            96,
+            97,
+            96,
+            95
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "AFTER exato material e tipograficamente reavaliado. BEFORE não recebe aprovação retroativa."
+      },
+      {
+        "qid": "32661acb",
+        "sourceLine": 46,
+        "sourceQuestionSHA256": "e6bef1a6dc3c1a8b82ab9f5ecb68715e8611dbfccdbcd2581fe622c57a0a7cb5",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Explicar ação HIF-PHI sobre eritropoiese endógena e disponibilidade de ferro.",
+        "classification": {
+          "primaryCompetence": "mecanismo farmacológico",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Explicar ação HIF-PHI sobre eritropoiese endógena e disponibilidade de ferro.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta original muito mais detalhada; outras opções incluem análogo deB12/inibição de ferritina sem plausibilidade."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Siglas e dependência de letraC; manter conceito sem nova indicação ou dose."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Mecanismo e eficácia hematológica não provam segurança cardiovascular; caso não deve ser tomado como recomendação de iniciar o fármaco."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "HIF-PHI na Anemia da DRC — Mecanismo",
+            "qid": "32661acb",
+            "q": "Paciente de 58 anos com DRC G4 e anemia sintomática está discutindo terapia com um inibidor de HIF-prolil-hidroxilase, como roxadustat. Qual mecanismo explica o efeito dessa classe sobre a anemia da DRC?",
+            "refs": [
+              "roxadustat_trial",
+              "kdigo_anemia_2026"
+            ],
+            "opts": [
+              "Atua como análogo sintético de vitamina B12, corrigindo a maturação megaloblástica sem efeito direto sobre eritropoietina",
+              "Estimula diretamente o receptor de eritropoietina na medula óssea, sem modular metabolismo do ferro",
+              "Estabiliza o fator induzível por hipóxia (HIF), aumentando a eritropoiese endógena e modulando a disponibilidade de ferro, inclusive por redução de hepcidina",
+              "Inibe a ferritina hepática em condições habituais, bloqueando estoques de ferro sem estimular eritropoiese"
+            ],
+            "ans": 2,
+            "exp": "A alternativa correta é C. Inibidores de HIF-prolil-hidroxilase estabilizam o fator induzível por hipóxia (HIF), aumentando sinais eritropoiéticos endógenos e modulando genes envolvidos no metabolismo do ferro; nos estudos com roxadustat, houve elevação de hemoglobina e redução de hepcidina. A classe não é análogo de vitamina B12, não é agonista direto do receptor de eritropoietina como os AEE e não atua por inibição de ferritina. Pela KDIGO 2026, HIF-PHI pode ser considerado em cenários selecionados, mas não substitui a avaliação de causas corrigíveis de anemia nem elimina cautela quanto à segurança cardiovascular e à dose.",
+            "diff": "medium",
+            "cat": "drc"
+          },
+          "AFTER": {
+            "t": "HIF-PHI na Anemia da DRC — Mecanismo",
+            "qid": "32661acb",
+            "q": "Paciente com doença renal crônica e anemia discute roxadustat, um inibidor da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI). Qual mecanismo explica seu efeito hematológico?",
+            "refs": [
+              "roxadustat_trial",
+              "kdigo_anemia_2026"
+            ],
+            "opts": [
+              "Estimula diretamente o receptor de eritropoietina, sem estabilizar o fator induzível por hipóxia.",
+              "Aumenta a hepcidina e retém ferro nos estoques, produzindo o estímulo principal à eritropoiese.",
+              "Estabiliza o fator induzível por hipóxia, aumentando eritropoietina endógena e disponibilidade de ferro.",
+              "Reduz eritropoietina endógena, compensando a anemia somente por aumentar absorção intestinal de ferro."
+            ],
+            "ans": 2,
+            "exp": "A inibição da prolil-hidroxilase estabiliza o fator induzível por hipóxia e coordena resposta eritropoiética: mais eritropoietina endógena, regulação de transportadores de ferro e menor hepcidina. O ensaio com roxadustat mostrou aumento de hemoglobina e redução de hepcidina. Esse mecanismo não resolve causas corrigíveis da anemia nem, isoladamente, demonstra segurança cardiovascular.",
+            "diff": "medium",
+            "cat": "drc"
+          },
+          "afterQuestionSHA256": "ac11a26b115a04e1b46675827feb54d741a8d1f0a6a8e754d47f17711c5b1dd2",
+          "correctAnswer": {
+            "canonicalIndex": 2,
+            "canonicalLetter": "C",
+            "text": "Estabiliza o fator induzível por hipóxia, aumentando eritropoietina endógena e disponibilidade de ferro."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "roxadustat_trial",
+            "source": {
+              "url": "https://pubmed.ncbi.nlm.nih.gov/31340089/",
+              "opened": true,
+              "version": "Chen et al., NEJM2019;381:1001–1010, DOI10.1056/NEJMoa1813599",
+              "locations": [
+                "Abstract lines237–241"
+              ],
+              "verifiedScope": "154 pacientes não dialíticos; fase3duplo-cega8semanas com hepcidina menor e Hb maior; não mede segurança clínica universal."
+            },
+            "supports": "154 pacientes não dialíticos; fase3duplo-cega8semanas com hepcidina menor e Hb maior; não mede segurança clínica universal.",
+            "status": "VERIFICADA"
+          },
+          {
+            "sourceId": "roxadustat_ema_mechanism",
+            "source": {
+              "url": "https://www.ema.europa.eu/en/documents/assessment-report/evrenzo-epar-public-assessment-report_en.pdf",
+              "opened": true,
+              "version": "EMA/CHMP/393136/2021, public assessment report",
+              "locations": [
+                "PDFp50/section2.4.3, lines2531–2539"
+              ],
+              "verifiedScope": "Inibição reversível da HIF-prolil-hidroxilase, estabilização HIF, aumento de EPO endógena, regulação de transportadores de ferro e redução de hepcidina. Fonte para mecanismo estável, não indicação/dose atual de qualquer país."
+            },
+            "supports": "Inibição reversível da HIF-prolil-hidroxilase, estabilização HIF, aumento de EPO endógena, regulação de transportadores de ferro e redução de hepcidina. Fonte para mecanismo estável, não indicação/dose atual de qualquer país.",
+            "status": "VERIFICADA"
+          },
+          {
+            "sourceId": "kdigo_anemia_2026",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO 2026 Anemia in CKD; Kidney International109(Suppl1S):S1–S99",
+              "locations": [
+                "Rec 3.2.1; p.50: início AEE em HD/DP",
+                "Rec 3.3.1; p.53: alvo Hb abaixo de11,5",
+                "PP3.1.2; p.48: causas corrigíveis",
+                "PP3.5.1; p.56: não combinar AEE/HIF-PHI",
+                "PP4.4 e texto p.66: transfusão",
+                "Rec2.4; p.19: escolha via ferro"
+              ],
+              "verifiedScope": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual."
+            },
+            "supports": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "roxadustat_trial": {
+            "label": "Roxadustat em DRC não dialítica (NEJM 2019)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1813599",
+            "journal": "N Engl J Med 2019;381:1001-1010",
+            "ano": 2019,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "HIF-PHI oral elevou Hb e reduziu hepcidina em DRC não dialítica",
+            "icon": "🔬",
+            "resumo": "Ensaio fase 3, duplo-cego, realizado na China, randomizou 154 pacientes com DRC não dialítica e Hb 7,0–10,0 g/dL para roxadustat ou placebo por 8 semanas, seguido de fase aberta. O desfecho primário foi a mudança média de hemoglobina nas semanas 7–9. O roxadustat aumentou a Hb em 1,9±1,2 g/dL versus queda de 0,4±0,8 g/dL com placebo (P<0,001) e reduziu hepcidina, compatível com maior disponibilidade de ferro.",
+            "conclusao": "Roxadustat demonstrou mecanismo e eficácia hematológica em DRC não dialítica, mas não elimina a necessidade de seleção clínica cuidadosa e vigilância de segurança da classe HIF-PHI.",
+            "curiosidade": "Durante a fase randomizada, ferro parenteral foi retido; mesmo assim, o grupo roxadustat manteve ferro sérico relativamente estável enquanto elevava hemoglobina."
+          },
+          "kdigo_anemia_2026": {
+            "label": "KDIGO Anemia in CKD 2026",
+            "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+            "journal": "Kidney International",
+            "ano": 2026,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+            "icon": "📋",
+            "resumo": "Em adultos com doença renal crônica (DRC), abordar causas corrigíveis antes de agentes estimuladores da eritropoiese (AEE) ou inibidores da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI): PP 3.1.2. AEE em vez de HIF-PHI como primeira linha: Rec 3.1.1 (2D). Em hemodiálise/diálise peritoneal, limiar de início de AEE na faixa de hemoglobina (Hb) 9–10 g/dL: Rec 3.2.1 (2D). Alvo de Hb abaixo de 11,5 g/dL com AEE: Rec 3.3.1 (1D). Sem hemodiálise, ferro oral ou intravenoso conforme contexto e preferências: Rec 2.4 (2D). Não combinar AEE/HIF-PHI: PP 3.5.1. Transfusão na anemia crônica guiada por sintomas/sinais, não limite arbitrário de Hb: PP 4.4. HIF-PHI na menor dose para objetivo clínico, sem exceder máximo: PP 3.5.4–3.5.5.",
+            "conclusao": "Aplicar recomendações e pontos de prática à população definida. Um ponto de prática não é recomendação graduada; início e transfusão são individualizados, e o alvo superior com AEE permanece abaixo de 11,5 g/dL.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "Cards reais preservados sem alteração exceto patches explícitos. Verificação focal de cards preservados cobre afirmações decisivas; não é revisão global de cada tópico de card compartilhado.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            121,
+            99,
+            157,
+            106
+          ],
+          "afterLengths": [
+            97,
+            95,
+            104,
+            102
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "AFTER exato material e tipograficamente reavaliado. BEFORE não recebe aprovação retroativa.",
+        "cardDependencyReevaluation": {
+          "id": "kdigo_anemia_2026",
+          "afterCardSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+          "questionAfterSHA256": "ac11a26b115a04e1b46675827feb54d741a8d1f0a6a8e754d47f17711c5b1dd2",
+          "claimsAndUnicityRechecked": true,
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Card agora identifica recomendações/PP e força/certeza. Os conceitos exigidos pela pergunta exata permanecem sustentados no KDIGO2026 aberto; reavaliada coerência da dependência."
+        }
+      },
+      {
+        "qid": "0b6377a2",
+        "sourceLine": 49,
+        "sourceQuestionSHA256": "c1db262607583d1381fab3b8dcf9812ed2ecd7f71aa4b80cab5e2d1d6f3ca53a",
+        "verdictV2": "fundir",
+        "legacyAuxiliary": "REDIRECIONAR",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "OP": "Reduzir urato existente antes da quimioterapia de alto risco, respeitando contraindicação G6PD.",
+        "classification": {
+          "primaryCompetence": "conduta farmacológica",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Reduzir urato existente antes da quimioterapia de alto risco, respeitando contraindicação G6PD.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "DUPLICATA de competência/decisão com4daef72a após reconstrução formal deC004. Ambos escolhem rasburicase para urato existente em alto risco comG6PD excluída."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Expandir G6PD, padronizar alopurinol e melhorar alternativas; a integração deve preservar histórico, sem excluir qid automaticamente."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Há redundância importante de decisão com4daef72a; precisa resolver organização do banco antes de publicar duas versões praticamente equivalentes."
+          ],
+          "after": [
+            "Rascunho clinicamente verificável, mas repete4daef72a. Não libera duplicata material."
+          ],
+          "resolvedBeforeApproval": false
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 1,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 1,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 1
+          },
+          "total": 15,
+          "band": "Boa com reparos",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "candidato_a_fusão",
+          "rule": "Handbook §18.4: fundir não é aprovação; publicação BLOQUEADA. §16: comparar duplicação de competência e comando.",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "RASCUNHO PARA DISCUSSÃO DE FUSÃO — NÃO APLICAR",
+          "BEFORE": {
+            "t": "Síndrome de Lise Tumoral — Hiperuricemia Estabelecida",
+            "qid": "0b6377a2",
+            "q": "Paciente com linfoma de Burkitt, alto risco de lise tumoral e ácido úrico de 13 mg/dL precisa reduzir rapidamente a carga de urato antes da quimioterapia. Não há deficiência de G6PD. Qual estratégia é mais adequada?",
+            "refs": [
+              "tumor_lysis_howard_nejm_2011",
+              "elitek_fda_label_2016"
+            ],
+            "opts": [
+              "Rasburicase associada a hidratação e monitorização, pois degrada rapidamente o ácido úrico já existente",
+              "Allopurinol isolado, porque remove em minutos o ácido úrico já circulante",
+              "Alcalinização urinária obrigatória, mesmo que aumente precipitação de fosfato de cálcio",
+              "Furosemida em alta dose como tratamento específico da hiperuricemia"
+            ],
+            "ans": 0,
+            "exp": "Rasburicase converte ácido úrico em alantoína mais solúvel e reduz rapidamente a hiperuricemia já estabelecida; hidratação e monitorização metabólica permanecem essenciais. Allopurinol reduz a formação de novo ácido úrico, mas não elimina o urato já presente e pode favorecer acúmulo de xantina. A rasburicase é contraindicada na deficiência de G6PD por risco de hemólise e metemoglobinemia, exigindo triagem em pessoas de maior risco quando o tempo clínico permitir. Alcalinização urinária não é rotina porque pode agravar precipitação de fosfato de cálcio.",
+            "diff": "hard",
+            "cat": "lra"
+          },
+          "AFTER": {
+            "t": "Síndrome de Lise Tumoral — Hiperuricemia Estabelecida",
+            "qid": "0b6377a2",
+            "q": "Paciente com linfoma de Burkitt, alto risco de lise tumoral e ácido úrico de 13 mg/dL precisa reduzir rapidamente a carga de urato antes da quimioterapia. A deficiência de glicose-6-fosfato desidrogenase foi excluída. Qual estratégia é mais adequada?",
+            "refs": [
+              "tumor_lysis_howard_nejm_2011",
+              "elitek_fda_label_2016"
+            ],
+            "opts": [
+              "Rasburicase com hidratação e monitorização, para degradar o urato existente.",
+              "Alopurinol com hidratação e monitorização, como remoção imediata do urato existente.",
+              "Bicarbonato com hidratação e monitorização, como degradação enzimática do urato existente.",
+              "Furosemida com hidratação e monitorização, como terapia específica que degrada urato."
+            ],
+            "ans": 0,
+            "exp": "Rasburicase degrada urato em alantoína; alopurinol previne nova formação. Hidratação e monitorização seguem necessárias. A deficiência de glicose-6-fosfato desidrogenase contraindica rasburicase. Alcalinização urinária não deve ser usada rotineiramente, pelo risco de precipitação de fosfato de cálcio.",
+            "diff": "hard",
+            "cat": "lra"
+          },
+          "afterQuestionSHA256": "fe6008d867a5eb39558400f8e9d9adf237532651e062d1385b7d54b242824ecb",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Rasburicase com hidratação e monitorização, para degradar o urato existente."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "tumor_lysis_howard_nejm_2011",
+            "source": {
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3437249/",
+              "opened": true,
+              "version": "Howard et al. NEJM 2011;364:1844–1854",
+              "locations": [
+                "Prevention of acute kidney injury, lines 195–204"
+              ],
+              "verifiedScope": "Allopurinol previne formação, não remove urato existente; rasburicase converte urato em alantoína. Contraindicação em deficiência G6PD."
+            },
+            "supports": "Allopurinol previne formação, não remove urato existente; rasburicase converte urato em alantoína. Contraindicação em deficiência G6PD.",
+            "status": "VERIFICADA"
+          },
+          {
+            "sourceId": "elitek_fda_label_2016",
+            "source": {
+              "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2016/103946s5097lbl.pdf",
+              "opened": true,
+              "version": "Elitek FDA label2016, histórico, não afirmar última bula",
+              "locations": [
+                "Boxed warning, contraindications PDFpp1–4",
+                "12.1PDFp9"
+              ],
+              "verifiedScope": "Contraindicação G6PD, hemólise/metemoglobinemia, conversão urato-alantoína. Conduta atual também cotejada com eviQ108v6. Nenhuma dose nova."
+            },
+            "supports": "Contraindicação G6PD, hemólise/metemoglobinemia, conversão urato-alantoína. Conduta atual também cotejada com eviQ108v6. Nenhuma dose nova.",
+            "status": "VERIFICADA"
+          },
+          {
+            "sourceId": "eviq_108",
+            "source": {
+              "url": "https://www.eviq.org.au/clinical-resources/side-effect-and-toxicity-management/prophylaxis-and-treatment/108-prevention-of-tumour-lysis-syndrome",
+              "opened": true,
+              "version": "eviQ ID108 v6, revisão 20/08/2025 e atualização G6PD 22/10/2025",
+              "locations": [
+                "Hypouricaemic agents, lines 169–191"
+              ],
+              "verifiedScope": "Rasburicase preferida com hiperuricemia existente/alto risco; degrada urato em alantoína; testar deficiência de G6PD e não usar se deficiente. Hidratação/monitorização seguem necessárias, sem dose nova neste item."
+            },
+            "supports": "Rasburicase preferida com hiperuricemia existente/alto risco; degrada urato em alantoína; testar deficiência de G6PD e não usar se deficiente. Hidratação/monitorização seguem necessárias, sem dose nova neste item.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "tumor_lysis_howard_nejm_2011": {
+            "label": "Howard SC et al. — The Tumor Lysis Syndrome (NEJM 2011)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3437249/",
+            "journal": "N Engl J Med 2011;364(19):1844-1854",
+            "ano": 2011,
+            "tipo": "Revisão Clínica",
+            "badge": "REVIEW",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Critérios de Cairo-Bishop para síndrome de lise tumoral laboratorial e clínica",
+            "icon": "📖",
+            "resumo": "Revisão clínica do NEJM sobre síndrome de lise tumoral. Organiza prevenção, reconhecimento e tratamento da lise tumoral em neoplasias de alto risco, especialmente hematológicas. Resume a classificação de Cairo-Bishop: síndrome de lise tumoral laboratorial requer pelo menos duas alterações metabólicas típicas — hiperuricemia, hipercalemia, hiperfosfatemia ou hipocalcemia — no período de 3 dias antes até 7 dias após o início da terapia; síndrome clínica acrescenta consequências como elevação de creatinina, convulsões, arritmia ou morte. O artigo também discute refinamentos práticos, como evitar supervalorizar mudanças percentuais pequenas sem relevância clínica.",
+            "conclusao": "A lise tumoral laboratorial é diagnóstico bioquímico; lesão renal, arritmia, convulsão ou morte transformam o quadro em lise tumoral clínica.",
+            "curiosidade": "A hipocalcemia da lise tumoral não é 'falta' primária de cálcio: ela reflete precipitação/complexação com o excesso de fósforo liberado por células tumorais lisadas."
+          },
+          "elitek_fda_label_2016": {
+            "label": "FDA — Elitek (rasburicase), bula",
+            "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2016/103946s5097lbl.pdf",
+            "journal": "U.S. Food and Drug Administration",
+            "ano": 2016,
+            "tipo": "Bula regulatória",
+            "badge": "LABEL",
+            "badgeColor": "#f59e0b",
+            "impacto": "Rasburicase reduz rapidamente ácido úrico existente; é contraindicada na deficiência de G6PD",
+            "icon": "💊",
+            "resumo": "Rotulagem da rasburicase para manejo inicial da hiperuricemia em pacientes com neoplasias sob risco de lise tumoral. A urato-oxidase recombinante converte ácido úrico em alantoína mais solúvel e reduz rapidamente a concentração plasmática, diferentemente do allopurinol, que reduz a formação de novo ácido úrico. A bula contém alerta para anafilaxia, hemólise e metemoglobinemia e contraindica o fármaco na deficiência de G6PD.",
+            "conclusao": "Na hiperuricemia estabelecida da lise tumoral, rasburicase pode remover rapidamente a carga de urato, mas segurança exige excluir deficiência de G6PD quando aplicável e monitorar reações graves.",
+            "curiosidade": "A reação que transforma ácido úrico em alantoína gera peróxido de hidrogênio; essa é a ligação bioquímica entre a eficácia da rasburicase e o risco de hemólise em deficiência de G6PD."
+          }
+        },
+        "referenceCardPolicy": "Cards reais preservados sem alteração exceto patches explícitos. Verificação focal de cards preservados cobre afirmações decisivas; não é revisão global de cada tópico de card compartilhado.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            103,
+            73,
+            87,
+            67
+          ],
+          "afterLengths": [
+            76,
+            84,
+            90,
+            85
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "AFTER exato material e tipograficamente reavaliado. BEFORE não recebe aprovação retroativa.",
+        "editorialPending": [
+          "Decisão editorial de fusão com 4daef72a; preservar mapeamento de qid, histórico/FSRS e migração antes de qualquer integração. Não há publicação autorizada deste rascunho."
+        ]
+      },
+      {
+        "qid": "3e67777e",
+        "sourceLine": 57,
+        "sourceQuestionSHA256": "aaa365cc846975ca2516764a5444036fccf931455de7842b188c5b0976aa56b2",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Explicar maior absorção de oxalato na má absorção de gorduras com cólon em continuidade.",
+        "classification": {
+          "primaryCompetence": "mecanismo clínico",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Explicar maior absorção de oxalato na má absorção de gorduras com cólon em continuidade.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Cólon em continuidade é premissa importante para a rota de absorção colônica, ausente do caso."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Distratores originais absolutos; comparar mecanismos sem transformar comprimento em objetivo clínico."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "A explicação da rota colônica pressupõe que o cólon esteja em continuidade; especificar essa anatomia."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 1,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 18,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Hiperoxalúria Entérica — Mecanismo",
+            "qid": "3e67777e",
+            "q": "Paciente com doença de Crohn e ressecção ileal apresenta má absorção de gorduras e hiperoxalúria. Qual mecanismo explica o aumento da absorção intestinal de oxalato?",
+            "refs": [
+              "oxalate_nephropathy_review_2022"
+            ],
+            "opts": [
+              "Ácidos graxos não absorvidos ligam cálcio, deixando mais oxalato solúvel livre para absorção colônica",
+              "A ressecção ileal induz produção hepática obrigatória de oxalato",
+              "A esteatorreia aumenta o cálcio livre que precipita todo o oxalato no lúmen",
+              "O oxalato passa a ser secretado pelos enterócitos em vez de absorvido"
+            ],
+            "ans": 0,
+            "exp": "Em condições normais, cálcio intestinal liga oxalato e limita sua absorção. Na má absorção de gorduras, ácidos graxos livres sequestram cálcio por saponificação, aumentando a fração de oxalato solúvel disponível para absorção no cólon. Ácidos biliares também podem aumentar a permeabilidade colônica. O resultado é maior excreção urinária de oxalato, supersaturação de oxalato de cálcio e risco de litíase ou nefropatia cristalina.",
+            "diff": "medium",
+            "cat": "lra"
+          },
+          "AFTER": {
+            "t": "Hiperoxalúria Entérica — Mecanismo",
+            "qid": "3e67777e",
+            "q": "Pessoa com doença de Crohn, ressecção ileal e cólon em continuidade apresenta má absorção de gorduras e hiperoxalúria. Qual mecanismo aumenta a absorção intestinal de oxalato?",
+            "refs": [
+              "oxalate_nephropathy_review_2022"
+            ],
+            "opts": [
+              "Gorduras não absorvidas ligam cálcio, aumentando oxalato livre para absorção colônica.",
+              "Gorduras não absorvidas liberam cálcio, precipitando oxalato e aumentando sua absorção.",
+              "Ressecção ileal aumenta a síntese hepática de oxalato, sem modificar sua absorção intestinal.",
+              "Ressecção ileal reduz a permeabilidade colônica ao oxalato, elevando sua entrada na circulação."
+            ],
+            "ans": 0,
+            "exp": "Ácidos graxos não absorvidos ligam o cálcio luminal, deixando mais oxalato solúvel disponível para absorção. Sais biliares e gorduras podem também aumentar permeabilidade colônica. O cólon em continuidade torna essa rota pertinente; não confundir hiperoxalúria entérica com síntese hepática da hiperoxalúria primária.",
+            "diff": "medium",
+            "cat": "lra"
+          },
+          "afterQuestionSHA256": "df4833e246b1cab64d0063c9ec0a1a2cf16b7f1b1593cfa2496e85bc30571a55",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Gorduras não absorvidas ligam cálcio, aumentando oxalato livre para absorção colônica."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "oxalate_crohn_primary",
+            "source": {
+              "url": "https://mdpi-res.com/d_attachment/nutrients/nutrients-16-00264/article_deploy/nutrients-16-00264.pdf",
+              "opened": true,
+              "version": "Siener et al., Nutrients2024;16:264, DOI10.3390/nu16020264",
+              "locations": [
+                "PDFpp1–2, lines61–70",
+                "PDFp10, lines503–523"
+              ],
+              "verifiedScope": "27 pessoas Crohn e27controles; absorção/excreção de oxalato relacionadas à extensão de ressecção ileal. Cadeia fisiopatológica: gorduras não absorvidas ligam cálcio, liberando oxalato; sais biliares/gorduras aumentam permeabilidade colônica. Não afirma causalidade experimental isolada nem fornece dose terapêutica."
+            },
+            "supports": "27 pessoas Crohn e27controles; absorção/excreção de oxalato relacionadas à extensão de ressecção ileal. Cadeia fisiopatológica: gorduras não absorvidas ligam cálcio, liberando oxalato; sais biliares/gorduras aumentam permeabilidade colônica. Não afirma causalidade experimental isolada nem fornece dose terapêutica.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "oxalate_nephropathy_review_2022": {
+            "label": "Demoulin et al. — Hiperoxalúria e nefropatia por oxalato (AJKD 2022)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/34508834/",
+            "journal": "Am J Kidney Dis. 2022;79(5):717-727",
+            "ano": 2022,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Integra hiperoxalúria primária, entérica e por precursores como vitamina C à lesão tubular cristalina",
+            "icon": "📖",
+            "resumo": "Revisão sobre fisiopatologia e manejo da hiperoxalúria e da nefropatia por oxalato. Na hiperoxalúria entérica, má absorção de gordura sequestra cálcio intestinal, deixa oxalato solúvel para absorção colônica e aumenta sua excreção urinária. Cirurgia bariátrica disabsortiva, doença ileal e insuficiência pancreática são causas relevantes. Vitamina C em alta exposição é precursor metabólico de oxalato. A deposição de cristais de oxalato de cálcio produz obstrução, lesão tubular e inflamação intersticial, podendo se manifestar como LRA ou perda renal crônica.",
+            "conclusao": "Cristais tubulares birrefringentes em paciente com má absorção ou alta carga de precursor devem suscitar nefropatia por oxalato; reconhecer a fonte é essencial para interromper exposição e reduzir absorção.",
+            "curiosidade": "A mesma cirurgia que melhora diabetes e obesidade pode, quando causa má absorção relevante, criar um novo eixo de risco renal por hiperoxalúria entérica."
+          }
+        },
+        "referenceCardPolicy": "Cards reais preservados sem alteração exceto patches explícitos. Verificação focal de cards preservados cobre afirmações decisivas; não é revisão global de cada tópico de card compartilhado.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            101,
+            64,
+            75,
+            69
+          ],
+          "afterLengths": [
+            86,
+            87,
+            93,
+            95
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "AFTER exato material e tipograficamente reavaliado. BEFORE não recebe aprovação retroativa."
+      },
+      {
+        "qid": "1fd0fd0d",
+        "sourceLine": 59,
+        "sourceQuestionSHA256": "0436220e4068fb7872b583d6a810c72dc058b2039f3f3e380483df6586ff6d3e",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Planejar volume de contraste em intervenção coronária pela depuração de creatinina, preservando qualidade diagnóstica.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Planejar volume de contraste em intervenção coronária pela depuração de creatinina, preservando qualidade diagnóstica.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta agrega números e técnica muito mais longa; comparar estratégias com contexto/proteção diagnóstica preservados."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Usar depuração em vez de clearance e distinguir QITip de diretriz formal com grau."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Razão da hemodinâmica não é limite causal universal de tomografia nem garante segurança."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Angiografia Coronária — Planejamento do Volume de Contraste",
+            "qid": "1fd0fd0d",
+            "q": "Paciente com DRC será submetido a intervenção coronária percutânea. Qual estratégia usa corretamente a função renal para planejar o volume de contraste?",
+            "refs": [
+              "scai_ciaki_qi_2025"
+            ],
+            "opts": [
+              "Manter a razão volume de contraste/clearance de creatinina abaixo de 3 e, idealmente, abaixo de 2, combinando técnicas de redução sem perder imagens indispensáveis",
+              "Aplicar uma razão volume/TFGe inferior a 3 como limite universal para qualquer tomografia contrastada",
+              "Ultrapassar a razão 10 se houver hidratação isotônica",
+              "Desconsiderar o volume porque apenas a osmolaridade define o risco renal"
+            ],
+            "ans": 0,
+            "exp": "No laboratório de hemodinâmica, a SCAI recomenda usar o volume de contraste dividido pelo clearance de creatinina calculado, mantendo a razão abaixo de 3 e idealmente abaixo de 2. O valor serve para planejamento e alerta durante angiografia ou intervenção coronária; não é um limiar causal universal para toda administração intravenosa em tomografia. Redução de injeções, imagem intracoronária e outras técnicas podem poupar contraste, mas não se deve comprometer a informação diagnóstica indispensável. Hidratação não torna o volume irrelevante.",
+            "diff": "hard",
+            "cat": "lra"
+          },
+          "AFTER": {
+            "t": "Angiografia Coronária — Planejamento do Volume de Contraste",
+            "qid": "1fd0fd0d",
+            "q": "Pessoa com doença renal crônica será submetida a intervenção coronária percutânea. Segundo a ferramenta de melhoria de qualidade SCAI 2025, qual planejamento de volume de contraste é adequado?",
+            "refs": [
+              "scai_ciaki_qi_2025"
+            ],
+            "opts": [
+              "Usar volume/depuração de creatinina <3, idealmente <2, poupando contraste sem perder imagens essenciais.",
+              "Usar volume/filtração estimada <3 como garantia de segurança renal para toda tomografia contrastada.",
+              "Usar volume/depuração de creatinina <10, aceitando maior exposição se houver hidratação isotônica.",
+              "Definir volume apenas pela osmolaridade do agente, dispensando relacioná-lo à função renal."
+            ],
+            "ans": 0,
+            "exp": "A SCAI orienta razão volume de contraste/depuração de creatinina calculada por Cockcroft–Gault <3, idealmente <2, no laboratório de hemodinâmica. É ferramenta de planejamento, não limiar universal para tomografia nem garantia de ausência de lesão renal. Reduzir injeções e usar técnicas de economia deve preservar informação indispensável; hidratação não elimina o efeito do volume.",
+            "diff": "hard",
+            "cat": "lra"
+          },
+          "afterQuestionSHA256": "add094ee3ff4644c386db402b2f2a4b089b7453ca9798002041c8673c17f66a9",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Usar volume/depuração de creatinina <3, idealmente <2, poupando contraste sem perder imagens essenciais."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "scai_ciaki_qi_2025",
+            "source": {
+              "url": "https://www.scai.org/quality-improvement-tools/qi-tips/quality-initiatives-prevention-contrast-induced-acute-kidney-0",
+              "opened": true,
+              "version": "SCAI QI Tip,23/01/2025; não diretriz formal com grau",
+              "locations": [
+                "Limit contrast volume, lines47–50"
+              ],
+              "verifiedScope": "Angiografia/PCI:volume de contraste/clearance calculado(Cockcroft-Gault)<3, idealmente<2; registrar limite e técnicas para reduzir volume. Não razão universal de qualquer TC nem garantia de risco zero."
+            },
+            "supports": "Angiografia/PCI:volume de contraste/clearance calculado(Cockcroft-Gault)<3, idealmente<2; registrar limite e técnicas para reduzir volume. Não razão universal de qualquer TC nem garantia de risco zero.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "scai_ciaki_qi_2025": {
+            "label": "SCAI — Prevenção de LRA induzida por contraste no laboratório de hemodinâmica (2025)",
+            "url": "https://www.scai.org/quality-improvement-tools/qi-tips/quality-initiatives-prevention-contrast-induced-acute-kidney-0",
+            "journal": "Society for Cardiovascular Angiography & Interventions",
+            "ano": 2025,
+            "tipo": "Recomendação de qualidade",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Em angiografia/PCI, planejar volume de contraste pelo clearance de creatinina: razão <3 e idealmente <2",
+            "icon": "📋",
+            "resumo": "Recomendação de melhoria de qualidade da SCAI para angiografia coronária e intervenção coronária percutânea. Identifica o volume de contraste como variável modificável e orienta manter a razão volume de contraste/clearance de creatinina calculado abaixo de 3 e, idealmente, abaixo de 2. Recomenda registrar o limite no timeout e usar técnicas de economia de contraste, além de corrigir hipovolemia e outros fatores modificáveis. Também reafirma a ausência de benefício rotineiro de N-acetilcisteína e bicarbonato após o PRESERVE.",
+            "conclusao": "A razão volume/clearance é ferramenta de planejamento específica do laboratório de hemodinâmica, não limiar universal para qualquer tomografia; deve reduzir exposição sem comprometer imagens essenciais.",
+            "curiosidade": "A chamada PCI de ultrabaixo contraste usa razão volume/TFGe inferior a 1 e combina imagem intracoronária e fisiologia para realizar procedimentos complexos com poucos mililitros de contraste."
+          }
+        },
+        "referenceCardPolicy": "Cards reais preservados sem alteração exceto patches explícitos. Verificação focal de cards preservados cobre afirmações decisivas; não é revisão global de cada tópico de card compartilhado.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            163,
+            101,
+            53,
+            72
+          ],
+          "afterLengths": [
+            104,
+            100,
+            98,
+            91
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "AFTER exato material e tipograficamente reavaliado. BEFORE não recebe aprovação retroativa."
+      },
+      {
+        "qid": "516ec2a6",
+        "sourceLine": 67,
+        "sourceQuestionSHA256": "9f40f34312f01a97ee07386bcf93d1026c970563780dbe8c171edbb5286fdc15",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Interpretar o sinal renal albuminúrico do SUSTAIN-6 sem convertê-lo em ensaio renal dedicado.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Interpretar o sinal renal albuminúrico do SUSTAIN-6 sem convertê-lo em ensaio renal dedicado.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "CRÍTICO",
+            "problem": "DOI do card identifica LEADER/liraglutida; corrigir paraSUSTAIN-6/semaglutida NEJMoa1607141."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Card fornece IC/P incorretos de retinopatia: tabela2confirma HR1,76 IC1,11–2,78 P0,02. Explicação original diz composto microvascular reduzido, embora retinopatia aumentada; delimitar composto renal."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Bibliografia e números do card podem ensinar estudo/fármaco e segurança errados."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [
+            6
+          ],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "SUSTAIN-6 — Semaglutida e Desfecho Renal",
+            "qid": "516ec2a6",
+            "q": "No SUSTAIN-6, qual interpretação é mais correta sobre o sinal renal observado com semaglutida em pacientes com diabetes tipo 2 de alto risco cardiovascular?",
+            "refs": [
+              "sustain6"
+            ],
+            "opts": [
+              "Reduziu nefropatia nova ou agravada, sinal impulsionado principalmente por menor progressão para macroalbuminúria",
+              "Demonstrou recuperação sustentada da TFGe como desfecho renal primário dedicado",
+              "Aumentou cálculos renais e contraindica semaglutida em qualquer DRC",
+              "Exigiu ajuste rotineiro de dose por toxicidade renal direta quando TFGe era <30 mL/min/1,73m²"
+            ],
+            "ans": 0,
+            "exp": "No SUSTAIN-6, semaglutida reduziu o desfecho microvascular composto, com sinal renal favorável para nefropatia nova ou agravada; esse efeito foi impulsionado principalmente por menor progressão para macroalbuminúria. A leitura correta é cautelosa: SUSTAIN-6 era um ensaio de segurança cardiovascular, não um trial renal primário desenhado para provar preservação dura de TFGe ou prevenção de terapia renal substitutiva. O estudo também não mostrou toxicidade renal direta nem aumento de litíase como mensagem central.",
+            "diff": "medium",
+            "cat": "nefropatia_diabetica"
+          },
+          "AFTER": {
+            "t": "SUSTAIN-6 — Semaglutida e Desfecho Renal",
+            "qid": "516ec2a6",
+            "q": "No SUSTAIN-6, ensaio cardiovascular de semaglutida em diabetes tipo 2 de alto risco, qual interpretação do sinal renal é adequada?",
+            "refs": [
+              "sustain6"
+            ],
+            "opts": [
+              "Menos nefropatia nova/agravada, sobretudo macroalbuminúria; não era ensaio renal dedicado.",
+              "Menos falência renal como desfecho primário dedicado, sem influência da albuminúria.",
+              "Menos declínio da filtração como único desfecho primário, sem avaliação cardiovascular.",
+              "Mais nefropatia nova/agravada, apesar de recuperação sustentada da filtração."
+            ],
+            "ans": 0,
+            "exp": "Houve redução do composto de nefropatia nova/agravada (HR 0,64; IC 95% 0,46–0,88; P =0,005), principalmente por diferenças em macroalbuminúria. O estudo foi desenhado para não inferioridade cardiovascular, e esse sinal renal não equivale a demonstrar isoladamente prevenção de diálise ou recuperação da filtração. Retinopatia teve mais eventos; benefício renal não autoriza ignorar esse sinal de segurança.",
+            "diff": "medium",
+            "cat": "nefropatia_diabetica"
+          },
+          "afterQuestionSHA256": "2564520aa517f6bb41157c016d93214b7534acaeee17ecc7a4b35da5f295c590",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Menos nefropatia nova/agravada, sobretudo macroalbuminúria; não era ensaio renal dedicado."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "sustain6",
+            "source": {
+              "url": "https://www.acc.org/-/media/Non-Clinical/Files-PDFs-Excel-MS-Word-etc/Tools-and-Practice-Support/Quality-Programs/Diabetes-Roundtable-2017/SupplementalReading/4-Semaglutide-and-Cardiovascular-Outcomes-in-Patients-with-Type-2-Diabetes-SUSTAIN6.pdf",
+              "opened": true,
+              "version": "Marso et al., NEJM2016;375:1834–1844, DOI10.1056/NEJMoa1607141, publicação primária integral hospedada pela ACC",
+              "locations": [
+                "Table2 PDFp7, lines540–569",
+                "Discussion PDFp10, lines754–766,793–802"
+              ],
+              "verifiedScope": "Composto nefropatia HR0,64 IC0,46–0,88 P0,005, sobretudo macroalbuminúria; ensaio primário CVde não inferioridade. Retinopatia HR1,76 IC1,11–2,78 P0,02, sem atribuir causalidade comprovada à queda glicêmica. DOI do card atual é LEADER, não SUSTAIN-6."
+            },
+            "supports": "Composto nefropatia HR0,64 IC0,46–0,88 P0,005, sobretudo macroalbuminúria; ensaio primário CVde não inferioridade. Retinopatia HR1,76 IC1,11–2,78 P0,02, sem atribuir causalidade comprovada à queda glicêmica. DOI do card atual é LEADER, não SUSTAIN-6.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "sustain6": {
+            "label": "Marso SP et al. — SUSTAIN-6 (NEJM 2016)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607141",
+            "journal": "N Engl J Med 2016;375(19):1834-1844",
+            "ano": 2016,
+            "tipo": "Ensaio Clínico RCT",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Semaglutida ↓26% MACE em DM2 de alto risco CV; ↓36% nefropatia nova/piora; risco aumentado de retinopatia diabética",
+            "icon": "🔬",
+            "resumo": "SUSTAIN-6 randomizou 3.297 pessoas com diabetes tipo 2 de alto risco cardiovascular para semaglutida 0,5 ou 1 mg semanal ou placebo. O composto cardiovascular primário teve HR 0,74 (IC 95% 0,58–0,95). Nefropatia nova/agravada: HR 0,64 (IC 95% 0,46–0,88; P=0,005), sobretudo por macroalbuminúria. Complicações de retinopatia: HR 1,76 (IC 95% 1,11–2,78; P=0,02). Ensaio cardiovascular de não inferioridade, não estudo renal dedicado.",
+            "conclusao": "O sinal renal foi majoritariamente albuminúrico e não demonstra isoladamente redução de falência renal. Retinopatia requer atenção; mecanismo causal específico não foi estabelecido neste ensaio.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "Cards reais preservados sem alteração exceto patches explícitos. Verificação focal de cards preservados cobre afirmações decisivas; não é revisão global de cada tópico de card compartilhado.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            113,
+            79,
+            67,
+            93
+          ],
+          "afterLengths": [
+            90,
+            84,
+            87,
+            77
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "AFTER exato material e tipograficamente reavaliado. BEFORE não recebe aprovação retroativa."
+      }
+    ],
+    "cardPatches": [
+      {
+        "id": "kdigo_anemia_2026",
+        "BEFORE": {
+          "label": "KDIGO Anemia in CKD 2026",
+          "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+          "journal": "Kidney International",
+          "ano": 2026,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+          "icon": "📋",
+          "resumo": "Diretriz KDIGO 2026 para anemia na DRC. Recomenda avaliar hemograma, reticulócitos, ferritina e saturação de transferrina e investigar causas reversíveis antes de iniciar ou escalar AEE. Reconhece que ferritina e saturação têm limitações e distingue deficiência sistêmica de ferro de eritropoiese restrita por ferro. Em adultos tratados com AEE, recomenda não manter hemoglobina acima de 11,5 g/dL; decisão de iniciar AEE e transfundir deve ser individualizada por sintomas, riscos, comorbidades e contexto de transplante.",
+          "conclusao": "O tratamento seguro da anemia renal começa por definir a causa e a disponibilidade de ferro; AEE, ferro, HIF-PHI e transfusão não devem ser usados para perseguir um número isolado de hemoglobina.",
+          "curiosidade": "A diretriz substituiu o termo “deficiência funcional de ferro” por “eritropoiese restrita por ferro”, destacando que o ferro pode estar armazenado, mas indisponível à medula por ação da hepcidina e da inflamação."
+        },
+        "AFTER": {
+          "label": "KDIGO Anemia in CKD 2026",
+          "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+          "journal": "Kidney International",
+          "ano": 2026,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+          "icon": "📋",
+          "resumo": "Em adultos com doença renal crônica (DRC), abordar causas corrigíveis antes de agentes estimuladores da eritropoiese (AEE) ou inibidores da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI): PP 3.1.2. AEE em vez de HIF-PHI como primeira linha: Rec 3.1.1 (2D). Em hemodiálise/diálise peritoneal, limiar de início de AEE na faixa de hemoglobina (Hb) 9–10 g/dL: Rec 3.2.1 (2D). Alvo de Hb abaixo de 11,5 g/dL com AEE: Rec 3.3.1 (1D). Sem hemodiálise, ferro oral ou intravenoso conforme contexto e preferências: Rec 2.4 (2D). Não combinar AEE/HIF-PHI: PP 3.5.1. Transfusão na anemia crônica guiada por sintomas/sinais, não limite arbitrário de Hb: PP 4.4. HIF-PHI na menor dose para objetivo clínico, sem exceder máximo: PP 3.5.4–3.5.5.",
+          "conclusao": "Aplicar recomendações e pontos de prática à população definida. Um ponto de prática não é recomendação graduada; início e transfusão são individualizados, e o alvo superior com AEE permanece abaixo de 11,5 g/dL.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "abf6ac5c382678150bc96c0686e03769e1021cf346fa9b3e61e4c7f519e56843",
+        "afterSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+        "usedByQids": [
+          "32661acb"
+        ],
+        "sources": [
+          {
+            "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+            "opened": true,
+            "version": "KDIGO 2026 Anemia in CKD; Kidney International109(Suppl1S):S1–S99",
+            "locations": [
+              "Rec 3.2.1; p.50: início AEE em HD/DP",
+              "Rec 3.3.1; p.53: alvo Hb abaixo de11,5",
+              "PP3.1.2; p.48: causas corrigíveis",
+              "PP3.5.1; p.56: não combinar AEE/HIF-PHI",
+              "PP4.4 e texto p.66: transfusão",
+              "Rec2.4; p.19: escolha via ferro"
+            ],
+            "verifiedScope": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual."
+          }
+        ],
+        "newExactVersionReview": {
+          "previousAfterSHA256": "266163af582a5eef2c617759ef9ea4d95871e2c39a51de1af0e01714120e450c",
+          "afterSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+          "verdictV2": "aprovada com pequenos ajustes",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "reason": "Card completo reavaliado no texto primário KDIGO2026. Rec3.1.1/3.2.1/2.4 são2D; Rec3.3.1 é1D; PP3.1.2/3.5.1/3.5.4–5/4.4 não recebem grade inventado. Populações e contexto mantidos.",
+          "derivation": "Handbook §18.4 regra7(a)."
+        },
+        "implementation": "Aplicar com questão dependente LIBERADA e BEFORE real idêntico. Mudança de card compartilhado deve ser rastreada em todos os consumidores."
+      },
+      {
+        "id": "sustain6",
+        "BEFORE": {
+          "label": "Marso SP et al. — SUSTAIN-6 (NEJM 2016)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1603827",
+          "journal": "N Engl J Med 2016;375(19):1834-1844",
+          "ano": 2016,
+          "tipo": "Ensaio Clínico RCT",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Semaglutida ↓26% MACE em DM2 de alto risco CV; ↓36% nefropatia nova/piora; risco aumentado de retinopatia diabética",
+          "icon": "🔬",
+          "resumo": "ECR cardiovascular de não-inferioridade (SUSTAIN-6, n=3.297), em DM2 com alto risco cardiovascular, comparando semaglutida subcutânea (0,5 mg ou 1 mg semanal) vs placebo. Desfecho primário MACE: HR 0,74 (IC 95% 0,58–0,95; P<0,001 para não-inferioridade, P=0,02 para superioridade). Desfecho renal composto (nefropatia nova ou piora): HR 0,64 (IC 95% 0,46–0,88; P=0,005), principalmente por redução da progressão para macroalbuminúria. Evento adverso relevante: progressão de retinopatia diabética, HR 1,76 (IC 95% 1,29–2,40; P=0,0004), possivelmente relacionado à queda rápida da HbA1c.",
+          "conclusao": "SUSTAIN-6 estabeleceu semaglutida como GLP-1 RA com benefício cardiovascular e renal (albuminúrico) em DM2, mas sinalizou risco aumentado de complicações de retinopatia — dado importante na prática clínica nefro-oftalmológica.",
+          "curiosidade": "O achado de retinopatia no SUSTAIN-6 gerou debate sobre causalidade: hipótese predominante é a 'paradoxo da retinopatia' — queda rápida da HbA1c pode deteriorar transitoriamente a retinopatia antes de melhorá-la, fenômeno descrito previamente com insulina. Trials posteriores (SUSTAIN 7, PIONEER) não replicaram o sinal de forma consistente."
+        },
+        "AFTER": {
+          "label": "Marso SP et al. — SUSTAIN-6 (NEJM 2016)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607141",
+          "journal": "N Engl J Med 2016;375(19):1834-1844",
+          "ano": 2016,
+          "tipo": "Ensaio Clínico RCT",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Semaglutida ↓26% MACE em DM2 de alto risco CV; ↓36% nefropatia nova/piora; risco aumentado de retinopatia diabética",
+          "icon": "🔬",
+          "resumo": "SUSTAIN-6 randomizou 3.297 pessoas com diabetes tipo 2 de alto risco cardiovascular para semaglutida 0,5 ou 1 mg semanal ou placebo. O composto cardiovascular primário teve HR 0,74 (IC 95% 0,58–0,95). Nefropatia nova/agravada: HR 0,64 (IC 95% 0,46–0,88; P=0,005), sobretudo por macroalbuminúria. Complicações de retinopatia: HR 1,76 (IC 95% 1,11–2,78; P=0,02). Ensaio cardiovascular de não inferioridade, não estudo renal dedicado.",
+          "conclusao": "O sinal renal foi majoritariamente albuminúrico e não demonstra isoladamente redução de falência renal. Retinopatia requer atenção; mecanismo causal específico não foi estabelecido neste ensaio.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "030e0e7aea792e2d3aa6b31295d71185e48b829776745f6a47d5328d3ac28ed8",
+        "afterSHA256": "efb151321bc47bf8b56a1e800001aa672b1623161d84df0c3af56bd912a12bf0",
+        "usedByQids": [
+          "516ec2a6"
+        ],
+        "sources": [
+          {
+            "url": "https://www.acc.org/-/media/Non-Clinical/Files-PDFs-Excel-MS-Word-etc/Tools-and-Practice-Support/Quality-Programs/Diabetes-Roundtable-2017/SupplementalReading/4-Semaglutide-and-Cardiovascular-Outcomes-in-Patients-with-Type-2-Diabetes-SUSTAIN6.pdf",
+            "opened": true,
+            "version": "Marso et al., NEJM2016;375:1834–1844, DOI10.1056/NEJMoa1607141, publicação primária integral hospedada pela ACC",
+            "locations": [
+              "Table2 PDFp7, lines540–569",
+              "Discussion PDFp10, lines754–766,793–802"
+            ],
+            "verifiedScope": "Composto nefropatia HR0,64 IC0,46–0,88 P0,005, sobretudo macroalbuminúria; ensaio primário CVde não inferioridade. Retinopatia HR1,76 IC1,11–2,78 P0,02, sem atribuir causalidade comprovada à queda glicêmica. DOI do card atual é LEADER, não SUSTAIN-6."
+          }
+        ],
+        "newExactVersionReview": {
+          "verdictV2": "aprovada com pequenos ajustes",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "reason": "AFTER completo reavaliado com fonte primária aberta; SUSTAIN-6 tem DOI/segurança corrigidos, KDIGO mantém alvo Hb<11,5 da recomendação3.3.1. Sem herdar aprovação.",
+          "derivation": "Handbook §18.4 regra7(a)."
+        },
+        "implementation": "Aplicar com questão dependente LIBERADA e BEFORE real idêntico. Mudança de card compartilhado deve ser rastreada em todos os consumidores."
+      }
+    ],
+    "counts": {
+      "reviewed": 8,
+      "publicationReleased": 7,
+      "publicationBlocked": 1,
+      "implemented": 0
+    },
+    "limits": [
+      "Segundo revisor precisa conferir AFTER/card exatos liberados.",
+      "Duplex ESC: limiares verificados no texto primário integral; caso225cm/s não depende da fronteira > versus >=200.",
+      "Rasburicase 0b6377a2 candidato a fusão; nenhuma exclusão automática de qid/FSRS.",
+      "Oxalato: apresentação após RYGB confirmada em relato primário, sem inferir incidência ou prognóstico individual.",
+      "Nenhuma edição do banco, checkout ou git.",
+      "Lotes006-035 não revisados."
+    ],
+    "revision": "Checkpoint: card KDIGO anemia com recomendações, PP e graus explícitos; reavaliação exata da dependência. C002 também remove história editorial da explicação f44b5edc.",
+    "supersedes": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 118870,
+      "sha256": "8defc6dfe55649ae7837d85cb011a1eddde5c0e593766c6f04c330f65cd4a06e"
+    }
+  }
+}

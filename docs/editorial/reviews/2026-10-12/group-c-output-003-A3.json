@@ -1,0 +1,2117 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 112786,
+  "sourceReportSHA256": "b2423cefced700d75182f378d682d45a8c7a5a42cd3097c7761475c2eea40957",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_FORMAL_BATCH_REVIEW_v2",
+    "group": "c",
+    "batch": "003",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "bankLF_SHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "input": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 20099,
+      "sha256": "6299eb3e158231bc3c1897c96ead368e7eaf435e56101b2fc187e2179a1a4372"
+    },
+    "reviewedAtOfficialUTC": "2026-10-12T17:30:26Z",
+    "normativeSources": [
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      }
+    ],
+    "sourceRegistry": {
+      "kdigo_anemia_2026": {
+        "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+        "opened": true,
+        "version": "KDIGO 2026 Anemia in CKD; Kidney International109(Suppl1S):S1–S99",
+        "locations": [
+          "Rec 3.2.1; p.50: início AEE em HD/DP",
+          "Rec 3.3.1; p.53: alvo Hb abaixo de11,5",
+          "PP3.1.2; p.48: causas corrigíveis",
+          "PP3.5.1; p.56: não combinar AEE/HIF-PHI",
+          "PP4.4 e texto p.66: transfusão",
+          "Rec2.4; p.19: escolha via ferro"
+        ],
+        "verifiedScope": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual."
+      },
+      "ici_aki_cortazar_multicenter_2020": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7003302/",
+        "opened": true,
+        "version": "Cortazar et al., JASN 2020;31:435–446",
+        "locations": [
+          "Abstract",
+          "Results: rechallenge",
+          "Discussion"
+        ],
+        "verifiedScope": "Coorte de 138 casos e 276 controles; 93% dos 60 biopsiados com nefrite tubulointersticial; associação, não causalidade, entre corticosteroide e recuperação; recidiva em 23% dos 31 reexpostos."
+      },
+      "kdigo_ckd": {
+        "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+        "opened": true,
+        "version": "KDIGO2024 CKD",
+        "locations": [
+          "§3.7 SGLT2i: PDFp100 lines7727–7731",
+          "Recommendations3.7.1–3.7.2, PDFp43"
+        ],
+        "verifiedScope": "Maioria das ITUs não atribuída à inibiçãoSGLT2; risco aumentado de micose genital, usualmente tratável; indicação renal não limitada aTFGe>60."
+      },
+      "vadadustat_trial": {
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33913637/",
+        "opened": true,
+        "version": "Chertow etal. NEJM2021;384:1589–1600; DOI10.1056/NEJMoa2035938",
+        "accessLevel": "Registro primário com abstract integral; PDFs do editor indisponíveis",
+        "locations": [
+          "Abstract methods/results/conclusions, lines231–237"
+        ],
+        "verifiedScope": "Dois RCTs abertos;1751+1725=3476 randomizados; eficáciaHb nãoinferior; MACEHR1,17(IC95%1,01–1,36), margem1,25 não atingida."
+      },
+      "bproad": {
+        "url": "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2412006.pdf",
+        "opened": true,
+        "version": "BPROAD, publicaçãoonline16/11/2024; NEJM2025;392:1155–1167",
+        "locations": [
+          "Abstract",
+          "Patients",
+          "Table3 p11"
+        ],
+        "verifiedScope": "12821 adultosDM2/hipertensão/riscoCV; alvosPAS<120 versus<140; compostoHR0,79(IC95%0,69–0,90;P<0,001); hipotensão e hipercalemia mais frequentes; falência renal aguda4 versus5, resultado secundário não prova ausência de todo risco renal."
+      },
+      "flow_study": {
+        "url": "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2403347.pdf",
+        "opened": true,
+        "version": "FLOW, NEJM2024;391:109–121; DOI10.1056/NEJMoa2403347",
+        "locations": [
+          "Abstract",
+          "Participants",
+          "PrimaryOutcome and confirmatory secondary outcomes"
+        ],
+        "verifiedScope": "3533 participantesDM2/DRCalbuminúrica; semaglutida1mgsemanal versusplacebo; composto de falênciarenal/quedaTFGe≥50%/morterenal-CV:331vs410, HR0,76(IC95%0,66–0,88;P0,0003); secundáriosconfirmatóriosfavoráveis."
+      }
+    },
+    "summary": [
+      {
+        "qid": "43834a55",
+        "OP": "Escolher titulação conservadora de HIF-PHI conforme sintomas e transfusões, sem exceder limite recomendado.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "74186985",
+        "OP": "Interpretar limiar-guia transfusional em cirurgia ortopédica na DRC de forma individualizada.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "28bdfaec",
+        "OP": "Interpretar a falha de não inferioridade cardiovascular do vadadustat na DRC não dialítica sem confundi-la com falha de eficácia hematológica.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 20,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "f769660d",
+        "OP": "Identificar nefrite tubulointersticial como lesão predominante nas biópsias de LRA associada a inibidores de checkpoint, sem presumir que toda LRA oncológica é imunomediada.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "1e6a4479",
+        "OP": "Interpretar a força e certeza da sugestão KDIGO sobre primeira linha com AEE, evitando tratar 2D como obrigação forte.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "e56795a6",
+        "OP": "Interpretar benefício e riscos do alvo pressórico intensivo no BPROAD sem generalizar a todas as pessoas com diabetes ou DRC.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "70129a64",
+        "OP": "Distinguir o desfecho clínico primário do FLOW de melhora metabólica e de slope isolado, na população com diabetes tipo 2 e DRC albuminúrica.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      },
+      {
+        "qid": "8a565e5e",
+        "OP": "Orientar o risco de micose genital com iSGLT2 sem considerar ITU remota não complicada como contraindicação automática quando há indicação renal.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA"
+      }
+    ],
+    "questions": [
+      {
+        "qid": "43834a55",
+        "sourceLine": 700,
+        "sourceQuestionSHA256": "57b6dc967c2908893a3bfc924ccad4f51e4daa54045549fd9093ebccfec6f52f",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Escolher titulação conservadora de HIF-PHI conforme sintomas e transfusões, sem exceder limite recomendado.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Escolher titulação conservadora de HIF-PHI conforme sintomas e transfusões, sem exceder limite recomendado.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta reúne qualificação de segurança seletiva e caixa-alta; explicação começa pela letra e vira revisão extensa."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Não definir HIF-PHI/DRC na primeira ocorrência."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "HIF-PHI — Dose e Monitoramento — KDIGO 2026",
+            "qid": "43834a55",
+            "q": "Segundo a KDIGO 2026, como deve ser a dosagem dos HIF-PHIs quando utilizados para anemia na DRC?",
+            "opts": [
+              "Dose fixa padrão sem ajuste",
+              "Na MENOR dose necessária para melhorar sintomas e evitar transfusões, sem exceder dose máxima recomendada",
+              "Dose máxima desde o início para resposta rápida",
+              "Doses crescentes a cada 2 semanas até Hb >13 g/dL"
+            ],
+            "ans": 1,
+            "exp": "A alternativa B é a correta porque a orientação contemporânea para uso de HIF-PHIs na anemia da DRC é empregar a menor dose eficaz para atingir objetivos clínicos conservadores, como aliviar sintomas atribuíveis à anemia e reduzir a necessidade de transfusão, sem ultrapassar a dose máxima recomendada; isso é coerente com o perfil da classe, que atua pela estabilização do fator induzível por hipóxia, aumentando a eritropoiese endógena e modulando o metabolismo do ferro, mas exige cautela quanto à exposição excessiva e ao potencial risco cardiovascular e trombótico. A alternativa A está errada porque não existe estratégia de dose fixa padrão sem ajuste para todos os pacientes, já que a posologia deve ser individualizada conforme hemoglobina, resposta terapêutica e segurança. A alternativa C está errada porque iniciar em dose máxima para obter resposta rápida não é recomendação de diretriz e aumenta a chance de ultrapassar o benefício clínico necessário. A alternativa D está errada porque não se deve perseguir normalização agressiva da hemoglobina nem alvo acima de 13 g/dL, além de um esquema rígido de aumentos a cada 2 semanas não representar a lógica geral de titulação segura dessa classe.",
+            "diff": "medium",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "AFTER": {
+            "t": "HIF-PHI — Dose e Monitoramento — KDIGO 2026",
+            "qid": "43834a55",
+            "q": "Quando um inibidor da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI) é escolhido para anemia da doença renal crônica (DRC), qual princípio de dose é orientado pela KDIGO 2026?",
+            "opts": [
+              "Manter a dose inicial independentemente da resposta de hemoglobina e dos sintomas.",
+              "Titular à menor dose necessária para o objetivo clínico, respeitando a dose máxima.",
+              "Iniciar a dose máxima para acelerar a resposta e reduzir depois da normalização.",
+              "Escalonar a dose até normalizar a hemoglobina, mesmo sem necessidade clínica adicional."
+            ],
+            "ans": 1,
+            "exp": "Usa-se a menor dose necessária para melhorar sintomas e evitar transfusões, sem exceder a máxima recomendada (PP 3.5.4–3.5.5). A dose é específica do agente e da população; não se persegue normalização agressiva da hemoglobina.",
+            "diff": "medium",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "afterQuestionSHA256": "fd287f7b1a8eb452522cb1e4c850737c7c842376daebd381e2e9513a4168a0a6",
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "Titular à menor dose necessária para o objetivo clínico, respeitando a dose máxima."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "kdigo_anemia_2026",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO 2026 Anemia in CKD; Kidney International109(Suppl1S):S1–S99",
+              "locations": [
+                "Rec 3.2.1; p.50: início AEE em HD/DP",
+                "Rec 3.3.1; p.53: alvo Hb abaixo de11,5",
+                "PP3.1.2; p.48: causas corrigíveis",
+                "PP3.5.1; p.56: não combinar AEE/HIF-PHI",
+                "PP4.4 e texto p.66: transfusão",
+                "Rec2.4; p.19: escolha via ferro"
+              ],
+              "verifiedScope": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual."
+            },
+            "supports": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_anemia_2026": {
+            "label": "KDIGO Anemia in CKD 2026",
+            "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+            "journal": "Kidney International",
+            "ano": 2026,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+            "icon": "📋",
+            "resumo": "Em adultos com doença renal crônica (DRC), abordar causas corrigíveis antes de agentes estimuladores da eritropoiese (AEE) ou inibidores da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI): PP 3.1.2. AEE em vez de HIF-PHI como primeira linha: Rec 3.1.1 (2D). Em hemodiálise/diálise peritoneal, limiar de início de AEE na faixa de hemoglobina (Hb) 9–10 g/dL: Rec 3.2.1 (2D). Alvo de Hb abaixo de 11,5 g/dL com AEE: Rec 3.3.1 (1D). Sem hemodiálise, ferro oral ou intravenoso conforme contexto e preferências: Rec 2.4 (2D). Não combinar AEE/HIF-PHI: PP 3.5.1. Transfusão na anemia crônica guiada por sintomas/sinais, não limite arbitrário de Hb: PP 4.4. HIF-PHI na menor dose para objetivo clínico, sem exceder máximo: PP 3.5.4–3.5.5.",
+            "conclusao": "Aplicar recomendações e pontos de prática à população definida. Um ponto de prática não é recomendação graduada; início e transfusão são individualizados, e o alvo superior com AEE permanece abaixo de 11,5 g/dL.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            27,
+            105,
+            47,
+            49
+          ],
+          "afterLengths": [
+            82,
+            83,
+            80,
+            87
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito se refere ao AFTER exato, reavaliado após alterações; BEFORE não recebe aprovação retroativa.",
+        "cardDependencyReevaluation": {
+          "id": "kdigo_anemia_2026",
+          "afterCardSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+          "questionAfterSHA256": "fd287f7b1a8eb452522cb1e4c850737c7c842376daebd381e2e9513a4168a0a6",
+          "claimsAndUnicityRechecked": true,
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Card agora identifica recomendações/PP e força/certeza. Os conceitos exigidos pela pergunta exata permanecem sustentados no KDIGO2026 aberto; reavaliada coerência da dependência."
+        }
+      },
+      {
+        "qid": "74186985",
+        "sourceLine": 716,
+        "sourceQuestionSHA256": "a9da040e097c98e5ebb8ef1071c92ad9c70557dd35bbceeb7f4ccf53a524581d",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Interpretar limiar-guia transfusional em cirurgia ortopédica na DRC de forma individualizada.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Interpretar limiar-guia transfusional em cirurgia ortopédica na DRC de forma individualizada.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta excessivamente qualificada em comparação às regras rígidas e fonte não equivale a gatilho obrigatório."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Explicação dependente de letras."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "KDIGO 2026 — Transfusão Perioperatória",
+            "qid": "74186985",
+            "q": "Paciente com doença renal crônica e anemia será submetido a cirurgia ortopédica, sem sangramento ativo, mas com necessidade de planejamento transfusional perioperatório. Segundo a KDIGO 2026, como interpretar o limiar de hemoglobina nesse contexto?",
+            "opts": [
+              "Hb <7 g/dL é o único gatilho aceitável, independentemente do risco cardiovascular ou cirúrgico",
+              "Hb <7,5 g/dL é o limiar geral para cirurgia ortopédica e DRC",
+              "Hb <8 g/dL pode ser usado como guia restritivo razoável em cirurgia ortopédica ou doença cardiovascular significativa, sempre integrado a sintomas e riscos da DRC",
+              "Hb <9 g/dL deve ser usado para prevenir eventos cardiovasculares perioperatórios em todos os pacientes com DRC"
+            ],
+            "ans": 2,
+            "exp": "A alternativa C é a correta. A KDIGO 2026 enfatiza que a transfusão em pessoas com DRC deve ser individualizada e guiada por sinais, sintomas e contexto clínico, não por hemoglobina isolada. Ainda assim, ao discutir evidência de estratégias restritivas e a diretriz AABB, considera razoáveis limiares-guia como Hb <8 g/dL para cirurgia ortopédica ou doença cardiovascular clinicamente significativa. A alternativa A ignora esse perfil de maior risco; B usa um limiar mais ligado a cirurgia cardíaca, não ortopédica; e D propõe uma estratégia mais liberal sem benefício comprovado e com maior exposição a riscos transfusionais, incluindo sobrecarga volêmica e aloimunização em potenciais candidatos a transplante.",
+            "diff": "medium",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "AFTER": {
+            "t": "KDIGO 2026 — Transfusão Perioperatória",
+            "qid": "74186985",
+            "q": "Adulto com doença renal crônica (DRC) e anemia, hemodinamicamente estável e sem sangramento ativo, será submetido a cirurgia ortopédica. Segundo a discussão da KDIGO 2026 sobre estratégias restritivas, qual interpretação do limiar de hemoglobina (Hb) é adequada?",
+            "opts": [
+              "Hb <7 g/dL é o único guia aceitável, sem considerar o contexto cirúrgico.",
+              "Hb <7,5 g/dL é o guia específico para toda cirurgia ortopédica na DRC.",
+              "Hb <8 g/dL pode guiar a decisão, integrada a sintomas e riscos transfusionais.",
+              "Hb <9 g/dL exige transfusão para prevenir eventos cardiovasculares perioperatórios."
+            ],
+            "ans": 2,
+            "exp": "Hb <8 g/dL é um guia restritivo razoável em cirurgia ortopédica, sem substituir sintomas, sinais e riscos da DRC. O limiar 7,5 g/dL é discutido para cirurgia cardíaca; não há gatilho universal obrigatório.",
+            "diff": "medium",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "afterQuestionSHA256": "2b972ee9d13d056b6d25570e8d624336f1d23fbaf048f1a820365babef2cf319",
+          "correctAnswer": {
+            "canonicalIndex": 2,
+            "canonicalLetter": "C",
+            "text": "Hb <8 g/dL pode guiar a decisão, integrada a sintomas e riscos transfusionais."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "kdigo_anemia_2026",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO 2026 Anemia in CKD; Kidney International109(Suppl1S):S1–S99",
+              "locations": [
+                "Rec 3.2.1; p.50: início AEE em HD/DP",
+                "Rec 3.3.1; p.53: alvo Hb abaixo de11,5",
+                "PP3.1.2; p.48: causas corrigíveis",
+                "PP3.5.1; p.56: não combinar AEE/HIF-PHI",
+                "PP4.4 e texto p.66: transfusão",
+                "Rec2.4; p.19: escolha via ferro"
+              ],
+              "verifiedScope": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual."
+            },
+            "supports": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_anemia_2026": {
+            "label": "KDIGO Anemia in CKD 2026",
+            "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+            "journal": "Kidney International",
+            "ano": 2026,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+            "icon": "📋",
+            "resumo": "Em adultos com doença renal crônica (DRC), abordar causas corrigíveis antes de agentes estimuladores da eritropoiese (AEE) ou inibidores da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI): PP 3.1.2. AEE em vez de HIF-PHI como primeira linha: Rec 3.1.1 (2D). Em hemodiálise/diálise peritoneal, limiar de início de AEE na faixa de hemoglobina (Hb) 9–10 g/dL: Rec 3.2.1 (2D). Alvo de Hb abaixo de 11,5 g/dL com AEE: Rec 3.3.1 (1D). Sem hemodiálise, ferro oral ou intravenoso conforme contexto e preferências: Rec 2.4 (2D). Não combinar AEE/HIF-PHI: PP 3.5.1. Transfusão na anemia crônica guiada por sintomas/sinais, não limite arbitrário de Hb: PP 4.4. HIF-PHI na menor dose para objetivo clínico, sem exceder máximo: PP 3.5.4–3.5.5.",
+            "conclusao": "Aplicar recomendações e pontos de prática à população definida. Um ponto de prática não é recomendação graduada; início e transfusão são individualizados, e o alvo superior com AEE permanece abaixo de 11,5 g/dL.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            94,
+            60,
+            162,
+            110
+          ],
+          "afterLengths": [
+            73,
+            70,
+            78,
+            83
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito se refere ao AFTER exato, reavaliado após alterações; BEFORE não recebe aprovação retroativa.",
+        "exactVersionReevaluation": {
+          "previousAfterSHA256": "cced53db7a44cc031eef579516c1606bc3731e71a0ded0590dee461667700e28",
+          "afterSHA256": "2b972ee9d13d056b6d25570e8d624336f1d23fbaf048f1a820365babef2cf319",
+          "evidenceRechecked": true,
+          "unicityAndOPRechecked": true,
+          "eliminatorsAfter": [],
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Nova versão exata cotejada com as fontes primárias abertas. FLOW preserva queda sustentada >=50%; BPROAD especifica hipotensão sintomática. SGLT2 remove frase acessória e expande filtração diretamente na alternativa, mantendo unidade e limiar. Demais ajustes são espaços. Qualificações, população, ordem e gabarito preservados.",
+          "publicationDerivation": "Handbook §18.4, regra 7(a); decisão após reavaliação, sem herança automática."
+        },
+        "cardDependencyReevaluation": {
+          "id": "kdigo_anemia_2026",
+          "afterCardSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+          "questionAfterSHA256": "2b972ee9d13d056b6d25570e8d624336f1d23fbaf048f1a820365babef2cf319",
+          "claimsAndUnicityRechecked": true,
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Card agora identifica recomendações/PP e força/certeza. Os conceitos exigidos pela pergunta exata permanecem sustentados no KDIGO2026 aberto; reavaliada coerência da dependência."
+        }
+      },
+      {
+        "qid": "28bdfaec",
+        "sourceLine": 728,
+        "sourceQuestionSHA256": "bf21b082afcdc7e11cf0bdcbf8449f40e03c0f7ec8d29a4ce72cb9c51ffa7107",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Interpretar a falha de não inferioridade cardiovascular do vadadustat na DRC não dialítica sem confundi-la com falha de eficácia hematológica.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Interpretar a falha de não inferioridade cardiovascular do vadadustat na DRC não dialítica sem confundi-la com falha de eficácia hematológica.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Alternativas originais misturam eficácia, método de não inferioridade e efeitos adversos isolados; trombose não é um distrator suficientemente delimitado."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Explicação porA/B/C/D e MACE sem definição completa."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 20,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Vadadustat nos Estudos PRO2TECT (Anemia da DRC)",
+            "qid": "28bdfaec",
+            "q": "Nos estudos PRO2TECT, que avaliaram o uso de vadadustat em comparação com darbepoetina alfa em pacientes com doença renal crônica (DRC) não-dialítica, qual foi a principal preocupação de segurança identificada?",
+            "opts": [
+              "Ineficácia em elevar a hemoglobina",
+              "Não atingiu critério de não-inferioridade em MACE",
+              "Aumento de risco de trombose",
+              "Hepatotoxicidade grave"
+            ],
+            "ans": 1,
+            "exp": "Nos estudos PRO2TECT, o vadadustat mostrou eficácia semelhante à darbepoetina alfa para correção da anemia, mas a principal preocupação de segurança foi cardiovascular: no grupo de DRC não dialítica, o fármaco não demonstrou não-inferioridade em relação ao desfecho de MACE, que engloba eventos cardiovasculares maiores. Assim, a alternativa correta é B. A opção A está errada porque o problema não foi falha em elevar hemoglobina; a opção C não descreve o achado principal do estudo; e a opção D não foi o sinal de segurança relevante nesses ensaios.",
+            "diff": "hard",
+            "cat": "drc",
+            "refs": [
+              "vadadustat_trial"
+            ]
+          },
+          "AFTER": {
+            "t": "Vadadustat nos Estudos PRO2TECT (Anemia da DRC)",
+            "qid": "28bdfaec",
+            "q": "Nos dois ensaios PRO2TECT em anemia da doença renal crônica não dialítica, vadadustat foi comparado a darbepoetina alfa. Qual leitura conjunta dos resultados de eficácia e segurança é correta?",
+            "opts": [
+              "Não inferioridade cardiovascular, com falha da resposta hematológica prevista.",
+              "Não inferioridade hematológica, com falha da não inferioridade cardiovascular.",
+              "Superioridade hematológica e superioridade cardiovascular no grupo experimental.",
+              "Inferioridade hematológica, com não inferioridade da segurança cardiovascular."
+            ],
+            "ans": 1,
+            "exp": "Vadadustat atingiu não inferioridade para eficácia hematológica, mas não para segurança cardiovascular. Para eventos cardiovasculares maiores, HR 1,17 (IC 95% 1,01–1,36) não satisfez a margem pré-especificada de 1,25. Isso não é equivalente a ineficácia para elevar hemoglobina nem permite extrapolação à população dialítica.",
+            "diff": "hard",
+            "cat": "drc",
+            "refs": [
+              "vadadustat_trial"
+            ]
+          },
+          "afterQuestionSHA256": "9193b368617d891115adad9682349b89acf1acd4e7fd548b9b782f15b9bc1149",
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "Não inferioridade hematológica, com falha da não inferioridade cardiovascular."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "vadadustat_trial",
+            "source": {
+              "url": "https://pubmed.ncbi.nlm.nih.gov/33913637/",
+              "opened": true,
+              "version": "Chertow etal. NEJM2021;384:1589–1600; DOI10.1056/NEJMoa2035938",
+              "accessLevel": "Registro primário com abstract integral; PDFs do editor indisponíveis",
+              "locations": [
+                "Abstract methods/results/conclusions, lines231–237"
+              ],
+              "verifiedScope": "Dois RCTs abertos;1751+1725=3476 randomizados; eficáciaHb nãoinferior; MACEHR1,17(IC95%1,01–1,36), margem1,25 não atingida."
+            },
+            "supports": "Dois RCTs abertos;1751+1725=3476 randomizados; eficáciaHb nãoinferior; MACEHR1,17(IC95%1,01–1,36), margem1,25 não atingida.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "vadadustat_trial": {
+            "label": "PRO2TECT Trial (Vadadustat em DRC não dialítica)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2035938",
+            "journal": "N Engl J Med 2021;384(17):1589-1600",
+            "ano": 2021,
+            "tipo": "Ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Eficácia hematológica preservada, mas falha em não inferioridade cardiovascular",
+            "icon": "🔬",
+            "resumo": "PRO2TECT: dois ensaios fase 3, randomizados, abertos e controlados por darbepoetina alfa, reunindo 3.476 pacientes com anemia e DRC não dialítica. O vadadustat foi não inferior para mudança de hemoglobina, mas no desfecho primário de segurança cardiovascular (MACE: morte por qualquer causa, infarto não fatal ou AVC não fatal) o HR foi 1,17 (IC95% 1,01–1,36), não atingindo a margem pré-especificada de não inferioridade.",
+            "conclusao": "Em DRC não dialítica, vadadustat atingiu não inferioridade hematológica, mas não cardiovascular versus darbepoetina; não extrapolar equivalência entre populações ou toda a classe.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            34,
+            49,
+            28,
+            22
+          ],
+          "afterLengths": [
+            78,
+            78,
+            80,
+            78
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito se refere ao AFTER exato, reavaliado após alterações; BEFORE não recebe aprovação retroativa.",
+        "exactVersionReevaluation": {
+          "previousAfterSHA256": "2bb461d8167e526d239ab3b14b5711131803ddf403cfb08b08bb9cdba1a4041e",
+          "afterSHA256": "9193b368617d891115adad9682349b89acf1acd4e7fd548b9b782f15b9bc1149",
+          "evidenceRechecked": true,
+          "unicityAndOPRechecked": true,
+          "eliminatorsAfter": [],
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Nova versão exata cotejada com as fontes primárias abertas. FLOW preserva queda sustentada >=50%; BPROAD especifica hipotensão sintomática. SGLT2 remove frase acessória e expande filtração diretamente na alternativa, mantendo unidade e limiar. Demais ajustes são espaços. Qualificações, população, ordem e gabarito preservados.",
+          "publicationDerivation": "Handbook §18.4, regra 7(a); decisão após reavaliação, sem herança automática."
+        }
+      },
+      {
+        "qid": "f769660d",
+        "sourceLine": 736,
+        "sourceQuestionSHA256": "1a378566a293e2da69279ffa6e2c8f7c5346e3e08508a3d9890fe241cbdb5c5a",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Identificar nefrite tubulointersticial como lesão predominante nas biópsias de LRA associada a inibidores de checkpoint, sem presumir que toda LRA oncológica é imunomediada.",
+        "classification": {
+          "primaryCompetence": "interpretação de histologia",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Identificar nefrite tubulointersticial como lesão predominante nas biópsias de LRA associada a inibidores de checkpoint, sem presumir que toda LRA oncológica é imunomediada.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Enunciado original não delimita atribuição e explicação contém séries/causalidade excessivamente amplas."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "NIA, GN, IgA e AINEs sem expansão; alternativas de tamanhos e terminologia diferentes; letra fixa."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Nefrite por Inibidores de Checkpoint Imunológico",
+            "qid": "f769660d",
+            "q": "Qual é o padrão histológico mais comum de lesão renal induzida por inibidores de checkpoint imunológico (anti-PD-1/PD-L1)?",
+            "opts": [
+              "Glomerulonefrite membranosa",
+              "Nefrite Tubulointersticial Aguda (NIA)",
+              "GN por IgA",
+              "Nefrose lipídica"
+            ],
+            "ans": 1,
+            "exp": "A alternativa correta é a opção B, porque a nefrite tubulointersticial aguda é o padrão histológico mais frequentemente encontrado na lesão renal associada aos inibidores de checkpoint imunológico, refletindo ativação imune desregulada com infiltrado inflamatório no interstício e tubulite, muitas vezes favorecida por uso concomitante de fármacos associados a NIA, como inibidores de bomba de prótons, AINEs e antibióticos. A alternativa A está errada porque glomerulonefrite membranosa pode ocorrer como evento imune relacionado, mas é manifestação glomerular incomum e não o padrão predominante. A alternativa C está errada porque nefropatia por IgA também já foi descrita nesse contexto, porém de forma muito menos frequente que NIA. A alternativa D está errada porque doença de lesões mínimas, classicamente chamada de nefrose lipídica, é outra apresentação rara e glomerular, podendo cursar com síndrome nefrótica, mas não representa a lesão histológica mais comum nesses pacientes.",
+            "diff": "medium",
+            "cat": "lra",
+            "refs": [
+              "ici_nia_cortazar_2016",
+              "ici_aki_cortazar_multicenter_2020"
+            ]
+          },
+          "AFTER": {
+            "t": "Nefrite por Inibidores de Checkpoint Imunológico",
+            "qid": "f769660d",
+            "q": "Entre as biópsias de lesão renal aguda atribuída a inibidores de checkpoint imunológico, qual padrão histológico é predominante nas séries publicadas?",
+            "opts": [
+              "Glomerulonefrite membranosa.",
+              "Nefrite tubulointersticial aguda.",
+              "Glomerulonefrite por imunoglobulina A.",
+              "Doença glomerular de lesões mínimas."
+            ],
+            "ans": 1,
+            "exp": "Predomina nefrite tubulointersticial aguda: 93% dos 60 biopsiados na coorte multicêntrica de 138 casos. Esse dado não transforma toda LRA durante imunoterapia em nefrite intersticial; outras lesões e outras causas de LRA precisam ser consideradas.",
+            "diff": "medium",
+            "cat": "lra",
+            "refs": [
+              "ici_aki_cortazar_multicenter_2020"
+            ]
+          },
+          "afterQuestionSHA256": "f74c5a3cb7b0b49e76f5d23c3b465ef327269498e848549395947ab1b419b8d0",
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "Nefrite tubulointersticial aguda."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "ici_aki_cortazar_multicenter_2020",
+            "source": {
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7003302/",
+              "opened": true,
+              "version": "Cortazar et al., JASN 2020;31:435–446",
+              "locations": [
+                "Abstract",
+                "Results: rechallenge",
+                "Discussion"
+              ],
+              "verifiedScope": "Coorte de 138 casos e 276 controles; 93% dos 60 biopsiados com nefrite tubulointersticial; associação, não causalidade, entre corticosteroide e recuperação; recidiva em 23% dos 31 reexpostos."
+            },
+            "supports": "Coorte de 138 casos e 276 controles; 93% dos 60 biopsiados com nefrite tubulointersticial; associação, não causalidade, entre corticosteroide e recuperação; recidiva em 23% dos 31 reexpostos.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "ici_aki_cortazar_multicenter_2020": {
+            "label": "Cortazar et al. — LRA por Inibidores de Checkpoint: estudo multicêntrico (2020)",
+            "url": "https://doi.org/10.1681/ASN.2019070676",
+            "journal": "Journal of the American Society of Nephrology",
+            "ano": 2020,
+            "tipo": "Coorte",
+            "badge": "COHORT",
+            "badgeColor": "#f59e0b",
+            "impacto": "Nefrite intersticial predomina; rechallenge exige avaliação individualizada.",
+            "icon": "🔬",
+            "resumo": "Coorte multicêntrica de 138 casos de LRA por inibidores de checkpoint e 276 controles. Nefrite tubulointersticial em 93% dos 60 biopsiados. Corticosteroide associou-se a recuperação; não demonstra causalidade. Recidiva em 23% dos 31 reexpostos.",
+            "conclusao": "A coorte descreve apresentação e desfechos; não substitui consenso terapêutico atual.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp",
+            "refs"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            27,
+            38,
+            10,
+            16
+          ],
+          "afterLengths": [
+            28,
+            33,
+            38,
+            36
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito se refere ao AFTER exato, reavaliado após alterações; BEFORE não recebe aprovação retroativa."
+      },
+      {
+        "qid": "1e6a4479",
+        "sourceLine": 717,
+        "sourceQuestionSHA256": "76ed2050d7a3e91b338cf85d03fc0ea88286b3f7bf996c479a2f1eb229280c61",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Interpretar a força e certeza da sugestão KDIGO sobre primeira linha com AEE, evitando tratar 2D como obrigação forte.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Interpretar a força e certeza da sugestãoKDIGO sobre primeira linha com AEE, evitando tratar2Dcomo obrigação forte.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "CRÍTICO",
+            "problem": "Comando original pergunta recomendação terapêutica, mas opções respondem somente grau; a explicação começa comSeapergunta, revelando comando indefinido."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Item original mede memorização de grau sem interpretar consequência clínica."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "A interpretação depende de inferir que o enunciado queria classificação de grau, não escolher estratégia terapêutica."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [
+            8
+          ],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Anemia na DRC — Classificação da Evidência KDIGO 2026",
+            "qid": "1e6a4479",
+            "q": "Qual é a recomendação atual da KDIGO para o tratamento de anemia em pacientes com doença renal crônica (DRC) em relação ao uso de agentes estimuladores da eritropoiese (AEE) versus inibidores do fator induzido por hipóxia (HIF-PHI)?",
+            "opts": [
+              "Grau 1A (forte recomendação, evidência de alta qualidade)",
+              "Grau 2D (sugestão, evidência de muito baixa qualidade)",
+              "Grau 1B (forte recomendação, evidência moderada)",
+              "Grau 2B (sugestão, evidência moderada)"
+            ],
+            "ans": 1,
+            "exp": "Se a pergunta se refere ao grau da orientação KDIGO sobre a preferência por AEE em vez de HIF-PHI como terapia inicial na anemia da DRC, a alternativa mais compatível é a opção B, porque se trata de uma sugestão com evidência de muito baixa qualidade, e não de uma recomendação forte ou sustentada por evidência moderada. O racional é que os AEE têm experiência clínica mais consolidada, enquanto os HIF-PHI, embora eficazes para elevar hemoglobina e potencialmente úteis em cenários selecionados, ainda carregam incertezas quanto à segurança de longo prazo e exigem decisão compartilhada baseada em risco cardiovascular, trombótico, custo, disponibilidade e preferência do paciente. A alternativa D está errada por superestimar a qualidade da evidência como moderada; as alternativas C e A também estão incorretas porque classificam essa orientação como recomendação forte, o que não se sustenta diante da necessidade de individualização e da ausência de base suficientemente robusta para uma recomendação categórica de alto nível.",
+            "diff": "hard",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "AFTER": {
+            "t": "Anemia na DRC — Classificação da Evidência KDIGO 2026",
+            "qid": "1e6a4479",
+            "q": "Após abordar causas corrigíveis da anemia na doença renal crônica (DRC), a KDIGO 2026 sugere agente estimulador da eritropoiese (AEE) em vez de inibidor da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI) como primeira linha, com grau 2D. Como interpretar essa classificação?",
+            "opts": [
+              "Obrigação de usar AEE, por evidência de alta certeza que elimina individualização.",
+              "Sugestão com evidência de muito baixa certeza, permitindo decisão individualizada.",
+              "Recomendação forte, sustentada por evidência de certeza moderada.",
+              "Sugestão com evidência moderada, justificando aplicá-la uniformemente."
+            ],
+            "ans": 1,
+            "exp": "O grau 2D expressa sugestão com evidência de muito baixa certeza. A recomendação 3.1.1 se refere à primeira linha após abordar causas corrigíveis e deve ser integrada a sintomas, riscos e decisão compartilhada; não é obrigação rígida.",
+            "diff": "medium",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "afterQuestionSHA256": "845645047fc8799e6a5c1267c80e1af5e0659623ff55bb98829e44f07d4a2da6",
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "Sugestão com evidência de muito baixa certeza, permitindo decisão individualizada."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "kdigo_anemia_2026",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO 2026 Anemia in CKD; Kidney International109(Suppl1S):S1–S99",
+              "locations": [
+                "Rec 3.2.1; p.50: início AEE em HD/DP",
+                "Rec 3.3.1; p.53: alvo Hb abaixo de11,5",
+                "PP3.1.2; p.48: causas corrigíveis",
+                "PP3.5.1; p.56: não combinar AEE/HIF-PHI",
+                "PP4.4 e texto p.66: transfusão",
+                "Rec2.4; p.19: escolha via ferro"
+              ],
+              "verifiedScope": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual."
+            },
+            "supports": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_anemia_2026": {
+            "label": "KDIGO Anemia in CKD 2026",
+            "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+            "journal": "Kidney International",
+            "ano": 2026,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+            "icon": "📋",
+            "resumo": "Em adultos com doença renal crônica (DRC), abordar causas corrigíveis antes de agentes estimuladores da eritropoiese (AEE) ou inibidores da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI): PP 3.1.2. AEE em vez de HIF-PHI como primeira linha: Rec 3.1.1 (2D). Em hemodiálise/diálise peritoneal, limiar de início de AEE na faixa de hemoglobina (Hb) 9–10 g/dL: Rec 3.2.1 (2D). Alvo de Hb abaixo de 11,5 g/dL com AEE: Rec 3.3.1 (1D). Sem hemodiálise, ferro oral ou intravenoso conforme contexto e preferências: Rec 2.4 (2D). Não combinar AEE/HIF-PHI: PP 3.5.1. Transfusão na anemia crônica guiada por sintomas/sinais, não limite arbitrário de Hb: PP 4.4. HIF-PHI na menor dose para objetivo clínico, sem exceder máximo: PP 3.5.4–3.5.5.",
+            "conclusao": "Aplicar recomendações e pontos de prática à população definida. Um ponto de prática não é recomendação graduada; início e transfusão são individualizados, e o alvo superior com AEE permanece abaixo de 11,5 g/dL.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            57,
+            54,
+            48,
+            38
+          ],
+          "afterLengths": [
+            82,
+            82,
+            65,
+            70
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito se refere ao AFTER exato, reavaliado após alterações; BEFORE não recebe aprovação retroativa.",
+        "cardDependencyReevaluation": {
+          "id": "kdigo_anemia_2026",
+          "afterCardSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+          "questionAfterSHA256": "845645047fc8799e6a5c1267c80e1af5e0659623ff55bb98829e44f07d4a2da6",
+          "claimsAndUnicityRechecked": true,
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Card agora identifica recomendações/PP e força/certeza. Os conceitos exigidos pela pergunta exata permanecem sustentados no KDIGO2026 aberto; reavaliada coerência da dependência."
+        }
+      },
+      {
+        "qid": "e56795a6",
+        "sourceLine": 4,
+        "sourceQuestionSHA256": "b36278a545e74ae730b12005c6aaabaa949c813cde2091d90461367637ef23f8",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Interpretar benefício e riscos do alvo pressórico intensivo no BPROAD sem generalizar a todas as pessoas com diabetes ou DRC.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Interpretar benefício e riscos do alvo pressórico intensivo no BPROAD sem generalizar a todas as pessoas com diabetes ou DRC.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Distratores originais mudam os alvos estudados e incluem populaçãoG5dialítica não estudada, permitindo descarte por pistas."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Correcta mais longa; preservar detalhes de população em vez de apagá-los."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "BPROAD — Controle Intensivo da PA no Diabetes Tipo 2",
+            "qid": "e56795a6",
+            "q": "Adulto com diabetes tipo 2, hipertensão e alto risco cardiovascular pergunta sobre o resultado do BPROAD. Qual interpretação é correta?",
+            "refs": [
+              "bproad"
+            ],
+            "opts": [
+              "Alvo de pressão arterial sistólica abaixo de 120 mmHg reduziu o composto cardiovascular primário em comparação com alvo abaixo de 140 mmHg",
+              "Alvo abaixo de 130 mmHg foi equivalente ao alvo abaixo de 150 mmHg para todos os desfechos cardiovasculares",
+              "Alvo abaixo de 120 mmHg aumentou eventos cardiovasculares e levou à interrupção precoce do estudo por dano",
+              "O benefício do controle intensivo ocorreu apenas em participantes com doença renal crônica G5 em diálise"
+            ],
+            "ans": 0,
+            "exp": "No BPROAD, adultos com diabetes tipo 2, hipertensão e maior risco cardiovascular foram randomizados para alvo de pressão arterial sistólica inferior a 120 mmHg ou inferior a 140 mmHg. O controle intensivo reduziu o desfecho primário composto cardiovascular (HR 0,79; IC95% 0,69–0,90). Hipotensão sintomática e hipercalemia foram mais frequentes, portanto o resultado apoia intensificação com medida adequada e monitorização, não aplicação automática a pessoas frágeis ou fora da população estudada.",
+            "diff": "medium",
+            "cat": "hipertensao"
+          },
+          "AFTER": {
+            "t": "BPROAD — Controle Intensivo da PA no Diabetes Tipo 2",
+            "qid": "e56795a6",
+            "q": "O BPROAD comparou alvos de pressão arterial sistólica <120 mmHg versus <140 mmHg em adultos com diabetes tipo 2, hipertensão e alto risco cardiovascular. Qual leitura dos resultados do controle intensivo é correta?",
+            "refs": [
+              "bproad"
+            ],
+            "opts": [
+              "Reduziu o composto cardiovascular primário, com mais hipotensão sintomática e hipercalemia.",
+              "Reduziu mortalidade geral, sem alterar o composto cardiovascular primário.",
+              "Aumentou o composto cardiovascular primário, interrompendo o estudo por dano.",
+              "Produziu resultados equivalentes no composto primário, favorecendo o alvo padrão."
+            ],
+            "ans": 0,
+            "exp": "O controle intensivo reduziu o composto primário (HR 0,79; IC 95% 0,69–0,90; P <0,001), mas exigiu atenção a hipotensão sintomática e hipercalemia. A população era selecionada; não se deve transformar o resultado em alvo universal nem confundir composto cardiovascular com mortalidade isolada.",
+            "diff": "medium",
+            "cat": "hipertensao"
+          },
+          "afterQuestionSHA256": "5651dfad81ba72f9585285374ec7b16ba6fec220f88af893a40957623e65886d",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Reduziu o composto cardiovascular primário, com mais hipotensão sintomática e hipercalemia."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "bproad",
+            "source": {
+              "url": "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2412006.pdf",
+              "opened": true,
+              "version": "BPROAD, publicaçãoonline16/11/2024; NEJM2025;392:1155–1167",
+              "locations": [
+                "Abstract",
+                "Patients",
+                "Table3 p11"
+              ],
+              "verifiedScope": "12821 adultosDM2/hipertensão/riscoCV; alvosPAS<120 versus<140; compostoHR0,79(IC95%0,69–0,90;P<0,001); hipotensão e hipercalemia mais frequentes; falência renal aguda4 versus5, resultado secundário não prova ausência de todo risco renal."
+            },
+            "supports": "12821 adultosDM2/hipertensão/riscoCV; alvosPAS<120 versus<140; compostoHR0,79(IC95%0,69–0,90;P<0,001); hipotensão e hipercalemia mais frequentes; falência renal aguda4 versus5, resultado secundário não prova ausência de todo risco renal.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "bproad": {
+            "label": "BPROAD Trial",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412006",
+            "journal": "N Engl J Med 2025;392(12):1155-1167",
+            "ano": 2025,
+            "tipo": "Ensaio Clínico Fase III",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "12.821 participantes: meta de PAS <120 mmHg reduziu o composto cardiovascular, com segurança renal grave semelhante entre os grupos",
+            "icon": "💊",
+            "resumo": "ECR multicêntrico chinês com 12.821 adultos com diabetes tipo 2, hipertensão e alto risco cardiovascular, comparando PAS alvo <120 mmHg versus <140 mmHg. O composto de AVC não fatal, IAM não fatal, tratamento ou internação por insuficiência cardíaca e morte cardiovascular ocorreu em 393 versus 492 participantes (HR 0,79; IC 95% 0,69–0,90). Eventos adversos graves foram semelhantes; insuficiência renal aguda ocorreu em 4 versus 5 participantes. Hipotensão sintomática e hipercalemia foram mais frequentes no grupo intensivo.",
+            "conclusao": "O BPROAD sustenta benefício cardiovascular do alvo intensivo na população estudada, com monitorização de hipotensão e potássio. Não demonstrou aumento de insuficiência renal aguda.",
+            "curiosidade": "Ao contrário do SPRINT, o BPROAD incluiu apenas pessoas com diabetes tipo 2 e testou diretamente a meta de PAS abaixo de 120 mmHg."
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            138,
+            107,
+            106,
+            104
+          ],
+          "afterLengths": [
+            91,
+            74,
+            77,
+            81
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito se refere ao AFTER exato, reavaliado após alterações; BEFORE não recebe aprovação retroativa.",
+        "exactVersionReevaluation": {
+          "previousAfterSHA256": "7d6f2a8d58d8993ea868992da0b769f85339c6705bc6f2aace9f88d5e6610205",
+          "afterSHA256": "5651dfad81ba72f9585285374ec7b16ba6fec220f88af893a40957623e65886d",
+          "evidenceRechecked": true,
+          "unicityAndOPRechecked": true,
+          "eliminatorsAfter": [],
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Nova versão exata cotejada com as fontes primárias abertas. FLOW preserva queda sustentada >=50%; BPROAD especifica hipotensão sintomática. SGLT2 remove frase acessória e expande filtração diretamente na alternativa, mantendo unidade e limiar. Demais ajustes são espaços. Qualificações, população, ordem e gabarito preservados.",
+          "publicationDerivation": "Handbook §18.4, regra 7(a); decisão após reavaliação, sem herança automática."
+        }
+      },
+      {
+        "qid": "70129a64",
+        "sourceLine": 5,
+        "sourceQuestionSHA256": "ad7f5ee0214f1636be0d4c6571e864fb6c4732daa1a0e15819a0885ed9d4529f",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Distinguir o desfecho clínico primário do FLOW de melhora metabólica e de slope isolado, na população com diabetes tipo 2 e DRC albuminúrica.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Distinguir o desfecho clínico primário do FLOW de melhora metabólica e de slope isolado, na populaçãoDM2comDRCalbuminúrica.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta original é única com percentagem e desfecho detalhado; distratores negam benefícios por pistas grosseiras."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "DRC/TFGe/MACE/SRAA não expandidos na primeira ocorrência e explicação faz posicionamento terapêutico além da leitura doRCT."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "FLOW — Semaglutida em DRC Diabética",
+            "qid": "70129a64",
+            "q": "No FLOW, ensaio com semaglutida 1 mg semanal em pacientes com diabetes tipo 2 e DRC albuminúrica, qual foi o principal resultado clínico?",
+            "refs": [
+              "flow_study"
+            ],
+            "opts": [
+              "Redução de HbA1c sem diferença em desfechos renais ou cardiovasculares",
+              "Redução de 24% no desfecho primário composto de eventos renais maiores ou morte renal/cardiovascular",
+              "Aumento de lesão renal aguda por efeito diurético osmótico direto",
+              "Benefício restrito à redução de peso, sem desaceleração da queda de TFGe"
+            ],
+            "ans": 1,
+            "exp": "O FLOW demonstrou redução de 24% no desfecho primário composto com semaglutida versus placebo em pacientes com DM2 e DRC albuminúrica. Esse composto incluía falência renal, queda sustentada de pelo menos 50% da TFGe e morte por causa renal ou cardiovascular. Além disso, os desfechos secundários confirmatórios favoreceram semaglutida, incluindo menor declínio anual de TFGe, menor MACE e menor mortalidade geral. Portanto, o ensino correto é: semaglutida passou de marcador metabólico para terapia com evidência renal clínica em DM2 com DRC, sem substituir SRAA/iSGLT2 quando indicados.",
+            "diff": "medium",
+            "cat": "nefropatia_diabetica"
+          },
+          "AFTER": {
+            "t": "FLOW — Semaglutida em DRC Diabética",
+            "qid": "70129a64",
+            "q": "No FLOW, semaglutida 1 mg por semana foi comparada a placebo em pacientes com diabetes tipo 2 e doença renal crônica (DRC) albuminúrica. Qual resultado clínico principal foi demonstrado?",
+            "refs": [
+              "flow_study"
+            ],
+            "opts": [
+              "Melhora glicêmica e ponderal, sem diferença no desfecho clínico primário.",
+              "Menos eventos renais maiores ou morte renal/cardiovascular no composto primário.",
+              "Menor declínio da filtração, sem redução de eventos clínicos no composto primário.",
+              "Menos eventos cardiovasculares, sem diferença no componente renal do composto."
+            ],
+            "ans": 1,
+            "exp": "Houve redução do composto primário: 331 versus 410 eventos, HR 0,76 (IC 95% 0,66–0,88), equivalente a 24% de redução relativa. O composto inclui falência renal, queda sustentada de pelo menos 50% da filtração e morte renal/cardiovascular; não se resume a peso, glicemia ou velocidade anual de queda da filtração. Não extrapolar além da população estudada.",
+            "diff": "medium",
+            "cat": "nefropatia_diabetica"
+          },
+          "afterQuestionSHA256": "642f0f2a2208be1fd7d3ec978063e1ef71fdb762c1a0221a19917da8deae4f44",
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "Menos eventos renais maiores ou morte renal/cardiovascular no composto primário."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "flow_study",
+            "source": {
+              "url": "https://mediacenteratypon.nejmgroup-production.org/NEJMoa2403347.pdf",
+              "opened": true,
+              "version": "FLOW, NEJM2024;391:109–121; DOI10.1056/NEJMoa2403347",
+              "locations": [
+                "Abstract",
+                "Participants",
+                "PrimaryOutcome and confirmatory secondary outcomes"
+              ],
+              "verifiedScope": "3533 participantesDM2/DRCalbuminúrica; semaglutida1mgsemanal versusplacebo; composto de falênciarenal/quedaTFGe≥50%/morterenal-CV:331vs410, HR0,76(IC95%0,66–0,88;P0,0003); secundáriosconfirmatóriosfavoráveis."
+            },
+            "supports": "3533 participantesDM2/DRCalbuminúrica; semaglutida1mgsemanal versusplacebo; composto de falênciarenal/quedaTFGe≥50%/morterenal-CV:331vs410, HR0,76(IC95%0,66–0,88;P0,0003); secundáriosconfirmatóriosfavoráveis.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "flow_study": {
+            "label": "FLOW Trial — Semaglutida (NEJM 2024)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2403347",
+            "journal": "N Engl J Med 2024;391(2):109-121",
+            "ano": 2024,
+            "tipo": "Ensaio Clínico RCT Fase III",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "↓24% desfecho renal composto · 1º RCT de GLP-1 com desfecho renal primário comprovado",
+            "icon": "🔬",
+            "resumo": "ECR fase III, n=3.533, semaglutida 1 mg semanal vs placebo em DM2 + DRC. Critérios: TFGe 50–75 com UACR >300–<5000 ou TFGe 25–<50 com UACR >100–<5000. Desfecho primário: falência renal, queda ≥50% da TFGe ou morte renal/CV. Semaglutida reduziu o desfecho primário: 331 vs 410 primeiros eventos; HR 0,76, IC 95% 0,66–0,88, P=0,0003. Também reduziu MACE: HR 0,82, IC 95% 0,68–0,98; mortalidade geral: HR 0,80, IC 95% 0,67–0,95; e desacelerou o declínio anual da TFGe em 1,16 mL/min/1,73m².",
+            "conclusao": "FLOW estabeleceu benefício renal primário da semaglutida em DM2 com DRC, posicionando GLP-1 RA como terapia complementar aos iSGLT2/SRAA/finerenona.",
+            "curiosidade": "O benefício renal provavelmente resulta de combinação de efeitos metabólicos, pressóricos, ponderais, anti-inflamatórios e hemodinâmicos; não reduzir a explicação a 'bloqueio do SRAA'."
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            70,
+            100,
+            65,
+            72
+          ],
+          "afterLengths": [
+            73,
+            80,
+            82,
+            78
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito se refere ao AFTER exato, reavaliado após alterações; BEFORE não recebe aprovação retroativa.",
+        "exactVersionReevaluation": {
+          "previousAfterSHA256": "b6c070be66ee03a076a8749146f153bec11608628b9a96efac91f4a2dd2ab628",
+          "afterSHA256": "642f0f2a2208be1fd7d3ec978063e1ef71fdb762c1a0221a19917da8deae4f44",
+          "evidenceRechecked": true,
+          "unicityAndOPRechecked": true,
+          "eliminatorsAfter": [],
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Nova versão exata cotejada com as fontes primárias abertas. FLOW preserva queda sustentada >=50%; BPROAD especifica hipotensão sintomática. SGLT2 remove frase acessória e expande filtração diretamente na alternativa, mantendo unidade e limiar. Demais ajustes são espaços. Qualificações, população, ordem e gabarito preservados.",
+          "publicationDerivation": "Handbook §18.4, regra 7(a); decisão após reavaliação, sem herança automática."
+        }
+      },
+      {
+        "qid": "8a565e5e",
+        "sourceLine": 9,
+        "sourceQuestionSHA256": "266daada1001bab7ce7cc9f230ed456b34cbf04418f5c355e1046bd05a9391ff",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Orientar o risco de micose genital com iSGLT2 sem considerar ITU remota não complicada como contraindicação automática quando há indicação renal.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Orientar o risco de micose genital com iSGLT2 sem considerar ITU remota não complicada como contraindicação automática quando há indicação renal.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta com duas qualificações seletivas; distractorTFGe>60confunde elegibilidade comrisco infeccioso."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "RefsRCTs orientam benefício, mas diretriz específica sustenta melhor a orientação de segurança cobrada."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "iSGLT2 — ITU vs Infecção Genital Micótica",
+            "qid": "8a565e5e",
+            "q": "Paciente com diabetes tipo 2 e DRC albuminúrica tem indicação de inibidor de SGLT2, mas relata receio de infecção urinária. Qual orientação resume melhor o perfil infeccioso dessa classe?",
+            "refs": [
+              "empa_kidney",
+              "dapa"
+            ],
+            "opts": [
+              "O principal sinal infeccioso é aumento de infecções genitais micóticas; ITU não costuma ser motivo para contraindicação automática",
+              "A classe é contraindicada em qualquer paciente com histórico remoto de ITU não complicada",
+              "O risco dominante é pielonefrite grave, por isso o uso deve ser evitado em DRC G3–G4",
+              "Os benefícios renais só ocorrem quando a TFGe é >60 mL/min/1,73m², faixa em que o risco infeccioso é menor"
+            ],
+            "ans": 0,
+            "exp": "O ponto prático é diferenciar infecção genital micótica de infecção urinária. Inibidores de SGLT2 aumentam glicosúria e, com isso, elevam o risco de candidíase genital; esse evento geralmente é reconhecível e tratável. Já ITU não complicada prévia, isoladamente, não é contraindicação automática quando há indicação renal/cardiovascular. DAPA-CKD e EMPA-KIDNEY sustentam benefício cardiorrenal em DRC albuminúrica ou DRC ampla dentro dos critérios de TFGe estudados, inclusive em TFGe bem abaixo de 60. A decisão deve individualizar risco, higiene, recorrência grave e orientação de sinais de alerta, sem transformar medo genérico de ITU em suspensão indevida de nefroproteção.",
+            "diff": "medium",
+            "cat": "nefropatia_diabetica"
+          },
+          "AFTER": {
+            "t": "iSGLT2 — ITU vs Infecção Genital Micótica",
+            "qid": "8a565e5e",
+            "q": "Pessoa com diabetes tipo 2 e doença renal crônica (DRC) albuminúrica tem indicação de inibidor do cotransportador de sódio-glicose 2 (SGLT2). Relata infecção do trato urinário (ITU) não complicada no passado, sem infecção atual. Qual orientação sobre o perfil infeccioso é mais adequada?",
+            "refs": [
+              "kdigo_ckd"
+            ],
+            "opts": [
+              "Orientar risco de micose genital, sem excluir o fármaco só por ITU remota não complicada.",
+              "Evitar o fármaco pela ITU remota, porque a infecção prévia determina contraindicação.",
+              "Evitar o fármaco na DRC avançada, porque predomina pielonefrite grave nesse contexto.",
+              "Adiar o fármaco até filtração glomerular estimada acima de 60 mL/min/1,73 m², para obter benefício renal."
+            ],
+            "ans": 0,
+            "exp": "O risco infeccioso característico é de micose genital, geralmente tratável. A maioria das ITUs não é atribuída à inibição do SGLT2; história remota isolada não impõe exclusão automática. Infecção atual, recorrência grave e preferências exigem avaliação individualizada. A indicação renal não depende de filtração acima de 60.",
+            "diff": "medium",
+            "cat": "nefropatia_diabetica"
+          },
+          "afterQuestionSHA256": "06c93d3c4e1b659d3e9e4df4e19e0fcbc6b3c57f3d741effb81d030bcb9f367b",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Orientar risco de micose genital, sem excluir o fármaco só por ITU remota não complicada."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "kdigo_ckd",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO2024 CKD",
+              "locations": [
+                "§3.7 SGLT2i: PDFp100 lines7727–7731",
+                "Recommendations3.7.1–3.7.2, PDFp43"
+              ],
+              "verifiedScope": "Maioria das ITUs não atribuída à inibiçãoSGLT2; risco aumentado de micose genital, usualmente tratável; indicação renal não limitada aTFGe>60."
+            },
+            "supports": "Maioria das ITUs não atribuída à inibiçãoSGLT2; risco aumentado de micose genital, usualmente tratável; indicação renal não limitada aTFGe>60.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_ckd": {
+            "label": "KDIGO CKD 2024",
+            "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "journal": "Kidney International",
+            "ano": 2024,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "icon": "📋",
+            "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+            "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+            "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp",
+            "refs"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            130,
+            89,
+            84,
+            106
+          ],
+          "afterLengths": [
+            89,
+            85,
+            85,
+            105
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito se refere ao AFTER exato, reavaliado após alterações; BEFORE não recebe aprovação retroativa.",
+        "exactVersionReevaluation": {
+          "previousAfterSHA256": "b19dd0abe11d67278a1efe21efbeb93c63510fbe948718f516200e186c3a0870",
+          "afterSHA256": "06c93d3c4e1b659d3e9e4df4e19e0fcbc6b3c57f3d741effb81d030bcb9f367b",
+          "evidenceRechecked": true,
+          "unicityAndOPRechecked": true,
+          "eliminatorsAfter": [],
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Nova versão exata cotejada com as fontes primárias abertas. FLOW preserva queda sustentada >=50%; BPROAD especifica hipotensão sintomática. SGLT2 remove frase acessória e expande filtração diretamente na alternativa, mantendo unidade e limiar. Demais ajustes são espaços. Qualificações, população, ordem e gabarito preservados.",
+          "publicationDerivation": "Handbook §18.4, regra 7(a); decisão após reavaliação, sem herança automática."
+        }
+      }
+    ],
+    "cardPatches": [
+      {
+        "id": "kdigo_anemia_2026",
+        "BEFORE": {
+          "label": "KDIGO Anemia in CKD 2026",
+          "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+          "journal": "Kidney International",
+          "ano": 2026,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+          "icon": "📋",
+          "resumo": "Diretriz KDIGO 2026 para anemia na DRC. Recomenda avaliar hemograma, reticulócitos, ferritina e saturação de transferrina e investigar causas reversíveis antes de iniciar ou escalar AEE. Reconhece que ferritina e saturação têm limitações e distingue deficiência sistêmica de ferro de eritropoiese restrita por ferro. Em adultos tratados com AEE, recomenda não manter hemoglobina acima de 11,5 g/dL; decisão de iniciar AEE e transfundir deve ser individualizada por sintomas, riscos, comorbidades e contexto de transplante.",
+          "conclusao": "O tratamento seguro da anemia renal começa por definir a causa e a disponibilidade de ferro; AEE, ferro, HIF-PHI e transfusão não devem ser usados para perseguir um número isolado de hemoglobina.",
+          "curiosidade": "A diretriz substituiu o termo “deficiência funcional de ferro” por “eritropoiese restrita por ferro”, destacando que o ferro pode estar armazenado, mas indisponível à medula por ação da hepcidina e da inflamação."
+        },
+        "AFTER": {
+          "label": "KDIGO Anemia in CKD 2026",
+          "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+          "journal": "Kidney International",
+          "ano": 2026,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+          "icon": "📋",
+          "resumo": "Em adultos com doença renal crônica (DRC), abordar causas corrigíveis antes de agentes estimuladores da eritropoiese (AEE) ou inibidores da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI): PP 3.1.2. AEE em vez de HIF-PHI como primeira linha: Rec 3.1.1 (2D). Em hemodiálise/diálise peritoneal, limiar de início de AEE na faixa de hemoglobina (Hb) 9–10 g/dL: Rec 3.2.1 (2D). Alvo de Hb abaixo de 11,5 g/dL com AEE: Rec 3.3.1 (1D). Sem hemodiálise, ferro oral ou intravenoso conforme contexto e preferências: Rec 2.4 (2D). Não combinar AEE/HIF-PHI: PP 3.5.1. Transfusão na anemia crônica guiada por sintomas/sinais, não limite arbitrário de Hb: PP 4.4. HIF-PHI na menor dose para objetivo clínico, sem exceder máximo: PP 3.5.4–3.5.5.",
+          "conclusao": "Aplicar recomendações e pontos de prática à população definida. Um ponto de prática não é recomendação graduada; início e transfusão são individualizados, e o alvo superior com AEE permanece abaixo de 11,5 g/dL.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "abf6ac5c382678150bc96c0686e03769e1021cf346fa9b3e61e4c7f519e56843",
+        "afterSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+        "usedByQids": [
+          "43834a55",
+          "74186985",
+          "1e6a4479"
+        ],
+        "sources": [
+          {
+            "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+            "opened": true,
+            "version": "KDIGO 2026 Anemia in CKD; Kidney International109(Suppl1S):S1–S99",
+            "locations": [
+              "Rec 3.2.1; p.50: início AEE em HD/DP",
+              "Rec 3.3.1; p.53: alvo Hb abaixo de11,5",
+              "PP3.1.2; p.48: causas corrigíveis",
+              "PP3.5.1; p.56: não combinar AEE/HIF-PHI",
+              "PP4.4 e texto p.66: transfusão",
+              "Rec2.4; p.19: escolha via ferro"
+            ],
+            "verifiedScope": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual."
+          }
+        ],
+        "newExactVersionReview": {
+          "previousAfterSHA256": "266163af582a5eef2c617759ef9ea4d95871e2c39a51de1af0e01714120e450c",
+          "afterSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+          "verdictV2": "aprovada com pequenos ajustes",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "reason": "Card completo reavaliado no texto primário KDIGO2026. Rec3.1.1/3.2.1/2.4 são2D; Rec3.3.1 é1D; PP3.1.2/3.5.1/3.5.4–5/4.4 não recebem grade inventado. Populações e contexto mantidos.",
+          "derivation": "Handbook §18.4 regra7(a)."
+        },
+        "implementation": "Aplicar somente se BEFORE real for idêntico e questão dependente estiver LIBERADA; não implica liberar item bloqueado."
+      },
+      {
+        "id": "vadadustat_trial",
+        "BEFORE": {
+          "label": "PRO2TECT Trial (Vadadustat em DRC não dialítica)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2035938",
+          "journal": "N Engl J Med 2021;384(17):1589-1600",
+          "ano": 2021,
+          "tipo": "Ensaio clínico randomizado",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Eficácia hematológica preservada, mas falha em não inferioridade cardiovascular",
+          "icon": "🔬",
+          "resumo": "PRO2TECT: dois ensaios fase 3, randomizados, abertos e controlados por darbepoetina alfa, reunindo 3.476 pacientes com anemia e DRC não dialítica. O vadadustat foi não inferior para mudança de hemoglobina, mas no desfecho primário de segurança cardiovascular (MACE: morte por qualquer causa, infarto não fatal ou AVC não fatal) o HR foi 1,17 (IC95% 1,01–1,36), não atingindo a margem pré-especificada de não inferioridade.",
+          "conclusao": "Em DRC não dialítica, o vadadustat corrige anemia, mas a segurança cardiovascular impediu tratar a classe como equivalente aos AEE nessa população.",
+          "curiosidade": "O programa PRO2TECT contrastou com os estudos INNO2VATE em pacientes dialíticos, nos quais o vadadustat atingiu não inferioridade cardiovascular versus darbepoetina alfa."
+        },
+        "AFTER": {
+          "label": "PRO2TECT Trial (Vadadustat em DRC não dialítica)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2035938",
+          "journal": "N Engl J Med 2021;384(17):1589-1600",
+          "ano": 2021,
+          "tipo": "Ensaio clínico randomizado",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Eficácia hematológica preservada, mas falha em não inferioridade cardiovascular",
+          "icon": "🔬",
+          "resumo": "PRO2TECT: dois ensaios fase 3, randomizados, abertos e controlados por darbepoetina alfa, reunindo 3.476 pacientes com anemia e DRC não dialítica. O vadadustat foi não inferior para mudança de hemoglobina, mas no desfecho primário de segurança cardiovascular (MACE: morte por qualquer causa, infarto não fatal ou AVC não fatal) o HR foi 1,17 (IC95% 1,01–1,36), não atingindo a margem pré-especificada de não inferioridade.",
+          "conclusao": "Em DRC não dialítica, vadadustat atingiu não inferioridade hematológica, mas não cardiovascular versus darbepoetina; não extrapolar equivalência entre populações ou toda a classe.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "6c0024e56c5700071510f1f2ca497be162de79fadbff5d8595502bf43c6ff8f3",
+        "afterSHA256": "0dbee91746c28c2ba88b7fa3adfd04509b261ac589980ac31b341b8fdde7e619",
+        "usedByQids": [
+          "28bdfaec"
+        ],
+        "sources": [
+          {
+            "url": "https://pubmed.ncbi.nlm.nih.gov/33913637/",
+            "opened": true,
+            "version": "Chertow etal. NEJM2021;384:1589–1600; DOI10.1056/NEJMoa2035938",
+            "accessLevel": "Registro primário com abstract integral; PDFs do editor indisponíveis",
+            "locations": [
+              "Abstract methods/results/conclusions, lines231–237"
+            ],
+            "verifiedScope": "Dois RCTs abertos;1751+1725=3476 randomizados; eficáciaHb nãoinferior; MACEHR1,17(IC95%1,01–1,36), margem1,25 não atingida."
+          }
+        ],
+        "newExactVersionReview": {
+          "verdictV2": "aprovada com pequenos ajustes",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "derivation": "Handbook18.4Regra7(a); AFTER exato reavaliado na fonte primária aberta, sem nova dose ou causalidade indevida."
+        },
+        "implementation": "Aplicar somente se BEFORE real for idêntico e questão dependente estiver LIBERADA; não implica liberar item bloqueado."
+      },
+      {
+        "id": "ici_aki_cortazar_multicenter_2020",
+        "BEFORE": {
+          "label": "Cortazar et al. — LRA por Inibidores de Checkpoint: estudo multicêntrico (2020)",
+          "url": "https://doi.org/10.1681/ASN.2019070676",
+          "journal": "Journal of the American Society of Nephrology",
+          "ano": 2020,
+          "tipo": "Coorte multicêntrica",
+          "badge": "COORTE",
+          "badgeColor": "#f59e0b",
+          "impacto": "Maior série de LRA por inibidores de checkpoint (n=138): NTIA predominante; corticosteroide associado a melhor recuperação renal",
+          "icon": "🔬",
+          "resumo": "Estudo multicêntrico (Cortazar et al., Journal of the American Society of Nephrology 2020; n=138 pacientes com LRA associada a inibidores de checkpoint, definida por aumento de pelo menos 2 vezes na creatinina ou necessidade de diálise, além de 276 controles). Fatores de risco independentes: menor TFGe basal, uso de inibidor de bomba de prótons e imunoterapia combinada. Tempo mediano do início do inibidor de checkpoint à LRA de 14 semanas (6–37). A nefrite tubulointersticial foi a lesão dominante em 93% dos 60 pacientes biopsiados. A maioria (86%) recebeu corticosteroide; recuperação renal completa, parcial ou ausente em 40%, 45% e 15%. O tratamento com corticosteroide associou-se a melhor prognóstico renal (associação observacional). Rechallenge com inibidor de checkpoint em 22%, com recidiva da LRA em 23% desses.",
+          "conclusao": "Maior evidência sobre a LRA por inibidores de checkpoint: predomínio de nefrite tubulointersticial, associação observacional entre corticosteroide e melhor recuperação, e recidiva em cerca de um quarto dos pacientes reexpostos — sustentando conduta individualizada de rechallenge.",
+          "curiosidade": ""
+        },
+        "AFTER": {
+          "label": "Cortazar et al. — LRA por Inibidores de Checkpoint: estudo multicêntrico (2020)",
+          "url": "https://doi.org/10.1681/ASN.2019070676",
+          "journal": "Journal of the American Society of Nephrology",
+          "ano": 2020,
+          "tipo": "Coorte",
+          "badge": "COHORT",
+          "badgeColor": "#f59e0b",
+          "impacto": "Nefrite intersticial predomina; rechallenge exige avaliação individualizada.",
+          "icon": "🔬",
+          "resumo": "Coorte multicêntrica de 138 casos de LRA por inibidores de checkpoint e 276 controles. Nefrite tubulointersticial em 93% dos 60 biopsiados. Corticosteroide associou-se a recuperação; não demonstra causalidade. Recidiva em 23% dos 31 reexpostos.",
+          "conclusao": "A coorte descreve apresentação e desfechos; não substitui consenso terapêutico atual.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "62da72bcb99282c24f839004926b127ef157ae816e0f469616cc522ce11d5fba",
+        "afterSHA256": "eb239435eef83902c0405b3ceaaadaa3baf97fd2aba01faae266156714495ae6",
+        "usedByQids": [
+          "f769660d"
+        ],
+        "sources": [
+          {
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7003302/",
+            "opened": true,
+            "version": "Cortazar et al., JASN 2020;31:435–446",
+            "locations": [
+              "Abstract",
+              "Results: rechallenge",
+              "Discussion"
+            ],
+            "verifiedScope": "Coorte de 138 casos e 276 controles; 93% dos 60 biopsiados com nefrite tubulointersticial; associação, não causalidade, entre corticosteroide e recuperação; recidiva em 23% dos 31 reexpostos."
+          }
+        ],
+        "newExactVersionReview": {
+          "verdictV2": "aprovada com pequenos ajustes",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "derivation": "Handbook18.4Regra7(a); AFTER exato reavaliado na fonte primária aberta, sem nova dose ou causalidade indevida."
+        },
+        "implementation": "Aplicar somente se BEFORE real for idêntico e questão dependente estiver LIBERADA; não implica liberar item bloqueado."
+      }
+    ],
+    "referenceCardVerificationScope": "Refs reais idênticas ao snapshot são preservadas. Checagem cobre afirmações decisivas para os itens. Só cards com patch são propostos para alteração; esses AFTER foram reavaliados. Não é revisão global de todos os tópicos de cards compartilhados.",
+    "counts": {
+      "reviewed": 8,
+      "publicationReleased": 8,
+      "publicationBlocked": 0,
+      "implemented": 0
+    },
+    "limits": [
+      "Revisor único com etapa adversarial interna; solicitar checagem independente das versões exatas antes de integração.",
+      "PRO2TECT conferido no abstract primário completo; detalhes não presentes não adicionados.",
+      "Nenhum banco/checkout/git editado.",
+      "Lotes004–035 permanecem não revisados.",
+      "Estudo específico não é guideline universal; não chamar métricas de qualidade clínica."
+    ],
+    "revision": "Checkpoint: card KDIGO anemia com recomendações, PP e graus explícitos; reavaliação exata da dependência. C002 também remove história editorial da explicação f44b5edc.",
+    "supersedes": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 108125,
+      "sha256": "8a1dd0b85c687dcc3a13a03ce11b1591cfad722f0cb61e900db2f4e3ff7a8fa7"
+    }
+  }
+}

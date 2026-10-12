@@ -1,0 +1,2299 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 95560,
+  "sourceReportSHA256": "64bf5cabfe631640a41099f34968253286c4a0fcfd02ef1a087b69e63924bb41",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_FORMAL_BATCH_REVIEW_A1",
+    "group": "a",
+    "batch": 1,
+    "reviewedAtOfficialUTC": "2026-10-12T17:06:29Z",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "bankLF_SHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "input": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 15767,
+      "sha256": "a06103cf47c1d38cfa222551a04b5410e73eea90902b82c578bf807e4465e80c"
+    },
+    "reviewer": "clinical_review_a",
+    "mode": "revisar-nefroquest formal; proposals only; no source edits",
+    "normativePins": [
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      }
+    ],
+    "sourceRegistry": {
+      "ahrq_mg": {
+        "title": "Safe Medication Administration: Magnesium Sulfate",
+        "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+        "organization": "Agency for Healthcare Research and Quality",
+        "year": 2023,
+        "opened": true,
+        "locator": "Monitoring and toxicity table; lines 88-115; page last reviewed July 2023",
+        "supports": "Perda do reflexo patelar precede depressão respiratória; monitorização clínica e resposta à toxicidade.",
+        "limits": "Guia de segurança perinatal, sem recomendação GRADE; usado para toxicidade de MgSO4, não como diretriz geral de DRC."
+      },
+      "dailymed_mg": {
+        "title": "Magnesium Sulfate — Sun Pharmaceutical Industries",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=efadcb55-f935-4c60-b2e2-0a76b9194b50",
+        "organization": "DailyMed/NLM; bula do fabricante",
+        "year": 2026,
+        "opened": true,
+        "locator": "Precautions, lines 216-218; current version January 30, 2026",
+        "supports": "Redução dos reflexos profundos progride com toxicidade; arreflexia e paralisia respiratória são sinais graves.",
+        "limits": "Não foram reproduzidas doses ou limiares numéricos na proposta."
+      },
+      "gitelman_2017": {
+        "title": "Gitelman syndrome: consensus and guidance from a KDIGO Controversies Conference",
+        "url": "https://kdigo.org/wp-content/uploads/2017/02/KDIGO-Gitelman-conf-report.pdf",
+        "organization": "KDIGO; Kidney International 91:24–33",
+        "year": 2017,
+        "doi": "10.1016/j.kint.2016.09.046",
+        "opened": true,
+        "locator": "pp.24–26: SLC12A3/NCC, fenótipo e diferencial com Bartter; p.29: condrocalcinose",
+        "supports": "Gitelman decorre de perda de função do NCC; hipocalciúria/hipomagnesemia são características; Bartter clássico pode ter Mg normal ou sobreposição Gitelman-like.",
+        "limits": "Consenso de doença rara; não confirma a alegação de reabsorção passiva de cálcio distal nem todos os detalhes moleculares de CPPD."
+      },
+      "ucl_gitelman_card": {
+        "title": "UCL Discovery record of the Gitelman consensus",
+        "url": "https://discovery.ucl.ac.uk/id/eprint/1534450/",
+        "opened": true,
+        "supports": "URL do card existente resolve para registro institucional do mesmo consenso.",
+        "limits": "A conferência científica foi conferida no PDF oficial KDIGO."
+      },
+      "kdigo_ckd_2024": {
+        "title": "KDIGO 2024 Clinical Practice Guideline for the Evaluation and Management of CKD",
+        "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+        "organization": "KDIGO; Kidney International 105(4S):S117–S314",
+        "year": 2024,
+        "opened": true,
+        "locator": "Practice Points 3.10.1–3.10.2; PDF pp.44,106",
+        "supports": "Considerar tratamento farmacológico com ou sem intervenção dietética para acidose com implicação clínica, exemplificada por HCO3 <18 mmol/L em adultos; monitorar bicarbonato, PA, K e volemia.",
+        "limits": "Practice points, não recomendação graduada; não afirmam benefício renal duro comprovado."
+      },
+      "kdigo_ckd_card": {
+        "title": "CKD Evaluation and Management — KDIGO",
+        "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "opened": true,
+        "supports": "Página oficial do card existente; versão 2024.",
+        "limits": "Verificação desta revisão é da afirmação de acidose, não nova revisão de todos os tópicos do card global."
+      },
+      "bartter_2021": {
+        "title": "Diagnosis and management of Bartter syndrome: ERKNet consensus",
+        "url": "https://www.kidney-international.org/article/S0085-2538%2820%2931404-6/fulltext",
+        "year": 2021,
+        "doi": "10.1016/j.kint.2020.10.035",
+        "opened": false,
+        "failure": "Texto integral não recuperado; PDF do editor e página ERKNet retornaram 403/erro; registro PubMed insuficiente neste canal.",
+        "limits": "Não tratado como fonte clínica decisiva conferida."
+      },
+      "romk_2010": {
+        "title": "Magnesium Modulates ROMK Channel–Mediated Potassium Secretion",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3014024/",
+        "year": 2010,
+        "opened": false,
+        "failure": "Página aberta retornou apenas desafio reCAPTCHA; snippet não substitui texto primário.",
+        "limits": "Mecanismo permanece VERIFICAÇÃO NECESSÁRIA."
+      },
+      "prenatal_2025_rejected": {
+        "title": "Prenatal Diagnosis of Bartter Syndrome: Lessons From a Complex Diagnostic Procedure",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12391724/",
+        "year": 2025,
+        "opened": true,
+        "usedForApproval": false,
+        "locator": "Tabela2 e discussão",
+        "reasonNotDecisive": "Relato apresenta variantes SLC12A1 de significado incerto como diagnóstico; discussão cita SLC12A2 para tipo1. Não substitui consenso específico na aprovação."
+      }
+    },
+    "verifiedExistingCards": {
+      "gitelman_kdigo_2017": {
+        "label": "Blanchard A et al. — Gitelman Syndrome: KDIGO Controversies Conference (2017)",
+        "url": "https://discovery.ucl.ac.uk/id/eprint/1534450/",
+        "journal": "Kidney Int 2017;91(1):24-33",
+        "ano": 2017,
+        "tipo": "Consenso KDIGO",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Diagnóstico e manejo da síndrome de Gitelman: hipocalemia, alcalose metabólica, hipomagnesemia, hipocalciúria e SLC12A3/NCC",
+        "icon": "📋",
+        "resumo": "Consenso de conferência KDIGO sobre síndrome de Gitelman, uma tubulopatia perdedora de sal causada por mutações inativantes em SLC12A3, gene do cotransportador NaCl sensível a tiazídicos (NCC) no túbulo contornado distal. Caracteriza o fenótipo clássico por alcalose metabólica hipocalêmica, hipomagnesemia e hipocalciúria, geralmente com apresentação mais tardia que Bartter. O manejo é individualizado e costuma combinar liberalização de sal, suplementação de potássio e magnésio e seguimento para sintomas, qualidade de vida, arritmias e complicações.",
+        "conclusao": "Gitelman deve ser reconhecida pelo padrão de hipocalemia + alcalose metabólica + hipomagnesemia + hipocalciúria, distinguindo-se de Bartter pela localização distal/NCC e pelo perfil cálcio-magnésio.",
+        "curiosidade": "O fenótipo de Gitelman imita um 'tiazídico genético': o defeito fica no mesmo cotransportador que a hidroclorotiazida bloqueia, mas com consequências crônicas sobre magnésio e cálcio urinário."
+      },
+      "kdigo_ckd": {
+        "label": "KDIGO CKD 2024",
+        "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "journal": "Kidney International",
+        "ano": 2024,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+        "icon": "📋",
+        "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+        "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+        "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+      }
+    },
+    "cardPatches": [
+      {
+        "id": "magnesium_sulfate_toxicity_ahrq",
+        "action": "UPDATE_EXISTING_ONLY_IF_ITEM_IS_APPLIED",
+        "before": {
+          "label": "AHRQ — Safe Medication Administration: Magnesium Sulfate",
+          "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+          "journal": "Agency for Healthcare Research and Quality",
+          "ano": 2024,
+          "tipo": "Guia de Segurança Medicamentosa",
+          "badge": "SAFETY",
+          "badgeColor": "#f97316",
+          "impacto": "Sinais de toxicidade por sulfato de magnésio e resposta com gluconato de cálcio",
+          "icon": "⚠️",
+          "resumo": "Ferramenta de segurança perinatal sobre administração de sulfato de magnésio. Lista faixa terapêutica, progressão clínica da toxicidade e resposta operacional: perda de reflexo patelar como sinal precoce, seguida por sonolência, depressão respiratória, paralisia, alteração de condução cardíaca e parada em níveis muito elevados. Recomenda acesso rápido ao antídoto, gluconato de cálcio, além de suspender a infusão e oferecer suporte ventilatório quando houver toxicidade.",
+          "conclusao": "A monitorização clínica do reflexo patelar e da respiração é central durante MgSO4; toxicidade exige suspender magnésio e administrar gluconato de cálcio se houver depressão significativa.",
+          "curiosidade": "O magnésio é terapêutico na pré-eclâmpsia justamente por modular excitabilidade neuromuscular; quando passa do ponto, a mesma fisiologia vira toxicidade."
+        },
+        "after": {
+          "label": "AHRQ — Safe Medication Administration: Magnesium Sulfate",
+          "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+          "journal": "Agency for Healthcare Research and Quality",
+          "ano": 2023,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Monitorização dos reflexos e da respiração durante infusão de magnésio",
+          "icon": "📋",
+          "resumo": "Guia oficial de segurança perinatal da AHRQ, revisado em julho2023. Orienta monitorização clínica durante infusão de sulfato de magnésio e apresenta perda do reflexo patelar antes de depressão respiratória na progressão da toxicidade. A suspeita exige interromper a infusão, avaliar a respiração e acionar resposta apropriada. Não é ensaio clínico nem recomendação GRADE.",
+          "conclusao": "A redução dos reflexos profundos é sinal de alerta e deve ser interpretada junto à monitorização respiratória e ao contexto clínico.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "924de1a8b0444feaa7a33f2f66f96aca24933ee7740a0b48a411511b72410067",
+        "afterSHA256": "f986338d2f7e44dd4ea48eb49bb83c23613f5e9e1c4c3d0dd7894f23f049b2e2",
+        "verifiedSourceIds": [
+          "ahrq_mg"
+        ],
+        "reason": "Corrigir ano2024 não sustentado pela página e adequar taxonomia; manter ID estável."
+      }
+    ],
+    "cardVerificationScope": "Gabarito e alegações efetivamente usadas por cada proposta; não aprovação global de todo conteúdo previamente publicado no card KDIGO.",
+    "summary": {
+      "inputQuestions": 8,
+      "reviewed": 8,
+      "originalApproved": 0,
+      "proposalsReleased": 4,
+      "proposalsBlocked": 4,
+      "notReviewedInGroup": 235,
+      "actualBankEdits": 0
+    },
+    "items": [
+      {
+        "qid": "86ad6fc4",
+        "sourceLine": 93,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Versão original exige correções e tem veredito revisão maior; Handbook18.4 Regra7(c).",
+        "OP": "Reconhecer redução dos reflexos profundos como alerta neuromuscular de toxicidade por magnésio, antes de comprometimento respiratório.",
+        "classification": {
+          "primaryCompetency": "reconhecimento de toxicidade medicamentosa",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "MAIOR — referências originais genéricas não sustentam especificamente o sinal de toxicidade.",
+          "MENOR — letra fixa na explicação; correta identificável por extensão.",
+          "MENOR — arreflexia é progressão de hiporreflexia; evitar confundir primeiro alerta com quadro já avançado."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "MAIOR — referências originais genéricas não sustentam especificamente o sinal de toxicidade.",
+            "MENOR — letra fixa na explicação; correta identificável por extensão.",
+            "MENOR — arreflexia é progressão de hiporreflexia; evitar confundir primeiro alerta com quadro já avançado."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório; não pontuar versão original como aprovação."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — conferir evidência e pendência",
+            "1 — eliminatórios reais",
+            "revisão maior para reescrita"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote001 e OP descritos; não auditoria integral de duplicatas do banco",
+          "finding": "Nenhuma coincidência nas quatro dimensões entre os oito OPs deste lote; sem ordem de fundir."
+        },
+        "sources": [
+          {
+            "sourceId": "ahrq_mg",
+            "claimSupport": "Perda do reflexo patelar precede depressão respiratória; monitorização clínica e resposta à toxicidade.",
+            "opened": true
+          },
+          {
+            "sourceId": "dailymed_mg",
+            "claimSupport": "Redução dos reflexos profundos progride com toxicidade; arreflexia e paralisia respiratória são sinais graves.",
+            "opened": true
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Hipermagnesemia Grave: Manifestações Clínicas",
+            "qid": "86ad6fc4",
+            "q": "Qual é o sinal clínico precoce de toxicidade por magnésio que precede a depressão respiratória?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Hiperreflexia",
+              "Hipertensão arterial severa",
+              "Taquicardia sinusal",
+              "Abolição dos reflexos tendinosos profundos"
+            ],
+            "ans": 3,
+            "exp": "A manifestação neuromuscular típica mais precoce de toxicidade por magnésio clinicamente relevante é a hiporreflexia, que pode evoluir para abolição dos reflexos tendinosos profundos antes de depressão respiratória e bloqueio neuromuscular mais grave; por isso a alternativa D é a melhor resposta entre as opções. Hiperreflexia não é esperada na hipermagnesemia, e sim na hipomagnesemia ou em estados hiperadrenérgicos. Hipertensão grave e taquicardia sinusal não são marcadores clássicos iniciais de intoxicação magnésica.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "after": {
+            "t": "Hipermagnesemia Grave: Manifestações Clínicas",
+            "qid": "86ad6fc4",
+            "q": "Durante uma infusão de sulfato de magnésio, a equipe monitora sinais de toxicidade. Qual alteração do exame neurológico costuma sinalizar toxicidade antes da depressão respiratória?",
+            "refs": [
+              "magnesium_sulfate_toxicity_ahrq"
+            ],
+            "opts": [
+              "Intensificação dos reflexos profundos",
+              "Surgimento de clônus patelar sustentado",
+              "Aumento do tônus com rigidez muscular",
+              "Hiporreflexia, com possível arreflexia"
+            ],
+            "ans": 3,
+            "exp": "A redução dos reflexos tendinosos profundos é um alerta de toxicidade por magnésio e pode evoluir para arreflexia antes do comprometimento respiratório. A monitorização deve acompanhar também respiração e estado clínico; nenhum achado isolado substitui essa avaliação. Hiperreflexia, clônus e rigidez não representam o padrão depressor neuromuscular esperado.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "beforeSHA256": "406064062ff84487f7cf88d6acd1561b1d17bfebe810a6f66db8b4b9b2f9bfa4",
+          "afterSHA256": "c99e41f34b2a44c469cb5d99740a18be7858e285169f3e53d1041929521ee1e7",
+          "hashDefinition": "SHA256 do JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves preservada",
+          "changedFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 3,
+            "sourceLetter": "D",
+            "text": "Hiporreflexia, com possível arreflexia"
+          },
+          "implementation": "Preservar qid, posição física do item e ans. Aplicar apenas proposta LIBERADA de bytes idênticos; referência por ID existente. Trocar diff apenas se listado em changedFields, por classificação formal do OP. Histórico e FSRS mantidos conforme Handbook18.5. Não editar neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "c99e41f34b2a44c469cb5d99740a18be7858e285169f3e53d1041929521ee1e7",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a) LIBERADA: evidência VERIFICADA + NENHUMA + aprovação.",
+          "appeal": {
+            "plausible": false,
+            "finding": "Diferenciados o alerta inicial (hiporreflexia) e sua evolução (arreflexia); enunciado delimita exposição medicamentosa e monitorização. Nenhuma segunda opção descreve o padrão da toxicidade."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente"
+          },
+          "decision": {
+            "path": [
+              "0 — VERIFICADA/NENHUMA permite continuar",
+              "1 — nenhum eliminatório após correção",
+              "2 — recurso plausível resolvido na versão proposta",
+              "3 — score19/20 → aprovada"
+            ],
+            "lifeCycle": "em_reparo"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "orderPreserved": true,
+            "noLetterReferenceInProposedExplanation": true,
+            "sourcesOpenedForDecisiveClaims": true,
+            "noNewUnverifiedDoseOrNumber": true
+          },
+          "verificationPending": []
+        }
+      },
+      {
+        "qid": "b933be69",
+        "sourceLine": 131,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Versão original exige correções e tem veredito revisão maior; Handbook18.4 Regra7(c).",
+        "OP": "Identificar o NCC como transportador com perda de função na síndrome de Gitelman associada à hipocalciúria.",
+        "classification": {
+          "primaryCompetency": "interpretação de mecanismo tubular",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "CRÍTICO — explicação apresenta reabsorção passiva de cálcio no túbulo distal como mecanismo estabelecido; o detalhe não está sustentado pelo consenso.",
+          "MAIOR — referência KDIGO DRC é inespecífica para Gitelman.",
+          "MENOR — correta é a única alternativa expandida com nome e localização; referência à letra fixa."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "CRÍTICO — explicação apresenta reabsorção passiva de cálcio no túbulo distal como mecanismo estabelecido; o detalhe não está sustentado pelo consenso.",
+            "MAIOR — referência KDIGO DRC é inespecífica para Gitelman.",
+            "MENOR — correta é a única alternativa expandida com nome e localização; referência à letra fixa."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório; não pontuar versão original como aprovação."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — conferir evidência e pendência",
+            "1 — eliminatórios reais",
+            "revisão maior para reescrita"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote001 e OP descritos; não auditoria integral de duplicatas do banco",
+          "finding": "Nenhuma coincidência nas quatro dimensões entre os oito OPs deste lote; sem ordem de fundir."
+        },
+        "sources": [
+          {
+            "sourceId": "gitelman_2017",
+            "claimSupport": "Gitelman decorre de perda de função do NCC; hipocalciúria/hipomagnesemia são características; Bartter clássico pode ter Mg normal ou sobreposição Gitelman-like.",
+            "opened": true
+          },
+          {
+            "sourceId": "ucl_gitelman_card",
+            "claimSupport": "URL do card existente resolve para registro institucional do mesmo consenso.",
+            "opened": true
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Síndrome de Gitelman e Hipocalciúria",
+            "qid": "b933be69",
+            "q": "Na Síndrome de Gitelman, a hipocalciúria ocorre devido à inibição de qual transportador?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "ENaC por ativação direta",
+              "Aquaporina 2 por retroalimentação negativa",
+              "NKCC2 por ativação direta",
+              "NCC (Transportador de Sódio-Cloreto no túbulo distal)"
+            ],
+            "ans": 3,
+            "exp": "A Síndrome de Gitelman é causada por mutações no gene SLC12A3, que codifica o cotransportador Na⁺/Cl⁻ (NCC) no túbulo contorcido distal — correspondente à alternativa D. A inibição do NCC leva à queda de sódio luminal, que aumenta a reabsorção passiva de cálcio no túbulo distal, resultando em hipocalciúria. O ENaC, a aquaporina-2 e o NKCC2 não estão envolvidos nesse mecanismo.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "after": {
+            "t": "Síndrome de Gitelman e Hipocalciúria",
+            "qid": "b933be69",
+            "q": "Na síndrome de Gitelman, a combinação de hipocalciúria, hipomagnesemia e alcalose metabólica hipocalêmica está associada à perda de função de qual transportador tubular?",
+            "refs": [
+              "gitelman_kdigo_2017"
+            ],
+            "opts": [
+              "Canal de sódio epitelial (ENaC)",
+              "Aquaporina de água (AQP2)",
+              "Cotransportador de sódio-potássio-cloreto (NKCC2)",
+              "Cotransportador de sódio-cloreto (NCC)"
+            ],
+            "ans": 3,
+            "exp": "O NCC é o cotransportador codificado pelo SLC12A3 e afetado na síndrome de Gitelman. A alteração acompanha hipocalciúria e hipomagnesemia, embora o fenótipo varie. A resposta identifica o defeito tubular; não pressupõe que a reabsorção de cálcio seja passiva no segmento distal.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "beforeSHA256": "83e939b035fe525c48bfc6512705c2dbdc96e162fa3e13f1172785df43762cb0",
+          "afterSHA256": "9f1cd0d99445d9738b39e013e217e65f467127caab0e3b92d00ccfdb520df05b",
+          "hashDefinition": "SHA256 do JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves preservada",
+          "changedFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 3,
+            "sourceLetter": "D",
+            "text": "Cotransportador de sódio-cloreto (NCC)"
+          },
+          "implementation": "Preservar qid, posição física do item e ans. Aplicar apenas proposta LIBERADA de bytes idênticos; referência por ID existente. Trocar diff apenas se listado em changedFields, por classificação formal do OP. Histórico e FSRS mantidos conforme Handbook18.5. Não editar neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "9f1cd0d99445d9738b39e013e217e65f467127caab0e3b92d00ccfdb520df05b",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a) LIBERADA: evidência VERIFICADA + NENHUMA + aprovação.",
+          "appeal": {
+            "plausible": false,
+            "finding": "Comando identifica o transportador do defeito, sem exigir um mecanismo secundário controverso da hipocalciúria. NCC é a única opção sustentada pelo consenso."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente"
+          },
+          "decision": {
+            "path": [
+              "0 — VERIFICADA/NENHUMA permite continuar",
+              "1 — nenhum eliminatório após correção",
+              "2 — recurso plausível resolvido na versão proposta",
+              "3 — score19/20 → aprovada"
+            ],
+            "lifeCycle": "em_reparo"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "orderPreserved": true,
+            "noLetterReferenceInProposedExplanation": true,
+            "sourcesOpenedForDecisiveClaims": true,
+            "noNewUnverifiedDoseOrNumber": true
+          },
+          "verificationPending": []
+        }
+      },
+      {
+        "qid": "f676438e",
+        "sourceLine": 157,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "moderada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Versão original exige correções e tem veredito revisão maior; Handbook18.4 Regra7(c).",
+        "OP": "Relacionar hipomagnesemia crônica à condrocalcinose na síndrome de Gitelman.",
+        "classification": {
+          "primaryCompetency": "interpretação fisiopatológica",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "MAIOR — justificativa molecular de nucleação/precipitação exige fonte específica; o consenso aberto confirma a complicação e papel de reposição, sem esse mecanismo completo.",
+          "MAIOR — referências genéricas originais inadequadas.",
+          "MENOR — referência à letra e correta exclusivamente mais longa."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "MAIOR — justificativa molecular de nucleação/precipitação exige fonte específica; o consenso aberto confirma a complicação e papel de reposição, sem esse mecanismo completo.",
+            "MAIOR — referências genéricas originais inadequadas.",
+            "MENOR — referência à letra e correta exclusivamente mais longa."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório; não pontuar versão original como aprovação."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — conferir evidência e pendência",
+            "1 — eliminatórios reais",
+            "revisão maior para reescrita"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote001 e OP descritos; não auditoria integral de duplicatas do banco",
+          "finding": "Nenhuma coincidência nas quatro dimensões entre os oito OPs deste lote; sem ordem de fundir."
+        },
+        "sources": [
+          {
+            "sourceId": "gitelman_2017",
+            "claimSupport": "Gitelman decorre de perda de função do NCC; hipocalciúria/hipomagnesemia são características; Bartter clássico pode ter Mg normal ou sobreposição Gitelman-like.",
+            "opened": true
+          }
+        ],
+        "patch": {
+          "instruction": "RASCUNHO BLOQUEADO — NÃO IMPLEMENTAR",
+          "before": {
+            "t": "Síndrome de Gitelman e Condrocalcinose",
+            "qid": "f676438e",
+            "q": "Por que pacientes com Síndrome de Gitelman têm maior risco de desenvolver condrocalcinose (pseudogota)?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Devido ao excesso de vitamina D, que pode levar à hipercalcemia e precipitação de cristais nas articulações periféricas",
+              "Em decorrência da hipercalciúria crônica, que favorece a deposição de cristais de cálcio nas cartilagens articulares",
+              "Devido à hipomagnesemia crônica, que reduz a inibição fisiológica do magnésio sobre a precipitação de cristais de pirofosfato de cálcio (CPPD)",
+              "Pela presença de acidose metabólica persistente, que altera o equilíbrio iônico e favorece a formação de cristais articulares"
+            ],
+            "ans": 2,
+            "exp": "Em pacientes com Síndrome de Gitelman, a hipomagnesemia crônica é o principal mecanismo para o desenvolvimento de condrocalcinose — alternativa C. O magnésio normalmente inibe a nucleação e precipitação de cristais de pirofosfato de cálcio (CPPD) nas articulações. Quando os níveis de magnésio caem, essa inibição é removida e os cristais se depositam na cartilagem articular. Hipercalciúria e acidose metabólica não são os mecanismos principais para condrocalcinose na Síndrome de Gitelman.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "after": {
+            "t": "Síndrome de Gitelman e Condrocalcinose",
+            "qid": "f676438e",
+            "q": "Por que pacientes com Síndrome de Gitelman têm maior risco de desenvolver condrocalcinose (pseudogota)?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Devido ao excesso de vitamina D, que pode levar à hipercalcemia e precipitação de cristais nas articulações periféricas",
+              "Em decorrência da hipercalciúria crônica, que favorece a deposição de cristais de cálcio nas cartilagens articulares",
+              "Devido à hipomagnesemia crônica, que reduz a inibição fisiológica do magnésio sobre a precipitação de cristais de pirofosfato de cálcio (CPPD)",
+              "Pela presença de acidose metabólica persistente, que altera o equilíbrio iônico e favorece a formação de cristais articulares"
+            ],
+            "ans": 2,
+            "exp": "A hipomagnesemia crônica associa-se à condrocalcinose na síndrome de Gitelman. O mecanismo específico de redução da inibição da nucleação de cristais de pirofosfato de cálcio presente na alternativa correta exige verificação direta antes de liberar este item. Esta proposta é um rascunho bloqueado; não aplicar ao banco.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "beforeSHA256": "dead2e8353111a018394d833e3f1916f5392654c04c793f4358d0a244da08ee7",
+          "afterSHA256": "8dde9f05b686944b21a655fceb8db39f807fbc0bcdca5f5841042548b0ae24eb",
+          "hashDefinition": "SHA256 do JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves preservada",
+          "changedFields": [
+            "exp"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 2,
+            "sourceLetter": "C",
+            "text": "Devido à hipomagnesemia crônica, que reduz a inibição fisiológica do magnésio sobre a precipitação de cristais de pirofosfato de cálcio (CPPD)"
+          },
+          "implementation": "Preservar qid, posição física do item e ans. Aplicar apenas proposta LIBERADA de bytes idênticos; referência por ID existente. Trocar diff apenas se listado em changedFields, por classificação formal do OP. Histórico e FSRS mantidos conforme Handbook18.5. Não editar neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "8dde9f05b686944b21a655fceb8db39f807fbc0bcdca5f5841042548b0ae24eb",
+          "reviewStatus": "REVIEWED",
+          "verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "moderada",
+          "evidence": "PARCIALMENTE VERIFICADA",
+          "pendingNature": "DECISIVA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivation": "Handbook18.4 Regra7(b)/(c) BLOQUEADA: pendência DECISIVA e revisão maior.",
+          "appeal": {
+            "plausible": true,
+            "finding": "A resposta mecanística ainda não foi confirmada na fonte decisiva; sua plausibilidade não é aprovação."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": true
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [],
+            "total": null,
+            "annulled": true,
+            "band": "anulado"
+          },
+          "decision": {
+            "path": [
+              "0 — PARCIALMENTE VERIFICADA/DECISIVA → teto revisão maior e BLOQUEADA"
+            ],
+            "lifeCycle": "em_revisão"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": false,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "orderPreserved": true,
+            "noLetterReferenceInProposedExplanation": true,
+            "sourcesOpenedForDecisiveClaims": false,
+            "noNewUnverifiedDoseOrNumber": false
+          },
+          "verificationPending": [
+            {
+              "nature": "DECISIVA",
+              "claim": "Abrir fonte primária ou consenso específico de CPPD que confirme o mecanismo molecular da alternativa, e então equilibrar as quatro opções sem mudar o OP.",
+              "blocksPublication": true
+            }
+          ]
+        }
+      },
+      {
+        "qid": "b8666d0a",
+        "sourceLine": 162,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "moderada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Versão original exige correções e tem veredito revisão maior; Handbook18.4 Regra7(c).",
+        "OP": "Identificar ganho de função do CaSR como causa de fenótipo de perda salina associado à hipocalcemia.",
+        "classification": {
+          "primaryCompetency": "interpretação de mecanismo genético",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "CRÍTICO — denominação Bartter tipo5 para CaSR precisa ser confrontada com classificação atual de Bartter/hipocalcemia autossômica dominante.",
+          "MAIOR — texto atribui hipocalcemia apenas à hipercalciúria, omitindo regulação do PTH; não validado pelo consenso específico.",
+          "MAIOR — refs de DRC/livro genérico não bastam; letra fixa."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "CRÍTICO — denominação Bartter tipo5 para CaSR precisa ser confrontada com classificação atual de Bartter/hipocalcemia autossômica dominante.",
+            "MAIOR — texto atribui hipocalcemia apenas à hipercalciúria, omitindo regulação do PTH; não validado pelo consenso específico.",
+            "MAIOR — refs de DRC/livro genérico não bastam; letra fixa."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório; não pontuar versão original como aprovação."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — conferir evidência e pendência",
+            "1 — eliminatórios reais",
+            "revisão maior para reescrita"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote001 e OP descritos; não auditoria integral de duplicatas do banco",
+          "finding": "Nenhuma coincidência nas quatro dimensões entre os oito OPs deste lote; sem ordem de fundir."
+        },
+        "sources": [],
+        "patch": {
+          "instruction": "RASCUNHO BLOQUEADO — NÃO IMPLEMENTAR",
+          "before": {
+            "t": "Síndrome de Bartter Tipo 5",
+            "qid": "b8666d0a",
+            "q": "A Síndrome de Bartter Tipo 5 está associada a qual alteração no receptor de cálcio (CaSR)?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Aumento da sensibilidade renal à vitamina D, sem alteração do CaSR",
+              "Mutação de ganho de função no CaSR, suprimindo o transportador NKCC2",
+              "Mutação de perda de função no receptor CaSR, sem efeito sobre NKCC2",
+              "Resistência ao PTH causada por ativação anormal do receptor CaSR"
+            ],
+            "ans": 1,
+            "exp": "A Síndrome de Bartter Tipo 5 é causada por mutação de ganho de função no receptor sensor de cálcio (CaSR) — alternativa B. A ativação constitutiva do CaSR pelo cálcio elevado (ou pela mutação) suprime o NKCC2 no ramo ascendente espesso da alça de Henle, mimetizando o efeito da furosemida e resultando no fenótipo de Bartter (hipocalemia, alcalose metabólica, hipercalciúria e hipomagnesemia). Paradoxalmente, esses pacientes também têm hipocalcemia devido à hipercalciúria mediada pelo CaSR hiperativo.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "after": {
+            "t": "Síndrome de Bartter Tipo 5",
+            "qid": "b8666d0a",
+            "q": "A Síndrome de Bartter Tipo 5 está associada a qual alteração no receptor de cálcio (CaSR)?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Aumento da sensibilidade renal à vitamina D, sem alteração do CaSR",
+              "Mutação de ganho de função no CaSR, suprimindo o transportador NKCC2",
+              "Mutação de perda de função no receptor CaSR, sem efeito sobre NKCC2",
+              "Resistência ao PTH causada por ativação anormal do receptor CaSR"
+            ],
+            "ans": 1,
+            "exp": "O item pretende avaliar ganho de função do receptor sensor de cálcio (CaSR). A classificação como Bartter tipo5 e a explicação completa do fenótipo precisam de verificação em consenso específico antes da publicação. Rascunho bloqueado; não aplicar ao banco.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "beforeSHA256": "b115f9ea59abf89906e68edea479b05a5f35865609425fbfc6f1cd0840fc7e27",
+          "afterSHA256": "2cfb66bdeaac08435af49ece651a59ce090d3159b32c141d2ec94e308d51f493",
+          "hashDefinition": "SHA256 do JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves preservada",
+          "changedFields": [
+            "exp"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 1,
+            "sourceLetter": "B",
+            "text": "Mutação de ganho de função no CaSR, suprimindo o transportador NKCC2"
+          },
+          "implementation": "Preservar qid, posição física do item e ans. Aplicar apenas proposta LIBERADA de bytes idênticos; referência por ID existente. Trocar diff apenas se listado em changedFields, por classificação formal do OP. Histórico e FSRS mantidos conforme Handbook18.5. Não editar neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "2cfb66bdeaac08435af49ece651a59ce090d3159b32c141d2ec94e308d51f493",
+          "reviewStatus": "REVIEWED",
+          "verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "moderada",
+          "evidence": "PARCIALMENTE VERIFICADA",
+          "pendingNature": "DECISIVA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivation": "Handbook18.4 Regra7(b)/(c) BLOQUEADA: pendência DECISIVA e revisão maior.",
+          "appeal": {
+            "plausible": true,
+            "finding": "Nomenclatura e explicação causal ainda podem alterar a validade do enunciado."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": true
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [],
+            "total": null,
+            "annulled": true,
+            "band": "anulado"
+          },
+          "decision": {
+            "path": [
+              "0 — PARCIALMENTE VERIFICADA/DECISIVA → teto revisão maior e BLOQUEADA"
+            ],
+            "lifeCycle": "em_revisão"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": false,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "orderPreserved": true,
+            "noLetterReferenceInProposedExplanation": true,
+            "sourcesOpenedForDecisiveClaims": false,
+            "noNewUnverifiedDoseOrNumber": false
+          },
+          "verificationPending": [
+            {
+              "nature": "DECISIVA",
+              "claim": "Recuperar ERKNet Bartter 2021 e fonte específica de hipocalcemia autossômica dominante; resolver nomenclatura sem mudar silenciosamente a identidade pedagógica.",
+              "blocksPublication": true
+            }
+          ]
+        }
+      },
+      {
+        "qid": "a79c0cc3",
+        "sourceLine": 196,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Versão original exige correções e tem veredito revisão maior; Handbook18.4 Regra7(c).",
+        "OP": "Interpretar o magnésio sérico no diagnóstico diferencial de Bartter clássico e Gitelman sem usar um valor isolado como exclusão.",
+        "classification": {
+          "primaryCompetency": "interpretação de perfil eletrolítico",
+          "bloom": "Analisar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "CRÍTICO — a explicação afirma que ramo ascendente espesso não é principal local de reabsorção de Mg; não sustentar esse raciocínio.",
+          "MAIOR — distratores de Mg indetectável urinário/hipermagnesemia são artificiais.",
+          "MAIOR — não explicita sobreposição Gitelman-like de CLCNKB; referências genéricas e letra fixa."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "CRÍTICO — a explicação afirma que ramo ascendente espesso não é principal local de reabsorção de Mg; não sustentar esse raciocínio.",
+            "MAIOR — distratores de Mg indetectável urinário/hipermagnesemia são artificiais.",
+            "MAIOR — não explicita sobreposição Gitelman-like de CLCNKB; referências genéricas e letra fixa."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": true
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório; não pontuar versão original como aprovação."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — conferir evidência e pendência",
+            "1 — eliminatórios reais",
+            "revisão maior para reescrita"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote001 e OP descritos; não auditoria integral de duplicatas do banco",
+          "finding": "Nenhuma coincidência nas quatro dimensões entre os oito OPs deste lote; sem ordem de fundir."
+        },
+        "sources": [
+          {
+            "sourceId": "gitelman_2017",
+            "claimSupport": "Gitelman decorre de perda de função do NCC; hipocalciúria/hipomagnesemia são características; Bartter clássico pode ter Mg normal ou sobreposição Gitelman-like.",
+            "opened": true
+          },
+          {
+            "sourceId": "ucl_gitelman_card",
+            "claimSupport": "URL do card existente resolve para registro institucional do mesmo consenso.",
+            "opened": true
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Síndrome de Bartter e Magnésio",
+            "qid": "a79c0cc3",
+            "q": "Diferente da Síndrome de Gitelman, a Síndrome de Bartter clássica geralmente apresenta?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Hipomagnesemia profunda em 100% dos casos",
+              "Magnésio indetetável na urina com metodologia padrão",
+              "Hipermagnesemia severa em fase ativa",
+              "Níveis de magnésio sérico normais ou apenas levemente reduzidos"
+            ],
+            "ans": 3,
+            "exp": "Diferente da Síndrome de Gitelman — onde a hipomagnesemia é um achado frequente e marcante devido ao defeito no NCC do túbulo distal (que também reabsorve Mg) — a Síndrome de Bartter clássica geralmente apresenta magnésio sérico normal ou apenas levemente reduzido — alternativa D. No Bartter, o defeito está no ramo ascendente espesso (NKCC2/ROMK/ClC-Kb), que não é o principal sítio de reabsorção de Mg. Hipomagnesemia profunda e hipermagnesemia são achados atípicos no Bartter clássico.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "after": {
+            "t": "Síndrome de Bartter e Magnésio",
+            "qid": "a79c0cc3",
+            "q": "Ao diferenciar síndrome de Bartter clássica de síndrome de Gitelman, qual interpretação do magnésio sérico é mais adequada?",
+            "refs": [
+              "gitelman_kdigo_2017"
+            ],
+            "opts": [
+              "Magnésio normal afasta as duas tubulopatias",
+              "Hipomagnesemia identifica Gitelman sem necessidade de outros dados",
+              "Hipomagnesemia afasta Bartter, mesmo diante de perda renal de sal",
+              "Magnésio normal favorece Bartter, mas valor baixo não o exclui"
+            ],
+            "ans": 3,
+            "exp": "Magnésio normal favorece Bartter clássico nesse diferencial, mas a hipomagnesemia não o exclui: alterações de CLCNKB podem produzir sobreposição com Gitelman. O resultado deve ser integrado ao perfil tubular. Não é correto transformar a magnesemia em critério isolado de exclusão.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "beforeSHA256": "0bd8b43413b245ed72db7365f5aa584c155e7361373ad44665793dfa2d463e41",
+          "afterSHA256": "a5582413024abe1db558b7090c6e5a42221bd47f72b6f6e03554eab41717da70",
+          "hashDefinition": "SHA256 do JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves preservada",
+          "changedFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 3,
+            "sourceLetter": "D",
+            "text": "Magnésio normal favorece Bartter, mas valor baixo não o exclui"
+          },
+          "implementation": "Preservar qid, posição física do item e ans. Aplicar apenas proposta LIBERADA de bytes idênticos; referência por ID existente. Trocar diff apenas se listado em changedFields, por classificação formal do OP. Histórico e FSRS mantidos conforme Handbook18.5. Não editar neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "a5582413024abe1db558b7090c6e5a42221bd47f72b6f6e03554eab41717da70",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a) LIBERADA: evidência VERIFICADA + NENHUMA + aprovação.",
+          "appeal": {
+            "plausible": false,
+            "finding": "A ressalva de sobreposição está na resposta correta; as demais opções cometem o erro clínico explícito de excluir ou diagnosticar por magnesemia isolada."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente"
+          },
+          "decision": {
+            "path": [
+              "0 — VERIFICADA/NENHUMA permite continuar",
+              "1 — nenhum eliminatório após correção",
+              "2 — recurso plausível resolvido na versão proposta",
+              "3 — score19/20 → aprovada"
+            ],
+            "lifeCycle": "em_reparo"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "orderPreserved": true,
+            "noLetterReferenceInProposedExplanation": true,
+            "sourcesOpenedForDecisiveClaims": true,
+            "noNewUnverifiedDoseOrNumber": true
+          },
+          "verificationPending": []
+        }
+      },
+      {
+        "qid": "10d210a3",
+        "sourceLine": 211,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "moderada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Versão original exige correções e tem veredito revisão maior; Handbook18.4 Regra7(c).",
+        "OP": "Reconhecer polidrâmnio por poliúria fetal como apresentação pré-natal de Bartter tipo1.",
+        "classification": {
+          "primaryCompetency": "reconhecimento diagnóstico pré-natal",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "MAIOR — faltou recuperar consenso específico para validar tipo1 e a formulação do mecanismo.",
+          "MAIOR — distratores com qualificações decorativas e correta com justificativa embutida.",
+          "MENOR — letra fixa na explicação."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "MAIOR — faltou recuperar consenso específico para validar tipo1 e a formulação do mecanismo.",
+            "MAIOR — distratores com qualificações decorativas e correta com justificativa embutida.",
+            "MENOR — letra fixa na explicação."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": true
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório; não pontuar versão original como aprovação."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — conferir evidência e pendência",
+            "1 — eliminatórios reais",
+            "revisão maior para reescrita"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote001 e OP descritos; não auditoria integral de duplicatas do banco",
+          "finding": "Nenhuma coincidência nas quatro dimensões entre os oito OPs deste lote; sem ordem de fundir."
+        },
+        "sources": [
+          {
+            "sourceId": "prenatal_2025_rejected",
+            "claimSupport": "Relato apresenta variantes SLC12A1 de significado incerto como diagnóstico; discussão cita SLC12A2 para tipo1. Não substitui consenso específico na aprovação.",
+            "opened": true
+          }
+        ],
+        "patch": {
+          "instruction": "RASCUNHO BLOQUEADO — NÃO IMPLEMENTAR",
+          "before": {
+            "t": "Síndrome de Bartter Tipo 1: Achado Pré-natal",
+            "qid": "10d210a3",
+            "q": "Qual o achado ecográfico obstétrico que frequentemente sugere o diagnóstico de Síndrome de Bartter Tipo 1 antes do nascimento?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Cistos renais gigantes em fase ativa",
+              "Agenesia renal bilateral em apresentação clássica",
+              "Oligodrâmnio em estágio avançado",
+              "Polidrâmnio materno grave (devido à poliúria fetal)"
+            ],
+            "ans": 3,
+            "exp": "Na Síndrome de Bartter Tipo 1 (mutação NKCC2), a poliúria fetal intensa leva a polidrâmnio materno grave — alternativa D. O feto com Bartter perde grandes volumes de Na⁺ e Cl⁻ na urina, resultando em diurese osmótica excessiva. O excesso de líquido amniótico por poliúria fetal é o achado ecográfico que frequentemente levanta a suspeita diagnóstica pré-natal. Cistos renais e agenesia renal não são manifestações do Bartter; oligodrâmnio seria o oposto (associado a insuficiência renal, não à poliúria fetal).",
+            "diff": "hard",
+            "cat": "acido_base"
+          },
+          "after": {
+            "t": "Síndrome de Bartter Tipo 1: Achado Pré-natal",
+            "qid": "10d210a3",
+            "q": "Qual o achado ecográfico obstétrico que frequentemente sugere o diagnóstico de Síndrome de Bartter Tipo 1 antes do nascimento?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Cistos renais gigantes em fase ativa",
+              "Agenesia renal bilateral em apresentação clássica",
+              "Oligodrâmnio em estágio avançado",
+              "Polidrâmnio materno grave (devido à poliúria fetal)"
+            ],
+            "ans": 3,
+            "exp": "A proposta avalia polidrâmnio relacionado à poliúria fetal no Bartter antenatal. Falta verificar a formulação específica do tipo1 em consenso adequado e substituir as referências genéricas. O relato recente localizado contém inconsistências e não foi usado para liberar o item. Rascunho bloqueado; não aplicar.",
+            "diff": "hard",
+            "cat": "acido_base"
+          },
+          "beforeSHA256": "7fa511bfdad1d36fe62d41ca9dbe0104491d2d01c09ef217cbaa778db4d47bcc",
+          "afterSHA256": "27d55a30a2f7b09001ac318b4e8e00e67091a60fb532ec7972c5e1690a35dfb0",
+          "hashDefinition": "SHA256 do JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves preservada",
+          "changedFields": [
+            "exp"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 3,
+            "sourceLetter": "D",
+            "text": "Polidrâmnio materno grave (devido à poliúria fetal)"
+          },
+          "implementation": "Preservar qid, posição física do item e ans. Aplicar apenas proposta LIBERADA de bytes idênticos; referência por ID existente. Trocar diff apenas se listado em changedFields, por classificação formal do OP. Histórico e FSRS mantidos conforme Handbook18.5. Não editar neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "27d55a30a2f7b09001ac318b4e8e00e67091a60fb532ec7972c5e1690a35dfb0",
+          "reviewStatus": "REVIEWED",
+          "verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "moderada",
+          "evidence": "PARCIALMENTE VERIFICADA",
+          "pendingNature": "DECISIVA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivation": "Handbook18.4 Regra7(b)/(c) BLOQUEADA: pendência DECISIVA e revisão maior.",
+          "appeal": {
+            "plausible": true,
+            "finding": "A fonte localizada tem inconsistências que impedem validar com segurança a afirmação específica do subtipo."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": true
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": true
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [],
+            "total": null,
+            "annulled": true,
+            "band": "anulado"
+          },
+          "decision": {
+            "path": [
+              "0 — PARCIALMENTE VERIFICADA/DECISIVA → teto revisão maior e BLOQUEADA"
+            ],
+            "lifeCycle": "em_revisão"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": false,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "orderPreserved": true,
+            "noLetterReferenceInProposedExplanation": true,
+            "sourcesOpenedForDecisiveClaims": false,
+            "noNewUnverifiedDoseOrNumber": false
+          },
+          "verificationPending": [
+            {
+              "nature": "DECISIVA",
+              "claim": "Abrir consenso ERKNet e confirmar fenótipo antenatal por SLC12A1/NKCC2; não usar o relato2025 como autoridade decisiva.",
+              "blocksPublication": true
+            }
+          ]
+        }
+      },
+      {
+        "qid": "ac2d05ad",
+        "sourceLine": 220,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Versão original exige correções e tem veredito revisão maior; Handbook18.4 Regra7(c).",
+        "OP": "Escolher manejo ambulatorial individualizado da acidose metabólica persistente na DRC, evitando alcalose e sobrecarga.",
+        "classification": {
+          "primaryCompetency": "conduta terapêutica",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "MAIOR — dado único de bicarbonato não confirma sozinho persistência de acidose; cenário ambulatorial está implícito.",
+          "MAIOR — induzir alcalose por proteinúria é distrator absurdo.",
+          "MENOR — letra fixa e correta seletivamente qualificada."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "MAIOR — dado único de bicarbonato não confirma sozinho persistência de acidose; cenário ambulatorial está implícito.",
+            "MAIOR — induzir alcalose por proteinúria é distrator absurdo.",
+            "MENOR — letra fixa e correta seletivamente qualificada."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": false
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": true
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": true
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório; não pontuar versão original como aprovação."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — conferir evidência e pendência",
+            "1 — eliminatórios reais",
+            "revisão maior para reescrita"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote001 e OP descritos; não auditoria integral de duplicatas do banco",
+          "finding": "Nenhuma coincidência nas quatro dimensões entre os oito OPs deste lote; sem ordem de fundir."
+        },
+        "sources": [
+          {
+            "sourceId": "kdigo_ckd_2024",
+            "claimSupport": "Considerar tratamento farmacológico com ou sem intervenção dietética para acidose com implicação clínica, exemplificada por HCO3 <18 mmol/L em adultos; monitorar bicarbonato, PA, K e volemia.",
+            "opened": true
+          },
+          {
+            "sourceId": "kdigo_ckd_card",
+            "claimSupport": "Página oficial do card existente; versão 2024.",
+            "opened": true
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Acidose metabólica na DRC",
+            "qid": "ac2d05ad",
+            "q": "Paciente com doença renal crônica (DRC) estágio 4 apresenta bicarbonato sérico de 17 mEq/L. Qual é a conduta mais apropriada para o manejo da acidose metabólica neste paciente?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Ignorar acidose leve/moderada por não impactar progressão",
+              "Induzir alcalose metabólica para reduzir proteinúria em amostra isolada",
+              "Corrigir acidose metabólica de forma gradual para meta clínica, monitorando sódio e volume",
+              "Usar reposição intravenosa crônica em ambulatório estável"
+            ],
+            "ans": 2,
+            "exp": "Em um paciente com DRC avançada e bicarbonato sérico de 17 mEq/L, há acidose metabólica crônica que deve ser corrigida de forma gradual, em geral com bicarbonato de sódio por via oral, com ajuste conforme a resposta clínica e laboratorial. O objetivo é reduzir a acidose sem provocar alcalose nem sobrecarga de sódio/volume, por isso deve-se monitorar pressão arterial, edema e estado volêmico. As alternativas A e B estão erradas porque a acidose persistente não deve ser ignorada nem tratada com alcalose; a opção D está incorreta porque reposição intravenosa crônica não é a estratégia usual em paciente ambulatorial estável.",
+            "diff": "medium",
+            "cat": "acido_base"
+          },
+          "after": {
+            "t": "Acidose metabólica na DRC",
+            "qid": "ac2d05ad",
+            "q": "Adulto com doença renal crônica estágio 4, clinicamente estável em acompanhamento ambulatorial, apresenta acidose metabólica persistente com bicarbonato sérico de 17 mEq/L. Não há distúrbio respiratório associado. Qual manejo é mais apropriado?",
+            "refs": [
+              "kdigo_ckd"
+            ],
+            "opts": [
+              "Adiar o tratamento até surgir indicação de diálise",
+              "Manter apenas observação enquanto não houver sintomas",
+              "Considerar tratamento oral e monitorar bicarbonato e volemia",
+              "Programar reposição intravenosa seriada em regime ambulatorial"
+            ],
+            "ans": 2,
+            "exp": "Deve-se considerar tratamento farmacológico oral, individualizado e acompanhado de monitorização. Os practice points 3.10.1–3.10.2 da KDIGO 2024 destacam acidose com possível repercussão clínica, exemplificada por bicarbonato abaixo de 18 mmol/L em adultos, e orientam evitar excesso de bicarbonato ou efeitos adversos sobre pressão arterial, potássio e volemia. Não afirmam benefício renal duro comprovado.",
+            "diff": "medium",
+            "cat": "acido_base"
+          },
+          "beforeSHA256": "2ad031b530984e70aec98de4835eb9a47c74d904367aaeb401692c34f9bd2fd1",
+          "afterSHA256": "f33cf8e4ac7de44d2188f941c686ccde327006562602bd56ac3110c97691dbc6",
+          "hashDefinition": "SHA256 do JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves preservada",
+          "changedFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 2,
+            "sourceLetter": "C",
+            "text": "Considerar tratamento oral e monitorar bicarbonato e volemia"
+          },
+          "implementation": "Preservar qid, posição física do item e ans. Aplicar apenas proposta LIBERADA de bytes idênticos; referência por ID existente. Trocar diff apenas se listado em changedFields, por classificação formal do OP. Histórico e FSRS mantidos conforme Handbook18.5. Não editar neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "f33cf8e4ac7de44d2188f941c686ccde327006562602bd56ac3110c97691dbc6",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a) LIBERADA: evidência VERIFICADA + NENHUMA + aprovação.",
+          "appeal": {
+            "plausible": false,
+            "finding": "Persistência, acidose metabólica e estabilidade ambulatorial foram explicitadas; a formulação considera tratamento, sem transformar practice point em obrigação universal. As demais opções adiam ou escolhem via inadequada para esse cenário."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente"
+          },
+          "decision": {
+            "path": [
+              "0 — VERIFICADA/NENHUMA permite continuar",
+              "1 — nenhum eliminatório após correção",
+              "2 — recurso plausível resolvido na versão proposta",
+              "3 — score19/20 → aprovada"
+            ],
+            "lifeCycle": "em_reparo"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "orderPreserved": true,
+            "noLetterReferenceInProposedExplanation": true,
+            "sourcesOpenedForDecisiveClaims": true,
+            "noNewUnverifiedDoseOrNumber": true
+          },
+          "verificationPending": []
+        }
+      },
+      {
+        "qid": "e0448d0b",
+        "sourceLine": 101,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "moderada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Versão original exige correções e tem veredito revisão maior; Handbook18.4 Regra7(c).",
+        "OP": "Relacionar hipomagnesemia à desinibição de ROMK e perda renal de potássio.",
+        "classification": {
+          "primaryCompetency": "interpretação fisiopatológica",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "MAIOR — artigo primário sobre ROMK não abriu; fonte genérica não valida diretamente o mecanismo.",
+          "MAIOR — a explicação trata o mecanismo isolado como suficiente; papel de entrega distal de Na/ENaC precisa delimitação.",
+          "MENOR — letra fixa na explicação."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "MAIOR — artigo primário sobre ROMK não abriu; fonte genérica não valida diretamente o mecanismo.",
+            "MAIOR — a explicação trata o mecanismo isolado como suficiente; papel de entrega distal de Na/ENaC precisa delimitação.",
+            "MENOR — letra fixa na explicação."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório; não pontuar versão original como aprovação."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — conferir evidência e pendência",
+            "1 — eliminatórios reais",
+            "revisão maior para reescrita"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote001 e OP descritos; não auditoria integral de duplicatas do banco",
+          "finding": "Nenhuma coincidência nas quatro dimensões entre os oito OPs deste lote; sem ordem de fundir."
+        },
+        "sources": [
+          {
+            "sourceId": "gitelman_2017",
+            "claimSupport": "Gitelman decorre de perda de função do NCC; hipocalciúria/hipomagnesemia são características; Bartter clássico pode ter Mg normal ou sobreposição Gitelman-like.",
+            "opened": true
+          }
+        ],
+        "patch": {
+          "instruction": "RASCUNHO BLOQUEADO — NÃO IMPLEMENTAR",
+          "before": {
+            "t": "Hipomagnesemia e ROMK",
+            "qid": "e0448d0b",
+            "q": "A hipomagnesemia pode causar hipocalemia refratária devido à interação do magnésio com canais de potássio no néfron. Qual é o mecanismo subjacente a essa interação?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Bloqueia a atividade da bomba Na/K ATPase, reduzindo a reabsorção de potássio no túbulo proximal renal",
+              "Inibe o transportador NCC no túbulo contorcido distal, diminuindo a reabsorção de sódio e alterando o equilíbrio eletrolítico",
+              "Remove a inibição sobre os canais ROMK, permitindo a excreção excessiva de potássio no túbulo distal",
+              "Estimula a secreção de renina pela mácula densa, aumentando a retenção de sódio e potássio no túbulo distal"
+            ],
+            "ans": 2,
+            "exp": "A hipomagnesemia remove o freio fisiológico do magnésio sobre os canais ROMK no néfron distal, aumentando a secreção urinária de potássio e gerando hipocalemia de difícil correção; por isso a alternativa C é a correta. As demais opções não representam o mecanismo central desse fenômeno eletrolítico.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "after": {
+            "t": "Hipomagnesemia e ROMK",
+            "qid": "e0448d0b",
+            "q": "A hipomagnesemia pode causar hipocalemia refratária devido à interação do magnésio com canais de potássio no néfron. Qual é o mecanismo subjacente a essa interação?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Bloqueia a atividade da bomba Na/K ATPase, reduzindo a reabsorção de potássio no túbulo proximal renal",
+              "Inibe o transportador NCC no túbulo contorcido distal, diminuindo a reabsorção de sódio e alterando o equilíbrio eletrolítico",
+              "Remove a inibição sobre os canais ROMK, permitindo a excreção excessiva de potássio no túbulo distal",
+              "Estimula a secreção de renina pela mácula densa, aumentando a retenção de sódio e potássio no túbulo distal"
+            ],
+            "ans": 2,
+            "exp": "O item avalia a redução da inibição de ROMK por deficiência de magnésio. A fonte primária não foi recuperada; falta confirmar os limites do mecanismo e sua relação com a secreção distal de potássio antes de publicar uma versão corrigida. Rascunho bloqueado; não aplicar.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "beforeSHA256": "b5bbb1e634519d48b740f921dbb6c62c87d6da156ad71b711f71e93c5137c857",
+          "afterSHA256": "25612f4d3aadabe16ed5d0d910d27dc56f74c479b5df7a16e80bcbb8607bf450",
+          "hashDefinition": "SHA256 do JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves preservada",
+          "changedFields": [
+            "exp"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 2,
+            "sourceLetter": "C",
+            "text": "Remove a inibição sobre os canais ROMK, permitindo a excreção excessiva de potássio no túbulo distal"
+          },
+          "implementation": "Preservar qid, posição física do item e ans. Aplicar apenas proposta LIBERADA de bytes idênticos; referência por ID existente. Trocar diff apenas se listado em changedFields, por classificação formal do OP. Histórico e FSRS mantidos conforme Handbook18.5. Não editar neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "25612f4d3aadabe16ed5d0d910d27dc56f74c479b5df7a16e80bcbb8607bf450",
+          "reviewStatus": "REVIEWED",
+          "verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "moderada",
+          "evidence": "PARCIALMENTE VERIFICADA",
+          "pendingNature": "DECISIVA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivation": "Handbook18.4 Regra7(b)/(c) BLOQUEADA: pendência DECISIVA e revisão maior.",
+          "appeal": {
+            "plausible": true,
+            "finding": "Mecanismo decisivo e sua suficiência ainda dependem de fonte aberta; não há autorização de publicação."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": true
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [],
+            "total": null,
+            "annulled": true,
+            "band": "anulado"
+          },
+          "decision": {
+            "path": [
+              "0 — PARCIALMENTE VERIFICADA/DECISIVA → teto revisão maior e BLOQUEADA"
+            ],
+            "lifeCycle": "em_revisão"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": false,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "orderPreserved": true,
+            "noLetterReferenceInProposedExplanation": true,
+            "sourcesOpenedForDecisiveClaims": false,
+            "noNewUnverifiedDoseOrNumber": false
+          },
+          "verificationPending": [
+            {
+              "nature": "DECISIVA",
+              "claim": "Abrir Yang/Frindt/Palmer2010 e fonte primária recente sobre a interação Mg–ROMK–ENaC; validar todos os distratores, não apenas retirar a letra.",
+              "blocksPublication": true
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

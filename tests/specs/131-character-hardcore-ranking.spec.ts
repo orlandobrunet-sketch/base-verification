@@ -172,6 +172,11 @@ for (const difficulty of modes) {
       await expectNormalRanking(page, resumed, character);
       await expectPilotPreserved(page, legacy.raw);
       if (difficulty === 'hardcore') {
+        // New mapped schema7 saves replay the answered question without scoring
+        // it again. Advance through the native control before the next answer.
+        expect(resumed.answered).toBe(true);
+        await expect(page.locator('#options .option.correct')).toHaveCount(1);
+        await page.locator('#nextBtn:visible, #dockNextBtn:visible').first().click();
         const wrong = await answerTechnical(page, false);
         expect(wrong.lives).toBe(0);
         expect(wrong.classBenefits).toBeNull();

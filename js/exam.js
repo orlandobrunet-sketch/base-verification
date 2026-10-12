@@ -45,7 +45,8 @@
         const raw = _examProgressStorage().getItem(EXAM_SAVE_KEY);
         if (!raw) return null;
         const s = JSON.parse(raw);
-        if (!s?.startTime || !s?.questions?.length) return null;
+        if (!s?.startTime || !Array.isArray(s.questions) || !s.questions.length || !Array.isArray(s.answers) ||
+            !Number.isInteger(s.idx) || s.idx < 0 || s.idx > s.questions.length) return null;
         if (Date.now() - s.savedAt > EXAM_TTL_MS) { _examProgressStorage().removeItem(EXAM_SAVE_KEY); return null; }
         const elapsed = Math.floor((Date.now() - s.startTime) / 1000);
         return { ...s, expirada: elapsed >= EXAM_DURATION_SEC };
@@ -140,8 +141,7 @@
 
       const saved = _loadExamState();
       if (saved?.expirada) {
-        _examState = { questions: saved.questions, idx: saved.idx, answers: saved.answers, startTime: saved.startTime, timerInterval: null };
-        _examEsgotarTempo();
+        _examRetomar();
         return;
       }
       if (saved) {
@@ -192,12 +192,18 @@
       }
       if (!_examBindingCurrent(binding) || !document.getElementById('examPage')) return;
       _examState = {
-        questions: shuffle([...questionBank]).slice(0, EXAM_QUESTION_COUNT),
+        questions: shuffle([...questionBank]).slice(0, EXAM_QUESTION_COUNT)
+          .map(q => window.NQAnswers ? window.NQAnswers.present(q) : { ...q, o: [...q.o] }),
         idx: 0,
         answers: [],   // {qId, correct, cat, chosen, answered}
         startTime: Date.now(),
         timerInterval: null
       };
+      if (_examState.questions.some(q => !q)) {
+        _examState = null;
+        _examIntro('Não foi possível conferir as alternativas da prova. Tente novamente.');
+        return;
+      }
       _saveExamState();
       _examIniciarRelogio();
       showExamQuestion();
@@ -206,7 +212,27 @@
     function _examRetomar() {
       const saved = _loadExamState();
       if (!saved) { _examIntro(); return; }
-      _examState = { questions: saved.questions, idx: saved.idx, answers: saved.answers, startTime: saved.startTime, timerInterval: null };
+      // A prova salva é um snapshot: não trocar por uma questão do banco atual
+      // nem sortear outra ordem, inclusive nas provas anteriores ao helper.
+      const questions = saved.questions.map(q => window.NQAnswers
+        ? window.NQAnswers.restore(q)
+        : (!q._answerPresentation ? { ...q, o: [...q.o] } : null));
+      const answersValid = questions.every((q, i) => {
+        const answer = saved.answers[i];
+        if (!q || !Array.isArray(q.o) || !Number.isInteger(q.a) || q.a < 0 || q.a >= q.o.length) return false;
+        if (!answer) return true;
+        if (answer.qId !== q.id) return false;
+        if (answer.answered === false) return answer.correct === false && answer.chosen === undefined;
+        if (answer.answered !== true || !Number.isInteger(answer.chosen) || answer.chosen < 0 || answer.chosen >= q.o.length ||
+            answer.correct !== (answer.chosen === q.a)) return false;
+        return !q._answerPresentation || (answer.authoredChoice === window.NQAnswers?.originalIndex(q, answer.chosen) &&
+          answer.optionId === window.NQAnswers?.optionId(q, answer.chosen));
+      });
+      if (!answersValid) {
+        _examIntro('Não foi possível conferir as alternativas da prova salva. Ela foi preservada.');
+        return;
+      }
+      _examState = { questions, idx: saved.idx, answers: saved.answers, startTime: saved.startTime, timerInterval: null };
       if (saved.expirada) { _examEsgotarTempo(); return; }
       _examIniciarRelogio();
       showExamQuestion();
@@ -322,8 +348,13 @@
       if (!_examBindingCurrent() || !_examState || _examState.answers[_examState.idx]) return;
       const { questions, idx } = _examState;
       const q = questions[idx];
+      if (!Number.isInteger(chosen) || chosen < 0 || chosen >= q.o.length) return;
       const correct = chosen === q.a;
-      _examState.answers[idx] = { qId: q.id, correct, cat: q.c || 'geral', chosen, answered: true };
+      _examState.answers[idx] = {
+        qId: q.id, correct, cat: q.c || 'geral', chosen, answered: true,
+        authoredChoice: window.NQAnswers ? window.NQAnswers.originalIndex(q, chosen) : chosen,
+        optionId: window.NQAnswers ? window.NQAnswers.optionId(q, chosen) : null
+      };
       if (typeof trackQuestionAnswer === 'function') {
         trackQuestionAnswer(q, correct, 0);
       }

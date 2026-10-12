@@ -1,0 +1,45 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 1497,
+  "sourceReportSHA256": "3d16c102a7b215c96810ea4676e9b61a705e7d59d017efc83e06f48bc6faec38",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_REVIEW_ARTIFACT_VALIDATION_A1",
+    "verifiedUTC": "2026-10-12T18:06:18Z",
+    "status": "PASS",
+    "authoritativeOutputs": [
+      {
+        "path": "docs/editorial/reviews/2026-10-12/group-a-output-001.json",
+        "bytes": 95560,
+        "sha256": "64bf5cabfe631640a41099f34968253286c4a0fcfd02ef1a087b69e63924bb41"
+      },
+      {
+        "path": "docs/editorial/reviews/2026-10-12/group-a-output-002.json",
+        "bytes": 86909,
+        "sha256": "6f0a22f88e36cadb23a9c6ca47c79c72626efc37cd323b9eb8ee7ae352ef7c57"
+      },
+      {
+        "path": "docs/editorial/reviews/2026-10-12/group-a-output-003-A2.json",
+        "bytes": 140451,
+        "sha256": "8ed59bf4bb76d0086f268e70e6d8d6061341435cbe3d68a4b3b86ae869679fb4"
+      },
+      {
+        "path": "docs/editorial/reviews/2026-10-12/group-a-output-004.json",
+        "bytes": 123610,
+        "sha256": "295fe7b63e2ca56e268a7a439a58b95f3a7d628a5bc7a2631a598a6bd5e3a6bf"
+      }
+    ],
+    "checks": {
+      "distinctReviewedQuestions": 32,
+      "releasedExactAfterHashesChecked": 22,
+      "blockedVersionsRetainExplicitGate": 10,
+      "qidAndAnswerIndexPreserved": true,
+      "allReleasedVersionsHaveFourAlternatives": true,
+      "reusedNewCardHashesConsistent": true,
+      "indexCountsConsistent": true,
+      "actualBankEdits": 0
+    },
+    "scope": "Valida estrutura e pins dos artefatos já revisados. Não é teste de leitor, prova de aprovação clínica automática ou resultado de CI."
+  }
+}

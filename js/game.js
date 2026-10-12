@@ -438,7 +438,8 @@
       const record = _canonicalSaveRecord();
       if (!record || typeof record !== 'object' || record.saveOwner !== owner || record.resetReason === 'logout') return false;
       // Invalid ledgers stay local for recovery; never upload or replace them with a tombstone.
-      return !(record.schemaVersion === 9 || record.classBenefits != null) || _normalCharacterSaveValid(record, owner);
+      return !!_readQuestionSaveExtras(record) &&
+        (!(record.schemaVersion === 9 || record.classBenefits != null) || _normalCharacterSaveValid(record, owner));
     }
     function _writeSaveTombstone(reason, owner = _currentSaveOwner()) {
       const raw = JSON.stringify({schemaVersion:SAVE_SCHEMA_VERSION, saveOwner:owner,
@@ -496,7 +497,7 @@
         gameCompleted:false, completedGame:false, bossStunActive:false,
         selectedCharacter:null, hp:0, maxHp:0,
         classBenefits:null, journeyDomain:'normal', questionOrigin:'campaign',
-        pilotLastAnswer:null, characterLastAnswer:null, journeyAnswerOrdinal:0, pilotJourneyAccounted:false,
+        pilotLastAnswer:null, characterLastAnswer:null, questionAnswer:null, journeyAnswerOrdinal:0, pilotJourneyAccounted:false,
         forjaPending: null, obtainedItems: [], allItemsCollectedNotified: false,
         equipment: Object.fromEntries(['helmet', 'glove', 'armor', 'weapon', 'relic', 'boot']
           .map(slot => [slot, {n:'Vazio',rar:'common',atk:0,def:0,kno:0,luck:0}]))
@@ -702,7 +703,8 @@
         const unchanged = Object.entries(record).every(([key, value]) => {
           if (['timestamp','schemaVersion','saveOwner','saveRevision'].includes(key)) return true;
           const current = key === 'queueIds' ? state.queue.map(question => question.id)
-            : key === 'recentIds' ? _recentIds : key === 'currentQuestionId' ? state.current?.id || null : _stateData[key];
+            : key === 'recentIds' ? _recentIds : key === 'currentQuestionId' ? state.current?.id || null
+            : ['questionPresentation','wrongAnswerSnapshots'].includes(key) ? _questionSaveExtras()?.[key] : _stateData[key];
           return JSON.stringify(value) === JSON.stringify(current);
         });
         // Avoid a new timestamp/revision when the normal journey is durable.
@@ -828,8 +830,75 @@
         !!window.NQCharacterBenefits?.valid(save.classBenefits,
         {character:save.character, difficulty:save.difficulty, owner});
     }
+    function _answerChoice(question, choice) {
+      if (!question || !Array.isArray(question.o) || !Number.isSafeInteger(question.a) ||
+          question.a < 0 || question.a >= question.o.length || !Number.isSafeInteger(choice) ||
+          choice < 0 || choice >= question.o.length) return null;
+      const originalChoice = window.NQAnswers ? window.NQAnswers.originalIndex(question, choice)
+        : question._answerPresentation ? null : choice;
+      const optionId = window.NQAnswers?.optionId(question, choice) ?? null;
+      if (originalChoice === null || (question._answerPresentation && optionId === null)) return null;
+      return {questionId:String(question.id), choice, originalChoice, optionId, correct:choice === question.a};
+    }
+    function _answerChoiceMatches(question, result) {
+      const expected = result && _answerChoice(question, result.choice);
+      return !!expected && ['questionId','choice','originalChoice','optionId','correct']
+        .every(key => expected[key] === result[key]);
+    }
+    function _wrongAnswerSnapshot(wrong) {
+      if (!wrong || typeof wrong !== 'object') return null;
+      const {chosen, authoredChoice, selectedOptionId, answerEventId, ...question} = wrong;
+      const snapshot = window.NQAnswers?.snapshot(question);
+      const result = snapshot && _answerChoice(snapshot, chosen);
+      if (!result || result.correct || (authoredChoice !== undefined && authoredChoice !== result.originalChoice) ||
+          (selectedOptionId !== undefined && selectedOptionId !== result.optionId)) return null;
+      return {questionPresentation:snapshot, choice:chosen, originalChoice:result.originalChoice,
+        optionId:result.optionId, eventId:answerEventId ?? null};
+    }
+    function _questionSaveExtras() {
+      if (!state.current?._answerPresentation) return {};
+      const questionPresentation = window.NQAnswers?.snapshot(state.current);
+      if (!questionPresentation || (state.answered && !_answerChoiceMatches(questionPresentation, state.questionAnswer)) ||
+          (!state.answered && state.questionAnswer !== null)) return null;
+      const wrongs = _sessionWrongAnswers.slice();
+      const prospective = _pilotAnswerTransaction?.normal && _pilotAnswerTransaction.prospectiveWrong;
+      // Normal answer callbacks run after the durable save; its review belongs in that same candidate.
+      if (prospective && !wrongs.some(wrong => wrong.answerEventId === prospective.answerEventId)) wrongs.push(prospective);
+      const wrongAnswerSnapshots = wrongs.map(_wrongAnswerSnapshot);
+      if (wrongAnswerSnapshots.some(record => record === null)) return null;
+      return {questionPresentation, questionAnswer:state.questionAnswer ? {...state.questionAnswer} : null,
+        wrongAnswerSnapshots, currentQuestionId:String(state.current.id), answered:!!state.answered};
+    }
+    function _readQuestionSaveExtras(save) {
+      if (!save || typeof save !== 'object' || Array.isArray(save)) return null;
+      const keys = ['questionPresentation','questionAnswer','wrongAnswerSnapshots'];
+      const has = key => Object.prototype.hasOwnProperty.call(save, key);
+      if (!keys.some(has)) return {legacy:true, question:null, result:null, wrongs:[]};
+      if (!keys.every(has) || !save.questionPresentation?._answerPresentation ||
+          typeof save.answered !== 'boolean' || !Array.isArray(save.wrongAnswerSnapshots)) return null;
+      const question = window.NQAnswers?.restore(save.questionPresentation);
+      if (!question || String(question.id) !== save.currentQuestionId ||
+          (save.answered ? !_answerChoiceMatches(question, save.questionAnswer) : save.questionAnswer !== null)) return null;
+      const result = save.questionAnswer;
+      const ledgerResult = save.journeyDomain === 'pilot' ? save.pilotLastAnswer
+        : save.classBenefits ? save.characterLastAnswer : null;
+      if (save.answered && (save.journeyDomain === 'pilot' || save.classBenefits) &&
+          (!ledgerResult || ledgerResult.choice !== result.choice || ledgerResult.correct !== result.correct ||
+           ledgerResult.originalChoice !== result.originalChoice || ledgerResult.optionId !== result.optionId)) return null;
+      const wrongs = [], events = new Set();
+      for (const record of save.wrongAnswerSnapshots) {
+        if (!record || (record.eventId !== null && (typeof record.eventId !== 'string' || !record.eventId)) ||
+            (record.eventId !== null && events.has(record.eventId))) return null;
+        const review = window.NQAnswers?.restore(record.questionPresentation);
+        if (!review || !_answerChoiceMatches(review, {...record, questionId:String(review.id), correct:false})) return null;
+        if (record.eventId !== null) events.add(record.eventId);
+        wrongs.push({...review, chosen:record.choice, authoredChoice:record.originalChoice,
+          selectedOptionId:record.optionId, answerEventId:record.eventId});
+      }
+      return {legacy:false, question, result:result ? {...result} : null, wrongs};
+    }
     function _normalCharacterSaveValid(save, owner = _currentSaveOwner()) {
-      if (!_normalBenefitsValid(save, owner) || save.schemaVersion !== 9 ||
+      if (!_readQuestionSaveExtras(save) || !_normalBenefitsValid(save, owner) || save.schemaVersion !== 9 ||
           typeof save.answered !== 'boolean' || !Number.isSafeInteger(save.journeyAnswerOrdinal) ||
           save.journeyAnswerOrdinal < save.classBenefits.windowAnswers ||
           typeof save.currentQuestionId !== 'string' || !save.currentQuestionId) return false;
@@ -887,6 +956,7 @@
         if (_legacySaveBaseline === undefined) _legacySaveBaseline = legacyBefore;
         if (_saveOwner === undefined) _saveOwner = owner;
         Object.assign(_stateData, {character, difficulty, journeyDomain:'normal', characterLastAnswer:null,
+          questionAnswer:null,
           obtainedItems:[], allItemsCollectedNotified:false, forjaPending:null, chestCorrectCount:0, chestTarget:5,
           classBenefits:['easy','normal','hard'].includes(difficulty)
             ? window.NQCharacterBenefits.create({character, difficulty, owner, journeyId:crypto.randomUUID()}) : null});
@@ -940,7 +1010,11 @@
         recentIds: _recentIds.slice(),
         timestamp: Date.now()
       };
-      // Questions remain in the authoritative bank; persist identities only.
+      const presentation = _questionSaveExtras();
+      if (!presentation) return false;
+      Object.assign(save, presentation);
+      if (!save.questionPresentation) delete save.questionAnswer;
+      // Queue definitions stay in the bank; the displayed question owns its saved presentation.
       delete save.queue;
       delete save.current;
       return window.NQPilot.save(save, state.classBenefits);
@@ -1004,6 +1078,7 @@
       }
       // Record the complete result and the window in the same atomic envelope.
       state.pilotLastAnswer = { choice: transaction.choice, correct,
+        originalChoice:state.questionAnswer?.originalChoice, optionId:state.questionAnswer?.optionId,
         xp: transaction.xp, gold: transaction.gold, shield: transaction.shield,
         baseXP: transaction.baseXP || 0, baseGold: transaction.baseGold || 0,
         blocked: !!transaction.blocked,
@@ -1050,6 +1125,7 @@
         (!previous.shieldSpent && ledger.shieldSpent) === transaction.shield &&
         (!(transaction.xp || transaction.gold) || correct === true) && (!transaction.shield || correct === false);
       _stateData.characterLastAnswer = {choice:transaction.choice, correct,
+        originalChoice:state.questionAnswer?.originalChoice, optionId:state.questionAnswer?.optionId,
         xp:transaction.xp, gold:transaction.gold, shield:transaction.shield,
         baseXP:transaction.baseXP || 0, baseGold:transaction.baseGold || 0,
         blocked:!!transaction.blocked, windowAnswers:ledger?.windowAnswers || 0,
@@ -1082,6 +1158,10 @@
       const payload = { ...JSON.parse(JSON.stringify(_stateData)), schemaVersion: 8,
         journeyDomain: 'pilot', queueIds: state.queue.map(question => question.id),
         currentQuestionId: state.current?.id || null, recentIds: _recentIds.slice(), timestamp: Date.now() };
+      const presentation = _questionSaveExtras();
+      if (!presentation) return null;
+      Object.assign(payload, presentation);
+      if (!payload.questionPresentation) delete payload.questionAnswer;
       delete payload.queue; delete payload.current;
       return payload;
     }
@@ -1210,6 +1290,9 @@
         saveOwner: owner,
         saveRevision: crypto.randomUUID()
       };
+      const presentation = _questionSaveExtras();
+      if (!presentation) return false;
+      Object.assign(saveData, presentation);
       if (state.classBenefits) {
         Object.assign(saveData, {schemaVersion:9, journeyDomain:'normal', gameStarted:true,
           gameOver:!!state.gameOver, gameCompleted:!!state.gameCompleted, completedGame:!!state.completedGame,
@@ -1720,6 +1803,10 @@
         const wouldLosePaidChoice = !!local?.forjaPending && Number(cloud.save.schemaVersion || 1) < 7;
         const localBenefits = local?.classBenefits;
         const remoteBenefits = cloud.save.classBenefits;
+        const remotePresentationValid = !!_readQuestionSaveExtras(cloud.save);
+        const wouldLosePresentation = !!local?.questionPresentation &&
+          !Object.prototype.hasOwnProperty.call(cloud.save, 'questionPresentation') &&
+          (cloud.save.timestamp || 0) > (local?.timestamp || 0);
         const remoteBenefitsValid = !remoteBenefits || _normalCharacterSaveValid(cloud.save, owner);
         const sameHistory = !localBenefits || (!!remoteBenefits && _normalBenefitsValid(local, owner) &&
           remoteBenefits.journeyId === localBenefits.journeyId &&
@@ -1729,6 +1816,7 @@
           (!localBenefits.shieldSpent || remoteBenefits.shieldSpent) &&
           localBenefits.creditedEvents.every((event, index) => remoteBenefits.creditedEvents[index] === event));
         const benefitConflict = cloud.save.journeyDomain === 'pilot' || !remoteBenefitsValid ||
+          !remotePresentationValid || wouldLosePresentation ||
           (!!localBenefits && !sameHistory);
         if (correctOwner && remoteOwnerMatches && benefitConflict) {
           // Keep complete snapshots together. An old client or a diverging
@@ -1878,6 +1966,22 @@
     function restoreGame(selectedSave) {
       const save = selectedSave || loadGame();
       if (!save || !save.character) return false;
+      const presentation = _readQuestionSaveExtras(save);
+      if (!presentation) {
+        _toast('As alternativas salvas não podem ser retomadas com segurança. O save foi preservado.', 'warning', 6000);
+        return false;
+      }
+      let legacyCurrent = null, legacyChoice = null;
+      if (presentation.legacy && (window.NQPilot?.active || save.classBenefits) && save.currentQuestionId) {
+        const authored = questionBank.find(question => String(question.id) === save.currentQuestionId);
+        legacyCurrent = authored && (window.NQAnswers ? window.NQAnswers.present(authored, {preserveOrder:true}) : authored);
+        const result = window.NQPilot?.active ? save.pilotLastAnswer : save.characterLastAnswer;
+        legacyChoice = save.answered && _answerChoice(legacyCurrent, result?.choice);
+        if (!legacyCurrent || (save.answered && (!legacyChoice || legacyChoice.correct !== result?.correct))) {
+          _toast('A pergunta salva não corresponde ao banco atual. O save foi preservado.', 'warning', 6000);
+          return false;
+        }
+      }
       if ((window.NQPilot?.active || save.journeyDomain === 'pilot') &&
           (save.gameStarted !== true || save.gameOver || save.gameCompleted || save.completedGame || save.lives === 0)) return false;
       if (!window.NQPilot?.active && save.classBenefits &&
@@ -1886,7 +1990,7 @@
         return false;
       }
       if (!window.NQPilot?.active && save.classBenefits) {
-        const question = questionBank.find(q => String(q.id) === save.currentQuestionId);
+        const question = presentation.question || questionBank.find(q => String(q.id) === save.currentQuestionId);
         const result = save.characterLastAnswer;
         if (!question || (save.answered && (result.choice >= question.o.length || result.correct !== (result.choice === question.a)))) {
           _toast('A pergunta salva não corresponde ao banco atual. O save foi preservado.', 'warning', 6000);
@@ -1932,6 +2036,12 @@
       state.journeyAnswerOrdinal = save.journeyAnswerOrdinal || 0;
       state.pilotLastAnswer = save.pilotLastAnswer || null;
       state.characterLastAnswer = save.characterLastAnswer || null;
+      state.questionAnswer = presentation.legacy ? legacyChoice || null : presentation.result;
+      if (legacyChoice && window.NQPilot?.active) state.pilotLastAnswer = {...state.pilotLastAnswer,
+        originalChoice:legacyChoice.originalChoice, optionId:legacyChoice.optionId};
+      else if (legacyChoice && save.classBenefits) state.characterLastAnswer = {...state.characterLastAnswer,
+        originalChoice:legacyChoice.originalChoice, optionId:legacyChoice.optionId};
+      _sessionWrongAnswers = presentation.wrongs;
       state.pilotJourneyAccounted = !!save.pilotJourneyAccounted;
 
       // Atordoamento do Arqui-Nefromante é estado de COMBATE, não de progresso:
@@ -1956,13 +2066,18 @@
         state.queue = save.queueIds.map(id => bankMap[id]).filter(Boolean);
         state.idx = save.idx || 0;
         if (save.recentIds) _recentIds = save.recentIds.slice(-HISTORY_SIZE);
-        if ((window.NQPilot?.active || save.classBenefits) && save.currentQuestionId && bankMap[save.currentQuestionId]) {
-          state.current = bankMap[save.currentQuestionId];
+        if ((window.NQPilot?.active || save.classBenefits) && save.currentQuestionId && bankMap[save.currentQuestionId] && presentation.legacy) {
+          state.current = legacyCurrent;
           state.answered = !!save.answered;
           _pilotRestoredQuestion = true;
         }
       } else {
         shuffleQueue();
+      }
+      if (!presentation.legacy) {
+        state.current = presentation.question;
+        state.answered = save.answered;
+        _pilotRestoredQuestion = true;
       }
       
       return true;
@@ -2401,12 +2516,10 @@
         const t=topics[i];
         const d=t.diff==='hard'?Math.min(12,8+Math.floor(i/30)):Math.min(12,4+Math.floor(i/25));
         // Usar campos completos: opts, ans, exp (não abreviados)
-        const opts = t.opts || t.o || [];
+        const opts = (t.opts || t.o || []).slice();
         const ans  = (t.ans !== undefined) ? t.ans : (t.a !== undefined ? t.a : 0);
         const exp  = t.exp || t.e || '';
-        // Shuffle desabilitado (Fase 1): 259 explicações referenciam "alternativa A/B/C/D"
-        // que ficariam incorretas após o embaralhamento. Reativar quando as
-        // explicações forem reescritas para referenciar o conteúdo, não a letra.
+        // The bank stays authored; each eligible current presentation owns its option mapping.
         deck.push({id:t.qid||(String(i+1)),d,_d:t.diff||t.d||'medium',q:t.q,o:opts,a:ans,e:exp,r:t.refs||t.r||[],c:t.cat||t.c||'geral'});
       }
       return deck;
@@ -2524,7 +2637,7 @@
       chestTarget: Math.floor(Math.random() * 3) + 5,
       character: null,
       journeyDomain:'normal', classBenefits:null, questionOrigin:'campaign',
-      journeyAnswerOrdinal:0, pilotLastAnswer:null, characterLastAnswer:null, pilotJourneyAccounted:false,
+      journeyAnswerOrdinal:0, pilotLastAnswer:null, characterLastAnswer:null, questionAnswer:null, pilotJourneyAccounted:false,
       equipment:{
         helmet:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
         glove:{n:"Vazio",rar:"common",atk:0,def:0,kno:0,luck:0},
@@ -3850,18 +3963,26 @@
       _questionStartTime = Date.now();
       const _msb = document.getElementById('mobileStatusBar');
       if (_msb) _msb.classList.add('active');
-      const restoringPilot = (isCharacterPilot() || !!state.classBenefits) && _pilotRestoredQuestion;
+      const restoringPilot = _pilotRestoredQuestion;
       const wasAnswered = restoringPilot && state.answered;
-      const q = restoringPilot ? state.current : drawQuestion();
+      const drawn = restoringPilot ? state.current : drawQuestion();
+      const q = restoringPilot ? drawn : drawn && (window.NQAnswers ? window.NQAnswers.present(drawn) : drawn);
       _pilotRestoredQuestion = false;
       state.answered = !!wasAnswered;
-      if (!q) return;
+      if (!q) {
+        if (drawn) {
+          _stopLocalJourney(); refreshWelcomeSave();
+          _toast('Não foi possível apresentar as alternativas com segurança. O save foi preservado.', 'warning', 6000);
+        }
+        return;
+      }
       state.current = q;
       if (!restoringPilot) {
         state.questionOrigin = _nextQuestionOrigin || 'campaign';
         _nextQuestionOrigin = null;
         state.pilotLastAnswer = null;
         state.characterLastAnswer = null;
+        state.questionAnswer = null;
       }
       ui.question.textContent = q.q;
       const _adminBadge = document.getElementById('adminQidBadge');
@@ -3883,7 +4004,7 @@
       updateBossUI();
       applyBossOptionBadges();
       if (wasAnswered) {
-        const result = isCharacterPilot() ? state.pilotLastAnswer : state.characterLastAnswer;
+        const result = isCharacterPilot() ? state.pilotLastAnswer : state.characterLastAnswer || state.questionAnswer;
         [...ui.options.querySelectorAll('.option')].forEach((option, index) => {
           option.disabled = true;
           if (index === q.a) option.classList.add('correct');
@@ -3891,12 +4012,14 @@
         });
         const correct = !!result?.correct;
         const base = correct ? `+${result?.baseXP || 0} XP base, +${result?.baseGold || 0} ouro base.` : '';
-        renderLumenAnswerFeedback(correct, base + _pilotAnswerFeedback(result));
+        renderLumenAnswerFeedback(correct, base +
+          ((isCharacterPilot() || state.classBenefits) ? _pilotAnswerFeedback(result) : ''));
         setLumenEvidenceAvailable(true);
         ui.nextBtn.classList.remove('hidden');
         ui.dockNextBtn?.classList.remove('disabled');
       }
-      if ((isCharacterPilot() || !!state.classBenefits) && !_normalJourneyStaging && !wasAnswered && !_doSaveGame()) {
+      if ((isCharacterPilot() || !!state.classBenefits || !!q._answerPresentation) &&
+          !_normalJourneyStaging && !wasAnswered && !_doSaveGame()) {
         _stopLocalJourney(); _reloadJourneyCollections(); refreshWelcomeSave();
         _toast('Não foi possível gravar a pergunta. Retome a jornada salva.', 'warning', 6000);
       }
@@ -4294,8 +4417,11 @@
       if(!state.gameStarted) return;
       if(state.answered) return;
       if(!state.current) return;
+      const choiceResult = _answerChoice(state.current, i);
+      if (!choiceResult) return;
       const pilotAnswer = _beginPilotAnswer(i);
       if (pilotAnswer === false) return;
+      state.questionAnswer = choiceResult;
       state.answered=true;
 
       const timeSpent = _questionStartTime > 0 ? Math.floor((Date.now() - _questionStartTime) / 1000) : 0;
@@ -4312,7 +4438,10 @@
 
       // Acumular erros da sessão para revisão no fim de partida
       if (recordsProgress && !isCorrect && state.current && typeof _sessionWrongAnswers !== 'undefined') {
-        const wrong = {...state.current, chosen:i};
+        const question = window.NQAnswers?.snapshot(state.current) || JSON.parse(JSON.stringify(state.current));
+        const wrong = {...question, chosen:i, authoredChoice:choiceResult.originalChoice,
+          selectedOptionId:choiceResult.optionId, answerEventId:pilotAnswer?.eligible ? pilotAnswer.eventId : crypto.randomUUID()};
+        if (pilotAnswer?.normal) pilotAnswer.prospectiveWrong = wrong;
         _recordCharacterProgress(() => _sessionWrongAnswers.push(wrong));
       }
 
@@ -4374,6 +4503,7 @@
         // Legendary synergy: all 6 slots legendary = +20% XP
         const _synergy = legendaryCount()===6;
         if(_synergy) xp=Math.floor(xp*1.2);
+        Object.assign(state.questionAnswer, {baseXP:xp, baseGold:g});
         const baseScore=80+state.current.d*15+state.streak*5+st.atk;
         state.score+=Math.floor(baseScore * sm.mult);
         const prevGold = state.gold;
@@ -4603,7 +4733,7 @@
           }
           if (window.innerWidth <= 768) setTimeout(() => ui.feedback.scrollIntoView({behavior:'smooth', block:'nearest'}), 80);
         }
-        renderErrorReflection(state.current.id, i);
+        renderErrorReflection(state.current.id, choiceResult.originalChoice);
         log('⚠️ Você falhou nessa carta. Ajuste a estratégia e continue.');
         playSound('wrong');
         // Boss log para erro

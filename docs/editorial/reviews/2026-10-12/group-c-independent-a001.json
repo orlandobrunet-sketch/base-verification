@@ -1,0 +1,618 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 26687,
+  "sourceReportSHA256": "02471099c9c74881dbe7f4b0cbc4506565832ddaf0fec25f15ffd83e2a1f309b",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_INDEPENDENT_EXACT_PROPOSAL_REVIEW_v2",
+    "reviewer": "clinical_review_c",
+    "reviewedAtOfficialUTC": "2026-10-12T17:20:26Z",
+    "target": {
+      "path": "docs/editorial/reviews/2026-10-12/group-a-output-001.json",
+      "bytes": 95560,
+      "sha256": "64bf5cabfe631640a41099f34968253286c4a0fcfd02ef1a087b69e63924bb41"
+    },
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "normativePins": [
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      }
+    ],
+    "independence": "Segundo revisor distinto do autorA. Fontes abertas e AFTER lidos nesta tarefa; não é revisão cega quanto ao parecer anterior.",
+    "summary": {
+      "exactProposalsReviewed": 4,
+      "acceptedUnchanged": 4,
+      "blocked": 0,
+      "referenceCardPatchesReviewed": 1,
+      "bankEdits": 0
+    },
+    "items": [
+      {
+        "qid": "86ad6fc4",
+        "exactAfterQuestionSHA256": "c99e41f34b2a44c469cb5d99740a18be7858e285169f3e53d1041929521ee1e7",
+        "afterReviewed": {
+          "t": "Hipermagnesemia Grave: Manifestações Clínicas",
+          "qid": "86ad6fc4",
+          "q": "Durante uma infusão de sulfato de magnésio, a equipe monitora sinais de toxicidade. Qual alteração do exame neurológico costuma sinalizar toxicidade antes da depressão respiratória?",
+          "refs": [
+            "magnesium_sulfate_toxicity_ahrq"
+          ],
+          "opts": [
+            "Intensificação dos reflexos profundos",
+            "Surgimento de clônus patelar sustentado",
+            "Aumento do tônus com rigidez muscular",
+            "Hiporreflexia, com possível arreflexia"
+          ],
+          "ans": 3,
+          "exp": "A redução dos reflexos tendinosos profundos é um alerta de toxicidade por magnésio e pode evoluir para arreflexia antes do comprometimento respiratório. A monitorização deve acompanhar também respiração e estado clínico; nenhum achado isolado substitui essa avaliação. Hiperreflexia, clônus e rigidez não representam o padrão depressor neuromuscular esperado.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "OP": "Reconhecer redução dos reflexos profundos como alerta neuromuscular de toxicidade por magnésio, antes de comprometimento respiratório.",
+        "classification": {
+          "primaryCompetency": "reconhecimento de toxicidade medicamentosa",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "independentVerdictV2": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4Regra7(a): evidênciaVERIFICADA/NENHUMA + vereditoaprovada, semeliminatório; limitadoaosbytesidentificados.",
+        "sourcesOpenedIndependently": [
+          {
+            "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+            "openedByIndependentReviewer": true,
+            "location": "Monitoring lines88–115; toxicity table; last reviewedJuly2023",
+            "claim": "Redução/perda de reflexos aparece antes de depressão respiratória na progressão descrita; monitorização e resposta à toxicidade.",
+            "limit": "Guia perinatal de segurança; não guideline GRADE."
+          },
+          {
+            "url": "https://dailymed.nlm.nih.gov/dailymed/lookup.cfm?setid=efadcb55-f935-4c60-b2e2-0a76b9194b50",
+            "openedByIndependentReviewer": true,
+            "location": "Clinicalpharmacology/Precautions/Overdosage lines179–180,216–218,243–249",
+            "claim": "Reflexos profundos diminuem e podem desaparecer; intoxicação tem padrão neuromuscular depressor.",
+            "limit": "A auditoria não introduz dose ou limiar numérico."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "plausibleAnnulmentArgument": false,
+          "finding": "Apenas hiporreflexia/arreflexia corresponde ao padrão neuromuscular depressor. Os outros achados são padrões excitatórios, plausíveis no contexto obstétrico concorrente, mas não sinais da toxicidade descrita. Alerta inicial e progressão estão separados."
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": false
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "annulled": false
+        },
+        "lengthAndGranularity": {
+          "lengths": [
+            37,
+            39,
+            37,
+            38
+          ],
+          "finding": "Alternativas semanticamente comparáveis; a métrica não substitui revisão clínica."
+        },
+        "orderDependence": {
+          "explicitLetters": false,
+          "allPreviousOrLetterCombination": false,
+          "finding": "Explicação por conteúdo; resposta canônica preservada."
+        },
+        "qualification": "Nome do tema diz grave; a pergunta corretamente avalia monitorização de toxicidade antes da falência respiratória. Isso não altera o OP nem invalida o item.",
+        "requestedAmendments": [],
+        "verificationPending": [],
+        "implementation": "Aprovação válida apenas ao AFTER e refsdep explicitamente revisados. Se houver mudança material, devolver aoautor para nova revisão. Não editado ou publicado por este revisor."
+      },
+      {
+        "qid": "b933be69",
+        "exactAfterQuestionSHA256": "9f1cd0d99445d9738b39e013e217e65f467127caab0e3b92d00ccfdb520df05b",
+        "afterReviewed": {
+          "t": "Síndrome de Gitelman e Hipocalciúria",
+          "qid": "b933be69",
+          "q": "Na síndrome de Gitelman, a combinação de hipocalciúria, hipomagnesemia e alcalose metabólica hipocalêmica está associada à perda de função de qual transportador tubular?",
+          "refs": [
+            "gitelman_kdigo_2017"
+          ],
+          "opts": [
+            "Canal de sódio epitelial (ENaC)",
+            "Aquaporina de água (AQP2)",
+            "Cotransportador de sódio-potássio-cloreto (NKCC2)",
+            "Cotransportador de sódio-cloreto (NCC)"
+          ],
+          "ans": 3,
+          "exp": "O NCC é o cotransportador codificado pelo SLC12A3 e afetado na síndrome de Gitelman. A alteração acompanha hipocalciúria e hipomagnesemia, embora o fenótipo varie. A resposta identifica o defeito tubular; não pressupõe que a reabsorção de cálcio seja passiva no segmento distal.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "OP": "Identificar o NCC como transportador com perda de função na síndrome de Gitelman associada à hipocalciúria.",
+        "classification": {
+          "primaryCompetency": "interpretação de mecanismo tubular",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "independentVerdictV2": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4Regra7(a): evidênciaVERIFICADA/NENHUMA + vereditoaprovada, semeliminatório; limitadoaosbytesidentificados.",
+        "sourcesOpenedIndependently": [
+          {
+            "url": "https://kdigo.org/wp-content/uploads/2017/02/KDIGO-Gitelman-conf-report.pdf",
+            "openedByIndependentReviewer": true,
+            "location": "pp24–26; lines26–31,58–67,79–84,228–232",
+            "claim": "SLC12A3/NCC na Gitelman; hipomagnesemia/hipocalciúria características variáveis; Bartter clássico pode apresentar Mg normal e fenótipo sobreposto.",
+            "limit": "Consenso específico; não extrapolar marcadores para exclusão genética absoluta."
+          },
+          {
+            "url": "https://discovery.ucl.ac.uk/id/eprint/1534450/",
+            "openedByIndependentReviewer": true,
+            "claim": "Registro institucional corresponde ao consensoKDIGO2017 e à referência existente."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "plausibleAnnulmentArgument": false,
+          "finding": "NCC é a única identidade associada ao defeitoSLC12A3 da Gitelman. O AFTER deixa de premiar mecanismo incorreto de cálcio distal. AQP2 é um distrator mais distante, mas mantém a categoria de proteína tubular e não cria segunda resposta."
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": false
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "annulled": false
+        },
+        "lengthAndGranularity": {
+          "lengths": [
+            31,
+            25,
+            49,
+            38
+          ],
+          "finding": "Alternativas semanticamente comparáveis; a métrica não substitui revisão clínica."
+        },
+        "orderDependence": {
+          "explicitLetters": false,
+          "allPreviousOrLetterCombination": false,
+          "finding": "Explicação por conteúdo; resposta canônica preservada."
+        },
+        "qualification": "Reclassificaçãohard→medium corresponde ao raciocínio efetivo. AtribuirCompreender/Sabe é mais fiel queAvaliar.",
+        "requestedAmendments": [],
+        "verificationPending": [],
+        "implementation": "Aprovação válida apenas ao AFTER e refsdep explicitamente revisados. Se houver mudança material, devolver aoautor para nova revisão. Não editado ou publicado por este revisor."
+      },
+      {
+        "qid": "a79c0cc3",
+        "exactAfterQuestionSHA256": "a5582413024abe1db558b7090c6e5a42221bd47f72b6f6e03554eab41717da70",
+        "afterReviewed": {
+          "t": "Síndrome de Bartter e Magnésio",
+          "qid": "a79c0cc3",
+          "q": "Ao diferenciar síndrome de Bartter clássica de síndrome de Gitelman, qual interpretação do magnésio sérico é mais adequada?",
+          "refs": [
+            "gitelman_kdigo_2017"
+          ],
+          "opts": [
+            "Magnésio normal afasta as duas tubulopatias",
+            "Hipomagnesemia identifica Gitelman sem necessidade de outros dados",
+            "Hipomagnesemia afasta Bartter, mesmo diante de perda renal de sal",
+            "Magnésio normal favorece Bartter, mas valor baixo não o exclui"
+          ],
+          "ans": 3,
+          "exp": "Magnésio normal favorece Bartter clássico nesse diferencial, mas a hipomagnesemia não o exclui: alterações de CLCNKB podem produzir sobreposição com Gitelman. O resultado deve ser integrado ao perfil tubular. Não é correto transformar a magnesemia em critério isolado de exclusão.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "OP": "Interpretar o magnésio sérico no diagnóstico diferencial de Bartter clássico e Gitelman sem usar um valor isolado como exclusão.",
+        "classification": {
+          "primaryCompetency": "interpretação de perfil eletrolítico",
+          "bloom": "Analisar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "independentVerdictV2": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4Regra7(a): evidênciaVERIFICADA/NENHUMA + vereditoaprovada, semeliminatório; limitadoaosbytesidentificados.",
+        "sourcesOpenedIndependently": [
+          {
+            "url": "https://kdigo.org/wp-content/uploads/2017/02/KDIGO-Gitelman-conf-report.pdf",
+            "openedByIndependentReviewer": true,
+            "location": "pp24–26; lines26–31,58–67,79–84,228–232",
+            "claim": "SLC12A3/NCC na Gitelman; hipomagnesemia/hipocalciúria características variáveis; Bartter clássico pode apresentar Mg normal e fenótipo sobreposto.",
+            "limit": "Consenso específico; não extrapolar marcadores para exclusão genética absoluta."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "plausibleAnnulmentArgument": false,
+          "finding": "A opção correta faz inferência comparativa, sem exclusão por Mg isolado. As três alternativas concorrentes tratam normalidade ou hipomagnesemia como diagnóstico/exclusão definitiva; o consenso explicitamente descreve variabilidade e sobreposição."
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": false
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "annulled": false
+        },
+        "lengthAndGranularity": {
+          "lengths": [
+            43,
+            66,
+            65,
+            62
+          ],
+          "finding": "Alternativas semanticamente comparáveis; a métrica não substitui revisão clínica."
+        },
+        "orderDependence": {
+          "explicitLetters": false,
+          "allPreviousOrLetterCombination": false,
+          "finding": "Explicação por conteúdo; resposta canônica preservada."
+        },
+        "qualification": "Não transformarfavorece emconfirma. A ressalvaéessencial e foi preservada; não encurtar para eliminar comprimento.",
+        "requestedAmendments": [],
+        "verificationPending": [],
+        "implementation": "Aprovação válida apenas ao AFTER e refsdep explicitamente revisados. Se houver mudança material, devolver aoautor para nova revisão. Não editado ou publicado por este revisor."
+      },
+      {
+        "qid": "ac2d05ad",
+        "exactAfterQuestionSHA256": "f33cf8e4ac7de44d2188f941c686ccde327006562602bd56ac3110c97691dbc6",
+        "afterReviewed": {
+          "t": "Acidose metabólica na DRC",
+          "qid": "ac2d05ad",
+          "q": "Adulto com doença renal crônica estágio 4, clinicamente estável em acompanhamento ambulatorial, apresenta acidose metabólica persistente com bicarbonato sérico de 17 mEq/L. Não há distúrbio respiratório associado. Qual manejo é mais apropriado?",
+          "refs": [
+            "kdigo_ckd"
+          ],
+          "opts": [
+            "Adiar o tratamento até surgir indicação de diálise",
+            "Manter apenas observação enquanto não houver sintomas",
+            "Considerar tratamento oral e monitorar bicarbonato e volemia",
+            "Programar reposição intravenosa seriada em regime ambulatorial"
+          ],
+          "ans": 2,
+          "exp": "Deve-se considerar tratamento farmacológico oral, individualizado e acompanhado de monitorização. Os practice points 3.10.1–3.10.2 da KDIGO 2024 destacam acidose com possível repercussão clínica, exemplificada por bicarbonato abaixo de 18 mmol/L em adultos, e orientam evitar excesso de bicarbonato ou efeitos adversos sobre pressão arterial, potássio e volemia. Não afirmam benefício renal duro comprovado.",
+          "diff": "medium",
+          "cat": "acido_base"
+        },
+        "OP": "Escolher manejo ambulatorial individualizado da acidose metabólica persistente na DRC, evitando alcalose e sobrecarga.",
+        "classification": {
+          "primaryCompetency": "conduta terapêutica",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "independentVerdictV2": "aprovada",
+        "legacyAux": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4Regra7(a): evidênciaVERIFICADA/NENHUMA + vereditoaprovada, semeliminatório; limitadoaosbytesidentificados.",
+        "sourcesOpenedIndependently": [
+          {
+            "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+            "openedByIndependentReviewer": true,
+            "location": "PracticePoints3.10.1–3.10.2; PDFpp44/106, lines2648–2653/8486–8494",
+            "claim": "Considerar tratamento em acidose com repercussão clínica; exemploHCO3<18mmol/L em adultos; monitorizar para evitar excesso/efeitos adversos.",
+            "limit": "Practicepoints, não obrigação universal nem prova de benefício renal duro."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "plausibleAnnulmentArgument": false,
+          "finding": "Persistência, acidosemetabólica, estabilidadeambulatorial e ausência de componente respiratório resolvem premissas ocultas. Considerar tratamento oral é a melhor opção; aguardar sintomas ou diálise como regra desconsidera o ponto de prática. IVseriada é distrator mais distante, mas não torna a resposta ambígua."
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": false
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 18,
+          "annulled": false
+        },
+        "lengthAndGranularity": {
+          "lengths": [
+            50,
+            53,
+            60,
+            62
+          ],
+          "finding": "Alternativas semanticamente comparáveis; a métrica não substitui revisão clínica."
+        },
+        "orderDependence": {
+          "explicitLetters": false,
+          "allPreviousOrLetterCombination": false,
+          "finding": "Explicação por conteúdo; resposta canônica preservada."
+        },
+        "qualification": "O termo considerar preserva individualização. Não inserir meta≥22 universal ou benefício renal duro sem outra evidência.",
+        "requestedAmendments": [],
+        "verificationPending": [],
+        "implementation": "Aprovação válida apenas ao AFTER e refsdep explicitamente revisados. Se houver mudança material, devolver aoautor para nova revisão. Não editado ou publicado por este revisor."
+      }
+    ],
+    "cardPatches": [
+      {
+        "id": "magnesium_sulfate_toxicity_ahrq",
+        "exactAfterCardSHA256": "f986338d2f7e44dd4ea48eb49bb83c23613f5e9e1c4c3d0dd7894f23f049b2e2",
+        "afterReviewed": {
+          "label": "AHRQ — Safe Medication Administration: Magnesium Sulfate",
+          "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+          "journal": "Agency for Healthcare Research and Quality",
+          "ano": 2023,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Monitorização dos reflexos e da respiração durante infusão de magnésio",
+          "icon": "📋",
+          "resumo": "Guia oficial de segurança perinatal da AHRQ, revisado em julho2023. Orienta monitorização clínica durante infusão de sulfato de magnésio e apresenta perda do reflexo patelar antes de depressão respiratória na progressão da toxicidade. A suspeita exige interromper a infusão, avaliar a respiração e acionar resposta apropriada. Não é ensaio clínico nem recomendação GRADE.",
+          "conclusao": "A redução dos reflexos profundos é sinal de alerta e deve ser interpretada junto à monitorização respiratória e ao contexto clínico.",
+          "curiosidade": ""
+        },
+        "verdictV2": "aprovada com pequenos ajustes",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a); ano2023 e conteúdo suportados independentemente por páginaAHRQaberta.",
+        "finding": "Corrigir ano para2023 é suportado pelo Lastreviewed. O card se descreve como guia oficial de segurança e explicitamente nãoGRADE; sua taxonomiaDiretriz/GUIDELINE deve ser lida com essa ressalva, sem inventar classe/força.",
+        "sources": [
+          {
+            "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+            "openedByIndependentReviewer": true,
+            "location": "Monitoring lines88–115; toxicity table; last reviewedJuly2023",
+            "claim": "Redução/perda de reflexos aparece antes de depressão respiratória na progressão descrita; monitorização e resposta à toxicidade.",
+            "limit": "Guia perinatal de segurança; não guideline GRADE."
+          }
+        ],
+        "requestedAmendments": []
+      }
+    ],
+    "qualifiedScope": [
+      "Autorizações referem-se aos bytesAFTER, não aos itensoriginais nem ao banco inteiro.",
+      "Cards compartilhadosGitelman/KDIGO são validados para as afirmações decisivas desses quatro itens; não nova revisão de todo conteúdo global.",
+      "Qualquer alteração material posterior exige reavaliação e novo pin; não herdar este parecer.",
+      "Não foram revisados outros itens do grupoA."
+    ]
+  }
+}

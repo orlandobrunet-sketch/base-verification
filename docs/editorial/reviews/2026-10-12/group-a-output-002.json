@@ -1,0 +1,2175 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 86909,
+  "sourceReportSHA256": "6f0a22f88e36cadb23a9c6ca47c79c72626efc37cd323b9eb8ee7ae352ef7c57",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_FORMAL_BATCH_REVIEW_A1",
+    "group": "a",
+    "batch": 2,
+    "reviewedAtOfficialUTC": "2026-10-12T17:17:49Z",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "bankLF_SHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "input": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 17371,
+      "sha256": "b3ca3e85a72eb8437c65f26b8f522b7d3edc932d2765769c96edd93afe58174e"
+    },
+    "reviewer": "clinical_review_a",
+    "normativePins": [
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      }
+    ],
+    "sourceRegistry": {
+      "gitelman_2017": {
+        "title": "Gitelman syndrome: consensus and guidance from a KDIGO Controversies Conference",
+        "url": "https://kdigo.org/wp-content/uploads/2017/02/KDIGO-Gitelman-conf-report.pdf",
+        "organization": "KDIGO; Kidney International 91:24–33",
+        "year": 2017,
+        "doi": "10.1016/j.kint.2016.09.046",
+        "opened": true,
+        "locator": "pp.24–26: SLC12A3/NCC, fenótipo e diferencial com Bartter; p.29: condrocalcinose",
+        "supports": "Gitelman decorre de perda de função do NCC; hipocalciúria/hipomagnesemia são características; Bartter clássico pode ter Mg normal ou sobreposição Gitelman-like.",
+        "limits": "Consenso de doença rara; não confirma a alegação de reabsorção passiva de cálcio distal nem todos os detalhes moleculares de CPPD."
+      },
+      "bartter_china_2023": {
+        "title": "Expert Consensus for the Diagnosis and Treatment of Bartter Syndrome in China (2023)",
+        "url": "https://www.sciopen.com/article/10.12290/xhyxzz.2023-0207",
+        "doi": "10.12290/xhyxzz.2023-0207",
+        "year": 2023,
+        "opened": true,
+        "locator": "Resumo do consenso no site do periódico, linhas de abstract",
+        "supports": "Fenótipo típico de perda salina com hipocalemia, alcalose metabólica e pressão normal/baixa.",
+        "verificationScope": "Definição do fenótipo, não todas as recomendações do PDF em chinês."
+      },
+      "seys_2017": {
+        "title": "Clinical and Genetic Spectrum of Bartter Syndrome Type 3",
+        "url": "https://discovery.ucl.ac.uk/id/eprint/1571867/",
+        "doi": "10.1681/ASN.2016101057",
+        "year": 2017,
+        "opened": true,
+        "locator": "Registro institucional/abstract da pesquisa original; linhas36–40",
+        "supports": "115 pacientes CLCNKB com apresentações antenatais, clássicas e Gitelman-like.",
+        "verificationScope": "Fenótipos registrados no resumo primário; PDF do manuscrito não recuperado, sem afirmação dependente apenas desse PDF."
+      },
+      "jung_2019": {
+        "title": "Diagnosis and management of metabolic acidosis: guidelines from a French expert panel",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6695455/",
+        "doi": "10.1186/s13613-019-0563-2",
+        "year": 2019,
+        "opened": true,
+        "locator": "R1.1/rationale, linhas305–309",
+        "supports": "PaCO2 esperada =1,5×HCO3+8±2 mmHg para compensação na acidose metabólica; gasometria avalia distúrbios mistos.",
+        "verificationScope": "Fórmula e diagnóstico, sem reutilizar recomendações terapêuticas antigas sem conferência atual."
+      },
+      "gonzalez_2018": {
+        "title": "Secondary Response to Chronic Respiratory Acidosis in Humans: A Prospective Study",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6127438/",
+        "doi": "10.1016/j.ekir.2018.06.001",
+        "year": 2018,
+        "opened": true,
+        "locator": "Abstract/results/discussion; linhas126–135 e289–305",
+        "supports": "Estudo prospectivo com28 pacientes em hipercapnia crônica estável observou coeficiente0,476 mEq/L por mmHg, IC95%0,414–0,538, P<0,01, e propôs aproximação0,5.",
+        "verificationScope": "Dados primários observacionais; não transformados em nova regra universal ou diretriz."
+      },
+      "osmol_hooper_2015": {
+        "title": "Diagnostic accuracy of calculated serum osmolarity to predict dehydration in older people",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4636668/",
+        "year": 2015,
+        "opened": true,
+        "locator": "Discussão, linhas379–403",
+        "supports": "Há diferentes equações e limites para osmolaridade calculada; não se deve chamar uma fórmula de universal.",
+        "verificationScope": "Não validou neste acesso o card/texto-base original da fórmula de ureia/6."
+      },
+      "atr_original_failed": {
+        "title": "Card atr_rodriguez_soriano",
+        "url": "https://link.springer.com/article/10.1007/s004670100721",
+        "opened": false,
+        "failure": "Texto não recuperado; metadados/afirmação de frequência não conferidos."
+      },
+      "bartter2021_failed": {
+        "title": "Diagnosis and management of Bartter syndrome: ERKNet consensus",
+        "url": "https://www.kidney-international.org/article/S0085-2538%2820%2931404-6/fulltext",
+        "year": 2021,
+        "doi": "10.1016/j.kint.2020.10.035",
+        "opened": false,
+        "failure": "Texto integral não recuperado; PDF do editor e página ERKNet retornaram 403/erro; registro PubMed insuficiente neste canal.",
+        "limits": "Não tratado como fonte clínica decisiva conferida."
+      }
+    },
+    "verifiedExistingCards": {
+      "gitelman_kdigo_2017": {
+        "label": "Blanchard A et al. — Gitelman Syndrome: KDIGO Controversies Conference (2017)",
+        "url": "https://discovery.ucl.ac.uk/id/eprint/1534450/",
+        "journal": "Kidney Int 2017;91(1):24-33",
+        "ano": 2017,
+        "tipo": "Consenso KDIGO",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Diagnóstico e manejo da síndrome de Gitelman: hipocalemia, alcalose metabólica, hipomagnesemia, hipocalciúria e SLC12A3/NCC",
+        "icon": "📋",
+        "resumo": "Consenso de conferência KDIGO sobre síndrome de Gitelman, uma tubulopatia perdedora de sal causada por mutações inativantes em SLC12A3, gene do cotransportador NaCl sensível a tiazídicos (NCC) no túbulo contornado distal. Caracteriza o fenótipo clássico por alcalose metabólica hipocalêmica, hipomagnesemia e hipocalciúria, geralmente com apresentação mais tardia que Bartter. O manejo é individualizado e costuma combinar liberalização de sal, suplementação de potássio e magnésio e seguimento para sintomas, qualidade de vida, arritmias e complicações.",
+        "conclusao": "Gitelman deve ser reconhecida pelo padrão de hipocalemia + alcalose metabólica + hipomagnesemia + hipocalciúria, distinguindo-se de Bartter pela localização distal/NCC e pelo perfil cálcio-magnésio.",
+        "curiosidade": "O fenótipo de Gitelman imita um 'tiazídico genético': o defeito fica no mesmo cotransportador que a hidroclorotiazida bloqueia, mas com consequências crônicas sobre magnésio e cálcio urinário."
+      }
+    },
+    "newVerifiedCards": {
+      "bartter_china_consensus_2023": {
+        "label": "Consenso de Bartter — China2023",
+        "url": "https://www.sciopen.com/article/10.12290/xhyxzz.2023-0207",
+        "journal": "Medical Journal of Peking Union Medical College Hospital 2023;14(4):744–757",
+        "ano": 2023,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Define o fenótipo típico da tubulopatia perdedora de sal",
+        "icon": "📋",
+        "resumo": "Consenso2023 das sociedades chinesas de doenças raras, publicado pelo periódico da Peking Union Medical College Hospital. Caracteriza Bartter por perda renal de sal, hiperaldosteronismo secundário, hipocalemia e alcalose metabólica, geralmente com pressão normal ou baixa. O texto integral contém diagnóstico e manejo; aqui foi conferida a definição do resumo oficial.",
+        "conclusao": "O padrão típico de Bartter combina perda salina e alcalose hipocalêmica; a fonte não foi usada para doses ou recomendações não recuperadas.",
+        "curiosidade": ""
+      },
+      "seys_bartter3_2017": {
+        "label": "Seys E et al. — Espectro de Bartter tipo3 (2017)",
+        "url": "https://discovery.ucl.ac.uk/id/eprint/1571867/",
+        "journal": "J Am Soc Nephrol 2017;28(8):2540–2552",
+        "ano": 2017,
+        "tipo": "Coorte",
+        "badge": "COHORT",
+        "badgeColor": "#f59e0b",
+        "impacto": "CLCNKB pode produzir apresentações antenatais, clássicas e Gitelman-like",
+        "icon": "🔬",
+        "resumo": "Coorte retrospectiva de115 pacientes com variantes CLCNKB, associada a análises genéticas e funcionais. Observou fenótipos de Bartter ante/neonatal (29,5%), clássico (44,5%) e semelhante a Gitelman (26,0%). A heterogeneidade mostra que o subtipo não fica restrito a uma idade ou gravidade; percentuais refletem esta coorte, não prevalência universal.",
+        "conclusao": "Bartter tipo3 tem fenótipo variável e pode sobrepor-se a Gitelman. Não presumir curso necessariamente leve.",
+        "curiosidade": ""
+      },
+      "srlf_sfmu_acidosis_2019": {
+        "label": "SRLF/SFMU — Diagnóstico da acidose metabólica (2019)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6695455/",
+        "journal": "Annals of Intensive Care 2019;9:92",
+        "ano": 2019,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Gasometria e compensação esperada ajudam a detectar distúrbio misto",
+        "icon": "📋",
+        "resumo": "Diretriz formal dos grupos franceses SRLF/SFMU para acidose metabólica em urgência e UTI. No racional da estratégia diagnóstica, apresenta PaCO2 esperada=1,5×HCO3+8±2 mmHg. A R1.1 é opinião de especialistas sobre gasometria para confirmar acidose e avaliar associação respiratória; não se atribui grau GRADE à fórmula.",
+        "conclusao": "Aplicar a estimativa apenas à acidose metabólica e comparar a PaCO2 arterial medida com o intervalo esperado.",
+        "curiosidade": ""
+      }
+    },
+    "newCardRegistryRequirement": "IDs foram pesquisados no registro; não presentes. Registrar estes cards antes de implementar os vínculos, no mesmo pacote editorial. Não produzir ID órfão.",
+    "summary": {
+      "inputQuestions": 8,
+      "reviewed": 8,
+      "originalApproved": 0,
+      "proposalsReleased": 4,
+      "proposalsBlocked": 4,
+      "actualBankEdits": 0
+    },
+    "items": [
+      {
+        "qid": "fe10a36e",
+        "sourceLine": 115,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4 Regra7(c): versão original exige revisão maior; não herda autorização anterior.",
+        "OP": "Reconhecer o padrão ácido-base/eletrolítico típico compartilhado por Bartter e Gitelman.",
+        "classification": {
+          "primaryCompetency": "interpretação de perfil tubular",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "MAIOR — o caso informa hipocalemia e alcalose e depois pergunta por esse mesmo padrão: pista no enunciado.",
+          "MAIOR — referencias genéricas originais; letra fixa na explicação."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "MAIOR — o caso informa hipocalemia e alcalose e depois pergunta por esse mesmo padrão: pista no enunciado.",
+            "MAIOR — referencias genéricas originais; letra fixa na explicação."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — evidência/pendência da versão original",
+            "1 — eliminatórios",
+            "revisão maior recuperável"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote002 e OPs declarados; sem auditoria integral de duplicatas",
+          "finding": "Os oito itens têm decisões/mecanismos distintos; nenhuma ordem de fusão."
+        },
+        "sources": [
+          {
+            "sourceId": "gitelman_2017",
+            "opened": true,
+            "claimSupport": "Gitelman decorre de perda de função do NCC; hipocalciúria/hipomagnesemia são características; Bartter clássico pode ter Mg normal ou sobreposição Gitelman-like."
+          },
+          {
+            "sourceId": "bartter_china_2023",
+            "opened": true,
+            "claimSupport": "Fenótipo típico de perda salina com hipocalemia, alcalose metabólica e pressão normal/baixa."
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Síndrome de Gitelman vs. Bartter: Potássio",
+            "qid": "fe10a36e",
+            "q": "Adolescente de 15 anos com fraqueza muscular, câimbras, hipocalemia (K 2,5 mEq/L) e alcalose metabólica. PA normal. Sem uso de diuréticos ou vômitos. A investigação confirma distúrbio tubular renal hereditário. Qual distúrbio eletrolítico é comum a ambas as síndromes (Gitelman e Bartter)?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Hipermagnesemia em estágio avançado",
+              "Hipercalemia em apresentação clássica",
+              "Hipocalemia e Alcalose Metabólica",
+              "Hipocalemia e Acidose Metabólica"
+            ],
+            "ans": 2,
+            "exp": "Bartter e Gitelman compartilham o fenótipo de perda renal de potássio com alcalose metabólica, por ativação do eixo renina-aldosterona e maior secreção distal de K+, tornando a alternativa C correta. Hipermagnesemia e hipercalemia não são esperadas, e acidose metabólica não caracteriza essas tubulopatias salinas.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "after": {
+            "t": "Síndrome de Gitelman vs. Bartter: Potássio",
+            "qid": "fe10a36e",
+            "q": "No padrão típico observado após o período neonatal, qual combinação eletrolítica e ácido-base é compartilhada pelas síndromes de Bartter e Gitelman?",
+            "refs": [
+              "gitelman_kdigo_2017",
+              "bartter_china_consensus_2023"
+            ],
+            "opts": [
+              "Hipomagnesemia e acidose metabólica",
+              "Hipercalemia e alcalose metabólica",
+              "Hipocalemia e alcalose metabólica",
+              "Hipocalemia e acidose metabólica"
+            ],
+            "ans": 2,
+            "exp": "O padrão típico compartilhado é hipocalemia com alcalose metabólica. As duas tubulopatias perdem sal renalmente e aumentam a atividade do sistema renina-aldosterona. A magnesemia e a calciúria ajudam no diferencial, mas não mudam esse padrão ácido-base característico. A formulação não generaliza para todas as fases neonatais.",
+            "diff": "easy",
+            "cat": "eletrólitos"
+          },
+          "beforeSHA256": "b9d1db7a058d70e8e3beaaa536de87d2c86f3f540e01bc2d2844bdee0875a42c",
+          "afterSHA256": "ccc141504c8fca028049d4896a28853601822fcbf0d9c68bd578d73cf788cb63",
+          "hashDefinition": "JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves",
+          "changedFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 2,
+            "sourceLetter": "C",
+            "text": "Hipocalemia e alcalose metabólica"
+          },
+          "implementation": "Preservar qid, ordem física e índice de gabarito. Novos cards abaixo são pacote verificado: criar ID no registro antes de ligar a questão; referências sem órfãs. Opções numéricas preservam ordem. Aplicar somente versão exata LIBERADA; fonte/hash diferente exige nova revisão. Nenhuma alteração do banco neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "ccc141504c8fca028049d4896a28853601822fcbf0d9c68bd578d73cf788cb63",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): VERIFICADA+NENHUMA+aprovação da versão exata.",
+          "appeal": {
+            "plausible": false,
+            "finding": "A pergunta deixou de entregar o par correto no caso. Temporalidade exclui generalização neonatal; só o par hipocalemia/alcalose descreve o padrão típico."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente"
+          },
+          "decision": {
+            "path": [
+              "0 — VERIFICADA/NENHUMA",
+              "1 — sem eliminatório após correção",
+              "2 — recurso resolvido",
+              "3 —19/20, aprovada"
+            ],
+            "lifeCycle": "em_reparo"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesRemovedInProposedExplanation": true,
+            "numericalOptionsRemainOrdered": null,
+            "decisiveSourcesOpened": true
+          },
+          "verificationPending": []
+        }
+      },
+      {
+        "qid": "50166346",
+        "sourceLine": 120,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "moderada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4 Regra7(c): versão original exige revisão maior; não herda autorização anterior.",
+        "OP": "Identificar hipoaldosteronismo hiporreninêmico associado a diabetes como causa de ATR hipercalêmica.",
+        "classification": {
+          "primaryCompetency": "raciocínio diagnóstico",
+          "bloom": "Analisar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "MAIOR — comando pergunta pela causa mais comum universal, enquanto o caso já traz renina e aldosterona baixas.",
+          "MAIOR — ânion gap não informado; bicarbonato reduzido isolado não confirma ATR.",
+          "MAIOR — fonte específica/card original não recuperados; restrição causal e frequência exigem confirmação."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "MAIOR — comando pergunta pela causa mais comum universal, enquanto o caso já traz renina e aldosterona baixas.",
+            "MAIOR — ânion gap não informado; bicarbonato reduzido isolado não confirma ATR.",
+            "MAIOR — fonte específica/card original não recuperados; restrição causal e frequência exigem confirmação."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": true
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — evidência/pendência da versão original",
+            "1 — eliminatórios",
+            "revisão maior recuperável"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote002 e OPs declarados; sem auditoria integral de duplicatas",
+          "finding": "Os oito itens têm decisões/mecanismos distintos; nenhuma ordem de fusão."
+        },
+        "sources": [
+          {
+            "sourceId": "atr_original_failed",
+            "opened": false,
+            "claimSupport": "Texto não recuperado; metadados/afirmação de frequência não conferidos."
+          }
+        ],
+        "patch": {
+          "instruction": "PENDENTE — NÃO IMPLEMENTAR",
+          "before": {
+            "t": "Acidose Tubular Renal Tipo 4: Causa",
+            "qid": "50166346",
+            "q": "Paciente de 63 anos com diabetes tipo 2, DRC estágio 3b (TFG 38 mL/min), hipercalemia crônica (K 5,8 mEq/L) e acidose metabólica leve (HCO3 18 mEq/L). Renina e aldosterona baixas. Qual é a causa mais comum de acidose tubular renal tipo 4 na prática clínica?",
+            "refs": [
+              "atr_rodriguez_soriano",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Amiloidose com comprometimento renal e disfunção tubular distal",
+              "Mieloma múltiplo associado a lesão tubular e hipercalemia persistente",
+              "Nefropatia Diabética (hipoaldosteronismo hiporreninêmico)",
+              "Uso prolongado de anfotericina B causando necrose tubular renal aguda"
+            ],
+            "ans": 2,
+            "exp": "A acidose tubular renal tipo 4 é caracterizada por hipercalemia e acidose metabólica leve, e sua causa mais comum é o hipoaldosteronismo hiporreninêmico associado à nefropatia diabética, correspondente à alternativa C. O mecanismo envolve redução da produção de renina pelo rim doente, com consequente queda de aldosterona e prejuízo na secreção distal de potássio. Amiloidose, mieloma e anfotericina B não são causas clássicas de ATR tipo 4.",
+            "diff": "medium",
+            "cat": "acido_base"
+          },
+          "after": null,
+          "beforeSHA256": "87524665df4dc090ed4358044c8bb0ca8982ff4f7f23a8279dc46ba7566f05d0",
+          "afterSHA256": null,
+          "hashDefinition": "JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves",
+          "changedFields": [],
+          "correctAnswer": null,
+          "implementation": "Preservar qid, ordem física e índice de gabarito. Novos cards abaixo são pacote verificado: criar ID no registro antes de ligar a questão; referências sem órfãs. Opções numéricas preservam ordem. Aplicar somente versão exata LIBERADA; fonte/hash diferente exige nova revisão. Nenhuma alteração do banco neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": null,
+          "reviewStatus": "NO_PROPOSAL_PENDING_EVIDENCE",
+          "verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "moderada",
+          "evidence": "PARCIALMENTE VERIFICADA",
+          "pendingNature": "DECISIVA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivation": "Handbook18.4 Regra7(b)/(c): falta decisiva ou versão proposta inexistente.",
+          "appeal": {
+            "plausible": true,
+            "finding": "Abrir diretriz/revisão específica de ATR e conferir causa e afirmação de frequência; formular caso com acidose de ânion gap normal e medicações relevantes."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": true
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": true
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [],
+            "total": null,
+            "annulled": true,
+            "band": "anulado"
+          },
+          "decision": {
+            "path": [
+              "0 — falta decisiva; teto revisão maior"
+            ],
+            "lifeCycle": "em_revisão"
+          },
+          "finalAudit": {
+            "fourAlternatives": null,
+            "singleBestAnswerVerified": false,
+            "answerIndexAndTextMatch": false,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesRemovedInProposedExplanation": null,
+            "numericalOptionsRemainOrdered": null,
+            "decisiveSourcesOpened": false
+          },
+          "verificationPending": [
+            {
+              "nature": "DECISIVA",
+              "claim": "Abrir diretriz/revisão específica de ATR e conferir causa e afirmação de frequência; formular caso com acidose de ânion gap normal e medicações relevantes.",
+              "blocksPublication": true
+            }
+          ]
+        }
+      },
+      {
+        "qid": "22142814",
+        "sourceLine": 150,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "moderada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4 Regra7(c): versão original exige revisão maior; não herda autorização anterior.",
+        "OP": "Relacionar defeito de bartina à tubulopatia de Bartter com surdez neurossensorial.",
+        "classification": {
+          "primaryCompetency": "interpretação genótipo-fenótipo",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "MAIOR — tipo4 inclui variantes de classificação que exigem delimitação, como BSND versus perda combinada de ClC-Ka/ClC-Kb.",
+          "MAIOR — fonte original e consenso específicos não recuperados; livro genérico sem seção conferida.",
+          "MENOR — letra fixa e explicação mais ampla que o comando."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "MAIOR — tipo4 inclui variantes de classificação que exigem delimitação, como BSND versus perda combinada de ClC-Ka/ClC-Kb.",
+            "MAIOR — fonte original e consenso específicos não recuperados; livro genérico sem seção conferida.",
+            "MENOR — letra fixa e explicação mais ampla que o comando."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — evidência/pendência da versão original",
+            "1 — eliminatórios",
+            "revisão maior recuperável"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote002 e OPs declarados; sem auditoria integral de duplicatas",
+          "finding": "Os oito itens têm decisões/mecanismos distintos; nenhuma ordem de fusão."
+        },
+        "sources": [
+          {
+            "sourceId": "bartter2021_failed",
+            "opened": false,
+            "claimSupport": "Texto integral não recuperado; PDF do editor e página ERKNet retornaram 403/erro; registro PubMed insuficiente neste canal."
+          }
+        ],
+        "patch": {
+          "instruction": "PENDENTE — NÃO IMPLEMENTAR",
+          "before": {
+            "t": "Síndrome de Bartter Tipo 4",
+            "qid": "22142814",
+            "q": "A Síndrome de Bartter Tipo 4 (associada à surdez sensorioneural) é causada por defeitos em qual canal ou transportador?",
+            "refs": [
+              "brenner_rector"
+            ],
+            "opts": [
+              "Transportador NKCC2 localizado no ramo ascendente da alça de Henle",
+              "Bartina (subunidade dos canais de cloreto ClC-Ka e ClC-Kb)",
+              "Canal de potássio ROMK envolvido na secreção tubular renal distal",
+              "Deficiência da enzima anidrase carbônica no túbulo proximal renal"
+            ],
+            "ans": 1,
+            "exp": "A Síndrome de Bartter Tipo 4, associada à surdez sensorioneural, é causada por mutações no gene BSND, que codifica a Bartina — subunidade β essencial para a função dos canais de cloreto ClC-Ka e ClC-Kb — correspondente à alternativa B. A Bartina é expressa no néfron e nas células do ducto coclear, explicando a associação com surdez. NKCC2 (tipo 1), ROMK (tipo 2) e CLCNKB sem bartina (tipo 3) são defeitos dos outros subtipos. Anidrase carbônica não está relacionada.",
+            "diff": "hard",
+            "cat": "acido_base"
+          },
+          "after": null,
+          "beforeSHA256": "bdf1b066af71d5bf1e3cbba3314e01f3e3c5f9c43c21b9e0e2ddc3ab8e75dc5b",
+          "afterSHA256": null,
+          "hashDefinition": "JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves",
+          "changedFields": [],
+          "correctAnswer": null,
+          "implementation": "Preservar qid, ordem física e índice de gabarito. Novos cards abaixo são pacote verificado: criar ID no registro antes de ligar a questão; referências sem órfãs. Opções numéricas preservam ordem. Aplicar somente versão exata LIBERADA; fonte/hash diferente exige nova revisão. Nenhuma alteração do banco neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": null,
+          "reviewStatus": "NO_PROPOSAL_PENDING_EVIDENCE",
+          "verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "moderada",
+          "evidence": "PARCIALMENTE VERIFICADA",
+          "pendingNature": "DECISIVA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivation": "Handbook18.4 Regra7(b)/(c): falta decisiva ou versão proposta inexistente.",
+          "appeal": {
+            "plausible": true,
+            "finding": "Conferir ERKNet/primário sobre bartina e distinguir tipo4a de4b no enunciado antes de aprovar."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": true
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [],
+            "total": null,
+            "annulled": true,
+            "band": "anulado"
+          },
+          "decision": {
+            "path": [
+              "0 — falta decisiva; teto revisão maior"
+            ],
+            "lifeCycle": "em_revisão"
+          },
+          "finalAudit": {
+            "fourAlternatives": null,
+            "singleBestAnswerVerified": false,
+            "answerIndexAndTextMatch": false,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesRemovedInProposedExplanation": null,
+            "numericalOptionsRemainOrdered": null,
+            "decisiveSourcesOpened": false
+          },
+          "verificationPending": [
+            {
+              "nature": "DECISIVA",
+              "claim": "Conferir ERKNet/primário sobre bartina e distinguir tipo4a de4b no enunciado antes de aprovar.",
+              "blocksPublication": true
+            }
+          ]
+        }
+      },
+      {
+        "qid": "6e1db964",
+        "sourceLine": 182,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4 Regra7(c): versão original exige revisão maior; não herda autorização anterior.",
+        "OP": "Interpretar excreção renal inadequadamente elevada de Mg na presença de hipomagnesemia e função renal preservada.",
+        "classification": {
+          "primaryCompetency": "interpretação laboratorial",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "MAIOR — intervalo de ponto de corte2–4% sem população/função renal definidas.",
+          "MAIOR — card específico de Gitelman disponível não foi usado.",
+          "MENOR — opção correta detalhada e referência à letra."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "MAIOR — intervalo de ponto de corte2–4% sem população/função renal definidas.",
+            "MAIOR — card específico de Gitelman disponível não foi usado.",
+            "MENOR — opção correta detalhada e referência à letra."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": true
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — evidência/pendência da versão original",
+            "1 — eliminatórios",
+            "revisão maior recuperável"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote002 e OPs declarados; sem auditoria integral de duplicatas",
+          "finding": "Os oito itens têm decisões/mecanismos distintos; nenhuma ordem de fusão."
+        },
+        "sources": [
+          {
+            "sourceId": "gitelman_2017",
+            "opened": true,
+            "claimSupport": "Gitelman decorre de perda de função do NCC; hipocalciúria/hipomagnesemia são características; Bartter clássico pode ter Mg normal ou sobreposição Gitelman-like."
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Síndrome de Gitelman: Magnesiúria",
+            "qid": "6e1db964",
+            "q": "Na investigação de hipomagnesemia, uma fração de excreção de magnésio (FEMg) elevada (> 2-4%) sugere qual das seguintes condições?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Acúmulo de magnésio por intoxicação aguda com coleta urinária inadequada",
+              "Baixa ingestão dietética de magnésio sem alteração na excreção renal urinária",
+              "Perda renal de magnésio (como na Síndrome de Gitelman ou uso de diuréticos)",
+              "Perda digestiva de magnésio, como em diarreia crônica ou má absorção intestinal"
+            ],
+            "ans": 2,
+            "exp": "Uma fração de excreção de magnésio (FEMg) elevada (> 2–4%) indica que o rim está excretando magnésio em excesso, sugerindo perda renal — alternativa C. As principais causas incluem Síndrome de Gitelman (mutação no NCC), diuréticos, aminoglicosídeos, cisplatina e anfotericina B. Na hipomagnesemia de origem digestiva, baixa ingestão ou má absorção, o rim tende a conservar magnésio e a FEMg fica baixa. A FEMg ajuda a diferenciar perdas renais de perdas extrarrenais.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "after": {
+            "t": "Síndrome de Gitelman: Magnesiúria",
+            "qid": "6e1db964",
+            "q": "Um adulto com hipomagnesemia e função renal preservada apresenta fração de excreção de magnésio (FEMg) de 5%, sem reposição recente de magnésio. Qual interpretação é mais adequada?",
+            "refs": [
+              "gitelman_kdigo_2017"
+            ],
+            "opts": [
+              "Retenção renal de magnésio por redução da filtração",
+              "Conservação renal de magnésio por baixa ingestão",
+              "Perda renal de magnésio, inadequada à hipomagnesemia",
+              "Conservação renal de magnésio diante de perda digestiva"
+            ],
+            "ans": 2,
+            "exp": "A FEMg elevada na hipomagnesemia indica conservação renal inadequada e favorece perda renal de magnésio. O consenso KDIGO de Gitelman usa FEMg acima de 4% como indício de perda renal. A interpretação exige considerar função renal, reposição e contexto: perdas digestivas isoladas tendem a provocar conservação renal.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "beforeSHA256": "7d10be2a21d197ba5759f161c29747f00986511872b4b58eeb2c4157396260f8",
+          "afterSHA256": "2a2732b4019decf9cf4faaac1235691bf0803ecc93864c80a01434c2a95b9ebe",
+          "hashDefinition": "JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves",
+          "changedFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 2,
+            "sourceLetter": "C",
+            "text": "Perda renal de magnésio, inadequada à hipomagnesemia"
+          },
+          "implementation": "Preservar qid, ordem física e índice de gabarito. Novos cards abaixo são pacote verificado: criar ID no registro antes de ligar a questão; referências sem órfãs. Opções numéricas preservam ordem. Aplicar somente versão exata LIBERADA; fonte/hash diferente exige nova revisão. Nenhuma alteração do banco neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "2a2732b4019decf9cf4faaac1235691bf0803ecc93864c80a01434c2a95b9ebe",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): VERIFICADA+NENHUMA+aprovação da versão exata.",
+          "appeal": {
+            "plausible": false,
+            "finding": "Função renal e reposição recente foram delimitadas;5% excede o limiar específico conferido. A questão pede mecanismo da perda, sem afirmar diagnóstico de Gitelman pela FEMg isolada."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente"
+          },
+          "decision": {
+            "path": [
+              "0 — VERIFICADA/NENHUMA",
+              "1 — sem eliminatório após correção",
+              "2 — recurso resolvido",
+              "3 —19/20, aprovada"
+            ],
+            "lifeCycle": "em_reparo"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesRemovedInProposedExplanation": true,
+            "numericalOptionsRemainOrdered": null,
+            "decisiveSourcesOpened": true
+          },
+          "verificationPending": []
+        }
+      },
+      {
+        "qid": "a108228e",
+        "sourceLine": 188,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4 Regra7(c): versão original exige revisão maior; não herda autorização anterior.",
+        "OP": "Reconhecer a variabilidade clínica de Bartter por CLCNKB e sua sobreposição com Gitelman.",
+        "classification": {
+          "primaryCompetency": "interpretação de fenótipo",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "CRÍTICO — correta diz sem gravidade extrema do tipo1, generalização não sustentada para CLCNKB.",
+          "MAIOR — cancer renal é distrator absurdo; outros contêm absolutos e texto de preenchimento.",
+          "MAIOR — referência KDIGO DRC não específica; explicação fixa letra e promete ausência de HAS."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "CRÍTICO — correta diz sem gravidade extrema do tipo1, generalização não sustentada para CLCNKB.",
+            "MAIOR — cancer renal é distrator absurdo; outros contêm absolutos e texto de preenchimento.",
+            "MAIOR — referência KDIGO DRC não específica; explicação fixa letra e promete ausência de HAS."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": true
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — evidência/pendência da versão original",
+            "1 — eliminatórios",
+            "revisão maior recuperável"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote002 e OPs declarados; sem auditoria integral de duplicatas",
+          "finding": "Os oito itens têm decisões/mecanismos distintos; nenhuma ordem de fusão."
+        },
+        "sources": [
+          {
+            "sourceId": "seys_2017",
+            "opened": true,
+            "claimSupport": "115 pacientes CLCNKB com apresentações antenatais, clássicas e Gitelman-like."
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Síndrome de Bartter Tipo 3: Fenótipo",
+            "qid": "a108228e",
+            "q": "A Síndrome de Bartter Tipo 3, causada por mutações no gene CLCNKB, é caracterizada por qual das seguintes manifestações clínicas?",
+            "refs": [
+              "kdigo_ckd"
+            ],
+            "opts": [
+              "É a única forma da Síndrome de Bartter que se manifesta exclusivamente no período neonatal, com sintomas graves e progressivos desde o nascimento",
+              "Causa hipertensão arterial persistente e grave em fase ativa, sendo a apresentação clássica mais associada a esse quadro clínico específico",
+              "Apresenta um fenótipo intermediário, podendo manifestar-se desde o período neonatal até à infância, sem a gravidade extrema do Tipo 1",
+              "Está associada ao desenvolvimento de cancro renal em pacientes com apresentação clássica, exibindo um padrão histológico típico e característico da doença"
+            ],
+            "ans": 2,
+            "exp": "A Síndrome de Bartter Tipo 3, causada por mutação no CLCNKB (ClC-Kb), apresenta o fenótipo mais variável e intermediário entre os tipos de Bartter — alternativa C. Pode manifestar-se desde o período neonatal até a infância tardia ou adolescência, com quadro que pode mimetizar tanto Bartter clássico (grave, neonatal) quanto Gitelman (leve, adulto). Ao contrário dos tipos 1 e 2, o Tipo 3 não cursa necessariamente com nefrocalcinose grave nem se restringe ao período neonatal. Não causa hipertensão e não está associado a câncer renal.",
+            "diff": "hard",
+            "cat": "acido_base"
+          },
+          "after": {
+            "t": "Síndrome de Bartter Tipo 3: Fenótipo",
+            "qid": "a108228e",
+            "q": "A síndrome de Bartter tipo3 resulta de alterações no CLCNKB. Qual descrição representa melhor a variabilidade clínica demonstrada para esse subtipo?",
+            "refs": [
+              "seys_bartter3_2017"
+            ],
+            "opts": [
+              "Predomina um quadro neonatal sem apresentações tardias",
+              "Predomina hipertensão arterial com retenção renal de sal",
+              "Formas antenatais, clássicas ou semelhantes a Gitelman",
+              "Predomina perda de bicarbonato com acidose metabólica"
+            ],
+            "ans": 2,
+            "exp": "As alterações de CLCNKB podem produzir apresentações antenatais, Bartter clássico ou fenótipos semelhantes a Gitelman. A coorte de Seys e colaboradores demonstra essa heterogeneidade; não é correto restringir o subtipo ao período neonatal nem presumir curso leve. Retenção de sal com hipertensão e acidose por perda de bicarbonato não descrevem seu padrão característico.",
+            "diff": "medium",
+            "cat": "acido_base"
+          },
+          "beforeSHA256": "19b8759d7ef59ce2a2c0b16e6b34e2db2f6492e8f127cb74aaec96cee2a459ef",
+          "afterSHA256": "c7a6021c7fc08140a3a65e8793a4cc74287e58f451e3e66f4308ace288e0d793",
+          "hashDefinition": "JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves",
+          "changedFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 2,
+            "sourceLetter": "C",
+            "text": "Formas antenatais, clássicas ou semelhantes a Gitelman"
+          },
+          "implementation": "Preservar qid, ordem física e índice de gabarito. Novos cards abaixo são pacote verificado: criar ID no registro antes de ligar a questão; referências sem órfãs. Opções numéricas preservam ordem. Aplicar somente versão exata LIBERADA; fonte/hash diferente exige nova revisão. Nenhuma alteração do banco neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "c7a6021c7fc08140a3a65e8793a4cc74287e58f451e3e66f4308ace288e0d793",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): VERIFICADA+NENHUMA+aprovação da versão exata.",
+          "appeal": {
+            "plausible": false,
+            "finding": "A proposta afirma variabilidade, sem garantir gravidade inferior ou idade fixa; apenas uma opção é compatível com a coorte primária."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente"
+          },
+          "decision": {
+            "path": [
+              "0 — VERIFICADA/NENHUMA",
+              "1 — sem eliminatório após correção",
+              "2 — recurso resolvido",
+              "3 —19/20, aprovada"
+            ],
+            "lifeCycle": "em_reparo"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesRemovedInProposedExplanation": true,
+            "numericalOptionsRemainOrdered": null,
+            "decisiveSourcesOpened": true
+          },
+          "verificationPending": []
+        }
+      },
+      {
+        "qid": "d49c5c3c",
+        "sourceLine": 454,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "moderada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4 Regra7(c): versão original exige revisão maior; não herda autorização anterior.",
+        "OP": "Estimar a compensação metabólica da acidose respiratória crônica e reconhecer a dependência da regra/população utilizada.",
+        "classification": {
+          "primaryCompetency": "interpretação de gasometria",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "CRÍTICO — alternativa0,5×ΔPaCO2 é descartada como fórmula exclusiva de alcalose, mas dados primários2018 apoiam esse coeficiente na hipercapnia crônica estável.",
+          "MAIOR — comando não delimita regra clássica/população;0,35 e0,5 podem ser defensáveis conforme fonte.",
+          "MAIOR — três a cinco dias de adaptação derivados de animais são apresentados como humanos sem ressalva."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "CRÍTICO — alternativa0,5×ΔPaCO2 é descartada como fórmula exclusiva de alcalose, mas dados primários2018 apoiam esse coeficiente na hipercapnia crônica estável.",
+            "MAIOR — comando não delimita regra clássica/população;0,35 e0,5 podem ser defensáveis conforme fonte.",
+            "MAIOR — três a cinco dias de adaptação derivados de animais são apresentados como humanos sem ressalva."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": true
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": true
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — evidência/pendência da versão original",
+            "1 — eliminatórios",
+            "revisão maior recuperável"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote002 e OPs declarados; sem auditoria integral de duplicatas",
+          "finding": "Os oito itens têm decisões/mecanismos distintos; nenhuma ordem de fusão."
+        },
+        "sources": [
+          {
+            "sourceId": "gonzalez_2018",
+            "opened": true,
+            "claimSupport": "Estudo prospectivo com28 pacientes em hipercapnia crônica estável observou coeficiente0,476 mEq/L por mmHg, IC95%0,414–0,538, P<0,01, e propôs aproximação0,5."
+          }
+        ],
+        "patch": {
+          "instruction": "PENDENTE — NÃO IMPLEMENTAR",
+          "before": {
+            "t": "Interpretação de Gasometria",
+            "qid": "d49c5c3c",
+            "q": "Qual é a fórmula correta para calcular o bicarbonato esperado na compensação de uma acidose respiratória CRÔNICA, e qual o seu valor para pCO2 de 70 mmHg?",
+            "opts": [
+              "ΔHCO3 = 0,1 × ΔpCO2 → HCO3 esperado = 27 mEq/L",
+              "ΔHCO3 = 2 × ΔpCO2 → HCO3 esperado = 64 mEq/L",
+              "ΔHCO3 = 0,5 × ΔpCO2 → HCO3 esperado = 39 mEq/L (fórmula da alcalose respiratória crônica)",
+              "ΔHCO3 = 0,35 × ΔpCO2 → HCO3 esperado = 34,5 mEq/L"
+            ],
+            "ans": 3,
+            "exp": "As fórmulas de compensação para distúrbios ácido-base são fundamentais para identificar distúrbios mistos: Acidose respiratória AGUDA: ΔHCO3 = 0,1 × ΔpCO2 (aumento de 1 mEq/L de HCO3 para cada 10 mmHg de aumento de pCO2) — mecanismo tampão físico-químico intracelular. Acidose respiratória CRÔNICA: ΔHCO3 = 0,35 × ΔpCO2 — mecanismo renal de retenção de bicarbonato (leva 3-5 dias). Para pCO2 = 70 mmHg: ΔpCO2 = 70-40 = 30 mmHg. ΔHCO3 = 0,35 × 30 = 10,5 mEq/L. HCO3 esperado = 24 + 10,5 = 34,5 mEq/L. A opção C (0,5 × ΔpCO2) é a fórmula da alcalose respiratória CRÔNICA (redução de HCO3), não da acidose respiratória crônica. A opção A (0,1) é da acidose respiratória aguda. Tabela mnemônica: Acidose Resp Aguda = 1 para 10; Crônica = 3,5 para 10; Alcalose Resp Aguda = 2 para 10; Crônica = 5 para 10.",
+            "diff": "medium",
+            "cat": "acido_base",
+            "refs": [
+              "guyton_and_hall_physiology",
+              "brenner_rector"
+            ]
+          },
+          "after": null,
+          "beforeSHA256": "2a4b040373b96fb27fb361fb015cca63bcf6cc7c2a22db36b7c58e1905f96ef4",
+          "afterSHA256": null,
+          "hashDefinition": "JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves",
+          "changedFields": [],
+          "correctAnswer": null,
+          "implementation": "Preservar qid, ordem física e índice de gabarito. Novos cards abaixo são pacote verificado: criar ID no registro antes de ligar a questão; referências sem órfãs. Opções numéricas preservam ordem. Aplicar somente versão exata LIBERADA; fonte/hash diferente exige nova revisão. Nenhuma alteração do banco neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": null,
+          "reviewStatus": "NO_PROPOSAL_PENDING_EVIDENCE",
+          "verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "moderada",
+          "evidence": "PARCIALMENTE VERIFICADA",
+          "pendingNature": "DECISIVA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivation": "Handbook18.4 Regra7(b)/(c): falta decisiva ou versão proposta inexistente.",
+          "appeal": {
+            "plausible": true,
+            "finding": "Adjudicar a convenção de compensação e a população; não trocar gabarito automaticamente. Confrontar referência clássica e dado primário atual com enunciado suficiente; preservação do conceito exige nova versão formal."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": true
+            },
+            {
+              "number": 2,
+              "triggered": true
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": true
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [],
+            "total": null,
+            "annulled": true,
+            "band": "anulado"
+          },
+          "decision": {
+            "path": [
+              "0 — falta decisiva; teto revisão maior"
+            ],
+            "lifeCycle": "em_revisão"
+          },
+          "finalAudit": {
+            "fourAlternatives": null,
+            "singleBestAnswerVerified": false,
+            "answerIndexAndTextMatch": false,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesRemovedInProposedExplanation": null,
+            "numericalOptionsRemainOrdered": null,
+            "decisiveSourcesOpened": false
+          },
+          "verificationPending": [
+            {
+              "nature": "DECISIVA",
+              "claim": "Adjudicar a convenção de compensação e a população; não trocar gabarito automaticamente. Confrontar referência clássica e dado primário atual com enunciado suficiente; preservação do conceito exige nova versão formal.",
+              "blocksPublication": true
+            }
+          ]
+        }
+      },
+      {
+        "qid": "74179a29",
+        "sourceLine": 635,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "moderada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4 Regra7(c): versão original exige revisão maior; não herda autorização anterior.",
+        "OP": "Calcular osmolaridade com fórmula especificada e distinguir ureia de BUN nas unidades.",
+        "classification": {
+          "primaryCompetency": "cálculo e interpretação laboratorial",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "easy",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "MAIOR — termo osmolaridade acompanha mOsm/kg; padronizar medida e unidade.",
+          "MAIOR — explicação chama divisor6 de regra universal; há diferentes equações e osmolaridade calculada não é medida direta.",
+          "MAIOR — o cálculo288 está correto, mas os cards originais não foram abertos para a fórmula/conversão e a afirmação de uso universal.",
+          "MENOR — referências às letras; não é item para correção A–D posicional porque opções numéricas devem manter ordem."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "MAIOR — termo osmolaridade acompanha mOsm/kg; padronizar medida e unidade.",
+            "MAIOR — explicação chama divisor6 de regra universal; há diferentes equações e osmolaridade calculada não é medida direta.",
+            "MAIOR — o cálculo288 está correto, mas os cards originais não foram abertos para a fórmula/conversão e a afirmação de uso universal.",
+            "MENOR — referências às letras; não é item para correção A–D posicional porque opções numéricas devem manter ordem."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": true
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": false
+          },
+          {
+            "number": 8,
+            "triggered": false
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — evidência/pendência da versão original",
+            "1 — eliminatórios",
+            "revisão maior recuperável"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote002 e OPs declarados; sem auditoria integral de duplicatas",
+          "finding": "Os oito itens têm decisões/mecanismos distintos; nenhuma ordem de fusão."
+        },
+        "sources": [
+          {
+            "sourceId": "osmol_hooper_2015",
+            "opened": true,
+            "claimSupport": "Há diferentes equações e limites para osmolaridade calculada; não se deve chamar uma fórmula de universal."
+          }
+        ],
+        "patch": {
+          "instruction": "PENDENTE — NÃO IMPLEMENTAR",
+          "before": {
+            "t": "Cálculo da Osmolaridade Plasmática",
+            "qid": "74179a29",
+            "q": "Paciente com sódio sérico de 138 mEq/L, glicose de 90 mg/dL e ureia de 42 mg/dL. Qual é a osmolaridade plasmática calculada pela fórmula simplificada 2 x Na + glicose/18 + ureia/6?",
+            "refs": [
+              "guyton_and_hall_physiology",
+              "brenner_rector"
+            ],
+            "opts": [
+              "280 mOsm/kg",
+              "288 mOsm/kg",
+              "310 mOsm/kg",
+              "325 mOsm/kg"
+            ],
+            "ans": 1,
+            "exp": "A osmolaridade plasmática calculada é 288 mOsm/kg, obtida por 2 x 138 + 90/18 + 42/6 = 276 + 5 + 7. A alternativa B é a correta. A alternativa C corresponderia ao uso indevido do divisor 2,8; para a ureia (dosada no Brasil) o divisor correto é 6. As alternativas A e D não batem com o cálculo. Em prática clínica, use sempre a ureia com o divisor 6 para não gerar erro de interpretação.",
+            "diff": "easy",
+            "cat": "eletrólitos"
+          },
+          "after": null,
+          "beforeSHA256": "bf839c3cc6adae48351a9ca6ebc9954464b637f53a5751e8b18692252918ba96",
+          "afterSHA256": null,
+          "hashDefinition": "JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves",
+          "changedFields": [],
+          "correctAnswer": null,
+          "implementation": "Preservar qid, ordem física e índice de gabarito. Novos cards abaixo são pacote verificado: criar ID no registro antes de ligar a questão; referências sem órfãs. Opções numéricas preservam ordem. Aplicar somente versão exata LIBERADA; fonte/hash diferente exige nova revisão. Nenhuma alteração do banco neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": null,
+          "reviewStatus": "NO_PROPOSAL_PENDING_EVIDENCE",
+          "verdict": "revisão maior",
+          "legacyAux": "REESCREVER",
+          "confidence": "moderada",
+          "evidence": "PARCIALMENTE VERIFICADA",
+          "pendingNature": "DECISIVA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivation": "Handbook18.4 Regra7(b)/(c): falta decisiva ou versão proposta inexistente.",
+          "appeal": {
+            "plausible": true,
+            "finding": "Validar fonte específica da fórmula e das conversões ureia/BUN, corrigir unidades e remover regra universal. A aritmética isolada não constitui aprovação clínica."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": true
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [],
+            "total": null,
+            "annulled": true,
+            "band": "anulado"
+          },
+          "decision": {
+            "path": [
+              "0 — falta decisiva; teto revisão maior"
+            ],
+            "lifeCycle": "em_revisão"
+          },
+          "finalAudit": {
+            "fourAlternatives": null,
+            "singleBestAnswerVerified": false,
+            "answerIndexAndTextMatch": false,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesRemovedInProposedExplanation": null,
+            "numericalOptionsRemainOrdered": null,
+            "decisiveSourcesOpened": false
+          },
+          "verificationPending": [
+            {
+              "nature": "DECISIVA",
+              "claim": "Validar fonte específica da fórmula e das conversões ureia/BUN, corrigir unidades e remover regra universal. A aritmética isolada não constitui aprovação clínica.",
+              "blocksPublication": true
+            }
+          ]
+        }
+      },
+      {
+        "qid": "854d257a",
+        "sourceLine": 721,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4 Regra7(c): versão original exige revisão maior; não herda autorização anterior.",
+        "OP": "Aplicar a fórmula de Winter à acidose metabólica e obter o intervalo esperado de PaCO2 arterial.",
+        "classification": {
+          "primaryCompetency": "interpretação de compensação respiratória",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false
+        },
+        "problems": [
+          "CRÍTICO — nenhuma alternativa original contém a faixa correta24–28 mmHg; explicação justifica proximidade em vez de uma resposta exata.",
+          "MAIOR — bicarbonato baixo isolado não define o distúrbio primário; explicitar acidose metabólica.",
+          "MENOR — referência à letra; opções numéricas devem manter ordem."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "CRÍTICO — nenhuma alternativa original contém a faixa correta24–28 mmHg; explicação justifica proximidade em vez de uma resposta exata.",
+            "MAIOR — bicarbonato baixo isolado não define o distúrbio primário; explicitar acidose metabólica.",
+            "MENOR — referência à letra; opções numéricas devem manter ordem."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "triggered": false
+          },
+          {
+            "number": 2,
+            "triggered": false
+          },
+          {
+            "number": 3,
+            "triggered": false
+          },
+          {
+            "number": 4,
+            "triggered": false
+          },
+          {
+            "number": 5,
+            "triggered": false
+          },
+          {
+            "number": 6,
+            "triggered": false
+          },
+          {
+            "number": 7,
+            "triggered": true
+          },
+          {
+            "number": 8,
+            "triggered": true
+          },
+          {
+            "number": 9,
+            "triggered": false
+          },
+          {
+            "number": 10,
+            "triggered": false
+          }
+        ],
+        "scoreOriginal": {
+          "total": null,
+          "annulled": true,
+          "reason": "Score anulado por eliminatório."
+        },
+        "decisionOriginal": {
+          "path": [
+            "0 — evidência/pendência da versão original",
+            "1 — eliminatórios",
+            "revisão maior recuperável"
+          ],
+          "lifeCycle": "em_revisão"
+        },
+        "duplicateCheck": {
+          "scope": "Lote002 e OPs declarados; sem auditoria integral de duplicatas",
+          "finding": "Os oito itens têm decisões/mecanismos distintos; nenhuma ordem de fusão."
+        },
+        "sources": [
+          {
+            "sourceId": "jung_2019",
+            "opened": true,
+            "claimSupport": "PaCO2 esperada =1,5×HCO3+8±2 mmHg para compensação na acidose metabólica; gasometria avalia distúrbios mistos."
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Fórmula de Winter (Compensação Respiratória)",
+            "qid": "854d257a",
+            "q": "Um paciente apresenta bicarbonato (HCO3-) de 12 mEq/L. Qual é a pressão parcial de dióxido de carbono (PCO2) esperada de acordo com a fórmula de Winter para compensação respiratória em acidose metabólica?",
+            "opts": [
+              "20-24 mmHg",
+              "26-30 mmHg",
+              "32-36 mmHg",
+              "38-42 mmHg"
+            ],
+            "ans": 1,
+            "exp": "Na acidose metabólica, a compensação respiratória esperada é estimada pela fórmula de Winter, PCO2 ≈ 1,5 × HCO3- + 8, com variação aproximada de ±2 mmHg; com HCO3- de 12 mEq/L, a PCO2 prevista é de cerca de 26 mmHg, com faixa esperada entre 24 e 28 mmHg. Como nenhuma alternativa reproduz exatamente esse intervalo, a melhor resposta é a letra B, porque contém o valor central calculado e a maior parte da faixa esperada. A alternativa A apenas tangencia o limite inferior em 24 mmHg e, no restante do intervalo, sugere PCO2 excessivamente baixa, compatível com alcalose respiratória associada ou hiperventilação acima da compensação apropriada. As alternativas C e D estão claramente acima do previsto e indicariam retenção relativa de CO2, sugerindo compensação insuficiente ou acidose respiratória concomitante. Portanto, entre as opções oferecidas, B é a alternativa mais compatível com a compensação respiratória esperada.",
+            "diff": "medium",
+            "cat": "acido_base",
+            "refs": [
+              "acid_base_adroguenejm"
+            ]
+          },
+          "after": {
+            "t": "Fórmula de Winter (Compensação Respiratória)",
+            "qid": "854d257a",
+            "q": "Um paciente com acidose metabólica apresenta bicarbonato de 12 mEq/L. Qual é o intervalo esperado da pressão parcial arterial de dióxido de carbono (PaCO2) pela fórmula de Winter?",
+            "opts": [
+              "20–24 mmHg",
+              "24–28 mmHg",
+              "28–32 mmHg",
+              "32–36 mmHg"
+            ],
+            "ans": 1,
+            "exp": "A PaCO2 esperada é 26±2 mmHg, isto é, 24–28 mmHg. Pela fórmula de Winter: 1,5×12+8=26 mmHg, com margem de ±2 mmHg. Trata-se da compensação respiratória estimada na acidose metabólica; a PaCO2 arterial medida deve ser comparada ao intervalo para avaliar possível componente respiratório associado.",
+            "diff": "medium",
+            "cat": "acido_base",
+            "refs": [
+              "srlf_sfmu_acidosis_2019"
+            ]
+          },
+          "beforeSHA256": "bfb2cfb7d5747c50493f0bf36e7b34b335e045f6b89897b849790f3a68574cb6",
+          "afterSHA256": "0951f7727e592b42fd11da6a4a36cc04a7441e51eb25e075ece0916a3348634a",
+          "hashDefinition": "JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original das chaves",
+          "changedFields": [
+            "q",
+            "opts",
+            "exp",
+            "refs"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 1,
+            "sourceLetter": "B",
+            "text": "24–28 mmHg"
+          },
+          "implementation": "Preservar qid, ordem física e índice de gabarito. Novos cards abaixo são pacote verificado: criar ID no registro antes de ligar a questão; referências sem órfãs. Opções numéricas preservam ordem. Aplicar somente versão exata LIBERADA; fonte/hash diferente exige nova revisão. Nenhuma alteração do banco neste agente."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "0951f7727e592b42fd11da6a4a36cc04a7441e51eb25e075ece0916a3348634a",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "Handbook18.4 Regra7(a): VERIFICADA+NENHUMA+aprovação da versão exata.",
+          "appeal": {
+            "plausible": false,
+            "finding": "O distúrbio primário está definido e há um intervalo exatamente correspondente à fórmula. Um ponto compartilhado entre intervalos não torna todo o intervalo distrator correto."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "triggered": false
+            },
+            {
+              "number": 2,
+              "triggered": false
+            },
+            {
+              "number": 3,
+              "triggered": false
+            },
+            {
+              "number": 4,
+              "triggered": false
+            },
+            {
+              "number": 5,
+              "triggered": false
+            },
+            {
+              "number": 6,
+              "triggered": false
+            },
+            {
+              "number": 7,
+              "triggered": false
+            },
+            {
+              "number": 8,
+              "triggered": false
+            },
+            {
+              "number": 9,
+              "triggered": false
+            },
+            {
+              "number": 10,
+              "triggered": false
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente"
+          },
+          "decision": {
+            "path": [
+              "0 — VERIFICADA/NENHUMA",
+              "1 — sem eliminatório após correção",
+              "2 — recurso resolvido",
+              "3 —19/20, aprovada"
+            ],
+            "lifeCycle": "em_reparo"
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesRemovedInProposedExplanation": true,
+            "numericalOptionsRemainOrdered": true,
+            "decisiveSourcesOpened": true
+          },
+          "verificationPending": []
+        }
+      }
+    ]
+  }
+}

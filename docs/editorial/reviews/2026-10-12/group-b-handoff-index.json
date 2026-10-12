@@ -1,0 +1,671 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 24971,
+  "sourceReportSHA256": "7077df5e8a9daed2a0c4253e4e05c244c9305bfa7210632a2d705155d1502e77",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_GROUP_B_PORTABLE_HANDOFF_V1",
+    "status": "STABLE_FROZEN_AFTER_B003",
+    "updatedAtUTC": "2026-10-12T18:12:52Z",
+    "scope": "Grupo B exclusivo: glomerular/transplante/genética. Nenhuma revisão iniciada em B004.",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "sourceBankSHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "counts": {
+      "totalAssigned": 222,
+      "reviewed": 24,
+      "changedProposalsReleasedByAuthorReview": 20,
+      "unchangedApprovedByAuthorReview": 1,
+      "independentlyAcceptedExactB001Questions": 7,
+      "decisivePending": 3,
+      "notReviewed": 198,
+      "implemented": 0
+    },
+    "currentCandidateOutputs": [
+      {
+        "file": "output-001.json",
+        "bytes": 139883,
+        "sha256": "f9abc070cada27be5a60140d3f84d40ac13eaa94ba2b0e678aa53b247e096552"
+      },
+      {
+        "file": "output-002.json",
+        "bytes": 128920,
+        "sha256": "897feeb64cb89536ec54ad3446c17a59c62ce12980694272077f6b2d19e74762"
+      },
+      {
+        "file": "output-003.json",
+        "bytes": 153483,
+        "sha256": "59d4248877496432c2261a7fd6d45c5e22256bb1f861d2424a8bf621fcab375e"
+      }
+    ],
+    "onlyCandidateB001": "output-001.json, SHA f9abc070cada27be5a60140d3f84d40ac13eaa94ba2b0e678aa53b247e096552; backups são históricos.",
+    "independentReport": {
+      "file": "../independent-b001.json",
+      "bytes": 80136,
+      "sha256": "06c680ace42457e5f3a350ed1fe5e79d352bc4d24bf4da9b8ddde64889676a07"
+    },
+    "validation": {
+      "file": "handoff-validation.json",
+      "bytes": 10144,
+      "sha256": "91aec62d765909c92f857d302624bbe552998435e5405964a22ac8ee3cc7a5b9"
+    },
+    "queue": {
+      "file": "queue.json",
+      "bytes": 5860,
+      "sha256": "80127a6a7139bb761622763373cb238ef68868094df1e4a3834b9f8366a40dd7"
+    },
+    "pendingDecisive": [
+      {
+        "qid": "66905ee2",
+        "batch": 1,
+        "reason": "Comparação prognóstica/recorrência C3G versus IC-MPGN primária precisa de população primária comparável; coorte imuno-complexa mista não resolve automaticamente.",
+        "nextAction": "Abrir o primário PMID35404425 com população, etiologias e aplicabilidade completas; reavaliar o texto exato e excluir extrapolação."
+      },
+      {
+        "qid": "0f7d97f3",
+        "batch": 2,
+        "reason": "GeneReviews Fabry retornou challenge; fenótipo e seleção de triagem não certificados.",
+        "nextAction": "Abrir fonte clínica primária atual de Fabry e confirmar DRC/proteinúria + HVE inexplicadas, heterozigotas e ausência de sinais cutâneos antes de reescrever/aprovar."
+      },
+      {
+        "qid": "ce79d609",
+        "batch": 2,
+        "reason": "T2 >50% não estava no abstract Oxford aberto; corte central ainda sem tabela primária conferida.",
+        "nextAction": "Abrir tabela oficial Oxford MEST-C/T e verificar o limiar; preservar a integração clínica e o limite de prescrição automática."
+      }
+    ],
+    "integrationStatus": "NENHUMA VERSÃO IMPLEMENTADA. Liberação por fórmula no parecer é clearance editorial da proposta, condicionado aos gates do coordenador.",
+    "integrationBlockers": [
+      "Release 16.08 é técnica e não aplica banco/cards.",
+      "B002/B003 aguardam revisão independente; não herdar clearance de B001.",
+      "B001 exige resolução explícita de taxonomia BULA/NEWS e registro atômico do novo UKidney.",
+      "B003 exige decisão taxonômica RETRACTION/REG/LABEL e registro atômico do novo Alport."
+    ],
+    "independentClinicalResolution": "fbb4edd0 9b47347c foi aceita no independente B001. Não modificar output-001 f9abc para apagar o hold histórico; usar parecer independente e este índice para a resolução atual.",
+    "resume": {
+      "nextInput": "input-004.json",
+      "remainingBatches": "004–028",
+      "remainingQuestions": 198,
+      "instruction": "Retomar após transferência no novo PC, sob coordenação; ler os mesmos gates, usar a fila existente e validar fontes primárias. Não inferir aprovação das métricas. Não integrar B002/B003 sem revisão independente exata.",
+      "pythonOnThisPC": "[local evidence locator omitted; retain its adjacent hash and source citations]"
+    },
+    "sourceReadingQualifications": [
+      "NEJM retraction: somente registro NLM/data/relação abertos; nove casos conferidos na FDA, não no corpo da nota.",
+      "REGENCY, NOBILITY e DAPA-CKD: claims usados presentes nos abstracts primários; não declarar leitura integral do artigo.",
+      "KDIGO ADPKD e CDC lidos via web; não inventar PDF local de download que falhou.",
+      "Alport e Nutcracker possuem JATS integrais preservados e seções efetivamente lidas.",
+      "HTML challenge e falhas foram preservados e não contam como evidência clínica."
+    ],
+    "portableFiles": [
+      {
+        "file": "advocate_retraction_2026-pubmed.xml",
+        "bytes": 2460,
+        "sha256": "15f07f709c239bcace3455bda19a494de0c05e219bfba260f085652fb729d2a1",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "advocate_retraction_esearch.xml",
+        "bytes": 387,
+        "sha256": "650974bfc587718b207636bad4b5adc227e91bb587f6da4f658d0f9ae60b6322",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "alport_2024_guideline_jats.xml",
+        "bytes": 195860,
+        "sha256": "43b86c12cf7123f095c3702739c876059b94045d10b40b3fb1bfc98011f6bd0b",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "c3g_consensus_bioc-retrieved.txt",
+        "bytes": 89154,
+        "sha256": "f8054ec56de3ecda842c611b22aa57eb2da0f61e2b70a343dff4df2a4fe5fbfa",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "c3g_consensus_jats-retrieved.txt",
+        "bytes": 93706,
+        "sha256": "59ef4bcaa319c61bdef5f560dec6a9da01eed60918652f4e14c2b3549970cca9",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "c3g_consensus_pmc-retrieved.txt",
+        "bytes": 21374,
+        "sha256": "258c791afc82734d46e7b6c5db5daa3d1789b00f8455596c14681901c6ff462a",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "clarify-output-001-contract.py",
+        "bytes": 3565,
+        "sha256": "959bff67011c876c0bd57425a5c536a646dbcd694201a6b4dd40d70815630829",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "clarify-output-002-readability.py",
+        "bytes": 2185,
+        "sha256": "d3077f417ccf0d853b557921d1814beb50aaff03840fe656f48b25cdfb5b1aa2",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "correct-source-versions-001-002.py",
+        "bytes": 6976,
+        "sha256": "99e561c303a68ed5a4945a875be3e2be8cb33c53f3977e2d92141e05eee9b074",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "extra-003-retrieval-receipt.json",
+        "bytes": 1186,
+        "sha256": "c6b3675c8eb128850e7037a36073def37b45c9ef6cd259477d465ca65bdf5ac7",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "fda_tavneos_nooh_2026-retrieved-pages.json",
+        "bytes": 65162,
+        "sha256": "9f12d5498e9a6b5e1f11dc4647f785fb550f0970b7ca11858d5f749072173a0c",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "fda_tavneos_nooh_2026-retrieved.pdf",
+        "bytes": 959310,
+        "sha256": "10505c28ce9c5cb6c0874be9f0260bbb232ff41019482fc22242e9c0711d4110",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "finalize-003-source-qualifications.py",
+        "bytes": 5844,
+        "sha256": "6be2b6b4de7c7190efc6912feb868d551f65cb6af5053dd621afcd6abdb540e0",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "find-primary-002-receipt.json",
+        "bytes": 11254,
+        "sha256": "cdcedd547eb4c2139369c1d9adec0d7878f45d53ebeed9086700fab99c48bbd0",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "find-primary-002.py",
+        "bytes": 1350,
+        "sha256": "c83a76d212dd6cf6171927f72ee3c17857f2807bc6f5ffe4ff99d11bc3f4a84d",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "freeze-handoff-index.py",
+        "bytes": 13858,
+        "sha256": "527013ee8ffcff9f2879e41eaf4c04d10e8d21a72063a0ef5ddb352fe08f1655",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "fsgs_vriese_jats.xml",
+        "bytes": 8699,
+        "sha256": "a04e92a45776e22d7556447940cae0185d36780390124e5f1f600d05ac5e4279",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "gazyva_fda_2025-retrieved-pages.json",
+        "bytes": 128288,
+        "sha256": "b073fd84afa68d91e92603518157fee206a2c67c9028f8bd5499a88d460fde37",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "gazyva_fda_2025-retrieved.pdf",
+        "bytes": 1736954,
+        "sha256": "df0c81960df8bc33e1bd17a501f85e6981fcc6538747eee9cc742558d3d939d7",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "genereviews_fabry_pdf.html",
+        "bytes": 21416,
+        "sha256": "255d9d1358d317cc43fe99ab1647a2472eb0ff1e67c5b86af54d5b53b9597ada",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "handoff-validation.json",
+        "bytes": 10144,
+        "sha256": "91aec62d765909c92f857d302624bbe552998435e5405964a22ac8ee3cc7a5b9",
+        "role": "CURRENT_REVIEW_OR_STATE"
+      },
+      {
+        "file": "ikmg_2019_jats.xml",
+        "bytes": 198128,
+        "sha256": "065474abab9aec35489f0adb960ba3a01649527288defa0d2a174396e1aea838",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "input-001.json",
+        "bytes": 17389,
+        "sha256": "804d94fcebf575145479efd2da3b1c6e373a97c42c5b2ec410112c782663182f",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-002.json",
+        "bytes": 16391,
+        "sha256": "5fcf8555b9f5fe86dbe1f2c97a1ef1ea27340bab8db6b1acc72936c9d1b3de7b",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-003.json",
+        "bytes": 16975,
+        "sha256": "6a36825747d1e4da37e19f9b898ae722a6e6c3977d552316aa59acea52f3615b",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-004.json",
+        "bytes": 16144,
+        "sha256": "f27b4b8e6b54dbf1aa718f6481ac10566df7fe78e9b51fc487dd0d27ecb5bf91",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-005.json",
+        "bytes": 15253,
+        "sha256": "928c0a25c18a3bf1baa38d54ec62cc67e7616a252aad47cce222f6d11a1fe9a4",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-006.json",
+        "bytes": 15209,
+        "sha256": "b5f9820ac9f5b71324230f0f5853a19bb398a65a32ac1cd755c445373960095d",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-007.json",
+        "bytes": 16719,
+        "sha256": "02002d1b10cdd685be76299d20be2c2f97132bdba45c68872d0f385134e38cf1",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-008.json",
+        "bytes": 16745,
+        "sha256": "4cefe8940318c947aa9c41955c3efb7a731b8ad11a155cc102f0e4f8b3cea1b2",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-009.json",
+        "bytes": 16970,
+        "sha256": "9b0c90c3af033a6ab29a1803f219de7851f822e2921c7f73bcc53cca21bbd66e",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-010.json",
+        "bytes": 16895,
+        "sha256": "7cbc95f7b29ad7a088ff56c8d4362b422667160d431f3c1b11206ea0c7e99d8e",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-011.json",
+        "bytes": 16053,
+        "sha256": "09b884a2e396a4fee5700298f702f3de1ba1cf7ecd4f5795dbb678e317f60f5e",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-012.json",
+        "bytes": 16056,
+        "sha256": "e11fd54d2191ef74c200cf24a385d81edb4ffd366e7fbedfef872a12c3f82edf",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-013.json",
+        "bytes": 16483,
+        "sha256": "92df49d8508410b2bca1b484fae1be88d09b1ec6ddde39e2c49063bfd4aa4c17",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-014.json",
+        "bytes": 17630,
+        "sha256": "f7827827952e5fbe6b3d5fdfeb5447b43700aecf82ab0168e7aa606b5461e53a",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-015.json",
+        "bytes": 15747,
+        "sha256": "c3335b241f1e0efa90aa35a0fa4d4971cfda3a0205bfe55a0b0bf38c735cb20b",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-016.json",
+        "bytes": 15198,
+        "sha256": "d60497fa21b38f285f0169057e909ef7f2af941df9ecbff4911e96a4ea10e03c",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-017.json",
+        "bytes": 17912,
+        "sha256": "9b18d4e11250ec432bca1df857007a17d3d0942dda3fa152cf42d3caa1a83d47",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-018.json",
+        "bytes": 17533,
+        "sha256": "396958e7ca4209b012652a1cccd77ca6dfd46450e8d34f057af408576f7a7727",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-019.json",
+        "bytes": 16856,
+        "sha256": "9e1337cd4cb647cc68a73a81dd4c2697d172fae8bf7f71e3277ebf1a79df4be8",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-020.json",
+        "bytes": 16004,
+        "sha256": "05ade04aa749eb891035e6581e512b743a3d36f7bfe5416396e5847da68d32fc",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-021.json",
+        "bytes": 16195,
+        "sha256": "8c9aa3d638bbe1cf4c1ec981b55d9a7ca62eda6a743d88e0985e3255d94a5ee7",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-022.json",
+        "bytes": 16265,
+        "sha256": "ff226757d3626861fee4313b39df57086b7a9c7fee01252309d32bf5ff6a63eb",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-023.json",
+        "bytes": 15570,
+        "sha256": "cb8f59a71c207e588a5e3005324bbac44f091d58d5da55f3d566ffd7d2c3c9b9",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-024.json",
+        "bytes": 15873,
+        "sha256": "4aa9bb10ca96d4448c9d4b5088ec9c84c1ea497a0cea7e82e8a189787f314543",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-025.json",
+        "bytes": 15785,
+        "sha256": "910d688391494009eca7f05d46fc314df861b071405202da4a070f4e8c0c882b",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-026.json",
+        "bytes": 14974,
+        "sha256": "6c97cf24391f2cb7b026a7cdc28cd894c6c6fe32ae255729decb0eee3cc35273",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-027.json",
+        "bytes": 15655,
+        "sha256": "dbd70958b8e54e186cde356c78c55b9924e492333aaedd26ce0084ae54039478",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "input-028.json",
+        "bytes": 11308,
+        "sha256": "2a10f34f29f60d81b99d534b013b3732a49068cd7fd0f18062f6dc695de7b2c4",
+        "role": "ORIGINAL_REVIEW_INPUT"
+      },
+      {
+        "file": "kdigo_gn_2024_chapters-pages.json",
+        "bytes": 1072179,
+        "sha256": "fd82ccfe096f4a4854222ecdfa7055f18956730bbe217da353c8edede576174d",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "kdigo_gn_2024_chapters-retrieved.pdf",
+        "bytes": 11320223,
+        "sha256": "8ed871ec098c7eba1cfb0ff6bf2355a6c422166b2691aac138f0273307b2acff",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "mainritsan_pubmed-retrieved.txt",
+        "bytes": 20084,
+        "sha256": "06eb013182db6cc68ac8fc62a9ff966fe0d43e368625469da0f4c17d2b8c2c3f",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "mpgn-recurrence-esearch-a2.xml",
+        "bytes": 1057,
+        "sha256": "adf3d4a48ea38576c8c7d687009ff3e994eca18a9d14d64806bbccc445f4ff36",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "mpgn-recurrence-esearch.xml",
+        "bytes": 4213,
+        "sha256": "0ce9bf0ada5cc59e0c9f10791087769de952667fbf5884f1ca5340c6172554ec",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "mpgn-recurrence-receipt-a2.json",
+        "bytes": 306,
+        "sha256": "230acb10a47a607064d98369edb28ecb1bebfc01f4e1d3c8faacabb7186ebe0a",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "mpgn-recurrence-receipt.json",
+        "bytes": 460,
+        "sha256": "4374e5e703bc0a1c7e090d330335333326c4a7a829960e01f44efa968b64c0df",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "mpgn_recur-esearch.xml",
+        "bytes": 1654,
+        "sha256": "674c3e04ccc511e112a1c309d144f8b4bd7eaf5e271286da58a91081c55675d3",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "mpgn_recur-pubmed.xml",
+        "bytes": 90056,
+        "sha256": "995a0d7584e84f3b8229d320c2d3efd98535de5b5f7038930ff39a3b59eee38f",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "nutcracker_2025_jats.xml",
+        "bytes": 103452,
+        "sha256": "9554d93418f28bb0ed1458755b44b1eec7e6f0b3687f8dd050aeab59be89a8b2",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "output-001-before-contract-clarification-a1.json",
+        "bytes": 126932,
+        "sha256": "4a72a01a717f56073832fd69896a35428a3ce9b4fb91424768dd4b223ebd83c6",
+        "role": "SUPERSEDED_PRESERVED_SNAPSHOT_DO_NOT_INTEGRATE"
+      },
+      {
+        "file": "output-001-before-distractor-refinement-a3.json",
+        "bytes": 136735,
+        "sha256": "7d4df1249843a07106aa06fdbbb8ad328c06c293fa2fbaece25116556f3f9c31",
+        "role": "SUPERSEDED_PRESERVED_SNAPSHOT_DO_NOT_INTEGRATE"
+      },
+      {
+        "file": "output-001-before-source-version-correction-a2.json",
+        "bytes": 133218,
+        "sha256": "ac39729a462b34c5e90c4bf508bc043d83b3401b18d303223423dacea0d24fea",
+        "role": "SUPERSEDED_PRESERVED_SNAPSHOT_DO_NOT_INTEGRATE"
+      },
+      {
+        "file": "output-001.json",
+        "bytes": 139883,
+        "sha256": "f9abc070cada27be5a60140d3f84d40ac13eaa94ba2b0e678aa53b247e096552",
+        "role": "CURRENT_REVIEW_OR_STATE"
+      },
+      {
+        "file": "output-002-before-readability-a1.json",
+        "bytes": 127154,
+        "sha256": "67c03d46b412ebaa3debc6b9807a0cf4b52ece18149cd512ba95a6e5c54cd7d1",
+        "role": "SUPERSEDED_PRESERVED_SNAPSHOT_DO_NOT_INTEGRATE"
+      },
+      {
+        "file": "output-002-before-source-version-correction-a2.json",
+        "bytes": 128896,
+        "sha256": "46fee73004966745b12eb1ad97133418a869c3d53b07ede736d05cdc78b87374",
+        "role": "SUPERSEDED_PRESERVED_SNAPSHOT_DO_NOT_INTEGRATE"
+      },
+      {
+        "file": "output-002.json",
+        "bytes": 128920,
+        "sha256": "897feeb64cb89536ec54ad3446c17a59c62ce12980694272077f6b2d19e74762",
+        "role": "CURRENT_REVIEW_OR_STATE"
+      },
+      {
+        "file": "output-003-before-source-qualification-a1.json",
+        "bytes": 147369,
+        "sha256": "90b9e22e2ce856b658339bc162e7b51c6612ee1a8fdadcca903240a29c3ce135",
+        "role": "SUPERSEDED_PRESERVED_SNAPSHOT_DO_NOT_INTEGRATE"
+      },
+      {
+        "file": "output-003.json",
+        "bytes": 153483,
+        "sha256": "59d4248877496432c2261a7fd6d45c5e22256bb1f861d2424a8bf621fcab375e",
+        "role": "CURRENT_REVIEW_OR_STATE"
+      },
+      {
+        "file": "oxford_2016_pubmed.xml",
+        "bytes": 14891,
+        "sha256": "c5faad13ebcdae796e80883dcf41820a1160af43bc262dee6b9a848a673ec292",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "prepare-output-001.py",
+        "bytes": 33305,
+        "sha256": "7cdd3bd27057545be67bb484c846b51351e3e3621b6347b0fa94ecd418335429",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "prepare-output-002.py",
+        "bytes": 32230,
+        "sha256": "03ea9a1217a26150c321f7074deabd2e6b73cddd4b6f3974d9ae81891d37a196",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "prepare-output-003.py",
+        "bytes": 46095,
+        "sha256": "3d43e2fd2d26e152c511c37395fcaa551ab07f21f21473d765ca21381913c2f7",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "preserve-regulatory-003.py",
+        "bytes": 1304,
+        "sha256": "c1f781ad35c374b0a315fdeb37d17bb6f772de12b7f3f15a0772eddcc99dde93",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "primary-003-pubmed.xml",
+        "bytes": 145603,
+        "sha256": "8a7eca61f59b728e43bf85ca43bd4b20c7d4f92b96efae967341ce72c8a34472",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "primary-003-retrieval-receipt.json",
+        "bytes": 18641,
+        "sha256": "11067ad37cf75aa7fdad939fb20a0343f700c5dfd142f16457aa785f3f0bea55",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "primary-retrieval-receipt-a2.json",
+        "bytes": 936,
+        "sha256": "7fe181fa5f5dcc14559951874c963667ed354b6ef98a2e8f86cf6ba6cedcc83d",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "primary-retrieval-receipt.json",
+        "bytes": 1432,
+        "sha256": "77ff8fb837d2efa5f84f1fa54faec8b41decce8a2a9f5ae08c3a7b14961b0b61",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "queue.json",
+        "bytes": 5860,
+        "sha256": "80127a6a7139bb761622763373cb238ef68868094df1e4a3834b9f8366a40dd7",
+        "role": "CURRENT_REVIEW_OR_STATE"
+      },
+      {
+        "file": "refine-fbb4edd0-and-mainritsan.py",
+        "bytes": 5610,
+        "sha256": "06c49a1b691cab756532977d073dfd8fcb94062e8717a8acdfc07953ab7a7d45",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "registry-snapshot-002.json",
+        "bytes": 16332,
+        "sha256": "af2d96ed7b31a4ef43c9851acc87050aab95480211d1f0112fb4436468deec1a",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "registry-snapshot-003.json",
+        "bytes": 19151,
+        "sha256": "7c485bdae7d602547e264b2928eda69c351d006d4a422e7eb109918dd50599e1",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "registry-snapshot.json",
+        "bytes": 13287,
+        "sha256": "f53bdb1efd2a8bac2af0ec4b0b060abc6b85a2757b9bb4378519e97b1248a29c",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "regulatory-003-retrieval-receipt.json",
+        "bytes": 866,
+        "sha256": "8cac1965df7e3a0a7dc5a223678b30f09805fbd7ac168ad4abf95fbdf9ef769b",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "retrieve-extra-003.py",
+        "bytes": 1430,
+        "sha256": "87175ff65ed3672115a386e4df25c1aa1b0d06ac255e87e871919edfb7606c22",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "retrieve-sources-002.py",
+        "bytes": 2119,
+        "sha256": "9214ce3a796321cf2390b9f5e9854a08a22dddb26180bc7e66861fdbbbea9d98",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "retrieve-sources-003.py",
+        "bytes": 1089,
+        "sha256": "52394ab0088e549f67cacdae4154bbcff9ab0f87acc1d2e5859a7c8a8e59495e",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "rituxvas_2010_pubmed.xml",
+        "bytes": 12855,
+        "sha256": "202a6a008f92301acb2a4706fd663f6897f55b8a670a7ad8b2450fe45f0eaff7",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "source-esearch.py",
+        "bytes": 1250,
+        "sha256": "b57b4bcc4e5a11b61c952636060d1edf6ed8cdd5398d4a15c0c7d73a3194ebf2",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "sources-002-retrieval-receipt.json",
+        "bytes": 20244,
+        "sha256": "41f8e170aa42da29b5f8cecef6801ad772fa36505ccd21423b67fb6e7a729866",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "verify-primary-sources.py",
+        "bytes": 1361,
+        "sha256": "e6483bc51962685f2ef4c0c97c1fd0e3ff6a3619f611ed93d88b6f7fff84f57a",
+        "role": "ARTIFACT_PROVENANCE_HELPER_DO_NOT_RERUN_BLINDLY"
+      },
+      {
+        "file": "xeno_2025-esearch.xml",
+        "bytes": 388,
+        "sha256": "24b036c62e12c2073da9f0654bc43b18dc59031bed10104123f3c83f76867dd0",
+        "role": "SOURCE_OR_RECEIPT"
+      },
+      {
+        "file": "xeno_2025-pubmed.xml",
+        "bytes": 18316,
+        "sha256": "26a6b2fc07fd703baca6d1ec3a7726821801981182a433ba89e2fbd0fd1f204e",
+        "role": "SOURCE_OR_RECEIPT"
+      }
+    ],
+    "rawSourceStorageQualification": "O manifesto inclui fontes brutas preservadas neste PC. PDFs grandes podem ficar fora do Git conforme decisão do coordenador; suas URLs e pins permitem nova obtenção e conferência. A validação PASS descreve os arquivos locais presentes neste checkpoint, não presume que uma cópia sem PDFs possua os mesmos arquivos.",
+    "requiredOutsideGroupB": [
+      {
+        "file": "../independent-b001.json",
+        "bytes": 80136,
+        "sha256": "06c680ace42457e5f3a350ed1fe5e79d352bc4d24bf4da9b8ddde64889676a07"
+      }
+    ],
+    "noProductEdits": true,
+    "noCommitByReviewer": true,
+    "noPublicationByReviewer": true
+  }
+}

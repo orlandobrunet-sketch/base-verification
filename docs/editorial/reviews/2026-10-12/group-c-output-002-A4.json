@@ -1,0 +1,2011 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 100205,
+  "sourceReportSHA256": "74a8c0084d8133028b64fb8a0455519ca16272d86b76e84c102ff7bf3664ba4d",
+  "locatorPolicy": "Private local locators and transient browser IDs omitted; clinical proposals and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_FORMAL_BATCH_REVIEW_v2",
+    "group": "c",
+    "batch": "002",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "bankLF_SHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "input": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 18655,
+      "sha256": "7fcc27e1caba0df9fe6546d533afc505af989b0dec3cb2781941c20c1db6b2b7"
+    },
+    "reviewedUTC": "2026-10-12T17:15:57Z",
+    "normativeSources": [
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      }
+    ],
+    "sourceRegistry": {
+      "kdigo_anemia_2026": {
+        "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+        "opened": true,
+        "version": "KDIGO 2026 Anemia in CKD; Kidney International109(Suppl1S):S1–S99",
+        "locations": [
+          "Rec 3.2.1; p.50: início AEE em HD/DP",
+          "Rec 3.3.1; p.53: alvo Hb abaixo de11,5",
+          "PP3.1.2; p.48: causas corrigíveis",
+          "PP3.5.1; p.56: não combinar AEE/HIF-PHI",
+          "PP4.4 e texto p.66: transfusão",
+          "Rec2.4; p.19: escolha via ferro"
+        ],
+        "verifiedScope": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual."
+      },
+      "brenner_rector": {
+        "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+        "opened": false,
+        "verifiedScope": "Card encontrado; capítulo fisiológico não aberto e metadados não reconfirmados nesta revisão."
+      },
+      "kdigo_ckd": {
+        "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+        "opened": true,
+        "version": "KDIGO2024",
+        "verifiedScope": "Diretriz consultada; não fornece, no trecho aberto, sustentação específica do alvo molecular NKCC2 exigido neste item.",
+        "supportsAnswer": false
+      },
+      "finerenone_label_dailymed": {
+        "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c",
+        "opened": true,
+        "version": "Kerendia, DailyMed FDA, revisada9/2026",
+        "locations": [
+          "§12.1 mecanismo",
+          "§12.3 farmacocinética"
+        ],
+        "verifiedScope": "Antagonista mineralocorticoide seletivo não esteroidal sem afinidade relevante por receptores androgênicos/progestagênicos; não prova comparação clínica de ginecomastia contra espironolactona."
+      },
+      "fidelio_dkd": {
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2025845",
+        "opened": false,
+        "verifiedScope": "Card original presente; ensaio placebo-controlado, não é comparação farmacológica com espironolactona. Não atribuir menor ginecomastia a este ensaio."
+      }
+    },
+    "referenceCardPatch": {
+      "id": "kdigo_anemia_2026",
+      "BEFORE": {
+        "label": "KDIGO Anemia in CKD 2026",
+        "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+        "journal": "Kidney International",
+        "ano": 2026,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+        "icon": "📋",
+        "resumo": "Diretriz KDIGO 2026 para anemia na DRC. Recomenda avaliar hemograma, reticulócitos, ferritina e saturação de transferrina e investigar causas reversíveis antes de iniciar ou escalar AEE. Reconhece que ferritina e saturação têm limitações e distingue deficiência sistêmica de ferro de eritropoiese restrita por ferro. Em adultos tratados com AEE, recomenda não manter hemoglobina acima de 11,5 g/dL; decisão de iniciar AEE e transfundir deve ser individualizada por sintomas, riscos, comorbidades e contexto de transplante.",
+        "conclusao": "O tratamento seguro da anemia renal começa por definir a causa e a disponibilidade de ferro; AEE, ferro, HIF-PHI e transfusão não devem ser usados para perseguir um número isolado de hemoglobina.",
+        "curiosidade": "A diretriz substituiu o termo “deficiência funcional de ferro” por “eritropoiese restrita por ferro”, destacando que o ferro pode estar armazenado, mas indisponível à medula por ação da hepcidina e da inflamação."
+      },
+      "AFTER": {
+        "label": "KDIGO Anemia in CKD 2026",
+        "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+        "journal": "Kidney International",
+        "ano": 2026,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+        "icon": "📋",
+        "resumo": "Em adultos com doença renal crônica (DRC), abordar causas corrigíveis antes de agentes estimuladores da eritropoiese (AEE) ou inibidores da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI): PP 3.1.2. AEE em vez de HIF-PHI como primeira linha: Rec 3.1.1 (2D). Em hemodiálise/diálise peritoneal, limiar de início de AEE na faixa de hemoglobina (Hb) 9–10 g/dL: Rec 3.2.1 (2D). Alvo de Hb abaixo de 11,5 g/dL com AEE: Rec 3.3.1 (1D). Sem hemodiálise, ferro oral ou intravenoso conforme contexto e preferências: Rec 2.4 (2D). Não combinar AEE/HIF-PHI: PP 3.5.1. Transfusão na anemia crônica guiada por sintomas/sinais, não limite arbitrário de Hb: PP 4.4. HIF-PHI na menor dose para objetivo clínico, sem exceder máximo: PP 3.5.4–3.5.5.",
+        "conclusao": "Aplicar recomendações e pontos de prática à população definida. Um ponto de prática não é recomendação graduada; início e transfusão são individualizados, e o alvo superior com AEE permanece abaixo de 11,5 g/dL.",
+        "curiosidade": ""
+      },
+      "reEvaluated": true,
+      "evidenceStatus": "VERIFICADA",
+      "pendingNature": "NENHUMA",
+      "verdictV2": "aprovada com pequenos ajustes",
+      "publicationAuthorization": "LIBERADA",
+      "derivation": "Handbook18.4Regra7; limiar<11,5 confirmado noAFTER; fonteatualaberta. Apenas resumo/conclusão/curiosidade alterados.",
+      "beforeSHA256": "abf6ac5c382678150bc96c0686e03769e1021cf346fa9b3e61e4c7f519e56843",
+      "afterSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+      "usedByQids": [
+        "eacfb643",
+        "6f1598c5",
+        "5cf5b826",
+        "f44b5edc",
+        "12121893",
+        "1ba5a94d"
+      ],
+      "newExactVersionReview": {
+        "previousAfterSHA256": "266163af582a5eef2c617759ef9ea4d95871e2c39a51de1af0e01714120e450c",
+        "afterSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+        "verdictV2": "aprovada com pequenos ajustes",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "reason": "Card completo reavaliado no texto primário KDIGO2026. Rec3.1.1/3.2.1/2.4 são2D; Rec3.3.1 é1D; PP3.1.2/3.5.1/3.5.4–5/4.4 não recebem grade inventado. Populações e contexto mantidos.",
+        "derivation": "Handbook §18.4 regra7(a)."
+      }
+    },
+    "summary": [
+      {
+        "qid": "4f32d657",
+        "OP": "Identificar alvo tubular da furosemida e distingui-lo de mecanismos de outros diuréticos.",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "verdict": "revisão maior",
+        "score": 17,
+        "publication": "BLOQUEADA",
+        "legacy": "REESCREVER"
+      },
+      {
+        "qid": "eacfb643",
+        "OP": "Identificar a faixa de Hb sugerida para iniciar AEE em HD/DP após corrigir causas reversíveis, distinguindo início de manutenção.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA",
+        "legacy": "REESCREVER"
+      },
+      {
+        "qid": "6f1598c5",
+        "OP": "Reconhecer o limite superior do alvo de Hb com AEE na DRC sem confundir subintervalo individual com recomendação formal.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 20,
+        "publication": "LIBERADA",
+        "legacy": "REESCREVER"
+      },
+      {
+        "qid": "5cf5b826",
+        "OP": "Priorizar investigação e abordagem de causas corrigíveis antes de AEE/HIF-PHI, evitando atribuir toda anemia à DRC.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA",
+        "legacy": "REESCREVER"
+      },
+      {
+        "qid": "f44b5edc",
+        "OP": "Aplicar orientação contra combinação AEE/HIF-PHI inclusive na hiporresponsividade, distinguindo alternativas terapêuticas de associação.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 20,
+        "publication": "LIBERADA",
+        "legacy": "REESCREVER"
+      },
+      {
+        "qid": "12121893",
+        "OP": "Individualizar transfusão de anemia crônica na DRC em adulto hospitalizado estável, separando sintomas de gatilhos numéricos rígidos.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA",
+        "legacy": "REESCREVER"
+      },
+      {
+        "qid": "1ba5a94d",
+        "OP": "Escolher via oral ou intravenosa do ferro na anemia da DRC não em HD conforme resposta, tolerabilidade, acesso e decisão compartilhada.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publication": "LIBERADA",
+        "legacy": "REESCREVER"
+      },
+      {
+        "qid": "e3f0e529",
+        "OP": "Reconhecer seletividade da finerenona pelo receptor mineralocorticoide e distingui-la de superioridade de desfechos ou ausência de hipercalemia.",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "verdict": "revisão maior",
+        "score": 16,
+        "publication": "BLOQUEADA",
+        "legacy": "REESCREVER"
+      }
+    ],
+    "questions": [
+      {
+        "qid": "4f32d657",
+        "sourceLine": 638,
+        "sourceQuestionSHA256": "6e42e0fd301a98f3af068d957ac63448b35f71515104f8d3997ed02c04d3c4aa",
+        "verdictV2": "revisão maior",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "moderada",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "OP": "Identificar alvo tubular da furosemida e distingui-lo de mecanismos de outros diuréticos.",
+        "classification": {
+          "primaryCompetence": "mecanismo",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "básica"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Identificar alvo tubular da furosemida e distingui-lo de mecanismos de outros diuréticos.",
+          "hiddenPremisesResolved": false
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Explicação original cita A/B/D; correta mais longa."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Referência de DRC é genérica para alvo farmacológico; capítulo citado do livro não foi aberto."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "VERIFICAÇÃO NECESSÁRIA: abrir fonte específica de fisiologia/farmacologia da furosemida que confirme NKCC2 e locais de ação; confirmar bibliografia do card Brenner. Conceito de memória não foi convertido em aprovação."
+          ],
+          "resolvedBeforeApproval": false
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 1,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 1,
+            "Referências": 1,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 17,
+          "band": "Boa com reparos",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "PARCIALMENTE VERIFICADA / DECISIVA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "em_revisão",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — RASCUNHO BLOQUEADO",
+          "BEFORE": {
+            "t": "Diurético de Alça — Mecanismo de Ação",
+            "qid": "4f32d657",
+            "q": "Paciente com síndrome nefrótica e edema intenso recebe furosemida. Qual é o mecanismo de ação da furosemida?",
+            "refs": [
+              "brenner_rector",
+              "kdigo_ckd"
+            ],
+            "opts": [
+              "Bloqueia os canais de sódio ENaC no ducto coletor",
+              "Inibe a anidrase carbônica no túbulo proximal",
+              "Inibe o cotransportador NKCC2 no ramo ascendente espesso da alça de Henle",
+              "Antagoniza os receptores de aldosterona no túbulo distal"
+            ],
+            "ans": 2,
+            "exp": "A furosemida é um diurético de alça que inibe o cotransportador Na+/K+/2Cl- (NKCC2) no ramo ascendente espesso da alça de Henle, reduzindo a reabsorção de sódio, potássio e cloreto e produzindo natriurese e diurese intensas. A alternativa B descreve os inibidores da anidrase carbônica, como a acetazolamida; a alternativa A descreve bloqueadores de ENaC, como amilorida e triamtereno; e a alternativa D corresponde aos antagonistas da aldosterona, como espironolactona e eplerenona.",
+            "diff": "easy",
+            "cat": "farmacologia"
+          },
+          "AFTER": {
+            "t": "Diurético de Alça — Mecanismo de Ação",
+            "qid": "4f32d657",
+            "q": "Paciente com síndrome nefrótica e edema intenso recebe furosemida. Qual é o mecanismo de ação da furosemida?",
+            "refs": [
+              "brenner_rector",
+              "kdigo_ckd"
+            ],
+            "opts": [
+              "Bloqueia ENaC no ducto coletor, reduzindo reabsorção de sódio.",
+              "Inibe a anidrase carbônica proximal, reduzindo reabsorção de bicarbonato.",
+              "Inibe NKCC2 no ramo ascendente espesso, reduzindo reabsorção de sal.",
+              "Bloqueia receptores mineralocorticoides, reduzindo a resposta à aldosterona."
+            ],
+            "ans": 2,
+            "exp": "A furosemida atua no cotransportador Na+/K+/2Cl− (NKCC2) do ramo ascendente espesso. ENaC, anidrase carbônica e receptor mineralocorticoide são alvos de outras classes. RASCUNHO BLOQUEADO: falta abrir fonte específica para confirmar o alvo e o card antes de implementar.",
+            "diff": "easy",
+            "cat": "farmacologia"
+          },
+          "afterQuestionSHA256": "d6f52aa572e612fa5dfd4ab780528dccc5bd56fac5585e1112310d28e05c79c4",
+          "correctAnswer": {
+            "canonicalIndex": 2,
+            "canonicalLetter": "C",
+            "text": "Inibe NKCC2 no ramo ascendente espesso, reduzindo reabsorção de sal."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "brenner_rector",
+            "source": {
+              "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+              "opened": false,
+              "verifiedScope": "Card encontrado; capítulo fisiológico não aberto e metadados não reconfirmados nesta revisão."
+            },
+            "supports": "Card encontrado; capítulo fisiológico não aberto e metadados não reconfirmados nesta revisão.",
+            "status": "VERIFICAÇÃO NECESSÁRIA"
+          },
+          {
+            "sourceId": "kdigo_ckd",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO2024",
+              "verifiedScope": "Diretriz consultada; não fornece, no trecho aberto, sustentação específica do alvo molecular NKCC2 exigido neste item.",
+              "supportsAnswer": false
+            },
+            "supports": "Diretriz consultada; não fornece, no trecho aberto, sustentação específica do alvo molecular NKCC2 exigido neste item.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_ckd": {
+            "label": "KDIGO CKD 2024",
+            "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "journal": "Kidney International",
+            "ano": 2024,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "icon": "📋",
+            "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+            "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+            "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [
+          "VERIFICAÇÃO NECESSÁRIA: abrir fonte específica de fisiologia/farmacologia da furosemida que confirme NKCC2 e locais de ação; confirmar bibliografia do card Brenner. Conceito de memória não foi convertido em aprovação."
+        ],
+        "comparison": {
+          "beforeLengths": [
+            49,
+            45,
+            73,
+            56
+          ],
+          "afterLengths": [
+            62,
+            73,
+            68,
+            76
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito/evidência/publicação referem-se ao AFTER proposto exato. BEFORE não recebe aprovação retroativa."
+      },
+      {
+        "qid": "eacfb643",
+        "sourceLine": 664,
+        "sourceQuestionSHA256": "385418406cf89171b9656e8c06333f009764f7bcc4851e1817b7657fd0210498",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Identificar a faixa de Hb sugerida para iniciar AEE em HD/DP após corrigir causas reversíveis, distinguindo início de manutenção.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Identificar a faixa de Hb sugerida para iniciar AEE em HD/DP após corrigir causas reversíveis, distinguindo início de manutenção.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Notação≤9,0–10,0 permite leitura confusa e é uma regra isolada sem explicitar causas corrigíveis."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Explicação cita letras e confunde comparações de limiar/intervalo."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Limiar de Hb para Iniciar AEE em Diálise — KDIGO 2026",
+            "qid": "eacfb643",
+            "q": "De acordo com a KDIGO 2026, qual é o nível de hemoglobina recomendado para considerar o início de agentes estimuladores de eritropoiese (AEE) em pacientes em hemodiálise ou diálise peritoneal?",
+            "opts": [
+              "Hb ≤7,0 g/dL",
+              "Hb ≤8,0 g/dL",
+              "Hb ≤11,5 g/dL",
+              "Hb ≤9,0–10,0 g/dL"
+            ],
+            "ans": 3,
+            "exp": "Em pacientes com doença renal crônica em diálise, a decisão de iniciar agente estimulador de eritropoiese deve ser considerada quando a hemoglobina está em torno de 9,0 a 10,0 g/dL, com o objetivo de evitar queda para valores muito baixos e reduzir necessidade de transfusão, sempre individualizando conforme sintomas, tendência da Hb e risco cardiovascular. A alternativa B está abaixo do ponto de corte usual e a opção C está acima do intervalo recomendado para considerar início, enquanto a opção A é excessivamente baixa e não representa o limiar habitual de decisão.",
+            "diff": "medium",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "AFTER": {
+            "t": "Limiar de Hb para Iniciar AEE em Diálise — KDIGO 2026",
+            "qid": "eacfb643",
+            "q": "Pessoa em hemodiálise ou diálise peritoneal apresenta anemia após abordagem das causas corrigíveis. Na recomendação 3.2.1 da KDIGO 2026, em que faixa se situa o limiar de hemoglobina (Hb) sugerido para iniciar agente estimulador da eritropoiese (AEE), conforme individualização clínica?",
+            "opts": [
+              "Entre 6,0 e 7,0 g/dL",
+              "Entre 7,0 e 8,0 g/dL",
+              "Entre 11,0 e 12,0 g/dL",
+              "Entre 9,0 e 10,0 g/dL"
+            ],
+            "ans": 3,
+            "exp": "O limiar sugerido situa-se entre 9 e 10 g/dL (2D), após corrigir outras causas. Sintomas, riscos e preferência orientam onde individualizar; esse limiar não é a meta de manutenção.",
+            "diff": "medium",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "afterQuestionSHA256": "59e5b29114a120d48f6df39c67593633a9415c61b7039303126effdde07c86cf",
+          "correctAnswer": {
+            "canonicalIndex": 3,
+            "canonicalLetter": "D",
+            "text": "Entre 9,0 e 10,0 g/dL"
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "kdigo_anemia_2026",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO 2026 Anemia in CKD; Kidney International109(Suppl1S):S1–S99",
+              "locations": [
+                "Rec 3.2.1; p.50: início AEE em HD/DP",
+                "Rec 3.3.1; p.53: alvo Hb abaixo de11,5",
+                "PP3.1.2; p.48: causas corrigíveis",
+                "PP3.5.1; p.56: não combinar AEE/HIF-PHI",
+                "PP4.4 e texto p.66: transfusão",
+                "Rec2.4; p.19: escolha via ferro"
+              ],
+              "verifiedScope": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual."
+            },
+            "supports": "Limiar individualizado9–10g/dL em HD/DP;2D",
+            "status": "VERIFICADA",
+            "exactLocation": "Recommendation3.2.1"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_anemia_2026": {
+            "label": "KDIGO Anemia in CKD 2026",
+            "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+            "journal": "Kidney International",
+            "ano": 2026,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+            "icon": "📋",
+            "resumo": "Em adultos com doença renal crônica (DRC), abordar causas corrigíveis antes de agentes estimuladores da eritropoiese (AEE) ou inibidores da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI): PP 3.1.2. AEE em vez de HIF-PHI como primeira linha: Rec 3.1.1 (2D). Em hemodiálise/diálise peritoneal, limiar de início de AEE na faixa de hemoglobina (Hb) 9–10 g/dL: Rec 3.2.1 (2D). Alvo de Hb abaixo de 11,5 g/dL com AEE: Rec 3.3.1 (1D). Sem hemodiálise, ferro oral ou intravenoso conforme contexto e preferências: Rec 2.4 (2D). Não combinar AEE/HIF-PHI: PP 3.5.1. Transfusão na anemia crônica guiada por sintomas/sinais, não limite arbitrário de Hb: PP 4.4. HIF-PHI na menor dose para objetivo clínico, sem exceder máximo: PP 3.5.4–3.5.5.",
+            "conclusao": "Aplicar recomendações e pontos de prática à população definida. Um ponto de prática não é recomendação graduada; início e transfusão são individualizados, e o alvo superior com AEE permanece abaixo de 11,5 g/dL.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            12,
+            12,
+            13,
+            17
+          ],
+          "afterLengths": [
+            20,
+            20,
+            22,
+            21
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "referenceCardPatchDependency": "kdigo_anemia_2026, AFTER exato abaixo",
+        "reviewScope": "Veredito/evidência/publicação referem-se ao AFTER proposto exato. BEFORE não recebe aprovação retroativa.",
+        "cardDependencyReevaluation": {
+          "id": "kdigo_anemia_2026",
+          "afterCardSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+          "questionAfterSHA256": "59e5b29114a120d48f6df39c67593633a9415c61b7039303126effdde07c86cf",
+          "claimsAndUnicityRechecked": true,
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Card agora identifica recomendações/PP e força/certeza. Os conceitos exigidos pela pergunta exata permanecem sustentados no KDIGO2026 aberto; reavaliada coerência da dependência."
+        }
+      },
+      {
+        "qid": "6f1598c5",
+        "sourceLine": 665,
+        "sourceQuestionSHA256": "31b58b219733f2a4ab7fd40b8d4fc23223a5ea950906b98aba14256661c309fe",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Reconhecer o limite superior do alvo de Hb com AEE na DRC sem confundir subintervalo individual com recomendação formal.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "básica"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Reconhecer o limite superior do alvo de Hb com AEE na DRC sem confundir subintervalo individual com recomendação formal.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "CRÍTICO",
+            "problem": "Original10,0–11,0 é subintervalo compatível com abaixo de 11,5: segunda resposta defensável."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Explicação original descarta alternativa válida por não repetir a forma literal da diretriz."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Candidato pode defender10–11 como meta individual abaixo de11,5; comando original não pergunta explicitamente limite superior."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [
+            1
+          ],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 20,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Meta de Hemoglobina com AEE — KDIGO 2026",
+            "qid": "6f1598c5",
+            "q": "Qual é a meta de hemoglobina recomendada pela KDIGO 2026 para adultos com doença renal crônica (DRC) tratados com agentes estimuladores da eritropoiese (AEE)?",
+            "opts": [
+              "12,0–13,0 g/dL",
+              "10,0–11,0 g/dL",
+              "Abaixo de 11,5 g/dL",
+              "Acima de 13,0 g/dL"
+            ],
+            "ans": 2,
+            "exp": "A KDIGO 2026 recomenda, para adultos com DRC em uso de AEE, manter a hemoglobina abaixo de 11,5 g/dL, porque metas mais altas aumentam o risco de hipertensão, trombose e eventos cardiovasculares sem benefício clínico consistente. Assim, a alternativa C é a melhor resposta. A alternativa A está acima do limite recomendado, a opção B sugere um intervalo mais estreito e não é a forma correta de expressar a meta, e a opção D é claramente inadequada por propor valores excessivos.",
+            "diff": "easy",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "AFTER": {
+            "t": "Meta de Hemoglobina com AEE — KDIGO 2026",
+            "qid": "6f1598c5",
+            "q": "Segundo a recomendação 3.3.1 da KDIGO 2026, qual formulação expressa o limite superior do alvo de hemoglobina (Hb) em adultos com doença renal crônica (DRC) tratados com agentes estimuladores da eritropoiese (AEE)?",
+            "opts": [
+              "Manter Hb entre 12,0 e 13,0 g/dL",
+              "Manter Hb entre 11,5 e 12,0 g/dL",
+              "Manter Hb abaixo de 11,5 g/dL",
+              "Manter Hb acima de 13,0 g/dL"
+            ],
+            "ans": 2,
+            "exp": "O alvo deve permanecer abaixo de 11,5 g/dL (1D). Intervalos que começam ou permanecem acima desse limite não expressam a recomendação; a meta individual considera benefícios e riscos.",
+            "diff": "easy",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "afterQuestionSHA256": "ea41cbce3cee7fec199cb39424014313eb7b93dc5905d4a193fb543435caa77f",
+          "correctAnswer": {
+            "canonicalIndex": 2,
+            "canonicalLetter": "C",
+            "text": "Manter Hb abaixo de 11,5 g/dL"
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "kdigo_anemia_2026",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO 2026 Anemia in CKD; Kidney International109(Suppl1S):S1–S99",
+              "locations": [
+                "Rec 3.2.1; p.50: início AEE em HD/DP",
+                "Rec 3.3.1; p.53: alvo Hb abaixo de11,5",
+                "PP3.1.2; p.48: causas corrigíveis",
+                "PP3.5.1; p.56: não combinar AEE/HIF-PHI",
+                "PP4.4 e texto p.66: transfusão",
+                "Rec2.4; p.19: escolha via ferro"
+              ],
+              "verifiedScope": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual."
+            },
+            "supports": "Alvo abaixo de11,5g/dL;1D",
+            "status": "VERIFICADA",
+            "exactLocation": "Recommendation3.3.1"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_anemia_2026": {
+            "label": "KDIGO Anemia in CKD 2026",
+            "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+            "journal": "Kidney International",
+            "ano": 2026,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+            "icon": "📋",
+            "resumo": "Em adultos com doença renal crônica (DRC), abordar causas corrigíveis antes de agentes estimuladores da eritropoiese (AEE) ou inibidores da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI): PP 3.1.2. AEE em vez de HIF-PHI como primeira linha: Rec 3.1.1 (2D). Em hemodiálise/diálise peritoneal, limiar de início de AEE na faixa de hemoglobina (Hb) 9–10 g/dL: Rec 3.2.1 (2D). Alvo de Hb abaixo de 11,5 g/dL com AEE: Rec 3.3.1 (1D). Sem hemodiálise, ferro oral ou intravenoso conforme contexto e preferências: Rec 2.4 (2D). Não combinar AEE/HIF-PHI: PP 3.5.1. Transfusão na anemia crônica guiada por sintomas/sinais, não limite arbitrário de Hb: PP 4.4. HIF-PHI na menor dose para objetivo clínico, sem exceder máximo: PP 3.5.4–3.5.5.",
+            "conclusao": "Aplicar recomendações e pontos de prática à população definida. Um ponto de prática não é recomendação graduada; início e transfusão são individualizados, e o alvo superior com AEE permanece abaixo de 11,5 g/dL.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            14,
+            14,
+            19,
+            18
+          ],
+          "afterLengths": [
+            32,
+            32,
+            29,
+            28
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "referenceCardPatchDependency": "kdigo_anemia_2026, AFTER exato abaixo",
+        "reviewScope": "Veredito/evidência/publicação referem-se ao AFTER proposto exato. BEFORE não recebe aprovação retroativa.",
+        "exactVersionReevaluation": {
+          "afterSHA256": "ea41cbce3cee7fec199cb39424014313eb7b93dc5905d4a193fb543435caa77f",
+          "evidenceRechecked": true,
+          "pendingRechecked": true,
+          "unicityAndOPRechecked": true,
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Expansão de DRC e espaços entre números/unidades; nenhuma alteração de população, limiar ou gabarito. Nova versão exata cotejada com mesmas recomendações/pontos de prática KDIGO2026 já abertos.",
+          "publicationDerivation": "Handbook18.4Regra7(a), sem herança silenciosa."
+        },
+        "cardDependencyReevaluation": {
+          "id": "kdigo_anemia_2026",
+          "afterCardSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+          "questionAfterSHA256": "ea41cbce3cee7fec199cb39424014313eb7b93dc5905d4a193fb543435caa77f",
+          "claimsAndUnicityRechecked": true,
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Card agora identifica recomendações/PP e força/certeza. Os conceitos exigidos pela pergunta exata permanecem sustentados no KDIGO2026 aberto; reavaliada coerência da dependência."
+        }
+      },
+      {
+        "qid": "5cf5b826",
+        "sourceLine": 666,
+        "sourceQuestionSHA256": "378c2eeb712db06e4a46613b431b948858227845a3cd5255789d0d5c1c9a1a6a",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Priorizar investigação e abordagem de causas corrigíveis antes de AEE/HIF-PHI, evitando atribuir toda anemia à DRC.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "básica"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Priorizar investigação e abordagem de causas corrigíveis antes de AEE/HIF-PHI, evitando atribuir toda anemia à DRC.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Distratores transfusão-teste e esperar seis meses são frágeis e permitem descarte não clínico."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Sigla HIF-PHI traduzida incompletamente; explicação por letras."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Distratores não representam decisões próximas; transfusão-teste não é passo clínico reconhecível."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [
+            5
+          ],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Pré-requisito para Iniciar AEE ou HIF-PHI — KDIGO 2026",
+            "qid": "5cf5b826",
+            "q": "Segundo as diretrizes KDIGO, qual é a avaliação obrigatória antes de iniciar agentes estimuladores da eritropoiese (AEE) ou inibidores do fator induzível por hipóxia (HIF-PHI) para tratamento da anemia na doença renal crônica (DRC)?",
+            "opts": [
+              "Realizar biópsia de medula óssea",
+              "Iniciar transfusão de hemácias teste",
+              "Abordar todas as causas corrigíveis de anemia, incluindo deficiência de ferro",
+              "Aguardar pelo menos 6 meses de observação"
+            ],
+            "ans": 2,
+            "exp": "Antes de iniciar AEE ou HIF-PHI na anemia da DRC, deve-se avaliar e corrigir causas reversíveis de anemia, especialmente deficiência de ferro, porque a resposta ao tratamento depende da disponibilidade adequada de ferro e essa deficiência é muito comum nesses pacientes. Assim, a alternativa C é a correta. Biópsia de medula óssea não é uma exigência de rotina, transfusão não é etapa obrigatória e aguardar meses sem investigar a causa da anemia não é conduta recomendada.",
+            "diff": "easy",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "AFTER": {
+            "t": "Pré-requisito para Iniciar AEE ou HIF-PHI — KDIGO 2026",
+            "qid": "5cf5b826",
+            "q": "Antes de iniciar agentes estimuladores da eritropoiese (AEE) ou inibidores da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI) para anemia da doença renal crônica (DRC), qual etapa é indicada pela KDIGO 2026?",
+            "opts": [
+              "Restringir a avaliação à produção reduzida de eritropoietina pela DRC.",
+              "Priorizar transfusão antes de verificar ferro e outras causas reversíveis.",
+              "Investigar e abordar causas corrigíveis, incluindo deficiência de ferro.",
+              "Investigar deficiência de ferro somente após hiporresponsividade à terapia."
+            ],
+            "ans": 2,
+            "exp": "Devem-se abordar causas corrigíveis, inclusive deficiência de ferro, antes da terapia (PP 3.1.2). Atribuir toda anemia à DRC ou esperar falha terapêutica adia essa investigação.",
+            "diff": "easy",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "afterQuestionSHA256": "7e98793f76f808983f2b34a75e2480a4fbc1bdd6b00353295823dfbeba533643",
+          "correctAnswer": {
+            "canonicalIndex": 2,
+            "canonicalLetter": "C",
+            "text": "Investigar e abordar causas corrigíveis, incluindo deficiência de ferro."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "kdigo_anemia_2026",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO 2026 Anemia in CKD; Kidney International109(Suppl1S):S1–S99",
+              "locations": [
+                "Rec 3.2.1; p.50: início AEE em HD/DP",
+                "Rec 3.3.1; p.53: alvo Hb abaixo de11,5",
+                "PP3.1.2; p.48: causas corrigíveis",
+                "PP3.5.1; p.56: não combinar AEE/HIF-PHI",
+                "PP4.4 e texto p.66: transfusão",
+                "Rec2.4; p.19: escolha via ferro"
+              ],
+              "verifiedScope": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual."
+            },
+            "supports": "Abordar causas corrigíveis antes deAEE/HIF-PHI",
+            "status": "VERIFICADA",
+            "exactLocation": "PracticePoint3.1.2"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_anemia_2026": {
+            "label": "KDIGO Anemia in CKD 2026",
+            "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+            "journal": "Kidney International",
+            "ano": 2026,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+            "icon": "📋",
+            "resumo": "Em adultos com doença renal crônica (DRC), abordar causas corrigíveis antes de agentes estimuladores da eritropoiese (AEE) ou inibidores da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI): PP 3.1.2. AEE em vez de HIF-PHI como primeira linha: Rec 3.1.1 (2D). Em hemodiálise/diálise peritoneal, limiar de início de AEE na faixa de hemoglobina (Hb) 9–10 g/dL: Rec 3.2.1 (2D). Alvo de Hb abaixo de 11,5 g/dL com AEE: Rec 3.3.1 (1D). Sem hemodiálise, ferro oral ou intravenoso conforme contexto e preferências: Rec 2.4 (2D). Não combinar AEE/HIF-PHI: PP 3.5.1. Transfusão na anemia crônica guiada por sintomas/sinais, não limite arbitrário de Hb: PP 4.4. HIF-PHI na menor dose para objetivo clínico, sem exceder máximo: PP 3.5.4–3.5.5.",
+            "conclusao": "Aplicar recomendações e pontos de prática à população definida. Um ponto de prática não é recomendação graduada; início e transfusão são individualizados, e o alvo superior com AEE permanece abaixo de 11,5 g/dL.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            32,
+            36,
+            77,
+            41
+          ],
+          "afterLengths": [
+            70,
+            74,
+            72,
+            75
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "referenceCardPatchDependency": "kdigo_anemia_2026, AFTER exato abaixo",
+        "reviewScope": "Veredito/evidência/publicação referem-se ao AFTER proposto exato. BEFORE não recebe aprovação retroativa.",
+        "exactVersionReevaluation": {
+          "afterSHA256": "7e98793f76f808983f2b34a75e2480a4fbc1bdd6b00353295823dfbeba533643",
+          "evidenceRechecked": true,
+          "pendingRechecked": true,
+          "unicityAndOPRechecked": true,
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Expansão de DRC e espaços entre números/unidades; nenhuma alteração de população, limiar ou gabarito. Nova versão exata cotejada com mesmas recomendações/pontos de prática KDIGO2026 já abertos.",
+          "publicationDerivation": "Handbook18.4Regra7(a), sem herança silenciosa."
+        },
+        "cardDependencyReevaluation": {
+          "id": "kdigo_anemia_2026",
+          "afterCardSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+          "questionAfterSHA256": "7e98793f76f808983f2b34a75e2480a4fbc1bdd6b00353295823dfbeba533643",
+          "claimsAndUnicityRechecked": true,
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Card agora identifica recomendações/PP e força/certeza. Os conceitos exigidos pela pergunta exata permanecem sustentados no KDIGO2026 aberto; reavaliada coerência da dependência."
+        }
+      },
+      {
+        "qid": "f44b5edc",
+        "sourceLine": 667,
+        "sourceQuestionSHA256": "d55e1d12f650d8325147e08f1e6ff70cecb069d0bf8480907d391de144323e73",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Aplicar orientação contra combinação AEE/HIF-PHI inclusive na hiporresponsividade, distinguindo alternativas terapêuticas de associação.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Aplicar orientação contra combinação AEE/HIF-PHI inclusive na hiporresponsividade, distinguindo alternativas terapêuticas de associação.",
+          "hiddenPremisesResolved": true
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Explicação enfraquece orientação explícita e sugere combinação individualizada sem respaldo."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Explicação A/B/D e gabarito em caixa-alta são pistas."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Texto original admite individualização de associação que a fonte explicitamente não orienta."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 20,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Combinação AEE + HIF-PHI — KDIGO 2026",
+            "qid": "f44b5edc",
+            "q": "De acordo com as diretrizes KDIGO mais recentes, qual é a recomendação sobre o uso combinado de agentes estimuladores da eritropoiese (AEE) e inibidores do fator induzível por hipóxia (HIF-PHI) no tratamento da anemia em pacientes com doença renal crônica (DRC)?",
+            "opts": [
+              "Sim, recomenda combinação para anemia grave",
+              "Sim, em baixas doses de ambos",
+              "Não, AEEs e HIF-PHIs NÃO devem ser usados em combinação",
+              "Apenas em pacientes em hemodiálise"
+            ],
+            "ans": 2,
+            "exp": "As recomendações atuais não sustentam o uso combinado rotineiro de AEE e HIF-PHI na anemia da DRC. Esses fármacos são, em regra, estratégias terapêuticas alternativas, e não há evidência robusta suficiente para indicar associação como padrão, mesmo em anemia refratária, sem uma avaliação individualizada e fora de recomendação geral. Assim, as alternativas A e B estão incorretas por sugerirem combinação de rotina ou em baixas doses, e a opção D está errada porque a condição de hemodiálise não cria indicação específica para combinar essas classes.",
+            "diff": "medium",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "AFTER": {
+            "t": "Combinação AEE + HIF-PHI — KDIGO 2026",
+            "qid": "f44b5edc",
+            "q": "Em pessoas com anemia da doença renal crônica (DRC), inclusive na hiporresponsividade a agentes estimuladores da eritropoiese (AEE), qual orientação do ponto de prática 3.5.1 da KDIGO 2026 se aplica à associação com inibidores da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI)?",
+            "opts": [
+              "Associar as duas classes se a resposta ao AEE isolado for insuficiente.",
+              "Associar as duas classes em doses menores para reduzir os eventos adversos.",
+              "Não associar as duas classes para tratar a anemia nesse contexto.",
+              "Associar as duas classes quando o paciente recebe hemodiálise."
+            ],
+            "ans": 2,
+            "exp": "O PP 3.5.1 orienta não combinar AEE e HIF-PHI, inclusive na hiporresponsividade. Dose menor ou hemodiálise não cria exceção.",
+            "diff": "medium",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "afterQuestionSHA256": "b67074c75ca6055bedb2206735a75edd21ff72ef78e45459f3aab597f3bdd3e1",
+          "correctAnswer": {
+            "canonicalIndex": 2,
+            "canonicalLetter": "C",
+            "text": "Não associar as duas classes para tratar a anemia nesse contexto."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "kdigo_anemia_2026",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO 2026 Anemia in CKD; Kidney International109(Suppl1S):S1–S99",
+              "locations": [
+                "Rec 3.2.1; p.50: início AEE em HD/DP",
+                "Rec 3.3.1; p.53: alvo Hb abaixo de11,5",
+                "PP3.1.2; p.48: causas corrigíveis",
+                "PP3.5.1; p.56: não combinar AEE/HIF-PHI",
+                "PP4.4 e texto p.66: transfusão",
+                "Rec2.4; p.19: escolha via ferro"
+              ],
+              "verifiedScope": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual."
+            },
+            "supports": "Não combinar classes inclusivehiporresponsividade",
+            "status": "VERIFICADA",
+            "exactLocation": "PracticePoint3.5.1"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_anemia_2026": {
+            "label": "KDIGO Anemia in CKD 2026",
+            "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+            "journal": "Kidney International",
+            "ano": 2026,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+            "icon": "📋",
+            "resumo": "Em adultos com doença renal crônica (DRC), abordar causas corrigíveis antes de agentes estimuladores da eritropoiese (AEE) ou inibidores da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI): PP 3.1.2. AEE em vez de HIF-PHI como primeira linha: Rec 3.1.1 (2D). Em hemodiálise/diálise peritoneal, limiar de início de AEE na faixa de hemoglobina (Hb) 9–10 g/dL: Rec 3.2.1 (2D). Alvo de Hb abaixo de 11,5 g/dL com AEE: Rec 3.3.1 (1D). Sem hemodiálise, ferro oral ou intravenoso conforme contexto e preferências: Rec 2.4 (2D). Não combinar AEE/HIF-PHI: PP 3.5.1. Transfusão na anemia crônica guiada por sintomas/sinais, não limite arbitrário de Hb: PP 4.4. HIF-PHI na menor dose para objetivo clínico, sem exceder máximo: PP 3.5.4–3.5.5.",
+            "conclusao": "Aplicar recomendações e pontos de prática à população definida. Um ponto de prática não é recomendação graduada; início e transfusão são individualizados, e o alvo superior com AEE permanece abaixo de 11,5 g/dL.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            43,
+            29,
+            55,
+            34
+          ],
+          "afterLengths": [
+            71,
+            75,
+            65,
+            62
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "referenceCardPatchDependency": "kdigo_anemia_2026, AFTER exato abaixo",
+        "reviewScope": "Veredito/evidência/publicação referem-se ao AFTER proposto exato. BEFORE não recebe aprovação retroativa.",
+        "exactVersionReevaluation": {
+          "previousAfterSHA256": "3850eb43991c46a58189de06297b0b7b8961cfade1bb46ef428fd58bd49dd9ec",
+          "afterSHA256": "b67074c75ca6055bedb2206735a75edd21ff72ef78e45459f3aab597f3bdd3e1",
+          "sources": [
+            "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf#page=57"
+          ],
+          "location": "PP 3.5.1 p.56/S56; linhas4002–4012",
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Removida apenas história da revisão no texto do jogador. Mantida regra clínica, população, hiporresponsividade e nenhuma exceção. AFTER exato reavaliado, sem herdar aprovação."
+        },
+        "cardDependencyReevaluation": {
+          "id": "kdigo_anemia_2026",
+          "afterCardSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+          "questionAfterSHA256": "b67074c75ca6055bedb2206735a75edd21ff72ef78e45459f3aab597f3bdd3e1",
+          "claimsAndUnicityRechecked": true,
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Card agora identifica recomendações/PP e força/certeza. Os conceitos exigidos pela pergunta exata permanecem sustentados no KDIGO2026 aberto; reavaliada coerência da dependência."
+        }
+      },
+      {
+        "qid": "12121893",
+        "sourceLine": 668,
+        "sourceQuestionSHA256": "07b77fd86a02c3db13ce32598e188b2847c9d0cf76f26185ae73017c2df1450a",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Individualizar transfusão de anemia crônica na DRC em adulto hospitalizado estável, separando sintomas de gatilhos numéricos rígidos.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Individualizar transfusão de anemia crônica na DRC em adulto hospitalizado estável, separando sintomas de gatilhos numéricos rígidos.",
+          "hiddenPremisesResolved": false
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta reúne qualificação e número enquanto outras usam regras rígidas."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Explicação começa pela letraD e citaA/B/C."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Transfusão de Hemácias na DRC — KDIGO 2026",
+            "qid": "12121893",
+            "q": "Adulto hospitalizado com doença renal crônica (DRC), anemia crônica, estabilidade hemodinâmica e ausência de sangramento ativo está sendo avaliado para transfusão de hemácias. Segundo a KDIGO 2026, qual é a interpretação mais adequada do gatilho transfusional nesse cenário?",
+            "opts": [
+              "Transfundir rotineiramente se Hb <9 g/dL, mesmo assintomático",
+              "Usar Hb <8 g/dL como limiar obrigatório para qualquer paciente com DRC",
+              "Evitar qualquer transfusão enquanto houver possibilidade de usar ferro ou AEE",
+              "Basear a decisão principalmente em sintomas e sinais atribuíveis à anemia; Hb <7 g/dL é um guia restritivo razoável, não uma regra isolada"
+            ],
+            "ans": 3,
+            "exp": "A alternativa correta é D. A KDIGO 2026 orienta que, em pessoas com DRC e anemia, a decisão de transfundir hemácias não deve depender de um limiar arbitrário de hemoglobina, mas de sinais e sintomas atribuíveis à anemia, estabilidade clínica, risco de sobrecarga volêmica, aloimunização em candidatos a transplante e contexto agudo ou crônico. Para adultos hospitalizados hemodinamicamente estáveis, limiares restritivos como Hb <7 g/dL podem servir como guia prático, mas não substituem a avaliação clínica. As opções A e B transformam números em regras rígidas; a opção C erra porque transfusão pode ser apropriada quando há sintomas relevantes, urgência clínica ou falha/contraindicação de terapias como ferro, AEE ou HIF-PHI.",
+            "diff": "medium",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "AFTER": {
+            "t": "Transfusão de Hemácias na DRC — KDIGO 2026",
+            "qid": "12121893",
+            "q": "Adulto hospitalizado com doença renal crônica (DRC), anemia crônica, estabilidade hemodinâmica e ausência de sangramento ativo está sendo avaliado para transfusão de hemácias. Segundo a KDIGO 2026, qual é a interpretação mais adequada do gatilho transfusional nesse cenário?",
+            "opts": [
+              "Transfundir quando a Hb atingir 9 g/dL, sem precisar avaliar sintomas da anemia.",
+              "Transfundir quando a Hb atingir 8 g/dL, pois a DRC determina esse limiar obrigatório.",
+              "Adiar transfusão enquanto houver opção de ferro ou AEE, mesmo com sintomas relevantes.",
+              "Individualizar pelos sinais e sintomas, considerando o contexto e os riscos da transfusão."
+            ],
+            "ans": 3,
+            "exp": "Sinais e sintomas orientam a decisão (PP 4.4). Hb<7 g/dL pode guiar estratégia restritiva no hospitalizado estável, sem substituir avaliação clínica. Existirem ferro ou AEE não exclui transfusão necessária.",
+            "diff": "medium",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "afterQuestionSHA256": "3e4f0b4b257dc2290a0c25c7d8f16ba55c5d3727231db4b09807fc148be22e41",
+          "correctAnswer": {
+            "canonicalIndex": 3,
+            "canonicalLetter": "D",
+            "text": "Individualizar pelos sinais e sintomas, considerando o contexto e os riscos da transfusão."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "kdigo_anemia_2026",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO 2026 Anemia in CKD; Kidney International109(Suppl1S):S1–S99",
+              "locations": [
+                "Rec 3.2.1; p.50: início AEE em HD/DP",
+                "Rec 3.3.1; p.53: alvo Hb abaixo de11,5",
+                "PP3.1.2; p.48: causas corrigíveis",
+                "PP3.5.1; p.56: não combinar AEE/HIF-PHI",
+                "PP4.4 e texto p.66: transfusão",
+                "Rec2.4; p.19: escolha via ferro"
+              ],
+              "verifiedScope": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual."
+            },
+            "supports": "Decisão por sintomas;7g/dL guiarestritivo noadultohospitalizadoestável",
+            "status": "VERIFICADA",
+            "exactLocation": "PracticePoint4.4 e textoS66"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_anemia_2026": {
+            "label": "KDIGO Anemia in CKD 2026",
+            "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+            "journal": "Kidney International",
+            "ano": 2026,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+            "icon": "📋",
+            "resumo": "Em adultos com doença renal crônica (DRC), abordar causas corrigíveis antes de agentes estimuladores da eritropoiese (AEE) ou inibidores da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI): PP 3.1.2. AEE em vez de HIF-PHI como primeira linha: Rec 3.1.1 (2D). Em hemodiálise/diálise peritoneal, limiar de início de AEE na faixa de hemoglobina (Hb) 9–10 g/dL: Rec 3.2.1 (2D). Alvo de Hb abaixo de 11,5 g/dL com AEE: Rec 3.3.1 (1D). Sem hemodiálise, ferro oral ou intravenoso conforme contexto e preferências: Rec 2.4 (2D). Não combinar AEE/HIF-PHI: PP 3.5.1. Transfusão na anemia crônica guiada por sintomas/sinais, não limite arbitrário de Hb: PP 4.4. HIF-PHI na menor dose para objetivo clínico, sem exceder máximo: PP 3.5.4–3.5.5.",
+            "conclusao": "Aplicar recomendações e pontos de prática à população definida. Um ponto de prática não é recomendação graduada; início e transfusão são individualizados, e o alvo superior com AEE permanece abaixo de 11,5 g/dL.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            61,
+            70,
+            77,
+            138
+          ],
+          "afterLengths": [
+            80,
+            85,
+            86,
+            90
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "referenceCardPatchDependency": "kdigo_anemia_2026, AFTER exato abaixo",
+        "reviewScope": "Veredito/evidência/publicação referem-se ao AFTER proposto exato. BEFORE não recebe aprovação retroativa.",
+        "exactVersionReevaluation": {
+          "afterSHA256": "3e4f0b4b257dc2290a0c25c7d8f16ba55c5d3727231db4b09807fc148be22e41",
+          "evidenceRechecked": true,
+          "pendingRechecked": true,
+          "unicityAndOPRechecked": true,
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Expansão de DRC e espaços entre números/unidades; nenhuma alteração de população, limiar ou gabarito. Nova versão exata cotejada com mesmas recomendações/pontos de prática KDIGO2026 já abertos.",
+          "publicationDerivation": "Handbook18.4Regra7(a), sem herança silenciosa."
+        },
+        "cardDependencyReevaluation": {
+          "id": "kdigo_anemia_2026",
+          "afterCardSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+          "questionAfterSHA256": "3e4f0b4b257dc2290a0c25c7d8f16ba55c5d3727231db4b09807fc148be22e41",
+          "claimsAndUnicityRechecked": true,
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Card agora identifica recomendações/PP e força/certeza. Os conceitos exigidos pela pergunta exata permanecem sustentados no KDIGO2026 aberto; reavaliada coerência da dependência."
+        }
+      },
+      {
+        "qid": "1ba5a94d",
+        "sourceLine": 669,
+        "sourceQuestionSHA256": "3bb0bb9183bcbc5b48e477b5757286d20e913ba2d397be252184dbe97102524f",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Escolher via oral ou intravenosa do ferro na anemia da DRC não em HD conforme resposta, tolerabilidade, acesso e decisão compartilhada.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Escolher via oral ou intravenosa do ferro na anemia da DRC não em HD conforme resposta, tolerabilidade, acesso e decisão compartilhada.",
+          "hiddenPremisesResolved": false
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Correta excessivamente extensa frente a distratores sempre/apenas."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Referências às letras eIV sem definição."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Referências explícitas a letras tornam a explicação inconsistente após embaralhamento."
+          ],
+          "after": [
+            "Nenhum argumento plausível de anulação na versão AFTER quanto à unicidade da resposta e às afirmações decisivas verificadas."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "publicado",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "APLICAR APENAS OS AJUSTES ABAIXO",
+          "BEFORE": {
+            "t": "Ferro IV vs Oral na DRC Não-HD — KDIGO 2026",
+            "qid": "1ba5a94d",
+            "q": "Para pacientes com anemia e doença renal crônica (DRC) não em hemodiálise, qual é a recomendação da KDIGO 2026 quanto à via de administração de ferro?",
+            "opts": [
+              "Sempre ferro intravenoso",
+              "Sempre ferro oral",
+              "Ferro IV ou oral, baseado nas preferências do paciente, grau de anemia e deficiência",
+              "Apenas ferro oral se TFGe >30"
+            ],
+            "ans": 2,
+            "exp": "Em pacientes com DRC não em hemodiálise e anemia, a escolha da via de ferro deve ser individualizada: pode-se usar ferro oral ou intravenoso conforme a gravidade da deficiência de ferro, a necessidade de resposta mais rápida, a tolerabilidade do tratamento, a resposta prévia e a preferência do paciente. Não existe recomendação de que o ferro oral seja sempre a primeira e única opção, nem de que o ferro intravenoso deva ser usado em todos os casos. A alternativa C é a que melhor reflete essa conduta; as opções A e B são absolutas e, por isso, incorretas, e a alternativa D usa um ponto de corte de TFGe que não define isoladamente a via de administração.",
+            "diff": "medium",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "AFTER": {
+            "t": "Ferro IV vs Oral na DRC Não-HD — KDIGO 2026",
+            "qid": "1ba5a94d",
+            "q": "Para pacientes com anemia e doença renal crônica (DRC) não em hemodiálise, qual é a recomendação da KDIGO 2026 quanto à via de administração de ferro?",
+            "opts": [
+              "Ferro intravenoso de rotina, independentemente da resposta anterior ou preferência.",
+              "Ferro oral como regra, reservando a via intravenosa apenas à hemodiálise.",
+              "Via oral ou intravenosa, conforme deficiência, resposta, tolerabilidade e acesso.",
+              "Ferro oral definido pela TFGe, sem considerar a anemia ou a resposta anterior."
+            ],
+            "ans": 2,
+            "exp": "A via é escolhida com o paciente conforme deficiência, eficácia, tolerabilidade, disponibilidade e custo (2D). Não há via obrigatória universal nem limiar isolado de TFGe para decidir.",
+            "diff": "medium",
+            "cat": "drc",
+            "refs": [
+              "kdigo_anemia_2026"
+            ]
+          },
+          "afterQuestionSHA256": "0b933c48404e5cf485cba2ec40df16c354881406f5bb0868c940d3316f83bd8c",
+          "correctAnswer": {
+            "canonicalIndex": 2,
+            "canonicalLetter": "C",
+            "text": "Via oral ou intravenosa, conforme deficiência, resposta, tolerabilidade e acesso."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "kdigo_anemia_2026",
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+              "opened": true,
+              "version": "KDIGO 2026 Anemia in CKD; Kidney International109(Suppl1S):S1–S99",
+              "locations": [
+                "Rec 3.2.1; p.50: início AEE em HD/DP",
+                "Rec 3.3.1; p.53: alvo Hb abaixo de11,5",
+                "PP3.1.2; p.48: causas corrigíveis",
+                "PP3.5.1; p.56: não combinar AEE/HIF-PHI",
+                "PP4.4 e texto p.66: transfusão",
+                "Rec2.4; p.19: escolha via ferro"
+              ],
+              "verifiedScope": "Recomendações e pontos de prática específicos identificados por item; intervalos/limites conferidos no texto integral atual."
+            },
+            "supports": "Ferrooral ouIV conforme decisãoindividualizada;2D",
+            "status": "VERIFICADA",
+            "exactLocation": "Recommendation2.4"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_anemia_2026": {
+            "label": "KDIGO Anemia in CKD 2026",
+            "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+            "journal": "Kidney International",
+            "ano": 2026,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+            "icon": "📋",
+            "resumo": "Em adultos com doença renal crônica (DRC), abordar causas corrigíveis antes de agentes estimuladores da eritropoiese (AEE) ou inibidores da prolil-hidroxilase do fator induzível por hipóxia (HIF-PHI): PP 3.1.2. AEE em vez de HIF-PHI como primeira linha: Rec 3.1.1 (2D). Em hemodiálise/diálise peritoneal, limiar de início de AEE na faixa de hemoglobina (Hb) 9–10 g/dL: Rec 3.2.1 (2D). Alvo de Hb abaixo de 11,5 g/dL com AEE: Rec 3.3.1 (1D). Sem hemodiálise, ferro oral ou intravenoso conforme contexto e preferências: Rec 2.4 (2D). Não combinar AEE/HIF-PHI: PP 3.5.1. Transfusão na anemia crônica guiada por sintomas/sinais, não limite arbitrário de Hb: PP 4.4. HIF-PHI na menor dose para objetivo clínico, sem exceder máximo: PP 3.5.4–3.5.5.",
+            "conclusao": "Aplicar recomendações e pontos de prática à população definida. Um ponto de prática não é recomendação graduada; início e transfusão são individualizados, e o alvo superior com AEE permanece abaixo de 11,5 g/dL.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [],
+        "comparison": {
+          "beforeLengths": [
+            24,
+            17,
+            84,
+            29
+          ],
+          "afterLengths": [
+            83,
+            73,
+            81,
+            78
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "referenceCardPatchDependency": "kdigo_anemia_2026, AFTER exato abaixo",
+        "reviewScope": "Veredito/evidência/publicação referem-se ao AFTER proposto exato. BEFORE não recebe aprovação retroativa.",
+        "cardDependencyReevaluation": {
+          "id": "kdigo_anemia_2026",
+          "afterCardSHA256": "9b2a760dafb2b2c69aa33df2a5ce798611701095a2a593d7a785e13f89dcdbc3",
+          "questionAfterSHA256": "0b933c48404e5cf485cba2ec40df16c354881406f5bb0868c940d3316f83bd8c",
+          "claimsAndUnicityRechecked": true,
+          "result": "VERIFICADA / NENHUMA / aprovada / LIBERADA",
+          "reason": "Card agora identifica recomendações/PP e força/certeza. Os conceitos exigidos pela pergunta exata permanecem sustentados no KDIGO2026 aberto; reavaliada coerência da dependência."
+        }
+      },
+      {
+        "qid": "e3f0e529",
+        "sourceLine": 684,
+        "sourceQuestionSHA256": "5ea9f17cd53419438b85f8e29476e4a5d0d15b4cb122566edceeda09f708e490",
+        "verdictV2": "revisão maior",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "moderada",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "OP": "Reconhecer seletividade da finerenona pelo receptor mineralocorticoide e distingui-la de superioridade de desfechos ou ausência de hipercalemia.",
+        "classification": {
+          "primaryCompetence": "mecanismo",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "scope": "População, contexto e decisão integralmente descritos no BEFORE/AFTER; nenhum dado do usuário ou paciente real.",
+          "decisiveData": "Reconhecer seletividade da finerenona pelo receptor mineralocorticoide e distingui-la de superioridade de desfechos ou ausência de hipercalemia.",
+          "hiddenPremisesResolved": false
+        },
+        "justification": "Gabarito preservado por identidade do conteúdo. A avaliação abaixo refere-se à versão AFTER exata, após reavaliação material; não herda autorização anterior.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "FIDELIO-DKD compara finerenona a placebo; não prova menor ginecomastia versus espironolactona."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Distrator via apenas intravenosa é absurdo; correto mais longo."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "O ensaio referenciado não estuda comparação com espironolactona."
+          ],
+          "after": [
+            "VERIFICAÇÃO NECESSÁRIA: fonte primária comparativa de seletividade/efeitos endócrinos finerenona versus espironolactona; revisar ref adequada. A bula corrente sustenta farmacologia da finerenona, mas não o comparador clínico."
+          ],
+          "resolvedBeforeApproval": false
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "beforeTriggered": [
+            2,
+            5
+          ],
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 1,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 1,
+            "Referências": 1,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 16,
+          "band": "Boa com reparos",
+          "scope": "Versão AFTER; teto de evidência prevalece sobre nota."
+        },
+        "decisionTree": {
+          "step0": "PARCIALMENTE VERIFICADA / DECISIVA",
+          "step1to7": "Alinhamento e recurso reavaliados; não confundir comprimento com validade clínica.",
+          "lifecycle": "em_revisão",
+          "rule": "Handbook §18.4 Regra 7 e §19",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — RASCUNHO BLOQUEADO",
+          "BEFORE": {
+            "t": "Finerenona — Seletividade vs Espironolactona",
+            "qid": "e3f0e529",
+            "q": "Qual é a principal vantagem farmacológica da finerenona em comparação com a espironolactona como antagonista do receptor mineralocorticoide?",
+            "opts": [
+              "Meia-vida mais longa, permitindo dose única diária.",
+              "Maior potência anti-hipertensiva.",
+              "Maior seletividade pelo receptor mineralocorticoide, por ser não esteroidal, com menos efeitos endócrinos antiandrogênicos e progestínicos (ginecomastia, disfunção sexual).",
+              "Disponibilidade apenas intravenosa, garantindo melhor adesão."
+            ],
+            "ans": 2,
+            "exp": "A finerenona é um antagonista não esteroidal do receptor mineralocorticoide, com maior seletividade por esse receptor e menor interação com receptores androgênicos e progestínicos do que a espironolactona; por isso causa menos efeitos endócrinos, como ginecomastia e disfunção sexual (alternativa C). A hipercalemia NÃO é uma vantagem da finerenona — permanece um efeito adverso relevante da classe e exige monitorização do potássio. A maior seletividade é uma diferença de tolerabilidade endócrina e não deve ser interpretada como superioridade clínica de desfechos. A alternativa A é incorreta (a finerenona tem meia-vida curta); a B está errada (o diferencial não é potência anti-hipertensiva); e a D está errada (a administração é oral).",
+            "diff": "medium",
+            "cat": "farmacologia",
+            "refs": [
+              "fidelio_dkd"
+            ]
+          },
+          "AFTER": {
+            "t": "Finerenona — Seletividade vs Espironolactona",
+            "qid": "e3f0e529",
+            "q": "Qual é a principal vantagem farmacológica da finerenona em comparação com a espironolactona como antagonista do receptor mineralocorticoide?",
+            "opts": [
+              "Maior duração de ação por metabólitos ativos, ampliando o intervalo de administração.",
+              "Maior efeito anti-hipertensivo, independentemente do perfil endócrino do medicamento.",
+              "Seletividade pelo receptor mineralocorticoide, com pouca afinidade por receptores sexuais.",
+              "Menor risco de hipercalemia, dispensando vigilância renal e do potássio durante o uso."
+            ],
+            "ans": 2,
+            "exp": "A rotulagem vigente descreve antagonismo mineralocorticoide seletivo não esteroidal, sem afinidade relevante por receptores androgênicos ou progestagênicos. Isso não elimina hipercalemia nem demonstra superioridade clínica contra espironolactona. RASCUNHO BLOQUEADO: confirmar a comparação farmacológica e tolerabilidade endócrina com espironolactona em fonte primária comparativa.",
+            "diff": "medium",
+            "cat": "farmacologia",
+            "refs": [
+              "fidelio_dkd"
+            ]
+          },
+          "afterQuestionSHA256": "75e94d6397b6dbfd97ac07b2e65bb5e2bd60778ac7328f5f8b654d5e930f680b",
+          "correctAnswer": {
+            "canonicalIndex": 2,
+            "canonicalLetter": "C",
+            "text": "Seletividade pelo receptor mineralocorticoide, com pouca afinidade por receptores sexuais."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "finerenone_label_dailymed",
+            "source": {
+              "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c",
+              "opened": true,
+              "version": "Kerendia, DailyMed FDA, revisada9/2026",
+              "locations": [
+                "§12.1 mecanismo",
+                "§12.3 farmacocinética"
+              ],
+              "verifiedScope": "Antagonista mineralocorticoide seletivo não esteroidal sem afinidade relevante por receptores androgênicos/progestagênicos; não prova comparação clínica de ginecomastia contra espironolactona."
+            },
+            "supports": "Antagonista mineralocorticoide seletivo não esteroidal sem afinidade relevante por receptores androgênicos/progestagênicos; não prova comparação clínica de ginecomastia contra espironolactona.",
+            "status": "VERIFICADA"
+          },
+          {
+            "sourceId": "fidelio_dkd",
+            "source": {
+              "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2025845",
+              "opened": false,
+              "verifiedScope": "Card original presente; ensaio placebo-controlado, não é comparação farmacológica com espironolactona. Não atribuir menor ginecomastia a este ensaio."
+            },
+            "supports": "Card original presente; ensaio placebo-controlado, não é comparação farmacológica com espironolactona. Não atribuir menor ginecomastia a este ensaio.",
+            "status": "VERIFICAÇÃO NECESSÁRIA"
+          }
+        ],
+        "referenceCardsVerified": {},
+        "referenceCardPolicy": "IDs reais existentes em refs.js; BULA é taxonomia legada do card já existente, não novo card. Cards de fonte não aberta não são declarados verificados.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "ordem do banco",
+            "ans canônico",
+            "cat",
+            "tipos",
+            "histórico e FSRS"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "replaceFields": [
+            "opts",
+            "exp"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "doNotResetFSRS": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true
+        },
+        "verificationPending": [
+          "VERIFICAÇÃO NECESSÁRIA: fonte primária comparativa de seletividade/efeitos endócrinos finerenona versus espironolactona; revisar ref adequada. A bula corrente sustenta farmacologia da finerenona, mas não o comparador clínico."
+        ],
+        "comparison": {
+          "beforeLengths": [
+            51,
+            33,
+            172,
+            61
+          ],
+          "afterLengths": [
+            85,
+            85,
+            90,
+            86
+          ],
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "answerPositionUnchangedInBank": true
+        },
+        "reviewScope": "Veredito/evidência/publicação referem-se ao AFTER proposto exato. BEFORE não recebe aprovação retroativa."
+      }
+    ],
+    "counts": {
+      "reviewed": 8,
+      "publicationReleased": 6,
+      "publicationBlocked": 2,
+      "implemented": 0
+    },
+    "limits": [
+      "Uma revisão com etapa adversarial interna, não independente.",
+      "Não implementar propostas bloqueadas.",
+      "Itens numéricos não devem ser tratados como preferênciaA–D.",
+      "Lotes003–035 ainda NÃO REVISADOS.",
+      "Nenhum banco/checkout/git alterado."
+    ],
+    "revision": "Checkpoint: card KDIGO anemia com recomendações, PP e graus explícitos; reavaliação exata da dependência. C002 também remove história editorial da explicação f44b5edc.",
+    "supersedes": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 91578,
+      "sha256": "3a31b1e56c8ab4550635de526d2de056279f61642c22e03aff9b0f4fa9d785a4"
+    }
+  }
+}
