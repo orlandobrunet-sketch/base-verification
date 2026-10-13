@@ -1,0 +1,3056 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 170808,
+  "sourceReportSHA256": "16182f7ff77c8836e90c9a1ac9f4fe02b1485c76c9c0ae2b167581bae508679b",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_EDITORIAL_INDEPENDENT_BATCH_REVIEW_V2",
+    "reviewer": "clinical_independent_resume",
+    "batch": "C008",
+    "verifiedAtOfficialUTC": "2026-10-12 23:57:11 UTC",
+    "reviewMode": "Revisão formal independente de oitoAFTER e oito cards exatos, incluindo adendo autoral A2. Fontes primárias lidas; apenas relatórios novos, zero produto/autoria/Git.",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "publishedTechnicalMerge": "135899077669af6dcf564717833227828ba03fe5",
+    "authorReport": {
+      "path": "docs/editorial/reviews/2026-10-12/group-c-output-008.json",
+      "bytes": 228845,
+      "sha256": "ba7d9b8b3a84fbfddbbeb298a6c71b211288852852a3a8c564c9503a289d4172"
+    },
+    "authorManifest": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 11556,
+      "sha256": "a9fef3b7a42e725e2856c716f89694a9fb44084c34e8cd9719618c2f7fd0b3d5"
+    },
+    "authorValidation": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 1005,
+      "sha256": "6859665d546d4bc7d10a461e2da32935335132a8f3809ea717cc336cc78f9a29"
+    },
+    "mandatoryAuthorAddendum": {
+      "path": "docs/editorial/reviews/2026-10-12/group-c-sources-008-author-source-audit-A2.json",
+      "bytes": 2397,
+      "sha256": "db01fda880400665c2d7102458f5523da58073325abf93cf0be0367df45119f2"
+    },
+    "mandatoryAddendumRead": true,
+    "bankObserved": {
+      "path": "data/topics.js",
+      "bytes": 970485,
+      "sha256": "56deb215d2da0ea0c212d1d121483423159652d2bea9e8f9521d160ac48054a5"
+    },
+    "bankLFNormalizedSHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "bankCRLFPairs": 743,
+    "normativeSources": [
+      {
+        "path": "AGENTS.md",
+        "bytes": 15910,
+        "sha256": "123d3bf57a43e23dd21adb277295bfbaa8a0d46dccb584f12265396abe4dfe83"
+      },
+      {
+        "path": "CLAUDE.md",
+        "bytes": 16274,
+        "sha256": "7653b34456e9da0354acb150bcb3c768021a2487f8a524233c0aa0a1e9889f99"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      }
+    ],
+    "summaryTable": [
+      {
+        "qid": "bcb1293d",
+        "OP": "Reconhecer retenção de fluido durante sparsentana e reavaliar segurança/volume em vez de banalizar edema ou duplicar bloqueioSRAA.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publicationAuthorization": "LIBERADA",
+        "eliminator": false,
+        "action": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "1a93346d",
+        "OP": "Interpretar o sinal de complicações de retinopatia do SUSTAIN-6 e a hipótese de piora precoce em suscetíveis sem afirmar toxicidade ocular direta.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 18,
+        "publicationAuthorization": "LIBERADA",
+        "eliminator": false,
+        "action": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "ee219394",
+        "OP": "Interpretar o efeito relativo da dapagliflozina no composto primário DAPA-CKD dentro da população e dos desfechos estudados.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 20,
+        "publicationAuthorization": "LIBERADA",
+        "eliminator": false,
+        "action": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "252a2e88",
+        "OP": "Interpretar a evidência do EMPA-KIDNEY em DRC elegível com e sem diabetes, sem restringir etiologia ou generalizar cada subgrupo.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publicationAuthorization": "LIBERADA",
+        "eliminator": false,
+        "action": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "b2c513e8",
+        "OP": "Interpretar o sinal de maior hipercalemia no alvo intensivoBPROAD apesar da ausência de diferença nos eventos graves globais.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "fundir",
+        "score": 19,
+        "publicationAuthorization": "BLOQUEADA",
+        "eliminator": false,
+        "action": "RASCUNHO BLOQUEADO; NÃO APLICAR COMO ITEM SEPARADO"
+      },
+      {
+        "qid": "6a1d131e",
+        "OP": "Interpretar o sopro abdominal sistodiastólico como aumento de suspeita renovascular, sem confirmar gravidade ou excluir doença pela ausência.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 20,
+        "publicationAuthorization": "LIBERADA",
+        "eliminator": false,
+        "action": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "b0ddebc9",
+        "OP": "Prevenir lesão renal cristalina por aciclovir IV com hidratação adequada, infusão lenta ≥ 1 hora e dose ajustada à depuração de creatinina.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "publicationAuthorization": "LIBERADA",
+        "eliminator": false,
+        "action": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "a493996a",
+        "OP": "Explicar miotoxicidade/rabdomiólise na associação claritromicina-sinvastatina pela inibição CYP3A4 e maior exposição à estatina.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 20,
+        "publicationAuthorization": "LIBERADA",
+        "eliminator": false,
+        "action": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      }
+    ],
+    "questions": [
+      {
+        "qid": "bcb1293d",
+        "sourceLine": 121,
+        "BEFORE": {
+          "t": "Sparsentana — Retenção Hídrica e Monitorização",
+          "qid": "bcb1293d",
+          "q": "Paciente com nefropatia por IgA inicia sparsentana e evolui com ganho de peso e edema periférico. Qual interpretação é mais segura?",
+          "refs": [
+            "filspari_fda_2025",
+            "protect_trial"
+          ],
+          "opts": [
+            "Retenção hídrica é efeito conhecido do bloqueio de endotelina; deve-se reavaliar volemia, função renal e necessidade de ajuste ou interrupção, além de monitorar pressão e potássio",
+            "O edema prova necrose tubular direta e exige imunossupressão",
+            "Trata-se de efeito esperado sem relevância clínica, dispensando monitorização",
+            "A sparsentana deve ser associada a IECA ou BRA em dose máxima para neutralizar o edema"
+          ],
+          "ans": 0,
+          "exp": "Antagonismo do receptor de endotelina pode causar retenção de fluido e edema. A bula da sparsentana também alerta para hipotensão, hipercalemia e LRA, exigindo monitorização clínica e laboratorial e manejo do volume; retenção clinicamente importante pode exigir diurético, ajuste ou interrupção conforme gravidade. Como a sparsentana já bloqueia AT1, não deve ser combinada rotineiramente com IECA ou BRA. O benefício antiproteinúrico não transforma edema em evento irrelevante.",
+          "diff": "hard",
+          "cat": "nefrologia_geral"
+        },
+        "beforeQuestionSHA256": "58a931f479d3da2bd4ac3dd6bd7914a42d66121f6469f3db24339d312211d44e",
+        "AFTER": {
+          "t": "Sparsentana — Retenção Hídrica e Monitorização",
+          "qid": "bcb1293d",
+          "q": "Um adulto com nefropatia por IgA apresenta ganho de peso e edema periférico após iniciar sparsentana. Qual interpretação e próximo passo são mais seguros?",
+          "refs": [
+            "kohan_eta_igan_safety_2023"
+          ],
+          "opts": [
+            "Avaliar retenção de fluido e rever o tratamento conforme a gravidade.",
+            "Atribuir o edema só à proteinúria e manter o esquema sem reavaliação.",
+            "Acrescentar outro bloqueador do SRAA para conter o ganho de peso.",
+            "Aumentar a sparsentana para intensificar o controle do edema."
+          ],
+          "ans": 0,
+          "exp": "Retenção de fluido é efeito conhecido do antagonismo de endotelina. Avaliar volemia, pressão, função renal, potássio e possíveis causas do edema; conforme gravidade, rever diuréticos e a dose de sparsentana. A temporalidade não prova que todo edema seja farmacológico ou progressão da IgAN, nem confirma necrose tubular. Como a molécula já bloqueia AT1, não associar IECA/BRA para tratar esse inchaço. Tampouco banalizar o achado ou aumentar a dose sem reavaliação.",
+          "diff": "hard",
+          "cat": "nefrologia_geral"
+        },
+        "afterQuestionSHA256": "9394e54e34a46aa71a1bba0fffebe0d34faa1152ddba7bf1f5a96751db6ac59c",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(a)",
+        "OP": "Reconhecer retenção de fluido durante sparsentana e reavaliar segurança/volume em vez de banalizar edema ou duplicar bloqueioSRAA.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "authoredClassification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "classificationQualification": "Operação e dificuldade intrínseca conferidas. O campo diff legado preservado não é nova calibração IRT; habilidade, dificuldade empírica e resposta do usuário não foram inferidas.",
+        "reconstruction": {
+          "decisiveData": "AdultoIgAN, temporalidade após início, edema/ganho de peso; conduta é avaliar segurança e causa, sem decisão automática de imunossupressão.",
+          "populationAndScenario": "Um adulto com nefropatia por IgA apresenta ganho de peso e edema periférico após iniciar sparsentana. Qual interpretação e próximo passo são mais seguros?",
+          "hiddenPremisesResolved": true,
+          "realPatient": false
+        },
+        "justification": "A temporalidade sugere possível retenção de fluido, sem provar etiologia individual. Avaliar volume, causas e segurança antes de ajustar o tratamento é a única resposta adequada. O card é uma revisão científica real; os fatos da bula são atribuídos separadamente.",
+        "findings": [
+          "Nenhum problema clínico substantivo identificado no pacote exato."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "Edema não obriga interromper toda sparsentana, nem permite atribuir tudo à proteinúria. A opção correta admite manejo conforme gravidade. Somar bloqueio do SRAA ou aumentar dose para conter edema sem avaliação são erros de segurança, não alternativas concorrentes."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Todos negativos noAFTER. CAPTCHA/metadados ausentes não são prova de referência falsa. Fusões são julgadas fora dos dez critérios."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "deductionsExplained": "Distratores:1/2; os erros são reconhecíveis e clinicamente possíveis, mas duas opções têm decisões perigosas relativamente evidentes para R2.",
+          "evidenceCeilingOverridesScore": false,
+          "duplicationOverridesScore": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Dez eliminatórios negativos noAFTER",
+          "step2": "Sem argumento plausível de anulação ou duplicata equivalente",
+          "step3": "Score18–20:aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "filspari2026",
+            "sourceURL": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d7354af1-f304-f4d9-e053-2995a90ab219",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 211943,
+              "sha256": "e857cee2b3905ed853d70d20fe6a5aecdf61a592439617650cd77e74069a76cc"
+            },
+            "locator": "SPLv7, effectiveTime09/04/2026, publicado17/04/2026; §5.7,§2.1,§5.4–5.6",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "FILSPARI §5.7 determina avaliar causa, diurético e considerar dose conforme relevância clínica. Nenhum resultado interino da revisão2023 substitui status regulatório2026."
+          },
+          {
+            "sourceId": "kohan2023",
+            "sourceURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10658204/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 273353,
+              "sha256": "011baabc8a455ea86b1f475deaaefaaeef4ef0e16b2f40a2ad5c6f7b9ae69350"
+            },
+            "locator": "PMC10658204/DOI10.1016/j.ekir.2023.07.023; ETAR Antagonism: Challenges/Considerations, patient selection/diuretics/monitoring",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "FILSPARI §5.7 determina avaliar causa, diurético e considerar dose conforme relevância clínica. Nenhum resultado interino da revisão2023 substitui status regulatório2026."
+          },
+          {
+            "sourceId": "kdigo_igan2025",
+            "sourceURL": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 2272042,
+              "sha256": "6e4458916dd929caec1fab7505e858ab3e079e0acc843589dc7b31a439e6202c"
+            },
+            "locator": "PP1.4.4.3, S25/PDFíndice24; recomendação1.4.4.2",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "FILSPARI §5.7 determina avaliar causa, diurético e considerar dose conforme relevância clínica. Nenhum resultado interino da revisão2023 substitui status regulatório2026."
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "kohan_eta_igan_safety_2023",
+            "exactCardSHA256": "de57c2c3959d757bc5a86918dc4d6fcb862ac851f903ff35a8813691561ece54"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Um adulto com nefropatia por IgA apresenta ganho de peso e edema periférico após iniciar sparsentana. Qual interpretação e próximo passo são mais seguros?",
+          "alternatives": {
+            "A": "Avaliar retenção de fluido e rever o tratamento conforme a gravidade.",
+            "B": "Atribuir o edema só à proteinúria e manter o esquema sem reavaliação.",
+            "C": "Acrescentar outro bloqueador do SRAA para conter o ganho de peso.",
+            "D": "Aumentar a sparsentana para intensificar o controle do edema."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Avaliar retenção de fluido e rever o tratamento conforme a gravidade."
+          },
+          "explanation": "Retenção de fluido é efeito conhecido do antagonismo de endotelina. Avaliar volemia, pressão, função renal, potássio e possíveis causas do edema; conforme gravidade, rever diuréticos e a dose de sparsentana. A temporalidade não prova que todo edema seja farmacológico ou progressão da IgAN, nem confirma necrose tubular. Como a molécula já bloqueia AT1, não associar IECA/BRA para tratar esse inchaço. Tampouco banalizar o achado ou aumentar a dose sem reavaliação.",
+          "referenceCards": {
+            "kohan_eta_igan_safety_2023": {
+              "label": "Kohan et al. — Antagonismo ETA e segurança na IgAN",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10658204/",
+              "journal": "Kidney Int Rep. 2023;8(11):2198-2210",
+              "ano": 2023,
+              "tipo": "Revisão",
+              "badge": "REVIEW",
+              "badgeColor": "#8b5cf6",
+              "impacto": "Retenção hídrica exige avaliação e manejo durante antagonismo de endotelina",
+              "icon": "🔬",
+              "resumo": "Revisão narrativa focal do antagonismo ETA na IgAN. A retenção de fluido é efeito clínico conhecido; seleção, diuréticos oportunos e monitorização são necessários. A rotulagem FILSPARI vigente (DailyMed, SPLv7, 17/04/2026, §5.7) adicionalmente determina avaliar a causa da retenção clinicamente significativa, necessidade de diurético e ajuste da dose. Essa orientação regulatória não é apresentada como resultado da revisão ou de RCT.",
+              "conclusao": "Edema após sparsentana requer reavaliação de volume, pressão, função renal e potássio. Não prova progressão da IgAN ou lesão tubular; o antagonismo AT1 já incorporado impede simplesmente adicionar IECA/BRA.",
+              "curiosidade": ""
+            }
+          },
+          "readiness": "LIBERADA somente nesta versão exata"
+        },
+        "duplicateReview": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Sem duplicata equivalente entre os candidatos relacionados inspecionados; não é prova de triagem semântica perfeita de741itens.",
+          "relatedDistinctItems": [
+            {
+              "qid": "c18e6af7",
+              "distinction": "OutroOP é identidade farmacológica/evitar duploSRAA ao trocarBRA; este decide comointerpretar/manejar novoedema após início."
+            }
+          ],
+          "independentlyChecked": true,
+          "independentConclusion": "c18e6af7 testa identidade ETA/AT1 e troca de irbesartana; aqui o novo edema exige avaliar possível efeito adverso e manejo de volume. Decisão e dados funcionais diferentes.",
+          "candidatePins": [
+            {
+              "qid": "c18e6af7",
+              "sourceLine": 100,
+              "questionSHA256": "9271b5dacf0e0f102b3ac54395493230d9e4ddedd77ddbc46eb4ec7c1596f6de"
+            }
+          ]
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            179,
+            60,
+            77,
+            86
+          ],
+          "AFTER": {
+            "characters": [
+              69,
+              69,
+              65,
+              61
+            ],
+            "correctIsUniqueLongest": false
+          },
+          "qualification": "Comprimento diagnóstico e plausibilidade conferida individualmente; nenhum padding ou texto novo proposto."
+        },
+        "verificationPending": [],
+        "editorialPending": [],
+        "implementationObservation": "Preservarqid,gabarito,históricos,recursos,FSRS,snapshots. Cards por hash e dependências atômicas. Nenhuma autorização de troca global porID; rebind material exige nova revisão exata."
+      },
+      {
+        "qid": "1a93346d",
+        "sourceLine": 125,
+        "BEFORE": {
+          "t": "SUSTAIN-6 — Retinopatia Diabética",
+          "qid": "1a93346d",
+          "q": "No SUSTAIN-6, qual sinal de segurança ocular merece atenção ao iniciar semaglutida em paciente com diabetes tipo 2 e retinopatia prévia?",
+          "refs": [
+            "sustain6"
+          ],
+          "opts": [
+            "Maior frequência de complicações de retinopatia diabética, possivelmente relacionada à rápida melhora glicêmica em pacientes suscetíveis",
+            "Catarata aguda por toxicidade direta do cristalino, exigindo rastreio semanal universal",
+            "Glaucoma de ângulo fechado como evento adverso ocular dominante",
+            "Descolamento de retina como contraindicação absoluta em todo paciente com DRC"
+          ],
+          "ans": 0,
+          "exp": "No SUSTAIN-6 houve aumento de complicações de retinopatia diabética no grupo semaglutida. A interpretação mais aceita é cautelosa: o risco parece concentrar-se em pacientes com retinopatia prévia e grande/rápida queda de HbA1c, fenômeno já conhecido com intensificação glicêmica. Isso não transforma semaglutida em droga diretamente retinotóxica nem contraindica seu uso em todos; implica avaliar retinopatia basal, acompanhar oftalmologia quando indicado e evitar banalizar quedas glicêmicas muito abruptas em pacientes vulneráveis.",
+          "diff": "medium",
+          "cat": "nefropatia_diabetica"
+        },
+        "beforeQuestionSHA256": "569b54601b76d8dc3dbc1b52767e0008556d26af1c79776e3ec64bf167a34b5a",
+        "AFTER": {
+          "t": "SUSTAIN-6 — Retinopatia Diabética",
+          "qid": "1a93346d",
+          "q": "No SUSTAIN-6, qual sinal ocular exige atenção ao interpretar a semaglutida em diabetes tipo 2, especialmente com retinopatia prévia?",
+          "refs": [
+            "sustain6"
+          ],
+          "opts": [
+            "Mais complicações de retinopatia diabética no grupo semaglutida.",
+            "Menos complicações de retinopatia, inclusive nos casos prévios.",
+            "Mais edema macular apenas em quem não tinha retinopatia prévia.",
+            "Igual frequência de complicações de retinopatia entre os grupos."
+          ],
+          "ans": 0,
+          "exp": "Complicações de retinopatia foram mais frequentes com semaglutida: HR 1,76 (IC 95% 1,11-2,78; P = 0,02). Incluíam hemorragia vítrea, cegueira ou necessidade de tratamento ocular. A análise posterior sugere contribuição da rápida/marcante melhora glicêmica em suscetíveis com doença prévia; essa hipótese não prova toxicidade retinal direta. O resultado não significa proteção ocular, igualdade entre grupos ou sinal restrito a quem não tinha retinopatia. Considerar avaliação e acompanhamento ocular conforme a doença basal, sem estabelecer contraindicação universal ou desencorajar controle glicêmico adequado.",
+          "diff": "medium",
+          "cat": "nefropatia_diabetica"
+        },
+        "afterQuestionSHA256": "606c9aa5c638e3041b2f52f027be2bc2586e2cc9cbf4c5bcba64ccbdb90a9bc6",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(a)",
+        "OP": "Interpretar o sinal de complicações de retinopatia do SUSTAIN-6 e a hipótese de piora precoce em suscetíveis sem afirmar toxicidade ocular direta.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência de segurança",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "básica a intermediária"
+        },
+        "authoredClassification": {
+          "primaryCompetence": "interpretação",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "classificationQualification": "Operação efetivamente exigida é reconhecer direção do sinal. A hipótese de mediação está na explicação, não é testada pelo comando. Qualificação no parecer, sem mudança material do AFTER ou de parâmetros IRT.",
+        "reconstruction": {
+          "decisiveData": "Interpretação doevento ocular noRCT e hipótese limitada posterior; não decidir contraindicação universal ou causalidade.",
+          "populationAndScenario": "No SUSTAIN-6, qual sinal ocular exige atenção ao interpretar a semaglutida em diabetes tipo 2, especialmente com retinopatia prévia?",
+          "hiddenPremisesResolved": true,
+          "realPatient": false
+        },
+        "justification": "O sinal de complicações de retinopatia e seu intervalo/P estão explícitos no resumo original. A explicação distingue o resultado do ensaio da hipótese posterior de piora precoce. O comando exige reconhecer o sinal; não pede analisar a mediação glicêmica.",
+        "findings": [
+          "Nenhum problema clínico substantivo identificado no pacote exato."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "O ensaio mostrou maior frequência, não proteção ou igualdade. A hipótese posterior não prova toxicidade retinal direta e não restringe o sinal a pessoas sem doença prévia. A cautela de acompanhamento não constitui contraindicação universal."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Todos negativos noAFTER. CAPTCHA/metadados ausentes não são prova de referência falsa. Fusões são julgadas fora dos dez critérios."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 1,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 18,
+          "band": "Excelente",
+          "deductionsExplained": "Construto:1/2 pelo reconhecimento de um resultado, mais simples que Analisar; distratores:1/2 por inversões diretas e restrição pouco plausível a doença não prévia. Ainda é conhecimento de segurança útil, não trivia sem consequência.",
+          "evidenceCeilingOverridesScore": false,
+          "duplicationOverridesScore": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Dez eliminatórios negativos noAFTER",
+          "step2": "Sem argumento plausível de anulação ou duplicata equivalente",
+          "step3": "Score18–20:aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "sustain2016",
+            "sourceURL": "https://pubmed.ncbi.nlm.nih.gov/27633186/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 180370,
+              "sha256": "f736e5b2dce4dc42e61e257f760434dd5f4343043f1839a731d6bcf31602772b"
+            },
+            "locator": "PMID27633186/DOI10.1056/NEJMoa1603827, abstract Methods/Results",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "3297,0,5/1mgsemanais; MACEHR0,74,IC0,58–0,95,P<0,001nãoinferioridade; retinopatiaHR1,76,IC1,11–2,78,P0,02. NefropatiaHR0,64,IC0,46–0,88,P0,005 está no artigo posterior expressamente citado no card. Íntegra original não foi declarada acessível."
+          },
+          {
+            "sourceId": "vilsboll2018",
+            "sourceURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5888154/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 185055,
+              "sha256": "e85ecb059c274a9161cfef0be87f9dafd25b65ec3f886b47c50ebb5bee260c2f"
+            },
+            "locator": "PMC5888154/DOI10.1111/dom.13172; abstract,§1, Discussion/Limitations e posthoc mediation",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "3297,0,5/1mgsemanais; MACEHR0,74,IC0,58–0,95,P<0,001nãoinferioridade; retinopatiaHR1,76,IC1,11–2,78,P0,02. NefropatiaHR0,64,IC0,46–0,88,P0,005 está no artigo posterior expressamente citado no card. Íntegra original não foi declarada acessível."
+          },
+          {
+            "sourceId": "ozempic_current",
+            "sourceURL": "https://www.novo-pi.com/ozempic.pdf",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 4681748,
+              "sha256": "37dbbba58786ef4c505b7bae594c938c7be0463478b78f412d0b9e3b5052b166"
+            },
+            "locator": "PI oficial, revised05/2026; §5.3/PDFíndice1",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "3297,0,5/1mgsemanais; MACEHR0,74,IC0,58–0,95,P<0,001nãoinferioridade; retinopatiaHR1,76,IC1,11–2,78,P0,02. NefropatiaHR0,64,IC0,46–0,88,P0,005 está no artigo posterior expressamente citado no card. Íntegra original não foi declarada acessível."
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "sustain6",
+            "exactCardSHA256": "75831adea8c9f7fb52b63cfc6ed280693597aafabdc44316625334be5498d265"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "No SUSTAIN-6, qual sinal ocular exige atenção ao interpretar a semaglutida em diabetes tipo 2, especialmente com retinopatia prévia?",
+          "alternatives": {
+            "A": "Mais complicações de retinopatia diabética no grupo semaglutida.",
+            "B": "Menos complicações de retinopatia, inclusive nos casos prévios.",
+            "C": "Mais edema macular apenas em quem não tinha retinopatia prévia.",
+            "D": "Igual frequência de complicações de retinopatia entre os grupos."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Mais complicações de retinopatia diabética no grupo semaglutida."
+          },
+          "explanation": "Complicações de retinopatia foram mais frequentes com semaglutida: HR 1,76 (IC 95% 1,11-2,78; P = 0,02). Incluíam hemorragia vítrea, cegueira ou necessidade de tratamento ocular. A análise posterior sugere contribuição da rápida/marcante melhora glicêmica em suscetíveis com doença prévia; essa hipótese não prova toxicidade retinal direta. O resultado não significa proteção ocular, igualdade entre grupos ou sinal restrito a quem não tinha retinopatia. Considerar avaliação e acompanhamento ocular conforme a doença basal, sem estabelecer contraindicação universal ou desencorajar controle glicêmico adequado.",
+          "referenceCards": {
+            "sustain6": {
+              "label": "Marso et al. — SUSTAIN-6 (2016)",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/27633186/",
+              "journal": "N Engl J Med. 2016;375:1834-1844",
+              "ano": 2016,
+              "tipo": "Ensaio clínico randomizado",
+              "badge": "RCT",
+              "badgeColor": "#10b981",
+              "impacto": "Sinal de complicações de retinopatia em DM2 de alto risco cardiovascular",
+              "icon": "🔬",
+              "resumo": "RCT cardiovascular de não inferioridade, 3.297 participantes; semaglutida 0,5 ou 1 mg semanal versus placebo. MACE: HR 0,74 (IC 95% 0,58-0,95; P < 0,001 para não inferioridade). Complicações de retinopatia (hemorragia vítrea, cegueira ou necessidade de tratamento ocular): HR 1,76 (IC 95% 1,11-2,78; P = 0,02). Nefropatia nova/piora foi menos frequente; análise dos dados publicada por Vilsbøll et al. relata HR 0,64 (IC 95% 0,46-0,88; P = 0,005).",
+              "conclusao": "Considerar o risco ocular em suscetíveis com retinopatia prévia; a hipótese de piora precoce após rápida melhora glicêmica provém de análise posterior, sem prova de toxicidade retinal direta ou contraindicação universal.",
+              "curiosidade": "A análise posterior de Vilsbøll et al. (Diabetes Obes Metab.2018;20:889-897; DOI10.1111/dom.13172) sugere contribuição da magnitude/rapidez da queda de HbA1c; não comprova causalidade."
+            }
+          },
+          "readiness": "LIBERADA somente nesta versão exata"
+        },
+        "duplicateReview": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Sem duplicata equivalente entre os candidatos relacionados inspecionados; não é prova de triagem semântica perfeita de741itens.",
+          "independentlyChecked": true,
+          "independentConclusion": "Nenhuma candidata equivalente declarada no escopo autoral inspecionado; não se declara varredura semântica exaustiva de741itens.",
+          "candidatePins": []
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            136,
+            87,
+            63,
+            77
+          ],
+          "AFTER": {
+            "characters": [
+              64,
+              63,
+              63,
+              64
+            ],
+            "correctIsUniqueLongest": false
+          },
+          "qualification": "Comprimento diagnóstico e plausibilidade conferida individualmente; nenhum padding ou texto novo proposto."
+        },
+        "verificationPending": [],
+        "editorialPending": [],
+        "implementationObservation": "Preservarqid,gabarito,históricos,recursos,FSRS,snapshots. Cards por hash e dependências atômicas. Nenhuma autorização de troca global porID; rebind material exige nova revisão exata."
+      },
+      {
+        "qid": "ee219394",
+        "sourceLine": 158,
+        "BEFORE": {
+          "t": "DAPA-CKD — Desfecho Primário Composto",
+          "qid": "ee219394",
+          "q": "No DAPA-CKD, qual resultado resume melhor o efeito da dapagliflozina sobre o desfecho primário composto renal/cardiorrenal?",
+          "refs": [
+            "dapa",
+            "credence",
+            "declare_timi58",
+            "dapa_hf",
+            "deliver_trial"
+          ],
+          "opts": [
+            "Redução relativa de cerca de 39% do composto de queda sustentada de TFGe ≥50%, doença renal terminal ou morte renal/cardiovascular",
+            "Redução modesta de 5%, sem significância estatística",
+            "Benefício restrito a pacientes sem diabetes e ausente em diabetes tipo 2",
+            "Aumento do risco de doença renal terminal, compensado apenas por perda de peso"
+          ],
+          "ans": 0,
+          "exp": "No DAPA-CKD, dapagliflozina reduziu o desfecho primário composto de queda sustentada de TFGe ≥50%, doença renal terminal ou morte renal/cardiovascular, com HR 0,61, isto é, redução relativa aproximada de 39%. O benefício foi consistente em pacientes com e sem diabetes tipo 2. A forma pedagogicamente segura de usar esse número é conectá-lo ao desfecho e à população: DRC albuminúrica, TFGe 25–75 mL/min/1,73m² e RAC 200–5000 mg/g, não uma promessa genérica para qualquer DRC ou para desfechos não estudados.",
+          "diff": "medium",
+          "cat": "nefropatia_diabetica"
+        },
+        "beforeQuestionSHA256": "5194756f5cd52db4efd7574b31d0afdc2bb3c76e6d6aeb727b6ad624254b9df5",
+        "AFTER": {
+          "t": "DAPA-CKD — Desfecho Primário Composto",
+          "qid": "ee219394",
+          "q": "No DAPA-CKD, em DRC albuminúrica elegível, o composto primário teve HR 0,61 (IC 95% 0,51-0,72) com dapagliflozina versus placebo. Qual leitura respeita esse resultado?",
+          "refs": [
+            "dapa"
+          ],
+          "opts": [
+            "Redução relativa estimada de 39% no composto renal/cardiovascular.",
+            "Redução absoluta de 39 pontos percentuais na ocorrência do composto.",
+            "Redução limitada à albuminúria, sem diferença de eventos clínicos.",
+            "Redução demonstrada só sem diabetes, sem benefício no diabetes."
+          ],
+          "ans": 0,
+          "exp": "HR 0,61 corresponde a redução relativa aproximada de 39% no composto de queda sustentada ≥ 50% da TFGe, doença renal terminal ou morte renal/cardiovascular. Não significa 39 pontos percentuais de redução absoluta nem apenas menor albuminúria. O efeito ocorreu também com diabetes. O ensaio incluiu 4.304 participantes, TFGe 25-75 mL/min/1,73 m² e RAC 200-5.000 mg/g; aplicar o resultado a essa população, sem prometer o mesmo efeito em qualquer DRC ou em cada componente isolado.",
+          "diff": "medium",
+          "cat": "nefropatia_diabetica"
+        },
+        "afterQuestionSHA256": "8d88d241145e32ba94d69f213b62f504794b990ad58b4e8dcf392e2e8b957dfc",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(a)",
+        "OP": "Interpretar o efeito relativo da dapagliflozina no composto primário DAPA-CKD dentro da população e dos desfechos estudados.",
+        "classification": {
+          "primaryCompetence": "interpretação",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "authoredClassification": {
+          "primaryCompetence": "interpretação",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "classificationQualification": "Operação e dificuldade intrínseca conferidas. O campo diff legado preservado não é nova calibração IRT; habilidade, dificuldade empírica e resposta do usuário não foram inferidas.",
+        "reconstruction": {
+          "decisiveData": "HR/IC fornecidos; distinguir efeito relativo/absoluto e composto de evento daalbuminúria isolada, com limite populacional.",
+          "populationAndScenario": "No DAPA-CKD, em DRC albuminúrica elegível, o composto primário teve HR 0,61 (IC 95% 0,51-0,72) com dapagliflozina versus placebo. Qual leitura respeita esse resultado?",
+          "hiddenPremisesResolved": true,
+          "realPatient": false
+        },
+        "justification": "O enunciado fornece HR e intervalo, exigindo distinguir efeito relativo aproximado de diferença absoluta, composto clínico de albuminúria e alcance da população. Não presume benefício em qualquer DRC ou em cada componente isolado.",
+        "findings": [
+          "Nenhum problema clínico substantivo identificado no pacote exato."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "1−0,61 corresponde a redução relativa aproximada de39% na taxa de ocorrência ao longo do tempo; não é39pontos percentuais nem resultado limitado à albuminúria. Os efeitos com e sem diabetes estão expressos no primário. A opção correta é a única leitura compatível."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Todos negativos noAFTER. CAPTCHA/metadados ausentes não são prova de referência falsa. Fusões são julgadas fora dos dez critérios."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 20,
+          "band": "Excelente",
+          "deductionsExplained": "Sem dedução substantiva. A expressão relativa estimada/aproximada evita converter HR em redução absoluta.",
+          "evidenceCeilingOverridesScore": false,
+          "duplicationOverridesScore": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Dez eliminatórios negativos noAFTER",
+          "step2": "Sem argumento plausível de anulação ou duplicata equivalente",
+          "step3": "Score18–20:aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "dapa2020",
+            "sourceURL": "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 641985,
+              "sha256": "0be6562a885ca55f9d03d02c610d868a28357aff11ce95a51b693e2237948cdb"
+            },
+            "locator": "DOI10.1056/NEJMoa2024816; PDFíndice0, abstract e critérios de Participants",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "4304,TFGe25–75,RAC200–5000,dapagliflozina10mg/dia; composto queda sustentada≥50%/DRCT/morte renal ou CV,HR0,61,IC0,51–0,72,P<0,001; eficácia com e sem diabetes e interrupção precoce por eficácia explícitas."
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "dapa",
+            "exactCardSHA256": "79bcd911dbffe3f4b6c76bd44c5835414e2ef7564b998de592a941aa05aa1c9a"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "No DAPA-CKD, em DRC albuminúrica elegível, o composto primário teve HR 0,61 (IC 95% 0,51-0,72) com dapagliflozina versus placebo. Qual leitura respeita esse resultado?",
+          "alternatives": {
+            "A": "Redução relativa estimada de 39% no composto renal/cardiovascular.",
+            "B": "Redução absoluta de 39 pontos percentuais na ocorrência do composto.",
+            "C": "Redução limitada à albuminúria, sem diferença de eventos clínicos.",
+            "D": "Redução demonstrada só sem diabetes, sem benefício no diabetes."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Redução relativa estimada de 39% no composto renal/cardiovascular."
+          },
+          "explanation": "HR 0,61 corresponde a redução relativa aproximada de 39% no composto de queda sustentada ≥ 50% da TFGe, doença renal terminal ou morte renal/cardiovascular. Não significa 39 pontos percentuais de redução absoluta nem apenas menor albuminúria. O efeito ocorreu também com diabetes. O ensaio incluiu 4.304 participantes, TFGe 25-75 mL/min/1,73 m² e RAC 200-5.000 mg/g; aplicar o resultado a essa população, sem prometer o mesmo efeito em qualquer DRC ou em cada componente isolado.",
+          "referenceCards": {
+            "dapa": {
+              "label": "DAPA-CKD (2020)",
+              "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816",
+              "journal": "N Engl J Med. 2020;383:1436-1446",
+              "ano": 2020,
+              "tipo": "Ensaio clínico randomizado",
+              "badge": "RCT",
+              "badgeColor": "#10b981",
+              "impacto": "Benefício no composto primário em DRC albuminúrica com e sem diabetes",
+              "icon": "🔬",
+              "resumo": "DAPA-CKD: 4.304 adultos, taxa de filtração glomerular estimada (TFGe) de 25-75 mL/min/1,73 m² e relação albumina/creatinina de 200-5.000 mg/g; dapagliflozina 10 mg/dia ou placebo. Composto de queda sustentada da TFGe ≥ 50%, doença renal terminal ou morte renal/cardiovascular: HR 0,61(IC 95%0,51-0,72; P < 0,001). Efeito semelhante com e sem diabetes. Interrompido precocemente por eficácia.",
+              "conclusao": "O benefício não exige diabetes; respeitar os critérios estudados e as exclusões do ensaio.",
+              "curiosidade": ""
+            }
+          },
+          "readiness": "LIBERADA somente nesta versão exata"
+        },
+        "duplicateReview": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Sem duplicata equivalente entre os candidatos relacionados inspecionados; não é prova de triagem semântica perfeita de741itens.",
+          "relatedDistinctItems": [
+            {
+              "qid": "8d943d85",
+              "report": "output-006-A2.json",
+              "distinction": "OutroOP trata benefício semDM; este distingue efeito relativo/absoluto e composto primário."
+            },
+            {
+              "qid": "61cff858",
+              "distinction": "OutroOP mede critérios de inclusão, não leitura do efeito relativo."
+            },
+            {
+              "qid": "e2181457",
+              "distinction": "OutroOP mede mortalidade geral secundária, não composto primário."
+            }
+          ],
+          "independentlyChecked": true,
+          "independentConclusion": "8d943d85 trata benefício sem diabetes;61cff858 trata elegibilidade; e2181457 trata mortalidade secundária. Este item fornece HR para interpretar magnitude relativa e composto, portanto decisão e dados funcionais diferentes.",
+          "candidatePins": [
+            {
+              "qid": "8d943d85",
+              "sourceLine": 71,
+              "questionSHA256": "2c8595a4ef1205d949b3a381fb2d6b93da0b6c2c8df79f693e3dcd14b4846f45"
+            },
+            {
+              "qid": "61cff858",
+              "sourceLine": 128,
+              "questionSHA256": "9b44d4558f01d935e815c03b66c10154f8cffab0c677b012d831790be4d0b8a7"
+            },
+            {
+              "qid": "e2181457",
+              "sourceLine": 105,
+              "questionSHA256": "74e745bfae686be255395dced718a4e1cef5f7f6d980ae18ce9a461c4f66f77b"
+            }
+          ]
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            130,
+            52,
+            72,
+            78
+          ],
+          "AFTER": {
+            "characters": [
+              66,
+              68,
+              66,
+              63
+            ],
+            "correctIsUniqueLongest": false
+          },
+          "qualification": "Comprimento diagnóstico e plausibilidade conferida individualmente; nenhum padding ou texto novo proposto."
+        },
+        "verificationPending": [],
+        "editorialPending": [],
+        "implementationObservation": "Preservarqid,gabarito,históricos,recursos,FSRS,snapshots. Cards por hash e dependências atômicas. Nenhuma autorização de troca global porID; rebind material exige nova revisão exata."
+      },
+      {
+        "qid": "252a2e88",
+        "sourceLine": 161,
+        "BEFORE": {
+          "t": "EMPA-KIDNEY — DRC Diabética e Não Diabética",
+          "qid": "252a2e88",
+          "q": "Qual interpretação do EMPA-KIDNEY é mais adequada para a indicação de empagliflozina em DRC?",
+          "refs": [
+            "empa_kidney",
+            "credence",
+            "empa_reg_outcome",
+            "emperor_reduced",
+            "emperor_preserved"
+          ],
+          "opts": [
+            "O benefício foi observado em uma população ampla de DRC em risco de progressão, incluindo muitos pacientes sem diabetes",
+            "A eficácia foi demonstrada apenas na nefropatia diabética clássica com albuminúria nefrótica",
+            "O estudo mostrou piora renal em doença renovascular, tornando essa etiologia contraindicação absoluta",
+            "O benefício foi restrito a glomerulonefrite por IgA e não se aplica a outras DRCs"
+          ],
+          "ans": 0,
+          "exp": "O EMPA-KIDNEY ampliou a evidência dos iSGLT2 ao incluir uma população ampla de DRC em risco de progressão, com grande proporção de participantes sem diabetes e com TFGe mais baixa do que em trials anteriores. O resultado principal favoreceu empagliflozina para progressão renal ou morte cardiovascular. A mensagem correta não é que toda etiologia imaginável foi provada individualmente, mas que o benefício foi consistente o bastante em DRC diabética e não diabética para sustentar recomendações amplas nas faixas estudadas. A questão não deve citar doença policística como exemplo de benefício, pois esse grupo não é a mensagem central do ensaio.",
+          "diff": "medium",
+          "cat": "nefropatia_diabetica"
+        },
+        "beforeQuestionSHA256": "6c72a7faf2da446807ff2c864f22d347548907f0a25665859b66df8345b28682",
+        "AFTER": {
+          "t": "EMPA-KIDNEY — DRC Diabética e Não Diabética",
+          "qid": "252a2e88",
+          "q": "Qual interpretação do EMPA-KIDNEY sustenta o uso de empagliflozina em pessoas com DRC dentro dos critérios estudados?",
+          "refs": [
+            "empa_kidney"
+          ],
+          "opts": [
+            "Benefício no composto primário também entre participantes sem diabetes.",
+            "Benefício no composto restrito aos casos de nefropatia diabética clássica.",
+            "Benefício no composto restrito à nefropatia por IgA entre as etiologias.",
+            "Benefício igualmente comprovado em todas as etiologias, incluindo policística."
+          ],
+          "ans": 0,
+          "exp": "O EMPA-KIDNEY incluiu 6.609 participantes, cerca de 54% sem diabetes; empagliflozina 10 mg/dia reduziu progressão renal ou morte cardiovascular (HR 0,72; IC 95% 0,64-0,82; P < 0,001), com efeito consistente com e sem diabetes. Estudou TFGe 20 a < 45 mL/min/1,73 m² independentemente da albuminúria, ou 45 a < 90 com RAC ≥ 200 mg/g. Não foi restrito à nefropatia diabética ou IgA; isso também não prova cada etiologia individualmente. Doença renal policística foi excluída. A recomendação atual depende dos critérios clínicos, e não apenas do rótulo DRC.",
+          "diff": "medium",
+          "cat": "nefropatia_diabetica"
+        },
+        "afterQuestionSHA256": "af78c406978d1fabee7e4e74b24e893784ebd181e640f1c2df9c7db44d094739",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(a)",
+        "OP": "Interpretar a evidência do EMPA-KIDNEY em DRC elegível com e sem diabetes, sem restringir etiologia ou generalizar cada subgrupo.",
+        "classification": {
+          "primaryCompetence": "interpretação de abrangência da evidência",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "authoredClassification": {
+          "primaryCompetence": "interpretação",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "classificationQualification": "Identificar extensão por status de diabetes é compreensão da mensagem do ensaio; não exige Analisar ou decidir um caso completo. Parecer qualifica a operação, sem alterar texto/IRT.",
+        "reconstruction": {
+          "decisiveData": "Pergunta de abrangência por status diabético, semprescrição automática para todo diagnóstico; critérios e exclusão explicitados.",
+          "populationAndScenario": "Qual interpretação do EMPA-KIDNEY sustenta o uso de empagliflozina em pessoas com DRC dentro dos critérios estudados?",
+          "hiddenPremisesResolved": true,
+          "realPatient": false
+        },
+        "justification": "Reconhece que o benefício abrange participantes sem diabetes, respeitando elegibilidade e limites dos subgrupos. Números, exclusão de policística e consistência por status de diabetes estão no PDF primário. O comando é mais simples que uma análise individual de indicação.",
+        "findings": [
+          "Nenhum problema clínico substantivo identificado no pacote exato."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "O resultado não se restringiu à nefropatia diabética ouIgA. Uma população ampla não prova cada etiologia, especialmente policística excluída. A opção correta usa o composto e o subgrupo, sem promessa universal."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Todos negativos noAFTER. CAPTCHA/metadados ausentes não são prova de referência falsa. Fusões são julgadas fora dos dez critérios."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 1,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "deductionsExplained": "Construto:1/2 por comando de reconhecimento de aplicabilidade, sem apresentação de dados para análise mais complexa.",
+          "evidenceCeilingOverridesScore": false,
+          "duplicationOverridesScore": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Dez eliminatórios negativos noAFTER",
+          "step2": "Sem argumento plausível de anulação ou duplicata equivalente",
+          "step3": "Score18–20:aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "empa2023",
+            "sourceURL": "https://www.nejm.org/doi/full/10.1056/NEJMoa2204233",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 691984,
+              "sha256": "2c5fbafe0fb5680f35b26f04067507efb721a0eb6e5a6842d35b5909279a5538"
+            },
+            "locator": "DOI10.1056/NEJMoa2204233; PDFíndices0–3, abstract,Participants,Recruitment andFollow-up eTable1",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "6609;10mg/dia;TFGe20–<45ou45–<90+RAC≥200;HR0,72,IC0,64–0,82,P<0,001;13,1%vs16,9%;54,0%semDM está literalmente emRecruitment andFollow-up/PDFíndice3 e é coerente comTable1, não número inferido de memória."
+          },
+          {
+            "sourceId": "kdigo2024",
+            "sourceURL": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 5966902,
+              "sha256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0"
+            },
+            "locator": "Recomendações3.7.2(1A)/3.7.3(2B), PDFíndice43/S159; texto oficial e fonte pinada",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "6609;10mg/dia;TFGe20–<45ou45–<90+RAC≥200;HR0,72,IC0,64–0,82,P<0,001;13,1%vs16,9%;54,0%semDM está literalmente emRecruitment andFollow-up/PDFíndice3 e é coerente comTable1, não número inferido de memória."
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "empa_kidney",
+            "exactCardSHA256": "c7286e62d4d00b6f3c449bdc0d0f09f5d83f28a7eb8b76f8374785dd925a2aeb"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Qual interpretação do EMPA-KIDNEY sustenta o uso de empagliflozina em pessoas com DRC dentro dos critérios estudados?",
+          "alternatives": {
+            "A": "Benefício no composto primário também entre participantes sem diabetes.",
+            "B": "Benefício no composto restrito aos casos de nefropatia diabética clássica.",
+            "C": "Benefício no composto restrito à nefropatia por IgA entre as etiologias.",
+            "D": "Benefício igualmente comprovado em todas as etiologias, incluindo policística."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Benefício no composto primário também entre participantes sem diabetes."
+          },
+          "explanation": "O EMPA-KIDNEY incluiu 6.609 participantes, cerca de 54% sem diabetes; empagliflozina 10 mg/dia reduziu progressão renal ou morte cardiovascular (HR 0,72; IC 95% 0,64-0,82; P < 0,001), com efeito consistente com e sem diabetes. Estudou TFGe 20 a < 45 mL/min/1,73 m² independentemente da albuminúria, ou 45 a < 90 com RAC ≥ 200 mg/g. Não foi restrito à nefropatia diabética ou IgA; isso também não prova cada etiologia individualmente. Doença renal policística foi excluída. A recomendação atual depende dos critérios clínicos, e não apenas do rótulo DRC.",
+          "referenceCards": {
+            "empa_kidney": {
+              "label": "EMPA-KIDNEY Collaborative Group (2023)",
+              "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2204233",
+              "journal": "N Engl J Med. 2023;388:117-127",
+              "ano": 2023,
+              "tipo": "Ensaio clínico randomizado",
+              "badge": "RCT",
+              "badgeColor": "#10b981",
+              "impacto": "Benefício no composto em DRC elegível, com e sem diabetes",
+              "icon": "🔬",
+              "resumo": "6.609 participantes, empagliflozina 10 mg/dia ou placebo. TFGe 20 a < 45 mL/min/1,73 m² independentemente da albuminúria, ou 45 a < 90 com ACR ≥ 200 mg/g. Cerca de54% não tinham diabetes. Progressão renal ou morte cardiovascular:13,1% versus 16,9%; HR 0,72 (IC 95% 0,64-0,82; P < 0,001). O efeito foi consistente com e sem diabetes e nas faixas de filtração estudadas.",
+              "conclusao": "Amplia a evidência para DRC não diabética dentro dos critérios; não prova benefício em toda etiologia ou em qualquer filtração/albuminúria. A população não incluiu doença renal policística.",
+              "curiosidade": "A progressão renal incluía falência renal, queda sustentada da TFGe ≥ 40%, TFGe sustentada < 10 mL/min/1,73 m² ou morte renal; o composto primário também incluía morte cardiovascular."
+            }
+          },
+          "readiness": "LIBERADA somente nesta versão exata"
+        },
+        "duplicateReview": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Sem duplicata equivalente entre os candidatos relacionados inspecionados; não é prova de triagem semântica perfeita de741itens.",
+          "relatedDistinctItems": [
+            {
+              "qid": "6cd39dfb",
+              "distinction": "OutroOP compara critérios deTFGe/albuminúria e ampliação vsensaios prévios; este interpreta extensão porstatus diabético. Critério deindicação e decisão de subgrupo são diferentes."
+            },
+            {
+              "qid": "f781f397",
+              "distinction": "OutroOP interpreta efeito primárioHR0,72; esteop interpreta aplicação com/semDM. Não duplicar confirmação deHR."
+            }
+          ],
+          "independentlyChecked": true,
+          "independentConclusion": "6cd39dfb compara limites deTFGe/albuminúria; f781f397 identifica direção eHRdo desfecho primário. Aqui a escolha é alcance por status de diabetes e limites por etiologia, sem mesma decisão funcional.",
+          "candidatePins": [
+            {
+              "qid": "6cd39dfb",
+              "sourceLine": 38,
+              "questionSHA256": "5f4f134b1904dec769d22ece2ff3d1894610430e6c4978188bf554167b02643f"
+            },
+            {
+              "qid": "f781f397",
+              "sourceLine": 116,
+              "questionSHA256": "ccfcbe532ebadf6886320ddf7a4da916a7e3257b4bd2dbcb160d7e72e82c6b6c"
+            }
+          ]
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            119,
+            92,
+            101,
+            81
+          ],
+          "AFTER": {
+            "characters": [
+              71,
+              74,
+              72,
+              78
+            ],
+            "correctIsUniqueLongest": false
+          },
+          "qualification": "Comprimento diagnóstico e plausibilidade conferida individualmente; nenhum padding ou texto novo proposto."
+        },
+        "verificationPending": [],
+        "editorialPending": [],
+        "implementationObservation": "Preservarqid,gabarito,históricos,recursos,FSRS,snapshots. Cards por hash e dependências atômicas. Nenhuma autorização de troca global porID; rebind material exige nova revisão exata."
+      },
+      {
+        "qid": "b2c513e8",
+        "sourceLine": 174,
+        "BEFORE": {
+          "t": "BPROAD — Hipercalemia no Alvo Pressórico Intensivo",
+          "qid": "b2c513e8",
+          "q": "No BPROAD, em pacientes com diabetes tipo 2 e hipertensão, o alvo intensivo de PAS <120 mmHg reduziu eventos cardiovasculares. Qual foi o sinal de segurança relacionado ao potássio?",
+          "refs": [
+            "bproad"
+          ],
+          "opts": [
+            "Hipercalemia ocorreu com maior frequência no grupo intensivo, embora eventos adversos graves globais tenham sido semelhantes.",
+            "Hipercalemia foi igual entre os grupos e não apareceu como sinal de segurança.",
+            "Hipercalemia foi menor no grupo intensivo por uso obrigatório de diurético de alça.",
+            "O estudo excluiu completamente a análise de potássio sérico."
+          ],
+          "ans": 0,
+          "exp": "No BPROAD, o alvo intensivo reduziu o desfecho cardiovascular primário, mas hipercalemia e hipotensão sintomática foram mais frequentes no braço intensivo. A mensagem prática não é abandonar alvo intensivo automaticamente, e sim individualizar e monitorar potássio, função renal, sintomas e técnica padronizada de medida da pressão, especialmente em DRC, idosos frágeis e usuários de bloqueio do SRAA.",
+          "diff": "hard",
+          "cat": "hipertensao"
+        },
+        "beforeQuestionSHA256": "38dbd2929183ef088720cbe73889a91c8d9cffd1b854abd9660106d8de4c30ec",
+        "AFTER": {
+          "t": "BPROAD — Hipercalemia no Alvo Pressórico Intensivo",
+          "qid": "b2c513e8",
+          "q": "No BPROAD, qual foi o sinal relacionado ao potássio na comparação de PAS < 120 versus < 140 mmHg em DM2 de alto risco cardiovascular?",
+          "refs": [
+            "bproad"
+          ],
+          "opts": [
+            "Hipercalemia mais frequente, sem diferença nos eventos graves globais.",
+            "Hipercalemia menos frequente, com mais eventos graves globais.",
+            "Hipercalemia igualmente frequente, apesar de mais hipotensão sintomática.",
+            "Hipercalemia mais frequente, com excesso comprovado de lesão renal aguda."
+          ],
+          "ans": 0,
+          "exp": "Hipercalemia (K > 5,5 mmol/L) foi mais frequente: 177/6.230 (2,8%) versus 125/6.220 (2,0%); P = 0,003. A incidência global de eventos graves não teve diferença estatisticamente significativa (36,5% versus 36,3%; P = 0,96), o que não prova equivalência de segurança. LRA teve 4 versus 5 eventos (P = 0,73), sem aumento detectado e com poucos eventos; hipotensão sintomática ocorreu mais no intensivo. Monitorização do potássio e função renal permanece relevante ao interpretar o benefício CV nesta população selecionada.",
+          "diff": "hard",
+          "cat": "hipertensao"
+        },
+        "afterQuestionSHA256": "ab42bededd0fff58286b922c8eb6072d0aa7c5647a40a318ad14c5e0488fd158",
+        "verdictV2": "fundir",
+        "legacyAuxiliary": "CONSOLIDAR",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(b)",
+        "OP": "Interpretar o sinal de maior hipercalemia no alvo intensivoBPROAD apesar da ausência de diferença nos eventos graves globais.",
+        "classification": {
+          "primaryCompetence": "interpretação de segurança de ensaio",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "authoredClassification": {
+          "primaryCompetence": "interpretação",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "classificationQualification": "Comando reconhece o perfil específico de potássio; a leitura dos valores está na explicação. BloqueioFUNDIR independente do nível cognitivo.",
+        "reconstruction": {
+          "decisiveData": "Mesma estratégia/ensaio/população e perfilK/segurança dos itens relacionados; aqui o focoK é subconjunto do OP de709ad94a.",
+          "populationAndScenario": "No BPROAD, qual foi o sinal relacionado ao potássio na comparação de PAS < 120 versus < 140 mmHg em DM2 de alto risco cardiovascular?",
+          "hiddenPremisesResolved": true,
+          "realPatient": false
+        },
+        "justification": "O conteúdo científico está confirmado, mas repete a decisão de segurança do item709ad94a. Isolar potássio do mesmo perfil não introduz dados ou raciocínio necessários diferentes.",
+        "findings": [
+          "Duplicata nas quatro dimensões; não aplicar como novo item."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Bloqueio editorial por duplicidade, sem segunda resposta clínica",
+          "analysis": "A maior hipercalemia é real; falta de diferença global não prova equivalência de segurança. A alternativa correta não inventa aumento deLRA. O bloqueio é editorial por duplicata, não anulação clínica por segunda resposta."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Todos negativos noAFTER. CAPTCHA/metadados ausentes não são prova de referência falsa. Fusões são julgadas fora dos dez critérios."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 1,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "deductionsExplained": "Construto:1/2 pelo reconhecimento direto do perfil. O score não supera a duplicidade nas quatro dimensões.",
+          "evidenceCeilingOverridesScore": false,
+          "duplicationOverridesScore": true
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Dez eliminatórios negativos noAFTER",
+          "step2": "Duplicata nas quatro dimensões:FUNDIR",
+          "step3": "Score não supera duplicidade",
+          "result": "fundir",
+          "lifecycle": "em_revisão",
+          "actualDeployment": false
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "bproad2025",
+            "sourceURL": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412006",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 683845,
+              "sha256": "6b5146216744147e435ffdc785af6b84e503fcd19ace3d8af2c4f5cf30b90cdb"
+            },
+            "locator": "DOI10.1056/NEJMoa2412006, PDFíndice10/Table3; abstract para população/composite/HR",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "K>5,5:177/6230vs125/6220;2,8%vs2,0%,P0,003; graves36,5%vs36,3%,P0,96;LRA4vs5,P0,73;hipotensão8vs1,P0,05. Quedas65vs61 têmP0,74, nãoP0,73, mas essa estatística não consta doAFTER/cardC008."
+          },
+          {
+            "sourceId": "bproad_registry",
+            "sourceURL": "https://clinicaltrials.gov/study/NCT03808311",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 13391,
+              "sha256": "47de0a8c5adc923c062aca12f3a37f1eab12a6641702be2ffa8b2dbf2af00d83"
+            },
+            "locator": "NCT03808311,protocolSection.designModule.phases=[NA]",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "K>5,5:177/6230vs125/6220;2,8%vs2,0%,P0,003; graves36,5%vs36,3%,P0,96;LRA4vs5,P0,73;hipotensão8vs1,P0,05. Quedas65vs61 têmP0,74, nãoP0,73, mas essa estatística não consta doAFTER/cardC008."
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "bproad",
+            "exactCardSHA256": "b8d0607e6a8f21db99613dc2734c7893b1c1ae6be27d1feb5209ed35cda8cd5e"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "RASCUNHO BLOQUEADO; NÃO APLICAR COMO ITEM SEPARADO",
+          "question": "No BPROAD, qual foi o sinal relacionado ao potássio na comparação de PAS < 120 versus < 140 mmHg em DM2 de alto risco cardiovascular?",
+          "alternatives": {
+            "A": "Hipercalemia mais frequente, sem diferença nos eventos graves globais.",
+            "B": "Hipercalemia menos frequente, com mais eventos graves globais.",
+            "C": "Hipercalemia igualmente frequente, apesar de mais hipotensão sintomática.",
+            "D": "Hipercalemia mais frequente, com excesso comprovado de lesão renal aguda."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Hipercalemia mais frequente, sem diferença nos eventos graves globais."
+          },
+          "explanation": "Hipercalemia (K > 5,5 mmol/L) foi mais frequente: 177/6.230 (2,8%) versus 125/6.220 (2,0%); P = 0,003. A incidência global de eventos graves não teve diferença estatisticamente significativa (36,5% versus 36,3%; P = 0,96), o que não prova equivalência de segurança. LRA teve 4 versus 5 eventos (P = 0,73), sem aumento detectado e com poucos eventos; hipotensão sintomática ocorreu mais no intensivo. Monitorização do potássio e função renal permanece relevante ao interpretar o benefício CV nesta população selecionada.",
+          "referenceCards": {
+            "bproad": {
+              "label": "BPROAD (2025)",
+              "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412006",
+              "journal": "N Engl J Med. 2025;392(12):1155-1167",
+              "ano": 2025,
+              "tipo": "Ensaio clínico randomizado",
+              "badge": "RCT",
+              "badgeColor": "#10b981",
+              "impacto": "Alvo intensivo reduziu eventos CV; poucos eventos renais exigem leitura cuidadosa",
+              "icon": "🔬",
+              "resumo": "BPROAD: 12.821 adultos chineses com idade ≥ 50 anos, diabetes tipo 2, pressão sistólica elevada e risco cardiovascular aumentado; metas de pressão sistólica < 120 ou < 140 mmHg. Composto de AVC não fatal, infarto não fatal, tratamento/internação por insuficiência cardíaca ou morte cardiovascular:393 vs 492, HR 0,79(IC 95%0,69-0,90; P < 0,001). Não houve diferença estatística nos eventos graves globais. Insuficiência renal aguda:4 vs 5; hipotensão sintomática e hipercalemia ocorreram mais no intensivo. Ensaio de estratégia, com fase não aplicável.",
+              "conclusao": "Não se detectou diferença nos poucos eventos de LRA; isso não demonstra equivalência renal. Individualizar e monitorar.",
+              "curiosidade": ""
+            }
+          },
+          "readiness": "BLOQUEADA"
+        },
+        "duplicateReview": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Duplicidade editorial confirmada nas quatro dimensões.",
+          "pairQids": [
+            "b2c513e8",
+            "709ad94a"
+          ],
+          "retainQid": "709ad94a",
+          "targetSourceLine": 119,
+          "targetBEFORE": {
+            "t": "BPROAD — segurança do alvo intensivo",
+            "qid": "709ad94a",
+            "q": "Qual ressalva de segurança deve acompanhar a interpretação do alvo intensivo de PAS <120 mmHg no BPROAD?",
+            "refs": [
+              "bproad"
+            ],
+            "opts": [
+              "Eventos adversos graves foram semelhantes, mas hipotensão sintomática e hipercalemia foram mais frequentes no grupo intensivo",
+              "O grupo intensivo teve excesso marcante de diálise crônica e o estudo foi interrompido por dano renal",
+              "O estudo não monitorou eventos adversos de hipotensão, potássio ou função renal",
+              "A estratégia intensiva eliminou o risco de hipercalemia por reduzir a pressão arterial"
+            ],
+            "ans": 0,
+            "exp": "No BPROAD, a incidência global de eventos adversos graves foi semelhante entre os grupos, mas hipotensão sintomática e hipercalemia ocorreram com maior frequência no braço intensivo. Portanto, o alvo <120 mmHg deve ser interpretado como benefício cardiovascular em população selecionada, exigindo medida padronizada e vigilância clínica. As demais alternativas inventam dano renal dominante, negam monitorização de segurança ou atribuem efeito protetor inexistente contra hipercalemia.",
+            "diff": "medium",
+            "cat": "drc"
+          },
+          "targetQuestionSHA256": "c6a40b6b0aeb8ee8e504f5a8e76eb5c64854f18534595bd6d7fe6b81bfce8967",
+          "fourDimensionAssessment": {
+            "decisão": "Interpretar maiorhipercalemia no braço intensivo apesar deeventosgraves globais sem diferença; é subconjunto da mesma decisão de709ad94a.",
+            "estrutura de dados": "MesmoBPROAD,<120vs<140,DM2/riscoCV, semnova vinheta ou dado que exige outra escolha; retirar hipotensão da pergunta não cria raciocínio distinto.",
+            "perfil-alvo": "Mesmo aprendiz médico/residente de nefrologia interpretando segurança do ensaio.",
+            "idioma": "Português em ambas, semnovo público linguístico."
+          },
+          "consolidationDecision": "Manter709ad94a, cuja versãoC007A3 cobre perfilK/hipotensão e distingue segurança global. Preservar b2c513e8/histórico e decidir estado editorial da redundante após compatibilidade. Se o texto mantido mudar, nova revisão exata; não aplicar esteAFTER como item separado.",
+          "compatibilityRequired": [
+            "Comparar oAFTER final da versão mantida com qualquer proposta deoutro lote/revisor.",
+            "Preservarqid, tentativas, FSRS, mapa decompetências e versões históricas de ambas as questões.",
+            "Definir o estado editorial da redundante e redirecionamento/consolidação sem corte automático do banco.",
+            "Revisão independente exata da versão mantida e dos cards compartilhados antes de integração."
+          ],
+          "retainedVersionCandidate": {
+            "report": {
+              "path": "docs/editorial/reviews/2026-10-12/group-c-output-007-A3.json",
+              "bytes": 227315,
+              "sha256": "db11d6ae5db72460039eea0c9559c8e68d6b7621cf851a83a1675c97fb6fea24"
+            },
+            "qid": "709ad94a",
+            "afterQuestionSHA256": "e98d20bd713061a8b25c14f86cdbe1eda3a8ac1dcf9a27a31720c76f3617066e",
+            "AFTER": {
+              "t": "BPROAD — segurança do alvo intensivo",
+              "qid": "709ad94a",
+              "q": "No BPROAD, não houve diferença estatisticamente significativa na incidência global de eventos adversos graves entre os alvos de PAS < 120 e < 140 mmHg. Qual perfil específico acompanha a interpretação da estratégia intensiva?",
+              "refs": [
+                "bproad"
+              ],
+              "opts": [
+                "Hipercalemia e hipotensão sintomática ocorreram mais no grupo intensivo.",
+                "Síncope e quedas com lesão ocorreram mais, com potássio semelhante entre grupos.",
+                "Lesão renal aguda ocorreu mais, com frequências semelhantes de hipotensão.",
+                "Hipercalemia ocorreu menos, embora hipotensão sintomática fosse mais frequente."
+              ],
+              "ans": 0,
+              "exp": "A incidência global de eventos adversos graves foi 36,5% versus 36,3% (P = 0,96); isso não prova equivalência nem elimina riscos específicos. Hipercalemia (K > 5,5 mmol/L) ocorreu em 2,8% versus 2,0% (P = 0,003), e hipotensão sintomática em 8 versus 1 participante (P = 0,05), mais no grupo intensivo. Não se detectou diferença de LRA (4 versus 5; P = 0,73), com poucos eventos; não chamar isso de equivalência renal. Síncope foi 10 versus 10, e quedas com lesão 65 versus 61, sem diferença significativa. Interpretar benefício CV na população selecionada com vigilância de pressão, potássio e função renal.",
+              "diff": "medium",
+              "cat": "drc"
+            },
+            "status": "Candidato autoralC007A3; aguarda revisão independente, não aplicado."
+          },
+          "independentlyChecked": true,
+          "independentConclusion": "FUNDIR com709ad94a: mesma decisão (Kmais frequente apesar de eventos graves globais sem diferença), mesmoBPROAD/<120vs<140/DM2/riscoCV e ausência de nova vinheta, mesmo perfil médico e português. Subconjunto do perfil já perguntado, sem variação funcional útil.",
+          "candidatePins": [],
+          "retainedPeerReport": {
+            "path": "docs/editorial/reviews/2026-10-12/independent-c007-A3.json",
+            "bytes": 172109,
+            "sha256": "f739c306380852ff1cb23ef2e757eb8fb52e11ffe13d907cd1d260651dd8bfd3"
+          },
+          "retainedPeerStatus": "Já LIBERADA no parecer independenteC007A3 exato; não aplicada. Não aprovar reescrita consolidada ou rebind material por associação.",
+          "independentFourDimensionAssessment": {
+            "sameDecision": true,
+            "sameFunctionalDataStructure": true,
+            "sameTargetProfile": true,
+            "sameLanguage": true,
+            "reason": "FUNDIR com709ad94a: mesma decisão (Kmais frequente apesar de eventos graves globais sem diferença), mesmoBPROAD/<120vs<140/DM2/riscoCV e ausência de nova vinheta, mesmo perfil médico e português. Subconjunto do perfil já perguntado, sem variação funcional útil."
+          }
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            125,
+            78,
+            83,
+            60
+          ],
+          "AFTER": {
+            "characters": [
+              70,
+              62,
+              73,
+              73
+            ],
+            "correctIsUniqueLongest": false
+          },
+          "qualification": "Comprimento diagnóstico e plausibilidade conferida individualmente; nenhum padding ou texto novo proposto."
+        },
+        "verificationPending": [],
+        "editorialPending": [
+          {
+            "issue": "FUNDIR b2c513e8↔709ad94a",
+            "nature": "DECISIVA editorial",
+            "nextStep": "Coordenar estado da redundante e preservação de históricos/FSRS.709ad94aC007A3exato já tem parecer próprio; qualquer nova consolidação material exige novo parecer."
+          }
+        ],
+        "implementationObservation": "Preservarqid,gabarito,históricos,recursos,FSRS,snapshots. Cards por hash e dependências atômicas. Nenhuma autorização de troca global porID; rebind material exige nova revisão exata."
+      },
+      {
+        "qid": "6a1d131e",
+        "sourceLine": 175,
+        "BEFORE": {
+          "t": "Hipertensão Renovascular — Interpretação do Sopro Abdominal",
+          "qid": "6a1d131e",
+          "q": "Durante a investigação de hipertensão resistente, ausculta-se sopro sistodiastólico no epigástrio com extensão para o flanco. Qual interpretação é mais adequada?",
+          "refs": [
+            "fmd_consensus_2019",
+            "esc_peripheral_aortic_2024"
+          ],
+          "opts": [
+            "O achado aumenta a suspeita de doença renovascular e favorece investigação por imagem, mas sua ausência não excluiria estenose",
+            "O achado confirma estenose hemodinamicamente significativa e dispensa avaliação por imagem",
+            "O componente diastólico torna doença renovascular improvável e sugere apenas fluxo aórtico fisiológico",
+            "A localização abdominal exclui displasia fibromuscular, que não produz sopros vasculares"
+          ],
+          "ans": 0,
+          "exp": "Sopro abdominal ou de flanco com componente sistólico e diastólico aumenta a suspeita de doença renovascular no contexto clínico apropriado, mas não confirma a anatomia nem a repercussão hemodinâmica. A ausência de sopro também não exclui estenose. A decisão de investigar deve integrar início ou piora abrupta da hipertensão, resistência ao tratamento, deterioração renal, edema pulmonar súbito e perfil compatível com aterosclerose ou displasia fibromuscular.",
+          "diff": "medium",
+          "cat": "hipertensao"
+        },
+        "beforeQuestionSHA256": "d35006c8baabed7440ef744eaba8458a58b95a264130c2490bfa01a4bfd0cb60",
+        "AFTER": {
+          "t": "Hipertensão Renovascular — Interpretação do Sopro Abdominal",
+          "qid": "6a1d131e",
+          "q": "Durante investigação de hipertensão resistente, identifica-se sopro sistodiastólico no epigástrio com extensão para o flanco. Qual é a interpretação do achado?",
+          "refs": [
+            "colbert_renal_artery_stenosis_2021"
+          ],
+          "opts": [
+            "Aumenta suspeita renovascular, sem definir anatomia ou gravidade.",
+            "Confirma estenose significativa, justificando angioplastia imediata.",
+            "Aponta só aterosclerose aórtica, dispensando imagem das artérias renais.",
+            "Confirma displasia fibromuscular, excluindo estenose aterosclerótica."
+          ],
+          "ans": 0,
+          "exp": "O sopro sistodiastólico epigástrico é achado relevante que aumenta suspeita de doença renovascular no contexto apropriado. Não confirma localização anatômica, repercussão hemodinâmica, etiologia única ou necessidade de intervenção; sua ausência também não exclui doença. Integrar evolução da hipertensão, função renal e demais sinais para decidir investigação por imagem. Nem aterosclerose aórtica isolada nem displasia fibromuscular são diagnósticos estabelecidos só pela ausculta.",
+          "diff": "medium",
+          "cat": "hipertensao"
+        },
+        "afterQuestionSHA256": "93655d5111b0f60d2bdc5a42325619d2bc405cd120fb748e843d660eef8f52ca",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(a)",
+        "OP": "Interpretar o sopro abdominal sistodiastólico como aumento de suspeita renovascular, sem confirmar gravidade ou excluir doença pela ausência.",
+        "classification": {
+          "primaryCompetence": "interpretação",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "authoredClassification": {
+          "primaryCompetence": "interpretação",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "classificationQualification": "Operação e dificuldade intrínseca conferidas. O campo diff legado preservado não é nova calibração IRT; habilidade, dificuldade empírica e resposta do usuário não foram inferidas.",
+        "reconstruction": {
+          "decisiveData": "HT resistente e ausculta sistodiastólica epigástrica; competência é avaliar peso do achado, não escolher intervenção/anatomia.",
+          "populationAndScenario": "Durante investigação de hipertensão resistente, identifica-se sopro sistodiastólico no epigástrio com extensão para o flanco. Qual é a interpretação do achado?",
+          "hiddenPremisesResolved": true,
+          "realPatient": false
+        },
+        "justification": "O contexto de hipertensão resistente e sopro sistodiastólico aumenta suspeita, sem transformar exame em anatomia, repercussão ou indicação de angioplastia. O trecho decisivo foi lido na segunda página do PDF, conforme correção do adendo.",
+        "findings": [
+          "Nenhum problema clínico substantivo identificado no pacote exato."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "O sopro não determina etiologiaFMD, não prova gravidade e não dispensa imagem. A ausência também não exclui. A primeira opção expressa o alcance clínico correto sem selecionar intervenção."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Todos negativos noAFTER. CAPTCHA/metadados ausentes não são prova de referência falsa. Fusões são julgadas fora dos dez critérios."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 20,
+          "band": "Excelente",
+          "deductionsExplained": "Sem dedução substantiva.",
+          "evidenceCeilingOverridesScore": false,
+          "duplicationOverridesScore": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Dez eliminatórios negativos noAFTER",
+          "step2": "Sem argumento plausível de anulação ou duplicata equivalente",
+          "step3": "Score18–20:aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "colbert2021",
+            "sourceURL": "https://doi.org/10.1016/j.disamonth.2020.101118",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 629238,
+              "sha256": "460965af87751bc55979bc3cd19949a92781241bcbd71979ad5c08941fce69e4"
+            },
+            "locator": "Colbert/Abra/Lerma,DOI10.1016/j.disamonth.2020.101118; PDFíndice1 (página2),ClinicalPresentation; capa eDOIconferidos",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "Índice3 da matriz autoral foi corrigido para1 no adendo. Corpo confirma componentes sistólico/diastólico, localização usual epigástrica e ausência não excludente. Cópia pública BINASSS contém artigo original identificável, sem Library."
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "colbert_renal_artery_stenosis_2021",
+            "exactCardSHA256": "650f96662aa36fe8a916fbfbc872950b0adfeb0426d765f3eafc3f8a701c4fa4"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Durante investigação de hipertensão resistente, identifica-se sopro sistodiastólico no epigástrio com extensão para o flanco. Qual é a interpretação do achado?",
+          "alternatives": {
+            "A": "Aumenta suspeita renovascular, sem definir anatomia ou gravidade.",
+            "B": "Confirma estenose significativa, justificando angioplastia imediata.",
+            "C": "Aponta só aterosclerose aórtica, dispensando imagem das artérias renais.",
+            "D": "Confirma displasia fibromuscular, excluindo estenose aterosclerótica."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Aumenta suspeita renovascular, sem definir anatomia ou gravidade."
+          },
+          "explanation": "O sopro sistodiastólico epigástrico é achado relevante que aumenta suspeita de doença renovascular no contexto apropriado. Não confirma localização anatômica, repercussão hemodinâmica, etiologia única ou necessidade de intervenção; sua ausência também não exclui doença. Integrar evolução da hipertensão, função renal e demais sinais para decidir investigação por imagem. Nem aterosclerose aórtica isolada nem displasia fibromuscular são diagnósticos estabelecidos só pela ausculta.",
+          "referenceCards": {
+            "colbert_renal_artery_stenosis_2021": {
+              "label": "Colbert, Abra e Lerma — Estenose de artéria renal",
+              "url": "https://doi.org/10.1016/j.disamonth.2020.101118",
+              "journal": "Disease-a-Month. 2021;67:101118",
+              "ano": 2021,
+              "tipo": "Revisão",
+              "badge": "REVIEW",
+              "badgeColor": "#8b5cf6",
+              "impacto": "Sopro abdominal aumenta suspeita; não estabelece anatomia ou repercussão",
+              "icon": "🔬",
+              "resumo": "Revisão clínica focal sobre estenose de artéria renal. Um sopro epigástrico com componentes sistólico e diastólico é achado relevante; sua ausência não exclui doença renovascular. A investigação integra hipertensão resistente ou progressiva, evolução renal e outros sinais clínicos, seguida de avaliação por imagem quando apropriada.",
+              "conclusao": "Interpretar sopro como evidência de suspeita, sem confirmar gravidade ou indicar angioplastia apenas pela ausculta.",
+              "curiosidade": ""
+            }
+          },
+          "readiness": "LIBERADA somente nesta versão exata"
+        },
+        "duplicateReview": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Sem duplicata equivalente entre os candidatos relacionados inspecionados; não é prova de triagem semântica perfeita de741itens.",
+          "independentlyChecked": true,
+          "independentConclusion": "Nenhuma candidata equivalente declarada no escopo autoral; não se aprova qualquer outro item de estenose renovascular por associação.",
+          "candidatePins": []
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            126,
+            90,
+            102,
+            88
+          ],
+          "AFTER": {
+            "characters": [
+              65,
+              68,
+              72,
+              69
+            ],
+            "correctIsUniqueLongest": false
+          },
+          "qualification": "Comprimento diagnóstico e plausibilidade conferida individualmente; nenhum padding ou texto novo proposto."
+        },
+        "verificationPending": [],
+        "editorialPending": [],
+        "implementationObservation": "Preservarqid,gabarito,históricos,recursos,FSRS,snapshots. Cards por hash e dependências atômicas. Nenhuma autorização de troca global porID; rebind material exige nova revisão exata."
+      },
+      {
+        "qid": "b0ddebc9",
+        "sourceLine": 181,
+        "BEFORE": {
+          "t": "Aciclovir Intravenoso — Prevenção de Nefropatia Cristalina",
+          "qid": "b0ddebc9",
+          "q": "Paciente receberá aciclovir intravenoso em dose alta para encefalite herpética. Qual conjunto de medidas reduz o risco de LRA por cristais?",
+          "refs": [
+            "zovirax_fda_label_2019"
+          ],
+          "opts": [
+            "Garantir hidratação adequada, infundir cada dose por pelo menos uma hora e ajustar a dose ao clearance de creatinina",
+            "Administrar em bolus para reduzir o tempo de contato tubular",
+            "Associar probenecida para impedir a eliminação renal do aciclovir",
+            "Alcalinizar obrigatoriamente a urina e manter a mesma dose em qualquer função renal"
+          ],
+          "ans": 0,
+          "exp": "O aciclovir pode precipitar nos túbulos quando a concentração intratubular excede sua solubilidade, especialmente com bolus, desidratação, dose inadequada à função renal ou outros nefrotóxicos. A rotulagem recomenda infusão intravenosa por pelo menos uma hora, hidratação adequada e ajuste conforme o clearance de creatinina. Essas medidas reduzem supersaturação e exposição excessiva. Probenecida aumenta a exposição ao bloquear secreção tubular e não é profilaxia; alcalinização urinária rotineira não substitui as medidas comprovadas.",
+          "diff": "hard",
+          "cat": "lra"
+        },
+        "beforeQuestionSHA256": "001299a063c674918fc2d4aba029b383084602aa1beffdbd38d65bf265631614",
+        "AFTER": {
+          "t": "Aciclovir Intravenoso — Prevenção de Nefropatia Cristalina",
+          "qid": "b0ddebc9",
+          "q": "Um adulto receberá aciclovir intravenoso para encefalite herpética. Qual conjunto de medidas reduz o risco de lesão renal por precipitação de cristais?",
+          "refs": [
+            "perazella_herlitz_crystal_nephropathies_2021"
+          ],
+          "opts": [
+            "Garantir hidratação, infusão de ≥ 1 hora e ajuste renal da dose.",
+            "Garantir hidratação, infusão rápida de 30 minutos e dose habitual.",
+            "Restringir líquidos, infusão de ≥ 1 hora e ajuste renal da dose.",
+            "Hidratar, infundir por ≥ 1 hora e manter dose habitual mesmo na DRC."
+          ],
+          "ans": 0,
+          "exp": "A prevenção combina hidratação adequada ao estado clínico, infusão por pelo menos 1 hora e ajuste da dose pelo clearance de creatinina estimado. Infusão rápida/bolus, desidratação e exposição excessiva para a função renal favorecem precipitação tubular. Não restringir líquidos automaticamente, encurtar infusão ou manter dose de função renal normal sem ajuste. Probenecida aumenta exposição e reduz eliminação, não é profilaxia cristalina. O tempo e o critério de ajuste estão confirmados na rotulagem atual; a revisão científica sustenta euvolemia, evitar bolus e ajuste renal. Não se fornece dose numérica ou orientação para diálise neste item.",
+          "diff": "hard",
+          "cat": "lra"
+        },
+        "afterQuestionSHA256": "8abb64381d0b0fe68c77d26c9458b372802d687e559fed5c1b1a5fd2596be8b1",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(a)",
+        "OP": "Prevenir lesão renal cristalina por aciclovir IV com hidratação adequada, infusão lenta ≥ 1 hora e dose ajustada à depuração de creatinina.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "authoredClassification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "classificationQualification": "Operação e dificuldade intrínseca conferidas. O campo diff legado preservado não é nova calibração IRT; habilidade, dificuldade empírica e resposta do usuário não foram inferidas.",
+        "reconstruction": {
+          "decisiveData": "Adulto, via IV, indicação sem dose numérica; plano preventivo de volume/tempo/ajuste, sem generalização automática dehidratação em congestão.",
+          "populationAndScenario": "Um adulto receberá aciclovir intravenoso para encefalite herpética. Qual conjunto de medidas reduz o risco de lesão renal por precipitação de cristais?",
+          "hiddenPremisesResolved": true,
+          "realPatient": false
+        },
+        "justification": "As medidas são paralelas e o conjunto correto preserva hidratação adequada, infusão≥1hora e ajuste por clearance estimado. A revisão suporta prevenção cristalina; o tempo mínimo está corretamente atribuído à bula atual, que foi lida.",
+        "findings": [
+          "Nenhum problema clínico substantivo identificado no pacote exato."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "Hidratação não exige sobrecarga indiscriminada; a explicação individualiza. Trinta minutos, restrição automática ou dose normal naDRC contradizem prevenção. Probenecida aumenta exposição, não é prevenção. Não há dose numérica renal ou esquema para diálise a inferir."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Todos negativos noAFTER. CAPTCHA/metadados ausentes não são prova de referência falsa. Fusões são julgadas fora dos dez critérios."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "deductionsExplained": "Ausência de cara de IA:1/2 pela última frase explicativa sobre escopo de dose/diálise, correta mas editorialmente dispensável.",
+          "evidenceCeilingOverridesScore": false,
+          "duplicationOverridesScore": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Dez eliminatórios negativos noAFTER",
+          "step2": "Sem argumento plausível de anulação ou duplicata equivalente",
+          "step3": "Score18–20:aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "crystal2021",
+            "sourceURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8640557/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 309300,
+              "sha256": "5775b7d9f436401a9723c298fe849d3181c46f19f6419f8894091c7c837003f1"
+            },
+            "locator": "PMC8640557/DOI10.1016/j.ekir.2021.09.003,Table1 e seçãoAcyclovir",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "Revisão: euvolemia, evitar bolus/infusão rápida, dose para função renal. Bula:≥1hora, hidratação adequada, estimatedcreatinineclearance; probenecida eleva meia-vida/AUC e reduz excreção/clearance. Não atribuir≥1hora à revisão que não traz esse número."
+          },
+          {
+            "sourceId": "acyclovir2025",
+            "sourceURL": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=23a7cf9e-f21b-06c2-e063-6394a90aa623",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 86368,
+              "sha256": "ee931b76ffd7dc08e9612550602f58d30b99dbaaf4f2e0f691ba4af41fc7db2e"
+            },
+            "locator": "SPLv3,setid23a7cf9e-f21b-06c2-e063-6394a90aa623;WARNINGS,PRECAUTIONS/General eDrugInteractions; publicado21/07/2025",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "Revisão: euvolemia, evitar bolus/infusão rápida, dose para função renal. Bula:≥1hora, hidratação adequada, estimatedcreatinineclearance; probenecida eleva meia-vida/AUC e reduz excreção/clearance. Não atribuir≥1hora à revisão que não traz esse número."
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "perazella_herlitz_crystal_nephropathies_2021",
+            "exactCardSHA256": "c00acf91ee21848085db6dc3f2103013d9c81d153efdabf00981b43838de21bd"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Um adulto receberá aciclovir intravenoso para encefalite herpética. Qual conjunto de medidas reduz o risco de lesão renal por precipitação de cristais?",
+          "alternatives": {
+            "A": "Garantir hidratação, infusão de ≥ 1 hora e ajuste renal da dose.",
+            "B": "Garantir hidratação, infusão rápida de 30 minutos e dose habitual.",
+            "C": "Restringir líquidos, infusão de ≥ 1 hora e ajuste renal da dose.",
+            "D": "Hidratar, infundir por ≥ 1 hora e manter dose habitual mesmo na DRC."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Garantir hidratação, infusão de ≥ 1 hora e ajuste renal da dose."
+          },
+          "explanation": "A prevenção combina hidratação adequada ao estado clínico, infusão por pelo menos 1 hora e ajuste da dose pelo clearance de creatinina estimado. Infusão rápida/bolus, desidratação e exposição excessiva para a função renal favorecem precipitação tubular. Não restringir líquidos automaticamente, encurtar infusão ou manter dose de função renal normal sem ajuste. Probenecida aumenta exposição e reduz eliminação, não é profilaxia cristalina. O tempo e o critério de ajuste estão confirmados na rotulagem atual; a revisão científica sustenta euvolemia, evitar bolus e ajuste renal. Não se fornece dose numérica ou orientação para diálise neste item.",
+          "referenceCards": {
+            "perazella_herlitz_crystal_nephropathies_2021": {
+              "label": "Perazella e Herlitz — Nefropatias cristalinas (2021)",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8640557/",
+              "journal": "Kidney Int Rep. 2021;6(12):2942-2962",
+              "ano": 2021,
+              "tipo": "Revisão",
+              "badge": "REVIEW",
+              "badgeColor": "#8b5cf6",
+              "impacto": "Prevenção da lesão cristalina por aciclovir combina volume, infusão lenta e ajuste renal",
+              "icon": "🔬",
+              "resumo": "Revisão científica de nefropatias cristalinas: para aciclovir, assegurar euvolemia, evitar bolus/infusão rápida e ajustar a dose à função renal. O mínimo de1hora de infusão e ajuste pelo clearance de creatinina estimado são confirmados adicionalmente na rotulagem vigente de aciclovir injetável (DailyMed, SPLv3, 21/07/2025, WARNINGS/PRECAUTIONS); não são atribuídos como texto da revisão.",
+              "conclusao": "Preservar hidratação adequada ao paciente e administração lenta, com ajuste renal. Não substituir essas medidas por probenecida ou manter dose de função renal normal na DRC.",
+              "curiosidade": "A rotulagem confirma que probenecida aumenta exposição e reduz clearance; isso não é profilaxia da precipitação tubular."
+            }
+          },
+          "readiness": "LIBERADA somente nesta versão exata"
+        },
+        "duplicateReview": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Sem duplicata equivalente entre os candidatos relacionados inspecionados; não é prova de triagem semântica perfeita de741itens.",
+          "independentlyChecked": true,
+          "independentConclusion": "Nenhuma candidata equivalente declarada no escopo autoral; este pacote não aprova outros medicamentos cristalinos nem tabelas posológicas.",
+          "candidatePins": []
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            116,
+            60,
+            65,
+            83
+          ],
+          "AFTER": {
+            "characters": [
+              64,
+              66,
+              64,
+              68
+            ],
+            "correctIsUniqueLongest": false
+          },
+          "qualification": "Comprimento diagnóstico e plausibilidade conferida individualmente; nenhum padding ou texto novo proposto."
+        },
+        "verificationPending": [],
+        "editorialPending": [],
+        "implementationObservation": "Preservarqid,gabarito,históricos,recursos,FSRS,snapshots. Cards por hash e dependências atômicas. Nenhuma autorização de troca global porID; rebind material exige nova revisão exata."
+      },
+      {
+        "qid": "a493996a",
+        "sourceLine": 189,
+        "BEFORE": {
+          "t": "Estatina + Inibidor de CYP3A4 — Rabdomiólise e Hipercalemia",
+          "qid": "a493996a",
+          "q": "Paciente com DRC usa sinvastatina e recebe claritromicina. Dias depois apresenta mialgia intensa, CPK muito elevada, LRA e hipercalemia. Qual interação explica melhor o quadro?",
+          "refs": [
+            "statin_cyp3a4_rhabdo_review",
+            "rhabdo_review_2023"
+          ],
+          "opts": [
+            "Quelante de fósforo aumentando absorção intestinal da estatina.",
+            "Ferro venoso deslocando potássio para o extracelular.",
+            "Vitamina C em dose habitual inibindo a creatina quinase.",
+            "Inibição de CYP3A4 aumentando exposição a estatinas suscetíveis, com risco de miotoxicidade/rabdomiólise."
+          ],
+          "ans": 3,
+          "exp": "Claritromicina é inibidor de CYP3A4 e pode elevar substancialmente a exposição a estatinas metabolizadas por essa via, sobretudo sinvastatina/lovastatina e também atorvastatina. A miotoxicidade pode evoluir para rabdomiólise, com liberação de potássio intracelular, LRA mioglobinúrica e arritmia por hipercalemia. Em DRC e polifarmácia, a conduta segura é evitar a combinação, suspender temporariamente a estatina ou escolher alternativa menos dependente de CYP3A4 quando clinicamente apropriado.",
+          "diff": "hard",
+          "cat": "farmacologia"
+        },
+        "beforeQuestionSHA256": "f6d605618432ea96db5bf03822e171869998ed8a3d8ad37257b7443951adf589",
+        "AFTER": {
+          "t": "Estatina + Inibidor de CYP3A4 — Rabdomiólise e Hipercalemia",
+          "qid": "a493996a",
+          "q": "Pessoa com DRC em uso de sinvastatina inicia claritromicina. Dias depois tem mialgia intensa, CPK muito elevada, LRA e hipercalemia. Qual interação explica melhor o quadro?",
+          "refs": [
+            "abu_mellal_statins_macrolides_2019"
+          ],
+          "opts": [
+            "Indução de CYP3A4, com eliminação acelerada da sinvastatina.",
+            "Deslocamento da ligação proteica, sem alterar metabolização.",
+            "Inibição das prostaglandinas, com vasoconstrição renal aferente.",
+            "Inibição de CYP3A4, com maior exposição e toxicidade muscular."
+          ],
+          "ans": 3,
+          "exp": "Claritromicina inibe fortemente CYP3A4, aumentando exposição à sinvastatina e risco de miotoxicidade/rabdomiólise. A lesão muscular explica CPK e liberação de potássio; mioglobina pode contribuir à LRA. Indução enzimática daria outra direção de exposição; deslocamento proteico sem alterar metabolismo e bloqueio de prostaglandinas não são a interação decisiva aqui. A rotulagem atual contraindica a combinação. Escolher alternativa quando apropriada ou suspender sinvastatina durante o curso do inibidor necessário; apenas reduzir dose mantendo associação não é a recomendação da bula.",
+          "diff": "hard",
+          "cat": "farmacologia"
+        },
+        "afterQuestionSHA256": "f1a527989bd2bc813ca7e5848b67287cafb9a427522c25cdb03d421f920facf9",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(a)",
+        "OP": "Explicar miotoxicidade/rabdomiólise na associação claritromicina-sinvastatina pela inibição CYP3A4 e maior exposição à estatina.",
+        "classification": {
+          "primaryCompetence": "mecanismo",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "authoredClassification": {
+          "primaryCompetence": "mecanismo",
+          "Bloom": "Analisar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "classificationQualification": "Operação e dificuldade intrínseca conferidas. O campo diff legado preservado não é nova calibração IRT; habilidade, dificuldade empírica e resposta do usuário não foram inferidas.",
+        "reconstruction": {
+          "decisiveData": "Temporalidade após claritromicina em usuário de sinvastatina/DRC, lesão muscular com CPK/hipercalemia/LRA; interação farmacocinética, não diagnóstico só de LRA.",
+          "populationAndScenario": "Pessoa com DRC em uso de sinvastatina inicia claritromicina. Dias depois tem mialgia intensa, CPK muito elevada, LRA e hipercalemia. Qual interação explica melhor o quadro?",
+          "hiddenPremisesResolved": true,
+          "realPatient": false
+        },
+        "justification": "Dados de miotoxicidade e interação sinvastatina/claritromicina exigem integrarCYP3A4 e exposição aumentada. A revisão e bula atuais sustentam mecanismo/contraindicação; o consensoAAST sustenta liberação deK e contribuição da mioglobina paraLRA.",
+        "findings": [
+          "Nenhum problema clínico substantivo identificado no pacote exato."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "Indução reduziria exposição; deslocamento proteico sem alteração metabólica e prostaglandinas não explicam a interação especificada. CPK eK derivam de lesão muscular; não são apenas retenção por função renal. Reduzir dose mantendo combinação contraindicada não é recomendação aceitável."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Todos negativos noAFTER. CAPTCHA/metadados ausentes não são prova de referência falsa. Fusões são julgadas fora dos dez critérios."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 20,
+          "band": "Excelente",
+          "deductionsExplained": "Sem dedução substantiva.",
+          "evidenceCeilingOverridesScore": false,
+          "duplicationOverridesScore": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Dez eliminatórios negativos noAFTER",
+          "step2": "Sem argumento plausível de anulação ou duplicata equivalente",
+          "step3": "Score18–20:aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "macrolides2019",
+            "sourceURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6661989/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 260632,
+              "sha256": "4ae6e938399b5086c0014b179ceb5a713b0486d6c87b1295a9eace5ebbefb8f3"
+            },
+            "locator": "PMC6661989/DOI10.2147/TCRM.S214938,abstract/mechanism/conclusion",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "AntigaURLPMC5853001 retornou desafio sem identidade/corpo: suspeita do cardBEFORE não prova eliminatório2. Seus distratores ferro/quelante/vitaminaC são clinicamente desconectados do caso, confirmando eliminatório5BEFORE. AFTER/cardnovo inteiramente sustentados pelas fontes novas."
+          },
+          {
+            "sourceId": "simvastatin2026",
+            "sourceURL": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3f6fad0b-0278-433f-86db-761b673a5803",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 269568,
+              "sha256": "65ac165f9c118c29ad42bba3f8b5c99a44e701c9cf61a597a3326529a78f5260"
+            },
+            "locator": "SPLv4,setid3f6fad0b-0278-433f-86db-761b673a5803;§7.1/Table2,§4/§5.1; publicado02/09/2026",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "AntigaURLPMC5853001 retornou desafio sem identidade/corpo: suspeita do cardBEFORE não prova eliminatório2. Seus distratores ferro/quelante/vitaminaC são clinicamente desconectados do caso, confirmando eliminatório5BEFORE. AFTER/cardnovo inteiramente sustentados pelas fontes novas."
+          },
+          {
+            "sourceId": "aast2022",
+            "sourceURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8804685/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 197652,
+              "sha256": "9299fe4700fa3c88e145593e21a1b464a9a60acd8aa5449af549a6bb3e896a6b"
+            },
+            "locator": "PMC8804685/DOI10.1136/tsaco-2021-000836,abstract/Introduction,ElectrolyteAbnormalities emyoglobin-inducedAKIdiscussion",
+            "status": "VERIFICADA",
+            "independentlyRead": true,
+            "supportQualification": "AntigaURLPMC5853001 retornou desafio sem identidade/corpo: suspeita do cardBEFORE não prova eliminatório2. Seus distratores ferro/quelante/vitaminaC são clinicamente desconectados do caso, confirmando eliminatório5BEFORE. AFTER/cardnovo inteiramente sustentados pelas fontes novas."
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "abu_mellal_statins_macrolides_2019",
+            "exactCardSHA256": "c2c9782749a790b96dcd0ce9db2f1189ef95f28cb773ac91932427d696874fcd"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Pessoa com DRC em uso de sinvastatina inicia claritromicina. Dias depois tem mialgia intensa, CPK muito elevada, LRA e hipercalemia. Qual interação explica melhor o quadro?",
+          "alternatives": {
+            "A": "Indução de CYP3A4, com eliminação acelerada da sinvastatina.",
+            "B": "Deslocamento da ligação proteica, sem alterar metabolização.",
+            "C": "Inibição das prostaglandinas, com vasoconstrição renal aferente.",
+            "D": "Inibição de CYP3A4, com maior exposição e toxicidade muscular."
+          },
+          "correctAnswer": {
+            "index": 3,
+            "letter": "D",
+            "text": "Inibição de CYP3A4, com maior exposição e toxicidade muscular."
+          },
+          "explanation": "Claritromicina inibe fortemente CYP3A4, aumentando exposição à sinvastatina e risco de miotoxicidade/rabdomiólise. A lesão muscular explica CPK e liberação de potássio; mioglobina pode contribuir à LRA. Indução enzimática daria outra direção de exposição; deslocamento proteico sem alterar metabolismo e bloqueio de prostaglandinas não são a interação decisiva aqui. A rotulagem atual contraindica a combinação. Escolher alternativa quando apropriada ou suspender sinvastatina durante o curso do inibidor necessário; apenas reduzir dose mantendo associação não é a recomendação da bula.",
+          "referenceCards": {
+            "abu_mellal_statins_macrolides_2019": {
+              "label": "Abu Mellal et al. — Interação estatinas/macrolídeos",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6661989/",
+              "journal": "Ther Clin Risk Manag. 2019;15:921-936",
+              "ano": 2019,
+              "tipo": "Revisão",
+              "badge": "REVIEW",
+              "badgeColor": "#8b5cf6",
+              "impacto": "Claritromicina aumenta exposição a sinvastatina e risco de miotoxicidade",
+              "icon": "🔬",
+              "resumo": "Revisão de estudos farmacocinéticos, relatos e estudos populacionais: macrolídeos como claritromicina inibem CYP3A4 e podem aumentar a exposição a sinvastatina/lovastatina. DRC e outros fatores elevam suscetibilidade à toxicidade muscular. A rotulagem atual de sinvastatina (DailyMed, SPLv4, 02/09/2026, §7.1) confirma contraindicação com inibidores fortes, incluindo claritromicina, e suspensão da sinvastatina durante o curso se o inibidor for necessário.",
+              "conclusao": "A interação explica o quadro de miotoxicidade neste contexto; não implica rabdomiólise em todo usuário. Escolher alternativa apropriada ou suspender sinvastatina quando necessário; reduzir apenas sua dose não resolve uma associação contraindicada.",
+              "curiosidade": ""
+            }
+          },
+          "readiness": "LIBERADA somente nesta versão exata"
+        },
+        "duplicateReview": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Sem duplicata equivalente entre os candidatos relacionados inspecionados; não é prova de triagem semântica perfeita de741itens.",
+          "relatedDistinctItems": [
+            {
+              "qid": "98cde40e",
+              "distinction": "Claritromicina também interage comtacrolimo, mas os dados decisivos são níveis/vasoconstrição renal, enquanto aqui são sinvastatina/lesão muscular/rabdomiólise."
+            }
+          ],
+          "independentlyChecked": true,
+          "independentConclusion": "98cde40e usa claritromicina comtacrolimo, vale elevado e vasoconstrição renal. A operação integra fármaco diferente e lesão muscular/CPK/rabdomiólise; os dados modificam mecanismo de dano e manejo, não mera troca de doença de fundo.",
+          "candidatePins": [
+            {
+              "qid": "98cde40e",
+              "sourceLine": 226,
+              "questionSHA256": "9a19b5699b2c947212c13a2a9ee1e4cffd66ddb28397be35a4941ce6fd7e5466"
+            }
+          ]
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            63,
+            53,
+            56,
+            105
+          ],
+          "AFTER": {
+            "characters": [
+              60,
+              60,
+              64,
+              62
+            ],
+            "correctIsUniqueLongest": false
+          },
+          "qualification": "Comprimento diagnóstico e plausibilidade conferida individualmente; nenhum padding ou texto novo proposto."
+        },
+        "verificationPending": [],
+        "editorialPending": [],
+        "implementationObservation": "Preservarqid,gabarito,históricos,recursos,FSRS,snapshots. Cards por hash e dependências atômicas. Nenhuma autorização de troca global porID; rebind material exige nova revisão exata."
+      }
+    ],
+    "cardReviews": [
+      {
+        "id": "kohan_eta_igan_safety_2023",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Kohan et al. — Antagonismo ETA e segurança na IgAN",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10658204/",
+          "journal": "Kidney Int Rep. 2023;8(11):2198-2210",
+          "ano": 2023,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Retenção hídrica exige avaliação e manejo durante antagonismo de endotelina",
+          "icon": "🔬",
+          "resumo": "Revisão narrativa focal do antagonismo ETA na IgAN. A retenção de fluido é efeito clínico conhecido; seleção, diuréticos oportunos e monitorização são necessários. A rotulagem FILSPARI vigente (DailyMed, SPLv7, 17/04/2026, §5.7) adicionalmente determina avaliar a causa da retenção clinicamente significativa, necessidade de diurético e ajuste da dose. Essa orientação regulatória não é apresentada como resultado da revisão ou de RCT.",
+          "conclusao": "Edema após sparsentana requer reavaliação de volume, pressão, função renal e potássio. Não prova progressão da IgAN ou lesão tubular; o antagonismo AT1 já incorporado impede simplesmente adicionar IECA/BRA.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "de57c2c3959d757bc5a86918dc4d6fcb862ac851f903ff35a8813691561ece54",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(a)",
+        "usedByThisBatch": [
+          "bcb1293d"
+        ],
+        "currentBankConsumers": [],
+        "currentBankConsumerCount": 0,
+        "sourcesReviewed": [
+          {
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10658204/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 273353,
+              "sha256": "011baabc8a455ea86b1f475deaaefaaeef4ef0e16b2f40a2ad5c6f7b9ae69350"
+            }
+          },
+          {
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d7354af1-f304-f4d9-e053-2995a90ab219",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 211943,
+              "sha256": "e857cee2b3905ed853d70d20fe6a5aecdf61a592439617650cd77e74069a76cc"
+            }
+          },
+          {
+            "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 2272042,
+              "sha256": "6e4458916dd929caec1fab7505e858ab3e079e0acc843589dc7b31a439e6202c"
+            }
+          }
+        ],
+        "qualification": "Objeto inteiro e claims substanciais conferidos nas fontes primárias legíveis. FamíliaREVIEWcorresponde à publicação científica; fatos regulatórios adicionais têm atribuição explícita, sem bula classificada comoREVIEW.",
+        "integrationGate": "Inserir atomicamente com a pergunta aprovada, sem órfãos.",
+        "specialQualification": "Parecer da versão exata; nenhum consumidor adicional aprovado por associação."
+      },
+      {
+        "id": "sustain6",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "Marso SP et al. — SUSTAIN-6 (NEJM 2016)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1603827",
+          "journal": "N Engl J Med 2016;375(19):1834-1844",
+          "ano": 2016,
+          "tipo": "Ensaio Clínico RCT",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Semaglutida ↓26% MACE em DM2 de alto risco CV; ↓36% nefropatia nova/piora; risco aumentado de retinopatia diabética",
+          "icon": "🔬",
+          "resumo": "ECR cardiovascular de não-inferioridade (SUSTAIN-6, n=3.297), em DM2 com alto risco cardiovascular, comparando semaglutida subcutânea (0,5 mg ou 1 mg semanal) vs placebo. Desfecho primário MACE: HR 0,74 (IC 95% 0,58–0,95; P<0,001 para não-inferioridade, P=0,02 para superioridade). Desfecho renal composto (nefropatia nova ou piora): HR 0,64 (IC 95% 0,46–0,88; P=0,005), principalmente por redução da progressão para macroalbuminúria. Evento adverso relevante: progressão de retinopatia diabética, HR 1,76 (IC 95% 1,29–2,40; P=0,0004), possivelmente relacionado à queda rápida da HbA1c.",
+          "conclusao": "SUSTAIN-6 estabeleceu semaglutida como GLP-1 RA com benefício cardiovascular e renal (albuminúrico) em DM2, mas sinalizou risco aumentado de complicações de retinopatia — dado importante na prática clínica nefro-oftalmológica.",
+          "curiosidade": "O achado de retinopatia no SUSTAIN-6 gerou debate sobre causalidade: hipótese predominante é a 'paradoxo da retinopatia' — queda rápida da HbA1c pode deteriorar transitoriamente a retinopatia antes de melhorá-la, fenômeno descrito previamente com insulina. Trials posteriores (SUSTAIN 7, PIONEER) não replicaram o sinal de forma consistente."
+        },
+        "AFTER": {
+          "label": "Marso et al. — SUSTAIN-6 (2016)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/27633186/",
+          "journal": "N Engl J Med. 2016;375:1834-1844",
+          "ano": 2016,
+          "tipo": "Ensaio clínico randomizado",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Sinal de complicações de retinopatia em DM2 de alto risco cardiovascular",
+          "icon": "🔬",
+          "resumo": "RCT cardiovascular de não inferioridade, 3.297 participantes; semaglutida 0,5 ou 1 mg semanal versus placebo. MACE: HR 0,74 (IC 95% 0,58-0,95; P < 0,001 para não inferioridade). Complicações de retinopatia (hemorragia vítrea, cegueira ou necessidade de tratamento ocular): HR 1,76 (IC 95% 1,11-2,78; P = 0,02). Nefropatia nova/piora foi menos frequente; análise dos dados publicada por Vilsbøll et al. relata HR 0,64 (IC 95% 0,46-0,88; P = 0,005).",
+          "conclusao": "Considerar o risco ocular em suscetíveis com retinopatia prévia; a hipótese de piora precoce após rápida melhora glicêmica provém de análise posterior, sem prova de toxicidade retinal direta ou contraindicação universal.",
+          "curiosidade": "A análise posterior de Vilsbøll et al. (Diabetes Obes Metab.2018;20:889-897; DOI10.1111/dom.13172) sugere contribuição da magnitude/rapidez da queda de HbA1c; não comprova causalidade."
+        },
+        "beforeSHA256": "030e0e7aea792e2d3aa6b31295d71185e48b829776745f6a47d5328d3ac28ed8",
+        "afterSHA256": "75831adea8c9f7fb52b63cfc6ed280693597aafabdc44316625334be5498d265",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(a)",
+        "usedByThisBatch": [
+          "1a93346d"
+        ],
+        "currentBankConsumers": [
+          {
+            "qid": "516ec2a6",
+            "sourceLine": 67,
+            "questionSHA256": "9f40f34312f01a97ee07386bcf93d1026c970563780dbe8c171edbb5286fdc15"
+          },
+          {
+            "qid": "1a93346d",
+            "sourceLine": 125,
+            "questionSHA256": "569b54601b76d8dc3dbc1b52767e0008556d26af1c79776e3ec64bf167a34b5a"
+          }
+        ],
+        "currentBankConsumerCount": 2,
+        "sourcesReviewed": [
+          {
+            "url": "https://pubmed.ncbi.nlm.nih.gov/27633186/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 180370,
+              "sha256": "f736e5b2dce4dc42e61e257f760434dd5f4343043f1839a731d6bcf31602772b"
+            }
+          },
+          {
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5888154/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 185055,
+              "sha256": "e85ecb059c274a9161cfef0be87f9dafd25b65ec3f886b47c50ebb5bee260c2f"
+            }
+          },
+          {
+            "url": "https://www.novo-pi.com/ozempic.pdf",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 4681748,
+              "sha256": "37dbbba58786ef4c505b7bae594c938c7be0463478b78f412d0b9e3b5052b166"
+            }
+          }
+        ],
+        "qualification": "Objeto inteiro e claims substanciais conferidos nas fontes primárias legíveis. FamíliaRCTcorresponde à publicação científica; fatos regulatórios adicionais têm atribuição explícita, sem bula classificada comoREVIEW.",
+        "integrationGate": "Reconciliação de versões/consumidores antes de substituição compartilhada.",
+        "specialQualification": "Parecer da versão exata; nenhum consumidor adicional aprovado por associação."
+      },
+      {
+        "id": "dapa",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "DAPA-CKD Trial",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816",
+          "journal": "New England Journal of Medicine",
+          "ano": 2020,
+          "tipo": "Ensaio Clínico Fase III",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "↓39% desfecho renal composto · ↓31% mortalidade · Interrompido precocemente por eficácia · Benefício independente de diabetes",
+          "icon": "💊",
+          "resumo": "ECR multicêntrico, n=4.304, dapagliflozina 10 mg/dia vs placebo em DRC com ou sem DM2; TFGe 25–75 e ACR 200–5000 mg/g. Desfecho primário: queda sustentada ≥50% da TFGe, DRCT ou morte renal/CV. Resultado: 9,2% vs 14,5%; HR 0,61, IC 95% 0,51–0,72, P<0,001; NNT 19. Também reduziu morte por qualquer causa: 4,7% vs 6,8%; HR 0,69, IC 95% 0,53–0,88.",
+          "conclusao": "DAPA-CKD foi o trial pivô que mostrou nefroproteção dos iSGLT2 independente de diabetes em DRC proteinúrica.",
+          "curiosidade": "32,5% da coorte não tinha DM2, dado que ajudou a deslocar os iSGLT2 de fármacos 'antidiabéticos' para fármacos cardiorrenais."
+        },
+        "AFTER": {
+          "label": "DAPA-CKD (2020)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816",
+          "journal": "N Engl J Med. 2020;383:1436-1446",
+          "ano": 2020,
+          "tipo": "Ensaio clínico randomizado",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Benefício no composto primário em DRC albuminúrica com e sem diabetes",
+          "icon": "🔬",
+          "resumo": "DAPA-CKD: 4.304 adultos, taxa de filtração glomerular estimada (TFGe) de 25-75 mL/min/1,73 m² e relação albumina/creatinina de 200-5.000 mg/g; dapagliflozina 10 mg/dia ou placebo. Composto de queda sustentada da TFGe ≥ 50%, doença renal terminal ou morte renal/cardiovascular: HR 0,61(IC 95%0,51-0,72; P < 0,001). Efeito semelhante com e sem diabetes. Interrompido precocemente por eficácia.",
+          "conclusao": "O benefício não exige diabetes; respeitar os critérios estudados e as exclusões do ensaio.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "dfc8b2954057e09c9b20a54be5c485d569a331b23b28e01cd10f4a5a24a776fc",
+        "afterSHA256": "79bcd911dbffe3f4b6c76bd44c5835414e2ef7564b998de592a941aa05aa1c9a",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(a)",
+        "usedByThisBatch": [
+          "ee219394"
+        ],
+        "currentBankConsumers": [
+          {
+            "qid": "8a565e5e",
+            "sourceLine": 9,
+            "questionSHA256": "266daada1001bab7ce7cc9f230ed456b34cbf04418f5c355e1046bd05a9391ff"
+          },
+          {
+            "qid": "a5c73397",
+            "sourceLine": 34,
+            "questionSHA256": "3f57bd1c2cf79260d13f65e7da5a0927ff33835b3cbedeaea4f104b0581e5d39"
+          },
+          {
+            "qid": "6cd39dfb",
+            "sourceLine": 38,
+            "questionSHA256": "5f4f134b1904dec769d22ece2ff3d1894610430e6c4978188bf554167b02643f"
+          },
+          {
+            "qid": "8d943d85",
+            "sourceLine": 71,
+            "questionSHA256": "2c8595a4ef1205d949b3a381fb2d6b93da0b6c2c8df79f693e3dcd14b4846f45"
+          },
+          {
+            "qid": "e2181457",
+            "sourceLine": 105,
+            "questionSHA256": "74e745bfae686be255395dced718a4e1cef5f7f6d980ae18ce9a461c4f66f77b"
+          },
+          {
+            "qid": "a4ffbe05",
+            "sourceLine": 107,
+            "questionSHA256": "df2269c693da9558ef78162ca78954eadba2ea6b801d141950ad1af0977bed10"
+          },
+          {
+            "qid": "61cff858",
+            "sourceLine": 128,
+            "questionSHA256": "9b44d4558f01d935e815c03b66c10154f8cffab0c677b012d831790be4d0b8a7"
+          },
+          {
+            "qid": "0e1a838d",
+            "sourceLine": 133,
+            "questionSHA256": "8a962c5d6ae5262123ebb05d33502eaad9f5657a8fe8ea82a62e765efbdd31d7"
+          },
+          {
+            "qid": "ee219394",
+            "sourceLine": 158,
+            "questionSHA256": "5194756f5cd52db4efd7574b31d0afdc2bb3c76e6d6aeb727b6ad624254b9df5"
+          },
+          {
+            "qid": "da24855e",
+            "sourceLine": 217,
+            "questionSHA256": "d558f07626bc3770e455897929e8730e7296b8142908d865de0996c9c91341e4"
+          },
+          {
+            "qid": "a843e7d0",
+            "sourceLine": 246,
+            "questionSHA256": "e4334568e800ae9797fede7db41cf886938237a5b6cacd424725ee7af844d15d"
+          },
+          {
+            "qid": "dfcc2096",
+            "sourceLine": 307,
+            "questionSHA256": "5b7aef6d699d487a414977d6473dd9c487382652272026e542ba9f0ff9517eaa"
+          },
+          {
+            "qid": "96c0c85d",
+            "sourceLine": 384,
+            "questionSHA256": "e22afc6d59f22a309a1eef7d4b8816484712156f27881d7bee81e00dc4b98d32"
+          },
+          {
+            "qid": "02814d6c",
+            "sourceLine": 606,
+            "questionSHA256": "b0414567ca32c1a6f7149f50744fc1ce6f6600ae0ce6cac46f6138a521ae593d"
+          },
+          {
+            "qid": "18784ef8",
+            "sourceLine": 655,
+            "questionSHA256": "e96a5135a2362257b951c86ee6b90b76e89f941d6b0a231c3c7404985acf55ef"
+          },
+          {
+            "qid": "df2517a7",
+            "sourceLine": 686,
+            "questionSHA256": "cc2f7bb2e94bb403660d74e36cb55ff690868d4869c8fc7402e4275674b80d51"
+          },
+          {
+            "qid": "ca8066c6",
+            "sourceLine": 719,
+            "questionSHA256": "9e5a7f0356bc86903f6de5d2a8e79aeb1e67de58f2f86620680cc82f0d8ef1f7"
+          },
+          {
+            "qid": "03cdd0ce",
+            "sourceLine": 740,
+            "questionSHA256": "9acdce744e6dad54d4c8070dc98015510aecf39314bdfbdeb2ac2d53a290cf25"
+          }
+        ],
+        "currentBankConsumerCount": 18,
+        "sourcesReviewed": [
+          {
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 641985,
+              "sha256": "0be6562a885ca55f9d03d02c610d868a28357aff11ce95a51b693e2237948cdb"
+            }
+          }
+        ],
+        "qualification": "Objeto inteiro e claims substanciais conferidos nas fontes primárias legíveis. FamíliaRCTcorresponde à publicação científica; fatos regulatórios adicionais têm atribuição explícita, sem bula classificada comoREVIEW.",
+        "integrationGate": "Reconciliação de versões/consumidores antes de substituição compartilhada.",
+        "specialQualification": "Mesmo hash exatoC006A2; novoAFTERee219394foi julgado diretamente."
+      },
+      {
+        "id": "bproad",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "BPROAD Trial",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412006",
+          "journal": "N Engl J Med 2025;392(12):1155-1167",
+          "ano": 2025,
+          "tipo": "Ensaio Clínico Fase III",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "12.821 participantes: meta de PAS <120 mmHg reduziu o composto cardiovascular, com segurança renal grave semelhante entre os grupos",
+          "icon": "💊",
+          "resumo": "ECR multicêntrico chinês com 12.821 adultos com diabetes tipo 2, hipertensão e alto risco cardiovascular, comparando PAS alvo <120 mmHg versus <140 mmHg. O composto de AVC não fatal, IAM não fatal, tratamento ou internação por insuficiência cardíaca e morte cardiovascular ocorreu em 393 versus 492 participantes (HR 0,79; IC 95% 0,69–0,90). Eventos adversos graves foram semelhantes; insuficiência renal aguda ocorreu em 4 versus 5 participantes. Hipotensão sintomática e hipercalemia foram mais frequentes no grupo intensivo.",
+          "conclusao": "O BPROAD sustenta benefício cardiovascular do alvo intensivo na população estudada, com monitorização de hipotensão e potássio. Não demonstrou aumento de insuficiência renal aguda.",
+          "curiosidade": "Ao contrário do SPRINT, o BPROAD incluiu apenas pessoas com diabetes tipo 2 e testou diretamente a meta de PAS abaixo de 120 mmHg."
+        },
+        "AFTER": {
+          "label": "BPROAD (2025)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412006",
+          "journal": "N Engl J Med. 2025;392(12):1155-1167",
+          "ano": 2025,
+          "tipo": "Ensaio clínico randomizado",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Alvo intensivo reduziu eventos CV; poucos eventos renais exigem leitura cuidadosa",
+          "icon": "🔬",
+          "resumo": "BPROAD: 12.821 adultos chineses com idade ≥ 50 anos, diabetes tipo 2, pressão sistólica elevada e risco cardiovascular aumentado; metas de pressão sistólica < 120 ou < 140 mmHg. Composto de AVC não fatal, infarto não fatal, tratamento/internação por insuficiência cardíaca ou morte cardiovascular:393 vs 492, HR 0,79(IC 95%0,69-0,90; P < 0,001). Não houve diferença estatística nos eventos graves globais. Insuficiência renal aguda:4 vs 5; hipotensão sintomática e hipercalemia ocorreram mais no intensivo. Ensaio de estratégia, com fase não aplicável.",
+          "conclusao": "Não se detectou diferença nos poucos eventos de LRA; isso não demonstra equivalência renal. Individualizar e monitorar.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "50ea7b34ff3554a0f1ca3206602aceb7198aa092a5127b5a1d02785c1accccae",
+        "afterSHA256": "b8d0607e6a8f21db99613dc2734c7893b1c1ae6be27d1feb5209ed35cda8cd5e",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(a)",
+        "usedByThisBatch": [
+          "b2c513e8"
+        ],
+        "currentBankConsumers": [
+          {
+            "qid": "e56795a6",
+            "sourceLine": 4,
+            "questionSHA256": "b36278a545e74ae730b12005c6aaabaa949c813cde2091d90461367637ef23f8"
+          },
+          {
+            "qid": "a6886e4e",
+            "sourceLine": 30,
+            "questionSHA256": "b74faadbf3c49e622c8b18ee4af9e6cab51a6a038cb1ddfe7822086b41c3293a"
+          },
+          {
+            "qid": "8d14de2e",
+            "sourceLine": 82,
+            "questionSHA256": "1783e0fdd6a8f41c5860b412617f67b854596fc00b61b0b842f025fc42a5feb9"
+          },
+          {
+            "qid": "5f9a6fe1",
+            "sourceLine": 112,
+            "questionSHA256": "d433f435c026abe3676b54b574edd7ad9d07d60f0076d3d83b7d3236f0e9c6b1"
+          },
+          {
+            "qid": "709ad94a",
+            "sourceLine": 119,
+            "questionSHA256": "c6a40b6b0aeb8ee8e504f5a8e76eb5c64854f18534595bd6d7fe6b81bfce8967"
+          },
+          {
+            "qid": "b2c513e8",
+            "sourceLine": 174,
+            "questionSHA256": "38dbd2929183ef088720cbe73889a91c8d9cffd1b854abd9660106d8de4c30ec"
+          },
+          {
+            "qid": "13109735",
+            "sourceLine": 493,
+            "questionSHA256": "df45389376f1dd5264d4b488a03038656f3840c9c9625878da10dcc3b899e2a4"
+          }
+        ],
+        "currentBankConsumerCount": 7,
+        "sourcesReviewed": [
+          {
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2412006",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 683845,
+              "sha256": "6b5146216744147e435ffdc785af6b84e503fcd19ace3d8af2c4f5cf30b90cdb"
+            }
+          },
+          {
+            "url": "https://clinicaltrials.gov/study/NCT03808311",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 13391,
+              "sha256": "47de0a8c5adc923c062aca12f3a37f1eab12a6641702be2ffa8b2dbf2af00d83"
+            }
+          }
+        ],
+        "qualification": "Objeto inteiro e claims substanciais conferidos nas fontes primárias legíveis. FamíliaRCTcorresponde à publicação científica; fatos regulatórios adicionais têm atribuição explícita, sem bula classificada comoREVIEW.",
+        "integrationGate": "Reconciliação de versões/consumidores antes de substituição compartilhada.",
+        "specialQualification": "Mesmo hash exatoC006A2/C007A3. O card é aceito, masb2c513e8continuaFUNDIR/BLOQUEADA."
+      },
+      {
+        "id": "empa_kidney",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "Herrington WG et al. — EMPA-KIDNEY (NEJM 2023)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2204233",
+          "journal": "N Engl J Med 2023;388(2):117-127",
+          "ano": 2023,
+          "tipo": "Ensaio Clínico RCT",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Empagliflozin ↓28% progressão renal ou morte CV em DRC ampla (TFG 20-45, com ou sem DM)",
+          "icon": "🔬",
+          "resumo": "ECR multicêntrico, n=6.609, avaliou empagliflozina 10 mg/dia em DRC ampla: TFGe 20–<45 independente de albuminúria ou TFGe 45–<90 com ACR ≥200 mg/g. Reduziu progressão renal ou morte cardiovascular: 13,1% vs 16,9%; HR 0,72, IC 95% 0,64–0,82, P<0,001. Benefício consistente em diabéticos e não diabéticos e nas faixas de TFGe estudadas.",
+          "conclusao": "EMPA-KIDNEY consolidou os iSGLT2 como nefroproteção central em DRC ampla, inclusive não diabética, com TFGe ≥20 dentro dos critérios do estudo.",
+          "curiosidade": "Foi o grande trial de iSGLT2 com maior heterogeneidade etiológica e incluiu proporção expressiva de pacientes sem diabetes."
+        },
+        "AFTER": {
+          "label": "EMPA-KIDNEY Collaborative Group (2023)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2204233",
+          "journal": "N Engl J Med. 2023;388:117-127",
+          "ano": 2023,
+          "tipo": "Ensaio clínico randomizado",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Benefício no composto em DRC elegível, com e sem diabetes",
+          "icon": "🔬",
+          "resumo": "6.609 participantes, empagliflozina 10 mg/dia ou placebo. TFGe 20 a < 45 mL/min/1,73 m² independentemente da albuminúria, ou 45 a < 90 com ACR ≥ 200 mg/g. Cerca de54% não tinham diabetes. Progressão renal ou morte cardiovascular:13,1% versus 16,9%; HR 0,72 (IC 95% 0,64-0,82; P < 0,001). O efeito foi consistente com e sem diabetes e nas faixas de filtração estudadas.",
+          "conclusao": "Amplia a evidência para DRC não diabética dentro dos critérios; não prova benefício em toda etiologia ou em qualquer filtração/albuminúria. A população não incluiu doença renal policística.",
+          "curiosidade": "A progressão renal incluía falência renal, queda sustentada da TFGe ≥ 40%, TFGe sustentada < 10 mL/min/1,73 m² ou morte renal; o composto primário também incluía morte cardiovascular."
+        },
+        "beforeSHA256": "684dc1cba160af9aad55b1b692a65e3418f140c21a3f71e2706b1a143d77409d",
+        "afterSHA256": "c7286e62d4d00b6f3c449bdc0d0f09f5d83f28a7eb8b76f8374785dd925a2aeb",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(a)",
+        "usedByThisBatch": [
+          "252a2e88"
+        ],
+        "currentBankConsumers": [
+          {
+            "qid": "8a565e5e",
+            "sourceLine": 9,
+            "questionSHA256": "266daada1001bab7ce7cc9f230ed456b34cbf04418f5c355e1046bd05a9391ff"
+          },
+          {
+            "qid": "a5c73397",
+            "sourceLine": 34,
+            "questionSHA256": "3f57bd1c2cf79260d13f65e7da5a0927ff33835b3cbedeaea4f104b0581e5d39"
+          },
+          {
+            "qid": "6cd39dfb",
+            "sourceLine": 38,
+            "questionSHA256": "5f4f134b1904dec769d22ece2ff3d1894610430e6c4978188bf554167b02643f"
+          },
+          {
+            "qid": "8ba89ec6",
+            "sourceLine": 69,
+            "questionSHA256": "242c46fd15a3ca3eb20a862e310bb5cbb349639ef1bee8f51a098b0d3b45790a"
+          },
+          {
+            "qid": "e2181457",
+            "sourceLine": 105,
+            "questionSHA256": "74e745bfae686be255395dced718a4e1cef5f7f6d980ae18ce9a461c4f66f77b"
+          },
+          {
+            "qid": "f781f397",
+            "sourceLine": 116,
+            "questionSHA256": "ccfcbe532ebadf6886320ddf7a4da916a7e3257b4bd2dbcb160d7e72e82c6b6c"
+          },
+          {
+            "qid": "0e1a838d",
+            "sourceLine": 133,
+            "questionSHA256": "8a962c5d6ae5262123ebb05d33502eaad9f5657a8fe8ea82a62e765efbdd31d7"
+          },
+          {
+            "qid": "252a2e88",
+            "sourceLine": 161,
+            "questionSHA256": "6c72a7faf2da446807ff2c864f22d347548907f0a25665859b66df8345b28682"
+          },
+          {
+            "qid": "da24855e",
+            "sourceLine": 217,
+            "questionSHA256": "d558f07626bc3770e455897929e8730e7296b8142908d865de0996c9c91341e4"
+          },
+          {
+            "qid": "dfcc2096",
+            "sourceLine": 307,
+            "questionSHA256": "5b7aef6d699d487a414977d6473dd9c487382652272026e542ba9f0ff9517eaa"
+          },
+          {
+            "qid": "96c0c85d",
+            "sourceLine": 384,
+            "questionSHA256": "e22afc6d59f22a309a1eef7d4b8816484712156f27881d7bee81e00dc4b98d32"
+          },
+          {
+            "qid": "02814d6c",
+            "sourceLine": 606,
+            "questionSHA256": "b0414567ca32c1a6f7149f50744fc1ce6f6600ae0ce6cac46f6138a521ae593d"
+          },
+          {
+            "qid": "18784ef8",
+            "sourceLine": 655,
+            "questionSHA256": "e96a5135a2362257b951c86ee6b90b76e89f941d6b0a231c3c7404985acf55ef"
+          },
+          {
+            "qid": "df2517a7",
+            "sourceLine": 686,
+            "questionSHA256": "cc2f7bb2e94bb403660d74e36cb55ff690868d4869c8fc7402e4275674b80d51"
+          },
+          {
+            "qid": "ca8066c6",
+            "sourceLine": 719,
+            "questionSHA256": "9e5a7f0356bc86903f6de5d2a8e79aeb1e67de58f2f86620680cc82f0d8ef1f7"
+          },
+          {
+            "qid": "03cdd0ce",
+            "sourceLine": 740,
+            "questionSHA256": "9acdce744e6dad54d4c8070dc98015510aecf39314bdfbdeb2ac2d53a290cf25"
+          }
+        ],
+        "currentBankConsumerCount": 16,
+        "sourcesReviewed": [
+          {
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2204233",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 691984,
+              "sha256": "2c5fbafe0fb5680f35b26f04067507efb721a0eb6e5a6842d35b5909279a5538"
+            }
+          },
+          {
+            "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 5966902,
+              "sha256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0"
+            }
+          }
+        ],
+        "qualification": "Objeto inteiro e claims substanciais conferidos nas fontes primárias legíveis. FamíliaRCTcorresponde à publicação científica; fatos regulatórios adicionais têm atribuição explícita, sem bula classificada comoREVIEW.",
+        "integrationGate": "Reconciliação de versões/consumidores antes de substituição compartilhada.",
+        "specialQualification": "Parecer da versão exata; nenhum consumidor adicional aprovado por associação."
+      },
+      {
+        "id": "colbert_renal_artery_stenosis_2021",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Colbert, Abra e Lerma — Estenose de artéria renal",
+          "url": "https://doi.org/10.1016/j.disamonth.2020.101118",
+          "journal": "Disease-a-Month. 2021;67:101118",
+          "ano": 2021,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Sopro abdominal aumenta suspeita; não estabelece anatomia ou repercussão",
+          "icon": "🔬",
+          "resumo": "Revisão clínica focal sobre estenose de artéria renal. Um sopro epigástrico com componentes sistólico e diastólico é achado relevante; sua ausência não exclui doença renovascular. A investigação integra hipertensão resistente ou progressiva, evolução renal e outros sinais clínicos, seguida de avaliação por imagem quando apropriada.",
+          "conclusao": "Interpretar sopro como evidência de suspeita, sem confirmar gravidade ou indicar angioplastia apenas pela ausculta.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "650f96662aa36fe8a916fbfbc872950b0adfeb0426d765f3eafc3f8a701c4fa4",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(a)",
+        "usedByThisBatch": [
+          "6a1d131e"
+        ],
+        "currentBankConsumers": [],
+        "currentBankConsumerCount": 0,
+        "sourcesReviewed": [
+          {
+            "url": "https://doi.org/10.1016/j.disamonth.2020.101118",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 629238,
+              "sha256": "460965af87751bc55979bc3cd19949a92781241bcbd71979ad5c08941fce69e4"
+            }
+          }
+        ],
+        "qualification": "Objeto inteiro e claims substanciais conferidos nas fontes primárias legíveis. FamíliaREVIEWcorresponde à publicação científica; fatos regulatórios adicionais têm atribuição explícita, sem bula classificada comoREVIEW.",
+        "integrationGate": "Inserir atomicamente com a pergunta aprovada, sem órfãos.",
+        "specialQualification": "Parecer da versão exata; nenhum consumidor adicional aprovado por associação."
+      },
+      {
+        "id": "perazella_herlitz_crystal_nephropathies_2021",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Perazella e Herlitz — Nefropatias cristalinas (2021)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8640557/",
+          "journal": "Kidney Int Rep. 2021;6(12):2942-2962",
+          "ano": 2021,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Prevenção da lesão cristalina por aciclovir combina volume, infusão lenta e ajuste renal",
+          "icon": "🔬",
+          "resumo": "Revisão científica de nefropatias cristalinas: para aciclovir, assegurar euvolemia, evitar bolus/infusão rápida e ajustar a dose à função renal. O mínimo de1hora de infusão e ajuste pelo clearance de creatinina estimado são confirmados adicionalmente na rotulagem vigente de aciclovir injetável (DailyMed, SPLv3, 21/07/2025, WARNINGS/PRECAUTIONS); não são atribuídos como texto da revisão.",
+          "conclusao": "Preservar hidratação adequada ao paciente e administração lenta, com ajuste renal. Não substituir essas medidas por probenecida ou manter dose de função renal normal na DRC.",
+          "curiosidade": "A rotulagem confirma que probenecida aumenta exposição e reduz clearance; isso não é profilaxia da precipitação tubular."
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "c00acf91ee21848085db6dc3f2103013d9c81d153efdabf00981b43838de21bd",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(a)",
+        "usedByThisBatch": [
+          "b0ddebc9"
+        ],
+        "currentBankConsumers": [],
+        "currentBankConsumerCount": 0,
+        "sourcesReviewed": [
+          {
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8640557/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 309300,
+              "sha256": "5775b7d9f436401a9723c298fe849d3181c46f19f6419f8894091c7c837003f1"
+            }
+          },
+          {
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=23a7cf9e-f21b-06c2-e063-6394a90aa623",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 86368,
+              "sha256": "ee931b76ffd7dc08e9612550602f58d30b99dbaaf4f2e0f691ba4af41fc7db2e"
+            }
+          }
+        ],
+        "qualification": "Objeto inteiro e claims substanciais conferidos nas fontes primárias legíveis. FamíliaREVIEWcorresponde à publicação científica; fatos regulatórios adicionais têm atribuição explícita, sem bula classificada comoREVIEW.",
+        "integrationGate": "Inserir atomicamente com a pergunta aprovada, sem órfãos.",
+        "specialQualification": "Parecer da versão exata; nenhum consumidor adicional aprovado por associação."
+      },
+      {
+        "id": "abu_mellal_statins_macrolides_2019",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Abu Mellal et al. — Interação estatinas/macrolídeos",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6661989/",
+          "journal": "Ther Clin Risk Manag. 2019;15:921-936",
+          "ano": 2019,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Claritromicina aumenta exposição a sinvastatina e risco de miotoxicidade",
+          "icon": "🔬",
+          "resumo": "Revisão de estudos farmacocinéticos, relatos e estudos populacionais: macrolídeos como claritromicina inibem CYP3A4 e podem aumentar a exposição a sinvastatina/lovastatina. DRC e outros fatores elevam suscetibilidade à toxicidade muscular. A rotulagem atual de sinvastatina (DailyMed, SPLv4, 02/09/2026, §7.1) confirma contraindicação com inibidores fortes, incluindo claritromicina, e suspensão da sinvastatina durante o curso se o inibidor for necessário.",
+          "conclusao": "A interação explica o quadro de miotoxicidade neste contexto; não implica rabdomiólise em todo usuário. Escolher alternativa apropriada ou suspender sinvastatina quando necessário; reduzir apenas sua dose não resolve uma associação contraindicada.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "c2c9782749a790b96dcd0ce9db2f1189ef95f28cb773ac91932427d696874fcd",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4 Regra7(a)",
+        "usedByThisBatch": [
+          "a493996a"
+        ],
+        "currentBankConsumers": [],
+        "currentBankConsumerCount": 0,
+        "sourcesReviewed": [
+          {
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6661989/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 260632,
+              "sha256": "4ae6e938399b5086c0014b179ceb5a713b0486d6c87b1295a9eace5ebbefb8f3"
+            }
+          },
+          {
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3f6fad0b-0278-433f-86db-761b673a5803",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 269568,
+              "sha256": "65ac165f9c118c29ad42bba3f8b5c99a44e701c9cf61a597a3326529a78f5260"
+            }
+          },
+          {
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8804685/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 197652,
+              "sha256": "9299fe4700fa3c88e145593e21a1b464a9a60acd8aa5449af549a6bb3e896a6b"
+            }
+          }
+        ],
+        "qualification": "Objeto inteiro e claims substanciais conferidos nas fontes primárias legíveis. FamíliaREVIEWcorresponde à publicação científica; fatos regulatórios adicionais têm atribuição explícita, sem bula classificada comoREVIEW.",
+        "integrationGate": "Inserir atomicamente com a pergunta aprovada, sem órfãos.",
+        "specialQualification": "Parecer da versão exata; nenhum consumidor adicional aprovado por associação."
+      }
+    ],
+    "localSourcePinsVerified": [
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 211943,
+        "sha256": "e857cee2b3905ed853d70d20fe6a5aecdf61a592439617650cd77e74069a76cc"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 273353,
+        "sha256": "011baabc8a455ea86b1f475deaaefaaeef4ef0e16b2f40a2ad5c6f7b9ae69350"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 2272042,
+        "sha256": "6e4458916dd929caec1fab7505e858ab3e079e0acc843589dc7b31a439e6202c"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 180370,
+        "sha256": "f736e5b2dce4dc42e61e257f760434dd5f4343043f1839a731d6bcf31602772b"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 185055,
+        "sha256": "e85ecb059c274a9161cfef0be87f9dafd25b65ec3f886b47c50ebb5bee260c2f"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 641985,
+        "sha256": "0be6562a885ca55f9d03d02c610d868a28357aff11ce95a51b693e2237948cdb"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 691984,
+        "sha256": "2c5fbafe0fb5680f35b26f04067507efb721a0eb6e5a6842d35b5909279a5538"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 5966902,
+        "sha256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 683845,
+        "sha256": "6b5146216744147e435ffdc785af6b84e503fcd19ace3d8af2c4f5cf30b90cdb"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 13391,
+        "sha256": "47de0a8c5adc923c062aca12f3a37f1eab12a6641702be2ffa8b2dbf2af00d83"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 629238,
+        "sha256": "460965af87751bc55979bc3cd19949a92781241bcbd71979ad5c08941fce69e4"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 309300,
+        "sha256": "5775b7d9f436401a9723c298fe849d3181c46f19f6419f8894091c7c837003f1"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 86368,
+        "sha256": "ee931b76ffd7dc08e9612550602f58d30b99dbaaf4f2e0f691ba4af41fc7db2e"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 260632,
+        "sha256": "4ae6e938399b5086c0014b179ceb5a713b0486d6c87b1295a9eace5ebbefb8f3"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 269568,
+        "sha256": "65ac165f9c118c29ad42bba3f8b5c99a44e701c9cf61a597a3326529a78f5260"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 4681748,
+        "sha256": "37dbbba58786ef4c505b7bae594c938c7be0463478b78f412d0b9e3b5052b166"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 197652,
+        "sha256": "9299fe4700fa3c88e145593e21a1b464a9a60acd8aa5449af549a6bb3e896a6b"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 543,
+        "sha256": "2e36ea286b77c913acd37431bf4ba8703cecd304891a8d745789eac009774879"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 16562,
+        "sha256": "a61013c0e362ef4180a74c848353b9318e79f54608e060a4c9fb4417440fb1e1"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 17952,
+        "sha256": "75de41f866401377abc24cd6d8dc7f23e553f7f77660d09735b3565c891c06d2"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 21379,
+        "sha256": "5a819c9afe67e80d9ddee79e19e39658dabf526684f32cc6447ba95471271a8f"
+      }
+    ],
+    "addendumIndependentQualification": [
+      {
+        "qid": "6a1d131e",
+        "result": "CONFIRMADA",
+        "detail": "Trecho decisivoColbert noPDFíndice1; título/autores/DOI e conteúdo primário integral conferidos. Índice3não é usado como localizador correto."
+      },
+      {
+        "qid": "252a2e88",
+        "result": "CONFIRMADA",
+        "detail": "Recruitment andFollow-up/PDFíndice3 diz54,0%semDM;Table1corrobora. Fonte integral não depende de memória."
+      },
+      {
+        "qid": "a493996a",
+        "scope": "BEFORE",
+        "result": "CONFIRMADA",
+        "detail": "CAPTCHA da antigaURL não comprova eliminatório2BEFORE. Não o herdar; eliminatório5BEFORE confirmado pela desconexão dos distratores ferro/quelante/vitaminaC. NovoAFTER/card tem fontes próprias."
+      }
+    ],
+    "regulatorySourceIdentity": [
+      {
+        "source": "FILSPARI",
+        "setid": "d7354af1-f304-f4d9-e053-2995a90ab219",
+        "SPLversion": 7,
+        "effectiveTime": "20260409",
+        "publishedDate": "2026-04-17"
+      },
+      {
+        "source": "AciclovirIV",
+        "setid": "23a7cf9e-f21b-06c2-e063-6394a90aa623",
+        "SPLversion": 3,
+        "effectiveTime": "20250718",
+        "publishedDate": "2025-07-21"
+      },
+      {
+        "source": "Sinvastatina",
+        "setid": "3f6fad0b-0278-433f-86db-761b673a5803",
+        "SPLversion": 4,
+        "effectiveTime": "20260831",
+        "publishedDate": "2026-09-02"
+      },
+      {
+        "source": "OZEMPIC",
+        "PDFrevised": "05/2026",
+        "locator": "§5.3/PDFíndice1"
+      }
+    ],
+    "independentExternalVerification": [
+      {
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d7354af1-f304-f4d9-e053-2995a90ab219",
+        "status": "OPENED_PRIMARY_BODY",
+        "scope": "§5.7 avaliar causa/diurético/dose;§2.1retirarRASi antes de iniciar. Atualização9abril e publicação17abril2026 são datas distintas."
+      },
+      {
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=23a7cf9e-f21b-06c2-e063-6394a90aa623",
+        "status": "OPENED_PRIMARY_BODY",
+        "scope": "WARNINGS≥1hora, hidratação, clearanceestimado,probenecidaAUC/clearance; sem importar tabelas numéricas."
+      },
+      {
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3f6fad0b-0278-433f-86db-761b673a5803",
+        "status": "OPENED_PRIMARY_BODY",
+        "scope": "§7.1/Table2; CYP3A4/claritromicina, contraindicação e suspensão se curso inibidor necessário."
+      },
+      {
+        "url": "https://www.novo-pi.com/ozempic.pdf",
+        "status": "OPENED_PRIMARY_PDF",
+        "scope": "§5.3:risco maior, pacientes prévios/rápida melhora glicêmica/monitorar; não prova toxicidade direta."
+      },
+      {
+        "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+        "status": "OPENED_PRIMARY_PDF",
+        "scope": "Recomendações3.7.2/3.7.3,1A/2B e elegibilidade."
+      },
+      {
+        "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+        "status": "OPENED_PRIMARY_PDF",
+        "scope": "PP1.4.4.3: sparsentana não associada aRASi."
+      }
+    ],
+    "sourceLimits": [
+      "Íntegra originalSUSTAIN6 editora403/cópia404 não declarada lida; abstract primário completo basta aos números usados. Vilsbøll2018real integral lido suporta hipótese/HRrenal atribuído.",
+      "AAST é consenso clínico, nãoRCT; usado como fonte fisiopatológica adicional, semcardCONSENSOinventado. RevisõesKohan/Perazella/AbuMellal/Colbert foram identificadas e corpo relevante lido.",
+      "Rotulagens são fontes primárias regulatórias, não revisões científicas. Números e recomendações adicionais explicitamente separados nos cards exatos.",
+      "Cópia públicaBINASSSColbert e PDForiginalDAPA emNATAP têm identidade/corpo primário conferidos; não são Library nem fontes secundárias reescritas.",
+      "O estado de acesso da antigaPMC5853001continua desafio; não certifica sua identidade ou conteúdo."
+    ],
+    "counts": {
+      "questionsReviewed": 8,
+      "exactAfterAccepted": 7,
+      "exactAfterBlocked": 1,
+      "evidenceDecisiveBlocked": 0,
+      "duplicateEditorialBlocked": 1,
+      "cardsReviewed": 8,
+      "cardsAccepted": 8,
+      "cardsBlocked": 0,
+      "cardsAdd": 4,
+      "cardsReplace": 4,
+      "implemented": 0
+    },
+    "validation": {
+      "eightBeforeMatches": true,
+      "eightExactAfterHashes": true,
+      "eightFourOptions": true,
+      "stableQidsAndAnswerIndices": true,
+      "allEightCardHashes": true,
+      "all17ManifestSourcePinsMatch": true,
+      "fourAdditionalListingOrFailurePinsMatch": true,
+      "authorValidationReloaded": true,
+      "mandatoryAddendumSHA256Verified": true,
+      "DAPAAndBPROADEqualC006A2": true,
+      "retainedC007A3PeerPinMatch": true,
+      "uniqueLongestCorrectAfter": 0,
+      "publicationDerived": true,
+      "noProductEdits": true,
+      "noGitMutation": true
+    },
+    "limits": [
+      "FUNDIRb2c513e8mantido; preservar histórico/FSRS, não remover fisicamente ou publicar duplicata.709ad94aC007A3tem aprovação própria somente exata.",
+      "Bloom/Miller de comandos de reconhecimento foram qualificados no parecer independente; nenhuma alteração material doAFTER/card, runtime, banco ouIRT.",
+      "Substituições compartilhadas continuam dependentes de versões e revisão completa dos consumidores relevantes.",
+      "ZeroAFTER aplicado, nenhuma consolidação material criada, semCAS/saves/FSRS/integração,commitoupublicação."
+    ]
+  }
+}

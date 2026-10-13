@@ -1,0 +1,3430 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 182377,
+  "sourceReportSHA256": "0fb3e8cdd59376c2ad78c2315b22e6127655b3a719312cbbacbdd9f01fa6efc9",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_EDITORIAL_INDEPENDENT_BATCH_REVIEW_V2",
+    "reviewer": "clinical_independent_resume",
+    "batch": "A006 A2",
+    "verifiedAtOfficialUTC": "2026-10-12 23:39:10 UTC",
+    "reviewMode": "Revisão formal independente dos oitoAFTER, sete cards propostos e umKEEP documental bloqueado. Não herda gate deA1/A2autoral ou questõesA005.",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "publishedTechnicalMerge": "135899077669af6dcf564717833227828ba03fe5",
+    "authorReport": {
+      "path": "docs/editorial/reviews/2026-10-12/group-a-output-006-A2.json",
+      "bytes": 204173,
+      "sha256": "252b83df5c591fdb374557db345af50c25ee662f3b382d5789619f1e44a7337b"
+    },
+    "authorValidation": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 29057,
+      "sha256": "7f8fd9cb97ba5dcf586842da18a11d9fc255d9fe3dd5191f8abeaa0ef34b135e"
+    },
+    "bankObserved": {
+      "path": "data/topics.js",
+      "bytes": 970485,
+      "sha256": "56deb215d2da0ea0c212d1d121483423159652d2bea9e8f9521d160ac48054a5"
+    },
+    "bankLFNormalizedSHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "normativeSources": [
+      {
+        "path": "AGENTS.md",
+        "bytes": 15910,
+        "sha256": "123d3bf57a43e23dd21adb277295bfbaa8a0d46dccb584f12265396abe4dfe83"
+      },
+      {
+        "path": "CLAUDE.md",
+        "bytes": 16274,
+        "sha256": "7653b34456e9da0354acb150bcb3c768021a2487f8a524233c0aa0a1e9889f99"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      }
+    ],
+    "summaryTable": [
+      {
+        "qid": "312ab0c7",
+        "OP": "Aplicar a fórmula do ânion gap plasmático sem potássio e interpretar seus limites laboratoriais.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 20,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "3e0788ac",
+        "OP": "Aplicar o posicionamento sobre duração da DP sem impor troca por prazo isolado.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 20,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "d8fd9889",
+        "OP": "Reconhecer o achado eletrocardiográfico clássico da hipercalcemia.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 18,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "61fc6237",
+        "OP": "Aplicar a fórmula de déficit de água como estimativa inicial, sem transformá-la em volume imediato.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 20,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "ebea50d5",
+        "OP": "Distinguir ação intestinal do SZC de proteção/redistribuição imediatas e reconhecer carga de sódio.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "1b286739",
+        "OP": "Organizar o uso de patiromer e medicamento oral suscetível para reduzir interação gastrointestinal.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "899cadd8",
+        "OP": "Explicar por que perda de sede aumenta risco de hipernatremia na deficiência central de vasopressina.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "a73f61f6",
+        "OP": "Explicar a contribuição da redistribuição transcelular para hipercalemia na acidose mineral.",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "verdict": "revisão maior",
+        "score": 15,
+        "eliminator": false,
+        "publicationAuthorization": "BLOQUEADA",
+        "action": "RASCUNHO BLOQUEADO; NÃO APLICAR"
+      }
+    ],
+    "questions": [
+      {
+        "qid": "312ab0c7",
+        "sourceLine": 140,
+        "BEFORE": {
+          "t": "Distúrbio Ácido-Base: Ânion Gap Plasmático",
+          "qid": "312ab0c7",
+          "q": "Paciente de 55 anos com sepse e acidose metabólica grave (pH 7,15, HCO3 10 mEq/L, Na 140, Cl 98 mEq/L). O médico plantonista calcula o ânion gap para avaliar a etiologia. Qual a fórmula correta para calcular o Ânion Gap plasmático e qual seu valor de referência normal?",
+          "refs": [
+            "kdigo_ckd",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Na - (Cl + HCO3); 8 a 12 mEq/L",
+            "(Na + K) - Cl; 20 a 25 mEq/L",
+            "Na / HCO3; 2 mEq/L",
+            "Cl - HCO3; 5 mEq/L"
+          ],
+          "ans": 0,
+          "exp": "O ânion gap é calculado pela fórmula: Na - (Cl + HCO3), e o valor de referência normal é geralmente entre 8-12 mEq/L. Este cálculo é utilizado para identificar a presença de ânions não medidos no plasma, que podem indicar causas de acidose metabólica com ânion gap elevado, como na sepse. As outras opções apresentam fórmulas incorretas ou valores de referência que não correspondem ao intervalo aceito pela literatura atual.",
+          "diff": "hard",
+          "cat": "acido_base"
+        },
+        "beforeQuestionSHA256": "9f245da728762e43b53f087a7f2f2b92807e8beb8af1ef50d031ae33bdbd4da0",
+        "AFTER": {
+          "t": "Distúrbio Ácido-Base: Ânion Gap Plasmático",
+          "qid": "312ab0c7",
+          "q": "Adulto com sepse tem sódio 140 mEq/L, cloro 98 mEq/L e bicarbonato 10 mEq/L, medidos no mesmo painel sérico. Qual cálculo fornece o ânion gap plasmático sem incluir potássio, antes de qualquer correção por albumina?",
+          "refs": [
+            "berend_normal_gap_2017"
+          ],
+          "opts": [
+            "Na − (Cl + bicarbonato) = 32 mEq/L.",
+            "Na − (Cl − bicarbonato) = 52 mEq/L.",
+            "Na − Cl, sem bicarbonato = 42 mEq/L.",
+            "Cl − (Na + bicarbonato) = −52 mEq/L."
+          ],
+          "ans": 0,
+          "exp": "O ânion gap sem potássio é Na − (Cl + bicarbonato): 140 − (98 + 10) = 32 mEq/L. As demais expressões trocam o sinal do bicarbonato, omitem sua participação ou invertem cátions e ânions. É um valor não corrigido: albumina e intervalo do analisador devem entrar na interpretação posterior. Não existe uma faixa universal única válida para todos os métodos; também não se pode atribuir toda elevação à lactacidemia sem medir lactato e avaliar o contexto.",
+          "diff": "medium",
+          "cat": "acido_base"
+        },
+        "afterQuestionSHA256": "82d2be5c3b6bfc76932a74c4a93581f36acd8231bc49e54ccccad3ef7db2b2d2",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(a)",
+        "OP": "Aplicar a fórmula do ânion gap plasmático sem potássio e interpretar seus limites laboratoriais.",
+        "classification": {
+          "primaryCompetency": "interpretação acidobásica",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo.",
+          "targetProfile": "Aprendiz de nefrologia R1–R2, português.",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem recalibraçãoIRT/dificuldadeempírica/habilidade."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "caseReconstruction": {
+          "populationAndScenario": "Adulto com sepse tem sódio 140 mEq/L, cloro 98 mEq/L e bicarbonato 10 mEq/L, medidos no mesmo painel sérico. Qual cálculo fornece o ânion gap plasmático sem incluir potássio, antes de qualquer correção por albumina?",
+          "decision": "Aplicar a fórmula do ânion gap plasmático sem potássio e interpretar seus limites laboratoriais.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "Delimita cálculo sem potássio e antes de correção por albumina. A fórmula e a aritmética estão corretas; o resultado não é usado para diagnosticar lactacidemia sem dosagem. Cada alternativa corresponde a erro algébrico concreto.",
+        "findings": [
+          "Nenhum problema substantivo identificado."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "A falta de albumina não torna o item incompleto, pois o comando pede valor não corrigido. Somente Na−(Cl+bicarbonato) produz32. As outras fórmulas invertem sinal, omitem bicarbonato ou invertem cátions/ânions. Nenhum segundo gabarito."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Fonte ausente não é prova de referência falsa; nenhuma falta inventada propagada aos demais itens."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 20,
+          "deductionsExplained": "Sem desconto; a operação e seus limites são explícitos.",
+          "evidenceCeilingOverridesScore": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Nenhum eliminatório confirmado no AFTER",
+          "step2": "Sem recurso plausível ou duplicata equivalente",
+          "step3": "18–20: aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "qualification": "Estado editorial; nenhuma integração/publicação física."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "berend2017",
+            "locator": "Publicação original identificada em ResearchGate, pp149–150; DOI10.1159/000479279",
+            "scope": "Fórmula semK; intervalo depende do analisador e albumina. 140−(98+10)=32 é aritmética própria.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "berend_normal_gap_2017",
+            "exactCardSHA256": "99b7733165ea0b5945ee881a51dee84cbe1f8f719917d2a491be950538fac56f"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Adulto com sepse tem sódio 140 mEq/L, cloro 98 mEq/L e bicarbonato 10 mEq/L, medidos no mesmo painel sérico. Qual cálculo fornece o ânion gap plasmático sem incluir potássio, antes de qualquer correção por albumina?",
+          "alternatives": {
+            "A": "Na − (Cl + bicarbonato) = 32 mEq/L.",
+            "B": "Na − (Cl − bicarbonato) = 52 mEq/L.",
+            "C": "Na − Cl, sem bicarbonato = 42 mEq/L.",
+            "D": "Cl − (Na + bicarbonato) = −52 mEq/L."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Na − (Cl + bicarbonato) = 32 mEq/L."
+          },
+          "explanation": "O ânion gap sem potássio é Na − (Cl + bicarbonato): 140 − (98 + 10) = 32 mEq/L. As demais expressões trocam o sinal do bicarbonato, omitem sua participação ou invertem cátions e ânions. É um valor não corrigido: albumina e intervalo do analisador devem entrar na interpretação posterior. Não existe uma faixa universal única válida para todos os métodos; também não se pode atribuir toda elevação à lactacidemia sem medir lactato e avaliar o contexto.",
+          "referenceCards": {
+            "berend_normal_gap_2017": {
+              "label": "Berend — Ânion gap e acidose metabólica (2017)",
+              "url": "https://doi.org/10.1159/000479279",
+              "journal": "Kidney Diseases 2017;3(4):149–159",
+              "ano": 2017,
+              "tipo": "Revisão",
+              "badge": "REVIEW",
+              "badgeColor": "#8b5cf6",
+              "impacto": "Calcular o ânion gap sem confundir intervalo do método ou influência da albumina",
+              "icon": "🔬",
+              "resumo": "Revisão narrativa da avaliação diagnóstica da acidose metabólica com ânion gap normal. Apresenta o cálculo plasmático sem potássio: Na−(Cl+bicarbonato), a variação do intervalo entre analisadores e a influência da albumina. Discute diferenças entre perda extrarrenal de bicarbonato e defeitos tubulares. Necessária para conferir fórmula e limites da interpretação, sem pretender testar eficácia de tratamento.",
+              "conclusao": "Interpretar o valor calculado com o intervalo do laboratório e a albumina; um ânion gap isolado não identifica a causa específica da acidose.",
+              "curiosidade": ""
+            }
+          },
+          "readiness": "LIBERADA somente nesta versão exata"
+        },
+        "duplicateReview": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Aplicar a fórmula do ânion gap plasmático sem potássio e interpretar seus limites laboratoriais.",
+            "Adulto com sepse tem sódio 140 mEq/L, cloro 98 mEq/L e bicarbonato 10 mEq/L, medidos no mesmo painel sérico. Qual cálculo fornece o ânion gap plasmático sem incluir potássio, antes de qualquer correção por albumina?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [
+            "4f6ab588",
+            "d10de245",
+            "7ea727d8"
+          ],
+          "finding": "Os candidatos cobram diagnóstico etiológico, distúrbio misto ou cetoacidose; este testa fórmula isolada e limite de interpretação, sem a mesma decisão clínica.",
+          "independentlyChecked": true,
+          "candidatePins": [
+            {
+              "qid": "4f6ab588",
+              "sourceLine": 523,
+              "questionSHA256": "41ab87d5e97a4cf875f93a5d79d2a5f7ab2f199859a6a87da2af6c471c8a1fe3"
+            },
+            {
+              "qid": "d10de245",
+              "sourceLine": 333,
+              "questionSHA256": "7bc4df5488b79815383aff48cd3d4b3d056d1cd6636f25ac07591f84ca88eb78"
+            },
+            {
+              "qid": "7ea727d8",
+              "sourceLine": 455,
+              "questionSHA256": "1c9142dd18a1f0c53d422dbaab5c730c826983a4068c5b9c03ac4c1c56902755"
+            }
+          ],
+          "independentConclusion": "Candidatos relacionados lidos: decisões/dados úteis distintos. Não é auditoria semântica de todos os pares."
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            30,
+            28,
+            18,
+            18
+          ],
+          "AFTER": [
+            35,
+            35,
+            36,
+            36
+          ],
+          "correctIsUniqueLongest": false,
+          "qualification": "Comprimento diagnóstico; distratores plausíveis julgados sem padding."
+        },
+        "verificationPending": [],
+        "implementationObservation": "Preservarqid/gabarito/respostas/recursos/FSRS/snapshots. Cards porhash exato; mudanças materiais ou rebind requerem novo parecer. Sem aprovação global por associação."
+      },
+      {
+        "qid": "3e0788ac",
+        "sourceLine": 141,
+        "BEFORE": {
+          "t": "Encapsulamento Peritoneal Esclerosante — Risco",
+          "qid": "3e0788ac",
+          "q": "Paciente está clinicamente bem após 7 anos em diálise peritoneal e pergunta se o tempo de técnica, por si só, exige troca eletiva para hemodiálise para prevenir encapsulamento peritoneal esclerosante (EPS). Qual resposta é mais adequada?",
+          "refs": [
+            "eps_dp"
+          ],
+          "opts": [
+            "A duração crescente da DP é o fator de risco mais consistente, mas não existe um limite universal que imponha troca; riscos, função da membrana, eventos inflamatórios e preferências devem orientar decisão compartilhada",
+            "Todo paciente deve trocar para hemodiálise ao completar 5 anos, mesmo com boa ultrafiltração e sem sintomas",
+            "O tempo em DP não se relaciona à EPS; apenas uma peritonite fúngica prévia define risco",
+            "Uma tomografia anual normal elimina o risco futuro e autoriza manter DP indefinidamente"
+          ],
+          "ans": 0,
+          "exp": "O risco de EPS aumenta com a duração da diálise peritoneal, o fator mais consistentemente identificado, e pode ser acrescido por peritonite grave ou prolongada, maior exposição à glicose, perda de ultrafiltração e transporte rápido. Entretanto, a ISPD não define um prazo universal para interromper a DP nem recomenda rastreamento tomográfico de assintomáticos como garantia de segurança. A continuidade ou transição deve ser individualizada e discutida com o paciente, considerando desempenho da técnica, sinais de lesão peritoneal, riscos e objetivos de cuidado.",
+          "diff": "hard",
+          "cat": "dialise"
+        },
+        "beforeQuestionSHA256": "e19c979066716ad690f970d430e1f54825fb73eb9e381c15e95a3770eee80939",
+        "AFTER": {
+          "t": "Encapsulamento Peritoneal Esclerosante — Risco",
+          "qid": "3e0788ac",
+          "q": "Adulto está bem após sete anos de diálise peritoneal (DP), com ultrafiltração e adequação preservadas, e pergunta se o tempo de técnica impõe troca para hemodiálise para prevenir encapsulamento peritoneal esclerosante. Conforme o posicionamento da International Society for Peritoneal Dialysis (ISPD), qual orientação é mais adequada?",
+          "refs": [
+            "eps_dp"
+          ],
+          "opts": [
+            "Individualizar continuidade e troca, considerando riscos e preferências.",
+            "Programar troca eletiva, tomando sete anos como limite preventivo fixo.",
+            "Condicionar a continuidade à ausência de alterações na tomografia anual.",
+            "Basear a permanência apenas na ultrafiltração, sem avaliar outros riscos."
+          ],
+          "ans": 0,
+          "exp": "A decisão deve ser individualizada e compartilhada. O tempo em DP é o fator de risco mais consistente, mas a ISPD não sustenta regra única de duração para impedir a complicação. Avaliar adequação, ultrafiltração, peritonites, alternativas, qualidade de vida e preferências. Tomografia normal não prediz ausência futura do quadro, e doença pode manifestar-se mesmo após interromper DP. Outros fatores associados têm dados menos robustos e não devem ser tratados como preditores isolados validados.",
+          "diff": "medium",
+          "cat": "dialise"
+        },
+        "afterQuestionSHA256": "14713a755c6c3e5e03a23d83ce368b64bb90f7b66634cfc7fe10c8f7c9fcec4a",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(a)",
+        "OP": "Aplicar o posicionamento sobre duração da DP sem impor troca por prazo isolado.",
+        "classification": {
+          "primaryCompetency": "decisão de continuidade da diálise",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo.",
+          "targetProfile": "Aprendiz de nefrologia R1–R2, português.",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem recalibraçãoIRT/dificuldadeempírica/habilidade."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "caseReconstruction": {
+          "populationAndScenario": "Adulto está bem após sete anos de diálise peritoneal (DP), com ultrafiltração e adequação preservadas, e pergunta se o tempo de técnica impõe troca para hemodiálise para prevenir encapsulamento peritoneal esclerosante. Conforme o posicionamento da International Society for Peritoneal Dialysis (ISPD), qual orientação é mais adequada?",
+          "decision": "Aplicar o posicionamento sobre duração da DP sem impor troca por prazo isolado.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "A condição funcional preservada permite discutir continuidade, em vez de impor troca por sete anos. O posicionamento ISPD sustenta decisão individualizada e qualifica fatores imprecisos, CT e manifestação após interrupção.",
+        "findings": [
+          "Nenhum problema substantivo identificado."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "Tempo isolado não define prazo universal; CT normal não prediz ausência futura; ultrafiltração isolada não substitui avaliação global. O enunciado não informa falha da técnica ou sintomas que imponham transferência. A é a única melhor orientação."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Fonte ausente não é prova de referência falsa; nenhuma falta inventada propagada aos demais itens."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 20,
+          "deductionsExplained": "Sem desconto; distratores correspondem a decisões plausíveis que usam indevidamente um único critério.",
+          "evidenceCeilingOverridesScore": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Nenhum eliminatório confirmado no AFTER",
+          "step2": "Sem recurso plausível ou duplicata equivalente",
+          "step3": "18–20: aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "qualification": "Estado editorial; nenhuma integração/publicação física."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "eps2017",
+            "locator": "Publisher SAGE, SummaryStatements5–8/Conclusion; DOI10.3747/pdi.2017.00018",
+            "scope": "Duração consistente; outros preditores imprecisos; CT sem valor preditivo; doença pode surgir após interrupção; não há regra única e decisão compartilhada.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "eps_dp",
+            "exactCardSHA256": "0fc0fa6ebfe0e8c01fdad478930a2e5da9a0d19ebd85c2d82c4df8307fd43d66"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Adulto está bem após sete anos de diálise peritoneal (DP), com ultrafiltração e adequação preservadas, e pergunta se o tempo de técnica impõe troca para hemodiálise para prevenir encapsulamento peritoneal esclerosante. Conforme o posicionamento da International Society for Peritoneal Dialysis (ISPD), qual orientação é mais adequada?",
+          "alternatives": {
+            "A": "Individualizar continuidade e troca, considerando riscos e preferências.",
+            "B": "Programar troca eletiva, tomando sete anos como limite preventivo fixo.",
+            "C": "Condicionar a continuidade à ausência de alterações na tomografia anual.",
+            "D": "Basear a permanência apenas na ultrafiltração, sem avaliar outros riscos."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Individualizar continuidade e troca, considerando riscos e preferências."
+          },
+          "explanation": "A decisão deve ser individualizada e compartilhada. O tempo em DP é o fator de risco mais consistente, mas a ISPD não sustenta regra única de duração para impedir a complicação. Avaliar adequação, ultrafiltração, peritonites, alternativas, qualidade de vida e preferências. Tomografia normal não prediz ausência futura do quadro, e doença pode manifestar-se mesmo após interromper DP. Outros fatores associados têm dados menos robustos e não devem ser tratados como preditores isolados validados.",
+          "referenceCards": {
+            "eps_dp": {
+              "label": "ISPD — Length of Time on PD and EPS Position Paper 2017",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/28676507/",
+              "journal": "Peritoneal Dialysis International 2017;37(4):362-374",
+              "ano": 2017,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Duração da DP eleva o risco, sem prazo universal para interromper a técnica",
+              "icon": "📋",
+              "resumo": "Posicionamento da ISPD de 2017 sobre duração da diálise peritoneal e encapsulamento peritoneal esclerosante (EPS). Duração crescente é o fator de risco mais consistentemente identificado. Outros fatores associados, como peritonites, transporte rápido e perda de ultrafiltração, têm dados imprecisos ou inconsistentes e não são preditores validados isolados. Não há regra única de tempo para interromper DP. Considerar adequação, ultrafiltração, peritonites, alternativas, qualidade de vida e preferências, em decisão compartilhada.",
+              "conclusao": "Não impor troca por tempo isolado nem usar tomografia normal como garantia de ausência futura de EPS. Investigar sintomas e alterações funcionais quando presentes.",
+              "curiosidade": "A EPS pode manifestar-se após interromper a DP ou após transplante; a troca eletiva em uma data fixa não elimina todo o risco."
+            }
+          },
+          "readiness": "LIBERADA somente nesta versão exata"
+        },
+        "duplicateReview": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Aplicar o posicionamento sobre duração da DP sem impor troca por prazo isolado.",
+            "Adulto está bem após sete anos de diálise peritoneal (DP), com ultrafiltração e adequação preservadas, e pergunta se o tempo de técnica impõe troca para hemodiálise para prevenir encapsulamento peritoneal esclerosante. Conforme o posicionamento da International Society for Peritoneal Dialysis (ISPD), qual orientação é mais adequada?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [
+            "fe70507d"
+          ],
+          "finding": "fe70507d cobra diagnóstico de obstrução/EPS sintomática; este cobra continuidade em pessoa bem, decisão e estrutura distintas.",
+          "independentlyChecked": true,
+          "candidatePins": [
+            {
+              "qid": "fe70507d",
+              "sourceLine": 323,
+              "questionSHA256": "b133181debaef66a62dc7c4045a6c8ceea9bc53e7a9aaa059e41bc9e7be1b06c"
+            }
+          ],
+          "independentConclusion": "Candidatos relacionados lidos: decisões/dados úteis distintos. Não é auditoria semântica de todos os pares."
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            218,
+            107,
+            87,
+            87
+          ],
+          "AFTER": [
+            72,
+            71,
+            72,
+            73
+          ],
+          "correctIsUniqueLongest": false,
+          "qualification": "Comprimento diagnóstico; distratores plausíveis julgados sem padding."
+        },
+        "verificationPending": [],
+        "implementationObservation": "Preservarqid/gabarito/respostas/recursos/FSRS/snapshots. Cards porhash exato; mudanças materiais ou rebind requerem novo parecer. Sem aprovação global por associação."
+      },
+      {
+        "qid": "d8fd9889",
+        "sourceLine": 143,
+        "BEFORE": {
+          "t": "Hipercalcemia e Encurtamento de QT",
+          "qid": "d8fd9889",
+          "q": "Paciente de 58 anos com hipercalcemia grave (cálcio total 13,5 mg/dL) em contexto de hiperparatireoidismo primário é submetido a ECG. Qual a alteração eletrocardiográfica clássica da hipercalcemia grave?",
+          "refs": [
+            "brenner_rector"
+          ],
+          "opts": [
+            "Encurtamento do intervalo QT e do segmento ST",
+            "Prolongamento do intervalo QT",
+            "Bloqueio de ramo esquerdo",
+            "Onda U proeminente"
+          ],
+          "ans": 0,
+          "exp": "A hipercalcemia grave está classicamente associada ao encurtamento do intervalo QT no eletrocardiograma. Isso ocorre devido ao efeito do cálcio elevado na aceleração da repolarização ventricular, diminuindo a duração do potencial de ação dos miócitos cardíacos. O prolongamento do intervalo QT é mais comumente associado à hipocalcemia. Aumento da amplitude da onda T e aparecimento de ondas U não são alterações típicas da hipercalcemia. Portanto, a alteração eletrocardiográfica clássica da hipercalcemia é o encurtamento do intervalo QT.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "f3b742099379b36604ec71201631865d48cc280aed28587d9dd97033d5392785",
+        "AFTER": {
+          "t": "Hipercalcemia — Alteração no ECG",
+          "qid": "d8fd9889",
+          "q": "Adulto com hiperparatireoidismo primário e hipercalcemia confirmada é submetido a eletrocardiograma (ECG). Qual achado é classicamente associado à elevação do cálcio?",
+          "refs": [
+            "society_endocrinology_hypercalcemia_2016"
+          ],
+          "opts": [
+            "Encurtamento do intervalo QT.",
+            "Prolongamento do intervalo QT.",
+            "Ondas U proeminentes.",
+            "Ondas T altas e apiculadas."
+          ],
+          "ans": 0,
+          "exp": "O achado clássico é QT encurtado. A orientação da Society for Endocrinology inclui procurar esse sinal e outras alterações de condução na avaliação da hipercalcemia. Os outros padrões não são o marcador clássico pedido. O ECG não mede a calcemia nem exclui hipercalcemia quando QT é normal. Gravidade depende do cálcio considerando albumina, velocidade de instalação e estado clínico; não deve ser fixada por um valor total isolado. Reconhecer esse sinal tem consequência clínica e não transforma a associação em garantia de arritmia.",
+          "diff": "easy",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "168c2556732598bb998c0159041cb1324966b1f5985d49d927286ac10f02869d",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(a)",
+        "OP": "Reconhecer o achado eletrocardiográfico clássico da hipercalcemia.",
+        "classification": {
+          "primaryCompetency": "reconhecimento eletrolítico no ECG",
+          "bloom": "Lembrar",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo.",
+          "targetProfile": "Aprendiz de nefrologia R1–R2, português.",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem recalibraçãoIRT/dificuldadeempírica/habilidade."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "caseReconstruction": {
+          "populationAndScenario": "Adulto com hiperparatireoidismo primário e hipercalcemia confirmada é submetido a eletrocardiograma (ECG). Qual achado é classicamente associado à elevação do cálcio?",
+          "decision": "Reconhecer o achado eletrocardiográfico clássico da hipercalcemia.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "Pergunta associação eletrocardiográfica clássica em hipercalcemia confirmada. O título não antecipa QT. A fonte original sustenta QT curto e avaliação contextual; a proposta não declara calcemia total isolada como gravidade ou prova de arritmia.",
+        "findings": [
+          "Nenhum problema substantivo identificado."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "QT prolongado, ondasU eT apiculadas são padrões eletrolíticos reais, porém não o clássico de hipercalcemia. QT normal não exclui a doença. Não exige inferir diagnóstico ou urgência a partir de ECG isolado."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Fonte ausente não é prova de referência falsa; nenhuma falta inventada propagada aos demais itens."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 1
+          },
+          "total": 18,
+          "deductionsExplained": "Valor pedagógico1/2 por recall básico; ausência de cara deIA1/2 por fecho que explica ao leitor a delimitação do item.",
+          "evidenceCeilingOverridesScore": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Nenhum eliminatório confirmado no AFTER",
+          "step2": "Sem recurso plausível ou duplicata equivalente",
+          "step3": "18–20: aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "qualification": "Estado editorial; nenhuma integração/publicação física."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "hypercalcemia2016",
+            "locator": "Original EndocrineConnections2016;5:G9–G11, DOI10.1530/EC-16-0055; cópia integral pública identificada",
+            "scope": "QT encurtado/condução, ECG e cálcio considerando albumina; sem GRADE formal inventado ou doses usadas.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "society_endocrinology_hypercalcemia_2016",
+            "exactCardSHA256": "3d635a1ca7366297c35a54aa726e9fc4bb31a1923c208a58ef4b0d6d9d5be1db"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Adulto com hiperparatireoidismo primário e hipercalcemia confirmada é submetido a eletrocardiograma (ECG). Qual achado é classicamente associado à elevação do cálcio?",
+          "alternatives": {
+            "A": "Encurtamento do intervalo QT.",
+            "B": "Prolongamento do intervalo QT.",
+            "C": "Ondas U proeminentes.",
+            "D": "Ondas T altas e apiculadas."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Encurtamento do intervalo QT."
+          },
+          "explanation": "O achado clássico é QT encurtado. A orientação da Society for Endocrinology inclui procurar esse sinal e outras alterações de condução na avaliação da hipercalcemia. Os outros padrões não são o marcador clássico pedido. O ECG não mede a calcemia nem exclui hipercalcemia quando QT é normal. Gravidade depende do cálcio considerando albumina, velocidade de instalação e estado clínico; não deve ser fixada por um valor total isolado. Reconhecer esse sinal tem consequência clínica e não transforma a associação em garantia de arritmia.",
+          "referenceCards": {
+            "society_endocrinology_hypercalcemia_2016": {
+              "label": "Society for Endocrinology — Hipercalcemia aguda (2016)",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5314807/",
+              "journal": "Endocrine Connections 2016;5:G9–G11",
+              "ano": 2016,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "QT encurtado e avaliação clínica da hipercalcemia",
+              "icon": "📋",
+              "resumo": "Orientação de Walsh, Gittoes e Selby para avaliação inicial da hipercalcemia em adultos. Inclui QT encurtado entre os achados reconhecidos e recomenda avaliar eletrocardiograma, cálcio considerando albumina, causa e estado clínico. A intensidade do distúrbio e a urgência dependem do conjunto clínico; não apresenta GRADE formal para esse achado.",
+              "conclusao": "QT encurtado é um achado clássico a procurar na hipercalcemia; sua ausência não exclui o diagnóstico nem substitui avaliação de gravidade.",
+              "curiosidade": ""
+            }
+          },
+          "readiness": "LIBERADA somente nesta versão exata"
+        },
+        "duplicateReview": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Reconhecer o achado eletrocardiográfico clássico da hipercalcemia.",
+            "Adulto com hiperparatireoidismo primário e hipercalcemia confirmada é submetido a eletrocardiograma (ECG). Qual achado é classicamente associado à elevação do cálcio?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [],
+          "finding": "Nenhum outro item localizado com as mesmas quatro dimensões.",
+          "independentlyChecked": true,
+          "candidatePins": [],
+          "independentConclusion": "Candidatos relacionados lidos: decisões/dados úteis distintos. Não é auditoria semântica de todos os pares."
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            45,
+            29,
+            25,
+            18
+          ],
+          "AFTER": [
+            29,
+            30,
+            21,
+            27
+          ],
+          "correctIsUniqueLongest": false,
+          "qualification": "Comprimento diagnóstico; distratores plausíveis julgados sem padding."
+        },
+        "verificationPending": [],
+        "implementationObservation": "Preservarqid/gabarito/respostas/recursos/FSRS/snapshots. Cards porhash exato; mudanças materiais ou rebind requerem novo parecer. Sem aprovação global por associação."
+      },
+      {
+        "qid": "61fc6237",
+        "sourceLine": 149,
+        "BEFORE": {
+          "t": "Hipernatremia — Déficit de Água Livre",
+          "qid": "61fc6237",
+          "q": "Paciente adulto com hipernatremia crônica precisa de estimativa inicial do déficit de água livre. Qual fórmula expressa corretamente esse cálculo antes de ajustar por perdas em curso e monitorização seriada?",
+          "refs": [
+            "hypernatremia_yun_2023",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Déficit de água = 140 − sódio sérico atual",
+            "Déficit de água = água corporal total × [(Na sérico/140) − 1]",
+            "Déficit de água = peso × 0,5, independentemente da natremia",
+            "Déficit de água = (Na sérico − 140)/0,6"
+          ],
+          "ans": 1,
+          "exp": "A fórmula usada para estimar o déficit de água livre na hipernatremia é água corporal total × [(Na sérico/140) − 1]. Ela fornece uma estimativa inicial e deve ser ajustada por perdas contínuas, ingestão, função renal, glicemia e resposta da natremia. As demais alternativas são fórmulas truncadas ou matematicamente sem sentido. O alvo prático não é despejar todo o volume de uma vez, mas planejar correção segura com reavaliação seriada.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "7dc3e3dfa915646f7f8c61c4a3e7480d59f734a1437b94c5f3c52745504b50f9",
+        "AFTER": {
+          "t": "Hipernatremia — Déficit de Água Livre",
+          "qid": "61fc6237",
+          "q": "Adulto com hipernatremia crônica tem sódio sérico de 154 mEq/L e água corporal total (ACT) já estimada em 36 L. Pela fórmula ACT × [(Na/140) − 1], qual é o déficit inicial de água para alcançar 140 mEq/L, antes de somar perdas em curso?",
+          "refs": [
+            "hypernatremia_yun_2023"
+          ],
+          "opts": [
+            "1,8 L.",
+            "3,6 L.",
+            "7,2 L.",
+            "36 L."
+          ],
+          "ans": 1,
+          "exp": "O déficit estimado é 3,6 L: 36 × [(154/140) − 1] = 36 × 0,1. A ACT foi fornecida; não é necessário presumir sexo, idade ou coeficiente de peso. Este volume é uma estimativa para o planejamento, não uma ordem de infusão imediata. Avaliar volemia, perdas contínuas, ingestão, função renal e evolução do sódio, ajustando a reposição por monitorização. A fórmula não fornece sozinha velocidade de correção nem volume final obrigatório.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "d5769b3d24c556c815458b2b36c42390198ab5da72fcfa0ba6327dd06e21f4db",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(a)",
+        "OP": "Aplicar a fórmula de déficit de água como estimativa inicial, sem transformá-la em volume imediato.",
+        "classification": {
+          "primaryCompetency": "planejamento inicial de reposição hídrica",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo.",
+          "targetProfile": "Aprendiz de nefrologia R1–R2, português.",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem recalibraçãoIRT/dificuldadeempírica/habilidade."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "caseReconstruction": {
+          "populationAndScenario": "Adulto com hipernatremia crônica tem sódio sérico de 154 mEq/L e água corporal total (ACT) já estimada em 36 L. Pela fórmula ACT × [(Na/140) − 1], qual é o déficit inicial de água para alcançar 140 mEq/L, antes de somar perdas em curso?",
+          "decision": "Aplicar a fórmula de déficit de água como estimativa inicial, sem transformá-la em volume imediato.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "A ACT já estimada elimina presunção de sexo/coefficientes. O cálculo3,6L é correto e a explicação distingue déficit inicial de volume/velocidade de infusão, considerando perdas e monitorização.",
+        "findings": [
+          "Nenhum problema substantivo identificado."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "36×(154/140−1)=3,6L. Nenhum outro valor resulta da fórmula fornecida. O comando exclui perdas em curso; não falta dado necessário ao cálculo. A fórmula não ordena corrigir imediatamente toda hipernatremia crônica."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Fonte ausente não é prova de referência falsa; nenhuma falta inventada propagada aos demais itens."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 20,
+          "deductionsExplained": "Sem desconto; opções numéricas representam erros de proporção e não contêm padding.",
+          "evidenceCeilingOverridesScore": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Nenhum eliminatório confirmado no AFTER",
+          "step2": "Sem recurso plausível ou duplicata equivalente",
+          "step3": "18–20: aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "qualification": "Estado editorial; nenhuma integração/publicação física."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "yun2023",
+            "locator": "Texto integral do publisher kjim.org, Equações5/7 e discussão de adultos; DOI10.3904/kjim.2022.346",
+            "scope": "ACT emL×(Na/140−1); perdas adicionais, fluidos pela volemia e monitorização. Evidência adulta não demonstra universalmente dano por correção rápida.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "hypernatremia_yun_2023",
+            "exactCardSHA256": "59332336fd57c7dec74c696d6d9c0ab8e6218229ca03177ea07b0471f15b82ce"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Adulto com hipernatremia crônica tem sódio sérico de 154 mEq/L e água corporal total (ACT) já estimada em 36 L. Pela fórmula ACT × [(Na/140) − 1], qual é o déficit inicial de água para alcançar 140 mEq/L, antes de somar perdas em curso?",
+          "alternatives": {
+            "A": "1,8 L.",
+            "B": "3,6 L.",
+            "C": "7,2 L.",
+            "D": "36 L."
+          },
+          "correctAnswer": {
+            "index": 1,
+            "letter": "B",
+            "text": "3,6 L."
+          },
+          "explanation": "O déficit estimado é 3,6 L: 36 × [(154/140) − 1] = 36 × 0,1. A ACT foi fornecida; não é necessário presumir sexo, idade ou coeficiente de peso. Este volume é uma estimativa para o planejamento, não uma ordem de infusão imediata. Avaliar volemia, perdas contínuas, ingestão, função renal e evolução do sódio, ajustando a reposição por monitorização. A fórmula não fornece sozinha velocidade de correção nem volume final obrigatório.",
+          "referenceCards": {
+            "hypernatremia_yun_2023": {
+              "label": "Yun G, Baek SH, Kim S — Evaluation and Management of Hypernatremia in Adults (2023)",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/36578134/",
+              "journal": "Korean J Intern Med 2023;38(3):290-302",
+              "ano": 2023,
+              "tipo": "Revisão",
+              "badge": "REVIEW",
+              "badgeColor": "#8b5cf6",
+              "impacto": "Abordagem diagnóstica e terapêutica da hipernatremia em adultos: água livre, volemia, ritmo de correção e diabetes insipidus",
+              "icon": "🔬",
+              "resumo": "Revisão clínica prática sobre hipernatremia em adultos. Estrutura a avaliação em etapas: confirmar sódio corrigido, avaliar volemia, medir volume/osmolaridade urinária, considerar perdas de água livre e diabetes insipidus. No tratamento, separa hipernatremia aguda de crônica/desconhecida, calcula déficit de água livre por ACT × [(Na/140) − 1], repõe perdas contínuas e escolhe fluido conforme volemia: água enteral ou SG 5% quando se busca água livre, solução salina hipotônica quando também há depleção extracelular, e salina isotônica primeiro se houver choque/hipoperfusão.",
+              "conclusao": "Hipernatremia é problema de balanço de água em relação ao sódio; a correção segura exige tratar a causa, estimar déficit e perdas em curso, escolher o fluido pelo estado volêmico e monitorar a natremia seriada.",
+              "curiosidade": "A adaptação cerebral na hipernatremia crônica fundamenta preocupação com edema durante reidratação, sobretudo na experiência pediátrica. A revisão distingue isso dos dados adultos, que não demonstraram universalmente esse dano por correção rápida; não transformar a ressalva em regra causal comprovada para todo adulto."
+            }
+          },
+          "readiness": "LIBERADA somente nesta versão exata"
+        },
+        "duplicateReview": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Aplicar a fórmula de déficit de água como estimativa inicial, sem transformá-la em volume imediato.",
+            "Adulto com hipernatremia crônica tem sódio sérico de 154 mEq/L e água corporal total (ACT) já estimada em 36 L. Pela fórmula ACT × [(Na/140) − 1], qual é o déficit inicial de água para alcançar 140 mEq/L, antes de somar perdas em curso?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [
+            "7987651d"
+          ],
+          "finding": "7987651d cobra escolha de fluido conforme volemia; aqui decisão é cálculo de déficit, com estrutura distinta.",
+          "independentlyChecked": true,
+          "candidatePins": [
+            {
+              "qid": "7987651d",
+              "sourceLine": 186,
+              "questionSHA256": "3e2aac38fb0f88a1164c4f05fedd2691dd601f892f6700ba8271486f079fd68d"
+            }
+          ],
+          "independentConclusion": "Candidatos relacionados lidos: decisões/dados úteis distintos. Não é auditoria semântica de todos os pares."
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            42,
+            61,
+            59,
+            39
+          ],
+          "AFTER": [
+            6,
+            6,
+            6,
+            5
+          ],
+          "correctIsUniqueLongest": false,
+          "qualification": "Comprimento diagnóstico; distratores plausíveis julgados sem padding."
+        },
+        "verificationPending": [],
+        "implementationObservation": "Preservarqid/gabarito/respostas/recursos/FSRS/snapshots. Cards porhash exato; mudanças materiais ou rebind requerem novo parecer. Sem aprovação global por associação."
+      },
+      {
+        "qid": "ebea50d5",
+        "sourceLine": 152,
+        "BEFORE": {
+          "t": "Hipercalemia: Ciclosilicato de Zircônio Sódico",
+          "qid": "ebea50d5",
+          "q": "Qual característica diferencia o ciclosilicato de zircônio sódico das resinas tradicionais no manejo da hipercalemia?",
+          "refs": [
+            "ukka_hyperkalemia_2023",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Reduz fósforo sérico de modo clinicamente relevante como efeito principal",
+            "Tem início de ação mais rápido que resinas tradicionais, mas não substitui cálcio/insulina na emergência com ECG tóxico",
+            "É isento de carga de sódio e nunca causa edema ou sobrecarga volêmica",
+            "Pode ser administrado por via intravenosa em hipercalemia com QRS alargado"
+          ],
+          "ans": 1,
+          "exp": "O ciclosilicato de zircônio sódico tem ação intestinal seletiva para potássio e início de redução do K mais rápido do que resinas tradicionais, mas continua sendo terapia de remoção/controle, não substituto das medidas imediatas de proteção cardíaca e redistribuição na hipercalemia com ECG tóxico. Por conter sódio, exige atenção a edema/sobrecarga em pacientes suscetíveis. Não é quelante de fósforo nem formulação intravenosa.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "1e5f9eab73c2929f3f5e321ff4c8db28a8004e9f951327d710b2f330a2e34351",
+        "AFTER": {
+          "t": "Hipercalemia: Ciclosilicato de Zircônio Sódico",
+          "qid": "ebea50d5",
+          "q": "Sobre o ciclosilicato de zircônio sódico (SZC) no tratamento da hipercalemia, qual característica descreve sua ação e sua limitação na emergência com toxicidade elétrica?",
+          "refs": [
+            "ukka_hyperkalemia_2023"
+          ],
+          "opts": [
+            "Redistribui K+ para as células e elimina a necessidade de insulina-glicose.",
+            "Remove K+ pelo intestino e complementa medidas imediatas de emergência.",
+            "Estabiliza o miocárdio e dispensa avaliação seriada do eletrocardiograma.",
+            "Remove K+ pelo intestino sem trazer preocupação com edema ou sódio."
+          ],
+          "ans": 1,
+          "exp": "SZC promove remoção intestinal de potássio e complementa a abordagem da emergência. A UK Kidney Association (UKKA), na versão de julho de 2026, descreve início de efeito mais rápido que o das resinas tradicionais, mas isso não torna o fármaco substituto da proteção cardíaca, redistribuição ou diálise quando indicadas. Não é agente de redistribuição nem cálcio intravenoso. A troca envolvendo sódio exige atenção a edema e sobrecarga em pessoas suscetíveis; não é correto presumir ausência desse risco. Sua via é oral, e o plano deve acompanhar resposta e gravidade.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "11f6c316b47e9c11911346b3cc66113fef0d9ff907a9247d4482d0876f600cc0",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(a)",
+        "OP": "Distinguir ação intestinal do SZC de proteção/redistribuição imediatas e reconhecer carga de sódio.",
+        "classification": {
+          "primaryCompetency": "farmacologia dos ligantes de potássio",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo.",
+          "targetProfile": "Aprendiz de nefrologia R1–R2, português.",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem recalibraçãoIRT/dificuldadeempírica/habilidade."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "caseReconstruction": {
+          "populationAndScenario": "Sobre o ciclosilicato de zircônio sódico (SZC) no tratamento da hipercalemia, qual característica descreve sua ação e sua limitação na emergência com toxicidade elétrica?",
+          "decision": "Distinguir ação intestinal do SZC de proteção/redistribuição imediatas e reconhecer carga de sódio.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "Separa remoção intestinal de redistribuição e proteção elétrica, mantendo risco de sódio/edema. O início relativo mais rápido não é apresentado como substituto de medidas imediatas ou diálise indicada.",
+        "findings": [
+          "Nenhum problema substantivo identificado."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "SZC não redistribuiK nem atua como cálcio; a carga de sódio impede afirmar ausência de preocupação com edema. O enunciado fornece toxicidade elétrica, e a respostaB complementa medidas imediatas. Nenhum segundo gabarito."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Fonte ausente não é prova de referência falsa; nenhuma falta inventada propagada aos demais itens."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "deductionsExplained": "Ausência de cara deIA1/2 pelo fecho sobre via oral/plano, correto mas além da distinção central.",
+          "evidenceCeilingOverridesScore": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Nenhum eliminatório confirmado no AFTER",
+          "step2": "Sem recurso plausível ou duplicata equivalente",
+          "step3": "18–20: aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "qualification": "Estado editorial; nenhuma integração/publicação física."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "ukka2026",
+            "locator": "PDF180p, pp52/54/111 e apêndices; nova leitura dos ligantes neste lote",
+            "scope": "SZC oral/trocaNa porK/edema; início em1h versus resinas tradicionais>4h; não substitui manejo de emergência. Card exato igualA005, sem autoaprovar questões por associação.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "ukka_hyperkalemia_2023",
+            "exactCardSHA256": "7a3cbcf898e3d56a2a8123cfd9c56a09aee43e35133dc346d7800ccdf8779bc8"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Sobre o ciclosilicato de zircônio sódico (SZC) no tratamento da hipercalemia, qual característica descreve sua ação e sua limitação na emergência com toxicidade elétrica?",
+          "alternatives": {
+            "A": "Redistribui K+ para as células e elimina a necessidade de insulina-glicose.",
+            "B": "Remove K+ pelo intestino e complementa medidas imediatas de emergência.",
+            "C": "Estabiliza o miocárdio e dispensa avaliação seriada do eletrocardiograma.",
+            "D": "Remove K+ pelo intestino sem trazer preocupação com edema ou sódio."
+          },
+          "correctAnswer": {
+            "index": 1,
+            "letter": "B",
+            "text": "Remove K+ pelo intestino e complementa medidas imediatas de emergência."
+          },
+          "explanation": "SZC promove remoção intestinal de potássio e complementa a abordagem da emergência. A UK Kidney Association (UKKA), na versão de julho de 2026, descreve início de efeito mais rápido que o das resinas tradicionais, mas isso não torna o fármaco substituto da proteção cardíaca, redistribuição ou diálise quando indicadas. Não é agente de redistribuição nem cálcio intravenoso. A troca envolvendo sódio exige atenção a edema e sobrecarga em pessoas suscetíveis; não é correto presumir ausência desse risco. Sua via é oral, e o plano deve acompanhar resposta e gravidade.",
+          "referenceCards": {
+            "ukka_hyperkalemia_2023": {
+              "label": "UK Kidney Association — Hipercalemia em adultos (julho/2026)",
+              "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+              "journal": "UK Kidney Association",
+              "ano": 2026,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Proteção cardíaca transitória, insulina-glicose e monitorização na hipercalemia",
+              "icon": "📋",
+              "resumo": "Diretriz da UK Kidney Association (UKKA), atualizada em julho de 2026, para hipercalemia em adultos. Sugere cálcio intravenoso diante de alterações no eletrocardiograma (16.2a, 2C); o efeito elétrico é rápido e transitório, aproximadamente 30–60 minutos, sem reduzir o potássio. Recomenda infusão intravenosa de insulina solúvel 10 unidades com glicose 25 g na hipercalemia grave (16.3.1, 1B), com glicemia seriada desde o basal até 6 horas (17.2, 1C), prolongada em pacientes de alto risco. Cálcio, deslocamento e remoção de potássio têm funções distintas. O grau do cálcio foi reduzido de 1C para 2C nesta atualização; a evidência de benefício em desfechos clínicos permanece limitada.",
+              "conclusao": "Tratar toxicidade elétrica e potássio em paralelo; cálcio não corrige a hipercalemia e insulina não elimina K+ do organismo. Acompanhar eletrocardiograma, potássio e glicemia conforme o contexto.",
+              "curiosidade": ""
+            }
+          },
+          "readiness": "LIBERADA somente nesta versão exata"
+        },
+        "duplicateReview": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Distinguir ação intestinal do SZC de proteção/redistribuição imediatas e reconhecer carga de sódio.",
+            "Sobre o ciclosilicato de zircônio sódico (SZC) no tratamento da hipercalemia, qual característica descreve sua ação e sua limitação na emergência com toxicidade elétrica?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [
+            "e0853fac",
+            "6ded255a"
+          ],
+          "finding": "e0853fac cobra manutenção de nefroproteção/controle crônico;6ded255a interpreta desfecho de ensaio emHD. Este cobra mecanismo e funções na emergência.",
+          "independentlyChecked": true,
+          "candidatePins": [
+            {
+              "qid": "e0853fac",
+              "sourceLine": 15,
+              "questionSHA256": "f22d59458105c6fb52d9b4034719e98fe313c6d2b089abdb91afa366543c1448"
+            },
+            {
+              "qid": "6ded255a",
+              "sourceLine": 467,
+              "questionSHA256": "c3f6fdd3bcc31120911faef850429a8a853d969a40eed18868d6d50fce362958"
+            }
+          ],
+          "independentConclusion": "Candidatos relacionados lidos: decisões/dados úteis distintos. Não é auditoria semântica de todos os pares."
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            73,
+            119,
+            69,
+            74
+          ],
+          "AFTER": [
+            75,
+            71,
+            73,
+            67
+          ],
+          "correctIsUniqueLongest": false,
+          "qualification": "Comprimento diagnóstico; distratores plausíveis julgados sem padding."
+        },
+        "verificationPending": [],
+        "implementationObservation": "Preservarqid/gabarito/respostas/recursos/FSRS/snapshots. Cards porhash exato; mudanças materiais ou rebind requerem novo parecer. Sem aprovação global por associação."
+      },
+      {
+        "qid": "1b286739",
+        "sourceLine": 156,
+        "BEFORE": {
+          "t": "Hipercalemia: Patiromer e Interação Medicamentosa",
+          "qid": "1b286739",
+          "q": "Ao prescrever patiromer para hipercalemia crônica, qual cuidado reduz o risco de interação com outros medicamentos orais?",
+          "refs": [
+            "ukka_hyperkalemia_2023",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Administrá-lo sempre em jejum absoluto por 12 horas",
+            "Assumir que não há interação gastrointestinal relevante",
+            "Administrá-lo junto com estatinas para aumentar a absorção intestinal",
+            "Separar sua administração de outros medicamentos orais por intervalo adequado"
+          ],
+          "ans": 3,
+          "exp": "Patiromer é um polímero ligante de potássio que pode ligar outros fármacos no trato gastrointestinal e reduzir sua absorção; por isso deve ser administrado separado de outros medicamentos orais por intervalo adequado conforme bula/protocolo local. O ponto pedagógico é reconhecer a interação e organizar a tomada, não decorar um ritual de jejum. Dizer que não há interação ou que deve ser associado a estatinas cria uma conduta sem base.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "5ecffbba12116b4e8cd2bd7a9cbfd76ec70ae824d8215b40fb5036d4abd1fc58",
+        "AFTER": {
+          "t": "Hipercalemia: Patiromer e Interação Medicamentosa",
+          "qid": "1b286739",
+          "q": "Adulto usa levotiroxina oral e vai iniciar patiromer para hipercalemia crônica. Qual intervalo entre os dois medicamentos segue a orientação de administração para reduzir a interação gastrointestinal?",
+          "refs": [
+            "lesko_patiromer_interactions_2017",
+            "ukka_hyperkalemia_2023"
+          ],
+          "opts": [
+            "Administrar os dois medicamentos no mesmo horário.",
+            "Manter intervalo de pelo menos uma hora entre eles.",
+            "Manter intervalo de pelo menos duas horas entre eles.",
+            "Manter intervalo de pelo menos três horas entre eles."
+          ],
+          "ans": 3,
+          "exp": "Levotiroxina e patiromer devem ser separados por pelo menos três horas, antes ou depois, conforme a rotulagem disponível no site oficial do fabricante e a orientação da UKKA. Patiromer pode reduzir a absorção de medicamentos suscetíveis ao ligá-los no trato gastrointestinal. Estudos cruzados de farmacocinética sustentam a separação de três horas para levotiroxina, metformina e ciprofloxacino; os demais intervalos não seguem a orientação para essa combinação. A rotulagem admite exceções para medicamentos sem interação clinicamente importante demonstrada. O caso escolhe levotiroxina justamente para evitar generalizar a mesma exigência a todo fármaco oral.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "52014e2381354976c5201bb65d0e3ad0c04925b5d5bbe5165326004604dcb36a",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(a)",
+        "OP": "Organizar o uso de patiromer e medicamento oral suscetível para reduzir interação gastrointestinal.",
+        "classification": {
+          "primaryCompetency": "segurança de administração farmacológica",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo.",
+          "targetProfile": "Aprendiz de nefrologia R1–R2, português.",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem recalibraçãoIRT/dificuldadeempírica/habilidade."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "caseReconstruction": {
+          "populationAndScenario": "Adulto usa levotiroxina oral e vai iniciar patiromer para hipercalemia crônica. Qual intervalo entre os dois medicamentos segue a orientação de administração para reduzir a interação gastrointestinal?",
+          "decision": "Organizar o uso de patiromer e medicamento oral suscetível para reduzir interação gastrointestinal.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "Escolhe levotiroxina, um medicamento suscetível com interação demonstrada, evitando generalização a todos os fármacos. O intervalo mínimo de três horas tem suporte farmacocinético e da rotulagem oficial disponível.",
+        "findings": [
+          "Nenhum problema substantivo identificado."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "Coadministração/uma/duas horas não seguem a orientação para levotiroxina. O comando pede o intervalo mínimo recomendado, portanto intervalos maiores também aceitáveis não criam outro gabarito. As exceções da bula são reconhecidas, sem invalidar essa combinação."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Fonte ausente não é prova de referência falsa; nenhuma falta inventada propagada aos demais itens."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "deductionsExplained": "Ausência de cara deIA1/2 pelo fecho que explica a escolha editorial da levotiroxina. Não há padding nas alternativas de intervalo.",
+          "evidenceCeilingOverridesScore": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Nenhum eliminatório confirmado no AFTER",
+          "step2": "Sem recurso plausível ou duplicata equivalente",
+          "step3": "18–20: aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "qualification": "Estado editorial; nenhuma integração/publicação física."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "lesko2017",
+            "locator": "Publisher SAGE,Methods/Results, DOI10.1177/1074248417691135",
+            "scope": "12 estudos randomizados abertos cruzados,370/365/351;90%CI AUC/Cmax dentro80–125% com3h; levotiroxina/metformina/ciprofloxacino suscetíveis.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          },
+          {
+            "sourceId": "veltassaPI2023",
+            "locator": "PDFoficial14p,revisão10/2023,§2.1/Tabela2/§12.3",
+            "scope": "Outros orais≥3h antes/depois, exceto sem interação importante demonstrada; levotiroxina listada.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "lesko_patiromer_interactions_2017",
+            "exactCardSHA256": "5c33a7da47630a5bfde4ec0916e6942ce011001c5381a8581cc9df571a275720"
+          },
+          {
+            "id": "ukka_hyperkalemia_2023",
+            "exactCardSHA256": "7a3cbcf898e3d56a2a8123cfd9c56a09aee43e35133dc346d7800ccdf8779bc8"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Adulto usa levotiroxina oral e vai iniciar patiromer para hipercalemia crônica. Qual intervalo entre os dois medicamentos segue a orientação de administração para reduzir a interação gastrointestinal?",
+          "alternatives": {
+            "A": "Administrar os dois medicamentos no mesmo horário.",
+            "B": "Manter intervalo de pelo menos uma hora entre eles.",
+            "C": "Manter intervalo de pelo menos duas horas entre eles.",
+            "D": "Manter intervalo de pelo menos três horas entre eles."
+          },
+          "correctAnswer": {
+            "index": 3,
+            "letter": "D",
+            "text": "Manter intervalo de pelo menos três horas entre eles."
+          },
+          "explanation": "Levotiroxina e patiromer devem ser separados por pelo menos três horas, antes ou depois, conforme a rotulagem disponível no site oficial do fabricante e a orientação da UKKA. Patiromer pode reduzir a absorção de medicamentos suscetíveis ao ligá-los no trato gastrointestinal. Estudos cruzados de farmacocinética sustentam a separação de três horas para levotiroxina, metformina e ciprofloxacino; os demais intervalos não seguem a orientação para essa combinação. A rotulagem admite exceções para medicamentos sem interação clinicamente importante demonstrada. O caso escolhe levotiroxina justamente para evitar generalizar a mesma exigência a todo fármaco oral.",
+          "referenceCards": {
+            "lesko_patiromer_interactions_2017": {
+              "label": "Lesko et al. — Patiromer e interações orais (2017)",
+              "url": "https://journals.sagepub.com/doi/10.1177/1074248417691135",
+              "journal": "Journal of Cardiovascular Pharmacology and Therapeutics 2017;22(5):434–446",
+              "ano": 2017,
+              "tipo": "Ensaio clínico randomizado",
+              "badge": "RCT",
+              "badgeColor": "#10b981",
+              "impacto": "Separação de três horas evitou interação farmacocinética dos fármacos testados",
+              "icon": "🔬",
+              "resumo": "Doze estudos randomizados abertos cruzados em voluntários saudáveis: 370 inscritos, 365 expostos e 351 completaram. Compararam fármaco isolado, coadministração com patiromer e separação de três horas. O objetivo foi exposição farmacocinética, com limites de equivalência de 80–125%. A separação manteve os intervalos de confiança de 90% de AUC e concentração máxima dentro desses limites para os doze fármacos. Levotiroxina, metformina e ciprofloxacino requereram separação para evitar interação. Não é estudo de desfechos clínicos nem de pacientes com DRC.",
+              "conclusao": "Separar os medicamentos suscetíveis conforme a rotulagem atual; não generalizar esses resultados a todos os fármacos orais nem inferir eficácia clínica por equivalência farmacocinética.",
+              "curiosidade": ""
+            },
+            "ukka_hyperkalemia_2023": {
+              "label": "UK Kidney Association — Hipercalemia em adultos (julho/2026)",
+              "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+              "journal": "UK Kidney Association",
+              "ano": 2026,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Proteção cardíaca transitória, insulina-glicose e monitorização na hipercalemia",
+              "icon": "📋",
+              "resumo": "Diretriz da UK Kidney Association (UKKA), atualizada em julho de 2026, para hipercalemia em adultos. Sugere cálcio intravenoso diante de alterações no eletrocardiograma (16.2a, 2C); o efeito elétrico é rápido e transitório, aproximadamente 30–60 minutos, sem reduzir o potássio. Recomenda infusão intravenosa de insulina solúvel 10 unidades com glicose 25 g na hipercalemia grave (16.3.1, 1B), com glicemia seriada desde o basal até 6 horas (17.2, 1C), prolongada em pacientes de alto risco. Cálcio, deslocamento e remoção de potássio têm funções distintas. O grau do cálcio foi reduzido de 1C para 2C nesta atualização; a evidência de benefício em desfechos clínicos permanece limitada.",
+              "conclusao": "Tratar toxicidade elétrica e potássio em paralelo; cálcio não corrige a hipercalemia e insulina não elimina K+ do organismo. Acompanhar eletrocardiograma, potássio e glicemia conforme o contexto.",
+              "curiosidade": ""
+            }
+          },
+          "readiness": "LIBERADA somente nesta versão exata"
+        },
+        "duplicateReview": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Organizar o uso de patiromer e medicamento oral suscetível para reduzir interação gastrointestinal.",
+            "Adulto usa levotiroxina oral e vai iniciar patiromer para hipercalemia crônica. Qual intervalo entre os dois medicamentos segue a orientação de administração para reduzir a interação gastrointestinal?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [
+            "e0853fac"
+          ],
+          "finding": "Controle crônico deK para manterSRAA e organização de interação com medicamento oral são decisões diferentes.",
+          "independentlyChecked": true,
+          "candidatePins": [
+            {
+              "qid": "e0853fac",
+              "sourceLine": 15,
+              "questionSHA256": "f22d59458105c6fb52d9b4034719e98fe313c6d2b089abdb91afa366543c1448"
+            }
+          ],
+          "independentConclusion": "Candidatos relacionados lidos: decisões/dados úteis distintos. Não é auditoria semântica de todos os pares."
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            51,
+            55,
+            69,
+            77
+          ],
+          "AFTER": [
+            50,
+            51,
+            53,
+            53
+          ],
+          "correctIsUniqueLongest": false,
+          "qualification": "Comprimento diagnóstico; distratores plausíveis julgados sem padding."
+        },
+        "verificationPending": [],
+        "implementationObservation": "Preservarqid/gabarito/respostas/recursos/FSRS/snapshots. Cards porhash exato; mudanças materiais ou rebind requerem novo parecer. Sem aprovação global por associação."
+      },
+      {
+        "qid": "899cadd8",
+        "sourceLine": 159,
+        "BEFORE": {
+          "t": "Diabetes Insipidus Adípsico",
+          "qid": "899cadd8",
+          "q": "Paciente após cirurgia de craniofaringioma mantém Na 158 mEq/L apesar de água disponível à beira-leito. Tem poliúria hipotônica, resposta à desmopressina e não relata sede. Qual característica define o maior risco do diabetes insipidus adípsico?",
+          "refs": [
+            "central_di_tomkins_2022",
+            "hypernatremia_yun_2023",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Deficiência central de vasopressina associada à perda da percepção de sede",
+            "Secreção excessiva de vasopressina associada à polidipsia compulsiva",
+            "Perda urinária primária de sódio sem alteração do eixo sede–vasopressina",
+            "Resistência renal completa à vasopressina com sede preservada"
+          ],
+          "ans": 0,
+          "exp": "O diabetes insipidus adípsico combina deficiência central de vasopressina com perda ou redução importante da sede, geralmente por lesão hipotalâmica. Essa combinação é perigosa porque o paciente perde água livre pela urina e não compensa bebendo, mesmo com água disponível, favorecendo hipernatremia grave. Secreção excessiva de vasopressina sugeriria SIADH; perda urinária primária de sódio não explica poliúria hipotônica; resistência renal com sede preservada descreve diabetes insipidus nefrogênico, não a forma adípsica.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "8766957e3b871798620ae7a9b842f785ae6f07e1271e4265c0a4c3e12c5e241d",
+        "AFTER": {
+          "t": "Hipernatremia com Água Disponível",
+          "qid": "899cadd8",
+          "q": "Após cirurgia de craniofaringioma, um adulto apresenta poliúria hipotônica, resposta à desmopressina e sódio 158 mEq/L. A água está disponível, mas ele não percebe sede. Qual alteração explica por que disponibilizar água, por si só, não previne a hipernatremia?",
+          "refs": [
+            "central_di_tomkins_2022"
+          ],
+          "opts": [
+            "Deficiência central de vasopressina associada à perda de sede.",
+            "Resistência renal à vasopressina, apesar de sede preservada.",
+            "Diurese osmótica por glicose, apesar de secreção de vasopressina normal.",
+            "Limitação de acesso à água, apesar de sede e resposta renal preservadas."
+          ],
+          "ans": 0,
+          "exp": "A combinação de deficiência central de vasopressina e perda de sede caracteriza a forma adípsica. A resposta à desmopressina favorece deficiência central, enquanto a ausência de sede impede compensar espontaneamente a perda urinária de água, mesmo quando há água acessível. Resistência renal, diurese osmótica e falta de acesso não integram os dados informados. Reposição e uso de desmopressina precisam de planejamento individual, com ingestão hídrica programada e monitorização de sódio; não basta orientar beber quando houver sede. O item não prescreve dose ou volume fixo.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "efa339273d2b25a65d4f99c02518f495929ca028a742d3c3764e3a1e97f7c7cb",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(a)",
+        "OP": "Explicar por que perda de sede aumenta risco de hipernatremia na deficiência central de vasopressina.",
+        "classification": {
+          "primaryCompetency": "interpretação de poliúria e sede",
+          "bloom": "Analisar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo.",
+          "targetProfile": "Aprendiz de nefrologia R1–R2, português.",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem recalibraçãoIRT/dificuldadeempírica/habilidade."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "caseReconstruction": {
+          "populationAndScenario": "Após cirurgia de craniofaringioma, um adulto apresenta poliúria hipotônica, resposta à desmopressina e sódio 158 mEq/L. A água está disponível, mas ele não percebe sede. Qual alteração explica por que disponibilizar água, por si só, não previne a hipernatremia?",
+          "decision": "Explicar por que perda de sede aumenta risco de hipernatremia na deficiência central de vasopressina.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "O pós-operatório de craniofaringioma, resposta à desmopressina e perda de sede permitem interpretar deficiência central com adipsia. Disponibilidade de água não substitui percepção de sede. Não há dose ou volume universal.",
+        "findings": [
+          "Nenhum problema substantivo identificado."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "Resistência renal com sede preservada não integra os dados; diurese osmótica não explica poliúria hipotônica com resposta; falta de acesso contradiz água disponível. A é a única combinação que explica por que acesso isolado falha."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Fonte ausente não é prova de referência falsa; nenhuma falta inventada propagada aos demais itens."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "deductionsExplained": "Ausência de cara deIA1/2 pelo último comentário sobre o escopo da pergunta; a clínica é clara.",
+          "evidenceCeilingOverridesScore": false
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Nenhum eliminatório confirmado no AFTER",
+          "step2": "Sem recurso plausível ou duplicata equivalente",
+          "step3": "18–20: aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "qualification": "Estado editorial; nenhuma integração/publicação física."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "tomkins2022",
+            "locator": "PMC9516129, DOI10.1210/clinem/dgac381,Table1/AdipsicDI",
+            "scope": "Lesão hipotalâmica pode causar perdaAVP/sede, inclusive após cirurgia de craniofaringioma; fluidos planejados e Na monitorizado; distinçãoDIcentral/renal e desmopressina.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "central_di_tomkins_2022",
+            "exactCardSHA256": "e39193223095a11155fc9dfbbb03b3ecc27bd66d8786b9c3cf8e3deaf399f4be"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Após cirurgia de craniofaringioma, um adulto apresenta poliúria hipotônica, resposta à desmopressina e sódio 158 mEq/L. A água está disponível, mas ele não percebe sede. Qual alteração explica por que disponibilizar água, por si só, não previne a hipernatremia?",
+          "alternatives": {
+            "A": "Deficiência central de vasopressina associada à perda de sede.",
+            "B": "Resistência renal à vasopressina, apesar de sede preservada.",
+            "C": "Diurese osmótica por glicose, apesar de secreção de vasopressina normal.",
+            "D": "Limitação de acesso à água, apesar de sede e resposta renal preservadas."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Deficiência central de vasopressina associada à perda de sede."
+          },
+          "explanation": "A combinação de deficiência central de vasopressina e perda de sede caracteriza a forma adípsica. A resposta à desmopressina favorece deficiência central, enquanto a ausência de sede impede compensar espontaneamente a perda urinária de água, mesmo quando há água acessível. Resistência renal, diurese osmótica e falta de acesso não integram os dados informados. Reposição e uso de desmopressina precisam de planejamento individual, com ingestão hídrica programada e monitorização de sódio; não basta orientar beber quando houver sede. O item não prescreve dose ou volume fixo.",
+          "referenceCards": {
+            "central_di_tomkins_2022": {
+              "label": "Tomkins M et al. — Diagnosis and Management of Central Diabetes Insipidus in Adults (2022)",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/35771962/",
+              "journal": "J Clin Endocrinol Metab 2022;107(10):2701-2715",
+              "ano": 2022,
+              "tipo": "Revisão",
+              "badge": "REVIEW",
+              "badgeColor": "#8b5cf6",
+              "impacto": "Diagnóstico diferencial da poliúria hipotônica, uso de desmopressina/copeptina e manejo de diabetes insipidus central, adípsico e gestacional",
+              "icon": "🔬",
+              "resumo": "Revisão atual sobre diabetes insipidus central em adultos. Discute a síndrome de poliúria hipotônica, a distinção entre diabetes insipidus central, diabetes insipidus nefrogênico e polidipsia primária, e o papel crescente da copeptina em testes com salina hipertônica ou arginina. Na prática clássica, resposta robusta da osmolaridade urinária à desmopressina favorece deficiência central de vasopressina; resposta mínima sugere resistência renal. O manejo crônico usa desmopressina individualizada, com atenção a sede, acesso à água e risco de hiponatremia por excesso de reposição.",
+              "conclusao": "A interpretação do diabetes insipidus depende de confirmar poliúria hipotônica e integrar resposta à desmopressina, sede, osmolaridade plasmática/urinária e contexto clínico; desmopressina trata deficiência central, não resistência renal completa.",
+              "curiosidade": "O diabetes insipidus adípsico é especialmente perigoso porque une falta de vasopressina e perda da sede: o paciente não compensa a perda urinária com ingestão de água, tornando a hipernatremia persistente uma pista clínica central."
+            }
+          },
+          "readiness": "LIBERADA somente nesta versão exata"
+        },
+        "duplicateReview": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Explicar por que perda de sede aumenta risco de hipernatremia na deficiência central de vasopressina.",
+            "Após cirurgia de craniofaringioma, um adulto apresenta poliúria hipotônica, resposta à desmopressina e sódio 158 mEq/L. A água está disponível, mas ele não percebe sede. Qual alteração explica por que disponibilizar água, por si só, não previne a hipernatremia?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [
+            "1e62bd9e",
+            "b4165730",
+            "6d52cb77"
+          ],
+          "finding": "Candidatos cobram classificação central/nefrógena ou manejo crônico geral; este cobra falha de compensação pela sede apesar de acesso à água.",
+          "independentlyChecked": true,
+          "candidatePins": [
+            {
+              "qid": "1e62bd9e",
+              "sourceLine": 68,
+              "questionSHA256": "ca5d4fdb54f77a18e89db1cd4115998a98a88f7869647edbf4649d77c17f926d"
+            },
+            {
+              "qid": "b4165730",
+              "sourceLine": 108,
+              "questionSHA256": "681d4c87a837b367e01e0ce8a37f0640858e3102fa9121860c9bff01ded03be3"
+            },
+            {
+              "qid": "6d52cb77",
+              "sourceLine": 201,
+              "questionSHA256": "71d6451f3106069ac420c2d12808adedc210b1dece1d9904a2391f169b785920"
+            }
+          ],
+          "independentConclusion": "Candidatos relacionados lidos: decisões/dados úteis distintos. Não é auditoria semântica de todos os pares."
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            74,
+            68,
+            72,
+            61
+          ],
+          "AFTER": [
+            62,
+            60,
+            72,
+            72
+          ],
+          "correctIsUniqueLongest": false,
+          "qualification": "Comprimento diagnóstico; distratores plausíveis julgados sem padding."
+        },
+        "verificationPending": [],
+        "implementationObservation": "Preservarqid/gabarito/respostas/recursos/FSRS/snapshots. Cards porhash exato; mudanças materiais ou rebind requerem novo parecer. Sem aprovação global por associação."
+      },
+      {
+        "qid": "a73f61f6",
+        "sourceLine": 164,
+        "BEFORE": {
+          "t": "Hipercalemia — Acidose Mineral e Shift Transcelular",
+          "qid": "a73f61f6",
+          "q": "Paciente com DRC apresenta K 6,8 mEq/L e acidose metabólica hiperclorêmica após carga ácida mineral. Qual mecanismo explica a elevação aguda do potássio sérico nesse contexto?",
+          "refs": [
+            "brenner_rector",
+            "ukka_hyperkalemia_2023"
+          ],
+          "opts": [
+            "Entrada de H+ na célula com saída compensatória de K+ para o extracelular.",
+            "Destruição direta da membrana celular pelo cloreto sérico.",
+            "Supressão imediata e obrigatória da aldosterona por qualquer acidose.",
+            "Aumento da reabsorção proximal de potássio como principal determinante."
+          ],
+          "ans": 0,
+          "exp": "Na acidose metabólica mineral/hiperclorêmica, parte do H+ entra nas células para tamponamento e há saída de K+ para manter eletroneutralidade, elevando o potássio sérico. O efeito é menos previsível em acidoses orgânicas, nas quais ânions orgânicos podem entrar junto com H+. Em K 6,8 mEq/L, o manejo clínico não deve parar no mecanismo: é preciso avaliar ECG, gravidade, deslocamento intracelular e remoção de potássio conforme risco.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "0faa2f516d4d08e00845bffc4358dc730d368031cf5533baf5a81d2043815788",
+        "AFTER": {
+          "t": "Hipercalemia — Acidose Mineral e Redistribuição Transcelular",
+          "qid": "a73f61f6",
+          "q": "Adulto com doença renal crônica (DRC) tem hipercalemia durante acidose metabólica mineral. Qual mudança transcelular de potássio pode contribuir para a elevação sérica?",
+          "refs": [
+            "brenner_rector",
+            "ukka_hyperkalemia_2023"
+          ],
+          "opts": [
+            "Saída celular de K+, aumentando o K+ extracelular.",
+            "Captação celular de K+ estimulada pela acidemia.",
+            "Aumento da secreção distal de K+ por aldosterona.",
+            "Maior perda intestinal de K+ induzida pela acidemia."
+          ],
+          "ans": 0,
+          "exp": "CANDIDATO — VERIFICAÇÃO NECESSÁRIA: a proposta explica contribuição de saída celular de K+ na acidose mineral sem postular um transportador direto de troca H+/K+ ou efeito fixo em toda acidose. A excreção renal na DRC e outros fatores podem contribuir, mas não equivalem a redistribuição transcelular. É necessário conferir o corpo da revisão fisiológica ou outra fonte primária adequada antes de fechar a explicação, distinguir acidoses orgânicas/minerais ou aplicar o item. Este texto permanece BLOQUEADO.",
+          "diff": "easy",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "0ac0d0d0c7f20c08cd32971ba46cd104ccc531b94c429d58f2dfeba03147a6a2",
+        "verdictV2": "revisão maior",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "moderada",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(b)",
+        "OP": "Explicar a contribuição da redistribuição transcelular para hipercalemia na acidose mineral.",
+        "classification": {
+          "primaryCompetency": "fisiologia ácido-base e potássio",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo.",
+          "targetProfile": "Aprendiz de nefrologia R1–R2, português.",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem recalibraçãoIRT/dificuldadeempírica/habilidade."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "caseReconstruction": {
+          "populationAndScenario": "Adulto com doença renal crônica (DRC) tem hipercalemia durante acidose metabólica mineral. Qual mudança transcelular de potássio pode contribuir para a elevação sérica?",
+          "decision": "Explicar a contribuição da redistribuição transcelular para hipercalemia na acidose mineral.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "O candidato permanece explicitamente provisório. O corpo decisivo de Aronson/Palmer não está disponível; metadados e resumo não certificam a distinção transcelular exigida. Brenner não teve capítulo/edição verificados. Não usar UKKA como prova automática do mecanismo de acidose mineral.",
+        "findings": [
+          "Pendência primária decisiva e texto provisório; não aplicar."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Verificação necessária",
+          "analysis": "A resposta é plausível, mas a proposta exige confirmação do mecanismo e ressalvas orgânico/mineral. A explicação ainda contém marcadores de rascunho e bloqueio, tornando necessária uma nova versão material após recuperação de fonte. Não inventar aprovação do pacote atual."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "qualification": "Fonte ausente não é prova de referência falsa; nenhuma falta inventada propagada aos demais itens."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 1,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 1,
+            "Referências": 0,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 15,
+          "deductionsExplained": "Conteúdo1/2,explicação1/2 e referências0/2 pela lacuna decisiva/provisoriedade; ausência de cara deIA1/2. Teto de evidência impede aprovação.",
+          "evidenceCeilingOverridesScore": true
+        },
+        "decisionTree": {
+          "step0": "PARCIALMENTE VERIFICADA/DECISIVA: teto revisão maior",
+          "step1": "Nenhum eliminatório confirmado no AFTER",
+          "step2": "Fonte decisiva e versão final necessárias",
+          "step3": "Score não supera teto de evidência",
+          "result": "revisão maior",
+          "lifecycle": "em_revisão",
+          "qualification": "Estado editorial; nenhuma integração/publicação física."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "aronson2011",
+            "locator": "DOI10.1681/ASN.2011040414/PMID21980112/PMC3231780; recibos locais de recuperação",
+            "scope": "Metadados/abstract recuperados; XML500/PDF403 e captcha; nenhum corpo decisivo certificado.",
+            "status": "PARCIALMENTE VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "brenner_rector",
+            "exactCardSHA256": "bd8960dad5e92643eb76c6872c697cdac9e1228dcd364ef1e2ead18913dacf02"
+          },
+          {
+            "id": "ukka_hyperkalemia_2023",
+            "exactCardSHA256": "7a3cbcf898e3d56a2a8123cfd9c56a09aee43e35133dc346d7800ccdf8779bc8"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "RASCUNHO BLOQUEADO; NÃO APLICAR",
+          "question": "Adulto com doença renal crônica (DRC) tem hipercalemia durante acidose metabólica mineral. Qual mudança transcelular de potássio pode contribuir para a elevação sérica?",
+          "alternatives": {
+            "A": "Saída celular de K+, aumentando o K+ extracelular.",
+            "B": "Captação celular de K+ estimulada pela acidemia.",
+            "C": "Aumento da secreção distal de K+ por aldosterona.",
+            "D": "Maior perda intestinal de K+ induzida pela acidemia."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Saída celular de K+, aumentando o K+ extracelular."
+          },
+          "explanation": "CANDIDATO — VERIFICAÇÃO NECESSÁRIA: a proposta explica contribuição de saída celular de K+ na acidose mineral sem postular um transportador direto de troca H+/K+ ou efeito fixo em toda acidose. A excreção renal na DRC e outros fatores podem contribuir, mas não equivalem a redistribuição transcelular. É necessário conferir o corpo da revisão fisiológica ou outra fonte primária adequada antes de fechar a explicação, distinguir acidoses orgânicas/minerais ou aplicar o item. Este texto permanece BLOQUEADO.",
+          "referenceCards": {
+            "brenner_rector": {
+              "label": "Brenner & Rector's The Kidney",
+              "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+              "journal": "Elsevier (Textbook)",
+              "ano": 2024,
+              "tipo": "Livro-texto de referência",
+              "badge": "TEXTBOOK",
+              "badgeColor": "#64748b",
+              "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+              "icon": "📚",
+              "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+              "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+              "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+            },
+            "ukka_hyperkalemia_2023": {
+              "label": "UK Kidney Association — Hipercalemia em adultos (julho/2026)",
+              "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+              "journal": "UK Kidney Association",
+              "ano": 2026,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Proteção cardíaca transitória, insulina-glicose e monitorização na hipercalemia",
+              "icon": "📋",
+              "resumo": "Diretriz da UK Kidney Association (UKKA), atualizada em julho de 2026, para hipercalemia em adultos. Sugere cálcio intravenoso diante de alterações no eletrocardiograma (16.2a, 2C); o efeito elétrico é rápido e transitório, aproximadamente 30–60 minutos, sem reduzir o potássio. Recomenda infusão intravenosa de insulina solúvel 10 unidades com glicose 25 g na hipercalemia grave (16.3.1, 1B), com glicemia seriada desde o basal até 6 horas (17.2, 1C), prolongada em pacientes de alto risco. Cálcio, deslocamento e remoção de potássio têm funções distintas. O grau do cálcio foi reduzido de 1C para 2C nesta atualização; a evidência de benefício em desfechos clínicos permanece limitada.",
+              "conclusao": "Tratar toxicidade elétrica e potássio em paralelo; cálcio não corrige a hipercalemia e insulina não elimina K+ do organismo. Acompanhar eletrocardiograma, potássio e glicemia conforme o contexto.",
+              "curiosidade": ""
+            }
+          },
+          "readiness": "BLOQUEADA"
+        },
+        "duplicateReview": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Explicar a contribuição da redistribuição transcelular para hipercalemia na acidose mineral.",
+            "Adulto com doença renal crônica (DRC) tem hipercalemia durante acidose metabólica mineral. Qual mudança transcelular de potássio pode contribuir para a elevação sérica?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [],
+          "finding": "Nenhum outro item localizado com as mesmas quatro dimensões.",
+          "independentlyChecked": true,
+          "candidatePins": [],
+          "independentConclusion": "Candidatos relacionados lidos: decisões/dados úteis distintos. Não é auditoria semântica de todos os pares."
+        },
+        "lengthMetrics": {
+          "BEFORE": [
+            74,
+            58,
+            69,
+            71
+          ],
+          "AFTER": [
+            50,
+            48,
+            49,
+            52
+          ],
+          "correctIsUniqueLongest": false,
+          "qualification": "Comprimento diagnóstico; distratores plausíveis julgados sem padding."
+        },
+        "verificationPending": [
+          {
+            "claim": "Contribuição transcelular na acidose mineral e distinção de troca direta H+/K+",
+            "source": "Aronson e Giebisch2011 ou fonte original alternativa adequada, corpo ou localizador decisivo verificável",
+            "reason": "Não recuperada a fonte necessária; pode mudar validade do mecanismo/explicação. Não usar pesquisa/figuras sem corpo conferido como aprovação.",
+            "marker": "VERIFICAÇÃO NECESSÁRIA",
+            "pendingNature": "DECISIVA"
+          }
+        ],
+        "implementationObservation": "Preservarqid/gabarito/respostas/recursos/FSRS/snapshots. Cards porhash exato; mudanças materiais ou rebind requerem novo parecer. Sem aprovação global por associação."
+      }
+    ],
+    "cardReviews": [
+      {
+        "id": "berend_normal_gap_2017",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Berend — Ânion gap e acidose metabólica (2017)",
+          "url": "https://doi.org/10.1159/000479279",
+          "journal": "Kidney Diseases 2017;3(4):149–159",
+          "ano": 2017,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Calcular o ânion gap sem confundir intervalo do método ou influência da albumina",
+          "icon": "🔬",
+          "resumo": "Revisão narrativa da avaliação diagnóstica da acidose metabólica com ânion gap normal. Apresenta o cálculo plasmático sem potássio: Na−(Cl+bicarbonato), a variação do intervalo entre analisadores e a influência da albumina. Discute diferenças entre perda extrarrenal de bicarbonato e defeitos tubulares. Necessária para conferir fórmula e limites da interpretação, sem pretender testar eficácia de tratamento.",
+          "conclusao": "Interpretar o valor calculado com o intervalo do laboratório e a albumina; um ânion gap isolado não identifica a causa específica da acidose.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "99b7733165ea0b5945ee881a51dee84cbe1f8f719917d2a491be950538fac56f",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(a)",
+        "usedByThisBatch": [
+          "312ab0c7"
+        ],
+        "currentBankConsumers": [],
+        "currentBankConsumerCount": 0,
+        "qualification": "Texto completo/identidade/afirmações e esquema/badge/cor/ícone conferidos. Lesko éRCT farmacocinético cruzado, nãoFaseIII nem desfechos emDRC; posicionamentoISPD é famíliaDiretriz sem GRADEfabricado.",
+        "integrationGate": "Inclusão atômica com questão aceita.",
+        "sameExactUKKAAsA005A2": false,
+        "scopeQualification": "Demais consumidores não recebem aprovação por associação."
+      },
+      {
+        "id": "society_endocrinology_hypercalcemia_2016",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Society for Endocrinology — Hipercalcemia aguda (2016)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5314807/",
+          "journal": "Endocrine Connections 2016;5:G9–G11",
+          "ano": 2016,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "QT encurtado e avaliação clínica da hipercalcemia",
+          "icon": "📋",
+          "resumo": "Orientação de Walsh, Gittoes e Selby para avaliação inicial da hipercalcemia em adultos. Inclui QT encurtado entre os achados reconhecidos e recomenda avaliar eletrocardiograma, cálcio considerando albumina, causa e estado clínico. A intensidade do distúrbio e a urgência dependem do conjunto clínico; não apresenta GRADE formal para esse achado.",
+          "conclusao": "QT encurtado é um achado clássico a procurar na hipercalcemia; sua ausência não exclui o diagnóstico nem substitui avaliação de gravidade.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "3d635a1ca7366297c35a54aa726e9fc4bb31a1923c208a58ef4b0d6d9d5be1db",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(a)",
+        "usedByThisBatch": [
+          "d8fd9889"
+        ],
+        "currentBankConsumers": [],
+        "currentBankConsumerCount": 0,
+        "qualification": "Texto completo/identidade/afirmações e esquema/badge/cor/ícone conferidos. Lesko éRCT farmacocinético cruzado, nãoFaseIII nem desfechos emDRC; posicionamentoISPD é famíliaDiretriz sem GRADEfabricado.",
+        "integrationGate": "Inclusão atômica com questão aceita.",
+        "sameExactUKKAAsA005A2": false,
+        "scopeQualification": "Demais consumidores não recebem aprovação por associação."
+      },
+      {
+        "id": "lesko_patiromer_interactions_2017",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Lesko et al. — Patiromer e interações orais (2017)",
+          "url": "https://journals.sagepub.com/doi/10.1177/1074248417691135",
+          "journal": "Journal of Cardiovascular Pharmacology and Therapeutics 2017;22(5):434–446",
+          "ano": 2017,
+          "tipo": "Ensaio clínico randomizado",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Separação de três horas evitou interação farmacocinética dos fármacos testados",
+          "icon": "🔬",
+          "resumo": "Doze estudos randomizados abertos cruzados em voluntários saudáveis: 370 inscritos, 365 expostos e 351 completaram. Compararam fármaco isolado, coadministração com patiromer e separação de três horas. O objetivo foi exposição farmacocinética, com limites de equivalência de 80–125%. A separação manteve os intervalos de confiança de 90% de AUC e concentração máxima dentro desses limites para os doze fármacos. Levotiroxina, metformina e ciprofloxacino requereram separação para evitar interação. Não é estudo de desfechos clínicos nem de pacientes com DRC.",
+          "conclusao": "Separar os medicamentos suscetíveis conforme a rotulagem atual; não generalizar esses resultados a todos os fármacos orais nem inferir eficácia clínica por equivalência farmacocinética.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "5c33a7da47630a5bfde4ec0916e6942ce011001c5381a8581cc9df571a275720",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(a)",
+        "usedByThisBatch": [
+          "1b286739"
+        ],
+        "currentBankConsumers": [],
+        "currentBankConsumerCount": 0,
+        "qualification": "Texto completo/identidade/afirmações e esquema/badge/cor/ícone conferidos. Lesko éRCT farmacocinético cruzado, nãoFaseIII nem desfechos emDRC; posicionamentoISPD é famíliaDiretriz sem GRADEfabricado.",
+        "integrationGate": "Inclusão atômica com questão aceita.",
+        "sameExactUKKAAsA005A2": false,
+        "scopeQualification": "Demais consumidores não recebem aprovação por associação."
+      },
+      {
+        "id": "eps_dp",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "ISPD — Length of Time on PD and EPS Position Paper 2017",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/28676507/",
+          "journal": "Peritoneal Dialysis International 2017;37(4):362-374",
+          "ano": 2017,
+          "tipo": "Posicionamento ISPD",
+          "badge": "POSITION",
+          "badgeColor": "#f59e0b",
+          "impacto": "Posicionamento sobre duração da DP, risco, reconhecimento e decisões compartilhadas no encapsulamento peritoneal esclerosante",
+          "icon": "⚠️",
+          "resumo": "A atualização da ISPD reconhece a duração crescente da diálise peritoneal como o fator de risco mais consistente para encapsulamento peritoneal esclerosante (EPS), sem estabelecer um prazo universal para interromper a técnica. Peritonite frequente, grave ou prolongada, maior exposição à glicose, transporte rápido e perda de ultrafiltração também podem elevar a preocupação. O diagnóstico combina manifestações funcionais de obstrução intestinal com achados estruturais, especialmente na tomografia.",
+          "conclusao": "Não se deve transferir todo paciente para hemodiálise em um número fixo de anos nem rastrear assintomáticos por imagem como garantia; continuidade, investigação e transição exigem avaliação individual e decisão compartilhada.",
+          "curiosidade": "A EPS pode surgir ou tornar-se clinicamente evidente depois da interrupção da DP, inclusive após transplante, o que ajuda a explicar por que a simples troca eletiva em uma data fixa não elimina o risco."
+        },
+        "AFTER": {
+          "label": "ISPD — Length of Time on PD and EPS Position Paper 2017",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/28676507/",
+          "journal": "Peritoneal Dialysis International 2017;37(4):362-374",
+          "ano": 2017,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Duração da DP eleva o risco, sem prazo universal para interromper a técnica",
+          "icon": "📋",
+          "resumo": "Posicionamento da ISPD de 2017 sobre duração da diálise peritoneal e encapsulamento peritoneal esclerosante (EPS). Duração crescente é o fator de risco mais consistentemente identificado. Outros fatores associados, como peritonites, transporte rápido e perda de ultrafiltração, têm dados imprecisos ou inconsistentes e não são preditores validados isolados. Não há regra única de tempo para interromper DP. Considerar adequação, ultrafiltração, peritonites, alternativas, qualidade de vida e preferências, em decisão compartilhada.",
+          "conclusao": "Não impor troca por tempo isolado nem usar tomografia normal como garantia de ausência futura de EPS. Investigar sintomas e alterações funcionais quando presentes.",
+          "curiosidade": "A EPS pode manifestar-se após interromper a DP ou após transplante; a troca eletiva em uma data fixa não elimina todo o risco."
+        },
+        "beforeSHA256": "12558fd1b9ac43a28a2eec0883f9b3257b17f01b9013e9e8c532894dfe754988",
+        "afterSHA256": "0fc0fa6ebfe0e8c01fdad478930a2e5da9a0d19ebd85c2d82c4df8307fd43d66",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(a)",
+        "usedByThisBatch": [
+          "3e0788ac"
+        ],
+        "currentBankConsumers": [
+          {
+            "qid": "3e0788ac",
+            "sourceLine": 141,
+            "questionSHA256": "e19c979066716ad690f970d430e1f54825fb73eb9e381c15e95a3770eee80939"
+          },
+          {
+            "qid": "fe70507d",
+            "sourceLine": 323,
+            "questionSHA256": "b133181debaef66a62dc7c4045a6c8ceea9bc53e7a9aaa059e41bc9e7be1b06c"
+          }
+        ],
+        "currentBankConsumerCount": 2,
+        "qualification": "Texto completo/identidade/afirmações e esquema/badge/cor/ícone conferidos. Lesko éRCT farmacocinético cruzado, nãoFaseIII nem desfechos emDRC; posicionamentoISPD é famíliaDiretriz sem GRADEfabricado.",
+        "integrationGate": "Reconciliar versões e consumidores antes deREPLACE global.",
+        "sameExactUKKAAsA005A2": false,
+        "scopeQualification": "Demais consumidores não recebem aprovação por associação."
+      },
+      {
+        "id": "hypernatremia_yun_2023",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "Yun G, Baek SH, Kim S — Evaluation and Management of Hypernatremia in Adults (2023)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36578134/",
+          "journal": "Korean J Intern Med 2023;38(3):290-302",
+          "ano": 2023,
+          "tipo": "Revisão Clínica",
+          "badge": "REVIEW",
+          "badgeColor": "#0ea5e9",
+          "impacto": "Abordagem diagnóstica e terapêutica da hipernatremia em adultos: água livre, volemia, ritmo de correção e diabetes insipidus",
+          "icon": "📖",
+          "resumo": "Revisão clínica prática sobre hipernatremia em adultos. Estrutura a avaliação em etapas: confirmar sódio corrigido, avaliar volemia, medir volume/osmolaridade urinária, considerar perdas de água livre e diabetes insipidus. No tratamento, separa hipernatremia aguda de crônica/desconhecida, calcula déficit de água livre por ACT × [(Na/140) − 1], repõe perdas contínuas e escolhe fluido conforme volemia: água enteral ou SG 5% quando se busca água livre, solução salina hipotônica quando também há depleção extracelular, e salina isotônica primeiro se houver choque/hipoperfusão.",
+          "conclusao": "Hipernatremia é problema de balanço de água em relação ao sódio; a correção segura exige tratar a causa, estimar déficit e perdas em curso, escolher o fluido pelo estado volêmico e monitorar a natremia seriada.",
+          "curiosidade": "Ao contrário da hiponatremia crônica, em que a correção rápida causa síndrome de desmielinização osmótica, a queda rápida da natremia na hipernatremia crônica preocupa por edema cerebral: o cérebro adaptado à hiperosmolaridade retém osmóis e incha quando a tonicidade plasmática cai abruptamente."
+        },
+        "AFTER": {
+          "label": "Yun G, Baek SH, Kim S — Evaluation and Management of Hypernatremia in Adults (2023)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36578134/",
+          "journal": "Korean J Intern Med 2023;38(3):290-302",
+          "ano": 2023,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Abordagem diagnóstica e terapêutica da hipernatremia em adultos: água livre, volemia, ritmo de correção e diabetes insipidus",
+          "icon": "🔬",
+          "resumo": "Revisão clínica prática sobre hipernatremia em adultos. Estrutura a avaliação em etapas: confirmar sódio corrigido, avaliar volemia, medir volume/osmolaridade urinária, considerar perdas de água livre e diabetes insipidus. No tratamento, separa hipernatremia aguda de crônica/desconhecida, calcula déficit de água livre por ACT × [(Na/140) − 1], repõe perdas contínuas e escolhe fluido conforme volemia: água enteral ou SG 5% quando se busca água livre, solução salina hipotônica quando também há depleção extracelular, e salina isotônica primeiro se houver choque/hipoperfusão.",
+          "conclusao": "Hipernatremia é problema de balanço de água em relação ao sódio; a correção segura exige tratar a causa, estimar déficit e perdas em curso, escolher o fluido pelo estado volêmico e monitorar a natremia seriada.",
+          "curiosidade": "A adaptação cerebral na hipernatremia crônica fundamenta preocupação com edema durante reidratação, sobretudo na experiência pediátrica. A revisão distingue isso dos dados adultos, que não demonstraram universalmente esse dano por correção rápida; não transformar a ressalva em regra causal comprovada para todo adulto."
+        },
+        "beforeSHA256": "a9fd80ec187df69e382109af637a67aa994954c283e99fbcf816de10c9f74c19",
+        "afterSHA256": "59332336fd57c7dec74c696d6d9c0ab8e6218229ca03177ea07b0471f15b82ce",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(a)",
+        "usedByThisBatch": [
+          "61fc6237"
+        ],
+        "currentBankConsumers": [
+          {
+            "qid": "61fc6237",
+            "sourceLine": 149,
+            "questionSHA256": "7dc3e3dfa915646f7f8c61c4a3e7480d59f734a1437b94c5f3c52745504b50f9"
+          },
+          {
+            "qid": "899cadd8",
+            "sourceLine": 159,
+            "questionSHA256": "8766957e3b871798620ae7a9b842f785ae6f07e1271e4265c0a4c3e12c5e241d"
+          },
+          {
+            "qid": "5ea4847a",
+            "sourceLine": 180,
+            "questionSHA256": "43161f0aa44c6a2beb53d780c26d89268d4bc64f5ee929c8af8a2ad3ca8875fc"
+          },
+          {
+            "qid": "7987651d",
+            "sourceLine": 186,
+            "questionSHA256": "3e2aac38fb0f88a1164c4f05fedd2691dd601f892f6700ba8271486f079fd68d"
+          },
+          {
+            "qid": "9a545994",
+            "sourceLine": 208,
+            "questionSHA256": "47012188fc11dc7d2439b7f19c2d8a49d0557664ac846e836744e37de65c357c"
+          }
+        ],
+        "currentBankConsumerCount": 5,
+        "qualification": "Texto completo/identidade/afirmações e esquema/badge/cor/ícone conferidos. Lesko éRCT farmacocinético cruzado, nãoFaseIII nem desfechos emDRC; posicionamentoISPD é famíliaDiretriz sem GRADEfabricado.",
+        "integrationGate": "Reconciliar versões e consumidores antes deREPLACE global.",
+        "sameExactUKKAAsA005A2": false,
+        "scopeQualification": "Demais consumidores não recebem aprovação por associação."
+      },
+      {
+        "id": "central_di_tomkins_2022",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "Tomkins M et al. — Diagnosis and Management of Central Diabetes Insipidus in Adults (2022)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35771962/",
+          "journal": "J Clin Endocrinol Metab 2022;107(10):2701-2715",
+          "ano": 2022,
+          "tipo": "Revisão Clínica",
+          "badge": "REVIEW",
+          "badgeColor": "#0ea5e9",
+          "impacto": "Diagnóstico diferencial da poliúria hipotônica, uso de desmopressina/copeptina e manejo de diabetes insipidus central, adípsico e gestacional",
+          "icon": "📖",
+          "resumo": "Revisão atual sobre diabetes insipidus central em adultos. Discute a síndrome de poliúria hipotônica, a distinção entre diabetes insipidus central, diabetes insipidus nefrogênico e polidipsia primária, e o papel crescente da copeptina em testes com salina hipertônica ou arginina. Na prática clássica, resposta robusta da osmolaridade urinária à desmopressina favorece deficiência central de vasopressina; resposta mínima sugere resistência renal. O manejo crônico usa desmopressina individualizada, com atenção a sede, acesso à água e risco de hiponatremia por excesso de reposição.",
+          "conclusao": "A interpretação do diabetes insipidus depende de confirmar poliúria hipotônica e integrar resposta à desmopressina, sede, osmolaridade plasmática/urinária e contexto clínico; desmopressina trata deficiência central, não resistência renal completa.",
+          "curiosidade": "O diabetes insipidus adípsico é especialmente perigoso porque une falta de vasopressina e perda da sede: o paciente não compensa a perda urinária com ingestão de água, tornando a hipernatremia persistente uma pista clínica central."
+        },
+        "AFTER": {
+          "label": "Tomkins M et al. — Diagnosis and Management of Central Diabetes Insipidus in Adults (2022)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35771962/",
+          "journal": "J Clin Endocrinol Metab 2022;107(10):2701-2715",
+          "ano": 2022,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Diagnóstico diferencial da poliúria hipotônica, uso de desmopressina/copeptina e manejo de diabetes insipidus central, adípsico e gestacional",
+          "icon": "🔬",
+          "resumo": "Revisão atual sobre diabetes insipidus central em adultos. Discute a síndrome de poliúria hipotônica, a distinção entre diabetes insipidus central, diabetes insipidus nefrogênico e polidipsia primária, e o papel crescente da copeptina em testes com salina hipertônica ou arginina. Na prática clássica, resposta robusta da osmolaridade urinária à desmopressina favorece deficiência central de vasopressina; resposta mínima sugere resistência renal. O manejo crônico usa desmopressina individualizada, com atenção a sede, acesso à água e risco de hiponatremia por excesso de reposição.",
+          "conclusao": "A interpretação do diabetes insipidus depende de confirmar poliúria hipotônica e integrar resposta à desmopressina, sede, osmolaridade plasmática/urinária e contexto clínico; desmopressina trata deficiência central, não resistência renal completa.",
+          "curiosidade": "O diabetes insipidus adípsico é especialmente perigoso porque une falta de vasopressina e perda da sede: o paciente não compensa a perda urinária com ingestão de água, tornando a hipernatremia persistente uma pista clínica central."
+        },
+        "beforeSHA256": "e22b8496e9b42f372a94ac032cfd690dba27edd14caf4b6ca999b23ce72c7872",
+        "afterSHA256": "e39193223095a11155fc9dfbbb03b3ecc27bd66d8786b9c3cf8e3deaf399f4be",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(a)",
+        "usedByThisBatch": [
+          "899cadd8"
+        ],
+        "currentBankConsumers": [
+          {
+            "qid": "63040771",
+            "sourceLine": 20,
+            "questionSHA256": "b6bf3c897902e1ffc3034d7005c0ffa0986a426ba2c2295c0abe5543931c01b6"
+          },
+          {
+            "qid": "1e62bd9e",
+            "sourceLine": 68,
+            "questionSHA256": "ca5d4fdb54f77a18e89db1cd4115998a98a88f7869647edbf4649d77c17f926d"
+          },
+          {
+            "qid": "b4165730",
+            "sourceLine": 108,
+            "questionSHA256": "681d4c87a837b367e01e0ce8a37f0640858e3102fa9121860c9bff01ded03be3"
+          },
+          {
+            "qid": "899cadd8",
+            "sourceLine": 159,
+            "questionSHA256": "8766957e3b871798620ae7a9b842f785ae6f07e1271e4265c0a4c3e12c5e241d"
+          },
+          {
+            "qid": "5ea4847a",
+            "sourceLine": 180,
+            "questionSHA256": "43161f0aa44c6a2beb53d780c26d89268d4bc64f5ee929c8af8a2ad3ca8875fc"
+          },
+          {
+            "qid": "6d52cb77",
+            "sourceLine": 201,
+            "questionSHA256": "71d6451f3106069ac420c2d12808adedc210b1dece1d9904a2391f169b785920"
+          }
+        ],
+        "currentBankConsumerCount": 6,
+        "qualification": "Texto completo/identidade/afirmações e esquema/badge/cor/ícone conferidos. Lesko éRCT farmacocinético cruzado, nãoFaseIII nem desfechos emDRC; posicionamentoISPD é famíliaDiretriz sem GRADEfabricado.",
+        "integrationGate": "Reconciliar versões e consumidores antes deREPLACE global.",
+        "sameExactUKKAAsA005A2": false,
+        "scopeQualification": "Demais consumidores não recebem aprovação por associação."
+      },
+      {
+        "id": "ukka_hyperkalemia_2023",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "UKKA Hyperkalaemia Guideline 2023",
+          "url": "https://www.ukkidney.org/health-professionals/guidelines/treatment-acute-hyperkalaemia-adults-0",
+          "journal": "UK Kidney Association",
+          "ano": 2023,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Diretriz específica para detecção, tratamento hospitalar agudo e prevenção de hipercalemia em adultos",
+          "icon": "⚡",
+          "resumo": "Diretriz da UK Kidney Association dedicada ao manejo da hipercalemia em adultos, com foco especial na atualização de 2023 para tratamento hospitalar agudo. Organiza a resposta em etapas práticas: proteger o coração quando há sinais eletrocardiográficos de toxicidade com cálcio intravenoso; deslocar potássio para o compartimento intracelular com insulina-glicose e, como adjuvante, salbutamol; remover potássio do organismo conforme gravidade, função renal e resposta; e monitorar potássio e glicemia para detectar rebote e hipoglicemia. Destaca que o cálcio intravenoso estabiliza rapidamente o miocárdio, mas não reduz o potássio sérico e tem efeito transitório, exigindo terapias complementares.",
+          "conclusao": "Na hipercalemia aguda, a conduta segura é sequencial e simultaneamente orientada por risco: ECG tóxico exige proteção cardíaca imediata com cálcio, seguida de terapias de deslocamento e remoção de potássio com monitorização estreita.",
+          "curiosidade": "A atualização de 2023 enfatizou segurança medicamentosa: reforçou diferenças práticas entre sais de cálcio, prevenção de hipoglicemia após insulina-glicose e uso do salbutamol como adjuvante, não como monoterapia em hipercalemia grave."
+        },
+        "AFTER": {
+          "label": "UK Kidney Association — Hipercalemia em adultos (julho/2026)",
+          "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+          "journal": "UK Kidney Association",
+          "ano": 2026,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Proteção cardíaca transitória, insulina-glicose e monitorização na hipercalemia",
+          "icon": "📋",
+          "resumo": "Diretriz da UK Kidney Association (UKKA), atualizada em julho de 2026, para hipercalemia em adultos. Sugere cálcio intravenoso diante de alterações no eletrocardiograma (16.2a, 2C); o efeito elétrico é rápido e transitório, aproximadamente 30–60 minutos, sem reduzir o potássio. Recomenda infusão intravenosa de insulina solúvel 10 unidades com glicose 25 g na hipercalemia grave (16.3.1, 1B), com glicemia seriada desde o basal até 6 horas (17.2, 1C), prolongada em pacientes de alto risco. Cálcio, deslocamento e remoção de potássio têm funções distintas. O grau do cálcio foi reduzido de 1C para 2C nesta atualização; a evidência de benefício em desfechos clínicos permanece limitada.",
+          "conclusao": "Tratar toxicidade elétrica e potássio em paralelo; cálcio não corrige a hipercalemia e insulina não elimina K+ do organismo. Acompanhar eletrocardiograma, potássio e glicemia conforme o contexto.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "dbac5964610515fe33ca448b15c53def346e5ec4b1112d3b8eb48909b30e882e",
+        "afterSHA256": "7a3cbcf898e3d56a2a8123cfd9c56a09aee43e35133dc346d7800ccdf8779bc8",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(a)",
+        "usedByThisBatch": [
+          "ebea50d5",
+          "1b286739",
+          "a73f61f6"
+        ],
+        "currentBankConsumers": [
+          {
+            "qid": "e0853fac",
+            "sourceLine": 15,
+            "questionSHA256": "f22d59458105c6fb52d9b4034719e98fe313c6d2b089abdb91afa366543c1448"
+          },
+          {
+            "qid": "8b80b0a9",
+            "sourceLine": 58,
+            "questionSHA256": "b6990004c340b218d98ff7e7fedf86e30b13987da6770775cc431a1d49080ff2"
+          },
+          {
+            "qid": "985d735c",
+            "sourceLine": 111,
+            "questionSHA256": "1b7e568c57f786795f6255aa5246808bd5955545860c58fd4d021900ebf72110"
+          },
+          {
+            "qid": "1f962c0e",
+            "sourceLine": 123,
+            "questionSHA256": "de90df7b79d41f96113cd7cb55002513ad4caf1dc5411bec977cd1682cb5c0fd"
+          },
+          {
+            "qid": "17dc6d7e",
+            "sourceLine": 130,
+            "questionSHA256": "20b04d984512c0b4f23fe8f02e903d6448a85683629f51852d586e6c8f6860fb"
+          },
+          {
+            "qid": "43313455",
+            "sourceLine": 145,
+            "questionSHA256": "72ba867059ce7725340b2b239ada52e03f91e4ba28368d451e86461a0913a687"
+          },
+          {
+            "qid": "ebea50d5",
+            "sourceLine": 152,
+            "questionSHA256": "1e5f9eab73c2929f3f5e321ff4c8db28a8004e9f951327d710b2f330a2e34351"
+          },
+          {
+            "qid": "1b286739",
+            "sourceLine": 156,
+            "questionSHA256": "5ecffbba12116b4e8cd2bd7a9cbfd76ec70ae824d8215b40fb5036d4abd1fc58"
+          },
+          {
+            "qid": "a73f61f6",
+            "sourceLine": 164,
+            "questionSHA256": "0faa2f516d4d08e00845bffc4358dc730d368031cf5533baf5a81d2043815788"
+          },
+          {
+            "qid": "69018bb9",
+            "sourceLine": 169,
+            "questionSHA256": "740e6b49b60b0e40cd8e9f7b852185b30a372ac7cd02b994959a664b2e0350e8"
+          },
+          {
+            "qid": "a799c154",
+            "sourceLine": 172,
+            "questionSHA256": "0a6c87ab73b3dcc95dd8ba32ab59176665f36d5977b478b985a66cc4ca70e625"
+          },
+          {
+            "qid": "65d19905",
+            "sourceLine": 184,
+            "questionSHA256": "7d9a96d4a15a49797b6f0787826caca0564bdcb8d8674e1aa6de07396efb2287"
+          },
+          {
+            "qid": "7ec80c77",
+            "sourceLine": 195,
+            "questionSHA256": "043ae0df14cd970431c44160f6666504360616beaf4a67eb6f786971fa6831ba"
+          },
+          {
+            "qid": "d92f30a9",
+            "sourceLine": 213,
+            "questionSHA256": "33dce3f5381b0f9a904674c92aa8dd4020c0264e7600c2d6c90475ed2d0bbdc8"
+          },
+          {
+            "qid": "f3d5015d",
+            "sourceLine": 218,
+            "questionSHA256": "74423bc7d44f2ee0efa8aea64f6233883fd2890821a0ebf4bb04f8e1f400c629"
+          },
+          {
+            "qid": "805733f8",
+            "sourceLine": 228,
+            "questionSHA256": "b40b8baa40ac751aaa5e13c734af78733d29923059c3b0b7602d60967db8373d"
+          },
+          {
+            "qid": "32f342fc",
+            "sourceLine": 258,
+            "questionSHA256": "0429ae3aa589a3774cdd82a7315c98762dcbd0470a3223996a8a6ef3414cd8b6"
+          },
+          {
+            "qid": "b35be598",
+            "sourceLine": 278,
+            "questionSHA256": "bdf4f0b5ccc244e61a0af0bcbbc7f23392170876074d6dea44977da23877127b"
+          },
+          {
+            "qid": "6a19aece",
+            "sourceLine": 279,
+            "questionSHA256": "bd119c950126dbdce61a02866602c5b3f58caf4122de80d5cbc9b9fc960061c7"
+          },
+          {
+            "qid": "db25ef93",
+            "sourceLine": 416,
+            "questionSHA256": "4f5128e654cf300663ef967e07ced72efdddd5ee3276e886b6659655103f7d13"
+          }
+        ],
+        "currentBankConsumerCount": 20,
+        "qualification": "Texto completo/identidade/afirmações e esquema/badge/cor/ícone conferidos. Lesko éRCT farmacocinético cruzado, nãoFaseIII nem desfechos emDRC; posicionamentoISPD é famíliaDiretriz sem GRADEfabricado.",
+        "integrationGate": "Reconciliar versões e consumidores antes deREPLACE global.",
+        "sameExactUKKAAsA005A2": true,
+        "scopeQualification": "UKKA apoia agora as questões de ligantes com nova leitura dos trechos específicos; mesmohash doA005 não herda aprovação de questões. O card estreitado não resume todo oPDF, cujo corpo sustentaSZC/patiromer."
+      },
+      {
+        "id": "brenner_rector",
+        "action": "KEEP",
+        "BEFORE": {
+          "label": "Brenner & Rector's The Kidney",
+          "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+          "journal": "Elsevier (Textbook)",
+          "ano": 2024,
+          "tipo": "Livro-texto de referência",
+          "badge": "TEXTBOOK",
+          "badgeColor": "#64748b",
+          "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+          "icon": "📚",
+          "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+          "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+          "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+        },
+        "AFTER": {
+          "label": "Brenner & Rector's The Kidney",
+          "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+          "journal": "Elsevier (Textbook)",
+          "ano": 2024,
+          "tipo": "Livro-texto de referência",
+          "badge": "TEXTBOOK",
+          "badgeColor": "#64748b",
+          "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+          "icon": "📚",
+          "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+          "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+          "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+        },
+        "beforeSHA256": "bd8960dad5e92643eb76c6872c697cdac9e1228dcd364ef1e2ead18913dacf02",
+        "afterSHA256": "bd8960dad5e92643eb76c6872c697cdac9e1228dcd364ef1e2ead18913dacf02",
+        "verdictV2": "revisão maior",
+        "evidenceStatus": "NÃO VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook§18.4,Regra7(b)",
+        "usedByThisBatch": [
+          "a73f61f6"
+        ],
+        "currentBankConsumers": [
+          {
+            "qid": "cc3248a3",
+            "sourceLine": 6,
+            "questionSHA256": "6a93f7dbd373cdb87898f69849df5b1d506c582248e753d4accb8a73accc939e"
+          },
+          {
+            "qid": "63040771",
+            "sourceLine": 20,
+            "questionSHA256": "b6bf3c897902e1ffc3034d7005c0ffa0986a426ba2c2295c0abe5543931c01b6"
+          },
+          {
+            "qid": "b5bfaf2c",
+            "sourceLine": 21,
+            "questionSHA256": "5fcc9d3a0eb38c62e8544d36e8977e9ca38550ca5bebb588b4b4409e120cc43c"
+          },
+          {
+            "qid": "d39cf860",
+            "sourceLine": 25,
+            "questionSHA256": "d1bd51c682beb473a433fc80847193f67971e5d3176301141fffd9e3f6519b46"
+          },
+          {
+            "qid": "7e4990d5",
+            "sourceLine": 28,
+            "questionSHA256": "9101d49323d9656e02a625e5a65fe75608d69070e42af68dc24f0941f5dfb79a"
+          },
+          {
+            "qid": "2aa239e9",
+            "sourceLine": 35,
+            "questionSHA256": "29a2e895094cedd6eaa81d0d7195994557f5666626f1c15335d14efd2437c082"
+          },
+          {
+            "qid": "bfb82aa0",
+            "sourceLine": 44,
+            "questionSHA256": "0121d7fa5b078d30cd57c35d1cfca263edfe3affe0df568bda16f1d3ec7209b8"
+          },
+          {
+            "qid": "8b80b0a9",
+            "sourceLine": 58,
+            "questionSHA256": "b6990004c340b218d98ff7e7fedf86e30b13987da6770775cc431a1d49080ff2"
+          },
+          {
+            "qid": "43b59c52",
+            "sourceLine": 61,
+            "questionSHA256": "2f9a4a9ec76059a890ff475b43eef8cffd3a88a123f9c98450fea6c150706db7"
+          },
+          {
+            "qid": "c3222d12",
+            "sourceLine": 62,
+            "questionSHA256": "84d4b7fc7c73d0725da202da1fb3009b122d1c0928f9b56d4f7c100e1c4a6f82"
+          },
+          {
+            "qid": "1e62bd9e",
+            "sourceLine": 68,
+            "questionSHA256": "ca5d4fdb54f77a18e89db1cd4115998a98a88f7869647edbf4649d77c17f926d"
+          },
+          {
+            "qid": "c69f0607",
+            "sourceLine": 70,
+            "questionSHA256": "7368f280da1f4c8bc41d56c79a9a44d5ae310a550fd58b66bcbea046ba091de9"
+          },
+          {
+            "qid": "ca6370dc",
+            "sourceLine": 74,
+            "questionSHA256": "f42f6cb7600e94e2c47691895a204c3e9d429e5a8426cf63233ffafbcee94af6"
+          },
+          {
+            "qid": "a9d85046",
+            "sourceLine": 75,
+            "questionSHA256": "0f599f75b496037508a0c31cf8521a8002fd5b53b8b945c16c05264ba111b45e"
+          },
+          {
+            "qid": "71a9210e",
+            "sourceLine": 76,
+            "questionSHA256": "4b71fd1ffcc0a5ae8f71286524d2de093556bcd35db928bcc12c2950433285fa"
+          },
+          {
+            "qid": "40b3d28b",
+            "sourceLine": 77,
+            "questionSHA256": "e76842820ef323eb1da419ea411a2238b889746af0bec035c2c04acd36076279"
+          },
+          {
+            "qid": "09451637",
+            "sourceLine": 81,
+            "questionSHA256": "3a2195039ced4fa7108634dba1fa5a21b23908b03bcebeee22057c56a5a7f954"
+          },
+          {
+            "qid": "1b8baaac",
+            "sourceLine": 87,
+            "questionSHA256": "6b357580913fc637fc649a1cbcc3c895d0c13ab2ab620f9f7d90d5829f2ba10f"
+          },
+          {
+            "qid": "86ad6fc4",
+            "sourceLine": 93,
+            "questionSHA256": "406064062ff84487f7cf88d6acd1561b1d17bfebe810a6f66db8b4b9b2f9bfa4"
+          },
+          {
+            "qid": "6f3fbd14",
+            "sourceLine": 98,
+            "questionSHA256": "a83004c88394a10db3ea8e974def47d6c349b8fe30f09516d479accb9b7265c1"
+          },
+          {
+            "qid": "e0448d0b",
+            "sourceLine": 101,
+            "questionSHA256": "b5bbb1e634519d48b740f921dbb6c62c87d6da156ad71b711f71e93c5137c857"
+          },
+          {
+            "qid": "c952567a",
+            "sourceLine": 103,
+            "questionSHA256": "a81b7aafabd792547c7b1e9b6c9f3053a9cec2086f04fb92c110869ce2804aab"
+          },
+          {
+            "qid": "b4165730",
+            "sourceLine": 108,
+            "questionSHA256": "681d4c87a837b367e01e0ce8a37f0640858e3102fa9121860c9bff01ded03be3"
+          },
+          {
+            "qid": "985d735c",
+            "sourceLine": 111,
+            "questionSHA256": "1b7e568c57f786795f6255aa5246808bd5955545860c58fd4d021900ebf72110"
+          },
+          {
+            "qid": "fe10a36e",
+            "sourceLine": 115,
+            "questionSHA256": "b9d1db7a058d70e8e3beaaa536de87d2c86f3f540e01bc2d2844bdee0875a42c"
+          },
+          {
+            "qid": "4d3fd561",
+            "sourceLine": 117,
+            "questionSHA256": "f6823fb1f2f85fa5b7e758cc67fff3a74419252315d993500f0082929d59968d"
+          },
+          {
+            "qid": "e5c78a9f",
+            "sourceLine": 118,
+            "questionSHA256": "8324109e6ccadd9f9ced0100d9586783fbc45c4b3a94f7181faa829e1e608b9d"
+          },
+          {
+            "qid": "50166346",
+            "sourceLine": 120,
+            "questionSHA256": "87524665df4dc090ed4358044c8bb0ca8982ff4f7f23a8279dc46ba7566f05d0"
+          },
+          {
+            "qid": "1f962c0e",
+            "sourceLine": 123,
+            "questionSHA256": "de90df7b79d41f96113cd7cb55002513ad4caf1dc5411bec977cd1682cb5c0fd"
+          },
+          {
+            "qid": "051a5d1b",
+            "sourceLine": 127,
+            "questionSHA256": "5bf3080bd5de29076cca7a16b40e887f6fb9902d8f19fced5e9bf6893a112876"
+          },
+          {
+            "qid": "17dc6d7e",
+            "sourceLine": 130,
+            "questionSHA256": "20b04d984512c0b4f23fe8f02e903d6448a85683629f51852d586e6c8f6860fb"
+          },
+          {
+            "qid": "b933be69",
+            "sourceLine": 131,
+            "questionSHA256": "83e939b035fe525c48bfc6512705c2dbdc96e162fa3e13f1172785df43762cb0"
+          },
+          {
+            "qid": "312ab0c7",
+            "sourceLine": 140,
+            "questionSHA256": "9f245da728762e43b53f087a7f2f2b92807e8beb8af1ef50d031ae33bdbd4da0"
+          },
+          {
+            "qid": "d8fd9889",
+            "sourceLine": 143,
+            "questionSHA256": "f3b742099379b36604ec71201631865d48cc280aed28587d9dd97033d5392785"
+          },
+          {
+            "qid": "43313455",
+            "sourceLine": 145,
+            "questionSHA256": "72ba867059ce7725340b2b239ada52e03f91e4ba28368d451e86461a0913a687"
+          },
+          {
+            "qid": "81182ae0",
+            "sourceLine": 147,
+            "questionSHA256": "82ca435f53462236f95bf9e3cfa694a334b8dde7188280b9c2f7a5beb736d2e3"
+          },
+          {
+            "qid": "61fc6237",
+            "sourceLine": 149,
+            "questionSHA256": "7dc3e3dfa915646f7f8c61c4a3e7480d59f734a1437b94c5f3c52745504b50f9"
+          },
+          {
+            "qid": "22142814",
+            "sourceLine": 150,
+            "questionSHA256": "bdf1b066af71d5bf1e3cbba3314e01f3e3c5f9c43c21b9e0e2ddc3ab8e75dc5b"
+          },
+          {
+            "qid": "ebea50d5",
+            "sourceLine": 152,
+            "questionSHA256": "1e5f9eab73c2929f3f5e321ff4c8db28a8004e9f951327d710b2f330a2e34351"
+          },
+          {
+            "qid": "61edc2d9",
+            "sourceLine": 154,
+            "questionSHA256": "d630a198f5cac6918d34b105d5872341a08730300b55f07564fd05c244ffed0e"
+          },
+          {
+            "qid": "1b286739",
+            "sourceLine": 156,
+            "questionSHA256": "5ecffbba12116b4e8cd2bd7a9cbfd76ec70ae824d8215b40fb5036d4abd1fc58"
+          },
+          {
+            "qid": "f676438e",
+            "sourceLine": 157,
+            "questionSHA256": "dead2e8353111a018394d833e3f1916f5392654c04c793f4358d0a244da08ee7"
+          },
+          {
+            "qid": "899cadd8",
+            "sourceLine": 159,
+            "questionSHA256": "8766957e3b871798620ae7a9b842f785ae6f07e1271e4265c0a4c3e12c5e241d"
+          },
+          {
+            "qid": "b8666d0a",
+            "sourceLine": 162,
+            "questionSHA256": "b115f9ea59abf89906e68edea479b05a5f35865609425fbfc6f1cd0840fc7e27"
+          },
+          {
+            "qid": "a73f61f6",
+            "sourceLine": 164,
+            "questionSHA256": "0faa2f516d4d08e00845bffc4358dc730d368031cf5533baf5a81d2043815788"
+          },
+          {
+            "qid": "9895f375",
+            "sourceLine": 166,
+            "questionSHA256": "a6e7a32550936fb7b9820bbc1e3fe639195075dde7f0088700d74c2da3076c2e"
+          },
+          {
+            "qid": "69018bb9",
+            "sourceLine": 169,
+            "questionSHA256": "740e6b49b60b0e40cd8e9f7b852185b30a372ac7cd02b994959a664b2e0350e8"
+          },
+          {
+            "qid": "a799c154",
+            "sourceLine": 172,
+            "questionSHA256": "0a6c87ab73b3dcc95dd8ba32ab59176665f36d5977b478b985a66cc4ca70e625"
+          },
+          {
+            "qid": "38c82254",
+            "sourceLine": 176,
+            "questionSHA256": "c38ad4ca37ba7c2cf9bb4257c1ccc5f1e54c108b11df9598e7c77569a8a50ce2"
+          },
+          {
+            "qid": "5ea4847a",
+            "sourceLine": 180,
+            "questionSHA256": "43161f0aa44c6a2beb53d780c26d89268d4bc64f5ee929c8af8a2ad3ca8875fc"
+          },
+          {
+            "qid": "6e1db964",
+            "sourceLine": 182,
+            "questionSHA256": "7d10be2a21d197ba5759f161c29747f00986511872b4b58eeb2c4157396260f8"
+          },
+          {
+            "qid": "65d19905",
+            "sourceLine": 184,
+            "questionSHA256": "7d9a96d4a15a49797b6f0787826caca0564bdcb8d8674e1aa6de07396efb2287"
+          },
+          {
+            "qid": "7987651d",
+            "sourceLine": 186,
+            "questionSHA256": "3e2aac38fb0f88a1164c4f05fedd2691dd601f892f6700ba8271486f079fd68d"
+          },
+          {
+            "qid": "cf609480",
+            "sourceLine": 190,
+            "questionSHA256": "a6954c32ec95624bb6df2eda014b48066d5290f018a5c474a541d2e7999595ec"
+          },
+          {
+            "qid": "0bc2e7aa",
+            "sourceLine": 193,
+            "questionSHA256": "b8b1e448d448b7c1691bf865880897c524443af17e176a84e6297050f07d8648"
+          },
+          {
+            "qid": "a79c0cc3",
+            "sourceLine": 196,
+            "questionSHA256": "0bd8b43413b245ed72db7365f5aa584c155e7361373ad44665793dfa2d463e41"
+          },
+          {
+            "qid": "6d52cb77",
+            "sourceLine": 201,
+            "questionSHA256": "71d6451f3106069ac420c2d12808adedc210b1dece1d9904a2391f169b785920"
+          },
+          {
+            "qid": "d305e74d",
+            "sourceLine": 203,
+            "questionSHA256": "af93fa6ef682c6070b1400cd5482e5518e6608d0dd2b392352cf6bdd4bbec18b"
+          },
+          {
+            "qid": "6a54b25c",
+            "sourceLine": 205,
+            "questionSHA256": "16bf569345c9f10322ed8782e20f30194ecc6d22095037b65fcfd81a7a8321d9"
+          },
+          {
+            "qid": "ef084c2d",
+            "sourceLine": 206,
+            "questionSHA256": "a4c0e290b93ad582f0c224bb2d3a708310180a343611822fbd0a455933ea36df"
+          },
+          {
+            "qid": "9a545994",
+            "sourceLine": 208,
+            "questionSHA256": "47012188fc11dc7d2439b7f19c2d8a49d0557664ac846e836744e37de65c357c"
+          },
+          {
+            "qid": "10d210a3",
+            "sourceLine": 211,
+            "questionSHA256": "7fa511bfdad1d36fe62d41ca9dbe0104491d2d01c09ef217cbaa778db4d47bcc"
+          },
+          {
+            "qid": "d92f30a9",
+            "sourceLine": 213,
+            "questionSHA256": "33dce3f5381b0f9a904674c92aa8dd4020c0264e7600c2d6c90475ed2d0bbdc8"
+          },
+          {
+            "qid": "0f36f320",
+            "sourceLine": 214,
+            "questionSHA256": "47b0d2e45da4bc5d1ab732b2d7cdeb26486c00445c72904c891ddc230119de11"
+          },
+          {
+            "qid": "06df2814",
+            "sourceLine": 216,
+            "questionSHA256": "a5744c45d60f5fbd90780805a10d9011e72143bf4bb2adb74617175223e5aa07"
+          },
+          {
+            "qid": "ac2d05ad",
+            "sourceLine": 220,
+            "questionSHA256": "2ad031b530984e70aec98de4835eb9a47c74d904367aaeb401692c34f9bd2fd1"
+          },
+          {
+            "qid": "805733f8",
+            "sourceLine": 228,
+            "questionSHA256": "b40b8baa40ac751aaa5e13c734af78733d29923059c3b0b7602d60967db8373d"
+          },
+          {
+            "qid": "89bab6a0",
+            "sourceLine": 229,
+            "questionSHA256": "d5400bb6762d06466b846ce00e3fd6f7f1f7686c0ef7cc01d85274c821902791"
+          },
+          {
+            "qid": "6474ec20",
+            "sourceLine": 240,
+            "questionSHA256": "0ba72f8511c1be465b17829c8dfcd5e50fcf4fd303ace24ebec533af8e559916"
+          },
+          {
+            "qid": "11df44bf",
+            "sourceLine": 243,
+            "questionSHA256": "fda32c96d70f4a2d0a6f4ec7e2467cade285bc149bc3361d56770d2b2c9f066e"
+          },
+          {
+            "qid": "df02efdf",
+            "sourceLine": 244,
+            "questionSHA256": "fc748e0e621e31a4ebc5b56bc87970ea41f7981c20e6092dce10ab08408efaa4"
+          },
+          {
+            "qid": "f40c533c",
+            "sourceLine": 245,
+            "questionSHA256": "0868f769ec645e87654458365ff754d154b6e743c520890562beac94137ede38"
+          },
+          {
+            "qid": "1867db90",
+            "sourceLine": 247,
+            "questionSHA256": "3b891977bb0886d0a66878660eceac9743e7af9eefc57e0ce54d03c2d9767740"
+          },
+          {
+            "qid": "a8bc43ae",
+            "sourceLine": 251,
+            "questionSHA256": "0757d877fbadc7f9810846a99e71823d7d58f97f958fb88fd4239b9b71010339"
+          },
+          {
+            "qid": "aca17286",
+            "sourceLine": 252,
+            "questionSHA256": "e2ba07201a1df79d4c02f08225f8f0967abe8403ebfaeee28253b8509ea554ac"
+          },
+          {
+            "qid": "582bc7df",
+            "sourceLine": 253,
+            "questionSHA256": "b2ac96e00a419e0387a6d7771476920f3213ee458fb9c0442490c1a12080dcc2"
+          },
+          {
+            "qid": "adcbaae7",
+            "sourceLine": 254,
+            "questionSHA256": "df507c46a8a29d5c64e1c5b7a09a23ae00d96ba45857ddbf2d7a5b0c183b3ce2"
+          },
+          {
+            "qid": "5e5b8558",
+            "sourceLine": 255,
+            "questionSHA256": "2c9ac7475d900cf788faa10dc9e11ff74fe09fe56a801844644871accfbfcdec"
+          },
+          {
+            "qid": "d86f36d3",
+            "sourceLine": 256,
+            "questionSHA256": "d8de6554953d297773fc9193e7ee597b68eece91bc1fa036f370bd207af49e93"
+          },
+          {
+            "qid": "19c5b8a4",
+            "sourceLine": 259,
+            "questionSHA256": "c3400c207cfb835252cb6ae2f531f4a1b9a90a1bf32c0313caa6d3d499b2b386"
+          },
+          {
+            "qid": "5c743fb2",
+            "sourceLine": 262,
+            "questionSHA256": "1d0c53c9ae366b2cd725dc7dc8480255df255c78335182d0e7c67dc28a11fe01"
+          },
+          {
+            "qid": "21a89255",
+            "sourceLine": 273,
+            "questionSHA256": "8af0ccfe0d96f351e54bba77fd0cc8b271bc83c6d2496493cd386d8fabd64ae6"
+          },
+          {
+            "qid": "85e1d082",
+            "sourceLine": 274,
+            "questionSHA256": "5939f1b2889c63ff0000fa7117bb3022d7c63b0217ac62697697c7192ead0ed4"
+          },
+          {
+            "qid": "bc72d377",
+            "sourceLine": 275,
+            "questionSHA256": "987c1a4d52465d2e8a087dd3b6624c8c0aba725941c118955e577c7e9eed5fa8"
+          },
+          {
+            "qid": "b35be598",
+            "sourceLine": 278,
+            "questionSHA256": "bdf4f0b5ccc244e61a0af0bcbbc7f23392170876074d6dea44977da23877127b"
+          },
+          {
+            "qid": "6a19aece",
+            "sourceLine": 279,
+            "questionSHA256": "bd119c950126dbdce61a02866602c5b3f58caf4122de80d5cbc9b9fc960061c7"
+          },
+          {
+            "qid": "5189c79f",
+            "sourceLine": 280,
+            "questionSHA256": "eb9e0d6bc51f04e7414b160634839ca1a99eb556135e043cef3625b836dbed45"
+          },
+          {
+            "qid": "c187c49d",
+            "sourceLine": 300,
+            "questionSHA256": "63e30e38ea1474acb5434f59b7816e91b9543a9258fa9182afff4cc72591acea"
+          },
+          {
+            "qid": "14af2b14",
+            "sourceLine": 301,
+            "questionSHA256": "54e9a27ff8ed5a11a4a30df958d8425e90688b602067e7bea5ace7b42427980d"
+          },
+          {
+            "qid": "fcf76497",
+            "sourceLine": 302,
+            "questionSHA256": "053450bd9b17dab2784517f20bbfd2303ebab90f32431e560aeb5db10639bb4e"
+          },
+          {
+            "qid": "9eafbe49",
+            "sourceLine": 303,
+            "questionSHA256": "cf5c2d1527ef55c1a6bb7fdf2d61c05b886a04ab5e40eda3858eb70fffeb75f9"
+          },
+          {
+            "qid": "4ecfd6aa",
+            "sourceLine": 304,
+            "questionSHA256": "d1ff8875ccae04690027a7c6ba65752085ba1031944bdec74d91e863f689a954"
+          },
+          {
+            "qid": "bba3c997",
+            "sourceLine": 308,
+            "questionSHA256": "4e6e2318c9cc1cdacd126975f6a72f427f60ec4eb1fc01e838d88ac804c34efd"
+          },
+          {
+            "qid": "b057a5cd",
+            "sourceLine": 309,
+            "questionSHA256": "4a12a85f71942ffc698b465211ef644121a8039038eb8d8d2b7b85d0e49cfe3a"
+          },
+          {
+            "qid": "c4e8b495",
+            "sourceLine": 312,
+            "questionSHA256": "d97f3cd9fbd7355c9f664ec38594533d3cdfe95f6448e6d9a79a6dc60f51a7fd"
+          },
+          {
+            "qid": "54eac6b8",
+            "sourceLine": 331,
+            "questionSHA256": "06a162dd9a151caf835e6655b233d467afabe1891a7f0c6f48ae1ec16983d009"
+          },
+          {
+            "qid": "16482653",
+            "sourceLine": 332,
+            "questionSHA256": "eca17ecea3428b88d02bb919ae72d169751117cb0ff843cbd152bdcf6107929a"
+          },
+          {
+            "qid": "d10de245",
+            "sourceLine": 333,
+            "questionSHA256": "7bc4df5488b79815383aff48cd3d4b3d056d1cd6636f25ac07591f84ca88eb78"
+          },
+          {
+            "qid": "98052e5c",
+            "sourceLine": 334,
+            "questionSHA256": "7d227d86e0b3e4abb0b18c503c0e6452f4c0cb1df2be877fd930ac9bccc6f769"
+          },
+          {
+            "qid": "09748d98",
+            "sourceLine": 342,
+            "questionSHA256": "8c4a25e383396aca6e9dfb7a19a873fd47858d268719a60eb66cb3d14c5d70fc"
+          },
+          {
+            "qid": "010b6339",
+            "sourceLine": 347,
+            "questionSHA256": "c2dafce47df7f1bf65f3905ab0a88e9f67370caa44b5ecb54fd6351421550d6a"
+          },
+          {
+            "qid": "8071ef90",
+            "sourceLine": 348,
+            "questionSHA256": "b836e57c29aba7cbe4c374cba3d0d4664bbc7bcaaa5cd740f7d675417ecc9282"
+          },
+          {
+            "qid": "8d443cc2",
+            "sourceLine": 349,
+            "questionSHA256": "620bdf72ea430445dab44000c667b1299376f71ab10c4d63e133e5c66f5f68ef"
+          },
+          {
+            "qid": "51e8c525",
+            "sourceLine": 375,
+            "questionSHA256": "718abc7ec3d9240988b94b7f2c849a972b0236daf97164647ba6f7f709fae88d"
+          },
+          {
+            "qid": "d87a4c59",
+            "sourceLine": 376,
+            "questionSHA256": "bad8b338ddafa8cae03192321b6a5e98c4ed3844313b6fc63260d2a8179cd330"
+          },
+          {
+            "qid": "0334d0d1",
+            "sourceLine": 383,
+            "questionSHA256": "341044b7b924718531632d7afeeb2c1832e7329be327f8efc3ff46ce2658e3db"
+          },
+          {
+            "qid": "44f1204f",
+            "sourceLine": 388,
+            "questionSHA256": "4af12c79a2e99a39525f35ab3ffcc8bf663808f55678229c1bbd3133fca5e0c9"
+          },
+          {
+            "qid": "5426acba",
+            "sourceLine": 389,
+            "questionSHA256": "f159b3c682e47c81385a2d90c38dbaba60205bc8525f925e9ec814169d50c524"
+          },
+          {
+            "qid": "ede008ca",
+            "sourceLine": 390,
+            "questionSHA256": "ad0350673f7c5cbc0aa5f830405ab39479ef7ead770711f357df5d225dfa666d"
+          },
+          {
+            "qid": "e8ca8ba5",
+            "sourceLine": 391,
+            "questionSHA256": "1276a8c0613b72d1b03b09186ce1c3efcb1de671b5f1f1180444b38a1da60935"
+          },
+          {
+            "qid": "d889795b",
+            "sourceLine": 392,
+            "questionSHA256": "d8a7fcad7ef11ca2d85441bd0afccb19e9698f462fcb18725ffd3bbb61dbff09"
+          },
+          {
+            "qid": "7888b974",
+            "sourceLine": 393,
+            "questionSHA256": "4a9b643e80b8569bd2768ecd8df4851310a0acd4bf1ee46bca480ccd325e3531"
+          },
+          {
+            "qid": "fc859f6a",
+            "sourceLine": 394,
+            "questionSHA256": "4fa42904505f9fe15f8c62c259dc5feed76345a17fb644161e56239f5f3085d3"
+          },
+          {
+            "qid": "6ca50d2d",
+            "sourceLine": 395,
+            "questionSHA256": "16305e4162521099b2970073b46ec79fbadd87d8bbb5a452085a0b5b8d80a3da"
+          },
+          {
+            "qid": "212f3a7d",
+            "sourceLine": 397,
+            "questionSHA256": "9c66938fb318c1bed2031414bcf0dd403e3c5c2c23fb164c040f7b232c14137b"
+          },
+          {
+            "qid": "121adcc7",
+            "sourceLine": 399,
+            "questionSHA256": "dad06f78e32ac1204408c6a3c73552a75fb34c039be1ebc54b98055fa01bc689"
+          },
+          {
+            "qid": "b9f66cbc",
+            "sourceLine": 402,
+            "questionSHA256": "c6a8e655a01be9bac7b2511609e4043e0bb9cdd1ab2ba1d14198b136f62d8192"
+          },
+          {
+            "qid": "ece4696c",
+            "sourceLine": 404,
+            "questionSHA256": "8e9d95c793fd48079ef88fd4ce522341b30f228cd15931eca68271ee813d5568"
+          },
+          {
+            "qid": "0eb0386d",
+            "sourceLine": 406,
+            "questionSHA256": "a25fa66b90237639d5490b941e5aebbf2d273f8a06397f36dca8613cd93aa9b0"
+          },
+          {
+            "qid": "e24c60f6",
+            "sourceLine": 409,
+            "questionSHA256": "a68276384fe911819a2ab6c254a2ea579670b28f53daf55c0484e6e5001ca01c"
+          },
+          {
+            "qid": "aeb58919",
+            "sourceLine": 411,
+            "questionSHA256": "4a97a68fe9d0715a5377d38f6473ab0f5433daa6680bebdc882bd6cab13c55b3"
+          },
+          {
+            "qid": "f3a883e1",
+            "sourceLine": 413,
+            "questionSHA256": "ffe58a93e971c4b34d454821cc55f71fd35292bd7ce9ea6850bcd8984de8718a"
+          },
+          {
+            "qid": "235c52d8",
+            "sourceLine": 414,
+            "questionSHA256": "cd6c855c290af95182b873785a20b3acfc8985487d6e0afa683de6698bcb9878"
+          },
+          {
+            "qid": "022e7562",
+            "sourceLine": 415,
+            "questionSHA256": "c57b69659f6f3201dda9b4e6d9190692d3718d39f90bd2e1b4884f72e823c972"
+          },
+          {
+            "qid": "db25ef93",
+            "sourceLine": 416,
+            "questionSHA256": "4f5128e654cf300663ef967e07ced72efdddd5ee3276e886b6659655103f7d13"
+          },
+          {
+            "qid": "f75b87ef",
+            "sourceLine": 417,
+            "questionSHA256": "3946b0e41c74b400d5ece6c8645e955bae75e8d3ab979aaf6d897cedce0e3ff9"
+          },
+          {
+            "qid": "68f04699",
+            "sourceLine": 418,
+            "questionSHA256": "5e63e920955a59c0a95174885361f043058167542d69cd022c88a08507e31761"
+          },
+          {
+            "qid": "eedac5ba",
+            "sourceLine": 419,
+            "questionSHA256": "4969ddc6390800da37408a03b3274245617282d134ce72d91dd6c6dc61190682"
+          },
+          {
+            "qid": "e0b825bb",
+            "sourceLine": 420,
+            "questionSHA256": "359f59da86ef9f8b43d4da22e38ebbf5ae250fa2a09117e0cd3ee7e9d7524633"
+          },
+          {
+            "qid": "a4c85d32",
+            "sourceLine": 421,
+            "questionSHA256": "2390f3dbbd86d094c3a6262fa0c2f46998b122c76530de602ac7f467f2b6f00e"
+          },
+          {
+            "qid": "80fb7281",
+            "sourceLine": 422,
+            "questionSHA256": "50365cf2bee12bfab80e0096eb62a7ceb57b6ee266fed4b706601d2680567acf"
+          },
+          {
+            "qid": "efcbb8d4",
+            "sourceLine": 423,
+            "questionSHA256": "870b67670d5e0fdc5c26704f939bd13536192c00efe6b8388a3b9c9db72b224d"
+          },
+          {
+            "qid": "2310ea28",
+            "sourceLine": 424,
+            "questionSHA256": "68d31ceb480ce214213497a0d4ca08ab05ea00e4ba6fec397161de51d399ba62"
+          },
+          {
+            "qid": "bdcaa30c",
+            "sourceLine": 425,
+            "questionSHA256": "f57a74a08d451f7c319b0a316cc55e5a82b0a29a89899eaa6b3eb89bf980abfe"
+          },
+          {
+            "qid": "db438123",
+            "sourceLine": 428,
+            "questionSHA256": "644b2314fc4c85c3d0279a0426e4db92c19c7dec2954a6edcf4ea3a797af051d"
+          },
+          {
+            "qid": "60286409",
+            "sourceLine": 429,
+            "questionSHA256": "47d539bdae14ec05a4d2bd5306a56d11a7ecb4f3ce1fe59b33bbf9510d2abe57"
+          },
+          {
+            "qid": "c11c9a7d",
+            "sourceLine": 430,
+            "questionSHA256": "44b4649f8da50576c02809058842d52a21ceff70461e929aa1384319b18da1b9"
+          },
+          {
+            "qid": "f893d58a",
+            "sourceLine": 441,
+            "questionSHA256": "dec2a0e20762609c1c4bf654bcf6182d868de2cf609a0b4a046ac5637e33bf1b"
+          },
+          {
+            "qid": "23323f09",
+            "sourceLine": 447,
+            "questionSHA256": "b949fde7ab756582d4b11bf1980dfb41cc2c91eb75c8df9f387a558ecbdc989e"
+          },
+          {
+            "qid": "cd99f72b",
+            "sourceLine": 451,
+            "questionSHA256": "53f79cf817483954f9f9bd16faefc2b28084dff7eacd92e1a10c7483325bcf5d"
+          },
+          {
+            "qid": "d9a50019",
+            "sourceLine": 452,
+            "questionSHA256": "ba597cb84308522ea1b35849ce07681c46efe8889d590803f2e87d5de45115e9"
+          },
+          {
+            "qid": "2a615157",
+            "sourceLine": 453,
+            "questionSHA256": "37b8a213c8db7c6b4c65eae392f16e0a10bdf03efb01ba89db3389cb89fb7bc9"
+          },
+          {
+            "qid": "d49c5c3c",
+            "sourceLine": 454,
+            "questionSHA256": "2a4b040373b96fb27fb361fb015cca63bcf6cc7c2a22db36b7c58e1905f96ef4"
+          },
+          {
+            "qid": "7ea727d8",
+            "sourceLine": 455,
+            "questionSHA256": "1c9142dd18a1f0c53d422dbaab5c730c826983a4068c5b9c03ac4c1c56902755"
+          },
+          {
+            "qid": "387cdad2",
+            "sourceLine": 456,
+            "questionSHA256": "7e1de2416f683cf6d3710fe1cfa75017e2a4a00cd138138dfabfe6e48c3065e7"
+          },
+          {
+            "qid": "8c9be3b6",
+            "sourceLine": 457,
+            "questionSHA256": "261c5b9ed221b6e67069451dfca93f1babf16d501707087d18d74f4809a63f27"
+          },
+          {
+            "qid": "6cebbdb0",
+            "sourceLine": 458,
+            "questionSHA256": "40ed6572023c6143f22565027d02f9c7b7978eebf674f8ae65bff7b40275ca5d"
+          },
+          {
+            "qid": "0bf48f5b",
+            "sourceLine": 459,
+            "questionSHA256": "72b811052bc48082059532e65e167f4b200d0e96b7521aabf0aac5430b4936ba"
+          },
+          {
+            "qid": "94028b5e",
+            "sourceLine": 460,
+            "questionSHA256": "6a962a078183cd4695ab88f6f42746992491a7aa3e7c2f64959e2d9330868597"
+          },
+          {
+            "qid": "2f2cdd55",
+            "sourceLine": 472,
+            "questionSHA256": "3bf8ef7469da3b62007644f6a5ec2ecb465c1467d760e794b11627bbb72827a9"
+          },
+          {
+            "qid": "99e6abdd",
+            "sourceLine": 524,
+            "questionSHA256": "11137bebdcc7630db4bf48df0996bfe034ca275b9c7b11c265e8923fee21b29b"
+          },
+          {
+            "qid": "d54bff9c",
+            "sourceLine": 526,
+            "questionSHA256": "9b0da270bdd84b42237125b5a23aab98d67101afa54c70b826a88f105ae1e02f"
+          },
+          {
+            "qid": "1e2668d6",
+            "sourceLine": 527,
+            "questionSHA256": "e6f5d83726888c7df959f19e6b2cfefb360e266ce18294eb3e73b2562b8d9969"
+          },
+          {
+            "qid": "5705f74c",
+            "sourceLine": 530,
+            "questionSHA256": "a96e88a2946b469fb9f778db54429d970b6a275a0e2c52576b03fa601093db32"
+          },
+          {
+            "qid": "459c4d9a",
+            "sourceLine": 531,
+            "questionSHA256": "efbf1629e2314f46967a43337b478cf069f5d1689d26cfc24348e231209a4ac8"
+          },
+          {
+            "qid": "760901ee",
+            "sourceLine": 534,
+            "questionSHA256": "a181c030bd622971891ffe66510d408c40fe9c06af59d35d02f594e937536857"
+          },
+          {
+            "qid": "053bc658",
+            "sourceLine": 560,
+            "questionSHA256": "990493c6c30e312ad8f42b9cc1317438be7a5859b65104c71a6e62f5c53aa960"
+          },
+          {
+            "qid": "cf15d456",
+            "sourceLine": 562,
+            "questionSHA256": "7238fb810afbd16a4a94d0fb5b7f61e0854748cd4b7b81378c4541f5a9ba743f"
+          },
+          {
+            "qid": "0aa9eaa4",
+            "sourceLine": 566,
+            "questionSHA256": "9c4eb43f7e163b11224064870dcce2d1b99868d2eb9850b7fc551101b456a335"
+          },
+          {
+            "qid": "ea7fe551",
+            "sourceLine": 568,
+            "questionSHA256": "704ba27185d016c3f5928f8bf3a3f50f67cdec534070ac5bb0139f0895d0dadc"
+          },
+          {
+            "qid": "321a25ae",
+            "sourceLine": 570,
+            "questionSHA256": "d5f1e539847ca099b7f490e600261ca82a3bd7a98ec5bcd31070e128533e4964"
+          },
+          {
+            "qid": "63034956",
+            "sourceLine": 616,
+            "questionSHA256": "0e372cd272b33e97e6dbeadb7e3263463086eece9c06e697439b25b1ab268614"
+          },
+          {
+            "qid": "14076185",
+            "sourceLine": 617,
+            "questionSHA256": "806dbec199b950549bcfe55950b121b7c48d23c93b8bd45608e5932be1d69eae"
+          },
+          {
+            "qid": "baee3a8b",
+            "sourceLine": 619,
+            "questionSHA256": "b484514a697c401228649b455319c431713d03e21c508496e48b41c28c276d8e"
+          },
+          {
+            "qid": "7d63f158",
+            "sourceLine": 623,
+            "questionSHA256": "689b5f59fb80c0b912831e88c55cd29388054808065676701040d092952c39b5"
+          },
+          {
+            "qid": "53090d19",
+            "sourceLine": 624,
+            "questionSHA256": "82e479431daad9edc6179374c9898c36ea5c03d5f1c8dca1932e2dff572c3b8f"
+          },
+          {
+            "qid": "0583e607",
+            "sourceLine": 625,
+            "questionSHA256": "83a9d27d66758fd8ef9b43a9d5120e68de3634ec5a9ff44d2ebbd4517b373497"
+          },
+          {
+            "qid": "bd5a8015",
+            "sourceLine": 627,
+            "questionSHA256": "fafefa3f9738d46395185869bc82f49e36f99ee58eedb2646324b70e62758ca8"
+          },
+          {
+            "qid": "4adc13fd",
+            "sourceLine": 628,
+            "questionSHA256": "7d02465d91b3ac85db05ae641b2e3f24ad9c26e4976eca4fc06d69a5fd2efc88"
+          },
+          {
+            "qid": "11831459",
+            "sourceLine": 630,
+            "questionSHA256": "7de050525259a280a613ba98cdc46ec50e6a391f58d8436617447630626049d4"
+          },
+          {
+            "qid": "81e1082b",
+            "sourceLine": 633,
+            "questionSHA256": "b41b0a0e7157a91777f29c3cb023abf06e6feddf2e1ad2fcf2ad6a197e837243"
+          },
+          {
+            "qid": "74179a29",
+            "sourceLine": 635,
+            "questionSHA256": "bf839c3cc6adae48351a9ca6ebc9954464b637f53a5751e8b18692252918ba96"
+          },
+          {
+            "qid": "4f32d657",
+            "sourceLine": 638,
+            "questionSHA256": "6e42e0fd301a98f3af068d957ac63448b35f71515104f8d3997ed02c04d3c4aa"
+          },
+          {
+            "qid": "72fbf8f7",
+            "sourceLine": 639,
+            "questionSHA256": "69275f6fb600feeb7e02a660c214872a2a19648e05c6e32fea15bee4c6197285"
+          },
+          {
+            "qid": "705cb60b",
+            "sourceLine": 640,
+            "questionSHA256": "ebe95647c68f21095fbc5ce617f4a9c21a72ad1e5b7712a2a37c679684983055"
+          },
+          {
+            "qid": "faac594e",
+            "sourceLine": 641,
+            "questionSHA256": "9f6c9523cd8b77d8c2637371fcd59addee81f8734df9979511c1bc0f1a67f0e8"
+          },
+          {
+            "qid": "096ed861",
+            "sourceLine": 642,
+            "questionSHA256": "98c861a49f1a23cf5f5edf0fa085fa1c999ce04ae69b067612cba41181ec3130"
+          },
+          {
+            "qid": "9046d70e",
+            "sourceLine": 647,
+            "questionSHA256": "f268fac138f7293875bc3494f50e908af8780178213a81e4a85b3a98b5a6f77f"
+          },
+          {
+            "qid": "125cf9bf",
+            "sourceLine": 651,
+            "questionSHA256": "63ff8b8c5c2cf99760953c22bc41b877484b78cde318ba23f6b303371cc5cdc0"
+          },
+          {
+            "qid": "51814977",
+            "sourceLine": 652,
+            "questionSHA256": "b0ec6404fc31a614a66cb07cb622acf2ce335461551dc825b6515115ff6aefe4"
+          },
+          {
+            "qid": "940b2835",
+            "sourceLine": 653,
+            "questionSHA256": "726cb96cefa7643b30a8ce4418951c00d575af4d7cac95f1496a60c1c0364195"
+          }
+        ],
+        "currentBankConsumerCount": 181,
+        "qualification": "KEEP documental do card legado, sem validar capítulo/edição ou normalizar taxonomia; bloqueio deste uso específico, não revisão de todos os consumidores.",
+        "integrationGate": "Não aplicar pacotea73f61f6 ou considerarBrenner verificado.",
+        "sameExactUKKAAsA005A2": false,
+        "scopeQualification": "Demais consumidores não recebem aprovação por associação."
+      }
+    ],
+    "independentExternalVerification": [
+      {
+        "id": "berend2017",
+        "url": "https://www.researchgate.net/publication/319431063_Review_of_the_Diagnostic_Evaluation_of_Normal_Anion_Gap_Metabolic_Acidosis",
+        "status": "OPENED_IDENTIFIED_ORIGINAL_PUBLIC_COPY",
+        "scope": "Cabeçalho originalKarger,autoria/DOI/journal/páginas e corpo pertinente conferidos; sem download/hash dePDF."
+      },
+      {
+        "id": "eps2017",
+        "url": "https://journals.sagepub.com/doi/10.3747/pdi.2017.00018",
+        "status": "OPENED_PRIMARY_PUBLISHER_FULL_BODY",
+        "scope": "SummaryStatements/Conclusion e fatores; sem criar forçaGRADE."
+      },
+      {
+        "id": "hypercalcemia2016",
+        "url": "https://www.researchgate.net/publication/316032868_SOCIETY_FOR_ENDOCRINOLOGY_ENDOCRINE_EMERGENCY_GUIDANCE_Emergency_management_of_acute_hypercalcaemia_in_adult_patients",
+        "status": "OPENED_IDENTIFIED_ORIGINAL_PUBLIC_COPY",
+        "scope": "Cabeçalho SocietyEndocrinology/DOI/G9–G11,QT ealbumina. PMCcaptcha permanece."
+      },
+      {
+        "id": "yun2023",
+        "url": "https://www.kjim.org/journal/view.php?doi=10.3904/kjim.2022.346",
+        "status": "OPENED_PRIMARY_PUBLISHER_FULL_BODY",
+        "scope": "Fonte oficial alternativa aoPMCcaptcha; Equações5/7,fluidose evidência adulta/pediátrica."
+      },
+      {
+        "id": "lesko2017",
+        "url": "https://journals.sagepub.com/doi/10.1177/1074248417691135",
+        "status": "OPENED_PRIMARY_PUBLISHER_FULL_BODY",
+        "scope": "12estudosrandômicosabertoscruzados,amostra/endpointsPK/3h."
+      },
+      {
+        "id": "veltassaPI2023",
+        "url": "https://www.veltassa.com/pi.pdf",
+        "status": "OPENED_CURRENT_OFFICIAL_LABEL",
+        "scope": "14p,revisão10/2023 no site oficial;3h,exceções/levotiroxina."
+      },
+      {
+        "id": "tomkins2022",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9516129/",
+        "status": "OPENED_PRIMARY_FULL_BODY",
+        "scope": "DIcentral/renal/copeptina/desmopressina/adipsia; sem posologia criada."
+      },
+      {
+        "id": "ukka2026",
+        "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+        "status": "OPENED_CURRENT_PRIMARY_GUIDELINE",
+        "scope": "180p,julho2026;novos trechos deSZC/sódio/edema/resinas/patiromer3h lidos; mesmocardA005."
+      },
+      {
+        "id": "aronson2011",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3231780/",
+        "status": "CAPTCHA_NO_DECISIVE_BODY",
+        "scope": "Recibos locais deXML500/PDF403/metadados conferidos; nenhuma aprovação do mecanismo por memória/abstract/figura."
+      }
+    ],
+    "recoveryReceiptsVerified": [
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 6312,
+        "sha256": "24d22288efd7422e8748d8e16131d3f5d05bd304a4a2bbd08ec0ae561c5e3723"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 5128,
+        "sha256": "d43d1899a2e7827dbb737bec9bb4bbf247aa3c653f0586b6ba9f129428adb052"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 3464,
+        "sha256": "b305192dc76012ae5d46c92f1521dd12f2efad8b8ade1f76bba889b3b22e6695"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 501,
+        "sha256": "529dc5452c580ba4fb5cec0b4009cc607713c15cd1fe7a3c03a0182f8601e68a"
+      }
+    ],
+    "counts": {
+      "questionsReviewed": 8,
+      "exactAfterAccepted": 7,
+      "exactAfterBlocked": 1,
+      "cardsReviewed": 8,
+      "proposedCardsReviewed": 7,
+      "cardsAccepted": 7,
+      "cardsBlocked": 1,
+      "cardsAdd": 3,
+      "cardsReplace": 4,
+      "cardsKeepDocumentaryBlocked": 1,
+      "implemented": 0
+    },
+    "validation": {
+      "eightBeforeMatches": true,
+      "eightExactAfterHashes": true,
+      "eightFourOptions": true,
+      "stableQidsAndAnswerIndices": true,
+      "allEightCardHashes": true,
+      "author235ChecksPassVerified": true,
+      "sameUKKAExactA005A2": true,
+      "uniqueLongestCorrectAfter": 0,
+      "publicationDerived": true,
+      "noProductEdits": true,
+      "noGitMutation": true
+    },
+    "limits": [
+      "Bloqueioa73f61f6não se propaga para outras questões ouUKKA. Fonte ausente eexplicação provisória impedem publicação desteAFTER exato.",
+      "Public copies ResearchGate têm identidade/corpo originais conferidos; não foram confundidas com resumo de plataforma nem tiveram autenticação contornada.",
+      "EPS/Yun/UKKA têmpatches materiais;Tomkins somente taxonomia/cor/ícone, mas cardcompleto foi lido no escopo científico exato. Reconciliar consumidores e versões antes deintegração.",
+      "Nenhuma correção material nova, integraçãoCAS/runtime/saves/FSRS, produto, Git ou publicação realizados."
+    ]
+  }
+}
