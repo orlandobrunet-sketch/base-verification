@@ -1,0 +1,997 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 33887,
+  "sourceReportSHA256": "a5b0a0e9f2b4cb2bbb9f8e0a87a57b4c0af76f2a8b70fc25d2d72be1356456e4",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "nq-independent-normalization-binding-check-v1",
+    "reviewer": "clinical_peer_c010_continue",
+    "officialUTC": "2026-10-13 18:47:42 UTC",
+    "scope": "Somente formato e bindings dos três pontos C018A2. Nenhuma releitura/gate clínico novo, nenhum outro dos cinco itens reaberto.",
+    "authorManifest": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 10390,
+      "sha256": "ef0ea692c24eef971ddcce8115cb50ec5ed338b110301bedc7dfe061145bed0a"
+    },
+    "frozenInputs": {
+      "author": {
+        "path": "docs/editorial/reviews/2026-10-12/group-c-output-018.json",
+        "bytes": 239643,
+        "sha256": "c22e7f010280bf56c70de8dc32842300ccfc69f294996d0f5a2b732f18f60fb1"
+      },
+      "dossier": {
+        "path": "docs/editorial/reviews/2026-10-12/group-c-arbitration-c018-three-A1.json",
+        "bytes": 68347,
+        "sha256": "55b9a35d7abddb3b97502f717efb5c75733f0d1d999d1c9bee0f832b5b7e6e3d"
+      },
+      "peerConcordance": {
+        "path": "docs/editorial/reviews/2026-10-12/independent-c018-arbitration-concordance-A1.json",
+        "bytes": 93308,
+        "sha256": "0ffbb8e44af14495eeb3e2b6f770038eecf1ab8959ee039ac1c240803965a491"
+      },
+      "coordinator": {
+        "path": "docs/editorial/reviews/2026-10-12/c018-coordinator-arbitration-A1.json",
+        "bytes": 2936,
+        "sha256": "bd546ce31a10a3322ae058f4969cb675e67cfb86525267dd70013765b53d704a"
+      },
+      "peerOriginal": {
+        "path": "docs/editorial/reviews/2026-10-12/independent-c018-A2.json",
+        "bytes": 249823,
+        "sha256": "2fb4ea4b38df4acb5a243d7c7a3e65ed91190d45e28c6051f0d9608510016187"
+      }
+    },
+    "priorOwnSourceReadingReceipt": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 3547,
+      "sha256": "f33766d5de9f8d2401b02627723232fd77cbb73b02c4cafc339495655bbf354d"
+    },
+    "decision": "Concordo com a normalização A2 e seus vínculos exatos; decisões clínicas previamente acordadas permanecem literais.",
+    "items": [
+      {
+        "qid": "13109735",
+        "normalizedPoint": {
+          "path": "docs/editorial/reviews/2026-10-12/group-c-point-13109735-c018-arbitration-normalized-A2.json",
+          "bytes": 52440,
+          "sha256": "cb69609fe07c32aaac5545e67947a7d4bed5c5a01dc69e62cd6ff8baec191755"
+        },
+        "exactAFTER": {
+          "t": "Pressão Arterial na DRC — Medida Padronizada",
+          "qid": "13109735",
+          "q": "Homem de 55 anos com DM 2 e DRCG 4 tem PAS 148 mmHg obtida por técnica padronizada, sem sintomas posturais. Segundo a KDIGO 2024, qual princípio orienta a meta?",
+          "refs": [
+            "kdigo_ckd_complications_2024"
+          ],
+          "opts": [
+            "Buscar PAS<120 quando tolerada, mantendo medida padronizada e individualização.",
+            "Manter PAS em 140-149 porque todo paciente com diabetes deve ser excluído de uma meta mais intensiva.",
+            "Buscar PAS<120 também em qualquer medida casual, sem revisar técnica, sintomas ou efeitos adversos.",
+            "Escolher espironolactona obrigatória para atingir a meta, sem considerar potássio, TFGe ou outros medicamentos."
+          ],
+          "ans": 0,
+          "exp": "Rec 3.4.1(2 B) sugere PAS padronizada<120 quando tolerada. Técnica e tolerabilidade fazem parte da recomendação; fragilidade, risco de quedas e sintomas posturais podem justificar menor intensidade. A evidência é menos direta em diabetes/DRCG 4-G 5, como reconhecido pela diretriz de pressão de 2021, exigindo avaliação individual. A justificativa principal é cardiovascular; não se promete redução de falência renal. Este caso não é resolvido por extrapolar um ensaio para G 4 nem por impor um único fármaco.",
+          "diff": "medium",
+          "cat": "drc"
+        },
+        "orderedAFTERsha256": "26f4457aa98ec09c403615b8007e8c56ffe320e438e502e7d4e626f58590ee43",
+        "sortedAFTERsha256": "f27b60a792b465b737c5dce4d4ed9d0e01a99d0f4b50fc7cc7e6e47af4bde873",
+        "normalizedQuestionObjectDigest": "a3e752b937f9aa6714527eae91d5fe1bc6eba1e7a079e81a8808cc86285e37c2",
+        "clinicalScopeObjectDigest": "878c500f5ccefc310f883228e3661801607c8804f70ef6269f067fdb1efc5f93",
+        "preexistingOwnGateDigest": "ff1434034c973ee6fc0fe01cb6d73abadefb92bfb5ef86152126e2ca5e832f17",
+        "verdictPreserved": "fundir",
+        "scientificPublicationVotePreserved": "BLOQUEADA",
+        "scorePreserved": 19,
+        "selectionPreserved": {
+          "verdictV2": "fundir",
+          "mergeTarget": "e8a59de8",
+          "keepAsUniqueRepresentative": false
+        },
+        "exactCards": [
+          {
+            "id": "kdigo_ckd_complications_2024",
+            "AFTER": {
+              "label": "KDIGO — Pressão, acidose e nsMRA na DRC",
+              "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+              "journal": "KDIGO CKD2024; Kidney Int105(Suppl4S):S117-S314",
+              "ano": 2024,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Distinguir recomendações graduadas e pontos de prática em complicações da DRC.",
+              "icon": "📋",
+              "resumo": "Rec 3.4.1: PAS padronizada<120 quando tolerada(2 B), com individualização. Rec 3.8.1: nsMRA com benefício comprovado para DM 2, TFGe>25, potássio normal e RAC>30 apesar de SRAA máximo tolerado(2 A); monitorar potássio. PP 3.10.1-2, sem graduação: considerar tratamento da acidose com implicações clínicas, usando bicarbonato<18 mmol/L como exemplo; evitar excesso e piora de pressão, volume ou potássio. Evidência não demonstra um alvo universal de bicarbonato com prevenção de falência renal.",
+              "conclusao": "Medida padronizada, elegibilidade e monitorização fazem parte da conduta. Este card focaliza três decisões; não substitui por associação os cards de hipercalemia, SGLT 2 ou estimativa de TFG.",
+              "curiosidade": ""
+            },
+            "SHA256": "016124709b54b01ea57682752eb956b7a81e9518fa61dac7d81f6f7f7316beef"
+          }
+        ],
+        "literalDuplicationMetadataDigest": "6621928a8f222a1c2f8e280e0d7be513756de94324cd6a3262147b81fc9e1072",
+        "arbitrationConditionSatisfied": true,
+        "pendingDownstream": [
+          "exact card and consumer reconciliation",
+          "historical version compatibility",
+          "technical integration and CI"
+        ],
+        "newClinicalGate": false,
+        "newUniqueQuestion": false,
+        "applied": false
+      },
+      {
+        "qid": "78823c61",
+        "normalizedPoint": {
+          "path": "docs/editorial/reviews/2026-10-12/group-c-point-78823c61-c018-arbitration-normalized-A2.json",
+          "bytes": 54498,
+          "sha256": "f5b120c3ea62af6ef549d8855fd2287d32616dbf6c5912dea212b6105e73f6ce"
+        },
+        "exactAFTER": {
+          "t": "DRC Não Dialítica — Ferro Antes de AEE",
+          "qid": "78823c61",
+          "q": "Pessoa com DRCG 3 b não dialítica tem anemia crônica estável, Hb 9,8 g/dL, ferritina 285 ng/mL e TSAT 19%, sem sangramento ou instabilidade. Segundo a KDIGO 2026, qual passo é adequado antes de considerar AEE?",
+          "refs": [
+            "kdigo_iron_start_nondialysis_2026"
+          ],
+          "opts": [
+            "Iniciar AEE apenas pela Hb<10, deixando a avaliação e correção de causas tratáveis para depois.",
+            "Não oferecer ferro porque ferritina acima de 100 exclui deficiência ou restrição de disponibilidade.",
+            "Transfundir rotineiramente para normalizar Hb, mesmo na anemia crônica estável sem urgência.",
+            "Iniciar ferro e investigar causas corrigíveis, individualizando a via."
+          ],
+          "ans": 3,
+          "exp": "Ferritina 100 a<300 com TSAT<25 atende à Rec 2.3(2 D) para iniciar ferro na anemia da DRC não dialítica. Oral ou IV dependem de preferência, gravidade, eficácia, tolerabilidade, disponibilidade e custo(Rec 2.4,2 D). PP 3.1.2 orienta abordar causas corrigíveis antes de AEE/HIF-PHI. Hb<10 não torna AEE imediato automático; transfusão em anemia estável requer outra justificativa clínica e individualização.",
+          "diff": "medium",
+          "cat": "drc"
+        },
+        "orderedAFTERsha256": "6eac9373f2eeecb8f165a82700f0d4b90e2043808b0bf07a1efd572c692e8f9b",
+        "sortedAFTERsha256": "1b34fe160553dd54fb66904ac7e85bf795c907ec9723c06c2c0c781b44e20ecf",
+        "normalizedQuestionObjectDigest": "b6a06d7166eddb20807972eb1a3ec7e8095e14744c1c0f31520b2395c84dfe09",
+        "clinicalScopeObjectDigest": "46a12cba22250b3be66edca1d22e8ab4e5c47f1e0b4436e6bbef4f094a86aeb9",
+        "preexistingOwnGateDigest": "50a8894d9929c89000640ea5f4d8856e0243e0458aa8e1913e0ad5ea8accb3f9",
+        "verdictPreserved": "fundir",
+        "scientificPublicationVotePreserved": "BLOQUEADA",
+        "scorePreserved": 19,
+        "selectionPreserved": {
+          "verdictV2": "fundir",
+          "mergeTarget": "911fdbb4",
+          "keepAsUniqueRepresentative": false
+        },
+        "exactCards": [
+          {
+            "id": "kdigo_iron_start_nondialysis_2026",
+            "AFTER": {
+              "label": "KDIGO — Iniciar ferro em DRC não dialítica",
+              "url": "https://kdigo.org/wp-content/uploads/2026/01/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+              "journal": "KDIGO Anemia2026; Kidney Int109(Suppl1S):S1-S99",
+              "ano": 2026,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Aplicar critérios de ferro e tratar causas corrigíveis antes de AEE.",
+              "icon": "📋",
+              "resumo": "Rec 2.3(2 D) sugere ferro na anemia da DRC não dialítica quando ferritina<100 ng/mL e TSAT<40%, ou ferritina 100 a<300 e TSAT<25%. Rec 2.4(2 D): oral ou intravenoso conforme preferência, gravidade, eficácia, tolerabilidade, disponibilidade e custo. PP 3.1.2 orienta corrigir causas tratáveis antes de AEE/HIF-PHI. Esses critérios não são os da hemodiálise.",
+              "conclusao": "Individualizar ferro e investigar a anemia; hemoglobina isolada não determina AEE ou transfusão em anemia crônica estável.",
+              "curiosidade": ""
+            },
+            "SHA256": "3b0676322e4d8f8cac14bc4fd8beb292652101758b289df9c80e36ee56324f0e"
+          }
+        ],
+        "literalDuplicationMetadataDigest": "015ab606f39cce1cdce747599b5744e7ec3ccc7302e7d01bfed1df26f33e9f41",
+        "arbitrationConditionSatisfied": true,
+        "pendingDownstream": [
+          "exact card and consumer reconciliation",
+          "historical version compatibility",
+          "technical integration and CI"
+        ],
+        "newClinicalGate": false,
+        "newUniqueQuestion": false,
+        "applied": false
+      },
+      {
+        "qid": "911fdbb4",
+        "normalizedPoint": {
+          "path": "docs/editorial/reviews/2026-10-12/group-c-point-911fdbb4-c018-arbitration-normalized-A2.json",
+          "bytes": 53773,
+          "sha256": "f7270b2801261f9bec14c85b16fd20c9725bb0c23e76b79e020df0e4a58842eb"
+        },
+        "exactAFTER": {
+          "t": "DRC Não Dialítica — Ferro em Anemia Leve",
+          "qid": "911fdbb4",
+          "q": "Homem com DRCG 3 a tem anemia crônica estável, Hb 11,9 g/dL, ferritina 95 ng/mL e TSAT 18%, sem sangramento ou instabilidade. Qual conduta é mais adequada?",
+          "refs": [
+            "kdigo_iron_start_nondialysis_2026"
+          ],
+          "opts": [
+            "Iniciar AEE como primeira medida apenas pela presença de anemia, antes de avaliar causas corrigíveis.",
+            "Transfundir de rotina por Hb<12, mesmo sem urgência, independentemente de sintomas e riscos.",
+            "Investigar causas tratáveis e iniciar ferro, individualizando a via.",
+            "Excluir anemia relevante pelo estágioG 3 a e observar sem reavaliar Hb, ferro ou possíveis causas."
+          ],
+          "ans": 2,
+          "exp": "Hb 11,9 g/dL caracteriza anemia nesse homem. Ferritina<100 e TSAT<40 atendem ao critério de ferro não dialítico(Rec 2.3,2 D). A via oral/IV é individualizada(Rec 2.4,2 D), e causas corrigíveis devem ser abordadas antes de AEE/HIF-PHI(PP 3.1.2). Nenhum desses números exigeAEE ou transfusão automática; em anemia estável, decisões dependem de contexto, sintomas e riscos.",
+          "diff": "medium",
+          "cat": "drc"
+        },
+        "orderedAFTERsha256": "2bef5dcfa034261027e96122c772ae15deee5a9ef132b0edcb8df03f1ab3bd50",
+        "sortedAFTERsha256": "dd1f42fe12f41dc63205cf11e5daa114ac551777f48caf3a01f4f707366ef8d2",
+        "normalizedQuestionObjectDigest": "9ee49bc6e9e972e49e325628c451e57ba5f49f0fc3fe80fdef9694ed873534f7",
+        "clinicalScopeObjectDigest": "7e87d05bd504db29d7f83eb7469b849af12f15e2f952e3edd9e60f82841785d1",
+        "preexistingOwnGateDigest": "dc132793ac56a38ce49baf742b58304d805b02f2d3011fea67379382d2e0dc00",
+        "verdictPreserved": "aprovada",
+        "scientificPublicationVotePreserved": "LIBERADA",
+        "scorePreserved": 20,
+        "selectionPreserved": {
+          "verdictV2": "aprovada",
+          "mergeTarget": null,
+          "keepAsUniqueRepresentative": true
+        },
+        "exactCards": [
+          {
+            "id": "kdigo_iron_start_nondialysis_2026",
+            "AFTER": {
+              "label": "KDIGO — Iniciar ferro em DRC não dialítica",
+              "url": "https://kdigo.org/wp-content/uploads/2026/01/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+              "journal": "KDIGO Anemia2026; Kidney Int109(Suppl1S):S1-S99",
+              "ano": 2026,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Aplicar critérios de ferro e tratar causas corrigíveis antes de AEE.",
+              "icon": "📋",
+              "resumo": "Rec 2.3(2 D) sugere ferro na anemia da DRC não dialítica quando ferritina<100 ng/mL e TSAT<40%, ou ferritina 100 a<300 e TSAT<25%. Rec 2.4(2 D): oral ou intravenoso conforme preferência, gravidade, eficácia, tolerabilidade, disponibilidade e custo. PP 3.1.2 orienta corrigir causas tratáveis antes de AEE/HIF-PHI. Esses critérios não são os da hemodiálise.",
+              "conclusao": "Individualizar ferro e investigar a anemia; hemoglobina isolada não determina AEE ou transfusão em anemia crônica estável.",
+              "curiosidade": ""
+            },
+            "SHA256": "3b0676322e4d8f8cac14bc4fd8beb292652101758b289df9c80e36ee56324f0e"
+          }
+        ],
+        "literalDuplicationMetadataDigest": "f2949dd4e8dbfea261d3a4f2348f788956a3ac3a50e87b025085dbebd2247cd6",
+        "arbitrationConditionSatisfied": true,
+        "pendingDownstream": [
+          "exact card and consumer reconciliation",
+          "historical version compatibility",
+          "technical integration and CI"
+        ],
+        "newClinicalGate": false,
+        "newUniqueQuestion": false,
+        "applied": false
+      }
+    ],
+    "preservedOtherFiveQuestionObjectDigests": {
+      "23323f09": "e4b9bd887dcd9d722b1b91ce155ba181e7a10769aa95a280a986bf85738ac668",
+      "38da9430": "46083ac4fce36d888a86f0c9f6c4d4fc5d6b5197ca89340f2228b700e39220b5",
+      "d4393bc2": "024e98332ac0788c13e14f34ae2c2ee3f9cc91e346b5f2ae3ab6596e1086c748",
+      "9661a8dd": "2a84aa0e106dca1d3f5a5b8e2cf2bde0a1801c6cd8a5dfe8d556929ce6a67c22",
+      "d7ac22f6": "805175cf6420c4bcbc07e3f9707331988373e083489e16a4f9143e32c6550d6f"
+    },
+    "counts": {
+      "existingNormalizedScopes": 3,
+      "newUniqueQuestions": 0,
+      "newClinicalGates": 0,
+      "newBatchOfEight": 0,
+      "newPublicationAuthorizations": 0,
+      "applied": 0
+    },
+    "validation": {
+      "PASS": 174,
+      "FAIL": 0,
+      "checks": [
+        {
+          "check": "author A2 manifest exact",
+          "result": "PASS"
+        },
+        {
+          "check": "input author",
+          "result": "PASS"
+        },
+        {
+          "check": "input dossier",
+          "result": "PASS"
+        },
+        {
+          "check": "input peerConcordance",
+          "result": "PASS"
+        },
+        {
+          "check": "input coordinator",
+          "result": "PASS"
+        },
+        {
+          "check": "input peerOriginal",
+          "result": "PASS"
+        },
+        {
+          "check": "prior own source receipt frozen",
+          "result": "PASS"
+        },
+        {
+          "check": "prior own raw ckd2024",
+          "result": "PASS"
+        },
+        {
+          "check": "prior own selectedtext ckd2024",
+          "result": "PASS"
+        },
+        {
+          "check": "prior own raw bp2021",
+          "result": "PASS"
+        },
+        {
+          "check": "prior own selectedtext bp2021",
+          "result": "PASS"
+        },
+        {
+          "check": "prior own raw anemia2026",
+          "result": "PASS"
+        },
+        {
+          "check": "prior own selectedtext anemia2026",
+          "result": "PASS"
+        },
+        {
+          "check": "other five author literal 23323f09",
+          "result": "PASS"
+        },
+        {
+          "check": "other five author literal 38da9430",
+          "result": "PASS"
+        },
+        {
+          "check": "other five author literal d4393bc2",
+          "result": "PASS"
+        },
+        {
+          "check": "other five author literal 9661a8dd",
+          "result": "PASS"
+        },
+        {
+          "check": "other five author literal d7ac22f6",
+          "result": "PASS"
+        },
+        {
+          "check": "current topics pin",
+          "result": "PASS"
+        },
+        {
+          "check": "current refs pin",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 A2 exactpin",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 onepoint",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 currentBEFORE/dossier/oldpeer",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 exactAFTER allpreviousobjects",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 orderedhashes",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 sortedcoordinatorhash",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 ID/gabarito literal",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 freshscope literal preserved",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 dossier OP exact",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 dossier classification exact",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 dossier advogadoDoRecurso exact",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 dossier eliminators exact",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 dossier NQEditorialScore exact",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 dossier decisionTree exact",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 reconstruction exact",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 ten eliminators retained",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 ten score dimensions retained",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 cards literal dossier",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 current source registry literal dossier",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 original sourcepin ckd2024",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 full source textpin ckd2024",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 ownprevioussame raw ckd2024",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 original sourcepin bp2021",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 full source textpin bp2021",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 ownprevioussame raw bp2021",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 original sourcepin anemia2026",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 full source textpin anemia2026",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 ownprevioussame raw anemia2026",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 claims literal dossier",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 claims registry ckd2024",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 claims registry bp2021",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 refs actualcardset",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 fullcard same ownprevious kdigo_ckd_complications_2024",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 currentcard BEFORE kdigo_ckd_complications_2024",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 cardconsumer enumeration kdigo_ckd_complications_2024",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 ownwhole proof same dossier kdigo_ckd_complications_2024",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 duplicate4dim literal",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 practicalbranch literal",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 compareditems literal",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 normalizationonly nooutsideapproval",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 related currentBEFORE e8a59de8",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 related currentBEFORE 5f9a6fe1",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 oldpointA1 preserved",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 A2only duplicationCheck changed",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 A2cards/sources unchanged",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 agreedverdict preserved",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 scientificpublication matchesrecord",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 arbitrationrecord exact",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 noapplication or reset",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 fiveothers unchanged digests",
+          "result": "PASS"
+        },
+        {
+          "check": "13109735 zero newgate/count/release",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 A2 exactpin",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 onepoint",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 currentBEFORE/dossier/oldpeer",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 exactAFTER allpreviousobjects",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 orderedhashes",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 sortedcoordinatorhash",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 ID/gabarito literal",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 freshscope literal preserved",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 dossier OP exact",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 dossier classification exact",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 dossier advogadoDoRecurso exact",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 dossier eliminators exact",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 dossier NQEditorialScore exact",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 dossier decisionTree exact",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 reconstruction exact",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 ten eliminators retained",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 ten score dimensions retained",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 cards literal dossier",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 current source registry literal dossier",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 original sourcepin ckd2024",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 full source textpin ckd2024",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 ownprevioussame raw ckd2024",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 original sourcepin bp2021",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 full source textpin bp2021",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 ownprevioussame raw bp2021",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 original sourcepin anemia2026",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 full source textpin anemia2026",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 ownprevioussame raw anemia2026",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 claims literal dossier",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 claims registry anemia2026",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 refs actualcardset",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 fullcard same ownprevious kdigo_iron_start_nondialysis_2026",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 currentcard BEFORE kdigo_iron_start_nondialysis_2026",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 cardconsumer enumeration kdigo_iron_start_nondialysis_2026",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 ownwhole proof same dossier kdigo_iron_start_nondialysis_2026",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 duplicate4dim literal",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 practicalbranch literal",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 compareditems literal",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 normalizationonly nooutsideapproval",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 related currentBEFORE 911fdbb4",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 related currentBEFORE 061c9bcb",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 related currentBEFORE c7e8cc9a",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 oldpointA1 preserved",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 A2only duplicationCheck changed",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 A2cards/sources unchanged",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 agreedverdict preserved",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 scientificpublication matchesrecord",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 arbitrationrecord exact",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 noapplication or reset",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 fiveothers unchanged digests",
+          "result": "PASS"
+        },
+        {
+          "check": "78823c61 zero newgate/count/release",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 A2 exactpin",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 onepoint",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 currentBEFORE/dossier/oldpeer",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 exactAFTER allpreviousobjects",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 orderedhashes",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 sortedcoordinatorhash",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 ID/gabarito literal",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 freshscope literal preserved",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 dossier OP exact",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 dossier classification exact",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 dossier advogadoDoRecurso exact",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 dossier eliminators exact",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 dossier NQEditorialScore exact",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 dossier decisionTree exact",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 reconstruction exact",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 ten eliminators retained",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 ten score dimensions retained",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 cards literal dossier",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 current source registry literal dossier",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 original sourcepin ckd2024",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 full source textpin ckd2024",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 ownprevioussame raw ckd2024",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 original sourcepin bp2021",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 full source textpin bp2021",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 ownprevioussame raw bp2021",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 original sourcepin anemia2026",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 full source textpin anemia2026",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 ownprevioussame raw anemia2026",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 claims literal dossier",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 claims registry anemia2026",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 refs actualcardset",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 fullcard same ownprevious kdigo_iron_start_nondialysis_2026",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 currentcard BEFORE kdigo_iron_start_nondialysis_2026",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 cardconsumer enumeration kdigo_iron_start_nondialysis_2026",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 ownwhole proof same dossier kdigo_iron_start_nondialysis_2026",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 sharedcard equivalent kdigo_iron_start_nondialysis_2026",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 duplicate4dim literal",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 practicalbranch literal",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 compareditems literal",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 normalizationonly nooutsideapproval",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 related currentBEFORE 78823c61",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 related currentBEFORE 061c9bcb",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 related currentBEFORE c7e8cc9a",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 oldpointA1 preserved",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 A2only duplicationCheck changed",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 A2cards/sources unchanged",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 agreedverdict preserved",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 scientificpublication matchesrecord",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 arbitrationrecord exact",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 noapplication or reset",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 fiveothers unchanged digests",
+          "result": "PASS"
+        },
+        {
+          "check": "911fdbb4 zero newgate/count/release",
+          "result": "PASS"
+        }
+      ],
+      "qualification": "Comparação estrutural/identidade de objetos e fontes. Não prova clínica automatizada nem QA de produto."
+    },
+    "productPins": [
+      {
+        "path": "data/topics.js",
+        "bytes": 971537,
+        "sha256": "45c283a5a9634fe72e166762bd2461158ebc1647f5b5a026b7ae1ea68f6ee130"
+      },
+      {
+        "path": "data/refs.js",
+        "bytes": 491073,
+        "sha256": "d12c230d80f505fc8fd1893f489014fca8bbeced681c1224f03f4c3f4c7f01f7"
+      }
+    ],
+    "nextStep": "Coordenador pode consumir os três pontos A2 exatos na reconciliação. FUNDIR131/788 continua bloqueado;911 é representante científico aprovado. Reconciliar cards/consumidores/compatibilidade e CI antes de aplicação.",
+    "limits": [
+      "Nenhum alvo externo e nenhum consumidor de card foi aprovado por associação.",
+      "Scores19/19/20, dez eliminadores, dez dimensões e árvores são snapshots literais do dossiê já acordado, não juízos novos.",
+      "Hashes compactos com ordem e hashes ordenados do coordenador foram conferidos separadamente.",
+      "A1 e pareceres originais preservados; somente metadado auxiliar duplicationCheck foi corrigido emA2."
+    ]
+  }
+}

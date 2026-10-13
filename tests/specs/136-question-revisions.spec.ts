@@ -100,7 +100,7 @@ function installFixtureRuntime(bundle: any) {
   Object.defineProperty(w, 'NQQuestionRevisions', { configurable: true, get: () => loaded, set: value => { loaded = value; build(); } });
   w.__revisionFixture = bundle; build();
   addEventListener('DOMContentLoaded', () => {
-    if (location.pathname.endsWith('/offline.html')) (0, eval)('offlineCatalog = window.questionRevisionCatalog');
+    if (location.pathname.endsWith('/offline.html') || location.pathname === '/offline') (0, eval)('offlineCatalog = window.questionRevisionCatalog');
   }, { once: true });
 }
 async function fixture(page: Page, qid?: string): Promise<any> {
@@ -142,7 +142,7 @@ async function fixture(page: Page, qid?: string): Promise<any> {
   // as its real manifest/history, including before DOMContentLoaded fires.
   await page.route('**/data/topics.js*', route => {
     const referer = route.request().headers()['referer'];
-    if (!referer || new URL(referer).pathname !== '/offline.html') return route.fallback();
+    if (!referer || !['/offline.html', '/offline'].includes(new URL(referer).pathname)) return route.fallback();
     return route.fulfill({ status: 200, contentType: 'application/javascript',
       body: `const topics = ${JSON.stringify([bundle.currentAuthor])};` });
   });

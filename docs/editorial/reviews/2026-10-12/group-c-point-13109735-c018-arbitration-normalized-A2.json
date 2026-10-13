@@ -1,0 +1,1159 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 52440,
+  "sourceReportSHA256": "cb69609fe07c32aaac5545e67947a7d4bed5c5a01dc69e62cd6ff8baec191755",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_FORMAL_POINT_GATE_NORMALIZATION_v1",
+    "group": "c",
+    "batch": "018",
+    "qid": "13109735",
+    "normalizedAtOfficialUTC": "2026-10-13 18:11:43 UTC",
+    "reviewedAtOfficialUTC": "2026-10-13 17:35:41 UTC",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "currentPublicMergeCommit": "135899077669af6dcf564717833227828ba03fe5",
+    "bankLF_SHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "input": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 16156,
+      "sha256": "b2b61121da7f7837edad7f02dfcb94cbc06ba25ce1b7a0e03b71fa56457a9d3d"
+    },
+    "normalizationInputs": {
+      "author": {
+        "path": "docs/editorial/reviews/2026-10-12/group-c-output-018.json",
+        "bytes": 239643,
+        "sha256": "c22e7f010280bf56c70de8dc32842300ccfc69f294996d0f5a2b732f18f60fb1"
+      },
+      "dossier": {
+        "path": "docs/editorial/reviews/2026-10-12/group-c-arbitration-c018-three-A1.json",
+        "bytes": 68347,
+        "sha256": "55b9a35d7abddb3b97502f717efb5c75733f0d1d999d1c9bee0f832b5b7e6e3d"
+      },
+      "peerConcordance": {
+        "path": "docs/editorial/reviews/2026-10-12/independent-c018-arbitration-concordance-A1.json",
+        "bytes": 93308,
+        "sha256": "0ffbb8e44af14495eeb3e2b6f770038eecf1ab8959ee039ac1c240803965a491"
+      },
+      "coordinator": {
+        "path": "docs/editorial/reviews/2026-10-12/c018-coordinator-arbitration-A1.json",
+        "bytes": 2936,
+        "sha256": "bd546ce31a10a3322ae058f4969cb675e67cfb86525267dd70013765b53d704a"
+      },
+      "peerOriginal": {
+        "path": "docs/editorial/reviews/2026-10-12/independent-c018-A2.json",
+        "bytes": 249823,
+        "sha256": "2fb4ea4b38df4acb5a243d7c7a3e65ed91190d45e28c6051f0d9608510016187"
+      }
+    },
+    "normativeSources": [
+      {
+        "path": "AGENTS.md",
+        "bytes": 15910,
+        "sha256": "123d3bf57a43e23dd21adb277295bfbaa8a0d46dccb584f12265396abe4dfe83"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      }
+    ],
+    "medicalSkills": [
+      "canonical revisar-nefroquest v2",
+      "c32/verified-medical-answer"
+    ],
+    "sourceRegistry": {
+      "ckd2024": {
+        "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+        "version": "KDIGO CKD2024; KI105(Suppl4S):S117-S314",
+        "original": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 5966902,
+          "sha256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0"
+        },
+        "text": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 997097,
+          "sha256": "9a8fd5474e7214ab482892cc34901ef2353ce01f336c533866f09ecfdcffb84a"
+        },
+        "access": "Full official PDF/extraction, own body reread for these scopes",
+        "locators": [
+          "Chapter3.4 Rec3.4.1(2B)/PP3.4.1 and following full rationale",
+          "Chapter3.8 Rec3.8.1(2A)/PP3.8.1-3",
+          "Chapter3.10 PP3.10.1-2, ungraded, S222-S223"
+        ],
+        "finding": "Standardized SBP<120 when tolerated; individualized less-intensive therapy for symptomatic postural hypotension/frailty/fallrisk. DM/G4 alone does not force another target. Full nsMRA/acidosis sections rechecked for whole exact shared card, not approval of its other consumers."
+      },
+      "bp2021": {
+        "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2021-BP-GL.pdf",
+        "version": "KDIGO BP2021; KI99(Suppl3S):S1-S87",
+        "original": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 4642743,
+          "sha256": "0f1c93de3b1598aae72b9d4f434a146151e1e17876f1351d9198030558ea305a"
+        },
+        "text": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 427942,
+          "sha256": "6b4dca3e24dec43de39d95dc76f57eb86b16b83cfe6f55c6792760c0dced89b5"
+        },
+        "access": "Full official original PDF/text independently reread",
+        "locators": [
+          "Rec3.1.1(2B), PP3.1.1-2; introduction certainty inDM/G4-G5"
+        ],
+        "finding": "Same conditional standardized<120 target. Less direct evidence inDM/advancedCKD is a limitation, not a different automatic action in an asymptomatic standardized-measurement case."
+      },
+      "anemia2026": {
+        "url": "https://kdigo.org/wp-content/uploads/2026/01/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+        "version": "KDIGO Anemia2026; KI109(Suppl1S):S1-S99",
+        "original": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 10333458,
+          "sha256": "5e72c6f6f5f880e5d842fb8a461585770ba7dac3549da4625745b43f8bc131e1"
+        },
+        "text": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 438834,
+          "sha256": "ca101d298a5fef1f0fe69f7b4e6b7c90259459443b5e2138825a57f48201f326"
+        },
+        "access": "Full official guideline, own body/rationale read, not just summary list",
+        "locators": [
+          "Rec2.3(2D), full rationale",
+          "Rec2.4(2D), route rationale",
+          "PP3.1.2 and Figure8",
+          "Rec3.2.2(2D), bodyS52: individual ESA threshold, usually8.5-10.0"
+        ],
+        "finding": "Nondialysis iron criteria: ferritin<100/TSAT<40 or100-<300/TSAT<25. Both actual panels qualify. Route depends on context/preference/tolerability; neither actual case forces a different route or urgenttransfusion. Correct causes beforeESA; Hb9.8 permits later ESA consideration after correction, but does not change the initial action rewarded by these exact questions."
+      }
+    },
+    "questions": [
+      {
+        "qid": "13109735",
+        "sourceLine": 493,
+        "sourceQuestionSHA256": "df45389376f1dd5264d4b488a03038656f3840c9c9625878da10dcc3b899e2a4",
+        "verdictV2": "fundir",
+        "legacyAuxiliary": null,
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "OP": "Aplicar a meta de PAS padronizada/tolerada na DRC.",
+        "classification": {
+          "primaryCompetence": "Conduta normativa",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "básica",
+          "legacyDiffFieldUnchanged": "medium",
+          "empiricalRecalibration": false
+        },
+        "reconstruction": {
+          "populationAndData": "Homem de 55 anos com DM 2 e DRCG 4 tem PAS 148 mmHg obtida por técnica padronizada, sem sintomas posturais. Segundo a KDIGO 2024, qual princípio orienta a meta?",
+          "decision": "Escolher PAS<120 padronizada quando tolerada em ambos.",
+          "realPatient": false
+        },
+        "justification": "Concordo com o peer: minha comparação autoral omitiu e8a59de8. O AFTER atual exige o mesmo alvo<120 com os mesmos qualificadores. DM/G4 sem sintomas não ativa PP3.4.1 nem transforma o ato de recordar/aplicar a meta em decisão prática distinta. Normalização documental após concordância independente e registro coordenador; nenhum novo texto clínico ou gate é produzido.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "BPROAD não foi conferido no escopo G 4; corpo do artigo usa faixa 30 a<60 para a entrada por DRC e remete exclusões ao suplemento não lido."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "CardBPROAD não é decisivo para o gabarito; removido do AFTER, sem editar versões compartilhadas."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "analysis": "O recurso de duplicidade com e8a59de8 procede. O apoio científico ao alvo não supera repetição nas quatro dimensões.",
+          "scientificAnnulmentArgumentResolved": true,
+          "duplicateOverride": true
+        },
+        "eliminators": {
+          "criteria": [
+            {
+              "number": 1,
+              "label": "Mais de uma resposta defensável",
+              "triggered": false,
+              "reason": "Apenas o gabarito corresponde à recomendação e aos limites do cenário; três erros específicos confrontados."
+            },
+            {
+              "number": 2,
+              "label": "Referência não sustenta gabarito",
+              "triggered": false,
+              "reason": "Passagens integrais de ckd2024, bp2021 sustentam a decisão; acesso e graduação qualificados."
+            },
+            {
+              "number": 3,
+              "label": "Mede outro OP",
+              "triggered": false,
+              "reason": "OP preservado: Aplicar a meta de PAS padronizada/tolerada na DRC.; nenhum comando novo introduzido para resgatar repetição."
+            },
+            {
+              "number": 4,
+              "label": "Conduta insegura",
+              "triggered": false,
+              "reason": "Tratamento é condicional/individualizado; não se premia AEE/transfusão automática ou medida casual."
+            },
+            {
+              "number": 5,
+              "label": "Distrator absurdo",
+              "triggered": false,
+              "reason": "Cada alternativa errada mantém um erro clínico identificável; não foi usada ampliação artificial de texto."
+            },
+            {
+              "number": 6,
+              "label": "Trivia sem consequência clínica",
+              "triggered": false,
+              "reason": "A tarefa tem consequência clínica; dados sem efeito discriminante são registrados na análise de duplicidade."
+            },
+            {
+              "number": 7,
+              "label": "Explicação contradiz gabarito",
+              "triggered": false,
+              "reason": "Explicação sustenta a resposta: Buscar PAS<120 quando tolerada, mantendo medida padronizada e individualização."
+            },
+            {
+              "number": 8,
+              "label": "Dado decisivo ausente",
+              "triggered": false,
+              "reason": "Cenário fornecido é suficiente para a decisão inicial; não se inventa nova preferência, urgência ou resposta a tratamento."
+            },
+            {
+              "number": 9,
+              "label": "Protocolo local oculto",
+              "triggered": false,
+              "reason": "A fonte/regra é explícita; nenhum protocolo institucional oculto exigido."
+            },
+            {
+              "number": 10,
+              "label": "Desatualização relevante",
+              "triggered": false,
+              "reason": "Versões efetivamente lidas:KDIGO2024/BP2021/anemia2026; sem resultado novo não verificado ou extrapolação deRCT."
+            }
+          ],
+          "all10Checked": true,
+          "scoreAnnulled": false,
+          "duplicateOverride": true
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 1
+          },
+          "total": 19,
+          "band": "Excelente",
+          "note": "Fresh author editorial assessment; no psychometric validation or inheritance from original score."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA em fontes integrais próprias.",
+          "step1": "Sem eliminatório científico no objeto exato.",
+          "step2": "Duplicata confirmada: FUNDIR.",
+          "step3": "Score não supera override/hold operacional.",
+          "recommendedVerdictV2": "fundir",
+          "recommendedTarget": "e8a59de8",
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "FUNDIR COM A QUESTÃO e8a59de8 — manter fora do banco, preservando históricos",
+          "BEFORE": {
+            "t": "Pressão Arterial na DRC — Medida Padronizada",
+            "qid": "13109735",
+            "q": "Homem de 55 anos com diabetes tipo 2 e DRC G4 apresenta PAS padronizada de consultório de 148 mmHg, sem ortostatismo. Segundo a KDIGO 2024, qual princípio orienta a meta pressórica?",
+            "refs": [
+              "kdigo_ckd",
+              "kdigo_bp_ckd_2021",
+              "bproad"
+            ],
+            "opts": [
+              "Buscar PAS abaixo de 120 mmHg quando tolerada, com medida padronizada e individualização em DRC avançada e risco de eventos adversos",
+              "Aceitar PAS abaixo de 150 mmHg porque diabetes exclui tratamento intensivo",
+              "Aplicar meta abaixo de 120 mmHg a qualquer medida casual, sem considerar sintomas ou fragilidade",
+              "Adicionar espironolactona obrigatoriamente, independentemente do potássio e da TFGe"
+            ],
+            "ans": 0,
+            "exp": "A KDIGO sugere PAS padronizada abaixo de 120 mmHg em adultos com hipertensão e DRC quando tolerada. A forma de medir é parte da recomendação: valores casuais não devem ser tratados como equivalentes ao protocolo padronizado. Em diabetes e DRC avançada a certeza é menor do que em populações semelhantes ao SPRINT, embora o BPROAD fortaleça o benefício cardiovascular do controle intensivo em diabetes. A escolha de fármacos deve considerar albuminúria, volume, potássio, TFGe, ortostatismo e preferências; não há indicação automática de espironolactona.",
+            "diff": "hard",
+            "cat": "drc"
+          },
+          "AFTER": {
+            "t": "Pressão Arterial na DRC — Medida Padronizada",
+            "qid": "13109735",
+            "q": "Homem de 55 anos com DM 2 e DRCG 4 tem PAS 148 mmHg obtida por técnica padronizada, sem sintomas posturais. Segundo a KDIGO 2024, qual princípio orienta a meta?",
+            "refs": [
+              "kdigo_ckd_complications_2024"
+            ],
+            "opts": [
+              "Buscar PAS<120 quando tolerada, mantendo medida padronizada e individualização.",
+              "Manter PAS em 140-149 porque todo paciente com diabetes deve ser excluído de uma meta mais intensiva.",
+              "Buscar PAS<120 também em qualquer medida casual, sem revisar técnica, sintomas ou efeitos adversos.",
+              "Escolher espironolactona obrigatória para atingir a meta, sem considerar potássio, TFGe ou outros medicamentos."
+            ],
+            "ans": 0,
+            "exp": "Rec 3.4.1(2 B) sugere PAS padronizada<120 quando tolerada. Técnica e tolerabilidade fazem parte da recomendação; fragilidade, risco de quedas e sintomas posturais podem justificar menor intensidade. A evidência é menos direta em diabetes/DRCG 4-G 5, como reconhecido pela diretriz de pressão de 2021, exigindo avaliação individual. A justificativa principal é cardiovascular; não se promete redução de falência renal. Este caso não é resolvido por extrapolar um ensaio para G 4 nem por impor um único fármaco.",
+            "diff": "medium",
+            "cat": "drc"
+          },
+          "afterQuestionSHA256": "26f4457aa98ec09c403615b8007e8c56ffe320e438e502e7d4e626f58590ee43",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Buscar PAS<120 quando tolerada, mantendo medida padronizada e individualização."
+          },
+          "afterQuestionCanonicalSortedSHA256": "f27b60a792b465b737c5dce4d4ed9d0e01a99d0f4b50fc7cc7e6e47af4bde873"
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "ckd2024",
+            "openedOriginal": true,
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+              "version": "KDIGO CKD2024; KI105(Suppl4S):S117-S314",
+              "original": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 5966902,
+                "sha256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0"
+              },
+              "text": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 997097,
+                "sha256": "9a8fd5474e7214ab482892cc34901ef2353ce01f336c533866f09ecfdcffb84a"
+              },
+              "access": "Full official PDF/extraction, own body reread for these scopes",
+              "locators": [
+                "Chapter3.4 Rec3.4.1(2B)/PP3.4.1 and following full rationale",
+                "Chapter3.8 Rec3.8.1(2A)/PP3.8.1-3",
+                "Chapter3.10 PP3.10.1-2, ungraded, S222-S223"
+              ],
+              "finding": "Standardized SBP<120 when tolerated; individualized less-intensive therapy for symptomatic postural hypotension/frailty/fallrisk. DM/G4 alone does not force another target. Full nsMRA/acidosis sections rechecked for whole exact shared card, not approval of its other consumers."
+            },
+            "ownReadFinalizedAtOfficialUTC": "2026-10-13 17:35:41 UTC"
+          },
+          {
+            "sourceId": "bp2021",
+            "openedOriginal": true,
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2021-BP-GL.pdf",
+              "version": "KDIGO BP2021; KI99(Suppl3S):S1-S87",
+              "original": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 4642743,
+                "sha256": "0f1c93de3b1598aae72b9d4f434a146151e1e17876f1351d9198030558ea305a"
+              },
+              "text": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 427942,
+                "sha256": "6b4dca3e24dec43de39d95dc76f57eb86b16b83cfe6f55c6792760c0dced89b5"
+              },
+              "access": "Full official original PDF/text independently reread",
+              "locators": [
+                "Rec3.1.1(2B), PP3.1.1-2; introduction certainty inDM/G4-G5"
+              ],
+              "finding": "Same conditional standardized<120 target. Less direct evidence inDM/advancedCKD is a limitation, not a different automatic action in an asymptomatic standardized-measurement case."
+            },
+            "ownReadFinalizedAtOfficialUTC": "2026-10-13 17:35:41 UTC"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_ckd_complications_2024": {
+            "label": "KDIGO — Pressão, acidose e nsMRA na DRC",
+            "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+            "journal": "KDIGO CKD2024; Kidney Int105(Suppl4S):S117-S314",
+            "ano": 2024,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Distinguir recomendações graduadas e pontos de prática em complicações da DRC.",
+            "icon": "📋",
+            "resumo": "Rec 3.4.1: PAS padronizada<120 quando tolerada(2 B), com individualização. Rec 3.8.1: nsMRA com benefício comprovado para DM 2, TFGe>25, potássio normal e RAC>30 apesar de SRAA máximo tolerado(2 A); monitorar potássio. PP 3.10.1-2, sem graduação: considerar tratamento da acidose com implicações clínicas, usando bicarbonato<18 mmol/L como exemplo; evitar excesso e piora de pressão, volume ou potássio. Evidência não demonstra um alvo universal de bicarbonato com prevenção de falência renal.",
+            "conclusao": "Medida padronizada, elegibilidade e monitorização fazem parte da conduta. Este card focaliza três decisões; não substitui por associação os cards de hipercalemia, SGLT 2 ou estimativa de TFG.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "ADD/REPLACE condicionais; revisão autoral não aprova consumidores compartilhados nem redefine tentativas históricas.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "posição",
+            "índice de resposta",
+            "cat",
+            "tentativas",
+            "histórico",
+            "FSRS"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "replaceFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "atomicCardDependencies": [
+            "kdigo_ckd_complications_2024"
+          ],
+          "newCardsMustExistBeforeTopicWrite": [
+            "kdigo_ckd_complications_2024"
+          ],
+          "independentExactReviewRequired": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true,
+          "doNotResetFSRS": true,
+          "applied": false,
+          "noDeletionOfComparedQids": true
+        },
+        "verificationPending": [],
+        "editorialPending": [
+          "Conciliação operacional dos dois históricos sem exclusão automática; direção registrada em docs/editorial/reviews/2026-10-12/c018-coordinator-arbitration-A1.json"
+        ],
+        "comparison": {
+          "beforeLengths": [
+            132,
+            74,
+            96,
+            83
+          ],
+          "afterLengths": [
+            79,
+            101,
+            99,
+            111
+          ],
+          "uniqueLongestCorrectBefore": true,
+          "uniqueLongestCorrectAfter": false,
+          "correctToLongestDistractorRatio": 0.7117,
+          "qidPreserved": true,
+          "answerPositionUnchangedInBank": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "noAddedLetterOrOrderCue": true
+        },
+        "distractorRationale": {
+          "B": "Diabetes não gera exclusão universal da recomendação; avaliar benefício/risco.",
+          "C": "Medida casual não é intercambiável com técnica padronizada para aplicar a meta.",
+          "D": "A recomendação não exige espironolactona independentemente de segurança renal/K."
+        },
+        "validity": {
+          "content": "Fonte e objeto exatos, com versões/limites de acesso qualificados.",
+          "construct": "Aplicar meta de PAS padronizada com tolerabilidade e individualização na DRC.",
+          "response": "Julgamento editorial: os distratores exigem o conceito, sem supor telemetria que não foi coletada.",
+          "consequential": "Evitar os erros clínicos descritos; ciência não elimina override de duplicidade."
+        },
+        "duplicationCheck": {
+          "dimensions": [
+            "decisão",
+            "estrutura dos dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Duplicata confirmada; direção registrada no coordenador: FUNDIR com e8a59de8.",
+          "fourDimensionComparisonLiteral": {
+            "decision": "Escolher PAS<120 padronizada quando tolerada em ambos.",
+            "functionalDataStructure": "Hipertensão/DRC não dialítica, medida padronizada e tolerabilidade; DM/G4/PAS148 são contexto sem mudança da ação.",
+            "targetProfile": "Mesmo aprendiz avançado/residente em nefrologia/hipertensão.",
+            "language": "Mesmo português."
+          },
+          "practicalClinicalBranchLiteral": {
+            "actual": "Sem sintomas posturais, fragilidade ou intolerância no AFTER; aplica alvo condicional geral.",
+            "neededForDifferentAction": "Sintomas posturais/fragilidade ou outro dado real que justifique menor intensidade; não inserir esse dado para resgatar por deriva a questão atual.",
+            "source": "Rec3.4.1 e PP3.4.1, corpo integral."
+          },
+          "relatedItems": [
+            {
+              "qid": "e8a59de8",
+              "currentBEFORE": {
+                "t": "KDIGO 2021 — Alvo de PA na DRC Não Dialítica",
+                "qid": "e8a59de8",
+                "q": "Segundo a KDIGO 2021, qual é o alvo de pressão arterial para a maioria dos adultos com hipertensão e DRC não dialítica, quando a medida é padronizada e o tratamento é tolerado?",
+                "refs": [
+                  "kdigo_bp_ckd_2021"
+                ],
+                "opts": [
+                  "Pressão arterial sistólica abaixo de 120 mmHg",
+                  "Pressão arterial sistólica abaixo de 150 mmHg",
+                  "Pressão arterial diastólica abaixo de 100 mmHg, sem alvo sistólico",
+                  "Pressão arterial sistólica abaixo de 160 mmHg apenas quando há albuminúria A3"
+                ],
+                "ans": 0,
+                "exp": "A KDIGO 2021 sugere pressão arterial sistólica inferior a 120 mmHg, quando tolerada, para adultos com hipertensão e DRC não dialítica, desde que a pressão seja obtida por técnica padronizada de consultório. É recomendação 2B e deve ser individualizada conforme fragilidade, hipotensão ortostática, sintomas, comorbidades e preferências. O número não deve ser transposto automaticamente para uma medida casual, que costuma produzir valores diferentes.",
+                "diff": "easy",
+                "cat": "hipertensao"
+              },
+              "canonicalSHA256": "35b8c0c45672627c500f8847a5eec1be22be784a266e9277e0abac346146ebf9",
+              "scope": "Only comparison; no gate approval or product change for this item."
+            },
+            {
+              "qid": "5f9a6fe1",
+              "currentBEFORE": {
+                "t": "BPROAD — desfecho primário",
+                "qid": "5f9a6fe1",
+                "q": "No BPROAD, qual foi o efeito do alvo intensivo de PAS <120 mmHg sobre o desfecho primário cardiovascular composto?",
+                "refs": [
+                  "bproad"
+                ],
+                "opts": [
+                  "Reduziu significativamente o composto de AVC não fatal, IAM não fatal, tratamento/internação por IC ou morte cardiovascular",
+                  "Reduziu exclusivamente início de diálise crônica, sem efeito cardiovascular",
+                  "Aumentou significativamente mortalidade cardiovascular",
+                  "Não houve diferença no desfecho primário"
+                ],
+                "ans": 0,
+                "exp": "No BPROAD, o alvo intensivo de PAS <120 mmHg reduziu significativamente o desfecho primário composto — AVC não fatal, infarto agudo do miocárdio (IAM) não fatal, tratamento ou internação por insuficiência cardíaca (IC) ou morte cardiovascular — em comparação ao alvo <140 mmHg (HR 0,79; IC95% 0,69–0,90). O estudo foi cardiovascular, não um ensaio desenhado primariamente para início de diálise, e não mostrou aumento de mortalidade cardiovascular.",
+                "diff": "medium",
+                "cat": "drc"
+              },
+              "canonicalSHA256": "d433f435c026abe3676b54b574edd7ad9d07d60f0076d3d83b7d3236f0e9c6b1",
+              "scope": "Only comparison; no gate approval or product change for this item."
+            }
+          ],
+          "normalizationOnly": true,
+          "newClinicalAnalysis": false,
+          "targetApprovedByAssociation": false
+        },
+        "reviewScope": "Exportação pontual de um freshAuthorScope C018 já concluído/arbitrado. Zero nova revisão clínica, zero alteração material, zero nova contagem das741; original e demais cinco questões preservados.",
+        "wholeExactCardReviews": [
+          {
+            "id": "kdigo_ckd_complications_2024",
+            "exactAFTER": {
+              "label": "KDIGO — Pressão, acidose e nsMRA na DRC",
+              "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+              "journal": "KDIGO CKD2024; Kidney Int105(Suppl4S):S117-S314",
+              "ano": 2024,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Distinguir recomendações graduadas e pontos de prática em complicações da DRC.",
+              "icon": "📋",
+              "resumo": "Rec 3.4.1: PAS padronizada<120 quando tolerada(2 B), com individualização. Rec 3.8.1: nsMRA com benefício comprovado para DM 2, TFGe>25, potássio normal e RAC>30 apesar de SRAA máximo tolerado(2 A); monitorar potássio. PP 3.10.1-2, sem graduação: considerar tratamento da acidose com implicações clínicas, usando bicarbonato<18 mmol/L como exemplo; evitar excesso e piora de pressão, volume ou potássio. Evidência não demonstra um alvo universal de bicarbonato com prevenção de falência renal.",
+              "conclusao": "Medida padronizada, elegibilidade e monitorização fazem parte da conduta. Este card focaliza três decisões; não substitui por associação os cards de hipercalemia, SGLT 2 ou estimativa de TFG.",
+              "curiosidade": ""
+            },
+            "exactAfterSHA256": "016124709b54b01ea57682752eb956b7a81e9518fa61dac7d81f6f7f7316beef",
+            "wholeObjectOwnSourceChecked": true,
+            "authorScientificVote": "aprovada",
+            "approvalInherited": false,
+            "sourceIds": [
+              "ckd2024",
+              "bp2021"
+            ],
+            "otherConsumerApproval": false,
+            "objectChanged": false
+          }
+        ],
+        "freshAuthorScopeLiteral": {
+          "OP": "Aplicar a meta de PAS padronizada/tolerada na DRC.",
+          "classification": {
+            "primaryCompetence": "Conduta normativa",
+            "Bloom": "Aplicar",
+            "Miller": "Sabe como",
+            "intrinsicDifficulty": "básica",
+            "legacyDiffFieldUnchanged": "medium",
+            "empiricalRecalibration": false
+          },
+          "caseReconstruction": {
+            "populationAndData": "Homem de 55 anos com DM 2 e DRCG 4 tem PAS 148 mmHg obtida por técnica padronizada, sem sintomas posturais. Segundo a KDIGO 2024, qual princípio orienta a meta?",
+            "decision": "Escolher PAS<120 padronizada quando tolerada em ambos.",
+            "realPatient": false
+          },
+          "advogadoDoRecurso": {
+            "analysis": "O recurso de duplicidade com e8a59de8 procede. O apoio científico ao alvo não supera repetição nas quatro dimensões.",
+            "scientificAnnulmentArgumentResolved": true,
+            "duplicateOverride": true
+          },
+          "eliminators": {
+            "criteria": [
+              {
+                "number": 1,
+                "label": "Mais de uma resposta defensável",
+                "triggered": false,
+                "reason": "Apenas o gabarito corresponde à recomendação e aos limites do cenário; três erros específicos confrontados."
+              },
+              {
+                "number": 2,
+                "label": "Referência não sustenta gabarito",
+                "triggered": false,
+                "reason": "Passagens integrais de ckd2024, bp2021 sustentam a decisão; acesso e graduação qualificados."
+              },
+              {
+                "number": 3,
+                "label": "Mede outro OP",
+                "triggered": false,
+                "reason": "OP preservado: Aplicar a meta de PAS padronizada/tolerada na DRC.; nenhum comando novo introduzido para resgatar repetição."
+              },
+              {
+                "number": 4,
+                "label": "Conduta insegura",
+                "triggered": false,
+                "reason": "Tratamento é condicional/individualizado; não se premia AEE/transfusão automática ou medida casual."
+              },
+              {
+                "number": 5,
+                "label": "Distrator absurdo",
+                "triggered": false,
+                "reason": "Cada alternativa errada mantém um erro clínico identificável; não foi usada ampliação artificial de texto."
+              },
+              {
+                "number": 6,
+                "label": "Trivia sem consequência clínica",
+                "triggered": false,
+                "reason": "A tarefa tem consequência clínica; dados sem efeito discriminante são registrados na análise de duplicidade."
+              },
+              {
+                "number": 7,
+                "label": "Explicação contradiz gabarito",
+                "triggered": false,
+                "reason": "Explicação sustenta a resposta: Buscar PAS<120 quando tolerada, mantendo medida padronizada e individualização."
+              },
+              {
+                "number": 8,
+                "label": "Dado decisivo ausente",
+                "triggered": false,
+                "reason": "Cenário fornecido é suficiente para a decisão inicial; não se inventa nova preferência, urgência ou resposta a tratamento."
+              },
+              {
+                "number": 9,
+                "label": "Protocolo local oculto",
+                "triggered": false,
+                "reason": "A fonte/regra é explícita; nenhum protocolo institucional oculto exigido."
+              },
+              {
+                "number": 10,
+                "label": "Desatualização relevante",
+                "triggered": false,
+                "reason": "Versões efetivamente lidas:KDIGO2024/BP2021/anemia2026; sem resultado novo não verificado ou extrapolação deRCT."
+              }
+            ],
+            "all10Checked": true,
+            "scoreAnnulled": false,
+            "duplicateOverride": true
+          },
+          "NQEditorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 1
+            },
+            "total": 19,
+            "band": "Excelente",
+            "note": "Fresh author editorial assessment; no psychometric validation or inheritance from original score."
+          },
+          "decisionTree": {
+            "step0": "VERIFICADA/NENHUMA em fontes integrais próprias.",
+            "step1": "Sem eliminatório científico no objeto exato.",
+            "step2": "Duplicata confirmada: FUNDIR.",
+            "step3": "Score não supera override/hold operacional.",
+            "recommendedVerdictV2": "fundir",
+            "recommendedTarget": "e8a59de8",
+            "actualDeployment": false
+          },
+          "scientificEvidenceStatus": "VERIFICADA",
+          "scientificPendingNature": "NENHUMA",
+          "authorPublicationVote": "BLOQUEADA",
+          "clinicalQualityNotInferredFromOptionLength": true
+        },
+        "postArbitrationDecision": {
+          "coordinatorDecision": {
+            "qid": "13109735",
+            "verdict": "fundir",
+            "mergeTarget": "e8a59de8",
+            "keepExactAsSingleRepresentative": false,
+            "exactAfterCanonicalSHA256": "f27b60a792b465b737c5dce4d4ed9d0e01a99d0f4b50fc7cc7e6e47af4bde873",
+            "authorAndPeerScientificVote": "BLOQUEADA",
+            "coordinationArbitrationConditionSatisfied": true,
+            "implementationStatus": "PENDING_NORMALIZED_AUTHOR_POINT_GATE_AND_EXACT_CARD_CONSUMER_COMPATIBILITY",
+            "actualProductApplication": false,
+            "targetApprovedByAssociation": false,
+            "preserveIdAnswerAndAllHistoricalVersions": true
+          },
+          "coordinatorRecord": {
+            "path": "docs/editorial/reviews/2026-10-12/c018-coordinator-arbitration-A1.json",
+            "bytes": 2936,
+            "sha256": "bd546ce31a10a3322ae058f4969cb675e67cfb86525267dd70013765b53d704a"
+          },
+          "peerConcordance": {
+            "path": "docs/editorial/reviews/2026-10-12/independent-c018-arbitration-concordance-A1.json",
+            "bytes": 93308,
+            "sha256": "0ffbb8e44af14495eeb3e2b6f770038eecf1ab8959ee039ac1c240803965a491"
+          },
+          "coordinationArbitrationConditionSatisfied": true,
+          "scientificPublicationAuthorization": "BLOQUEADA",
+          "derivation": "Handbook§18.4 Regra7(c), FUNDIR permanece BLOQUEADA.",
+          "oldDecisionTreeRetainedLiteral": true,
+          "actualProductApplication": false,
+          "targetApprovedByAssociation": false
+        },
+        "integrationHold": {
+          "scope": "duplicate disposal and downstream integration",
+          "arbitrationConditionResolved": true,
+          "targetQid": "e8a59de8",
+          "scientificGate": "BLOQUEADA",
+          "reason": "FUNDIR impede a aplicação deste item.",
+          "pending": [
+            "exact card and consumer reconciliation",
+            "historical version compatibility",
+            "technical integration and CI"
+          ],
+          "noAutomaticDeletion": true,
+          "noResetFSRSOrHistory": true
+        }
+      }
+    ],
+    "cardPatches": [
+      {
+        "id": "kdigo_ckd_complications_2024",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "KDIGO — Pressão, acidose e nsMRA na DRC",
+          "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+          "journal": "KDIGO CKD2024; Kidney Int105(Suppl4S):S117-S314",
+          "ano": 2024,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Distinguir recomendações graduadas e pontos de prática em complicações da DRC.",
+          "icon": "📋",
+          "resumo": "Rec 3.4.1: PAS padronizada<120 quando tolerada(2 B), com individualização. Rec 3.8.1: nsMRA com benefício comprovado para DM 2, TFGe>25, potássio normal e RAC>30 apesar de SRAA máximo tolerado(2 A); monitorar potássio. PP 3.10.1-2, sem graduação: considerar tratamento da acidose com implicações clínicas, usando bicarbonato<18 mmol/L como exemplo; evitar excesso e piora de pressão, volume ou potássio. Evidência não demonstra um alvo universal de bicarbonato com prevenção de falência renal.",
+          "conclusao": "Medida padronizada, elegibilidade e monitorização fazem parte da conduta. Este card focaliza três decisões; não substitui por associação os cards de hipercalemia, SGLT 2 ou estimativa de TFG.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "016124709b54b01ea57682752eb956b7a81e9518fa61dac7d81f6f7f7316beef",
+        "existingBankConsumerQids": [],
+        "existingBankConsumersCount": 0,
+        "usedByQids": [
+          "13109735"
+        ],
+        "sourceIds": [
+          "ckd2024",
+          "bp2021"
+        ],
+        "newExactVersionReview": {
+          "verdictV2": "aprovada",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "afterSHA256": "016124709b54b01ea57682752eb956b7a81e9518fa61dac7d81f6f7f7316beef",
+          "derivation": "Handbook §18.4 Regra7(a); autoria do card inteiro exato, sem herança de versões/lotes.",
+          "taxonomyVerified": true,
+          "limitations": "Full official PDF plus archived extraction reread independently here."
+        },
+        "implementation": "Exige revisão independente do objeto exato, reconciliação de consumidores e histórico da versão. Nenhum card é aplicado por este autor.",
+        "normalizationOwnWholeCardProof": {
+          "id": "kdigo_ckd_complications_2024",
+          "exactAFTER": {
+            "label": "KDIGO — Pressão, acidose e nsMRA na DRC",
+            "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+            "journal": "KDIGO CKD2024; Kidney Int105(Suppl4S):S117-S314",
+            "ano": 2024,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Distinguir recomendações graduadas e pontos de prática em complicações da DRC.",
+            "icon": "📋",
+            "resumo": "Rec 3.4.1: PAS padronizada<120 quando tolerada(2 B), com individualização. Rec 3.8.1: nsMRA com benefício comprovado para DM 2, TFGe>25, potássio normal e RAC>30 apesar de SRAA máximo tolerado(2 A); monitorar potássio. PP 3.10.1-2, sem graduação: considerar tratamento da acidose com implicações clínicas, usando bicarbonato<18 mmol/L como exemplo; evitar excesso e piora de pressão, volume ou potássio. Evidência não demonstra um alvo universal de bicarbonato com prevenção de falência renal.",
+            "conclusao": "Medida padronizada, elegibilidade e monitorização fazem parte da conduta. Este card focaliza três decisões; não substitui por associação os cards de hipercalemia, SGLT 2 ou estimativa de TFG.",
+            "curiosidade": ""
+          },
+          "exactAfterSHA256": "016124709b54b01ea57682752eb956b7a81e9518fa61dac7d81f6f7f7316beef",
+          "wholeObjectOwnSourceChecked": true,
+          "authorScientificVote": "aprovada",
+          "approvalInherited": false,
+          "sourceIds": [
+            "ckd2024",
+            "bp2021"
+          ],
+          "otherConsumerApproval": false,
+          "objectChanged": false
+        },
+        "existingExactVersionReviewPreserved": true,
+        "applied": false
+      }
+    ],
+    "summary": [
+      {
+        "qid": "13109735",
+        "verdict": "fundir",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "scientificPublication": "BLOQUEADA",
+        "integration": "PENDING_EXACT_CARDS_COMPATIBILITY_CI",
+        "score": 19
+      }
+    ],
+    "counts": {
+      "existingScopeCount": 1,
+      "reviewed": 0,
+      "newUniqueReviewedQuestions": 0,
+      "newBatchesOfEight": 0,
+      "newClinicalGates": 0,
+      "newIndependentQuestions": 0,
+      "newPublicationAuthorizations": 0,
+      "implemented": 0,
+      "exportedScientificReleasedGate": 0,
+      "exportedScientificBlockedGate": 1
+    },
+    "normalizationPolicy": "Formato exportável do dossiê existente, não revisão nova ou mudança clínica. Original freshAuthorScope literal permanece e os três vínculos exatos de arbitragem/concordância não autorizam outros alvos/consumidores.",
+    "preservedOtherFiveQuestionObjectDigests": {
+      "23323f09": "e4b9bd887dcd9d722b1b91ce155ba181e7a10769aa95a280a986bf85738ac668",
+      "38da9430": "46083ac4fce36d888a86f0c9f6c4d4fc5d6b5197ca89340f2228b700e39220b5",
+      "d4393bc2": "024e98332ac0788c13e14f34ae2c2ee3f9cc91e346b5f2ae3ab6596e1086c748",
+      "9661a8dd": "2a84aa0e106dca1d3f5a5b8e2cf2bde0a1801c6cd8a5dfe8d556929ce6a67c22",
+      "d7ac22f6": "805175cf6420c4bcbc07e3f9707331988373e083489e16a4f9143e32c6550d6f"
+    },
+    "sourceIntegrity": {
+      "mainQuestionCount": 741,
+      "pointBeforeExactCurrentBank": true,
+      "noProductMutations": true,
+      "productPins": [
+        {
+          "path": "data/topics.js",
+          "bytes": 971537,
+          "sha256": "45c283a5a9634fe72e166762bd2461158ebc1647f5b5a026b7ae1ea68f6ee130"
+        },
+        {
+          "path": "data/refs.js",
+          "bytes": 491073,
+          "sha256": "d12c230d80f505fc8fd1893f489014fca8bbeced681c1224f03f4c3f4c7f01f7"
+        }
+      ],
+      "globalCurrentBankEqualsM": false
+    },
+    "limits": [
+      "Before/After, índice de resposta, card inteiro, classificação, score, árvore e fonte do dossiê não foram reescritos.",
+      "Cinco outros C018 e todos os pareceres anteriores permanecem intactos.",
+      "Liberação científica911 não aplica produto nem encerra os gates técnicos de integração."
+    ],
+    "normalizationValidation": {
+      "pass": 51,
+      "fail": 0,
+      "checks": [
+        {
+          "check": "author pin",
+          "passed": true
+        },
+        {
+          "check": "dossier pin",
+          "passed": true
+        },
+        {
+          "check": "peerConcordance pin",
+          "passed": true
+        },
+        {
+          "check": "coordinator pin",
+          "passed": true
+        },
+        {
+          "check": "peerOriginal pin",
+          "passed": true
+        },
+        {
+          "check": "ckd2024 original pin",
+          "passed": true
+        },
+        {
+          "check": "ckd2024 text pin",
+          "passed": true
+        },
+        {
+          "check": "bp2021 original pin",
+          "passed": true
+        },
+        {
+          "check": "bp2021 text pin",
+          "passed": true
+        },
+        {
+          "check": "anemia2026 original pin",
+          "passed": true
+        },
+        {
+          "check": "anemia2026 text pin",
+          "passed": true
+        },
+        {
+          "check": "13109735 before exact author/current",
+          "passed": true
+        },
+        {
+          "check": "13109735 after exact author/dossier",
+          "passed": true
+        },
+        {
+          "check": "13109735 original digest exact",
+          "passed": true
+        },
+        {
+          "check": "13109735 sorted canonical coordinator digest",
+          "passed": true
+        },
+        {
+          "check": "13109735 ids/answer literal",
+          "passed": true
+        },
+        {
+          "check": "13109735 fresh vote equals recorded arbitration",
+          "passed": true
+        },
+        {
+          "check": "13109735 ten eliminators",
+          "passed": true
+        },
+        {
+          "check": "13109735 literal score ten dimensions",
+          "passed": true
+        },
+        {
+          "check": "13109735 card kdigo_ckd_complications_2024 literal",
+          "passed": true
+        },
+        {
+          "check": "13109735 normalized fresh OP/classification/score/tree literal",
+          "passed": true
+        },
+        {
+          "check": "13109735 source/cards bind all refs",
+          "passed": true
+        },
+        {
+          "check": "13109735 scientific gate derived",
+          "passed": true
+        },
+        {
+          "check": "78823c61 before exact author/current",
+          "passed": true
+        },
+        {
+          "check": "78823c61 after exact author/dossier",
+          "passed": true
+        },
+        {
+          "check": "78823c61 original digest exact",
+          "passed": true
+        },
+        {
+          "check": "78823c61 sorted canonical coordinator digest",
+          "passed": true
+        },
+        {
+          "check": "78823c61 ids/answer literal",
+          "passed": true
+        },
+        {
+          "check": "78823c61 fresh vote equals recorded arbitration",
+          "passed": true
+        },
+        {
+          "check": "78823c61 ten eliminators",
+          "passed": true
+        },
+        {
+          "check": "78823c61 literal score ten dimensions",
+          "passed": true
+        },
+        {
+          "check": "78823c61 card kdigo_iron_start_nondialysis_2026 literal",
+          "passed": true
+        },
+        {
+          "check": "78823c61 normalized fresh OP/classification/score/tree literal",
+          "passed": true
+        },
+        {
+          "check": "78823c61 source/cards bind all refs",
+          "passed": true
+        },
+        {
+          "check": "78823c61 scientific gate derived",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 before exact author/current",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 after exact author/dossier",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 original digest exact",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 sorted canonical coordinator digest",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 ids/answer literal",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 fresh vote equals recorded arbitration",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 ten eliminators",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 literal score ten dimensions",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 card kdigo_iron_start_nondialysis_2026 literal",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 normalized fresh OP/classification/score/tree literal",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 source/cards bind all refs",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 scientific gate derived",
+          "passed": true
+        },
+        {
+          "check": "Output paths absent",
+          "passed": true
+        },
+        {
+          "check": "Five other original C018 literal objects preserved",
+          "passed": true
+        },
+        {
+          "check": "All original reports/records remain pinned",
+          "passed": true
+        },
+        {
+          "check": "Product pins unchanged",
+          "passed": true
+        }
+      ],
+      "structuralNotMedicalTruth": true
+    },
+    "technicalNormalizationRevision": {
+      "revision": "A2",
+      "finalizedAtOfficialUTC": "2026-10-13 18:15:18 UTC",
+      "previousA1": {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 51539,
+        "sha256": "074e92006ef5b443af73ffaa4bb11d6e5b096a6de3389f6570ea7fda8c2c84c1"
+      },
+      "scope": "Somente metadado auxiliar de duplicidade copiado incorretamente do parecer antigo. Usar os comparados/quatro dimensões/ramo já literais do dossiê e a direção registrada. Não há alteração clínica ou novo gate.",
+      "onlyChangedQuestionFields": [
+        "duplicationCheck"
+      ],
+      "allClinicalLiteralsAndGatesUnchanged": true,
+      "newUniqueReviews": 0,
+      "newClinicalGates": 0,
+      "newPublicationAuthorizations": 0,
+      "productApplications": 0
+    },
+    "technicalNormalizationValidation": {
+      "pass": 14,
+      "fail": 0,
+      "checks": [
+        {
+          "check": "point-13109735-c018-arbitration-normalized-A1.json frozen A1 pin",
+          "passed": true
+        },
+        {
+          "check": "13109735 only question auxiliary duplication metadata changed",
+          "passed": true
+        },
+        {
+          "check": "13109735 BeforeAfterCards unchanged",
+          "passed": true
+        },
+        {
+          "check": "13109735 full gate scope literal unchanged",
+          "passed": true
+        },
+        {
+          "check": "point-78823c61-c018-arbitration-normalized-A1.json frozen A1 pin",
+          "passed": true
+        },
+        {
+          "check": "78823c61 only question auxiliary duplication metadata changed",
+          "passed": true
+        },
+        {
+          "check": "78823c61 BeforeAfterCards unchanged",
+          "passed": true
+        },
+        {
+          "check": "78823c61 full gate scope literal unchanged",
+          "passed": true
+        },
+        {
+          "check": "point-911fdbb4-c018-arbitration-normalized-A1.json frozen A1 pin",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 only question auxiliary duplication metadata changed",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 BeforeAfterCards unchanged",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 full gate scope literal unchanged",
+          "passed": true
+        },
+        {
+          "check": "All A2 paths absent",
+          "passed": true
+        },
+        {
+          "check": "A1 files preserved",
+          "passed": true
+        }
+      ],
+      "structuralNotClinicalTruth": true
+    }
+  }
+}

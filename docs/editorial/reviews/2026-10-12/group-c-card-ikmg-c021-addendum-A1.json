@@ -1,0 +1,267 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 14488,
+  "sourceReportSHA256": "d44f447e4159691c93ce9e2b067e6c9d94ee633eed1de15db741a9f0c9a9b9eb",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_EXACT_CARD_AMENDMENT_v1",
+    "group": "c",
+    "batch": "021",
+    "finalizedAtOfficialUTC": "2026-10-13 18:30:04 UTC",
+    "scope": "Somente card IKMG; questões, demais cards e gates originais não são regravados.",
+    "originalReport": {
+      "path": "docs/editorial/reviews/2026-10-12/group-c-output-021.json",
+      "bytes": 252025,
+      "sha256": "50863b9a6f44ab41c6f52f649d4f79151525bbecc6a030a24269053f07dcbf21"
+    },
+    "normativeContract": {
+      "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+      "bytes": 11714,
+      "sha256": "65972c80bb1ac7afc0f1ccca6849c6b2d4812af0f0789b1dcf30c5d17bd9b5ff"
+    },
+    "sourceRegistry": {
+      "ikmg2019": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136169/",
+        "version": "Leung et al. Nat Rev Nephrol. 2019;15:45-59. Online03/12/2018. PMID30510265; DOI10.1038/s41581-018-0077-4",
+        "opened": true,
+        "access": "Full original consensusXML body read; consensus recommendations, no inventedGRADE.",
+        "locations": [
+          "Non-organized monoclonal immunoglobulin deposits; Fig3; biopsyanalysis and clonalidentification"
+        ],
+        "verifiedScope": "MIDDlinear punctateGBM/TBM deposits, light/heavy/both chains; integrate optical,IF andEM studies. ALfibrils Congo-positive and organized. Smallclone can cause renal disease; characterizeclone. This diagnosticconsensus explicitly doesnot provide treatmentregimens, so no automaticclone therapy prescribed from it.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 224442,
+          "sha256": "a11361a8222800ca9f6b71b7fa01044297a0c60549acd53cac31189ee100bcae"
+        },
+        "pinKind": "Archived primary article/metadata",
+        "scopeFinalizedAtOfficialUTC": "2026-10-13 18:04:12 UTC"
+      }
+    },
+    "sourceOwnRead": "Abstract, introdução, Lesions with non-organized deposits, Kidney biopsy analysis e Clonal identification do original integral relidos.",
+    "cardPatches": [
+      {
+        "id": "ikmg_midd_diagnosis_2019",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "IKMG — Diagnóstico dos depósitos monoclonais",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136169/",
+          "journal": "Leung et al. Nat Rev Nephrol. 2019;15:45-59. Online03/12/2018. PMID30510265; DOI10.1038/s41581-018-0077-4",
+          "ano": 2019,
+          "tipo": "Consenso internacional",
+          "badge": "CONSENSUS",
+          "badgeColor": "#6366f1",
+          "impacto": "A biópsia e a caracterização do clone definem a lesão.",
+          "icon": "📋",
+          "resumo": "Consenso diagnóstico IKMG2019, derivado de reunião de especialistas em abril2017 para refinar a definição de MGRS e sua classificação renal. Este recorte aborda depósitos não organizados: MIDD pode envolver cadeias leves, pesadas ou ambas, com depósitos lineares e puntiformes nas membranas basais glomerulares e tubulares. Em contraste, PGNMID tem depósitos confinados aos glomérulos. Integrar microscopia óptica, imunofluorescência e eletrônica. O documento não apresenta uma percentagem de concordância para essa definição.",
+          "conclusao": "Classificar o padrão de depósito e identificar seu componente monoclonal, sem inferir um regime terapêutico. Este consenso diagnóstico não inclui recomendações para tratar MGRS; um clone pequeno também pode causar lesão renal.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "51caaac1292dcdaa1b8070616befb57bea52ec5621a4144b1d2d4b87b309179e",
+        "existingBankConsumerQids": [],
+        "existingBankConsumersCount": 0,
+        "usedByQids": [
+          "053bc658"
+        ],
+        "sourceIds": [
+          "ikmg2019"
+        ],
+        "newExactVersionReview": {
+          "verdictV2": "aprovada",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "afterSHA256": "51caaac1292dcdaa1b8070616befb57bea52ec5621a4144b1d2d4b87b309179e",
+          "scope": "Objeto inteiro novo do card, após leitura própria do primário integral. Não se trata de aprovação por mudança de taxonomia.",
+          "methodVerification": {
+            "organization": "International Kidney and Monoclonal Gammopathy Research Group",
+            "meeting": "April2017",
+            "publication": "Nat Rev Nephrol2019;15:45-59, online03/12/2018",
+            "genre": "Expert Consensus Document, diagnostic/classificatory",
+            "panelSelection": "Grupo de especialistas identificado na autoria; não atribuir um procedimento de seleção, Delphi, revisão sistemática ou votação quantitativa que a seção lida não relata.",
+            "reportedAgreementPercent": null,
+            "therapeuticRecommendationScope": "Treatment was not addressed at the2017meeting; no regimen recommendations."
+          },
+          "claimVerification": [
+            {
+              "claim": "Reunião abril2017, definição/classificação e ausência de tratamento no escopo",
+              "locator": "Abstract completo do primário; introdução",
+              "sourcePin": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 224442,
+                "sha256": "a11361a8222800ca9f6b71b7fa01044297a0c60549acd53cac31189ee100bcae"
+              }
+            },
+            {
+              "claim": "MIDD leve/pesada/ambas; depósitos lineares/puntiformes GBM/TBM; PGNMID confinado aos glomérulos",
+              "locator": "Body: Lesions with non-organized deposits",
+              "sourcePin": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 224442,
+                "sha256": "a11361a8222800ca9f6b71b7fa01044297a0c60549acd53cac31189ee100bcae"
+              }
+            },
+            {
+              "claim": "Integração óptica/IF/eletrônica e investigação clonal inclusive pequenos clones",
+              "locator": "Abstract; Kidney biopsy analysis; Clonal identification",
+              "sourcePin": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 224442,
+                "sha256": "a11361a8222800ca9f6b71b7fa01044297a0c60549acd53cac31189ee100bcae"
+              }
+            }
+          ],
+          "taxonomyVerified": true,
+          "noAgreementOrCertaintyInvented": true,
+          "allFieldsChecked": true,
+          "approvalInherited": false,
+          "otherConsumerApproved": false,
+          "derivation": "Handbook§18.4 Regra7(a); objeto inteiro aprovado, VERIFICADA/NENHUMA. Gate independente do card exato permanece necessário."
+        },
+        "implementation": "Exige revisão independente do objeto exato, reconciliação de consumidores e histórico da versão. Nenhum card é aplicado por este autor.",
+        "supersedesProposedCardVersion": {
+          "report": {
+            "path": "docs/editorial/reviews/2026-10-12/group-c-output-021.json",
+            "bytes": 252025,
+            "sha256": "50863b9a6f44ab41c6f52f649d4f79151525bbecc6a030a24269053f07dcbf21"
+          },
+          "afterSHA256": "8ed7abe56f25461f30af3ddce4eedc95e3bb8b10e9626c4fef71df796398ce1f"
+        },
+        "applied": false
+      }
+    ],
+    "allEightFrozenQuestionAfterHashes": {
+      "b20162c7": "bd259e748fc76c500b0634f8e0329a078618646b02b8c37347293feceb76ac76",
+      "78be79e7": "376952f9d2a2280ae4c24d9809ee5a49fe5452a7ce7f383acf82266f1a597a73",
+      "f847386a": "8aa65b792362fe205a7ff7630376a76861bd2a4baeeeca376e8e32857baf99fd",
+      "2a07de55": "5e49142adea40a6ebe1bec6b0fbc943a26fda46e5e3b70d393aa42156dd72075",
+      "38eaee8c": "a00aabc017732770de65fb5acd7fabdfc2fbae6aed5237add932baa56831c374",
+      "053bc658": "195ee00a7e2e490e2313021a39d65dd67e1b9b5e3f6762762de9851cfd7c5fc2",
+      "6a7f7a20": "c65e2a5c488fbdeb0c63da9e0ac9217adc5fa3e78400b0f1d294db6eedb945d4",
+      "cf15d456": "b6a2e0eddfe0a05af21e7b4191955e40cfbb0b4a54a37d557cc25e85de9bdf09"
+    },
+    "otherNineFrozenCardHashes": {
+      "aha_resistant_confirmation_2018": "7c32e2997f39c7105c0aa7de11486e81b5629e87eb76e6231e39a74c958c8616",
+      "kdigo_ckd_2024": "5b6d8945696b3160365292b1eefe1ccd309565099828fb951ab16ac936c7b5e0",
+      "aha_renal_denervation_summary_2024": "2654b55207633869a36915f60da1f46180de32bd2b44d72ce4501e3b0cd7695e",
+      "bihs_hypertensive_encephalopathy_2023": "e88b4b5cc487ba2c247d579d78a344eb74ff38701538f9a7d7850f98ce614505",
+      "ckd_pregnancy_guideline_2019": "59498ebdf11f6e959a8bd8e7ea07e06e82d682a1f7fda672c0be73a5c5220828",
+      "lcdd_histology_review_2025": "ed4a849b5c8c34fe38a084fbb84b17ef01fa1948a4fa51550f4fb3597ec19248",
+      "aristolochic_nephropathy_review_2017": "b683c87e6a3a892fa589104d8d50668a933f5b41f917af74c6099846cbab2a2e",
+      "aua_gross_hematuria_curriculum_2025": "949fb19f0f70db3cdf58e6e5140ce6be96bfe9cd444bc2b51c0b21d41945ea28",
+      "acr_gross_hematuria_imaging_2020": "f1b5573fea118754241eadc93fdfe51c1bce373ca1ac522c458a0b3182666232"
+    },
+    "bibliographicDisposition": {
+      "onePublication": "Leung et al. IKMG, Nat Rev Nephrol2019, DOI10.1038/s41581-018-0077-4",
+      "existingCardId": "ikmg_mgrs_consensus_2019",
+      "existingCardExactObject": {
+        "label": "Leung et al. — Consenso IKMG sobre MGRS (2019)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7136169/",
+        "journal": "Nature Reviews Nephrology 2019;15(1):45-59",
+        "ano": 2019,
+        "tipo": "Consenso internacional",
+        "badge": "CONSENSUS",
+        "badgeColor": "#6366f1",
+        "impacto": "Definição, classificação e investigação da gamopatia monoclonal de significado renal",
+        "icon": "📋",
+        "resumo": "Consenso do International Kidney and Monoclonal Gammopathy Research Group que define MGRS como distúrbio clonal produtor de imunoglobulina monoclonal nefrotóxica sem critérios hematológicos para tratar uma malignidade específica. Recomenda biópsia renal, imunofluorescência, eletroforese e imunofixação sérica e urinária, cadeias leves livres e avaliação de medula para identificar lesão e clone.",
+        "conclusao": "Um clone pequeno pode causar dano renal grave; a relação causal não deve ser inferida pelo pico monoclonal isolado nem descartada por ausência de critérios de mieloma ou linfoma.",
+        "curiosidade": "No MIDD, o consenso descreve depósitos lineares e pontilhados nas membranas basais glomerular e tubular, com material finamente granular e não organizado à microscopia eletrônica."
+      },
+      "existingCardSHA256": "2f38b10fc4e0ce43f333d797bdc0f0b3c3217fbdd6e1092f20117df6710885e4",
+      "relatedAuthorReport": {
+        "path": "docs/editorial/reviews/2026-10-12/group-b-output-014-A4.json",
+        "bytes": 331930,
+        "sha256": "d5a56b85d7a718ae3ebbcb721905848711aa50addd8bd63c62559454f3647024"
+      },
+      "existingCoreScope": "Definição de MGRS, ligação lesão-clone, investigação biopsia/imunofixação/FLC/medula. Curiosidade inclui padrãoMIDD e tem sobreposição pontual reconhecida.",
+      "newFocusedCoreScope": "Classificação morfológica de depósitos não organizados MIDD/PGNMID e componente leve/pesado/ambos; sustenta a interpretação daIF/biopsia053bc658.",
+      "decision": "KEEP_FOCUSED_ADD_PROPOSAL_EXACT",
+      "why": "O núcleo pedagógico é um recorte da classificação de lesões, em vez de definição/investigação abrangente deMGRS. Mesma publicação e consenso, não evidência ou estudo independente. Sobreposição da curiosidade existente não cria inferência de aprovação nem pede apagar o card amplo.",
+      "bindingChangeProposed": false,
+      "existingCardOrB014ConsumersApproved": false,
+      "futureCanonicalReuseRule": "Se a coordenação optar por reuso doIDamplo, a troca de referência da questão é material e requer freshgate do novo AFTER/binding e objeto completo, preservando histórico; não está aprovada por este adendo."
+    },
+    "correctionAccessBoundary": "Autor leu a correção2019 porwebreader e preservou recibo próprio no C021; esse acesso não é herdado pelopeer. O novo card não depende de uma alegação sobre a legenda corrigida de microtúbulos: usa os parágrafos efetivamente lidos do primário.",
+    "counts": {
+      "existingCardAmended": 1,
+      "newUniqueReviewedQuestions": 0,
+      "newBatchesOfEight": 0,
+      "newQuestionGates": 0,
+      "newIndependentReviews": 0,
+      "newProductPublicationReleases": 0,
+      "productWrites": 0
+    },
+    "validation": {
+      "pass": 12,
+      "fail": 0,
+      "checks": [
+        {
+          "check": "Original report unchanged",
+          "passed": true
+        },
+        {
+          "check": "All eight question AFTERs unchanged",
+          "passed": true
+        },
+        {
+          "check": "Only one of ten cards amended",
+          "passed": true
+        },
+        {
+          "check": "Exact current new-card BEFORE absent",
+          "passed": true
+        },
+        {
+          "check": "New exact taxonomy",
+          "passed": true
+        },
+        {
+          "check": "Exact complete fields",
+          "passed": true
+        },
+        {
+          "check": "Current existing publication identity exact",
+          "passed": true
+        },
+        {
+          "check": "Full primary pin exact",
+          "passed": true
+        },
+        {
+          "check": "Gate derived",
+          "passed": true
+        },
+        {
+          "check": "Object hash exact",
+          "passed": true
+        },
+        {
+          "check": "No product mutations",
+          "passed": true
+        },
+        {
+          "check": "Fresh outputpaths absent",
+          "passed": true
+        }
+      ],
+      "structuralNotClinicalTruth": true
+    },
+    "productPins": [
+      {
+        "path": "data/topics.js",
+        "bytes": 971537,
+        "sha256": "45c283a5a9634fe72e166762bd2461158ebc1647f5b5a026b7ae1ea68f6ee130"
+      },
+      {
+        "path": "data/refs.js",
+        "bytes": 491073,
+        "sha256": "d12c230d80f505fc8fd1893f489014fca8bbeced681c1224f03f4c3f4c7f01f7"
+      }
+    ],
+    "nextStep": "Peer verificar objeto exato do adendo junto aos AFTERs C021 originais. Nenhuma aplicação, aprovação global de consumidores ou novo8."
+  }
+}

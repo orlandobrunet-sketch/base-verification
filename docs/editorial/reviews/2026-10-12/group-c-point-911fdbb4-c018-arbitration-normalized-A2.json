@@ -1,0 +1,1158 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 53773,
+  "sourceReportSHA256": "f7270b2801261f9bec14c85b16fd20c9725bb0c23e76b79e020df0e4a58842eb",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_FORMAL_POINT_GATE_NORMALIZATION_v1",
+    "group": "c",
+    "batch": "018",
+    "qid": "911fdbb4",
+    "normalizedAtOfficialUTC": "2026-10-13 18:11:43 UTC",
+    "reviewedAtOfficialUTC": "2026-10-13 17:35:41 UTC",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "currentPublicMergeCommit": "135899077669af6dcf564717833227828ba03fe5",
+    "bankLF_SHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "input": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 16156,
+      "sha256": "b2b61121da7f7837edad7f02dfcb94cbc06ba25ce1b7a0e03b71fa56457a9d3d"
+    },
+    "normalizationInputs": {
+      "author": {
+        "path": "docs/editorial/reviews/2026-10-12/group-c-output-018.json",
+        "bytes": 239643,
+        "sha256": "c22e7f010280bf56c70de8dc32842300ccfc69f294996d0f5a2b732f18f60fb1"
+      },
+      "dossier": {
+        "path": "docs/editorial/reviews/2026-10-12/group-c-arbitration-c018-three-A1.json",
+        "bytes": 68347,
+        "sha256": "55b9a35d7abddb3b97502f717efb5c75733f0d1d999d1c9bee0f832b5b7e6e3d"
+      },
+      "peerConcordance": {
+        "path": "docs/editorial/reviews/2026-10-12/independent-c018-arbitration-concordance-A1.json",
+        "bytes": 93308,
+        "sha256": "0ffbb8e44af14495eeb3e2b6f770038eecf1ab8959ee039ac1c240803965a491"
+      },
+      "coordinator": {
+        "path": "docs/editorial/reviews/2026-10-12/c018-coordinator-arbitration-A1.json",
+        "bytes": 2936,
+        "sha256": "bd546ce31a10a3322ae058f4969cb675e67cfb86525267dd70013765b53d704a"
+      },
+      "peerOriginal": {
+        "path": "docs/editorial/reviews/2026-10-12/independent-c018-A2.json",
+        "bytes": 249823,
+        "sha256": "2fb4ea4b38df4acb5a243d7c7a3e65ed91190d45e28c6051f0d9608510016187"
+      }
+    },
+    "normativeSources": [
+      {
+        "path": "AGENTS.md",
+        "bytes": 15910,
+        "sha256": "123d3bf57a43e23dd21adb277295bfbaa8a0d46dccb584f12265396abe4dfe83"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      }
+    ],
+    "medicalSkills": [
+      "canonical revisar-nefroquest v2",
+      "c32/verified-medical-answer"
+    ],
+    "sourceRegistry": {
+      "ckd2024": {
+        "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+        "version": "KDIGO CKD2024; KI105(Suppl4S):S117-S314",
+        "original": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 5966902,
+          "sha256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0"
+        },
+        "text": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 997097,
+          "sha256": "9a8fd5474e7214ab482892cc34901ef2353ce01f336c533866f09ecfdcffb84a"
+        },
+        "access": "Full official PDF/extraction, own body reread for these scopes",
+        "locators": [
+          "Chapter3.4 Rec3.4.1(2B)/PP3.4.1 and following full rationale",
+          "Chapter3.8 Rec3.8.1(2A)/PP3.8.1-3",
+          "Chapter3.10 PP3.10.1-2, ungraded, S222-S223"
+        ],
+        "finding": "Standardized SBP<120 when tolerated; individualized less-intensive therapy for symptomatic postural hypotension/frailty/fallrisk. DM/G4 alone does not force another target. Full nsMRA/acidosis sections rechecked for whole exact shared card, not approval of its other consumers."
+      },
+      "bp2021": {
+        "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2021-BP-GL.pdf",
+        "version": "KDIGO BP2021; KI99(Suppl3S):S1-S87",
+        "original": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 4642743,
+          "sha256": "0f1c93de3b1598aae72b9d4f434a146151e1e17876f1351d9198030558ea305a"
+        },
+        "text": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 427942,
+          "sha256": "6b4dca3e24dec43de39d95dc76f57eb86b16b83cfe6f55c6792760c0dced89b5"
+        },
+        "access": "Full official original PDF/text independently reread",
+        "locators": [
+          "Rec3.1.1(2B), PP3.1.1-2; introduction certainty inDM/G4-G5"
+        ],
+        "finding": "Same conditional standardized<120 target. Less direct evidence inDM/advancedCKD is a limitation, not a different automatic action in an asymptomatic standardized-measurement case."
+      },
+      "anemia2026": {
+        "url": "https://kdigo.org/wp-content/uploads/2026/01/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+        "version": "KDIGO Anemia2026; KI109(Suppl1S):S1-S99",
+        "original": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 10333458,
+          "sha256": "5e72c6f6f5f880e5d842fb8a461585770ba7dac3549da4625745b43f8bc131e1"
+        },
+        "text": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 438834,
+          "sha256": "ca101d298a5fef1f0fe69f7b4e6b7c90259459443b5e2138825a57f48201f326"
+        },
+        "access": "Full official guideline, own body/rationale read, not just summary list",
+        "locators": [
+          "Rec2.3(2D), full rationale",
+          "Rec2.4(2D), route rationale",
+          "PP3.1.2 and Figure8",
+          "Rec3.2.2(2D), bodyS52: individual ESA threshold, usually8.5-10.0"
+        ],
+        "finding": "Nondialysis iron criteria: ferritin<100/TSAT<40 or100-<300/TSAT<25. Both actual panels qualify. Route depends on context/preference/tolerability; neither actual case forces a different route or urgenttransfusion. Correct causes beforeESA; Hb9.8 permits later ESA consideration after correction, but does not change the initial action rewarded by these exact questions."
+      }
+    },
+    "questions": [
+      {
+        "qid": "911fdbb4",
+        "sourceLine": 499,
+        "sourceQuestionSHA256": "5f0a43204fe27ef4b9d4a65403505f41e875fd8529ebc7a9a18f7dd63981d142",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Selecionar ferro e investigar causas na anemia estável não dialítica elegível.",
+        "classification": {
+          "primaryCompetence": "Conduta terapêutica",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "básica",
+          "legacyDiffFieldUnchanged": "medium",
+          "empiricalRecalibration": false
+        },
+        "reconstruction": {
+          "populationAndData": "Homem com DRCG 3 a tem anemia crônica estável, Hb 11,9 g/dL, ferritina 95 ng/mL e TSAT 18%, sem sangramento ou instabilidade. Qual conduta é mais adequada?",
+          "decision": "Ferro+investigação de causas, via individualizada; representará uma única decisão do par.",
+          "realPatient": false
+        },
+        "justification": "Nova posição autoral: proponho manter o AFTER exato911 como representante do par, concordando com a direção sugerida pelo peer. Esta escolha não demonstra duas questões únicas:788 permanece propostoFUNDIR. O objeto911 já foi lido pelo peer com os mesmos hashes, mas a seleção final/integração é do coordenador e continua bloqueada operacionalmente até arbitragem registrada. Normalização documental após concordância independente e registro coordenador; nenhum novo texto clínico ou gate é produzido.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Observar porqueG 3 nunca causa anemia era distrator absurdo; Hb<12 não indica transfusão."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Duplicidade ferro-primeiro com 78823 c 61: ambos cumprem critérios e rejeitam AEE/transfusão automática; números/estágio diferentes não mudam ação."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "analysis": "A questão é segura/correta no alcance dado; o par tem repetição. Representante só fica único se houver decisão formal de conciliação preservando ambos os IDs/históricos.",
+          "scientificAnnulmentArgumentResolved": true,
+          "duplicateOverride": false
+        },
+        "eliminators": {
+          "criteria": [
+            {
+              "number": 1,
+              "label": "Mais de uma resposta defensável",
+              "triggered": false,
+              "reason": "Apenas o gabarito corresponde à recomendação e aos limites do cenário; três erros específicos confrontados."
+            },
+            {
+              "number": 2,
+              "label": "Referência não sustenta gabarito",
+              "triggered": false,
+              "reason": "Passagens integrais de anemia2026 sustentam a decisão; acesso e graduação qualificados."
+            },
+            {
+              "number": 3,
+              "label": "Mede outro OP",
+              "triggered": false,
+              "reason": "OP preservado: Selecionar ferro e investigar causas na anemia estável não dialítica elegível.; nenhum comando novo introduzido para resgatar repetição."
+            },
+            {
+              "number": 4,
+              "label": "Conduta insegura",
+              "triggered": false,
+              "reason": "Tratamento é condicional/individualizado; não se premia AEE/transfusão automática ou medida casual."
+            },
+            {
+              "number": 5,
+              "label": "Distrator absurdo",
+              "triggered": false,
+              "reason": "Cada alternativa errada mantém um erro clínico identificável; não foi usada ampliação artificial de texto."
+            },
+            {
+              "number": 6,
+              "label": "Trivia sem consequência clínica",
+              "triggered": false,
+              "reason": "A tarefa tem consequência clínica; dados sem efeito discriminante são registrados na análise de duplicidade."
+            },
+            {
+              "number": 7,
+              "label": "Explicação contradiz gabarito",
+              "triggered": false,
+              "reason": "Explicação sustenta a resposta: Investigar causas tratáveis e iniciar ferro, individualizando a via."
+            },
+            {
+              "number": 8,
+              "label": "Dado decisivo ausente",
+              "triggered": false,
+              "reason": "Cenário fornecido é suficiente para a decisão inicial; não se inventa nova preferência, urgência ou resposta a tratamento."
+            },
+            {
+              "number": 9,
+              "label": "Protocolo local oculto",
+              "triggered": false,
+              "reason": "A fonte/regra é explícita; nenhum protocolo institucional oculto exigido."
+            },
+            {
+              "number": 10,
+              "label": "Desatualização relevante",
+              "triggered": false,
+              "reason": "Versões efetivamente lidas:KDIGO2024/BP2021/anemia2026; sem resultado novo não verificado ou extrapolação deRCT."
+            }
+          ],
+          "all10Checked": true,
+          "scoreAnnulled": false,
+          "duplicateOverride": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 20,
+          "band": "Excelente",
+          "note": "Fresh author editorial assessment; no psychometric validation or inheritance from original score."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA em fontes integrais próprias.",
+          "step1": "Sem eliminatório científico no objeto exato.",
+          "step2": "Representante único proposto; condicionado à conciliação do par.",
+          "step3": "Score não supera override/hold operacional.",
+          "recommendedVerdictV2": "aprovada",
+          "recommendedTarget": null,
+          "actualDeployment": false
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — REPRESENTANTE EXATO ARBITRADO",
+          "BEFORE": {
+            "t": "DRC Não Dialítica — Ferro em Anemia Leve",
+            "qid": "911fdbb4",
+            "q": "Homem com DRC G3a, proteinúria 450 mg/24h e hipertensão controlada apresenta Hb 11,9 g/dL, ferritina 95 ng/mL e saturação de transferrina de 18%. Qual é a conduta mais adequada em relação à anemia?",
+            "refs": [
+              "kdigo_anemia_2026"
+            ],
+            "opts": [
+              "Iniciar AEE imediatamente",
+              "Transfundir se Hb <12 g/dL",
+              "Investigar e corrigir deficiência de ferro primeiro, escolhendo ferro oral ou intravenoso conforme contexto clínico",
+              "Observar sem tratamento porque DRC G3 nunca causa anemia clinicamente relevante"
+            ],
+            "ans": 2,
+            "exp": "A alternativa correta é C. Em homem adulto, Hb 11,9 g/dL caracteriza anemia; com ferritina <100 ng/mL e TSAT <40%, a KDIGO 2026 sugere iniciar ferro em DRC não dialítica. A via oral ou intravenosa deve ser individualizada. AEE não é primeira medida nesse cenário, porque causas corrigíveis devem ser tratadas antes e a Hb não está em faixa que imponha AEE imediato. Transfusão por Hb <12 g/dL é liberal e inadequada para anemia crônica estável. Observar sem tratar ignora deficiência de ferro documentada.",
+            "diff": "medium",
+            "cat": "drc"
+          },
+          "AFTER": {
+            "t": "DRC Não Dialítica — Ferro em Anemia Leve",
+            "qid": "911fdbb4",
+            "q": "Homem com DRCG 3 a tem anemia crônica estável, Hb 11,9 g/dL, ferritina 95 ng/mL e TSAT 18%, sem sangramento ou instabilidade. Qual conduta é mais adequada?",
+            "refs": [
+              "kdigo_iron_start_nondialysis_2026"
+            ],
+            "opts": [
+              "Iniciar AEE como primeira medida apenas pela presença de anemia, antes de avaliar causas corrigíveis.",
+              "Transfundir de rotina por Hb<12, mesmo sem urgência, independentemente de sintomas e riscos.",
+              "Investigar causas tratáveis e iniciar ferro, individualizando a via.",
+              "Excluir anemia relevante pelo estágioG 3 a e observar sem reavaliar Hb, ferro ou possíveis causas."
+            ],
+            "ans": 2,
+            "exp": "Hb 11,9 g/dL caracteriza anemia nesse homem. Ferritina<100 e TSAT<40 atendem ao critério de ferro não dialítico(Rec 2.3,2 D). A via oral/IV é individualizada(Rec 2.4,2 D), e causas corrigíveis devem ser abordadas antes de AEE/HIF-PHI(PP 3.1.2). Nenhum desses números exigeAEE ou transfusão automática; em anemia estável, decisões dependem de contexto, sintomas e riscos.",
+            "diff": "medium",
+            "cat": "drc"
+          },
+          "afterQuestionSHA256": "2bef5dcfa034261027e96122c772ae15deee5a9ef132b0edcb8df03f1ab3bd50",
+          "correctAnswer": {
+            "canonicalIndex": 2,
+            "canonicalLetter": "C",
+            "text": "Investigar causas tratáveis e iniciar ferro, individualizando a via."
+          },
+          "afterQuestionCanonicalSortedSHA256": "dd1f42fe12f41dc63205cf11e5daa114ac551777f48caf3a01f4f707366ef8d2"
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "anemia2026",
+            "openedOriginal": true,
+            "source": {
+              "url": "https://kdigo.org/wp-content/uploads/2026/01/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+              "version": "KDIGO Anemia2026; KI109(Suppl1S):S1-S99",
+              "original": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 10333458,
+                "sha256": "5e72c6f6f5f880e5d842fb8a461585770ba7dac3549da4625745b43f8bc131e1"
+              },
+              "text": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 438834,
+                "sha256": "ca101d298a5fef1f0fe69f7b4e6b7c90259459443b5e2138825a57f48201f326"
+              },
+              "access": "Full official guideline, own body/rationale read, not just summary list",
+              "locators": [
+                "Rec2.3(2D), full rationale",
+                "Rec2.4(2D), route rationale",
+                "PP3.1.2 and Figure8",
+                "Rec3.2.2(2D), bodyS52: individual ESA threshold, usually8.5-10.0"
+              ],
+              "finding": "Nondialysis iron criteria: ferritin<100/TSAT<40 or100-<300/TSAT<25. Both actual panels qualify. Route depends on context/preference/tolerability; neither actual case forces a different route or urgenttransfusion. Correct causes beforeESA; Hb9.8 permits later ESA consideration after correction, but does not change the initial action rewarded by these exact questions."
+            },
+            "ownReadFinalizedAtOfficialUTC": "2026-10-13 17:35:41 UTC"
+          }
+        ],
+        "referenceCardsVerified": {
+          "kdigo_iron_start_nondialysis_2026": {
+            "label": "KDIGO — Iniciar ferro em DRC não dialítica",
+            "url": "https://kdigo.org/wp-content/uploads/2026/01/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+            "journal": "KDIGO Anemia2026; Kidney Int109(Suppl1S):S1-S99",
+            "ano": 2026,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Aplicar critérios de ferro e tratar causas corrigíveis antes de AEE.",
+            "icon": "📋",
+            "resumo": "Rec 2.3(2 D) sugere ferro na anemia da DRC não dialítica quando ferritina<100 ng/mL e TSAT<40%, ou ferritina 100 a<300 e TSAT<25%. Rec 2.4(2 D): oral ou intravenoso conforme preferência, gravidade, eficácia, tolerabilidade, disponibilidade e custo. PP 3.1.2 orienta corrigir causas tratáveis antes de AEE/HIF-PHI. Esses critérios não são os da hemodiálise.",
+            "conclusao": "Individualizar ferro e investigar a anemia; hemoglobina isolada não determina AEE ou transfusão em anemia crônica estável.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "ADD/REPLACE condicionais; revisão autoral não aprova consumidores compartilhados nem redefine tentativas históricas.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "posição",
+            "índice de resposta",
+            "cat",
+            "tentativas",
+            "histórico",
+            "FSRS"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "replaceFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "atomicCardDependencies": [
+            "kdigo_iron_start_nondialysis_2026"
+          ],
+          "newCardsMustExistBeforeTopicWrite": [
+            "kdigo_iron_start_nondialysis_2026"
+          ],
+          "independentExactReviewRequired": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true,
+          "doNotResetFSRS": true,
+          "applied": false,
+          "noDeletionOfComparedQids": true
+        },
+        "verificationPending": [],
+        "editorialPending": [],
+        "comparison": {
+          "beforeLengths": [
+            25,
+            26,
+            115,
+            79
+          ],
+          "afterLengths": [
+            101,
+            92,
+            68,
+            98
+          ],
+          "uniqueLongestCorrectBefore": true,
+          "uniqueLongestCorrectAfter": false,
+          "correctToLongestDistractorRatio": 0.6733,
+          "qidPreserved": true,
+          "answerPositionUnchangedInBank": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "noAddedLetterOrOrderCue": true
+        },
+        "distractorRationale": {
+          "A": "AEE não é primeira resposta antes decausas corrigíveis neste perfil.",
+          "B": "Transfusão não se baseia emHb<12 isolada nem é rotina para anemia estável.",
+          "D": "G 3 a não exclui anemia ou necessidade de avaliar/tratar causas."
+        },
+        "validity": {
+          "content": "Fonte e objeto exatos, com versões/limites de acesso qualificados.",
+          "construct": "Corrigir ferro elegível antes de AEE em anemia estável não dialítica.",
+          "response": "Julgamento editorial: os distratores exigem o conceito, sem supor telemetria que não foi coletada.",
+          "consequential": "Evitar os erros clínicos descritos; ciência não elimina override de duplicidade."
+        },
+        "duplicationCheck": {
+          "dimensions": [
+            "decisão",
+            "estrutura dos dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Representante único do par após concordância própria e arbitragem registrada;78823c61 permanece FUNDIR com911fdbb4.",
+          "fourDimensionComparisonLiteral": {
+            "decision": "Ferro+investigação de causas, via individualizada; representará uma única decisão do par.",
+            "functionalDataStructure": "Anemia estável nãoHD, ferritina95/TSAT18 preenche primeiro ramo, semurgência; não há indicação automática deESA/transfusão.",
+            "targetProfile": "Mesmo aprendiz avançado/residente.",
+            "language": "Mesmo português."
+          },
+          "practicalClinicalBranchLiteral": {
+            "actual": {
+              "ferritin": 95,
+              "TSAT": 18,
+              "Hb": 11.9,
+              "rule": "ferritin<100 andTSAT<40",
+              "ironEligible": true
+            },
+            "route": "No clinical data force oral versusIV, so individualization remains the actual action.",
+            "ESA": "Hb11.9 does not create an immediateESA requirement; correctable causes addressed first.",
+            "clusterPolicy": "One retained candidate only.788 is not independently released through this association."
+          },
+          "relatedItems": [
+            {
+              "qid": "78823c61",
+              "currentBEFORE": {
+                "t": "DRC Não Dialítica — Ferro Antes de AEE",
+                "qid": "78823c61",
+                "q": "Paciente com DRC G3b não dialítica apresenta anemia (Hb 9,8 g/dL), VCM 82 fL, ferritina 285 ng/mL e saturação de transferrina de 19%. Segundo a KDIGO 2026, qual é o próximo passo mais adequado antes de iniciar AEE?",
+                "refs": [
+                  "kdigo_anemia_2026"
+                ],
+                "opts": [
+                  "Iniciar AEE imediatamente, pois Hb <10 g/dL basta para tratar anemia da DRC",
+                  "Iniciar darbepoetina sem corrigir ferro, porque a ferritina está acima de 100 ng/mL",
+                  "Transfundir concentrado de hemácias para corrigir a Hb rapidamente",
+                  "Iniciar tratamento com ferro, por via oral ou intravenosa conforme preferência, gravidade e tolerabilidade, enquanto se avaliam causas corrigíveis de anemia"
+                ],
+                "ans": 3,
+                "exp": "A alternativa correta é D. Em DRC não dialítica com anemia, ferritina entre 100 e <300 ng/mL associada a TSAT <25% atende ao critério KDIGO 2026 para iniciar ferro. A via oral ou intravenosa deve ser escolhida conforme preferência do paciente, gravidade da anemia/deficiência, tolerabilidade, disponibilidade, custo e necessidade de resposta. AEE não deve ser iniciado como reflexo automático sem abordar causas corrigíveis, especialmente deficiência de ferro. Transfusão não é primeira linha em anemia crônica estável, devido a riscos como sobrecarga volêmica, reações transfusionais e aloimunização em candidatos a transplante.",
+                "diff": "medium",
+                "cat": "drc"
+              },
+              "canonicalSHA256": "759185e354d9ad3fb87018c5996b705b2141026a78ac83fb7113f564ae0f6de5",
+              "scope": "Only comparison; no gate approval or product change for this item."
+            },
+            {
+              "qid": "061c9bcb",
+              "currentBEFORE": {
+                "t": "Anemia da DRC",
+                "qid": "061c9bcb",
+                "q": "Na investigação de anemia em doença renal crônica (DRC), qual é a sequência mais adequada de avaliação antes de iniciar o tratamento com agentes estimuladores de eritropoiese (AEE)?",
+                "refs": [
+                  "kdigo_anemia_2026"
+                ],
+                "opts": [
+                  "Avaliar e tratar deficiência de ferro, excluir causas concorrentes e individualizar alvo de Hb",
+                  "Suspender investigação diagnóstica apenas com ferritina normal, sem avaliar outros marcadores relevantes",
+                  "Iniciar terapia com AEE imediatamente sem avaliar o status do ferro e outras causas de anemia",
+                  "Transfundir rotineiramente para manter Hb acima de 13 g/dL sem considerar riscos associados"
+                ],
+                "ans": 0,
+                "exp": "Antes de iniciar o tratamento com agentes estimuladores de eritropoiese (AEE) em pacientes com anemia associada à doença renal crônica (DRC), é crucial avaliar e corrigir a deficiência de ferro, pois a deficiência de ferro é uma causa comum de anemia em DRC e pode limitar a eficácia dos AEEs. Além disso, é importante avaliar a presença de inflamação e excluir outras causas de anemia, como deficiência de vitamina B12 ou folato, para garantir que o tratamento seja direcionado adequadamente. Iniciar AEE sem essa avaliação pode resultar em tratamento ineficaz ou desnecessário. A biópsia renal não é indicada para avaliação de anemia, e transfusões sanguíneas são reservadas para casos de anemia grave ou sintomática que não respondem a outras intervenções. As diretrizes KDIGO recomendam essa abordagem sistemática para otimizar o manejo da anemia na DRC.",
+                "diff": "hard",
+                "cat": "drc"
+              },
+              "canonicalSHA256": "a7be2ae7bfe1d765bf38df821ebdcfa4deea421ee01840a4a9fc57b04af25d19",
+              "scope": "Only comparison; no gate approval or product change for this item."
+            },
+            {
+              "qid": "c7e8cc9a",
+              "currentBEFORE": {
+                "t": "Anemia na DRC — Ferro-restrição Funcional",
+                "qid": "c7e8cc9a",
+                "q": "Paciente com DRC G4 não dialítica apresenta anemia normocítica, hemoglobina 9,5 g/dL, ferritina 400 ng/mL, saturação de transferrina de 15% e proteína C reativa elevada. Segundo a KDIGO 2026, qual interpretação é mais adequada?",
+                "refs": [
+                  "kdigo_anemia_2026"
+                ],
+                "opts": [
+                  "Deficiência sistêmica/absoluta de ferro; iniciar ferro intravenoso obrigatoriamente pela ferritina baixa",
+                  "Ferro-restrição funcional associada à inflamação; ferritina elevada e TSAT baixa indicam baixa disponibilidade de ferro apesar de estoques presentes, e ferro de rotina não é automaticamente indicado nesse perfil não dialítico",
+                  "Anemia megaloblástica por deficiência de vitamina B12; iniciar reposição parenteral de B12",
+                  "Hemólise intravascular crônica; transfundir hemácias para manter Hb acima de 12 g/dL"
+                ],
+                "ans": 1,
+                "exp": "A alternativa correta é B. Em DRC, ferritina elevada com saturação de transferrina (TSAT) baixa, especialmente com PCR elevada, sugere ferro-restrição funcional: há ferro estocado, mas pouca disponibilidade para a eritropoiese, frequentemente por inflamação e aumento de hepcidina. Na DRC não dialítica, a KDIGO 2026 sugere iniciar ferro quando ferritina <100 ng/mL com TSAT <40%, ou ferritina entre 100 e <300 ng/mL com TSAT <25%; ferritina de 400 ng/mL não entra nesses limiares de início rotineiro. A conduta deve integrar sintomas, tendência laboratorial, investigação de causas reversíveis e decisão compartilhada sobre AEE/HIF-PHI se necessário. As demais opções rotulam incorretamente deficiência absoluta, anemia megaloblástica ou hemólise e propõem condutas inadequadas.",
+                "diff": "hard",
+                "cat": "drc"
+              },
+              "canonicalSHA256": "44fcb79246eb967798bd56ea8d70a0fa5f6606dda2b0ddd59c8d7cd1f78db467",
+              "scope": "Only comparison; no gate approval or product change for this item."
+            }
+          ],
+          "normalizationOnly": true,
+          "newClinicalAnalysis": false,
+          "targetApprovedByAssociation": false
+        },
+        "reviewScope": "Exportação pontual de um freshAuthorScope C018 já concluído/arbitrado. Zero nova revisão clínica, zero alteração material, zero nova contagem das741; original e demais cinco questões preservados.",
+        "integrationHold": {
+          "scope": "downstream technical integration only",
+          "arbitrationConditionResolved": true,
+          "targetQid": null,
+          "scientificGate": "LIBERADA",
+          "reason": "A decisão do representante foi registrada; aplicação ainda depende de cards/bindings/consumidores, compatibilidade e CI da coordenação.",
+          "pending": [
+            "exact card and consumer reconciliation",
+            "historical version compatibility",
+            "technical integration and CI"
+          ],
+          "noAutomaticDeletion": true,
+          "noResetFSRSOrHistory": true
+        },
+        "wholeExactCardReviews": [
+          {
+            "id": "kdigo_iron_start_nondialysis_2026",
+            "exactAFTER": {
+              "label": "KDIGO — Iniciar ferro em DRC não dialítica",
+              "url": "https://kdigo.org/wp-content/uploads/2026/01/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+              "journal": "KDIGO Anemia2026; Kidney Int109(Suppl1S):S1-S99",
+              "ano": 2026,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Aplicar critérios de ferro e tratar causas corrigíveis antes de AEE.",
+              "icon": "📋",
+              "resumo": "Rec 2.3(2 D) sugere ferro na anemia da DRC não dialítica quando ferritina<100 ng/mL e TSAT<40%, ou ferritina 100 a<300 e TSAT<25%. Rec 2.4(2 D): oral ou intravenoso conforme preferência, gravidade, eficácia, tolerabilidade, disponibilidade e custo. PP 3.1.2 orienta corrigir causas tratáveis antes de AEE/HIF-PHI. Esses critérios não são os da hemodiálise.",
+              "conclusao": "Individualizar ferro e investigar a anemia; hemoglobina isolada não determina AEE ou transfusão em anemia crônica estável.",
+              "curiosidade": ""
+            },
+            "exactAfterSHA256": "3b0676322e4d8f8cac14bc4fd8beb292652101758b289df9c80e36ee56324f0e",
+            "wholeObjectOwnSourceChecked": true,
+            "authorScientificVote": "aprovada",
+            "approvalInherited": false,
+            "sourceIds": [
+              "anemia2026"
+            ],
+            "otherConsumerApproval": false,
+            "objectChanged": false
+          }
+        ],
+        "freshAuthorScopeLiteral": {
+          "OP": "Selecionar ferro e investigar causas na anemia estável não dialítica elegível.",
+          "classification": {
+            "primaryCompetence": "Conduta terapêutica",
+            "Bloom": "Aplicar",
+            "Miller": "Sabe como",
+            "intrinsicDifficulty": "básica",
+            "legacyDiffFieldUnchanged": "medium",
+            "empiricalRecalibration": false
+          },
+          "caseReconstruction": {
+            "populationAndData": "Homem com DRCG 3 a tem anemia crônica estável, Hb 11,9 g/dL, ferritina 95 ng/mL e TSAT 18%, sem sangramento ou instabilidade. Qual conduta é mais adequada?",
+            "decision": "Ferro+investigação de causas, via individualizada; representará uma única decisão do par.",
+            "realPatient": false
+          },
+          "advogadoDoRecurso": {
+            "analysis": "A questão é segura/correta no alcance dado; o par tem repetição. Representante só fica único se houver decisão formal de conciliação preservando ambos os IDs/históricos.",
+            "scientificAnnulmentArgumentResolved": true,
+            "duplicateOverride": false
+          },
+          "eliminators": {
+            "criteria": [
+              {
+                "number": 1,
+                "label": "Mais de uma resposta defensável",
+                "triggered": false,
+                "reason": "Apenas o gabarito corresponde à recomendação e aos limites do cenário; três erros específicos confrontados."
+              },
+              {
+                "number": 2,
+                "label": "Referência não sustenta gabarito",
+                "triggered": false,
+                "reason": "Passagens integrais de anemia2026 sustentam a decisão; acesso e graduação qualificados."
+              },
+              {
+                "number": 3,
+                "label": "Mede outro OP",
+                "triggered": false,
+                "reason": "OP preservado: Selecionar ferro e investigar causas na anemia estável não dialítica elegível.; nenhum comando novo introduzido para resgatar repetição."
+              },
+              {
+                "number": 4,
+                "label": "Conduta insegura",
+                "triggered": false,
+                "reason": "Tratamento é condicional/individualizado; não se premia AEE/transfusão automática ou medida casual."
+              },
+              {
+                "number": 5,
+                "label": "Distrator absurdo",
+                "triggered": false,
+                "reason": "Cada alternativa errada mantém um erro clínico identificável; não foi usada ampliação artificial de texto."
+              },
+              {
+                "number": 6,
+                "label": "Trivia sem consequência clínica",
+                "triggered": false,
+                "reason": "A tarefa tem consequência clínica; dados sem efeito discriminante são registrados na análise de duplicidade."
+              },
+              {
+                "number": 7,
+                "label": "Explicação contradiz gabarito",
+                "triggered": false,
+                "reason": "Explicação sustenta a resposta: Investigar causas tratáveis e iniciar ferro, individualizando a via."
+              },
+              {
+                "number": 8,
+                "label": "Dado decisivo ausente",
+                "triggered": false,
+                "reason": "Cenário fornecido é suficiente para a decisão inicial; não se inventa nova preferência, urgência ou resposta a tratamento."
+              },
+              {
+                "number": 9,
+                "label": "Protocolo local oculto",
+                "triggered": false,
+                "reason": "A fonte/regra é explícita; nenhum protocolo institucional oculto exigido."
+              },
+              {
+                "number": 10,
+                "label": "Desatualização relevante",
+                "triggered": false,
+                "reason": "Versões efetivamente lidas:KDIGO2024/BP2021/anemia2026; sem resultado novo não verificado ou extrapolação deRCT."
+              }
+            ],
+            "all10Checked": true,
+            "scoreAnnulled": false,
+            "duplicateOverride": false
+          },
+          "NQEditorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 2,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 20,
+            "band": "Excelente",
+            "note": "Fresh author editorial assessment; no psychometric validation or inheritance from original score."
+          },
+          "decisionTree": {
+            "step0": "VERIFICADA/NENHUMA em fontes integrais próprias.",
+            "step1": "Sem eliminatório científico no objeto exato.",
+            "step2": "Representante único proposto; condicionado à conciliação do par.",
+            "step3": "Score não supera override/hold operacional.",
+            "recommendedVerdictV2": "aprovada",
+            "recommendedTarget": null,
+            "actualDeployment": false
+          },
+          "scientificEvidenceStatus": "VERIFICADA",
+          "scientificPendingNature": "NENHUMA",
+          "authorPublicationVote": "LIBERADA",
+          "clinicalQualityNotInferredFromOptionLength": true
+        },
+        "postArbitrationDecision": {
+          "coordinatorDecision": {
+            "qid": "911fdbb4",
+            "verdict": "aprovada",
+            "mergeTarget": null,
+            "keepExactAsSingleRepresentative": true,
+            "exactAfterCanonicalSHA256": "dd1f42fe12f41dc63205cf11e5daa114ac551777f48caf3a01f4f707366ef8d2",
+            "authorAndPeerScientificVote": "LIBERADA",
+            "coordinationArbitrationConditionSatisfied": true,
+            "implementationStatus": "PENDING_NORMALIZED_AUTHOR_POINT_GATE_AND_EXACT_CARD_CONSUMER_COMPATIBILITY",
+            "actualProductApplication": false,
+            "targetApprovedByAssociation": false,
+            "preserveIdAnswerAndAllHistoricalVersions": true
+          },
+          "coordinatorRecord": {
+            "path": "docs/editorial/reviews/2026-10-12/c018-coordinator-arbitration-A1.json",
+            "bytes": 2936,
+            "sha256": "bd546ce31a10a3322ae058f4969cb675e67cfb86525267dd70013765b53d704a"
+          },
+          "peerConcordance": {
+            "path": "docs/editorial/reviews/2026-10-12/independent-c018-arbitration-concordance-A1.json",
+            "bytes": 93308,
+            "sha256": "0ffbb8e44af14495eeb3e2b6f770038eecf1ab8959ee039ac1c240803965a491"
+          },
+          "coordinationArbitrationConditionSatisfied": true,
+          "scientificPublicationAuthorization": "LIBERADA",
+          "derivation": "Handbook§18.4 Regra7(a): aprovada/VERIFICADA/NENHUMA, representante único registrado; LIBERADA científica.",
+          "oldDecisionTreeRetainedLiteral": true,
+          "actualProductApplication": false,
+          "targetApprovedByAssociation": false
+        }
+      }
+    ],
+    "cardPatches": [
+      {
+        "id": "kdigo_iron_start_nondialysis_2026",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "KDIGO — Iniciar ferro em DRC não dialítica",
+          "url": "https://kdigo.org/wp-content/uploads/2026/01/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+          "journal": "KDIGO Anemia2026; Kidney Int109(Suppl1S):S1-S99",
+          "ano": 2026,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Aplicar critérios de ferro e tratar causas corrigíveis antes de AEE.",
+          "icon": "📋",
+          "resumo": "Rec 2.3(2 D) sugere ferro na anemia da DRC não dialítica quando ferritina<100 ng/mL e TSAT<40%, ou ferritina 100 a<300 e TSAT<25%. Rec 2.4(2 D): oral ou intravenoso conforme preferência, gravidade, eficácia, tolerabilidade, disponibilidade e custo. PP 3.1.2 orienta corrigir causas tratáveis antes de AEE/HIF-PHI. Esses critérios não são os da hemodiálise.",
+          "conclusao": "Individualizar ferro e investigar a anemia; hemoglobina isolada não determina AEE ou transfusão em anemia crônica estável.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "3b0676322e4d8f8cac14bc4fd8beb292652101758b289df9c80e36ee56324f0e",
+        "existingBankConsumerQids": [],
+        "existingBankConsumersCount": 0,
+        "usedByQids": [
+          "911fdbb4"
+        ],
+        "sourceIds": [
+          "anemia2026"
+        ],
+        "newExactVersionReview": {
+          "verdictV2": "aprovada",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "afterSHA256": "3b0676322e4d8f8cac14bc4fd8beb292652101758b289df9c80e36ee56324f0e",
+          "derivation": "Handbook §18.4 Regra7(a); autoria do card inteiro exato, sem herança de versões/lotes.",
+          "taxonomyVerified": true,
+          "limitations": "Full official PDF and extraction, own read; nondialysis criteria distinguished from G5HD criteria."
+        },
+        "implementation": "Exige revisão independente do objeto exato, reconciliação de consumidores e histórico da versão. Nenhum card é aplicado por este autor.",
+        "normalizationOwnWholeCardProof": {
+          "id": "kdigo_iron_start_nondialysis_2026",
+          "exactAFTER": {
+            "label": "KDIGO — Iniciar ferro em DRC não dialítica",
+            "url": "https://kdigo.org/wp-content/uploads/2026/01/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+            "journal": "KDIGO Anemia2026; Kidney Int109(Suppl1S):S1-S99",
+            "ano": 2026,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Aplicar critérios de ferro e tratar causas corrigíveis antes de AEE.",
+            "icon": "📋",
+            "resumo": "Rec 2.3(2 D) sugere ferro na anemia da DRC não dialítica quando ferritina<100 ng/mL e TSAT<40%, ou ferritina 100 a<300 e TSAT<25%. Rec 2.4(2 D): oral ou intravenoso conforme preferência, gravidade, eficácia, tolerabilidade, disponibilidade e custo. PP 3.1.2 orienta corrigir causas tratáveis antes de AEE/HIF-PHI. Esses critérios não são os da hemodiálise.",
+            "conclusao": "Individualizar ferro e investigar a anemia; hemoglobina isolada não determina AEE ou transfusão em anemia crônica estável.",
+            "curiosidade": ""
+          },
+          "exactAfterSHA256": "3b0676322e4d8f8cac14bc4fd8beb292652101758b289df9c80e36ee56324f0e",
+          "wholeObjectOwnSourceChecked": true,
+          "authorScientificVote": "aprovada",
+          "approvalInherited": false,
+          "sourceIds": [
+            "anemia2026"
+          ],
+          "otherConsumerApproval": false,
+          "objectChanged": false
+        },
+        "existingExactVersionReviewPreserved": true,
+        "applied": false
+      }
+    ],
+    "summary": [
+      {
+        "qid": "911fdbb4",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "scientificPublication": "LIBERADA",
+        "integration": "PENDING_EXACT_CARDS_COMPATIBILITY_CI",
+        "score": 20
+      }
+    ],
+    "counts": {
+      "existingScopeCount": 1,
+      "reviewed": 0,
+      "newUniqueReviewedQuestions": 0,
+      "newBatchesOfEight": 0,
+      "newClinicalGates": 0,
+      "newIndependentQuestions": 0,
+      "newPublicationAuthorizations": 0,
+      "implemented": 0,
+      "exportedScientificReleasedGate": 1,
+      "exportedScientificBlockedGate": 0
+    },
+    "normalizationPolicy": "Formato exportável do dossiê existente, não revisão nova ou mudança clínica. Original freshAuthorScope literal permanece e os três vínculos exatos de arbitragem/concordância não autorizam outros alvos/consumidores.",
+    "preservedOtherFiveQuestionObjectDigests": {
+      "23323f09": "e4b9bd887dcd9d722b1b91ce155ba181e7a10769aa95a280a986bf85738ac668",
+      "38da9430": "46083ac4fce36d888a86f0c9f6c4d4fc5d6b5197ca89340f2228b700e39220b5",
+      "d4393bc2": "024e98332ac0788c13e14f34ae2c2ee3f9cc91e346b5f2ae3ab6596e1086c748",
+      "9661a8dd": "2a84aa0e106dca1d3f5a5b8e2cf2bde0a1801c6cd8a5dfe8d556929ce6a67c22",
+      "d7ac22f6": "805175cf6420c4bcbc07e3f9707331988373e083489e16a4f9143e32c6550d6f"
+    },
+    "sourceIntegrity": {
+      "mainQuestionCount": 741,
+      "pointBeforeExactCurrentBank": true,
+      "noProductMutations": true,
+      "productPins": [
+        {
+          "path": "data/topics.js",
+          "bytes": 971537,
+          "sha256": "45c283a5a9634fe72e166762bd2461158ebc1647f5b5a026b7ae1ea68f6ee130"
+        },
+        {
+          "path": "data/refs.js",
+          "bytes": 491073,
+          "sha256": "d12c230d80f505fc8fd1893f489014fca8bbeced681c1224f03f4c3f4c7f01f7"
+        }
+      ],
+      "globalCurrentBankEqualsM": false
+    },
+    "limits": [
+      "Before/After, índice de resposta, card inteiro, classificação, score, árvore e fonte do dossiê não foram reescritos.",
+      "Cinco outros C018 e todos os pareceres anteriores permanecem intactos.",
+      "Liberação científica911 não aplica produto nem encerra os gates técnicos de integração."
+    ],
+    "normalizationValidation": {
+      "pass": 51,
+      "fail": 0,
+      "checks": [
+        {
+          "check": "author pin",
+          "passed": true
+        },
+        {
+          "check": "dossier pin",
+          "passed": true
+        },
+        {
+          "check": "peerConcordance pin",
+          "passed": true
+        },
+        {
+          "check": "coordinator pin",
+          "passed": true
+        },
+        {
+          "check": "peerOriginal pin",
+          "passed": true
+        },
+        {
+          "check": "ckd2024 original pin",
+          "passed": true
+        },
+        {
+          "check": "ckd2024 text pin",
+          "passed": true
+        },
+        {
+          "check": "bp2021 original pin",
+          "passed": true
+        },
+        {
+          "check": "bp2021 text pin",
+          "passed": true
+        },
+        {
+          "check": "anemia2026 original pin",
+          "passed": true
+        },
+        {
+          "check": "anemia2026 text pin",
+          "passed": true
+        },
+        {
+          "check": "13109735 before exact author/current",
+          "passed": true
+        },
+        {
+          "check": "13109735 after exact author/dossier",
+          "passed": true
+        },
+        {
+          "check": "13109735 original digest exact",
+          "passed": true
+        },
+        {
+          "check": "13109735 sorted canonical coordinator digest",
+          "passed": true
+        },
+        {
+          "check": "13109735 ids/answer literal",
+          "passed": true
+        },
+        {
+          "check": "13109735 fresh vote equals recorded arbitration",
+          "passed": true
+        },
+        {
+          "check": "13109735 ten eliminators",
+          "passed": true
+        },
+        {
+          "check": "13109735 literal score ten dimensions",
+          "passed": true
+        },
+        {
+          "check": "13109735 card kdigo_ckd_complications_2024 literal",
+          "passed": true
+        },
+        {
+          "check": "13109735 normalized fresh OP/classification/score/tree literal",
+          "passed": true
+        },
+        {
+          "check": "13109735 source/cards bind all refs",
+          "passed": true
+        },
+        {
+          "check": "13109735 scientific gate derived",
+          "passed": true
+        },
+        {
+          "check": "78823c61 before exact author/current",
+          "passed": true
+        },
+        {
+          "check": "78823c61 after exact author/dossier",
+          "passed": true
+        },
+        {
+          "check": "78823c61 original digest exact",
+          "passed": true
+        },
+        {
+          "check": "78823c61 sorted canonical coordinator digest",
+          "passed": true
+        },
+        {
+          "check": "78823c61 ids/answer literal",
+          "passed": true
+        },
+        {
+          "check": "78823c61 fresh vote equals recorded arbitration",
+          "passed": true
+        },
+        {
+          "check": "78823c61 ten eliminators",
+          "passed": true
+        },
+        {
+          "check": "78823c61 literal score ten dimensions",
+          "passed": true
+        },
+        {
+          "check": "78823c61 card kdigo_iron_start_nondialysis_2026 literal",
+          "passed": true
+        },
+        {
+          "check": "78823c61 normalized fresh OP/classification/score/tree literal",
+          "passed": true
+        },
+        {
+          "check": "78823c61 source/cards bind all refs",
+          "passed": true
+        },
+        {
+          "check": "78823c61 scientific gate derived",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 before exact author/current",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 after exact author/dossier",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 original digest exact",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 sorted canonical coordinator digest",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 ids/answer literal",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 fresh vote equals recorded arbitration",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 ten eliminators",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 literal score ten dimensions",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 card kdigo_iron_start_nondialysis_2026 literal",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 normalized fresh OP/classification/score/tree literal",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 source/cards bind all refs",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 scientific gate derived",
+          "passed": true
+        },
+        {
+          "check": "Output paths absent",
+          "passed": true
+        },
+        {
+          "check": "Five other original C018 literal objects preserved",
+          "passed": true
+        },
+        {
+          "check": "All original reports/records remain pinned",
+          "passed": true
+        },
+        {
+          "check": "Product pins unchanged",
+          "passed": true
+        }
+      ],
+      "structuralNotMedicalTruth": true
+    },
+    "technicalNormalizationRevision": {
+      "revision": "A2",
+      "finalizedAtOfficialUTC": "2026-10-13 18:15:18 UTC",
+      "previousA1": {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 47665,
+        "sha256": "0e2b4345afc996a29889bd904ff193a6c76e8f49b619415d25cee479c23ab3ae"
+      },
+      "scope": "Somente metadado auxiliar de duplicidade copiado incorretamente do parecer antigo. Usar os comparados/quatro dimensões/ramo já literais do dossiê e a direção registrada. Não há alteração clínica ou novo gate.",
+      "onlyChangedQuestionFields": [
+        "duplicationCheck"
+      ],
+      "allClinicalLiteralsAndGatesUnchanged": true,
+      "newUniqueReviews": 0,
+      "newClinicalGates": 0,
+      "newPublicationAuthorizations": 0,
+      "productApplications": 0
+    },
+    "technicalNormalizationValidation": {
+      "pass": 14,
+      "fail": 0,
+      "checks": [
+        {
+          "check": "point-13109735-c018-arbitration-normalized-A1.json frozen A1 pin",
+          "passed": true
+        },
+        {
+          "check": "13109735 only question auxiliary duplication metadata changed",
+          "passed": true
+        },
+        {
+          "check": "13109735 BeforeAfterCards unchanged",
+          "passed": true
+        },
+        {
+          "check": "13109735 full gate scope literal unchanged",
+          "passed": true
+        },
+        {
+          "check": "point-78823c61-c018-arbitration-normalized-A1.json frozen A1 pin",
+          "passed": true
+        },
+        {
+          "check": "78823c61 only question auxiliary duplication metadata changed",
+          "passed": true
+        },
+        {
+          "check": "78823c61 BeforeAfterCards unchanged",
+          "passed": true
+        },
+        {
+          "check": "78823c61 full gate scope literal unchanged",
+          "passed": true
+        },
+        {
+          "check": "point-911fdbb4-c018-arbitration-normalized-A1.json frozen A1 pin",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 only question auxiliary duplication metadata changed",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 BeforeAfterCards unchanged",
+          "passed": true
+        },
+        {
+          "check": "911fdbb4 full gate scope literal unchanged",
+          "passed": true
+        },
+        {
+          "check": "All A2 paths absent",
+          "passed": true
+        },
+        {
+          "check": "A1 files preserved",
+          "passed": true
+        }
+      ],
+      "structuralNotClinicalTruth": true
+    }
+  }
+}
