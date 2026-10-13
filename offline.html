@@ -248,7 +248,11 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
   </div>
 
   <!-- Banco de dados de questões (topics) em cache -->
+  <script>window.NQ_REQUIRES_QUESTION_REVISIONS = true;</script>
   <script src="/js/answer-presentation.js?v=16.09"></script>
+  <script src="/data/question-revision-manifest.js?v=16.10"></script>
+  <script src="/data/question-revision-history.js?v=16.10"></script>
+  <script src="/js/question-revisions.js?v=16.10"></script>
   <script src="/data/topics.js"></script>
   <script>
     // Inicialização da sessão
@@ -258,6 +262,28 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
     let isAnswered = false;
     let currentPresentation = null;
     let offlineAnswer = null;
+    let offlineRevision = null;
+    let offlineCatalog = null;
+    let offlineOriginalRaw = null;
+    let offlineConsultationOnly = false;
+    let offlineSelection = null;
+    let offlineSelectionRaw = null;
+    let offlineSavedRaw = null;
+    let offlineRevisionHold = null;
+    function getOfflineRevisionCatalog() {
+      if (!window.NQ_REQUIRES_QUESTION_REVISIONS && !window.NQQuestionRevisions && !window.NQQuestionRevisionManifest && !window.NQQuestionRevisionHistory) return undefined;
+      if (!window.NQQuestionRevisions || !window.NQQuestionRevisionManifest || !Array.isArray(window.NQQuestionRevisionHistory) || typeof topics === 'undefined') return null;
+      if (!offlineCatalog) {
+        try {
+          // Offline has no reference-card UI; the manifest still pins their published identities.
+          offlineCatalog = window.NQQuestionRevisions.createCatalog({
+            manifest: window.NQQuestionRevisionManifest, history: window.NQQuestionRevisionHistory || [],
+            authors: topics, sources: {offline: topics.map(offlineCanonical)}
+          });
+        } catch (error) { console.error('[NQ] Offline revision catalog unavailable', error); }
+      }
+      return offlineCatalog;
+    }
     const OFFLINE_STUDY_SAVE_KEY = 'nefroquest-offline-study-state';
 
     const cardContainer = document.getElementById('nqOffCard');
@@ -287,15 +313,39 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
     }
 
     function saveOfflineSession() {
-      if (!currentPresentation || !sessionQuestions[currentIndex]) return;
+      if (!currentPresentation || !sessionQuestions[currentIndex] || offlineConsultationOnly) return false;
+      const catalog = getOfflineRevisionCatalog();
+      if (catalog === null || (catalog && !catalog.resolve(currentPresentation, {profile: 'offline', binding: offlineRevision?.binding}))) return false;
       const question = window.NQAnswers ? window.NQAnswers.snapshot(currentPresentation) : currentPresentation;
-      if (!question) return;
+      if (!question) return false;
+      const expectedRaw = offlineSavedRaw, presentation = currentPresentation, questions = sessionQuestions, index = currentIndex;
+      const current = () => offlineSavedRaw === expectedRaw && currentPresentation === presentation && sessionQuestions === questions && currentIndex === index;
+      let raw, candidateWritten = false;
       try {
-        localStorage.setItem(OFFLINE_STUDY_SAVE_KEY, JSON.stringify({
+        if (!current() || localStorage.getItem(OFFLINE_STUDY_SAVE_KEY) !== expectedRaw) return false;
+        raw = JSON.stringify({
           version: 1, questionIds: sessionQuestions.map(q => q.qid),
-          index: currentIndex, correctCount, question, answer: offlineAnswer
-        }));
-      } catch (e) {}
+          index: currentIndex, correctCount, question, answer: offlineAnswer,
+          ...(offlineRevision?.binding ? {revisionBinding: offlineRevision.binding} : {}),
+          ...(offlineOriginalRaw ? {revisionOriginRaw: offlineOriginalRaw} : {})
+        });
+        if (!current() || localStorage.getItem(OFFLINE_STUDY_SAVE_KEY) !== expectedRaw) return false;
+        localStorage.setItem(OFFLINE_STUDY_SAVE_KEY, raw);
+        candidateWritten = true;
+        if (!current() || localStorage.getItem(OFFLINE_STUDY_SAVE_KEY) !== raw) throw new Error('Offline save readback mismatch.');
+        offlineSavedRaw = raw;
+        return true;
+      } catch (e) {
+        if (candidateWritten) {
+          try {
+            if (current() && localStorage.getItem(OFFLINE_STUDY_SAVE_KEY) === raw) {
+              if (expectedRaw === null) localStorage.removeItem(OFFLINE_STUDY_SAVE_KEY);
+              else localStorage.setItem(OFFLINE_STUDY_SAVE_KEY, expectedRaw);
+            }
+          } catch (_) { /* Do not overwrite a source that cannot be confirmed. */ }
+        }
+        return false;
+      }
     }
 
     function restoreOfflineSession() {
@@ -310,9 +360,19 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
         const byId = new Map(topics.map(q => [q.qid, q]));
         const questions = saved.questionIds.map(id => byId.get(id));
         if (questions.some(q => !q)) return false;
+        const catalog = getOfflineRevisionCatalog();
+        if (catalog === null) { offlineRevisionHold = {status: 'unavailable', candidates: []}; return false; }
+        if (offlineSelectionRaw !== raw) { offlineSelection = null; offlineSelectionRaw = raw; }
+        let resolved;
+        if (catalog) {
+          const binding = Object.prototype.hasOwnProperty.call(saved, 'revisionBinding') ? saved.revisionBinding : offlineSelection || undefined;
+          const checked = catalog.inspect(saved.question, {profile: 'offline', binding});
+          if (checked.status !== 'known') { offlineRevisionHold = checked; return false; }
+          resolved = checked.value;
+        }
         const authored = offlineCanonical(questions[saved.index]);
-        const presentation = window.NQAnswers ? window.NQAnswers.restore(saved.question, authored)
-          : (!saved.question?._answerPresentation ? saved.question : null);
+        const presentation = resolved?.question || (window.NQAnswers ? window.NQAnswers.restore(saved.question, authored)
+          : (!saved.question?._answerPresentation ? saved.question : null));
         if (!presentation) return false;
         const answer = saved.answer;
         if (answer) {
@@ -321,7 +381,14 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
               answer.authoredChoice !== (window.NQAnswers ? window.NQAnswers.originalIndex(presentation, answer.chosen) : answer.chosen) ||
               answer.optionId !== (window.NQAnswers ? window.NQAnswers.optionId(presentation, answer.chosen) : null)) return false;
         }
+        if (String(presentation.id) !== String(saved.questionIds[saved.index])) return false;
+        if (resolved) questions[saved.index] = resolved.author;
         sessionQuestions = questions;
+        offlineRevision = resolved || null;
+        offlineOriginalRaw = saved.revisionOriginRaw || raw;
+        offlineSavedRaw = raw;
+        offlineConsultationOnly = !!offlineSelection;
+        offlineRevisionHold = null;
         currentIndex = saved.index;
         correctCount = saved.correctCount;
         currentPresentation = presentation;
@@ -331,12 +398,63 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
     }
 
     function startNewOfflineSession() {
+      let expectedRaw;
+      try { expectedRaw = localStorage.getItem(OFFLINE_STUDY_SAVE_KEY); } catch (_) { return false; }
       sessionQuestions = shuffle([...topics]);
       currentIndex = 0;
       correctCount = 0;
       currentPresentation = null;
       offlineAnswer = null;
+      offlineRevision = null;
+      offlineOriginalRaw = null;
+      offlineConsultationOnly = false;
+      offlineSelection = null;
+      offlineSelectionRaw = null;
+      offlineSavedRaw = expectedRaw;
+      offlineRevisionHold = null;
       renderQuestion();
+    }
+
+    function consultOfflineRevision(recordRevision) {
+      const catalog = getOfflineRevisionCatalog();
+      if (!catalog || !offlineSelectionRaw || localStorage.getItem(OFFLINE_STUDY_SAVE_KEY) !== offlineSelectionRaw) return false;
+      const saved = JSON.parse(offlineSelectionRaw), checked = catalog.inspect(saved.question, {profile: 'offline'});
+      const chosen = checked.candidates?.find(candidate => candidate.binding.recordRevision === recordRevision);
+      if (checked.status !== 'ambiguous' || !chosen) return false;
+      offlineSelection = chosen.binding;
+      if (!restoreOfflineSession()) return false;
+      renderQuestion(true);
+      return true;
+    }
+    function useCurrentOfflineRevision() {
+      if (offlineConsultationOnly || offlineAnswer || !offlineRevision?.historical || offlineRevision.policy.pending !== 'update-required') return false;
+      const current = getOfflineRevisionCatalog()?.current(offlineRevision.binding.qid, 'offline');
+      if (!current) return false;
+      try { if (localStorage.getItem(OFFLINE_STUDY_SAVE_KEY) !== offlineSavedRaw) return false; }
+      catch (_) { return false; }
+      const presentation = window.NQAnswers.present(current.source);
+      if (!presentation) return false;
+      const previousAuthor = sessionQuestions[currentIndex], previousPresentation = currentPresentation, previousRevision = offlineRevision;
+      sessionQuestions[currentIndex] = current.author;
+      currentPresentation = presentation;
+      offlineRevision = current;
+      if (!saveOfflineSession()) {
+        sessionQuestions[currentIndex] = previousAuthor;
+        currentPresentation = previousPresentation;
+        offlineRevision = previousRevision;
+        return false;
+      }
+      renderQuestion(true);
+      return true;
+    }
+    function viewCurrentOfflineRevision() {
+      const current = getOfflineRevisionCatalog()?.current(sessionQuestions[currentIndex]?.qid, 'offline');
+      if (!current) return;
+      document.getElementById('nqOffCurrentRevision')?.remove();
+      const panel = document.createElement('section');
+      panel.id = 'nqOffCurrentRevision';
+      panel.innerHTML = `<h3>Atualização publicada (${escapeHtml(current.release)})</h3><p>Consulta separada; sua avaliação histórica permanece preservada.</p><p>${escapeHtml(current.author.q)}</p><p>${escapeHtml(current.source.e || '')}</p>`;
+      cardContainer.appendChild(panel);
     }
 
     function initOfflineStudy() {
@@ -354,7 +472,9 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
 
       const restored = restoreOfflineSession();
       if (restored === false) {
-        cardContainer.innerHTML = '<p role="alert">Não foi possível conferir a sessão offline salva. Ela foi preservada.</p><button class="btn-next" onclick="startNewOfflineSession()">Iniciar nova sessão offline</button>';
+        const choices = offlineRevisionHold?.status === 'ambiguous' ? '<p>Escolha uma versão publicada para consulta, sem alterar respostas ou progresso.</p>' + offlineRevisionHold.candidates.map(candidate =>
+          `<button class="btn-next" onclick="consultOfflineRevision('${candidate.binding.recordRevision}')">${candidate.historical ? 'Consultar versão histórica' : 'Consultar versão atual'} (${escapeHtml(candidate.release)})</button>`).join('') : '';
+        cardContainer.innerHTML = choices + '<p role="alert">Não foi possível conferir a sessão offline salva. Ela foi preservada.</p><button class="btn-next" onclick="startNewOfflineSession()">Iniciar nova sessão offline</button>';
         return;
       }
       if (restored) renderQuestion(true);
@@ -373,20 +493,27 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
         const authored = offlineCanonical(q);
         currentPresentation = window.NQAnswers ? window.NQAnswers.present(authored) : authored;
         offlineAnswer = null;
+        const catalog = getOfflineRevisionCatalog();
+        offlineRevision = catalog?.current(q.qid, 'offline') || null;
+        if (catalog === null || (catalog && !offlineRevision)) currentPresentation = null;
       }
       if (!currentPresentation) {
         cardContainer.innerHTML = '<p role="alert">Não foi possível conferir as alternativas desta questão.</p>';
         return;
       }
+      const held = offlineConsultationOnly || (offlineRevision?.historical && offlineRevision.policy.pending === 'update-required' && !offlineAnswer);
       isAnswered = !!offlineAnswer;
       correctVal.textContent = correctCount;
       
       cardContainer.innerHTML = `
+        ${offlineRevision?.historical ? `<p role="status">Versão histórica (${escapeHtml(offlineRevision.release)}). ${offlineAnswer ? 'Avaliação preservada; esta explicação pertence à versão respondida.' : 'Esta questão foi atualizada. Use a versão atual antes de responder.'}</p><button class="btn-next" onclick="viewCurrentOfflineRevision()">Consultar atualização publicada</button>` : ''}
+        ${offlineConsultationOnly ? '<p role="status">Consulta de uma revisão escolhida. Respostas e progresso da sessão salva permanecem intactos.</p>' : ''}
+        ${held && !offlineConsultationOnly ? '<button class="btn-next" onclick="useCurrentOfflineRevision()">Confirmar troca para a versão atual, sem consumir resposta</button>' : ''}
         <div class="nq-off-topic">${escapeHtml(q.cat || 'Geral')}</div>
         <div class="nq-off-question">${escapeHtml(q.q)}</div>
         <div class="nq-off-options" id="nqOffOptions">
           ${currentPresentation.o.map((opt, idx) => `
-            <button class="nq-off-btn" data-idx="${idx}">
+            <button class="nq-off-btn" data-idx="${idx}" ${held ? 'disabled' : ''}>
               <span>${escapeHtml(opt)}</span>
               <span style="font-size:0.75rem; opacity:0.6; margin-left:10px;">${String.fromCharCode(65 + idx)}</span>
             </button>
@@ -404,10 +531,11 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
         });
       });
       if (offlineAnswer) displayOfflineAnswer(offlineAnswer.chosen, null, false);
-      saveOfflineSession();
+      if (!restoring) saveOfflineSession();
     }
 
     function answerQuestion(selectedIdx, clickedBtn) {
+      if (offlineConsultationOnly || (offlineRevision?.historical && offlineRevision.policy.pending === 'update-required')) return;
       if (isAnswered || !currentPresentation || !Number.isInteger(selectedIdx) || selectedIdx < 0 || selectedIdx >= currentPresentation.o.length) return;
       isAnswered = true;
       offlineAnswer = {
@@ -419,6 +547,7 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
     }
 
     function displayOfflineAnswer(selectedIdx, clickedBtn, recordProgress) {
+      if (recordProgress && (offlineConsultationOnly || offlineRevision?.historical)) return;
       const q = sessionQuestions[currentIndex];
       const isCorrect = offlineAnswer.correct;
 
@@ -449,7 +578,7 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
 
       // Persistir progresso localmente
       if (recordProgress) persistProgress(q, isCorrect);
-      saveOfflineSession();
+      if (recordProgress) saveOfflineSession();
 
       // Exibir feedback
       const feedbackArea = document.getElementById('nqOffFeedbackArea');
@@ -464,6 +593,7 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
     }
 
     function nextQuestion() {
+      if (offlineConsultationOnly || !offlineAnswer) return;
       currentIndex++;
       renderQuestion();
     }

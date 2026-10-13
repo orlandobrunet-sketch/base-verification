@@ -471,6 +471,7 @@
 
     function _stopLocalJourney() {
       ++_progressEpoch;
+      _currentQuestionRevision = null; _currentQuestionRevisionOriginRaw = null;
       window.NQPilot?.rollback();
       _pilotAnswerTransaction = null;
       _nextQuestionOrigin = null;
@@ -845,20 +846,58 @@
       return !!expected && ['questionId','choice','originalChoice','optionId','correct']
         .every(key => expected[key] === result[key]);
     }
+    let _currentQuestionRevision = null;
+    let _currentQuestionRevisionOriginRaw = null;
+    let _publishedQuestionVerifier = null;
+    function _requiresQuestionRevisionCatalog() {
+      return ['NQ_REQUIRES_QUESTION_REVISIONS', 'NQQuestionRevisions', 'NQQuestionRevisionManifest',
+        'NQQuestionRevisionHistory', 'questionRevisionCatalog'].some(key => typeof window[key] !== 'undefined');
+    }
+    function _questionRevisionVerifier() {
+      if (_publishedQuestionVerifier) return _publishedQuestionVerifier;
+      if (!window.NQQuestionRevisions || !window.NQQuestionRevisionManifest || !window.NQQuestionRevisionHistory) return null;
+      try {
+        _publishedQuestionVerifier = window.NQQuestionRevisions.createVerifier({
+          manifest:window.NQQuestionRevisionManifest, history:window.NQQuestionRevisionHistory});
+        return _publishedQuestionVerifier;
+      } catch (error) { console.error('[NQ] Published question catalog unavailable', error); return null; }
+    }
+    function _inspectPublishedQuestion(question, binding) {
+      const resolver = window.questionRevisionCatalog || _questionRevisionVerifier();
+      return resolver?.inspect(question, {profile:'main', ...(binding !== undefined ? {binding} : {})})
+        || {status:'unavailable', candidates:[]};
+    }
+    function _knownPublishedQuestion(question, binding) {
+      // Earlier bundles/isolated legacy fixtures do not define any revision globals.
+      // The current HTML declares the requirement even when its script downloads fail.
+      if (!_requiresQuestionRevisionCatalog()) {
+        const restored = window.NQAnswers?.restore(question);
+        return restored ? {question:restored, legacyRuntime:true, historical:false,
+          sourceRevision:restored._answerPresentation?.sourceRevision} : null;
+      }
+      const result = _inspectPublishedQuestion(question, binding);
+      return result.status === 'known' ? result.value : null;
+    }
     function _wrongAnswerSnapshot(wrong) {
       if (!wrong || typeof wrong !== 'object') return null;
-      const {chosen, authoredChoice, selectedOptionId, answerEventId, ...question} = wrong;
+      const {chosen, authoredChoice, selectedOptionId, answerEventId, questionRevisionBinding, ...question} = wrong;
       const snapshot = window.NQAnswers?.snapshot(question);
       const result = snapshot && _answerChoice(snapshot, chosen);
-      if (!result || result.correct || (authoredChoice !== undefined && authoredChoice !== result.originalChoice) ||
+      const revision = snapshot && _knownPublishedQuestion(snapshot, questionRevisionBinding);
+      if (!revision || !result || result.correct || (authoredChoice !== undefined && authoredChoice !== result.originalChoice) ||
           (selectedOptionId !== undefined && selectedOptionId !== result.optionId)) return null;
       return {questionPresentation:snapshot, choice:chosen, originalChoice:result.originalChoice,
-        optionId:result.optionId, eventId:answerEventId ?? null};
+        optionId:result.optionId, eventId:answerEventId ?? null,
+        ...(revision.binding ? {questionRevisionBinding:revision.binding} : {})};
     }
     function _questionSaveExtras() {
       if (!state.current?._answerPresentation) return {};
       const questionPresentation = window.NQAnswers?.snapshot(state.current);
-      if (!questionPresentation || (state.answered && !_answerChoiceMatches(questionPresentation, state.questionAnswer)) ||
+      const existingBinding = _currentQuestionRevision && questionPresentation &&
+        _currentQuestionRevision.sourceRevision === questionPresentation._answerPresentation?.sourceRevision
+        ? _currentQuestionRevision.binding : undefined;
+      const revision = questionPresentation && _knownPublishedQuestion(questionPresentation, existingBinding);
+      if (!revision || !questionPresentation || (state.answered && !_answerChoiceMatches(questionPresentation, state.questionAnswer)) ||
           (!state.answered && state.questionAnswer !== null)) return null;
       const wrongs = _sessionWrongAnswers.slice();
       const prospective = _pilotAnswerTransaction?.normal && _pilotAnswerTransaction.prospectiveWrong;
@@ -867,7 +906,9 @@
       const wrongAnswerSnapshots = wrongs.map(_wrongAnswerSnapshot);
       if (wrongAnswerSnapshots.some(record => record === null)) return null;
       return {questionPresentation, questionAnswer:state.questionAnswer ? {...state.questionAnswer} : null,
-        wrongAnswerSnapshots, currentQuestionId:String(state.current.id), answered:!!state.answered};
+        wrongAnswerSnapshots, ...(revision.binding ? {questionRevisionBinding:revision.binding} : {}),
+        ...(_currentQuestionRevisionOriginRaw !== null ? {questionRevisionOriginRaw:_currentQuestionRevisionOriginRaw} : {}),
+        currentQuestionId:String(state.current.id), answered:!!state.answered};
     }
     function _readQuestionSaveExtras(save) {
       if (!save || typeof save !== 'object' || Array.isArray(save)) return null;
@@ -875,8 +916,10 @@
       const has = key => Object.prototype.hasOwnProperty.call(save, key);
       if (!keys.some(has)) return {legacy:true, question:null, result:null, wrongs:[]};
       if (!keys.every(has) || !save.questionPresentation?._answerPresentation ||
-          typeof save.answered !== 'boolean' || !Array.isArray(save.wrongAnswerSnapshots)) return null;
-      const question = window.NQAnswers?.restore(save.questionPresentation);
+          typeof save.answered !== 'boolean' || !Array.isArray(save.wrongAnswerSnapshots) ||
+          (has('questionRevisionOriginRaw') && typeof save.questionRevisionOriginRaw !== 'string')) return null;
+      const revision = _knownPublishedQuestion(save.questionPresentation, save.questionRevisionBinding);
+      const question = revision?.question;
       if (!question || String(question.id) !== save.currentQuestionId ||
           (save.answered ? !_answerChoiceMatches(question, save.questionAnswer) : save.questionAnswer !== null)) return null;
       const result = save.questionAnswer;
@@ -889,13 +932,15 @@
       for (const record of save.wrongAnswerSnapshots) {
         if (!record || (record.eventId !== null && (typeof record.eventId !== 'string' || !record.eventId)) ||
             (record.eventId !== null && events.has(record.eventId))) return null;
-        const review = window.NQAnswers?.restore(record.questionPresentation);
+        const reviewRevision = _knownPublishedQuestion(record.questionPresentation, record.questionRevisionBinding);
+        const review = reviewRevision?.question;
         if (!review || !_answerChoiceMatches(review, {...record, questionId:String(review.id), correct:false})) return null;
         if (record.eventId !== null) events.add(record.eventId);
         wrongs.push({...review, chosen:record.choice, authoredChoice:record.originalChoice,
-          selectedOptionId:record.optionId, answerEventId:record.eventId});
+          selectedOptionId:record.optionId, answerEventId:record.eventId,
+          ...(reviewRevision.binding ? {questionRevisionBinding:reviewRevision.binding} : {})});
       }
-      return {legacy:false, question, result:result ? {...result} : null, wrongs};
+      return {legacy:false, question, revision, result:result ? {...result} : null, wrongs};
     }
     function _normalCharacterSaveValid(save, owner = _currentSaveOwner()) {
       if (!_readQuestionSaveExtras(save) || !_normalBenefitsValid(save, owner) || save.schemaVersion !== 9 ||
@@ -941,7 +986,8 @@
         chestCost, goldMilestone:_goldMilestoneShown, accounted:_jornadaJaContabilizada,
         baseline:_saveBaseline, saveOwner:_saveOwner, legacyBaseline:_legacySaveBaseline,
         recovery:_guestRecoveryAccepted, conflict:_characterCloudConflict,
-        bodyClass:document.body.className, journal:ui.journal.innerHTML};
+          bodyClass:document.body.className, journal:ui.journal.innerHTML,
+          questionRevision:_currentQuestionRevision, questionRevisionOriginRaw:_currentQuestionRevisionOriginRaw};
       const view = [ui.question, ui.options, ui.feedback, ui.refs, ui.nextBtn, ui.bonusBtn]
         .filter(Boolean).map(el => ({el, html:el.innerHTML, className:el.className}));
       _normalJourneyStaging = true;
@@ -955,6 +1001,7 @@
         if (_saveBaseline === undefined) _saveBaseline = rawBefore;
         if (_legacySaveBaseline === undefined) _legacySaveBaseline = legacyBefore;
         if (_saveOwner === undefined) _saveOwner = owner;
+          _currentQuestionRevision = null; _currentQuestionRevisionOriginRaw = null;
         Object.assign(_stateData, {character, difficulty, journeyDomain:'normal', characterLastAnswer:null,
           questionAnswer:null,
           obtainedItems:[], allItemsCollectedNotified:false, forjaPending:null, chestCorrectCount:0, chestTarget:5,
@@ -980,6 +1027,7 @@
           Object.assign(_stateData, snapshot);
           _recentIds = derived.recent; _masteredSet = derived.mastered; unlockedArticles = derived.articles;
           _sessionWrongAnswers = derived.errors; _minigameTriggerCount = derived.minigames;
+          _currentQuestionRevision = derived.questionRevision; _currentQuestionRevisionOriginRaw = derived.questionRevisionOriginRaw;
           _boardPushedThisSession = derived.board; chestCost = derived.chestCost;
           _goldMilestoneShown = derived.goldMilestone; _jornadaJaContabilizada = derived.accounted;
           _saveBaseline = derived.baseline; _saveOwner = derived.saveOwner;
@@ -1746,6 +1794,22 @@
       const canonicalRecord = _canonicalSaveRecord();
       if (canonicalRecord?.character && canonicalRecord.saveOwner !== _currentSaveOwner()) return;
 
+      // Verify every question revision before importing any part of this payload.
+      // A rejected journey must not leave its counters/rewards mixed into local data.
+      if (cloud.save?.character) {
+        const presentation = _readQuestionSaveExtras(cloud.save);
+        const requiresCatalog = _requiresQuestionRevisionCatalog();
+        const verifier = requiresCatalog ? _questionRevisionVerifier() : null;
+        const requiresLegacyRevision = requiresCatalog && presentation?.legacy && !!cloud.save.currentQuestionId;
+        const legacy = requiresLegacyRevision ? verifier?.inspectLegacy(cloud.save.currentQuestionId, {profile:'main'}) : null;
+        if (!presentation || (requiresCatalog && !verifier) || (requiresLegacyRevision && legacy?.status !== 'known')) {
+          _characterCloudConflict = {owner:_currentSaveOwner(), journeyId:canonicalRecord?.classBenefits?.journeyId || null};
+          clearTimeout(_cloudSyncTimer); _cloudSyncTimer = null;
+          _toast('A versão das perguntas desta jornada precisa ser conferida. Os dados locais foram preservados e a importação foi pausada.', 'warning', 7000);
+          return;
+        }
+      }
+
       // Stats: máximo por campo
       if (cloud.stats && typeof cloud.stats === 'object') {
         const local = getGameStats();
@@ -1973,6 +2037,14 @@
       }
       let legacyCurrent = null, legacyChoice = null;
       if (presentation.legacy && (window.NQPilot?.active || save.classBenefits) && save.currentQuestionId) {
+        if (_requiresQuestionRevisionCatalog()) {
+          const inspected = (window.questionRevisionCatalog || _questionRevisionVerifier())?.inspectLegacy(save.currentQuestionId, {profile:'main'});
+          if (inspected?.status !== 'known') {
+            _toast('Esta jornada não registra uma versão inequívoca da pergunta. Seus dados foram preservados.', 'warning', 6000);
+            return false;
+          }
+          presentation.revision = inspected.value;
+        }
         const authored = questionBank.find(question => String(question.id) === save.currentQuestionId);
         legacyCurrent = authored && (window.NQAnswers ? window.NQAnswers.present(authored, {preserveOrder:true}) : authored);
         const result = window.NQPilot?.active ? save.pilotLastAnswer : save.characterLastAnswer;
@@ -1997,6 +2069,11 @@
           return false;
         }
       }
+      _currentQuestionRevision = presentation.revision || null;
+      _currentQuestionRevisionOriginRaw = typeof save.questionRevisionOriginRaw === 'string' ? save.questionRevisionOriginRaw : null;
+      const previousRestoreStaging = _normalJourneyStaging;
+      _normalJourneyStaging = true;
+      try {
       resetGuardianFeedback();
       
       state.character = save.character;
@@ -2081,6 +2158,7 @@
       }
       
       return true;
+      } finally { _normalJourneyStaging = previousRestoreStaging; }
     }
     
     // Auto-save via Proxy debounce (500ms) — sem setInterval redundante
@@ -2531,11 +2609,23 @@
 
     // ── Lazy loading do topics.js (1.4 MB) ─────────────────────────────────
     let _topicsPromise = null;
+    function _initializeQuestionRevisionCatalog() {
+      if (window.questionRevisionCatalog) return;
+      if (!_requiresQuestionRevisionCatalog()) return;
+      if (!window.NQQuestionRevisions || !window.NQQuestionRevisionManifest || !window.NQQuestionRevisionHistory) {
+        throw new Error('Published question revision files unavailable.');
+      }
+      window.questionRevisionCatalog = window.NQQuestionRevisions.createCatalog({
+        manifest:window.NQQuestionRevisionManifest, history:window.NQQuestionRevisionHistory,
+        authors:topics, references:refsDB, sources:{main:questionBank, exam:questionBank,
+          study:topics.map(_studyCanonical), offline:topics.map(q =>
+            ({id:q.qid,q:q.q,o:[...q.opts],a:q.ans,e:q.exp || q.e || ''}))}});
+    }
     function _loadTopics() {
       // A primeira carta lê refsDB: o download ocioso pode ainda estar em
       // andamento quando a pessoa entra rapidamente na Jornada.
       const referencesReady = carregarDadosGrimorio();
-      if (questionBank) return referencesReady;
+      if (questionBank) return referencesReady.then(_initializeQuestionRevisionCatalog);
       if (!_topicsPromise) _topicsPromise = new Promise((resolve, reject) => {
         const s = document.createElement('script');
         s.src = 'data/topics.js';
@@ -2556,7 +2646,7 @@
         document.head.appendChild(s);
       });
       // Uma falha nas referências não descarta o download de questões em andamento.
-      return Promise.all([_topicsPromise, referencesReady]).then(() => {});
+      return Promise.all([_topicsPromise, referencesReady]).then(_initializeQuestionRevisionCatalog);
     }
     window._loadTopics = _loadTopics;
     // Inicia download no primeiro toque — head start antes do usuário clicar em jogar
@@ -3668,8 +3758,8 @@
       return { id:'common', label:'Comum', color:'#94a3b8', bg:'rgba(148,163,184,0.10)', border:'rgba(148,163,184,0.35)' };
     }
 
-    function renderRefs(keys){
-      const list = [...new Set(keys)].map(k => ({ key: k, ref: refsDB[k] })).filter(x => x.ref);
+    function renderRefs(keys, references = refsDB){
+      const list = [...new Set(keys)].map(k => ({ key: k, ref: references[k] })).filter(x => x.ref);
       if(!list.length){ ui.refs.innerHTML=''; return; }
 
       // Determinar cor de acento baseada no badge dominante
@@ -3942,6 +4032,86 @@
       panel.hidden = !expanded;
     };
 
+    function _campaignQuestionRevisionRaw() {
+      if (isCharacterPilot()) return localStorage.getItem(window.NQPilot.KEY);
+      return localStorage.getItem(CANONICAL_SAVE_KEY) ?? localStorage.getItem(SAVE_KEY);
+    }
+    function _renderCampaignQuestionRevisionNotice(wasAnswered) {
+      document.getElementById('campaignQuestionRevisionNotice')?.remove();
+      const revision = _currentQuestionRevision;
+      if (!revision?.historical) return;
+      const notice = document.createElement('section');
+      notice.id = 'campaignQuestionRevisionNotice';
+      notice.className = 'nq-version-notice';
+      notice.setAttribute('role', 'status');
+      notice.style.cssText = 'margin:16px 0;padding:16px;border:1px solid var(--blue);border-radius:12px;line-height:1.6;overflow-wrap:anywhere';
+      const current = window.questionRevisionCatalog?.current(String(state.current.id), 'main');
+      if (wasAnswered) {
+        notice.innerHTML = `<strong>Avaliação registrada na versão ${escapeHtml(revision.release)}.</strong>
+          <p>Sua escolha, avaliação e recursos foram mantidos.</p>
+          ${current?.source ? `<details><summary>Ver conteúdo atual da questão</summary>
+            <p>${escapeHtml(current.source.q)}</p>
+            <p><strong>Resposta na versão atual:</strong> ${escapeHtml(current.source.o[current.source.a])}</p>
+            <p>${escapeHtml(current.source.e || '')}</p>
+          </details>` : '<p>A versão atual não está disponível para consulta.</p>'}`;
+        if (ui.oraculoBtn) ui.oraculoBtn.classList.add('hidden');
+        window.resetMentorQuestion?.();
+      } else {
+        notice.innerHTML = `<strong>Esta pergunta foi atualizada.</strong>
+          <p>A versão ${escapeHtml(revision.release)} permanece aqui para consulta. Use a versão atual antes de responder; esta troca não consome resposta, vida ou benefício.</p>
+          <button type="button" class="btn gold" data-action="useCurrentCampaignQuestionRevision">Usar versão atual</button>`;
+        notice.querySelector('button').disabled = !current?.source;
+        [...ui.options.querySelectorAll('.option')].forEach(option => { option.disabled = true; });
+        ui.feedback.textContent = 'Confira a versão atual para responder.';
+      }
+      ui.question.insertAdjacentElement('beforebegin', notice);
+    }
+    function useCurrentCampaignQuestionRevision() {
+      if (!state.gameStarted || state.answered || isProgressSandbox() ||
+          !_currentQuestionRevision?.historical || _currentQuestionRevision.policy.pending !== 'update-required') return false;
+      const binding = _captureJourneyBinding();
+      const current = window.questionRevisionCatalog?.current(String(state.current.id), 'main');
+      const next = current?.source && window.NQAnswers?.present(current.source);
+      if (!next) return false;
+      let expectedRaw;
+      try {
+        expectedRaw = _campaignQuestionRevisionRaw();
+        if (!expectedRaw || (!isCharacterPilot() && localStorage.getItem(CANONICAL_SAVE_KEY) === null &&
+            _legacySaveBaseline !== undefined && localStorage.getItem(SAVE_KEY) !== _legacySaveBaseline)) return false;
+      } catch (_) { return false; }
+      const previous = {question:state.current, answer:state.questionAnswer,
+        revision:_currentQuestionRevision, origin:_currentQuestionRevisionOriginRaw};
+      const previousStaging = _normalJourneyStaging;
+      _normalJourneyStaging = true;
+      let committed = false;
+      try {
+        if (!_matchesJourneyBinding(binding) || _campaignQuestionRevisionRaw() !== expectedRaw) return false;
+        _stateData.current = next;
+        _stateData.questionAnswer = null;
+        _currentQuestionRevision = current;
+        _currentQuestionRevisionOriginRaw = previous.origin || expectedRaw;
+        committed = _doSaveGame() === true && _matchesJourneyBinding(binding);
+        return committed;
+      } finally {
+        if (!committed) {
+          _stateData.current = previous.question; _stateData.questionAnswer = previous.answer;
+          _currentQuestionRevision = previous.revision; _currentQuestionRevisionOriginRaw = previous.origin;
+        }
+        _normalJourneyStaging = previousStaging;
+        if (committed) {
+          _pilotRestoredQuestion = true;
+          _loadingNextQuestion = false;
+          renderQuestion();
+          _scheduleCloudSync();
+        } else if (!_matchesJourneyBinding(binding)) {
+          _stopLocalJourney(); refreshWelcomeSave();
+        } else {
+          _toast('A atualização não foi confirmada. A pergunta anterior permanece nesta tela.', 'warning', 6000);
+        }
+      }
+    }
+    window.useCurrentCampaignQuestionRevision = useCurrentCampaignQuestionRevision;
+
     function renderQuestion(){
       if (_loadingNextQuestion) return;
       _loadingNextQuestion = true;
@@ -3964,6 +4134,9 @@
       const _msb = document.getElementById('mobileStatusBar');
       if (_msb) _msb.classList.add('active');
       const restoringPilot = _pilotRestoredQuestion;
+      const previousRenderStaging = _normalJourneyStaging;
+      if (restoringPilot) _normalJourneyStaging = true;
+      try {
       const wasAnswered = restoringPilot && state.answered;
       const drawn = restoringPilot ? state.current : drawQuestion();
       const q = restoringPilot ? drawn : drawn && (window.NQAnswers ? window.NQAnswers.present(drawn) : drawn);
@@ -3978,6 +4151,8 @@
       }
       state.current = q;
       if (!restoringPilot) {
+        if (!isProgressSandbox()) _currentQuestionRevision =
+          (window.questionRevisionCatalog || _questionRevisionVerifier())?.current(String(q.id), 'main') || null;
         state.questionOrigin = _nextQuestionOrigin || 'campaign';
         _nextQuestionOrigin = null;
         state.pilotLastAnswer = null;
@@ -3992,7 +4167,7 @@
       }
       ui.feedback.className = 'feedback';
       ui.feedback.textContent = 'Escolha a melhor alternativa clínica.';
-      renderRefs(q.r);
+      renderRefs(q.r, _currentQuestionRevision?.historical ? _currentQuestionRevision.references || {} : refsDB);
       setLumenEvidenceAvailable(false);
       ui.nextBtn.classList.add('hidden');
       ui.dockNextBtn?.classList.add('disabled');
@@ -4011,6 +4186,7 @@
           if (result && !result.correct && index === result.choice) option.classList.add('wrong');
         });
         const correct = !!result?.correct;
+        document.getElementById('mainApp')?.setAttribute('data-lumen-state', correct ? 'mastery' : 'corruption');
         const base = correct ? `+${result?.baseXP || 0} XP base, +${result?.baseGold || 0} ouro base.` : '';
         renderLumenAnswerFeedback(correct, base +
           ((isCharacterPilot() || state.classBenefits) ? _pilotAnswerFeedback(result) : ''));
@@ -4018,11 +4194,13 @@
         ui.nextBtn.classList.remove('hidden');
         ui.dockNextBtn?.classList.remove('disabled');
       }
+      _renderCampaignQuestionRevisionNotice(wasAnswered);
       if (!isProgressSandbox() && (isCharacterPilot() || !!state.classBenefits || !!q._answerPresentation) &&
-          !_normalJourneyStaging && !wasAnswered && !_doSaveGame()) {
+          !_normalJourneyStaging && !restoringPilot && !wasAnswered && !_doSaveGame()) {
         _stopLocalJourney(); _reloadJourneyCollections(); refreshWelcomeSave();
         _toast('Não foi possível gravar a pergunta. Retome a jornada salva.', 'warning', 6000);
       }
+      } finally { _normalJourneyStaging = previousRenderStaging; }
     }
 
     function flagQuestion() {
@@ -4417,6 +4595,10 @@
       if(!state.gameStarted) return;
       if(state.answered) return;
       if(!state.current) return;
+      if (!isProgressSandbox() && (_currentQuestionRevision?.historical &&
+          _currentQuestionRevision.policy.pending === 'update-required')) return;
+      if (!isProgressSandbox() && _requiresQuestionRevisionCatalog() &&
+          !_knownPublishedQuestion(state.current, _currentQuestionRevision?.binding)) return;
       const choiceResult = _answerChoice(state.current, i);
       if (!choiceResult) return;
       const pilotAnswer = _beginPilotAnswer(i);
@@ -4440,7 +4622,8 @@
       if (recordsProgress && !isCorrect && state.current && typeof _sessionWrongAnswers !== 'undefined') {
         const question = window.NQAnswers?.snapshot(state.current) || JSON.parse(JSON.stringify(state.current));
         const wrong = {...question, chosen:i, authoredChoice:choiceResult.originalChoice,
-          selectedOptionId:choiceResult.optionId, answerEventId:pilotAnswer?.eligible ? pilotAnswer.eventId : crypto.randomUUID()};
+            selectedOptionId:choiceResult.optionId, answerEventId:pilotAnswer?.eligible ? pilotAnswer.eventId : crypto.randomUUID(),
+            ...(_currentQuestionRevision?.binding ? {questionRevisionBinding:_currentQuestionRevision.binding} : {})};
         if (pilotAnswer?.normal) pilotAnswer.prospectiveWrong = wrong;
         _recordCharacterProgress(() => _sessionWrongAnswers.push(wrong));
       }

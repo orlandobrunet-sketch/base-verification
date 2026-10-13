@@ -83,6 +83,24 @@ function fixture(files, { realPilot = false } = {}) {
   };
 }
 
+// Technical authored fixture through the real adapters/catalog, never a save-supplied source.
+function installExamRevisionFixture(f, qid) {
+  const api = require('../../js/question-revisions.js');
+  const author = { qid, q: 'Synthetic exam fixture', opts: ['Synthetic correct', 'Synthetic distractor'],
+    ans: 0, exp: 'Synthetic explanation' };
+  const source = { id: qid, q: author.q, o: [...author.opts], a: author.ans, e: author.exp };
+  const authorRevision = api.digest(author), referenceRevisions = {};
+  const manifest = { version: 1, release: 'synthetic-exam-fixture', current: { [qid]: {
+    authorRevision, referenceRevisions, recordRevision: api.digest({ authorRevision, referenceRevisions }),
+    sourceRevisions: { exam: api.digest(source) } } } };
+  Object.assign(f.ctx, { NQ_REQUIRES_QUESTION_REVISIONS: true, NQQuestionRevisions: api,
+    NQQuestionRevisionManifest: manifest, NQQuestionRevisionHistory: [],
+    questionRevisionCatalog: api.createCatalog({ manifest, history: [], authors: [author],
+      sources: { exam: [source] }, references: {} }) });
+  f.ctx.examFixtureQuestion = f.ctx.NQAnswers.present(source, { preserveOrder: true });
+  f.ctx.examFixtureBinding = f.ctx.questionRevisionCatalog.current(qid, 'exam').binding;
+}
+
 test('study resume, expiry and clear use only the selected progress domain', () => {
   const f = fixture(['study-mode.js']);
   f.normal.set('nefroquest-study-state', '{"legacy":"untouched"}');
@@ -102,7 +120,8 @@ test('exam persistence and timer callbacks cannot enter the normal domain after 
   const f = fixture(['exam.js']);
   f.normal.set('nefroquest-exam-state', '{"legacy":"untouched"}');
   const before = f.snapshot(); f.activate();
-  f.run("_examProgressBinding = NQPilot.captureBinding(); _examState = { questions: [{id:'synthetic-2'}],idx:0,answers:[],startTime:Date.now() }; _saveExamState(); _examIniciarRelogio();");
+  installExamRevisionFixture(f, 'synthetic-2');
+  f.run("_examProgressBinding = NQPilot.captureBinding(); _examState = { questions: [examFixtureQuestion],questionRevisionBindings:[examFixtureBinding],idx:0,answers:[],startTime:Date.now() }; _saveExamState(); _examIniciarRelogio();");
   assert.equal(f.ctx._loadExamState().questions[0].id, 'synthetic-2');
   const pilotSaved = f.pilot.get('nefroquest-exam-state');
   f.leave(); f.timers.forEach(fn => fn()); f.ctx._saveExamState();
@@ -183,7 +202,9 @@ test('the real pilot module commits all auxiliary producers without consuming bo
   f.normal.set('nefroquest-sr-data', '{"legacy":{"reps":2}}');
   f.normal.set('nq-acidbase-progress', '{"completed":["normal-only"]}');
   const before = f.snapshot(); await f.activate();
-  f.run("_studyProgressBinding=NQPilot.captureBinding(); studyModeActive=true; studyModeQuestions=[{qid:'actual-study',q:'Synthetic study fixture',opts:['Synthetic correct','Synthetic distractor'],ans:0,exp:'Synthetic explanation'}]; _studyPresentations=studyModeQuestions.map(q=>_studyPresent(q)); _studyAnswers=studyModeQuestions.map(()=>null); _saveStudyState(); _examProgressBinding=NQPilot.captureBinding(); _examState={questions:[{id:'actual-exam'}],idx:0,answers:[],startTime:Date.now()}; _saveExamState();");
+  f.run("_studyProgressBinding=NQPilot.captureBinding(); studyModeActive=true; studyModeQuestions=[{qid:'actual-study',q:'Synthetic study fixture',opts:['Synthetic correct','Synthetic distractor'],ans:0,exp:'Synthetic explanation'}]; _studyPresentations=studyModeQuestions.map(q=>_studyPresent(q)); _studyAnswers=studyModeQuestions.map(()=>null); _saveStudyState();");
+  installExamRevisionFixture(f, 'actual-exam');
+  f.run("_examProgressBinding=NQPilot.captureBinding(); _examState={questions:[examFixtureQuestion],questionRevisionBindings:[examFixtureBinding],idx:0,answers:[],startTime:Date.now()}; _saveExamState();");
   f.ctx.updateSRData('actual-study', true); f.ctx._unlockRefsFromQuestion(['actual-ref']);
   assert.equal(f.ctx.saveUnlockedAchievements(['actual-badge']), true);
   assert.equal(f.ctx.__acid._markCompleted('actual-case', 0, f.ctx.NQPilot.captureBinding()), true);

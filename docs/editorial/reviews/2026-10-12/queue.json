@@ -1088,11 +1088,11 @@
       "batch": 5,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
+      "reviewStatus": "REVIEWED_EXACT_PROPOSAL_APPLIED_LOCALLY",
       "independentReports": [
         "independent-a005-A2.json"
       ],
-      "applied": false,
+      "applied": true,
       "authorReport": "group-a-output-005-A2.json",
       "formalGate": {
         "verdict": "aprovada",
@@ -1123,7 +1123,9 @@
       ],
       "independentRejectedExactAfter": false,
       "independentExactAfterMatches": true,
-      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
+      "integrationStatus": "APPLIED_WITH_ARCHIVED_BEFORE_PENDING_FINAL_TECHNICAL_GATES",
+      "appliedCandidateRelease": "16.10",
+      "appliedBatch": "CLINICAL-2026-10-12-10"
     },
     {
       "qid": "985d735c",
@@ -1272,11 +1274,11 @@
       "batch": 5,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
+      "reviewStatus": "REVIEWED_EXACT_PROPOSAL_APPLIED_LOCALLY",
       "independentReports": [
         "independent-a005-A2.json"
       ],
-      "applied": false,
+      "applied": true,
       "authorReport": "group-a-output-005-A2.json",
       "formalGate": {
         "verdict": "aprovada",
@@ -1307,7 +1309,9 @@
       ],
       "independentRejectedExactAfter": false,
       "independentExactAfterMatches": true,
-      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
+      "integrationStatus": "APPLIED_WITH_ARCHIVED_BEFORE_PENDING_FINAL_TECHNICAL_GATES",
+      "appliedCandidateRelease": "16.10",
+      "appliedBatch": "CLINICAL-2026-10-12-10"
     },
     {
       "qid": "051a5d1b",
@@ -1318,11 +1322,11 @@
       "batch": 5,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
+      "reviewStatus": "REVIEWED_EXACT_PROPOSAL_APPLIED_LOCALLY",
       "independentReports": [
         "independent-a005-A2.json"
       ],
-      "applied": false,
+      "applied": true,
       "authorReport": "group-a-output-005-A2.json",
       "formalGate": {
         "verdict": "aprovada",
@@ -1353,7 +1357,9 @@
       ],
       "independentRejectedExactAfter": false,
       "independentExactAfterMatches": true,
-      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
+      "integrationStatus": "APPLIED_WITH_ARCHIVED_BEFORE_PENDING_FINAL_TECHNICAL_GATES",
+      "appliedCandidateRelease": "16.10",
+      "appliedBatch": "CLINICAL-2026-10-12-10"
     },
     {
       "qid": "86949ab7",
@@ -1364,11 +1370,11 @@
       "batch": 5,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
+      "reviewStatus": "REVIEWED_EXACT_PROPOSAL_APPLIED_LOCALLY",
       "independentReports": [
         "independent-a005-A2.json"
       ],
-      "applied": false,
+      "applied": true,
       "authorReport": "group-a-output-005-A2.json",
       "formalGate": {
         "verdict": "aprovada",
@@ -1399,7 +1405,9 @@
       ],
       "independentRejectedExactAfter": false,
       "independentExactAfterMatches": true,
-      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
+      "integrationStatus": "APPLIED_WITH_ARCHIVED_BEFORE_PENDING_FINAL_TECHNICAL_GATES",
+      "appliedCandidateRelease": "16.10",
+      "appliedBatch": "CLINICAL-2026-10-12-10"
     },
     {
       "qid": "7780350a",
@@ -1410,11 +1418,11 @@
       "batch": 5,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
+      "reviewStatus": "REVIEWED_EXACT_PROPOSAL_APPLIED_LOCALLY",
       "independentReports": [
         "independent-a005-A2.json"
       ],
-      "applied": false,
+      "applied": true,
       "authorReport": "group-a-output-005-A2.json",
       "formalGate": {
         "verdict": "aprovada",
@@ -1445,7 +1453,9 @@
       ],
       "independentRejectedExactAfter": false,
       "independentExactAfterMatches": true,
-      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
+      "integrationStatus": "APPLIED_WITH_ARCHIVED_BEFORE_PENDING_FINAL_TECHNICAL_GATES",
+      "appliedCandidateRelease": "16.10",
+      "appliedBatch": "CLINICAL-2026-10-12-10"
     },
     {
       "qid": "312ab0c7",
@@ -1825,7 +1835,9 @@
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
-      "independentReports": [],
+      "independentReports": [
+        "independent-a007-A3.json"
+      ],
       "applied": false,
       "authorReport": "group-a-output-007-A3.json",
       "formalGate": {
@@ -1843,9 +1855,20 @@
       },
       "afterObjectSHA256": "6d183e0626c321a3883c37f722d3d00750c7b143b20ce94438604a87c21c2683",
       "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
-      "independentFormalGates": [],
+      "independentFormalGates": [
+        {
+          "report": "independent-a007-A3.json",
+          "formalGate": {
+            "verdictV2": "aprovada",
+            "evidenceStatus": "VERIFICADA",
+            "pendingNature": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "exactAfterObjectMatches": true
+        }
+      ],
       "independentRejectedExactAfter": false,
-      "independentExactAfterMatches": false,
+      "independentExactAfterMatches": true,
       "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
@@ -1858,7 +1881,9 @@
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
-      "independentReports": [],
+      "independentReports": [
+        "independent-a007-A3.json"
+      ],
       "applied": false,
       "authorReport": "group-a-output-007-A3.json",
       "formalGate": {
@@ -1876,9 +1901,20 @@
       },
       "afterObjectSHA256": "8b21014926566f28885781a1cc201b4985b02da61995eee15392596328672f9e",
       "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
-      "independentFormalGates": [],
+      "independentFormalGates": [
+        {
+          "report": "independent-a007-A3.json",
+          "formalGate": {
+            "verdictV2": "aprovada",
+            "evidenceStatus": "VERIFICADA",
+            "pendingNature": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "exactAfterObjectMatches": true
+        }
+      ],
       "independentRejectedExactAfter": false,
-      "independentExactAfterMatches": false,
+      "independentExactAfterMatches": true,
       "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
@@ -1891,7 +1927,9 @@
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
-      "independentReports": [],
+      "independentReports": [
+        "independent-a007-A3.json"
+      ],
       "applied": false,
       "authorReport": "group-a-output-007-A3.json",
       "formalGate": {
@@ -1909,9 +1947,20 @@
       },
       "afterObjectSHA256": "91d0e1d971b79a4f2900b9b4aa5705b92933f74173d71a51d5b4f06e30da7ea8",
       "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
-      "independentFormalGates": [],
+      "independentFormalGates": [
+        {
+          "report": "independent-a007-A3.json",
+          "formalGate": {
+            "verdictV2": "aprovada",
+            "evidenceStatus": "VERIFICADA",
+            "pendingNature": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "exactAfterObjectMatches": true
+        }
+      ],
       "independentRejectedExactAfter": false,
-      "independentExactAfterMatches": false,
+      "independentExactAfterMatches": true,
       "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
@@ -1924,7 +1973,9 @@
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
-      "independentReports": [],
+      "independentReports": [
+        "independent-a007-A3.json"
+      ],
       "applied": false,
       "authorReport": "group-a-output-007-A3.json",
       "formalGate": {
@@ -1942,9 +1993,20 @@
       },
       "afterObjectSHA256": "5050173c59601f043216197be4af6cf0e45326db31e35a2451e1c2e52c95005c",
       "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
-      "independentFormalGates": [],
+      "independentFormalGates": [
+        {
+          "report": "independent-a007-A3.json",
+          "formalGate": {
+            "verdictV2": "aprovada",
+            "evidenceStatus": "PARCIALMENTE VERIFICADA",
+            "pendingNature": "NÃO DECISIVA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "exactAfterObjectMatches": true
+        }
+      ],
       "independentRejectedExactAfter": false,
-      "independentExactAfterMatches": false,
+      "independentExactAfterMatches": true,
       "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
@@ -1957,7 +2019,9 @@
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
-      "independentReports": [],
+      "independentReports": [
+        "independent-a007-A3.json"
+      ],
       "applied": false,
       "authorReport": "group-a-output-007-A3.json",
       "formalGate": {
@@ -1975,9 +2039,20 @@
       },
       "afterObjectSHA256": "7a97960a746a754df4e2fa1440c1d7db86b163f8a12b97aa7e22b46ee5322066",
       "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
-      "independentFormalGates": [],
+      "independentFormalGates": [
+        {
+          "report": "independent-a007-A3.json",
+          "formalGate": {
+            "verdictV2": "aprovada",
+            "evidenceStatus": "VERIFICADA",
+            "pendingNature": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "exactAfterObjectMatches": true
+        }
+      ],
       "independentRejectedExactAfter": false,
-      "independentExactAfterMatches": false,
+      "independentExactAfterMatches": true,
       "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
@@ -1990,7 +2065,9 @@
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
-      "independentReports": [],
+      "independentReports": [
+        "independent-a007-A3.json"
+      ],
       "applied": false,
       "authorReport": "group-a-output-007-A3.json",
       "formalGate": {
@@ -2008,9 +2085,20 @@
       },
       "afterObjectSHA256": "b9e1e6ff9fd8bd1a3bfb72b6dfc51d849108357ef592e25a88afbee109ebcf8d",
       "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
-      "independentFormalGates": [],
+      "independentFormalGates": [
+        {
+          "report": "independent-a007-A3.json",
+          "formalGate": {
+            "verdictV2": "aprovada",
+            "evidenceStatus": "VERIFICADA",
+            "pendingNature": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "exactAfterObjectMatches": true
+        }
+      ],
       "independentRejectedExactAfter": false,
-      "independentExactAfterMatches": false,
+      "independentExactAfterMatches": true,
       "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
@@ -2023,7 +2111,9 @@
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
-      "independentReports": [],
+      "independentReports": [
+        "independent-a007-A3.json"
+      ],
       "applied": false,
       "authorReport": "group-a-output-007-A3.json",
       "formalGate": {
@@ -2041,9 +2131,20 @@
       },
       "afterObjectSHA256": "d562860e1e21af1654bf60c84730f88e760f2a8c8c84bb94d60b936347d40eb0",
       "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
-      "independentFormalGates": [],
+      "independentFormalGates": [
+        {
+          "report": "independent-a007-A3.json",
+          "formalGate": {
+            "verdictV2": "aprovada",
+            "evidenceStatus": "VERIFICADA",
+            "pendingNature": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "exactAfterObjectMatches": true
+        }
+      ],
       "independentRejectedExactAfter": false,
-      "independentExactAfterMatches": false,
+      "independentExactAfterMatches": true,
       "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
@@ -2056,7 +2157,9 @@
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
-      "independentReports": [],
+      "independentReports": [
+        "independent-a007-A3.json"
+      ],
       "applied": false,
       "authorReport": "group-a-output-007-A3.json",
       "formalGate": {
@@ -2074,9 +2177,20 @@
       },
       "afterObjectSHA256": "f4d1a0594efcc41dca55aa33123673c2bc1b22f7ff96ea3c3a4ba3d30b07223a",
       "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
-      "independentFormalGates": [],
+      "independentFormalGates": [
+        {
+          "report": "independent-a007-A3.json",
+          "formalGate": {
+            "verdictV2": "aprovada",
+            "evidenceStatus": "VERIFICADA",
+            "pendingNature": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "exactAfterObjectMatches": true
+        }
+      ],
       "independentRejectedExactAfter": false,
-      "independentExactAfterMatches": false,
+      "independentExactAfterMatches": true,
       "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
@@ -2088,9 +2202,29 @@
       "batch": 8,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-a-output-008-A2.json",
+      "formalGate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "originalFormalGate": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA"
+      },
+      "afterObjectSHA256": "4122b08ef136a3a4c5a5abd161d377079d61ec35a8ec8d76b6c460aaeeae9b5b",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "0bc2e7aa",
@@ -2101,9 +2235,29 @@
       "batch": 8,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-a-output-008-A2.json",
+      "formalGate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "originalFormalGate": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA"
+      },
+      "afterObjectSHA256": "0a66bff1853478dd3a8b3f7cbd8e13119c366280c7bb8ef9ab380310c7309c51",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "7ec80c77",
@@ -2114,9 +2268,29 @@
       "batch": 8,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-a-output-008-A2.json",
+      "formalGate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "originalFormalGate": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA"
+      },
+      "afterObjectSHA256": "31e3e13576c204d1fdab486f3ddec99a60d7b8ed104246332adac16548ad71cd",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "6d52cb77",
@@ -2127,9 +2301,29 @@
       "batch": 8,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-a-output-008-A2.json",
+      "formalGate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "originalFormalGate": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA"
+      },
+      "afterObjectSHA256": "1d263a92d78c7c299d6a712e0ad72f96eb24cfc98c595102fd94a2a4899d3bfe",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "6a54b25c",
@@ -2140,9 +2334,29 @@
       "batch": 8,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-a-output-008-A2.json",
+      "formalGate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "originalFormalGate": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA"
+      },
+      "afterObjectSHA256": "06d6b51e454fb4bf6a3fec57bcb1e91a76984dd1f1e528debe139adf2adf6d97",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "9a545994",
@@ -2153,9 +2367,29 @@
       "batch": 8,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-a-output-008-A2.json",
+      "formalGate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "originalFormalGate": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA"
+      },
+      "afterObjectSHA256": "c68419adc7dbf672f1fea8b3c55ef7478235b152a73c71bab27072eeee17bb03",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "06df2814",
@@ -2166,9 +2400,29 @@
       "batch": 8,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-a-output-008-A2.json",
+      "formalGate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "originalFormalGate": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA"
+      },
+      "afterObjectSHA256": "3452df57a50fcd8d68e5369a7ad29b0f59b366d594b8ddb7485ff15726059e5e",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "f3d5015d",
@@ -2179,9 +2433,29 @@
       "batch": 8,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-a-output-008-A2.json",
+      "formalGate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "originalFormalGate": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA"
+      },
+      "afterObjectSHA256": "4ee396c6a8ce131ed2597ed05d2fa43e70124f62e5de50dd0678f3a1b330c183",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "1366b930",
@@ -5378,11 +5652,11 @@
       "batch": 4,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
+      "reviewStatus": "REVIEWED_EXACT_PROPOSAL_APPLIED_LOCALLY",
       "independentReports": [
         "independent-b004.json"
       ],
-      "applied": false,
+      "applied": true,
       "authorReport": "group-b-output-004.json",
       "formalGate": {
         "v2verdict": "aprovada",
@@ -5407,7 +5681,9 @@
       ],
       "independentRejectedExactAfter": false,
       "independentExactAfterMatches": true,
-      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
+      "integrationStatus": "APPLIED_WITH_ARCHIVED_BEFORE_PENDING_FINAL_TECHNICAL_GATES",
+      "appliedCandidateRelease": "16.10",
+      "appliedBatch": "CLINICAL-2026-10-12-10"
     },
     {
       "qid": "b1f746f3",
@@ -5458,11 +5734,11 @@
       "batch": 4,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
+      "reviewStatus": "REVIEWED_EXACT_PROPOSAL_APPLIED_LOCALLY",
       "independentReports": [
         "independent-b004.json"
       ],
-      "applied": false,
+      "applied": true,
       "authorReport": "group-b-output-004.json",
       "formalGate": {
         "v2verdict": "aprovada",
@@ -5487,7 +5763,9 @@
       ],
       "independentRejectedExactAfter": false,
       "independentExactAfterMatches": true,
-      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
+      "integrationStatus": "APPLIED_WITH_ARCHIVED_BEFORE_PENDING_FINAL_TECHNICAL_GATES",
+      "appliedCandidateRelease": "16.10",
+      "appliedBatch": "CLINICAL-2026-10-12-10"
     },
     {
       "qid": "ff741767",
@@ -5738,11 +6016,11 @@
       "batch": 5,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
+      "reviewStatus": "REVIEWED_EXACT_PROPOSAL_APPLIED_LOCALLY",
       "independentReports": [
         "independent-b005.json"
       ],
-      "applied": false,
+      "applied": true,
       "authorReport": "group-b-output-005.json",
       "formalGate": {
         "v2verdict": "aprovada",
@@ -5767,7 +6045,9 @@
       ],
       "independentRejectedExactAfter": false,
       "independentExactAfterMatches": true,
-      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
+      "integrationStatus": "APPLIED_WITH_ARCHIVED_BEFORE_PENDING_FINAL_TECHNICAL_GATES",
+      "appliedCandidateRelease": "16.10",
+      "appliedBatch": "CLINICAL-2026-10-12-10"
     },
     {
       "qid": "61d4ad11",
@@ -7074,9 +7354,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-b-output-010.json",
+      "formalGate": {
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "60d4c4654bcb9ac15bd71f418f56b8b40558c962419504fc9baa3cb36aaaace1",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "9602dcbc",
@@ -7087,9 +7381,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-b-output-010.json",
+      "formalGate": {
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "79915ca095dd43a24eb9bc35357e3e89f5a17ead40f0660361eb1620283057e8",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "cf42455e",
@@ -7100,9 +7408,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-b-output-010.json",
+      "formalGate": {
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "12a828978706830d75fbbb1829122656a45c0cf24c18d9bac3b1acdf895db2db",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "17c980fc",
@@ -7113,9 +7435,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-b-output-010.json",
+      "formalGate": {
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "1875b0774f94b360e505c047280d3053d7a04a2c3877ad7daa306aa026f11820",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "39f2a766",
@@ -7126,9 +7462,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-b-output-010.json",
+      "formalGate": {
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "a2ca13e8ac06be43f560a691b3098e99b41f7706b82b67ba1a6f278249dba28c",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "af381f54",
@@ -7139,9 +7489,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-b-output-010.json",
+      "formalGate": {
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "d1997a0b562c0bb33692a62c77acc5f082032e0e6f1a797b39a29bbd157602e2",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "aca17286",
@@ -7152,9 +7516,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-b-output-010.json",
+      "formalGate": {
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "1cbeb4efd04adcf7916b94cfdf48f508ea511305e5e9a0fd9c5e5fb99f96cb7c",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "5e5b8558",
@@ -7165,9 +7543,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-b-output-010.json",
+      "formalGate": {
+        "v2verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "9fd2b2dadb2303dffceb7bc564dab2923e52dc4ff38474e1438987104cc0d224",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "eba4f29e",
@@ -10366,11 +10758,11 @@
       "batch": 6,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
+      "reviewStatus": "REVIEWED_EXACT_PROPOSAL_APPLIED_LOCALLY",
       "independentReports": [
         "independent-c006-A2.json"
       ],
-      "applied": false,
+      "applied": true,
       "authorReport": "group-c-output-006-A2.json",
       "formalGate": {
         "verdictV2": "aprovada",
@@ -10395,7 +10787,9 @@
       ],
       "independentRejectedExactAfter": false,
       "independentExactAfterMatches": true,
-      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
+      "integrationStatus": "APPLIED_WITH_ARCHIVED_BEFORE_PENDING_FINAL_TECHNICAL_GATES",
+      "appliedCandidateRelease": "16.10",
+      "appliedBatch": "CLINICAL-2026-10-12-10"
     },
     {
       "qid": "a9d85046",
@@ -10566,11 +10960,11 @@
       "batch": 6,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
+      "reviewStatus": "REVIEWED_EXACT_PROPOSAL_APPLIED_LOCALLY",
       "independentReports": [
         "independent-c006-A2.json"
       ],
-      "applied": false,
+      "applied": true,
       "authorReport": "group-c-output-006-A2.json",
       "formalGate": {
         "verdictV2": "aprovada",
@@ -10595,7 +10989,9 @@
       ],
       "independentRejectedExactAfter": false,
       "independentExactAfterMatches": true,
-      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
+      "integrationStatus": "APPLIED_WITH_ARCHIVED_BEFORE_PENDING_FINAL_TECHNICAL_GATES",
+      "appliedCandidateRelease": "16.10",
+      "appliedBatch": "CLINICAL-2026-10-12-10"
     },
     {
       "qid": "e560d3c3",
@@ -11249,7 +11645,7 @@
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
       "applied": false,
-      "authorReport": "group-c-output-009.json",
+      "authorReport": "group-c-output-009-A2.json",
       "formalGate": {
         "verdictV2": "aprovada",
         "evidenceStatus": "VERIFICADA",
@@ -11257,7 +11653,7 @@
         "publicationAuthorization": "LIBERADA"
       },
       "formalGateScope": "EXACT_AFTER_PROPOSAL",
-      "afterObjectSHA256": "77d52398ef4f6745edc3dc5e0fa2efeb97cd47b6047caad21dc81b388984b5f7",
+      "afterObjectSHA256": "5086c047a5ab846a459b7d24aa5daaf82ea56d549e0a24e772d5b90cc4e98ea3",
       "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
       "independentFormalGates": [],
       "independentRejectedExactAfter": false,
@@ -11276,7 +11672,7 @@
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
       "applied": false,
-      "authorReport": "group-c-output-009.json",
+      "authorReport": "group-c-output-009-A2.json",
       "formalGate": {
         "verdictV2": "aprovada",
         "evidenceStatus": "VERIFICADA",
@@ -11284,7 +11680,7 @@
         "publicationAuthorization": "LIBERADA"
       },
       "formalGateScope": "EXACT_AFTER_PROPOSAL",
-      "afterObjectSHA256": "d86d52da0ea814d8223f18908b0d2017c68c7293397ac71ab1185e75c8e5356f",
+      "afterObjectSHA256": "6b710c4b2ffaf1d6deac2f4515ab13dbd7503586af8b49f5066d463d1caadf1a",
       "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
       "independentFormalGates": [],
       "independentRejectedExactAfter": false,
@@ -11303,7 +11699,7 @@
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
       "applied": false,
-      "authorReport": "group-c-output-009.json",
+      "authorReport": "group-c-output-009-A2.json",
       "formalGate": {
         "verdictV2": "aprovada",
         "evidenceStatus": "VERIFICADA",
@@ -11311,7 +11707,7 @@
         "publicationAuthorization": "LIBERADA"
       },
       "formalGateScope": "EXACT_AFTER_PROPOSAL",
-      "afterObjectSHA256": "3946b171bff5baf60d0837061602d1b6ed886f133054165c2ab1c95ecbf48ef3",
+      "afterObjectSHA256": "783da09f50520d17e5d99aec6649be984720c7efae30292c2e0382472e43fef3",
       "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
       "independentFormalGates": [],
       "independentRejectedExactAfter": false,
@@ -11330,7 +11726,7 @@
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
       "applied": false,
-      "authorReport": "group-c-output-009.json",
+      "authorReport": "group-c-output-009-A2.json",
       "formalGate": {
         "verdictV2": "aprovada",
         "evidenceStatus": "VERIFICADA",
@@ -11357,7 +11753,7 @@
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
       "applied": false,
-      "authorReport": "group-c-output-009.json",
+      "authorReport": "group-c-output-009-A2.json",
       "formalGate": {
         "verdictV2": "fundir",
         "evidenceStatus": "VERIFICADA",
@@ -11365,7 +11761,7 @@
         "publicationAuthorization": "BLOQUEADA"
       },
       "formalGateScope": "EXACT_AFTER_PROPOSAL",
-      "afterObjectSHA256": "5706946ed40cd85c146a36b564869a4e0567a30a2256e91c6b07083401f5145f",
+      "afterObjectSHA256": "5976d5fcd66ac9dadd49a9b364522c57f15a854f0135799c896f6861a2722e17",
       "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
       "independentFormalGates": [],
       "independentRejectedExactAfter": false,
@@ -11384,7 +11780,7 @@
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
       "applied": false,
-      "authorReport": "group-c-output-009.json",
+      "authorReport": "group-c-output-009-A2.json",
       "formalGate": {
         "verdictV2": "aprovada",
         "evidenceStatus": "VERIFICADA",
@@ -11392,7 +11788,7 @@
         "publicationAuthorization": "LIBERADA"
       },
       "formalGateScope": "EXACT_AFTER_PROPOSAL",
-      "afterObjectSHA256": "b1674983673705844814d298205ff229aa2672f1a4758ff50ed2684854387da2",
+      "afterObjectSHA256": "085e62d4a80bd4fc902f43f7637fceaf3c95f8c960cac006a0ab2528070e12a4",
       "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
       "independentFormalGates": [],
       "independentRejectedExactAfter": false,
@@ -11411,7 +11807,7 @@
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
       "applied": false,
-      "authorReport": "group-c-output-009.json",
+      "authorReport": "group-c-output-009-A2.json",
       "formalGate": {
         "verdictV2": "aprovada",
         "evidenceStatus": "VERIFICADA",
@@ -11438,7 +11834,7 @@
       "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
       "applied": false,
-      "authorReport": "group-c-output-009.json",
+      "authorReport": "group-c-output-009-A2.json",
       "formalGate": {
         "verdictV2": "aprovada",
         "evidenceStatus": "VERIFICADA",
@@ -11446,7 +11842,7 @@
         "publicationAuthorization": "LIBERADA"
       },
       "formalGateScope": "EXACT_AFTER_PROPOSAL",
-      "afterObjectSHA256": "9e78b3978bfb78827ce9bcf697aeaf3c90c09186f907af1692f020f86d007c95",
+      "afterObjectSHA256": "1460f3c0afdef1092a0f79de22c34636832287cc6321656e5cb9797abb011e4a",
       "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
       "independentFormalGates": [],
       "independentRejectedExactAfter": false,
@@ -11462,9 +11858,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-c-output-010-A3.json",
+      "formalGate": {
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "abb2e546af95314839f677ec74092d34bbb215de97d49f99ab75c6fc7ba42d53",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "1867db90",
@@ -11475,9 +11885,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-c-output-010-A3.json",
+      "formalGate": {
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "e0b199f6e4ab232f0dd66c214b3f2d37688096b2bc3429b5c1acc15bb396f46a",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "f9976e40",
@@ -11488,9 +11912,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-c-output-010-A3.json",
+      "formalGate": {
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "6eb9aaa896e5d063e83a3665bd3b573ca36023a8799e1f5dba1c5403ca288f58",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "582bc7df",
@@ -11501,9 +11939,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-c-output-010-A3.json",
+      "formalGate": {
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "482c523103964c1ccf118c134ea413ed20a1a98ede50384c8948856c9c370649",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "32f342fc",
@@ -11514,9 +11966,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-c-output-010-A3.json",
+      "formalGate": {
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "ce26076691c02e5c96d24050f1f6ad902395f870cf61f6940263752dd2ed1978",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "19c5b8a4",
@@ -11527,9 +11993,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-c-output-010-A3.json",
+      "formalGate": {
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "063af7ed212b036f28eee4fd208a978a7ed8ce0ecbf1be82edea673a303bbffa",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "54f94df4",
@@ -11540,9 +12020,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-c-output-010-A3.json",
+      "formalGate": {
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "e1551b3e6b74aace2302264214ac946b1b59a09aea951ed3cf030b3af2f4d4e2",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "64296bc1",
@@ -11553,9 +12047,23 @@
       "batch": 10,
       "priorityUniqueLongestCorrect": true,
       "letterDependencyLead": false,
-      "reviewStatus": "NOT_REVIEWED",
+      "reviewStatus": "REVIEWED_PROPOSAL_NOT_APPLIED",
       "independentReports": [],
-      "applied": false
+      "applied": false,
+      "authorReport": "group-c-output-010-A3.json",
+      "formalGate": {
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "formalGateScope": "EXACT_AFTER_PROPOSAL",
+      "afterObjectSHA256": "12e33da1ce22a6e1960e41dd77a382683e8ef8fe3e2167adf045e78d02bb67dd",
+      "afterObjectHashEncoding": "UTF-8 JSON sorted keys compact; excludes external report metadata",
+      "independentFormalGates": [],
+      "independentRejectedExactAfter": false,
+      "independentExactAfterMatches": false,
+      "integrationStatus": "PENDING_COMPATIBILITY_AND_EXACT_CARD_RECONCILIATION"
     },
     {
       "qid": "9299c585",

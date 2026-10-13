@@ -805,7 +805,7 @@
       const srLabel = totalDue > 0 ? `${totalDue} ${totalDue > 1 ? 'questões' : 'questão'} disponíveis para revisão` : 'Nenhuma questão disponível para revisão';
 
       const saved = _loadStudyState();
-      const canResume = saved && saved.index < saved.questions.length;
+      const canResume = saved && !saved.revisionHold && saved.index < saved.questions.length;
       modal.innerHTML = `
         <div class="nq-study-content">
           <header class="nq-study-heading">
@@ -813,6 +813,7 @@
             <div><h1>Estudo e Revisão</h1><p>Pratique por tema ou retome o que precisa rever. Sua jornada permanece salva.</p></div>
           </header>
           ${canResume ? '<section class="nq-study-resume"><div><h2>Sessão em andamento</h2><p>Continue de onde parou.</p></div><button class="btn gold" data-action="resumeSavedStudyMode">Retomar estudo</button></section>' : ''}
+          ${saved?.revisionHold ? `<section class="nq-study-resume" role="status"><div><h2>Sessão salva preservada</h2><p>${saved.revisionHold === 'expired' ? 'O prazo desta sessão terminou.' : 'Esta sessão foi marcada como concluída.'} Suas respostas e dados salvos permanecem intactos.</p></div></section>` : ''}
           <div class="nq-study-choices">
             <section><div><h2>Por tema</h2><p>Escolha os eixos e pratique até 20 questões dos assuntos selecionados.</p></div><button class="btn gold" data-action="showAxesSelector">Selecionar Temas</button></section>
             <section><div><h2>Estudo livre</h2><p>Uma sessão com 20 questões de todos os temas, sem configuração.</p></div><button class="btn sec" data-action="startFreeStudyMode">Iniciar estudo livre</button></section>
@@ -1015,6 +1016,32 @@
     // viu, para que pausar ou recarregar não troque a alternativa escolhida.
     let _studyPresentations = [];
     let _studyAnswers = [];
+    let _studyRevisions = [];
+    let _studyOriginalRaw = null;
+    let _studyConsultationOnly = false;
+    let _studyResumeSelections = new Map();
+    let _studySelectionRaw = null;
+    let _studySavedRaw = null;
+    let _studyCatalogCache = null;
+    function _studyRequiresQuestionRevisions() {
+      return ['NQ_REQUIRES_QUESTION_REVISIONS', 'NQQuestionRevisions', 'NQQuestionRevisionManifest',
+        'NQQuestionRevisionHistory', 'questionRevisionCatalog'].some(key => typeof window[key] !== 'undefined');
+    }
+    function _studyRevisionCatalog() {
+      if (window.questionRevisionCatalog) return window.questionRevisionCatalog;
+      // Older isolated bundles still validate against their loaded authored bank.
+      if (!_studyRequiresQuestionRevisions()) return undefined;
+      if (!window.NQQuestionRevisions || !window.NQQuestionRevisionManifest || !Array.isArray(window.NQQuestionRevisionHistory) || typeof topics === 'undefined' || typeof refsDB === 'undefined') return null;
+      if (!_studyCatalogCache) {
+        try {
+          _studyCatalogCache = window.NQQuestionRevisions.createCatalog({
+            manifest: window.NQQuestionRevisionManifest, history: window.NQQuestionRevisionHistory || [],
+            authors: topics, sources: {study: topics.map(_studyCanonical)}, references: refsDB
+          });
+        } catch (error) { console.error('[NQ] Study revision catalog unavailable', error); }
+      }
+      return _studyCatalogCache;
+    }
     function _studyQuestionId(q) { return q.qid || q.id || q.q.substring(0, 40); }
     function _studyCanonical(q) {
       return { id: _studyQuestionId(q), q: q.q, o: [...q.opts], a: q.ans, e: q.exp || '', refs: [...(q.refs || [])] };
@@ -1032,10 +1059,18 @@
     }
 
     function _saveStudyState(nextIndex = studyModeIndex) {
-      if (!studyModeActive || !studyModeQuestions.length || !_studyBindingCurrent()) return;
-      if (_studyPresentations.length !== studyModeQuestions.length || _studyPresentations.some(q => !q)) return;
+      if (!studyModeActive || !studyModeQuestions.length || !_studyBindingCurrent() || _studyConsultationOnly) return false;
+      if (_studyPresentations.length !== studyModeQuestions.length || _studyPresentations.some(q => !q)) return false;
+      const catalog = _studyRevisionCatalog();
+      if (catalog === null) return false;
+      if (catalog && _studyPresentations.some((q, i) => !catalog.resolve(q, {profile: 'study', binding: _studyRevisions[i]?.binding}))) return false;
+      const binding = _studyProgressBinding, expectedRaw = _studySavedRaw;
+      const current = () => _studyBindingCurrent(binding) && _studySavedRaw === expectedRaw;
+      let storage, raw, candidateWritten = false;
       try {
-        _studyProgressStorage().setItem(STUDY_SAVE_KEY, JSON.stringify({
+        storage = _studyProgressStorage();
+        if (!current() || storage.getItem(STUDY_SAVE_KEY) !== expectedRaw) return false;
+        raw = JSON.stringify({
           questions: studyModeQuestions.map(q => q.qid || q.id || q.q.substring(0, 40)),
           index: nextIndex,
           correct: studyModeCorrect,
@@ -1045,11 +1080,30 @@
           presentations: studyModeQuestions.map((q, i) => ({
             id: _studyQuestionId(q),
             question: window.NQAnswers ? window.NQAnswers.snapshot(_studyPresentations[i]) : _studyPresentations[i],
-            answer: _studyAnswers[i] || null
+            answer: _studyAnswers[i] || null,
+            ...(_studyRevisions[i]?.binding ? {revisionBinding: _studyRevisions[i].binding} : {})
           })),
+          ...(_studyOriginalRaw ? {revisionOriginRaw: _studyOriginalRaw} : {}),
           savedAt: Date.now()
-        }));
-      } catch(e) { console.error('[NQ] _saveStudyState failed', e); }
+        });
+        if (!current() || storage.getItem(STUDY_SAVE_KEY) !== expectedRaw) return false;
+        storage.setItem(STUDY_SAVE_KEY, raw);
+        candidateWritten = true;
+        if (!current() || storage.getItem(STUDY_SAVE_KEY) !== raw) throw new Error('Study save readback mismatch.');
+        _studySavedRaw = raw;
+        return true;
+      } catch(e) {
+        if (candidateWritten) {
+          try {
+            if (current() && storage.getItem(STUDY_SAVE_KEY) === raw) {
+              if (expectedRaw === null) storage.removeItem(STUDY_SAVE_KEY);
+              else storage.setItem(STUDY_SAVE_KEY, expectedRaw);
+            }
+          } catch (_) { /* Do not overwrite a source that cannot be confirmed. */ }
+        }
+        console.error('[NQ] _saveStudyState failed', e);
+        return false;
+      }
     }
 
     function _loadStudyState() {
@@ -1061,7 +1115,9 @@
         const questions = s.questions.filter(id => typeof id === 'string' || typeof id === 'number');
         const savedAt = Number(s.savedAt);
         if (!questions.length || !Number.isFinite(savedAt) || savedAt <= 0) return null;
-        if (Date.now() - savedAt > STUDY_TTL_MS) { _studyProgressStorage().removeItem(STUDY_SAVE_KEY); return null; }
+        const expired = Date.now() - savedAt > STUDY_TTL_MS;
+        const requiresRevisions = _studyRequiresQuestionRevisions();
+        if (expired && !requiresRevisions) { _studyProgressStorage().removeItem(STUDY_SAVE_KEY); return null; }
 
         const rawIndex = Number(s.index);
         const index = Number.isFinite(rawIndex)
@@ -1085,53 +1141,138 @@
           correct: Math.max(0, Math.trunc(Number(s.correct) || 0)),
           wrong: Math.max(0, Math.trunc(Number(s.wrong) || 0)),
           axisStats,
-          savedAt
+          savedAt,
+          ...(requiresRevisions ? {revisionHold: expired ? 'expired' : index >= questions.length ? 'complete' : null} : {})
         };
       } catch(e) { return null; }
     }
 
     function _clearStudyState() {
+      if (_studyConsultationOnly) return;
       try { _studyProgressStorage().removeItem(STUDY_SAVE_KEY); } catch(e) {}
     }
 
     function resumeSavedStudyMode() {
+      if (!_studyBindingCurrent()) return false;
       const saved = _loadStudyState();
       if (!saved) return false;
+      if (saved.revisionHold) {
+        _toast(saved.revisionHold === 'expired' ? 'O prazo da sessão terminou. O estudo salvo foi preservado; inicie uma nova sessão para continuar.'
+          : 'A sessão foi marcada como concluída. O estudo salvo foi preservado.', 'info');
+        return false;
+      }
       if (saved.presentationVersion !== undefined && saved.presentationVersion !== 1) return false;
       if (saved.index >= saved.questions.length) { _clearStudyState(); return false; }
-      const byId = new Map(topics.map(question => [question.qid || question.id || question.q.substring(0, 40), question]));
-      const restoredEntries = saved.questions.map((id, savedIndex) => ({ question: byId.get(id), savedIndex })).filter(entry => entry.question);
-      const restored = restoredEntries.map(entry => entry.question);
-      if (!restored.length) return false;
-      if (saved.presentationVersion === 1 && (restored.length !== saved.questions.length ||
+      const byId = new Map(topics.map(question => [_studyQuestionId(question), question]));
+      const restoredEntries = saved.questions.map((id, savedIndex) => ({question: byId.get(id), savedIndex})).filter(entry => entry.question);
+      if (!restoredEntries.length) return false;
+      if (saved.presentationVersion === 1 && (restoredEntries.length !== saved.questions.length ||
           !Array.isArray(saved.presentations) || saved.presentations.length !== saved.questions.length)) return false;
-      const presentations = [], answers = [];
-      for (const { question, savedIndex } of restoredEntries) {
+      const catalog = _studyRevisionCatalog();
+      if (catalog === null) { _toast('O catálogo de revisões ainda não está disponível. Seu estudo foi preservado.', 'warning'); return false; }
+      const raw = _studyProgressStorage().getItem(STUDY_SAVE_KEY);
+      if (_studySelectionRaw !== raw) { _studyResumeSelections.clear(); _studySelectionRaw = raw; }
+      const presentations = [], answers = [], revisions = [], authors = [];
+      for (const {question, savedIndex} of restoredEntries) {
+        let resolved;
         if (saved.presentationVersion === 1) {
-          const entry = saved.presentations?.[savedIndex];
+          const entry = saved.presentations[savedIndex];
           if (!entry || entry.id !== _studyQuestionId(question)) return false;
-          const presentation = window.NQAnswers
+          if (catalog) {
+            const binding = Object.prototype.hasOwnProperty.call(entry, 'revisionBinding') ? entry.revisionBinding : _studyResumeSelections.get(savedIndex);
+            const checked = catalog.inspect(entry.question, {profile: 'study', binding});
+            if (checked.status !== 'known') { _showStudyRevisionHold(checked, savedIndex); return false; }
+            resolved = checked.value;
+          }
+          const presentation = resolved?.question || (window.NQAnswers
             ? window.NQAnswers.restore(entry.question, _studyCanonical(question))
-            : (!entry.question?._answerPresentation ? entry.question : null);
+            : (!entry.question?._answerPresentation ? entry.question : null));
           if (!presentation || (entry.answer && !_studyAnswerValid(entry.answer, presentation))) return false;
           presentations.push(presentation);
           answers.push(entry.answer || null);
         } else {
-          presentations.push(_studyPresent(question, savedIndex === saved.index));
+          const checked = catalog?.inspectLegacy(_studyQuestionId(question), {profile: 'study', binding: _studyResumeSelections.get(savedIndex)});
+          if (checked && checked.status !== 'known') { _showStudyRevisionHold(checked, savedIndex); return false; }
+          resolved = checked?.value;
+          presentations.push(resolved ? window.NQAnswers.present(resolved.source, {preserveOrder: savedIndex === saved.index}) : _studyPresent(question, savedIndex === saved.index));
           answers.push(null);
         }
+        revisions.push(resolved || null);
+        authors.push(resolved?.author || question);
       }
-      studyModeQuestions = restored;
+      studyModeQuestions = authors;
       _studyPresentations = presentations;
       _studyAnswers = answers;
+      _studyRevisions = revisions;
+      _studyOriginalRaw = saved.revisionOriginRaw || raw;
+      _studySavedRaw = raw;
+      _studyConsultationOnly = _studyResumeSelections.size > 0;
       const currentIndex = restoredEntries.findIndex(entry => entry.savedIndex === saved.index);
-      studyModeIndex = currentIndex >= 0 ? currentIndex : Math.min(saved.index, restored.length - 1);
+      studyModeIndex = currentIndex >= 0 ? currentIndex : Math.min(saved.index, authors.length - 1);
       studyModeCorrect = saved.correct;
       studyModeWrong = saved.wrong;
       _studyAxisStats = saved.axisStats;
       studyModeActive = true;
       showStudyModePage(undefined, true);
       return true;
+    }
+    function _showStudyRevisionHold(checked, savedIndex) {
+      document.getElementById('studyRevisionHold')?.remove();
+      const notice = document.createElement('section');
+      notice.id = 'studyRevisionHold';
+      notice.setAttribute('role', 'alert');
+      notice.innerHTML = '<p>A sessão salva foi preservada. Não foi possível identificar uma única revisão com segurança.</p>' +
+        (checked.status === 'ambiguous' ? '<p>Escolha uma versão publicada para consulta, sem alterar respostas ou progresso.</p>' + checked.candidates.map(candidate =>
+          `<button class="btn sec" data-action="consultSavedStudyRevision" data-arg="${savedIndex}|${candidate.binding.recordRevision}">${candidate.historical ? 'Consultar versão histórica' : 'Consultar versão atual'} (${escapeHtml(candidate.release)})</button>`).join('') : '<p>O catálogo precisa ser carregado e a fonte salva conferida antes da retomada.</p>');
+      (document.querySelector('.nq-study-content') || document.body).appendChild(notice);
+    }
+    function consultSavedStudyRevision(selection) {
+      if (!_studyBindingCurrent() || typeof selection !== 'string') return false;
+      const split = selection.indexOf('|'), index = Number(selection.slice(0, split)), revision = selection.slice(split + 1);
+      const saved = _loadStudyState(), catalog = _studyRevisionCatalog();
+      if (!saved || !catalog || !Number.isInteger(index) || !_studySelectionRaw || _studyProgressStorage().getItem(STUDY_SAVE_KEY) !== _studySelectionRaw) return false;
+      const checked = saved.presentationVersion === 1 ? catalog.inspect(saved.presentations?.[index]?.question, {profile: 'study'})
+        : catalog.inspectLegacy(saved.questions[index], {profile: 'study'});
+      const chosen = checked.candidates?.find(candidate => candidate.binding.recordRevision === revision);
+      if (checked.status !== 'ambiguous' || !chosen) return false;
+      _studyResumeSelections.set(index, chosen.binding);
+      return resumeSavedStudyMode();
+    }
+    function useCurrentStudyRevision() {
+      if (!_studyBindingCurrent() || !studyModeActive || _studyConsultationOnly || _studyAnswers[studyModeIndex]) return false;
+      const previous = _studyRevisions[studyModeIndex], catalog = _studyRevisionCatalog();
+      if (!previous?.historical || previous.policy.pending !== 'update-required' || !catalog) return false;
+      const current = catalog.current(previous.binding.qid, 'study');
+      if (!current) return false;
+      try { if (_studyProgressStorage().getItem(STUDY_SAVE_KEY) !== _studySavedRaw) return false; }
+      catch (_) { return false; }
+      const presentation = window.NQAnswers.present(current.source);
+      if (!presentation) return false;
+      const previousAuthor = studyModeQuestions[studyModeIndex], previousPresentation = _studyPresentations[studyModeIndex];
+      studyModeQuestions[studyModeIndex] = current.author;
+      _studyPresentations[studyModeIndex] = presentation;
+      _studyRevisions[studyModeIndex] = current;
+      if (!_saveStudyState()) {
+        studyModeQuestions[studyModeIndex] = previousAuthor;
+        _studyPresentations[studyModeIndex] = previousPresentation;
+        _studyRevisions[studyModeIndex] = previous;
+        _toast('Não foi possível confirmar a gravação. A questão original foi preservada.', 'warning');
+        return false;
+      }
+      renderStudyQuestion();
+      return true;
+    }
+    function viewCurrentStudyRevision() {
+      if (!_studyBindingCurrent() || !studyModeActive) return;
+      const revision = _studyRevisions[studyModeIndex], catalog = _studyRevisionCatalog();
+      const current = catalog?.current(_studyQuestionId(studyModeQuestions[studyModeIndex]), 'study');
+      if (!revision || !current) return;
+      document.getElementById('studyCurrentRevision')?.remove();
+      const panel = document.createElement('section');
+      panel.id = 'studyCurrentRevision';
+      panel.innerHTML = `<h3>Atualização publicada (${escapeHtml(current.release)})</h3><p>Consulta separada; sua avaliação histórica permanece preservada.</p><p>${escapeHtml(current.author.q)}</p><p>${escapeHtml(current.source.e || '')}</p>` +
+        Object.values(current.references || {}).filter(Boolean).map(ref => `<p>${escapeHtml(ref.label || '')}</p>`).join('');
+      document.getElementById('studyQuestionArea')?.appendChild(panel);
     }
 
     let studyModeActive = false;
@@ -1360,7 +1501,7 @@
       }
 
       const saved = _loadStudyState();
-      if (saved && saved.index < saved.questions.length && replaceSaved !== true) {
+      if (saved && (saved.revisionHold || saved.index < saved.questions.length) && replaceSaved !== true) {
         let surface = document.querySelector('.study-mode-popup');
         if (!surface) {
           surface = document.createElement('div');
@@ -1373,7 +1514,9 @@
           notice = document.createElement('section');
           notice.className = 'nq-study-resume';
           notice.dataset.studyResumeChoice = '';
-          notice.innerHTML = '<div><h2>Você tem um estudo em andamento</h2><p>Retome a sessão salva ou substitua por uma sessão com os temas selecionados.</p></div><div><button class="btn gold" data-action="resumeSavedStudyMode">Retomar estudo</button><button class="btn sec" data-action="startStudyMode" data-arg="true" data-arg-type="boolean">Iniciar nova sessão</button></div>';
+          notice.innerHTML = saved.revisionHold
+            ? '<div><h2>Sessão salva preservada</h2><p>O estudo anterior não pode ser retomado como uma sessão em andamento. Seus dados permanecem intactos. Você pode substituí-lo por uma nova sessão com os temas selecionados.</p></div><div><button class="btn sec" data-action="startStudyMode" data-arg="true" data-arg-type="boolean">Iniciar nova sessão</button></div>'
+            : '<div><h2>Você tem um estudo em andamento</h2><p>Retome a sessão salva ou substitua por uma sessão com os temas selecionados.</p></div><div><button class="btn gold" data-action="resumeSavedStudyMode">Retomar estudo</button><button class="btn sec" data-action="startStudyMode" data-arg="true" data-arg-type="boolean">Iniciar nova sessão</button></div>';
           surface.querySelector('.nq-study-content').prepend(notice);
         }
         notice.querySelector('button').focus();
@@ -1410,8 +1553,21 @@
     
     function showStudyModePage(sessionLabel, restoringPresentation = false) {
       if (!restoringPresentation) {
+        _studyConsultationOnly = false;
+        _studyResumeSelections.clear();
+        _studySelectionRaw = null;
+        _studyOriginalRaw = null;
+        try { _studySavedRaw = _studyProgressStorage().getItem(STUDY_SAVE_KEY); }
+        catch (_) { studyModeActive = false; return; }
         _studyPresentations = studyModeQuestions.map(q => _studyPresent(q));
         _studyAnswers = studyModeQuestions.map(() => null);
+        const catalog = _studyRevisionCatalog();
+        _studyRevisions = studyModeQuestions.map(q => catalog?.current(_studyQuestionId(q), 'study') || null);
+        if (catalog === null || (catalog && _studyRevisions.some(q => !q))) {
+          _toast('Não foi possível conferir o catálogo desta sessão. Seu estudo salvo foi preservado.', 'warning');
+          studyModeActive = false;
+          return;
+        }
       }
       if (_studyPresentations.some(q => !q)) {
         _toast('Não foi possível conferir as alternativas desta sessão.', 'warning');
@@ -1441,7 +1597,7 @@
         </div>
       `;
       _mountStudySurface(page, 'Sessão de estudo', document.activeElement);
-      _saveStudyState();
+      if (!restoringPresentation) _saveStudyState();
       renderStudyQuestion();
     }
     
@@ -1456,9 +1612,14 @@
       const q = studyModeQuestions[studyModeIndex];
       const presentation = _studyPresentations[studyModeIndex];
       if (!presentation) return;
+      const revision = _studyRevisions[studyModeIndex];
+      const held = _studyConsultationOnly || (revision?.historical && revision.policy.pending === 'update-required' && !_studyAnswers[studyModeIndex]);
       const area = document.getElementById('studyQuestionArea');
       
       area.innerHTML = `
+        ${revision?.historical ? `<p role="status">Versão histórica (${escapeHtml(revision.release)}). ${_studyAnswers[studyModeIndex] ? 'Avaliação preservada; esta explicação pertence à versão respondida.' : 'Esta questão foi atualizada. Use a versão atual antes de responder.'}</p><button class="btn sec" data-action="viewCurrentStudyRevision">Consultar atualização publicada</button>` : ''}
+        ${_studyConsultationOnly ? '<p role="status">Consulta de uma revisão escolhida. Respostas e progresso da sessão salva permanecem intactos.</p>' : ''}
+        ${held && !_studyConsultationOnly ? '<button class="btn gold" data-action="useCurrentStudyRevision">Confirmar troca para a versão atual, sem consumir resposta</button>' : ''}
         <div style="margin-bottom:16px;">
           <span style="background:rgba(139,92,246,0.2);color:#a78bfa;padding:4px 10px;border-radius:4px;font-size:0.75rem;">
             ${escapeHtml(q.t || 'Geral')}
@@ -1472,7 +1633,7 @@
         <div id="studyOptions" style="display:grid;gap:10px;">
           ${presentation.o.map((opt, idx) => `
             <button class="study-option-btn" data-action="answerStudyQuestion" data-arg="${idx}" data-arg-type="number"
-                    data-kbd-hint="${idx + 1}"
+                    data-kbd-hint="${idx + 1}" ${held ? 'disabled' : ''}
                     style="display:flex; justify-content:space-between; align-items:center; background:linear-gradient(180deg,#1e293b,#0f172a);border:2px solid #334155;border-radius:10px;padding:14px 18px;text-align:left;color:var(--txt);font-size:0.95rem;cursor:pointer;transition:all 0.2s;"
                     onmouseover="this.style.borderColor='var(--blue)';this.style.background='linear-gradient(180deg,#1e3a5f,#0f172a)'"
                     onmouseout="this.style.borderColor='#334155';this.style.background='linear-gradient(180deg,#1e293b,#0f172a)'">
@@ -1495,6 +1656,7 @@
     function answerStudyQuestion(selectedIdx) {
       if (!_studyBindingCurrent() || !studyModeActive || studyModeIndex >= studyModeQuestions.length || document.querySelector('#studyModePage [data-action="nextStudyQuestion"]')) return;
       const presentation = _studyPresentations[studyModeIndex];
+      if (_studyConsultationOnly || (_studyRevisions[studyModeIndex]?.historical && _studyRevisions[studyModeIndex].policy.pending === 'update-required')) return;
       if (_studyAnswers[studyModeIndex] || !presentation || !Number.isInteger(selectedIdx) || selectedIdx < 0 || selectedIdx >= presentation.o.length) return;
       const isCorrect = selectedIdx === presentation.a;
       _studyAnswers[studyModeIndex] = {
@@ -1509,6 +1671,9 @@
     function _displayStudyAnswer(selectedIdx, isCorrect, recordProgress) {
       const q = studyModeQuestions[studyModeIndex];
       const presentation = _studyPresentations[studyModeIndex];
+      const revision = _studyRevisions[studyModeIndex];
+      if (recordProgress && (_studyConsultationOnly || revision?.historical)) return;
+      const referenceCards = revision?.references || refsDB;
       
       // Desabilitar botões
       document.querySelectorAll('.study-option-btn').forEach((btn, idx) => {
@@ -1579,7 +1744,7 @@
 
       // Botão de mentor (apenas em erros)
       let mentorBtnInner = '';
-      if (!isCorrect) {
+      if (!isCorrect && !revision?.historical && !_studyConsultationOnly) {
         if (_canAskMentor()) {
           mentorBtnInner = `<button class="btn ghost" style="font-size:0.78rem;padding:7px 16px;margin:0;" data-action="openMentorModal">
                 🔮 Consultar Oráculo
@@ -1600,7 +1765,7 @@
           <div style="color:var(--txt);font-size:0.9rem;line-height:1.5;">
             ${escapeHtml(presentation.e || 'A resposta correta é a alternativa ' + String.fromCharCode(65 + presentation.a) + '.')}
           </div>
-          ${(q.refs||[]).length ? `<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">${(q.refs||[]).map(k => refsDB[k] ? `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(refsDB[k].label)}" target="_blank" rel="noopener" style="color:var(--blue);font-size:0.72rem;text-decoration:none;border:1px solid rgba(96,165,250,0.3);padding:2px 9px;border-radius:12px;white-space:nowrap;">🔗 ${escapeHtml(refsDB[k].label)}</a>` : '').filter(Boolean).join('')}</div>` : ''}
+          ${(q.refs||[]).length ? `<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">${(q.refs||[]).map(k => referenceCards[k] ? `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(referenceCards[k].label)}" target="_blank" rel="noopener" style="color:var(--blue);font-size:0.72rem;text-decoration:none;border:1px solid rgba(96,165,250,0.3);padding:2px 9px;border-radius:12px;white-space:nowrap;">🔗 ${escapeHtml(referenceCards[k].label)}</a>` : '').filter(Boolean).join('')}</div>` : ''}
         </div>
         <div style="display:flex;justify-content:center;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap;">
           ${mentorBtnInner}
@@ -1611,7 +1776,7 @@
       `;
 
       // Guardar questão atual para o mentor
-      window.setMentorQuestion(q);
+      if (!revision?.historical && !_studyConsultationOnly) window.setMentorQuestion(q);
 
       if (recordProgress) playSound(isCorrect ? 'correct' : 'wrong');
     }
@@ -1663,7 +1828,7 @@
 
       playSound('victory');
 
-      if (total > 0) _fetchDiagnosis(total, studyModeCorrect, studyModeWrong, accuracy);
+      if (total > 0 && !_studyConsultationOnly) _fetchDiagnosis(total, studyModeCorrect, studyModeWrong, accuracy);
     }
 
     // ── Diagnóstico da sessão ───────────────────────────────────────────────
@@ -1858,11 +2023,20 @@
     window.startScheduledSRStudyMode = startScheduledSRStudyMode;
     window.startStudyMode        = startStudyMode;
     window.resumeSavedStudyMode  = resumeSavedStudyMode;
+    window.consultSavedStudyRevision = consultSavedStudyRevision;
+    window.useCurrentStudyRevision = useCurrentStudyRevision;
+    window.viewCurrentStudyRevision = viewCurrentStudyRevision;
     window._studySelectedAxes    = _studySelectedAxes;
     
     function restartStudyMode() {
+      if (!_studyBindingCurrent()) return;
+      const catalog = _studyRevisionCatalog();
+      if (catalog === null) return;
+      const current = catalog ? studyModeQuestions.map(q => catalog.current(_studyQuestionId(q), 'study')?.author) : studyModeQuestions;
+      if (current.some(q => !q)) return;
+      _studyConsultationOnly = false;
       _clearStudyState();
-      studyModeQuestions = shuffle(studyModeQuestions);
+      studyModeQuestions = shuffle(current);
       studyModeIndex = 0;
       studyModeCorrect = 0;
       studyModeWrong = 0;
@@ -1872,7 +2046,8 @@
     
     function exitStudyMode() {
       const nextIndex = studyModeIndex + (document.querySelector('#studyModePage [data-action="nextStudyQuestion"]') ? 1 : 0);
-      if (nextIndex >= studyModeQuestions.length) _clearStudyState();
+      if (_studyConsultationOnly) { /* Read-only consultation preserves the original saved bytes. */ }
+      else if (nextIndex >= studyModeQuestions.length) _clearStudyState();
       else _saveStudyState(nextIndex);
       studyModeActive = false;
       document.getElementById('studyModePage')?.remove();
@@ -2146,6 +2321,12 @@
       _diagUltimoPedido = null;
       studyModeActive = false;
       studyModeQuestions = [];
+      _studyRevisions = [];
+      _studyOriginalRaw = null;
+      _studyConsultationOnly = false;
+      _studyResumeSelections.clear();
+      _studySelectionRaw = null;
+      _studySavedRaw = null;
       studyModeIndex = 0;
       studyModeCorrect = 0;
       studyModeWrong = 0;
