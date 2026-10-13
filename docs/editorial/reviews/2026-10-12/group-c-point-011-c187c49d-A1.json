@@ -1,0 +1,677 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 34604,
+  "sourceReportSHA256": "9489d343c5a72d3ced4ff5855da8f06e97a9adf220a5d46bd5613548342cd46a",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_FORMAL_POINT_REVIEW_v2",
+    "group": "c",
+    "batch": "011",
+    "affectedQuestionQid": "c187c49d",
+    "supersedesQuestionOnly": {
+      "report": {
+        "path": "docs/editorial/reviews/2026-10-12/group-c-output-011-A2.json",
+        "bytes": 219324,
+        "sha256": "051319c445a28fa1709dfbebbc2e7b6cffedac38dd12a512b3337dc04b2d1b3c"
+      },
+      "qid": "c187c49d",
+      "afterQuestionSHA256": "a311b5b75722c3ab81e1993200350c74bec8a564b8bbbd42dbd72a6f256fdd75",
+      "cardAfterSHA256": "e2370b71b34ed40efbd0303b8fa4ead2fe89a2ff41bc2506a6c2ce7a21a80916"
+    },
+    "reviewedAtOfficialUTC": "2026-10-13 12:12:48 UTC",
+    "questions": [
+      {
+        "qid": "c187c49d",
+        "sourceLine": 300,
+        "sourceQuestionSHA256": "63e30e38ea1474acb5434f59b7816e91b9543a9258fa9182afff4cc72591acea",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Identificar arteriolosclerose hiperplásica pela lesão concêntrica em casca de cebola,sem causalidade exclusiva.",
+        "classification": {
+          "primaryCompetence": "Reconhecimento de padrão morfológico",
+          "Bloom": "Recordar",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "básica"
+        },
+        "reconstruction": {
+          "decisiveData": "Compartimento arteriolar, espessamento da parede em casca de cebola e lúmen estreito. Não se afirma composição celular específica nem duplicação de membranas basais.",
+          "populationAndScenario": "Biópsia renal em pessoa com hipertensão grave mostra espessamento da parede arteriolar em aspecto de casca de cebola e lúmen muito reduzido. Que padrão morfológico descreve esse achado?",
+          "hiddenPremisesResolved": true,
+          "realPatient": false
+        },
+        "justification": "Retirada material do detalhe microestrutural não verificado; questão inteira e card inteiro reavaliados nas fontes próprias Qasim2025/UtahRENAL107. Nenhum gate herdado. Fontes exatas qualificadas; liberação autoral depende da revisão independente exata antes de integração.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Livro-texto não aberto; fonte e nomenclatura precisam rastreio."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Item mede reconhecimento morfológico direto,não dificuldadehard; correta única mais longa."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Detalhe factual de membranas basais duplicadas não foi encontrado nas fontes abertas; removido, sem declarar que o fenômeno inexiste. Composição celular específica também não é necessária ao OP."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Onde está a duplicação de membranas basais e a microestrutura específica nas fontes abertas?"
+          ],
+          "after": [
+            "Detalhe não sustentado retirado; casca de cebola/parede espessa/lúmen estreito e nomehiperplásica constam da legenda acadêmica. Não inferir causalidade exclusiva ou emergência pela morfologia."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "criteria": [
+            {
+              "criterion": 1,
+              "label": "Mais de uma resposta defensável",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "A única resposta representa a decisão no contexto delimitado; as três alternativas foram conferidas individualmente."
+            },
+            {
+              "criterion": 2,
+              "label": "Referência não sustenta gabarito",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "Card inteiro exato e afirmações decisivas conferidos nas fontes próprias identificadas; nenhuma fonte integral inventada."
+            },
+            {
+              "criterion": 3,
+              "label": "Deriva de OP",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "OP preservado; não substitui a identificação morfológica ou a segurança do início por outro conteúdo."
+            },
+            {
+              "criterion": 4,
+              "label": "Conduta insegura premiada",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "A correta não premia conduta insegura; mecanismos/rótulos dos distratores não são recomendados."
+            },
+            {
+              "criterion": 5,
+              "label": "Distrator absurdo",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "Distratores representam erros reais de dose/interação ou categorias de patologia, mantendo paralelismo."
+            },
+            {
+              "criterion": 6,
+              "label": "Trivia sem consequência clínica",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "O item evita erro de início sobhipercalemia ou de classificação anatomopatológica; não exige trivia numérica solta."
+            },
+            {
+              "criterion": 7,
+              "label": "Explicação contradiz gabarito",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "Explicação inicia pela correta e distingue os erros, sem inferência não disponível nas fontes."
+            },
+            {
+              "criterion": 8,
+              "label": "Dado decisivo ausente",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "Compartimento arteriolar, espessamento da parede em casca de cebola e lúmen estreito. Não se afirma composição celular específica nem duplicação de membranas basais."
+            },
+            {
+              "criterion": 9,
+              "label": "Protocolo local oculto",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "RotulagemEUA está explícita no itemfinerenona; padrão morfológico é textual e não depende de protocolo local."
+            },
+            {
+              "criterion": 10,
+              "label": "Desatualização relevante",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "SPL atualv15 conferido; Qasim2025 é revisão e Utah é material acadêmico nomeado, sem atualização clínica fictícia."
+            }
+          ],
+          "beforeTriggered": [],
+          "beforeScoreAnnulled": false,
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Objeto pontual exato com card revisado; julgamento editorial sem telemetria nova."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA permite avaliar, sem liberação automática.",
+          "step1": "Dez eliminatórios checados; nenhum noAFTER.",
+          "step2": "Sem duplicata nas quatro dimensões das proximidades inspecionadas.",
+          "step3": "Score19 → aprovada.",
+          "lifecycle": "publicado",
+          "actualDeployment": false,
+          "rule": "Handbook §18.4 Regra2/7(a),§19; revisão independente exata continua necessária."
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — AFTER EXATO REAVALIADO",
+          "BEFORE": {
+            "t": "Emergência Hipertensiva — Arteriolosclerose Hiperplásica",
+            "qid": "c187c49d",
+            "q": "Em uma biópsia renal de paciente com hipertensão grave prolongada, observa-se estreitamento luminal por camadas concêntricas de células musculares lisas e duplicação de membranas basais. Como se denomina esse padrão?",
+            "refs": [
+              "brenner_rector"
+            ],
+            "opts": [
+              "Arteriolosclerose hiperplásica em aspecto de casca de cebola",
+              "Arteriolosclerose hialina isolada",
+              "Glomeruloesclerose nodular diabética",
+              "Vasculite granulomatosa necrosante"
+            ],
+            "ans": 0,
+            "exp": "A proliferação concêntrica da íntima e de células musculares lisas, com duplicação de membranas basais e redução do lúmen, caracteriza arteriolosclerose hiperplásica, o padrão de “casca de cebola” associado à hipertensão grave. Ela causa isquemia renal e pode coexistir com necrose fibrinoide nas lesões mais agudas. Hialinose arteriolar é um padrão distinto de dano crônico; glomeruloesclerose nodular e vasculite granulomatosa pertencem a outros mecanismos.",
+            "diff": "hard",
+            "cat": "drc"
+          },
+          "AFTER": {
+            "t": "Emergência Hipertensiva — Arteriolosclerose Hiperplásica",
+            "qid": "c187c49d",
+            "q": "Biópsia renal em pessoa com hipertensão grave mostra espessamento da parede arteriolar em aspecto de casca de cebola e lúmen muito reduzido. Que padrão morfológico descreve esse achado?",
+            "refs": [
+              "qasim_hypertensive_nephrosclerosis_2025"
+            ],
+            "opts": [
+              "Arteriolosclerose hiperplásica.",
+              "Arteriolosclerose hialina difusa.",
+              "Glomeruloesclerose nodular difusa.",
+              "Arterite granulomatosa necrosante."
+            ],
+            "ans": 0,
+            "exp": "O padrão concêntrico em casca de cebola corresponde à arteriolosclerose hiperplásica, com estreitamento luminal e isquemia. É associado à lesão vascular da hipertensão grave, mas o padrão deve ser integrado ao contexto e não prova etiologia exclusiva. Hialinose é deposição de material hialino na parede; glomeruloesclerose nodular envolve outro compartimento e arterite granulomatosa pressupõe inflamação específica. A imagem isolada não estabelece uma emergência hipertensiva sem dados clínicos de lesão aguda de órgão.",
+            "diff": "easy",
+            "cat": "drc"
+          },
+          "afterQuestionSHA256": "2405b8bd8341fa3b01f2a4beb48f8621fc7f544140b7b2c390ba288178e87753",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Arteriolosclerose hiperplásica."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "hypertension2025",
+            "supports": "Revisão narrativa: lesão vascular na hipertensão grave inclui padrão onion-skin, estreitamento e isquemia; sobreposição com outras etiologias impede atribuição causal automática por histologia isolada. Fonte não éRCT/coorte nem define diagnóstico de emergência só por número dePA.",
+            "locations": [
+              "Histopathological features",
+              "malignant hypertension onion-skin arteriolopathy"
+            ],
+            "status": "VERIFICADA"
+          },
+          {
+            "sourceId": "utah_image",
+            "supports": "Legenda acadêmica identifica arteriolosclerose hiperplásica com aspecto onion-skin e lúmen estreito. Material didático de patologia, não diretriz ou artigo original. Usado apenas para conferir denominação morfológica; números dePA da legenda não introduzidos no item.",
+            "locations": [
+              "Histology-image caption"
+            ],
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "qasim_hypertensive_nephrosclerosis_2025": {
+            "label": "Qasim et al. — Nefroesclerose hipertensiva (2025)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12547650/",
+            "journal": "Cureus.2025;17:e92949",
+            "ano": 2025,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Padrões vasculares ajudam interpretação, sem atribuição etiológica isolada",
+            "icon": "🔬",
+            "resumo": "Revisão narrativa de alterações vasculares e glomerulares na nefroesclerose hipertensiva e sobreposição com nefropatia diabética. Hipertensão grave pode acompanhar lesão arteriolar em casca de cebola, estreitamento e isquemia. A nomenclatura de arteriolosclerose hiperplásica também foi conferida em legenda de histologia acadêmica da University of Utah. Nenhum limiar de pressão ou efeito terapêutico foi inferido desses textos.",
+            "conclusao": "Identificar o padrão morfológico e integrar contexto; casca de cebola não prova etiologia exclusiva nem diagnóstico de emergência por si.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "1-4cards; nenhum ID novo é alegado como presente. ADDexige objeto no registro antes do tópico, revisão independente e histórico de versões. SharedREPLACEnão libera outros consumidores.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "posição",
+            "índice do gabarito",
+            "cat",
+            "tentativas",
+            "histórico",
+            "FSRS"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "replaceFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "atomicCardDependencies": [
+            "qasim_hypertensive_nephrosclerosis_2025"
+          ],
+          "newCardsMustExistBeforeTopicWrite": [
+            "qasim_hypertensive_nephrosclerosis_2025"
+          ],
+          "independentExactReviewRequired": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true,
+          "doNotResetFSRS": true
+        },
+        "verificationPending": [],
+        "editorialPending": [],
+        "comparison": {
+          "beforeLengths": [
+            60,
+            33,
+            36,
+            34
+          ],
+          "afterLengths": [
+            31,
+            33,
+            34,
+            34
+          ],
+          "uniqueLongestCorrectBefore": true,
+          "uniqueLongestCorrectAfter": false,
+          "correctToLongestDistractorRatio": 0.9118,
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "answerPositionUnchangedInBank": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "noAddedLetterOrOrderCue": true,
+          "sourceCanonicalAnswerIndex": 0,
+          "runtimeShuffleMustPreserveAnswerAndHistory": true
+        },
+        "validity": {
+          "content": "Todos os fatos decisivos e cards exatos têm correspondência às fontes abertas; natureza do desenho e limites explícitos.",
+          "construct": "Identificar arteriolosclerose hiperplásica pela lesão concêntrica em casca de cebola,sem causalidade exclusiva.",
+          "response": "Julgamento editorial sem telemetria nova. Alternativas paralelas e comparação de conceitos, sem qualificação exclusiva mais extensa da correta.",
+          "consequential": "A explicação evita inferência clínica excessiva e interpretação do distrator como conduta aceitável."
+        },
+        "distractorRationale": {
+          "B": "Hialinose não descreve proliferação concêntrica emcamadas.",
+          "C": "Achadoé arteriolar,não nodular glomerular.",
+          "D": "Não há granulomasouinflamaçãonecrosante descritos."
+        },
+        "duplicationCheck": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Sem coincidência útil em todas as dimensões entre candidatos inspecionados; não é prova de triagem semântica perfeita de741itens.",
+          "relatedItems": [
+            {
+              "qid": "09748d98",
+              "sourceBEFORE": {
+                "t": "Emergência Hipertensiva — Lesão Renal Aguda",
+                "qid": "09748d98",
+                "q": "Paciente com pressão de 220/130 mmHg apresenta confusão, edema de papila, lesão renal aguda, hematúria e trombocitopenia. Qual padrão vascular renal é mais compatível com essa emergência hipertensiva?",
+                "refs": [
+                  "aha_acc_hypertension_2025",
+                  "brenner_rector"
+                ],
+                "opts": [
+                  "Necrose fibrinoide e arteriolosclerose hiperplásica concêntrica, podendo acompanhar microangiopatia trombótica",
+                  "Arteriolosclerose hialina crônica isolada, sem lesão endotelial aguda",
+                  "Depósitos mesangiais de IgA como explicação obrigatória para a pressão elevada",
+                  "Cristais intratubulares de ácido úrico como lesão vascular típica"
+                ],
+                "ans": 0,
+                "exp": "Na emergência hipertensiva com lesão renal aguda, a agressão endotelial intensa pode produzir necrose fibrinoide de arteríolas, hiperplasia concêntrica da parede — o aspecto em casca de cebola — e microangiopatia trombótica, por vezes com trombocitopenia e hemólise. Arteriolosclerose hialina e glomeruloesclerose global predominam na lesão vascular crônica e não explicam sozinhas a deterioração aguda multiorgânica. Depósitos de IgA e cristais de urato pertencem a mecanismos diferentes. O quadro exige tratamento imediato e controlado da pressão em ambiente monitorizado.",
+                "diff": "hard",
+                "cat": "hipertensao"
+              },
+              "sourceSHA256": "8c4a25e383396aca6e9dfb7a19a873fd47858d268719a60eb66cb3d14c5d70fc",
+              "fourDimensionAssessment": "Decisão: nomear padrão arteriolar fornecido versus escolher lesão vascular aguda provável na emergência; dados: parede em casca de cebola/lúmen versus LRA/trombocitopenia; perfil crônico/histológico versus agudo/clínico; idioma português igual. Variação útil; candidatoC014 e comparado não aprovados por associação."
+            }
+          ]
+        },
+        "reviewScope": "Reparo autoral pontual C011/c187c49d; não reavalia os outros7 nem conta novo item. Banco/produto/Git preservados.",
+        "freshFullGateReview": {
+          "reviewedAtOfficialUTC": "2026-10-13 12:12:48 UTC",
+          "wholeQuestionAndAllCards": true,
+          "materialReason": "Retirada material do detalhe microestrutural não verificado; questão inteira e card inteiro reavaliados nas fontes próprias Qasim2025/UtahRENAL107. Nenhum gate herdado.",
+          "questionAfterSHA256": "2405b8bd8341fa3b01f2a4beb48f8621fc7f544140b7b2c390ba288178e87753",
+          "cardAfterSHA256": "e2370b71b34ed40efbd0303b8fa4ead2fe89a2ff41bc2506a6c2ce7a21a80916",
+          "sourcePins": [
+            {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 173091,
+              "sha256": "85d0e872acdbf0e0150052604d3a7e80a9d85edadc68831d4faf7ccda38df326"
+            },
+            {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 2761,
+              "sha256": "622abc8dd3e6c3c24cde68a216682b6ecd70184449559111e893d98b017f4c80"
+            }
+          ],
+          "OP": "Identificar arteriolosclerose hiperplásica pela lesão concêntrica em casca de cebola,sem causalidade exclusiva.",
+          "classification": {
+            "primaryCompetence": "Reconhecimento de padrão morfológico",
+            "Bloom": "Recordar",
+            "Miller": "Sabe",
+            "intrinsicDifficulty": "básica"
+          },
+          "advogadoDoRecurso": {
+            "before": [
+              "Onde está a duplicação de membranas basais e a microestrutura específica nas fontes abertas?"
+            ],
+            "after": [
+              "Detalhe não sustentado retirado; casca de cebola/parede espessa/lúmen estreito e nomehiperplásica constam da legenda acadêmica. Não inferir causalidade exclusiva ou emergência pela morfologia."
+            ],
+            "resolvedBeforeApproval": true
+          },
+          "tenEliminators": {
+            "checked": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "criteria": [
+              {
+                "criterion": 1,
+                "label": "Mais de uma resposta defensável",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "A única resposta representa a decisão no contexto delimitado; as três alternativas foram conferidas individualmente."
+              },
+              {
+                "criterion": 2,
+                "label": "Referência não sustenta gabarito",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "Card inteiro exato e afirmações decisivas conferidos nas fontes próprias identificadas; nenhuma fonte integral inventada."
+              },
+              {
+                "criterion": 3,
+                "label": "Deriva de OP",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "OP preservado; não substitui a identificação morfológica ou a segurança do início por outro conteúdo."
+              },
+              {
+                "criterion": 4,
+                "label": "Conduta insegura premiada",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "A correta não premia conduta insegura; mecanismos/rótulos dos distratores não são recomendados."
+              },
+              {
+                "criterion": 5,
+                "label": "Distrator absurdo",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "Distratores representam erros reais de dose/interação ou categorias de patologia, mantendo paralelismo."
+              },
+              {
+                "criterion": 6,
+                "label": "Trivia sem consequência clínica",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "O item evita erro de início sobhipercalemia ou de classificação anatomopatológica; não exige trivia numérica solta."
+              },
+              {
+                "criterion": 7,
+                "label": "Explicação contradiz gabarito",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "Explicação inicia pela correta e distingue os erros, sem inferência não disponível nas fontes."
+              },
+              {
+                "criterion": 8,
+                "label": "Dado decisivo ausente",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "Compartimento arteriolar, espessamento da parede em casca de cebola e lúmen estreito. Não se afirma composição celular específica nem duplicação de membranas basais."
+              },
+              {
+                "criterion": 9,
+                "label": "Protocolo local oculto",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "RotulagemEUA está explícita no itemfinerenona; padrão morfológico é textual e não depende de protocolo local."
+              },
+              {
+                "criterion": 10,
+                "label": "Desatualização relevante",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "SPL atualv15 conferido; Qasim2025 é revisão e Utah é material acadêmico nomeado, sem atualização clínica fictícia."
+              }
+            ],
+            "beforeTriggered": [],
+            "beforeScoreAnnulled": false,
+            "afterTriggered": [],
+            "scoreAnnulled": false
+          },
+          "NQEditorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 1,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 19,
+            "band": "Excelente",
+            "scope": "Objeto pontual exato com card revisado; julgamento editorial sem telemetria nova."
+          },
+          "decisionTree": {
+            "step0": "VERIFICADA/NENHUMA permite avaliar, sem liberação automática.",
+            "step1": "Dez eliminatórios checados; nenhum noAFTER.",
+            "step2": "Sem duplicata nas quatro dimensões das proximidades inspecionadas.",
+            "step3": "Score19 → aprovada.",
+            "lifecycle": "publicado",
+            "actualDeployment": false,
+            "rule": "Handbook §18.4 Regra2/7(a),§19; revisão independente exata continua necessária."
+          },
+          "verdictV2": "aprovada",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "noInheritedGate": true
+        }
+      }
+    ],
+    "sourceRegistry": {
+      "hypertension2025": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12547650/",
+        "opened": true,
+        "version": "Qasim H et al. Cureus2025;17:e92949; DOI10.7759/cureus.92949; PMID41141162",
+        "access": "Texto integral aberto",
+        "locations": [
+          "Histopathological features",
+          "malignant hypertension onion-skin arteriolopathy"
+        ],
+        "verifiedScope": "Revisão narrativa: lesão vascular na hipertensão grave inclui padrão onion-skin, estreitamento e isquemia; sobreposição com outras etiologias impede atribuição causal automática por histologia isolada. Fonte não éRCT/coorte nem define diagnóstico de emergência só por número dePA.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 173091,
+          "sha256": "85d0e872acdbf0e0150052604d3a7e80a9d85edadc68831d4faf7ccda38df326"
+        },
+        "accessedAtOfficialUTC": "2026-10-13 02:09:04 UTC",
+        "retrievalURL": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12547650/fullTextXML"
+      },
+      "utah_image": {
+        "url": "https://webpath.med.utah.edu/RENAHTML/RENAL107.html",
+        "opened": true,
+        "version": "University of Utah WebPath,Renal Pathology image107",
+        "access": "Página de imagem e legenda acadêmica aberta; nenhuma classificação fictícia como diretriz.",
+        "locations": [
+          "Histology-image caption"
+        ],
+        "verifiedScope": "Legenda acadêmica identifica arteriolosclerose hiperplásica com aspecto onion-skin e lúmen estreito. Material didático de patologia, não diretriz ou artigo original. Usado apenas para conferir denominação morfológica; números dePA da legenda não introduzidos no item.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 2761,
+          "sha256": "622abc8dd3e6c3c24cde68a216682b6ecd70184449559111e893d98b017f4c80"
+        },
+        "accessedAtOfficialUTC": "2026-10-13 02:09:04 UTC"
+      }
+    },
+    "cardPatches": [
+      {
+        "id": "qasim_hypertensive_nephrosclerosis_2025",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Qasim et al. — Nefroesclerose hipertensiva (2025)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12547650/",
+          "journal": "Cureus.2025;17:e92949",
+          "ano": 2025,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Padrões vasculares ajudam interpretação, sem atribuição etiológica isolada",
+          "icon": "🔬",
+          "resumo": "Revisão narrativa de alterações vasculares e glomerulares na nefroesclerose hipertensiva e sobreposição com nefropatia diabética. Hipertensão grave pode acompanhar lesão arteriolar em casca de cebola, estreitamento e isquemia. A nomenclatura de arteriolosclerose hiperplásica também foi conferida em legenda de histologia acadêmica da University of Utah. Nenhum limiar de pressão ou efeito terapêutico foi inferido desses textos.",
+          "conclusao": "Identificar o padrão morfológico e integrar contexto; casca de cebola não prova etiologia exclusiva nem diagnóstico de emergência por si.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "e2370b71b34ed40efbd0303b8fa4ead2fe89a2ff41bc2506a6c2ce7a21a80916",
+        "idInspectedAbsent": true,
+        "usedByQids": [
+          "c187c49d"
+        ],
+        "existingBankConsumerQids": [],
+        "sources": [
+          {
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12547650/",
+            "opened": true,
+            "version": "Qasim H et al. Cureus2025;17:e92949; DOI10.7759/cureus.92949; PMID41141162",
+            "access": "Texto integral aberto",
+            "locations": [
+              "Histopathological features",
+              "malignant hypertension onion-skin arteriolopathy"
+            ],
+            "verifiedScope": "Revisão narrativa: lesão vascular na hipertensão grave inclui padrão onion-skin, estreitamento e isquemia; sobreposição com outras etiologias impede atribuição causal automática por histologia isolada. Fonte não éRCT/coorte nem define diagnóstico de emergência só por número dePA.",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 173091,
+              "sha256": "85d0e872acdbf0e0150052604d3a7e80a9d85edadc68831d4faf7ccda38df326"
+            },
+            "accessedAtOfficialUTC": "2026-10-13 02:09:04 UTC",
+            "retrievalURL": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12547650/fullTextXML"
+          },
+          {
+            "url": "https://webpath.med.utah.edu/RENAHTML/RENAL107.html",
+            "opened": true,
+            "version": "University of Utah WebPath,Renal Pathology image107",
+            "access": "Página de imagem e legenda acadêmica aberta; nenhuma classificação fictícia como diretriz.",
+            "locations": [
+              "Histology-image caption"
+            ],
+            "verifiedScope": "Legenda acadêmica identifica arteriolosclerose hiperplásica com aspecto onion-skin e lúmen estreito. Material didático de patologia, não diretriz ou artigo original. Usado apenas para conferir denominação morfológica; números dePA da legenda não introduzidos no item.",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 2761,
+              "sha256": "622abc8dd3e6c3c24cde68a216682b6ecd70184449559111e893d98b017f4c80"
+            },
+            "accessedAtOfficialUTC": "2026-10-13 02:09:04 UTC"
+          }
+        ],
+        "newExactVersionReview": {
+          "verdictV2": "aprovada",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "reason": "Retirada material do detalhe microestrutural não verificado; questão inteira e card inteiro reavaliados nas fontes próprias Qasim2025/UtahRENAL107. Nenhum gate herdado.",
+          "afterSHA256": "e2370b71b34ed40efbd0303b8fa4ead2fe89a2ff41bc2506a6c2ce7a21a80916",
+          "derivation": "Revisão nova do card inteiro exato; ciência/taxonomia/atribuição conferidas; não herda aprovação de versão anterior.",
+          "taxonomyVerified": true,
+          "claimMapping": [
+            {
+              "sourceId": "hypertension2025",
+              "claims": "Revisão narrativa: lesão vascular na hipertensão grave inclui padrão onion-skin, estreitamento e isquemia; sobreposição com outras etiologias impede atribuição causal automática por histologia isolada. Fonte não éRCT/coorte nem define diagnóstico de emergência só por número dePA.",
+              "locations": [
+                "Histopathological features",
+                "malignant hypertension onion-skin arteriolopathy"
+              ]
+            },
+            {
+              "sourceId": "utah_image",
+              "claims": "Legenda acadêmica identifica arteriolosclerose hiperplásica com aspecto onion-skin e lúmen estreito. Material didático de patologia, não diretriz ou artigo original. Usado apenas para conferir denominação morfológica; números dePA da legenda não introduzidos no item.",
+              "locations": [
+                "Histology-image caption"
+              ]
+            }
+          ],
+          "reviewedAtOfficialUTC": "2026-10-13 12:12:48 UTC"
+        },
+        "implementation": "Pacote autoral exato, pendente de revisão independente e integração atômica. Preservar versões de cards históricos; compartilhamento não aprova consumidores de outros lotes.",
+        "existingBankConsumersCount": 0
+      }
+    ],
+    "counts": {
+      "reviewed": 1,
+      "newReviewed": 0,
+      "publicationReleased": 1,
+      "publicationBlocked": 0,
+      "implemented": 0,
+      "independentReviewed": 0
+    },
+    "otherSevenNotReviewed": true,
+    "scope": "Reparo de versão do item já contado; não acrescentar1 ou8 ao progresso. Nenhum produto/Git editado.",
+    "independentExactBindingRequired": {
+      "qid": "c187c49d",
+      "questionAfterSHA256": "2405b8bd8341fa3b01f2a4beb48f8621fc7f544140b7b2c390ba288178e87753",
+      "cardAfterSHA256": "e2370b71b34ed40efbd0303b8fa4ead2fe89a2ff41bc2506a6c2ce7a21a80916",
+      "previousBindingDoesNotTransfer": true
+    },
+    "originalsPreserved": true
+  }
+}

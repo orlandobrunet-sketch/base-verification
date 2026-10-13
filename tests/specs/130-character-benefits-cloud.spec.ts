@@ -109,17 +109,21 @@ test('journeyId ou prefixo divergente mantém ledger e recursos locais juntos', 
         const question = bank.find((question: any) => question.id !== current && question.d === original.d);
         const answers = (window as any).NQAnswers;
         const presentation = answers.present(question);
-        return { questionPresentation: answers.snapshot(presentation), questionId: question.id,
+        const revision = (window as any).questionRevisionCatalog.inspect(presentation, { profile: 'main' });
+        if (revision.status !== 'known') throw new Error('Technical fixture source must be known');
+        return { questionPresentation: answers.snapshot(presentation), questionRevisionBinding: revision.value.binding,
+          questionId: question.id,
           choice: presentation.a, originalChoice: answers.originalIndex(presentation, presentation.a),
           optionId: answers.optionId(presentation, presentation.a) };
       }, remote.currentQuestionId);
-      const { questionPresentation, ...answerIdentity } = different;
+      const { questionPresentation, questionRevisionBinding, ...answerIdentity } = different;
       const differentQid = answerIdentity.questionId;
       remote.currentQuestionId = differentQid;
       remote.classBenefits.seenQids = [differentQid];
       remote.classBenefits.creditedEvents = [remote.classBenefits.journeyId + ':1:' + differentQid];
       // A divergent history still needs one coherent presented question and answer.
       remote.questionPresentation = questionPresentation;
+      remote.questionRevisionBinding = questionRevisionBinding;
       Object.assign(remote.questionAnswer, answerIdentity);
       Object.assign(remote.characterLastAnswer, answerIdentity);
     }
