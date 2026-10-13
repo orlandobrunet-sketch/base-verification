@@ -1106,7 +1106,7 @@
       }
     }
 
-    function _loadStudyState() {
+    function _loadStudyState(includeRaw = false) {
       try {
         const raw = _studyProgressStorage().getItem(STUDY_SAVE_KEY);
         if (!raw) return null;
@@ -1134,7 +1134,7 @@
           });
         }
 
-        return {
+        const state = {
           ...s,
           questions,
           index,
@@ -1144,6 +1144,7 @@
           savedAt,
           ...(requiresRevisions ? {revisionHold: expired ? 'expired' : index >= questions.length ? 'complete' : null} : {})
         };
+        return includeRaw ? {state, raw} : state;
       } catch(e) { return null; }
     }
 
@@ -1153,8 +1154,10 @@
     }
 
     function resumeSavedStudyMode() {
+      if (!_studyProgressBinding) _studyProgressBinding = _studyCaptureBinding();
       if (!_studyBindingCurrent()) return false;
-      const saved = _loadStudyState();
+      const loaded = _loadStudyState(true);
+      const saved = loaded?.state;
       if (!saved) return false;
       if (saved.revisionHold) {
         _toast(saved.revisionHold === 'expired' ? 'O prazo da sessão terminou. O estudo salvo foi preservado; inicie uma nova sessão para continuar.'
@@ -1171,6 +1174,7 @@
       const catalog = _studyRevisionCatalog();
       if (catalog === null) { _toast('O catálogo de revisões ainda não está disponível. Seu estudo foi preservado.', 'warning'); return false; }
       const raw = _studyProgressStorage().getItem(STUDY_SAVE_KEY);
+      if (raw !== loaded.raw) return false;
       if (_studySelectionRaw !== raw) { _studyResumeSelections.clear(); _studySelectionRaw = raw; }
       const presentations = [], answers = [], revisions = [], authors = [];
       for (const {question, savedIndex} of restoredEntries) {
@@ -1213,6 +1217,13 @@
       studyModeWrong = saved.wrong;
       _studyAxisStats = saved.axisStats;
       studyModeActive = true;
+      const upgradeLegacy = saved.presentationVersion === undefined && catalog &&
+        restoredEntries.length === saved.questions.length && !_studyConsultationOnly &&
+        revisions.every(revision => revision && revision.historical === false);
+      if (upgradeLegacy && !_saveStudyState()) {
+        studyModeActive = false;
+        return false;
+      }
       showStudyModePage(undefined, true);
       return true;
     }

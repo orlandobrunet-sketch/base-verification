@@ -1,4 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
+import { routeTechnicalQuestionBank, technicalQuestionBundle } from '../helpers/technical-question-bank';
 
 // Conteúdo sintético: os testes verificam identidade, persistência e pontuação,
 // sem alterar nem emitir parecer sobre uma questão clínica.
@@ -9,6 +10,23 @@ const TOPICS = Array.from({ length: 8 }, (_, i) => ({
   ans: i % 4, exp: `Feedback técnico ${i}.`, refs: [],
   cat: 'nefrologia_geral', diff: ['easy', 'medium', 'hard'][i % 3]
 }));
+technicalQuestionBundle(TOPICS);
+
+// Independently authored archive inputs, declared before any boot or saved payload.
+const OLD_EXAM_AUTHORS = [
+  { qid: 'old-exam-one', t: 'Fixture técnica histórica um', q: 'Snapshot antigo um',
+    opts: ['Antiga zero', 'Antiga um', 'Antiga dois', 'Antiga três'], ans: 2,
+    exp: 'Explicação antiga.', cat: 'geral', diff: 'medium', refs: [] },
+  { qid: 'old-exam-two', t: 'Fixture técnica histórica dois', q: 'Snapshot antigo dois',
+    opts: ['Outra zero', 'Outra um', 'Outra dois', 'Outra três'], ans: 1,
+    exp: 'Outra explicação.', cat: 'geral', diff: 'medium', refs: [] }
+];
+const OLD_EXAM_HISTORY = OLD_EXAM_AUTHORS.map(author => ({
+  qid: author.qid, author, sources: { exam: { id: author.qid, q: author.q,
+    o: [...author.opts], a: author.ans, e: author.exp, c: author.cat } },
+  references: {}, release: 'technical-earlier-exam', policy: { material: true, pending: 'update-required' }
+}));
+technicalQuestionBundle(TOPICS, {}, OLD_EXAM_HISTORY);
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
 
@@ -26,14 +44,12 @@ async function ready(page: Page) {
   });
 }
 
-async function boot(page: Page, instrumentAcidBase = false) {
+async function boot(page: Page, instrumentAcidBase = false, history: unknown[] = []) {
   await page.route('**/*', route => {
     const url = new URL(route.request().url());
-    if (url.pathname.endsWith('/data/topics.js')) {
-      return route.fulfill({ contentType: 'text/javascript', body: `const topics = ${JSON.stringify(TOPICS)};` });
-    }
     return ['localhost', '127.0.0.1'].includes(url.hostname) ? route.continue() : route.abort();
   });
+  await routeTechnicalQuestionBank(page, TOPICS, {}, history);
   if (instrumentAcidBase) {
     // Hooks somente na resposta HTTP da fixture, sem exports novos no produto.
     await page.route('**/js/minigame-acidbase.js*', async route => {
@@ -175,7 +191,7 @@ test('simulado liga teclado, reload e revisão de erros à mesma alternativa ori
 });
 
 test('prova antiga preserva snapshot próprio, escolha errada e ordem sem reinterpretar o banco', async ({ page }) => {
-  await boot(page);
+  await boot(page, false, OLD_EXAM_HISTORY);
   const oldQuestions = [
     { id: 'old-exam-one', q: 'Snapshot antigo um', o: ['Antiga zero', 'Antiga um', 'Antiga dois', 'Antiga três'], a: 2, e: 'Explicação antiga.', c: 'geral' },
     { id: 'old-exam-two', q: 'Snapshot antigo dois', o: ['Outra zero', 'Outra um', 'Outra dois', 'Outra três'], a: 1, e: 'Outra explicação.', c: 'geral' }
@@ -222,9 +238,9 @@ test('Ritual corrige pela opção original e mantém o diagnóstico de oito resp
 test('offline conserva apresentação e resposta após reload sem duplicar histórico', async ({ page }) => {
   await page.route('**/*', route => {
     const url = new URL(route.request().url());
-    if (url.pathname.endsWith('/data/topics.js')) return route.fulfill({ contentType: 'text/javascript', body: `const topics = ${JSON.stringify(TOPICS)};` });
     return ['localhost', '127.0.0.1'].includes(url.hostname) ? route.continue() : route.abort();
   });
+  await routeTechnicalQuestionBank(page, TOPICS);
   await page.goto('/offline.html');
   await page.waitForFunction(() => !!(window as any).NQAnswers && !!document.querySelector('.nq-off-btn'));
   // A página já sorteou naturalmente; o teste usa o snapshot que ela salvou.

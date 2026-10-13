@@ -1,0 +1,1185 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 85405,
+  "sourceReportSHA256": "30794be1095626544f44d9ecdff1852ae81fe261170f414df5c117fd2b1aef89",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_INDEPENDENT_FORMAL_PEER_BACKFILL_v2",
+    "reviewer": "clinical_peer_initial_backfill, independent clinical reading",
+    "batch": "c001",
+    "verifiedAtOfficialUTC": "2026-10-13 13:57:33 UTC",
+    "timestampQualification": "Official clock tool. Raw host clock known approximately3h behind; not used or corrected.",
+    "reviewMode": "Independent peer of exact author AFTER and cards; original primary texts/records plus explicitly authorized public retrieval; no inherited author gate.",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "publishedTechnicalMerge": "135899077669af6dcf564717833227828ba03fe5",
+    "clinicalCheckoutObserved": "nefroquest-clinical-13 / candidate16.11 / supplied HEAD1db4a28; not independently mutated or QA tested",
+    "authorReport": {
+      "path": "docs/editorial/reviews/2026-10-12/group-c-output-001-A2.json",
+      "bytes": 126015,
+      "sha256": "9803217ddf8b4d03677be35621ff64006585d91b6be9aeb255c6f772548203a4"
+    },
+    "portableAuthorReport": {
+      "path": "docs/editorial/reviews/2026-10-12/group-c-output-001-A2.json",
+      "bytes": 127216,
+      "sha256": "1550f4185f3ce0aad4fc3fa07dccd0c6e3303d7b189f4891c3b35c46459941c5"
+    },
+    "originInput": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 24495,
+      "sha256": "947575dc0ad4efe825ad8dd5a31f982d39695f22e6bc69ea0e7b5b17be926a1d"
+    },
+    "scopePin": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 2410,
+      "sha256": "cb9c7ca8cb52a14407ea72444fe8c6d28f9be2fe80f1972e6ec3e907cb55ad2a"
+    },
+    "normativeSources": [
+      {
+        "path": "AGENTS.md",
+        "bytes": 15910,
+        "sha256": "123d3bf57a43e23dd21adb277295bfbaa8a0d46dccb584f12265396abe4dfe83"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      }
+    ],
+    "medicalEvidenceSkill": {
+      "packages": [
+        "c31/instructions",
+        "c32/verified-medical-answer"
+      ],
+      "read": true,
+      "publicScientificAuthorization": "Explicit user2026-10-13: autorizo sim, sempre pode consultar fontes científicas - DEVE consultar; parent relayed transcript. Public reading/download only, no login or data upload."
+    },
+    "sourceProof": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 92005,
+      "sha256": "7af0b208ce373bda7ff733e1dac2fe1117321c0de415aa9ec97fe4d2ac901876"
+    },
+    "summaryTable": [
+      {
+        "qid": "2acaa158",
+        "OP": "Escolher interrupção temporária docheckpoint e corticosteroide em nefriteintersticial biopsiada, com avaliaçãooncologiconefrológica.",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "verdictV2": "revisão maior",
+        "publicationAuthorization": "BLOQUEADA",
+        "score": 16,
+        "eliminatorTriggered": false
+      },
+      {
+        "qid": "5bfb77d2",
+        "OP": "Suspender tramadol suspeito após convulsão e reavaliar analgesia naDRCavançada, semrotaçãoautomática aopioidesdeacúmulorenal.",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "verdictV2": "revisão maior",
+        "publicationAuthorization": "BLOQUEADA",
+        "score": 18,
+        "eliminatorTriggered": false
+      }
+    ],
+    "questions": [
+      {
+        "qid": "2acaa158",
+        "sourceLine": 354,
+        "BEFORE": {
+          "t": "Nefrite Intersticial Aguda por Inibidores de Checkpoint Imunológico",
+          "qid": "2acaa158",
+          "q": "Um paciente com carcinoma metastático em uso de inibidor de checkpoint imunológico (anti-PD-1) apresenta, após cerca de 8 semanas, elevação da creatinina sérica de 0,9 para 2,6 mg/dL (aumento de 2,9 vezes o valor basal), proteinúria leve e leucocitúria, sem sinais de infecção ou hipovolemia. A biópsia renal, já realizada, revela nefrite tubulointersticial aguda com eosinófilos, sem necrose tubular. Qual é a conduta mais adequada?",
+          "opts": [
+            "Manter o inibidor de checkpoint e iniciar diuréticos para controlar o edema e melhorar a função renal.",
+            "Suspender temporariamente o inibidor de checkpoint, retirar outros fármacos potencialmente associados à nefrite intersticial e iniciar corticosteroide sistêmico, com monitorização da função renal.",
+            "Realizar plasmaférese para remover o agente imunoterápico e iniciar diálise precoce.",
+            "Manter o inibidor de checkpoint e iniciar antibióticos empíricos por suspeita de nefrite intersticial infecciosa."
+          ],
+          "ans": 1,
+          "exp": "O aumento da creatinina de 0,9 para 2,6 mg/dL corresponde a lesão renal aguda KDIGO estágio 2 pelo critério de creatinina (2,0–2,9 vezes o basal), com biópsia mostrando nefrite tubulointersticial aguda — o padrão predominante da lesão renal por inibidores de checkpoint. A conduta é: suspender temporariamente o inibidor de checkpoint (a suspensão definitiva não é regra universal e depende da gravidade, da resposta e da necessidade oncológica); retirar outros fármacos que também causam nefrite intersticial (por exemplo, inibidor de bomba de prótons, anti-inflamatório não esteroidal e antibióticos); e iniciar corticosteroide sistêmico, com a dose ajustada à gravidade conforme a diretriz, sob monitorização da função renal. Neste caso a biópsia já foi realizada e confirmou o diagnóstico; quando o diagnóstico é incerto, a biópsia idealmente precede a escalada terapêutica. Diuréticos (A) não tratam a inflamação intersticial. Plasmaférese e diálise precoce (C) não estão indicadas sem indicação dialítica, pois a patogênese não envolve anticorpos circulantes removíveis. Antibiótico empírico (D) é inadequado na ausência de infecção. O rechallenge com o inibidor de checkpoint, quando considerado, é individualizado — em séries observacionais, cerca de um quarto dos pacientes reexpostos apresenta recidiva da lesão renal.",
+          "diff": "hard",
+          "cat": "farmacologia",
+          "refs": [
+            "ici_aki_cortazar_multicenter_2020",
+            "ason_ici_nephrotoxicity_2025"
+          ]
+        },
+        "beforeQuestionSHA256": "0a17df6680cecf0775ea4d03c60b10c83618214d05886529b35d446e43474dc9",
+        "AFTER": {
+          "t": "Nefrite Intersticial Aguda por Inibidores de Checkpoint Imunológico",
+          "qid": "2acaa158",
+          "q": "Paciente com carcinoma metastático em uso de inibidor de checkpoint imunológico anti-PD-1 há oito semanas apresenta aumento da creatinina de 0,9 para 2,6 mg/dL em cinco dias. Não há sinais de infecção ou hipovolemia. Biópsia renal confirma nefrite tubulointersticial aguda. Qual é a conduta inicial mais adequada?",
+          "opts": [
+            "Manter o anti-PD-1 e observar a função renal antes de decidir por imunossupressão.",
+            "Interromper temporariamente o anti-PD-1, retirar fármacos associados e iniciar corticosteroide.",
+            "Interromper definitivamente o anti-PD-1 e adiar corticosteroide até haver necessidade de diálise.",
+            "Manter o anti-PD-1, retirar outros fármacos e observar resposta antes de iniciar corticosteroide."
+          ],
+          "ans": 1,
+          "exp": "A nefrite intersticial confirmada requer discutir a interrupção temporária do inibidor de checkpoint e o tratamento com corticosteroide, retirando também outros fármacos potencialmente associados e monitorando a função renal. O aumento agudo da creatinina é relevante para a gravidade; a interrupção definitiva e uma eventual reexposição dependem do curso renal e da necessidade oncológica. A associação observacional entre corticosteroide e recuperação renal não estabelece causalidade. RASCUNHO BLOQUEADO: conferir os pontos de prática específicos no texto integral ASON 2025 antes de implementação.",
+          "diff": "hard",
+          "cat": "farmacologia",
+          "refs": [
+            "ici_aki_cortazar_multicenter_2020",
+            "ason_ici_nephrotoxicity_2025"
+          ]
+        },
+        "afterQuestionSHA256": "ad970147a82af4b85353e23f3f310aa3573c4a76cb7e5dee3a0a95ece74552ba",
+        "authorAfterQuestionSHA256": "8a1bf3da4e20ff71ff39d85e164c397f6f616c26881b1bcd185cc58830cf2e71",
+        "exactAfterPreserved": true,
+        "reviewObject": "Author AFTER literal plus exact reference cards; no new replacement version evaluated.",
+        "verdictV2": "revisão maior",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "moderada",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7: PARCIALMENTE VERIFICADA/DECISIVA, revisão maior => BLOQUEADA.",
+        "OP": "Escolher interrupção temporária docheckpoint e corticosteroide em nefriteintersticial biopsiada, com avaliaçãooncologiconefrológica.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária",
+          "targetProfile": "estudantes avançados e residentes, pt-BR",
+          "observedPhysicalDiff": "hard",
+          "classificationOnly": true
+        },
+        "caseReconstruction": {
+          "populationContextAndDecisiveData": "Carcinomametastático,antiPD1oito semanas,creat0,9→2,6emcincodias,seminfecção/hipovolemia,biópsiaNIA;condutainicial.",
+          "decision": "Escolher interrupção temporária docheckpoint e corticosteroide em nefriteintersticial biopsiada, com avaliaçãooncologiconefrológica.",
+          "temporalHorizon": "O especificado no AFTER literal; não extrapolado para outra população ou momento.",
+          "hiddenAssumptions": "Nenhum dado ausente completado silenciosamente; limitações de fonte e interpretação constam nos achados."
+        },
+        "justification": "Cortazar2020corrobora associaçãoesteroide/recuperação eholdICI,semcausalidade. AbstractASON2025identifica consenso/practicepoints,mas integral403 impedeconfirmar o manejo específico. AFTERliteralterminaRASCUNHOBLOQUEADO.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "ASON2025integral403; pontos de práticaespecíficos não confirmados noabstract."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "AFTERliteralcontémRASCUNHOBLOQUEADO:notaeditorial precisa sair em novaversão, comgate."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "result": "Argumento plausível: resolução obrigatória antes de aprovação",
+          "analysis": "Coorte não substitui consenso atual sobrehold versusinterrupçãodefinitiva. Fonte requerida pela própria explicação continua ausente; não consolidar material pendente.",
+          "sourceAccessLimitationKeptSeparate": true
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "scoreAnnulled": false,
+          "unconfirmedCriterion2": true,
+          "rationale": "Falta de acesso à fonte gera teto no passo0, não se fabrica prova de referência falsa. Somente defeitos demonstrados constam como disparados."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 1,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 1,
+            "Referências": 1,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "provisionalDimensionSum": 16,
+          "total": 16,
+          "band": "Boa com reparos",
+          "scoreAnnulled": false,
+          "override": "Teto de evidência/pendência, recurso ou eliminatório prevalece sobre nota; dimensões explicitadas, sem nota liberar fonte ausente."
+        },
+        "decisionTree": {
+          "step0": "PARCIALMENTE VERIFICADA/DECISIVA; teto revisão maior",
+          "step1": "Nenhum eliminatório comprovado",
+          "step2": "Coorte não substitui consenso atual sobrehold versusinterrupçãodefinitiva. Fonte requerida pela própria explicação continua ausente; não consolidar material pendente.",
+          "step3": "16/20 antes de overrides",
+          "result": "revisão maior",
+          "lifecycle": "em_revisão",
+          "qualification": "Estado editorial proposto; nenhum deploy, publicação ou banco alterado."
+        },
+        "validity": {
+          "content": "Cortazar2020corrobora associaçãoesteroide/recuperação eholdICI,semcausalidade. AbstractASON2025identifica consenso/practicepoints,mas integral403 impedeconfirmar o manejo específico. AFTERliteralterminaRASCUNHOBLOQUEADO.",
+          "construct": "O OP exige Aplicar; dificuldade intermediária classificada independentemente.",
+          "response": "Alternativas testadas contra dados expressos; sem dados psicométricos ou produçãoQA.",
+          "consequential": "Limites de população, segurança e evidência mantidos; autorização de implementação derivada, não presumida.",
+          "alignmentAllFive": true,
+          "objectiveDrift": false
+        },
+        "duplicateAssessment": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "língua"
+          ],
+          "result": "Não se declara fusão por associação temática. Este parecer não adjudica qids fora da ownership.",
+          "bankWideDuplicateSearchPerformed": false,
+          "limitation": "Apenas repetição literal dos AFTER selecionados é testada; ausência de duplicidade em todo banco não é alegada."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "cortazar",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 1414,
+              "sha256": "578f3aa6093dc2d98dd9ad723a72e5cddfa88c47806c4b3ebfc8433c1549d43d"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 1424,
+              "sha256": "7b78b3a6d0b40b31301325f2f367fa169bfb4db571fbba213c1d73982196a81d"
+            },
+            "finding": "Cortazar2020corrobora associaçãoesteroide/recuperação eholdICI,semcausalidade. AbstractASON2025identifica consenso/practicepoints,mas integral403 impedeconfirmar o manejo específico. AFTERliteralterminaRASCUNHOBLOQUEADO.",
+            "independentlyRead": true,
+            "newExternalRetrieval": true
+          },
+          {
+            "sourceId": "ason_abstract",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 12148,
+              "sha256": "18286f62908c60232716760af77f408faedc13ce36d591f86046a121ae2fd995"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 12148,
+              "sha256": "18286f62908c60232716760af77f408faedc13ce36d591f86046a121ae2fd995"
+            },
+            "finding": "Cortazar2020corrobora associaçãoesteroide/recuperação eholdICI,semcausalidade. AbstractASON2025identifica consenso/practicepoints,mas integral403 impedeconfirmar o manejo específico. AFTERliteralterminaRASCUNHOBLOQUEADO.",
+            "independentlyRead": true,
+            "newExternalRetrieval": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "ici_aki_cortazar_multicenter_2020",
+            "exactCardSHA256": "8bf0196a468c2214e71064fcfe5813f981ccd28714815d5ed4415efa715d88d1"
+          },
+          {
+            "id": "ason_ici_nephrotoxicity_2025",
+            "exactCardSHA256": "56c0fe77cd15f9d086cd41981de680ed01171af5419e85fe6112c0c56c26eace"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR: requer nova versão e novo full gate; não há replacement liberado neste parecer",
+          "BEFORE": {
+            "t": "Nefrite Intersticial Aguda por Inibidores de Checkpoint Imunológico",
+            "qid": "2acaa158",
+            "q": "Um paciente com carcinoma metastático em uso de inibidor de checkpoint imunológico (anti-PD-1) apresenta, após cerca de 8 semanas, elevação da creatinina sérica de 0,9 para 2,6 mg/dL (aumento de 2,9 vezes o valor basal), proteinúria leve e leucocitúria, sem sinais de infecção ou hipovolemia. A biópsia renal, já realizada, revela nefrite tubulointersticial aguda com eosinófilos, sem necrose tubular. Qual é a conduta mais adequada?",
+            "opts": [
+              "Manter o inibidor de checkpoint e iniciar diuréticos para controlar o edema e melhorar a função renal.",
+              "Suspender temporariamente o inibidor de checkpoint, retirar outros fármacos potencialmente associados à nefrite intersticial e iniciar corticosteroide sistêmico, com monitorização da função renal.",
+              "Realizar plasmaférese para remover o agente imunoterápico e iniciar diálise precoce.",
+              "Manter o inibidor de checkpoint e iniciar antibióticos empíricos por suspeita de nefrite intersticial infecciosa."
+            ],
+            "ans": 1,
+            "exp": "O aumento da creatinina de 0,9 para 2,6 mg/dL corresponde a lesão renal aguda KDIGO estágio 2 pelo critério de creatinina (2,0–2,9 vezes o basal), com biópsia mostrando nefrite tubulointersticial aguda — o padrão predominante da lesão renal por inibidores de checkpoint. A conduta é: suspender temporariamente o inibidor de checkpoint (a suspensão definitiva não é regra universal e depende da gravidade, da resposta e da necessidade oncológica); retirar outros fármacos que também causam nefrite intersticial (por exemplo, inibidor de bomba de prótons, anti-inflamatório não esteroidal e antibióticos); e iniciar corticosteroide sistêmico, com a dose ajustada à gravidade conforme a diretriz, sob monitorização da função renal. Neste caso a biópsia já foi realizada e confirmou o diagnóstico; quando o diagnóstico é incerto, a biópsia idealmente precede a escalada terapêutica. Diuréticos (A) não tratam a inflamação intersticial. Plasmaférese e diálise precoce (C) não estão indicadas sem indicação dialítica, pois a patogênese não envolve anticorpos circulantes removíveis. Antibiótico empírico (D) é inadequado na ausência de infecção. O rechallenge com o inibidor de checkpoint, quando considerado, é individualizado — em séries observacionais, cerca de um quarto dos pacientes reexpostos apresenta recidiva da lesão renal.",
+            "diff": "hard",
+            "cat": "farmacologia",
+            "refs": [
+              "ici_aki_cortazar_multicenter_2020",
+              "ason_ici_nephrotoxicity_2025"
+            ]
+          },
+          "AFTER": {
+            "t": "Nefrite Intersticial Aguda por Inibidores de Checkpoint Imunológico",
+            "qid": "2acaa158",
+            "q": "Paciente com carcinoma metastático em uso de inibidor de checkpoint imunológico anti-PD-1 há oito semanas apresenta aumento da creatinina de 0,9 para 2,6 mg/dL em cinco dias. Não há sinais de infecção ou hipovolemia. Biópsia renal confirma nefrite tubulointersticial aguda. Qual é a conduta inicial mais adequada?",
+            "opts": [
+              "Manter o anti-PD-1 e observar a função renal antes de decidir por imunossupressão.",
+              "Interromper temporariamente o anti-PD-1, retirar fármacos associados e iniciar corticosteroide.",
+              "Interromper definitivamente o anti-PD-1 e adiar corticosteroide até haver necessidade de diálise.",
+              "Manter o anti-PD-1, retirar outros fármacos e observar resposta antes de iniciar corticosteroide."
+            ],
+            "ans": 1,
+            "exp": "A nefrite intersticial confirmada requer discutir a interrupção temporária do inibidor de checkpoint e o tratamento com corticosteroide, retirando também outros fármacos potencialmente associados e monitorando a função renal. O aumento agudo da creatinina é relevante para a gravidade; a interrupção definitiva e uma eventual reexposição dependem do curso renal e da necessidade oncológica. A associação observacional entre corticosteroide e recuperação renal não estabelece causalidade. RASCUNHO BLOQUEADO: conferir os pontos de prática específicos no texto integral ASON 2025 antes de implementação.",
+            "diff": "hard",
+            "cat": "farmacologia",
+            "refs": [
+              "ici_aki_cortazar_multicenter_2020",
+              "ason_ici_nephrotoxicity_2025"
+            ]
+          },
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "Interromper temporariamente o anti-PD-1, retirar fármacos associados e iniciar corticosteroide."
+          },
+          "referenceCards": {
+            "ici_aki_cortazar_multicenter_2020": {
+              "label": "Cortazar et al. — LRA por Inibidores de Checkpoint: estudo multicêntrico (2020)",
+              "url": "https://doi.org/10.1681/ASN.2019070676",
+              "journal": "Journal of the American Society of Nephrology",
+              "ano": 2020,
+              "tipo": "Coorte",
+              "badge": "COHORT",
+              "badgeColor": "#f59e0b",
+              "impacto": "Nefrite intersticial predomina; rechallenge exige avaliação individualizada.",
+              "icon": "🔬",
+              "resumo": "Coorte multicêntrica de 138 casos de LRA por inibidores de checkpoint e 276 controles. Nefrite tubulointersticial em 93% dos 60 biopsiados. Corticosteroide associou-se a recuperação; não demonstra causalidade. Recidiva em 23% dos 31 reexpostos.",
+              "conclusao": "A coorte descreve apresentação e desfechos; não substitui consenso terapêutico atual.",
+              "curiosidade": ""
+            },
+            "ason_ici_nephrotoxicity_2025": {
+              "label": "ASON — Nefrotoxicidade por Inibidores de Checkpoint (2025)",
+              "url": "https://doi.org/10.1016/j.kint.2024.09.017",
+              "journal": "Kidney International",
+              "ano": 2025,
+              "tipo": "Consenso",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Posição da American Society of Onco-nephrology: suspender o inibidor de checkpoint, glicocorticoides e rechallenge individualizado",
+              "icon": "📋",
+              "resumo": "Posição da American Society of Onco-nephrology (Herrmann et al., Kidney International 2025;107:21-32). Revisa incidência, fatores de risco (inibidor de bomba de prótons, doença renal crônica, imunoterapia combinada), mecanismos e apresentação da LRA por inibidores de checkpoint, com predomínio de nefrite tubulointersticial aguda. Traz pontos de prática para avaliação e diagnóstico inicial, papel da biópsia versus tratamento empírico, suspensão do inibidor de checkpoint, imunossupressão com glicocorticoides e consideração de rechallenge após o episódio; discute receptores de transplante renal. São pontos de prática por consenso de especialistas, não recomendações com classe e nível formais.",
+              "conclusao": "Conduta contemporânea da LRA por inibidores de checkpoint: suspender o agente, tratar com glicocorticoides e individualizar o rechallenge; a biópsia auxilia o diagnóstico, sobretudo quando incerto.",
+              "curiosidade": ""
+            }
+          },
+          "suggestedWork": "ObterASON2025integral,conferirmanejo/graveza/coordenaçãooncologia e produzirexplicação semnotaeditorial; novoAFTER ecard precisamfullgate.",
+          "replacementCreated": false,
+          "materialChangeRequiresNewFullGate": true
+        },
+        "implementationObservation": {
+          "productMutationAuthorizedHere": false,
+          "questionsOrCardsApplied": 0,
+          "preserve": [
+            "qid",
+            "histórico",
+            "FSRS",
+            "ordem do banco"
+          ],
+          "noBackendOrProductionQA": true,
+          "originIsSourceBank": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+          "currentQuestionIsNotAssumedNewClinicalDelta": true
+        },
+        "verificationPending": [
+          {
+            "nature": "DECISIVA",
+            "claim": "ObterASON2025integral,conferirmanejo/graveza/coordenaçãooncologia e produzirexplicação semnotaeditorial; novoAFTER ecard precisamfullgate.",
+            "sourceNeeded": "Original/registro primário da referência exata indicada, ou delimitação do detalhe secundário em nova redação.",
+            "blockReason": "Teto por fonte decisiva ausente",
+            "externalRetrievalSuspended": false,
+            "accessLimitation": "Tentativas públicas autorizadas realizadas; limites específicos e ausência de texto integral documentados. Não se passa por login/captcha."
+          }
+        ],
+        "claimLedger": [
+          {
+            "field": "q",
+            "exactText": "Paciente com carcinoma metastático em uso de inibidor de checkpoint imunológico anti-PD-1 há oito semanas apresenta aumento da creatinina de 0,9 para 2,6 mg/dL em cinco dias. Não há sinais de infecção ou hipovolemia. Biópsia renal confirma nefrite tubulointersticial aguda. Qual é a conduta inicial mais adequada?",
+            "status": "PARCIALMENTE VERIFICADA",
+            "qualification": "Dados fictícios do caso são premissas, não medidas de estudo; recomendações/desenho dependem dos sources abaixo."
+          },
+          {
+            "field": "correctAnswer",
+            "exactText": "Interromper temporariamente o anti-PD-1, retirar fármacos associados e iniciar corticosteroide.",
+            "status": "PARCIALMENTE VERIFICADA",
+            "qualification": "Cortazar2020corrobora associaçãoesteroide/recuperação eholdICI,semcausalidade. AbstractASON2025identifica consenso/practicepoints,mas integral403 impedeconfirmar o manejo específico. AFTERliteralterminaRASCUNHOBLOQUEADO."
+          },
+          {
+            "field": "exp",
+            "exactText": "A nefrite intersticial confirmada requer discutir a interrupção temporária do inibidor de checkpoint e o tratamento com corticosteroide, retirando também outros fármacos potencialmente associados e monitorando a função renal. O aumento agudo da creatinina é relevante para a gravidade; a interrupção definitiva e uma eventual reexposição dependem do curso renal e da necessidade oncológica. A associação observacional entre corticosteroide e recuperação renal não estabelece causalidade. RASCUNHO BLOQUEADO: conferir os pontos de prática específicos no texto integral ASON 2025 antes de implementação.",
+            "status": "PARCIALMENTE VERIFICADA",
+            "qualification": "Cortazar2020corrobora associaçãoesteroide/recuperação eholdICI,semcausalidade. AbstractASON2025identifica consenso/practicepoints,mas integral403 impedeconfirmar o manejo específico. AFTERliteralterminaRASCUNHOBLOQUEADO."
+          },
+          {
+            "field": "referenceCard.ici_aki_cortazar_multicenter_2020.label",
+            "exactText": "Cortazar et al. — LRA por Inibidores de Checkpoint: estudo multicêntrico (2020)",
+            "status": "VERIFICADA",
+            "qualification": "Texto primárioPMC diretamente aberto e lido confirma138/276,56de60(93%), associaçãoesteroide/recuperação e7recidivasentre31reexpostos(23%). Falhasde cópia local não foram usadas comoarticletext."
+          },
+          {
+            "field": "referenceCard.ici_aki_cortazar_multicenter_2020.url",
+            "exactText": "https://doi.org/10.1681/ASN.2019070676",
+            "status": "VERIFICADA",
+            "qualification": "Texto primárioPMC diretamente aberto e lido confirma138/276,56de60(93%), associaçãoesteroide/recuperação e7recidivasentre31reexpostos(23%). Falhasde cópia local não foram usadas comoarticletext."
+          },
+          {
+            "field": "referenceCard.ici_aki_cortazar_multicenter_2020.journal",
+            "exactText": "Journal of the American Society of Nephrology",
+            "status": "VERIFICADA",
+            "qualification": "Texto primárioPMC diretamente aberto e lido confirma138/276,56de60(93%), associaçãoesteroide/recuperação e7recidivasentre31reexpostos(23%). Falhasde cópia local não foram usadas comoarticletext."
+          },
+          {
+            "field": "referenceCard.ici_aki_cortazar_multicenter_2020.ano",
+            "exactText": 2020,
+            "status": "VERIFICADA",
+            "qualification": "Texto primárioPMC diretamente aberto e lido confirma138/276,56de60(93%), associaçãoesteroide/recuperação e7recidivasentre31reexpostos(23%). Falhasde cópia local não foram usadas comoarticletext."
+          },
+          {
+            "field": "referenceCard.ici_aki_cortazar_multicenter_2020.tipo",
+            "exactText": "Coorte",
+            "status": "VERIFICADA",
+            "qualification": "Texto primárioPMC diretamente aberto e lido confirma138/276,56de60(93%), associaçãoesteroide/recuperação e7recidivasentre31reexpostos(23%). Falhasde cópia local não foram usadas comoarticletext."
+          },
+          {
+            "field": "referenceCard.ici_aki_cortazar_multicenter_2020.impacto",
+            "exactText": "Nefrite intersticial predomina; rechallenge exige avaliação individualizada.",
+            "status": "VERIFICADA",
+            "qualification": "Texto primárioPMC diretamente aberto e lido confirma138/276,56de60(93%), associaçãoesteroide/recuperação e7recidivasentre31reexpostos(23%). Falhasde cópia local não foram usadas comoarticletext."
+          },
+          {
+            "field": "referenceCard.ici_aki_cortazar_multicenter_2020.resumo",
+            "exactText": "Coorte multicêntrica de 138 casos de LRA por inibidores de checkpoint e 276 controles. Nefrite tubulointersticial em 93% dos 60 biopsiados. Corticosteroide associou-se a recuperação; não demonstra causalidade. Recidiva em 23% dos 31 reexpostos.",
+            "status": "VERIFICADA",
+            "qualification": "Texto primárioPMC diretamente aberto e lido confirma138/276,56de60(93%), associaçãoesteroide/recuperação e7recidivasentre31reexpostos(23%). Falhasde cópia local não foram usadas comoarticletext."
+          },
+          {
+            "field": "referenceCard.ici_aki_cortazar_multicenter_2020.conclusao",
+            "exactText": "A coorte descreve apresentação e desfechos; não substitui consenso terapêutico atual.",
+            "status": "VERIFICADA",
+            "qualification": "Texto primárioPMC diretamente aberto e lido confirma138/276,56de60(93%), associaçãoesteroide/recuperação e7recidivasentre31reexpostos(23%). Falhasde cópia local não foram usadas comoarticletext."
+          },
+          {
+            "field": "referenceCard.ici_aki_cortazar_multicenter_2020.curiosidade",
+            "exactText": "",
+            "status": "VERIFICADA",
+            "qualification": "Texto primárioPMC diretamente aberto e lido confirma138/276,56de60(93%), associaçãoesteroide/recuperação e7recidivasentre31reexpostos(23%). Falhasde cópia local não foram usadas comoarticletext."
+          },
+          {
+            "field": "referenceCard.ason_ici_nephrotoxicity_2025.label",
+            "exactText": "ASON — Nefrotoxicidade por Inibidores de Checkpoint (2025)",
+            "status": "PARCIALMENTE VERIFICADA",
+            "qualification": "Identidade,consenso,expertpanel eescopo/practicepoints confirmados noabstract primário. Integralpublisher403; afirmações específicas deholdICI/corticosteroide/rechallenge do card nãoforamobtidas como textoprimário. Não herdar doautor."
+          },
+          {
+            "field": "referenceCard.ason_ici_nephrotoxicity_2025.url",
+            "exactText": "https://doi.org/10.1016/j.kint.2024.09.017",
+            "status": "PARCIALMENTE VERIFICADA",
+            "qualification": "Identidade,consenso,expertpanel eescopo/practicepoints confirmados noabstract primário. Integralpublisher403; afirmações específicas deholdICI/corticosteroide/rechallenge do card nãoforamobtidas como textoprimário. Não herdar doautor."
+          },
+          {
+            "field": "referenceCard.ason_ici_nephrotoxicity_2025.journal",
+            "exactText": "Kidney International",
+            "status": "PARCIALMENTE VERIFICADA",
+            "qualification": "Identidade,consenso,expertpanel eescopo/practicepoints confirmados noabstract primário. Integralpublisher403; afirmações específicas deholdICI/corticosteroide/rechallenge do card nãoforamobtidas como textoprimário. Não herdar doautor."
+          },
+          {
+            "field": "referenceCard.ason_ici_nephrotoxicity_2025.ano",
+            "exactText": 2025,
+            "status": "PARCIALMENTE VERIFICADA",
+            "qualification": "Identidade,consenso,expertpanel eescopo/practicepoints confirmados noabstract primário. Integralpublisher403; afirmações específicas deholdICI/corticosteroide/rechallenge do card nãoforamobtidas como textoprimário. Não herdar doautor."
+          },
+          {
+            "field": "referenceCard.ason_ici_nephrotoxicity_2025.tipo",
+            "exactText": "Consenso",
+            "status": "PARCIALMENTE VERIFICADA",
+            "qualification": "Identidade,consenso,expertpanel eescopo/practicepoints confirmados noabstract primário. Integralpublisher403; afirmações específicas deholdICI/corticosteroide/rechallenge do card nãoforamobtidas como textoprimário. Não herdar doautor."
+          },
+          {
+            "field": "referenceCard.ason_ici_nephrotoxicity_2025.impacto",
+            "exactText": "Posição da American Society of Onco-nephrology: suspender o inibidor de checkpoint, glicocorticoides e rechallenge individualizado",
+            "status": "PARCIALMENTE VERIFICADA",
+            "qualification": "Identidade,consenso,expertpanel eescopo/practicepoints confirmados noabstract primário. Integralpublisher403; afirmações específicas deholdICI/corticosteroide/rechallenge do card nãoforamobtidas como textoprimário. Não herdar doautor."
+          },
+          {
+            "field": "referenceCard.ason_ici_nephrotoxicity_2025.resumo",
+            "exactText": "Posição da American Society of Onco-nephrology (Herrmann et al., Kidney International 2025;107:21-32). Revisa incidência, fatores de risco (inibidor de bomba de prótons, doença renal crônica, imunoterapia combinada), mecanismos e apresentação da LRA por inibidores de checkpoint, com predomínio de nefrite tubulointersticial aguda. Traz pontos de prática para avaliação e diagnóstico inicial, papel da biópsia versus tratamento empírico, suspensão do inibidor de checkpoint, imunossupressão com glicocorticoides e consideração de rechallenge após o episódio; discute receptores de transplante renal. São pontos de prática por consenso de especialistas, não recomendações com classe e nível formais.",
+            "status": "PARCIALMENTE VERIFICADA",
+            "qualification": "Identidade,consenso,expertpanel eescopo/practicepoints confirmados noabstract primário. Integralpublisher403; afirmações específicas deholdICI/corticosteroide/rechallenge do card nãoforamobtidas como textoprimário. Não herdar doautor."
+          },
+          {
+            "field": "referenceCard.ason_ici_nephrotoxicity_2025.conclusao",
+            "exactText": "Conduta contemporânea da LRA por inibidores de checkpoint: suspender o agente, tratar com glicocorticoides e individualizar o rechallenge; a biópsia auxilia o diagnóstico, sobretudo quando incerto.",
+            "status": "PARCIALMENTE VERIFICADA",
+            "qualification": "Identidade,consenso,expertpanel eescopo/practicepoints confirmados noabstract primário. Integralpublisher403; afirmações específicas deholdICI/corticosteroide/rechallenge do card nãoforamobtidas como textoprimário. Não herdar doautor."
+          },
+          {
+            "field": "referenceCard.ason_ici_nephrotoxicity_2025.curiosidade",
+            "exactText": "",
+            "status": "PARCIALMENTE VERIFICADA",
+            "qualification": "Identidade,consenso,expertpanel eescopo/practicepoints confirmados noabstract primário. Integralpublisher403; afirmações específicas deholdICI/corticosteroide/rechallenge do card nãoforamobtidas como textoprimário. Não herdar doautor."
+          }
+        ]
+      },
+      {
+        "qid": "5bfb77d2",
+        "sourceLine": 597,
+        "BEFORE": {
+          "t": "Tramadol na DRC — Neurotoxicidade e Conduta",
+          "qid": "5bfb77d2",
+          "q": "Paciente com doença renal crônica estágio 4, taxa de filtração glomerular estimada de 22 mL/min/1,73 m², usa tramadol de liberação imediata 100 mg a cada 8 horas para dor crônica. Após alguns dias, apresenta crise convulsiva generalizada. Não há história prévia de epilepsia nem uso concomitante de medicamentos serotoninérgicos. Qual é a interpretação e a conduta farmacológica mais apropriadas?",
+          "opts": [
+            "Manter o tramadol em dose menor e iniciar anticonvulsivante, pois a crise não exige suspensão do analgésico.",
+            "Reconhecer possível neurotoxicidade favorecida pela redução da excreção renal do tramadol e de seu metabólito ativo, suspender o fármaco e reavaliar a estratégia analgésica.",
+            "Substituir o tramadol por morfina, cujos metabólitos não se acumulam na doença renal crônica.",
+            "Substituir o tramadol por codeína, que não depende de conversão metabólica nem de eliminação renal."
+          ],
+          "ans": 1,
+          "exp": "A crise convulsiva exige suspensão do tramadol e reavaliação do tratamento (alternativa B). Na disfunção renal grave, diminuem a excreção do tramadol e de seu metabólito ativo M1; além disso, o esquema apresentado não respeita o intervalo recomendado quando a depuração de creatinina é inferior a 30 mL/min. O tramadol pode causar convulsões mesmo em doses recomendadas, com risco maior quando a exposição aumenta. A resposta não deve determinar automaticamente outro opioide: primeiro é necessário caracterizar a dor, priorizar estratégias não farmacológicas e não opioides e, se um opioide continuar indicado, selecionar e titular uma opção compatível com a função renal. Manter o tramadol após a crise (A) perpetua a exposição suspeita; morfina (C) e codeína (D) têm metabólitos ativos com risco de acúmulo na doença renal avançada.",
+          "diff": "medium",
+          "cat": "farmacologia",
+          "refs": [
+            "roy_pain_ckd_2020",
+            "tramadol_fda_label_2019"
+          ]
+        },
+        "beforeQuestionSHA256": "6085cd74c40ca16b4f17cb7b1f7dcacde57e1751f87170345d5606202604b13e",
+        "AFTER": {
+          "t": "Tramadol na DRC — Neurotoxicidade e Conduta",
+          "qid": "5bfb77d2",
+          "q": "Paciente com doença renal crônica estágio 4, depuração de creatinina estimada de 22 mL/min, usa tramadol de liberação imediata 100 mg a cada oito horas. Após alguns dias apresenta crise convulsiva generalizada, já controlada. Não há história prévia de epilepsia nem uso concomitante de medicamentos serotoninérgicos. Qual é a conduta farmacológica mais adequada diante da suspeita de neurotoxicidade?",
+          "opts": [
+            "Reduzir a dose do tramadol e associar anticonvulsivante, mantendo o analgésico suspeito.",
+            "Suspender o tramadol e reavaliar a analgesia, considerando acúmulo na disfunção renal.",
+            "Trocar por morfina em dose equianalgésica, sem considerar os metabólitos renais.",
+            "Trocar por codeína em dose equianalgésica, sem reavaliar a necessidade de opioide."
+          ],
+          "ans": 1,
+          "exp": "A exposição ao tramadol deve ser suspensa e a analgesia reavaliada após a crise suspeita. A bula FDA aberta de 2019 descreve excreção reduzida de tramadol e M1 na disfunção renal e risco de convulsão; o parâmetro de ajuste é a depuração de creatinina, não uma TFGe automaticamente intercambiável. RASCUNHO BLOQUEADO: confirmar a bula atual e o manejo analgésico na DRC, incluindo os riscos das trocas propostas, antes de implementar.",
+          "diff": "medium",
+          "cat": "farmacologia",
+          "refs": [
+            "roy_pain_ckd_2020",
+            "tramadol_fda_label_2019"
+          ]
+        },
+        "afterQuestionSHA256": "3e24eb64d05f7540afeb9b36caa2ebfb4b668787117cc688a2420122c035c5b2",
+        "authorAfterQuestionSHA256": "0ef1df5656b59a745ddb1894c15a463da56cb402020ea5595a2858352565d61d",
+        "exactAfterPreserved": true,
+        "reviewObject": "Author AFTER literal plus exact reference cards; no new replacement version evaluated.",
+        "verdictV2": "revisão maior",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7: VERIFICADA/NENHUMA, revisão maior => BLOQUEADA.",
+        "OP": "Suspender tramadol suspeito após convulsão e reavaliar analgesia naDRCavançada, semrotaçãoautomática aopioidesdeacúmulorenal.",
+        "classification": {
+          "primaryCompetence": "conduta/farmacologia",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária",
+          "targetProfile": "estudantes avançados e residentes, pt-BR",
+          "observedPhysicalDiff": "medium",
+          "classificationOnly": true
+        },
+        "caseReconstruction": {
+          "populationContextAndDecisiveData": "DRCG4,CrCl22mL/min,tramadolIR100mga cada8h,convulsãocontrolada,semeplepsia ouserotoninérgicos;decisãopharmacológica.",
+          "decision": "Suspender tramadol suspeito após convulsão e reavaliar analgesia naDRCavançada, semrotaçãoautomática aopioidesdeacúmulorenal.",
+          "temporalHorizon": "O especificado no AFTER literal; não extrapolado para outra população ou momento.",
+          "hiddenAssumptions": "Nenhum dado ausente completado silenciosamente; limitações de fonte e interpretação constam nos achados."
+        },
+        "justification": "FDA2019 eSPLatualIRconfirmamCrCl<30,intervalo12h,max200mgdia,acúmulo deM1 e risco deconvulsões. Royfull confirma excreçãorenal/interações de tramadol,preferivelmenteevitar, e risco deacúmulomorfina. GabaritoB é sustentado,masexplicaçãoexata conservaRASCUNHOBLOQUEADO ependênciajáresolvida.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Apesar de fontes agoraobtidas e gabaritocorreto,explicaçãoexata mantémnotaRASCUNHOBLOQUEADO e dizqueconferência ainda falta. Nãoéversãoeditorialfinal."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Nãoatribuir convulsão exclusivamente atramadol; itempedeconduta diante de suspeita,compatívelcomdechallenge."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "result": "Argumento plausível: resolução obrigatória antes de aprovação",
+          "analysis": "O objetoexato contém instrução de nãoimplementação/pendência; aprová-lo para banco produziria textointerno eestadoinconsistente. Removernãoéherdar gate; requerAFTERnovo.",
+          "sourceAccessLimitationKeptSeparate": true
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "scoreAnnulled": false,
+          "unconfirmedCriterion2": false,
+          "rationale": "Falta de acesso à fonte gera teto no passo0, não se fabrica prova de referência falsa. Somente defeitos demonstrados constam como disparados."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 1,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "provisionalDimensionSum": 18,
+          "total": 18,
+          "band": "Excelente",
+          "scoreAnnulled": false,
+          "override": "Teto de evidência/pendência, recurso ou eliminatório prevalece sobre nota; dimensões explicitadas, sem nota liberar fonte ausente."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA; avaliação normal permitida",
+          "step1": "Nenhum eliminatório comprovado",
+          "step2": "O objetoexato contém instrução de nãoimplementação/pendência; aprová-lo para banco produziria textointerno eestadoinconsistente. Removernãoéherdar gate; requerAFTERnovo.",
+          "step3": "18/20 antes de overrides",
+          "result": "revisão maior",
+          "lifecycle": "em_revisão",
+          "qualification": "Estado editorial proposto; nenhum deploy, publicação ou banco alterado."
+        },
+        "validity": {
+          "content": "FDA2019 eSPLatualIRconfirmamCrCl<30,intervalo12h,max200mgdia,acúmulo deM1 e risco deconvulsões. Royfull confirma excreçãorenal/interações de tramadol,preferivelmenteevitar, e risco deacúmulomorfina. GabaritoB é sustentado,masexplicaçãoexata conservaRASCUNHOBLOQUEADO ependênciajáresolvida.",
+          "construct": "O OP exige Aplicar; dificuldade intermediária classificada independentemente.",
+          "response": "Alternativas testadas contra dados expressos; sem dados psicométricos ou produçãoQA.",
+          "consequential": "Limites de população, segurança e evidência mantidos; autorização de implementação derivada, não presumida.",
+          "alignmentAllFive": true,
+          "objectiveDrift": false
+        },
+        "duplicateAssessment": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "língua"
+          ],
+          "result": "Não se declara fusão por associação temática. Este parecer não adjudica qids fora da ownership.",
+          "bankWideDuplicateSearchPerformed": false,
+          "limitation": "Apenas repetição literal dos AFTER selecionados é testada; ausência de duplicidade em todo banco não é alegada."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "tramadol2019",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 1187044,
+              "sha256": "242595a9123891ff4e6fa552641daa4db1e0a1719d9e1ff7b3e49c0077513a39"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 125510,
+              "sha256": "f00d1f519e49674854e272e76d597ef18966ecb5943dd3603970eddbf8e13da2"
+            },
+            "finding": "FDA2019 eSPLatualIRconfirmamCrCl<30,intervalo12h,max200mgdia,acúmulo deM1 e risco deconvulsões. Royfull confirma excreçãorenal/interações de tramadol,preferivelmenteevitar, e risco deacúmulomorfina. GabaritoB é sustentado,masexplicaçãoexata conservaRASCUNHOBLOQUEADO ependênciajáresolvida.",
+            "independentlyRead": true,
+            "newExternalRetrieval": true
+          },
+          {
+            "sourceId": "tramadol_current",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 298497,
+              "sha256": "654ff9855a0d6bbadec8a3a29668b991a37873a92e92be13155a62a9d5860aba"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 302883,
+              "sha256": "aa71827e56c0127ad1395b97f2cdebd3db7f21b12ce2001df377ef7cb222aee3"
+            },
+            "finding": "FDA2019 eSPLatualIRconfirmamCrCl<30,intervalo12h,max200mgdia,acúmulo deM1 e risco deconvulsões. Royfull confirma excreçãorenal/interações de tramadol,preferivelmenteevitar, e risco deacúmulomorfina. GabaritoB é sustentado,masexplicaçãoexata conservaRASCUNHOBLOQUEADO ependênciajáresolvida.",
+            "independentlyRead": true,
+            "newExternalRetrieval": true
+          },
+          {
+            "sourceId": "roy",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 147071,
+              "sha256": "4fc51c4ae0fb10eee101a793d267f1b2f38260b035fd0b0d8e0588a4364199da"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 147309,
+              "sha256": "29c328b59183cd745542d3b6ef13119874966bea665ebda893a14d3783933714"
+            },
+            "finding": "FDA2019 eSPLatualIRconfirmamCrCl<30,intervalo12h,max200mgdia,acúmulo deM1 e risco deconvulsões. Royfull confirma excreçãorenal/interações de tramadol,preferivelmenteevitar, e risco deacúmulomorfina. GabaritoB é sustentado,masexplicaçãoexata conservaRASCUNHOBLOQUEADO ependênciajáresolvida.",
+            "independentlyRead": true,
+            "newExternalRetrieval": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "roy_pain_ckd_2020",
+            "exactCardSHA256": "85cad65de2630cc7883efd91fba4ff2b2da2291606d05cc5cba3d9777f172d35"
+          },
+          {
+            "id": "tramadol_fda_label_2019",
+            "exactCardSHA256": "1c27d95fd3522528f114db06f5dfcf8036031e71258d1831a8c557b69498af1b"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR: requer nova versão e novo full gate; não há replacement liberado neste parecer",
+          "BEFORE": {
+            "t": "Tramadol na DRC — Neurotoxicidade e Conduta",
+            "qid": "5bfb77d2",
+            "q": "Paciente com doença renal crônica estágio 4, taxa de filtração glomerular estimada de 22 mL/min/1,73 m², usa tramadol de liberação imediata 100 mg a cada 8 horas para dor crônica. Após alguns dias, apresenta crise convulsiva generalizada. Não há história prévia de epilepsia nem uso concomitante de medicamentos serotoninérgicos. Qual é a interpretação e a conduta farmacológica mais apropriadas?",
+            "opts": [
+              "Manter o tramadol em dose menor e iniciar anticonvulsivante, pois a crise não exige suspensão do analgésico.",
+              "Reconhecer possível neurotoxicidade favorecida pela redução da excreção renal do tramadol e de seu metabólito ativo, suspender o fármaco e reavaliar a estratégia analgésica.",
+              "Substituir o tramadol por morfina, cujos metabólitos não se acumulam na doença renal crônica.",
+              "Substituir o tramadol por codeína, que não depende de conversão metabólica nem de eliminação renal."
+            ],
+            "ans": 1,
+            "exp": "A crise convulsiva exige suspensão do tramadol e reavaliação do tratamento (alternativa B). Na disfunção renal grave, diminuem a excreção do tramadol e de seu metabólito ativo M1; além disso, o esquema apresentado não respeita o intervalo recomendado quando a depuração de creatinina é inferior a 30 mL/min. O tramadol pode causar convulsões mesmo em doses recomendadas, com risco maior quando a exposição aumenta. A resposta não deve determinar automaticamente outro opioide: primeiro é necessário caracterizar a dor, priorizar estratégias não farmacológicas e não opioides e, se um opioide continuar indicado, selecionar e titular uma opção compatível com a função renal. Manter o tramadol após a crise (A) perpetua a exposição suspeita; morfina (C) e codeína (D) têm metabólitos ativos com risco de acúmulo na doença renal avançada.",
+            "diff": "medium",
+            "cat": "farmacologia",
+            "refs": [
+              "roy_pain_ckd_2020",
+              "tramadol_fda_label_2019"
+            ]
+          },
+          "AFTER": {
+            "t": "Tramadol na DRC — Neurotoxicidade e Conduta",
+            "qid": "5bfb77d2",
+            "q": "Paciente com doença renal crônica estágio 4, depuração de creatinina estimada de 22 mL/min, usa tramadol de liberação imediata 100 mg a cada oito horas. Após alguns dias apresenta crise convulsiva generalizada, já controlada. Não há história prévia de epilepsia nem uso concomitante de medicamentos serotoninérgicos. Qual é a conduta farmacológica mais adequada diante da suspeita de neurotoxicidade?",
+            "opts": [
+              "Reduzir a dose do tramadol e associar anticonvulsivante, mantendo o analgésico suspeito.",
+              "Suspender o tramadol e reavaliar a analgesia, considerando acúmulo na disfunção renal.",
+              "Trocar por morfina em dose equianalgésica, sem considerar os metabólitos renais.",
+              "Trocar por codeína em dose equianalgésica, sem reavaliar a necessidade de opioide."
+            ],
+            "ans": 1,
+            "exp": "A exposição ao tramadol deve ser suspensa e a analgesia reavaliada após a crise suspeita. A bula FDA aberta de 2019 descreve excreção reduzida de tramadol e M1 na disfunção renal e risco de convulsão; o parâmetro de ajuste é a depuração de creatinina, não uma TFGe automaticamente intercambiável. RASCUNHO BLOQUEADO: confirmar a bula atual e o manejo analgésico na DRC, incluindo os riscos das trocas propostas, antes de implementar.",
+            "diff": "medium",
+            "cat": "farmacologia",
+            "refs": [
+              "roy_pain_ckd_2020",
+              "tramadol_fda_label_2019"
+            ]
+          },
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "Suspender o tramadol e reavaliar a analgesia, considerando acúmulo na disfunção renal."
+          },
+          "referenceCards": {
+            "roy_pain_ckd_2020": {
+              "label": "Roy et al. — Manejo da Dor na DRC e DRT (2020)",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7753951/",
+              "journal": "Current Opinion in Nephrology and Hypertension",
+              "ano": 2020,
+              "tipo": "Revisão",
+              "badge": "REVIEW",
+              "badgeColor": "#8b5cf6",
+              "impacto": "Orienta analgesia e uso criterioso de opioides na doença renal",
+              "icon": "🔬",
+              "resumo": "Revisão clínica de Roy e colaboradores sobre manejo da dor na doença renal crônica (DRC) e doença renal terminal. Recomenda priorizar intervenções não farmacológicas e analgésicos não opioides; quando opioides forem necessários, devem ser usados com indicação criteriosa, ajuste à função renal e monitorização. Discute o risco de interações, síndrome serotoninérgica e convulsões com tramadol e identifica opções com perfil farmacocinético mais favorável na doença renal.",
+              "conclusao": "Na DRC avançada, a exposição a opioides exige seleção e monitorização individualizadas; tramadol requer cautela pelo risco de acúmulo, interações e neurotoxicidade, e a troca por outro opioide não deve ser automática.",
+              "curiosidade": "Artigo de acesso aberto: Curr Opin Nephrol Hypertens. 2020;29(6):671–680. DOI: 10.1097/MNH.0000000000000646."
+            },
+            "tramadol_fda_label_2019": {
+              "label": "ULTRAM (tramadol) — Prescribing Information FDA (2019)",
+              "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/020281s041lbl.pdf",
+              "journal": "FDA — Prescribing Information (Janssen Pharmaceuticals)",
+              "ano": 2019,
+              "tipo": "Bula profissional aprovada pela FDA",
+              "badge": "BULA",
+              "badgeColor": "#64748b",
+              "impacto": "Tramadol em CrCl <30: intervalo de 12 h; risco de convulsão mesmo em doses recomendadas",
+              "icon": "📋",
+              "resumo": "Informação de prescrição do ULTRAM (tramadol) revisada em abril de 2019. Em depuração de creatinina inferior a 30 mL/min, recomenda aumentar o intervalo de dose para 12 horas e limitar a dose diária máxima a 200 mg. A farmacocinética descreve redução da excreção de tramadol e do metabólito ativo M1 na disfunção renal. A bula também registra convulsões com tramadol dentro da faixa posológica recomendada, com maior risco quando a exposição aumenta ou quando há fatores que reduzem o limiar convulsivo.",
+              "conclusao": "No paciente com DRC avançada e crise convulsiva em uso de tramadol, a exposição deve ser considerada insegura: suspender o fármaco e reavaliar a analgesia, em vez de manter apenas com ajuste de dose.",
+              "curiosidade": "A bula ressalta que opioides devem ser reservados para dor suficientemente intensa quando alternativas não opioides forem inadequadas ou não toleradas."
+            }
+          },
+          "suggestedWork": "Autor deve produzir novoAFTER removendonotaeditorial e descrevendoverificaçãoatual; executarfullgate desseobjeto. Nãoalterarqid/FSRS nemproporopioide/dosealternativa.",
+          "replacementCreated": false,
+          "materialChangeRequiresNewFullGate": true
+        },
+        "implementationObservation": {
+          "productMutationAuthorizedHere": false,
+          "questionsOrCardsApplied": 0,
+          "preserve": [
+            "qid",
+            "histórico",
+            "FSRS",
+            "ordem do banco"
+          ],
+          "noBackendOrProductionQA": true,
+          "originIsSourceBank": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+          "currentQuestionIsNotAssumedNewClinicalDelta": true
+        },
+        "verificationPending": [],
+        "claimLedger": [
+          {
+            "field": "q",
+            "exactText": "Paciente com doença renal crônica estágio 4, depuração de creatinina estimada de 22 mL/min, usa tramadol de liberação imediata 100 mg a cada oito horas. Após alguns dias apresenta crise convulsiva generalizada, já controlada. Não há história prévia de epilepsia nem uso concomitante de medicamentos serotoninérgicos. Qual é a conduta farmacológica mais adequada diante da suspeita de neurotoxicidade?",
+            "status": "VERIFICADA",
+            "qualification": "Dados fictícios do caso são premissas, não medidas de estudo; recomendações/desenho dependem dos sources abaixo."
+          },
+          {
+            "field": "correctAnswer",
+            "exactText": "Suspender o tramadol e reavaliar a analgesia, considerando acúmulo na disfunção renal.",
+            "status": "VERIFICADA",
+            "qualification": "FDA2019 eSPLatualIRconfirmamCrCl<30,intervalo12h,max200mgdia,acúmulo deM1 e risco deconvulsões. Royfull confirma excreçãorenal/interações de tramadol,preferivelmenteevitar, e risco deacúmulomorfina. GabaritoB é sustentado,masexplicaçãoexata conservaRASCUNHOBLOQUEADO ependênciajáresolvida."
+          },
+          {
+            "field": "exp",
+            "exactText": "A exposição ao tramadol deve ser suspensa e a analgesia reavaliada após a crise suspeita. A bula FDA aberta de 2019 descreve excreção reduzida de tramadol e M1 na disfunção renal e risco de convulsão; o parâmetro de ajuste é a depuração de creatinina, não uma TFGe automaticamente intercambiável. RASCUNHO BLOQUEADO: confirmar a bula atual e o manejo analgésico na DRC, incluindo os riscos das trocas propostas, antes de implementar.",
+            "status": "VERIFICADA",
+            "qualification": "FDA2019 eSPLatualIRconfirmamCrCl<30,intervalo12h,max200mgdia,acúmulo deM1 e risco deconvulsões. Royfull confirma excreçãorenal/interações de tramadol,preferivelmenteevitar, e risco deacúmulomorfina. GabaritoB é sustentado,masexplicaçãoexata conservaRASCUNHOBLOQUEADO ependênciajáresolvida."
+          },
+          {
+            "field": "referenceCard.roy_pain_ckd_2020.label",
+            "exactText": "Roy et al. — Manejo da Dor na DRC e DRT (2020)",
+            "status": "VERIFICADA",
+            "qualification": "BioCfulltextoriginal conferido para priorização nãoopioide,indicaçõescriteriosas,tramadol/M1renais,interações/serotonina/convulsões,opioidesmelhorperfil epreferivelmenteevitartramadol. Cardnãoescolhemedicaçãoautomática."
+          },
+          {
+            "field": "referenceCard.roy_pain_ckd_2020.url",
+            "exactText": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7753951/",
+            "status": "VERIFICADA",
+            "qualification": "BioCfulltextoriginal conferido para priorização nãoopioide,indicaçõescriteriosas,tramadol/M1renais,interações/serotonina/convulsões,opioidesmelhorperfil epreferivelmenteevitartramadol. Cardnãoescolhemedicaçãoautomática."
+          },
+          {
+            "field": "referenceCard.roy_pain_ckd_2020.journal",
+            "exactText": "Current Opinion in Nephrology and Hypertension",
+            "status": "VERIFICADA",
+            "qualification": "BioCfulltextoriginal conferido para priorização nãoopioide,indicaçõescriteriosas,tramadol/M1renais,interações/serotonina/convulsões,opioidesmelhorperfil epreferivelmenteevitartramadol. Cardnãoescolhemedicaçãoautomática."
+          },
+          {
+            "field": "referenceCard.roy_pain_ckd_2020.ano",
+            "exactText": 2020,
+            "status": "VERIFICADA",
+            "qualification": "BioCfulltextoriginal conferido para priorização nãoopioide,indicaçõescriteriosas,tramadol/M1renais,interações/serotonina/convulsões,opioidesmelhorperfil epreferivelmenteevitartramadol. Cardnãoescolhemedicaçãoautomática."
+          },
+          {
+            "field": "referenceCard.roy_pain_ckd_2020.tipo",
+            "exactText": "Revisão",
+            "status": "VERIFICADA",
+            "qualification": "BioCfulltextoriginal conferido para priorização nãoopioide,indicaçõescriteriosas,tramadol/M1renais,interações/serotonina/convulsões,opioidesmelhorperfil epreferivelmenteevitartramadol. Cardnãoescolhemedicaçãoautomática."
+          },
+          {
+            "field": "referenceCard.roy_pain_ckd_2020.impacto",
+            "exactText": "Orienta analgesia e uso criterioso de opioides na doença renal",
+            "status": "VERIFICADA",
+            "qualification": "BioCfulltextoriginal conferido para priorização nãoopioide,indicaçõescriteriosas,tramadol/M1renais,interações/serotonina/convulsões,opioidesmelhorperfil epreferivelmenteevitartramadol. Cardnãoescolhemedicaçãoautomática."
+          },
+          {
+            "field": "referenceCard.roy_pain_ckd_2020.resumo",
+            "exactText": "Revisão clínica de Roy e colaboradores sobre manejo da dor na doença renal crônica (DRC) e doença renal terminal. Recomenda priorizar intervenções não farmacológicas e analgésicos não opioides; quando opioides forem necessários, devem ser usados com indicação criteriosa, ajuste à função renal e monitorização. Discute o risco de interações, síndrome serotoninérgica e convulsões com tramadol e identifica opções com perfil farmacocinético mais favorável na doença renal.",
+            "status": "VERIFICADA",
+            "qualification": "BioCfulltextoriginal conferido para priorização nãoopioide,indicaçõescriteriosas,tramadol/M1renais,interações/serotonina/convulsões,opioidesmelhorperfil epreferivelmenteevitartramadol. Cardnãoescolhemedicaçãoautomática."
+          },
+          {
+            "field": "referenceCard.roy_pain_ckd_2020.conclusao",
+            "exactText": "Na DRC avançada, a exposição a opioides exige seleção e monitorização individualizadas; tramadol requer cautela pelo risco de acúmulo, interações e neurotoxicidade, e a troca por outro opioide não deve ser automática.",
+            "status": "VERIFICADA",
+            "qualification": "BioCfulltextoriginal conferido para priorização nãoopioide,indicaçõescriteriosas,tramadol/M1renais,interações/serotonina/convulsões,opioidesmelhorperfil epreferivelmenteevitartramadol. Cardnãoescolhemedicaçãoautomática."
+          },
+          {
+            "field": "referenceCard.roy_pain_ckd_2020.curiosidade",
+            "exactText": "Artigo de acesso aberto: Curr Opin Nephrol Hypertens. 2020;29(6):671–680. DOI: 10.1097/MNH.0000000000000646.",
+            "status": "VERIFICADA",
+            "qualification": "BioCfulltextoriginal conferido para priorização nãoopioide,indicaçõescriteriosas,tramadol/M1renais,interações/serotonina/convulsões,opioidesmelhorperfil epreferivelmenteevitartramadol. Cardnãoescolhemedicaçãoautomática."
+          },
+          {
+            "field": "referenceCard.tramadol_fda_label_2019.label",
+            "exactText": "ULTRAM (tramadol) — Prescribing Information FDA (2019)",
+            "status": "VERIFICADA",
+            "qualification": "FDA2019original:CrCl<30,12h,max200mgdia,excreçãoTramadol/M1reduzida,convulsõesemdoses recomendadas. DailyMedIRatualsetid5c2ac7cb/published20260925corrobora. Card2019não foirotulado2026 eBULAélegado."
+          },
+          {
+            "field": "referenceCard.tramadol_fda_label_2019.url",
+            "exactText": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/020281s041lbl.pdf",
+            "status": "VERIFICADA",
+            "qualification": "FDA2019original:CrCl<30,12h,max200mgdia,excreçãoTramadol/M1reduzida,convulsõesemdoses recomendadas. DailyMedIRatualsetid5c2ac7cb/published20260925corrobora. Card2019não foirotulado2026 eBULAélegado."
+          },
+          {
+            "field": "referenceCard.tramadol_fda_label_2019.journal",
+            "exactText": "FDA — Prescribing Information (Janssen Pharmaceuticals)",
+            "status": "VERIFICADA",
+            "qualification": "FDA2019original:CrCl<30,12h,max200mgdia,excreçãoTramadol/M1reduzida,convulsõesemdoses recomendadas. DailyMedIRatualsetid5c2ac7cb/published20260925corrobora. Card2019não foirotulado2026 eBULAélegado."
+          },
+          {
+            "field": "referenceCard.tramadol_fda_label_2019.ano",
+            "exactText": 2019,
+            "status": "VERIFICADA",
+            "qualification": "FDA2019original:CrCl<30,12h,max200mgdia,excreçãoTramadol/M1reduzida,convulsõesemdoses recomendadas. DailyMedIRatualsetid5c2ac7cb/published20260925corrobora. Card2019não foirotulado2026 eBULAélegado."
+          },
+          {
+            "field": "referenceCard.tramadol_fda_label_2019.tipo",
+            "exactText": "Bula profissional aprovada pela FDA",
+            "status": "VERIFICADA",
+            "qualification": "FDA2019original:CrCl<30,12h,max200mgdia,excreçãoTramadol/M1reduzida,convulsõesemdoses recomendadas. DailyMedIRatualsetid5c2ac7cb/published20260925corrobora. Card2019não foirotulado2026 eBULAélegado."
+          },
+          {
+            "field": "referenceCard.tramadol_fda_label_2019.impacto",
+            "exactText": "Tramadol em CrCl <30: intervalo de 12 h; risco de convulsão mesmo em doses recomendadas",
+            "status": "VERIFICADA",
+            "qualification": "FDA2019original:CrCl<30,12h,max200mgdia,excreçãoTramadol/M1reduzida,convulsõesemdoses recomendadas. DailyMedIRatualsetid5c2ac7cb/published20260925corrobora. Card2019não foirotulado2026 eBULAélegado."
+          },
+          {
+            "field": "referenceCard.tramadol_fda_label_2019.resumo",
+            "exactText": "Informação de prescrição do ULTRAM (tramadol) revisada em abril de 2019. Em depuração de creatinina inferior a 30 mL/min, recomenda aumentar o intervalo de dose para 12 horas e limitar a dose diária máxima a 200 mg. A farmacocinética descreve redução da excreção de tramadol e do metabólito ativo M1 na disfunção renal. A bula também registra convulsões com tramadol dentro da faixa posológica recomendada, com maior risco quando a exposição aumenta ou quando há fatores que reduzem o limiar convulsivo.",
+            "status": "VERIFICADA",
+            "qualification": "FDA2019original:CrCl<30,12h,max200mgdia,excreçãoTramadol/M1reduzida,convulsõesemdoses recomendadas. DailyMedIRatualsetid5c2ac7cb/published20260925corrobora. Card2019não foirotulado2026 eBULAélegado."
+          },
+          {
+            "field": "referenceCard.tramadol_fda_label_2019.conclusao",
+            "exactText": "No paciente com DRC avançada e crise convulsiva em uso de tramadol, a exposição deve ser considerada insegura: suspender o fármaco e reavaliar a analgesia, em vez de manter apenas com ajuste de dose.",
+            "status": "VERIFICADA",
+            "qualification": "FDA2019original:CrCl<30,12h,max200mgdia,excreçãoTramadol/M1reduzida,convulsõesemdoses recomendadas. DailyMedIRatualsetid5c2ac7cb/published20260925corrobora. Card2019não foirotulado2026 eBULAélegado."
+          },
+          {
+            "field": "referenceCard.tramadol_fda_label_2019.curiosidade",
+            "exactText": "A bula ressalta que opioides devem ser reservados para dor suficientemente intensa quando alternativas não opioides forem inadequadas ou não toleradas.",
+            "status": "VERIFICADA",
+            "qualification": "FDA2019original:CrCl<30,12h,max200mgdia,excreçãoTramadol/M1reduzida,convulsõesemdoses recomendadas. DailyMedIRatualsetid5c2ac7cb/published20260925corrobora. Card2019não foirotulado2026 eBULAélegado."
+          }
+        ]
+      }
+    ],
+    "cardReviews": [
+      {
+        "id": "ici_aki_cortazar_multicenter_2020",
+        "exactCard": {
+          "label": "Cortazar et al. — LRA por Inibidores de Checkpoint: estudo multicêntrico (2020)",
+          "url": "https://doi.org/10.1681/ASN.2019070676",
+          "journal": "Journal of the American Society of Nephrology",
+          "ano": 2020,
+          "tipo": "Coorte",
+          "badge": "COHORT",
+          "badgeColor": "#f59e0b",
+          "impacto": "Nefrite intersticial predomina; rechallenge exige avaliação individualizada.",
+          "icon": "🔬",
+          "resumo": "Coorte multicêntrica de 138 casos de LRA por inibidores de checkpoint e 276 controles. Nefrite tubulointersticial em 93% dos 60 biopsiados. Corticosteroide associou-se a recuperação; não demonstra causalidade. Recidiva em 23% dos 31 reexpostos.",
+          "conclusao": "A coorte descreve apresentação e desfechos; não substitui consenso terapêutico atual.",
+          "curiosidade": ""
+        },
+        "exactCardSHA256": "8bf0196a468c2214e71064fcfe5813f981ccd28714815d5ed4415efa715d88d1",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7 aplicada ao card exato, sem herdar autor.",
+        "reason": "Texto primárioPMC diretamente aberto e lido confirma138/276,56de60(93%), associaçãoesteroide/recuperação e7recidivasentre31reexpostos(23%). Falhasde cópia local não foram usadas comoarticletext.",
+        "sourceReadings": [
+          {
+            "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+            "bytes": 1414,
+            "sha256": "578f3aa6093dc2d98dd9ad723a72e5cddfa88c47806c4b3ebfc8433c1549d43d"
+          }
+        ],
+        "independentlyRead": true,
+        "newExternalRetrieval": true,
+        "changedOrApplied": false,
+        "scope": "Card literal vinculado; alterar qualquer campo exige nova avaliação da versão resultante."
+      },
+      {
+        "id": "tramadol_fda_label_2019",
+        "exactCard": {
+          "label": "ULTRAM (tramadol) — Prescribing Information FDA (2019)",
+          "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2019/020281s041lbl.pdf",
+          "journal": "FDA — Prescribing Information (Janssen Pharmaceuticals)",
+          "ano": 2019,
+          "tipo": "Bula profissional aprovada pela FDA",
+          "badge": "BULA",
+          "badgeColor": "#64748b",
+          "impacto": "Tramadol em CrCl <30: intervalo de 12 h; risco de convulsão mesmo em doses recomendadas",
+          "icon": "📋",
+          "resumo": "Informação de prescrição do ULTRAM (tramadol) revisada em abril de 2019. Em depuração de creatinina inferior a 30 mL/min, recomenda aumentar o intervalo de dose para 12 horas e limitar a dose diária máxima a 200 mg. A farmacocinética descreve redução da excreção de tramadol e do metabólito ativo M1 na disfunção renal. A bula também registra convulsões com tramadol dentro da faixa posológica recomendada, com maior risco quando a exposição aumenta ou quando há fatores que reduzem o limiar convulsivo.",
+          "conclusao": "No paciente com DRC avançada e crise convulsiva em uso de tramadol, a exposição deve ser considerada insegura: suspender o fármaco e reavaliar a analgesia, em vez de manter apenas com ajuste de dose.",
+          "curiosidade": "A bula ressalta que opioides devem ser reservados para dor suficientemente intensa quando alternativas não opioides forem inadequadas ou não toleradas."
+        },
+        "exactCardSHA256": "1c27d95fd3522528f114db06f5dfcf8036031e71258d1831a8c557b69498af1b",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7 aplicada ao card exato, sem herdar autor.",
+        "reason": "FDA2019original:CrCl<30,12h,max200mgdia,excreçãoTramadol/M1reduzida,convulsõesemdoses recomendadas. DailyMedIRatualsetid5c2ac7cb/published20260925corrobora. Card2019não foirotulado2026 eBULAélegado.",
+        "sourceReadings": [
+          {
+            "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+            "bytes": 1187044,
+            "sha256": "242595a9123891ff4e6fa552641daa4db1e0a1719d9e1ff7b3e49c0077513a39"
+          },
+          {
+            "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+            "bytes": 298497,
+            "sha256": "654ff9855a0d6bbadec8a3a29668b991a37873a92e92be13155a62a9d5860aba"
+          },
+          {
+            "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+            "bytes": 147071,
+            "sha256": "4fc51c4ae0fb10eee101a793d267f1b2f38260b035fd0b0d8e0588a4364199da"
+          }
+        ],
+        "independentlyRead": true,
+        "newExternalRetrieval": true,
+        "changedOrApplied": false,
+        "scope": "Card literal vinculado; alterar qualquer campo exige nova avaliação da versão resultante."
+      },
+      {
+        "id": "ason_ici_nephrotoxicity_2025",
+        "exactCard": {
+          "label": "ASON — Nefrotoxicidade por Inibidores de Checkpoint (2025)",
+          "url": "https://doi.org/10.1016/j.kint.2024.09.017",
+          "journal": "Kidney International",
+          "ano": 2025,
+          "tipo": "Consenso",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Posição da American Society of Onco-nephrology: suspender o inibidor de checkpoint, glicocorticoides e rechallenge individualizado",
+          "icon": "📋",
+          "resumo": "Posição da American Society of Onco-nephrology (Herrmann et al., Kidney International 2025;107:21-32). Revisa incidência, fatores de risco (inibidor de bomba de prótons, doença renal crônica, imunoterapia combinada), mecanismos e apresentação da LRA por inibidores de checkpoint, com predomínio de nefrite tubulointersticial aguda. Traz pontos de prática para avaliação e diagnóstico inicial, papel da biópsia versus tratamento empírico, suspensão do inibidor de checkpoint, imunossupressão com glicocorticoides e consideração de rechallenge após o episódio; discute receptores de transplante renal. São pontos de prática por consenso de especialistas, não recomendações com classe e nível formais.",
+          "conclusao": "Conduta contemporânea da LRA por inibidores de checkpoint: suspender o agente, tratar com glicocorticoides e individualizar o rechallenge; a biópsia auxilia o diagnóstico, sobretudo quando incerto.",
+          "curiosidade": ""
+        },
+        "exactCardSHA256": "56c0fe77cd15f9d086cd41981de680ed01171af5419e85fe6112c0c56c26eace",
+        "verdictV2": "revisão maior",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7 aplicada ao card exato, sem herdar autor.",
+        "reason": "Identidade,consenso,expertpanel eescopo/practicepoints confirmados noabstract primário. Integralpublisher403; afirmações específicas deholdICI/corticosteroide/rechallenge do card nãoforamobtidas como textoprimário. Não herdar doautor.",
+        "sourceReadings": [
+          {
+            "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+            "bytes": 12148,
+            "sha256": "18286f62908c60232716760af77f408faedc13ce36d591f86046a121ae2fd995"
+          }
+        ],
+        "independentlyRead": true,
+        "newExternalRetrieval": true,
+        "changedOrApplied": false,
+        "scope": "Card literal vinculado; alterar qualquer campo exige nova avaliação da versão resultante."
+      },
+      {
+        "id": "roy_pain_ckd_2020",
+        "exactCard": {
+          "label": "Roy et al. — Manejo da Dor na DRC e DRT (2020)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7753951/",
+          "journal": "Current Opinion in Nephrology and Hypertension",
+          "ano": 2020,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Orienta analgesia e uso criterioso de opioides na doença renal",
+          "icon": "🔬",
+          "resumo": "Revisão clínica de Roy e colaboradores sobre manejo da dor na doença renal crônica (DRC) e doença renal terminal. Recomenda priorizar intervenções não farmacológicas e analgésicos não opioides; quando opioides forem necessários, devem ser usados com indicação criteriosa, ajuste à função renal e monitorização. Discute o risco de interações, síndrome serotoninérgica e convulsões com tramadol e identifica opções com perfil farmacocinético mais favorável na doença renal.",
+          "conclusao": "Na DRC avançada, a exposição a opioides exige seleção e monitorização individualizadas; tramadol requer cautela pelo risco de acúmulo, interações e neurotoxicidade, e a troca por outro opioide não deve ser automática.",
+          "curiosidade": "Artigo de acesso aberto: Curr Opin Nephrol Hypertens. 2020;29(6):671–680. DOI: 10.1097/MNH.0000000000000646."
+        },
+        "exactCardSHA256": "85cad65de2630cc7883efd91fba4ff2b2da2291606d05cc5cba3d9777f172d35",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7 aplicada ao card exato, sem herdar autor.",
+        "reason": "BioCfulltextoriginal conferido para priorização nãoopioide,indicaçõescriteriosas,tramadol/M1renais,interações/serotonina/convulsões,opioidesmelhorperfil epreferivelmenteevitartramadol. Cardnãoescolhemedicaçãoautomática.",
+        "sourceReadings": [
+          {
+            "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+            "bytes": 147071,
+            "sha256": "4fc51c4ae0fb10eee101a793d267f1b2f38260b035fd0b0d8e0588a4364199da"
+          }
+        ],
+        "independentlyRead": true,
+        "newExternalRetrieval": true,
+        "changedOrApplied": false,
+        "scope": "Card literal vinculado; alterar qualquer campo exige nova avaliação da versão resultante."
+      }
+    ],
+    "counts": {
+      "questions": 2,
+      "publication": {
+        "BLOQUEADA": 2
+      },
+      "verdicts": {
+        "revisão maior": 2
+      },
+      "evidence": {
+        "PARCIALMENTE VERIFICADA": 1,
+        "VERIFICADA": 1
+      },
+      "exactCards": 4,
+      "questionsOrCardsApplied": 0
+    },
+    "limits": [
+      "No Library materialization, Git mutation, commit/push/deploy, backend access, product patch, ID exclusion, FSRS reset or production16.09QA. Only public scientific reading/downloads explicitly authorized.",
+      "Ownership only missing peers from source scope; full card approvals do not imply approval of other associated qids.",
+      "Source proofs/raw/auxiliaries do not count as new questions.",
+      "Question/card AFTERs preserved literally. Changes proposed in prose remain unevaluated until a new full gate of the correct resulting object."
+    ],
+    "retrievalReceipts": [
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1094,
+        "sha256": "74d91c7f1e3ee7d6820a91aa97168232a705b05bca5463a42471d14eafbf08b1"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1413,
+        "sha256": "c59d783001a5bf7a18c112300884986d0685a87c94f5b5d008b5992bc244ec35"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 2490,
+        "sha256": "9c620907a051bc5a39f9cf211fe3af2722ae79fdb9649615d6eb41e7cc27bc8d"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 2331,
+        "sha256": "730abd886e68c8385aac9c06bebd5b615074a7e952f50a39308d8f18f6d93d15"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 2599,
+        "sha256": "9142663f28deafc685049d2b2725e941a6f0d91e4ff86c87dfb846bedc567259"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 864,
+        "sha256": "2e9d9393b572c349e88343f0c2cf789f5ecb7f1606d28e86d78885998d181f19"
+      }
+    ],
+    "validation": {
+      "formalAllQuestionsPassed": true,
+      "qidScopeExact": true,
+      "rawPortableSourceHashMatches": true,
+      "BEFOREOriginInputExact": true,
+      "AFTERAuthorLiteralExact": true,
+      "cardsLiteralAndBindingHashesMatch": true,
+      "threeAxesDerived": true,
+      "noProductMutation": true,
+      "sourcePinBytesAndHashesRead": true
+    }
+  }
+}

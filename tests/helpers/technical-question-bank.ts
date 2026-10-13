@@ -21,9 +21,9 @@ const preparedFixtures = new Map<string,string>();
 
 // This registry describes authored technical fixtures, never a saved payload.
 // The browser still loads the actual identity and presentation modules.
-export function technicalQuestionBundle(authors: Author[], references: Record<string, unknown> = {}) {
+export function technicalQuestionBundle(authors: Author[], references: Record<string, unknown> = {}, history: unknown[] = []) {
   // The real digest rejects non-JSON/getter inputs, even on a cache lookup.
-  const key = moduleSourceHash + ':' + revisions.digest({authors,references});
+  const key = moduleSourceHash + ':' + revisions.digest({authors,references,history});
   const cached = preparedFixtures.get(key);
   if (cached !== undefined) return JSON.parse(cached);
   const sources = { main: [] as any[], exam: [] as any[], study: [] as any[], offline: [] as any[] };
@@ -43,7 +43,6 @@ export function technicalQuestionBundle(authors: Author[], references: Record<st
     for (const profile of Object.keys(sources) as (keyof typeof sources)[]) sources[profile].push(profiles[profile]);
   });
   const manifest = { version: 1, release: 'technical-fixture', current };
-  const history: unknown[] = [];
   revisions.createCatalog({ manifest, history, authors, sources, references });
   // Only an immutable serialization is retained. Every caller owns fresh copies.
   const encoded = JSON.stringify({ authors, references, sources, manifest, history });
@@ -51,8 +50,8 @@ export function technicalQuestionBundle(authors: Author[], references: Record<st
   return JSON.parse(encoded);
 }
 
-export async function routeTechnicalQuestionBank(page: Page, authors: Author[], references: Record<string, unknown> = {}) {
-  const bundle = technicalQuestionBundle(authors, references);
+export async function routeTechnicalQuestionBank(page: Page, authors: Author[], references: Record<string, unknown> = {}, history: unknown[] = []) {
+  const bundle = technicalQuestionBundle(authors, references, history);
   const respond = (body: string) => ({ status: 200, contentType: 'application/javascript', body });
   await page.route('**/data/topics.js*', route => route.fulfill(respond(`const topics = ${JSON.stringify(authors)};`)));
   await page.route('**/data/question-revision-manifest.js*', route => route.fulfill(respond(

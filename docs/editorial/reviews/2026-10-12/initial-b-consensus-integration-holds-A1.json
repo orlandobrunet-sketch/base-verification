@@ -1,0 +1,92 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 4288,
+  "sourceReportSHA256": "f2ee53a80ddf35a35c106df7f45eec4929f22599291e0e4c709729e8f4bf545c",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "nq-explicit-card-compatibility-holds-v1",
+    "purpose": "Make existing peer editorial integration constraints machine-readable; no scientific gate or clinical object changed.",
+    "outputContractSHA256": "65972c80bb1ac7afc0f1ccca6849c6b2d4812af0f0789b1dcf30c5d17bd9b5ff",
+    "holds": [
+      {
+        "qid": "66905ee2",
+        "cardId": "c3g_consensus",
+        "exactCardSHA256": "402d894b56913fe1bda2e26efc8fef81a543434763347abf8cb747f2bc928e99",
+        "sourceReport": "independent-initial-b001-A2.json",
+        "sourceReportSHA256": "e5414faa0c7f65710dd7a109ab8587647a31e3a307df9a00f07db29f4043392a",
+        "literalAuthorBinding": {
+          "kind": "Literal author formal referenceCards of this qid",
+          "pathPin": {
+            "path": "docs/editorial/reviews/2026-10-12/group-b-output-001.json",
+            "bytes": 139883,
+            "sha256": "f9abc070cada27be5a60140d3f84d40ac13eaa94ba2b0e678aa53b247e096552"
+          },
+          "qid": "66905ee2",
+          "id": "c3g_consensus"
+        },
+        "integrationHold": {
+          "blocked": true,
+          "kind": "EXACT_CARD_SOURCE_GENRE_COMPATIBILITY",
+          "reason": "The peer explicitly requires a newly authored literal consensus-card version and review before integration; the retained REVIEW badge is not approval of the genre.",
+          "releaseRequires": "Fresh author and independent review of the exact resulting card and its consumer bindings."
+        },
+        "scientificPublicationAuthorizationUnchanged": "LIBERADA",
+        "noOtherConsumersAuthorized": true
+      },
+      {
+        "qid": "2be4ea1f",
+        "cardId": "ikmg_mgrs_consensus_2019",
+        "exactCardSHA256": "dad71f7591842754feb453cacaf9c70412b5211217a0216ec5a1770434509630",
+        "sourceReport": "independent-initial-b002-A2.json",
+        "sourceReportSHA256": "14f7d49b2e7f203a7e574cafaada1ba616259c20b34fa11959ef1b6a93d4b8ba",
+        "literalAuthorBinding": {
+          "kind": "Literal author formal referenceCards of this qid",
+          "pathPin": {
+            "path": "docs/editorial/reviews/2026-10-12/group-b-output-002.json",
+            "bytes": 128920,
+            "sha256": "897feeb64cb89536ec54ad3446c17a59c62ce12980694272077f6b2d19e74762"
+          },
+          "qid": "2be4ea1f",
+          "id": "ikmg_mgrs_consensus_2019"
+        },
+        "integrationHold": {
+          "blocked": true,
+          "kind": "EXACT_CARD_SOURCE_GENRE_COMPATIBILITY",
+          "reason": "The peer explicitly requires a newly authored literal consensus-card version and review before integration; the retained REVIEW badge is not approval of the genre.",
+          "releaseRequires": "Fresh author and independent review of the exact resulting card and its consumer bindings."
+        },
+        "scientificPublicationAuthorizationUnchanged": "LIBERADA",
+        "noOtherConsumersAuthorized": true
+      },
+      {
+        "qid": "ccd15912",
+        "cardId": "heilijgers_nutcracker_delphi_2025",
+        "exactCardSHA256": "c05a5950ca0ce7649cc4a0e9e06b9add2bd0ba8bc135cd66ef03b6edc5aad57b",
+        "sourceReport": "independent-initial-b003-A2.json",
+        "sourceReportSHA256": "a100a1abe68a0bf8ae7e98d9fef3ed109a5ef6ca84d0996fa2f9512d8fc77bbf",
+        "literalAuthorBinding": {
+          "kind": "Literal author formal referenceCards of this qid",
+          "pathPin": {
+            "path": "docs/editorial/reviews/2026-10-12/group-b-output-003.json",
+            "bytes": 153483,
+            "sha256": "59d4248877496432c2261a7fd6d45c5e22256bb1f861d2424a8bf621fcab375e"
+          },
+          "qid": "ccd15912",
+          "id": "heilijgers_nutcracker_delphi_2025"
+        },
+        "integrationHold": {
+          "blocked": true,
+          "kind": "EXACT_CARD_SOURCE_GENRE_COMPATIBILITY",
+          "reason": "The peer explicitly requires a newly authored literal consensus-card version and review before integration; the retained REVIEW badge is not approval of the genre.",
+          "releaseRequires": "Fresh author and independent review of the exact resulting card and its consumer bindings."
+        },
+        "scientificPublicationAuthorizationUnchanged": "LIBERADA",
+        "noOtherConsumersAuthorized": true
+      }
+    ],
+    "questionsOrCardsApplied": 0,
+    "frozenReportsChanged": false,
+    "scope": "Only the three exact reviewed bindings; shared consumers still require their own reconciliation."
+  }
+}

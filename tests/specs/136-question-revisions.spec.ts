@@ -138,6 +138,14 @@ async function fixture(page: Page, qid?: string): Promise<any> {
   }, qid);
   await page.addInitScript(installFixtureRuntime, bundle);
   await page.evaluate(installFixtureRuntime, bundle);
+  // The offline page must load the same independently authored current source
+  // as its real manifest/history, including before DOMContentLoaded fires.
+  await page.route('**/data/topics.js*', route => {
+    const referer = route.request().headers()['referer'];
+    if (!referer || new URL(referer).pathname !== '/offline.html') return route.fallback();
+    return route.fulfill({ status: 200, contentType: 'application/javascript',
+      body: `const topics = ${JSON.stringify([bundle.currentAuthor])};` });
+  });
   return bundle;
 }
 async function reloadCampaign(page: Page) {
@@ -276,7 +284,7 @@ test('actual full 741 catalog loads all four current runtime profiles from the p
         return current && w.questionRevisionCatalog.inspect(w.NQAnswers.present(current.source), { profile, binding: current.binding }).status === 'known';
       })) };
   });
-  expect(report).toMatchObject({ count: 741, manifestCount: 741, release: '16.11', all: true });
+  expect(report).toMatchObject({ count: 741, manifestCount: 741, release: '16.12', all: true });
   await info.attach('actual-741-catalog', { contentType: 'application/json', body: JSON.stringify(report) });
 });
 

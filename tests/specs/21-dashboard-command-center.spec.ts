@@ -1189,3 +1189,192 @@ test.describe('Central de Comando do aprendizado', () => {
     }
   });
 });
+
+test.describe('vínculo da entrada pública de retomada do estudo', () => {
+  const progressKeys = ['nefroquest-stats', 'nefroquest-detailed-stats', 'nefroquest-sr-data',
+    'nefroquest-mastered', 'nefroquest-mastered-ids', 'nefroquest-pilot-v1'];
+  test.beforeEach(async ({ page, context }) => {
+    await context.routeWebSocket('**/*', socket => socket.close());
+    await context.route('**/*', route => {
+      const request = route.request(), url = new URL(request.url());
+      return ['localhost', '127.0.0.1'].includes(url.hostname) && request.method() === 'GET'
+        ? route.continue() : route.abort();
+    });
+    await gotoGame(page);
+    await page.waitForFunction(() => typeof (window as any).resumeSavedStudyMode === 'function');
+    await page.evaluate(() => (window as any)._loadTopics());
+    await page.evaluate(() => {
+      const ids = (window as any).questionBank.slice(0, 3).map((q: any) => String(q.id));
+      localStorage.setItem('nefroquest-study-state', JSON.stringify({ questions: ids,
+        index: 0, correct: 0, wrong: 0, axisStats: {}, savedAt: Date.now() }));
+      const today = new Date().setHours(0, 0, 0, 0), day = 86400000;
+      // Existing technical progress uses the actual FSRS-4.5 and collection schemas.
+      const existing: Record<string, unknown> = {
+        'nefroquest-stats': { gamesPlayed: 2, bestLevel: 3, bestScore: 420, questionsAnsweredAllTime: 6 },
+        'nefroquest-detailed-stats': { version: 1, totalQuestions: 6, totalCorrect: 4, totalWrong: 2,
+          byTopic: {}, byCategory: { geral: { correct: 4, wrong: 2 } }, questionHistory: [],
+          dailyActivity: {}, timeStats: { totalTime: 60, questionCount: 6 }, mostMissed: {}, syncedMastered: [] },
+        'nefroquest-sr-data': {
+          [ids[0]]: { S: 3, D: 4.9, interval: 3, due: today + 3 * day, last: today, reps: 2, lapses: 1 },
+          [ids[1]]: { S: 1.5, D: 6, interval: 2, due: today - day, last: today - 3 * day, reps: 4, lapses: 2 }
+        },
+        'nefroquest-mastered': [ids[1]], 'nefroquest-mastered-ids': [ids[1]]
+      };
+      for (const [key, value] of Object.entries(existing)) localStorage.setItem(key, JSON.stringify(value, null, 2));
+      const w = window as any, set = Storage.prototype.setItem, remove = Storage.prototype.removeItem;
+      w.__studyBindingProgressWrites = [];
+      Storage.prototype.setItem = function(key, value) {
+        if (this === localStorage && key in existing) w.__studyBindingProgressWrites.push({ action: 'set', key, value });
+        return set.call(this, key, value);
+      };
+      Storage.prototype.removeItem = function(key) {
+        if (this === localStorage && key in existing) w.__studyBindingProgressWrites.push({ action: 'remove', key });
+        return remove.call(this, key);
+      };
+    });
+  });
+
+  test('captura o vínculo atual somente na entrada fresh e preserva FSRS/progresso', async ({ page }) => {
+    const result = await page.evaluate(keys => {
+      const w = window as any;
+      const before = Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)]));
+      const initial = (0, eval)('_studyProgressBinding');
+      const expected = w.NQPilot.captureBinding();
+      const resumed = w.resumeSavedStudyMode();
+      return { initial, expected, resumed, captured: (0, eval)('_studyProgressBinding'),
+        current: w.NQPilot.matchesBinding((0, eval)('_studyProgressBinding')),
+        writes: w.__studyBindingProgressWrites,
+        before, after: Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])) };
+    }, progressKeys);
+    await test.info().attach('study-resume-binding-guard', { contentType: 'application/json', body: JSON.stringify(result, null, 2) });
+    expect(result.initial).toBeNull();
+    expect(result.resumed).toBe(true);
+    expect(result.captured).toEqual(result.expected);
+    expect(result.current).toBe(true);
+    for (const key of progressKeys.filter(key => key !== 'nefroquest-pilot-v1')) expect(result.before[key]).not.toBeNull();
+    expect(result.after).toEqual(result.before);
+    expect(result.writes).toEqual([]);
+    await expect(page.locator('#studyModePage')).toBeVisible();
+    await expect(page.locator('#studyQuestionArea .study-option-btn')).toHaveCount(4);
+  });
+
+  test('recusa migração legada quando a gravação falha e preserva raw e progresso existentes', async ({ page }) => {
+    const result = await page.evaluate(keys => {
+      const w = window as any, raw = localStorage.getItem('nefroquest-study-state');
+      const before = Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)]));
+      const ids = JSON.parse(raw!).questions;
+      const known = ids.map((id: string) => {
+        const checked = w.questionRevisionCatalog.inspectLegacy(id, { profile: 'study' });
+        return { status: checked.status, historical: checked.value?.historical };
+      });
+      const set = Storage.prototype.setItem; let attempted = 0, resumed;
+      Storage.prototype.setItem = function(key, value) {
+        if (this === localStorage && key === 'nefroquest-study-state') {
+          attempted++; throw new Error('technical-refused-study-migration');
+        }
+        return set.call(this, key, value);
+      };
+      try { resumed = w.resumeSavedStudyMode(); }
+      finally { Storage.prototype.setItem = set; }
+      return { known, attempted, resumed, raw, afterRaw: localStorage.getItem('nefroquest-study-state'),
+        active: (0, eval)('studyModeActive'), before,
+        after: Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])),
+        writes: w.__studyBindingProgressWrites, setterRestored: Storage.prototype.setItem === set };
+    }, progressKeys);
+    await test.info().attach('study-resume-binding-guard', { contentType: 'application/json', body: JSON.stringify(result, null, 2) });
+    expect(result.known).toEqual(Array(3).fill({ status: 'known', historical: false }));
+    expect(result.attempted).toBe(1);
+    expect(result.resumed).toBe(false);
+    expect(result.active).toBe(false);
+    expect(result.afterRaw).toBe(result.raw);
+    for (const key of progressKeys.filter(key => key !== 'nefroquest-pilot-v1')) expect(result.before[key]).not.toBeNull();
+    expect(result.after).toEqual(result.before);
+    expect(result.writes).toEqual([]);
+    expect(result.setterRestored).toBe(true);
+    await expect(page.locator('#studyModePage')).toHaveCount(0);
+  });
+
+  test('rejeita outra aba substituindo raw entre as leituras sem migrar sobre os novos bytes', async ({ page }) => {
+    const result = await page.evaluate(keys => {
+      const w = window as any, key = 'nefroquest-study-state';
+      const initialRaw = localStorage.getItem(key)!;
+      const replacementRaw = JSON.stringify({ ...JSON.parse(initialRaw), index: 1, wrong: 3 });
+      const before = Object.fromEntries(keys.map(k => [k, localStorage.getItem(k)]));
+      const get = Storage.prototype.getItem, set = Storage.prototype.setItem;
+      const ownWrites: string[] = [], externalMutations: string[] = []; let reads = 0, resumed;
+      Storage.prototype.getItem = function(k) {
+        if (this === localStorage && k === key && ++reads === 2) {
+          // This represents the competing tab, separately from the action's writes.
+          set.call(localStorage, key, replacementRaw); externalMutations.push(replacementRaw);
+        }
+        return get.call(this, k);
+      };
+      Storage.prototype.setItem = function(k, value) {
+        if (this === localStorage && k === key) ownWrites.push(String(value));
+        return set.call(this, k, value);
+      };
+      try { resumed = w.resumeSavedStudyMode(); }
+      finally { Storage.prototype.getItem = get; Storage.prototype.setItem = set; }
+      return { initialRaw, replacementRaw, reads, resumed, ownWrites, externalMutations,
+        afterRaw: localStorage.getItem(key), active: (0, eval)('studyModeActive'),
+        before, after: Object.fromEntries(keys.map(k => [k, localStorage.getItem(k)])),
+        writes: w.__studyBindingProgressWrites,
+        storageMethodsRestored: Storage.prototype.getItem === get && Storage.prototype.setItem === set };
+    }, progressKeys);
+    await test.info().attach('study-resume-binding-guard', { contentType: 'application/json', body: JSON.stringify(result, null, 2) });
+    expect(result.replacementRaw).not.toBe(result.initialRaw);
+    expect(result.externalMutations).toEqual([result.replacementRaw]);
+    expect(result.resumed).toBe(false);
+    expect(result.active).toBe(false);
+    expect(result.ownWrites).toEqual([]);
+    expect(result.afterRaw).toBe(result.replacementRaw);
+    for (const key of progressKeys.filter(key => key !== 'nefroquest-pilot-v1')) expect(result.before[key]).not.toBeNull();
+    expect(result.after).toEqual(result.before);
+    expect(result.writes).toEqual([]);
+    expect(result.storageMethodsRestored).toBe(true);
+    await expect(page.locator('#studyModePage')).toHaveCount(0);
+  });
+
+  for (const boundary of ['owner', 'generation'] as const) {
+    test(`rejeita vínculo não nulo após mudança real de ${boundary} sem reatribuir nem gravar`, async ({ page }) => {
+      const result = await page.evaluate(({ boundary, keys }) => {
+        const w = window as any, captured = w.NQPilot.captureBinding();
+        if (boundary === 'owner') w.authUser = { id: 'technical-study-next-owner' };
+        else w.NQPilot.release();
+        // A delayed action carries the binding captured before the real boundary,
+        // even when the context-change listener has already cleared the old UI.
+        w.__studyBindingTest = captured;
+        (0, eval)('_studyProgressBinding = window.__studyBindingTest');
+        const current = w.NQPilot.captureBinding();
+        const raw = localStorage.getItem('nefroquest-study-state');
+        const before = Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)]));
+        const resumed = w.resumeSavedStudyMode();
+        return { captured, current, resumed, matches: w.NQPilot.matchesBinding(captured),
+          retained: (0, eval)('_studyProgressBinding'), active: (0, eval)('studyModeActive'),
+          raw, afterRaw: localStorage.getItem('nefroquest-study-state'),
+          writes: w.__studyBindingProgressWrites,
+          before, after: Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])) };
+      }, { boundary, keys: progressKeys });
+      await test.info().attach('study-resume-binding-guard', { contentType: 'application/json', body: JSON.stringify(result, null, 2) });
+      expect(result.current.domain).toBe(result.captured.domain);
+      expect(result.current.journeyId).toBe(result.captured.journeyId);
+      if (boundary === 'owner') {
+        expect(result.current.owner).toBe('technical-study-next-owner');
+        expect(result.current.owner).not.toBe(result.captured.owner);
+        expect(result.current.generation).toBe(result.captured.generation);
+      } else {
+        expect(result.current.owner).toBe(result.captured.owner);
+        expect(result.current.generation).toBeGreaterThan(result.captured.generation);
+      }
+      expect(result.matches).toBe(false);
+      expect(result.resumed).toBe(false);
+      expect(result.retained).toEqual(result.captured);
+      expect(result.active).toBe(false);
+      expect(result.afterRaw).toBe(result.raw);
+      for (const key of progressKeys.filter(key => key !== 'nefroquest-pilot-v1')) expect(result.before[key]).not.toBeNull();
+      expect(result.after).toEqual(result.before);
+      expect(result.writes).toEqual([]);
+      await expect(page.locator('#studyModePage')).toHaveCount(0);
+    });
+  }
+});
