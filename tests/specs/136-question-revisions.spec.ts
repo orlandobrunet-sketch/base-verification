@@ -276,7 +276,7 @@ test('actual full 741 catalog loads all four current runtime profiles from the p
         return current && w.questionRevisionCatalog.inspect(w.NQAnswers.present(current.source), { profile, binding: current.binding }).status === 'known';
       })) };
   });
-  expect(report).toMatchObject({ count: 741, manifestCount: 741, release: '16.10', all: true });
+  expect(report).toMatchObject({ count: 741, manifestCount: 741, release: '16.11', all: true });
   await info.attach('actual-741-catalog', { contentType: 'application/json', body: JSON.stringify(report) });
 });
 
@@ -556,3 +556,45 @@ for (const held of ['expired', 'completed']) test(`study ${held} save stays held
   expect(replaced.index).toBe(0); expect(replaced.correct).toBe(0); expect(replaced.wrong).toBe(0);
   expect((await bytes(page, STUDY)).progress).toEqual(before.progress);
 });
+
+
+for (const scenario of ['missing choice', 'invalid choice', 'missing choice with metadata', 'invalid choice with metadata',
+  'conflicting authored choice', 'conflicting option identity', 'correct choice in wrong list', 'unknown source'] as const) {
+  test(`wrong review preserves known content and holds inconsistent records: ${scenario}`, async ({page}) => {
+    const bundle = await fixture(page);
+    const record = await page.evaluate(({bundle,scenario}) => {
+      const w = window as any, question = w.NQAnswers.present(bundle.sources.main[0], {preserveOrder:true});
+      const chosen = (question.a + 1) % question.o.length;
+      const entry:any = {...question};
+      if (scenario === 'invalid choice' || scenario === 'invalid choice with metadata') entry.chosen = 999;
+      else if (scenario !== 'missing choice' && scenario !== 'missing choice with metadata') entry.chosen = chosen;
+      if (scenario === 'missing choice with metadata' || scenario === 'invalid choice with metadata')
+        entry.authoredChoice = w.NQAnswers.originalIndex(question, chosen);
+      if (scenario === 'conflicting authored choice') entry.authoredChoice = question.a;
+      if (scenario === 'conflicting option identity') entry.selectedOptionId = 'unverified-option';
+      if (scenario === 'correct choice in wrong list') entry.chosen = question.a;
+      if (scenario === 'unknown source') entry.q = 'Texto técnico sem identidade publicada';
+      (0,eval)('_sessionWrongAnswers').splice(0, (0,eval)('_sessionWrongAnswers').length, entry);
+      return {entry, raw:JSON.stringify((0,eval)('_sessionWrongAnswers'))};
+    }, {bundle,scenario});
+    const before = await observed(page);
+    await watchReadOnlyStorage(page,CAMPAIGN);
+    await page.evaluate(() => (window as any).showSessionWrongAnswers());
+    const dialog = page.getByRole('dialog',{name:'Erros da Jornada'});
+    await expect(dialog).toBeVisible();
+    if (scenario === 'missing choice' || scenario === 'invalid choice') {
+      await expect(dialog.locator('.nqreview-question')).toHaveText(record.entry.q);
+      await expect(dialog.locator('.nqreview-option-text')).toHaveText(record.entry.o);
+      await expect(dialog.locator('.is-correct')).toHaveAttribute('data-option-index',String(record.entry.a));
+      await expect(dialog.locator('.is-chosen')).toHaveCount(0);
+      await expect(dialog.locator('.nqreview-unrecorded')).toHaveText('A alternativa escolhida não foi registrada nesta sessão.');
+    } else {
+      await expect(dialog.locator('.nqreview-unrecorded[role="alert"]')).toContainText('indisponível');
+      await expect(dialog.locator('.nqreview-question')).toHaveCount(0);
+      await expect(dialog.locator('.is-chosen, .is-correct')).toHaveCount(0);
+    }
+    expect(await page.evaluate(() => JSON.stringify((0,eval)('_sessionWrongAnswers')))).toBe(record.raw);
+    expect(await observed(page)).toEqual(before);
+    await assertZeroStorageWrites(page);
+  });
+}
