@@ -250,7 +250,7 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
   <!-- Banco de dados de questões (topics) em cache -->
   <script>window.NQ_REQUIRES_QUESTION_REVISIONS = true;</script>
   <script src="/js/answer-presentation.js?v=16.09"></script>
-  <script src="/data/question-revision-manifest.js?v=16.11"></script>
+  <script src="/data/question-revision-manifest.js?v=16.13"></script>
   <script src="/data/question-revision-history.js?v=16.10"></script>
   <script src="/js/question-revisions.js?v=16.11"></script>
   <script src="/data/topics.js"></script>
@@ -551,6 +551,27 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
       const q = sessionQuestions[currentIndex];
       const isCorrect = offlineAnswer.correct;
 
+      if (recordProgress) {
+        const previousCount = correctCount;
+        const presentation = currentPresentation, questions = sessionQuestions;
+        const index = currentIndex, answer = offlineAnswer;
+        if (isCorrect) correctCount++;
+        if (!saveOfflineSession()) {
+          if (currentPresentation !== presentation || sessionQuestions !== questions || currentIndex !== index || offlineAnswer !== answer) return;
+          correctCount = previousCount;
+          offlineAnswer = null;
+          isAnswered = false;
+          offlineConsultationOnly = true;
+          document.querySelectorAll('.nq-off-btn').forEach(btn => { btn.disabled = true; });
+          const feedback = document.getElementById('nqOffFeedbackArea');
+          feedback.style.display = 'flex';
+          feedback.innerHTML = '<p class="nq-off-feedback" role="alert">Não foi possível salvar esta resposta. Recarregue para continuar.</p>';
+          return;
+        }
+        correctVal.textContent = correctCount;
+        persistProgress(q, isCorrect);
+      }
+
       // Desabilitar botões e pintar cores
       const btns = document.querySelectorAll('.nq-off-btn');
       btns.forEach((btn, idx) => {
@@ -570,15 +591,6 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
         y = rect.top + rect.height / 2;
       }
       if (recordProgress) showFloatingText(isCorrect ? '✓ Correto!' : '✗ Incorreto', isCorrect, x, y);
-
-      if (recordProgress && isCorrect) {
-        correctCount++;
-        correctVal.textContent = correctCount;
-      }
-
-      // Persistir progresso localmente
-      if (recordProgress) persistProgress(q, isCorrect);
-      if (recordProgress) saveOfflineSession();
 
       // Exibir feedback
       const feedbackArea = document.getElementById('nqOffFeedbackArea');

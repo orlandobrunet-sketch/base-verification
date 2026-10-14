@@ -284,7 +284,7 @@ test('actual full 741 catalog loads all four current runtime profiles from the p
         return current && w.questionRevisionCatalog.inspect(w.NQAnswers.present(current.source), { profile, binding: current.binding }).status === 'known';
       })) };
   });
-  expect(report).toMatchObject({ count: 741, manifestCount: 741, release: '16.12', all: true });
+  expect(report).toMatchObject({ count: 741, manifestCount: 741, release: '16.13', all: true });
   await info.attach('actual-741-catalog', { contentType: 'application/json', body: JSON.stringify(report) });
 });
 
@@ -604,5 +604,161 @@ for (const scenario of ['missing choice', 'invalid choice', 'missing choice with
     expect(await page.evaluate(() => JSON.stringify((0,eval)('_sessionWrongAnswers')))).toBe(record.raw);
     expect(await observed(page)).toEqual(before);
     await assertZeroStorageWrites(page);
+  });
+}
+
+// Answer credit is conditional on committing its primary session snapshot.
+// Reuse the real authored fixture/catalog above; faults affect Storage only.
+const answerCommitProgressKeys = [...progressKeys, 'nq_last_study',
+  'nefroquest-comp-stats', 'nefroquest-all-answered-qids'];
+async function answerCommitSnapshot(page: Page, mode: 'study' | 'offline') {
+  return page.evaluate(({ mode, keys, key }) => {
+    const runtime = JSON.parse((0, eval)(mode === 'study'
+      ? 'JSON.stringify({correct:studyModeCorrect,wrong:studyModeWrong,axis:_studyAxisStats,answer:_studyAnswers[studyModeIndex]||null,question:_studyPresentations[studyModeIndex],revision:_studyRevisions[studyModeIndex]})'
+      : 'JSON.stringify({correct:correctCount,answer:offlineAnswer,question:currentPresentation,revision:offlineRevision})'));
+    const raw = localStorage.getItem(key)!;
+    const checked = (window as any).questionRevisionCatalog.inspect(runtime.question,
+      { profile: mode, binding: runtime.revision?.binding });
+    return { raw, saved: JSON.parse(raw), runtime,
+      known: { status: checked.status, historical: checked.value?.historical },
+      progress: Object.fromEntries(keys.map(k => [k, localStorage.getItem(k)])) };
+  }, { mode, keys: answerCommitProgressKeys, key: mode === 'study' ? STUDY : OFFLINE });
+}
+
+async function prepareAnswerCommit(page: Page, mode: 'study' | 'offline') {
+  // Capture real preexisting identities while the full bank is still loaded.
+  const existingIdentity = await page.evaluate(() => {
+    const w = window as any, otherId = String(w.questionBank[1].id);
+    const comp = w.nqGetCompIds(String(w.questionBank[0].id))[0] || w.nqGetCompIds(otherId)[0];
+    if (!comp) throw new Error('The existing bank must expose a real indexed competency.');
+    return { otherId, comp };
+  });
+  const seeded = await seedAuxiliary(page, mode, false);
+  await page.locator(mode === 'study' ? '[data-action="useCurrentStudyRevision"]' : '[onclick="useCurrentOfflineRevision()"]').click();
+  await expect(page.locator(mode === 'study' ? '#studyOptions button' : '.nq-off-btn')).toHaveCount(4);
+  await page.evaluate(({ bundle, mode, existingIdentity }) => {
+    const w = window as any, day = 86400000, today = new Date().setHours(0, 0, 0, 0);
+    const { otherId, comp } = existingIdentity;
+    const existing: Record<string, unknown> = {
+      'nefroquest-stats': { gamesPlayed: 2, bestLevel: 3, bestScore: 420, questionsAnsweredAllTime: 6 },
+      'nefroquest-detailed-stats': { version: 1, totalQuestions: 6, totalCorrect: 4, totalWrong: 2,
+        byTopic: {}, byCategory: { geral: { correct: 4, wrong: 2, total: 6 } },
+        questionHistory: [{ qid: otherId, topic: 'Technical existing progress', correct: true, time: 10, date: new Date(today - day).toISOString() }],
+        dailyActivity: {}, timeStats: { totalTime: 60, questionCount: 6 }, mostMissed: {}, syncedMastered: [otherId] },
+      'nefroquest-sr-data': { [bundle.qid]: { S: 3, D: 4.9, interval: 3, due: today + 3 * day, last: today - day, reps: 2, lapses: 1 },
+        [otherId]: { S: 1.5, D: 6, interval: 2, due: today - day, last: today - 3 * day, reps: 4, lapses: 2 } },
+      'nefroquest-mastered': [otherId], 'nefroquest-mastered-ids': [otherId],
+      'unlockedArticles': [bundle.ref], 'nq-unlocked-refs': [bundle.ref],
+      'nq_last_study': String(today - day), 'nefroquest-comp-stats': { [comp]: { c: 4, t: 6 } },
+      'nefroquest-all-answered-qids': [otherId]
+    };
+    for (const [key, value] of Object.entries(existing)) localStorage.setItem(key,
+      key === 'nq_last_study' ? String(value) : JSON.stringify(value, null, 2));
+    // Normalize through the real synchronizer before measuring reload invariance.
+    if (mode === 'study') w.syncMasteredToDetailedStats();
+  }, { bundle: seeded.bundle, mode, existingIdentity });
+  return seeded;
+}
+
+async function refuseAnswerCommit(page: Page, mode: 'study' | 'offline', failure: 'concurrent' | 'refused') {
+  return page.evaluate(({ mode, failure, keys, key }) => {
+    const get = Storage.prototype.getItem, set = Storage.prototype.setItem;
+    const originalRaw = get.call(localStorage, key)!;
+    const replacement = JSON.parse(originalRaw);
+    if (mode === 'study') replacement.savedAt += 1;
+    const replacementRaw = JSON.stringify(replacement, null, 2);
+    const trace: any = { phase: 'answer', primaryReads: [], primaryAttempts: [], progressWrites: [], externalMutations: [] };
+    let replaced = false, explicitSaveResult: boolean;
+    const correct = (0, eval)(mode === 'study' ? '_studyPresentations[studyModeIndex].a' : 'currentPresentation.a');
+    Storage.prototype.getItem = function(k) {
+      const captured = get.call(this, k);
+      if (this === localStorage && k === key) {
+        trace.primaryReads.push({ phase: trace.phase, raw: captured });
+        if (failure === 'concurrent' && trace.phase === 'answer' && !replaced) {
+          replaced = true; set.call(localStorage, key, replacementRaw);
+          trace.externalMutations.push(replacementRaw);
+        }
+      }
+      return captured;
+    };
+    Storage.prototype.setItem = function(k, value) {
+      if (this === localStorage && k === key) {
+        trace.primaryAttempts.push({ phase: trace.phase, value: String(value) });
+        if (failure === 'refused') throw new DOMException('Technical primary save refusal', 'QuotaExceededError');
+      }
+      if (this === localStorage && keys.includes(k)) trace.progressWrites.push({ phase: trace.phase, key: k, value: String(value) });
+      return set.call(this, k, value);
+    };
+    try {
+      if (mode === 'study') (window as any).answerStudyQuestion(correct);
+      else (0, eval)('answerQuestion')(correct, null);
+      // Observe a real saver return in a separate phase, never replace its API.
+      trace.phase = 'probe';
+      explicitSaveResult = (0, eval)(mode === 'study' ? '_saveStudyState' : 'saveOfflineSession')();
+    } finally {
+      Storage.prototype.getItem = get; Storage.prototype.setItem = set;
+    }
+    return { originalRaw, replacementRaw, explicitSaveResult, trace,
+      rawAfter: get.call(localStorage, key),
+      warning: document.body.textContent?.includes('Não foi possível salvar esta resposta. Recarregue para continuar.'),
+      storageMethodsRestored: Storage.prototype.getItem === get && Storage.prototype.setItem === set };
+  }, { mode, failure, keys: answerCommitProgressKeys, key: mode === 'study' ? STUDY : OFFLINE });
+}
+
+for (const mode of ['study', 'offline'] as const) for (const failure of ['concurrent', 'refused'] as const) {
+  test(`${mode} answer commit guard ${failure} preserves credit on failure and records exactly once after reload`, async ({ page }, info) => {
+    const seeded = await prepareAnswerCommit(page, mode);
+    const before = await answerCommitSnapshot(page, mode);
+    const faultResult = await refuseAnswerCommit(page, mode, failure);
+    const afterRefusal = await answerCommitSnapshot(page, mode);
+    await capture(page, info, `${mode}-answer-commit-${failure}-refused`, mode === 'study' ? '#studyQuestionArea' : '#nqOffOptions');
+    await resumeAuxiliary(page, mode, true);
+    const afterReload = await answerCommitSnapshot(page, mode);
+    await page.evaluate(mode => {
+      if (mode === 'study') (window as any).answerStudyQuestion((0, eval)('_studyPresentations[studyModeIndex].a'));
+      else (0, eval)('answerQuestion')((0, eval)('currentPresentation.a'), null);
+    }, mode);
+    const afterSuccess = await answerCommitSnapshot(page, mode);
+    await resumeAuxiliary(page, mode, true);
+    const afterReplay = await answerCommitSnapshot(page, mode);
+    const report = { mode, failure, qid: seeded.bundle.qid, before, faultResult, afterRefusal, afterReload, afterSuccess, afterReplay };
+    await info.attach('answer-commit-guard', { contentType: 'application/json', body: JSON.stringify(report, null, 2) });
+
+    expect(before.known).toEqual({ status: 'known', historical: false });
+    expect(before.runtime.answer).toBeNull();
+    for (const key of answerCommitProgressKeys) expect(before.progress[key]).not.toBeNull();
+    expect(JSON.parse(before.progress['nefroquest-sr-data']!)[seeded.bundle.qid].reps).toBe(2);
+    expect(JSON.parse(before.progress['nefroquest-detailed-stats']!).totalQuestions).toBeGreaterThan(0);
+    expect(faultResult.storageMethodsRestored).toBe(true);
+    expect(faultResult.explicitSaveResult).toBe(false);
+    if (failure === 'concurrent') {
+      expect(faultResult.replacementRaw).not.toBe(faultResult.originalRaw);
+      expect(faultResult.trace.externalMutations).toEqual([faultResult.replacementRaw]);
+      expect(faultResult.trace.primaryAttempts.filter((r: any) => r.phase === 'answer')).toEqual([]);
+    } else expect(faultResult.trace.primaryAttempts.filter((r: any) => r.phase === 'answer')).toHaveLength(1);
+    expect(faultResult.rawAfter).toBe(failure === 'concurrent' ? faultResult.replacementRaw : before.raw);
+    expect(afterRefusal.progress).toEqual(before.progress);
+    expect(faultResult.trace.progressWrites).toEqual([]);
+    expect(afterRefusal.runtime.correct).toBe(before.runtime.correct);
+    expect(afterRefusal.runtime.answer).toBeNull();
+    expect(faultResult.warning).toBe(true);
+    expect(afterReload.raw).toBe(faultResult.rawAfter);
+    expect(afterReload.runtime.answer).toBeNull();
+    expect(afterReload.progress).toEqual(before.progress);
+    expect(afterSuccess.runtime.answer.correct).toBe(true);
+    expect(afterSuccess.runtime.correct).toBe(before.runtime.correct + 1);
+    expect(mode === 'study' ? afterSuccess.saved.correct : afterSuccess.saved.correctCount).toBe(before.runtime.correct + 1);
+    expect(mode === 'study' ? afterSuccess.saved.presentations[0].answer.correct : afterSuccess.saved.answer.correct).toBe(true);
+    const initialStats = JSON.parse(before.progress['nefroquest-detailed-stats']!);
+    const creditedStats = JSON.parse(afterSuccess.progress['nefroquest-detailed-stats']!);
+    expect(creditedStats.totalQuestions).toBe(initialStats.totalQuestions + 1);
+    expect(creditedStats.totalCorrect).toBe(initialStats.totalCorrect + 1);
+    const initialSR = JSON.parse(before.progress['nefroquest-sr-data']!);
+    const creditedSR = JSON.parse(afterSuccess.progress['nefroquest-sr-data']!);
+    if (mode === 'study') expect(creditedSR[seeded.bundle.qid].reps).toBe(initialSR[seeded.bundle.qid].reps + 1);
+    else expect(afterSuccess.progress['nefroquest-sr-data']).toBe(before.progress['nefroquest-sr-data']);
+    expect(afterReplay.raw).toBe(afterSuccess.raw);
+    expect(afterReplay.progress).toEqual(afterSuccess.progress);
+    expect(afterReplay.runtime.correct).toBe(afterSuccess.runtime.correct);
   });
 }

@@ -1,7 +1,7 @@
 {
   "batch": "CLINICAL-2026-10-12-10",
   "change_type": "medical_editorial",
-  "expected_version": "16.12",
+  "expected_version": "16.13",
   "allowed_files": [
     ".claude/skills/criar-nefroquest/references/output-contract.md",
     ".claude/skills/revisar-nefroquest/references/output-contract.md",
@@ -10,6 +10,7 @@
     "data/refs.js",
     "data/topics.js",
     "docs/CONTINUITY.md",
+    "docs/editorial/external-review/PR897-GREPTILE-EXCEPTION-20261014.md",
     "docs/editorial/review-batches/CLINICAL-2026-10-12-10.json",
     "docs/editorial/reviews/2026-10-12/README.md",
     "docs/editorial/reviews/2026-10-12/c018-coordinator-arbitration-A1.json",
@@ -337,7 +338,7 @@
     }
   },
   "external_review": {
-    "greptile": "required",
-    "fallback_reviewer": null
+    "greptile": "unavailable",
+    "fallback_reviewer": "/root/independent_release_a5 (independent Codex agent for PR897); substitution authorized 2026-10-13 23:43 UTC; final HEAD approval required."
   }
 }

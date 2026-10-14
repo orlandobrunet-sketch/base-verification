@@ -1,6 +1,6 @@
 # Pareceres clínicos do NefroQuest
 
-Checkpoint da revisão integral das 741 questões na branch `codex/clinical-review-2026-10-12`. O banco de origem é `25f44e4449e770314c94f9a59256dfc2e1ab4d17`, preservado no merge publicado da 16.09 `135899077669af6dcf564717833227828ba03fe5`. A candidata atual é **16.12**. A etapa integral continua em andamento.
+Checkpoint da revisão integral das 741 questões na branch `codex/clinical-review-2026-10-12`. O banco de origem é `25f44e4449e770314c94f9a59256dfc2e1ab4d17`, preservado no merge publicado da 16.09 `135899077669af6dcf564717833227828ba03fe5`. Este checkpoint foi congelado na candidata **16.12**; a candidata técnica posterior está descrita em `docs/CONTINUITY.md`. A etapa integral continua em andamento.
 
 Há **448/741 questões revisadas**, 293 pendentes, 387 propostas autorais liberadas e 61 bloqueadas. 424 questões têm parecer independente; 362 propostas exatas foram aceitas pelo peer. `index.json` contém 186 relatórios, hashes, tamanhos e classificação; `queue.json` contém as 741 questões e as versões correntes, matches de AFTER e bloqueios. Há 13 propostas autorais liberadas com hold explícito de integração. Essas contagens não significam aplicação nem liberação global. Lotes em execução ficam fora desta contagem.
 

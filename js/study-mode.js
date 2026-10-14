@@ -1685,6 +1685,40 @@
       const revision = _studyRevisions[studyModeIndex];
       if (recordProgress && (_studyConsultationOnly || revision?.historical)) return;
       const referenceCards = revision?.references || refsDB;
+
+      if (recordProgress) {
+        const previousCorrect = studyModeCorrect, previousWrong = studyModeWrong;
+        const previousAxisStats = _studyAxisStats;
+        const answers = _studyAnswers, questions = studyModeQuestions;
+        const index = studyModeIndex, binding = _studyProgressBinding;
+        const candidateAxisStats = { ...previousAxisStats };
+        if (isCorrect) studyModeCorrect++;
+        else studyModeWrong++;
+        if (q.cat) {
+          candidateAxisStats[q.cat] = { ...(previousAxisStats[q.cat] || { correct: 0, wrong: 0 }) };
+          candidateAxisStats[q.cat][isCorrect ? 'correct' : 'wrong']++;
+        }
+        _studyAxisStats = candidateAxisStats;
+        if (!_saveStudyState()) {
+          answers[index] = null;
+          if (_studyAnswers !== answers || studyModeQuestions !== questions || studyModeIndex !== index || _studyProgressBinding !== binding) return;
+          studyModeCorrect = previousCorrect;
+          studyModeWrong = previousWrong;
+          _studyAxisStats = previousAxisStats;
+          _studyConsultationOnly = true;
+          studyModeActive = false;
+          document.querySelectorAll('.study-option-btn').forEach(btn => { btn.disabled = true; });
+          const feedback = document.getElementById('studyFeedback');
+          feedback.style.display = 'block';
+          feedback.innerHTML = '<p role="alert">Não foi possível salvar esta resposta. Recarregue para continuar.</p>';
+          return;
+        }
+        updateSRData(q.qid, isCorrect);
+        _studyProgressStorage().setItem('nq_last_study', Date.now().toString());
+        if (typeof trackQuestionAnswer === 'function') trackQuestionAnswer(q, isCorrect, 0);
+        document.getElementById('studyCorrect').textContent = studyModeCorrect;
+        document.getElementById('studyWrong').textContent = studyModeWrong;
+      }
       
       // Desabilitar botões
       document.querySelectorAll('.study-option-btn').forEach((btn, idx) => {
@@ -1730,29 +1764,6 @@
         }
       }
       
-      // Atualizar contadores
-      if (recordProgress) {
-        updateSRData(q.qid, isCorrect);
-        _studyProgressStorage().setItem('nq_last_study', Date.now().toString());
-        if (typeof trackQuestionAnswer === 'function') {
-          trackQuestionAnswer(q, isCorrect, 0);
-        }
-        if (isCorrect) {
-          studyModeCorrect++;
-          document.getElementById('studyCorrect').textContent = studyModeCorrect;
-        } else {
-          studyModeWrong++;
-          document.getElementById('studyWrong').textContent = studyModeWrong;
-        }
-
-        // Rastrear desempenho por eixo temático
-        if (q.cat) {
-          _studyAxisStats[q.cat] = _studyAxisStats[q.cat] || { correct: 0, wrong: 0 };
-          _studyAxisStats[q.cat][isCorrect ? 'correct' : 'wrong']++;
-        }
-        _saveStudyState();
-      }
-
       // Botão de mentor (apenas em erros)
       let mentorBtnInner = '';
       if (!isCorrect && !revision?.historical && !_studyConsultationOnly) {
