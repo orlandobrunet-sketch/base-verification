@@ -68,7 +68,7 @@ function progressoSemForja(value: Record<string, any>) {
 test('reload recupera exatamente o sorteio pago e permite uma única resolução', async ({ page }) => {
   await abrir(page);
   const antes = await estado(page);
-  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
   const pago = await estado(page);
   expect(pago.gold).toBe(4700);
   expect(pago.forjaPending).not.toBeNull();
@@ -110,7 +110,7 @@ for (const ocupado of [true, false]) {
   test(`compra única com clique duplo em espaço ${ocupado ? 'ocupado' : 'vazio'} e nova compra deliberada`, async ({ page }) => {
     await abrir(page, 5000, ocupado);
     const antes = await estado(page);
-    await page.getByRole('button', { name: 'Forjar item comum', exact: true }).dblclick();
+    await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).dblclick();
     const pago = await estado(page);
     expect(pago.gold).toBe(4700);
     expect(progressoSemForja(pago)).toEqual(progressoSemForja(antes));
@@ -134,13 +134,13 @@ for (const ocupado of [true, false]) {
     await page.evaluate(() => { (0, eval)("forjarNaPagina('comum'); forjarNaPagina('comum'); forjarNaPagina('lendario'); decidirForja('manter')"); });
     expect(await estado(page)).toEqual(concluido);
     expect(await rawSave(page)).toBe(saveConcluido);
-    await expect(page.getByRole('button', { name: 'Forjar item comum', exact: true })).toBeDisabled();
+    await expect(page.getByRole('button', { name: 'Forjar item aleatório', exact: true })).toBeDisabled();
     await expect(page.getByRole('button', { name: 'Forjar item lendário', exact: true })).toBeDisabled();
     await page.getByRole('button', { name: 'Forjar outro item', exact: true }).click();
     expect(await estado(page)).toEqual(concluido);
     expect(await rawSave(page)).toBe(saveConcluido);
-    await expect(page.getByRole('button', { name: 'Forjar item comum', exact: true })).toBeEnabled();
-    await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+    await expect(page.getByRole('button', { name: 'Forjar item aleatório', exact: true })).toBeEnabled();
+    await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
     const segundo = await estado(page);
     expect(segundo.gold).toBe(concluido.gold - 300);
     expect(segundo.obtainedItems).toHaveLength(concluido.obtainedItems.length + 1);
@@ -163,7 +163,7 @@ test('duas invocações imediatas em espaço vazio cobram e equipam uma vez', as
 });
 
 for (const [tipo, nome, custo] of [
-  ['comum', 'Forjar item comum', 300],
+  ['comum', 'Forjar item aleatório', 300],
   ['lendario', 'Forjar item lendário', 1000],
 ] as const) {
   test(`espaço vazio: ${tipo} equipa e persiste imediatamente`, async ({ page }) => {
@@ -198,7 +198,7 @@ test('ouro insuficiente e sair antes de forjar preservam o estado completo', asy
   await abrir(page, 299);
   const antes = await estado(page);
   const persistido = await rawSave(page);
-  await expect(page.getByRole('button', { name: 'Forjar item comum', exact: true })).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Forjar item aleatório', exact: true })).toBeDisabled();
   await expect(page.locator('#forjaMotivo-comum')).toHaveText('Faltam 1 de ouro.');
   await page.evaluate(() => { (0, eval)("forjarNaPagina('comum'); forjarNaPagina('lendario')"); });
   expect(await estado(page)).toEqual(antes);
@@ -214,7 +214,7 @@ test('falha ao gravar o sorteio reverte ouro, equipamento e histórico', async (
   const persistido = await rawSave(page);
   await falharArmazenamento(page);
   try {
-    await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+    await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
     await expect(page.locator('#forjaResultado [role="alert"]')).toContainText('Seu ouro e equipamento foram mantidos');
     expect(await estado(page)).toEqual(antes);
     expect(await rawSave(page)).toBe(persistido);
@@ -222,9 +222,9 @@ test('falha ao gravar o sorteio reverte ouro, equipamento e histórico', async (
   } finally {
     await restaurarArmazenamento(page);
   }
-  await expect(page.getByRole('button', { name: 'Forjar item comum', exact: true })).toBeEnabled();
+  await expect(page.getByRole('button', { name: 'Forjar item aleatório', exact: true })).toBeEnabled();
   await expect(page.getByRole('button', { name: 'Forjar outro item', exact: true })).toHaveCount(0);
-  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
   const retentativa = await estado(page);
   expect(retentativa.gold).toBe(antes.gold - 300);
   expect(retentativa.forjaPending).not.toBeNull();
@@ -234,7 +234,7 @@ test('falha ao gravar o sorteio reverte ouro, equipamento e histórico', async (
 
 test('falha na resolução mantém a pendência e a tentativa seguinte vende uma vez', async ({ page }) => {
   await abrir(page);
-  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
   const pago = await estado(page);
   const persistido = await rawSave(page);
   await falharArmazenamento(page);
@@ -283,7 +283,7 @@ test('Forja no sandbox altera apenas a demonstração e não escreve o save real
   await abrir(page);
   await page.evaluate(() => (window as any).beginProgressSandbox('forja-test'));
   const real = await rawSave(page);
-  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
   const pago = await estado(page);
   expect(pago.gold).toBe(4700);
   expect(pago.forjaPending).not.toBeNull();
@@ -343,7 +343,7 @@ for (const largura of [320, 390, 1100]) {
       await document.fonts.ready;
       await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
     });
-    await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+    await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
     const equipar = page.locator('[data-action="decidirForja"][data-arg="substituir"]');
     await expect(equipar).toBeFocused();
     await expect(equipar).toBeInViewport({ ratio: 1 });
@@ -383,7 +383,7 @@ test('aba v6 não apaga o sorteio pago depois que a aba moderna fecha', async ({
   await abrir(page);
   const legacy = await abaLegada(page);
   const old = await save(page);
-  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
   const paid = await save(page);
   const paidRaw = await rawSave(page);
   await page.close();
@@ -413,7 +413,7 @@ test('logout legado de visitante exige escolha e descarte impede ressurreição 
   await abrir(page);
   const old = await save(page);
   const legacy = await abaLegada(page);
-  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
   const paidRaw = await rawSave(page);
   await page.close();
   await legacy.evaluate(() => localStorage.removeItem('nefroquest-save'));
@@ -434,7 +434,7 @@ test('logout legado de visitante exige escolha e descarte impede ressurreição 
 
 test('reset em outra aba cancela a Forja, autosave e save atrasado da aba moderna', async ({ page }) => {
   await abrir(page);
-  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
   const other = await abaLegada(page);
   await page.evaluate(() => (0, eval)('state.score += 1; saveGame()'));
   await other.evaluate(() => localStorage.setItem('nefroquest-save-v7', 'null'));
@@ -459,7 +459,7 @@ test('espelho legado indisponível não desfaz compra canônica nem cria segunda
     };
   });
   try {
-    await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+    await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
     const paid = await estado(page);
     expect(paid.gold).toBe(before.gold - 300);
     expect(paid.forjaPending).not.toBeNull();
@@ -471,7 +471,7 @@ test('espelho legado indisponível não desfaz compra canônica nem cria segunda
 
 test('guard síncrono impede autosave obsoleto antes de chegar o evento storage', async ({ page }) => {
   await abrir(page);
-  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
   const result = await page.evaluate(async () => {
     // A self-write does not dispatch storage in this page, reproducing the
     // interval before another tab's notification reaches a queued autosave.
@@ -486,7 +486,7 @@ test('guard síncrono impede autosave obsoleto antes de chegar o evento storage'
 
 test('logout legado antes do evento storage pausa visitante sem restaurar automaticamente', async ({ page }) => {
   await abrir(page);
-  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
   const paidRaw = await rawSave(page);
   const result = await page.evaluate(async () => {
     localStorage.removeItem('nefroquest-save');
@@ -513,7 +513,7 @@ test('nuvem v6 mais recente não perde escolha paga v7 e reenvia o save protegid
   await page.evaluate(() => (window as any).continueGame());
   await expect(page.locator('#mainApp')).toBeVisible();
   await page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first().click();
-  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
   const paid = await save(page);
   const paidRaw = await rawSave(page);
   const uploads = await page.evaluate(async paid => {
@@ -554,7 +554,7 @@ test('query de nuvem iniciada antes da compra não substitui a Forja paga por sa
     (window as any).__lateCloudLoad = (0, eval)('_loadProgressFromCloud()');
   });
   await page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first().click();
-  await page.getByRole('button',{name:'Forjar item comum',exact:true}).click();
+  await page.getByRole('button',{name:'Forjar item aleatório',exact:true}).click();
   const paid = await save(page);
   const paidRaw = await rawSave(page);
   expect(paid.gold).toBe(4700);
@@ -588,7 +588,7 @@ test('Pixel 7 compra com dois toques, decide e volta preservando o restante da j
       (window as any).__forjaPointerTypes.push((event as PointerEvent).pointerType);
     });
   });
-  const comprar = page.getByRole('button', { name: 'Forjar item comum', exact: true });
+  const comprar = page.getByRole('button', { name: 'Forjar item aleatório', exact: true });
   await comprar.scrollIntoViewIfNeeded();
   const area = await comprar.boundingBox();
   expect(area).not.toBeNull();

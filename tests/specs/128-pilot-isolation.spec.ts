@@ -536,7 +536,7 @@ test('Forja pendente do piloto é retomada e callbacks antigos não atravessam a
   await occupyForgeSlots(page);
   await page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first().click();
   await expect(page.locator('#forjaPage')).toBeVisible();
-  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
   const paid = await pilotState(page);
   expect(paid.gold).toBe(4700);
   expect(paid.forjaPending).not.toBeNull();
@@ -563,7 +563,7 @@ test('save normal schema 7 com Forja pendente atravessa o piloto sem crédito re
   await page.waitForFunction(() => (0, eval)('state.gameStarted && !_loadingNextQuestion'));
   await occupyForgeSlots(page);
   await page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first().click();
-  await page.getByRole('button', { name: 'Forjar item comum', exact: true }).click();
+  await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
   const normalPaid = await pilotState(page);
   expect(normalPaid.gold).toBe(normalSave.gold - 300);
   expect(normalPaid.forjaPending).not.toBeNull();
