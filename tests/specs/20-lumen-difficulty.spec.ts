@@ -25,6 +25,23 @@ async function enterDirectlyAtAtrium(page: import('@playwright/test').Page) {
   await expect(page.locator('#welcomeScreen')).toBeVisible();
 }
 
+async function settleDifficultyGeometry(overlay: import('@playwright/test').Locator) {
+  await overlay.evaluate(async (element) => {
+    await document.fonts.ready;
+    const nextFrame = () => new Promise<void>(resolve => {
+      requestAnimationFrame(() => resolve());
+    });
+    await nextFrame();
+    const finiteAnimations = element.getAnimations({ subtree: true }).filter(animation => {
+      const timing = animation.effect?.getComputedTiming();
+      return timing && Number.isFinite(timing.endTime);
+    });
+    await Promise.all(finiteAnimations.map(animation => animation.finished));
+    await nextFrame();
+    await nextFrame();
+  });
+}
+
 test.describe('Página 3A — Calibração da Jornada Lúmen', () => {
   test.beforeEach(async ({ page }) => {
     await enterAsGuest(page);
@@ -56,6 +73,7 @@ test.describe('Página 3A — Calibração da Jornada Lúmen', () => {
     await expect(hardImpact).toContainText('Ativo');
     await expect(dialog.locator('#diffConfirmBtn')).toHaveAttribute('aria-label', 'Continuar com dificuldade Difícil');
 
+    await settleDifficultyGeometry(overlay);
     const geometryBefore = await dialog.locator('.nql-difficulty__body, .difficulty-grid, .nql-difficulty__impact, .nql-difficulty__footer')
       .evaluateAll((elements) => elements.map((element) => {
         const rect = element.getBoundingClientRect();
@@ -66,7 +84,7 @@ test.describe('Página 3A — Calibração da Jornada Lúmen', () => {
     await expect(overlay).toHaveAttribute('data-selected-difficulty', 'hardcore');
     await expect(dialog.locator('.nql-difficulty__impact-panel[data-diff-key="hardcore"]')).toHaveAttribute('aria-hidden', 'false');
     await expect(dialog.locator('#diffConfirmBtn')).toHaveAttribute('aria-label', 'Continuar com dificuldade Hardcore');
-    await page.waitForTimeout(260);
+    await settleDifficultyGeometry(overlay);
 
     const geometryAfter = await dialog.locator('.nql-difficulty__body, .difficulty-grid, .nql-difficulty__impact, .nql-difficulty__footer')
       .evaluateAll((elements) => elements.map((element) => {
