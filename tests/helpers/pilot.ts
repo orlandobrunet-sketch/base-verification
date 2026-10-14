@@ -1,4 +1,5 @@
 import { expect, type Page, type TestInfo } from '@playwright/test';
+import { routeTechnicalQuestionBank, technicalQuestionBundle } from './technical-question-bank';
 
 export type PilotClass = 'nephros' | 'glomerulus' | 'aquaria';
 export type Difficulty = 'easy' | 'normal' | 'hard' | 'hardcore';
@@ -26,6 +27,9 @@ const TECHNICAL_TOPICS = Array.from({ length: 120 }, (_, n) => ({
   ans: 0, exp: 'O marcador esperado nesta fixture técnica é A.',
   diff: ['easy', 'medium', 'hard'][n % 3], cat: 'geral', refs: [],
 }));
+
+// Publish constant fixture inputs before test timers; browser initialization still runs normally.
+technicalQuestionBundle(TECHNICAL_TOPICS);
 
 export const normalSave = {
   schemaVersion: 7, saveOwner: null, level: 3, xp: 27, xpToNext: 264,
@@ -116,10 +120,7 @@ export async function setupPilotPage(page: Page, seedNormal = false) {
     const host = new URL(route.request().url()).hostname;
     return ['localhost', '127.0.0.1'].includes(host) ? route.continue() : route.abort();
   });
-  await page.route('**/data/topics.js*', route => route.fulfill({
-    status: 200, contentType: 'application/javascript',
-    body: `const topics = ${JSON.stringify(TECHNICAL_TOPICS)};`,
-  }));
+  await routeTechnicalQuestionBank(page, TECHNICAL_TOPICS);
   await page.addInitScript(({ seed, save }) => {
     if (sessionStorage.getItem('pilot-fixture-ready')) return;
     sessionStorage.setItem('pilot-fixture-ready', '1');

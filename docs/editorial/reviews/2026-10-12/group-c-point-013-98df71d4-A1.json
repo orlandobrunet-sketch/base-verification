@@ -1,0 +1,642 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 33655,
+  "sourceReportSHA256": "0c6653b21b7643fc2797264b7216a1ecc30b034eb5a24a2e3b5e4f3d099a72a4",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_FORMAL_POINT_REVIEW_v2",
+    "group": "c",
+    "batch": "013",
+    "affectedQuestionQid": "98df71d4",
+    "supersedesQuestionOnly": {
+      "report": {
+        "path": "docs/editorial/reviews/2026-10-12/group-c-output-013-A3.json",
+        "bytes": 220558,
+        "sha256": "ff73915ebdaf0789de0bd6910f05ee1f108608dd86dfe205193df3412683b278"
+      },
+      "qid": "98df71d4",
+      "oldAfterWasNull": true,
+      "oldGate": "PARCIALMENTE VERIFICADA/DECISIVA/BLOQUEADA"
+    },
+    "reviewedAtOfficialUTC": "2026-10-13 12:35:18 UTC",
+    "questions": [
+      {
+        "qid": "98df71d4",
+        "sourceLine": 338,
+        "sourceQuestionSHA256": "be1b6a540680f0d315e373f4fdc0e556818210bf4b1e7faf842a3cb34104acb1",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Avaliar o limite de evidência para TIPS exclusivamente como terapia de HRS-AKI segundo EASL 2025.",
+        "classification": {
+          "primaryCompetence": "Decisão baseada em limite de evidência",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "populationAndScenario": "Paciente com cirrose e síndrome hepatorrenal associada à lesão renal aguda (HRS-AKI) tem resposta insuficiente a vasoconstritor e albumina. A equipe considera shunt portossistêmico intra-hepático transjugular (TIPS) exclusivamente para melhorar os desfechos dessa HRS-AKI. Qual decisão está alinhada à EASL 2025?",
+          "decisiveData": "HRS-AKI e objetivo exclusivo de reduzir seus desfechos; não se solicita tratar ascite recorrente ou outro quadro de hipertensão portal.",
+          "hiddenPremisesResolved": true,
+          "realPatient": false
+        },
+        "justification": "Fonte decisiva agora aberta e lida pelo próprio autor no canal web. Novo candidato e novo card inteiro passam por avaliação formal; C013-A3 com AFTERnull permanece histórico, sem atribuir falsa leitura anterior. Liberação autoral exige revisão independente do pacote exato.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "A pendência anterior era acesso ao trecho decisivo; resolvida apenas nesta leitura própria pelo canal web, não pelo GET403."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Correta mais longa e alternativas absolutas foram reconstruídas; redução da dificuldade para a tarefa efetiva."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "Qual trecho EASL sustenta a posição específica, e não outra diretriz sobre LRA?"
+          ],
+          "after": [
+            "O trecho HRS-AKI e seu apêndice foram lidos; melhora renal não prova benefício de sobrevida, e insuficiência de evidência não é contraindicação universal. HRS-NAKI não substitui a população pedida."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "criteria": [
+            {
+              "criterion": 1,
+              "label": "Mais de uma resposta defensável",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "O objetivo e o fenótipo estão delimitados; três erros comparados não tornam outra decisão sustentada."
+            },
+            {
+              "criterion": 2,
+              "label": "Referência não sustenta gabarito",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "Fonte primária específica e card exato foram conferidos; leitura via web é qualificada, sem arquivo PDF fictício."
+            },
+            {
+              "criterion": 3,
+              "label": "Deriva de OP",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "O OP continua selecionar a posição para HRS-AKI e esse objetivo; não vira diagnóstico, dose ou indicação por ascite."
+            },
+            {
+              "criterion": 4,
+              "label": "Conduta insegura premiada",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "Não premia resgate rotineiro ou substituição do transplante sem benefício demonstrado."
+            },
+            {
+              "criterion": 5,
+              "label": "Distrator absurdo",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "Distratores representam extrapolação de resposta renal, substituição de terapia e interpretação excessiva de contraindicação."
+            },
+            {
+              "criterion": 6,
+              "label": "Trivia sem consequência clínica",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "Evita propor procedimento pelo desfecho não demonstrado; números de grau/consenso ficam no card, sem trivia na pergunta."
+            },
+            {
+              "criterion": 7,
+              "label": "Explicação contradiz gabarito",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "A explicação começa pela posição correta e delimita os três erros, sem equivalência de função renal e sobrevida."
+            },
+            {
+              "criterion": 8,
+              "label": "Dado decisivo ausente",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "HRS-AKI e finalidade exclusiva explícitas; não há ascite recorrente fornecida que mude a pergunta."
+            },
+            {
+              "criterion": 9,
+              "label": "Protocolo local oculto",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "EASL 2025 está nomeada; nenhuma rotina local oculta resolve a escolha."
+            },
+            {
+              "criterion": 10,
+              "label": "Desatualização relevante",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "Documento2025 identificado; não atribui ao presente o estado de ensaio descrito como em andamento nesse documento."
+            }
+          ],
+          "beforeTriggered": [],
+          "beforeScoreAnnulled": false,
+          "afterTriggered": [],
+          "scoreAnnulled": false,
+          "duplicateOverride": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Novo AFTER e card inteiro exatos, após acesso decisivo próprio; sem telemetria nova ou gate herdado."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA permite avaliação, sem liberação automática.",
+          "step1": "Dez eliminatórios reavaliados, nenhum no AFTER.",
+          "step2": "Busca textual TIPS encontrou somente este qid; outras proximidades hepatorrenais têm decisões distintas.",
+          "step3": "Score19 → aprovada.",
+          "lifecycle": "publicado",
+          "actualDeployment": false,
+          "rule": "Handbook §18.4 Regra2/7(a), §19; binding independente exato necessário."
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR PELO NOVO AFTER EXATO — nenhuma aplicação neste parecer",
+          "BEFORE": {
+            "t": "TIPS na HRS-AKI",
+            "qid": "98df71d4",
+            "q": "Paciente com cirrose avançada e HRS-AKI apresenta resposta insuficiente a vasoconstritor associado à albumina. A equipe cogita TIPS exclusivamente para tratar a HRS-AKI e melhorar sobrevida. Qual é a posição da diretriz EASL de 2025?",
+            "refs": [
+              "easl_tips_guideline_2025",
+              "hepatorenal_review"
+            ],
+            "opts": [
+              "O TIPS é recomendado rotineiramente como ponte ao transplante em toda HRS-AKI refratária",
+              "O TIPS substitui o transplante quando ocorre melhora inicial da função renal",
+              "O TIPS é absolutamente contraindicado em qualquer paciente com HRS-AKI",
+              "O TIPS não pode ser recomendado para reduzir morbidade ou mortalidade na HRS-AKI, pois a evidência é insuficiente"
+            ],
+            "ans": 3,
+            "exp": "A EASL 2025 afirma que, por evidência insuficiente, o TIPS não pode ser recomendado para reduzir morbidade ou mortalidade na HRS-AKI. Estudos pequenos sugerem melhora hemodinâmica ou renal, mas não estabelecem benefício clínico e muitos pacientes têm insuficiência hepática grave que inviabiliza um TIPS não urgente. Isso não significa contraindicação absoluta para toda indicação: um TIPS pode ser discutido por outra complicação de hipertensão portal, em paciente selecionado, mas não deve ser apresentado como ponte eficaz comprovada para HRS-AKI. O transplante hepático permanece a terapia definitiva.",
+            "diff": "hard",
+            "cat": "lra"
+          },
+          "AFTER": {
+            "t": "TIPS na HRS-AKI",
+            "qid": "98df71d4",
+            "q": "Paciente com cirrose e síndrome hepatorrenal associada à lesão renal aguda (HRS-AKI) tem resposta insuficiente a vasoconstritor e albumina. A equipe considera shunt portossistêmico intra-hepático transjugular (TIPS) exclusivamente para melhorar os desfechos dessa HRS-AKI. Qual decisão está alinhada à EASL 2025?",
+            "refs": [
+              "easl_tips_hrs_2025"
+            ],
+            "opts": [
+              "Indicar TIPS como resgate, pois melhora renal após o procedimento demonstra benefício de sobrevida.",
+              "Usar TIPS como terapia definitiva se a creatinina melhorar, adiando avaliação para transplante hepático.",
+              "Contraindicar TIPS pelo diagnóstico de HRS-AKI, sem avaliar outra eventual indicação de hipertensão portal.",
+              "A evidência não permite recomendar TIPS para esse objetivo na HRS-AKI."
+            ],
+            "ans": 3,
+            "exp": "A EASL 2025 considera insuficiente a evidência para recomendar TIPS com o objetivo de reduzir morbidade ou mortalidade na HRS-AKI. Melhora renal em estudos pequenos não estabelece esse benefício. Essa posição não equivale a contraindicação absoluta por todo diagnóstico de HRS-AKI: outras indicações e riscos exigem avaliação própria. O transplante hepático continua na avaliação terapêutica; TIPS não o substitui pela melhora isolada da creatinina.",
+            "diff": "medium",
+            "cat": "lra"
+          },
+          "afterQuestionSHA256": "79a999d333253fbff4063351e3df29fe547a83e756c658e3f252baa8916fa103",
+          "correctAnswer": {
+            "canonicalIndex": 3,
+            "canonicalLetter": "D",
+            "text": "A evidência não permite recomendar TIPS para esse objetivo na HRS-AKI."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "easl2025_own_reader",
+            "supports": "HRS-AKI: evidência insuficiente para recomendar TIPS para morbidade/mortalidade; LoE4, recomendação fraca, consenso forte (96%). HRS-NAKI com ascite tem recomendação distinta de considerar TIPS, também LoE4/fraca.",
+            "locations": [
+              "PDF p.11/index10, HRS-AKI narrative and recommendation box; lines918–974",
+              "PDF p.24/index23, Appendix consensus table; lines2086–2091",
+              "PDF p.2/index1, Table2 and selection/contraindications"
+            ],
+            "access": "Documento PDF integral de34p aberto no leitor web; texto próprio p.11 e p.24 lido. GET direto403, sem PDF local e sem hash/bytes de PDF inventados. Pedidos de screenshot não produziram pixels visíveis neste adaptador; leitura alegada é textual.",
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "easl_tips_hrs_2025": {
+            "label": "EASL 2025 — TIPS na síndrome hepatorrenal",
+            "url": "https://easlcampus.eu/sites/default/files/2025-04/EASL_CPG_on_TIPS.pdf",
+            "journal": "Journal of Hepatology 2025; DOI10.1016/j.jhep.2025.01.029",
+            "ano": 2025,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Distingue limite de evidência em HRS-AKI de indicação por outra complicação portal.",
+            "icon": "📋",
+            "resumo": "EASL 2025, p.11: não há evidência suficiente para recomendar TIPS visando reduzir morbidade ou mortalidade na HRS-AKI (LoE 4; recomendação fraca; consenso forte, 96% no apêndice p.24). Para cirrose com ascite e HRS-NAKI, a diretriz permite considerar TIPS, com recomendação distinta e evidência baixa. Não confundir melhora renal com benefício comprovado de sobrevida.",
+            "conclusao": "Avaliar indicação e risco pelo contexto; HRS-AKI refratária não transforma TIPS em resgate rotineiro de eficácia comprovada.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "ADD/REPLACE condicionais; revisão autoral não aprova consumidores compartilhados nem redefine tentativas históricas.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "posição",
+            "índice de resposta",
+            "cat",
+            "tentativas",
+            "histórico",
+            "FSRS"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "replaceFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "atomicCardDependencies": [
+            "easl_tips_hrs_2025"
+          ],
+          "newCardsMustExistBeforeTopicWrite": [
+            "easl_tips_hrs_2025"
+          ],
+          "independentExactReviewRequired": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true,
+          "doNotResetFSRS": true,
+          "applied": false,
+          "noDeletionOfComparedQids": true
+        },
+        "verificationPending": [],
+        "editorialPending": [],
+        "comparison": {
+          "beforeLengths": [
+            88,
+            76,
+            70,
+            113
+          ],
+          "afterLengths": [
+            99,
+            104,
+            107,
+            70
+          ],
+          "uniqueLongestCorrectBefore": true,
+          "uniqueLongestCorrectAfter": false,
+          "correctToLongestDistractorRatio": 0.6542,
+          "qidPreserved": true,
+          "answerPositionUnchangedInBank": true,
+          "answerIdentityPreserved": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "noAddedLetterOrOrderCue": true
+        },
+        "distractorRationale": {
+          "A": "Melhora renal não demonstra o benefício de sobrevida que justificaria resgate rotineiro.",
+          "B": "Resposta da creatinina não demonstra tratamento definitivo nem substituição da avaliação de transplante.",
+          "C": "O diagnóstico isolado não formula contraindicação absoluta para toda indicação; o contexto e a função hepática importam."
+        },
+        "validity": {
+          "content": "Fonte primária específica lida pelo próprio autor no canal declarado; nenhuma leitura emprestada ou PDF fictício.",
+          "construct": "Avaliar o limite de evidência para TIPS exclusivamente como terapia de HRS-AKI segundo EASL 2025.",
+          "response": "Alternativas comparadas por conceito, sem telemetria coletada.",
+          "consequential": "Evitar extrapolar resposta renal a benefício de desfechos ou proibição universal."
+        },
+        "duplicationCheck": {
+          "dimensions": [
+            "decisão",
+            "estrutura dos dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Variações úteis nas proximidades inspecionadas; não é prova de busca semântica perfeita das741 questões.",
+          "relatedItems": [
+            {
+              "qid": "108002ef",
+              "sourceBEFORE": {
+                "t": "Critérios Atuais de HRS-AKI",
+                "qid": "108002ef",
+                "q": "Paciente com cirrose e ascite apresenta aumento da creatinina de 1,0 para 1,5 mg/dL em 48 horas. Após avaliação clínica, recebeu reposição volêmica adequada por hipovolemia e não melhorou em 24 horas; não há choque, obstrução nem evidência forte de outra causa dominante de LRA. Qual afirmação corresponde aos critérios atuais de HRS-AKI?",
+                "refs": [
+                  "hepatorenal_review"
+                ],
+                "opts": [
+                  "O quadro é compatível com HRS-AKI; não se exige albumina sistemática por 48 horas nem creatinina acima de 2,5 mg/dL",
+                  "O diagnóstico exige obrigatoriamente albumina em dose fixa por 48 horas antes de qualquer conclusão",
+                  "O diagnóstico só pode ser feito quando a creatinina ultrapassa 2,5 mg/dL e a oligúria dura sete dias",
+                  "A presença de qualquer proteinúria ou doença renal crônica prévia exclui HRS-AKI por definição"
+                ],
+                "ans": 0,
+                "exp": "O consenso ICA–ADQI define HRS-AKI por cirrose com ascite, critérios de LRA por creatinina e/ou diurese, ausência de melhora em até 24 horas após reposição volêmica adequada quando indicada e falta de evidência forte de outra causa primária. Ele recomenda contra exigir albumina sistemática por 48 horas como teste diagnóstico e não usa um limiar mínimo de creatinina de 2,5 mg/dL. Lesão tubular, proteinúria ou DRC podem coexistir; o ponto decisivo é não haver explicação alternativa dominante para a LRA.",
+                "diff": "hard",
+                "cat": "lra"
+              },
+              "sourceSHA256": "ac88313d07c0e31b9855a47f1b539e0a302201fcd6edf48ff8ce40e3fedcd07d",
+              "fourDimensionAssessment": "Decisão: diagnosticarHRS com critérios atuais versus avaliar limite de evidência deTIPS; dados diagnósticos versus tratamento discutido, população cirrótica próxima, idiomaigual. Variação útil."
+            },
+            {
+              "qid": "07aecc9b",
+              "sourceBEFORE": {
+                "t": "CONFIRM: Eficácia e Segurança da Terlipressina",
+                "qid": "07aecc9b",
+                "q": "Ao discutir terlipressina associada à albumina com a equipe que trata um paciente com HRS-AKI, qual interpretação do estudo CONFIRM é correta?",
+                "refs": [
+                  "confirm_trial",
+                  "terlivaz_fda_label_2023"
+                ],
+                "opts": [
+                  "A terapia reduziu a mortalidade em 90 dias, embora não tenha aumentado a reversão da HRS",
+                  "A reversão verificada foi maior com terlipressina, sem diferença relevante de eventos respiratórios",
+                  "A reversão verificada foi maior com terlipressina, mas não houve benefício de sobrevida em 90 dias e houve mais insuficiência respiratória",
+                  "A terapia substituiu a necessidade de avaliação para transplante hepático nos pacientes que normalizaram a creatinina"
+                ],
+                "ans": 2,
+                "exp": "No CONFIRM, a reversão verificada da HRS ocorreu em 32% com terlipressina e 17% com placebo. O ensaio não demonstrou benefício de sobrevida em 90 dias e registrou mais eventos adversos, especialmente insuficiência respiratória; portanto, eficácia renal não equivale a benefício de sobrevida nem elimina a avaliação para transplante. A seleção deve considerar oxigenação, estado volêmico e gravidade da insuficiência hepática, com monitorização respiratória durante o tratamento.",
+                "diff": "hard",
+                "cat": "lra"
+              },
+              "sourceSHA256": "d7e4eae13baf68d1e88213eec7206855938df18ac841b640ee25c23122003bac",
+              "fourDimensionAssessment": "Decisão: interpretar resultados doCONFIRM/terlipressina versus evidência de procedimentoTIPS; dados deRCT versus indicação de resgate, mesmo perfil/idioma, intervenção e decisão diferentes."
+            }
+          ]
+        },
+        "reviewScope": "Reparo autoral pontual C013/98df71d4; não reavalia os outros7 nem acrescenta novo8.",
+        "freshFullGateReview": {
+          "reviewedAtOfficialUTC": "2026-10-13 12:35:18 UTC",
+          "wholeQuestionAndAllCards": true,
+          "noInheritedGate": true,
+          "questionAfterSHA256": "79a999d333253fbff4063351e3df29fe547a83e756c658e3f252baa8916fa103",
+          "cardAfterSHA256": "e8ed0e1d9bffca167a846b467c8f907d48b5de716672a0a1b58c3cfb0d356332",
+          "OP": "Avaliar o limite de evidência para TIPS exclusivamente como terapia de HRS-AKI segundo EASL 2025.",
+          "classification": {
+            "primaryCompetence": "Decisão baseada em limite de evidência",
+            "Bloom": "Aplicar",
+            "Miller": "Sabe como",
+            "intrinsicDifficulty": "intermediária"
+          },
+          "advogadoDoRecurso": {
+            "before": [
+              "Qual trecho EASL sustenta a posição específica, e não outra diretriz sobre LRA?"
+            ],
+            "after": [
+              "O trecho HRS-AKI e seu apêndice foram lidos; melhora renal não prova benefício de sobrevida, e insuficiência de evidência não é contraindicação universal. HRS-NAKI não substitui a população pedida."
+            ],
+            "resolvedBeforeApproval": true
+          },
+          "tenEliminators": {
+            "checked": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "criteria": [
+              {
+                "criterion": 1,
+                "label": "Mais de uma resposta defensável",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "O objetivo e o fenótipo estão delimitados; três erros comparados não tornam outra decisão sustentada."
+              },
+              {
+                "criterion": 2,
+                "label": "Referência não sustenta gabarito",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "Fonte primária específica e card exato foram conferidos; leitura via web é qualificada, sem arquivo PDF fictício."
+              },
+              {
+                "criterion": 3,
+                "label": "Deriva de OP",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "O OP continua selecionar a posição para HRS-AKI e esse objetivo; não vira diagnóstico, dose ou indicação por ascite."
+              },
+              {
+                "criterion": 4,
+                "label": "Conduta insegura premiada",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "Não premia resgate rotineiro ou substituição do transplante sem benefício demonstrado."
+              },
+              {
+                "criterion": 5,
+                "label": "Distrator absurdo",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "Distratores representam extrapolação de resposta renal, substituição de terapia e interpretação excessiva de contraindicação."
+              },
+              {
+                "criterion": 6,
+                "label": "Trivia sem consequência clínica",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "Evita propor procedimento pelo desfecho não demonstrado; números de grau/consenso ficam no card, sem trivia na pergunta."
+              },
+              {
+                "criterion": 7,
+                "label": "Explicação contradiz gabarito",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "A explicação começa pela posição correta e delimita os três erros, sem equivalência de função renal e sobrevida."
+              },
+              {
+                "criterion": 8,
+                "label": "Dado decisivo ausente",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "HRS-AKI e finalidade exclusiva explícitas; não há ascite recorrente fornecida que mude a pergunta."
+              },
+              {
+                "criterion": 9,
+                "label": "Protocolo local oculto",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "EASL 2025 está nomeada; nenhuma rotina local oculta resolve a escolha."
+              },
+              {
+                "criterion": 10,
+                "label": "Desatualização relevante",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "Documento2025 identificado; não atribui ao presente o estado de ensaio descrito como em andamento nesse documento."
+              }
+            ],
+            "beforeTriggered": [],
+            "beforeScoreAnnulled": false,
+            "afterTriggered": [],
+            "scoreAnnulled": false,
+            "duplicateOverride": false
+          },
+          "NQEditorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 1,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 19,
+            "band": "Excelente",
+            "scope": "Novo AFTER e card inteiro exatos, após acesso decisivo próprio; sem telemetria nova ou gate herdado."
+          },
+          "decisionTree": {
+            "step0": "VERIFICADA/NENHUMA permite avaliação, sem liberação automática.",
+            "step1": "Dez eliminatórios reavaliados, nenhum no AFTER.",
+            "step2": "Busca textual TIPS encontrou somente este qid; outras proximidades hepatorrenais têm decisões distintas.",
+            "step3": "Score19 → aprovada.",
+            "lifecycle": "publicado",
+            "actualDeployment": false,
+            "rule": "Handbook §18.4 Regra2/7(a), §19; binding independente exato necessário."
+          },
+          "verdictV2": "aprovada",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA"
+        }
+      }
+    ],
+    "sourceRegistry": {
+      "easl2025_own_reader": {
+        "url": "https://easlcampus.eu/sites/default/files/2025-04/EASL_CPG_on_TIPS.pdf",
+        "version": "EASL Clinical Practice Guidelines on TIPS 2025; DOI10.1016/j.jhep.2025.01.029; PMID40180845",
+        "opened": true,
+        "access": "Documento PDF integral de34p aberto no leitor web; texto próprio p.11 e p.24 lido. GET direto403, sem PDF local e sem hash/bytes de PDF inventados. Pedidos de screenshot não produziram pixels visíveis neste adaptador; leitura alegada é textual.",
+        "locations": [
+          "PDF p.11/index10, HRS-AKI narrative and recommendation box; lines918–974",
+          "PDF p.24/index23, Appendix consensus table; lines2086–2091",
+          "PDF p.2/index1, Table2 and selection/contraindications"
+        ],
+        "verifiedScope": "HRS-AKI: evidência insuficiente para recomendar TIPS para morbidade/mortalidade; LoE4, recomendação fraca, consenso forte (96%). HRS-NAKI com ascite tem recomendação distinta de considerar TIPS, também LoE4/fraca.",
+        "readerReceiptPin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 1784,
+          "sha256": "f0c8f7423ec653461c9d2fd5f4c6c43287e494cba3332dc8c231b61eb9006878"
+        },
+        "directGETReceiptPin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 505,
+          "sha256": "c1a2252756f0f5b5f438dc2a51b60ae4178de637a84556120331e95e9ad215af"
+        },
+        "sourcePinKind": "ACCESS_RECEIPTS_ONLY_NOT_PDF",
+        "rawPDFPin": null,
+        "ownReadAtOfficialUTC": "2026-10-13 12:35:18 UTC"
+      }
+    },
+    "cardPatches": [
+      {
+        "id": "easl_tips_hrs_2025",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "EASL 2025 — TIPS na síndrome hepatorrenal",
+          "url": "https://easlcampus.eu/sites/default/files/2025-04/EASL_CPG_on_TIPS.pdf",
+          "journal": "Journal of Hepatology 2025; DOI10.1016/j.jhep.2025.01.029",
+          "ano": 2025,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Distingue limite de evidência em HRS-AKI de indicação por outra complicação portal.",
+          "icon": "📋",
+          "resumo": "EASL 2025, p.11: não há evidência suficiente para recomendar TIPS visando reduzir morbidade ou mortalidade na HRS-AKI (LoE 4; recomendação fraca; consenso forte, 96% no apêndice p.24). Para cirrose com ascite e HRS-NAKI, a diretriz permite considerar TIPS, com recomendação distinta e evidência baixa. Não confundir melhora renal com benefício comprovado de sobrevida.",
+          "conclusao": "Avaliar indicação e risco pelo contexto; HRS-AKI refratária não transforma TIPS em resgate rotineiro de eficácia comprovada.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "e8ed0e1d9bffca167a846b467c8f907d48b5de716672a0a1b58c3cfb0d356332",
+        "usedByQids": [
+          "98df71d4"
+        ],
+        "existingBankConsumerQids": [],
+        "sources": [
+          {
+            "url": "https://easlcampus.eu/sites/default/files/2025-04/EASL_CPG_on_TIPS.pdf",
+            "version": "EASL Clinical Practice Guidelines on TIPS 2025; DOI10.1016/j.jhep.2025.01.029; PMID40180845",
+            "opened": true,
+            "access": "Documento PDF integral de34p aberto no leitor web; texto próprio p.11 e p.24 lido. GET direto403, sem PDF local e sem hash/bytes de PDF inventados. Pedidos de screenshot não produziram pixels visíveis neste adaptador; leitura alegada é textual.",
+            "locations": [
+              "PDF p.11/index10, HRS-AKI narrative and recommendation box; lines918–974",
+              "PDF p.24/index23, Appendix consensus table; lines2086–2091",
+              "PDF p.2/index1, Table2 and selection/contraindications"
+            ],
+            "verifiedScope": "HRS-AKI: evidência insuficiente para recomendar TIPS para morbidade/mortalidade; LoE4, recomendação fraca, consenso forte (96%). HRS-NAKI com ascite tem recomendação distinta de considerar TIPS, também LoE4/fraca.",
+            "readerReceiptPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 1784,
+              "sha256": "f0c8f7423ec653461c9d2fd5f4c6c43287e494cba3332dc8c231b61eb9006878"
+            },
+            "directGETReceiptPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 505,
+              "sha256": "c1a2252756f0f5b5f438dc2a51b60ae4178de637a84556120331e95e9ad215af"
+            },
+            "sourcePinKind": "ACCESS_RECEIPTS_ONLY_NOT_PDF",
+            "rawPDFPin": null,
+            "ownReadAtOfficialUTC": "2026-10-13 12:35:18 UTC"
+          }
+        ],
+        "newExactVersionReview": {
+          "verdictV2": "aprovada",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "afterSHA256": "e8ed0e1d9bffca167a846b467c8f907d48b5de716672a0a1b58c3cfb0d356332",
+          "reviewedAtOfficialUTC": "2026-10-13 12:35:18 UTC",
+          "noInheritedGate": true,
+          "taxonomyVerified": true
+        },
+        "implementation": "Novo card específico não libera o card compartilhado antigo ou seus consumidores; exige revisão independente e histórico exatos."
+      }
+    ],
+    "counts": {
+      "reviewed": 1,
+      "newReviewed": 0,
+      "publicationReleased": 1,
+      "publicationBlocked": 0,
+      "implemented": 0,
+      "independentReviewed": 0
+    },
+    "otherSevenNotReviewed": true,
+    "originalsPreserved": true,
+    "independentExactBindingRequired": {
+      "qid": "98df71d4",
+      "questionAfterSHA256": "79a999d333253fbff4063351e3df29fe547a83e756c658e3f252baa8916fa103",
+      "cardAfterSHA256": "e8ed0e1d9bffca167a846b467c8f907d48b5de716672a0a1b58c3cfb0d356332",
+      "previousBindingDoesNotTransfer": true
+    },
+    "scope": "Mesma questão já contada; liberação autoral nova não é aplicação nem publicação."
+  }
+}

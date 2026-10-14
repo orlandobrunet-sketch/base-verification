@@ -1,0 +1,366 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 23334,
+  "sourceReportSHA256": "af0e38f3f075c9fa7a0c1436b08683cbbac874c471e1b3c332b0bba80783a857",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "nq-independent-material-proposal-gate-v1",
+    "reviewer": "independent clinical reviewer",
+    "verifiedAtOfficialUTC": "2026-10-13 10:47:09 UTC",
+    "batch": "B009 STARMEN A4 proposal",
+    "reviewMode": "fresh scientific and pedagogical gate for a single material repair, preserving prior blocked version",
+    "authorProposal": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 35762,
+      "sha256": "a2ef8ed4b883d50a514abdbbd7ba3b363a4284d76b2a2d3065aa36f910408d3a"
+    },
+    "originalIndependentReport": {
+      "path": "docs/editorial/reviews/2026-10-12/independent-b009-A3.json",
+      "bytes": 276526,
+      "sha256": "dc6dc4440c276886b9f94f602fd90edd37dbebb9bed25c2fd1a9148cb3d0bbf2"
+    },
+    "questions": [
+      {
+        "qid": "f4cf4003",
+        "BEFORE": {
+          "t": "STARMEN — Remissão aos 24 Meses",
+          "qid": "f4cf4003",
+          "q": "No STARMEN, 86 pacientes com nefropatia membranosa primária e síndrome nefrótica persistente foram randomizados para corticosteroide-ciclofosfamida cíclicos ou tacrolimo seguido de rituximabe. Qual foi o resultado primário em 24 meses?",
+          "refs": [
+            "starmen_trial_2021"
+          ],
+          "opts": [
+            "Remissão completa ou parcial ocorreu em 83,7% com corticosteroide-ciclofosfamida e em 58,1% com tacrolimo-rituximabe",
+            "Tacrolimo-rituximabe foi superior, com remissão em 84% versus 58%",
+            "Não houve diferença de remissão entre os grupos, e o estudo comprovou equivalência",
+            "O estudo avaliou apenas queda do anti-PLA2R e não mediu remissão clínica"
+          ],
+          "ans": 0,
+          "exp": "No STARMEN, o desfecho primário de remissão completa ou parcial em 24 meses ocorreu em 36 de 43 pacientes (83,7%) no grupo corticosteroide-ciclofosfamida e em 25 de 43 (58,1%) no grupo tacrolimo-rituximabe. A remissão completa também foi mais frequente com o esquema cíclico: 60% versus 26%. O resultado compara especificamente esse regime sequencial, no qual o rituximabe foi administrado em dose única de 1 g no sexto mês; não autoriza concluir que todo esquema com rituximabe seja inferior.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "beforeQuestionSHA256": "0614f862f868ba1d9ad9c768adbc91b5320f4c91831e9241ab717cc6e0a68fcd",
+        "AFTER": {
+          "t": "STARMEN — Remissão aos 24 Meses",
+          "qid": "f4cf4003",
+          "q": "Ao discutir imunossupressão na nefropatia membranosa primária, uma equipe analisa o STARMEN: 86 pacientes com síndrome nefrótica persistente foram randomizados para corticosteroide-ciclofosfamida cíclicos ou tacrolimo seguido de rituximabe. A remissão completa ou parcial em 24 meses foi de 83,7% versus 58,1%, respectivamente, com risco relativo de 1,44 (intervalo de confiança de 95%: 1,08–1,92). Qual conclusão pode orientar essa discussão?",
+          "refs": [
+            "starmen_trial_2021"
+          ],
+          "opts": [
+            "O esquema cíclico induziu mais remissões que a sequência estudada; a comparação não se estende a todo regime com rituximabe.",
+            "O esquema cíclico reduziu mais a falência renal que a sequência estudada; a remissão demonstra esse benefício no ensaio.",
+            "A vantagem em remissão pode ser atribuída à ciclofosfamida isoladamente; a randomização separou os efeitos dos fármacos.",
+            "A vantagem em remissão demonstra inferioridade do rituximabe na membranosa; o efeito se aplica também a outros esquemas."
+          ],
+          "ans": 0,
+          "exp": "O STARMEN favoreceu corticosteroide-ciclofosfamida cíclicos para remissão completa ou parcial em 24 meses em comparação com a sequência específica tacrolimo-rituximabe. Os dados fornecidos permitem interpretar a direção do efeito e seu intervalo de confiança sem memorizar as taxas: 36/43 (83,7%) versus 25/43 (58,1%), risco relativo 1,44, com intervalo de confiança de 95% de 1,08–1,92. O ensaio randomizou regimes completos, não componentes isolados; portanto, não separa o efeito da ciclofosfamida do corticosteroide nem demonstra inferioridade de todo esquema de rituximabe. Remissão foi o desfecho primário apresentado, e não equivale a uma redução comprovada de falência renal. O comparador incluía tacrolimo por seis meses, desmame nos três seguintes e uma dose de rituximabe de 1 g no sexto mês. A interpretação informa a discussão terapêutica na população estudada; não substitui a avaliação individual de benefício e toxicidade. Os números e regimes foram conferidos no resumo primário completo; a íntegra não foi declarada lida.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "afterQuestionSHA256": "03a1da97587604f7c089dfd6680d5b9f383db0b1ec9cbd11beab48d2c0b31398",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7(a): verified/no pending, approval verdict after fresh full gate.",
+        "OP": "Interpretar a comparação específica de regimes do STARMEN em discussão terapêutica, distinguindo remissão de desfecho renal e evitando transportar o resultado a regimes não estudados.",
+        "classification": {
+          "primaryCompetence": "Interpretação crítica da evidência",
+          "Bloom": "Analisar",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "intermediária",
+          "qualification": "Não alega escolha de prescrição individual nem validação psicométrica empírica."
+        },
+        "caseReconstruction": {
+          "population": "Nefropatia membranosa primária com síndrome nefrótica persistente",
+          "decision": "Qual conclusão a comparação de regimes sustenta",
+          "horizon": "Remissão completa/parcial em 24 meses",
+          "decisiveData": "Regimes, desfecho e estimativa numérica são fornecidos; não exige recordar percentuais.",
+          "missingData": "Não solicita tratamento individual que dependa de contraindicação ou preferência omitida."
+        },
+        "justification": "Os resultados fornecidos sustentam a primeira interpretação. As outras opções substituem remissão por benefício comprovado em falência renal, atribuem o efeito do regime completo a um componente ou generalizam para esquemas não estudados. O item agora cobra interpretação da evidência, em vez de recordação de números.",
+        "findings": [
+          "Nenhum problema científico substantivo nesse AFTER exato. Limitação menor de naturalidade: alternativas com estrutura semelhante; a semelhança de comprimento isolada não é eliminatório."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação remanescente.",
+          "tested": [
+            "A é única para o comparador e desfecho fornecidos.",
+            "B afirma benefício em falência renal não estabelecido.",
+            "C confunde randomização dos regimes com isolamento do efeito de cada fármaco.",
+            "D transporta o efeito a regimes de rituximabe não randomizados aqui.",
+            "Os números fornecidos removem a objeção de recall; não se infere uma prescrição individual."
+          ]
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "qualification": "Desconto de um ponto pela cadência semelhante das alternativas. Score independente novo, sem herança autoral."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA permite avaliação.",
+          "step1": "Nenhum dos dez eliminatórios; sem duplicata completa nos pares inspecionados.",
+          "step2": "Nenhum argumento plausível de anulação remanescente.",
+          "step3": "19/20 → aprovada.",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "validity": {
+          "content": "Resumo primário sustenta os números e regimes empregados.",
+          "construct": "Interpretação dos dados fornecidos; não é trivia numérica.",
+          "responseProcess": "Avaliação editorial, sem dados empíricos de resposta.",
+          "consequential": "Evita extrapolação indevida para falência renal ou outros regimes com rituximabe.",
+          "identity": "Competência de interpretação da evidência preservada pelo reparo expressamente autorizado; qid/gabarito/ref estáveis. Sem reset de FSRS."
+        },
+        "claimsVerified": [
+          {
+            "claim": "Population, open randomization, 86 participants and 43 per arm; 24-month complete/partial remission 36/43 versus25/43; RR1.44 with CI1.08–1.92; complete remission26/43 versus11/43; specified tacrolimus/rituximab sequence.",
+            "source": {
+              "URL": "https://pubmed.ncbi.nlm.nih.gov/33166580/",
+              "PMID": "33166580",
+              "DOI": "10.1016/j.kint.2020.10.014",
+              "sourcePin": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 23173,
+                "sha256": "d77d5794bd8f2b421bd1481b6b14028b5a092df6f1675aa30e8e4ff5c040e6f6"
+              },
+              "readAtOfficialUTC": "2026-10-13 10:47:09 UTC",
+              "independentlyRead": true,
+              "extent": "Resumo primário original completo e registro bibliográfico; não alegada leitura da íntegra.",
+              "accessQualification": "XML primário preservado legitimamente no cache de fontes, analisado e relido independentemente. PubMed público abriu nesta retomada; reaberturas posteriores retornaram somente rodapé ou falharam. Não alegada coleta pela chamada ao executor que desconectou."
+            },
+            "status": "VERIFICADA"
+          },
+          {
+            "claim": "Randomized whole regimens and remission endpoint do not independently identify a component effect, prove kidney-failure prevention or establish inferiority of every rituximab regimen.",
+            "sourceURL": "https://pubmed.ncbi.nlm.nih.gov/33166580/",
+            "status": "VERIFICADA",
+            "qualification": "Design/endpoint limitation, not a claim that kidney benefit is absent."
+          }
+        ],
+        "duplicateReview": {
+          "candidateQids": [
+            "35027c0d",
+            "38da9430"
+          ],
+          "candidateQuestionPins": {
+            "35027c0d": "16b7528ae4f00571a9a502aaa5a4c7027929a26329df9a69ad1aa7628e11096a",
+            "38da9430": "6d7f33f8269e9d643c0c7f883fa6590c85ee997caa18c2b62cac6791b4bfd451"
+          },
+          "sameProfile": true,
+          "sameLanguage": true,
+          "sameDecision": false,
+          "sameDataStructure": false,
+          "result": "MENTOR interpreta resultados com outro comparador; a escolha individual anti-PLA2R emprega caso concreto. Nenhum cobra a mesma inferência STARMEN com os mesmos dados.",
+          "candidateQuestionsNotApprovedByAssociation": true
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — PROPOSTA A4 EXATA",
+          "BEFORE": {
+            "t": "STARMEN — Remissão aos 24 Meses",
+            "qid": "f4cf4003",
+            "q": "No STARMEN, 86 pacientes com nefropatia membranosa primária e síndrome nefrótica persistente foram randomizados para corticosteroide-ciclofosfamida cíclicos ou tacrolimo seguido de rituximabe. Qual foi o resultado primário em 24 meses?",
+            "refs": [
+              "starmen_trial_2021"
+            ],
+            "opts": [
+              "Remissão completa ou parcial ocorreu em 83,7% com corticosteroide-ciclofosfamida e em 58,1% com tacrolimo-rituximabe",
+              "Tacrolimo-rituximabe foi superior, com remissão em 84% versus 58%",
+              "Não houve diferença de remissão entre os grupos, e o estudo comprovou equivalência",
+              "O estudo avaliou apenas queda do anti-PLA2R e não mediu remissão clínica"
+            ],
+            "ans": 0,
+            "exp": "No STARMEN, o desfecho primário de remissão completa ou parcial em 24 meses ocorreu em 36 de 43 pacientes (83,7%) no grupo corticosteroide-ciclofosfamida e em 25 de 43 (58,1%) no grupo tacrolimo-rituximabe. A remissão completa também foi mais frequente com o esquema cíclico: 60% versus 26%. O resultado compara especificamente esse regime sequencial, no qual o rituximabe foi administrado em dose única de 1 g no sexto mês; não autoriza concluir que todo esquema com rituximabe seja inferior.",
+            "diff": "hard",
+            "cat": "glomerular"
+          },
+          "AFTER": {
+            "t": "STARMEN — Remissão aos 24 Meses",
+            "qid": "f4cf4003",
+            "q": "Ao discutir imunossupressão na nefropatia membranosa primária, uma equipe analisa o STARMEN: 86 pacientes com síndrome nefrótica persistente foram randomizados para corticosteroide-ciclofosfamida cíclicos ou tacrolimo seguido de rituximabe. A remissão completa ou parcial em 24 meses foi de 83,7% versus 58,1%, respectivamente, com risco relativo de 1,44 (intervalo de confiança de 95%: 1,08–1,92). Qual conclusão pode orientar essa discussão?",
+            "refs": [
+              "starmen_trial_2021"
+            ],
+            "opts": [
+              "O esquema cíclico induziu mais remissões que a sequência estudada; a comparação não se estende a todo regime com rituximabe.",
+              "O esquema cíclico reduziu mais a falência renal que a sequência estudada; a remissão demonstra esse benefício no ensaio.",
+              "A vantagem em remissão pode ser atribuída à ciclofosfamida isoladamente; a randomização separou os efeitos dos fármacos.",
+              "A vantagem em remissão demonstra inferioridade do rituximabe na membranosa; o efeito se aplica também a outros esquemas."
+            ],
+            "ans": 0,
+            "exp": "O STARMEN favoreceu corticosteroide-ciclofosfamida cíclicos para remissão completa ou parcial em 24 meses em comparação com a sequência específica tacrolimo-rituximabe. Os dados fornecidos permitem interpretar a direção do efeito e seu intervalo de confiança sem memorizar as taxas: 36/43 (83,7%) versus 25/43 (58,1%), risco relativo 1,44, com intervalo de confiança de 95% de 1,08–1,92. O ensaio randomizou regimes completos, não componentes isolados; portanto, não separa o efeito da ciclofosfamida do corticosteroide nem demonstra inferioridade de todo esquema de rituximabe. Remissão foi o desfecho primário apresentado, e não equivale a uma redução comprovada de falência renal. O comparador incluía tacrolimo por seis meses, desmame nos três seguintes e uma dose de rituximabe de 1 g no sexto mês. A interpretação informa a discussão terapêutica na população estudada; não substitui a avaliação individual de benefício e toxicidade. Os números e regimes foram conferidos no resumo primário completo; a íntegra não foi declarada lida.",
+            "diff": "medium",
+            "cat": "glomerular"
+          },
+          "correctAnswer": {
+            "letter": "A",
+            "text": "O esquema cíclico induziu mais remissões que a sequência estudada; a comparação não se estende a todo regime com rituximabe."
+          }
+        },
+        "verificationPending": [],
+        "integrationHold": false,
+        "implementationObservation": "Gate somente da proposta exata. A autoria deve congelar o parecer final e o coordenador deve conferir cards compartilhados, versões e compatibilidade antes da aplicação; nenhuma edição no produto ou FSRS."
+      }
+    ],
+    "cardReviews": [
+      {
+        "id": "starmen_trial_2021",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "Fernández-Juárez et al. — STARMEN (Kidney International 2021)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33166580/",
+          "journal": "Kidney International 2021;99(4):986-998",
+          "ano": 2021,
+          "tipo": "Ensaio Clínico Randomizado",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Comparou corticosteroide-ciclofosfamida cíclicos com tacrolimo seguido de rituximabe em nefropatia membranosa primária de risco elevado.",
+          "icon": "🔬",
+          "resumo": "Ensaio aberto e randomizado com 86 pacientes que mantinham síndrome nefrótica após seis meses de observação. Em 24 meses, remissão completa ou parcial ocorreu em 36 de 43 pacientes (83,7%) com corticosteroide-ciclofosfamida cíclicos e em 25 de 43 (58,1%) com tacrolimo seguido de uma dose de rituximabe de 1 g no sexto mês; risco relativo 1,44 (IC95% 1,08–1,92). Remissão completa ocorreu em 60% versus 26%.",
+          "conclusao": "O esquema cíclico com corticosteroide-ciclofosfamida induziu mais remissões que o regime sequencial específico tacrolimo-rituximabe; o resultado não deve ser generalizado para todo esquema de rituximabe.",
+          "curiosidade": "A hipótese original era de superioridade da sequência tacrolimo-rituximabe, mas o ensaio favoreceu o comparador clássico no desfecho primário."
+        },
+        "AFTER": {
+          "label": "Fernández-Juárez et al. — STARMEN (Kidney International 2021)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33166580/",
+          "journal": "Kidney International 2021;99 (4): 986-998",
+          "ano": 2021,
+          "tipo": "Ensaio clínico randomizado",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "STARMEN favoreceu o esquema cíclico no desfecho de remissão em 24 meses.",
+          "icon": "🔬",
+          "resumo": "Ensaio aberto randomizado STARMEN com 86 pacientes com membranosa primária e síndrome nefrótica persistente após seis meses de observação. O desfecho primário de remissão completa/parcial em 24 meses ocorreu em 36/43 (83,7%) com corticosteroide-ciclofosfamida cíclicos e 25/43 (58,1%) com tacrolimo seguido de rituximabe; risco relativo (RR) 1,44 (intervalo de confiança de 95% (IC95%) 1,08–1,92). Remissão completa ocorreu em 26/43 (60%) versus 11/43 (26%). A sequência incluía tacrolimo pleno por seis meses, desmame por três meses e uma dose de rituximabe de 1 g no sexto mês. Números e regime conferidos no resumo primário completo, sem declarar íntegra lida.",
+          "conclusao": "O resultado compara esses regimes; não permite afirmar inferioridade de qualquer esquema com rituximabe ou prevenção de falência renal não demonstrada.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "c45f9aaab989e00565ef57aad9c60b136fb53b377f27f4aa6488d9f0c15c9716",
+        "afterSHA256": "e3398dc8cea7fcd9d19cc0dae4ddf0d03bf854de72ac7a5700da79d688d59b2b",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7(a)",
+        "sourceReadings": [
+          {
+            "URL": "https://pubmed.ncbi.nlm.nih.gov/33166580/",
+            "PMID": "33166580",
+            "DOI": "10.1016/j.kint.2020.10.014",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 23173,
+              "sha256": "d77d5794bd8f2b421bd1481b6b14028b5a092df6f1675aa30e8e4ff5c040e6f6"
+            },
+            "readAtOfficialUTC": "2026-10-13 10:47:09 UTC",
+            "independentlyRead": true,
+            "extent": "Resumo primário original completo e registro bibliográfico; não alegada leitura da íntegra.",
+            "accessQualification": "XML primário preservado legitimamente no cache de fontes, analisado e relido independentemente. PubMed público abriu nesta retomada; reaberturas posteriores retornaram somente rodapé ou falharam. Não alegada coleta pela chamada ao executor que desconectou."
+          }
+        ],
+        "fullCardClaimsIndependentlyChecked": true,
+        "integrationGate": "Shared consumers are not approved by association; exact version reconciliation remains required."
+      }
+    ],
+    "independentExternalVerification": [
+      {
+        "URL": "https://pubmed.ncbi.nlm.nih.gov/33166580/",
+        "PMID": "33166580",
+        "DOI": "10.1016/j.kint.2020.10.014",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 23173,
+          "sha256": "d77d5794bd8f2b421bd1481b6b14028b5a092df6f1675aa30e8e4ff5c040e6f6"
+        },
+        "readAtOfficialUTC": "2026-10-13 10:47:09 UTC",
+        "independentlyRead": true,
+        "extent": "Resumo primário original completo e registro bibliográfico; não alegada leitura da íntegra.",
+        "accessQualification": "XML primário preservado legitimamente no cache de fontes, analisado e relido independentemente. PubMed público abriu nesta retomada; reaberturas posteriores retornaram somente rodapé ou falharam. Não alegada coleta pela chamada ao executor que desconectou."
+      }
+    ],
+    "heldPriorVersion": {
+      "qid": "f4cf4003",
+      "afterQuestionSHA256": "eea75984f577e2143e3af6c3f7578c96c30ba7533180d5adf9b732a5095f1935",
+      "verdictV2": "revisão maior",
+      "publicationAuthorization": "BLOQUEADA",
+      "holdPreserved": true
+    },
+    "counts": {
+      "originalBatchQuestionsReviewedRemains": 8,
+      "newReviewedQuestionCount": 0,
+      "materialRepairsReevaluated": 1,
+      "exactAfterAccepted": 1,
+      "cardsAccepted": 1,
+      "implemented": 0
+    },
+    "bankObserved": [
+      {
+        "path": "data/topics.js",
+        "bytes": 971537,
+        "sha256": "45c283a5a9634fe72e166762bd2461158ebc1647f5b5a026b7ae1ea68f6ee130"
+      },
+      {
+        "path": "data/refs.js",
+        "bytes": 491073,
+        "sha256": "d12c230d80f505fc8fd1893f489014fca8bbeced681c1224f03f4c3f4c7f01f7"
+      }
+    ],
+    "currentBankDelta10OutsideBatch": [
+      "7c0daeca",
+      "00b4d27e",
+      "ca6370dc",
+      "1b8baaac",
+      "04cb2429",
+      "c952567a",
+      "547a3dc2",
+      "051a5d1b",
+      "86949ab7",
+      "7780350a"
+    ],
+    "validation": {
+      "beforeMatchesMBAndCurrent": true,
+      "exactAfter03a1daVerified": true,
+      "exactCardE3398Verified": true,
+      "tenEliminatorsAndScoreDimensionsFresh": true,
+      "oldBlockUnchanged": true,
+      "noProductOrGitEdits": true
+    },
+    "limits": [
+      "Proposal gate; final author A4 report has not yet been frozen.",
+      "No saved-state compatibility, whole-bank approval, clinical application or deployment claimed."
+    ]
+  }
+}

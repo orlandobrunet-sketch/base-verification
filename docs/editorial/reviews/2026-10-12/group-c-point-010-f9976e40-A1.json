@@ -1,0 +1,708 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 37476,
+  "sourceReportSHA256": "14ca2bd46f48c5cb169c1b7bd464f2721379e78786e249a54fc2520f70bd60b3",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_FORMAL_POINT_REVIEW_v2",
+    "group": "c",
+    "batch": "010",
+    "affectedQuestionQid": "f9976e40",
+    "supersedesQuestionOnly": {
+      "report": {
+        "path": "docs/editorial/reviews/2026-10-12/group-c-output-010-A3.json",
+        "bytes": 237522,
+        "sha256": "d6bfc4e871d4412b592e7a4cd16e269b8f3e01bfee2804fb1f3db89b764e5fad"
+      },
+      "qid": "f9976e40",
+      "afterQuestionSHA256": "5e5bd1aa26fba3908d46832467883480ff1c0742a468cca2f045ff08fecdd4c1",
+      "cardAfterSHA256": "9d06fc59ae1fcd56c1e04a3ed9c7c43e77214c9cb92e11c70acea2289f7f4d65"
+    },
+    "reviewedAtOfficialUTC": "2026-10-13 12:12:48 UTC",
+    "questions": [
+      {
+        "qid": "f9976e40",
+        "sourceLine": 250,
+        "sourceQuestionSHA256": "c2c591014f42201a692ef1824682f73a5587568e18ebc9244e5a1f0366ca1b50",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "OP": "Aplicar o limiar regulatório de potássio para início seguro de finerenona na DRC associada ao DM2.",
+        "classification": {
+          "primaryCompetence": "conduta",
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária"
+        },
+        "reconstruction": {
+          "decisiveData": "K5,2 acima do limite regulatório; TFGe28 não impede por si início mas aumenta risco.",
+          "populationAndScenario": "Pessoa com diabetes tipo 2 e doença renal crônica (DRC) albuminúrica usa losartana na dose tolerada, tem taxa de filtração glomerular estimada (TFGe) de 28 mL/min/1,73 m² e K+ de 5,2 mEq/L. Segundo a rotulagem profissional dos EUA, qual conduta é adequada antes de iniciar finerenona?",
+          "hiddenPremisesResolved": true,
+          "realPatient": false
+        },
+        "justification": "URL principal do card passa a abrir o DailyMed primário do complemento2026; revisãoWanner2022 continua explicitamente identificada. AFTER da questão é byte-equivalente aoC010-A3. Fontes exatas qualificadas; liberação autoral depende da revisão independente exata antes de integração.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Distratores negam monitorização ou alegam proteção daTFGe baixa contra hipercalemia."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "BadgeBULA existente não integra taxonomia canônica e ano2025 não descreve a rotulagem atual."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "before": [
+            "A fonte clicável deve sustentar o complemento regulatório2026."
+          ],
+          "after": [
+            "Fonte DailyMed primária clicável e SPLv15 sustentam limiar; ensaioFIDELIO e rótulo não se confundem."
+          ],
+          "resolvedBeforeApproval": true
+        },
+        "eliminators": {
+          "checked": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "criteria": [
+            {
+              "criterion": 1,
+              "label": "Mais de uma resposta defensável",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "A única resposta representa a decisão no contexto delimitado; as três alternativas foram conferidas individualmente."
+            },
+            {
+              "criterion": 2,
+              "label": "Referência não sustenta gabarito",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "Card inteiro exato e afirmações decisivas conferidos nas fontes próprias identificadas; nenhuma fonte integral inventada."
+            },
+            {
+              "criterion": 3,
+              "label": "Deriva de OP",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "OP preservado; não substitui a identificação morfológica ou a segurança do início por outro conteúdo."
+            },
+            {
+              "criterion": 4,
+              "label": "Conduta insegura premiada",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "A correta não premia conduta insegura; mecanismos/rótulos dos distratores não são recomendados."
+            },
+            {
+              "criterion": 5,
+              "label": "Distrator absurdo",
+              "beforeTriggered": true,
+              "afterTriggered": false,
+              "afterReason": "Distratores representam erros reais de dose/interação ou categorias de patologia, mantendo paralelismo."
+            },
+            {
+              "criterion": 6,
+              "label": "Trivia sem consequência clínica",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "O item evita erro de início sobhipercalemia ou de classificação anatomopatológica; não exige trivia numérica solta."
+            },
+            {
+              "criterion": 7,
+              "label": "Explicação contradiz gabarito",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "Explicação inicia pela correta e distingue os erros, sem inferência não disponível nas fontes."
+            },
+            {
+              "criterion": 8,
+              "label": "Dado decisivo ausente",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "K5,2 acima do limite regulatório; TFGe28 não impede por si início mas aumenta risco."
+            },
+            {
+              "criterion": 9,
+              "label": "Protocolo local oculto",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "RotulagemEUA está explícita no itemfinerenona; padrão morfológico é textual e não depende de protocolo local."
+            },
+            {
+              "criterion": 10,
+              "label": "Desatualização relevante",
+              "beforeTriggered": false,
+              "afterTriggered": false,
+              "afterReason": "SPL atualv15 conferido; Qasim2025 é revisão e Utah é material acadêmico nomeado, sem atualização clínica fictícia."
+            }
+          ],
+          "beforeTriggered": [
+            5
+          ],
+          "beforeScoreAnnulled": true,
+          "afterTriggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "scope": "Objeto pontual exato com card revisado; julgamento editorial sem telemetria nova."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA permite avaliar, sem liberação automática.",
+          "step1": "Dez eliminatórios checados; nenhum noAFTER.",
+          "step2": "Sem duplicata nas quatro dimensões das proximidades inspecionadas.",
+          "step3": "Score19 → aprovada.",
+          "lifecycle": "publicado",
+          "actualDeployment": false,
+          "rule": "Handbook §18.4 Regra2/7(a),§19; revisão independente exata continua necessária."
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — AFTER EXATO REAVALIADO",
+          "BEFORE": {
+            "t": "Finerenona — Potássio e TFGe antes do Início",
+            "qid": "f9976e40",
+            "q": "Paciente com diabetes tipo 2, DRC albuminúrica, TFGe de 28 mL/min/1,73 m² e potássio de 5,2 mEq/L usa losartana na dose tolerada. Qual é a conduta mais segura antes de iniciar finerenona?",
+            "refs": [
+              "finerenone_label_dailymed",
+              "kdigo_ckd"
+            ],
+            "opts": [
+              "Não iniciar enquanto o potássio estiver acima de 5,0 mEq/L; corrigir fatores reversíveis e reavaliar potássio e TFGe",
+              "Iniciar 20 mg imediatamente, pois TFGe baixa protege contra hipercalemia",
+              "Associar espironolactona para reduzir o potássio",
+              "Suspender toda monitorização após a primeira dose se a creatinina estiver estável"
+            ],
+            "ans": 0,
+            "exp": "A finerenona pode causar hipercalemia, e o risco cresce com função renal mais baixa e potássio basal elevado. A rotulagem orienta medir potássio e TFGe antes do início, não iniciar se potássio for maior que 5,0 mEq/L e não recomenda início quando TFGe é menor que 25 mL/min/1,73 m². Após corrigir causas reversíveis, o potássio deve ser reavaliado; se o tratamento for iniciado, dose e monitorização seguem TFGe, potássio e interações por CYP3A4. Combinar antagonistas mineralocorticoides aumenta risco.",
+            "diff": "hard",
+            "cat": "drc"
+          },
+          "AFTER": {
+            "t": "Finerenona — Potássio e TFGe antes do Início",
+            "qid": "f9976e40",
+            "q": "Pessoa com diabetes tipo 2 e doença renal crônica (DRC) albuminúrica usa losartana na dose tolerada, tem taxa de filtração glomerular estimada (TFGe) de 28 mL/min/1,73 m² e K+ de 5,2 mEq/L. Segundo a rotulagem profissional dos EUA, qual conduta é adequada antes de iniciar finerenona?",
+            "refs": [
+              "wanner_finerenone_potassium_2022"
+            ],
+            "opts": [
+              "Adiar o início e reavaliar fatores reversíveis e potássio.",
+              "Iniciar a menor dose e repetir potássio apenas após a titulação.",
+              "Iniciar a dose-alvo com base na albuminúria e monitorar depois.",
+              "Adicionar outro antagonista mineralocorticoide antes da finerenona."
+            ],
+            "ans": 0,
+            "exp": "O início deve ser adiado: a rotulagem de setembro de 2026 orienta não iniciar finerenona com K+ acima de 5,0 mEq/L. A TFGe de 28 mL/min/1,73 m² não elimina o risco de hipercalemia; avaliar fatores reversíveis e repetir o potássio antes de reconsiderar. Na DRC associada ao diabetes tipo 2, se o início se tornar apropriado, a dose e a monitorização seguem a TFGe e o potássio, com nova medida após 4 semanas do início ou ajuste. Dose menor não contorna o critério basal, e combinar outros antagonistas mineralocorticoides aumenta o risco. O limite regulatório não é o critério de seleção de potássio≤4,8 mEq/L do FIDELIO-DKD.",
+            "diff": "medium",
+            "cat": "drc"
+          },
+          "afterQuestionSHA256": "5e5bd1aa26fba3908d46832467883480ff1c0742a468cca2f045ff08fecdd4c1",
+          "correctAnswer": {
+            "canonicalIndex": 0,
+            "canonicalLetter": "A",
+            "text": "Adiar o início e reavaliar fatores reversíveis e potássio."
+          }
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "finerenone_review2022",
+            "supports": "Revisão narrativa de manejo do potássio na finerenona: medir K e TFGe, não iniciar com K>5,0mmol/L, monitorar e considerar fatores reversíveis. Outras drogas poupadoras de potássio e antagonistas mineralocorticoides aumentam risco; CYP3A4 forte é contraindicação. Revisão2022 não é rotulagem2026.",
+            "locations": [
+              "Practical aspects: initiation and potassium monitoring",
+              "Drug interactions"
+            ],
+            "status": "VERIFICADA"
+          },
+          {
+            "sourceId": "finerenone_label2026",
+            "supports": "Rotulagem profissional dos EUA: não iniciar com K>5,0mEq/L; TFGe≥25a<60 leva a10mg/dia e <25 não recomenda início. Medir K após4semanas do início/ajuste e periodicamente. K4,8a5,0 pode permitir início com monitorização adicional, distinto do critério≤4,8 do FIDELIO. Não extrapolar doses da indicação de insuficiência cardíaca para DRC/DM2.",
+            "locations": [
+              "§2.1 prior to initiation",
+              "Table1 recommended starting dose",
+              "§2.3 CKD associated with T2DM",
+              "§5.1 hyperkalemia"
+            ],
+            "status": "VERIFICADA"
+          }
+        ],
+        "referenceCardsVerified": {
+          "wanner_finerenone_potassium_2022": {
+            "label": "Wanner 2022 — potássio/finerenona; complemento DailyMed2026",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c",
+            "journal": "Endocrinol Diabetes Metab.2022;5:e360; complemento KERENDIA DailyMed, SPLv15,21/09/2026",
+            "ano": 2022,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Avaliar potássio e função renal antes de iniciar finerenona",
+            "icon": "🔬",
+            "resumo": "Revisão narrativa sobre manejo do potássio na finerenona, baseada nos ensaios e na rotulagem então vigente: avaliar potássio/TFGe, monitorar e evitar combinações que aumentem hipercalemia. Complementação regulatória explicitamente conferida na rotulagem DailyMed de 09/2026: não iniciar com K>5,0 mEq/L; início com TFGe<25 mL/min/1,73 m² não recomendado. Na DRC/DM2, verificar K após 4 semanas do início/ajuste. A atualização de 2026 não é atribuída à revisão de 2022. A revisão de 2022 está disponível em https://pmc.ncbi.nlm.nih.gov/articles/PMC9659654/; o link principal deste card abre a fonte regulatória primária do complemento de 2026.",
+            "conclusao": "Distinguir critérios dos ensaios de critérios regulatórios; corrigir fatores reversíveis e reavaliar antes de reconsiderar início.",
+            "curiosidade": ""
+          }
+        },
+        "referenceCardPolicy": "1-4cards; nenhum ID novo é alegado como presente. ADDexige objeto no registro antes do tópico, revisão independente e histórico de versões. SharedREPLACEnão libera outros consumidores.",
+        "implementationObservation": {
+          "preserve": [
+            "qid",
+            "posição",
+            "índice do gabarito",
+            "cat",
+            "tentativas",
+            "histórico",
+            "FSRS"
+          ],
+          "sourceFile": "data/topics.js",
+          "refsFile": "data/refs.js",
+          "replaceFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "applyOnlyWhenPublicationReleased": true,
+          "atomicCardDependencies": [
+            "wanner_finerenone_potassium_2022"
+          ],
+          "newCardsMustExistBeforeTopicWrite": [
+            "wanner_finerenone_potassium_2022"
+          ],
+          "independentExactReviewRequired": true,
+          "questionVersionOrSnapshotRequiredForHistoricalReview": true,
+          "doNotResetFSRS": true
+        },
+        "verificationPending": [],
+        "editorialPending": [],
+        "comparison": {
+          "beforeLengths": [
+            116,
+            72,
+            48,
+            81
+          ],
+          "afterLengths": [
+            58,
+            64,
+            63,
+            67
+          ],
+          "uniqueLongestCorrectBefore": true,
+          "uniqueLongestCorrectAfter": false,
+          "correctToLongestDistractorRatio": 0.8657,
+          "qidPreserved": true,
+          "answerIdentityPreserved": true,
+          "answerPositionUnchangedInBank": true,
+          "clinicalQualityNotInferredFromLength": true,
+          "noAddedLetterOrOrderCue": true,
+          "sourceCanonicalAnswerIndex": 0,
+          "runtimeShuffleMustPreserveAnswerAndHistory": true
+        },
+        "validity": {
+          "content": "Todos os fatos decisivos e cards exatos têm correspondência às fontes abertas; natureza do desenho e limites explícitos.",
+          "construct": "Aplicar o limiar regulatório de potássio para início seguro de finerenona na DRC associada ao DM2.",
+          "response": "Julgamento editorial sem telemetria nova. Alternativas paralelas e comparação de conceitos, sem qualificação exclusiva mais extensa da correta.",
+          "consequential": "A explicação evita inferência clínica excessiva e interpretação do distrator como conduta aceitável."
+        },
+        "distractorRationale": {
+          "B": "Dose menor não supera potássio basal acima do critério de início.",
+          "C": "Albuminúria não anula a avaliação basal de segurança.",
+          "D": "Outros antagonistas mineralocorticoides podem agravar hipercalemia."
+        },
+        "duplicationCheck": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "idioma"
+          ],
+          "finding": "Sem coincidência útil em todas as dimensões entre candidatos inspecionados; não é prova de triagem semântica perfeita de741itens.",
+          "relatedItems": [
+            {
+              "qid": "86949ab7",
+              "sourceBEFORE": {
+                "t": "Finerenona — Potássio Antes de Iniciar",
+                "qid": "86949ab7",
+                "q": "Paciente com diabetes tipo 2 e doença renal crônica (DRC) albuminúrica, em uso otimizado de inibidor da enzima conversora de angiotensina (IECA), tem potássio sérico de 5,2 mEq/L. Ao considerar finerenona, como interpretar o critério de potássio do FIDELIO-DKD e sua aplicação a este caso?",
+                "refs": [
+                  "fidelio_dkd_design_2019",
+                  "kdigo_ckd"
+                ],
+                "opts": [
+                  "Critério ≤4,8 mEq/L; adiar o início e reavaliar o potássio.",
+                  "Critério ≤4,8 mEq/L; iniciar agora e monitorar em quatro semanas.",
+                  "Critério ≤5,5 mEq/L; iniciar com dose menor até corrigir o potássio.",
+                  "Sem limite de potássio; iniciar pela albuminúria."
+                ],
+                "ans": 0,
+                "exp": "O FIDELIO-DKD exigia potássio ≤4,8 mEq/L nas visitas de run-in e triagem, e não potássio exatamente 4,8. K+ de 5,2 mEq/L não corresponde a essa seleção; deve-se adiar o início, avaliar fatores reversíveis e repetir/monitorar potássio antes de reconsiderar. A Kidney Disease: Improving Global Outcomes (KDIGO), na diretriz de 2024, orienta selecionar pessoas com potássio consistentemente normal e monitorar após o início de antagonista mineralocorticoide não esteroidal. Não confundir critérios de entrada do ensaio com limiares de continuidade ou reinício durante o tratamento, nem transformar 4,8 em limite regulatório universal. O limite de prescrição deve ser confrontado com a rotulagem e o contexto local vigentes. Este item não afirma que qualquer paciente com albuminúria possa receber finerenona sem avaliar a taxa de filtração glomerular estimada (TFGe) e demais condições clínicas.",
+                "diff": "medium",
+                "cat": "eletrólitos"
+              },
+              "sourceSHA256": "3f78555760b60956950b8779740d576541a1c9e7a546a1c004e51d979c21ae05",
+              "distinction": "Versão integrada em10itens cobra critério de seleção do FIDELIO≤4,8; C010 cobra limite regulatório>5,0. Fonte e decisão interpretativa são distintas."
+            }
+          ]
+        },
+        "reviewScope": "Reparo autoral pontual C010/f9976e40; não reavalia os outros7 nem conta novo item. Banco/produto/Git preservados.",
+        "freshFullGateReview": {
+          "reviewedAtOfficialUTC": "2026-10-13 12:12:48 UTC",
+          "wholeQuestionAndAllCards": true,
+          "materialReason": "URL principal do card passa a abrir o DailyMed primário do complemento2026; revisãoWanner2022 continua explicitamente identificada. AFTER da questão é byte-equivalente aoC010-A3.",
+          "questionAfterSHA256": "5e5bd1aa26fba3908d46832467883480ff1c0742a468cca2f045ff08fecdd4c1",
+          "cardAfterSHA256": "fb9104bf575a791579418ac218d3842ba2dd4304c7c640060ae2bce5f2359dd4",
+          "sourcePins": [
+            {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 189173,
+              "sha256": "e4400b89b2f91dbe5ceddd721fcf17f69720a7c886b70413e22350de14f800a8"
+            },
+            {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 192193,
+              "sha256": "8f769b8a066e4a7d46d687292cf1429274b75fff0fac5d8ba1d1ee5831f09b30"
+            }
+          ],
+          "OP": "Aplicar o limiar regulatório de potássio para início seguro de finerenona na DRC associada ao DM2.",
+          "classification": {
+            "primaryCompetence": "conduta",
+            "Bloom": "Aplicar",
+            "Miller": "Sabe como",
+            "intrinsicDifficulty": "intermediária"
+          },
+          "advogadoDoRecurso": {
+            "before": [
+              "A fonte clicável deve sustentar o complemento regulatório2026."
+            ],
+            "after": [
+              "Fonte DailyMed primária clicável e SPLv15 sustentam limiar; ensaioFIDELIO e rótulo não se confundem."
+            ],
+            "resolvedBeforeApproval": true
+          },
+          "tenEliminators": {
+            "checked": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "criteria": [
+              {
+                "criterion": 1,
+                "label": "Mais de uma resposta defensável",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "A única resposta representa a decisão no contexto delimitado; as três alternativas foram conferidas individualmente."
+              },
+              {
+                "criterion": 2,
+                "label": "Referência não sustenta gabarito",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "Card inteiro exato e afirmações decisivas conferidos nas fontes próprias identificadas; nenhuma fonte integral inventada."
+              },
+              {
+                "criterion": 3,
+                "label": "Deriva de OP",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "OP preservado; não substitui a identificação morfológica ou a segurança do início por outro conteúdo."
+              },
+              {
+                "criterion": 4,
+                "label": "Conduta insegura premiada",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "A correta não premia conduta insegura; mecanismos/rótulos dos distratores não são recomendados."
+              },
+              {
+                "criterion": 5,
+                "label": "Distrator absurdo",
+                "beforeTriggered": true,
+                "afterTriggered": false,
+                "afterReason": "Distratores representam erros reais de dose/interação ou categorias de patologia, mantendo paralelismo."
+              },
+              {
+                "criterion": 6,
+                "label": "Trivia sem consequência clínica",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "O item evita erro de início sobhipercalemia ou de classificação anatomopatológica; não exige trivia numérica solta."
+              },
+              {
+                "criterion": 7,
+                "label": "Explicação contradiz gabarito",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "Explicação inicia pela correta e distingue os erros, sem inferência não disponível nas fontes."
+              },
+              {
+                "criterion": 8,
+                "label": "Dado decisivo ausente",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "K5,2 acima do limite regulatório; TFGe28 não impede por si início mas aumenta risco."
+              },
+              {
+                "criterion": 9,
+                "label": "Protocolo local oculto",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "RotulagemEUA está explícita no itemfinerenona; padrão morfológico é textual e não depende de protocolo local."
+              },
+              {
+                "criterion": 10,
+                "label": "Desatualização relevante",
+                "beforeTriggered": false,
+                "afterTriggered": false,
+                "afterReason": "SPL atualv15 conferido; Qasim2025 é revisão e Utah é material acadêmico nomeado, sem atualização clínica fictícia."
+              }
+            ],
+            "beforeTriggered": [
+              5
+            ],
+            "beforeScoreAnnulled": true,
+            "afterTriggered": [],
+            "scoreAnnulled": false
+          },
+          "NQEditorialScore": {
+            "dimensions": {
+              "Alinhamento ao OP": 2,
+              "Validade de conteúdo": 2,
+              "Validade de construto": 2,
+              "Qualidade do enunciado": 2,
+              "Alternativas": 2,
+              "Distratores": 1,
+              "Explicação": 2,
+              "Referências": 2,
+              "Ausência de cara de IA": 2,
+              "Valor pedagógico": 2
+            },
+            "total": 19,
+            "band": "Excelente",
+            "scope": "Objeto pontual exato com card revisado; julgamento editorial sem telemetria nova."
+          },
+          "decisionTree": {
+            "step0": "VERIFICADA/NENHUMA permite avaliar, sem liberação automática.",
+            "step1": "Dez eliminatórios checados; nenhum noAFTER.",
+            "step2": "Sem duplicata nas quatro dimensões das proximidades inspecionadas.",
+            "step3": "Score19 → aprovada.",
+            "lifecycle": "publicado",
+            "actualDeployment": false,
+            "rule": "Handbook §18.4 Regra2/7(a),§19; revisão independente exata continua necessária."
+          },
+          "verdictV2": "aprovada",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "noInheritedGate": true
+        }
+      }
+    ],
+    "sourceRegistry": {
+      "finerenone_review2022": {
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9659654/",
+        "opened": true,
+        "version": "Wanner C et al. Endocrinol Diabetes Metab.2022;5:e360; DOI10.1002/edm2.360",
+        "access": "Texto integral aberto",
+        "locations": [
+          "Practical aspects: initiation and potassium monitoring",
+          "Drug interactions"
+        ],
+        "verifiedScope": "Revisão narrativa de manejo do potássio na finerenona: medir K e TFGe, não iniciar com K>5,0mmol/L, monitorar e considerar fatores reversíveis. Outras drogas poupadoras de potássio e antagonistas mineralocorticoides aumentam risco; CYP3A4 forte é contraindicação. Revisão2022 não é rotulagem2026.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 189173,
+          "sha256": "e4400b89b2f91dbe5ceddd721fcf17f69720a7c886b70413e22350de14f800a8"
+        },
+        "accessedAtOfficialUTC": "2026-10-13 01:40:32 UTC"
+      },
+      "finerenone_label2026": {
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c",
+        "opened": true,
+        "version": "KERENDIA DailyMed, SPL versionNumber15, effectiveTime20260921; revised09/2026",
+        "access": "SPL oficialv15/effective20260921 relido localmente e página profissional primária atual confirmada em GET público; §§2.1/2.2/2.3/5.1. Sem extrapolar dose IC paraDM2.",
+        "locations": [
+          "§2.1 prior to initiation",
+          "Table1 recommended starting dose",
+          "§2.3 CKD associated with T2DM",
+          "§5.1 hyperkalemia"
+        ],
+        "verifiedScope": "Rotulagem profissional dos EUA: não iniciar com K>5,0mEq/L; TFGe≥25a<60 leva a10mg/dia e <25 não recomenda início. Medir K após4semanas do início/ajuste e periodicamente. K4,8a5,0 pode permitir início com monitorização adicional, distinto do critério≤4,8 do FIDELIO. Não extrapolar doses da indicação de insuficiência cardíaca para DRC/DM2.",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 192193,
+          "sha256": "8f769b8a066e4a7d46d687292cf1429274b75fff0fac5d8ba1d1ee5831f09b30"
+        },
+        "accessedAtOfficialUTC": "2026-10-13 12:12:48 UTC",
+        "publicPagePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 223634,
+          "sha256": "f7648c1135511d7fc8d163e5936a7e81371bf70ec865f354d3d5806112dfaef3"
+        },
+        "publicPageReceipt": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 965,
+          "sha256": "1bd099be55f3edc1e3e28ae3685ad60a4fb58e691217585426e2b1d87862c6b9"
+        }
+      }
+    },
+    "cardPatches": [
+      {
+        "id": "wanner_finerenone_potassium_2022",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Wanner 2022 — potássio/finerenona; complemento DailyMed2026",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c",
+          "journal": "Endocrinol Diabetes Metab.2022;5:e360; complemento KERENDIA DailyMed, SPLv15,21/09/2026",
+          "ano": 2022,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Avaliar potássio e função renal antes de iniciar finerenona",
+          "icon": "🔬",
+          "resumo": "Revisão narrativa sobre manejo do potássio na finerenona, baseada nos ensaios e na rotulagem então vigente: avaliar potássio/TFGe, monitorar e evitar combinações que aumentem hipercalemia. Complementação regulatória explicitamente conferida na rotulagem DailyMed de 09/2026: não iniciar com K>5,0 mEq/L; início com TFGe<25 mL/min/1,73 m² não recomendado. Na DRC/DM2, verificar K após 4 semanas do início/ajuste. A atualização de 2026 não é atribuída à revisão de 2022. A revisão de 2022 está disponível em https://pmc.ncbi.nlm.nih.gov/articles/PMC9659654/; o link principal deste card abre a fonte regulatória primária do complemento de 2026.",
+          "conclusao": "Distinguir critérios dos ensaios de critérios regulatórios; corrigir fatores reversíveis e reavaliar antes de reconsiderar início.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "fb9104bf575a791579418ac218d3842ba2dd4304c7c640060ae2bce5f2359dd4",
+        "idInspectedAbsent": true,
+        "usedByQids": [
+          "f9976e40"
+        ],
+        "existingBankConsumerQids": [],
+        "sources": [
+          {
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9659654/",
+            "opened": true,
+            "version": "Wanner C et al. Endocrinol Diabetes Metab.2022;5:e360; DOI10.1002/edm2.360",
+            "access": "Texto integral aberto",
+            "locations": [
+              "Practical aspects: initiation and potassium monitoring",
+              "Drug interactions"
+            ],
+            "verifiedScope": "Revisão narrativa de manejo do potássio na finerenona: medir K e TFGe, não iniciar com K>5,0mmol/L, monitorar e considerar fatores reversíveis. Outras drogas poupadoras de potássio e antagonistas mineralocorticoides aumentam risco; CYP3A4 forte é contraindicação. Revisão2022 não é rotulagem2026.",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 189173,
+              "sha256": "e4400b89b2f91dbe5ceddd721fcf17f69720a7c886b70413e22350de14f800a8"
+            },
+            "accessedAtOfficialUTC": "2026-10-13 01:40:32 UTC"
+          },
+          {
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c",
+            "opened": true,
+            "version": "KERENDIA DailyMed, SPL versionNumber15, effectiveTime20260921; revised09/2026",
+            "access": "SPL oficialv15/effective20260921 relido localmente e página profissional primária atual confirmada em GET público; §§2.1/2.2/2.3/5.1. Sem extrapolar dose IC paraDM2.",
+            "locations": [
+              "§2.1 prior to initiation",
+              "Table1 recommended starting dose",
+              "§2.3 CKD associated with T2DM",
+              "§5.1 hyperkalemia"
+            ],
+            "verifiedScope": "Rotulagem profissional dos EUA: não iniciar com K>5,0mEq/L; TFGe≥25a<60 leva a10mg/dia e <25 não recomenda início. Medir K após4semanas do início/ajuste e periodicamente. K4,8a5,0 pode permitir início com monitorização adicional, distinto do critério≤4,8 do FIDELIO. Não extrapolar doses da indicação de insuficiência cardíaca para DRC/DM2.",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 192193,
+              "sha256": "8f769b8a066e4a7d46d687292cf1429274b75fff0fac5d8ba1d1ee5831f09b30"
+            },
+            "accessedAtOfficialUTC": "2026-10-13 12:12:48 UTC",
+            "publicPagePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 223634,
+              "sha256": "f7648c1135511d7fc8d163e5936a7e81371bf70ec865f354d3d5806112dfaef3"
+            },
+            "publicPageReceipt": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 965,
+              "sha256": "1bd099be55f3edc1e3e28ae3685ad60a4fb58e691217585426e2b1d87862c6b9"
+            }
+          }
+        ],
+        "newExactVersionReview": {
+          "verdictV2": "aprovada",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "reason": "URL principal do card passa a abrir o DailyMed primário do complemento2026; revisãoWanner2022 continua explicitamente identificada. AFTER da questão é byte-equivalente aoC010-A3.",
+          "afterSHA256": "fb9104bf575a791579418ac218d3842ba2dd4304c7c640060ae2bce5f2359dd4",
+          "derivation": "Revisão nova do card inteiro exato; ciência/taxonomia/atribuição conferidas; não herda aprovação de versão anterior.",
+          "taxonomyVerified": true,
+          "claimMapping": [
+            {
+              "sourceId": "finerenone_review2022",
+              "claims": "Revisão narrativa de manejo do potássio na finerenona: medir K e TFGe, não iniciar com K>5,0mmol/L, monitorar e considerar fatores reversíveis. Outras drogas poupadoras de potássio e antagonistas mineralocorticoides aumentam risco; CYP3A4 forte é contraindicação. Revisão2022 não é rotulagem2026.",
+              "locations": [
+                "Practical aspects: initiation and potassium monitoring",
+                "Drug interactions"
+              ]
+            },
+            {
+              "sourceId": "finerenone_label2026",
+              "claims": "Rotulagem profissional dos EUA: não iniciar com K>5,0mEq/L; TFGe≥25a<60 leva a10mg/dia e <25 não recomenda início. Medir K após4semanas do início/ajuste e periodicamente. K4,8a5,0 pode permitir início com monitorização adicional, distinto do critério≤4,8 do FIDELIO. Não extrapolar doses da indicação de insuficiência cardíaca para DRC/DM2.",
+              "locations": [
+                "§2.1 prior to initiation",
+                "Table1 recommended starting dose",
+                "§2.3 CKD associated with T2DM",
+                "§5.1 hyperkalemia"
+              ]
+            }
+          ],
+          "reviewedAtOfficialUTC": "2026-10-13 12:12:48 UTC"
+        },
+        "implementation": "Pacote autoral exato, pendente de revisão independente e integração atômica. Preservar versões de cards históricos; compartilhamento não aprova consumidores de outros lotes.",
+        "existingBankConsumersCount": 0
+      }
+    ],
+    "counts": {
+      "reviewed": 1,
+      "newReviewed": 0,
+      "publicationReleased": 1,
+      "publicationBlocked": 0,
+      "implemented": 0,
+      "independentReviewed": 0
+    },
+    "otherSevenNotReviewed": true,
+    "scope": "Reparo de versão do item já contado; não acrescentar1 ou8 ao progresso. Nenhum produto/Git editado.",
+    "independentExactBindingRequired": {
+      "qid": "f9976e40",
+      "questionAfterSHA256": "5e5bd1aa26fba3908d46832467883480ff1c0742a468cca2f045ff08fecdd4c1",
+      "cardAfterSHA256": "fb9104bf575a791579418ac218d3842ba2dd4304c7c640060ae2bce5f2359dd4",
+      "previousBindingDoesNotTransfer": true
+    },
+    "originalsPreserved": true
+  }
+}

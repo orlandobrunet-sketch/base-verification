@@ -214,7 +214,7 @@ Não reutilize ID existente. Quando houver acesso ao repositório, pesquise ante
 
 **ano** — número inteiro.
 
-**tipo** — “Diretriz”, “Ensaio clínico randomizado”, “Metanálise”, “Revisão sistemática”, “Coorte”, “Revisão” ou “Livro-texto”.
+**tipo** — desenho ou gênero real da fonte, conforme a taxonomia abaixo. Qualificadores devem corresponder à publicação; não reclassificar a fonte para caber no contrato.
 
 **badge** — usar somente a taxonomia abaixo.
 
@@ -240,8 +240,13 @@ Não reutilize ID existente. Quando houver acesso ao repositório, pesquise ante
 | Revisão | `REVIEW` | `#8b5cf6` | `🔬` |
 | Coorte | `COHORT` | `#f59e0b` | `🔬` |
 | Livro-texto | `TEXTBOOK` | `#64748b` | `📚` |
+| Estudo caso-controle | `CASE_CONTROL` | `#0ea5e9` | 🔬 |
+| Série de casos / série clinicopatológica | `SERIES` | `#0f766e` | 🔬 |
+| Consenso / consenso internacional | `CONSENSUS` | `#6366f1` | 📋 |
 
 Não classifique guideline como REVIEW nem revisão sistemática sem metanálise como META; nesse caso use REVIEW e esclareça o desenho.
+
+A taxonomia identifica o desenho ou gênero da fonte; não altera a hierarquia de evidência nem o gate de publicação. Em `tipo`, use o nome fiel à publicação: “Estudo caso-controle”, “Série de casos”/“Série clinicopatológica” ou “Consenso”/“Consenso internacional”. Não rotule caso-controle ou série como coorte, nem consenso como ensaio ou revisão. A ampliação não migra cards existentes e não transfere aprovação entre versões ou consumidores.
 
 ## 7. Conteúdo mínimo do resumo do card
 
@@ -284,6 +289,18 @@ Não classifique guideline como REVIEW nem revisão sistemática sem metanálise
 - tipo de revisão;
 - síntese útil;
 - por que foi necessária apesar da ausência de fonte superior.
+
+### Estudo caso-controle
+
+Identificar casos, controles, método de seleção, n, exposição e medida de associação quando reportada; esclarecer limitações de seleção e inferência. Não apresentar a associação como efeito de intervenção.
+
+### Série de casos / série clinicopatológica
+
+Identificar seleção, n, características e achados efetivamente descritos; registrar ausência de comparador quando aplicável. Não transformar conduta observada em eficácia comparativa ou protocolo.
+
+### Consenso / consenso internacional
+
+Identificar grupo/organização, ano, escopo, método e recomendação ou definição que sustenta a questão, com ressalvas e grau de concordância/certeza somente quando reportados. Distinguir consenso diagnóstico/classificatório de orientação terapêutica.
 
 ## 8. Exemplo de card válido
 

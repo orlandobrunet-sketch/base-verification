@@ -1,0 +1,3896 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 190985,
+  "sourceReportSHA256": "d7f3ce35b06ee4f0d952bed92ca879926aa922bc54b6b6eca94aba215fa29889",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_FORMAL_REVIEW_V2_EXACT_BEFORE_AFTER",
+    "group": "a",
+    "batch": 9,
+    "revision": "A2",
+    "reviewedAtOfficialUTC": "2026-10-13 01:51:38 UTC",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "publishedBankCommit": "135899077669af6dcf564717833227828ba03fe5",
+    "publishedVersion": "16.09",
+    "bankLF_SHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "input": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 15253,
+      "sha256": "a82faa39758cf22bf5b0265633f21b773a05dcf918e68063e36df6cb8a1121a7"
+    },
+    "reviewer": "clinical_a008_resume / revisar-nefroquest v2 / autoralA009",
+    "normativePins": [
+      {
+        "path": "AGENTS.md",
+        "bytes": 15910,
+        "sha256": "123d3bf57a43e23dd21adb277295bfbaa8a0d46dccb584f12265396abe4dfe83"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      }
+    ],
+    "sourceRegistry": {
+      "courbebaisse2018": {
+        "title": "Biology of Fibroblast Growth Factor 23: From Physiology to Pathology",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5932574/",
+        "opened": true,
+        "sourceKind": "Revisão original integral Cold Spring Harbor Perspectives in Medicine8(5):a031260",
+        "locators": [
+          "HTML77–83/115–122: fosfatúria e calcitriol",
+          "HTML250–263/Fig5: evoluçãoDRC e hiperPTH, mecanismos propostos"
+        ],
+        "verificationScope": "Mecanismo fisiológico e cronologia usual, não causalidade quantitativa de coorte nem indução direta universal de PTH por FGF23.",
+        "accessMechanism": "Web público, sem navegador pessoal, login, Library ou contorno de CAPTCHA.",
+        "doi": "10.1101/cshperspect.a031260",
+        "pmid": "28778965",
+        "year": 2018,
+        "fullTextOpened": true
+      },
+      "kdigoMBD2017": {
+        "title": "KDIGO 2017 CKD-MBD Clinical Practice Guideline Update",
+        "url": "https://kdigo.org/wp-content/uploads/2017/02/2017-KDIGO-CKD-MBD-GL-Update.pdf",
+        "opened": true,
+        "sourceKind": "Diretriz oficial integral,60p",
+        "locators": [
+          "§4.2.1–4.2.5, PDF17–18; §4.1: tratamento por tendências",
+          "PDF27–30: discussão Block2012, aumento de calcificação e ausência de diferençaFGF23"
+        ],
+        "verificationScope": "Conferência complementar para detectar defeito real do cardBlock e delimitar que mecanismo não é indicação de calcitriol/quelante automática.",
+        "accessMechanism": "Web público, sem navegador pessoal, login, Library ou contorno de CAPTCHA.",
+        "year": 2017,
+        "fullTextOpened": true
+      },
+      "ispd2022": {
+        "title": "ISPD peritonitis guideline recommendations:2022 update on prevention and treatment",
+        "url": "https://ispd.org/wp-content/uploads/2025/09/LI-ET-1.pdf",
+        "opened": true,
+        "sourceKind": "Diretriz original oficial integral,44p",
+        "locators": [
+          "PDF11linhas810–860: diagnóstico/coleta",
+          "PDF13linhas984–995: antibióticos prontamente apósamostras1B,gram+/−1C",
+          "PDF14linhas1048–1065: via/IP/sepse",
+          "PDF4linhas274–295 ePDF27linhas1867–1874: cardexato"
+        ],
+        "verificationScope": "Sequência de coleta/tratamento, nenhum protocolo local de dose exigido. Atualização pediátrica não extrapolada.",
+        "accessMechanism": "Web público, sem navegador pessoal, login, Library ou contorno de CAPTCHA.",
+        "doi": "10.1177/08968608221080586",
+        "pmid": "35264029",
+        "year": 2022,
+        "fullTextOpened": true
+      },
+      "ukka2026": {
+        "title": "UKKA Clinical Practice Guideline — Management of Hyperkalaemia in Adults — July 2026",
+        "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+        "opened": true,
+        "sourceKind": "Diretriz oficial integral, 180 páginas",
+        "locators": [
+          "p43/HTML1710–1731: diuréticos, fluxo/Na distal e hipovolemia/oligúria",
+          "p38/§5.1 e §5.2: dieta individual após causas não dietéticas",
+          "p14/16.2a2C/16.3.1 1B; p77 cálcio30–60min; p114/17.2 1C: card exato",
+          "PDF14/16.2a2C e16.3.2 2C: ECGtoxicidade comK6,2; enunciado nãoesperalimite6,5."
+        ],
+        "verificationScope": "Adjuvantes na hipercalemia crônica e corpo exato do card consolidado, reaberto nesta rodada. Não transforma o corte narrativo de tiazídicos em contraindicação absoluta.",
+        "accessMechanism": "Web público, sem navegador pessoal, login, Library ou contorno de CAPTCHA.",
+        "year": 2026,
+        "fullTextOpened": true
+      },
+      "citrate2023": {
+        "title": "Regional citrate anticoagulation in critically ill patients: expert opinion from the SIAARTI-SIN joint commission",
+        "url": "https://link.springer.com/article/10.1186/s44158-023-00091-w",
+        "opened": true,
+        "sourceKind": "Revisão/position statement de especialistas, original integral ePDFpublisher14p",
+        "locators": [
+          "HTML169–202: triadedeacúmulo/limitações",
+          "PDF8/Tabela2linhas460–487: >2,5/acidose/aumentoreposição/intervenções"
+        ],
+        "verificationScope": "Não ensaio nem guideline graduada; medidas são dependentes de protocolo experiente e gravidade, não dose fixa. Relação em mesmasunidadesmolares e integrada aos demaisachados.",
+        "accessMechanism": "Web público, sem navegador pessoal, login, Library ou contorno de CAPTCHA.",
+        "doi": "10.1186/s44158-023-00091-w",
+        "year": 2023,
+        "fullTextOpened": true,
+        "fullTextURL": "https://link.springer.com/content/pdf/10.1186/s44158-023-00091-w.pdf"
+      },
+      "kamel2021": {
+        "title": "Use of Urine Electrolytes and Urine Osmolality in the Clinical Diagnosis of Fluid, Electrolytes, and Acid-Base Disorders",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34013099/",
+        "opened": true,
+        "sourceKind": "Revisão original KidneyIntRep6(5):1211–1224; preproof integral identificada em cópia pública",
+        "locators": [
+          "CópiaHTML252–358: hipótese osmoles/reciclagemureia e abandonoTTKG",
+          "CópiaHTML522–610: ENaC/excreçãoK, perdatubular",
+          "PubMed: autoriaKamelS.Kamel/Halperin,DOI/ano/páginas"
+        ],
+        "verificationScope": "PerfilResearchGate incorreto não usado: autoria ecorpo doPDForiginaismaisPubMed conferidos. Não transformar razãoK/creatinina em substituto infalível emhipercalemiacrônica.",
+        "accessMechanism": "Web público, sem navegador pessoal, login, Library ou contorno de CAPTCHA.",
+        "doi": "10.1016/j.ekir.2021.02.003",
+        "pmid": "34013099",
+        "year": 2021,
+        "fullTextOpened": true,
+        "fullTextURL": "https://www.researchgate.net/publication/349330401_Use_of_Urine_Electrolytes_and_Urine_Osmolalityin_Clinical_Diagnosis_of_Fluid_Electrolytes_and_Acid-Base_Disorders"
+      },
+      "sterns2024": {
+        "title": "Treatment Guidelines for Hyponatremia: Stay the Course",
+        "url": "https://doi.org/10.2215/CJN.0000000000000244",
+        "opened": true,
+        "sourceKind": "Revisão original CJASN19(1):129–135, texto integral identificável em cópia pública7p",
+        "locators": [
+          "CJASN131–132/HTML180–190,243–277: alto risco≤8mmol/24h e relowering",
+          "Cabeçalho/rodapé129/135: autores,ano,publicaçãoonlinejun2023"
+        ],
+        "verificationScope": "Manejo de sobrecorreção emalto risco; não ignora controvérsia nas populaçõesgerais nem trata limite como meta obrigatória.",
+        "accessMechanism": "Web público, sem navegador pessoal, login, Library ou contorno de CAPTCHA.",
+        "doi": "10.2215/CJN.0000000000000244",
+        "year": 2024,
+        "fullTextOpened": true,
+        "fullTextURL": "https://www.scribd.com/document/890234367/Treatment-Guidelines-for-Hyponatremia-Stay-the-21"
+      },
+      "warren2023": {
+        "title": "Syndrome of Inappropriate Antidiuresis: From Pathophysiology to Management",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10502587/",
+        "opened": true,
+        "sourceKind": "Revisão original EndocrRev44(5):819–861; PDFOxford emcópia pública integral43p",
+        "locators": [
+          "p845–846/HTML1572–1609: V2/aquarese, ausência debenefícioclínicoduro",
+          "p846–848 eHTML1971–1978: correçãorápida e manejo",
+          "Cabeçalho: autoresWarren/Grossmann/Christ-Crain/Russell eDOIbnad010"
+        ],
+        "verificationScope": "Mecanismo e limitação, sem recomendação universal de vaptano, doses ou extrapolação de SALT/cirrose para estado regulatórioatual.",
+        "accessMechanism": "Web público, sem navegador pessoal, login, Library ou contorno de CAPTCHA.",
+        "doi": "10.1210/endrev/bnad010",
+        "year": 2023,
+        "fullTextOpened": true,
+        "fullTextURL": "https://www.scribd.com/document/751977237/Syndrome-of-Inappropriate-Antidiuresis-From-Pathophysiology-to-Management"
+      },
+      "samsca2026": {
+        "title": "DailyMed — SAMSCA (tolvaptan)",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5526617c-c7b9-4556-886d-729bbabbc566",
+        "opened": true,
+        "sourceKind": "Rotulagem oficial currentversion23 publicada1jun2026; highlightsRevised4/2021",
+        "locators": [
+          "§12.1/HTML559–561: aquarese",
+          "boxedwarning/HTML177–194: inícioreinícionohospital/semusoemurgêncianeurológica",
+          "§5.2: limitar30dias/evitarhepatopatia"
+        ],
+        "verificationScope": "Corroborante contemporânea explícita; nenhum cardBULA inventado, nenhuma autorizaçãoANVISA ou dose adicionada.",
+        "accessMechanism": "Web público, sem navegador pessoal, login, Library ou contorno de CAPTCHA.",
+        "year": 2026,
+        "fullTextOpened": true
+      }
+    },
+    "draftPreservation": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 190954,
+      "sha256": "7df65dde4513c96df58c8333e9cb97d7076a5310f4b7c2247609abf6329af213"
+    },
+    "referenceInput": {
+      "source": {
+        "path": "data/refs.js",
+        "bytes": 491073,
+        "sha256": "d12c230d80f505fc8fd1893f489014fca8bbeced681c1224f03f4c3f4c7f01f7"
+      },
+      "exactExistingCards": {
+        "kdigo_ckd_mbd_2017": {
+          "label": "KDIGO CKD-MBD Update 2017",
+          "url": "https://kdigo.org/guidelines/ckd-mbd/",
+          "journal": "Kidney Int Suppl 2017;7(1):1-59",
+          "ano": 2017,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Metas de PTH (2-9× LSN), fósforo e cálcio em DRC; preferência por quelantes não cálcicos; calcitriol/análogos em estágios 3-5D",
+          "icon": "📋",
+          "resumo": "Atualização KDIGO para distúrbio mineral e ósseo da DRC. Em DRC G3a–G5 não dialítica com PTH progressivamente elevado, recomenda avaliar primeiro hiperfosfatemia, alta ingestão de fósforo, hipocalcemia e deficiência de vitamina D; calcitriol ou análogos ficam reservados ao hiperparatireoidismo grave e progressivo em G4–G5. Em G5D, sugere manter PTH aproximadamente entre 2 e 9 vezes o limite superior do ensaio e escolher calcimimético, calcitriol ou análogo conforme cálcio e fósforo. Para hiperparatireoidismo grave que não responde à terapia clínica ou farmacológica, sugere paratireoidectomia.",
+          "conclusao": "O manejo deve seguir tendências de PTH, cálcio e fósforo, corrigir fatores modificáveis e reservar cirurgia ao hiperparatireoidismo grave refratário, sem transformar um limiar isolado de PTH em indicação automática.",
+          "curiosidade": "A diretriz não identifica uma estratégia única de primeira linha para reduzir PTH em diálise; a escolha deve considerar simultaneamente cálcio, fósforo, tratamentos concomitantes, tolerabilidade e resposta."
+        },
+        "phosphate_binders_ckd": {
+          "label": "Block GA et al. — Phosphate Binders in Moderate CKD (JASN 2012)",
+          "url": "https://jasn.asnjournals.org/content/23/8/1407",
+          "journal": "J Am Soc Nephrol 2012;23(8):1407-1415",
+          "ano": 2012,
+          "tipo": "Ensaio Clínico RCT",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Quelantes de fósforo em DRC moderada (TFG 20-45): reduziram progressão da calcificação coronariana vs placebo",
+          "icon": "🔬",
+          "resumo": "ECR piloto prospectivo multicêntrico de 9 meses (Block GA et al., JASN 2012, n = 148 pacientes com DRC estágios 3-4 e fósforo sérico normal, mas com níveis elevados de paratormônio - PTH ou FGF-23). Randomizou os participantes para receber quelantes de fósforo ativos (acetato de cálcio, carbonato de sevelamer ou carbonato de lantanio) versus placebo. Desfecho primário: variação nos níveis séricos de fósforo urinário e biomarcadores minerais. Resultados: Quelantes ativos reduziram significativamente o fósforo urinário e atenuaram a progressão do PTH e FGF-23 séricos. No entanto, houve um aumento marcante e inesperado na calcificação arterial coronariana medida por tomografia computadorizada na coorte tratada com quelantes à base de cálcio em comparação com o placebo.",
+          "conclusao": "O estudo piloto de Block acendeu o sinal de alerta de que o uso agressivo de quelantes de fósforo contendo cálcio em pacientes com DRC não dialítica pode acelerar a calcificação vascular, desencorajando seu uso rotineiro no Reino.",
+          "curiosidade": "FGF-23 (Fator de Crescimento de Fibroblastos 23) é um hormônio segregado pelos osteócitos do tecido ósseo que atua no túbulo proximal estimulando a excreção de fósforo urinário via co-transportadores NaPi-2a/c. Seus níveis elevam-se precocemente na DRC antes do fósforo plasmático subir, agindo como preditor independente e precoce de hipertrofia ventricular esquerda e mortalidade cardiovascular."
+        },
+        "ispd_peritonitis_guideline": {
+          "label": "ISPD — Peritonitis Guideline 2022",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35264029/",
+          "journal": "Peritoneal Dialysis International 2022;42(2):110-153",
+          "ano": 2022,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Referência internacional para prevenção, diagnóstico, terapia empírica e manejo por organismo da peritonite associada à DP",
+          "icon": "📋",
+          "resumo": "A ISPD 2022 define peritonite em DP pela presença de pelo menos dois entre três critérios: quadro clínico compatível, como dor abdominal ou efluente turvo; leucócitos no efluente acima de 100/µL após permanência de pelo menos 2 horas, com mais de 50% de polimorfonucleares; ou cultura positiva. Após coleta microbiológica, recomenda antibiótico empírico imediato e específico do centro cobrindo gram-positivos e gram-negativos, preferencialmente por via intraperitoneal quando possível e na ausência de sepse. Para peritonite fúngica, recomenda retirada imediata do cateter e antifúngico por pelo menos 2 semanas após a remoção.",
+          "conclusao": "Suspeita de peritonite em DP exige coleta adequada e tratamento empírico sem aguardar cultura; agente, resposta clínica e presença de foco no cateter determinam ajuste, duração e necessidade de retirada.",
+          "curiosidade": "A diretriz propõe como metas anuais taxa global não superior a 0,40 episódio por paciente-ano e mais de 80% dos pacientes livres de peritonite."
+        },
+        "ukka_hyperkalemia_2023": {
+          "label": "UKKA Hyperkalaemia Guideline 2023",
+          "url": "https://www.ukkidney.org/health-professionals/guidelines/treatment-acute-hyperkalaemia-adults-0",
+          "journal": "UK Kidney Association",
+          "ano": 2023,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Diretriz específica para detecção, tratamento hospitalar agudo e prevenção de hipercalemia em adultos",
+          "icon": "⚡",
+          "resumo": "Diretriz da UK Kidney Association dedicada ao manejo da hipercalemia em adultos, com foco especial na atualização de 2023 para tratamento hospitalar agudo. Organiza a resposta em etapas práticas: proteger o coração quando há sinais eletrocardiográficos de toxicidade com cálcio intravenoso; deslocar potássio para o compartimento intracelular com insulina-glicose e, como adjuvante, salbutamol; remover potássio do organismo conforme gravidade, função renal e resposta; e monitorar potássio e glicemia para detectar rebote e hipoglicemia. Destaca que o cálcio intravenoso estabiliza rapidamente o miocárdio, mas não reduz o potássio sérico e tem efeito transitório, exigindo terapias complementares.",
+          "conclusao": "Na hipercalemia aguda, a conduta segura é sequencial e simultaneamente orientada por risco: ECG tóxico exige proteção cardíaca imediata com cálcio, seguida de terapias de deslocamento e remoção de potássio com monitorização estreita.",
+          "curiosidade": "A atualização de 2023 enfatizou segurança medicamentosa: reforçou diferenças práticas entre sais de cálcio, prevenção de hipoglicemia após insulina-glicose e uso do salbutamol como adjuvante, não como monoterapia em hipercalemia grave."
+        },
+        "brenner_rector": {
+          "label": "Brenner & Rector's The Kidney",
+          "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+          "journal": "Elsevier (Textbook)",
+          "ano": 2024,
+          "tipo": "Livro-texto de referência",
+          "badge": "TEXTBOOK",
+          "badgeColor": "#64748b",
+          "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+          "icon": "📚",
+          "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+          "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+          "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+        },
+        "siaarti_sin_citrate_2023": {
+          "label": "SIAARTI-SIN — Anticoagulação Regional por Citrato na TRS",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37386664/",
+          "journal": "J Anesth Analg Crit Care. 2023;3(1):7",
+          "ano": 2023,
+          "tipo": "Opinião de especialistas",
+          "badge": "CONSENSUS",
+          "badgeColor": "#6366f1",
+          "impacto": "Monitorização e manejo seguro da anticoagulação regional por citrato em terapias renais contínuas e prolongadas",
+          "icon": "📋",
+          "resumo": "Documento conjunto das sociedades italianas de anestesia e nefrologia sobre anticoagulação regional por citrato. Recomenda monitorar cálcio ionizado do circuito e do paciente, cálcio total e equilíbrio ácido-base. Acúmulo deve ser suspeitado quando a relação cálcio total/ionizado sobe em direção a 2,5 ou mais, sobretudo junto de hipocalcemia sistêmica, necessidade crescente de reposição de cálcio e piora da acidose. Fígado, músculo esquelético e córtex renal participam do metabolismo; choque e disfunção hepática grave exigem vigilância ampliada, não uma regra fixa universal de dose.",
+          "conclusao": "Na CRRT com citrato, tendência da relação cálcio total/ionizado, cálcio sistêmico, necessidade de reposição e estado ácido-base devem ser interpretados em conjunto; acúmulo requer reduzir a carga, favorecer remoção ou mudar a anticoagulação conforme protocolo e gravidade.",
+          "curiosidade": "Cálcio ionizado pós-filtro baixo informa que o circuito está anticoagulado; ele não diagnostica sozinho acúmulo sistêmico de citrato no paciente."
+        },
+        "kdigo_aki": {
+          "label": "KDIGO AKI 2012",
+          "url": "https://kdigo.org/wp-content/uploads/2017/04/KDIGO-AKI-Guideline_Cass-2014.pdf",
+          "journal": "Kidney International Supplements",
+          "ano": 2012,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Diretriz que estabeleceu a definição e o estadiamento universais da lesão renal aguda",
+          "icon": "📋",
+          "resumo": "Define LRA por qualquer uma de três rotas: aumento da creatinina sérica ≥0,3 mg/dL em 48 horas; aumento para ≥1,5 vez o basal, conhecido ou presumido nos sete dias anteriores; ou diurese <0,5 mL/kg/h por seis horas. Estratifica a gravidade em três estágios pela creatinina e pela diurese. O estágio 3 inclui creatinina ≥3 vezes o basal, valor ≥4,0 mg/dL, início de terapia renal substitutiva ou, em menores de 18 anos, TFGe <35 mL/min/1,73 m².",
+          "conclusao": "Os critérios de creatinina e diurese da KDIGO 2012 devem ser aplicados de forma independente: basta uma rota diagnóstica, e o maior estágio atingido define a gravidade.",
+          "curiosidade": "A classificação KDIGO harmonizou os sistemas RIFLE e AKIN, permitindo que estudos e serviços comparassem incidência e desfechos de LRA com uma linguagem comum."
+        },
+        "hypona": {
+          "label": "Guideline Hyponatremia ESE/ERA",
+          "url": "https://academic.oup.com/ndt/article/29/suppl_2/i1/1843686",
+          "journal": "Nephrology Dialysis Transplantation",
+          "ano": 2014,
+          "tipo": "Diretriz Europeia",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Algoritmo diagnóstico e terapêutico da hiponatremia",
+          "icon": "📋",
+          "resumo": "Diretriz europeia conjunta (ESE/ERA-EDTA 2014) para manejo da hiponatremia. Classifica a abordagem pela gravidade sintomática e velocidade de instalação — não apenas pelo nível sérico. Em hiponatremia sintomática grave: NaCl 3% 150 mL IV em 20 min, repetível até 2 vezes ou até elevação de ~5 mmol/L. Correção máxima: 10 mmol/L nas primeiras 24h e 8 mmol/L por cada 24h subsequente. Vaptanas contraindicadas em hipovolemia e hepatopatia.",
+          "conclusao": "A abordagem guiada por sintomas e velocidade de instalação — não pelo sódio isolado — é o paradigma central desta diretriz, que permanece referência europeia para hiponatremia.",
+          "curiosidade": "A síndrome de desmielinização osmótica (SDO) é mais frequente em pacientes com hiponatremia crônica que têm depleção de osmóis orgânicos cerebrais — K⁺, mioinositol, taurina. Correção rápida restaura osmolaridade plasmática mais rápido que o cérebro consegue reacumular esses osmóis, causando retração celular e desmielinização."
+        },
+        "hyponatremia_verbalis2022": {
+          "label": "European Clinical Practice Guideline on Hyponatraemia (ESE/ERA-EDTA 2014)",
+          "url": "https://academic.oup.com/ejendo/article/170/3/G1/6655834",
+          "journal": "Eur J Endocrinol 2014;170(3):G1-G47",
+          "ano": 2014,
+          "tipo": "Diretriz Europeia",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Diretriz europeia para diagnóstico e tratamento de hiponatremia: classificação por gravidade, fluxograma diagnóstico, indicações de solução hipertônica e vaptanas",
+          "icon": "📋",
+          "resumo": "Em hiponatremia sintomática grave, priorizar sintomas e tempo de instalação. A diretriz europeia recomenda NaCl 3% 150 mL IV em 20 minutos, repetível até 2 vezes ou até elevação de ~5 mmol/L. Após melhora, limitar a correção a 10 mmol/L nas primeiras 24h e 8 mmol/L a cada 24h subsequente. Vaptanas exigem cautela: evitar em hiponatremia hipovolêmica, incapacidade de monitorização e hepatopatia relevante.",
+          "conclusao": "A abordagem da hiponatremia é guiada pela gravidade sintomática e velocidade de instalação — não apenas pelo nível sérico — com metas de correção para prevenir síndrome de desmielinização osmótica.",
+          "curiosidade": "A síndrome de desmielinização osmótica resulta da re-osmolarização cerebral abrupta em pacientes com hiponatremia crônica — o cérebro adapta seu conteúdo de osmóis orgânicos à hipoosmolaridade e não tolera correção rápida."
+        },
+        "hyponatremia_adrogue2000": {
+          "label": "Adrogue HJ, Madias NE — Hyponatremia (NEJM 2000)",
+          "url": "https://www.nejm.org/doi/full/10.1056/NEJM200005253422107",
+          "journal": "N Engl J Med 2000;342(21):1581-1589",
+          "ano": 2000,
+          "tipo": "Revisão Clínica",
+          "badge": "REVIEW",
+          "badgeColor": "#0ea5e9",
+          "impacto": "Revisão clássica de hiponatremia: diagnóstico, causas, manejo e velocidade de correção segura (máx 10-12 mEq/L/24h)",
+          "icon": "📖",
+          "resumo": "Revisão clássica que organizou diagnóstico e manejo da hiponatremia. Fórmula prática: ΔNa ≈ ([Na + K]infusato − Na sérico) / (ACT + 1); ACT ≈ 0,6 × peso em homens, 0,5 × peso em mulheres, menor em idosos. Para soluções sem potássio, usar apenas Na do infusato. A correção deve ser lenta na hiponatremia crônica; alvo usual 4–6 mEq/L/dia, evitando correções excessivas, especialmente em alto risco de desmielinização osmótica.",
+          "conclusao": "A fórmula de Adrogué-Madias é ferramenta de estimativa, não substitui rechecagem seriada do sódio.",
+          "curiosidade": "Hipocalemia aumenta risco de desmielinização; reposição de K também eleva a natremia efetiva."
+        }
+      }
+    },
+    "verifiedExistingCards": {},
+    "newVerifiedCards": {
+      "courbebaisse_fgf23_ckd_2018": {
+        "label": "Courbebaisse e Lanske — FGF23 na DRC (2018)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5932574/",
+        "journal": "Cold Spring Harb Perspect Med 2018;8(5):a031260",
+        "ano": 2018,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Distinguir adaptação do fosfato de hiperfosfatemia manifesta",
+        "icon": "🔬",
+        "resumo": "Revisão narrativa da fisiologia e patologia de FGF23. Na DRC, FGF23 costuma elevar-se antes de PTH e fósforo sérico; aumenta excreção fracional de fosfato nos néfrons funcionantes e reduz calcitriol. A redução de calcitriol pode contribuir ao hiperparatireoidismo secundário. A integração é um modelo fisiológico, com adaptações e resistência variáveis.",
+        "conclusao": "PTH elevado pode coexistir com fósforo ainda normal. FGF23 não aumenta PTH por uma ação direta universal; normalmente tem efeito supressor sobre a paratireoide, modificado no contexto da DRC.",
+        "curiosidade": ""
+      },
+      "kamel_urine_electrolytes_2021": {
+        "label": "Kamel e Halperin — Eletrólitos urinários e limites do TTKG (2021)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/34013099/",
+        "journal": "Kidney Int Rep 2021;6(5):1211–1224",
+        "ano": 2021,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Evitar atribuir diagnóstico específico a um índice fisiologicamente limitado",
+        "icon": "🔬",
+        "resumo": "Revisão fisiológica da interpretação de urina nos distúrbios hidroeletrolíticos. Os autores deixam de usar TTKG porque a reciclagem intrarrenal de ureia viola a premissa da correção pela osmolalidade. Excreção de potássio deve ser interpretada com cenário, medicamentos, função renal e estado ácido-base.",
+        "conclusao": "TTKG baixo não basta para diagnosticar hipoaldosteronismo. Garantir apenas osmolalidade urinária e oferta distal não remove a limitação do modelo; outros índices também têm limites.",
+        "curiosidade": ""
+      },
+      "sterns_hyponatremia_correction_2024": {
+        "label": "Sterns et al. — Segurança na correção da hiponatremia (2024)",
+        "url": "https://doi.org/10.2215/CJN.0000000000000244",
+        "journal": "Clin J Am Soc Nephrol 2024;19(1):129–135",
+        "ano": 2024,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Reconhecer sobrecorreção e vulnerabilidade à desmielinização",
+        "icon": "🔬",
+        "resumo": "Revisão dos fundamentos e controvérsias dos limites de correção. O painel norte-americano/irlandês recomenda não ultrapassar 8 mmol/L em qualquer 24h em alto risco de desmielinização, como alcoolismo, hipocalemia grave, desnutrição ou hepatopatia avançada. Diante de excesso de correção, considerar redução terapêutica da natremia com vigilância.",
+        "conclusao": "Limite não é meta; monitorizar sódio e diurese. Aquarese após reversão da causa pode causar sobrecorreção, mesmo sem excesso de salina. Desmopressina e água livre exigem condução especializada.",
+        "curiosidade": ""
+      },
+      "warren_siadh_aquaresis_2023": {
+        "label": "Warren et al. — SIAD e aquarese (2023)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10502587/",
+        "journal": "Endocr Rev 2023;44(5):819–861",
+        "ano": 2023,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Distinguir aquarese por bloqueio V2 de natriurese",
+        "icon": "🔬",
+        "resumo": "Revisão narrativa de síndrome de antidiurese inapropriada (SIAD). Tolvaptana bloqueia V2 e favorece excreção de água livre, elevando sódio, com risco de sobrecorreção. O mecanismo não estabelece benefício clínico duro nem indicação para toda SIAD. Na rotulagem norte-americana vigente consultada, iniciar ou reiniciar SAMSCA requer ambiente hospitalar com sódio monitorizado.",
+        "conclusao": "Aquarese não é perda proporcional de eletrólitos. A seleção terapêutica depende do cenário e fonte regulatória; não usar como solução de emergência neurológica nem tratar automaticamente toda hiponatremia.",
+        "curiosidade": ""
+      }
+    },
+    "cardPatches": [
+      {
+        "id": "ukka_hyperkalemia_2023",
+        "action": "REPLACE_EXISTING_CARD_ATOMICALLY",
+        "before": {
+          "label": "UKKA Hyperkalaemia Guideline 2023",
+          "url": "https://www.ukkidney.org/health-professionals/guidelines/treatment-acute-hyperkalaemia-adults-0",
+          "journal": "UK Kidney Association",
+          "ano": 2023,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Diretriz específica para detecção, tratamento hospitalar agudo e prevenção de hipercalemia em adultos",
+          "icon": "⚡",
+          "resumo": "Diretriz da UK Kidney Association dedicada ao manejo da hipercalemia em adultos, com foco especial na atualização de 2023 para tratamento hospitalar agudo. Organiza a resposta em etapas práticas: proteger o coração quando há sinais eletrocardiográficos de toxicidade com cálcio intravenoso; deslocar potássio para o compartimento intracelular com insulina-glicose e, como adjuvante, salbutamol; remover potássio do organismo conforme gravidade, função renal e resposta; e monitorar potássio e glicemia para detectar rebote e hipoglicemia. Destaca que o cálcio intravenoso estabiliza rapidamente o miocárdio, mas não reduz o potássio sérico e tem efeito transitório, exigindo terapias complementares.",
+          "conclusao": "Na hipercalemia aguda, a conduta segura é sequencial e simultaneamente orientada por risco: ECG tóxico exige proteção cardíaca imediata com cálcio, seguida de terapias de deslocamento e remoção de potássio com monitorização estreita.",
+          "curiosidade": "A atualização de 2023 enfatizou segurança medicamentosa: reforçou diferenças práticas entre sais de cálcio, prevenção de hipoglicemia após insulina-glicose e uso do salbutamol como adjuvante, não como monoterapia em hipercalemia grave."
+        },
+        "after": {
+          "label": "UK Kidney Association — Hipercalemia em adultos (julho/2026)",
+          "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+          "journal": "UK Kidney Association",
+          "ano": 2026,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Proteção cardíaca transitória, insulina-glicose e monitorização na hipercalemia",
+          "icon": "📋",
+          "resumo": "Diretriz da UK Kidney Association (UKKA), atualizada em julho de 2026, para hipercalemia em adultos. Sugere cálcio intravenoso diante de alterações no eletrocardiograma (16.2a, 2C); o efeito elétrico é rápido e transitório, aproximadamente 30–60 minutos, sem reduzir o potássio. Recomenda infusão intravenosa de insulina solúvel 10 unidades com glicose 25 g na hipercalemia grave (16.3.1, 1B), com glicemia seriada desde o basal até 6 horas (17.2, 1C), prolongada em pacientes de alto risco. Cálcio, deslocamento e remoção de potássio têm funções distintas. O grau do cálcio foi reduzido de 1C para 2C nesta atualização; a evidência de benefício em desfechos clínicos permanece limitada.",
+          "conclusao": "Tratar toxicidade elétrica e potássio em paralelo; cálcio não corrige a hipercalemia e insulina não elimina K+ do organismo. Acompanhar eletrocardiograma, potássio e glicemia conforme o contexto.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "dbac5964610515fe33ca448b15c53def346e5ec4b1112d3b8eb48909b30e882e",
+        "afterSHA256": "7a3cbcf898e3d56a2a8123cfd9c56a09aee43e35133dc346d7800ccdf8779bc8",
+        "changedFields": [
+          "label",
+          "url",
+          "ano",
+          "tipo",
+          "impacto",
+          "icon",
+          "resumo",
+          "conclusao",
+          "curiosidade"
+        ],
+        "scientificReason": "Card exatamente igual ao A008-A2; fonte atual conferida novamente para hipercalemia com sinais elétricos. Gate A009 próprio.",
+        "sourceIds": [
+          "ukka2026"
+        ],
+        "implementation": "Preservar ID e BEFORE histórico; aplicar somente a versão exata após gate independente. Mudança material futura exige nova revisão, sem reavaliar tentativas/FSRS anteriores.",
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "confidence": "alta",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): fonte decisiva aberta, texto material exato conferido, sem pendência. Gate autoral próprio, sem herança de aprovação anterior.",
+          "eliminatorsTriggered": []
+        },
+        "exactCrossBatchDependency": {
+          "report": "output-008-A2.json",
+          "reportSHA256": "db881d7caf1e8e4c7edf384cd98e0b882b60fa8759c2f538e2207952e57ff487",
+          "afterSHA256": "7a3cbcf898e3d56a2a8123cfd9c56a09aee43e35133dc346d7800ccdf8779bc8"
+        }
+      },
+      {
+        "id": "ispd_peritonitis_guideline",
+        "action": "REPLACE_EXISTING_CARD_ATOMICALLY",
+        "before": {
+          "label": "ISPD — Peritonitis Guideline 2022",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35264029/",
+          "journal": "Peritoneal Dialysis International 2022;42(2):110-153",
+          "ano": 2022,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Referência internacional para prevenção, diagnóstico, terapia empírica e manejo por organismo da peritonite associada à DP",
+          "icon": "📋",
+          "resumo": "A ISPD 2022 define peritonite em DP pela presença de pelo menos dois entre três critérios: quadro clínico compatível, como dor abdominal ou efluente turvo; leucócitos no efluente acima de 100/µL após permanência de pelo menos 2 horas, com mais de 50% de polimorfonucleares; ou cultura positiva. Após coleta microbiológica, recomenda antibiótico empírico imediato e específico do centro cobrindo gram-positivos e gram-negativos, preferencialmente por via intraperitoneal quando possível e na ausência de sepse. Para peritonite fúngica, recomenda retirada imediata do cateter e antifúngico por pelo menos 2 semanas após a remoção.",
+          "conclusao": "Suspeita de peritonite em DP exige coleta adequada e tratamento empírico sem aguardar cultura; agente, resposta clínica e presença de foco no cateter determinam ajuste, duração e necessidade de retirada.",
+          "curiosidade": "A diretriz propõe como metas anuais taxa global não superior a 0,40 episódio por paciente-ano e mais de 80% dos pacientes livres de peritonite."
+        },
+        "after": {
+          "label": "ISPD — Peritonitis Guideline 2022",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35264029/",
+          "journal": "Peritoneal Dialysis International 2022;42(2):110-153",
+          "ano": 2022,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Referência internacional para prevenção, diagnóstico, terapia empírica e manejo por organismo da peritonite associada à DP",
+          "icon": "📋",
+          "resumo": "A ISPD 2022 define peritonite em DP pela presença de pelo menos dois entre três critérios: quadro clínico compatível, como dor abdominal ou efluente turvo; leucócitos no efluente acima de 100/µL após permanência de pelo menos 2 horas, com mais de 50% de polimorfonucleares; ou cultura positiva. Após coleta microbiológica, recomenda antibiótico empírico imediato e específico do centro cobrindo gram-positivos e gram-negativos, preferencialmente por via intraperitoneal quando possível e na ausência de sepse. Para peritonite fúngica, recomenda retirada imediata do cateter e antifúngico por pelo menos 2 semanas após a remoção.",
+          "conclusao": "Suspeita de peritonite em DP exige coleta adequada e tratamento empírico sem aguardar cultura; agente, resposta clínica e presença de foco no cateter determinam ajuste, duração e necessidade de retirada.",
+          "curiosidade": "A diretriz propõe como metas anuais taxa global não superior a 0,40 episódio por paciente-ano e mais de 80% dos pacientes livres de peritonite."
+        },
+        "beforeSHA256": "5e20480a5aa473f955b5028a13df0776d266b0f2adf0003a32894b65ee5ae064",
+        "afterSHA256": "e8ce57e1201a5f8b56beeab412fb0adb43ee2e0b5d2468c17cae6894c8956d83",
+        "changedFields": [
+          "tipo"
+        ],
+        "scientificReason": "Normaliza tipo legado; conteúdo clínico literal inteiro conferido no original, sem modificar recomendações.",
+        "sourceIds": [
+          "ispd2022"
+        ],
+        "implementation": "Preservar ID e BEFORE histórico; aplicar somente a versão exata após gate independente. Mudança material futura exige nova revisão, sem reavaliar tentativas/FSRS anteriores.",
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "confidence": "alta",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): fonte decisiva aberta, texto material exato conferido, sem pendência. Gate autoral próprio, sem herança de aprovação anterior.",
+          "eliminatorsTriggered": []
+        },
+        "changeClassification": "TECHNICAL_TAXONOMY_ONLY"
+      },
+      {
+        "id": "siaarti_sin_citrate_2023",
+        "action": "REPLACE_EXISTING_CARD_ATOMICALLY",
+        "before": {
+          "label": "SIAARTI-SIN — Anticoagulação Regional por Citrato na TRS",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37386664/",
+          "journal": "J Anesth Analg Crit Care. 2023;3(1):7",
+          "ano": 2023,
+          "tipo": "Opinião de especialistas",
+          "badge": "CONSENSUS",
+          "badgeColor": "#6366f1",
+          "impacto": "Monitorização e manejo seguro da anticoagulação regional por citrato em terapias renais contínuas e prolongadas",
+          "icon": "📋",
+          "resumo": "Documento conjunto das sociedades italianas de anestesia e nefrologia sobre anticoagulação regional por citrato. Recomenda monitorar cálcio ionizado do circuito e do paciente, cálcio total e equilíbrio ácido-base. Acúmulo deve ser suspeitado quando a relação cálcio total/ionizado sobe em direção a 2,5 ou mais, sobretudo junto de hipocalcemia sistêmica, necessidade crescente de reposição de cálcio e piora da acidose. Fígado, músculo esquelético e córtex renal participam do metabolismo; choque e disfunção hepática grave exigem vigilância ampliada, não uma regra fixa universal de dose.",
+          "conclusao": "Na CRRT com citrato, tendência da relação cálcio total/ionizado, cálcio sistêmico, necessidade de reposição e estado ácido-base devem ser interpretados em conjunto; acúmulo requer reduzir a carga, favorecer remoção ou mudar a anticoagulação conforme protocolo e gravidade.",
+          "curiosidade": "Cálcio ionizado pós-filtro baixo informa que o circuito está anticoagulado; ele não diagnostica sozinho acúmulo sistêmico de citrato no paciente."
+        },
+        "after": {
+          "label": "SIAARTI-SIN — Anticoagulação Regional por Citrato na TRS",
+          "url": "https://link.springer.com/article/10.1186/s44158-023-00091-w",
+          "journal": "J Anesth Analg Crit Care. 2023;3(1):7",
+          "ano": 2023,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Monitorização e manejo seguro da anticoagulação regional por citrato em terapias renais contínuas e prolongadas",
+          "icon": "🔬",
+          "resumo": "Revisão/position statement da comissão SIAARTI-SIN sobre anticoagulação regional por citrato; opinião de especialistas, sem GRADE próprio. Monitoriza cálcio ionizado sistêmico e no circuito, cálcio total e ácido-base. Relação total/ionizado >2,5 ou em elevação, ambas em unidades molares, associada a hipocalcemia, maior reposição e acidose, sugere acúmulo. Choque e disfunção hepática grave exigem vigilância; hepatopatia isolada não impõe proibição universal.",
+          "conclusao": "Integrar tendência da relação e a tríade clínica; reduzir ou interromper carga de citrato, favorecer remoção e avaliar anticoagulação alternativa conforme protocolo e gravidade. Cálcio pós-filtro isolado informa anticoagulação do circuito, não acúmulo sistêmico.",
+          "curiosidade": "Acúmulo com acidose difere da sobrecarga de citrato metabolizado com alcalose; também pode haver oferta insuficiente de tampão sem acúmulo."
+        },
+        "beforeSHA256": "9090cf05708e7ec3b43c406de33b3442fffcb4e35b2b034a3a1a7d222e268b1e",
+        "afterSHA256": "0d4601513c70aca73f1a247158e90f145fea6ecd202590d44d39a108f48307ad",
+        "changedFields": [
+          "url",
+          "tipo",
+          "badge",
+          "badgeColor",
+          "icon",
+          "resumo",
+          "conclusao",
+          "curiosidade"
+        ],
+        "scientificReason": "Corrige falsa taxonomia CONSENSUS e explicita natureza Review/position statement do original, unidades e distinção ácido-base. Mudança material com gate exato próprio.",
+        "sourceIds": [
+          "citrate2023"
+        ],
+        "implementation": "Preservar ID e BEFORE histórico; aplicar somente a versão exata após gate independente. Mudança material futura exige nova revisão, sem reavaliar tentativas/FSRS anteriores.",
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "confidence": "moderada",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): fonte decisiva aberta, texto material exato conferido, sem pendência. Gate autoral próprio, sem herança de aprovação anterior.",
+          "eliminatorsTriggered": []
+        }
+      }
+    ],
+    "cardExactVersionReviews": [
+      {
+        "id": "courbebaisse_fgf23_ckd_2018",
+        "action": "ADD_NEW_ATOMIC_CARD",
+        "exactCardSHA256": "42a87cc3eeb3dd5ea45de5908d64ee43ac8e637f2904bdd3131c3d950109cb58",
+        "sourceIds": [
+          "courbebaisse2018"
+        ],
+        "metadataAndClaimsWithinDeclaredScopeVerified": true,
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "confidence": "moderada",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): versão literal do card conferida no original identificado, escopo declarado; sem aprovação por associação.",
+          "eliminatorsTriggered": []
+        }
+      },
+      {
+        "id": "kamel_urine_electrolytes_2021",
+        "action": "ADD_NEW_ATOMIC_CARD",
+        "exactCardSHA256": "7e42acd45b6b1a273e8fee6d6fa4c943da50757a7343387a63a6140aee8895f6",
+        "sourceIds": [
+          "kamel2021"
+        ],
+        "metadataAndClaimsWithinDeclaredScopeVerified": true,
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "confidence": "moderada",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): versão literal do card conferida no original identificado, escopo declarado; sem aprovação por associação.",
+          "eliminatorsTriggered": []
+        }
+      },
+      {
+        "id": "sterns_hyponatremia_correction_2024",
+        "action": "ADD_NEW_ATOMIC_CARD",
+        "exactCardSHA256": "31e584506bb3b73c84f97a1af76a2de42dda5e86bcfe03374ea775d3271ba577",
+        "sourceIds": [
+          "sterns2024"
+        ],
+        "metadataAndClaimsWithinDeclaredScopeVerified": true,
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "confidence": "moderada",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): versão literal do card conferida no original identificado, escopo declarado; sem aprovação por associação.",
+          "eliminatorsTriggered": []
+        }
+      },
+      {
+        "id": "warren_siadh_aquaresis_2023",
+        "action": "ADD_NEW_ATOMIC_CARD",
+        "exactCardSHA256": "692ba4f677a5a71dc4164c09cbe8b83e573d88a73140b70b9c7f06903c499323",
+        "sourceIds": [
+          "warren2023",
+          "samsca2026"
+        ],
+        "metadataAndClaimsWithinDeclaredScopeVerified": true,
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "confidence": "moderada",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): versão literal do card conferida no original identificado, escopo declarado; sem aprovação por associação.",
+          "eliminatorsTriggered": []
+        }
+      },
+      {
+        "id": "ukka_hyperkalemia_2023",
+        "action": "REPLACE_EXISTING_CARD_ATOMICALLY",
+        "exactCardSHA256": "7a3cbcf898e3d56a2a8123cfd9c56a09aee43e35133dc346d7800ccdf8779bc8",
+        "sourceIds": [
+          "ukka2026"
+        ],
+        "metadataAndClaimsWithinDeclaredScopeVerified": true,
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "confidence": "alta",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): fonte decisiva aberta, texto material exato conferido, sem pendência. Gate autoral próprio, sem herança de aprovação anterior.",
+          "eliminatorsTriggered": []
+        }
+      },
+      {
+        "id": "ispd_peritonitis_guideline",
+        "action": "REPLACE_EXISTING_CARD_ATOMICALLY",
+        "exactCardSHA256": "e8ce57e1201a5f8b56beeab412fb0adb43ee2e0b5d2468c17cae6894c8956d83",
+        "sourceIds": [
+          "ispd2022"
+        ],
+        "metadataAndClaimsWithinDeclaredScopeVerified": true,
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "confidence": "alta",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): fonte decisiva aberta, texto material exato conferido, sem pendência. Gate autoral próprio, sem herança de aprovação anterior.",
+          "eliminatorsTriggered": []
+        }
+      },
+      {
+        "id": "siaarti_sin_citrate_2023",
+        "action": "REPLACE_EXISTING_CARD_ATOMICALLY",
+        "exactCardSHA256": "0d4601513c70aca73f1a247158e90f145fea6ecd202590d44d39a108f48307ad",
+        "sourceIds": [
+          "citrate2023"
+        ],
+        "metadataAndClaimsWithinDeclaredScopeVerified": true,
+        "exactVersionReview": {
+          "verdictV2": "aprovada",
+          "confidence": "moderada",
+          "evidenceStatus": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): fonte decisiva aberta, texto material exato conferido, sem pendência. Gate autoral próprio, sem herança de aprovação anterior.",
+          "eliminatorsTriggered": []
+        }
+      }
+    ],
+    "unverifiedExistingCards": {},
+    "referenceIntegrityAlerts": [
+      {
+        "id": "phosphate_binders_ckd",
+        "finding": "Card atual contradiz resultados no próprio resumo/impacto; referência removida do AFTER1366b930. Discussão da KDIGO confirma sinal de aumento de calcificação/ausência de diferençaFGF23. Nenhum patchglobalBlock aprovado sem original e consumidores."
+      },
+      {
+        "id": "hyponatremia_verbalis2022/hypona",
+        "finding": "IDVerbalis2022descrevefonteeuropeia2014; não endossa automaticamente tolvaptana nem limite geral a alto risco. Removidos dos AFTERse94/936, semaprovaroutrosconsumidores."
+      },
+      {
+        "qid": "6474ec20",
+        "finding": "Original desatualizado; candidato reformulado muda OP e conceito. REDIRECIONAR/BLOQUEADA; não aplicar nem transferir maestria para um novo conceito silenciosamente."
+      }
+    ],
+    "items": [
+      {
+        "qid": "1366b930",
+        "sourceLine": 222,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "moderada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "§18.4 Regra7(c): veredito revisão maior implica BLOQUEADA; estado de evidência registrado separadamente.",
+        "OP": "Explicar por que PTH pode elevar-se na DRC antes de hiperfosfatemia manifesta.",
+        "classification": {
+          "primaryCompetency": "fisiopatologia do distúrbio mineral da DRC",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo."
+        },
+        "caseReconstruction": {
+          "populationAndScenario": "Adulto com DRC G4 tem PTH elevado, fósforo sérico ainda normal e calcitriol reduzido. Qual combinação descreve uma adaptação usual nessa fase?",
+          "decision": "Explicar por que PTH pode elevar-se na DRC antes de hiperfosfatemia manifesta.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "A proposta separa excreção fracional e absoluta e evita indução direta simplista de PTH por FGF23; usa revisão original específica.",
+        "problems": [
+          "MAIOR — Card Block2012 tem impacto de redução de calcificação, incompatível com aumento descrito pela KDIGO; remover referência inadequada neste AFTER.",
+          "MENOR — VitaminaD/calcitriol no BEFORE confunde 25(OH)D com hormônio ativo.",
+          "MAIOR — Alternativas muito assimétricas; hard superestima comparação de fisiologia."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "Referência de ensaio com card contraditório não é apoio adequado ao mecanismo; não deduzir intervenção pelo fósforo normal."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 1
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 1
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 0
+            },
+            {
+              "dimension": "Distratores",
+              "score": 1
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 0
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 0
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 11,
+          "annulled": false,
+          "band": "Recuperável",
+          "rationale": "Avaliação do BEFORE literal, sem atribuir erro que ele não contém."
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_revisão",
+          "path": [
+            "0: PARCIALMENTE VERIFICADA/NÃO DECISIVA",
+            "1: nenhum eliminatório comprovado",
+            "2: recurso editorial ou de evidência substantivo",
+            "3: revisão maior, recuperação do mesmo OP",
+            "§18.4: BLOQUEADA"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Explicar por que PTH pode elevar-se na DRC antes de hiperfosfatemia manifesta.",
+            "Adulto com DRC G4 tem PTH elevado, fósforo sérico ainda normal e calcitriol reduzido. Qual combinação descreve uma adaptação usual nessa fase?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [],
+          "finding": "Nenhum outro item localizado com as mesmas quatro dimensões."
+        },
+        "sources": [
+          "courbebaisse2018"
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "FGF23/fosfatúriafracional/calcitriol/PTH antesfósforoalto",
+            "sourceIds": [
+              "courbebaisse2018"
+            ],
+            "status": "VERIFICADA",
+            "locator": "HTML250–263/Fig5;115–122"
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "DRC-MBD — Hiperparatireoidismo Secundário Inicial",
+            "qid": "1366b930",
+            "q": "Paciente com DRC G4 tem PTH elevado, fósforo no limite superior da normalidade e deficiência de vitamina D/calcitriol. Qual interpretação fisiopatológica é mais adequada?",
+            "refs": [
+              "kdigo_ckd_mbd_2017",
+              "phosphate_binders_ckd"
+            ],
+            "opts": [
+              "Elevação precoce de FGF23 e queda de calcitriol favorecem hiperparatireoidismo secundário antes da hiperfosfatemia franca",
+              "Hipercalcemia é a alteração inicial típica e explica diretamente a elevação do PTH",
+              "O PTH só sobe depois de hiperfosfatemia franca e persistente",
+              "FGF23 reduz fosfatúria, aumentando a retenção de fósforo como mecanismo compensatório"
+            ],
+            "ans": 0,
+            "exp": "Na DRC-MBD, FGF23 pode se elevar antes da hiperfosfatemia franca, aumentando a fosfatúria e reduzindo calcitriol. A menor vitamina D ativa reduz absorção intestinal de cálcio e remove freio sobre paratireoides, favorecendo hiperparatireoidismo secundário. Hipercalcemia não é a explicação inicial típica; PTH pode subir antes de fósforo sérico claramente alto; e FGF23 aumenta, não reduz, a excreção renal de fosfato enquanto há reserva tubular.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "after": {
+            "t": "DRC-MBD — Hiperparatireoidismo Secundário Inicial",
+            "qid": "1366b930",
+            "q": "Adulto com DRC G4 tem PTH elevado, fósforo sérico ainda normal e calcitriol reduzido. Qual combinação descreve uma adaptação usual nessa fase?",
+            "refs": [
+              "courbebaisse_fgf23_ckd_2018"
+            ],
+            "opts": [
+              "FGF23 mais alto com maior excreção fracional de fosfato e menor calcitriol.",
+              "FGF23 mais baixo com maior excreção fracional de fosfato e maior calcitriol.",
+              "FGF23 mais alto com menor excreção fracional de fosfato e maior calcitriol.",
+              "FGF23 mais baixo com menor excreção fracional de fosfato e menor calcitriol."
+            ],
+            "ans": 0,
+            "exp": "FGF23 elevado pode aumentar excreção fracional de fosfato pelos néfrons funcionantes e reduzir calcitriol, enquanto o fósforo sérico ainda permanece normal. Menor calcitriol contribui ao hiperparatireoidismo secundário por menor absorção de cálcio e menor supressão paratireoidiana. Isso não implica ação direta estimuladora universal de FGF23 sobre PTH, nem preservação da excreção absoluta em toda DRC. O item explica adaptação e não indica calcitriol ou quelante automaticamente por um PTH isolado.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "beforeSHA256": "8ed6cc39dd58f8ac5cf8865249f7fae9fbf40f5bc7fc1c0877802a2dad6fda09",
+          "afterSHA256": "7309074e3b406ba276b2edbf8b776adc09c22675fdd5a841084d9985f53571b6",
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 0,
+            "sourceLetter": "A",
+            "text": "FGF23 mais alto com maior excreção fracional de fosfato e menor calcitriol."
+          },
+          "implementation": "Preservar qid, categoria, posição física e histórico. Aplicar somente AFTER exato e cards exatos, após autorização de implementação e gate independente; nunca aplicar candidato BLOQUEADO."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "7309074e3b406ba276b2edbf8b776adc09c22675fdd5a841084d9985f53571b6",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "moderada",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): AFTER exato reavaliado, fontes decisivas abertas, nenhuma pendência, veredito de aprovação; não herda gate do BEFORE.",
+          "justification": "A proposta separa excreção fracional e absoluta e evita indução direta simplista de PTH por FGF23; usa revisão original específica.",
+          "appeal": {
+            "plausible": false,
+            "finding": "Somente maior FGF23/maior excreção fracional/menor calcitriol descreve a adaptação; nenhuma intervenção é inferida."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "criterion": "Mais de uma resposta defensável",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Somente maior FGF23/maior excreção fracional/menor calcitriol descreve a adaptação; nenhuma intervenção é inferida."
+            },
+            {
+              "number": 2,
+              "criterion": "Referência não sustenta gabarito",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Ledger/fonte/card sustentam o conceito no alcance declarado."
+            },
+            {
+              "number": 3,
+              "criterion": "Mede outro OP",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Explicar por que PTH pode elevar-se na DRC antes de hiperfosfatemia manifesta."
+            },
+            {
+              "number": 4,
+              "criterion": "Conduta insegura premiada",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Não dispensa vigilância/medida urgente nem impõe dose fixa universal."
+            },
+            {
+              "number": 5,
+              "criterion": "Distrator absurdo",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Distratores identificam mecanismo ou etapa clínica pertinente ao comando."
+            },
+            {
+              "number": 6,
+              "criterion": "Trivia sem consequência clínica",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Interpretação ou segurança clínica útil, sem trivia sem consequência."
+            },
+            {
+              "number": 7,
+              "criterion": "Explicação contradiz gabarito",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Explicação conclui no conceito do gabarito."
+            },
+            {
+              "number": 8,
+              "criterion": "Dado decisivo ausente",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Dados necessários à decisão delimitada presentes no comando."
+            },
+            {
+              "number": 9,
+              "criterion": "Protocolo local oculto",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Não exige conhecer protocolo local ou dose não declarada."
+            },
+            {
+              "number": 10,
+              "criterion": "Desatualização relevante",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Versão/limite/alcance da evidência atual reavaliado."
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente",
+            "rationale": "Julgamento do AFTER literal: A proposta separa excreção fracional e absoluta e evita indução direta simplista de PTH por FGF23; usa revisão original específica."
+          },
+          "decision": {
+            "path": [
+              "0: VERIFICADA/NENHUMA",
+              "1: nenhum eliminatório comprovado na proposta",
+              "2: recurso resolvido na versão exata",
+              "3: 19/20 → aprovada"
+            ],
+            "lifeCycle": "em_reparo",
+            "lifeCycleAfterAuthorizedIntegration": "publicado",
+            "lifeCycleNote": "Estado atual no relatório, sem integração/publicação efetiva."
+          },
+          "referenceBindings": {
+            "courbebaisse_fgf23_ckd_2018": "NEW_CARD_ATOMIC_REQUIRED"
+          },
+          "lengthDiagnostics": {
+            "optionCharacters": [
+              75,
+              76,
+              75,
+              76
+            ],
+            "correctUniqueLongest": false,
+            "correctUniqueShortest": false
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": true,
+            "decisiveSourcesOpened": true,
+            "correctNotUniqueLongest": true,
+            "lengthDoesNotAuthorizeClinicalApproval": true,
+            "noHistoricalAnswerRegradeOrFSRSReset": true
+          },
+          "verificationPending": [],
+          "reassessmentA009": {
+            "scope": "Parecer autoral exato; não é revisão científica independente.",
+            "materiality": "Cada texto e card exato reavaliado nesta rodada; nenhum gate herdado de lote anterior.",
+            "evidence": "VERIFICADA",
+            "pendingNature": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          }
+        }
+      },
+      {
+        "qid": "a221d304",
+        "sourceLine": 225,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "§18.4 Regra7(c): veredito revisão maior implica BLOQUEADA; estado de evidência registrado separadamente.",
+        "OP": "Priorizar coleta de efluente e antibiótico empírico pronto na suspeita de peritonite em DP.",
+        "classification": {
+          "primaryCompetency": "manejo inicial de infecção em diálise peritoneal",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo."
+        },
+        "caseReconstruction": {
+          "populationAndScenario": "Adulto em diálise peritoneal apresenta dor abdominal, febre e efluente turvo. Antes de conhecer a cultura, qual sequência de investigação e tratamento é adequada?",
+          "decision": "Priorizar coleta de efluente e antibiótico empírico pronto na suspeita de peritonite em DP.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "O AFTER compara atraso da cobertura e inversão da coleta, erros do mesmo fluxo clínico, preservando a sequência correta.",
+        "problems": [
+          "CRÍTICO — Analgésico e espera72h são distratores artificiais na suspeita de peritonite, disparo5.",
+          "MAIOR — Correta concentra todas as etapas, facilitando acerto por extensão.",
+          "MENOR — Escolha de antibiótico e via não deve atrasar primeira dose."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "O item original permite eliminar espera prolongada sem saber quando colher ou iniciar cobertura."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": true,
+            "finding": "Prescrever apenasanalgesia eesperar72h é alternativaartificial diante destes sinais."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [],
+          "total": null,
+          "annulled": true,
+          "reason": "Critério eliminatório: distrator artificial sem erro clínico plausível."
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_revisão",
+          "path": [
+            "0: PARCIALMENTE VERIFICADA/NÃO DECISIVA",
+            "1: score anulado por eliminatório",
+            "2: recurso editorial ou de evidência substantivo",
+            "3: revisão maior, recuperação do mesmo OP",
+            "§18.4: BLOQUEADA"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Priorizar coleta de efluente e antibiótico empírico pronto na suspeita de peritonite em DP.",
+            "Adulto em diálise peritoneal apresenta dor abdominal, febre e efluente turvo. Antes de conhecer a cultura, qual sequência de investigação e tratamento é adequada?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [
+            "547a3dc2",
+            "68b630ba"
+          ],
+          "finding": "547a3dc2 já informa amostras colhidas e pergunta esquema/via; 68b630ba interpreta critérios celulares. Este decide coleta e momento da cobertura; dados e decisão úteis distintos."
+        },
+        "sources": [
+          "ispd2022"
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "Amostrasantibioticoprontogram+/− evia sematraso",
+            "sourceIds": [
+              "ispd2022"
+            ],
+            "status": "VERIFICADA",
+            "locator": "PDF11/13/14;§empirical1B/1C"
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Peritonite em DP — Sequência Inicial",
+            "qid": "a221d304",
+            "q": "Paciente em diálise peritoneal apresenta dor abdominal, febre e efluente turvo. Qual sequência inicial é mais apropriada?",
+            "refs": [
+              "ispd_peritonitis_guideline"
+            ],
+            "opts": [
+              "Coletar efluente para contagem diferencial, Gram e cultura e iniciar imediatamente antibiótico empírico com cobertura para gram-positivos e gram-negativos, sem aguardar o resultado",
+              "Aguardar cultura e antibiograma antes de qualquer antibiótico para evitar resultado falso-negativo",
+              "Retirar o cateter imediatamente em todo primeiro episódio, antes de colher o efluente",
+              "Prescrever apenas analgésico e repetir a avaliação em 72 horas se a turvação persistir"
+            ],
+            "ans": 0,
+            "exp": "Efluente turvo deve ser tratado como peritonite até exclusão razoável. A prioridade é colher amostra adequada antes do antibiótico — contagem e diferencial celular, Gram e cultura, idealmente com técnica que aumente o rendimento — e iniciar tratamento empírico o mais cedo possível, cobrindo gram-positivos e gram-negativos. Não se deve esperar a cultura para tratar. Retirada imediata do cateter é reservada a situações específicas, como peritonite fúngica, deterioração, refratariedade ou determinados focos relacionados ao cateter; não é regra para todo primeiro episódio.",
+            "diff": "medium",
+            "cat": "dialise"
+          },
+          "after": {
+            "t": "Peritonite em DP — Sequência Inicial",
+            "qid": "a221d304",
+            "q": "Adulto em diálise peritoneal apresenta dor abdominal, febre e efluente turvo. Antes de conhecer a cultura, qual sequência de investigação e tratamento é adequada?",
+            "refs": [
+              "ispd_peritonitis_guideline"
+            ],
+            "opts": [
+              "Coletar efluente e iniciar cobertura empírica para gram-positivos e negativos.",
+              "Iniciar cobertura empírica após o Gram, coletando efluente apenas se a febre persistir.",
+              "Coletar efluente e iniciar apenas cobertura para gram-positivos até identificar o agente.",
+              "Coletar efluente e adiar cobertura para gram-negativos até conhecer sua suscetibilidade."
+            ],
+            "ans": 0,
+            "exp": "Colher efluente para contagem e diferencial, Gram e cultura e iniciar antibiótico empírico prontamente após as amostras. A ISPD 2022 recomenda início precoce (1B) e cobertura gram-positiva e negativa orientada pelo centro (1C). A coleta preserva rendimento microbiológico, mas aguardar resultado atrasa terapia; Gram negativo não exclui infecção. A via intraperitoneal é preferida quando viável, sem atraso, salvo sepse sistêmica. A pergunta cobra sequência e alcance de cobertura, sem fixar dose ou escolher esquema alheio ao perfil local.",
+            "diff": "medium",
+            "cat": "dialise"
+          },
+          "beforeSHA256": "5b4eb0390f843c2dc0a1f621a1f25f5e1f6508f1ff41a08552fe6fc527f0e822",
+          "afterSHA256": "ef07af21249fab22ef0a8afcb4f8c43b3e71d26845ba440ffd13c361ff176514",
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [
+            "q",
+            "opts",
+            "exp"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 0,
+            "sourceLetter": "A",
+            "text": "Coletar efluente e iniciar cobertura empírica para gram-positivos e negativos."
+          },
+          "implementation": "Preservar qid, categoria, posição física e histórico. Aplicar somente AFTER exato e cards exatos, após autorização de implementação e gate independente; nunca aplicar candidato BLOQUEADO."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "ef07af21249fab22ef0a8afcb4f8c43b3e71d26845ba440ffd13c361ff176514",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): AFTER exato reavaliado, fontes decisivas abertas, nenhuma pendência, veredito de aprovação; não herda gate do BEFORE.",
+          "justification": "O AFTER compara atraso da cobertura e inversão da coleta, erros do mesmo fluxo clínico, preservando a sequência correta.",
+          "appeal": {
+            "plausible": false,
+            "finding": "Apenas coleta seguida de cobertura de ambos os grupos respeita a sequência; as demais atrasam ou deixam lacuna deliberada."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "criterion": "Mais de uma resposta defensável",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Apenas coleta seguida de cobertura de ambos os grupos respeita a sequência; as demais atrasam ou deixam lacuna deliberada."
+            },
+            {
+              "number": 2,
+              "criterion": "Referência não sustenta gabarito",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Ledger/fonte/card sustentam o conceito no alcance declarado."
+            },
+            {
+              "number": 3,
+              "criterion": "Mede outro OP",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Priorizar coleta de efluente e antibiótico empírico pronto na suspeita de peritonite em DP."
+            },
+            {
+              "number": 4,
+              "criterion": "Conduta insegura premiada",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Não dispensa vigilância/medida urgente nem impõe dose fixa universal."
+            },
+            {
+              "number": 5,
+              "criterion": "Distrator absurdo",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Distratores identificam mecanismo ou etapa clínica pertinente ao comando."
+            },
+            {
+              "number": 6,
+              "criterion": "Trivia sem consequência clínica",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Interpretação ou segurança clínica útil, sem trivia sem consequência."
+            },
+            {
+              "number": 7,
+              "criterion": "Explicação contradiz gabarito",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Explicação conclui no conceito do gabarito."
+            },
+            {
+              "number": 8,
+              "criterion": "Dado decisivo ausente",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Dados necessários à decisão delimitada presentes no comando."
+            },
+            {
+              "number": 9,
+              "criterion": "Protocolo local oculto",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Não exige conhecer protocolo local ou dose não declarada."
+            },
+            {
+              "number": 10,
+              "criterion": "Desatualização relevante",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Versão/limite/alcance da evidência atual reavaliado."
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente",
+            "rationale": "Julgamento do AFTER literal: O AFTER compara atraso da cobertura e inversão da coleta, erros do mesmo fluxo clínico, preservando a sequência correta."
+          },
+          "decision": {
+            "path": [
+              "0: VERIFICADA/NENHUMA",
+              "1: nenhum eliminatório comprovado na proposta",
+              "2: recurso resolvido na versão exata",
+              "3: 19/20 → aprovada"
+            ],
+            "lifeCycle": "em_reparo",
+            "lifeCycleAfterAuthorizedIntegration": "publicado",
+            "lifeCycleNote": "Estado atual no relatório, sem integração/publicação efetiva."
+          },
+          "referenceBindings": {
+            "ispd_peritonitis_guideline": "CARD_PATCH_ATOMIC_REQUIRED"
+          },
+          "lengthDiagnostics": {
+            "optionCharacters": [
+              78,
+              87,
+              89,
+              88
+            ],
+            "correctUniqueLongest": false,
+            "correctUniqueShortest": true
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": true,
+            "decisiveSourcesOpened": true,
+            "correctNotUniqueLongest": true,
+            "lengthDoesNotAuthorizeClinicalApproval": true,
+            "noHistoricalAnswerRegradeOrFSRSReset": true
+          },
+          "verificationPending": [],
+          "reassessmentA009": {
+            "scope": "Parecer autoral exato; não é revisão científica independente.",
+            "materiality": "Cada texto e card exato reavaliado nesta rodada; nenhum gate herdado de lote anterior.",
+            "evidence": "VERIFICADA",
+            "pendingNature": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "lengthJudgment": "Diferença natural exposta; não completar texto só para equilibrar caracteres."
+        }
+      },
+      {
+        "qid": "805733f8",
+        "sourceLine": 228,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "§18.4 Regra7(c): veredito revisão maior implica BLOQUEADA; estado de evidência registrado separadamente.",
+        "OP": "Aplicar proteção cardíaca e terapia de deslocamento/remoção na hipercalemia com ECG tóxico.",
+        "classification": {
+          "primaryCompetency": "tratamento inicial da emergência de potássio",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo."
+        },
+        "caseReconstruction": {
+          "populationAndScenario": "Paciente de 65 anos com DRC G4 tem potássio de 6,2 mEq/L e ondas T apiculadas novas atribuídas à hipercalemia. Qual plano inicial é adequado?",
+          "decision": "Aplicar proteção cardíaca e terapia de deslocamento/remoção na hipercalemia com ECG tóxico.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "A proposta mantém o risco elétrico e o limite de não atrasar cálcio por K numérico. Novidade/atribuição do ECG resolve premissa clínica importante.",
+        "problems": [
+          "CRÍTICO — Diurético ou ligante isolado com dispensa das medidas rápidas são distratores artificiais neste quadro, disparo5.",
+          "MAIOR — Correta única extensa e hard sem decisão entre opções próximas.",
+          "MENOR — Explicitar que ondasT são novas/atribuídas à hipercalemia para não tratar todo traçado apiculado inespecífico."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "Ondas T podem ser inespecíficas; o AFTER declara a atribuição e cobra manejo daquele risco."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": true,
+            "finding": "Dispensar medidasrápidas por estarconsciente não é erro plausível útil."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [],
+          "total": null,
+          "annulled": true,
+          "reason": "Critério eliminatório: distrator artificial sem erro clínico plausível."
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_revisão",
+          "path": [
+            "0: PARCIALMENTE VERIFICADA/NÃO DECISIVA",
+            "1: score anulado por eliminatório",
+            "2: recurso editorial ou de evidência substantivo",
+            "3: revisão maior, recuperação do mesmo OP",
+            "§18.4: BLOQUEADA"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Aplicar proteção cardíaca e terapia de deslocamento/remoção na hipercalemia com ECG tóxico.",
+            "Paciente de 65 anos com DRC G4 tem potássio de 6,2 mEq/L e ondas T apiculadas novas atribuídas à hipercalemia. Qual plano inicial é adequado?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [
+            "985d735c",
+            "1f962c0e",
+            "32f342fc",
+            "6a19aece"
+          ],
+          "finding": "Os candidatos cobram duração/mecanismo de cálcio, dose/segurança de insulina ou falha refratária com TRS. Este escolhe plano inicial diante de toxicidade elétrica emK6,2; decisões/tempo diferem."
+        },
+        "sources": [
+          "ukka2026"
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "CálcioECG2C/moderadaK6–6,4insulinaglicose2C;remoçãomonitor",
+            "sourceIds": [
+              "ukka2026"
+            ],
+            "status": "VERIFICADA",
+            "locator": "§16.2a/16.3.2,p14,p77"
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "t": "Hipercalemia aguda",
+            "qid": "805733f8",
+            "q": "Paciente de 65 anos, com DRC estágio 4, potássio de 6,2 mEq/L e ondas T apiculadas no ECG. Qual sequência inicial de manejo é mais adequada?",
+            "refs": [
+              "ukka_hyperkalemia_2023",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Aguardar nova dosagem em 6 horas antes de tratar, pois o potássio está abaixo de 6,5 mEq/L",
+              "Proteger o miocárdio com cálcio intravenoso, deslocar K para o intracelular e iniciar estratégia de remoção/monitorização do potássio",
+              "Usar apenas diurético oral, porque ondas T apiculadas não configuram toxicidade eletrocardiográfica",
+              "Usar apenas quelante oral e dispensar terapias de ação rápida se o paciente estiver consciente"
+            ],
+            "ans": 1,
+            "exp": "Hipercalemia com alteração eletrocardiográfica deve ser tratada como emergência. A sequência prática é proteger o coração com cálcio intravenoso quando há sinais de toxicidade elétrica, deslocar temporariamente K para o intracelular com insulina-glicose e/ou beta-2 agonista, e providenciar remoção do potássio conforme contexto renal e gravidade, com monitorização seriada. Esperar, usar apenas medida lenta ou ignorar o ECG aumenta risco de arritmia.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "after": {
+            "t": "Hipercalemia aguda",
+            "qid": "805733f8",
+            "q": "Paciente de 65 anos com DRC G4 tem potássio de 6,2 mEq/L e ondas T apiculadas novas atribuídas à hipercalemia. Qual plano inicial é adequado?",
+            "refs": [
+              "ukka_hyperkalemia_2023"
+            ],
+            "opts": [
+              "Iniciar insulina-glicose e adiar cálcio até o potássio exceder 6,5 mEq/L.",
+              "Administrar cálcio IV e iniciar deslocamento, remoção de K e monitorização.",
+              "Administrar cálcio IV e aguardar sua redução do potássio antes de outras medidas.",
+              "Iniciar ligante oral e reavaliar ECG somente após confirmar queda do potássio."
+            ],
+            "ans": 1,
+            "exp": "Sinais elétricos de toxicidade justificam cálcio intravenoso para proteção cardíaca, sem esperar que K ultrapasse 6,5. O cálcio não reduz K e tem efeito transitório; iniciar medidas de deslocamento, estratégias de remoção conforme função renal/contexto e monitorização. A UKKA 2026 sugere cálcio diante de ECG tóxico (16.2a,2C) e insulina-glicose na faixa moderada (16.3.2,2C). Não escolher só terapia lenta nem atrasar medidas de potássio à espera do efeito do cálcio. O item não prescreve doses.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "beforeSHA256": "b40b8baa40ac751aaa5e13c734af78733d29923059c3b0b7602d60967db8373d",
+          "afterSHA256": "d118d01d6f21dd873bea9f2a0ecce932c5273ae250108a7948a7fe904ef083ed",
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [
+            "q",
+            "refs",
+            "opts",
+            "exp",
+            "diff"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 1,
+            "sourceLetter": "B",
+            "text": "Administrar cálcio IV e iniciar deslocamento, remoção de K e monitorização."
+          },
+          "implementation": "Preservar qid, categoria, posição física e histórico. Aplicar somente AFTER exato e cards exatos, após autorização de implementação e gate independente; nunca aplicar candidato BLOQUEADO."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "d118d01d6f21dd873bea9f2a0ecce932c5273ae250108a7948a7fe904ef083ed",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): AFTER exato reavaliado, fontes decisivas abertas, nenhuma pendência, veredito de aprovação; não herda gate do BEFORE.",
+          "justification": "A proposta mantém o risco elétrico e o limite de não atrasar cálcio por K numérico. Novidade/atribuição do ECG resolve premissa clínica importante.",
+          "appeal": {
+            "plausible": false,
+            "finding": "Somente o plano paralelo protege membrana e trata K; cálcio não é eliminador de potássio, e ECGtóxico prevalece sobre esperarlimiar."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "criterion": "Mais de uma resposta defensável",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Somente o plano paralelo protege membrana e trata K; cálcio não é eliminador de potássio, e ECGtóxico prevalece sobre esperarlimiar."
+            },
+            {
+              "number": 2,
+              "criterion": "Referência não sustenta gabarito",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Ledger/fonte/card sustentam o conceito no alcance declarado."
+            },
+            {
+              "number": 3,
+              "criterion": "Mede outro OP",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Aplicar proteção cardíaca e terapia de deslocamento/remoção na hipercalemia com ECG tóxico."
+            },
+            {
+              "number": 4,
+              "criterion": "Conduta insegura premiada",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Não dispensa vigilância/medida urgente nem impõe dose fixa universal."
+            },
+            {
+              "number": 5,
+              "criterion": "Distrator absurdo",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Distratores identificam mecanismo ou etapa clínica pertinente ao comando."
+            },
+            {
+              "number": 6,
+              "criterion": "Trivia sem consequência clínica",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Interpretação ou segurança clínica útil, sem trivia sem consequência."
+            },
+            {
+              "number": 7,
+              "criterion": "Explicação contradiz gabarito",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Explicação conclui no conceito do gabarito."
+            },
+            {
+              "number": 8,
+              "criterion": "Dado decisivo ausente",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Dados necessários à decisão delimitada presentes no comando."
+            },
+            {
+              "number": 9,
+              "criterion": "Protocolo local oculto",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Não exige conhecer protocolo local ou dose não declarada."
+            },
+            {
+              "number": 10,
+              "criterion": "Desatualização relevante",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Versão/limite/alcance da evidência atual reavaliado."
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente",
+            "rationale": "Julgamento do AFTER literal: A proposta mantém o risco elétrico e o limite de não atrasar cálcio por K numérico. Novidade/atribuição do ECG resolve premissa clínica importante."
+          },
+          "decision": {
+            "path": [
+              "0: VERIFICADA/NENHUMA",
+              "1: nenhum eliminatório comprovado na proposta",
+              "2: recurso resolvido na versão exata",
+              "3: 19/20 → aprovada"
+            ],
+            "lifeCycle": "em_reparo",
+            "lifeCycleAfterAuthorizedIntegration": "publicado",
+            "lifeCycleNote": "Estado atual no relatório, sem integração/publicação efetiva."
+          },
+          "referenceBindings": {
+            "ukka_hyperkalemia_2023": "CARD_PATCH_ATOMIC_REQUIRED"
+          },
+          "lengthDiagnostics": {
+            "optionCharacters": [
+              73,
+              75,
+              81,
+              78
+            ],
+            "correctUniqueLongest": false,
+            "correctUniqueShortest": false
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": true,
+            "decisiveSourcesOpened": true,
+            "correctNotUniqueLongest": true,
+            "lengthDoesNotAuthorizeClinicalApproval": true,
+            "noHistoricalAnswerRegradeOrFSRSReset": true
+          },
+          "verificationPending": [],
+          "reassessmentA009": {
+            "scope": "Parecer autoral exato; não é revisão científica independente.",
+            "materiality": "Cada texto e card exato reavaliado nesta rodada; nenhum gate herdado de lote anterior.",
+            "evidence": "VERIFICADA",
+            "pendingNature": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          }
+        }
+      },
+      {
+        "qid": "345321d6",
+        "sourceLine": 237,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "moderada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "§18.4 Regra7(c): veredito revisão maior implica BLOQUEADA; estado de evidência registrado separadamente.",
+        "OP": "Reconhecer acúmulo de citrato e reduzir sua exposição diante de hipocalcemia, acidose e relaçãoCa em ascensão.",
+        "classification": {
+          "primaryCompetency": "segurança da anticoagulação na terapia renal contínua",
+          "bloom": "Analisar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "hard",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo."
+        },
+        "caseReconstruction": {
+          "populationAndScenario": "Paciente com hepatopatia grave e choque recebe terapia renal substitutiva contínua com citrato. A relação cálcio total/ionizado, ambos em mmol/L, sobe a 2,6; o ionizado cai apesar de maior reposição e surge acidose. Qual plano responde melhor ao conjunto?",
+          "decision": "Reconhecer acúmulo de citrato e reduzir sua exposição diante de hipocalcemia, acidose e relaçãoCa em ascensão.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "A proposta integra relação e tríade, declara unidades e compara priorização inadequada da reposição/tampão sem tratar a exposição.",
+        "problems": [
+          "CRÍTICO — Dobrarcitrato/heparinaobrigatóriaaltaDose são alternativas artificiais, disparo5.",
+          "MAIOR — Relação numérica só é válida com cálcios em unidades comparáveis; tornar explícito.",
+          "MAIOR — BadgeCONSENSUS fora da taxonomia e posicionamento original Review, não diretriz graduada."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "Razão de cálcios em unidades diferentes pode produzir falso valor; a conduta não depende apenas de uma cifra nem de hepatopatia isolada."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": true,
+            "finding": "HeparinaaltaDoseobrigatória por hepatopatia é umabsolutoartificial."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [],
+          "total": null,
+          "annulled": true,
+          "reason": "Critério eliminatório: distrator artificial sem erro clínico plausível."
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_revisão",
+          "path": [
+            "0: PARCIALMENTE VERIFICADA/NÃO DECISIVA",
+            "1: score anulado por eliminatório",
+            "2: recurso editorial ou de evidência substantivo",
+            "3: revisão maior, recuperação do mesmo OP",
+            "§18.4: BLOQUEADA"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Reconhecer acúmulo de citrato e reduzir sua exposição diante de hipocalcemia, acidose e relaçãoCa em ascensão.",
+            "Paciente com hepatopatia grave e choque recebe terapia renal substitutiva contínua com citrato. A relação cálcio total/ionizado, ambos em mmol/L, sobe a 2,6; o ionizado cai apesar de maior reposição e surge acidose. Qual plano responde melhor ao conjunto?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [
+            "e5f38c55",
+            "f1d27a8f"
+          ],
+          "finding": "e5f38c55 identifica padrão e f1d27a8f escolhe princípio de anticoagulação; 345321d6 aplica conduta ao choque/hepatopatia e alteração progressiva, decisões/dados distintos."
+        },
+        "sources": [
+          "citrate2023"
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "Triade/ratio>2,5 e medidasreduçãoremoçãoalternativa",
+            "sourceIds": [
+              "citrate2023"
+            ],
+            "status": "VERIFICADA",
+            "locator": "PDF8Tabela2/HTML169–202"
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "qid": "345321d6",
+            "q": "Paciente com insuficiência hepática grave e choque está em terapia renal substitutiva contínua com anticoagulação regional por citrato. A relação cálcio total/cálcio ionizado sobe progressivamente para 2,6, o cálcio ionizado cai apesar de maior reposição e surge acidose metabólica. Qual é a melhor conduta?",
+            "opts": [
+              "Reconhecer provável acúmulo de citrato, reduzir ou interromper sua carga conforme o protocolo, otimizar a depuração e considerar outra estratégia de anticoagulação",
+              "Manter o citrato sem ajustes, pois insuficiência hepática não modifica o risco quando o filtro permanece pérvio",
+              "Dobrar a infusão de citrato para corrigir a acidose por sua conversão em bicarbonato",
+              "Trocar obrigatoriamente para heparina em alta dose, pois hepatopatia é contraindicação absoluta ao citrato"
+            ],
+            "ans": 0,
+            "exp": "A combinação de relação cálcio total/ionizado em ascensão para valor acima de 2,5, hipocalcemia ionizada, necessidade crescente de reposição de cálcio e piora da acidose sugere acúmulo de citrato. Insuficiência hepática grave e choque reduzem a capacidade metabólica, mas hepatopatia isolada não torna o citrato universalmente proibido. A resposta deve seguir protocolo experiente: reduzir ou interromper a carga de citrato, aumentar sua remoção quando viável e usar anticoagulação alternativa se o distúrbio persistir ou o risco for inaceitável. Não existe regra universal de reduzir a dose exatamente pela metade.",
+            "refs": [
+              "siaarti_sin_citrate_2023",
+              "kdigo_aki"
+            ],
+            "cat": "dialise",
+            "diff": "hard",
+            "t": "CRRT com Citrato — Acúmulo e Conduta"
+          },
+          "after": {
+            "qid": "345321d6",
+            "q": "Paciente com hepatopatia grave e choque recebe terapia renal substitutiva contínua com citrato. A relação cálcio total/ionizado, ambos em mmol/L, sobe a 2,6; o ionizado cai apesar de maior reposição e surge acidose. Qual plano responde melhor ao conjunto?",
+            "opts": [
+              "Reduzir carga de citrato, tratar hipocalcemia e avaliar remoção ou anticoagulação alternativa.",
+              "Manter carga de citrato, tratar hipocalcemia e usar reposição como único ajuste do protocolo.",
+              "Elevar carga de citrato, tratar hipocalcemia e esperar seu metabolismo corrigir toda acidose.",
+              "Manter carga de citrato, ampliar bicarbonato e interpretar a relação apenas como efeito do filtro."
+            ],
+            "ans": 0,
+            "exp": "A tríade de hipocalcemia ionizada, reposição crescente e acidose, com relação total/ionizado acima de2,5 ou em ascensão, sugere acúmulo de citrato. A relação usa unidades molares iguais e não deve ser interpretada isoladamente. O parecer SIAARTI-SIN orienta reduzir ou interromper a carga, corrigir hipocalcemia, favorecer remoção e avaliar outra anticoagulação conforme protocolo/gravidade. Hepatopatia e choque aumentam risco, mas hepatopatia isolada não impõe proibição universal. Cálcio pós-filtro baixo informa eficácia local; não explica sozinho esse conjunto sistêmico.",
+            "refs": [
+              "siaarti_sin_citrate_2023"
+            ],
+            "cat": "dialise",
+            "diff": "hard",
+            "t": "CRRT com Citrato — Acúmulo e Conduta"
+          },
+          "beforeSHA256": "2f3f11a15f548f38e0d913d2c93e02029b04adef1f5f2c43918e5d968b02ffed",
+          "afterSHA256": "9daec14d4e5f27696740065622c1a8844b12642524d72f14d06bd63ad7d4337d",
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [
+            "q",
+            "opts",
+            "exp",
+            "refs"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 0,
+            "sourceLetter": "A",
+            "text": "Reduzir carga de citrato, tratar hipocalcemia e avaliar remoção ou anticoagulação alternativa."
+          },
+          "implementation": "Preservar qid, categoria, posição física e histórico. Aplicar somente AFTER exato e cards exatos, após autorização de implementação e gate independente; nunca aplicar candidato BLOQUEADO."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "9daec14d4e5f27696740065622c1a8844b12642524d72f14d06bd63ad7d4337d",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "moderada",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): AFTER exato reavaliado, fontes decisivas abertas, nenhuma pendência, veredito de aprovação; não herda gate do BEFORE.",
+          "justification": "A proposta integra relação e tríade, declara unidades e compara priorização inadequada da reposição/tampão sem tratar a exposição.",
+          "appeal": {
+            "plausible": false,
+            "finding": "Todos os achados sustentam acúmulo e não sobrecarga alcalina. A alternativa correta reduz causa e trata consequência; as demais preservam ou ampliam a exposição."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "criterion": "Mais de uma resposta defensável",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Todos os achados sustentam acúmulo e não sobrecarga alcalina. A alternativa correta reduz causa e trata consequência; as demais preservam ou ampliam a exposição."
+            },
+            {
+              "number": 2,
+              "criterion": "Referência não sustenta gabarito",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Ledger/fonte/card sustentam o conceito no alcance declarado."
+            },
+            {
+              "number": 3,
+              "criterion": "Mede outro OP",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Reconhecer acúmulo de citrato e reduzir sua exposição diante de hipocalcemia, acidose e relaçãoCa em ascensão."
+            },
+            {
+              "number": 4,
+              "criterion": "Conduta insegura premiada",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Não dispensa vigilância/medida urgente nem impõe dose fixa universal."
+            },
+            {
+              "number": 5,
+              "criterion": "Distrator absurdo",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Distratores identificam mecanismo ou etapa clínica pertinente ao comando."
+            },
+            {
+              "number": 6,
+              "criterion": "Trivia sem consequência clínica",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Interpretação ou segurança clínica útil, sem trivia sem consequência."
+            },
+            {
+              "number": 7,
+              "criterion": "Explicação contradiz gabarito",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Explicação conclui no conceito do gabarito."
+            },
+            {
+              "number": 8,
+              "criterion": "Dado decisivo ausente",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Dados necessários à decisão delimitada presentes no comando."
+            },
+            {
+              "number": 9,
+              "criterion": "Protocolo local oculto",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Não exige conhecer protocolo local ou dose não declarada."
+            },
+            {
+              "number": 10,
+              "criterion": "Desatualização relevante",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Versão/limite/alcance da evidência atual reavaliado."
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente",
+            "rationale": "Julgamento do AFTER literal: A proposta integra relação e tríade, declara unidades e compara priorização inadequada da reposição/tampão sem tratar a exposição."
+          },
+          "decision": {
+            "path": [
+              "0: VERIFICADA/NENHUMA",
+              "1: nenhum eliminatório comprovado na proposta",
+              "2: recurso resolvido na versão exata",
+              "3: 19/20 → aprovada"
+            ],
+            "lifeCycle": "em_reparo",
+            "lifeCycleAfterAuthorizedIntegration": "publicado",
+            "lifeCycleNote": "Estado atual no relatório, sem integração/publicação efetiva."
+          },
+          "referenceBindings": {
+            "siaarti_sin_citrate_2023": "CARD_PATCH_ATOMIC_REQUIRED"
+          },
+          "lengthDiagnostics": {
+            "optionCharacters": [
+              94,
+              93,
+              93,
+              98
+            ],
+            "correctUniqueLongest": false,
+            "correctUniqueShortest": false
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": true,
+            "decisiveSourcesOpened": true,
+            "correctNotUniqueLongest": true,
+            "lengthDoesNotAuthorizeClinicalApproval": true,
+            "noHistoricalAnswerRegradeOrFSRSReset": true
+          },
+          "verificationPending": [],
+          "reassessmentA009": {
+            "scope": "Parecer autoral exato; não é revisão científica independente.",
+            "materiality": "Cada texto e card exato reavaliado nesta rodada; nenhum gate herdado de lote anterior.",
+            "evidence": "VERIFICADA",
+            "pendingNature": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          }
+        }
+      },
+      {
+        "qid": "6474ec20",
+        "sourceLine": 240,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "moderada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "§18.4 Regra7(c): veredito revisão maior implica BLOQUEADA; estado de evidência registrado separadamente.",
+        "OP": "Interpretar criticamente um índice usado para estimar a resposta renal do potássio.",
+        "classification": {
+          "primaryCompetency": "limitações da investigação de discalemias",
+          "bloom": "Analisar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo."
+        },
+        "caseReconstruction": {
+          "populationAndScenario": "Um relatório de hipercalemia inclui TTKG baixo. Qual limitação impede tratar esse valor como diagnóstico específico de hipoaldosteronismo?",
+          "decision": "Interpretar criticamente um índice usado para estimar a resposta renal do potássio.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "A fonte original confirma abandono do índice por limitação não corrigível. Não liberar como ajuste cosmético do mesmo conceito; necessidade de decisão editorial sobre identidade.",
+        "problems": [
+          "CRÍTICO — Condiçõesdevalidade tradicionais não solucionam errode modelo; ensinar significado clínico específico atualédesatualização10.",
+          "MAIOR — Fontegenérica não recuperada não supre ressalvaoriginal dos autores.",
+          "MAIOR — Reorientar de interpretaçãobaixo=aldosterona para limitação doíndice muda conceito central, sem novoqid automático."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "A premissa devalidade afirma que o índice podeinterpretar resposta específicaquando os autores originais rejeitamessausagem."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": true,
+            "finding": "A cautela tradicional não incorpora a revisão original2021queabandonaTTKG por reciclagemureia."
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [],
+          "total": null,
+          "annulled": true,
+          "reason": "Critério eliminatório: distrator artificial sem erro clínico plausível."
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_revisão",
+          "path": [
+            "0: PARCIALMENTE VERIFICADA/NÃO DECISIVA",
+            "1: score anulado por eliminatório",
+            "2: recurso editorial ou de evidência substantivo",
+            "3: revisão maior, recuperação do mesmo OP",
+            "§18.4: BLOQUEADA"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Interpretar criticamente um índice usado para estimar a resposta renal do potássio.",
+            "Um relatório de hipercalemia inclui TTKG baixo. Qual limitação impede tratar esse valor como diagnóstico específico de hipoaldosteronismo?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [],
+          "finding": "Nenhum outro item localizado com as mesmas quatro dimensões."
+        },
+        "sources": [
+          "kamel2021"
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "Reciclagemureia viola hipóteseTTKG; autoresnão usamclinicamente",
+            "sourceIds": [
+              "kamel2021"
+            ],
+            "status": "VERIFICADA",
+            "locator": "preproofHTML252–358"
+          }
+        ],
+        "patch": {
+          "instruction": "REDIRECIONAR PARA O OP de avaliar limitações do TTKG — CANDIDATO BLOQUEADO, NÃO APLICAR:",
+          "before": {
+            "qid": "6474ec20",
+            "q": "Na hipercalemia, como interpretar um TTKG baixo, quando as condições de validade do cálculo estão atendidas?",
+            "opts": [
+              "Sugere resposta distal inadequada à secreção de K, como deficiência ou resistência à aldosterona",
+              "Confirma origem extrarrenal e dispensa avaliação medicamentosa",
+              "Demonstra secreção distal excessiva de potássio",
+              "Diagnostica hipercalemia por redistribuição celular isolada"
+            ],
+            "ans": 0,
+            "exp": "Um TTKG baixo em vigência de hipercalemia sugere resposta distal inadequada para secretar potássio, compatível com menor efeito mineralocorticoide ou resistência tubular à aldosterona. A interpretação exige cautela: o índice depende de condições como osmolalidade urinária e entrega distal adequadas, e não deve substituir avaliação de medicamentos, função renal, acidose, renina/aldosterona e contexto clínico. A versão anterior cobrava teste de fludrocortisona e dose, transformando uma ferramenta limitada em trivia pouco útil.",
+            "refs": [
+              "brenner_rector"
+            ],
+            "cat": "eletrólitos",
+            "diff": "hard",
+            "t": "TTKG na Hipercalemia — Interpretação Cautelosa"
+          },
+          "after": {
+            "qid": "6474ec20",
+            "q": "Um relatório de hipercalemia inclui TTKG baixo. Qual limitação impede tratar esse valor como diagnóstico específico de hipoaldosteronismo?",
+            "opts": [
+              "A reciclagem de ureia compromete a correção por osmolalidade usada no índice.",
+              "A fórmula calcula excreção total de K em 24h, sem estimar concentração distal.",
+              "A fórmula elimina a influência de hormônios e fármacos sobre o fluxo tubular.",
+              "O índice expressa reabsorção de potássio, sem incorporar seu valor plasmático."
+            ],
+            "ans": 0,
+            "exp": "A reciclagem intrarrenal de ureia viola uma premissa da correção pela osmolalidade; por esse motivo Kamel e Halperin deixam de usar TTKG na avaliação clínica de discalemias. Atender às condições tradicionais de osmolalidade/oferta distal não remove essa limitação. Investigar hipercalemia exige cenário, fármacos, função renal e ácido-base; não diagnosticar hipoaldosteronismo por um índice isolado.",
+            "refs": [
+              "kamel_urine_electrolytes_2021"
+            ],
+            "cat": "eletrólitos",
+            "diff": "medium",
+            "t": "TTKG na Hipercalemia — Interpretação Cautelosa"
+          },
+          "beforeSHA256": "0ba72f8511c1be465b17829c8dfcd5e50fcf4fd303ace24ebec533af8e559916",
+          "afterSHA256": "9dd02a92c45ac97699221c866f5ec99a536232769aa30ed1e4863dd9fb6bc308",
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [
+            "q",
+            "opts",
+            "exp",
+            "refs",
+            "diff"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 0,
+            "sourceLetter": "A",
+            "text": "A reciclagem de ureia compromete a correção por osmolalidade usada no índice."
+          },
+          "implementation": "Não aplicar candidato, não reaproveitar qid/FSRS em conceito diferente silenciosamente e não excluir histórico. Coordenador decidir novoOP/identidade sob fluxo criar/revisar; nova revisão formal do texto final necessária."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "9dd02a92c45ac97699221c866f5ec99a536232769aa30ed1e4863dd9fb6bc308",
+          "reviewStatus": "REVIEWED",
+          "verdict": "redirecionar",
+          "legacyAux": "REESCREVER",
+          "confidence": "moderada",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "BLOQUEADA",
+          "publicationDerivation": "§18.4 Regra7(c): redirecionar não é veredito de aprovação. Evidência VERIFICADA/NENHUMA não libera identidade pedagógica alterada.",
+          "justification": "A fonte original confirma abandono do índice por limitação não corrigível. Não liberar como ajuste cosmético do mesmo conceito; necessidade de decisão editorial sobre identidade.",
+          "appeal": {
+            "plausible": true,
+            "finding": "Candidato científico sobre limitações deve passar criação/revisão após decisão de OP e identidade; distratores científicos reformulados nesta versão."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "criterion": "Mais de uma resposta defensável",
+              "triggered": false,
+              "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+            },
+            {
+              "number": 2,
+              "criterion": "Referência não sustenta gabarito",
+              "triggered": false,
+              "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+            },
+            {
+              "number": 3,
+              "criterion": "Mede outro OP",
+              "triggered": true,
+              "finding": "Candidato altera a inferência sobre aldosterona por TTKG baixo para reconhecer limitação estrutural do índice. OP e conceito diferentes; decisão de identidade pendente."
+            },
+            {
+              "number": 4,
+              "criterion": "Conduta insegura premiada",
+              "triggered": false,
+              "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+            },
+            {
+              "number": 5,
+              "criterion": "Distrator absurdo",
+              "triggered": false,
+              "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+            },
+            {
+              "number": 6,
+              "criterion": "Trivia sem consequência clínica",
+              "triggered": false,
+              "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+            },
+            {
+              "number": 7,
+              "criterion": "Explicação contradiz gabarito",
+              "triggered": false,
+              "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+            },
+            {
+              "number": 8,
+              "criterion": "Dado decisivo ausente",
+              "triggered": false,
+              "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+            },
+            {
+              "number": 9,
+              "criterion": "Protocolo local oculto",
+              "triggered": false,
+              "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+            },
+            {
+              "number": 10,
+              "criterion": "Desatualização relevante",
+              "triggered": false,
+              "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+            }
+          ],
+          "score": {
+            "dimensions": [],
+            "total": null,
+            "annulled": true,
+            "reason": "Score anulado pela alteração do objetivo e conceito central do item existente.",
+            "rationale": "Julgamento do AFTER literal: A fonte original confirma abandono do índice por limitação não corrigível. Não liberar como ajuste cosmético do mesmo conceito; necessidade de decisão editorial sobre identidade."
+          },
+          "decision": {
+            "path": [
+              "0: VERIFICADA/NENHUMA",
+              "1: candidato mede OP e conceito diferentes do original",
+              "§19: redirecionar, nenhuma versão integrável aprovada",
+              "§18.4Regra7(c): BLOQUEADA"
+            ],
+            "lifeCycle": "em_revisão",
+            "lifeCycleAfterAuthorizedIntegration": "em_revisão"
+          },
+          "referenceBindings": {
+            "kamel_urine_electrolytes_2021": "NEW_CARD_ATOMIC_REQUIRED"
+          },
+          "lengthDiagnostics": {
+            "optionCharacters": [
+              77,
+              78,
+              77,
+              78
+            ],
+            "correctUniqueLongest": false,
+            "correctUniqueShortest": false
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": false,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": true,
+            "decisiveSourcesOpened": true,
+            "correctNotUniqueLongest": true,
+            "lengthDoesNotAuthorizeClinicalApproval": true,
+            "noHistoricalAnswerRegradeOrFSRSReset": true
+          },
+          "verificationPending": [],
+          "reassessmentA009": {
+            "scope": "Parecer autoral exato; não é revisão científica independente.",
+            "materiality": "Cada texto e card exato reavaliado nesta rodada; nenhum gate herdado de lote anterior.",
+            "evidence": "VERIFICADA",
+            "pendingNature": "NENHUMA",
+            "publicationAuthorization": "BLOQUEADA"
+          }
+        }
+      },
+      {
+        "qid": "e94a6488",
+        "sourceLine": 241,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "moderada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "§18.4 Regra7(c): veredito revisão maior implica BLOQUEADA; estado de evidência registrado separadamente.",
+        "OP": "Intervir sobre correção excessiva de sódio em hiponatremia crônica com fatores de alto risco de desmielinização.",
+        "classification": {
+          "primaryCompetency": "segurança no tratamento da hiponatremia",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo."
+        },
+        "caseReconstruction": {
+          "populationAndScenario": "Paciente com hiponatremia crônica grave, alcoolismo e hipocalemia tem aquarese e elevação acelerada do sódio após suspender tiazídico. Se a correção exceder o limite definido para seu alto risco, qual resposta é adequada?",
+          "decision": "Intervir sobre correção excessiva de sódio em hiponatremia crônica com fatores de alto risco de desmielinização.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "A proposta define alto risco, reconhece subida espontânea e vincula conduta ao limite daquele risco; evita trocar limite por meta.",
+        "problems": [
+          "MAIOR — O BEFORE usa limiteeuropeugeraldia1=10apesardealcoolismo/hipocalemia; identificar limite específicoalto risco semmisturarfontes.",
+          "CRÍTICO — Metas15/24h ou normonatremia18h são distratores artificiais de correção insegura, disparo5.",
+          "MENOR — Cláusulaconsiderar sóapósexceder não impede agir aoobservaraquarese e tendênciaacelerada."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "Aplicar limite geral de10nocasoalto riscooculta divergência deescopo; nãoesperar manifestaçãotardia paraintervir."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": true,
+            "finding": "Normonatremia18h e15mEq/24h são alvosartificiaisnestealto risco."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [],
+          "total": null,
+          "annulled": true,
+          "reason": "Critério eliminatório: distrator artificial sem erro clínico plausível."
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_revisão",
+          "path": [
+            "0: PARCIALMENTE VERIFICADA/NÃO DECISIVA",
+            "1: score anulado por eliminatório",
+            "2: recurso editorial ou de evidência substantivo",
+            "3: revisão maior, recuperação do mesmo OP",
+            "§18.4: BLOQUEADA"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Intervir sobre correção excessiva de sódio em hiponatremia crônica com fatores de alto risco de desmielinização.",
+            "Paciente com hiponatremia crônica grave, alcoolismo e hipocalemia tem aquarese e elevação acelerada do sódio após suspender tiazídico. Se a correção exceder o limite definido para seu alto risco, qual resposta é adequada?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [],
+          "finding": "Nenhum outro item localizado com as mesmas quatro dimensões."
+        },
+        "sources": [
+          "sterns2024"
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "Altorisco8mmol/24h e relowering/aquareseDDAVP",
+            "sourceIds": [
+              "sterns2024"
+            ],
+            "status": "VERIFICADA",
+            "locator": "pp131–132/HTML180–190/243–277"
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "qid": "e94a6488",
+            "q": "Paciente com hiponatremia crônica grave, alcoolismo e hipocalemia começa a corrigir rapidamente após suspensão de tiazídico. Qual conduta é mais alinhada à prevenção de síndrome de desmielinização osmótica?",
+            "opts": [
+              "Aceitar correção rápida desde que os sintomas melhorem",
+              "Buscar elevação de pelo menos 15 mEq/L nas primeiras 24 horas",
+              "Atingir normonatremia nas primeiras 18 horas",
+              "Interromper terapias que elevam o sódio, monitorar de perto e considerar água livre/desmopressina se ultrapassar limites de segurança"
+            ],
+            "ans": 3,
+            "exp": "Em hiponatremia crônica, especialmente com fatores de alto risco como alcoolismo, hipocalemia, desnutrição ou doença hepática, a hipercorreção exige ação ativa. A diretriz europeia recomenda intervenção se o sódio subir mais de 10 mmol/L nas primeiras 24 horas ou mais de 8 mmol/L em qualquer 24 horas subsequente; pode ser necessário suspender terapia ativa, repor água livre e considerar desmopressina sob monitorização. Melhorar sintomas não autoriza hipercorreção. Normalizar rapidamente a natremia aumenta risco de desmielinização.",
+            "refs": [
+              "hypona",
+              "hyponatremia_verbalis2022",
+              "hyponatremia_adrogue2000"
+            ],
+            "cat": "eletrólitos",
+            "diff": "medium",
+            "t": "Hiponatremia — Prevenção de Hipercorreção"
+          },
+          "after": {
+            "qid": "e94a6488",
+            "q": "Paciente com hiponatremia crônica grave, alcoolismo e hipocalemia tem aquarese e elevação acelerada do sódio após suspender tiazídico. Se a correção exceder o limite definido para seu alto risco, qual resposta é adequada?",
+            "opts": [
+              "Manter salina hipertônica e aguardar normalização, apesar da aquarese.",
+              "Suspender controle de sódio e atribuir a subida à recuperação da diurese.",
+              "Reforçar restrição hídrica e aguardar redução do sódio após cessar diurese.",
+              "Suspender terapia ativa e considerar redução da natremia com vigilância."
+            ],
+            "ans": 3,
+            "exp": "A sobrecorreção em alto risco exige interromper estímulos adicionais de elevação do sódio e reavaliar imediatamente sódio, diurese e tratamento. Aquarese após reversão da causa também pode acelerar Na. Sterns e colaboradores descrevem limite de8mmol/L emqualquer24h para alto risco e consideração de redução terapêutica quando excedido; limite não é meta. Água livre e desmopressina podem conter a elevação sob condução especializada e monitorização. Melhora de sintomas não protege contra desmielinização tardia; não esperar sintomas neurológicos para agir.",
+            "refs": [
+              "sterns_hyponatremia_correction_2024"
+            ],
+            "cat": "eletrólitos",
+            "diff": "medium",
+            "t": "Hiponatremia — Prevenção de Hipercorreção"
+          },
+          "beforeSHA256": "1a3ed48227bda6c826c580b5476530555c23a2f6f16537b93271a054ca28e7e0",
+          "afterSHA256": "0196acb8cf93a60615cc3c9db008a8a33889f9d94cb546eef0e79b9b0e46172c",
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [
+            "q",
+            "opts",
+            "exp",
+            "refs"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 3,
+            "sourceLetter": "D",
+            "text": "Suspender terapia ativa e considerar redução da natremia com vigilância."
+          },
+          "implementation": "Preservar qid, categoria, posição física e histórico. Aplicar somente AFTER exato e cards exatos, após autorização de implementação e gate independente; nunca aplicar candidato BLOQUEADO."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "0196acb8cf93a60615cc3c9db008a8a33889f9d94cb546eef0e79b9b0e46172c",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "moderada",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): AFTER exato reavaliado, fontes decisivas abertas, nenhuma pendência, veredito de aprovação; não herda gate do BEFORE.",
+          "justification": "A proposta define alto risco, reconhece subida espontânea e vincula conduta ao limite daquele risco; evita trocar limite por meta.",
+          "appeal": {
+            "plausible": false,
+            "finding": "Somente interrupção e controle ativo comvigilância respondem à sobrecorreção. Aquareseécausa doexcesso, não justificativa parapermiti-lo."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "criterion": "Mais de uma resposta defensável",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Somente interrupção e controle ativo comvigilância respondem à sobrecorreção. Aquareseécausa doexcesso, não justificativa parapermiti-lo."
+            },
+            {
+              "number": 2,
+              "criterion": "Referência não sustenta gabarito",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Ledger/fonte/card sustentam o conceito no alcance declarado."
+            },
+            {
+              "number": 3,
+              "criterion": "Mede outro OP",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Intervir sobre correção excessiva de sódio em hiponatremia crônica com fatores de alto risco de desmielinização."
+            },
+            {
+              "number": 4,
+              "criterion": "Conduta insegura premiada",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Não dispensa vigilância/medida urgente nem impõe dose fixa universal."
+            },
+            {
+              "number": 5,
+              "criterion": "Distrator absurdo",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Distratores identificam mecanismo ou etapa clínica pertinente ao comando."
+            },
+            {
+              "number": 6,
+              "criterion": "Trivia sem consequência clínica",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Interpretação ou segurança clínica útil, sem trivia sem consequência."
+            },
+            {
+              "number": 7,
+              "criterion": "Explicação contradiz gabarito",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Explicação conclui no conceito do gabarito."
+            },
+            {
+              "number": 8,
+              "criterion": "Dado decisivo ausente",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Dados necessários à decisão delimitada presentes no comando."
+            },
+            {
+              "number": 9,
+              "criterion": "Protocolo local oculto",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Não exige conhecer protocolo local ou dose não declarada."
+            },
+            {
+              "number": 10,
+              "criterion": "Desatualização relevante",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Versão/limite/alcance da evidência atual reavaliado."
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente",
+            "rationale": "Julgamento do AFTER literal: A proposta define alto risco, reconhece subida espontânea e vincula conduta ao limite daquele risco; evita trocar limite por meta."
+          },
+          "decision": {
+            "path": [
+              "0: VERIFICADA/NENHUMA",
+              "1: nenhum eliminatório comprovado na proposta",
+              "2: recurso resolvido na versão exata",
+              "3: 19/20 → aprovada"
+            ],
+            "lifeCycle": "em_reparo",
+            "lifeCycleAfterAuthorizedIntegration": "publicado",
+            "lifeCycleNote": "Estado atual no relatório, sem integração/publicação efetiva."
+          },
+          "referenceBindings": {
+            "sterns_hyponatremia_correction_2024": "NEW_CARD_ATOMIC_REQUIRED"
+          },
+          "lengthDiagnostics": {
+            "optionCharacters": [
+              70,
+              73,
+              75,
+              72
+            ],
+            "correctUniqueLongest": false,
+            "correctUniqueShortest": false
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": true,
+            "decisiveSourcesOpened": true,
+            "correctNotUniqueLongest": true,
+            "lengthDoesNotAuthorizeClinicalApproval": true,
+            "noHistoricalAnswerRegradeOrFSRSReset": true
+          },
+          "verificationPending": [],
+          "reassessmentA009": {
+            "scope": "Parecer autoral exato; não é revisão científica independente.",
+            "materiality": "Cada texto e card exato reavaliado nesta rodada; nenhum gate herdado de lote anterior.",
+            "evidence": "VERIFICADA",
+            "pendingNature": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          }
+        }
+      },
+      {
+        "qid": "93646aa8",
+        "sourceLine": 248,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "moderada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "§18.4 Regra7(c): veredito revisão maior implica BLOQUEADA; estado de evidência registrado separadamente.",
+        "OP": "Explicar aquarese e elevação de sódio decorrentes do antagonismo V2 por tolvaptana.",
+        "classification": {
+          "primaryCompetency": "farmacologia dos distúrbios de água",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo."
+        },
+        "caseReconstruction": {
+          "populationAndScenario": "Adulto com síndrome de antidiurese inapropriada (SIAD) foi selecionado para iniciar tolvaptana no hospital com monitorização. Qual padrão renal explica a elevação da natremia?",
+          "decision": "Explicar aquarese e elevação de sódio decorrentes do antagonismo V2 por tolvaptana.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "Preserva mecanismo aquarético, explicita seleção/ambiente e evita atribuir endosso de tolvaptana à fonte europeia citada no BEFORE.",
+        "problems": [
+          "CRÍTICO — Retençãoseletivadeáguaproximal é distratorartificialnoV2, disparo5.",
+          "MAIOR — Diretrizeuropeia citada desencoraja vaptanos em SIADmoderada/profunda; não usarcomoendossouniversal dofármaco.",
+          "MENOR — Adequar nomenclaturaSIAD e distinguir pergunta de mecanismo de decisão terapêutica."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "Estarselecionado semfontedeindicação não significa recomendação geral. O AFTER testa mecanismo e reconhece restrições."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": true,
+            "finding": "Retençãoseletivaproximal é outrosegmento/efeito artificialnestecomando."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [],
+          "total": null,
+          "annulled": true,
+          "reason": "Critério eliminatório: distrator artificial sem erro clínico plausível."
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_revisão",
+          "path": [
+            "0: PARCIALMENTE VERIFICADA/NÃO DECISIVA",
+            "1: score anulado por eliminatório",
+            "2: recurso editorial ou de evidência substantivo",
+            "3: revisão maior, recuperação do mesmo OP",
+            "§18.4: BLOQUEADA"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Explicar aquarese e elevação de sódio decorrentes do antagonismo V2 por tolvaptana.",
+            "Adulto com síndrome de antidiurese inapropriada (SIAD) foi selecionado para iniciar tolvaptana no hospital com monitorização. Qual padrão renal explica a elevação da natremia?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [],
+          "finding": "Nenhum outro item localizado com as mesmas quatro dimensões."
+        },
+        "sources": [
+          "warren2023",
+          "samsca2026"
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "BloqueioV2=aquarese não natriureseproporcional",
+            "sourceIds": [
+              "warren2023",
+              "samsca2026"
+            ],
+            "status": "VERIFICADA",
+            "locator": "Warrenp845–846/Fig11;DailyMed§12.1"
+          },
+          {
+            "claim": "Iníciohospital/monitorizaçãosemusoemurgência",
+            "sourceIds": [
+              "samsca2026"
+            ],
+            "status": "VERIFICADA",
+            "locator": "boxedwarning/§1"
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "qid": "93646aa8",
+            "q": "Paciente com SIADH crônica selecionada recebe tolvaptana com monitorização da natremia. Qual padrão de diurese explica a elevação do sódio sérico?",
+            "opts": [
+              "Natriurese maciça com perda proporcional de sódio e água",
+              "Aquarese, isto é, excreção de água livre sem perda proporcional de eletrólitos",
+              "Diurese isotônica obrigatória com caliurese intensa",
+              "Retenção seletiva de água no túbulo proximal"
+            ],
+            "ans": 1,
+            "exp": "Vaptanos como a tolvaptana antagonizam o receptor V2 da vasopressina no ducto coletor, reduzem a inserção de aquaporina 2 e geram aquarese: excreção de água livre sem natriurese proporcional. Esse mecanismo pode elevar a natremia em hiponatremia euvolêmica/hipervolêmica selecionada, mas exige monitorização porque a correção pode ser rápida. Não é natriurese maciça, diurese isotônica nem retenção de água.",
+            "refs": [
+              "hyponatremia_verbalis2022",
+              "hypona"
+            ],
+            "cat": "eletrólitos",
+            "diff": "medium",
+            "t": "Vaptanos — Aquarese na SIADH"
+          },
+          "after": {
+            "qid": "93646aa8",
+            "q": "Adulto com síndrome de antidiurese inapropriada (SIAD) foi selecionado para iniciar tolvaptana no hospital com monitorização. Qual padrão renal explica a elevação da natremia?",
+            "opts": [
+              "Maior excreção proporcional de sódio e água, com urina de tonicidade plasmática.",
+              "Maior excreção de água livre, sem aumento proporcional da perda de eletrólitos.",
+              "Menor excreção de água livre, com aumento de concentração da urina pelo V2.",
+              "Maior excreção de potássio e sódio, por bloqueio de transporte na alça espessa."
+            ],
+            "ans": 1,
+            "exp": "Tolvaptana antagoniza V2 e favorece excreção de água livre, denominada aquarese; isso pode elevar sódio sem perda proporcional de eletrólitos. Natriurese por diurético de alça e ação antidiurética de V2 são mecanismos distintos. A formulação clínica não estabelece indicação para toda SIAD: há risco de correção rápida, e a rotulagem norte-americana consultada exige início/reinício hospitalar com natremia monitorizada. Não substitui solução hipertônica quando há emergência neurológica nem demonstra benefício clínico duro apenas por elevar Na.",
+            "refs": [
+              "warren_siadh_aquaresis_2023"
+            ],
+            "cat": "eletrólitos",
+            "diff": "easy",
+            "t": "Vaptanos — Aquarese na SIADH"
+          },
+          "beforeSHA256": "fbd4374bdd8c638ba4293ec2c02660d6ad892c3897545b9e33d5888cb24857b9",
+          "afterSHA256": "8a45b070a8b57537ac749105fc375f498abab901f13fbf550447430c223ca3ed",
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [
+            "q",
+            "opts",
+            "exp",
+            "refs",
+            "diff"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 1,
+            "sourceLetter": "B",
+            "text": "Maior excreção de água livre, sem aumento proporcional da perda de eletrólitos."
+          },
+          "implementation": "Preservar qid, categoria, posição física e histórico. Aplicar somente AFTER exato e cards exatos, após autorização de implementação e gate independente; nunca aplicar candidato BLOQUEADO."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "8a45b070a8b57537ac749105fc375f498abab901f13fbf550447430c223ca3ed",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "moderada",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): AFTER exato reavaliado, fontes decisivas abertas, nenhuma pendência, veredito de aprovação; não herda gate do BEFORE.",
+          "justification": "Preserva mecanismo aquarético, explicita seleção/ambiente e evita atribuir endosso de tolvaptana à fonte europeia citada no BEFORE.",
+          "appeal": {
+            "plausible": false,
+            "finding": "Apenas perda de água livre compatívelcom antagonismoV2 responde à tarefa; outras vias não descrevemessa ação."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "criterion": "Mais de uma resposta defensável",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Apenas perda de água livre compatívelcom antagonismoV2 responde à tarefa; outras vias não descrevemessa ação."
+            },
+            {
+              "number": 2,
+              "criterion": "Referência não sustenta gabarito",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Ledger/fonte/card sustentam o conceito no alcance declarado."
+            },
+            {
+              "number": 3,
+              "criterion": "Mede outro OP",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Explicar aquarese e elevação de sódio decorrentes do antagonismo V2 por tolvaptana."
+            },
+            {
+              "number": 4,
+              "criterion": "Conduta insegura premiada",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Não dispensa vigilância/medida urgente nem impõe dose fixa universal."
+            },
+            {
+              "number": 5,
+              "criterion": "Distrator absurdo",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Distratores identificam mecanismo ou etapa clínica pertinente ao comando."
+            },
+            {
+              "number": 6,
+              "criterion": "Trivia sem consequência clínica",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Interpretação ou segurança clínica útil, sem trivia sem consequência."
+            },
+            {
+              "number": 7,
+              "criterion": "Explicação contradiz gabarito",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Explicação conclui no conceito do gabarito."
+            },
+            {
+              "number": 8,
+              "criterion": "Dado decisivo ausente",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Dados necessários à decisão delimitada presentes no comando."
+            },
+            {
+              "number": 9,
+              "criterion": "Protocolo local oculto",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Não exige conhecer protocolo local ou dose não declarada."
+            },
+            {
+              "number": 10,
+              "criterion": "Desatualização relevante",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Versão/limite/alcance da evidência atual reavaliado."
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente",
+            "rationale": "Julgamento do AFTER literal: Preserva mecanismo aquarético, explicita seleção/ambiente e evita atribuir endosso de tolvaptana à fonte europeia citada no BEFORE."
+          },
+          "decision": {
+            "path": [
+              "0: VERIFICADA/NENHUMA",
+              "1: nenhum eliminatório comprovado na proposta",
+              "2: recurso resolvido na versão exata",
+              "3: 19/20 → aprovada"
+            ],
+            "lifeCycle": "em_reparo",
+            "lifeCycleAfterAuthorizedIntegration": "publicado",
+            "lifeCycleNote": "Estado atual no relatório, sem integração/publicação efetiva."
+          },
+          "referenceBindings": {
+            "warren_siadh_aquaresis_2023": "NEW_CARD_ATOMIC_REQUIRED"
+          },
+          "lengthDiagnostics": {
+            "optionCharacters": [
+              80,
+              79,
+              75,
+              79
+            ],
+            "correctUniqueLongest": false,
+            "correctUniqueShortest": false
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": true,
+            "decisiveSourcesOpened": true,
+            "correctNotUniqueLongest": true,
+            "lengthDoesNotAuthorizeClinicalApproval": true,
+            "noHistoricalAnswerRegradeOrFSRSReset": true
+          },
+          "verificationPending": [],
+          "reassessmentA009": {
+            "scope": "Parecer autoral exato; não é revisão científica independente.",
+            "materiality": "Cada texto e card exato reavaliado nesta rodada; nenhum gate herdado de lote anterior.",
+            "evidence": "VERIFICADA",
+            "pendingNature": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          }
+        }
+      },
+      {
+        "qid": "adcbaae7",
+        "sourceLine": 254,
+        "reviewStatus": "REVIEWED",
+        "verdict": "revisão maior",
+        "legacyAux": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "§18.4 Regra7(c): veredito revisão maior implica BLOQUEADA; estado de evidência registrado separadamente.",
+        "OP": "Reconhecer diuréticos de alça/tiazídicos como causa de perda renal de potássio por fluxo/entrega distal.",
+        "classification": {
+          "primaryCompetency": "farmacologia dos distúrbios de potássio",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "physicalLOIDAssumed": false,
+          "difficultyRationale": "Dificuldade decorre da operação cognitiva declarada e dos dados necessários; não de fonte omitida ou número decorativo."
+        },
+        "caseReconstruction": {
+          "populationAndScenario": "Qual classe pode causar hipocalemia por aumentar fluxo e entrega de sódio ao segmento distal secretor de potássio?",
+          "decision": "Reconhecer diuréticos de alça/tiazídicos como causa de perda renal de potássio por fluxo/entrega distal.",
+          "temporalScope": "Decisão/interpretação no momento descrito, sem reclassificar tentativas passadas.",
+          "hiddenPremisesResolved": [
+            "AFTER declara os dados necessários, escopo do cálculo ou da orientação; não completa dados ausentes do BEFORE silenciosamente."
+          ]
+        },
+        "justification": "O AFTER mantém o conceito e compara classes com mecanismo reconhecível, sem criar casoque dependa de fármaco não declarado.",
+        "problems": [
+          "MAIOR — Correta reúne duasclasses mais doisnomes e éúnicaextensa; retirar exemplosredundantes.",
+          "MENOR — Medium superestima classedeefeito farmacológico semdadosconcorrentes.",
+          "MAIOR — Livro genérico não recuperado; trocar porfontesespecíficasdomesmo mecanismo."
+        ],
+        "appealOriginal": {
+          "plausible": true,
+          "arguments": [
+            "A resposta pode ser escolhida pela alternativa que lista duasclasses e exemplos mais extensos."
+          ]
+        },
+        "eliminatorsOriginal": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Nenhum disparo comprovado nesta versão e neste escopo."
+          }
+        ],
+        "scoreOriginal": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 1
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 0
+            },
+            {
+              "dimension": "Distratores",
+              "score": 1
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 0
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 13,
+          "annulled": false,
+          "band": "Recuperável",
+          "rationale": "Avaliação do BEFORE literal, sem atribuir erro que ele não contém."
+        },
+        "decisionOriginal": {
+          "lifeCycle": "em_revisão",
+          "path": [
+            "0: PARCIALMENTE VERIFICADA/NÃO DECISIVA",
+            "1: nenhum eliminatório comprovado",
+            "2: recurso editorial ou de evidência substantivo",
+            "3: revisão maior, recuperação do mesmo OP",
+            "§18.4: BLOQUEADA"
+          ]
+        },
+        "duplicateCheck": {
+          "scope": "Busca no banco real por títulos/enunciados do tema, seguida de comparação das quatro dimensões; não é detecção por tema isolado.",
+          "fourDimensions": [
+            "Reconhecer diuréticos de alça/tiazídicos como causa de perda renal de potássio por fluxo/entrega distal.",
+            "Qual classe pode causar hipocalemia por aumentar fluxo e entrega de sódio ao segmento distal secretor de potássio?",
+            "médico/residente",
+            "PT-BR"
+          ],
+          "candidates": [
+            "69018bb9",
+            "6a54b25c"
+          ],
+          "finding": "Candidatos aplicam mecanismo paraadjuvantesnopotássioalto; este reconhece classe como causa deperdarenal/hipocalemia. Problema clínico e decisão úteis distintos, semidentidade por tema."
+        },
+        "sources": [
+          "ukka2026",
+          "kamel2021"
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "Fluxo/Na distal favorecemcaliurese;ENaC eefeitoaldosterona",
+            "sourceIds": [
+              "ukka2026",
+              "kamel2021"
+            ],
+            "status": "VERIFICADA",
+            "locator": "UKKAp43;KamelpreproofHTML522–610"
+          }
+        ],
+        "patch": {
+          "instruction": "SUBSTITUIR A QUESTÃO POR:",
+          "before": {
+            "qid": "adcbaae7",
+            "q": "Qual classe de fármacos é causa clássica de hipocalemia por aumento da entrega distal de sódio e da secreção renal de potássio?",
+            "opts": [
+              "Betabloqueadores não seletivos",
+              "Antagonistas da aldosterona, como espironolactona",
+              "Diuréticos tiazídicos e de alça, como hidroclorotiazida e furosemida",
+              "Inibidores da enzima conversora de angiotensina, como enalapril"
+            ],
+            "ans": 2,
+            "exp": "Diuréticos tiazídicos e de alça aumentam a oferta de sódio ao néfron distal; a reabsorção eletrogênica de sódio no ducto coletor favorece secreção de K+ e H+, produzindo hipocalemia e alcalose metabólica. Antagonistas da aldosterona e inibidores da enzima conversora de angiotensina tendem ao efeito oposto, com risco de hipercalemia. Betabloqueadores não seletivos podem interferir na distribuição do potássio, mas não são a causa clássica de perda renal kaliurética nesse contexto.",
+            "refs": [
+              "brenner_rector"
+            ],
+            "cat": "eletrólitos",
+            "diff": "medium",
+            "t": "Diuréticos — Hipocalemia por Perda Renal de Potássio"
+          },
+          "after": {
+            "qid": "adcbaae7",
+            "q": "Qual classe pode causar hipocalemia por aumentar fluxo e entrega de sódio ao segmento distal secretor de potássio?",
+            "opts": [
+              "Betabloqueadores, pela inibição da entrada de potássio em células periféricas.",
+              "Antagonistas mineralocorticoides, pela redução da ação da aldosterona distal.",
+              "Diuréticos de alça e tiazídicos, pela maior entrega distal de sódio e fluxo.",
+              "Inibidores da enzima conversora, pela diminuição da produção de aldosterona."
+            ],
+            "ans": 2,
+            "exp": "Diuréticos de alça e tiazídicos podem favorecer perda urinária de potássio por aumentar entrega distal de sódio e fluxo. A reabsorção eletrogênica distal contribui à secreção de K, conforme função tubular, volemia e ação hormonal. Antagonistas mineralocorticoides e IECA reduzem efeito da aldosterona e tendem ao risco de hipercalemia. Betabloqueadores podem interferir na distribuição celular, sem representar a caliurese perguntada. O mecanismo não garante hipocalemia em todo usuário e não implica indicação de diurético em oligúria/hipovolemia.",
+            "refs": [
+              "ukka_hyperkalemia_2023",
+              "kamel_urine_electrolytes_2021"
+            ],
+            "cat": "eletrólitos",
+            "diff": "easy",
+            "t": "Diuréticos — Hipocalemia por Perda Renal de Potássio"
+          },
+          "beforeSHA256": "df507c46a8a29d5c64e1c5b7a09a23ae00d96ba45857ddbf2d7a5b0c183b3ce2",
+          "afterSHA256": "b9d961912bd0ea60982f5cb5e3312d4a5e753ffb0afa8584e63f13d6f805b214",
+          "hashDefinition": "SHA256(JSON UTF8 ensure_ascii=False separators=(comma,colon), ordem original de chaves)",
+          "changedFields": [
+            "q",
+            "opts",
+            "exp",
+            "refs",
+            "diff"
+          ],
+          "correctAnswer": {
+            "sourceIndex": 2,
+            "sourceLetter": "C",
+            "text": "Diuréticos de alça e tiazídicos, pela maior entrega distal de sódio e fluxo."
+          },
+          "implementation": "Preservar qid, categoria, posição física e histórico. Aplicar somente AFTER exato e cards exatos, após autorização de implementação e gate independente; nunca aplicar candidato BLOQUEADO."
+        },
+        "proposedVersionReview": {
+          "exactQuestionSHA256": "b9d961912bd0ea60982f5cb5e3312d4a5e753ffb0afa8584e63f13d6f805b214",
+          "reviewStatus": "REVIEWED",
+          "verdict": "aprovada",
+          "legacyAux": "MANTER",
+          "confidence": "alta",
+          "evidence": "VERIFICADA",
+          "pendingNature": "NENHUMA",
+          "publicationAuthorization": "LIBERADA",
+          "publicationDerivation": "§18.4 Regra7(a): AFTER exato reavaliado, fontes decisivas abertas, nenhuma pendência, veredito de aprovação; não herda gate do BEFORE.",
+          "justification": "O AFTER mantém o conceito e compara classes com mecanismo reconhecível, sem criar casoque dependa de fármaco não declarado.",
+          "appeal": {
+            "plausible": false,
+            "finding": "Somente alça/tiazídicos correspondem à via de perda renalperguntada; mecanismosdasoutrasclasses sãoreaismasnão causamdamesma formahipocalemia."
+          },
+          "eliminators": [
+            {
+              "number": 1,
+              "criterion": "Mais de uma resposta defensável",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Somente alça/tiazídicos correspondem à via de perda renalperguntada; mecanismosdasoutrasclasses sãoreaismasnão causamdamesma formahipocalemia."
+            },
+            {
+              "number": 2,
+              "criterion": "Referência não sustenta gabarito",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Ledger/fonte/card sustentam o conceito no alcance declarado."
+            },
+            {
+              "number": 3,
+              "criterion": "Mede outro OP",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Reconhecer diuréticos de alça/tiazídicos como causa de perda renal de potássio por fluxo/entrega distal."
+            },
+            {
+              "number": 4,
+              "criterion": "Conduta insegura premiada",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Não dispensa vigilância/medida urgente nem impõe dose fixa universal."
+            },
+            {
+              "number": 5,
+              "criterion": "Distrator absurdo",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Distratores identificam mecanismo ou etapa clínica pertinente ao comando."
+            },
+            {
+              "number": 6,
+              "criterion": "Trivia sem consequência clínica",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Interpretação ou segurança clínica útil, sem trivia sem consequência."
+            },
+            {
+              "number": 7,
+              "criterion": "Explicação contradiz gabarito",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Explicação conclui no conceito do gabarito."
+            },
+            {
+              "number": 8,
+              "criterion": "Dado decisivo ausente",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Dados necessários à decisão delimitada presentes no comando."
+            },
+            {
+              "number": 9,
+              "criterion": "Protocolo local oculto",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Não exige conhecer protocolo local ou dose não declarada."
+            },
+            {
+              "number": 10,
+              "criterion": "Desatualização relevante",
+              "triggered": false,
+              "finding": "Reavaliado na versão exata: Versão/limite/alcance da evidência atual reavaliado."
+            }
+          ],
+          "score": {
+            "dimensions": [
+              {
+                "dimension": "Alinhamento ao OP",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de conteúdo",
+                "score": 2
+              },
+              {
+                "dimension": "Validade de construto",
+                "score": 2
+              },
+              {
+                "dimension": "Qualidade do enunciado",
+                "score": 2
+              },
+              {
+                "dimension": "Alternativas",
+                "score": 2
+              },
+              {
+                "dimension": "Distratores",
+                "score": 2
+              },
+              {
+                "dimension": "Explicação",
+                "score": 2
+              },
+              {
+                "dimension": "Referências",
+                "score": 2
+              },
+              {
+                "dimension": "Ausência de cara de IA",
+                "score": 1
+              },
+              {
+                "dimension": "Valor pedagógico",
+                "score": 2
+              }
+            ],
+            "total": 19,
+            "annulled": false,
+            "band": "Excelente",
+            "rationale": "Julgamento do AFTER literal: O AFTER mantém o conceito e compara classes com mecanismo reconhecível, sem criar casoque dependa de fármaco não declarado."
+          },
+          "decision": {
+            "path": [
+              "0: VERIFICADA/NENHUMA",
+              "1: nenhum eliminatório comprovado na proposta",
+              "2: recurso resolvido na versão exata",
+              "3: 19/20 → aprovada"
+            ],
+            "lifeCycle": "em_reparo",
+            "lifeCycleAfterAuthorizedIntegration": "publicado",
+            "lifeCycleNote": "Estado atual no relatório, sem integração/publicação efetiva."
+          },
+          "referenceBindings": {
+            "ukka_hyperkalemia_2023": "CARD_PATCH_ATOMIC_REQUIRED",
+            "kamel_urine_electrolytes_2021": "NEW_CARD_ATOMIC_REQUIRED"
+          },
+          "lengthDiagnostics": {
+            "optionCharacters": [
+              78,
+              77,
+              76,
+              76
+            ],
+            "correctUniqueLongest": false,
+            "correctUniqueShortest": false
+          },
+          "finalAudit": {
+            "fourAlternatives": true,
+            "singleBestAnswerVerified": true,
+            "answerIndexAndTextMatch": true,
+            "questionIdentityPreserved": true,
+            "physicalOrderPreserved": true,
+            "letterReferencesAbsent": true,
+            "decisiveSourcesOpened": true,
+            "correctNotUniqueLongest": true,
+            "lengthDoesNotAuthorizeClinicalApproval": true,
+            "noHistoricalAnswerRegradeOrFSRSReset": true
+          },
+          "verificationPending": [],
+          "reassessmentA009": {
+            "scope": "Parecer autoral exato; não é revisão científica independente.",
+            "materiality": "Cada texto e card exato reavaliado nesta rodada; nenhum gate herdado de lote anterior.",
+            "evidence": "VERIFICADA",
+            "pendingNature": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          }
+        }
+      }
+    ],
+    "summary": {
+      "questionsReviewed": 8,
+      "originalVerdicts": {
+        "revisão maior": 8
+      },
+      "originalPublication": {
+        "BLOQUEADA": 8
+      },
+      "proposedVerdicts": {
+        "aprovada": 7,
+        "redirecionar": 1
+      },
+      "proposedPublication": {
+        "LIBERADA": 7,
+        "BLOQUEADA": 1
+      },
+      "blockedQuestionIds": [
+        "6474ec20"
+      ],
+      "newCards": 4,
+      "cardPatches": 3,
+      "keptExistingCards": 0,
+      "exactCardVersionReviews": 7,
+      "uniqueCorrectLongestBefore": 8,
+      "uniqueCorrectLongestAfter": 0,
+      "uniqueCorrectShortestAfter": 1,
+      "independentCoordinatorReview": "PENDENTE",
+      "integration": "NÃO APLICADA"
+    },
+    "limits": [
+      "Parecer autoral; nenhum banco, Git ou publicação modificado por este agente.",
+      "7 propostas mantêm identidade/qid/índice, candidatoTTKGbloqueado mudaOP e requer decisão de identidade, criação e nova revisão; históricos preservados.",
+      "OrigemB/M imutável e actualbankdelta10 distinguidos; AFTERs não aceitos por comprimento ou IDdecard.",
+      "Cópias públicas legítimas identificadas do artigo original não são relato secundário nem substituição do conteúdo por síntese do portal; os trechos AIgerados dos portais foram excluídos."
+    ],
+    "sharedCardChangeImpact": {
+      "ukka_hyperkalemia_2023": {
+        "bankQuestionIds": [
+          "e0853fac",
+          "8b80b0a9",
+          "985d735c",
+          "1f962c0e",
+          "17dc6d7e",
+          "43313455",
+          "ebea50d5",
+          "1b286739",
+          "a73f61f6",
+          "69018bb9",
+          "a799c154",
+          "65d19905",
+          "7ec80c77",
+          "d92f30a9",
+          "f3d5015d",
+          "805733f8",
+          "32f342fc",
+          "b35be598",
+          "6a19aece",
+          "db25ef93"
+        ],
+        "outsideThisBatchQuestionIds": [
+          "e0853fac",
+          "8b80b0a9",
+          "985d735c",
+          "1f962c0e",
+          "17dc6d7e",
+          "43313455",
+          "ebea50d5",
+          "1b286739",
+          "a73f61f6",
+          "69018bb9",
+          "a799c154",
+          "65d19905",
+          "7ec80c77",
+          "d92f30a9",
+          "f3d5015d",
+          "32f342fc",
+          "b35be598",
+          "6a19aece",
+          "db25ef93"
+        ],
+        "reason": "Reconciliar card compartilhado e sua versão exata; nãoaprovaoutrosconsumidoresporassociação."
+      },
+      "ispd_peritonitis_guideline": {
+        "bankQuestionIds": [
+          "68b630ba",
+          "28b53ff8",
+          "547a3dc2",
+          "a221d304",
+          "e8040054",
+          "5eb00a6e",
+          "11279207",
+          "4792eca5",
+          "e1f9ccd1"
+        ],
+        "outsideThisBatchQuestionIds": [
+          "68b630ba",
+          "28b53ff8",
+          "547a3dc2",
+          "e8040054",
+          "5eb00a6e",
+          "11279207",
+          "4792eca5",
+          "e1f9ccd1"
+        ],
+        "reason": "Reconciliar card compartilhado e sua versão exata; nãoaprovaoutrosconsumidoresporassociação."
+      },
+      "siaarti_sin_citrate_2023": {
+        "bankQuestionIds": [
+          "345321d6",
+          "e5f38c55"
+        ],
+        "outsideThisBatchQuestionIds": [
+          "e5f38c55"
+        ],
+        "reason": "Reconciliar card compartilhado e sua versão exata; nãoaprovaoutrosconsumidoresporassociação."
+      }
+    },
+    "localBankObservation": {
+      "topics": {
+        "path": "data/topics.js",
+        "bytes": 971537,
+        "sha256": "45c283a5a9634fe72e166762bd2461158ebc1647f5b5a026b7ae1ea68f6ee130"
+      },
+      "topicsLF_SHA256": "276419bc508199d63fd889057fd17d63e256917246f0821c3d03be5cd0943e1a",
+      "registry": {
+        "path": "data/refs.js",
+        "bytes": 491073,
+        "sha256": "d12c230d80f505fc8fd1893f489014fca8bbeced681c1224f03f4c3f4c7f01f7"
+      },
+      "questionCount": 741,
+      "referenceCount": 350,
+      "originBankUnchangedClaimed": false,
+      "beforeIndividualObjectsExact": true,
+      "deltaReceipt": "[local evidence locator omitted; retain its adjacent hash and source citations]"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import { attachPilotFailureDiagnostics, seedLegacyPilot } from '../helpers/pilot';
+import { routeTechnicalQuestionBank, technicalQuestionBundle } from '../helpers/technical-question-bank';
 
 const SAVE = 'nefroquest-save-v7';
 const topics = Array.from({ length: 120 }, (_, n) => ({
@@ -9,13 +10,13 @@ const topics = Array.from({ length: 120 }, (_, n) => ({
   ans: 0, exp: 'O marcador correto é a resposta esperada neste caso técnico.',
   diff: ['easy', 'medium', 'hard'][n % 3], cat: 'geral', refs: [],
 }));
+technicalQuestionBundle(topics);
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
 test.beforeEach(async ({ page }) => {
   await page.route('**/*', route => ['localhost', '127.0.0.1'].includes(new URL(route.request().url()).hostname)
     ? route.continue() : route.abort());
-  await page.route('**/data/topics.js*', route => route.fulfill({ status: 200,
-    contentType: 'application/javascript', body: `const topics = ${JSON.stringify(topics)};` }));
+  await routeTechnicalQuestionBank(page, topics);
   await page.addInitScript(() => {
     localStorage.setItem('pwa-dismissed', '1');
     // Test-only crypto input forces a non-identity Fisher-Yates permutation.

@@ -1174,8 +1174,36 @@
     
     function showSessionWrongAnswers() {
       document.querySelectorAll('.session-review-popup').forEach(el => el.remove());
-      const wrongs = _sessionWrongAnswers;
+      const requiresRevisions = ['NQ_REQUIRES_QUESTION_REVISIONS', 'NQQuestionRevisions', 'NQQuestionRevisionManifest',
+        'NQQuestionRevisionHistory', 'questionRevisionCatalog'].some(key => typeof window[key] !== 'undefined');
+      const catalog = window.NQQuestionRevisions && window.NQQuestionRevisionManifest && window.NQQuestionRevisionHistory
+        && typeof window.questionRevisionCatalog?.resolve === 'function' ? window.questionRevisionCatalog : null;
+      const wrongs = _sessionWrongAnswers.map(wrong => {
+        if (!requiresRevisions) return wrong;
+        const { chosen, authoredChoice, selectedOptionId, answerEventId, questionRevisionBinding, ...question } = wrong;
+        const checked = catalog?.inspect(question, { profile: 'main', ...(questionRevisionBinding !== undefined ? { binding: questionRevisionBinding } : {}) });
+        const q = checked?.status === 'known' ? checked.value.question : null;
+        if (!q) return null;
+        const hasChoice = Number.isInteger(chosen) && chosen >= 0 && chosen < q.o.length;
+        if (!hasChoice) {
+          if (authoredChoice !== undefined || selectedOptionId !== undefined) return null;
+          return { ...q, revision: checked.value };
+        }
+        if (chosen === q.a ||
+            (authoredChoice !== undefined && authoredChoice !== window.NQAnswers?.originalIndex(q, chosen)) ||
+            (selectedOptionId !== undefined && selectedOptionId !== window.NQAnswers?.optionId(q, chosen))) return null;
+        return { ...q, chosen, revision: checked.value };
+      });
       if (!wrongs.length) return;
+      const revisionNotice = (revision, hasChoice) => {
+        if (!revision?.historical) return '';
+        const current = catalog?.current(revision.binding.qid, 'main')?.source;
+        return `<aside class="nqreview-unrecorded" data-question-revision="historical">
+          <p>Avaliação registrada na versão ${escapeHtml(revision.release)}. ${hasChoice ? 'A escolha e o resultado daquela resposta foram preservados.' : 'O conteúdo dessa versão foi preservado; a alternativa escolhida não está disponível.'}</p>
+          ${current ? `<details><summary>Conteúdo atual, separado da avaliação registrada</summary><p>${escapeHtml(current.q)}</p>
+            <ol>${current.o.map((text, index) => `<li>${escapeHtml(text)}${index === current.a ? ' <strong>Resposta correta atual</strong>' : ''}</li>`).join('')}</ol>
+            <p>${escapeHtml(current.e || '')}</p></details>` : ''}</aside>`;
+      };
       const optLetters = ['A','B','C','D'];
       const modal = document.createElement('div');
       modal.className = 'modal show session-review-popup';
@@ -1188,10 +1216,12 @@
           </header>
           <div class="modal-scroll-body nqreview-reading" role="region" tabindex="0" aria-label="Revisão dos erros da sessão">
             ${wrongs.map((q, qi) => {
+              if (!q) return `<article class="nqreview-question-card"><p class="nqreview-unrecorded" role="alert">A revisão desta resposta está indisponível. O registro original foi preservado.</p></article>`;
               const opts = Array.isArray(q.o) ? [...q.o] : [];
               const hasChoice = Number.isInteger(q.chosen) && q.chosen >= 0 && q.chosen < opts.length;
               return `<article class="nqreview-question-card" aria-labelledby="sessionReviewQuestion${qi}">
                 <p class="nqreview-index">Questão ${qi+1} de ${wrongs.length}</p>
+                ${revisionNotice(q.revision, hasChoice)}
                 <h3 class="nqreview-question" id="sessionReviewQuestion${qi}">${escapeHtml(q.q)}</h3>
                 <ol class="nqreview-options" aria-label="Alternativas">
                   ${opts.map((o, i) => {

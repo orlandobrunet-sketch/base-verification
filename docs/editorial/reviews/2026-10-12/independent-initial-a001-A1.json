@@ -1,0 +1,1926 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 138352,
+  "sourceReportSHA256": "1a5ff38eda4fd14641dfe0ad63315f7b7a92cc437a8bd7be78a9024c70c91b3a",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_INDEPENDENT_FORMAL_PEER_BACKFILL_v2",
+    "reviewer": "clinical_peer_initial_backfill, independent clinical reading",
+    "batch": "a001",
+    "verifiedAtOfficialUTC": "2026-10-13 14:27:32 UTC",
+    "timestampQualification": "Official clock tool. Raw host clock known approximately3h behind; not used or corrected.",
+    "reviewMode": "Independent peer of exact author AFTER and cards; original primary texts/records plus explicitly authorized public retrieval; no inherited author gate.",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "publishedTechnicalMerge": "135899077669af6dcf564717833227828ba03fe5",
+    "clinicalCheckoutObserved": "nefroquest-clinical-13 / candidate16.11 / supplied HEAD1db4a28; not independently mutated or QA tested",
+    "authorReport": {
+      "path": "docs/editorial/reviews/2026-10-12/group-a-output-001.json",
+      "bytes": 95560,
+      "sha256": "64bf5cabfe631640a41099f34968253286c4a0fcfd02ef1a087b69e63924bb41"
+    },
+    "portableAuthorReport": {
+      "path": "docs/editorial/reviews/2026-10-12/group-a-output-001.json",
+      "bytes": 97899,
+      "sha256": "04ac880f3965ffc86be917eaff494bbb7242a4f91784a8643614ff8279c807da"
+    },
+    "originInput": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 15767,
+      "sha256": "a06103cf47c1d38cfa222551a04b5410e73eea90902b82c578bf807e4465e80c"
+    },
+    "scopePin": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 2410,
+      "sha256": "cb9c7ca8cb52a14407ea72444fe8c6d28f9be2fe80f1972e6ec3e907cb55ad2a"
+    },
+    "normativeSources": [
+      {
+        "path": "AGENTS.md",
+        "bytes": 15910,
+        "sha256": "123d3bf57a43e23dd21adb277295bfbaa8a0d46dccb584f12265396abe4dfe83"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      }
+    ],
+    "medicalEvidenceSkill": {
+      "packages": [
+        "c31/instructions",
+        "c32/verified-medical-answer"
+      ],
+      "read": true,
+      "publicScientificAuthorization": "Explicit user2026-10-13: autorizo sim, sempre pode consultar fontes científicas - DEVE consultar; parent relayed transcript. Public reading/download only, no login or data upload."
+    },
+    "sourceProof": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 91449,
+      "sha256": "c741f864150598e47f0baa02f54563aafe2b49108c31998898421ddbfbdbe4c5"
+    },
+    "summaryTable": [
+      {
+        "qid": "f676438e",
+        "OP": "Relacionar hipomagnesemia crônica em Gitelman à maior formação de cristais CPPD, distinguindo hipocalciúria e alcalose de outros mecanismos.",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "verdictV2": "revisão maior",
+        "publicationAuthorization": "BLOQUEADA",
+        "score": 13,
+        "eliminatorTriggered": false
+      },
+      {
+        "qid": "b8666d0a",
+        "OP": "Distinguir classificação genética atual de Bartter e o fenótipo de hipocalcemia autossômica dominante relacionado ao CaSR ativado.",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "verdictV2": "revisão maior",
+        "publicationAuthorization": "BLOQUEADA",
+        "score": null,
+        "eliminatorTriggered": true
+      },
+      {
+        "qid": "10d210a3",
+        "OP": "Reconhecer polidrâmnio por poliúria fetal como pista para Bartter antenatal tipo1 por SLC12A1, sem considerá-lo diagnóstico específico isolado.",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "verdictV2": "revisão maior",
+        "publicationAuthorization": "BLOQUEADA",
+        "score": null,
+        "eliminatorTriggered": true
+      },
+      {
+        "qid": "e0448d0b",
+        "OP": "Explicar que deficiência de Mg reduz bloqueio intracelular do efluxo de K via ROMK e contribui para perda renal de K, dependente do contexto distal.",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "verdictV2": "revisão maior",
+        "publicationAuthorization": "BLOQUEADA",
+        "score": 13,
+        "eliminatorTriggered": false
+      }
+    ],
+    "questions": [
+      {
+        "qid": "f676438e",
+        "sourceLine": 157,
+        "BEFORE": {
+          "t": "Síndrome de Gitelman e Condrocalcinose",
+          "qid": "f676438e",
+          "q": "Por que pacientes com Síndrome de Gitelman têm maior risco de desenvolver condrocalcinose (pseudogota)?",
+          "refs": [
+            "kdigo_ckd",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Devido ao excesso de vitamina D, que pode levar à hipercalcemia e precipitação de cristais nas articulações periféricas",
+            "Em decorrência da hipercalciúria crônica, que favorece a deposição de cristais de cálcio nas cartilagens articulares",
+            "Devido à hipomagnesemia crônica, que reduz a inibição fisiológica do magnésio sobre a precipitação de cristais de pirofosfato de cálcio (CPPD)",
+            "Pela presença de acidose metabólica persistente, que altera o equilíbrio iônico e favorece a formação de cristais articulares"
+          ],
+          "ans": 2,
+          "exp": "Em pacientes com Síndrome de Gitelman, a hipomagnesemia crônica é o principal mecanismo para o desenvolvimento de condrocalcinose — alternativa C. O magnésio normalmente inibe a nucleação e precipitação de cristais de pirofosfato de cálcio (CPPD) nas articulações. Quando os níveis de magnésio caem, essa inibição é removida e os cristais se depositam na cartilagem articular. Hipercalciúria e acidose metabólica não são os mecanismos principais para condrocalcinose na Síndrome de Gitelman.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "8bea176e4edf73a625dacd25872beb144739e1cd752f0277a627924a00b91cd4",
+        "AFTER": {
+          "t": "Síndrome de Gitelman e Condrocalcinose",
+          "qid": "f676438e",
+          "q": "Por que pacientes com Síndrome de Gitelman têm maior risco de desenvolver condrocalcinose (pseudogota)?",
+          "refs": [
+            "kdigo_ckd",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Devido ao excesso de vitamina D, que pode levar à hipercalcemia e precipitação de cristais nas articulações periféricas",
+            "Em decorrência da hipercalciúria crônica, que favorece a deposição de cristais de cálcio nas cartilagens articulares",
+            "Devido à hipomagnesemia crônica, que reduz a inibição fisiológica do magnésio sobre a precipitação de cristais de pirofosfato de cálcio (CPPD)",
+            "Pela presença de acidose metabólica persistente, que altera o equilíbrio iônico e favorece a formação de cristais articulares"
+          ],
+          "ans": 2,
+          "exp": "A hipomagnesemia crônica associa-se à condrocalcinose na síndrome de Gitelman. O mecanismo específico de redução da inibição da nucleação de cristais de pirofosfato de cálcio presente na alternativa correta exige verificação direta antes de liberar este item. Esta proposta é um rascunho bloqueado; não aplicar ao banco.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "7a281a98673ef3b6e883a02231997d65d9f9705852cb8eaa48320f4df12a8660",
+        "authorAfterQuestionSHA256": "8dde9f05b686944b21a655fceb8db39f807fbc0bcdca5f5841042548b0ae24eb",
+        "exactAfterPreserved": true,
+        "reviewObject": "Author AFTER literal plus exact reference cards; no new replacement version evaluated.",
+        "verdictV2": "revisão maior",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7: VERIFICADA/NENHUMA, revisão maior => BLOQUEADA.",
+        "OP": "Relacionar hipomagnesemia crônica em Gitelman à maior formação de cristais CPPD, distinguindo hipocalciúria e alcalose de outros mecanismos.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "básica",
+          "targetProfile": "estudantes avançados e residentes, pt-BR",
+          "observedPhysicalDiff": "hard",
+          "classificationOnly": true
+        },
+        "caseReconstruction": {
+          "populationContextAndDecisiveData": "Gitelman estabelecido; pergunta o elo fisiopatológico com condrocalcinose, sem decisão terapêutica.",
+          "decision": "Relacionar hipomagnesemia crônica em Gitelman à maior formação de cristais CPPD, distinguindo hipocalciúria e alcalose de outros mecanismos.",
+          "temporalHorizon": "O especificado no AFTER literal; não extrapolado para outra população ou momento.",
+          "hiddenAssumptions": "Nenhum dado ausente completado silenciosamente; limitações de fonte e interpretação constam nos achados."
+        },
+        "justification": "O consenso KDIGO Gitelman2017, PDFp3, confirma que Mg aumenta solubilidade de cristais CPP e ativa fosfatase alcalina que degrada PPi. A deficiência favorece formação articular. Joshi2018 corrobora a associação. A alternativa C é sustentada em termos de precipitação; a formulação mais estreita nucleação na explicação é dispensável. AFTER literal ainda é rascunho bloqueado, e refs continuam CKD/livro genéricos.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Explicação AFTER contém rascunho bloqueado e não apresenta explicação final utilizável; exige nova versão completa com card específico e gate."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Hard supera a compreensão fisiopatológica simples exigida."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "result": "Argumento plausível: resolução obrigatória antes de aprovação",
+          "analysis": "O estudante reconhece hipomagnesemia, mas a própria explicação declara não aplicar e as referências vinculadas não localizam a sustentação específica; o objeto literal não está pronto para banco.",
+          "sourceAccessLimitationKeptSeparate": true
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "scoreAnnulled": false,
+          "unconfirmedCriterion2": false,
+          "rationale": "Falta de acesso à fonte gera teto no passo0, não se fabrica prova de referência falsa. Somente defeitos demonstrados constam como disparados."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 1,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 0,
+            "Referências": 0,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "provisionalDimensionSum": 13,
+          "total": 13,
+          "band": "Recuperável",
+          "scoreAnnulled": false,
+          "override": "Teto de evidência/pendência, recurso ou eliminatório prevalece sobre nota; dimensões explicitadas, sem nota liberar fonte ausente."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA; avaliação normal permitida",
+          "step1": "Nenhum eliminatório comprovado",
+          "step2": "O estudante reconhece hipomagnesemia, mas a própria explicação declara não aplicar e as referências vinculadas não localizam a sustentação específica; o objeto literal não está pronto para banco.",
+          "step3": "13/20 antes de overrides",
+          "result": "revisão maior",
+          "lifecycle": "em_revisão",
+          "qualification": "Estado editorial proposto; nenhum deploy, publicação ou banco alterado."
+        },
+        "validity": {
+          "content": "O consenso KDIGO Gitelman2017, PDFp3, confirma que Mg aumenta solubilidade de cristais CPP e ativa fosfatase alcalina que degrada PPi. A deficiência favorece formação articular. Joshi2018 corrobora a associação. A alternativa C é sustentada em termos de precipitação; a formulação mais estreita nucleação na explicação é dispensável. AFTER literal ainda é rascunho bloqueado, e refs continuam CKD/livro genéricos.",
+          "construct": "O OP exige Compreender; dificuldade básica classificada independentemente.",
+          "response": "Alternativas testadas contra dados expressos; sem dados psicométricos ou produçãoQA.",
+          "consequential": "Limites de população, segurança e evidência mantidos; autorização de implementação derivada, não presumida.",
+          "alignmentAllFive": true,
+          "objectiveDrift": false
+        },
+        "duplicateAssessment": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "língua"
+          ],
+          "result": "Não se declara fusão por associação temática. Este parecer não adjudica qids fora da ownership.",
+          "bankWideDuplicateSearchPerformed": false,
+          "limitation": "Apenas repetição literal dos AFTER selecionados é testada; ausência de duplicidade em todo banco não é alegada."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "gitelman2017",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 299509,
+              "sha256": "79cfe598e0d62ede8f9d7f816b260ad199b90b42c3ffa10857543088a1671aad"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 63674,
+              "sha256": "8fd5053292df489dc3bcd712928f999481ea5ee46b26227933fb191db460a2da"
+            },
+            "finding": "O consenso KDIGO Gitelman2017, PDFp3, confirma que Mg aumenta solubilidade de cristais CPP e ativa fosfatase alcalina que degrada PPi. A deficiência favorece formação articular. Joshi2018 corrobora a associação. A alternativa C é sustentada em termos de precipitação; a formulação mais estreita nucleação na explicação é dispensável. AFTER literal ainda é rascunho bloqueado, e refs continuam CKD/livro genéricos.",
+            "independentlyRead": true,
+            "newExternalRetrieval": true
+          },
+          {
+            "sourceId": "cppd2018",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 179649,
+              "sha256": "435fde4049b7478c9381620376ea1638d3c1dee8d6abe2f182cd93ac88169e31"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 27387,
+              "sha256": "a84893dc9243ea855ffdbebb603116bdf3ce54cbad5b379205695fba4dd90928"
+            },
+            "finding": "O consenso KDIGO Gitelman2017, PDFp3, confirma que Mg aumenta solubilidade de cristais CPP e ativa fosfatase alcalina que degrada PPi. A deficiência favorece formação articular. Joshi2018 corrobora a associação. A alternativa C é sustentada em termos de precipitação; a formulação mais estreita nucleação na explicação é dispensável. AFTER literal ainda é rascunho bloqueado, e refs continuam CKD/livro genéricos.",
+            "independentlyRead": true,
+            "newExternalRetrieval": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "kdigo_ckd",
+            "exactCardSHA256": "372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+          },
+          {
+            "id": "brenner_rector",
+            "exactCardSHA256": "b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR: requer nova versão e novo full gate; não há replacement liberado neste parecer",
+          "BEFORE": {
+            "t": "Síndrome de Gitelman e Condrocalcinose",
+            "qid": "f676438e",
+            "q": "Por que pacientes com Síndrome de Gitelman têm maior risco de desenvolver condrocalcinose (pseudogota)?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Devido ao excesso de vitamina D, que pode levar à hipercalcemia e precipitação de cristais nas articulações periféricas",
+              "Em decorrência da hipercalciúria crônica, que favorece a deposição de cristais de cálcio nas cartilagens articulares",
+              "Devido à hipomagnesemia crônica, que reduz a inibição fisiológica do magnésio sobre a precipitação de cristais de pirofosfato de cálcio (CPPD)",
+              "Pela presença de acidose metabólica persistente, que altera o equilíbrio iônico e favorece a formação de cristais articulares"
+            ],
+            "ans": 2,
+            "exp": "Em pacientes com Síndrome de Gitelman, a hipomagnesemia crônica é o principal mecanismo para o desenvolvimento de condrocalcinose — alternativa C. O magnésio normalmente inibe a nucleação e precipitação de cristais de pirofosfato de cálcio (CPPD) nas articulações. Quando os níveis de magnésio caem, essa inibição é removida e os cristais se depositam na cartilagem articular. Hipercalciúria e acidose metabólica não são os mecanismos principais para condrocalcinose na Síndrome de Gitelman.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "AFTER": {
+            "t": "Síndrome de Gitelman e Condrocalcinose",
+            "qid": "f676438e",
+            "q": "Por que pacientes com Síndrome de Gitelman têm maior risco de desenvolver condrocalcinose (pseudogota)?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Devido ao excesso de vitamina D, que pode levar à hipercalcemia e precipitação de cristais nas articulações periféricas",
+              "Em decorrência da hipercalciúria crônica, que favorece a deposição de cristais de cálcio nas cartilagens articulares",
+              "Devido à hipomagnesemia crônica, que reduz a inibição fisiológica do magnésio sobre a precipitação de cristais de pirofosfato de cálcio (CPPD)",
+              "Pela presença de acidose metabólica persistente, que altera o equilíbrio iônico e favorece a formação de cristais articulares"
+            ],
+            "ans": 2,
+            "exp": "A hipomagnesemia crônica associa-se à condrocalcinose na síndrome de Gitelman. O mecanismo específico de redução da inibição da nucleação de cristais de pirofosfato de cálcio presente na alternativa correta exige verificação direta antes de liberar este item. Esta proposta é um rascunho bloqueado; não aplicar ao banco.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 2,
+            "canonicalLetter": "C",
+            "text": "Devido à hipomagnesemia crônica, que reduz a inibição fisiológica do magnésio sobre a precipitação de cristais de pirofosfato de cálcio (CPPD)"
+          },
+          "referenceCards": {
+            "kdigo_ckd": {
+              "label": "KDIGO CKD 2024",
+              "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+              "journal": "Kidney International",
+              "ano": 2024,
+              "tipo": "Diretriz Internacional",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+              "icon": "📋",
+              "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+              "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+              "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+            },
+            "brenner_rector": {
+              "label": "Brenner & Rector's The Kidney",
+              "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+              "journal": "Elsevier (Textbook)",
+              "ano": 2024,
+              "tipo": "Livro-texto de referência",
+              "badge": "TEXTBOOK",
+              "badgeColor": "#64748b",
+              "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+              "icon": "📚",
+              "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+              "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+              "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+            }
+          },
+          "suggestedWork": "Reescrever explicação com solubilidade de CPP e hidrólise de PPi, sem afirmar mecanismo exclusivo de nucleação; vincular card exato KDIGO Gitelman2017 e executar gate da nova questão e card.",
+          "replacementCreated": false,
+          "materialChangeRequiresNewFullGate": true
+        },
+        "implementationObservation": {
+          "productMutationAuthorizedHere": false,
+          "questionsOrCardsApplied": 0,
+          "preserve": [
+            "qid",
+            "histórico",
+            "FSRS",
+            "ordem do banco"
+          ],
+          "noBackendOrProductionQA": true,
+          "originIsSourceBank": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+          "currentQuestionIsNotAssumedNewClinicalDelta": true
+        },
+        "verificationPending": [],
+        "claimLedger": [
+          {
+            "field": "q",
+            "exactText": "Por que pacientes com Síndrome de Gitelman têm maior risco de desenvolver condrocalcinose (pseudogota)?",
+            "status": "VERIFICADA",
+            "qualification": "Dados fictícios do caso são premissas, não medidas de estudo; recomendações/desenho dependem dos sources abaixo."
+          },
+          {
+            "field": "correctAnswer",
+            "exactText": "Devido à hipomagnesemia crônica, que reduz a inibição fisiológica do magnésio sobre a precipitação de cristais de pirofosfato de cálcio (CPPD)",
+            "status": "VERIFICADA",
+            "qualification": "O consenso KDIGO Gitelman2017, PDFp3, confirma que Mg aumenta solubilidade de cristais CPP e ativa fosfatase alcalina que degrada PPi. A deficiência favorece formação articular. Joshi2018 corrobora a associação. A alternativa C é sustentada em termos de precipitação; a formulação mais estreita nucleação na explicação é dispensável. AFTER literal ainda é rascunho bloqueado, e refs continuam CKD/livro genéricos."
+          },
+          {
+            "field": "exp",
+            "exactText": "A hipomagnesemia crônica associa-se à condrocalcinose na síndrome de Gitelman. O mecanismo específico de redução da inibição da nucleação de cristais de pirofosfato de cálcio presente na alternativa correta exige verificação direta antes de liberar este item. Esta proposta é um rascunho bloqueado; não aplicar ao banco.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Texto editorial RASCUNHO/BLOQUEADO preservado; não é explicação clínica final certificada. O consenso KDIGO Gitelman2017, PDFp3, confirma que Mg aumenta solubilidade de cristais CPP e ativa fosfatase alcalina que degrada PPi. A deficiência favorece formação articular. Joshi2018 corrobora a associação. A alternativa C é sustentada em termos de precipitação; a formulação mais estreita nucleação na explicação é dispensável. AFTER literal ainda é rascunho bloqueado, e refs continuam CKD/livro genéricos."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.label",
+            "exactText": "KDIGO CKD 2024",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.url",
+            "exactText": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.journal",
+            "exactText": "Kidney International",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.ano",
+            "exactText": 2024,
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.tipo",
+            "exactText": "Diretriz Internacional",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.impacto",
+            "exactText": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.resumo",
+            "exactText": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.conclusao",
+            "exactText": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.curiosidade",
+            "exactText": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise.",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.brenner_rector.label",
+            "exactText": "Brenner & Rector's The Kidney",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.url",
+            "exactText": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.journal",
+            "exactText": "Elsevier (Textbook)",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.ano",
+            "exactText": 2024,
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.tipo",
+            "exactText": "Livro-texto de referência",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.impacto",
+            "exactText": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.resumo",
+            "exactText": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.conclusao",
+            "exactText": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.curiosidade",
+            "exactText": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          }
+        ],
+        "editorialPending": {
+          "nature": "MATERIAL",
+          "sourceGapNotAssumed": true,
+          "reason": "Explicação final e cards/vínculos específicos ainda não existem no AFTER exato. Ciência central independentemente lida; nova versão completa precisa de gate."
+        }
+      },
+      {
+        "qid": "b8666d0a",
+        "sourceLine": 162,
+        "BEFORE": {
+          "t": "Síndrome de Bartter Tipo 5",
+          "qid": "b8666d0a",
+          "q": "A Síndrome de Bartter Tipo 5 está associada a qual alteração no receptor de cálcio (CaSR)?",
+          "refs": [
+            "kdigo_ckd",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Aumento da sensibilidade renal à vitamina D, sem alteração do CaSR",
+            "Mutação de ganho de função no CaSR, suprimindo o transportador NKCC2",
+            "Mutação de perda de função no receptor CaSR, sem efeito sobre NKCC2",
+            "Resistência ao PTH causada por ativação anormal do receptor CaSR"
+          ],
+          "ans": 1,
+          "exp": "A Síndrome de Bartter Tipo 5 é causada por mutação de ganho de função no receptor sensor de cálcio (CaSR) — alternativa B. A ativação constitutiva do CaSR pelo cálcio elevado (ou pela mutação) suprime o NKCC2 no ramo ascendente espesso da alça de Henle, mimetizando o efeito da furosemida e resultando no fenótipo de Bartter (hipocalemia, alcalose metabólica, hipercalciúria e hipomagnesemia). Paradoxalmente, esses pacientes também têm hipocalcemia devido à hipercalciúria mediada pelo CaSR hiperativo.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "fd7c81aecaa59c4c7ac6b49495848f0990ad09d3ab89eb050e080f59f3dcc886",
+        "AFTER": {
+          "t": "Síndrome de Bartter Tipo 5",
+          "qid": "b8666d0a",
+          "q": "A Síndrome de Bartter Tipo 5 está associada a qual alteração no receptor de cálcio (CaSR)?",
+          "refs": [
+            "kdigo_ckd",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Aumento da sensibilidade renal à vitamina D, sem alteração do CaSR",
+            "Mutação de ganho de função no CaSR, suprimindo o transportador NKCC2",
+            "Mutação de perda de função no receptor CaSR, sem efeito sobre NKCC2",
+            "Resistência ao PTH causada por ativação anormal do receptor CaSR"
+          ],
+          "ans": 1,
+          "exp": "O item pretende avaliar ganho de função do receptor sensor de cálcio (CaSR). A classificação como Bartter tipo5 e a explicação completa do fenótipo precisam de verificação em consenso específico antes da publicação. Rascunho bloqueado; não aplicar ao banco.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "012ebaa10d61a35758399aebc003fa33f416093c3a5102498705ac2c95da029d",
+        "authorAfterQuestionSHA256": "2cfb66bdeaac08435af49ece651a59ce090d3159b32c141d2ec94e308d51f493",
+        "exactAfterPreserved": true,
+        "reviewObject": "Author AFTER literal plus exact reference cards; no new replacement version evaluated.",
+        "verdictV2": "revisão maior",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7: VERIFICADA/NENHUMA, revisão maior => BLOQUEADA.",
+        "OP": "Distinguir classificação genética atual de Bartter e o fenótipo de hipocalcemia autossômica dominante relacionado ao CaSR ativado.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "intermediária",
+          "targetProfile": "estudantes avançados e residentes, pt-BR",
+          "observedPhysicalDiff": "hard",
+          "classificationOnly": true
+        },
+        "caseReconstruction": {
+          "populationContextAndDecisiveData": "Comando apresenta Bartter tipo5 e pede mecanismo CaSR, sem delimitar nomenclatura histórica.",
+          "decision": "Distinguir classificação genética atual de Bartter e o fenótipo de hipocalcemia autossômica dominante relacionado ao CaSR ativado.",
+          "temporalHorizon": "O especificado no AFTER literal; não extrapolado para outra população ou momento.",
+          "hiddenAssumptions": "Nenhum dado ausente completado silenciosamente; limitações de fonte e interpretação constam nos achados."
+        },
+        "justification": "O texto original2022 explicita que BS5 atual é MAGED2; CaSR ativado foi chamado BS5 no passado e agora corresponde a subforma Bartter-like de hipocalcemia autossômica dominante. Não há qualificador histórico no AFTER. Abstract ERKNet2021 não resolve tabela genética e o PDF retornou403; não se finge leitura integral desse consenso.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Tipo5/CaSR é classificação histórica apresentada como atual; nomenclatura2022 demonstra desatualização material."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "AFTER literal permanece rascunho bloqueado e refs genéricas não resolvem classificação."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "result": "Argumento plausível: resolução obrigatória antes de aprovação",
+          "analysis": "Há argumento de anulação: Bartter5 na nomenclatura atual remete a MAGED2, que não aparece em nenhuma alternativa, enquanto o comando pressupõe CaSR. A versão atual não possui resposta correta dentro da classificação atual.",
+          "sourceAccessLimitationKeptSeparate": true
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": true
+          },
+          "triggered": [
+            "Desatualização relevante"
+          ],
+          "scoreAnnulled": true,
+          "unconfirmedCriterion2": false,
+          "rationale": "Falta de acesso à fonte gera teto no passo0, não se fabrica prova de referência falsa. Somente defeitos demonstrados constam como disparados."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 1,
+            "Validade de conteúdo": 0,
+            "Validade de construto": 1,
+            "Qualidade do enunciado": 1,
+            "Alternativas": 1,
+            "Distratores": 1,
+            "Explicação": 0,
+            "Referências": 0,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 1
+          },
+          "provisionalDimensionSum": 7,
+          "total": null,
+          "band": "Score anulado por eliminatório",
+          "scoreAnnulled": true,
+          "override": "Teto de evidência/pendência, recurso ou eliminatório prevalece sobre nota; dimensões explicitadas, sem nota liberar fonte ausente."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA; avaliação normal permitida",
+          "step1": [
+            "Desatualização relevante"
+          ],
+          "step2": "Há argumento de anulação: Bartter5 na nomenclatura atual remete a MAGED2, que não aparece em nenhuma alternativa, enquanto o comando pressupõe CaSR. A versão atual não possui resposta correta dentro da classificação atual.",
+          "step3": "Score anulado",
+          "result": "revisão maior",
+          "lifecycle": "em_revisão",
+          "qualification": "Estado editorial proposto; nenhum deploy, publicação ou banco alterado."
+        },
+        "validity": {
+          "content": "O texto original2022 explicita que BS5 atual é MAGED2; CaSR ativado foi chamado BS5 no passado e agora corresponde a subforma Bartter-like de hipocalcemia autossômica dominante. Não há qualificador histórico no AFTER. Abstract ERKNet2021 não resolve tabela genética e o PDF retornou403; não se finge leitura integral desse consenso.",
+          "construct": "O OP exige Compreender; dificuldade intermediária classificada independentemente.",
+          "response": "Alternativas testadas contra dados expressos; sem dados psicométricos ou produçãoQA.",
+          "consequential": "Limites de população, segurança e evidência mantidos; autorização de implementação derivada, não presumida.",
+          "alignmentAllFive": true,
+          "objectiveDrift": false
+        },
+        "duplicateAssessment": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "língua"
+          ],
+          "result": "Não se declara fusão por associação temática. Este parecer não adjudica qids fora da ownership.",
+          "bankWideDuplicateSearchPerformed": false,
+          "limitation": "Apenas repetição literal dos AFTER selecionados é testada; ausência de duplicidade em todo banco não é alegada."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "bartter2022",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 49069,
+              "sha256": "7ee35a46211decddde04297c9be421eaa6bba896f74056f989bfc1e2f230def4"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 49070,
+              "sha256": "acfe105cb654f1a3059cb003a688f742bbf2fa809e6f61d7494adfb88275f6bb"
+            },
+            "finding": "O texto original2022 explicita que BS5 atual é MAGED2; CaSR ativado foi chamado BS5 no passado e agora corresponde a subforma Bartter-like de hipocalcemia autossômica dominante. Não há qualificador histórico no AFTER. Abstract ERKNet2021 não resolve tabela genética e o PDF retornou403; não se finge leitura integral desse consenso.",
+            "independentlyRead": true,
+            "newExternalRetrieval": true
+          },
+          {
+            "sourceId": "bartter2021_abstract",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 8072,
+              "sha256": "054f045d46d258e57ca34a5f4b2addb3a11598e50180eee6396227fb982993c6"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 8072,
+              "sha256": "054f045d46d258e57ca34a5f4b2addb3a11598e50180eee6396227fb982993c6"
+            },
+            "finding": "O texto original2022 explicita que BS5 atual é MAGED2; CaSR ativado foi chamado BS5 no passado e agora corresponde a subforma Bartter-like de hipocalcemia autossômica dominante. Não há qualificador histórico no AFTER. Abstract ERKNet2021 não resolve tabela genética e o PDF retornou403; não se finge leitura integral desse consenso.",
+            "independentlyRead": true,
+            "newExternalRetrieval": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "kdigo_ckd",
+            "exactCardSHA256": "372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+          },
+          {
+            "id": "brenner_rector",
+            "exactCardSHA256": "b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR: requer nova versão e novo full gate; não há replacement liberado neste parecer",
+          "BEFORE": {
+            "t": "Síndrome de Bartter Tipo 5",
+            "qid": "b8666d0a",
+            "q": "A Síndrome de Bartter Tipo 5 está associada a qual alteração no receptor de cálcio (CaSR)?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Aumento da sensibilidade renal à vitamina D, sem alteração do CaSR",
+              "Mutação de ganho de função no CaSR, suprimindo o transportador NKCC2",
+              "Mutação de perda de função no receptor CaSR, sem efeito sobre NKCC2",
+              "Resistência ao PTH causada por ativação anormal do receptor CaSR"
+            ],
+            "ans": 1,
+            "exp": "A Síndrome de Bartter Tipo 5 é causada por mutação de ganho de função no receptor sensor de cálcio (CaSR) — alternativa B. A ativação constitutiva do CaSR pelo cálcio elevado (ou pela mutação) suprime o NKCC2 no ramo ascendente espesso da alça de Henle, mimetizando o efeito da furosemida e resultando no fenótipo de Bartter (hipocalemia, alcalose metabólica, hipercalciúria e hipomagnesemia). Paradoxalmente, esses pacientes também têm hipocalcemia devido à hipercalciúria mediada pelo CaSR hiperativo.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "AFTER": {
+            "t": "Síndrome de Bartter Tipo 5",
+            "qid": "b8666d0a",
+            "q": "A Síndrome de Bartter Tipo 5 está associada a qual alteração no receptor de cálcio (CaSR)?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Aumento da sensibilidade renal à vitamina D, sem alteração do CaSR",
+              "Mutação de ganho de função no CaSR, suprimindo o transportador NKCC2",
+              "Mutação de perda de função no receptor CaSR, sem efeito sobre NKCC2",
+              "Resistência ao PTH causada por ativação anormal do receptor CaSR"
+            ],
+            "ans": 1,
+            "exp": "O item pretende avaliar ganho de função do receptor sensor de cálcio (CaSR). A classificação como Bartter tipo5 e a explicação completa do fenótipo precisam de verificação em consenso específico antes da publicação. Rascunho bloqueado; não aplicar ao banco.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "Mutação de ganho de função no CaSR, suprimindo o transportador NKCC2"
+          },
+          "referenceCards": {
+            "kdigo_ckd": {
+              "label": "KDIGO CKD 2024",
+              "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+              "journal": "Kidney International",
+              "ano": 2024,
+              "tipo": "Diretriz Internacional",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+              "icon": "📋",
+              "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+              "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+              "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+            },
+            "brenner_rector": {
+              "label": "Brenner & Rector's The Kidney",
+              "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+              "journal": "Elsevier (Textbook)",
+              "ano": 2024,
+              "tipo": "Livro-texto de referência",
+              "badge": "TEXTBOOK",
+              "badgeColor": "#64748b",
+              "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+              "icon": "📚",
+              "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+              "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+              "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+            }
+          },
+          "suggestedWork": "Escolher OP: perguntar hipocalcemia autossômica dominante com CaSR ativado e consequências, ou Bartter5/MAGED2. Reescrever comando, alternativas, explicação e card específico; novo full gate. Não excluir qid.",
+          "replacementCreated": false,
+          "materialChangeRequiresNewFullGate": true
+        },
+        "implementationObservation": {
+          "productMutationAuthorizedHere": false,
+          "questionsOrCardsApplied": 0,
+          "preserve": [
+            "qid",
+            "histórico",
+            "FSRS",
+            "ordem do banco"
+          ],
+          "noBackendOrProductionQA": true,
+          "originIsSourceBank": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+          "currentQuestionIsNotAssumedNewClinicalDelta": true
+        },
+        "verificationPending": [],
+        "claimLedger": [
+          {
+            "field": "q",
+            "exactText": "A Síndrome de Bartter Tipo 5 está associada a qual alteração no receptor de cálcio (CaSR)?",
+            "status": "NÃO VERIFICADA",
+            "qualification": "O texto original2022 explicita que BS5 atual é MAGED2; CaSR ativado foi chamado BS5 no passado e agora corresponde a subforma Bartter-like de hipocalcemia autossômica dominante. Não há qualificador histórico no AFTER. Abstract ERKNet2021 não resolve tabela genética e o PDF retornou403; não se finge leitura integral desse consenso."
+          },
+          {
+            "field": "correctAnswer",
+            "exactText": "Mutação de ganho de função no CaSR, suprimindo o transportador NKCC2",
+            "status": "NÃO VERIFICADA",
+            "qualification": "O texto original2022 explicita que BS5 atual é MAGED2; CaSR ativado foi chamado BS5 no passado e agora corresponde a subforma Bartter-like de hipocalcemia autossômica dominante. Não há qualificador histórico no AFTER. Abstract ERKNet2021 não resolve tabela genética e o PDF retornou403; não se finge leitura integral desse consenso."
+          },
+          {
+            "field": "exp",
+            "exactText": "O item pretende avaliar ganho de função do receptor sensor de cálcio (CaSR). A classificação como Bartter tipo5 e a explicação completa do fenótipo precisam de verificação em consenso específico antes da publicação. Rascunho bloqueado; não aplicar ao banco.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Texto editorial RASCUNHO/BLOQUEADO preservado; não é explicação clínica final certificada. O texto original2022 explicita que BS5 atual é MAGED2; CaSR ativado foi chamado BS5 no passado e agora corresponde a subforma Bartter-like de hipocalcemia autossômica dominante. Não há qualificador histórico no AFTER. Abstract ERKNet2021 não resolve tabela genética e o PDF retornou403; não se finge leitura integral desse consenso."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.label",
+            "exactText": "KDIGO CKD 2024",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.url",
+            "exactText": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.journal",
+            "exactText": "Kidney International",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.ano",
+            "exactText": 2024,
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.tipo",
+            "exactText": "Diretriz Internacional",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.impacto",
+            "exactText": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.resumo",
+            "exactText": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.conclusao",
+            "exactText": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.curiosidade",
+            "exactText": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise.",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.brenner_rector.label",
+            "exactText": "Brenner & Rector's The Kidney",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.url",
+            "exactText": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.journal",
+            "exactText": "Elsevier (Textbook)",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.ano",
+            "exactText": 2024,
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.tipo",
+            "exactText": "Livro-texto de referência",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.impacto",
+            "exactText": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.resumo",
+            "exactText": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.conclusao",
+            "exactText": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.curiosidade",
+            "exactText": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          }
+        ],
+        "editorialPending": {
+          "nature": "MATERIAL",
+          "sourceGapNotAssumed": true,
+          "reason": "Explicação final e cards/vínculos específicos ainda não existem no AFTER exato. Ciência central independentemente lida; nova versão completa precisa de gate."
+        }
+      },
+      {
+        "qid": "10d210a3",
+        "sourceLine": 211,
+        "BEFORE": {
+          "t": "Síndrome de Bartter Tipo 1: Achado Pré-natal",
+          "qid": "10d210a3",
+          "q": "Qual o achado ecográfico obstétrico que frequentemente sugere o diagnóstico de Síndrome de Bartter Tipo 1 antes do nascimento?",
+          "refs": [
+            "kdigo_ckd",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Cistos renais gigantes em fase ativa",
+            "Agenesia renal bilateral em apresentação clássica",
+            "Oligodrâmnio em estágio avançado",
+            "Polidrâmnio materno grave (devido à poliúria fetal)"
+          ],
+          "ans": 3,
+          "exp": "Na Síndrome de Bartter Tipo 1 (mutação NKCC2), a poliúria fetal intensa leva a polidrâmnio materno grave — alternativa D. O feto com Bartter perde grandes volumes de Na⁺ e Cl⁻ na urina, resultando em diurese osmótica excessiva. O excesso de líquido amniótico por poliúria fetal é o achado ecográfico que frequentemente levanta a suspeita diagnóstica pré-natal. Cistos renais e agenesia renal não são manifestações do Bartter; oligodrâmnio seria o oposto (associado a insuficiência renal, não à poliúria fetal).",
+          "diff": "hard",
+          "cat": "acido_base"
+        },
+        "beforeQuestionSHA256": "88e8ff0431215610f656fdcea3303c4433120188124ae6c837280f1ebfb92222",
+        "AFTER": {
+          "t": "Síndrome de Bartter Tipo 1: Achado Pré-natal",
+          "qid": "10d210a3",
+          "q": "Qual o achado ecográfico obstétrico que frequentemente sugere o diagnóstico de Síndrome de Bartter Tipo 1 antes do nascimento?",
+          "refs": [
+            "kdigo_ckd",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Cistos renais gigantes em fase ativa",
+            "Agenesia renal bilateral em apresentação clássica",
+            "Oligodrâmnio em estágio avançado",
+            "Polidrâmnio materno grave (devido à poliúria fetal)"
+          ],
+          "ans": 3,
+          "exp": "A proposta avalia polidrâmnio relacionado à poliúria fetal no Bartter antenatal. Falta verificar a formulação específica do tipo1 em consenso adequado e substituir as referências genéricas. O relato recente localizado contém inconsistências e não foi usado para liberar o item. Rascunho bloqueado; não aplicar.",
+          "diff": "hard",
+          "cat": "acido_base"
+        },
+        "afterQuestionSHA256": "f883bdcc58dd2027dbf63de38c8160d4a1d76e4764291c367af44ae48bceb6aa",
+        "authorAfterQuestionSHA256": "27d55a30a2f7b09001ac318b4e8e00e67091a60fb532ec7972c5e1690a35dfb0",
+        "exactAfterPreserved": true,
+        "reviewObject": "Author AFTER literal plus exact reference cards; no new replacement version evaluated.",
+        "verdictV2": "revisão maior",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7: VERIFICADA/NENHUMA, revisão maior => BLOQUEADA.",
+        "OP": "Reconhecer polidrâmnio por poliúria fetal como pista para Bartter antenatal tipo1 por SLC12A1, sem considerá-lo diagnóstico específico isolado.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "básica",
+          "targetProfile": "estudantes avançados e residentes, pt-BR",
+          "observedPhysicalDiff": "hard",
+          "classificationOnly": true
+        },
+        "caseReconstruction": {
+          "populationContextAndDecisiveData": "Achado obstétrico sugestivo em Bartter1; não exige exclusividade nem diagnóstico somente pelo ultrassom.",
+          "decision": "Reconhecer polidrâmnio por poliúria fetal como pista para Bartter antenatal tipo1 por SLC12A1, sem considerá-lo diagnóstico específico isolado.",
+          "temporalHorizon": "O especificado no AFTER literal; não extrapolado para outra população ou momento.",
+          "hiddenAssumptions": "Nenhum dado ausente completado silenciosamente; limitações de fonte e interpretação constam nos achados."
+        },
+        "justification": "O artigo original2022 relata polidrâmnio recorrente, nascimento32semanas e poliúria neonatal com variantes bialélicas SLC12A1; discussão liga antenatalBS a polidrâmnio. Fonte primária da observação foi lida, embora não substitua leitura integral do consenso2021. O comando sugere corretamente, sem afirmar especificidade absoluta. AFTER continua rascunho bloqueado e não pode ser aplicado.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "Rascunho explícito exige explicação final e referências específicas; não é pendência clínica ainda sem fonte."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Cistos gigantes em fase ativa é formulação sem relação plausível com o OP; agenesia bilateral/oligodrâmnio apontam direção oposta óbvia e reduzem poder discriminativo."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "result": "Argumento plausível: resolução obrigatória antes de aprovação",
+          "analysis": "A alternativa D é sustentada; a anulação proposta decorre da inadequação editorial do objeto e da alternativa A sem significado obstétrico definido, não de falta de confirmação do polidrâmnio.",
+          "sourceAccessLimitationKeptSeparate": true
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura": false,
+            "Distrator absurdo": true,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [
+            "Distrator absurdo"
+          ],
+          "scoreAnnulled": true,
+          "unconfirmedCriterion2": false,
+          "rationale": "Falta de acesso à fonte gera teto no passo0, não se fabrica prova de referência falsa. Somente defeitos demonstrados constam como disparados."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 1,
+            "Qualidade do enunciado": 1,
+            "Alternativas": 1,
+            "Distratores": 0,
+            "Explicação": 0,
+            "Referências": 0,
+            "Ausência de cara de IA": 0,
+            "Valor pedagógico": 1
+          },
+          "provisionalDimensionSum": 8,
+          "total": null,
+          "band": "Score anulado por eliminatório",
+          "scoreAnnulled": true,
+          "override": "Teto de evidência/pendência, recurso ou eliminatório prevalece sobre nota; dimensões explicitadas, sem nota liberar fonte ausente."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA; avaliação normal permitida",
+          "step1": [
+            "Distrator absurdo"
+          ],
+          "step2": "A alternativa D é sustentada; a anulação proposta decorre da inadequação editorial do objeto e da alternativa A sem significado obstétrico definido, não de falta de confirmação do polidrâmnio.",
+          "step3": "Score anulado",
+          "result": "revisão maior",
+          "lifecycle": "em_revisão",
+          "qualification": "Estado editorial proposto; nenhum deploy, publicação ou banco alterado."
+        },
+        "validity": {
+          "content": "O artigo original2022 relata polidrâmnio recorrente, nascimento32semanas e poliúria neonatal com variantes bialélicas SLC12A1; discussão liga antenatalBS a polidrâmnio. Fonte primária da observação foi lida, embora não substitua leitura integral do consenso2021. O comando sugere corretamente, sem afirmar especificidade absoluta. AFTER continua rascunho bloqueado e não pode ser aplicado.",
+          "construct": "O OP exige Compreender; dificuldade básica classificada independentemente.",
+          "response": "Alternativas testadas contra dados expressos; sem dados psicométricos ou produçãoQA.",
+          "consequential": "Limites de população, segurança e evidência mantidos; autorização de implementação derivada, não presumida.",
+          "alignmentAllFive": true,
+          "objectiveDrift": false
+        },
+        "duplicateAssessment": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "língua"
+          ],
+          "result": "Não se declara fusão por associação temática. Este parecer não adjudica qids fora da ownership.",
+          "bankWideDuplicateSearchPerformed": false,
+          "limitation": "Apenas repetição literal dos AFTER selecionados é testada; ausência de duplicidade em todo banco não é alegada."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "bartter2022",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 49069,
+              "sha256": "7ee35a46211decddde04297c9be421eaa6bba896f74056f989bfc1e2f230def4"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 49070,
+              "sha256": "acfe105cb654f1a3059cb003a688f742bbf2fa809e6f61d7494adfb88275f6bb"
+            },
+            "finding": "O artigo original2022 relata polidrâmnio recorrente, nascimento32semanas e poliúria neonatal com variantes bialélicas SLC12A1; discussão liga antenatalBS a polidrâmnio. Fonte primária da observação foi lida, embora não substitua leitura integral do consenso2021. O comando sugere corretamente, sem afirmar especificidade absoluta. AFTER continua rascunho bloqueado e não pode ser aplicado.",
+            "independentlyRead": true,
+            "newExternalRetrieval": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "kdigo_ckd",
+            "exactCardSHA256": "372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+          },
+          {
+            "id": "brenner_rector",
+            "exactCardSHA256": "b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR: requer nova versão e novo full gate; não há replacement liberado neste parecer",
+          "BEFORE": {
+            "t": "Síndrome de Bartter Tipo 1: Achado Pré-natal",
+            "qid": "10d210a3",
+            "q": "Qual o achado ecográfico obstétrico que frequentemente sugere o diagnóstico de Síndrome de Bartter Tipo 1 antes do nascimento?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Cistos renais gigantes em fase ativa",
+              "Agenesia renal bilateral em apresentação clássica",
+              "Oligodrâmnio em estágio avançado",
+              "Polidrâmnio materno grave (devido à poliúria fetal)"
+            ],
+            "ans": 3,
+            "exp": "Na Síndrome de Bartter Tipo 1 (mutação NKCC2), a poliúria fetal intensa leva a polidrâmnio materno grave — alternativa D. O feto com Bartter perde grandes volumes de Na⁺ e Cl⁻ na urina, resultando em diurese osmótica excessiva. O excesso de líquido amniótico por poliúria fetal é o achado ecográfico que frequentemente levanta a suspeita diagnóstica pré-natal. Cistos renais e agenesia renal não são manifestações do Bartter; oligodrâmnio seria o oposto (associado a insuficiência renal, não à poliúria fetal).",
+            "diff": "hard",
+            "cat": "acido_base"
+          },
+          "AFTER": {
+            "t": "Síndrome de Bartter Tipo 1: Achado Pré-natal",
+            "qid": "10d210a3",
+            "q": "Qual o achado ecográfico obstétrico que frequentemente sugere o diagnóstico de Síndrome de Bartter Tipo 1 antes do nascimento?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Cistos renais gigantes em fase ativa",
+              "Agenesia renal bilateral em apresentação clássica",
+              "Oligodrâmnio em estágio avançado",
+              "Polidrâmnio materno grave (devido à poliúria fetal)"
+            ],
+            "ans": 3,
+            "exp": "A proposta avalia polidrâmnio relacionado à poliúria fetal no Bartter antenatal. Falta verificar a formulação específica do tipo1 em consenso adequado e substituir as referências genéricas. O relato recente localizado contém inconsistências e não foi usado para liberar o item. Rascunho bloqueado; não aplicar.",
+            "diff": "hard",
+            "cat": "acido_base"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 3,
+            "canonicalLetter": "D",
+            "text": "Polidrâmnio materno grave (devido à poliúria fetal)"
+          },
+          "referenceCards": {
+            "kdigo_ckd": {
+              "label": "KDIGO CKD 2024",
+              "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+              "journal": "Kidney International",
+              "ano": 2024,
+              "tipo": "Diretriz Internacional",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+              "icon": "📋",
+              "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+              "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+              "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+            },
+            "brenner_rector": {
+              "label": "Brenner & Rector's The Kidney",
+              "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+              "journal": "Elsevier (Textbook)",
+              "ano": 2024,
+              "tipo": "Livro-texto de referência",
+              "badge": "TEXTBOOK",
+              "badgeColor": "#64748b",
+              "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+              "icon": "📚",
+              "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+              "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+              "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+            }
+          },
+          "suggestedWork": "Preservar OP clínico, substituir distratores por diferenciais obstétricos plausíveis, produzir explicação final/cardo específico e novo full gate da versão completa.",
+          "replacementCreated": false,
+          "materialChangeRequiresNewFullGate": true
+        },
+        "implementationObservation": {
+          "productMutationAuthorizedHere": false,
+          "questionsOrCardsApplied": 0,
+          "preserve": [
+            "qid",
+            "histórico",
+            "FSRS",
+            "ordem do banco"
+          ],
+          "noBackendOrProductionQA": true,
+          "originIsSourceBank": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+          "currentQuestionIsNotAssumedNewClinicalDelta": true
+        },
+        "verificationPending": [],
+        "claimLedger": [
+          {
+            "field": "q",
+            "exactText": "Qual o achado ecográfico obstétrico que frequentemente sugere o diagnóstico de Síndrome de Bartter Tipo 1 antes do nascimento?",
+            "status": "VERIFICADA",
+            "qualification": "Dados fictícios do caso são premissas, não medidas de estudo; recomendações/desenho dependem dos sources abaixo."
+          },
+          {
+            "field": "correctAnswer",
+            "exactText": "Polidrâmnio materno grave (devido à poliúria fetal)",
+            "status": "VERIFICADA",
+            "qualification": "O artigo original2022 relata polidrâmnio recorrente, nascimento32semanas e poliúria neonatal com variantes bialélicas SLC12A1; discussão liga antenatalBS a polidrâmnio. Fonte primária da observação foi lida, embora não substitua leitura integral do consenso2021. O comando sugere corretamente, sem afirmar especificidade absoluta. AFTER continua rascunho bloqueado e não pode ser aplicado."
+          },
+          {
+            "field": "exp",
+            "exactText": "A proposta avalia polidrâmnio relacionado à poliúria fetal no Bartter antenatal. Falta verificar a formulação específica do tipo1 em consenso adequado e substituir as referências genéricas. O relato recente localizado contém inconsistências e não foi usado para liberar o item. Rascunho bloqueado; não aplicar.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Texto editorial RASCUNHO/BLOQUEADO preservado; não é explicação clínica final certificada. O artigo original2022 relata polidrâmnio recorrente, nascimento32semanas e poliúria neonatal com variantes bialélicas SLC12A1; discussão liga antenatalBS a polidrâmnio. Fonte primária da observação foi lida, embora não substitua leitura integral do consenso2021. O comando sugere corretamente, sem afirmar especificidade absoluta. AFTER continua rascunho bloqueado e não pode ser aplicado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.label",
+            "exactText": "KDIGO CKD 2024",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.url",
+            "exactText": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.journal",
+            "exactText": "Kidney International",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.ano",
+            "exactText": 2024,
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.tipo",
+            "exactText": "Diretriz Internacional",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.impacto",
+            "exactText": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.resumo",
+            "exactText": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.conclusao",
+            "exactText": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.curiosidade",
+            "exactText": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise.",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.brenner_rector.label",
+            "exactText": "Brenner & Rector's The Kidney",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.url",
+            "exactText": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.journal",
+            "exactText": "Elsevier (Textbook)",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.ano",
+            "exactText": 2024,
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.tipo",
+            "exactText": "Livro-texto de referência",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.impacto",
+            "exactText": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.resumo",
+            "exactText": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.conclusao",
+            "exactText": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.curiosidade",
+            "exactText": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          }
+        ],
+        "editorialPending": {
+          "nature": "MATERIAL",
+          "sourceGapNotAssumed": true,
+          "reason": "Explicação final e cards/vínculos específicos ainda não existem no AFTER exato. Ciência central independentemente lida; nova versão completa precisa de gate."
+        }
+      },
+      {
+        "qid": "e0448d0b",
+        "sourceLine": 101,
+        "BEFORE": {
+          "t": "Hipomagnesemia e ROMK",
+          "qid": "e0448d0b",
+          "q": "A hipomagnesemia pode causar hipocalemia refratária devido à interação do magnésio com canais de potássio no néfron. Qual é o mecanismo subjacente a essa interação?",
+          "refs": [
+            "kdigo_ckd",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Bloqueia a atividade da bomba Na/K ATPase, reduzindo a reabsorção de potássio no túbulo proximal renal",
+            "Inibe o transportador NCC no túbulo contorcido distal, diminuindo a reabsorção de sódio e alterando o equilíbrio eletrolítico",
+            "Remove a inibição sobre os canais ROMK, permitindo a excreção excessiva de potássio no túbulo distal",
+            "Estimula a secreção de renina pela mácula densa, aumentando a retenção de sódio e potássio no túbulo distal"
+          ],
+          "ans": 2,
+          "exp": "A hipomagnesemia remove o freio fisiológico do magnésio sobre os canais ROMK no néfron distal, aumentando a secreção urinária de potássio e gerando hipocalemia de difícil correção; por isso a alternativa C é a correta. As demais opções não representam o mecanismo central desse fenômeno eletrolítico.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "ad42fee1bee5031f6b003246397d38cf6a5a4bb1e5957779c5e86e8d367c3589",
+        "AFTER": {
+          "t": "Hipomagnesemia e ROMK",
+          "qid": "e0448d0b",
+          "q": "A hipomagnesemia pode causar hipocalemia refratária devido à interação do magnésio com canais de potássio no néfron. Qual é o mecanismo subjacente a essa interação?",
+          "refs": [
+            "kdigo_ckd",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Bloqueia a atividade da bomba Na/K ATPase, reduzindo a reabsorção de potássio no túbulo proximal renal",
+            "Inibe o transportador NCC no túbulo contorcido distal, diminuindo a reabsorção de sódio e alterando o equilíbrio eletrolítico",
+            "Remove a inibição sobre os canais ROMK, permitindo a excreção excessiva de potássio no túbulo distal",
+            "Estimula a secreção de renina pela mácula densa, aumentando a retenção de sódio e potássio no túbulo distal"
+          ],
+          "ans": 2,
+          "exp": "O item avalia a redução da inibição de ROMK por deficiência de magnésio. A fonte primária não foi recuperada; falta confirmar os limites do mecanismo e sua relação com a secreção distal de potássio antes de publicar uma versão corrigida. Rascunho bloqueado; não aplicar.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "62b996c32911df97005726adfb100ee13def10600be8e05bf1f3209e651716c1",
+        "authorAfterQuestionSHA256": "25612f4d3aadabe16ed5d0d910d27dc56f74c479b5df7a16e80bcbb8607bf450",
+        "exactAfterPreserved": true,
+        "reviewObject": "Author AFTER literal plus exact reference cards; no new replacement version evaluated.",
+        "verdictV2": "revisão maior",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7: VERIFICADA/NENHUMA, revisão maior => BLOQUEADA.",
+        "OP": "Explicar que deficiência de Mg reduz bloqueio intracelular do efluxo de K via ROMK e contribui para perda renal de K, dependente do contexto distal.",
+        "classification": {
+          "primaryCompetence": "interpretação de evidência",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "básica",
+          "targetProfile": "estudantes avançados e residentes, pt-BR",
+          "observedPhysicalDiff": "medium",
+          "classificationOnly": true
+        },
+        "caseReconstruction": {
+          "populationContextAndDecisiveData": "Hipomagnesemia e hipocalemia refratária; pergunta mecanismo, sem dose ou caso hemodinâmico.",
+          "decision": "Explicar que deficiência de Mg reduz bloqueio intracelular do efluxo de K via ROMK e contribui para perda renal de K, dependente do contexto distal.",
+          "temporalHorizon": "O especificado no AFTER literal; não extrapolado para outra população ou momento.",
+          "hiddenAssumptions": "Nenhum dado ausente completado silenciosamente; limitações de fonte e interpretação constam nos achados."
+        },
+        "justification": "Yang2010 primário experimental confirma bloqueio de corrente de K para fora por Mg fisiológico em ROMK2/Xenopus e células principais de rato; menor Mg pode aumentar secreção distal, principalmente quando ENaC/luminalNa/voltagem favorecem. Discussão considera magnitude clínica especulativa; não demonstra que hipomagnesemia isolada sempre cause perda. O mecanismo central C está confirmado. A frase fonte primária não recuperada do AFTER é editorialmente ultrapassada após esta leitura.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "AFTER literal declara falta de fonte e rascunho bloqueado: revisão da explicação é necessária apesar de fonte científica agora acessada."
+          },
+          {
+            "severity": "MAIOR",
+            "problem": "Referências CKD/livro não localizam o experimento ROMK; incluir card específico e seus limites."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "O OP exige compreensão básica; contexto clínico não converte automaticamente em aplicar."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "result": "Argumento plausível: resolução obrigatória antes de aprovação",
+          "analysis": "O gabarito C é defensável com limites; o texto de ensino não é uma versão final. Não existe lacuna decisiva da ciência central nesta revisão, existe lacuna editorial da questão e referências exatas.",
+          "sourceAccessLimitationKeptSeparate": true
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "scoreAnnulled": false,
+          "unconfirmedCriterion2": false,
+          "rationale": "Falta de acesso à fonte gera teto no passo0, não se fabrica prova de referência falsa. Somente defeitos demonstrados constam como disparados."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 1,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 0,
+            "Referências": 0,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "provisionalDimensionSum": 13,
+          "total": 13,
+          "band": "Recuperável",
+          "scoreAnnulled": false,
+          "override": "Teto de evidência/pendência, recurso ou eliminatório prevalece sobre nota; dimensões explicitadas, sem nota liberar fonte ausente."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA; avaliação normal permitida",
+          "step1": "Nenhum eliminatório comprovado",
+          "step2": "O gabarito C é defensável com limites; o texto de ensino não é uma versão final. Não existe lacuna decisiva da ciência central nesta revisão, existe lacuna editorial da questão e referências exatas.",
+          "step3": "13/20 antes de overrides",
+          "result": "revisão maior",
+          "lifecycle": "em_revisão",
+          "qualification": "Estado editorial proposto; nenhum deploy, publicação ou banco alterado."
+        },
+        "validity": {
+          "content": "Yang2010 primário experimental confirma bloqueio de corrente de K para fora por Mg fisiológico em ROMK2/Xenopus e células principais de rato; menor Mg pode aumentar secreção distal, principalmente quando ENaC/luminalNa/voltagem favorecem. Discussão considera magnitude clínica especulativa; não demonstra que hipomagnesemia isolada sempre cause perda. O mecanismo central C está confirmado. A frase fonte primária não recuperada do AFTER é editorialmente ultrapassada após esta leitura.",
+          "construct": "O OP exige Compreender; dificuldade básica classificada independentemente.",
+          "response": "Alternativas testadas contra dados expressos; sem dados psicométricos ou produçãoQA.",
+          "consequential": "Limites de população, segurança e evidência mantidos; autorização de implementação derivada, não presumida.",
+          "alignmentAllFive": true,
+          "objectiveDrift": false
+        },
+        "duplicateAssessment": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "língua"
+          ],
+          "result": "Não se declara fusão por associação temática. Este parecer não adjudica qids fora da ownership.",
+          "bankWideDuplicateSearchPerformed": false,
+          "limitation": "Apenas repetição literal dos AFTER selecionados é testada; ausência de duplicidade em todo banco não é alegada."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "romk_full_browser",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 1826,
+              "sha256": "579623f61fb528b8f54caaba3e43580115037aeec089406cbd9a123702dcb452"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 1838,
+              "sha256": "a0fda8d65f0b4c2435a515dcdb8b059bc1ef6282b0a3fb8500ca6c2984fc7501"
+            },
+            "finding": "Yang2010 primário experimental confirma bloqueio de corrente de K para fora por Mg fisiológico em ROMK2/Xenopus e células principais de rato; menor Mg pode aumentar secreção distal, principalmente quando ENaC/luminalNa/voltagem favorecem. Discussão considera magnitude clínica especulativa; não demonstra que hipomagnesemia isolada sempre cause perda. O mecanismo central C está confirmado. A frase fonte primária não recuperada do AFTER é editorialmente ultrapassada após esta leitura.",
+            "independentlyRead": true,
+            "newExternalRetrieval": true
+          },
+          {
+            "sourceId": "romk2010_abstract",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 7410,
+              "sha256": "9038b95086b925ac65c8d1584a464212aeddb00db2a71a43ddc9f6fd645a10e1"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 7410,
+              "sha256": "9038b95086b925ac65c8d1584a464212aeddb00db2a71a43ddc9f6fd645a10e1"
+            },
+            "finding": "Yang2010 primário experimental confirma bloqueio de corrente de K para fora por Mg fisiológico em ROMK2/Xenopus e células principais de rato; menor Mg pode aumentar secreção distal, principalmente quando ENaC/luminalNa/voltagem favorecem. Discussão considera magnitude clínica especulativa; não demonstra que hipomagnesemia isolada sempre cause perda. O mecanismo central C está confirmado. A frase fonte primária não recuperada do AFTER é editorialmente ultrapassada após esta leitura.",
+            "independentlyRead": true,
+            "newExternalRetrieval": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "kdigo_ckd",
+            "exactCardSHA256": "372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+          },
+          {
+            "id": "brenner_rector",
+            "exactCardSHA256": "b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR: requer nova versão e novo full gate; não há replacement liberado neste parecer",
+          "BEFORE": {
+            "t": "Hipomagnesemia e ROMK",
+            "qid": "e0448d0b",
+            "q": "A hipomagnesemia pode causar hipocalemia refratária devido à interação do magnésio com canais de potássio no néfron. Qual é o mecanismo subjacente a essa interação?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Bloqueia a atividade da bomba Na/K ATPase, reduzindo a reabsorção de potássio no túbulo proximal renal",
+              "Inibe o transportador NCC no túbulo contorcido distal, diminuindo a reabsorção de sódio e alterando o equilíbrio eletrolítico",
+              "Remove a inibição sobre os canais ROMK, permitindo a excreção excessiva de potássio no túbulo distal",
+              "Estimula a secreção de renina pela mácula densa, aumentando a retenção de sódio e potássio no túbulo distal"
+            ],
+            "ans": 2,
+            "exp": "A hipomagnesemia remove o freio fisiológico do magnésio sobre os canais ROMK no néfron distal, aumentando a secreção urinária de potássio e gerando hipocalemia de difícil correção; por isso a alternativa C é a correta. As demais opções não representam o mecanismo central desse fenômeno eletrolítico.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "AFTER": {
+            "t": "Hipomagnesemia e ROMK",
+            "qid": "e0448d0b",
+            "q": "A hipomagnesemia pode causar hipocalemia refratária devido à interação do magnésio com canais de potássio no néfron. Qual é o mecanismo subjacente a essa interação?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Bloqueia a atividade da bomba Na/K ATPase, reduzindo a reabsorção de potássio no túbulo proximal renal",
+              "Inibe o transportador NCC no túbulo contorcido distal, diminuindo a reabsorção de sódio e alterando o equilíbrio eletrolítico",
+              "Remove a inibição sobre os canais ROMK, permitindo a excreção excessiva de potássio no túbulo distal",
+              "Estimula a secreção de renina pela mácula densa, aumentando a retenção de sódio e potássio no túbulo distal"
+            ],
+            "ans": 2,
+            "exp": "O item avalia a redução da inibição de ROMK por deficiência de magnésio. A fonte primária não foi recuperada; falta confirmar os limites do mecanismo e sua relação com a secreção distal de potássio antes de publicar uma versão corrigida. Rascunho bloqueado; não aplicar.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "correctAnswer": {
+            "canonicalIndex": 2,
+            "canonicalLetter": "C",
+            "text": "Remove a inibição sobre os canais ROMK, permitindo a excreção excessiva de potássio no túbulo distal"
+          },
+          "referenceCards": {
+            "kdigo_ckd": {
+              "label": "KDIGO CKD 2024",
+              "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+              "journal": "Kidney International",
+              "ano": 2024,
+              "tipo": "Diretriz Internacional",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+              "icon": "📋",
+              "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+              "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+              "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+            },
+            "brenner_rector": {
+              "label": "Brenner & Rector's The Kidney",
+              "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+              "journal": "Elsevier (Textbook)",
+              "ano": 2024,
+              "tipo": "Livro-texto de referência",
+              "badge": "TEXTBOOK",
+              "badgeColor": "#64748b",
+              "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+              "icon": "📚",
+              "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+              "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+              "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+            }
+          },
+          "suggestedWork": "Criar explicação final com contribuição de ROMK para secreção distal e condições favorecedoras; substituir refs por card Yang2010 ou fonte clínica específica verificada. Reavaliar objeto completo em novo gate.",
+          "replacementCreated": false,
+          "materialChangeRequiresNewFullGate": true
+        },
+        "implementationObservation": {
+          "productMutationAuthorizedHere": false,
+          "questionsOrCardsApplied": 0,
+          "preserve": [
+            "qid",
+            "histórico",
+            "FSRS",
+            "ordem do banco"
+          ],
+          "noBackendOrProductionQA": true,
+          "originIsSourceBank": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+          "currentQuestionIsNotAssumedNewClinicalDelta": true
+        },
+        "verificationPending": [],
+        "claimLedger": [
+          {
+            "field": "q",
+            "exactText": "A hipomagnesemia pode causar hipocalemia refratária devido à interação do magnésio com canais de potássio no néfron. Qual é o mecanismo subjacente a essa interação?",
+            "status": "VERIFICADA",
+            "qualification": "Dados fictícios do caso são premissas, não medidas de estudo; recomendações/desenho dependem dos sources abaixo."
+          },
+          {
+            "field": "correctAnswer",
+            "exactText": "Remove a inibição sobre os canais ROMK, permitindo a excreção excessiva de potássio no túbulo distal",
+            "status": "VERIFICADA",
+            "qualification": "Yang2010 primário experimental confirma bloqueio de corrente de K para fora por Mg fisiológico em ROMK2/Xenopus e células principais de rato; menor Mg pode aumentar secreção distal, principalmente quando ENaC/luminalNa/voltagem favorecem. Discussão considera magnitude clínica especulativa; não demonstra que hipomagnesemia isolada sempre cause perda. O mecanismo central C está confirmado. A frase fonte primária não recuperada do AFTER é editorialmente ultrapassada após esta leitura."
+          },
+          {
+            "field": "exp",
+            "exactText": "O item avalia a redução da inibição de ROMK por deficiência de magnésio. A fonte primária não foi recuperada; falta confirmar os limites do mecanismo e sua relação com a secreção distal de potássio antes de publicar uma versão corrigida. Rascunho bloqueado; não aplicar.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Texto editorial RASCUNHO/BLOQUEADO preservado; não é explicação clínica final certificada. Yang2010 primário experimental confirma bloqueio de corrente de K para fora por Mg fisiológico em ROMK2/Xenopus e células principais de rato; menor Mg pode aumentar secreção distal, principalmente quando ENaC/luminalNa/voltagem favorecem. Discussão considera magnitude clínica especulativa; não demonstra que hipomagnesemia isolada sempre cause perda. O mecanismo central C está confirmado. A frase fonte primária não recuperada do AFTER é editorialmente ultrapassada após esta leitura."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.label",
+            "exactText": "KDIGO CKD 2024",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.url",
+            "exactText": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.journal",
+            "exactText": "Kidney International",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.ano",
+            "exactText": 2024,
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.tipo",
+            "exactText": "Diretriz Internacional",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.impacto",
+            "exactText": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.resumo",
+            "exactText": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.conclusao",
+            "exactText": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.kdigo_ckd.curiosidade",
+            "exactText": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise.",
+            "status": "VERIFICADA",
+            "qualification": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado."
+          },
+          {
+            "field": "referenceCard.brenner_rector.label",
+            "exactText": "Brenner & Rector's The Kidney",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.url",
+            "exactText": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.journal",
+            "exactText": "Elsevier (Textbook)",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.ano",
+            "exactText": 2024,
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.tipo",
+            "exactText": "Livro-texto de referência",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.impacto",
+            "exactText": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.resumo",
+            "exactText": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.conclusao",
+            "exactText": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          },
+          {
+            "field": "referenceCard.brenner_rector.curiosidade",
+            "exactText": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção.",
+            "status": "NÃO VERIFICADA",
+            "qualification": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente."
+          }
+        ],
+        "editorialPending": {
+          "nature": "MATERIAL",
+          "sourceGapNotAssumed": true,
+          "reason": "Explicação final e cards/vínculos específicos ainda não existem no AFTER exato. Ciência central independentemente lida; nova versão completa precisa de gate."
+        }
+      }
+    ],
+    "cardReviews": [
+      {
+        "id": "kdigo_ckd",
+        "exactCard": {
+          "label": "KDIGO CKD 2024",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "journal": "Kidney International",
+          "ano": 2024,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+          "icon": "📋",
+          "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+          "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+          "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+        },
+        "exactCardSHA256": "372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7 aplicada ao card exato, sem herdar autor.",
+        "reason": "Causa/G/A, confirmação de albuminúria/cronicidade, iSGLT2, início e planejamento de TRS conferidos no PDF original local; aplicação é contextual, sem iniciar diálise por número isolado.",
+        "sourceReadings": [
+          {
+            "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+            "bytes": 5966902,
+            "sha256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0"
+          }
+        ],
+        "independentlyRead": true,
+        "newExternalRetrieval": false,
+        "changedOrApplied": false,
+        "scope": "Card literal vinculado; alterar qualquer campo exige nova avaliação da versão resultante."
+      },
+      {
+        "id": "brenner_rector",
+        "exactCard": {
+          "label": "Brenner & Rector's The Kidney",
+          "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+          "journal": "Elsevier (Textbook)",
+          "ano": 2024,
+          "tipo": "Livro-texto de referência",
+          "badge": "TEXTBOOK",
+          "badgeColor": "#64748b",
+          "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+          "icon": "📚",
+          "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+          "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+          "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+        },
+        "exactCardSHA256": "b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142",
+        "verdictV2": "revisão maior",
+        "evidenceStatus": "NÃO VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7 aplicada ao card exato, sem herdar autor.",
+        "reason": "Card exato genérico preservado. Edição/ano2024, ISBN/URL, resumo de atualizações e curiosidade Brenner não foram verificados em capítulo/edição original aberta nesta revisão; não se certifica livro pelo prestígio. A fonte primária específica lida para cada mecanismo não é este card, nem libera seu vínculo automaticamente.",
+        "sourceReadings": [],
+        "independentlyRead": false,
+        "newExternalRetrieval": false,
+        "changedOrApplied": false,
+        "scope": "Card literal vinculado; alterar qualquer campo exige nova avaliação da versão resultante."
+      }
+    ],
+    "counts": {
+      "questions": 4,
+      "publication": {
+        "BLOQUEADA": 4
+      },
+      "verdicts": {
+        "revisão maior": 4
+      },
+      "evidence": {
+        "VERIFICADA": 4
+      },
+      "exactCards": 2,
+      "questionsOrCardsApplied": 0
+    },
+    "limits": [
+      "No Library materialization, Git mutation, commit/push/deploy, backend access, product patch, ID exclusion, FSRS reset or production16.09QA. Only public scientific reading/downloads explicitly authorized.",
+      "Ownership only missing peers from source scope; full card approvals do not imply approval of other associated qids.",
+      "Source proofs/raw/auxiliaries do not count as new questions.",
+      "Question/card AFTERs preserved literally. Changes proposed in prose remain unevaluated until a new full gate of the correct resulting object."
+    ],
+    "retrievalReceipts": [
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 2491,
+        "sha256": "57d8a6ee5aeef2cdc7f92addd1464d4a987ce887c342f7225ca8044d06d7bd9e"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1700,
+        "sha256": "5899a7f3481dbc5c893c1288c7a71e53ae2d2087acd93e70ebbd71ab95e48698"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1057,
+        "sha256": "aa776c11bd66d6d29e6d86e831ece7488657a0f7e07154827fb46958cb6813e8"
+      }
+    ],
+    "validation": {
+      "formalAllQuestionsPassed": true,
+      "qidScopeExact": true,
+      "rawPortableSourceHashMatches": true,
+      "BEFOREOriginInputExact": true,
+      "AFTERAuthorLiteralExact": true,
+      "cardsLiteralAndBindingHashesMatch": true,
+      "threeAxesDerived": true,
+      "noProductMutation": true,
+      "sourcePinBytesAndHashesRead": true
+    }
+  }
+}

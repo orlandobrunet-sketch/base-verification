@@ -770,7 +770,6 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     // Na questão, expande a leitura no próprio card; mantém fallback para acessos legados.
     // Usado pelas referências exibidas em cada questão do jogo.
     function openRefResumo(key) {
-      if (typeof refsDB !== 'object' || !refsDB || !refsDB[key]) return;
       const button = [...document.querySelectorAll('.ref-resumo-btn[data-action="openRefResumo"]')]
         .find(element => element.dataset.arg === key && element.getClientRects().length);
       const reading = button && document.getElementById(button.getAttribute('aria-controls'));
@@ -784,7 +783,8 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
         try { if (expanded && typeof _track === 'function') _track('ref_resumo_opened', { key }); } catch {}
         return;
       }
-      const r = refsDB[key];
+        if (typeof refsDB !== 'object' || !refsDB || !refsDB[key]) return;
+        const r = refsDB[key];
       _showResumoModal({
         label:       r.label || '',
         autores:     '',

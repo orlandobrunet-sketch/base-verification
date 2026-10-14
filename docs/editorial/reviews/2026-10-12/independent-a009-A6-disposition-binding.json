@@ -1,0 +1,3061 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 177302,
+  "sourceReportSHA256": "82f3a43c60e2ae40ab6724bba51ac15722c6b959ff07d9f9ceb99d746486ffd1",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "nq-independent-clinical-review-v2",
+    "batch": "A009 author final A6 disposition binding",
+    "reviewer": "independent clinical reviewer",
+    "verifiedAtOfficialUTC": "2026-10-13 13:23:55 UTC",
+    "reviewMode": "Binding neutro de disposições autorais A6 aos8AFTER e7cards literais já julgados pelo próprio peer. Nenhuma nova revisão científica/novo8; três BLOCK e hold real de card preservados.",
+    "authorReport": {
+      "path": "docs/editorial/reviews/2026-10-12/group-a-output-009-A6.json",
+      "bytes": 246200,
+      "sha256": "d32effa3308befa171a54225731340752ab22b39ad793fbe28ab64034d6b9708"
+    },
+    "authorOriginalPreserved": {
+      "path": "docs/editorial/reviews/2026-10-12/group-a-output-009-A3.json",
+      "bytes": 200118,
+      "sha256": "5946ffdadee49ee894f04c32a2813792945e3675660adeba93b7549c73a5c41d"
+    },
+    "authorManifest": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 2305,
+      "sha256": "f7e12c93e7926b43c5d54daaada4edbe324cd758b7088eba46e256bad1bb164f"
+    },
+    "authorValidation": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 33500,
+      "sha256": "5adebd5cb58e713990f84fc171e89f3fceb7728bd62bc7d123387bf3016a357a"
+    },
+    "authorTechnicalProof": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 5411,
+      "sha256": "f7466e282dd9665c49ff9d7e45476664c912c0c7cdabcb6b5f90f923a0d092e3"
+    },
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "publishedTechnicalMerge": "135899077669af6dcf564717833227828ba03fe5",
+    "originBankLF_SHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "bankObserved": [
+      {
+        "path": "data/topics.js",
+        "bytes": 971537,
+        "sha256": "45c283a5a9634fe72e166762bd2461158ebc1647f5b5a026b7ae1ea68f6ee130"
+      },
+      {
+        "path": "data/refs.js",
+        "bytes": 491073,
+        "sha256": "d12c230d80f505fc8fd1893f489014fca8bbeced681c1224f03f4c3f4c7f01f7"
+      }
+    ],
+    "currentBankDelta10OutsideBatch": [
+      "7c0daeca",
+      "00b4d27e",
+      "ca6370dc",
+      "1b8baaac",
+      "04cb2429",
+      "c952567a",
+      "547a3dc2",
+      "051a5d1b",
+      "86949ab7",
+      "7780350a"
+    ],
+    "normativeSources": [
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      }
+    ],
+    "questions": [
+      {
+        "qid": "1366b930",
+        "sourceLine": 222,
+        "BEFORE": {
+          "t": "DRC-MBD — Hiperparatireoidismo Secundário Inicial",
+          "qid": "1366b930",
+          "q": "Paciente com DRC G4 tem PTH elevado, fósforo no limite superior da normalidade e deficiência de vitamina D/calcitriol. Qual interpretação fisiopatológica é mais adequada?",
+          "refs": [
+            "kdigo_ckd_mbd_2017",
+            "phosphate_binders_ckd"
+          ],
+          "opts": [
+            "Elevação precoce de FGF23 e queda de calcitriol favorecem hiperparatireoidismo secundário antes da hiperfosfatemia franca",
+            "Hipercalcemia é a alteração inicial típica e explica diretamente a elevação do PTH",
+            "O PTH só sobe depois de hiperfosfatemia franca e persistente",
+            "FGF23 reduz fosfatúria, aumentando a retenção de fósforo como mecanismo compensatório"
+          ],
+          "ans": 0,
+          "exp": "Na DRC-MBD, FGF23 pode se elevar antes da hiperfosfatemia franca, aumentando a fosfatúria e reduzindo calcitriol. A menor vitamina D ativa reduz absorção intestinal de cálcio e remove freio sobre paratireoides, favorecendo hiperparatireoidismo secundário. Hipercalcemia não é a explicação inicial típica; PTH pode subir antes de fósforo sérico claramente alto; e FGF23 aumenta, não reduz, a excreção renal de fosfato enquanto há reserva tubular.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "8ed6cc39dd58f8ac5cf8865249f7fae9fbf40f5bc7fc1c0877802a2dad6fda09",
+        "AFTER": {
+          "t": "Doença Renal Crônica e Distúrbio Mineral e Ósseo — Hiperparatireoidismo Secundário Inicial",
+          "qid": "1366b930",
+          "q": "Adulto com doença renal crônica (DRC) G4 tem paratormônio (PTH) elevado, fósforo sérico ainda normal e calcitriol reduzido. Considerando o fator de crescimento de fibroblastos 23 (FGF23), qual combinação descreve uma adaptação usual nessa fase?",
+          "refs": [
+            "courbebaisse_fgf23_ckd_2018"
+          ],
+          "opts": [
+            "FGF23 mais alto com maior excreção fracional de fosfato e menor calcitriol.",
+            "FGF23 mais baixo com maior excreção fracional de fosfato e maior calcitriol.",
+            "FGF23 mais alto com menor excreção fracional de fosfato e maior calcitriol.",
+            "FGF23 mais baixo com menor excreção fracional de fosfato e menor calcitriol."
+          ],
+          "ans": 0,
+          "exp": "FGF23 elevado pode aumentar excreção fracional de fosfato pelos néfrons funcionantes e reduzir calcitriol, enquanto o fósforo sérico ainda permanece normal. Menor calcitriol contribui ao hiperparatireoidismo secundário por menor absorção de cálcio e menor supressão paratireoidiana. Isso não implica ação direta estimuladora universal de FGF23 sobre PTH, nem preservação da excreção absoluta em toda DRC. O item explica adaptação e não indica calcitriol ou quelante automaticamente por um PTH isolado.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "30e3a01bc027341e7083da7eceea9baa46932a6bdc63dfad8ae7caade14c1b86",
+        "OP": "Reconhecer a adaptação FGF23/fosfato/calcitriol na DRC com fósforo sérico normal, sem inferir intervenção.",
+        "classification": {
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "verdictV2": "fundir",
+        "legacyAuxiliary": "FUNDIR",
+        "confidence": "moderada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7(c): FUNDIR ou redirecionar impede publicação, mesmo com mecanismo verificado.",
+        "ownJustification": "Resumo e legendas originais Fig3/5, l248-250/288-289/311-314 no PubMed, sustentam inibição de reabsorção proximal/queda de calcitriol, compensação em néfrons restantes e perda de supressão do PTH. Não foi obtida a íntegra; a questão não pede ordem temporal universal nem dose.",
+        "appeal": {
+          "plausibleScientificChallenge": false,
+          "finding": "A é única para a adaptação usual. Não se afirma ação direta universal estimuladora do PTH, preservação absoluta de fosfato ou indicação automática de fármaco. A pendência específica da cronologia no card permanece separada.",
+          "editorialDuplicateOrIdentityChallenge": true
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única para a adaptação usual. Não se afirma ação direta universal estimuladora do PTH, preservação absoluta de fosfato ou indicação automática de fármaco. A pendência específica da cronologia no card permanece separada."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única para a adaptação usual. Não se afirma ação direta universal estimuladora do PTH, preservação absoluta de fosfato ou indicação automática de fármaco. A pendência específica da cronologia no card permanece separada."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única para a adaptação usual. Não se afirma ação direta universal estimuladora do PTH, preservação absoluta de fosfato ou indicação automática de fármaco. A pendência específica da cronologia no card permanece separada."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única para a adaptação usual. Não se afirma ação direta universal estimuladora do PTH, preservação absoluta de fosfato ou indicação automática de fármaco. A pendência específica da cronologia no card permanece separada."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única para a adaptação usual. Não se afirma ação direta universal estimuladora do PTH, preservação absoluta de fosfato ou indicação automática de fármaco. A pendência específica da cronologia no card permanece separada."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única para a adaptação usual. Não se afirma ação direta universal estimuladora do PTH, preservação absoluta de fosfato ou indicação automática de fármaco. A pendência específica da cronologia no card permanece separada."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única para a adaptação usual. Não se afirma ação direta universal estimuladora do PTH, preservação absoluta de fosfato ou indicação automática de fármaco. A pendência específica da cronologia no card permanece separada."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única para a adaptação usual. Não se afirma ação direta universal estimuladora do PTH, preservação absoluta de fosfato ou indicação automática de fármaco. A pendência específica da cronologia no card permanece separada."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única para a adaptação usual. Não se afirma ação direta universal estimuladora do PTH, preservação absoluta de fosfato ou indicação automática de fármaco. A pendência específica da cronologia no card permanece separada."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única para a adaptação usual. Não se afirma ação direta universal estimuladora do PTH, preservação absoluta de fosfato ou indicação automática de fármaco. A pendência específica da cronologia no card permanece separada."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 19,
+          "annulled": false,
+          "reason": "Dez dimensões próprias do literal exato; duplicidade pode bloquear independentemente de pontuação alta."
+        },
+        "decisionTree": [
+          "0: fontes próprias no alcance da questão; nenhum full-text de FGF23 presumido",
+          "1: dez eliminatórios sem disparo",
+          "2: duplicidade confirmada nos quatro eixos",
+          "3: fundir",
+          "publicação derivada: BLOQUEADA"
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "50d30738",
+            "question": {
+              "t": "FGF-23 e Metabolismo Mineral na DRC",
+              "qid": "50d30738",
+              "q": "Paciente com doença renal crônica (DRC) estágio 3 apresenta FGF-23 elevado e níveis de calcitriol baixos, mas com fósforo sérico ainda dentro da faixa normal. Qual é a razão para o aumento do FGF-23 antes do desenvolvimento de hiperfosfatemia?",
+              "refs": [
+                "kdigo_ckd_mbd_2017",
+                "kdigo_ckd"
+              ],
+              "opts": [
+                "FGF-23 sobe em resposta à hipocalcemia precoce da DRC",
+                "FGF-23 sobe para compensar o excesso de fósforo aumentando a fosfatúria dos néfrons remanescentes",
+                "FGF-23 é liberado pelos rins lesados como marcador de fibrose",
+                "FGF-23 sobe em resposta ao PTH elevado na DRC inicial"
+              ],
+              "ans": 1,
+              "exp": "O FGF-23 é um hormônio fosfatúrico produzido principalmente pelos osteócitos e osteoblastos, que aumenta precocemente na doença renal crônica para promover a excreção renal de fósforo e prevenir a hiperfosfatemia. Mesmo antes do aumento dos níveis séricos de fósforo, o FGF-23 se eleva para manter o equilíbrio do fósforo, uma vez que a capacidade de excreção renal de fósforo está comprometida devido à redução da taxa de filtração glomerular. Além disso, o FGF-23 inibe a 1-alfa-hidroxilase, reduzindo a síntese de calcitriol, o que explica os níveis baixos de calcitriol observados. As outras opções estão incorretas: o FGF-23 não é um marcador de disfunção renal, não é diretamente induzido pelo PTH, e não aumenta a produção de calcitriol.",
+              "diff": "easy",
+              "cat": "drc"
+            },
+            "currentQuestionSHA256": "c1808a15c7c8e81bf66f508023f03b45a77729982575eaac6d7375e03fcf071a",
+            "sameDecision": true,
+            "sameDataStructure": true,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": true,
+            "reason": "Ambos pedem interpretar a adaptação FGF23/fosfatúria/calcitriol diante de DRC, fósforo normal e calcitriol baixo. G3/G4 e PTH elevado não alteram o raciocínio cobrado; a combinação de direções repete a explicação já contida no candidato. Mesma estrutura decisiva, público médico/residente e PT-BR. Não é apenas tema comum. Nenhum survivor aprovado.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "8ba55c24",
+            "question": {
+              "t": "DMO-DRC — FGF23 e fosfatúria",
+              "qid": "8ba55c24",
+              "q": "Na DRC, o FGF23 se eleva como resposta adaptativa à retenção de fosfato. Qual é seu principal efeito tubular proximal sobre o fosfato?",
+              "refs": [
+                "kdigo_ckd_mbd_2017",
+                "phosphate_binders_ckd"
+              ],
+              "opts": [
+                "Aumentar a expressão de NaPi-IIa/IIc e reter fosfato",
+                "Reduzir a expressão de NaPi-IIa/IIc e aumentar a fosfatúria",
+                "Estimular a 1-alfa-hidroxilase e elevar o calcitriol",
+                "Reduzir a excreção fracional de fosfato"
+              ],
+              "ans": 1,
+              "exp": "O FGF23 é produzido principalmente por osteócitos e funciona como hormônio fosfatúrico. No túbulo proximal, reduz cotransportadores sódio-fosfato (NaPi-IIa/IIc), diminuindo a reabsorção tubular e aumentando a excreção urinária de fosfato. Em paralelo, inibe a produção renal de calcitriol. Por isso, as alternativas que aumentam NaPi, aumentam calcitriol ou reduzem a fosfatúria invertem a fisiologia esperada.",
+              "diff": "hard",
+              "cat": "drc"
+            },
+            "currentQuestionSHA256": "64257ec83a05a39b80d83413514b5d1df45b2e557b9f9719f8d6f76a7be99a9e",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato pede o transportador proximal NaPi-IIa/IIc; proposta pede adaptação sistêmica integrada em DRC com fósforo normal, decisão e estrutura diferentes.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "ffee06f0",
+            "question": {
+              "t": "DMO-DRC — FGF23 e calcitriol",
+              "qid": "ffee06f0",
+              "q": "Na DRC, a elevação do FGF23 contribui para reduzir o calcitriol. Qual mecanismo renal explica melhor essa queda?",
+              "refs": [
+                "kdigo_ckd_mbd_2017",
+                "phosphate_binders_ckd"
+              ],
+              "opts": [
+                "Inibição da 1-alfa-hidroxilase renal",
+                "Aumento da 1-alfa-hidroxilase renal",
+                "Aumento da hidroxilação hepática da vitamina D",
+                "Estímulo direto da absorção intestinal de cálcio"
+              ],
+              "ans": 0,
+              "exp": "O FGF23 inibe a 1-alfa-hidroxilase renal, reduzindo a conversão de 25-hidroxivitamina D em calcitriol. Menos calcitriol reduz a absorção intestinal de cálcio e fósforo e favorece, junto com hiperfosfatemia e hipocalcemia, o hiperparatireoidismo secundário da DRC. As alternativas restantes confundem etapas hepáticas, aumentam a enzima que deveria estar inibida ou descrevem efeito intestinal downstream, não o mecanismo renal da queda do calcitriol.",
+              "diff": "hard",
+              "cat": "drc"
+            },
+            "currentQuestionSHA256": "8d475944798a1131b7e1d709a6218d4468f86ab7545d6b5546f341666502f2d9",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato pede a enzima de ativação do calcitriol; proposta integra direções hormonais/excreção fracional com fósforo normal. Nível causal específico diferente.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "sourceReadings": [
+          {
+            "id": "courbebaisse2018",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/28778965/",
+            "sourcePin": null,
+            "readScope": "Resumo primário completo e legendas originais Fig3/5 PubMed l248-250/288-289/311-314 próprios: mecanismos de fosfato/calcitriol/PTH sustentados. NÃO alegada íntegra Courbebaisse. Sequência temporal específica antes de PTH no card não conferida; pendência decisiva de autorização do card inteiro. Não usar captcha/403/500/HTMLNoResult como body.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true,
+            "fullArticleBodyClaimed": false
+          }
+        ],
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            75,
+            76,
+            75,
+            76
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": false,
+          "lengthIsNotClinicalApproval": true
+        },
+        "referenceBindings": {
+          "courbebaisse_fgf23_ckd_2018": "42a87cc3eeb3dd5ea45de5908d64ee43ac8e637f2904bdd3131c3d950109cb58"
+        },
+        "packageIntegrationHold": true,
+        "cardEvidenceHold": true,
+        "integration": "NÃO APLICADA",
+        "identityAndHistory": "Nenhum qid/survivor excluído, nenhum FSRS/tentativa resetado; fundir/redirecionar requer decisão explícita de preservação de identidades."
+      },
+      {
+        "qid": "a221d304",
+        "sourceLine": 225,
+        "BEFORE": {
+          "t": "Peritonite em DP — Sequência Inicial",
+          "qid": "a221d304",
+          "q": "Paciente em diálise peritoneal apresenta dor abdominal, febre e efluente turvo. Qual sequência inicial é mais apropriada?",
+          "refs": [
+            "ispd_peritonitis_guideline"
+          ],
+          "opts": [
+            "Coletar efluente para contagem diferencial, Gram e cultura e iniciar imediatamente antibiótico empírico com cobertura para gram-positivos e gram-negativos, sem aguardar o resultado",
+            "Aguardar cultura e antibiograma antes de qualquer antibiótico para evitar resultado falso-negativo",
+            "Retirar o cateter imediatamente em todo primeiro episódio, antes de colher o efluente",
+            "Prescrever apenas analgésico e repetir a avaliação em 72 horas se a turvação persistir"
+          ],
+          "ans": 0,
+          "exp": "Efluente turvo deve ser tratado como peritonite até exclusão razoável. A prioridade é colher amostra adequada antes do antibiótico — contagem e diferencial celular, Gram e cultura, idealmente com técnica que aumente o rendimento — e iniciar tratamento empírico o mais cedo possível, cobrindo gram-positivos e gram-negativos. Não se deve esperar a cultura para tratar. Retirada imediata do cateter é reservada a situações específicas, como peritonite fúngica, deterioração, refratariedade ou determinados focos relacionados ao cateter; não é regra para todo primeiro episódio.",
+          "diff": "medium",
+          "cat": "dialise"
+        },
+        "beforeQuestionSHA256": "5b4eb0390f843c2dc0a1f621a1f25f5e1f6508f1ff41a08552fe6fc527f0e822",
+        "AFTER": {
+          "t": "Peritonite em Diálise Peritoneal (DP) — Sequência Inicial",
+          "qid": "a221d304",
+          "q": "Adulto em diálise peritoneal apresenta dor abdominal, febre e efluente turvo. Antes de conhecer a cultura, qual sequência de investigação e tratamento é adequada?",
+          "refs": [
+            "ispd_peritonitis_guideline"
+          ],
+          "opts": [
+            "Coletar efluente e iniciar cobertura empírica para gram-positivos e negativos.",
+            "Iniciar cobertura empírica após o Gram, coletando efluente apenas se a febre persistir.",
+            "Coletar efluente e iniciar apenas cobertura para gram-positivos até identificar o agente.",
+            "Coletar efluente e adiar cobertura para gram-negativos até conhecer sua suscetibilidade."
+          ],
+          "ans": 0,
+          "exp": "Colher efluente para contagem e diferencial, Gram e cultura e iniciar antibiótico empírico prontamente após as amostras. A Sociedade Internacional de Diálise Peritoneal (ISPD), em 2022, recomenda início precoce (1B) e cobertura gram-positiva e negativa orientada pelo centro (1C). A coleta preserva rendimento microbiológico, mas aguardar resultado atrasa terapia; Gram negativo não exclui infecção. A via intraperitoneal é preferida quando viável, sem atraso, salvo sepse sistêmica. A pergunta cobra sequência e alcance de cobertura, sem fixar dose ou escolher esquema alheio ao perfil local.",
+          "diff": "medium",
+          "cat": "dialise"
+        },
+        "afterQuestionSHA256": "60d9fa79867dfb515b331d1250595644906839a0d735e5e6b3cb506d5b340f06",
+        "OP": "Ordenar coleta do efluente e início precoce de cobertura empírica gram-positiva/negativa na suspeita de peritonite em DP.",
+        "classification": {
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): fonte no alcance das afirmações da questão, nenhum eliminatório, score próprio e aprovada.",
+        "ownJustification": "ISPD2022 PDF11/13/14 confirma coleta sem esperar laboratório, início precoce 1B e cobertura dupla específica do centro 1C; IP preferida quando compatível e viável, salvo sepse sistêmica, sem atrasar tratamento por logística.",
+        "appeal": {
+          "plausibleScientificChallenge": false,
+          "finding": "A é única. Gram/cultura pendentes não autorizam atraso nem cobertura parcial. Não escolhe dose ou droga específica fora de protocolo informado; não exige protocolo local oculto para ordenar essas etapas.",
+          "editorialDuplicateOrIdentityChallenge": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única. Gram/cultura pendentes não autorizam atraso nem cobertura parcial. Não escolhe dose ou droga específica fora de protocolo informado; não exige protocolo local oculto para ordenar essas etapas."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única. Gram/cultura pendentes não autorizam atraso nem cobertura parcial. Não escolhe dose ou droga específica fora de protocolo informado; não exige protocolo local oculto para ordenar essas etapas."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única. Gram/cultura pendentes não autorizam atraso nem cobertura parcial. Não escolhe dose ou droga específica fora de protocolo informado; não exige protocolo local oculto para ordenar essas etapas."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única. Gram/cultura pendentes não autorizam atraso nem cobertura parcial. Não escolhe dose ou droga específica fora de protocolo informado; não exige protocolo local oculto para ordenar essas etapas."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única. Gram/cultura pendentes não autorizam atraso nem cobertura parcial. Não escolhe dose ou droga específica fora de protocolo informado; não exige protocolo local oculto para ordenar essas etapas."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única. Gram/cultura pendentes não autorizam atraso nem cobertura parcial. Não escolhe dose ou droga específica fora de protocolo informado; não exige protocolo local oculto para ordenar essas etapas."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única. Gram/cultura pendentes não autorizam atraso nem cobertura parcial. Não escolhe dose ou droga específica fora de protocolo informado; não exige protocolo local oculto para ordenar essas etapas."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única. Gram/cultura pendentes não autorizam atraso nem cobertura parcial. Não escolhe dose ou droga específica fora de protocolo informado; não exige protocolo local oculto para ordenar essas etapas."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única. Gram/cultura pendentes não autorizam atraso nem cobertura parcial. Não escolhe dose ou droga específica fora de protocolo informado; não exige protocolo local oculto para ordenar essas etapas."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única. Gram/cultura pendentes não autorizam atraso nem cobertura parcial. Não escolhe dose ou droga específica fora de protocolo informado; não exige protocolo local oculto para ordenar essas etapas."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 19,
+          "annulled": false,
+          "reason": "Dez dimensões próprias do literal exato; duplicidade pode bloquear independentemente de pontuação alta."
+        },
+        "decisionTree": [
+          "0: fontes próprias no alcance da questão; nenhum full-text de FGF23 presumido",
+          "1: dez eliminatórios sem disparo",
+          "2: recurso científico não procede",
+          "3: aprovada",
+          "publicação derivada: LIBERADA"
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "547a3dc2",
+            "question": {
+              "t": "Peritonite em DP — Cobertura Empírica",
+              "qid": "547a3dc2",
+              "q": "Adulto em diálise peritoneal (DP) tem suspeita de peritonite e já teve amostras do efluente colhidas. Está estável, sem sepse sistêmica ou alergia a betalactâmicos. O perfil local permite cefazolina e ceftazidima, e a via intraperitoneal está disponível sem atraso. Qual esquema e via são preferidos pela International Society for Peritoneal Dialysis (ISPD), na diretriz de 2022, para iniciar o tratamento?",
+              "refs": [
+                "ispd_peritonitis_guideline"
+              ],
+              "opts": [
+                "Cefazolina e ceftazidima, por via intraperitoneal.",
+                "Vancomicina isolada, por via intraperitoneal.",
+                "Ceftazidima e gentamicina, por via intraperitoneal.",
+                "Cefazolina e ceftazidima, por via intravenosa."
+              ],
+              "ans": 0,
+              "exp": "Cefazolina mais ceftazidima por via intraperitoneal é um esquema empírico apropriado no cenário informado: cobre gram-positivos e gram-negativos segundo o perfil local. A ISPD recomenda ambas as coberturas (1C) e prefere via intraperitoneal quando compatível e estável, salvo sepse sistêmica (1B). Vancomicina isolada não fornece a cobertura gram-negativa; ceftazidima com gentamicina reúne duas opções de cobertura gram-negativa, sem o agente recomendado para cobertura gram-positiva. Via sistêmica pode iniciar o tratamento se houver atraso para acesso intraperitoneal, mas essa limitação foi excluída no caso. O esquema deve ser ajustado às culturas. Cefepime em monoterapia é outra alternativa aceita pela ISPD (2B); não se deve concluir que toda monoterapia seja inadequada.",
+              "diff": "medium",
+              "cat": "dialise"
+            },
+            "currentQuestionSHA256": "3c4c30c026ea0355672c73d04702f90c3d63f2b0dc1a8207b11680e101276169",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato já tem coleta concluída e dados locais/ausência de sepse/alergia/IP disponível para escolher drogas e via. Proposta pergunta sequência antes de amostras/resultados, outra decisão e estrutura.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "68b630ba",
+            "question": {
+              "t": "Peritonite em DP — Critérios Diagnósticos",
+              "qid": "68b630ba",
+              "q": "Paciente em diálise peritoneal apresenta dor abdominal e efluente turvo. Após permanência intraperitoneal de 3 horas, o efluente tem 140 leucócitos/µL, com 70% de polimorfonucleares; a cultura ainda está pendente. Qual é a interpretação correta?",
+              "refs": [
+                "ispd_peritonitis_guideline"
+              ],
+              "opts": [
+                "Peritonite já é provável, pois há manifestação clínica e citologia compatível; cultura positiva não é obrigatória quando dois dos três critérios estão presentes",
+                "Peritonite só pode ser diagnosticada se a cultura crescer bactéria, mesmo com efluente turvo e neutrofilia",
+                "A contagem é insuficiente, porque o limiar diagnóstico obrigatório é 500 leucócitos/µL",
+                "O percentual de polimorfonucleares não importa quando a permanência supera 2 horas"
+              ],
+              "ans": 0,
+              "exp": "A ISPD recomenda diagnosticar peritonite em DP quando pelo menos dois de três critérios estão presentes: quadro clínico compatível, como dor abdominal ou efluente turvo; leucócitos no efluente acima de 100/µL após permanência de pelo menos 2 horas, com mais de 50% de polimorfonucleares; ou cultura positiva. Este caso cumpre os dois primeiros critérios, portanto cultura pendente ou posteriormente negativa não exclui o diagnóstico. Em trocas rápidas de diálise automatizada, o percentual de polimorfonucleares pode ser particularmente informativo mesmo quando a contagem absoluta ainda é menor.",
+              "diff": "medium",
+              "cat": "dialise"
+            },
+            "currentQuestionSHA256": "c58565a4a7064f11a0c494f85771190d6eeb50c049b75bc38c0bbeacdca88edb",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato integra permanência/citologia para diagnóstico por dois critérios; proposta ordena investigação e cobertura após suspeita.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "sourceReadings": [
+          {
+            "id": "ispd2022",
+            "url": "https://ispd.org/wp-content/uploads/2025/09/LI-ET-1.pdf",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 1668002,
+              "sha256": "d9fdfb48b9188c17181c8cfb75c15fc8de569b36310bda612adf278619fcd959"
+            },
+            "readScope": "PDF oficial44p próprio, p3/4/10/11/13/14/27: doisde3 critérios, WBC>100/uL após>=2h/PMN>50%, coletaantesantibiótico, prontidão1B/coberturaG+/G-1C/IP1B semsepsesistêmica/logística; fungalcatheterimediato1C+antifungal>=2wk2C; targets<=.40 e>80%. Caractere µ falhou no extrator, unidade corroborada pelo original e equivalência0,1x10^9/L.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          }
+        ],
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            78,
+            87,
+            89,
+            88
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": true,
+          "lengthIsNotClinicalApproval": true
+        },
+        "referenceBindings": {
+          "ispd_peritonitis_guideline": "e8ce57e1201a5f8b56beeab412fb0adb43ee2e0b5d2468c17cae6894c8956d83"
+        },
+        "packageIntegrationHold": false,
+        "cardEvidenceHold": false,
+        "integration": "NÃO APLICADA",
+        "identityAndHistory": "Nenhum qid/survivor excluído, nenhum FSRS/tentativa resetado; fundir/redirecionar requer decisão explícita de preservação de identidades."
+      },
+      {
+        "qid": "805733f8",
+        "sourceLine": 228,
+        "BEFORE": {
+          "t": "Hipercalemia aguda",
+          "qid": "805733f8",
+          "q": "Paciente de 65 anos, com DRC estágio 4, potássio de 6,2 mEq/L e ondas T apiculadas no ECG. Qual sequência inicial de manejo é mais adequada?",
+          "refs": [
+            "ukka_hyperkalemia_2023",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Aguardar nova dosagem em 6 horas antes de tratar, pois o potássio está abaixo de 6,5 mEq/L",
+            "Proteger o miocárdio com cálcio intravenoso, deslocar K para o intracelular e iniciar estratégia de remoção/monitorização do potássio",
+            "Usar apenas diurético oral, porque ondas T apiculadas não configuram toxicidade eletrocardiográfica",
+            "Usar apenas quelante oral e dispensar terapias de ação rápida se o paciente estiver consciente"
+          ],
+          "ans": 1,
+          "exp": "Hipercalemia com alteração eletrocardiográfica deve ser tratada como emergência. A sequência prática é proteger o coração com cálcio intravenoso quando há sinais de toxicidade elétrica, deslocar temporariamente K para o intracelular com insulina-glicose e/ou beta-2 agonista, e providenciar remoção do potássio conforme contexto renal e gravidade, com monitorização seriada. Esperar, usar apenas medida lenta ou ignorar o ECG aumenta risco de arritmia.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "b40b8baa40ac751aaa5e13c734af78733d29923059c3b0b7602d60967db8373d",
+        "AFTER": {
+          "t": "Hipercalemia aguda",
+          "qid": "805733f8",
+          "q": "Paciente de 65 anos com doença renal crônica (DRC) G4 tem potássio (K) de 6,2 mEq/L e ondas T apiculadas novas no eletrocardiograma (ECG) atribuídas à hipercalemia. Qual plano inicial é adequado? Nas alternativas, IV indica via intravenosa.",
+          "refs": [
+            "ukka_hyperkalemia_2023"
+          ],
+          "opts": [
+            "Iniciar insulina-glicose e adiar cálcio até o potássio exceder 6,5 mEq/L.",
+            "Administrar cálcio IV e iniciar deslocamento, remoção de K e monitorização.",
+            "Administrar cálcio IV e aguardar sua redução do potássio antes de outras medidas.",
+            "Iniciar ligante oral e reavaliar ECG somente após confirmar queda do potássio."
+          ],
+          "ans": 1,
+          "exp": "Sinais elétricos de toxicidade justificam cálcio intravenoso para proteção cardíaca, sem esperar que K ultrapasse 6,5. O cálcio não reduz K e tem efeito transitório; iniciar medidas de deslocamento, estratégias de remoção conforme função renal/contexto e monitorização. A UK Kidney Association (UKKA), em 2026, sugere cálcio diante de ECG tóxico (16.2a,2C) e insulina-glicose na faixa moderada (16.3.2,2C). Não escolher só terapia lenta nem atrasar medidas de potássio à espera do efeito do cálcio. O item não prescreve doses.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "511b98dc29236519d15fcee0663d6cd3ba329540c722a2040be42be63b3bfcd1",
+        "OP": "Selecionar proteção cardíaca e medidas paralelas de potássio na hipercalemia moderada com toxicidade elétrica explícita.",
+        "classification": {
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): fonte no alcance das afirmações da questão, nenhum eliminatório, score próprio e aprovada.",
+        "ownJustification": "UKKA julho2026 §16.2a 2C e §16.3.2 2C conferidos: ECG tóxico determina cálcio mesmo sem K>=6,5; K6,0-6,4 admite insulina-glicose. Cálcio não reduz K e proteção é transitória; fonte §17.2 confere vigilância glicêmica.",
+        "appeal": {
+          "plausibleScientificChallenge": false,
+          "finding": "B é única. K6,2 com novas ondas T atribuídas à hipercalemia resolve a premissa elétrica. Cálcio não substitui deslocamento/remoção. Item não prescreve doses; não define dialise automática por DRCG4.",
+          "editorialDuplicateOrIdentityChallenge": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única. K6,2 com novas ondas T atribuídas à hipercalemia resolve a premissa elétrica. Cálcio não substitui deslocamento/remoção. Item não prescreve doses; não define dialise automática por DRCG4."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única. K6,2 com novas ondas T atribuídas à hipercalemia resolve a premissa elétrica. Cálcio não substitui deslocamento/remoção. Item não prescreve doses; não define dialise automática por DRCG4."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única. K6,2 com novas ondas T atribuídas à hipercalemia resolve a premissa elétrica. Cálcio não substitui deslocamento/remoção. Item não prescreve doses; não define dialise automática por DRCG4."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única. K6,2 com novas ondas T atribuídas à hipercalemia resolve a premissa elétrica. Cálcio não substitui deslocamento/remoção. Item não prescreve doses; não define dialise automática por DRCG4."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única. K6,2 com novas ondas T atribuídas à hipercalemia resolve a premissa elétrica. Cálcio não substitui deslocamento/remoção. Item não prescreve doses; não define dialise automática por DRCG4."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única. K6,2 com novas ondas T atribuídas à hipercalemia resolve a premissa elétrica. Cálcio não substitui deslocamento/remoção. Item não prescreve doses; não define dialise automática por DRCG4."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única. K6,2 com novas ondas T atribuídas à hipercalemia resolve a premissa elétrica. Cálcio não substitui deslocamento/remoção. Item não prescreve doses; não define dialise automática por DRCG4."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única. K6,2 com novas ondas T atribuídas à hipercalemia resolve a premissa elétrica. Cálcio não substitui deslocamento/remoção. Item não prescreve doses; não define dialise automática por DRCG4."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única. K6,2 com novas ondas T atribuídas à hipercalemia resolve a premissa elétrica. Cálcio não substitui deslocamento/remoção. Item não prescreve doses; não define dialise automática por DRCG4."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única. K6,2 com novas ondas T atribuídas à hipercalemia resolve a premissa elétrica. Cálcio não substitui deslocamento/remoção. Item não prescreve doses; não define dialise automática por DRCG4."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 19,
+          "annulled": false,
+          "reason": "Dez dimensões próprias do literal exato; duplicidade pode bloquear independentemente de pontuação alta."
+        },
+        "decisionTree": [
+          "0: fontes próprias no alcance da questão; nenhum full-text de FGF23 presumido",
+          "1: dez eliminatórios sem disparo",
+          "2: recurso científico não procede",
+          "3: aprovada",
+          "publicação derivada: LIBERADA"
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "985d735c",
+            "question": {
+              "t": "Hipercalemia e Gluconato de Cálcio",
+              "qid": "985d735c",
+              "q": "Após gluconato de cálcio intravenoso por hipercalemia com alteração eletrocardiográfica, qual conduta reflete melhor a duração do seu efeito?",
+              "refs": [
+                "ukka_hyperkalemia_2023",
+                "brenner_rector"
+              ],
+              "opts": [
+                "Considerar a proteção miocárdica definitiva por 24 horas e adiar terapias que removem potássio",
+                "Reconhecer efeito rápido, porém transitório, e associar medidas para deslocar/remover potássio com reavaliação do ECG",
+                "Usar o cálcio como principal método de redução sérica do potássio nas próximas 6 a 8 horas",
+                "Evitar nova dose de cálcio mesmo se o ECG continuar tóxico após a resposta inicial"
+              ],
+              "ans": 1,
+              "exp": "O cálcio intravenoso protege rapidamente o miocárdio na hipercalemia com toxicidade elétrica, mas seu efeito é temporário: ele não reduz o potássio sérico. Por isso, a resposta correta é manter reavaliação clínica/ECG e associar medidas que desloquem potássio para o intracelular e o removam do organismo. Tratar o cálcio como terapia definitiva, como quelante ou como medida de longa duração cria falsa segurança.",
+              "diff": "medium",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "1b7e568c57f786795f6255aa5246808bd5955545860c58fd4d021900ebf72110",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato começa após cálcio já administrado e cobra duração transitória/continuidade; atual cobra iniciar cálcio diante de ECG tóxico mesmo na faixa numérica moderada, com medidas paralelas.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "1f962c0e",
+            "question": {
+              "t": "Hipercalemia: Tratamento com Insulina",
+              "qid": "1f962c0e",
+              "q": "Na hipercalemia aguda moderada a grave, qual esquema descreve corretamente a terapia insulina-glicose e seu cuidado de segurança essencial?",
+              "refs": [
+                "ukka_hyperkalemia_2023",
+                "brenner_rector"
+              ],
+              "opts": [
+                "Insulina regular/solúvel 10 unidades intravenosa com glicose, seguida de monitorização seriada da glicemia pelo risco de hipoglicemia",
+                "Insulina NPH subcutânea em baixa dose, sem glicose, porque o efeito desejado é renal e tardio",
+                "Insulina intravenosa apenas se a glicemia basal estiver acima de 200 mg/dL",
+                "Dose muito alta de insulina com pouca glicose, dispensando controle glicêmico após a infusão"
+              ],
+              "ans": 0,
+              "exp": "A terapia insulina-glicose desloca potássio para o meio intracelular por ativação da Na+/K+-ATPase e é uma das medidas centrais para reduzir temporariamente o K sérico na hipercalemia aguda. O esquema recomendado usa insulina regular/solúvel intravenosa associada a glicose; a glicemia deve ser monitorada depois, especialmente em pacientes com DRC, pelo risco de hipoglicemia. NPH subcutânea é lenta e inadequada; não se espera glicemia alta para tratar hipercalemia ameaçadora; e aumentar insulina sem monitorização é inseguro.",
+              "diff": "hard",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "de90df7b79d41f96113cd7cb55002513ad4caf1dc5411bec977cd1682cb5c0fd",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato cobra esquema específico de insulina e prevenção de hipoglicemia; atual plano global inicial por ECG, sem doses.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "32f342fc",
+            "question": {
+              "qid": "32f342fc",
+              "q": "Paciente com LRA oligúrica mantém potássio de 7,0 mEq/L e alargamento progressivo do QRS apesar de cálcio intravenoso, insulina com glicose e terapia adjuvante apropriada. Qual é a próxima conduta?",
+              "opts": [
+                "Iniciar terapia renal substitutiva de urgência enquanto se mantém o tratamento de estabilização",
+                "Aguardar nova creatinina, pois a indicação depende do valor da ureia",
+                "Administrar apenas resina oral e reavaliar em 24 horas",
+                "Adiar intervenção até o potássio ultrapassar um limiar numérico fixo"
+              ],
+              "ans": 0,
+              "exp": "Hipercalemia com toxicidade eletrocardiográfica que persiste apesar do tratamento clínico representa indicação emergencial de terapia renal substitutiva. Cálcio estabiliza a membrana, e insulina-glicose desloca temporariamente o potássio para o meio intracelular; nenhuma dessas medidas remove carga suficiente quando a hipercalemia permanece refratária. A decisão decorre da ameaça vital e da resposta ao tratamento, não de ureia, creatinina ou um único limiar isolado.",
+              "refs": [
+                "ukka_hyperkalemia_2023",
+                "kdigo_aki"
+              ],
+              "cat": "lra",
+              "diff": "medium",
+              "t": "Hipercalemia Refratária e TRS de Urgência"
+            },
+            "currentQuestionSHA256": "0429ae3aa589a3774cdd82a7315c98762dcbd0470a3223996a8a6ef3414cd8b6",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato já recebeu tratamento e tem LRA oligúrica/refratariedade com QRS progressivo: TRS urgente. Proposta sem tentativa inicial ou refratariedade.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "6a19aece",
+            "question": {
+              "qid": "6a19aece",
+              "q": "Em paciente com hipercalemia e alterações no ECG, qual é o objetivo primordial do cálcio intravenoso?",
+              "opts": [
+                "Reduzir diretamente o potássio sérico por precipitação intestinal.",
+                "Antagonizar a toxicidade elétrica do potássio na membrana miocárdica, sem baixar o K sérico.",
+                "Induzir a entrada de potássio nas células por estímulo beta-2.",
+                "Aumentar a excreção renal de potássio por maior fluxo tubular distal."
+              ],
+              "ans": 1,
+              "exp": "O cálcio intravenoso é a etapa de proteção cardíaca: antagoniza a toxicidade elétrica do potássio elevado na membrana miocárdica e reduz o risco imediato de arritmias. Ele não diminui o K sérico; por isso deve ser acompanhado de terapias que desloquem o potássio para o intracelular e de estratégias de remoção. Estímulo beta-2 é papel do salbutamol, e excreção renal depende de diuréticos/função renal, não do cálcio.",
+              "refs": [
+                "ukka_hyperkalemia_2023",
+                "brenner_rector"
+              ],
+              "cat": "eletrólitos",
+              "diff": "medium",
+              "t": "Cálcio IV na Hipercalemia — Mecanismo"
+            },
+            "currentQuestionSHA256": "bd119c950126dbdce61a02866602c5b3f58caf4122de80d5cbc9b9fc960061c7",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato cobra mecanismo exclusivo do cálcio; atual escolhe plano inicial em dado clínico moderado com toxicidade.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "sourceReadings": [
+          {
+            "id": "ukka2026",
+            "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 4970372,
+              "sha256": "6910acb34f04d145e7828e9bf3c9a55f182def8764caf2a91fbac667215c0eb3"
+            },
+            "readScope": "PDF oficial180p próprio já lido nesta sessão A008; reabertura focal A009 p14/15/77/86/114/115 confere16.2a2C/16.3.1grave1B/16.3.2moderado2C/17.2glicemia0-360min1C e30-60mincálcio. Card literal inteiro igualA008 mas gate científico próprio; não herda aprovação de consumer.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          }
+        ],
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            73,
+            75,
+            81,
+            78
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": false,
+          "lengthIsNotClinicalApproval": true
+        },
+        "referenceBindings": {
+          "ukka_hyperkalemia_2023": "7a3cbcf898e3d56a2a8123cfd9c56a09aee43e35133dc346d7800ccdf8779bc8"
+        },
+        "packageIntegrationHold": false,
+        "cardEvidenceHold": false,
+        "integration": "NÃO APLICADA",
+        "identityAndHistory": "Nenhum qid/survivor excluído, nenhum FSRS/tentativa resetado; fundir/redirecionar requer decisão explícita de preservação de identidades."
+      },
+      {
+        "qid": "345321d6",
+        "sourceLine": 237,
+        "BEFORE": {
+          "qid": "345321d6",
+          "q": "Paciente com insuficiência hepática grave e choque está em terapia renal substitutiva contínua com anticoagulação regional por citrato. A relação cálcio total/cálcio ionizado sobe progressivamente para 2,6, o cálcio ionizado cai apesar de maior reposição e surge acidose metabólica. Qual é a melhor conduta?",
+          "opts": [
+            "Reconhecer provável acúmulo de citrato, reduzir ou interromper sua carga conforme o protocolo, otimizar a depuração e considerar outra estratégia de anticoagulação",
+            "Manter o citrato sem ajustes, pois insuficiência hepática não modifica o risco quando o filtro permanece pérvio",
+            "Dobrar a infusão de citrato para corrigir a acidose por sua conversão em bicarbonato",
+            "Trocar obrigatoriamente para heparina em alta dose, pois hepatopatia é contraindicação absoluta ao citrato"
+          ],
+          "ans": 0,
+          "exp": "A combinação de relação cálcio total/ionizado em ascensão para valor acima de 2,5, hipocalcemia ionizada, necessidade crescente de reposição de cálcio e piora da acidose sugere acúmulo de citrato. Insuficiência hepática grave e choque reduzem a capacidade metabólica, mas hepatopatia isolada não torna o citrato universalmente proibido. A resposta deve seguir protocolo experiente: reduzir ou interromper a carga de citrato, aumentar sua remoção quando viável e usar anticoagulação alternativa se o distúrbio persistir ou o risco for inaceitável. Não existe regra universal de reduzir a dose exatamente pela metade.",
+          "refs": [
+            "siaarti_sin_citrate_2023",
+            "kdigo_aki"
+          ],
+          "cat": "dialise",
+          "diff": "hard",
+          "t": "CRRT com Citrato — Acúmulo e Conduta"
+        },
+        "beforeQuestionSHA256": "2f3f11a15f548f38e0d913d2c93e02029b04adef1f5f2c43918e5d968b02ffed",
+        "AFTER": {
+          "qid": "345321d6",
+          "q": "Paciente com hepatopatia grave e choque recebe terapia renal substitutiva contínua com citrato. A relação cálcio total/ionizado, ambos em mmol/L, sobe a 2,6; o ionizado cai apesar de maior reposição e surge acidose. Qual plano responde melhor ao conjunto?",
+          "opts": [
+            "Reduzir carga de citrato, tratar hipocalcemia e avaliar remoção ou anticoagulação alternativa.",
+            "Manter carga de citrato, tratar hipocalcemia e usar reposição como único ajuste do protocolo.",
+            "Elevar carga de citrato, tratar hipocalcemia e esperar seu metabolismo corrigir toda acidose.",
+            "Manter carga de citrato, ampliar bicarbonato e interpretar a relação apenas como efeito do filtro."
+          ],
+          "ans": 0,
+          "exp": "A tríade de hipocalcemia ionizada, reposição crescente e acidose, com relação total/ionizado acima de 2,5 ou em ascensão, sugere acúmulo de citrato. A relação usa unidades molares iguais e não deve ser interpretada isoladamente. O parecer da Sociedade Italiana de Anestesia, Analgesia, Reanimação e Terapia Intensiva e da Sociedade Italiana de Nefrologia (SIAARTI-SIN) orienta reduzir ou interromper a carga, corrigir hipocalcemia, favorecer remoção e avaliar outra anticoagulação conforme protocolo/gravidade. Hepatopatia e choque aumentam risco, mas hepatopatia isolada não impõe proibição universal. Cálcio pós-filtro baixo informa eficácia local; não explica sozinho esse conjunto sistêmico.",
+          "refs": [
+            "siaarti_sin_citrate_2023"
+          ],
+          "cat": "dialise",
+          "diff": "hard",
+          "t": "Terapia Renal Substitutiva Contínua (CRRT, sigla em inglês) com Citrato — Acúmulo e Conduta"
+        },
+        "afterQuestionSHA256": "f8851cd3e01edd2251d1508af88b717af989f013b5ed9acd289b4ba95597a279",
+        "OP": "Responder ao padrão sistêmico de acúmulo de citrato durante terapia contínua com medidas de carga, cálcio e remoção.",
+        "classification": {
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "hard",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): fonte no alcance das afirmações da questão, nenhum eliminatório, score próprio e aprovada.",
+        "ownJustification": "Original publisher PDF8/Table2 e corpo próprio distinguem acúmulo (razão>2,5, hipocalcemia, reposição crescente, acidose) de sobrecarga metabolizada com alcalose/razão normal e oferta insuficiente de tampão. Tabela admite reduzir carga ou interromper, favorecer remoção e alternativa. Review/position statement, sem GRADE próprio.",
+        "appeal": {
+          "plausibleScientificChallenge": false,
+          "finding": "A é única no conjunto explicitado, com mesmas unidades molares. Choque/hepatopatia aumentam risco mas não são proibição universal; pós-filtro baixo não explica sinais sistêmicos. Não cobra ajuste fixo de máquina sem protocolo.",
+          "editorialDuplicateOrIdentityChallenge": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única no conjunto explicitado, com mesmas unidades molares. Choque/hepatopatia aumentam risco mas não são proibição universal; pós-filtro baixo não explica sinais sistêmicos. Não cobra ajuste fixo de máquina sem protocolo."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única no conjunto explicitado, com mesmas unidades molares. Choque/hepatopatia aumentam risco mas não são proibição universal; pós-filtro baixo não explica sinais sistêmicos. Não cobra ajuste fixo de máquina sem protocolo."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única no conjunto explicitado, com mesmas unidades molares. Choque/hepatopatia aumentam risco mas não são proibição universal; pós-filtro baixo não explica sinais sistêmicos. Não cobra ajuste fixo de máquina sem protocolo."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única no conjunto explicitado, com mesmas unidades molares. Choque/hepatopatia aumentam risco mas não são proibição universal; pós-filtro baixo não explica sinais sistêmicos. Não cobra ajuste fixo de máquina sem protocolo."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única no conjunto explicitado, com mesmas unidades molares. Choque/hepatopatia aumentam risco mas não são proibição universal; pós-filtro baixo não explica sinais sistêmicos. Não cobra ajuste fixo de máquina sem protocolo."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única no conjunto explicitado, com mesmas unidades molares. Choque/hepatopatia aumentam risco mas não são proibição universal; pós-filtro baixo não explica sinais sistêmicos. Não cobra ajuste fixo de máquina sem protocolo."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única no conjunto explicitado, com mesmas unidades molares. Choque/hepatopatia aumentam risco mas não são proibição universal; pós-filtro baixo não explica sinais sistêmicos. Não cobra ajuste fixo de máquina sem protocolo."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única no conjunto explicitado, com mesmas unidades molares. Choque/hepatopatia aumentam risco mas não são proibição universal; pós-filtro baixo não explica sinais sistêmicos. Não cobra ajuste fixo de máquina sem protocolo."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única no conjunto explicitado, com mesmas unidades molares. Choque/hepatopatia aumentam risco mas não são proibição universal; pós-filtro baixo não explica sinais sistêmicos. Não cobra ajuste fixo de máquina sem protocolo."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única no conjunto explicitado, com mesmas unidades molares. Choque/hepatopatia aumentam risco mas não são proibição universal; pós-filtro baixo não explica sinais sistêmicos. Não cobra ajuste fixo de máquina sem protocolo."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 19,
+          "annulled": false,
+          "reason": "Dez dimensões próprias do literal exato; duplicidade pode bloquear independentemente de pontuação alta."
+        },
+        "decisionTree": [
+          "0: fontes próprias no alcance da questão; nenhum full-text de FGF23 presumido",
+          "1: dez eliminatórios sem disparo",
+          "2: recurso científico não procede",
+          "3: aprovada",
+          "publicação derivada: LIBERADA"
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "e5f38c55",
+            "question": {
+              "qid": "e5f38c55",
+              "q": "Durante CRRT com anticoagulação regional por citrato, qual conjunto de achados mais sustenta acúmulo sistêmico de citrato, em vez de simples sobrecarga alcalina ou anticoagulação eficaz do circuito?",
+              "opts": [
+                "Alcalose metabólica com relação cálcio total/ionizado normal e cálcio ionizado sistêmico estável",
+                "Cálcio ionizado pós-filtro baixo, com cálcio sistêmico estável e sem aumento da reposição",
+                "Relação cálcio total/ionizado em ascensão para 2,5 ou mais, queda do cálcio ionizado, maior necessidade de reposição e piora da acidose",
+                "Hipofosfatemia isolada após vários dias de terapia contínua, com equilíbrio ácido-base preservado"
+              ],
+              "ans": 2,
+              "exp": "O acúmulo de citrato deve ser reconhecido por um padrão, não por um dado isolado: relação cálcio total/ionizado em elevação para cerca de 2,5 ou mais, hipocalcemia ionizada sistêmica, necessidade crescente de cálcio e acidose metabólica progressiva. Cálcio pós-filtro baixo avalia a anticoagulação no circuito. Alcalose com relação de cálcio normal sugere carga líquida excessiva de citrato já metabolizado, e hipofosfatemia isolada é uma complicação comum da CRRT prolongada, não um marcador específico de acúmulo.",
+              "refs": [
+                "siaarti_sin_citrate_2023"
+              ],
+              "cat": "dialise",
+              "diff": "hard",
+              "t": "CRRT com Citrato — Reconhecimento do Acúmulo"
+            },
+            "currentQuestionSHA256": "09c76b88d5cc1c8daf3c25730c59acc92f749429c87b21bc8be651b12a9f1dc5",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato escolhe o conjunto que reconhece acúmulo versus outras condições; proposta fornece o conjunto e cobra resposta de manejo. Reconhecimento e ação são decisões diferentes.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "f1d27a8f",
+            "question": {
+              "t": "TRSC — Anticoagulação Regional com Citrato",
+              "qid": "f1d27a8f",
+              "q": "Em paciente crítico com LRA em terapia renal substitutiva contínua, qual afirmação sobre anticoagulação regional com citrato é mais segura e correta?",
+              "refs": [
+                "kdigo_aki"
+              ],
+              "opts": [
+                "Deve ser feita com dose fixa de citrato, sem reposição de cálcio, pois o efeito fica restrito ao filtro",
+                "É uma estratégia preferencial quando não há contraindicação, com alvo de cálcio iônico baixo no circuito e reposição sistêmica de cálcio conforme protocolo",
+                "É contraindicada em toda LRA porque inevitavelmente agrava acidose metabólica",
+                "Pode ser usada sem ajuste ou monitorização em choque grave e insuficiência hepática avançada"
+              ],
+              "ans": 1,
+              "exp": "A anticoagulação regional com citrato é amplamente usada na TRSC por reduzir sangramento em comparação à heparina sistêmica, mas exige protocolo: citrato pré-filtro para quelar cálcio no circuito, monitorização de cálcio iônico no circuito e no paciente, reposição sistêmica de cálcio e vigilância ácido-base. Não é uma dose fixa universal. O risco central é acúmulo de citrato, especialmente em insuficiência hepática grave, hipoperfusão/choque intenso ou metabolismo comprometido, levando a hipocalcemia, aumento da razão cálcio total/cálcio iônico e distúrbios ácido-base. Portanto, a mensagem segura é: preferencial quando apropriada, nunca 'sem monitorização'.",
+              "diff": "medium",
+              "cat": "uti"
+            },
+            "currentQuestionSHA256": "fd35d4ed1d97d14b134b9114e1f961bce391d8d383912d470bcdaf540a2497cd",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato cobra princípio de anticoagulação local/monitorização em paciente elegível; proposta apresenta complicação sistêmica estabelecida com tendência e intervenção.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "sourceReadings": [
+          {
+            "id": "citrate2023",
+            "url": "https://link.springer.com/article/10.1186/s44158-023-00091-w",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 3002353,
+              "sha256": "e9c6043c8b58238223986a0ab400fc47e33b8072cbbc082f8bbc3e1c801887c2"
+            },
+            "readScope": "PDF editora14p validado, p1 genreReview/position statement, p8/Table2 e body live próprios: acúmulo>2,5+triad, contrastes overload/insufficientload, intervenções. Publisher PDF resolvedURLpubliccookieerror qualificado, arquivoéPDForiginalvalidado; nenhumchallengecontornado.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          }
+        ],
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            94,
+            93,
+            93,
+            98
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": false,
+          "lengthIsNotClinicalApproval": true
+        },
+        "referenceBindings": {
+          "siaarti_sin_citrate_2023": "0d4601513c70aca73f1a247158e90f145fea6ecd202590d44d39a108f48307ad"
+        },
+        "packageIntegrationHold": false,
+        "cardEvidenceHold": false,
+        "integration": "NÃO APLICADA",
+        "identityAndHistory": "Nenhum qid/survivor excluído, nenhum FSRS/tentativa resetado; fundir/redirecionar requer decisão explícita de preservação de identidades."
+      },
+      {
+        "qid": "6474ec20",
+        "sourceLine": 240,
+        "BEFORE": {
+          "qid": "6474ec20",
+          "q": "Na hipercalemia, como interpretar um TTKG baixo, quando as condições de validade do cálculo estão atendidas?",
+          "opts": [
+            "Sugere resposta distal inadequada à secreção de K, como deficiência ou resistência à aldosterona",
+            "Confirma origem extrarrenal e dispensa avaliação medicamentosa",
+            "Demonstra secreção distal excessiva de potássio",
+            "Diagnostica hipercalemia por redistribuição celular isolada"
+          ],
+          "ans": 0,
+          "exp": "Um TTKG baixo em vigência de hipercalemia sugere resposta distal inadequada para secretar potássio, compatível com menor efeito mineralocorticoide ou resistência tubular à aldosterona. A interpretação exige cautela: o índice depende de condições como osmolalidade urinária e entrega distal adequadas, e não deve substituir avaliação de medicamentos, função renal, acidose, renina/aldosterona e contexto clínico. A versão anterior cobrava teste de fludrocortisona e dose, transformando uma ferramenta limitada em trivia pouco útil.",
+          "refs": [
+            "brenner_rector"
+          ],
+          "cat": "eletrólitos",
+          "diff": "hard",
+          "t": "TTKG na Hipercalemia — Interpretação Cautelosa"
+        },
+        "beforeQuestionSHA256": "0ba72f8511c1be465b17829c8dfcd5e50fcf4fd303ace24ebec533af8e559916",
+        "AFTER": {
+          "qid": "6474ec20",
+          "q": "Um relatório de hipercalemia inclui gradiente transtubular de potássio (TTKG) baixo. Nas alternativas, K indica potássio. Qual limitação impede tratar esse valor como diagnóstico específico de hipoaldosteronismo?",
+          "opts": [
+            "A reciclagem de ureia compromete a correção por osmolalidade usada no índice.",
+            "A fórmula calcula excreção total de K em 24h, sem estimar concentração distal.",
+            "A fórmula elimina a influência de hormônios e fármacos sobre o fluxo tubular.",
+            "O índice expressa reabsorção de potássio, sem incorporar seu valor plasmático."
+          ],
+          "ans": 0,
+          "exp": "A reciclagem intrarrenal de ureia viola uma premissa da correção pela osmolalidade; por esse motivo Kamel e Halperin deixam de usar TTKG na avaliação clínica de discalemias. Atender às condições tradicionais de osmolalidade/oferta distal não remove essa limitação. Investigar hipercalemia exige cenário, fármacos, função renal e ácido-base; não diagnosticar hipoaldosteronismo por um índice isolado.",
+          "refs": [
+            "kamel_urine_electrolytes_2021"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "Gradiente Transtubular de Potássio (TTKG) na Hipercalemia — Interpretação Cautelosa"
+        },
+        "afterQuestionSHA256": "cb7ab4bfc9460cca8a49f78337815627d0260aecc01fea272330c9864070d78d",
+        "OP": "Original: interpretar TTKG baixo como secreção distal/efeito de aldosterona sob premissas tradicionais; AFTER: reconhecer por que reciclagem de ureia invalida essa inferência.",
+        "classification": {
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "verdictV2": "redirecionar",
+        "legacyAuxiliary": "REDIRECIONAR",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7(c): FUNDIR ou redirecionar impede publicação, mesmo com mecanismo verificado.",
+        "ownJustification": "Kamel/Halperin2021 body próprio explica falha por reciclagem de ureia e declara não usar TTKG para discalemias. AFTER é fisiologicamente sustentado, mas troca a decisão associada ao qid: interpretar índice supostamente válido versus criticar a validade do próprio índice.",
+        "appeal": {
+          "plausibleScientificChallenge": false,
+          "finding": "A é única como questão isolada de limitação. Aprovação científica isolada não autoriza reutilizar identidade/FSRS com novo OP. Eliminatório3 relativo à identidade atual; pontuação anulada. Não criar novo qid nem migrar história nesta revisão.",
+          "editorialDuplicateOrIdentityChallenge": true
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única como questão isolada de limitação. Aprovação científica isolada não autoriza reutilizar identidade/FSRS com novo OP. Eliminatório3 relativo à identidade atual; pontuação anulada. Não criar novo qid nem migrar história nesta revisão."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única como questão isolada de limitação. Aprovação científica isolada não autoriza reutilizar identidade/FSRS com novo OP. Eliminatório3 relativo à identidade atual; pontuação anulada. Não criar novo qid nem migrar história nesta revisão."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": true,
+            "finding": "Kamel/Halperin2021 body próprio explica falha por reciclagem de ureia e declara não usar TTKG para discalemias. AFTER é fisiologicamente sustentado, mas troca a decisão associada ao qid: interpretar índice supostamente válido versus criticar a validade do próprio índice."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única como questão isolada de limitação. Aprovação científica isolada não autoriza reutilizar identidade/FSRS com novo OP. Eliminatório3 relativo à identidade atual; pontuação anulada. Não criar novo qid nem migrar história nesta revisão."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única como questão isolada de limitação. Aprovação científica isolada não autoriza reutilizar identidade/FSRS com novo OP. Eliminatório3 relativo à identidade atual; pontuação anulada. Não criar novo qid nem migrar história nesta revisão."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única como questão isolada de limitação. Aprovação científica isolada não autoriza reutilizar identidade/FSRS com novo OP. Eliminatório3 relativo à identidade atual; pontuação anulada. Não criar novo qid nem migrar história nesta revisão."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única como questão isolada de limitação. Aprovação científica isolada não autoriza reutilizar identidade/FSRS com novo OP. Eliminatório3 relativo à identidade atual; pontuação anulada. Não criar novo qid nem migrar história nesta revisão."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única como questão isolada de limitação. Aprovação científica isolada não autoriza reutilizar identidade/FSRS com novo OP. Eliminatório3 relativo à identidade atual; pontuação anulada. Não criar novo qid nem migrar história nesta revisão."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única como questão isolada de limitação. Aprovação científica isolada não autoriza reutilizar identidade/FSRS com novo OP. Eliminatório3 relativo à identidade atual; pontuação anulada. Não criar novo qid nem migrar história nesta revisão."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: A é única como questão isolada de limitação. Aprovação científica isolada não autoriza reutilizar identidade/FSRS com novo OP. Eliminatório3 relativo à identidade atual; pontuação anulada. Não criar novo qid nem migrar história nesta revisão."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": null
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": null
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": null
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": null
+            },
+            {
+              "dimension": "Alternativas",
+              "score": null
+            },
+            {
+              "dimension": "Distratores",
+              "score": null
+            },
+            {
+              "dimension": "Explicação",
+              "score": null
+            },
+            {
+              "dimension": "Referências",
+              "score": null
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": null
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": null
+            }
+          ],
+          "total": null,
+          "annulled": true,
+          "reason": "Eliminatório3: OP vinculado ao qid mudou; conteúdo isolado correto não remove gate de identidade."
+        },
+        "decisionTree": [
+          "0: fontes próprias no alcance da questão; nenhum full-text de FGF23 presumido",
+          "1: eliminatório3 de identidade",
+          "2: recurso de identidade procedente",
+          "3: redirecionar",
+          "publicação derivada: BLOQUEADA"
+        ],
+        "duplicateComparisons": [],
+        "sourceReadings": [
+          {
+            "id": "kamel2021",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8116912/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 204303,
+              "sha256": "b688e9d5ba9724a3d474d76f85e1340532eddbdfae9f9e608be06ab7d446a4a9"
+            },
+            "readScope": "Original body/front próprios: KIR2021;6(5):1211-1224/PMID34013099/DOI10.1016/j.ekir.2021.02.003. Modelo TTKG e ureia, declaração de não uso, contexto de urinaK e secreção distal/fluxo/ENaC. URL PubMed válida; não perfil ResearchGate ou íntegra presumida por metadados.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          }
+        ],
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            77,
+            78,
+            77,
+            78
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": false,
+          "lengthIsNotClinicalApproval": true
+        },
+        "referenceBindings": {
+          "kamel_urine_electrolytes_2021": "7e42acd45b6b1a273e8fee6d6fa4c943da50757a7343387a63a6140aee8895f6"
+        },
+        "packageIntegrationHold": true,
+        "cardEvidenceHold": false,
+        "integration": "NÃO APLICADA",
+        "identityAndHistory": "Nenhum qid/survivor excluído, nenhum FSRS/tentativa resetado; fundir/redirecionar requer decisão explícita de preservação de identidades."
+      },
+      {
+        "qid": "e94a6488",
+        "sourceLine": 241,
+        "BEFORE": {
+          "qid": "e94a6488",
+          "q": "Paciente com hiponatremia crônica grave, alcoolismo e hipocalemia começa a corrigir rapidamente após suspensão de tiazídico. Qual conduta é mais alinhada à prevenção de síndrome de desmielinização osmótica?",
+          "opts": [
+            "Aceitar correção rápida desde que os sintomas melhorem",
+            "Buscar elevação de pelo menos 15 mEq/L nas primeiras 24 horas",
+            "Atingir normonatremia nas primeiras 18 horas",
+            "Interromper terapias que elevam o sódio, monitorar de perto e considerar água livre/desmopressina se ultrapassar limites de segurança"
+          ],
+          "ans": 3,
+          "exp": "Em hiponatremia crônica, especialmente com fatores de alto risco como alcoolismo, hipocalemia, desnutrição ou doença hepática, a hipercorreção exige ação ativa. A diretriz europeia recomenda intervenção se o sódio subir mais de 10 mmol/L nas primeiras 24 horas ou mais de 8 mmol/L em qualquer 24 horas subsequente; pode ser necessário suspender terapia ativa, repor água livre e considerar desmopressina sob monitorização. Melhorar sintomas não autoriza hipercorreção. Normalizar rapidamente a natremia aumenta risco de desmielinização.",
+          "refs": [
+            "hypona",
+            "hyponatremia_verbalis2022",
+            "hyponatremia_adrogue2000"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "Hiponatremia — Prevenção de Hipercorreção"
+        },
+        "beforeQuestionSHA256": "1a3ed48227bda6c826c580b5476530555c23a2f6f16537b93271a054ca28e7e0",
+        "AFTER": {
+          "qid": "e94a6488",
+          "q": "Paciente com hiponatremia crônica grave, alcoolismo e hipocalemia tem aquarese e elevação acelerada do sódio após suspender tiazídico. Se a correção exceder o limite definido para seu alto risco, qual resposta é adequada?",
+          "opts": [
+            "Manter salina hipertônica e aguardar normalização, apesar da aquarese.",
+            "Suspender controle de sódio e atribuir a subida à recuperação da diurese.",
+            "Reforçar restrição hídrica e aguardar redução do sódio após cessar diurese.",
+            "Suspender terapia ativa e considerar redução da natremia com vigilância."
+          ],
+          "ans": 3,
+          "exp": "A sobrecorreção em alto risco exige interromper estímulos adicionais de elevação do sódio e reavaliar imediatamente sódio, diurese e tratamento. Aquarese após reversão da causa também pode acelerar o sódio (Na). Sterns e colaboradores descrevem limite de 8 mmol/L em qualquer 24 h para alto risco e consideração de redução terapêutica quando excedido; limite não é meta. Água livre e desmopressina podem conter a elevação sob condução especializada e monitorização. Melhora de sintomas não protege contra desmielinização tardia; não esperar sintomas neurológicos para agir.",
+          "refs": [
+            "sterns_hyponatremia_correction_2024"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "Hiponatremia — Prevenção de Hipercorreção"
+        },
+        "afterQuestionSHA256": "bc5ae1225459d402ea995b58ee462f8e85cd19454b602e751191d2e4e4b369e2",
+        "OP": "Agir na sobrecorreção hipotética já excedida em alto risco de desmielinização, incluindo reversão da causa/aquarese.",
+        "classification": {
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): fonte no alcance das afirmações da questão, nenhum eliminatório, score próprio e aprovada.",
+        "ownJustification": "Sterns body próprio define alto risco, limite8emqualquer24h separado de meta, aquarese como causa e consideração de relowering/freewater/DDAVP com monitorização. Warren corrobora que aquarese espontânea também exige ação e sintomas podem atrasar.",
+        "appeal": {
+          "plausibleScientificChallenge": false,
+          "finding": "D é única. O comando é condicional a excesso já definido, por isso não depende de inventar tempo/valor não fornecido nem exige recall numérico. Suspender estímulos adicionais e considerar relowering com vigilância; não esperar déficit neurológico.",
+          "editorialDuplicateOrIdentityChallenge": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: D é única. O comando é condicional a excesso já definido, por isso não depende de inventar tempo/valor não fornecido nem exige recall numérico. Suspender estímulos adicionais e considerar relowering com vigilância; não esperar déficit neurológico."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: D é única. O comando é condicional a excesso já definido, por isso não depende de inventar tempo/valor não fornecido nem exige recall numérico. Suspender estímulos adicionais e considerar relowering com vigilância; não esperar déficit neurológico."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: D é única. O comando é condicional a excesso já definido, por isso não depende de inventar tempo/valor não fornecido nem exige recall numérico. Suspender estímulos adicionais e considerar relowering com vigilância; não esperar déficit neurológico."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: D é única. O comando é condicional a excesso já definido, por isso não depende de inventar tempo/valor não fornecido nem exige recall numérico. Suspender estímulos adicionais e considerar relowering com vigilância; não esperar déficit neurológico."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: D é única. O comando é condicional a excesso já definido, por isso não depende de inventar tempo/valor não fornecido nem exige recall numérico. Suspender estímulos adicionais e considerar relowering com vigilância; não esperar déficit neurológico."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: D é única. O comando é condicional a excesso já definido, por isso não depende de inventar tempo/valor não fornecido nem exige recall numérico. Suspender estímulos adicionais e considerar relowering com vigilância; não esperar déficit neurológico."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: D é única. O comando é condicional a excesso já definido, por isso não depende de inventar tempo/valor não fornecido nem exige recall numérico. Suspender estímulos adicionais e considerar relowering com vigilância; não esperar déficit neurológico."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: D é única. O comando é condicional a excesso já definido, por isso não depende de inventar tempo/valor não fornecido nem exige recall numérico. Suspender estímulos adicionais e considerar relowering com vigilância; não esperar déficit neurológico."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: D é única. O comando é condicional a excesso já definido, por isso não depende de inventar tempo/valor não fornecido nem exige recall numérico. Suspender estímulos adicionais e considerar relowering com vigilância; não esperar déficit neurológico."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: D é única. O comando é condicional a excesso já definido, por isso não depende de inventar tempo/valor não fornecido nem exige recall numérico. Suspender estímulos adicionais e considerar relowering com vigilância; não esperar déficit neurológico."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 2
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 20,
+          "annulled": false,
+          "reason": "Dez dimensões próprias do literal exato; duplicidade pode bloquear independentemente de pontuação alta."
+        },
+        "decisionTree": [
+          "0: fontes próprias no alcance da questão; nenhum full-text de FGF23 presumido",
+          "1: dez eliminatórios sem disparo",
+          "2: recurso científico não procede",
+          "3: aprovada",
+          "publicação derivada: LIBERADA"
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "9f88ff37",
+            "question": {
+              "t": "Hiponatremia Crônica — Segurança da Correção",
+              "qid": "9f88ff37",
+              "q": "Paciente com hiponatremia hipotônica crônica, sintomas leves e sem instabilidade hemodinâmica será tratado de forma controlada. Qual princípio reduz o risco de síndrome de desmielinização osmótica?",
+              "refs": [
+                "hypona",
+                "hyponatremia_verbalis2022",
+                "hyponatremia_adrogue2000"
+              ],
+              "opts": [
+                "Usar NaCl 3% em todo caso, independentemente dos sintomas",
+                "Definir o tratamento sem avaliar volemia, duração e risco de hipercorreção",
+                "Normalizar a natremia em 24 horas para encurtar sintomas",
+                "Limitar a velocidade de elevação do sódio e monitorar natremia seriada"
+              ],
+              "ans": 3,
+              "exp": "Na hiponatremia crônica, o cérebro se adapta à hipo-osmolaridade; correção rápida demais pode causar síndrome de desmielinização osmótica. Por isso, o princípio central é limitar a velocidade de elevação do sódio e medir a natremia de forma seriada, ajustando a terapia se houver tendência à hipercorreção. NaCl 3% é reservado para sintomas moderados/graves ou situações selecionadas, não para todo caso leve. Volemia, duração, sintomas e fatores de alto risco mudam a estratégia terapêutica. Normalizar o sódio em 24 horas é inseguro.",
+              "diff": "medium",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "85fe5e9ba939e7507e565a1635a943f3b5bcfb99489702a176e2f3e1b0c255d2",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato cobra prevenção inicial/monitorização em correção controlada e sintomas leves; atual trata excesso após reversão da causa, em alto risco, decisão de resgate diferente.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "9c8d6b1e",
+            "question": {
+              "qid": "9c8d6b1e",
+              "q": "O aumento rápido da concentração sérica de sódio no tratamento da hiponatremia crônica pode desencadear a Síndrome de Desmielinização Osmótica. Qual é o limite de segurança atual?",
+              "opts": [
+                "Não ultrapassar elevação de 10 mEq/L nas primeiras 24 horas (≤8 mEq/L em pacientes de alto risco).",
+                "Corrigir rapidamente a natremia até níveis normais (140 mEq/L) em 24h.",
+                "Aumentar pelo menos 15 mEq/L nas primeiras 12 horas.",
+                "Elevar não mais que 2 mEq/L por dia."
+              ],
+              "ans": 0,
+              "exp": "Para prevenir a Síndrome de Desmielinização Osmótica (SDO), as diretrizes atuais recomendam que a elevação da concentração sérica de sódio não exceda 10 mEq/L nas primeiras 24 horas e 18 mEq/L nas primeiras 48 horas. A correção mais lenta, de 4-8 mEq/L/dia, é preferível em pacientes com alto risco de SDO, como aqueles com hiponatremia grave (<105 mEq/L), hipocalemia ou desnutrição. A correção rápida pode levar à desidratação osmótica dos oligodendrócitos e à desmielinização pontina e extrapontina.",
+              "refs": [
+                "hypona",
+                "hyponatremia_adrogue2000",
+                "hyponatremia_verbalis2022",
+                "salsa_trial"
+              ],
+              "cat": "eletrólitos",
+              "diff": "medium",
+              "t": "Correção da Hiponatremia — Limites de Segurança"
+            },
+            "currentQuestionSHA256": "cf74ad9bdeee25673b6fec33873ad7704c45e8759abc670ab20f549c0337fd98",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato pede recordar limites numéricos; proposta fornece condição de excesso e cobra resposta clínica, não recall.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "sourceReadings": [
+          {
+            "id": "sterns2024",
+            "url": "https://doi.org/10.2215/CJN.0000000000000244",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 113891,
+              "sha256": "67d5be85e869c401842de8ea7e3db552c3472b466d3197682c1c74a2016911ea"
+            },
+            "readScope": "Original body/front próprios, CJASN2024;19(1):129-135/PMID37379081, publicadoonline2023 distinto de volume2024. Painel US/Irish alto risco, <=8qualquer24h vs meta4-6, aquarese, relowering/freewater/DDAVP e sintomas tardios; não misturar limites europeus ou universalizar relowering.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          },
+          {
+            "id": "warren2023",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10502587/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 565541,
+              "sha256": "cd2ee6512874717c9e15b4a94ae5569098e80efb9cde451a2398ba6a486e7008"
+            },
+            "readScope": "Original body/front próprios EndocrRev2023;44(5):819-861/DOI10.1210/endrev/bnad010. V2 basolateral, AQP2/inserção/água, SIAD e antagonismo/aquarese versus natriurese; relowering mesmo sobrecorreção espontânea, riscos/limites sem benefício duro inventado.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          }
+        ],
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            70,
+            73,
+            75,
+            72
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": false,
+          "lengthIsNotClinicalApproval": true
+        },
+        "referenceBindings": {
+          "sterns_hyponatremia_correction_2024": "31e584506bb3b73c84f97a1af76a2de42dda5e86bcfe03374ea775d3271ba577"
+        },
+        "packageIntegrationHold": false,
+        "cardEvidenceHold": false,
+        "integration": "NÃO APLICADA",
+        "identityAndHistory": "Nenhum qid/survivor excluído, nenhum FSRS/tentativa resetado; fundir/redirecionar requer decisão explícita de preservação de identidades."
+      },
+      {
+        "qid": "93646aa8",
+        "sourceLine": 248,
+        "BEFORE": {
+          "qid": "93646aa8",
+          "q": "Paciente com SIADH crônica selecionada recebe tolvaptana com monitorização da natremia. Qual padrão de diurese explica a elevação do sódio sérico?",
+          "opts": [
+            "Natriurese maciça com perda proporcional de sódio e água",
+            "Aquarese, isto é, excreção de água livre sem perda proporcional de eletrólitos",
+            "Diurese isotônica obrigatória com caliurese intensa",
+            "Retenção seletiva de água no túbulo proximal"
+          ],
+          "ans": 1,
+          "exp": "Vaptanos como a tolvaptana antagonizam o receptor V2 da vasopressina no ducto coletor, reduzem a inserção de aquaporina 2 e geram aquarese: excreção de água livre sem natriurese proporcional. Esse mecanismo pode elevar a natremia em hiponatremia euvolêmica/hipervolêmica selecionada, mas exige monitorização porque a correção pode ser rápida. Não é natriurese maciça, diurese isotônica nem retenção de água.",
+          "refs": [
+            "hyponatremia_verbalis2022",
+            "hypona"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "Vaptanos — Aquarese na SIADH"
+        },
+        "beforeQuestionSHA256": "fbd4374bdd8c638ba4293ec2c02660d6ad892c3897545b9e33d5888cb24857b9",
+        "AFTER": {
+          "qid": "93646aa8",
+          "q": "Adulto com síndrome de antidiurese inapropriada (SIAD) foi selecionado para iniciar tolvaptana no hospital com monitorização. Qual padrão renal explica a elevação da natremia? Nas alternativas, V2 indica receptor de vasopressina tipo 2.",
+          "opts": [
+            "Maior excreção proporcional de sódio e água, com urina de tonicidade plasmática.",
+            "Maior excreção de água livre, sem aumento proporcional da perda de eletrólitos.",
+            "Menor excreção de água livre, com aumento de concentração da urina pelo V2.",
+            "Maior excreção de potássio e sódio, por bloqueio de transporte na alça espessa."
+          ],
+          "ans": 1,
+          "exp": "Tolvaptana antagoniza V2 e favorece excreção de água livre, denominada aquarese; isso pode elevar sódio sem perda proporcional de eletrólitos. Natriurese por diurético de alça e ação antidiurética de V2 são mecanismos distintos. A formulação clínica não estabelece indicação para toda SIAD: há risco de correção rápida, e a rotulagem norte-americana consultada exige início/reinício hospitalar com natremia monitorizada. Não substitui solução hipertônica quando há emergência neurológica nem demonstra benefício clínico duro apenas por elevar o sódio (Na).",
+          "refs": [
+            "warren_siadh_aquaresis_2023"
+          ],
+          "cat": "eletrólitos",
+          "diff": "easy",
+          "t": "Vaptanos — Aquarese na Síndrome de Secreção Inapropriada de Hormônio Antidiurético (SIADH)"
+        },
+        "afterQuestionSHA256": "760128131471ca625c1fa335d23cf3c6806955dccef5d21060dba0562a260331",
+        "OP": "Distinguir aquarese de natriurese para explicar elevação do sódio por antagonismo V2 em SIAD selecionada.",
+        "classification": {
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "verdictV2": "fundir",
+        "legacyAuxiliary": "FUNDIR",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7(c): FUNDIR ou redirecionar impede publicação, mesmo com mecanismo verificado.",
+        "ownJustification": "Warren body próprio explica V2/principal cell/AQP2/água livre, aquarese versus natriurese. DailyMed atual boxed/§1/§12.1 confirma iniciação/reiniciação hospitalar, aquarese sem mudança significativa de Na/K urinário, sem emergências neurológicas e benefício sintomático não estabelecido. Não se projeta desfecho duro só por Na.",
+        "appeal": {
+          "plausibleScientificChallenge": false,
+          "finding": "B é única quanto ao efeito renal. Seleção terapêutica já foi informada e o comando não exige escolher indicação nem monitorização; caso clínico curto não converte Compreender/Sabe em Aplicar.",
+          "editorialDuplicateOrIdentityChallenge": true
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única quanto ao efeito renal. Seleção terapêutica já foi informada e o comando não exige escolher indicação nem monitorização; caso clínico curto não converte Compreender/Sabe em Aplicar."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única quanto ao efeito renal. Seleção terapêutica já foi informada e o comando não exige escolher indicação nem monitorização; caso clínico curto não converte Compreender/Sabe em Aplicar."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única quanto ao efeito renal. Seleção terapêutica já foi informada e o comando não exige escolher indicação nem monitorização; caso clínico curto não converte Compreender/Sabe em Aplicar."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única quanto ao efeito renal. Seleção terapêutica já foi informada e o comando não exige escolher indicação nem monitorização; caso clínico curto não converte Compreender/Sabe em Aplicar."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única quanto ao efeito renal. Seleção terapêutica já foi informada e o comando não exige escolher indicação nem monitorização; caso clínico curto não converte Compreender/Sabe em Aplicar."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única quanto ao efeito renal. Seleção terapêutica já foi informada e o comando não exige escolher indicação nem monitorização; caso clínico curto não converte Compreender/Sabe em Aplicar."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única quanto ao efeito renal. Seleção terapêutica já foi informada e o comando não exige escolher indicação nem monitorização; caso clínico curto não converte Compreender/Sabe em Aplicar."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única quanto ao efeito renal. Seleção terapêutica já foi informada e o comando não exige escolher indicação nem monitorização; caso clínico curto não converte Compreender/Sabe em Aplicar."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única quanto ao efeito renal. Seleção terapêutica já foi informada e o comando não exige escolher indicação nem monitorização; caso clínico curto não converte Compreender/Sabe em Aplicar."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: B é única quanto ao efeito renal. Seleção terapêutica já foi informada e o comando não exige escolher indicação nem monitorização; caso clínico curto não converte Compreender/Sabe em Aplicar."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 19,
+          "annulled": false,
+          "reason": "Dez dimensões próprias do literal exato; duplicidade pode bloquear independentemente de pontuação alta."
+        },
+        "decisionTree": [
+          "0: fontes próprias no alcance da questão; nenhum full-text de FGF23 presumido",
+          "1: dez eliminatórios sem disparo",
+          "2: duplicidade confirmada nos quatro eixos",
+          "3: fundir",
+          "publicação derivada: BLOQUEADA"
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "cfeef8e1",
+            "question": {
+              "t": "Mecanismo da tolvaptana na hiponatremia",
+              "qid": "cfeef8e1",
+              "q": "Qual é o mecanismo de ação da tolvaptana no tratamento de hiponatremia euvolêmica ou hipervolêmica selecionada?",
+              "refs": [
+                "hyponatremia_adrogue2000",
+                "hyponatremia_verbalis2022",
+                "salsa_trial"
+              ],
+              "opts": [
+                "Estimula a secreção de ADH para concentrar a urina",
+                "Antagonista seletivo do receptor V2 da vasopressina (no ducto coletor) → impede inserção de AQP2 → aquarese → elevação do sódio",
+                "Aumenta a excreção de sódio pelo néfron distal",
+                "Bloqueia canais de sódio do ducto coletor (ENaC)"
+              ],
+              "ans": 1,
+              "exp": "A tolvaptana antagoniza seletivamente o receptor V2 da vasopressina no ducto coletor, reduz a inserção de aquaporina-2 (AQP2) e aumenta a excreção de água livre, sem natriurese proporcional. Esse efeito de aquarese pode elevar o sódio sérico em hiponatremia euvolêmica ou hipervolêmica selecionada, mas exige monitorização para evitar correção rápida. Ela não estimula ADH, não atua primariamente como natriurético distal e não bloqueia o canal epitelial de sódio (ENaC).",
+              "diff": "medium",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "c2a403f15bc1db51d0a2511f2cdfa991a3b525be91bd9bb8e5d0d0ccc2bb6553",
+            "sameDecision": true,
+            "sameDataStructure": true,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": true,
+            "reason": "Candidato cobra mecanismo V2/AQP2/aquarese/Na e sua explicação já inclui água livre sem natriurese proporcional. Novo comando pergunta o mesmo efeito aquarético; SIAD selecionada e hospitalização já resolvida não acrescentam decisão/dados úteis. Ambos sem resposta a falha terapêutica, risco ou novo cálculo. Público médico/residente e PT-BR iguais, quatro eixos coincidem.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "21a99f07",
+            "question": {
+              "t": "SIADH — Papel dos Vaptanos",
+              "qid": "21a99f07",
+              "q": "Sobre o uso de tolvaptana em hiponatremia por SIADH, qual afirmação é mais segura e correta?",
+              "refs": [
+                "hyponatremia_verbalis2022",
+                "hypona"
+              ],
+              "opts": [
+                "É primeira linha para toda hiponatremia, inclusive hipovolêmica",
+                "Pode ser iniciada sem monitorização da natremia",
+                "Pode ser considerada em SIADH euvolêmica selecionada/refratária, com monitorização para evitar correção rápida",
+                "Não eleva a natremia porque atua em mecanismo diferente da vasopressina"
+              ],
+              "ans": 2,
+              "exp": "Tolvaptana pode ser considerada em SIADH euvolêmica selecionada, especialmente quando medidas como restrição hídrica falham ou são impraticáveis, mas exige monitorização da natremia pelo risco de correção rápida. Não deve ser usada como primeira linha universal, é inadequada na hiponatremia hipovolêmica e não deve ser iniciada sem capacidade de monitorar sódio e acesso à água. Seu mecanismo é antagonismo V2, com aquarese e elevação da natremia.",
+              "diff": "medium",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "112320d9593955f571288b0f8ac6fdd78ee3b3f95ca2644d74cd70d7cda01a6d",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato pergunta seleção/segurança terapêutica e monitorização; proposta mecanismo renal com seleção já concluída. Outro OP.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "sourceReadings": [
+          {
+            "id": "warren2023",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10502587/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 565541,
+              "sha256": "cd2ee6512874717c9e15b4a94ae5569098e80efb9cde451a2398ba6a486e7008"
+            },
+            "readScope": "Original body/front próprios EndocrRev2023;44(5):819-861/DOI10.1210/endrev/bnad010. V2 basolateral, AQP2/inserção/água, SIAD e antagonismo/aquarese versus natriurese; relowering mesmo sobrecorreção espontânea, riscos/limites sem benefício duro inventado.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          },
+          {
+            "id": "samsca2026",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5526617c-c7b9-4556-886d-729bbabbc566",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 218606,
+              "sha256": "d684ac28507dc721a29480216499c40fbc98f961540594b8200a3fd1c06cccfc"
+            },
+            "readScope": "SPL vigente própria reaberta, página UpdatedMay7,2026 e highlightsRevised4/2021 mantidos distintos. Boxed/§1/§2.1/§12.1/§14.2 próprios: hospitalinit/reinit, água livre sem alteração significativaNa/K urinário, não emergêncianeurológica, benefício sintomático nãoestabelecido. Não importar doses ao item.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          }
+        ],
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            80,
+            79,
+            75,
+            79
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": false,
+          "lengthIsNotClinicalApproval": true
+        },
+        "referenceBindings": {
+          "warren_siadh_aquaresis_2023": "692ba4f677a5a71dc4164c09cbe8b83e573d88a73140b70b9c7f06903c499323"
+        },
+        "packageIntegrationHold": true,
+        "cardEvidenceHold": false,
+        "integration": "NÃO APLICADA",
+        "identityAndHistory": "Nenhum qid/survivor excluído, nenhum FSRS/tentativa resetado; fundir/redirecionar requer decisão explícita de preservação de identidades."
+      },
+      {
+        "qid": "adcbaae7",
+        "sourceLine": 254,
+        "BEFORE": {
+          "qid": "adcbaae7",
+          "q": "Qual classe de fármacos é causa clássica de hipocalemia por aumento da entrega distal de sódio e da secreção renal de potássio?",
+          "opts": [
+            "Betabloqueadores não seletivos",
+            "Antagonistas da aldosterona, como espironolactona",
+            "Diuréticos tiazídicos e de alça, como hidroclorotiazida e furosemida",
+            "Inibidores da enzima conversora de angiotensina, como enalapril"
+          ],
+          "ans": 2,
+          "exp": "Diuréticos tiazídicos e de alça aumentam a oferta de sódio ao néfron distal; a reabsorção eletrogênica de sódio no ducto coletor favorece secreção de K+ e H+, produzindo hipocalemia e alcalose metabólica. Antagonistas da aldosterona e inibidores da enzima conversora de angiotensina tendem ao efeito oposto, com risco de hipercalemia. Betabloqueadores não seletivos podem interferir na distribuição do potássio, mas não são a causa clássica de perda renal kaliurética nesse contexto.",
+          "refs": [
+            "brenner_rector"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "Diuréticos — Hipocalemia por Perda Renal de Potássio"
+        },
+        "beforeQuestionSHA256": "df507c46a8a29d5c64e1c5b7a09a23ae00d96ba45857ddbf2d7a5b0c183b3ce2",
+        "AFTER": {
+          "qid": "adcbaae7",
+          "q": "Qual classe pode causar hipocalemia por aumentar fluxo e entrega de sódio ao segmento distal secretor de potássio?",
+          "opts": [
+            "Betabloqueadores, pela inibição da entrada de potássio em células periféricas.",
+            "Antagonistas mineralocorticoides, pela redução da ação da aldosterona distal.",
+            "Diuréticos de alça e tiazídicos, pela maior entrega distal de sódio e fluxo.",
+            "Inibidores da enzima conversora, pela diminuição da produção de aldosterona."
+          ],
+          "ans": 2,
+          "exp": "Diuréticos de alça e tiazídicos podem favorecer perda urinária de potássio por aumentar entrega distal de sódio e fluxo. A reabsorção eletrogênica distal contribui à secreção de potássio (K), conforme função tubular, volemia e ação hormonal. Antagonistas mineralocorticoides e inibidores da enzima conversora de angiotensina (IECA) reduzem efeito da aldosterona e tendem ao risco de hipercalemia. Betabloqueadores podem interferir na distribuição celular, sem representar a caliurese perguntada. O mecanismo não garante hipocalemia em todo usuário e não implica indicação de diurético em oligúria/hipovolemia.",
+          "refs": [
+            "ukka_hyperkalemia_2023",
+            "kamel_urine_electrolytes_2021"
+          ],
+          "cat": "eletrólitos",
+          "diff": "easy",
+          "t": "Diuréticos — Hipocalemia por Perda Renal de Potássio"
+        },
+        "afterQuestionSHA256": "89f7364b421bfc82c0fc8cab376e207f35123fd3de24eda2bbe7a8e9d8538ca9",
+        "OP": "Reconhecer classes de diuréticos que podem causar hipocalemia por oferta distal de sódio e fluxo, sem extrapolar prescrição individual.",
+        "classification": {
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): fonte no alcance das afirmações da questão, nenhum eliminatório, score próprio e aprovada.",
+        "ownJustification": "Kamel body explica entrega distal/fluxo/reabsorção eletrogênica ENaC e secreçãoK; UKKA discussão própria dos diuréticos especifica necessidade de função/volemia e mecanismos. Enunciado cobra classe que pode causar perda, sem universalizar hipocalemia.",
+        "appeal": {
+          "plausibleScientificChallenge": false,
+          "finding": "C é única. MRA/IECA tendem à hipercalemia e betabloqueador altera distribuição, não causa a caliurese descrita. Não recomenda diurético em oligúria ou hipovolemia.",
+          "editorialDuplicateOrIdentityChallenge": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: C é única. MRA/IECA tendem à hipercalemia e betabloqueador altera distribuição, não causa a caliurese descrita. Não recomenda diurético em oligúria ou hipovolemia."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: C é única. MRA/IECA tendem à hipercalemia e betabloqueador altera distribuição, não causa a caliurese descrita. Não recomenda diurético em oligúria ou hipovolemia."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: C é única. MRA/IECA tendem à hipercalemia e betabloqueador altera distribuição, não causa a caliurese descrita. Não recomenda diurético em oligúria ou hipovolemia."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: C é única. MRA/IECA tendem à hipercalemia e betabloqueador altera distribuição, não causa a caliurese descrita. Não recomenda diurético em oligúria ou hipovolemia."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: C é única. MRA/IECA tendem à hipercalemia e betabloqueador altera distribuição, não causa a caliurese descrita. Não recomenda diurético em oligúria ou hipovolemia."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: C é única. MRA/IECA tendem à hipercalemia e betabloqueador altera distribuição, não causa a caliurese descrita. Não recomenda diurético em oligúria ou hipovolemia."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: C é única. MRA/IECA tendem à hipercalemia e betabloqueador altera distribuição, não causa a caliurese descrita. Não recomenda diurético em oligúria ou hipovolemia."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: C é única. MRA/IECA tendem à hipercalemia e betabloqueador altera distribuição, não causa a caliurese descrita. Não recomenda diurético em oligúria ou hipovolemia."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: C é única. MRA/IECA tendem à hipercalemia e betabloqueador altera distribuição, não causa a caliurese descrita. Não recomenda diurético em oligúria ou hipovolemia."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Reavaliado no AFTER exato: C é única. MRA/IECA tendem à hipercalemia e betabloqueador altera distribuição, não causa a caliurese descrita. Não recomenda diurético em oligúria ou hipovolemia."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 2
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 20,
+          "annulled": false,
+          "reason": "Dez dimensões próprias do literal exato; duplicidade pode bloquear independentemente de pontuação alta."
+        },
+        "decisionTree": [
+          "0: fontes próprias no alcance da questão; nenhum full-text de FGF23 presumido",
+          "1: dez eliminatórios sem disparo",
+          "2: recurso científico não procede",
+          "3: aprovada",
+          "publicação derivada: LIBERADA"
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "69018bb9",
+            "question": {
+              "t": "Hipercalemia: Diurético de Alça e Caliurese",
+              "qid": "69018bb9",
+              "q": "Em paciente com DRC, hipercalemia crônica e função renal residual, como a furosemida pode ajudar a reduzir o potássio?",
+              "refs": [
+                "ukka_hyperkalemia_2023",
+                "kdigo_ckd",
+                "brenner_rector"
+              ],
+              "opts": [
+                "Quelando potássio diretamente na bexiga",
+                "Deslocando potássio para o intracelular como a insulina",
+                "Aumentando fluxo e oferta de sódio ao néfron distal, o que favorece secreção urinária de K",
+                "Bloqueando a absorção intestinal de potássio como o patiromer"
+              ],
+              "ans": 2,
+              "exp": "Com função renal residual e especialmente se houver hipervolemia, diurético de alça pode aumentar fluxo tubular distal e entrega de sódio ao coletor, favorecendo secreção urinária de potássio. Esse uso depende de volume, pressão arterial e capacidade de diurese; não é quelante intestinal nem terapia de redistribuição intracelular. A pergunta mede a diferença entre remover K pelo rim e apenas deslocá-lo temporariamente.",
+              "diff": "hard",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "740e6b49b60b0e40cd8e9f7b852185b30a372ac7cd02b994959a664b2e0350e8",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato nomeia furosemida em hipercalemia crônica com função residual e pede mecanismo de remoção versus redistribuição. Proposta identifica classe diante de mecanismo de efeito adverso hipocalêmico, outra decisão/dados.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "6a54b25c",
+            "question": {
+              "t": "Tiazídicos na DRC — PA e Potássio",
+              "qid": "6a54b25c",
+              "q": "Em paciente com DRC, hipertensão e tendência à hipercalemia, qual papel os tiazídicos ou tiazídico-like podem ter quando ainda há resposta diurética?",
+              "refs": [
+                "kdigo_ckd",
+                "brenner_rector"
+              ],
+              "opts": [
+                "São sempre contraindicados por hipercalcemia inevitável",
+                "Não interferem no potássio, apenas no sódio",
+                "Podem ajudar no controle pressórico e aumentar caliurese como adjuvantes, com monitorização de eletrólitos",
+                "Causam invariavelmente acidose metabólica grave"
+              ],
+              "ans": 2,
+              "exp": "Tiazídicos e tiazídico-like reduzem pressão arterial e podem aumentar a entrega distal de sódio, favorecendo secreção de potássio; por isso podem ser úteis como adjuvantes em DRC selecionada, desde que haja resposta e monitorização de Na, K, creatinina e volume. Não são quelantes nem solução isolada para hipercalemia grave. O item foi reescrito para evitar o corte rígido por TFGe como se fosse absoluto.",
+              "diff": "hard",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "16bf569345c9f10322ed8782e20f30194ecc6d22095037b65fcfd81a7a8321d9",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato pergunta papel adjuvante de tiazídico no controle PA/K em DRC responsiva; atual identifica classes causadoras de perda urinária, sem escolha terapêutica.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "sourceReadings": [
+          {
+            "id": "kamel2021",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8116912/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 204303,
+              "sha256": "b688e9d5ba9724a3d474d76f85e1340532eddbdfae9f9e608be06ab7d446a4a9"
+            },
+            "readScope": "Original body/front próprios: KIR2021;6(5):1211-1224/PMID34013099/DOI10.1016/j.ekir.2021.02.003. Modelo TTKG e ureia, declaração de não uso, contexto de urinaK e secreção distal/fluxo/ENaC. URL PubMed válida; não perfil ResearchGate ou íntegra presumida por metadados.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          },
+          {
+            "id": "ukka2026",
+            "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 4970372,
+              "sha256": "6910acb34f04d145e7828e9bf3c9a55f182def8764caf2a91fbac667215c0eb3"
+            },
+            "readScope": "PDF oficial180p próprio já lido nesta sessão A008; reabertura focal A009 p14/15/77/86/114/115 confere16.2a2C/16.3.1grave1B/16.3.2moderado2C/17.2glicemia0-360min1C e30-60mincálcio. Card literal inteiro igualA008 mas gate científico próprio; não herda aprovação de consumer.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          }
+        ],
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            78,
+            77,
+            76,
+            76
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": false,
+          "lengthIsNotClinicalApproval": true
+        },
+        "referenceBindings": {
+          "ukka_hyperkalemia_2023": "7a3cbcf898e3d56a2a8123cfd9c56a09aee43e35133dc346d7800ccdf8779bc8",
+          "kamel_urine_electrolytes_2021": "7e42acd45b6b1a273e8fee6d6fa4c943da50757a7343387a63a6140aee8895f6"
+        },
+        "packageIntegrationHold": false,
+        "cardEvidenceHold": false,
+        "integration": "NÃO APLICADA",
+        "identityAndHistory": "Nenhum qid/survivor excluído, nenhum FSRS/tentativa resetado; fundir/redirecionar requer decisão explícita de preservação de identidades."
+      }
+    ],
+    "cardReviews": [
+      {
+        "id": "courbebaisse_fgf23_ckd_2018",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Courbebaisse e Lanske — FGF23 na DRC (2018)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5932574/",
+          "journal": "Cold Spring Harb Perspect Med 2018;8(5):a031260",
+          "ano": 2018,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Distinguir adaptação do fosfato de hiperfosfatemia manifesta",
+          "icon": "🔬",
+          "resumo": "Revisão narrativa da fisiologia e patologia de FGF23. Na DRC, FGF23 costuma elevar-se antes de PTH e fósforo sérico; aumenta excreção fracional de fosfato nos néfrons funcionantes e reduz calcitriol. A redução de calcitriol pode contribuir ao hiperparatireoidismo secundário. A integração é um modelo fisiológico, com adaptações e resistência variáveis.",
+          "conclusao": "PTH elevado pode coexistir com fósforo ainda normal. FGF23 não aumenta PTH por uma ação direta universal; normalmente tem efeito supressor sobre a paratireoide, modificado no contexto da DRC.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "42a87cc3eeb3dd5ea45de5908d64ee43ac8e637f2904bdd3131c3d950109cb58",
+        "verdictV2": "revisão maior",
+        "confidence": "moderada",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7: card inteiro faz afirmação temporal antes de PTH não conferida no próprio resumo/legendas; fonte parcial com pendência decisiva bloqueia literal inteiro. Isto não invalida mecanismos já conferidos nem fabrica erro científico.",
+        "sourceReadings": [
+          {
+            "id": "courbebaisse2018",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/28778965/",
+            "sourcePin": null,
+            "readScope": "Resumo primário completo e legendas originais Fig3/5 PubMed l248-250/288-289/311-314 próprios: mecanismos de fosfato/calcitriol/PTH sustentados. NÃO alegada íntegra Courbebaisse. Sequência temporal específica antes de PTH no card não conferida; pendência decisiva de autorização do card inteiro. Não usar captcha/403/500/HTMLNoResult como body.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true,
+            "fullArticleBodyClaimed": false
+          }
+        ],
+        "specificPending": "Conferir no corpo original a afirmação temporal FGF23 antes de PTH e fósforo e qualificar seu alcance; resumo/legendas próprios sustentam mecanismos, não essa cronologia inteira.",
+        "usedByThisBatch": [
+          "1366b930"
+        ],
+        "currentBankConsumers": [],
+        "sharedCardGate": "Parecer próprio da versão exata; não aprova outros consumers e não autoriza aplicação parcial ou mistura de versões. UKKA literal igualA008, gate desta rodada próprio.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "kamel_urine_electrolytes_2021",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Kamel e Halperin — Eletrólitos urinários e limites do TTKG (2021)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34013099/",
+          "journal": "Kidney Int Rep 2021;6(5):1211–1224",
+          "ano": 2021,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Evitar atribuir diagnóstico específico a um índice fisiologicamente limitado",
+          "icon": "🔬",
+          "resumo": "Revisão fisiológica da interpretação de urina nos distúrbios hidroeletrolíticos. Os autores deixam de usar TTKG porque a reciclagem intrarrenal de ureia viola a premissa da correção pela osmolalidade. Excreção de potássio deve ser interpretada com cenário, medicamentos, função renal e estado ácido-base.",
+          "conclusao": "TTKG baixo não basta para diagnosticar hipoaldosteronismo. Garantir apenas osmolalidade urinária e oferta distal não remove a limitação do modelo; outros índices também têm limites.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "7e42acd45b6b1a273e8fee6d6fa4c943da50757a7343387a63a6140aee8895f6",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): versão literal própria confrontada às fontes, sem pendência.",
+        "sourceReadings": [
+          {
+            "id": "kamel2021",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8116912/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 204303,
+              "sha256": "b688e9d5ba9724a3d474d76f85e1340532eddbdfae9f9e608be06ab7d446a4a9"
+            },
+            "readScope": "Original body/front próprios: KIR2021;6(5):1211-1224/PMID34013099/DOI10.1016/j.ekir.2021.02.003. Modelo TTKG e ureia, declaração de não uso, contexto de urinaK e secreção distal/fluxo/ENaC. URL PubMed válida; não perfil ResearchGate ou íntegra presumida por metadados.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          }
+        ],
+        "specificPending": null,
+        "usedByThisBatch": [
+          "6474ec20",
+          "adcbaae7"
+        ],
+        "currentBankConsumers": [],
+        "sharedCardGate": "Parecer próprio da versão exata; não aprova outros consumers e não autoriza aplicação parcial ou mistura de versões. UKKA literal igualA008, gate desta rodada próprio.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "sterns_hyponatremia_correction_2024",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Sterns et al. — Segurança na correção da hiponatremia (2024)",
+          "url": "https://doi.org/10.2215/CJN.0000000000000244",
+          "journal": "Clin J Am Soc Nephrol 2024;19(1):129–135",
+          "ano": 2024,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Reconhecer sobrecorreção e vulnerabilidade à desmielinização",
+          "icon": "🔬",
+          "resumo": "Revisão dos fundamentos e controvérsias dos limites de correção. O painel norte-americano/irlandês recomenda não ultrapassar 8 mmol/L em qualquer 24h em alto risco de desmielinização, como alcoolismo, hipocalemia grave, desnutrição ou hepatopatia avançada. Diante de excesso de correção, considerar redução terapêutica da natremia com vigilância.",
+          "conclusao": "Limite não é meta; monitorizar sódio e diurese. Aquarese após reversão da causa pode causar sobrecorreção, mesmo sem excesso de salina. Desmopressina e água livre exigem condução especializada.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "31e584506bb3b73c84f97a1af76a2de42dda5e86bcfe03374ea775d3271ba577",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): versão literal própria confrontada às fontes, sem pendência.",
+        "sourceReadings": [
+          {
+            "id": "sterns2024",
+            "url": "https://doi.org/10.2215/CJN.0000000000000244",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 113891,
+              "sha256": "67d5be85e869c401842de8ea7e3db552c3472b466d3197682c1c74a2016911ea"
+            },
+            "readScope": "Original body/front próprios, CJASN2024;19(1):129-135/PMID37379081, publicadoonline2023 distinto de volume2024. Painel US/Irish alto risco, <=8qualquer24h vs meta4-6, aquarese, relowering/freewater/DDAVP e sintomas tardios; não misturar limites europeus ou universalizar relowering.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          }
+        ],
+        "specificPending": null,
+        "usedByThisBatch": [
+          "e94a6488"
+        ],
+        "currentBankConsumers": [],
+        "sharedCardGate": "Parecer próprio da versão exata; não aprova outros consumers e não autoriza aplicação parcial ou mistura de versões. UKKA literal igualA008, gate desta rodada próprio.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "warren_siadh_aquaresis_2023",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Warren et al. — SIAD e aquarese (2023)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10502587/",
+          "journal": "Endocr Rev 2023;44(5):819–861",
+          "ano": 2023,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Distinguir aquarese por bloqueio V2 de natriurese",
+          "icon": "🔬",
+          "resumo": "Revisão narrativa de síndrome de antidiurese inapropriada (SIAD). Tolvaptana bloqueia V2 e favorece excreção de água livre, elevando sódio, com risco de sobrecorreção. O mecanismo não estabelece benefício clínico duro nem indicação para toda SIAD. Na rotulagem norte-americana vigente consultada, iniciar ou reiniciar SAMSCA requer ambiente hospitalar com sódio monitorizado.",
+          "conclusao": "Aquarese não é perda proporcional de eletrólitos. A seleção terapêutica depende do cenário e fonte regulatória; não usar como solução de emergência neurológica nem tratar automaticamente toda hiponatremia.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "692ba4f677a5a71dc4164c09cbe8b83e573d88a73140b70b9c7f06903c499323",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): versão literal própria confrontada às fontes, sem pendência.",
+        "sourceReadings": [
+          {
+            "id": "warren2023",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10502587/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 565541,
+              "sha256": "cd2ee6512874717c9e15b4a94ae5569098e80efb9cde451a2398ba6a486e7008"
+            },
+            "readScope": "Original body/front próprios EndocrRev2023;44(5):819-861/DOI10.1210/endrev/bnad010. V2 basolateral, AQP2/inserção/água, SIAD e antagonismo/aquarese versus natriurese; relowering mesmo sobrecorreção espontânea, riscos/limites sem benefício duro inventado.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          },
+          {
+            "id": "samsca2026",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5526617c-c7b9-4556-886d-729bbabbc566",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 218606,
+              "sha256": "d684ac28507dc721a29480216499c40fbc98f961540594b8200a3fd1c06cccfc"
+            },
+            "readScope": "SPL vigente própria reaberta, página UpdatedMay7,2026 e highlightsRevised4/2021 mantidos distintos. Boxed/§1/§2.1/§12.1/§14.2 próprios: hospitalinit/reinit, água livre sem alteração significativaNa/K urinário, não emergêncianeurológica, benefício sintomático nãoestabelecido. Não importar doses ao item.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          }
+        ],
+        "specificPending": null,
+        "usedByThisBatch": [
+          "93646aa8"
+        ],
+        "currentBankConsumers": [],
+        "sharedCardGate": "Parecer próprio da versão exata; não aprova outros consumers e não autoriza aplicação parcial ou mistura de versões. UKKA literal igualA008, gate desta rodada próprio.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "ukka_hyperkalemia_2023",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "UKKA Hyperkalaemia Guideline 2023",
+          "url": "https://www.ukkidney.org/health-professionals/guidelines/treatment-acute-hyperkalaemia-adults-0",
+          "journal": "UK Kidney Association",
+          "ano": 2023,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Diretriz específica para detecção, tratamento hospitalar agudo e prevenção de hipercalemia em adultos",
+          "icon": "⚡",
+          "resumo": "Diretriz da UK Kidney Association dedicada ao manejo da hipercalemia em adultos, com foco especial na atualização de 2023 para tratamento hospitalar agudo. Organiza a resposta em etapas práticas: proteger o coração quando há sinais eletrocardiográficos de toxicidade com cálcio intravenoso; deslocar potássio para o compartimento intracelular com insulina-glicose e, como adjuvante, salbutamol; remover potássio do organismo conforme gravidade, função renal e resposta; e monitorar potássio e glicemia para detectar rebote e hipoglicemia. Destaca que o cálcio intravenoso estabiliza rapidamente o miocárdio, mas não reduz o potássio sérico e tem efeito transitório, exigindo terapias complementares.",
+          "conclusao": "Na hipercalemia aguda, a conduta segura é sequencial e simultaneamente orientada por risco: ECG tóxico exige proteção cardíaca imediata com cálcio, seguida de terapias de deslocamento e remoção de potássio com monitorização estreita.",
+          "curiosidade": "A atualização de 2023 enfatizou segurança medicamentosa: reforçou diferenças práticas entre sais de cálcio, prevenção de hipoglicemia após insulina-glicose e uso do salbutamol como adjuvante, não como monoterapia em hipercalemia grave."
+        },
+        "AFTER": {
+          "label": "UK Kidney Association — Hipercalemia em adultos (julho/2026)",
+          "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+          "journal": "UK Kidney Association",
+          "ano": 2026,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Proteção cardíaca transitória, insulina-glicose e monitorização na hipercalemia",
+          "icon": "📋",
+          "resumo": "Diretriz da UK Kidney Association (UKKA), atualizada em julho de 2026, para hipercalemia em adultos. Sugere cálcio intravenoso diante de alterações no eletrocardiograma (16.2a, 2C); o efeito elétrico é rápido e transitório, aproximadamente 30–60 minutos, sem reduzir o potássio. Recomenda infusão intravenosa de insulina solúvel 10 unidades com glicose 25 g na hipercalemia grave (16.3.1, 1B), com glicemia seriada desde o basal até 6 horas (17.2, 1C), prolongada em pacientes de alto risco. Cálcio, deslocamento e remoção de potássio têm funções distintas. O grau do cálcio foi reduzido de 1C para 2C nesta atualização; a evidência de benefício em desfechos clínicos permanece limitada.",
+          "conclusao": "Tratar toxicidade elétrica e potássio em paralelo; cálcio não corrige a hipercalemia e insulina não elimina K+ do organismo. Acompanhar eletrocardiograma, potássio e glicemia conforme o contexto.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "dbac5964610515fe33ca448b15c53def346e5ec4b1112d3b8eb48909b30e882e",
+        "afterSHA256": "7a3cbcf898e3d56a2a8123cfd9c56a09aee43e35133dc346d7800ccdf8779bc8",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): versão literal própria confrontada às fontes, sem pendência.",
+        "sourceReadings": [
+          {
+            "id": "ukka2026",
+            "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 4970372,
+              "sha256": "6910acb34f04d145e7828e9bf3c9a55f182def8764caf2a91fbac667215c0eb3"
+            },
+            "readScope": "PDF oficial180p próprio já lido nesta sessão A008; reabertura focal A009 p14/15/77/86/114/115 confere16.2a2C/16.3.1grave1B/16.3.2moderado2C/17.2glicemia0-360min1C e30-60mincálcio. Card literal inteiro igualA008 mas gate científico próprio; não herda aprovação de consumer.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          }
+        ],
+        "specificPending": null,
+        "usedByThisBatch": [
+          "805733f8",
+          "adcbaae7"
+        ],
+        "currentBankConsumers": [
+          "e0853fac",
+          "8b80b0a9",
+          "985d735c",
+          "1f962c0e",
+          "17dc6d7e",
+          "43313455",
+          "ebea50d5",
+          "1b286739",
+          "a73f61f6",
+          "69018bb9",
+          "a799c154",
+          "65d19905",
+          "7ec80c77",
+          "d92f30a9",
+          "f3d5015d",
+          "805733f8",
+          "32f342fc",
+          "b35be598",
+          "6a19aece",
+          "db25ef93"
+        ],
+        "sharedCardGate": "Parecer próprio da versão exata; não aprova outros consumers e não autoriza aplicação parcial ou mistura de versões. UKKA literal igualA008, gate desta rodada próprio.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "ispd_peritonitis_guideline",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "ISPD — Peritonitis Guideline 2022",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35264029/",
+          "journal": "Peritoneal Dialysis International 2022;42(2):110-153",
+          "ano": 2022,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Referência internacional para prevenção, diagnóstico, terapia empírica e manejo por organismo da peritonite associada à DP",
+          "icon": "📋",
+          "resumo": "A ISPD 2022 define peritonite em DP pela presença de pelo menos dois entre três critérios: quadro clínico compatível, como dor abdominal ou efluente turvo; leucócitos no efluente acima de 100/µL após permanência de pelo menos 2 horas, com mais de 50% de polimorfonucleares; ou cultura positiva. Após coleta microbiológica, recomenda antibiótico empírico imediato e específico do centro cobrindo gram-positivos e gram-negativos, preferencialmente por via intraperitoneal quando possível e na ausência de sepse. Para peritonite fúngica, recomenda retirada imediata do cateter e antifúngico por pelo menos 2 semanas após a remoção.",
+          "conclusao": "Suspeita de peritonite em DP exige coleta adequada e tratamento empírico sem aguardar cultura; agente, resposta clínica e presença de foco no cateter determinam ajuste, duração e necessidade de retirada.",
+          "curiosidade": "A diretriz propõe como metas anuais taxa global não superior a 0,40 episódio por paciente-ano e mais de 80% dos pacientes livres de peritonite."
+        },
+        "AFTER": {
+          "label": "ISPD — Peritonitis Guideline 2022",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35264029/",
+          "journal": "Peritoneal Dialysis International 2022;42(2):110-153",
+          "ano": 2022,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Referência internacional para prevenção, diagnóstico, terapia empírica e manejo por organismo da peritonite associada à DP",
+          "icon": "📋",
+          "resumo": "A ISPD 2022 define peritonite em DP pela presença de pelo menos dois entre três critérios: quadro clínico compatível, como dor abdominal ou efluente turvo; leucócitos no efluente acima de 100/µL após permanência de pelo menos 2 horas, com mais de 50% de polimorfonucleares; ou cultura positiva. Após coleta microbiológica, recomenda antibiótico empírico imediato e específico do centro cobrindo gram-positivos e gram-negativos, preferencialmente por via intraperitoneal quando possível e na ausência de sepse. Para peritonite fúngica, recomenda retirada imediata do cateter e antifúngico por pelo menos 2 semanas após a remoção.",
+          "conclusao": "Suspeita de peritonite em DP exige coleta adequada e tratamento empírico sem aguardar cultura; agente, resposta clínica e presença de foco no cateter determinam ajuste, duração e necessidade de retirada.",
+          "curiosidade": "A diretriz propõe como metas anuais taxa global não superior a 0,40 episódio por paciente-ano e mais de 80% dos pacientes livres de peritonite."
+        },
+        "beforeSHA256": "5e20480a5aa473f955b5028a13df0776d266b0f2adf0003a32894b65ee5ae064",
+        "afterSHA256": "e8ce57e1201a5f8b56beeab412fb0adb43ee2e0b5d2468c17cae6894c8956d83",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): versão literal própria confrontada às fontes, sem pendência.",
+        "sourceReadings": [
+          {
+            "id": "ispd2022",
+            "url": "https://ispd.org/wp-content/uploads/2025/09/LI-ET-1.pdf",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 1668002,
+              "sha256": "d9fdfb48b9188c17181c8cfb75c15fc8de569b36310bda612adf278619fcd959"
+            },
+            "readScope": "PDF oficial44p próprio, p3/4/10/11/13/14/27: doisde3 critérios, WBC>100/uL após>=2h/PMN>50%, coletaantesantibiótico, prontidão1B/coberturaG+/G-1C/IP1B semsepsesistêmica/logística; fungalcatheterimediato1C+antifungal>=2wk2C; targets<=.40 e>80%. Caractere µ falhou no extrator, unidade corroborada pelo original e equivalência0,1x10^9/L.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          }
+        ],
+        "specificPending": null,
+        "usedByThisBatch": [
+          "a221d304"
+        ],
+        "currentBankConsumers": [
+          "68b630ba",
+          "28b53ff8",
+          "547a3dc2",
+          "a221d304",
+          "e8040054",
+          "5eb00a6e",
+          "11279207",
+          "4792eca5",
+          "e1f9ccd1"
+        ],
+        "sharedCardGate": "Parecer próprio da versão exata; não aprova outros consumers e não autoriza aplicação parcial ou mistura de versões. UKKA literal igualA008, gate desta rodada próprio.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "siaarti_sin_citrate_2023",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "SIAARTI-SIN — Anticoagulação Regional por Citrato na TRS",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/37386664/",
+          "journal": "J Anesth Analg Crit Care. 2023;3(1):7",
+          "ano": 2023,
+          "tipo": "Opinião de especialistas",
+          "badge": "CONSENSUS",
+          "badgeColor": "#6366f1",
+          "impacto": "Monitorização e manejo seguro da anticoagulação regional por citrato em terapias renais contínuas e prolongadas",
+          "icon": "📋",
+          "resumo": "Documento conjunto das sociedades italianas de anestesia e nefrologia sobre anticoagulação regional por citrato. Recomenda monitorar cálcio ionizado do circuito e do paciente, cálcio total e equilíbrio ácido-base. Acúmulo deve ser suspeitado quando a relação cálcio total/ionizado sobe em direção a 2,5 ou mais, sobretudo junto de hipocalcemia sistêmica, necessidade crescente de reposição de cálcio e piora da acidose. Fígado, músculo esquelético e córtex renal participam do metabolismo; choque e disfunção hepática grave exigem vigilância ampliada, não uma regra fixa universal de dose.",
+          "conclusao": "Na CRRT com citrato, tendência da relação cálcio total/ionizado, cálcio sistêmico, necessidade de reposição e estado ácido-base devem ser interpretados em conjunto; acúmulo requer reduzir a carga, favorecer remoção ou mudar a anticoagulação conforme protocolo e gravidade.",
+          "curiosidade": "Cálcio ionizado pós-filtro baixo informa que o circuito está anticoagulado; ele não diagnostica sozinho acúmulo sistêmico de citrato no paciente."
+        },
+        "AFTER": {
+          "label": "SIAARTI-SIN — Anticoagulação Regional por Citrato na TRS",
+          "url": "https://link.springer.com/article/10.1186/s44158-023-00091-w",
+          "journal": "J Anesth Analg Crit Care. 2023;3(1):7",
+          "ano": 2023,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Monitorização e manejo seguro da anticoagulação regional por citrato em terapias renais contínuas e prolongadas",
+          "icon": "🔬",
+          "resumo": "Revisão/position statement da comissão SIAARTI-SIN sobre anticoagulação regional por citrato; opinião de especialistas, sem GRADE próprio. Monitoriza cálcio ionizado sistêmico e no circuito, cálcio total e ácido-base. Relação total/ionizado >2,5 ou em elevação, ambas em unidades molares, associada a hipocalcemia, maior reposição e acidose, sugere acúmulo. Choque e disfunção hepática grave exigem vigilância; hepatopatia isolada não impõe proibição universal.",
+          "conclusao": "Integrar tendência da relação e a tríade clínica; reduzir ou interromper carga de citrato, favorecer remoção e avaliar anticoagulação alternativa conforme protocolo e gravidade. Cálcio pós-filtro isolado informa anticoagulação do circuito, não acúmulo sistêmico.",
+          "curiosidade": "Acúmulo com acidose difere da sobrecarga de citrato metabolizado com alcalose; também pode haver oferta insuficiente de tampão sem acúmulo."
+        },
+        "beforeSHA256": "9090cf05708e7ec3b43c406de33b3442fffcb4e35b2b034a3a1a7d222e268b1e",
+        "afterSHA256": "0d4601513c70aca73f1a247158e90f145fea6ecd202590d44d39a108f48307ad",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): versão literal própria confrontada às fontes, sem pendência.",
+        "sourceReadings": [
+          {
+            "id": "citrate2023",
+            "url": "https://link.springer.com/article/10.1186/s44158-023-00091-w",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 3002353,
+              "sha256": "e9c6043c8b58238223986a0ab400fc47e33b8072cbbc082f8bbc3e1c801887c2"
+            },
+            "readScope": "PDF editora14p validado, p1 genreReview/position statement, p8/Table2 e body live próprios: acúmulo>2,5+triad, contrastes overload/insufficientload, intervenções. Publisher PDF resolvedURLpubliccookieerror qualificado, arquivoéPDForiginalvalidado; nenhumchallengecontornado.",
+            "readByIndependentReviewer": true,
+            "authorGateNotInherited": true
+          }
+        ],
+        "specificPending": null,
+        "usedByThisBatch": [
+          "345321d6"
+        ],
+        "currentBankConsumers": [
+          "345321d6",
+          "e5f38c55"
+        ],
+        "sharedCardGate": "Parecer próprio da versão exata; não aprova outros consumers e não autoriza aplicação parcial ou mistura de versões. UKKA literal igualA008, gate desta rodada próprio.",
+        "integration": "NÃO APLICADA"
+      }
+    ],
+    "independentExternalVerification": [
+      {
+        "id": "kamel2021",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8116912/",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 204303,
+          "sha256": "b688e9d5ba9724a3d474d76f85e1340532eddbdfae9f9e608be06ab7d446a4a9"
+        },
+        "readScope": "Original body/front próprios: KIR2021;6(5):1211-1224/PMID34013099/DOI10.1016/j.ekir.2021.02.003. Modelo TTKG e ureia, declaração de não uso, contexto de urinaK e secreção distal/fluxo/ENaC. URL PubMed válida; não perfil ResearchGate ou íntegra presumida por metadados.",
+        "readByIndependentReviewer": true,
+        "authorGateNotInherited": true
+      },
+      {
+        "id": "sterns2024",
+        "url": "https://doi.org/10.2215/CJN.0000000000000244",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 113891,
+          "sha256": "67d5be85e869c401842de8ea7e3db552c3472b466d3197682c1c74a2016911ea"
+        },
+        "readScope": "Original body/front próprios, CJASN2024;19(1):129-135/PMID37379081, publicadoonline2023 distinto de volume2024. Painel US/Irish alto risco, <=8qualquer24h vs meta4-6, aquarese, relowering/freewater/DDAVP e sintomas tardios; não misturar limites europeus ou universalizar relowering.",
+        "readByIndependentReviewer": true,
+        "authorGateNotInherited": true
+      },
+      {
+        "id": "warren2023",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10502587/",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 565541,
+          "sha256": "cd2ee6512874717c9e15b4a94ae5569098e80efb9cde451a2398ba6a486e7008"
+        },
+        "readScope": "Original body/front próprios EndocrRev2023;44(5):819-861/DOI10.1210/endrev/bnad010. V2 basolateral, AQP2/inserção/água, SIAD e antagonismo/aquarese versus natriurese; relowering mesmo sobrecorreção espontânea, riscos/limites sem benefício duro inventado.",
+        "readByIndependentReviewer": true,
+        "authorGateNotInherited": true
+      },
+      {
+        "id": "ispd2022",
+        "url": "https://ispd.org/wp-content/uploads/2025/09/LI-ET-1.pdf",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 1668002,
+          "sha256": "d9fdfb48b9188c17181c8cfb75c15fc8de569b36310bda612adf278619fcd959"
+        },
+        "readScope": "PDF oficial44p próprio, p3/4/10/11/13/14/27: doisde3 critérios, WBC>100/uL após>=2h/PMN>50%, coletaantesantibiótico, prontidão1B/coberturaG+/G-1C/IP1B semsepsesistêmica/logística; fungalcatheterimediato1C+antifungal>=2wk2C; targets<=.40 e>80%. Caractere µ falhou no extrator, unidade corroborada pelo original e equivalência0,1x10^9/L.",
+        "readByIndependentReviewer": true,
+        "authorGateNotInherited": true
+      },
+      {
+        "id": "citrate2023",
+        "url": "https://link.springer.com/article/10.1186/s44158-023-00091-w",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 3002353,
+          "sha256": "e9c6043c8b58238223986a0ab400fc47e33b8072cbbc082f8bbc3e1c801887c2"
+        },
+        "readScope": "PDF editora14p validado, p1 genreReview/position statement, p8/Table2 e body live próprios: acúmulo>2,5+triad, contrastes overload/insufficientload, intervenções. Publisher PDF resolvedURLpubliccookieerror qualificado, arquivoéPDForiginalvalidado; nenhumchallengecontornado.",
+        "readByIndependentReviewer": true,
+        "authorGateNotInherited": true
+      },
+      {
+        "id": "samsca2026",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5526617c-c7b9-4556-886d-729bbabbc566",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 218606,
+          "sha256": "d684ac28507dc721a29480216499c40fbc98f961540594b8200a3fd1c06cccfc"
+        },
+        "readScope": "SPL vigente própria reaberta, página UpdatedMay7,2026 e highlightsRevised4/2021 mantidos distintos. Boxed/§1/§2.1/§12.1/§14.2 próprios: hospitalinit/reinit, água livre sem alteração significativaNa/K urinário, não emergêncianeurológica, benefício sintomático nãoestabelecido. Não importar doses ao item.",
+        "readByIndependentReviewer": true,
+        "authorGateNotInherited": true
+      },
+      {
+        "id": "ukka2026",
+        "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 4970372,
+          "sha256": "6910acb34f04d145e7828e9bf3c9a55f182def8764caf2a91fbac667215c0eb3"
+        },
+        "readScope": "PDF oficial180p próprio já lido nesta sessão A008; reabertura focal A009 p14/15/77/86/114/115 confere16.2a2C/16.3.1grave1B/16.3.2moderado2C/17.2glicemia0-360min1C e30-60mincálcio. Card literal inteiro igualA008 mas gate científico próprio; não herda aprovação de consumer.",
+        "readByIndependentReviewer": true,
+        "authorGateNotInherited": true
+      },
+      {
+        "id": "courbebaisse2018",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/28778965/",
+        "sourcePin": null,
+        "readScope": "Resumo primário completo e legendas originais Fig3/5 PubMed l248-250/288-289/311-314 próprios: mecanismos de fosfato/calcitriol/PTH sustentados. NÃO alegada íntegra Courbebaisse. Sequência temporal específica antes de PTH no card não conferida; pendência decisiva de autorização do card inteiro. Não usar captcha/403/500/HTMLNoResult como body.",
+        "readByIndependentReviewer": true,
+        "authorGateNotInherited": true,
+        "fullArticleBodyClaimed": false
+      }
+    ],
+    "sourceAccessReceipts": [
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 2190,
+        "sha256": "85644708956d48721585fdb9f96bdee6f56ee1908c667c208907eed4bc672586"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 3469,
+        "sha256": "0ec21bcf6815544b118524aae4d8e8992ffe187e609104661552385f09253c62"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 473,
+        "sha256": "d751d4e4351da0bebf9700b08d4d0ed178fe5844a6089199dc9a1a994e5a9a73"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 486,
+        "sha256": "671edb941da2fb1514148af0378f0e8b171814a0f13c48635c8f22405ec03152"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1293,
+        "sha256": "ee34715e9de5aa5e7c03204ca28ac1e14496315550c98cc038ea6a3bf72d2dff"
+      }
+    ],
+    "rejectedAsFullText": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 6140,
+      "sha256": "478f38e0765ee9c406831bb2fc27e8019ac5227c20c6b28ca0de582d8449354a"
+    },
+    "summaryTable": [
+      {
+        "qid": "1366b930",
+        "OP": "Reconhecer a adaptação FGF23/fosfato/calcitriol na DRC com fósforo sérico normal, sem inferir intervenção.",
+        "verdictV2": "fundir",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "packageIntegrationHold": true,
+        "score": 19
+      },
+      {
+        "qid": "a221d304",
+        "OP": "Ordenar coleta do efluente e início precoce de cobertura empírica gram-positiva/negativa na suspeita de peritonite em DP.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "packageIntegrationHold": false,
+        "score": 19
+      },
+      {
+        "qid": "805733f8",
+        "OP": "Selecionar proteção cardíaca e medidas paralelas de potássio na hipercalemia moderada com toxicidade elétrica explícita.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "packageIntegrationHold": false,
+        "score": 19
+      },
+      {
+        "qid": "345321d6",
+        "OP": "Responder ao padrão sistêmico de acúmulo de citrato durante terapia contínua com medidas de carga, cálcio e remoção.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "packageIntegrationHold": false,
+        "score": 19
+      },
+      {
+        "qid": "6474ec20",
+        "OP": "Original: interpretar TTKG baixo como secreção distal/efeito de aldosterona sob premissas tradicionais; AFTER: reconhecer por que reciclagem de ureia invalida essa inferência.",
+        "verdictV2": "redirecionar",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "packageIntegrationHold": true,
+        "score": null
+      },
+      {
+        "qid": "e94a6488",
+        "OP": "Agir na sobrecorreção hipotética já excedida em alto risco de desmielinização, incluindo reversão da causa/aquarese.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "packageIntegrationHold": false,
+        "score": 20
+      },
+      {
+        "qid": "93646aa8",
+        "OP": "Distinguir aquarese de natriurese para explicar elevação do sódio por antagonismo V2 em SIAD selecionada.",
+        "verdictV2": "fundir",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "packageIntegrationHold": true,
+        "score": 19
+      },
+      {
+        "qid": "adcbaae7",
+        "OP": "Reconhecer classes de diuréticos que podem causar hipocalemia por oferta distal de sódio e fluxo, sem extrapolar prescrição individual.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "packageIntegrationHold": false,
+        "score": 20
+      }
+    ],
+    "counts": {
+      "questionsReviewed": 8,
+      "acceptedAfter": 5,
+      "blockedAfter": 3,
+      "duplicateHolds": 2,
+      "identityRedirectHolds": 1,
+      "cardsReviewed": 7,
+      "cardsAccepted": 6,
+      "cardEvidenceHolds": 1,
+      "cardsAdd": 4,
+      "cardsReplace": 3,
+      "newEightFromTechnicalErratum": 0,
+      "implemented": 0,
+      "newEightFromDispositionAddendum": 0
+    },
+    "validation": {
+      "author292And51Pass": true,
+      "own24ReplayAndInverseExact": true,
+      "allSevenCardsLiteralA3A4": true,
+      "eightBeforeExactMBAndCurrent": true,
+      "originMEqualsB": true,
+      "current741Delta10OutsideBatch": true,
+      "fourDistinctOptionsAnswerIndexPreserved": true,
+      "sourcePinsVerified": true,
+      "allTenEliminatorsAndOwnScores": true,
+      "twoDuplicateFourDimensionOwnGates": true,
+      "TTKGIdentityBLOCKPreserved": true,
+      "oneRealCardSourcePendingPreserved": true,
+      "noFalseFullTextClaimFromAccessSuccess": true,
+      "publicationDerivedForFifteenObjects": true,
+      "noProductOrGitEdits": true,
+      "author290Plus31Passed": true,
+      "ownEightAfterAndBeforeA4A6Exact": true,
+      "sixOtherWholeAuthorItemsExact": true,
+      "sevenCardObjectsExact": true,
+      "sixOtherAuthorCardGatesExact": true,
+      "twoAuthorFUNDIRReconciledWithoutSurvivor": true,
+      "FGF23PartialDecisiveCardBLOCKReconciled": true,
+      "TTKGIndependentElim3NullPreserved": true,
+      "noMedicalGateRepetition": true
+    },
+    "sourceAccessQualification": "No navegador pessoal usado; webtool público e GETs anônimos específicos. Fontes próprias body/cache lidas; Courbebaisse apenas resumo completo e legendas originais primárias. Nenhum metadado, captcha, erro ou acessoHTTP200 tratado como íntegra. Raw sources foraGit; não Librarymaterialization nem workaroundos.setxattr.",
+    "limits": [
+      "A009 não inteiramente implementável: três questões BLOCK e cardFGF23 inteiro BLOCK. AutorLIB não supera peerBLOCK.",
+      "Fundir não escolhe survivor automaticamente, não exclui IDs nem transfere/reset históriaFSRS; redirecionar idem.",
+      "Esta revisão não publica, não modifica banco, não reavalia outros consumidores por associação nem outros741itens.",
+      "CardFGF23 pendência deve ser resolvida por evidência própria do literal ou alteração material com nova revisão; não há conclusão de falsidade pelo acesso negado."
+    ],
+    "authorPreservationProof": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 3244,
+      "sha256": "a72e0c4387c2da1726da8d8567aa339aa2403ff86fdad01ee9234c2f0979f467"
+    },
+    "independentScientificOriginalPreserved": {
+      "path": "docs/editorial/reviews/2026-10-12/independent-a009-A4.json",
+      "bytes": 176011,
+      "sha256": "77753fd1ef898b2cd5c7d5ceca6f827c290043a76c84e71f408632ff0242ab84"
+    },
+    "independentScientificOriginalManifest": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 5526,
+      "sha256": "feb7339fe2c160df088b4f54632b5c92b5f6fb2bfa0d6088c702811f2bbd39bf"
+    },
+    "bindingOnly": true,
+    "newClinicalQuestionReviews": 0,
+    "newClinicalCardReviews": 0,
+    "newEightReviews": 0
+  }
+}

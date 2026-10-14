@@ -1,0 +1,66 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 2936,
+  "sourceReportSHA256": "bd546ce31a10a3322ae058f4969cb675e67cfb86525267dd70013765b53d704a",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "nq-recorded-coordinator-arbitration-v1",
+    "officialClockUTC": "2026-10-13 17:58:30 UTC",
+    "againstUnchangedCandidateHead": "80eeb2163ddeaeb8412f5ad5c932412ff07ef1c5",
+    "inputs": {
+      "group-c/arbitration-c018-three-A1.json": "55b9a35d7abddb3b97502f717efb5c75733f0d1d999d1c9bee0f832b5b7e6e3d",
+      "independent-c018-arbitration-concordance-A1.json": "0ffbb8e44af14495eeb3e2b6f770038eecf1ab8959ee039ac1c240803965a491"
+    },
+    "decisions": [
+      {
+        "qid": "13109735",
+        "verdict": "fundir",
+        "mergeTarget": "e8a59de8",
+        "keepExactAsSingleRepresentative": false,
+        "exactAfterCanonicalSHA256": "f27b60a792b465b737c5dce4d4ed9d0e01a99d0f4b50fc7cc7e6e47af4bde873",
+        "authorAndPeerScientificVote": "BLOQUEADA",
+        "coordinationArbitrationConditionSatisfied": true,
+        "implementationStatus": "PENDING_NORMALIZED_AUTHOR_POINT_GATE_AND_EXACT_CARD_CONSUMER_COMPATIBILITY",
+        "actualProductApplication": false,
+        "targetApprovedByAssociation": false,
+        "preserveIdAnswerAndAllHistoricalVersions": true
+      },
+      {
+        "qid": "78823c61",
+        "verdict": "fundir",
+        "mergeTarget": "911fdbb4",
+        "keepExactAsSingleRepresentative": false,
+        "exactAfterCanonicalSHA256": "1b34fe160553dd54fb66904ac7e85bf795c907ec9723c06c2c0c781b44e20ecf",
+        "authorAndPeerScientificVote": "BLOQUEADA",
+        "coordinationArbitrationConditionSatisfied": true,
+        "implementationStatus": "PENDING_NORMALIZED_AUTHOR_POINT_GATE_AND_EXACT_CARD_CONSUMER_COMPATIBILITY",
+        "actualProductApplication": false,
+        "targetApprovedByAssociation": false,
+        "preserveIdAnswerAndAllHistoricalVersions": true
+      },
+      {
+        "qid": "911fdbb4",
+        "verdict": "aprovada",
+        "mergeTarget": null,
+        "keepExactAsSingleRepresentative": true,
+        "exactAfterCanonicalSHA256": "dd1f42fe12f41dc63205cf11e5daa114ac551777f48caf3a01f4f707366ef8d2",
+        "authorAndPeerScientificVote": "LIBERADA",
+        "coordinationArbitrationConditionSatisfied": true,
+        "implementationStatus": "PENDING_NORMALIZED_AUTHOR_POINT_GATE_AND_EXACT_CARD_CONSUMER_COMPATIBILITY",
+        "actualProductApplication": false,
+        "targetApprovedByAssociation": false,
+        "preserveIdAnswerAndAllHistoricalVersions": true
+      }
+    ],
+    "scope": "Records agreement and direction only; no new clinical literal or global source/card consumer approval.",
+    "resolvedCoordinationArbitrationScopes": 3,
+    "newUniqueReviewedQuestions": 0,
+    "newIndependentQuestions": 0,
+    "newProductApplications": 0,
+    "productOrGitMutation": false,
+    "networkAccess": false,
+    "publishedCheckpointAltered": false,
+    "nextConcreteStep": "Normalize three author point gates from the fresh complete dossier without changing literals; preserve all other C018 items and bind the independent concordance. Keep integration pending exact-card scope and technical gates."
+  }
+}

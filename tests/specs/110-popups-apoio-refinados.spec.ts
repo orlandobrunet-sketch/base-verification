@@ -1,6 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 import {injectGameState} from '../helpers/game';
 import {medirContraste} from '../helpers/contraste';
+import {routeTechnicalQuestionBank,technicalQuestionBundle} from '../helpers/technical-question-bank';
 test.use({serviceWorkers:'block',reducedMotion:'reduce'});
 
 const reviewRecords = [
@@ -9,18 +10,34 @@ const reviewRecords = [
  {q:'Questão de teste com índice escolhido inválido.',o:['Opção A de teste. '.repeat(8),'Opção B de teste. '.repeat(9),'Opção C de teste. '.repeat(6),'Opção D de teste. '.repeat(7)],a:3,chosen:999,e:'Explicação final preservada.\n\n' + 'O texto continua até o fim sem ficar sob o botão. '.repeat(18) + '\nFim da explicação de teste.'},
 ];
 
+const reviewAuthors = reviewRecords.map((record,index)=>({
+ qid:`session-review-layout-${index+1}`,t:'Fixture técnica de leitura',
+ q:record.q,opts:[...record.o],ans:record.a,exp:record.e,diff:'medium',cat:'geral',refs:[],
+}));
+reviewAuthors.push({qid:'session-review-layout-simple',t:'Fixture técnica de leitura',
+ q:'Questão de teste',opts:['A','B','C','D'],ans:0,exp:'Explicação completa de teste.',diff:'medium',cat:'geral',refs:[]});
+technicalQuestionBundle(reviewAuthors);
+
 async function abrirReview(page: Page, width: number, height: number, fontSize: number) {
  await page.setViewportSize({width,height});
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
+ const fixture=await routeTechnicalQuestionBank(page,reviewAuthors);
  await page.goto('/jogar/',{waitUntil:'domcontentloaded'});
  await injectGameState(page);
  await page.waitForLoadState('load');
  await page.evaluate(size=>document.documentElement.style.fontSize=size+'px',fontSize);
  await page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first().focus();
- await page.evaluate(records=>{
-  (0,eval)(`_sessionWrongAnswers.splice(0, _sessionWrongAnswers.length, ...${JSON.stringify(records)})`);
+ await page.evaluate(({records,sources})=>{
+  const view=window as any;
+  const snapshots=records.map((record,index)=>{
+   const question=view.NQAnswers.present(sources[index],{preserveOrder:true});
+   if(view.questionRevisionCatalog.inspect(question,{profile:'main'}).status!=='known')
+    throw new Error('The independent authored review fixture must have a verified identity.');
+   return {...question,...('chosen' in record?{chosen:record.chosen}:{})};
+  });
+  (0,eval)(`_sessionWrongAnswers.splice(0, _sessionWrongAnswers.length, ...${JSON.stringify(snapshots)})`);
   (window as any).showSessionWrongAnswers();
- },reviewRecords);
+ },{records:reviewRecords,sources:fixture.sources.main});
  return page.getByRole('dialog',{name:'Erros da Jornada'});
 }
 
@@ -96,4 +113,4 @@ for (const viewport of [
  expect(await page.evaluate(()=>(0,eval)('JSON.stringify(_sessionWrongAnswers)'))).toBe(recordsBefore);
  await expect(page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first()).toBeFocused();
 });
-for(const fn of ['showPrivacyPolicy','showStatsModal','showSessionWrongAnswers'])test(fn+' mantém leitura, foco e fechamento em 320 px',async({page},info)=>{test.skip(info.project.name!=='chromium');await page.setViewportSize({width:320,height:844});await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());await page.goto('/jogar/');await injectGameState(page);await page.evaluate(fn=>{if(fn==='showStatsModal')(0,eval)('getDetailedStats=(()=>{const original=getDetailedStats;return()=>({...original(),totalQuestions:5,totalCorrect:2,byTopic:{"Tema de teste com título extenso":{total:5,correct:2,wrong:3}},questionHistory:[{date:"2026-10-03",correct:false},{date:"2026-10-04",correct:true},{date:"2026-10-05",correct:false}]});})()');if(fn==='showSessionWrongAnswers')(0,eval)('_sessionWrongAnswers.push({q:"Questão de teste",o:["A","B","C","D"],a:0,chosen:1,e:"Explicação completa de teste."})');(window as any)[fn]();},fn);const card=page.getByRole('dialog');await expect(card).toHaveCount(1);await expect(card).toBeVisible();await expect(fn==='showSessionWrongAnswers'?card.getByRole('region',{name:'Revisão dos erros da sessão'}):card.getByRole('region')).toBeFocused();await page.addStyleTag({content:'html{font-size:32px!important}'});expect(await card.evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);await card.evaluate(el=>el.setAttribute('data-final-popup','1'));expect(await card.evaluate(el=>{const errors:string[]=[];const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);for(let n=walker.nextNode();n;n=walker.nextNode()){if(!(n.textContent||'').trim())continue;const range=document.createRange();range.selectNodeContents(n);if([...range.getClientRects()].some(r=>r.width&&(r.left<0||r.right>innerWidth)))errors.push((n.textContent||'').trim());}return errors;})).toEqual([]);const contrast=await page.evaluate(medirContraste,'[data-final-popup]');expect(contrast,JSON.stringify(contrast)).toEqual([]);for(let i=0;i<5;i++){await page.keyboard.press('Tab');expect(await card.evaluate(el=>el.contains(document.activeElement))).toBe(true);}await page.keyboard.press('Escape');await expect(card).toHaveCount(0);});
+for(const fn of ['showPrivacyPolicy','showStatsModal','showSessionWrongAnswers'])test(fn+' mantém leitura, foco e fechamento em 320 px',async({page},info)=>{test.skip(info.project.name!=='chromium');await page.setViewportSize({width:320,height:844});await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());await routeTechnicalQuestionBank(page,reviewAuthors);await page.goto('/jogar/');await injectGameState(page);await page.evaluate(fn=>{if(fn==='showStatsModal')(0,eval)('getDetailedStats=(()=>{const original=getDetailedStats;return()=>({...original(),totalQuestions:5,totalCorrect:2,byTopic:{"Tema de teste com título extenso":{total:5,correct:2,wrong:3}},questionHistory:[{date:"2026-10-03",correct:false},{date:"2026-10-04",correct:true},{date:"2026-10-05",correct:false}]});})()');if(fn==='showSessionWrongAnswers')(0,eval)('_sessionWrongAnswers.push({...window.NQAnswers.present(window.questionRevisionCatalog.current("session-review-layout-simple","main").source,{preserveOrder:true}),chosen:1})');(window as any)[fn]();},fn);const card=page.getByRole('dialog');await expect(card).toHaveCount(1);await expect(card).toBeVisible();await expect(fn==='showSessionWrongAnswers'?card.getByRole('region',{name:'Revisão dos erros da sessão'}):card.getByRole('region')).toBeFocused();await page.addStyleTag({content:'html{font-size:32px!important}'});expect(await card.evaluate(el=>el.scrollWidth<=el.clientWidth)).toBe(true);await card.evaluate(el=>el.setAttribute('data-final-popup','1'));expect(await card.evaluate(el=>{const errors:string[]=[];const walker=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);for(let n=walker.nextNode();n;n=walker.nextNode()){if(!(n.textContent||'').trim())continue;const range=document.createRange();range.selectNodeContents(n);if([...range.getClientRects()].some(r=>r.width&&(r.left<0||r.right>innerWidth)))errors.push((n.textContent||'').trim());}return errors;})).toEqual([]);const contrast=await page.evaluate(medirContraste,'[data-final-popup]');expect(contrast,JSON.stringify(contrast)).toEqual([]);for(let i=0;i<5;i++){await page.keyboard.press('Tab');expect(await card.evaluate(el=>el.contains(document.activeElement))).toBe(true);}await page.keyboard.press('Escape');await expect(card).toHaveCount(0);});

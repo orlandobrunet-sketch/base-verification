@@ -1,0 +1,3049 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 162572,
+  "sourceReportSHA256": "c4031efbc06d4e8ae779abed7ea758532ec3fd8e288f388ed989a537a67a349c",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "nq-independent-clinical-review-v2",
+    "batch": "A010 author final technical A4",
+    "reviewer": "independent clinical reviewer",
+    "verifiedAtOfficialUTC": "2026-10-13 13:17:49 UTC",
+    "reviewMode": "Final da disposição independente com duas verificações de fontes ainda pendentes; não declara oito gates científicos completos. Seis completos, dois mantidos emBLOCK por fonte;4c7FUNDIR próprio.",
+    "authorReport": {
+      "path": "docs/editorial/reviews/2026-10-12/group-a-output-010-A4.json",
+      "bytes": 216133,
+      "sha256": "8bf62caf07026fc7ed3183c4276e41b8b1f617235e5f618708e0b8ca6dc55bf8"
+    },
+    "authorOriginalPreserved": {
+      "path": "docs/editorial/reviews/2026-10-12/group-a-output-010-A2.json",
+      "bytes": 190850,
+      "sha256": "d0f8feeb6475a4ba68e91e85a3234361a65217907f126918c7760a46e9104804"
+    },
+    "authorManifest": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 2036,
+      "sha256": "b0217b401e35bbc9f316afd00e8d50d281736f6373b58e8dc8e242c384b30a53"
+    },
+    "authorValidation": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 32952,
+      "sha256": "cefc63267e5b1403c3e68f010e7e2ef9b78820c9f9ef4a5a81e69132dafdcecd"
+    },
+    "authorTechnicalProof": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 5831,
+      "sha256": "61f9fbc79f7f85f6c2c05aefc3d13ddee0a7454cec4182734cd8b68ba983c940"
+    },
+    "priorProgressPreserved": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 5796,
+      "sha256": "91800b05304142ffc3706724d9381d922f4d2e2e94e2dcc52895421d99141521"
+    },
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "publishedTechnicalMerge": "135899077669af6dcf564717833227828ba03fe5",
+    "originBankLF_SHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "bankObserved": [
+      {
+        "path": "data/topics.js",
+        "bytes": 971537,
+        "sha256": "45c283a5a9634fe72e166762bd2461158ebc1647f5b5a026b7ae1ea68f6ee130"
+      },
+      {
+        "path": "data/refs.js",
+        "bytes": 491073,
+        "sha256": "d12c230d80f505fc8fd1893f489014fca8bbeced681c1224f03f4c3f4c7f01f7"
+      }
+    ],
+    "currentBankDelta10OutsideBatch": [
+      "7c0daeca",
+      "00b4d27e",
+      "ca6370dc",
+      "1b8baaac",
+      "04cb2429",
+      "c952567a",
+      "547a3dc2",
+      "051a5d1b",
+      "86949ab7",
+      "7780350a"
+    ],
+    "normativeSources": [
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      }
+    ],
+    "questions": [
+      {
+        "qid": "d9257155",
+        "sourceLine": 257,
+        "BEFORE": {
+          "qid": "d9257155",
+          "q": "Na abordagem da hiponatremia grave crônica, o aumento muito rápido dos níveis séricos de sódio pode precipitar uma complicação neurológica grave. Como se chama essa complicação?",
+          "opts": [
+            "Síndrome de Desmielinização Osmótica (mielinólise pontina central).",
+            "Hemorragia subaracnoide espontânea.",
+            "Edema cerebral difuso com herniação uncal.",
+            "Encefalopatia de Wernicke."
+          ],
+          "ans": 0,
+          "exp": "A correção rápida da hiponatremia crônica, especialmente em taxas superiores a 8-10 mEq/L em 24 horas ou 18 mEq/L em 48 horas, pode levar à Síndrome de Desmielinização Osmótica (SDO), também conhecida como mielinólise pontina central. Nesta condição, a rápida elevação da osmolalidade plasmática causa a saída de água dos osmócitos cerebrais que se adaptaram à hiponatremia crônica, resultando em desidratação celular, disfunção e destruição da bainha de mielina, principalmente na ponte, manifestando-se com déficits neurológicos graves e irreversíveis.",
+          "refs": [
+            "hypona",
+            "hyponatremia_adrogue2000",
+            "hyponatremia_verbalis2022",
+            "salsa_trial"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "Hiponatremia Crônica — Risco de Correção Rápida"
+        },
+        "beforeQuestionSHA256": "0f1ca1b3f87e90d632b4451eea5617f8857926009ae8d44bc79573141bbd98e4",
+        "AFTER": {
+          "qid": "d9257155",
+          "q": "Qual complicação neurológica se associa à correção excessiva de hiponatremia crônica grave?",
+          "opts": [
+            "Desmielinização osmótica.",
+            "Hemorragia subaracnoidea.",
+            "Edema cerebral por hipotonia.",
+            "Encefalopatia de Wernicke."
+          ],
+          "ans": 0,
+          "exp": "A complicação é a síndrome de desmielinização osmótica, com envolvimento pontino ou extrapontino. O risco depende do contexto, incluindo alcoolismo, desnutrição, hipocalemia e natremia muito baixa. Limites de correção reduzem risco e não garantem ausência de dano. A manifestação pode ser tardia; o prognóstico varia e não é obrigatoriamente irreversível.",
+          "refs": [
+            "sterns_hyponatremia_correction_2024"
+          ],
+          "cat": "eletrólitos",
+          "diff": "easy",
+          "t": "Hiponatremia Crônica — Risco de Correção Rápida"
+        },
+        "afterQuestionSHA256": "553d4132409ef11d85b4107399de8348dd104592540c22202765fb04f37509a8",
+        "OP": "Reconhecer desmielinização osmótica como complicação de correção excessiva da hiponatremia crônica grave.",
+        "classification": {
+          "bloom": "Recordar",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "reviewStatus": "REVIEWED",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): afirmações decisivas/fontes próprias no alcance, scorepróprio, aprovada.",
+        "ownJustification": "Original body próprio confirma espectro pontino/extrapontino, apresentação2-6dias após melhora inicial e recuperação possível; não universaliza irreversibilidade nem apresenta limite como garantia.",
+        "appeal": {
+          "finding": "A é única para o gatilho de correção excessiva; edema hipotônico liga-se à hiponatremia em si, Wernicke a outra causa. Conhecimento fundamental com consequência de segurança, não trivia estatística.",
+          "sourceVerificationIncomplete": false,
+          "duplicateChallengeUpheld": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para o gatilho de correção excessiva; edema hipotônico liga-se à hiponatremia em si, Wernicke a outra causa. Conhecimento fundamental com consequência de segurança, não trivia estatística."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para o gatilho de correção excessiva; edema hipotônico liga-se à hiponatremia em si, Wernicke a outra causa. Conhecimento fundamental com consequência de segurança, não trivia estatística."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para o gatilho de correção excessiva; edema hipotônico liga-se à hiponatremia em si, Wernicke a outra causa. Conhecimento fundamental com consequência de segurança, não trivia estatística."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para o gatilho de correção excessiva; edema hipotônico liga-se à hiponatremia em si, Wernicke a outra causa. Conhecimento fundamental com consequência de segurança, não trivia estatística."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para o gatilho de correção excessiva; edema hipotônico liga-se à hiponatremia em si, Wernicke a outra causa. Conhecimento fundamental com consequência de segurança, não trivia estatística."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para o gatilho de correção excessiva; edema hipotônico liga-se à hiponatremia em si, Wernicke a outra causa. Conhecimento fundamental com consequência de segurança, não trivia estatística."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para o gatilho de correção excessiva; edema hipotônico liga-se à hiponatremia em si, Wernicke a outra causa. Conhecimento fundamental com consequência de segurança, não trivia estatística."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para o gatilho de correção excessiva; edema hipotônico liga-se à hiponatremia em si, Wernicke a outra causa. Conhecimento fundamental com consequência de segurança, não trivia estatística."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para o gatilho de correção excessiva; edema hipotônico liga-se à hiponatremia em si, Wernicke a outra causa. Conhecimento fundamental com consequência de segurança, não trivia estatística."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para o gatilho de correção excessiva; edema hipotônico liga-se à hiponatremia em si, Wernicke a outra causa. Conhecimento fundamental com consequência de segurança, não trivia estatística."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 2
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 20,
+          "annulled": false,
+          "notComputableDueToEvidenceGate": false,
+          "reason": "Dez dimensões próprias; a duplicidade é decidida antes da liberação por nota."
+        },
+        "decisionTree": [
+          "0: VERIFICADA/NENHUMA",
+          "1: dez eliminatórios próprios sem disparo",
+          "2: recurso científico não procede",
+          "3: aprovada",
+          "publicação: LIBERADA"
+        ],
+        "sourceReadings": [
+          {
+            "id": "sterns2024",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 113891,
+              "sha256": "67d5be85e869c401842de8ea7e3db552c3472b466d3197682c1c74a2016911ea"
+            },
+            "readByIndependentReviewer": true,
+            "readScope": "Original própriofront/bodyA009eA010: alto risco8qualquer24h/meta4-6, atraso2-6dias/lesõespontinasextrapontinas/resoluçãopossível, fonteCJASN2024online2023.",
+            "newExternalRequest": false,
+            "authorGateNotInherited": true
+          }
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "f5ceeb49",
+            "currentQuestion": {
+              "t": "Hiponatremia: Síndrome de Desmielinização Osmótica (SDO)",
+              "qid": "f5ceeb49",
+              "q": "Qual região do sistema nervoso central é mais comumente afetada na Síndrome de Desmielinização Osmótica (SDO) após correção rápida de hiponatremia?",
+              "refs": [
+                "hypona",
+                "hyponatremia_adrogue2000",
+                "hyponatremia_verbalis2022",
+                "salsa_trial"
+              ],
+              "opts": [
+                "Córtex occipital",
+                "Cerebelo por mecanismo fisiopatológico",
+                "Ponte (Mielinólise Pontina Central)",
+                "Hipocampo em cenário clínico típico"
+              ],
+              "ans": 2,
+              "exp": "A Síndrome de Desmielinização Osmótica (SDO), também conhecida como mielinólise pontina central, ocorre tipicamente na ponte do tronco encefálico. Esta condição é frequentemente associada à correção rápida da hiponatremia, que leva a alterações osmóticas que danificam a bainha de mielina dos neurônios. A ponte é particularmente vulnerável devido à sua composição celular e à barreira hematoencefálica local. As outras regiões, como o córtex cerebral, tálamo e hipotálamo, não são as mais comumente afetadas na SDO, embora possam ser envolvidas em casos mais extensos.",
+              "diff": "hard",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "68d90977b5f1dac24a422ded5566dc2de0bf3ac188379ecf3defefb518e70a74",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato pergunta região anatômica após dar nomeSDO; proposta reconhece complicação pelo gatilho. Nome versus localização são decisões distintas.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "ff5868ca",
+            "currentQuestion": {
+              "t": "Mielinólise Pontina Central — Prevenção",
+              "qid": "ff5868ca",
+              "q": "Para prevenir a síndrome de desmielinização osmótica, qual é a taxa máxima de correção recomendada para a hiponatremia crônica severa?",
+              "opts": [
+                "Até 20 mEq/L nas primeiras 24h",
+                "Até 10 mEq/L nas primeiras 24h",
+                "Até 5 mEq/L nas primeiras 24h",
+                "Até 25 mEq/L nas primeiras 48h"
+              ],
+              "ans": 1,
+              "exp": "Na hiponatremia crônica, a correção deve ser lenta para evitar síndrome de desmielinização osmótica, porque o cérebro já se adaptou à baixa osmolaridade e uma elevação rápida do sódio desloca água para fora das células, causando lesão neurológica. Em geral, não se deve ultrapassar 8 a 10 mEq/L nas primeiras 24 horas e cerca de 18 mEq/L em 48 horas; em pacientes de maior risco, o limite é ainda mais conservador. Assim, 20 mEq/L em 24 horas e 25 mEq/L em 48 horas estão acima do recomendado, e 5 mEq/L é seguro, mas não representa o máximo usualmente aceito.",
+              "diff": "medium",
+              "cat": "acido_base",
+              "refs": [
+                "hyponatremia_verbalis2022",
+                "hyponatremia_adrogue2000"
+              ]
+            },
+            "currentQuestionSHA256": "dcf855d41ae550edb5607651ec03741a8869acbecf6df55210bae02892343e3a",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato pergunta limite preventivo, proposta nome/espectro da complicação.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "e94a6488",
+            "currentQuestion": {
+              "qid": "e94a6488",
+              "q": "Paciente com hiponatremia crônica grave, alcoolismo e hipocalemia começa a corrigir rapidamente após suspensão de tiazídico. Qual conduta é mais alinhada à prevenção de síndrome de desmielinização osmótica?",
+              "opts": [
+                "Aceitar correção rápida desde que os sintomas melhorem",
+                "Buscar elevação de pelo menos 15 mEq/L nas primeiras 24 horas",
+                "Atingir normonatremia nas primeiras 18 horas",
+                "Interromper terapias que elevam o sódio, monitorar de perto e considerar água livre/desmopressina se ultrapassar limites de segurança"
+              ],
+              "ans": 3,
+              "exp": "Em hiponatremia crônica, especialmente com fatores de alto risco como alcoolismo, hipocalemia, desnutrição ou doença hepática, a hipercorreção exige ação ativa. A diretriz europeia recomenda intervenção se o sódio subir mais de 10 mmol/L nas primeiras 24 horas ou mais de 8 mmol/L em qualquer 24 horas subsequente; pode ser necessário suspender terapia ativa, repor água livre e considerar desmopressina sob monitorização. Melhorar sintomas não autoriza hipercorreção. Normalizar rapidamente a natremia aumenta risco de desmielinização.",
+              "refs": [
+                "hypona",
+                "hyponatremia_verbalis2022",
+                "hyponatremia_adrogue2000"
+              ],
+              "cat": "eletrólitos",
+              "diff": "medium",
+              "t": "Hiponatremia — Prevenção de Hipercorreção"
+            },
+            "currentQuestionSHA256": "1a3ed48227bda6c826c580b5476530555c23a2f6f16537b93271a054ca28e7e0",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato decide intervenção de resgate após sobrecorreção; proposta reconhece complicação, sem escolher tratamento.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "packageIntegrationHold": false,
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            25,
+            25,
+            29,
+            26
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": false,
+          "lengthDoesNotAuthorizeClinicalGate": true
+        },
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "qid": "5c743fb2",
+        "sourceLine": 262,
+        "BEFORE": {
+          "qid": "5c743fb2",
+          "q": "A avaliação do \"Anion Gap\" (hiato iônico) é o primeiro passo diante de uma gasometria com acidose metabólica. Qual causa abaixo cursa com acidose metabólica de Anion Gap NORMAL (hiperclorêmica)?",
+          "opts": [
+            "Intoxicação aguda por salicilatos.",
+            "Cetoacidose diabética grave.",
+            "Acidose lática secundária a choque circulatório.",
+            "Perdas gastrointestinais baixas (diarreia volumosa)."
+          ],
+          "ans": 3,
+          "exp": "A diarreia volumosa causa perda significativa de bicarbonato (HCO3-) pelo trato gastrointestinal. Para manter a eletroneutralidade, há um aumento compensatório na reabsorção de cloreto (Cl-) pelos rins, resultando em acidose metabólica hiperclorêmica com ânion gap normal. As outras opções (salicilatos, acidose lática, cetoacidose) cursam com acúmulo de ácidos não-cloreto, elevando o ânion gap.",
+          "refs": [
+            "kdigo_ckd",
+            "brenner_rector"
+          ],
+          "cat": "acido_base",
+          "diff": "hard",
+          "t": "Ânion Gap — Interpretação e Uso"
+        },
+        "beforeQuestionSHA256": "1d0c53c9ae366b2cd725dc7dc8480255df255c78335182d0e7c67dc28a11fe01",
+        "AFTER": {
+          "qid": "5c743fb2",
+          "q": "Qual causa costuma produzir acidose metabólica com ânion gap normal por perda gastrointestinal de bicarbonato?",
+          "opts": [
+            "Intoxicação por salicilatos.",
+            "Cetoacidose diabética.",
+            "Acidose láctica por choque.",
+            "Diarreia volumosa."
+          ],
+          "ans": 3,
+          "exp": "Diarreia pode eliminar bicarbonato em quantidade suficiente para produzir acidose metabólica com aumento relativo do cloro e gap normal. Cetoacidose e acidose láctica acumulam ânions orgânicos; salicilatos podem provocar acidose com gap elevado e alcalose respiratória. O gap deve ser interpretado com albumina e referência do laboratório; diarreia com choque pode apresentar distúrbio misto.",
+          "refs": [
+            "berend_normal_gap_acidosis_2017"
+          ],
+          "cat": "acido_base",
+          "diff": "easy",
+          "t": "Ânion Gap — Interpretação e Uso"
+        },
+        "afterQuestionSHA256": "ac9b3a46d2b1622569b6622a4c4bfd881eacb98effa93d65b5d3337e77a391cc",
+        "OP": "Relacionar diarreia à acidose com gap normal por perda gastrointestinal de bicarbonato.",
+        "classification": {
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "reviewStatus": "PENDENTE_VERIFICAÇÃO_DE_FONTE",
+        "verdictV2": "revisão maior",
+        "confidence": "moderada",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7: pendência decisiva impede gate/publicação, sem transformar acesso ausente em erro médico.",
+        "ownJustification": "Palmer corpo próprio l216-219 corrobora o núcleo perdaGIbicarbonato/hipercloremia. Não foi obtido corpo próprioBerend para atribuição literal da única referência e card novo, inclusive albumina/intervalo. Falta real de verificação, não prova de erro médico.",
+        "appeal": {
+          "finding": "D é conceitualmente consistente pelo mecanismo, mas referência/card exatos não foram integralmente conferidos por este peer. Não substituir a verificação por confiança na autoria.",
+          "sourceVerificationIncomplete": true,
+          "duplicateChallengeUpheld": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Palmer corpo próprio l216-219 corrobora o núcleo perdaGIbicarbonato/hipercloremia. Não foi obtido corpo próprioBerend para atribuição literal da única referência e card novo, inclusive albumina/intervalo. Falta real de verificação, não prova de erro médico."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Palmer corpo próprio l216-219 corrobora o núcleo perdaGIbicarbonato/hipercloremia. Não foi obtido corpo próprioBerend para atribuição literal da única referência e card novo, inclusive albumina/intervalo. Falta real de verificação, não prova de erro médico."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Palmer corpo próprio l216-219 corrobora o núcleo perdaGIbicarbonato/hipercloremia. Não foi obtido corpo próprioBerend para atribuição literal da única referência e card novo, inclusive albumina/intervalo. Falta real de verificação, não prova de erro médico."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Palmer corpo próprio l216-219 corrobora o núcleo perdaGIbicarbonato/hipercloremia. Não foi obtido corpo próprioBerend para atribuição literal da única referência e card novo, inclusive albumina/intervalo. Falta real de verificação, não prova de erro médico."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Palmer corpo próprio l216-219 corrobora o núcleo perdaGIbicarbonato/hipercloremia. Não foi obtido corpo próprioBerend para atribuição literal da única referência e card novo, inclusive albumina/intervalo. Falta real de verificação, não prova de erro médico."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Palmer corpo próprio l216-219 corrobora o núcleo perdaGIbicarbonato/hipercloremia. Não foi obtido corpo próprioBerend para atribuição literal da única referência e card novo, inclusive albumina/intervalo. Falta real de verificação, não prova de erro médico."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Palmer corpo próprio l216-219 corrobora o núcleo perdaGIbicarbonato/hipercloremia. Não foi obtido corpo próprioBerend para atribuição literal da única referência e card novo, inclusive albumina/intervalo. Falta real de verificação, não prova de erro médico."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Palmer corpo próprio l216-219 corrobora o núcleo perdaGIbicarbonato/hipercloremia. Não foi obtido corpo próprioBerend para atribuição literal da única referência e card novo, inclusive albumina/intervalo. Falta real de verificação, não prova de erro médico."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Palmer corpo próprio l216-219 corrobora o núcleo perdaGIbicarbonato/hipercloremia. Não foi obtido corpo próprioBerend para atribuição literal da única referência e card novo, inclusive albumina/intervalo. Falta real de verificação, não prova de erro médico."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Palmer corpo próprio l216-219 corrobora o núcleo perdaGIbicarbonato/hipercloremia. Não foi obtido corpo próprioBerend para atribuição literal da única referência e card novo, inclusive albumina/intervalo. Falta real de verificação, não prova de erro médico."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": null
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": null
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": null
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": null
+            },
+            {
+              "dimension": "Alternativas",
+              "score": null
+            },
+            {
+              "dimension": "Distratores",
+              "score": null
+            },
+            {
+              "dimension": "Explicação",
+              "score": null
+            },
+            {
+              "dimension": "Referências",
+              "score": null
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": null
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": null
+            }
+          ],
+          "total": null,
+          "annulled": false,
+          "notComputableDueToEvidenceGate": true,
+          "reason": "Fonte/card decisivo pendente; não produzir20/20 ou eliminatório falso de erro médico."
+        },
+        "decisionTree": [
+          "0: PARCIALMENTE VERIFICADA/DECISIVA",
+          "1: gate científico ainda incompleto",
+          "2: referência/card exige leitura própria",
+          "3: revisão maior",
+          "publicação: BLOQUEADA"
+        ],
+        "sourceReadings": [
+          {
+            "id": "palmer2021",
+            "sourcePin": null,
+            "url": "https://link.springer.com/article/10.1007/s12325-020-01587-5",
+            "readByIndependentReviewer": true,
+            "readScope": "Corpo primárioeditora aberto/lidoANTESrejeição,l139-147,160-164,177-219:distalKloss,proximalfasebicarbonato,pH,ATR4,NH3,mistosDRC/diarreia. Publicadoonline26dez2020/volume38p949-968em2021; autoriaPalmer/Kelepouris/Clegg. Não cachePDFnem estudo/diretriz graduada alegados.",
+            "newExternalRequest": false,
+            "fullBodyCacheClaimed": false
+          },
+          {
+            "id": "berend2017",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5757610/",
+            "sourcePin": null,
+            "readByIndependentReviewer": false,
+            "readScope": "Corpo decisivo e card literal não obtidos por este peer. CorroboraçãoPalmer não é leitura/atribuiçãoBerend. Sem falso erro clínico; referência exige gate posterior."
+          }
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "2a3a6f56",
+            "currentQuestion": {
+              "t": "Acidose Hiperclorêmica — Ânion Gap Urinário Negativo",
+              "qid": "2a3a6f56",
+              "q": "Paciente com diarreia aquosa intensa apresenta acidose metabólica hiperclorêmica (pH 7,32, HCO3 16 mEq/L) e ânion gap urinário de -15 mEq/L. O que esse achado indica?",
+              "refs": [
+                "nongap_acidosis_kraut_madias",
+                "acid_base_adroguenejm"
+              ],
+              "opts": [
+                "Defeito distal de acidificação compatível com ATR tipo 1.",
+                "Excreção urinária aumentada de NH4+ com resposta renal apropriada, favorecendo perda extrarrenal de bicarbonato.",
+                "Hipoaldosteronismo hiporreninêmico como causa obrigatória.",
+                "Falência tubular indeterminada, sem utilidade diagnóstica."
+              ],
+              "ans": 1,
+              "exp": "O ânion gap urinário negativo sugere que o cloreto urinário está elevado por excreção de NH4Cl, indicando resposta renal apropriada à acidose. Em acidose metabólica hiperclorêmica, isso favorece causa extrarrenal, como diarreia, em vez de acidose tubular renal. O teste tem limitações — especialmente quando NH4+ é excretado com ânions não cloreto — mas é uma ferramenta clássica de triagem fisiológica.",
+              "diff": "medium",
+              "cat": "acido_base"
+            },
+            "currentQuestionSHA256": "2d472734231b50a3e225a252d98bf51616120f7c910fb1c176129971fe2b1e3a",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato já apresenta diarreia e pede interpretarUAGnegativo como resposta renal deNH4; proposta identifica causa deNGAcidosis por mecanismoGI, outra decisão e dados.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "packageIntegrationHold": true,
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            28,
+            22,
+            27,
+            18
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": true,
+          "lengthDoesNotAuthorizeClinicalGate": true
+        },
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "qid": "21a89255",
+        "sourceLine": 273,
+        "BEFORE": {
+          "qid": "21a89255",
+          "q": "A Acidose Tubular Renal (ATR) do tipo 4 é tipicamente caracterizada por qual perfil laboratorial?",
+          "opts": [
+            "Acidose respiratória com retenção compensatória de cloro.",
+            "Acidose metabólica hiperclorêmica associada à hipercalemia.",
+            "Acidose metabólica com ânion gap alto e hipocalemia grave.",
+            "Alcalose metabólica com hipocloremia e hipocalemia."
+          ],
+          "ans": 1,
+          "exp": "A Acidose Tubular Renal (ATR) tipo 4, também conhecida como ATR hipercalêmica, é caracterizada por acidose metabólica com ânion gap normal (hiperclorêmica) e hipercalemia. Esta condição resulta de uma deficiência ou resistência à aldosterona, que compromete a secreção de potássio e íons hidrogênio no túbulo coletor. A hipercalemia inibe a amoniogênese renal, reduzindo a excreção de amônia e contribuindo para a acidose metabólica.",
+          "refs": [
+            "atr_rodriguez_soriano",
+            "brenner_rector"
+          ],
+          "cat": "acido_base",
+          "diff": "medium",
+          "t": "ATR Tipo 4 — Características Clínicas"
+        },
+        "beforeQuestionSHA256": "8af0ccfe0d96f351e54bba77fd0cc8b271bc83c6d2496493cd386d8fabd64ae6",
+        "AFTER": {
+          "qid": "21a89255",
+          "q": "Na acidose metabólica da acidose tubular renal (ATR) tipo 4, qual combinação de ânion gap sérico e potássio é típica?",
+          "opts": [
+            "Gap normal e hipocalemia.",
+            "Gap normal e hipercalemia.",
+            "Gap elevado e hipocalemia.",
+            "Gap elevado e hipercalemia."
+          ],
+          "ans": 1,
+          "exp": "A ATR tipo 4 costuma associar acidose metabólica hiperclorêmica com gap normal e hipercalemia. Deficiência ou resistência à aldosterona prejudica excreção distal de potássio (K); a hipercalemia também reduz disponibilidade de amônia e excreção de ácido. O perfil é característico, mas sozinho não demonstra etiologia. Doença renal crônica (DRC) avançada ou outros processos podem acrescentar acidose com gap elevado.",
+          "refs": [
+            "palmer_rta_2021"
+          ],
+          "cat": "acido_base",
+          "diff": "easy",
+          "t": "Acidose Tubular Renal (ATR) Tipo 4 — Características Clínicas"
+        },
+        "afterQuestionSHA256": "7ea275ea8f69f0a4186938e027d7b2d9cef119360c6bdce2dd7d04288c9d8b6e",
+        "OP": "Identificar o perfil de gap normal e hipercalemia típico de ATR4, sem concluir etiologia só pelo perfil.",
+        "classification": {
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "reviewStatus": "REVIEWED",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): afirmações decisivas/fontes próprias no alcance, scorepróprio, aprovada.",
+        "ownJustification": "Palmer corpo próprio l177-188 liga defeitoH/K, hipercloremia/gap normal, hipercalemia/NH3 e transiçãoDRCavançada com gap elevado. Perfil típico não estabelece causa nem elimina distúrbio misto.",
+        "appeal": {
+          "finding": "B é única no perfil típico declarado. Não solicita diagnosticar ATR4 por laboratório isolado nem fornecer tratamento.",
+          "sourceVerificationIncomplete": false,
+          "duplicateChallengeUpheld": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "B é única no perfil típico declarado. Não solicita diagnosticar ATR4 por laboratório isolado nem fornecer tratamento."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "B é única no perfil típico declarado. Não solicita diagnosticar ATR4 por laboratório isolado nem fornecer tratamento."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "B é única no perfil típico declarado. Não solicita diagnosticar ATR4 por laboratório isolado nem fornecer tratamento."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "B é única no perfil típico declarado. Não solicita diagnosticar ATR4 por laboratório isolado nem fornecer tratamento."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "B é única no perfil típico declarado. Não solicita diagnosticar ATR4 por laboratório isolado nem fornecer tratamento."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "B é única no perfil típico declarado. Não solicita diagnosticar ATR4 por laboratório isolado nem fornecer tratamento."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "B é única no perfil típico declarado. Não solicita diagnosticar ATR4 por laboratório isolado nem fornecer tratamento."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "B é única no perfil típico declarado. Não solicita diagnosticar ATR4 por laboratório isolado nem fornecer tratamento."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "B é única no perfil típico declarado. Não solicita diagnosticar ATR4 por laboratório isolado nem fornecer tratamento."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "B é única no perfil típico declarado. Não solicita diagnosticar ATR4 por laboratório isolado nem fornecer tratamento."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 2
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 20,
+          "annulled": false,
+          "notComputableDueToEvidenceGate": false,
+          "reason": "Dez dimensões próprias; a duplicidade é decidida antes da liberação por nota."
+        },
+        "decisionTree": [
+          "0: VERIFICADA/NENHUMA",
+          "1: dez eliminatórios próprios sem disparo",
+          "2: recurso científico não procede",
+          "3: aprovada",
+          "publicação: LIBERADA"
+        ],
+        "sourceReadings": [
+          {
+            "id": "palmer2021",
+            "sourcePin": null,
+            "url": "https://link.springer.com/article/10.1007/s12325-020-01587-5",
+            "readByIndependentReviewer": true,
+            "readScope": "Corpo primárioeditora aberto/lidoANTESrejeição,l139-147,160-164,177-219:distalKloss,proximalfasebicarbonato,pH,ATR4,NH3,mistosDRC/diarreia. Publicadoonline26dez2020/volume38p949-968em2021; autoriaPalmer/Kelepouris/Clegg. Não cachePDFnem estudo/diretriz graduada alegados.",
+            "newExternalRequest": false,
+            "fullBodyCacheClaimed": false
+          }
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "0334d0d1",
+            "currentQuestion": {
+              "t": "DRC, IECA e Hipercalemia — ATR Tipo 4",
+              "qid": "0334d0d1",
+              "q": "Paciente com DRC, diabetes, hipercalemia recorrente e acidose metabólica leve de ânion gap normal apresenta renina e aldosterona baixas. Qual síndrome explica melhor o quadro?",
+              "refs": [
+                "atr_rodriguez_soriano",
+                "brenner_rector"
+              ],
+              "opts": [
+                "Acidose tubular renal tipo 4 por hipoaldosteronismo hiporreninêmico",
+                "Acidose tubular renal proximal tipo 2",
+                "Acidose tubular renal distal tipo 1 clássica",
+                "Alcalose metabólica por diurético"
+              ],
+              "ans": 0,
+              "exp": "Hipercalemia associada a acidose metabólica leve de ânion gap normal e renina/aldosterona baixas aponta para acidose tubular renal tipo 4 por hipoaldosteronismo hiporreninêmico, comum em nefropatia diabética e agravável por bloqueio do SRAA. ATR tipo 1 e tipo 2 clássicas tendem a cursar com hipocalemia; diurético de alça/tiazídico costuma causar alcalose metabólica. A referência específica de ATR foi adicionada ao item.",
+              "diff": "hard",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "341044b7b924718531632d7afeeb2c1832e7329be327f8efc3ff46ce2658e3db",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato integra diabetes/DRC/renina/aldosterona para diagnosticar síndrome; proposta nomeiaATR4 e pergunta perfil laboratorial.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "c572522f",
+            "currentQuestion": {
+              "t": "Diabetes, Hipercalemia e Acidose Tubular Renal Tipo 4",
+              "qid": "c572522f",
+              "q": "Paciente com diabetes tipo 2 e DRC apresenta potássio de 5,9 mEq/L, bicarbonato de 19 mEq/L e acidose metabólica hiperclorêmica com ânion gap normal. Qual distúrbio tubular melhor integra esses achados?",
+              "refs": [
+                "atr_rodriguez_soriano"
+              ],
+              "opts": [
+                "Acidose tubular renal tipo 4 por hipoaldosteronismo hiporreninêmico ou resistência à aldosterona",
+                "Acidose tubular renal distal tipo 1 com incapacidade obrigatória de reduzir o pH urinário abaixo de 5,5",
+                "Acidose tubular renal proximal tipo 2 com perda isolada de bicarbonato e hipocalemia",
+                "Alcalose metabólica por excesso de mineralocorticoide"
+              ],
+              "ans": 0,
+              "exp": "A acidose tubular renal tipo 4 é a forma tipicamente hipercalêmica e ocorre com frequência em diabetes e DRC por deficiência de renina/aldosterona ou menor resposta distal à aldosterona. A hipercalemia reduz a geração e a excreção de amônio, favorecendo acidose metabólica de ânion gap normal. O pH urinário pode permanecer abaixo de 5,5, porque a capacidade de acidificar a urina não está necessariamente abolida; isso a diferencia da ATR distal clássica. As ATR tipos 1 e 2 costumam cursar com hipocalemia, e excesso mineralocorticoide favorece alcalose.",
+              "diff": "medium",
+              "cat": "hipertensao"
+            },
+            "currentQuestionSHA256": "e940ed4e6f072aab661e79faece962394d205d5c7cd95e8b25aa4cf118b5a936",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato dá clínica/laboratório e pergunta distúrbio tubular; proposta faz direção inversa, tipo4dado e perfil esperado.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "7c0daeca",
+            "currentQuestion": {
+              "t": "Tacrolimo — Hipercalemia e Acidose Tubular Tipo 4",
+              "qid": "7c0daeca",
+              "q": "Receptor de transplante renal em uso de tacrolimo apresenta potássio de 6,0 mEq/L, bicarbonato de 18 mEq/L, hipertensão e função do enxerto estável. Qual alteração tubular relacionada ao inibidor de calcineurina melhor explica esse fenótipo?",
+              "refs": [
+                "cni_hyperkalemia_duan_2024"
+              ],
+              "opts": [
+                "Ativação do cotransportador NCC, retendo sódio antes do segmento secretor de potássio.",
+                "Inibição do cotransportador NCC, com menor reabsorção de sódio no túbulo contorcido distal.",
+                "Supressão da atividade do NKCC2, com menor reabsorção de sódio no ramo ascendente espesso.",
+                "Estimulação da via aldosterona–ENaC, com maior transporte de sódio no ducto coletor cortical."
+              ],
+              "ans": 0,
+              "exp": "A atividade aumentada do cotransportador de sódio e cloreto (NCC) no túbulo contorcido distal é compatível com retenção de sódio, hipertensão e menor excreção de potássio durante uso de tacrolimo. A inibição da calcineurina altera a regulação de NCC, inclusive a via WNK-SPAK, e pode reduzir a entrega de sódio ao segmento distal secretor de potássio. Estudos experimentais e achados em receptores de transplante sustentam essa participação, mas ela não é a única explicação: alterações de ROMK e da síntese/ação de aldosterona também podem contribuir, e parte da evidência vem de modelos animais e celulares. Inibir NCC ou NKCC2 não corresponde à ativação de NCC descrita; estimular a via aldosterona–ENaC favorece secreção distal de potássio. O bicarbonato baixo e a hipercalemia são compatíveis com acidose tubular tipo 4, mas não dispensam avaliação do enxerto, acidose e medicamentos concomitantes.",
+              "diff": "medium",
+              "cat": "transplante"
+            },
+            "currentQuestionSHA256": "38a1e7a1c7185ba28bd7aaae90d79302cca09c011ee46b45dc53c9033289662a",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato pede mecanismoNCC/CNI em transplantado, não perfil típicoATR4.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "fb5a347d",
+            "currentQuestion": {
+              "t": "ATR Tipo 1 vs Tipo 2 — Defeito Primário",
+              "qid": "fb5a347d",
+              "q": "Qual diferença fisiopatológica separa melhor a acidose tubular renal (ATR) tipo 1 da ATR tipo 2?",
+              "refs": [
+                "atr_rodriguez_soriano",
+                "nongap_acidosis_kraut_madias"
+              ],
+              "opts": [
+                "ATR tipo 1: defeito distal de secreção de H+; ATR tipo 2: defeito proximal de reabsorção de bicarbonato filtrado.",
+                "ATR tipo 1: defeito proximal de bicarbonato; ATR tipo 2: defeito distal de secreção de H+.",
+                "ATR tipo 1 cursa tipicamente com hipercalemia; ATR tipo 2 cursa obrigatoriamente com hipercalemia grave.",
+                "Não há diferença fisiopatológica relevante; ambas têm tratamento e achados idênticos."
+              ],
+              "ans": 0,
+              "exp": "Na ATR tipo 1 (distal), o defeito central é incapacidade de acidificar a urina por secreção distal inadequada de H+, mantendo pH urinário inapropriadamente alto durante acidose. Na ATR tipo 2 (proximal), o problema é perda/reabsorção inadequada de bicarbonato filtrado; após queda do bicarbonato sérico abaixo do limiar, o néfron distal ainda consegue acidificar a urina. Ambas podem cursar com hipocalemia, mas nefrocalcinose é mais típica da ATR distal.",
+              "diff": "medium",
+              "cat": "acido_base"
+            },
+            "currentQuestionSHA256": "16c0bad9f0ecd1c1c3516340fca35c6b4098f79ba46c4296093b2ba280d42209",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato compara defeitos primários1/2, não perfil4.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "packageIntegrationHold": false,
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            25,
+            26,
+            26,
+            27
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": false,
+          "lengthDoesNotAuthorizeClinicalGate": true
+        },
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "qid": "85e1d082",
+        "sourceLine": 274,
+        "BEFORE": {
+          "qid": "85e1d082",
+          "q": "Ao avaliar o pH urinário para diferenciar a ATR tipo 1 (distal) da ATR tipo 2 (proximal), qual é o achado clássico?",
+          "opts": [
+            "Na ATR tipo 1, o pH urinário permanece inapropriadamente > 5,5 durante acidose sistêmica, enquanto na tipo 2 pode cair < 5,5 após queda do bicarbonato sérico.",
+            "Ambas são incapazes de baixar o pH urinário abaixo de 6,5.",
+            "Na ATR tipo 1, o pH urinário cai para menos de 4,0 devido à hiperamonemia.",
+            "Na ATR tipo 2, o pH urinário é obrigatoriamente alcalino o tempo todo, mesmo com acidose grave."
+          ],
+          "ans": 0,
+          "exp": "Na Acidose Tubular Renal (ATR) tipo 1 (distal), há defeito de secreção distal de íons hidrogênio, de modo que o pH urinário fica inapropriadamente alto, tipicamente >5,5, apesar de acidose metabólica sistêmica. Na ATR tipo 2 (proximal), o defeito primário é a reabsorção reduzida de bicarbonato filtrado; porém, o néfron distal está funcional e, depois que o bicarbonato sérico cai abaixo do limiar de reabsorção, a urina pode voltar a ser acidificada para pH <5,5.",
+          "refs": [
+            "atr_rodriguez_soriano",
+            "brenner_rector"
+          ],
+          "cat": "acido_base",
+          "diff": "hard",
+          "t": "ATR Tipo 1 vs Tipo 2 — pH Urinário"
+        },
+        "beforeQuestionSHA256": "5939f1b2889c63ff0000fa7117bb3022d7c63b0217ac62697697c7192ead0ed4",
+        "AFTER": {
+          "qid": "85e1d082",
+          "q": "Em acidose sistêmica, sem infecção urinária nem reposição recente de bicarbonato, como se compara o pH urinário na acidose tubular renal (ATR) tipo 1 e na ATR tipo 2 após o bicarbonato sérico cair abaixo do limiar proximal?",
+          "opts": [
+            "Tipo 1: pH >5,5; tipo 2: pH pode cair abaixo de 5,5.",
+            "Tipo 1: pH <5,5; tipo 2: pH permanece acima de 5,5.",
+            "Tipo 1: pH >5,5; tipo 2: pH permanece acima de 5,5.",
+            "Tipo 1: pH <5,5; tipo 2: pH pode cair abaixo de 5,5."
+          ],
+          "ans": 0,
+          "exp": "Na ATR distal completa, a acidificação permanece inadequada durante acidose sistêmica. Na proximal, a urina pode acidificar depois de o bicarbonato cair abaixo do limiar reduzido, porque a acidificação distal está preservada. Urina ácida não exclui ATR proximal e pH isolado não confirma ATR distal; contexto, bicarbonatúria e infecção interferem na interpretação.",
+          "refs": [
+            "palmer_rta_2021"
+          ],
+          "cat": "acido_base",
+          "diff": "medium",
+          "t": "Acidose Tubular Renal (ATR) Tipo 1 vs Tipo 2 — pH Urinário"
+        },
+        "afterQuestionSHA256": "5659984c4037a75735ecb3958a4264b721a694b537c2ab97cd1b0c5aa0e91805",
+        "OP": "Distinguir resposta do pH urinário na ATR distal completa e proximal após bicarbonato abaixo do limiar, no padrão clínico comparado.",
+        "classification": {
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "reviewStatus": "REVIEWED",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): afirmações decisivas/fontes próprias no alcance, scorepróprio, aprovada.",
+        "ownJustification": "Palmer corpo próprio l160-164 descreve proximal que acidifica abaixo do limiar; l199-213 usa5,5 na avaliação clínica e explica confirmação/contexto. Fonte também discute5,3 na descrição distal; o parecer limitaA ao padrão clínico/didático do item, sem declarar pHisolado teste perfeito ou corte fisiológico universal.",
+        "appeal": {
+          "finding": "A responde à distinção de acidificação preservada versus inadequada no escopo deATRdistalcompleta discutido na explicação. AusênciaITU/bicarbonato recente reduz confusão; limiarproximal é fornecido. Não se deve ampliar o texto para diagnosticar todos os casos por5,5isolado.",
+          "sourceVerificationIncomplete": false,
+          "duplicateChallengeUpheld": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A responde à distinção de acidificação preservada versus inadequada no escopo deATRdistalcompleta discutido na explicação. AusênciaITU/bicarbonato recente reduz confusão; limiarproximal é fornecido. Não se deve ampliar o texto para diagnosticar todos os casos por5,5isolado."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A responde à distinção de acidificação preservada versus inadequada no escopo deATRdistalcompleta discutido na explicação. AusênciaITU/bicarbonato recente reduz confusão; limiarproximal é fornecido. Não se deve ampliar o texto para diagnosticar todos os casos por5,5isolado."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A responde à distinção de acidificação preservada versus inadequada no escopo deATRdistalcompleta discutido na explicação. AusênciaITU/bicarbonato recente reduz confusão; limiarproximal é fornecido. Não se deve ampliar o texto para diagnosticar todos os casos por5,5isolado."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A responde à distinção de acidificação preservada versus inadequada no escopo deATRdistalcompleta discutido na explicação. AusênciaITU/bicarbonato recente reduz confusão; limiarproximal é fornecido. Não se deve ampliar o texto para diagnosticar todos os casos por5,5isolado."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A responde à distinção de acidificação preservada versus inadequada no escopo deATRdistalcompleta discutido na explicação. AusênciaITU/bicarbonato recente reduz confusão; limiarproximal é fornecido. Não se deve ampliar o texto para diagnosticar todos os casos por5,5isolado."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A responde à distinção de acidificação preservada versus inadequada no escopo deATRdistalcompleta discutido na explicação. AusênciaITU/bicarbonato recente reduz confusão; limiarproximal é fornecido. Não se deve ampliar o texto para diagnosticar todos os casos por5,5isolado."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A responde à distinção de acidificação preservada versus inadequada no escopo deATRdistalcompleta discutido na explicação. AusênciaITU/bicarbonato recente reduz confusão; limiarproximal é fornecido. Não se deve ampliar o texto para diagnosticar todos os casos por5,5isolado."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A responde à distinção de acidificação preservada versus inadequada no escopo deATRdistalcompleta discutido na explicação. AusênciaITU/bicarbonato recente reduz confusão; limiarproximal é fornecido. Não se deve ampliar o texto para diagnosticar todos os casos por5,5isolado."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A responde à distinção de acidificação preservada versus inadequada no escopo deATRdistalcompleta discutido na explicação. AusênciaITU/bicarbonato recente reduz confusão; limiarproximal é fornecido. Não se deve ampliar o texto para diagnosticar todos os casos por5,5isolado."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A responde à distinção de acidificação preservada versus inadequada no escopo deATRdistalcompleta discutido na explicação. AusênciaITU/bicarbonato recente reduz confusão; limiarproximal é fornecido. Não se deve ampliar o texto para diagnosticar todos os casos por5,5isolado."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 19,
+          "annulled": false,
+          "notComputableDueToEvidenceGate": false,
+          "reason": "Dez dimensões próprias; a duplicidade é decidida antes da liberação por nota."
+        },
+        "decisionTree": [
+          "0: VERIFICADA/NENHUMA",
+          "1: dez eliminatórios próprios sem disparo",
+          "2: recurso científico não procede",
+          "3: aprovada",
+          "publicação: LIBERADA"
+        ],
+        "sourceReadings": [
+          {
+            "id": "palmer2021",
+            "sourcePin": null,
+            "url": "https://link.springer.com/article/10.1007/s12325-020-01587-5",
+            "readByIndependentReviewer": true,
+            "readScope": "Corpo primárioeditora aberto/lidoANTESrejeição,l139-147,160-164,177-219:distalKloss,proximalfasebicarbonato,pH,ATR4,NH3,mistosDRC/diarreia. Publicadoonline26dez2020/volume38p949-968em2021; autoriaPalmer/Kelepouris/Clegg. Não cachePDFnem estudo/diretriz graduada alegados.",
+            "newExternalRequest": false,
+            "fullBodyCacheClaimed": false
+          }
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "fb5a347d",
+            "currentQuestion": {
+              "t": "ATR Tipo 1 vs Tipo 2 — Defeito Primário",
+              "qid": "fb5a347d",
+              "q": "Qual diferença fisiopatológica separa melhor a acidose tubular renal (ATR) tipo 1 da ATR tipo 2?",
+              "refs": [
+                "atr_rodriguez_soriano",
+                "nongap_acidosis_kraut_madias"
+              ],
+              "opts": [
+                "ATR tipo 1: defeito distal de secreção de H+; ATR tipo 2: defeito proximal de reabsorção de bicarbonato filtrado.",
+                "ATR tipo 1: defeito proximal de bicarbonato; ATR tipo 2: defeito distal de secreção de H+.",
+                "ATR tipo 1 cursa tipicamente com hipercalemia; ATR tipo 2 cursa obrigatoriamente com hipercalemia grave.",
+                "Não há diferença fisiopatológica relevante; ambas têm tratamento e achados idênticos."
+              ],
+              "ans": 0,
+              "exp": "Na ATR tipo 1 (distal), o defeito central é incapacidade de acidificar a urina por secreção distal inadequada de H+, mantendo pH urinário inapropriadamente alto durante acidose. Na ATR tipo 2 (proximal), o problema é perda/reabsorção inadequada de bicarbonato filtrado; após queda do bicarbonato sérico abaixo do limiar, o néfron distal ainda consegue acidificar a urina. Ambas podem cursar com hipocalemia, mas nefrocalcinose é mais típica da ATR distal.",
+              "diff": "medium",
+              "cat": "acido_base"
+            },
+            "currentQuestionSHA256": "16c0bad9f0ecd1c1c3516340fca35c6b4098f79ba46c4296093b2ba280d42209",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato identifica defeito primárioH/bicarbonato; proposta condiciona à fase do bicarbonato e compara resposta urinária, outra operação/dados.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "cc3248a3",
+            "currentQuestion": {
+              "t": "Diagnóstico Diferencial de ATR Distal (Tipo 1)",
+              "qid": "cc3248a3",
+              "q": "Um paciente apresenta nefrocalcinose medular, cálculos de fosfato de cálcio recorrentes, hipocalemia e pH urinário persistentemente acima de 5,5 em vigência de acidose sistêmica. Qual é o diagnóstico mais provável e o tratamento inicial adequado?",
+              "refs": [
+                "atr_rodriguez_soriano",
+                "brenner_rector"
+              ],
+              "opts": [
+                "Acidose extrarrenal por diarreia; hidratação vigorosa",
+                "ATR Tipo 4 (hipercalêmica); restrição de potássio",
+                "ATR Tipo 1 (distal); administração de citrato de potássio",
+                "ATR Tipo 2 (proximal); reposição de bicarbonato em altas doses"
+              ],
+              "ans": 2,
+              "exp": "O quadro clínico (nefrocalcinose medular, cálculos de fosfato de cálcio, hipocalemia, pH urinário persistentemente >5,5 mesmo com acidose sistêmica) é característico de acidose tubular renal distal (tipo 1). O tratamento de escolha é o citrato de potássio oral, porque: (1) o citrato é metabolizado em bicarbonato, corrigindo a acidose; (2) o potássio corrige a hipocalemia; e (3) o aumento do citrato urinário inibe a cristalização do oxalato/fosfato de cálcio, prevenindo novos cálculos e nefrocalcinose. O bicarbonato de sódio, embora corrija a acidose, não trata a hipocalemia nem aumenta a citratúria, sendo inferior ao citrato de potássio nesse contexto. ATR tipo 4 cursa com HIPERcalemia; ATR tipo 2 não causa nefrocalcinose medular.",
+              "diff": "medium",
+              "cat": "acido_base"
+            },
+            "currentQuestionSHA256": "6a93f7dbd373cdb87898f69849df5b1d506c582248e753d4accb8a73accc939e",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato integra cálculos/nefromedular/hipocalemia para etiologia+tratamento; proposta compara fase/pH sem prescrever.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "packageIntegrationHold": false,
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            52,
+            51,
+            51,
+            52
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": false,
+          "lengthDoesNotAuthorizeClinicalGate": true
+        },
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "qid": "bc72d377",
+        "sourceLine": 275,
+        "BEFORE": {
+          "qid": "bc72d377",
+          "q": "Em um quadro de acidose metabólica grave com elevação simultânea do ânion gap e do gap osmolar, acompanhado de cristalúria em forma de fuso/haltere, a intoxicação mais provável é por:",
+          "opts": [
+            "Etilenoglicol.",
+            "Metanol.",
+            "Etanol.",
+            "Salicilato."
+          ],
+          "ans": 0,
+          "exp": "A intoxicação por etilenoglicol produz metabólitos ácidos, especialmente glicolato e oxalato, causando acidose metabólica com ânion gap elevado. O álcool original contribui para o gap osmolar, enquanto o oxalato pode precipitar como cristais de oxalato de cálcio, classicamente em formas de envelope, agulha, fuso ou haltere. Metanol também pode cursar com gap osmolar e acidose com ânion gap aumentado, mas não explica a cristalúria por oxalato.",
+          "refs": [
+            "extrip_ethylene_glycol",
+            "brenner_rector"
+          ],
+          "cat": "acido_base",
+          "diff": "hard",
+          "t": "Intoxicação por Etilenoglicol — Diagnóstico"
+        },
+        "beforeQuestionSHA256": "987c1a4d52465d2e8a087dd3b6624c8c0aba725941c118955e577c7e9eed5fa8",
+        "AFTER": {
+          "qid": "bc72d377",
+          "q": "Adulto com possível exposição tóxica tem acidose metabólica com ânion gap elevado, gap osmolar aumentado e numerosos cristais urinários identificados como oxalato de cálcio. Qual agente melhor integra o conjunto?",
+          "opts": [
+            "Etilenoglicol.",
+            "Metanol.",
+            "Etanol.",
+            "Ácido salicílico."
+          ],
+          "ans": 0,
+          "exp": "O conjunto favorece etilenoglicol: seus metabólitos incluem glicolato e oxalato. Cristalúria e gaps são indícios, sem especificidade ou sensibilidade suficientes isoladamente; gap osmolar normal após metabolização não exclui exposição. Metanol pode elevar ambos os gaps, mas não explica a formação de oxalato pela mesma via. A decisão de tratamento extracorpóreo (ECTR, sigla em inglês) depende de gravidade e critérios específicos, não de cristalúria isolada.",
+          "refs": [
+            "extrip_ethylene_glycol"
+          ],
+          "cat": "acido_base",
+          "diff": "medium",
+          "t": "Intoxicação por Etilenoglicol — Diagnóstico"
+        },
+        "afterQuestionSHA256": "836e6eae1f1d11aa54dbcaa2bc85e1387065f919fa98c6efdae472fdc6f5c4fe",
+        "OP": "Identificar agente tóxico integrando acidose com gap elevado, gap osmolar e cristais identificados de oxalato.",
+        "classification": {
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "reviewStatus": "PENDENTE_VERIFICAÇÃO_DE_FONTE",
+        "verdictV2": "revisão maior",
+        "confidence": "moderada",
+        "evidenceStatus": "NÃO VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7: pendência decisiva impede gate/publicação, sem transformar acesso ausente em erro médico.",
+        "ownJustification": "Não foram lidos por este peer os trechos científicos decisivos do EXTRIP; acesso à página/header não é leitura do body. Autoria apresenta fonte primária plausível, mas não serve como gate independente. Cristais/gaps não serão tratados como indicação automáticaECTR sem fonte exata.",
+        "appeal": {
+          "finding": "Nenhum erro clínico foi inferido pela ausência de acesso; falta verificação própria da atribuição e dos limites do gabarito/exp/card. Reavaliação afetada poderá ocorrer com fonte autorizada/local, sem repetir outrosseis.",
+          "sourceVerificationIncomplete": true,
+          "duplicateChallengeUpheld": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Não foram lidos por este peer os trechos científicos decisivos do EXTRIP; acesso à página/header não é leitura do body. Autoria apresenta fonte primária plausível, mas não serve como gate independente. Cristais/gaps não serão tratados como indicação automáticaECTR sem fonte exata."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Não foram lidos por este peer os trechos científicos decisivos do EXTRIP; acesso à página/header não é leitura do body. Autoria apresenta fonte primária plausível, mas não serve como gate independente. Cristais/gaps não serão tratados como indicação automáticaECTR sem fonte exata."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Não foram lidos por este peer os trechos científicos decisivos do EXTRIP; acesso à página/header não é leitura do body. Autoria apresenta fonte primária plausível, mas não serve como gate independente. Cristais/gaps não serão tratados como indicação automáticaECTR sem fonte exata."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Não foram lidos por este peer os trechos científicos decisivos do EXTRIP; acesso à página/header não é leitura do body. Autoria apresenta fonte primária plausível, mas não serve como gate independente. Cristais/gaps não serão tratados como indicação automáticaECTR sem fonte exata."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Não foram lidos por este peer os trechos científicos decisivos do EXTRIP; acesso à página/header não é leitura do body. Autoria apresenta fonte primária plausível, mas não serve como gate independente. Cristais/gaps não serão tratados como indicação automáticaECTR sem fonte exata."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Não foram lidos por este peer os trechos científicos decisivos do EXTRIP; acesso à página/header não é leitura do body. Autoria apresenta fonte primária plausível, mas não serve como gate independente. Cristais/gaps não serão tratados como indicação automáticaECTR sem fonte exata."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Não foram lidos por este peer os trechos científicos decisivos do EXTRIP; acesso à página/header não é leitura do body. Autoria apresenta fonte primária plausível, mas não serve como gate independente. Cristais/gaps não serão tratados como indicação automáticaECTR sem fonte exata."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Não foram lidos por este peer os trechos científicos decisivos do EXTRIP; acesso à página/header não é leitura do body. Autoria apresenta fonte primária plausível, mas não serve como gate independente. Cristais/gaps não serão tratados como indicação automáticaECTR sem fonte exata."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Não foram lidos por este peer os trechos científicos decisivos do EXTRIP; acesso à página/header não é leitura do body. Autoria apresenta fonte primária plausível, mas não serve como gate independente. Cristais/gaps não serão tratados como indicação automáticaECTR sem fonte exata."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "status": "NOT_FINAL_SOURCE_GATE_INCOMPLETE",
+            "finding": "Nenhum erro clínico inferido pelo acesso ausente; gate de evidência vem antes da pontuação. Não foram lidos por este peer os trechos científicos decisivos do EXTRIP; acesso à página/header não é leitura do body. Autoria apresenta fonte primária plausível, mas não serve como gate independente. Cristais/gaps não serão tratados como indicação automáticaECTR sem fonte exata."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": null
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": null
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": null
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": null
+            },
+            {
+              "dimension": "Alternativas",
+              "score": null
+            },
+            {
+              "dimension": "Distratores",
+              "score": null
+            },
+            {
+              "dimension": "Explicação",
+              "score": null
+            },
+            {
+              "dimension": "Referências",
+              "score": null
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": null
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": null
+            }
+          ],
+          "total": null,
+          "annulled": false,
+          "notComputableDueToEvidenceGate": true,
+          "reason": "Fonte/card decisivo pendente; não produzir20/20 ou eliminatório falso de erro médico."
+        },
+        "decisionTree": [
+          "0: NÃO VERIFICADA/DECISIVA",
+          "1: gate científico ainda incompleto",
+          "2: referência/card exige leitura própria",
+          "3: revisão maior",
+          "publicação: BLOQUEADA"
+        ],
+        "sourceReadings": [
+          {
+            "id": "extrip2023",
+            "url": "https://link.springer.com/article/10.1186/s13054-022-04227-2",
+            "sourcePin": null,
+            "readByIndependentReviewer": false,
+            "readScope": "Página/header acessado antesrejeição, trechos científicos decisivos não lidos. Não declarado full-text científico conferido por título, acesso ou gate autoral."
+          }
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "e0a71d46",
+            "currentQuestion": {
+              "t": "Nefropatia por Oxalato após Cirurgia Bariátrica",
+              "qid": "e0a71d46",
+              "q": "Paciente com bypass gástrico em Y de Roux, esteatorreia e desidratação desenvolve LRA. A biópsia mostra cristais tubulares fortemente birrefringentes à luz polarizada. Qual diagnóstico integra melhor os achados?",
+              "refs": [
+                "oxalate_nephropathy_review_2022"
+              ],
+              "opts": [
+                "Nefropatia por oxalato secundária a hiperoxalúria entérica",
+                "Necrose cortical causada exclusivamente por hipovolemia",
+                "Glomerulonefrite por imunocomplexos do bypass",
+                "Nefropatia por ácido úrico sem síndrome de lise tumoral"
+              ],
+              "ans": 0,
+              "exp": "Cirurgias disabsortivas, incluindo o bypass em Y de Roux, podem causar hiperoxalúria entérica. O oxalato absorvido é filtrado e forma cristais de oxalato de cálcio nos túbulos, associados a lesão tubular e inflamação intersticial. Desidratação pode precipitar o episódio, mas não explica sozinha os cristais birrefringentes. A apresentação pode ser LRA, LRA sobre DRC ou perda renal progressiva, e o reconhecimento precoce é importante porque a recuperação nem sempre é completa.",
+              "diff": "medium",
+              "cat": "lra"
+            },
+            "currentQuestionSHA256": "2a269b37b7ae9fbf3489f2c5adb6abee4ada7b39259c5eac3adc5fdde0cf2d70",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato cenáriobypass/esteatorreia/biopsia pede nefropatia entérica; proposta possível intoxicação/gaps/urina pede agente, dados e decisão diferentes.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "3e67777e",
+            "currentQuestion": {
+              "t": "Hiperoxalúria Entérica — Mecanismo",
+              "qid": "3e67777e",
+              "q": "Paciente com doença de Crohn e ressecção ileal apresenta má absorção de gorduras e hiperoxalúria. Qual mecanismo explica o aumento da absorção intestinal de oxalato?",
+              "refs": [
+                "oxalate_nephropathy_review_2022"
+              ],
+              "opts": [
+                "Ácidos graxos não absorvidos ligam cálcio, deixando mais oxalato solúvel livre para absorção colônica",
+                "A ressecção ileal induz produção hepática obrigatória de oxalato",
+                "A esteatorreia aumenta o cálcio livre que precipita todo o oxalato no lúmen",
+                "O oxalato passa a ser secretado pelos enterócitos em vez de absorvido"
+              ],
+              "ans": 0,
+              "exp": "Em condições normais, cálcio intestinal liga oxalato e limita sua absorção. Na má absorção de gorduras, ácidos graxos livres sequestram cálcio por saponificação, aumentando a fração de oxalato solúvel disponível para absorção no cólon. Ácidos biliares também podem aumentar a permeabilidade colônica. O resultado é maior excreção urinária de oxalato, supersaturação de oxalato de cálcio e risco de litíase ou nefropatia cristalina.",
+              "diff": "medium",
+              "cat": "lra"
+            },
+            "currentQuestionSHA256": "aaa365cc846975ca2516764a5444036fccf931455de7842b188c5b0976aa56b2",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato pede mecanismo intestinal de hiperoxalúria, não agente tóxico.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "packageIntegrationHold": true,
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            14,
+            8,
+            7,
+            17
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": false,
+          "lengthDoesNotAuthorizeClinicalGate": true
+        },
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "qid": "9c8d6b1e",
+        "sourceLine": 276,
+        "BEFORE": {
+          "qid": "9c8d6b1e",
+          "q": "O aumento rápido da concentração sérica de sódio no tratamento da hiponatremia crônica pode desencadear a Síndrome de Desmielinização Osmótica. Qual é o limite de segurança atual?",
+          "opts": [
+            "Não ultrapassar elevação de 10 mEq/L nas primeiras 24 horas (≤8 mEq/L em pacientes de alto risco).",
+            "Corrigir rapidamente a natremia até níveis normais (140 mEq/L) em 24h.",
+            "Aumentar pelo menos 15 mEq/L nas primeiras 12 horas.",
+            "Elevar não mais que 2 mEq/L por dia."
+          ],
+          "ans": 0,
+          "exp": "Para prevenir a Síndrome de Desmielinização Osmótica (SDO), as diretrizes atuais recomendam que a elevação da concentração sérica de sódio não exceda 10 mEq/L nas primeiras 24 horas e 18 mEq/L nas primeiras 48 horas. A correção mais lenta, de 4-8 mEq/L/dia, é preferível em pacientes com alto risco de SDO, como aqueles com hiponatremia grave (<105 mEq/L), hipocalemia ou desnutrição. A correção rápida pode levar à desidratação osmótica dos oligodendrócitos e à desmielinização pontina e extrapontina.",
+          "refs": [
+            "hypona",
+            "hyponatremia_adrogue2000",
+            "hyponatremia_verbalis2022",
+            "salsa_trial"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "Correção da Hiponatremia — Limites de Segurança"
+        },
+        "beforeQuestionSHA256": "cf74ad9bdeee25673b6fec33873ad7704c45e8759abc670ab20f549c0337fd98",
+        "AFTER": {
+          "qid": "9c8d6b1e",
+          "q": "Adulto com hiponatremia crônica grave e alcoolismo/hipocalemia pertence ao grupo de alto risco de síndrome de desmielinização osmótica (ODS, sigla em inglês). Segundo o painel norte-americano/irlandês discutido por Sterns, qual elevação não deve ser ultrapassada?",
+          "opts": [
+            "Até 8 mmol/L em qualquer período de 24 h.",
+            "Até 10 mmol/L em qualquer período de 24 h.",
+            "Até 12 mmol/L em qualquer período de 24 h.",
+            "Até 18 mmol/L em qualquer período de 24 h."
+          ],
+          "ans": 0,
+          "exp": "Para alto risco, o painel recomenda não exceder 8 mmol/L em qualquer 24 h, com objetivo de correção usual menor, de 4–6 mmol/L/dia. Limite não é meta nem garantia de segurança. Limites de outras populações ou de 48 h não devem ser transplantados para esse intervalo e risco. Monitorização permite detectar aquarese e agir antes de sobrecorreção.",
+          "refs": [
+            "sterns_hyponatremia_correction_2024"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "Correção da Hiponatremia — Limites de Segurança"
+        },
+        "afterQuestionSHA256": "51673c72be99e651abdad6cfda7fe21607dd430ce7ac60f5d9de8552ca5ed024",
+        "OP": "Aplicar o limite de8mmol/L em qualquer24h ao alto risco explicitamente atribuído ao painel US/Irish, distinto de meta.",
+        "classification": {
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "reviewStatus": "REVIEWED",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): afirmações decisivas/fontes próprias no alcance, scorepróprio, aprovada.",
+        "ownJustification": "Sterns corpo próprio confere risco/limite8qualquer24h e meta4-6; fontes/populações/48h são distinguidas. Limite numérico de segurança clínica em risco declarado não é recall de estatística sem consequência.",
+        "appeal": {
+          "finding": "A é única para painel e alto risco fornecidos. Alcoolismo/hipocalemia no caso não autoriza10/12em24h ou18em24h; estes pertencem a escopos diferentes. Não requer normalizaçãoNem garante ausência de dano.",
+          "sourceVerificationIncomplete": false,
+          "duplicateChallengeUpheld": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para painel e alto risco fornecidos. Alcoolismo/hipocalemia no caso não autoriza10/12em24h ou18em24h; estes pertencem a escopos diferentes. Não requer normalizaçãoNem garante ausência de dano."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para painel e alto risco fornecidos. Alcoolismo/hipocalemia no caso não autoriza10/12em24h ou18em24h; estes pertencem a escopos diferentes. Não requer normalizaçãoNem garante ausência de dano."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para painel e alto risco fornecidos. Alcoolismo/hipocalemia no caso não autoriza10/12em24h ou18em24h; estes pertencem a escopos diferentes. Não requer normalizaçãoNem garante ausência de dano."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para painel e alto risco fornecidos. Alcoolismo/hipocalemia no caso não autoriza10/12em24h ou18em24h; estes pertencem a escopos diferentes. Não requer normalizaçãoNem garante ausência de dano."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para painel e alto risco fornecidos. Alcoolismo/hipocalemia no caso não autoriza10/12em24h ou18em24h; estes pertencem a escopos diferentes. Não requer normalizaçãoNem garante ausência de dano."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para painel e alto risco fornecidos. Alcoolismo/hipocalemia no caso não autoriza10/12em24h ou18em24h; estes pertencem a escopos diferentes. Não requer normalizaçãoNem garante ausência de dano."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para painel e alto risco fornecidos. Alcoolismo/hipocalemia no caso não autoriza10/12em24h ou18em24h; estes pertencem a escopos diferentes. Não requer normalizaçãoNem garante ausência de dano."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para painel e alto risco fornecidos. Alcoolismo/hipocalemia no caso não autoriza10/12em24h ou18em24h; estes pertencem a escopos diferentes. Não requer normalizaçãoNem garante ausência de dano."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para painel e alto risco fornecidos. Alcoolismo/hipocalemia no caso não autoriza10/12em24h ou18em24h; estes pertencem a escopos diferentes. Não requer normalizaçãoNem garante ausência de dano."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "A é única para painel e alto risco fornecidos. Alcoolismo/hipocalemia no caso não autoriza10/12em24h ou18em24h; estes pertencem a escopos diferentes. Não requer normalizaçãoNem garante ausência de dano."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 2
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 20,
+          "annulled": false,
+          "notComputableDueToEvidenceGate": false,
+          "reason": "Dez dimensões próprias; a duplicidade é decidida antes da liberação por nota."
+        },
+        "decisionTree": [
+          "0: VERIFICADA/NENHUMA",
+          "1: dez eliminatórios próprios sem disparo",
+          "2: recurso científico não procede",
+          "3: aprovada",
+          "publicação: LIBERADA"
+        ],
+        "sourceReadings": [
+          {
+            "id": "sterns2024",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 113891,
+              "sha256": "67d5be85e869c401842de8ea7e3db552c3472b466d3197682c1c74a2016911ea"
+            },
+            "readByIndependentReviewer": true,
+            "readScope": "Original própriofront/bodyA009eA010: alto risco8qualquer24h/meta4-6, atraso2-6dias/lesõespontinasextrapontinas/resoluçãopossível, fonteCJASN2024online2023.",
+            "newExternalRequest": false,
+            "authorGateNotInherited": true
+          }
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "ff5868ca",
+            "currentQuestion": {
+              "t": "Mielinólise Pontina Central — Prevenção",
+              "qid": "ff5868ca",
+              "q": "Para prevenir a síndrome de desmielinização osmótica, qual é a taxa máxima de correção recomendada para a hiponatremia crônica severa?",
+              "opts": [
+                "Até 20 mEq/L nas primeiras 24h",
+                "Até 10 mEq/L nas primeiras 24h",
+                "Até 5 mEq/L nas primeiras 24h",
+                "Até 25 mEq/L nas primeiras 48h"
+              ],
+              "ans": 1,
+              "exp": "Na hiponatremia crônica, a correção deve ser lenta para evitar síndrome de desmielinização osmótica, porque o cérebro já se adaptou à baixa osmolaridade e uma elevação rápida do sódio desloca água para fora das células, causando lesão neurológica. Em geral, não se deve ultrapassar 8 a 10 mEq/L nas primeiras 24 horas e cerca de 18 mEq/L em 48 horas; em pacientes de maior risco, o limite é ainda mais conservador. Assim, 20 mEq/L em 24 horas e 25 mEq/L em 48 horas estão acima do recomendado, e 5 mEq/L é seguro, mas não representa o máximo usualmente aceito.",
+              "diff": "medium",
+              "cat": "acido_base",
+              "refs": [
+                "hyponatremia_verbalis2022",
+                "hyponatremia_adrogue2000"
+              ]
+            },
+            "currentQuestionSHA256": "dcf855d41ae550edb5607651ec03741a8869acbecf6df55210bae02892343e3a",
+            "sameDecision": true,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Mesmo tipo de decisão de limite, mas candidatohiponatremiasevera sem risco/painel explicitados e10primeiras24h; propostaalto risco alcoolismo/hipocalemia+USIrish8qualquer24h. Risco/intervalo mudam limite de forma útil, não mera troca numérica.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "e94a6488",
+            "currentQuestion": {
+              "qid": "e94a6488",
+              "q": "Paciente com hiponatremia crônica grave, alcoolismo e hipocalemia começa a corrigir rapidamente após suspensão de tiazídico. Qual conduta é mais alinhada à prevenção de síndrome de desmielinização osmótica?",
+              "opts": [
+                "Aceitar correção rápida desde que os sintomas melhorem",
+                "Buscar elevação de pelo menos 15 mEq/L nas primeiras 24 horas",
+                "Atingir normonatremia nas primeiras 18 horas",
+                "Interromper terapias que elevam o sódio, monitorar de perto e considerar água livre/desmopressina se ultrapassar limites de segurança"
+              ],
+              "ans": 3,
+              "exp": "Em hiponatremia crônica, especialmente com fatores de alto risco como alcoolismo, hipocalemia, desnutrição ou doença hepática, a hipercorreção exige ação ativa. A diretriz europeia recomenda intervenção se o sódio subir mais de 10 mmol/L nas primeiras 24 horas ou mais de 8 mmol/L em qualquer 24 horas subsequente; pode ser necessário suspender terapia ativa, repor água livre e considerar desmopressina sob monitorização. Melhorar sintomas não autoriza hipercorreção. Normalizar rapidamente a natremia aumenta risco de desmielinização.",
+              "refs": [
+                "hypona",
+                "hyponatremia_verbalis2022",
+                "hyponatremia_adrogue2000"
+              ],
+              "cat": "eletrólitos",
+              "diff": "medium",
+              "t": "Hiponatremia — Prevenção de Hipercorreção"
+            },
+            "currentQuestionSHA256": "1a3ed48227bda6c826c580b5476530555c23a2f6f16537b93271a054ca28e7e0",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato decide resgate quando excesso já ocorreu, não escolhe limitequantitativo porrisco.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "9f88ff37",
+            "currentQuestion": {
+              "t": "Hiponatremia Crônica — Segurança da Correção",
+              "qid": "9f88ff37",
+              "q": "Paciente com hiponatremia hipotônica crônica, sintomas leves e sem instabilidade hemodinâmica será tratado de forma controlada. Qual princípio reduz o risco de síndrome de desmielinização osmótica?",
+              "refs": [
+                "hypona",
+                "hyponatremia_verbalis2022",
+                "hyponatremia_adrogue2000"
+              ],
+              "opts": [
+                "Usar NaCl 3% em todo caso, independentemente dos sintomas",
+                "Definir o tratamento sem avaliar volemia, duração e risco de hipercorreção",
+                "Normalizar a natremia em 24 horas para encurtar sintomas",
+                "Limitar a velocidade de elevação do sódio e monitorar natremia seriada"
+              ],
+              "ans": 3,
+              "exp": "Na hiponatremia crônica, o cérebro se adapta à hipo-osmolaridade; correção rápida demais pode causar síndrome de desmielinização osmótica. Por isso, o princípio central é limitar a velocidade de elevação do sódio e medir a natremia de forma seriada, ajustando a terapia se houver tendência à hipercorreção. NaCl 3% é reservado para sintomas moderados/graves ou situações selecionadas, não para todo caso leve. Volemia, duração, sintomas e fatores de alto risco mudam a estratégia terapêutica. Normalizar o sódio em 24 horas é inseguro.",
+              "diff": "medium",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "85fe5e9ba939e7507e565a1635a943f3b5bcfb99489702a176e2f3e1b0c255d2",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato princípio preventivo/monitorizar em caso leve controlado, não regra quantitativa de alto risco.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "packageIntegrationHold": false,
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            41,
+            42,
+            42,
+            42
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": true,
+          "lengthDoesNotAuthorizeClinicalGate": true
+        },
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "qid": "4c7d3db3",
+        "sourceLine": 277,
+        "BEFORE": {
+          "qid": "4c7d3db3",
+          "q": "Qual o mecanismo de ação dos vaptanos (como o Tolvaptan) no manejo da hiponatremia?",
+          "opts": [
+            "Aumentam a reabsorção de sódio na alça de Henle.",
+            "Estimulam a inserção de Aquaporinas 2 na membrana apical.",
+            "Antagonizam os receptores V2 da vasopressina no ducto coletor, gerando aquarese (perda de água livre).",
+            "Bloqueiam a anidrase carbônica no túbulo proximal."
+          ],
+          "ans": 2,
+          "exp": "Os vaptanos, como a tolvaptana, são antagonistas seletivos dos receptores V2 da vasopressina (ADH) nas células principais do ducto coletor. Ao bloquear esses receptores, reduzem a inserção de aquaporinas-2 (AQP2) na membrana apical, diminuem a reabsorção de água livre e produzem aquarese, o que pode elevar a concentração sérica de sódio em hiponatremia euvolêmica ou hipervolêmica selecionada. Eles não aumentam a reabsorção de sódio, não estimulam AQP2 e não atuam como inibidores da anidrase carbônica.",
+          "refs": [
+            "hyponatremia_adrogue2000",
+            "hyponatremia_verbalis2022",
+            "salsa_trial"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "Mecanismo de Ação dos Vaptanos"
+        },
+        "beforeQuestionSHA256": "b6b4d567b8c239cfcbcd65551a4c02e0e1d740008b6dafc175ae6633e8cbf6c7",
+        "AFTER": {
+          "qid": "4c7d3db3",
+          "q": "Qual mecanismo renal da tolvaptana favorece elevação do sódio em pacientes selecionados com antidiurese inapropriada? Nas alternativas, V2 indica receptor de vasopressina tipo 2.",
+          "opts": [
+            "Estímulo de V2, com maior inserção apical de aquaporina 2.",
+            "Inibição de anidrase carbônica, com maior bicarbonatúria.",
+            "Antagonismo de V2, com maior excreção de água livre.",
+            "Inibição de transporte na alça, com maior perda de sódio."
+          ],
+          "ans": 2,
+          "exp": "Tolvaptana antagoniza V2 e favorece aquarese, isto é, excreção de água sem perda proporcional de eletrólitos. O mecanismo não estabelece indicação para toda síndrome de antidiurese inapropriada (SIAD). Na rotulagem norte-americana consultada, início/reinício requer ambiente hospitalar e monitorização de sódio; não substitui tratamento urgente de sintomas neurológicos graves.",
+          "refs": [
+            "warren_siadh_aquaresis_2023"
+          ],
+          "cat": "eletrólitos",
+          "diff": "easy",
+          "t": "Mecanismo de Ação dos Vaptanos"
+        },
+        "afterQuestionSHA256": "b69d67611c23378188990f4871f810d5ff231c64d401bbe663fade5ebb03e57e",
+        "OP": "Explicar antagonismoV2 e aquarese na elevação do sódio por tolvaptana selecionada.",
+        "classification": {
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "reviewStatus": "REVIEWED",
+        "verdictV2": "fundir",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7(c): FUNDIR bloqueia apesar da evidência verificada.",
+        "ownJustification": "Originais própriosbody/SPLjáobtidos confirmam V2/águafree e limitaçõeshospitalinit/emergência. O mecanismo não confere indicaçãouniversal nem benefício clínico duro.",
+        "appeal": {
+          "finding": "C é única cientificamente, mas mesma decisão/estrutura de outrosdoisitems; FUNDIR editorial mantémBLOCK apesar do mecanismo verificado.",
+          "sourceVerificationIncomplete": false,
+          "duplicateChallengeUpheld": true
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é única cientificamente, mas mesma decisão/estrutura de outrosdoisitems; FUNDIR editorial mantémBLOCK apesar do mecanismo verificado."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é única cientificamente, mas mesma decisão/estrutura de outrosdoisitems; FUNDIR editorial mantémBLOCK apesar do mecanismo verificado."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é única cientificamente, mas mesma decisão/estrutura de outrosdoisitems; FUNDIR editorial mantémBLOCK apesar do mecanismo verificado."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é única cientificamente, mas mesma decisão/estrutura de outrosdoisitems; FUNDIR editorial mantémBLOCK apesar do mecanismo verificado."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é única cientificamente, mas mesma decisão/estrutura de outrosdoisitems; FUNDIR editorial mantémBLOCK apesar do mecanismo verificado."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é única cientificamente, mas mesma decisão/estrutura de outrosdoisitems; FUNDIR editorial mantémBLOCK apesar do mecanismo verificado."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é única cientificamente, mas mesma decisão/estrutura de outrosdoisitems; FUNDIR editorial mantémBLOCK apesar do mecanismo verificado."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é única cientificamente, mas mesma decisão/estrutura de outrosdoisitems; FUNDIR editorial mantémBLOCK apesar do mecanismo verificado."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é única cientificamente, mas mesma decisão/estrutura de outrosdoisitems; FUNDIR editorial mantémBLOCK apesar do mecanismo verificado."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é única cientificamente, mas mesma decisão/estrutura de outrosdoisitems; FUNDIR editorial mantémBLOCK apesar do mecanismo verificado."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 19,
+          "annulled": false,
+          "notComputableDueToEvidenceGate": false,
+          "reason": "Dez dimensões próprias; a duplicidade é decidida antes da liberação por nota."
+        },
+        "decisionTree": [
+          "0: VERIFICADA/NENHUMA",
+          "1: dez eliminatórios próprios sem disparo",
+          "2: quatro eixos de duplicidade coincidem",
+          "3: fundir",
+          "publicação: BLOQUEADA"
+        ],
+        "sourceReadings": [
+          {
+            "id": "warren2023",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 565541,
+              "sha256": "cd2ee6512874717c9e15b4a94ae5569098e80efb9cde451a2398ba6a486e7008"
+            },
+            "readByIndependentReviewer": true,
+            "readScope": "Body próprioV2,AQP2,aquarese/risco; EndocrRev2023;44:819-861.",
+            "newExternalRequest": false,
+            "authorGateNotInherited": true
+          },
+          {
+            "id": "samsca2026",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 218606,
+              "sha256": "d684ac28507dc721a29480216499c40fbc98f961540594b8200a3fd1c06cccfc"
+            },
+            "readByIndependentReviewer": true,
+            "readScope": "SPLjáobtida e lidaantesrejeição:boxed/1/2.1/12.1,inpatientinit/reinit,emergências/benefícionãoestabelecido;updated2026/highlights2021distintos.",
+            "newExternalRequest": false,
+            "authorGateNotInherited": true
+          }
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "cfeef8e1",
+            "currentQuestion": {
+              "t": "Mecanismo da tolvaptana na hiponatremia",
+              "qid": "cfeef8e1",
+              "q": "Qual é o mecanismo de ação da tolvaptana no tratamento de hiponatremia euvolêmica ou hipervolêmica selecionada?",
+              "refs": [
+                "hyponatremia_adrogue2000",
+                "hyponatremia_verbalis2022",
+                "salsa_trial"
+              ],
+              "opts": [
+                "Estimula a secreção de ADH para concentrar a urina",
+                "Antagonista seletivo do receptor V2 da vasopressina (no ducto coletor) → impede inserção de AQP2 → aquarese → elevação do sódio",
+                "Aumenta a excreção de sódio pelo néfron distal",
+                "Bloqueia canais de sódio do ducto coletor (ENaC)"
+              ],
+              "ans": 1,
+              "exp": "A tolvaptana antagoniza seletivamente o receptor V2 da vasopressina no ducto coletor, reduz a inserção de aquaporina-2 (AQP2) e aumenta a excreção de água livre, sem natriurese proporcional. Esse efeito de aquarese pode elevar o sódio sérico em hiponatremia euvolêmica ou hipervolêmica selecionada, mas exige monitorização para evitar correção rápida. Ela não estimula ADH, não atua primariamente como natriurético distal e não bloqueia o canal epitelial de sódio (ENaC).",
+              "diff": "medium",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "c2a403f15bc1db51d0a2511f2cdfa991a3b525be91bd9bb8e5d0d0ccc2bb6553",
+            "sameDecision": true,
+            "sameDataStructure": true,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": true,
+            "reason": "Ambos mecanismoV2/AQP2/aquarese/Na, enunciado genérico de paciente selecionado, sem novo dado que altere escolha. Público médico/residente ePTBR iguais; mecanismo versus efeito já incluídos no candidato.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "93646aa8",
+            "currentQuestion": {
+              "qid": "93646aa8",
+              "q": "Paciente com SIADH crônica selecionada recebe tolvaptana com monitorização da natremia. Qual padrão de diurese explica a elevação do sódio sérico?",
+              "opts": [
+                "Natriurese maciça com perda proporcional de sódio e água",
+                "Aquarese, isto é, excreção de água livre sem perda proporcional de eletrólitos",
+                "Diurese isotônica obrigatória com caliurese intensa",
+                "Retenção seletiva de água no túbulo proximal"
+              ],
+              "ans": 1,
+              "exp": "Vaptanos como a tolvaptana antagonizam o receptor V2 da vasopressina no ducto coletor, reduzem a inserção de aquaporina 2 e geram aquarese: excreção de água livre sem natriurese proporcional. Esse mecanismo pode elevar a natremia em hiponatremia euvolêmica/hipervolêmica selecionada, mas exige monitorização porque a correção pode ser rápida. Não é natriurese maciça, diurese isotônica nem retenção de água.",
+              "refs": [
+                "hyponatremia_verbalis2022",
+                "hypona"
+              ],
+              "cat": "eletrólitos",
+              "diff": "medium",
+              "t": "Vaptanos — Aquarese na SIADH"
+            },
+            "currentQuestionSHA256": "fbd4374bdd8c638ba4293ec2c02660d6ad892c3897545b9e33d5888cb24857b9",
+            "sameDecision": true,
+            "sameDataStructure": true,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": true,
+            "reason": "Current936 e propostaA009 cobram mesmo efeito aquarético; seleção/hospital já resolvidos são contexto que não muda decisão de mecanismo. Comparação própria, não herda autorFUNDIR.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "packageIntegrationHold": true,
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            58,
+            57,
+            52,
+            57
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": true,
+          "lengthDoesNotAuthorizeClinicalGate": true
+        },
+        "integration": "NÃO APLICADA",
+        "comparisonAgainstExactA009After": {
+          "reportPin": {
+            "path": "docs/editorial/reviews/2026-10-12/independent-a009-A4.json",
+            "bytes": 176011,
+            "sha256": "77753fd1ef898b2cd5c7d5ceca6f827c290043a76c84e71f408632ff0242ab84"
+          },
+          "qid": "93646aa8",
+          "after": {
+            "qid": "93646aa8",
+            "q": "Adulto com síndrome de antidiurese inapropriada (SIAD) foi selecionado para iniciar tolvaptana no hospital com monitorização. Qual padrão renal explica a elevação da natremia? Nas alternativas, V2 indica receptor de vasopressina tipo 2.",
+            "opts": [
+              "Maior excreção proporcional de sódio e água, com urina de tonicidade plasmática.",
+              "Maior excreção de água livre, sem aumento proporcional da perda de eletrólitos.",
+              "Menor excreção de água livre, com aumento de concentração da urina pelo V2.",
+              "Maior excreção de potássio e sódio, por bloqueio de transporte na alça espessa."
+            ],
+            "ans": 1,
+            "exp": "Tolvaptana antagoniza V2 e favorece excreção de água livre, denominada aquarese; isso pode elevar sódio sem perda proporcional de eletrólitos. Natriurese por diurético de alça e ação antidiurética de V2 são mecanismos distintos. A formulação clínica não estabelece indicação para toda SIAD: há risco de correção rápida, e a rotulagem norte-americana consultada exige início/reinício hospitalar com natremia monitorizada. Não substitui solução hipertônica quando há emergência neurológica nem demonstra benefício clínico duro apenas por elevar o sódio (Na).",
+            "refs": [
+              "warren_siadh_aquaresis_2023"
+            ],
+            "cat": "eletrólitos",
+            "diff": "easy",
+            "t": "Vaptanos — Aquarese na Síndrome de Secreção Inapropriada de Hormônio Antidiurético (SIADH)"
+          },
+          "sameFourDimensionsOwn": true,
+          "survivorApproved": false
+        }
+      },
+      {
+        "qid": "b35be598",
+        "sourceLine": 278,
+        "BEFORE": {
+          "qid": "b35be598",
+          "q": "Na suspeita de hipercalemia grave, qual alteração eletrocardiográfica costuma aparecer mais precocemente?",
+          "opts": [
+            "Desaparecimento da onda P.",
+            "Fibrilação ventricular.",
+            "Ondas T elevadas, simétricas e apiculadas.",
+            "Alargamento extremo do QRS."
+          ],
+          "ans": 2,
+          "exp": "A alteração eletrocardiográfica inicial mais clássica da hipercalemia é o surgimento de ondas T altas, simétricas e apiculadas. Com a progressão da toxicidade, podem ocorrer prolongamento do PR, achatamento/desaparecimento da onda P, alargamento do QRS e padrões pré-parada. Onda P ausente, QRS muito largo e fibrilação ventricular indicam toxicidade mais avançada, não o sinal inicial.",
+          "refs": [
+            "ukka_hyperkalemia_2023",
+            "brenner_rector"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "ECG na Hipercalemia — Primeira Alteração"
+        },
+        "beforeQuestionSHA256": "bdf4f0b5ccc244e61a0af0bcbbc7f23392170876074d6dea44977da23877127b",
+        "AFTER": {
+          "qid": "b35be598",
+          "q": "Qual alteração é um sinal clássico que pode aparecer precocemente na hipercalemia, embora o eletrocardiograma (ECG) não siga uma sequência obrigatória? Nas alternativas, P e T identificam ondas e QRS identifica um complexo do traçado.",
+          "opts": [
+            "Desaparecimento completo da onda P.",
+            "Taquiarritmia ventricular sustentada.",
+            "Ondas T simétricas e apiculadas.",
+            "Alargamento extremo do complexo QRS."
+          ],
+          "ans": 2,
+          "exp": "Ondas T altas, de base estreita, simétricas e apiculadas são um sinal clássico possível. Alterações não precisam ocorrer em sequência e podem coexistir; ECG normal não exclui hipercalemia grave. Perda da onda P, QRS muito largo e arritmias são manifestações importantes, mas não permitem assumir uma progressão universal. Confirmar o potássio (K) e tratar risco conforme o contexto.",
+          "refs": [
+            "ukka_hyperkalemia_2023"
+          ],
+          "cat": "eletrólitos",
+          "diff": "easy",
+          "t": "Eletrocardiograma (ECG) na Hipercalemia — Primeira Alteração"
+        },
+        "afterQuestionSHA256": "83feaee44783695f14d34922aa65b89b3aade1a9ad85187c9575fb5e038cb827",
+        "OP": "Reconhecer ondaT apiculada/simétrica como sinal clássico possível, sem sequência eletrocardiográfica obrigatória.",
+        "classification": {
+          "bloom": "Recordar",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false
+        },
+        "reviewStatus": "REVIEWED",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): afirmações decisivas/fontes próprias no alcance, scorepróprio, aprovada.",
+        "ownJustification": "UKKA PDF65-67/81 próprios: Tpeakedestreita/simétrica, alterações podem coexistir semsequência, ECGnormal não excluiKgrave. Não se conclui risco vital só porTnem se prescreve comcurva decorativa.",
+        "appeal": {
+          "finding": "C é o sinal clássico que pode aparecer precocemente; pergunta não afirma obrigatoriedade nem exclui coexistênciaP/QRS. Outras opções são alterações importantes, mas não o reconhecimento clássico perguntado.",
+          "sourceVerificationIncomplete": false,
+          "duplicateChallengeUpheld": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é o sinal clássico que pode aparecer precocemente; pergunta não afirma obrigatoriedade nem exclui coexistênciaP/QRS. Outras opções são alterações importantes, mas não o reconhecimento clássico perguntado."
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é o sinal clássico que pode aparecer precocemente; pergunta não afirma obrigatoriedade nem exclui coexistênciaP/QRS. Outras opções são alterações importantes, mas não o reconhecimento clássico perguntado."
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é o sinal clássico que pode aparecer precocemente; pergunta não afirma obrigatoriedade nem exclui coexistênciaP/QRS. Outras opções são alterações importantes, mas não o reconhecimento clássico perguntado."
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é o sinal clássico que pode aparecer precocemente; pergunta não afirma obrigatoriedade nem exclui coexistênciaP/QRS. Outras opções são alterações importantes, mas não o reconhecimento clássico perguntado."
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é o sinal clássico que pode aparecer precocemente; pergunta não afirma obrigatoriedade nem exclui coexistênciaP/QRS. Outras opções são alterações importantes, mas não o reconhecimento clássico perguntado."
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é o sinal clássico que pode aparecer precocemente; pergunta não afirma obrigatoriedade nem exclui coexistênciaP/QRS. Outras opções são alterações importantes, mas não o reconhecimento clássico perguntado."
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é o sinal clássico que pode aparecer precocemente; pergunta não afirma obrigatoriedade nem exclui coexistênciaP/QRS. Outras opções são alterações importantes, mas não o reconhecimento clássico perguntado."
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é o sinal clássico que pode aparecer precocemente; pergunta não afirma obrigatoriedade nem exclui coexistênciaP/QRS. Outras opções são alterações importantes, mas não o reconhecimento clássico perguntado."
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é o sinal clássico que pode aparecer precocemente; pergunta não afirma obrigatoriedade nem exclui coexistênciaP/QRS. Outras opções são alterações importantes, mas não o reconhecimento clássico perguntado."
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "status": "REASSESSED_EXACT",
+            "finding": "C é o sinal clássico que pode aparecer precocemente; pergunta não afirma obrigatoriedade nem exclui coexistênciaP/QRS. Outras opções são alterações importantes, mas não o reconhecimento clássico perguntado."
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 19,
+          "annulled": false,
+          "notComputableDueToEvidenceGate": false,
+          "reason": "Dez dimensões próprias; a duplicidade é decidida antes da liberação por nota."
+        },
+        "decisionTree": [
+          "0: VERIFICADA/NENHUMA",
+          "1: dez eliminatórios próprios sem disparo",
+          "2: recurso científico não procede",
+          "3: aprovada",
+          "publicação: LIBERADA"
+        ],
+        "sourceReadings": [
+          {
+            "id": "ukka2026",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 4970372,
+              "sha256": "6910acb34f04d145e7828e9bf3c9a55f182def8764caf2a91fbac667215c0eb3"
+            },
+            "readByIndependentReviewer": true,
+            "readScope": "PDF180p própriojulho2026:cardinteirop14/15/77/86/114-115;A010focal65-67/81não sequência/Testreita simétrica/ECGnormal/limites. Não atribuir grau alto à narrativa.",
+            "newExternalRequest": false,
+            "authorGateNotInherited": true
+          }
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "db25ef93",
+            "currentQuestion": {
+              "t": "Mecanismo celular do ECG na hipercalemia",
+              "qid": "db25ef93",
+              "q": "Na hipercalemia, qual mecanismo celular explica a toxicidade elétrica cardíaca e o surgimento de alterações como ondas T apiculadas?",
+              "refs": [
+                "ukka_hyperkalemia_2023",
+                "brenner_rector"
+              ],
+              "opts": [
+                "Aumento do potássio extracelular reduz o gradiente transmembrana e torna o potencial de repouso menos negativo",
+                "Redução do potássio extracelular hiperpolariza o cardiomiócito e acelera a condução atrioventricular",
+                "Ativação primária da Na+/K+-ATPase aumenta a extrusão de potássio do cardiomiócito",
+                "Bloqueio dos canais de cálcio tipo L encurta diretamente o complexo QRS"
+              ],
+              "ans": 0,
+              "exp": "Na hipercalemia, o aumento do K extracelular reduz o gradiente de potássio através da membrana celular, deixando o potencial de repouso menos negativo. Essa despolarização parcial altera repolarização e condução, gerando ondas T apiculadas e, em estágios mais graves, alargamento do QRS e risco de arritmia. As demais alternativas invertem a direção do distúrbio ou atribuem o ECG a mecanismos que não são o evento primário.",
+              "diff": "hard",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "4f5128e654cf300663ef967e07ced72efdddd5ee3276e886b6659655103f7d13",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato pede mecanismo celular da toxicidade/transmembrana; proposta identifica padrão clássico com limitações.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "805733f8",
+            "currentQuestion": {
+              "t": "Hipercalemia aguda",
+              "qid": "805733f8",
+              "q": "Paciente de 65 anos, com DRC estágio 4, potássio de 6,2 mEq/L e ondas T apiculadas no ECG. Qual sequência inicial de manejo é mais adequada?",
+              "refs": [
+                "ukka_hyperkalemia_2023",
+                "brenner_rector"
+              ],
+              "opts": [
+                "Aguardar nova dosagem em 6 horas antes de tratar, pois o potássio está abaixo de 6,5 mEq/L",
+                "Proteger o miocárdio com cálcio intravenoso, deslocar K para o intracelular e iniciar estratégia de remoção/monitorização do potássio",
+                "Usar apenas diurético oral, porque ondas T apiculadas não configuram toxicidade eletrocardiográfica",
+                "Usar apenas quelante oral e dispensar terapias de ação rápida se o paciente estiver consciente"
+              ],
+              "ans": 1,
+              "exp": "Hipercalemia com alteração eletrocardiográfica deve ser tratada como emergência. A sequência prática é proteger o coração com cálcio intravenoso quando há sinais de toxicidade elétrica, deslocar temporariamente K para o intracelular com insulina-glicose e/ou beta-2 agonista, e providenciar remoção do potássio conforme contexto renal e gravidade, com monitorização seriada. Esperar, usar apenas medida lenta ou ignorar o ECG aumenta risco de arritmia.",
+              "diff": "hard",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "b40b8baa40ac751aaa5e13c734af78733d29923059c3b0b7602d60967db8373d",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Candidato escolhe tratamento inicial com ECGtox/Kaferido; proposta reconhece achado sem decisão terapêutica.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "packageIntegrationHold": false,
+        "lengthDiagnostics": {
+          "optionCharacters": [
+            35,
+            37,
+            32,
+            36
+          ],
+          "correctUniqueLongest": false,
+          "correctUniqueShortest": true,
+          "lengthDoesNotAuthorizeClinicalGate": true
+        },
+        "integration": "NÃO APLICADA"
+      }
+    ],
+    "cardReviews": [
+      {
+        "id": "sterns_hyponatremia_correction_2024",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Sterns et al. — Segurança na correção da hiponatremia (2024)",
+          "url": "https://doi.org/10.2215/CJN.0000000000000244",
+          "journal": "Clin J Am Soc Nephrol 2024;19(1):129–135",
+          "ano": 2024,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Reconhecer sobrecorreção e vulnerabilidade à desmielinização",
+          "icon": "🔬",
+          "resumo": "Revisão dos fundamentos e controvérsias dos limites de correção. O painel norte-americano/irlandês recomenda não ultrapassar 8 mmol/L em qualquer 24h em alto risco de desmielinização, como alcoolismo, hipocalemia grave, desnutrição ou hepatopatia avançada. Diante de excesso de correção, considerar redução terapêutica da natremia com vigilância.",
+          "conclusao": "Limite não é meta; monitorizar sódio e diurese. Aquarese após reversão da causa pode causar sobrecorreção, mesmo sem excesso de salina. Desmopressina e água livre exigem condução especializada.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "31e584506bb3b73c84f97a1af76a2de42dda5e86bcfe03374ea775d3271ba577",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): próprio confronto do literal à fonte no alcance declarado.",
+        "sourceReadings": [
+          {
+            "id": "sterns2024",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 113891,
+              "sha256": "67d5be85e869c401842de8ea7e3db552c3472b466d3197682c1c74a2016911ea"
+            },
+            "readByIndependentReviewer": true,
+            "readScope": "Original própriofront/bodyA009eA010: alto risco8qualquer24h/meta4-6, atraso2-6dias/lesõespontinasextrapontinas/resoluçãopossível, fonteCJASN2024online2023.",
+            "newExternalRequest": false,
+            "authorGateNotInherited": true
+          }
+        ],
+        "scientificSourcePending": false,
+        "usedByThisBatch": [
+          "d9257155",
+          "9c8d6b1e"
+        ],
+        "currentBankConsumers": [],
+        "sharedCardGate": "Não validar outros consumers por associação nem misturar versões. LiteralA010 igualA009 emUKKA/Sterns/Warren, próprio sourceRead distinto do autor.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "warren_siadh_aquaresis_2023",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Warren et al. — SIAD e aquarese (2023)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10502587/",
+          "journal": "Endocr Rev 2023;44(5):819–861",
+          "ano": 2023,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Distinguir aquarese por bloqueio V2 de natriurese",
+          "icon": "🔬",
+          "resumo": "Revisão narrativa de síndrome de antidiurese inapropriada (SIAD). Tolvaptana bloqueia V2 e favorece excreção de água livre, elevando sódio, com risco de sobrecorreção. O mecanismo não estabelece benefício clínico duro nem indicação para toda SIAD. Na rotulagem norte-americana vigente consultada, iniciar ou reiniciar SAMSCA requer ambiente hospitalar com sódio monitorizado.",
+          "conclusao": "Aquarese não é perda proporcional de eletrólitos. A seleção terapêutica depende do cenário e fonte regulatória; não usar como solução de emergência neurológica nem tratar automaticamente toda hiponatremia.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "692ba4f677a5a71dc4164c09cbe8b83e573d88a73140b70b9c7f06903c499323",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): próprio confronto do literal à fonte no alcance declarado.",
+        "sourceReadings": [
+          {
+            "id": "warren2023",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 565541,
+              "sha256": "cd2ee6512874717c9e15b4a94ae5569098e80efb9cde451a2398ba6a486e7008"
+            },
+            "readByIndependentReviewer": true,
+            "readScope": "Body próprioV2,AQP2,aquarese/risco; EndocrRev2023;44:819-861.",
+            "newExternalRequest": false,
+            "authorGateNotInherited": true
+          },
+          {
+            "id": "samsca2026",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 218606,
+              "sha256": "d684ac28507dc721a29480216499c40fbc98f961540594b8200a3fd1c06cccfc"
+            },
+            "readByIndependentReviewer": true,
+            "readScope": "SPLjáobtida e lidaantesrejeição:boxed/1/2.1/12.1,inpatientinit/reinit,emergências/benefícionãoestabelecido;updated2026/highlights2021distintos.",
+            "newExternalRequest": false,
+            "authorGateNotInherited": true
+          }
+        ],
+        "scientificSourcePending": false,
+        "usedByThisBatch": [
+          "4c7d3db3"
+        ],
+        "currentBankConsumers": [],
+        "sharedCardGate": "Não validar outros consumers por associação nem misturar versões. LiteralA010 igualA009 emUKKA/Sterns/Warren, próprio sourceRead distinto do autor.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "berend_normal_gap_acidosis_2017",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Berend — Acidose com ânion gap normal (2017)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5757610/",
+          "journal": "Kidney Dis (Basel)2017;3(4):149–159",
+          "ano": 2017,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Relacionar perdas de bicarbonato à acidose hiperclorêmica",
+          "icon": "🔬",
+          "resumo": "Revisão clínica da acidose metabólica com ânion gap normal. Diarreia pode causar perda gastrointestinal de bicarbonato. A redução do bicarbonato é acompanhada por aumento relativo de cloro. A interpretação do gap exige considerar albumina e intervalo do laboratório.",
+          "conclusao": "Diarreia é uma causa extrarrenal; ATR e outros contextos também podem produzir esse padrão. Um gap aparentemente normal não exclui distúrbio misto.",
+          "curiosidade": "Perda de bicarbonato por diarreia difere de retenção de ânions orgânicos na cetoacidose ou acidose láctica."
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "4fa39796e5f664666d86c162bef43636465ef6fb5a0f284a16e427d51f6bef3a",
+        "verdictV2": "revisão maior",
+        "confidence": "moderada",
+        "evidenceStatus": "NÃO VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Fonte primária do literal inteiro não foi conferida pelo peer; ausência de acesso não é falsidade, mas impede autorização.",
+        "sourceReadings": [
+          {
+            "id": "berend2017",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5757610/",
+            "sourcePin": null,
+            "readByIndependentReviewer": false,
+            "readScope": "Corpo decisivo e card literal não obtidos por este peer. CorroboraçãoPalmer não é leitura/atribuiçãoBerend. Sem falso erro clínico; referência exige gate posterior."
+          },
+          {
+            "id": "palmer2021",
+            "sourcePin": null,
+            "url": "https://link.springer.com/article/10.1007/s12325-020-01587-5",
+            "readByIndependentReviewer": true,
+            "readScope": "Corpo primárioeditora aberto/lidoANTESrejeição,l139-147,160-164,177-219:distalKloss,proximalfasebicarbonato,pH,ATR4,NH3,mistosDRC/diarreia. Publicadoonline26dez2020/volume38p949-968em2021; autoriaPalmer/Kelepouris/Clegg. Não cachePDFnem estudo/diretriz graduada alegados.",
+            "newExternalRequest": false,
+            "fullBodyCacheClaimed": false
+          }
+        ],
+        "scientificSourcePending": true,
+        "usedByThisBatch": [
+          "5c743fb2"
+        ],
+        "currentBankConsumers": [],
+        "sharedCardGate": "Não validar outros consumers por associação nem misturar versões. LiteralA010 igualA009 emUKKA/Sterns/Warren, próprio sourceRead distinto do autor.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "palmer_rta_2021",
+        "action": "KEEP",
+        "BEFORE": {
+          "label": "Palmer et al. — Acidoses tubulares renais (2021)",
+          "url": "https://link.springer.com/article/10.1007/s12325-020-01587-5",
+          "journal": "Advances in Therapy 2021;38(2):949-968",
+          "ano": 2021,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Perda renal de potássio na ATR distal e distinção da ATR hipercalêmica",
+          "icon": "🔬",
+          "resumo": "Revisão narrativa de Palmer, Kelepouris e Clegg sobre fisiopatologia, diagnóstico e manejo das acidoses tubulares renais (ATR). Na ATR distal, descreve menor acidificação e perda renal de potássio: maior oferta distal de sódio, fluxo e ação da aldosterona contribuem para secreção de K+, e menor reabsorção pode participar conforme o defeito. A ATR tipo 4 relaciona deficiência ou resistência à aldosterona à menor excreção de K+. Necessária para verificar o mecanismo fisiológico; não representa ensaio nem diretriz terapêutica.",
+          "conclusao": "Hipocalemia na ATR distal envolve perda renal de K+; não presumir um mecanismo exclusivo em todos os defeitos nem confundi-la com a retenção de K+ da ATR tipo 4.",
+          "curiosidade": ""
+        },
+        "AFTER": {
+          "label": "Palmer et al. — Acidoses tubulares renais (2021)",
+          "url": "https://link.springer.com/article/10.1007/s12325-020-01587-5",
+          "journal": "Advances in Therapy 2021;38(2):949-968",
+          "ano": 2021,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Perda renal de potássio na ATR distal e distinção da ATR hipercalêmica",
+          "icon": "🔬",
+          "resumo": "Revisão narrativa de Palmer, Kelepouris e Clegg sobre fisiopatologia, diagnóstico e manejo das acidoses tubulares renais (ATR). Na ATR distal, descreve menor acidificação e perda renal de potássio: maior oferta distal de sódio, fluxo e ação da aldosterona contribuem para secreção de K+, e menor reabsorção pode participar conforme o defeito. A ATR tipo 4 relaciona deficiência ou resistência à aldosterona à menor excreção de K+. Necessária para verificar o mecanismo fisiológico; não representa ensaio nem diretriz terapêutica.",
+          "conclusao": "Hipocalemia na ATR distal envolve perda renal de K+; não presumir um mecanismo exclusivo em todos os defeitos nem confundi-la com a retenção de K+ da ATR tipo 4.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "704804b07f3164e3be0f34bb217f39472aa543a683139c957343883ad015c6dc",
+        "afterSHA256": "704804b07f3164e3be0f34bb217f39472aa543a683139c957343883ad015c6dc",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): próprio confronto do literal à fonte no alcance declarado.",
+        "sourceReadings": [
+          {
+            "id": "palmer2021",
+            "sourcePin": null,
+            "url": "https://link.springer.com/article/10.1007/s12325-020-01587-5",
+            "readByIndependentReviewer": true,
+            "readScope": "Corpo primárioeditora aberto/lidoANTESrejeição,l139-147,160-164,177-219:distalKloss,proximalfasebicarbonato,pH,ATR4,NH3,mistosDRC/diarreia. Publicadoonline26dez2020/volume38p949-968em2021; autoriaPalmer/Kelepouris/Clegg. Não cachePDFnem estudo/diretriz graduada alegados.",
+            "newExternalRequest": false,
+            "fullBodyCacheClaimed": false
+          }
+        ],
+        "scientificSourcePending": false,
+        "usedByThisBatch": [
+          "21a89255",
+          "85e1d082"
+        ],
+        "currentBankConsumers": [
+          "c952567a"
+        ],
+        "sharedCardGate": "Não validar outros consumers por associação nem misturar versões. LiteralA010 igualA009 emUKKA/Sterns/Warren, próprio sourceRead distinto do autor.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "ukka_hyperkalemia_2023",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "UKKA Hyperkalaemia Guideline 2023",
+          "url": "https://www.ukkidney.org/health-professionals/guidelines/treatment-acute-hyperkalaemia-adults-0",
+          "journal": "UK Kidney Association",
+          "ano": 2023,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Diretriz específica para detecção, tratamento hospitalar agudo e prevenção de hipercalemia em adultos",
+          "icon": "⚡",
+          "resumo": "Diretriz da UK Kidney Association dedicada ao manejo da hipercalemia em adultos, com foco especial na atualização de 2023 para tratamento hospitalar agudo. Organiza a resposta em etapas práticas: proteger o coração quando há sinais eletrocardiográficos de toxicidade com cálcio intravenoso; deslocar potássio para o compartimento intracelular com insulina-glicose e, como adjuvante, salbutamol; remover potássio do organismo conforme gravidade, função renal e resposta; e monitorar potássio e glicemia para detectar rebote e hipoglicemia. Destaca que o cálcio intravenoso estabiliza rapidamente o miocárdio, mas não reduz o potássio sérico e tem efeito transitório, exigindo terapias complementares.",
+          "conclusao": "Na hipercalemia aguda, a conduta segura é sequencial e simultaneamente orientada por risco: ECG tóxico exige proteção cardíaca imediata com cálcio, seguida de terapias de deslocamento e remoção de potássio com monitorização estreita.",
+          "curiosidade": "A atualização de 2023 enfatizou segurança medicamentosa: reforçou diferenças práticas entre sais de cálcio, prevenção de hipoglicemia após insulina-glicose e uso do salbutamol como adjuvante, não como monoterapia em hipercalemia grave."
+        },
+        "AFTER": {
+          "label": "UK Kidney Association — Hipercalemia em adultos (julho/2026)",
+          "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+          "journal": "UK Kidney Association",
+          "ano": 2026,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Proteção cardíaca transitória, insulina-glicose e monitorização na hipercalemia",
+          "icon": "📋",
+          "resumo": "Diretriz da UK Kidney Association (UKKA), atualizada em julho de 2026, para hipercalemia em adultos. Sugere cálcio intravenoso diante de alterações no eletrocardiograma (16.2a, 2C); o efeito elétrico é rápido e transitório, aproximadamente 30–60 minutos, sem reduzir o potássio. Recomenda infusão intravenosa de insulina solúvel 10 unidades com glicose 25 g na hipercalemia grave (16.3.1, 1B), com glicemia seriada desde o basal até 6 horas (17.2, 1C), prolongada em pacientes de alto risco. Cálcio, deslocamento e remoção de potássio têm funções distintas. O grau do cálcio foi reduzido de 1C para 2C nesta atualização; a evidência de benefício em desfechos clínicos permanece limitada.",
+          "conclusao": "Tratar toxicidade elétrica e potássio em paralelo; cálcio não corrige a hipercalemia e insulina não elimina K+ do organismo. Acompanhar eletrocardiograma, potássio e glicemia conforme o contexto.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "dbac5964610515fe33ca448b15c53def346e5ec4b1112d3b8eb48909b30e882e",
+        "afterSHA256": "7a3cbcf898e3d56a2a8123cfd9c56a09aee43e35133dc346d7800ccdf8779bc8",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): próprio confronto do literal à fonte no alcance declarado.",
+        "sourceReadings": [
+          {
+            "id": "ukka2026",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 4970372,
+              "sha256": "6910acb34f04d145e7828e9bf3c9a55f182def8764caf2a91fbac667215c0eb3"
+            },
+            "readByIndependentReviewer": true,
+            "readScope": "PDF180p própriojulho2026:cardinteirop14/15/77/86/114-115;A010focal65-67/81não sequência/Testreita simétrica/ECGnormal/limites. Não atribuir grau alto à narrativa.",
+            "newExternalRequest": false,
+            "authorGateNotInherited": true
+          }
+        ],
+        "scientificSourcePending": false,
+        "usedByThisBatch": [
+          "b35be598"
+        ],
+        "currentBankConsumers": [
+          "e0853fac",
+          "8b80b0a9",
+          "985d735c",
+          "1f962c0e",
+          "17dc6d7e",
+          "43313455",
+          "ebea50d5",
+          "1b286739",
+          "a73f61f6",
+          "69018bb9",
+          "a799c154",
+          "65d19905",
+          "7ec80c77",
+          "d92f30a9",
+          "f3d5015d",
+          "805733f8",
+          "32f342fc",
+          "b35be598",
+          "6a19aece",
+          "db25ef93"
+        ],
+        "sharedCardGate": "Não validar outros consumers por associação nem misturar versões. LiteralA010 igualA009 emUKKA/Sterns/Warren, próprio sourceRead distinto do autor.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "extrip_ethylene_glycol",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "EXTRIP — Ethylene Glycol Poisoning Recommendations",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9921105/",
+          "journal": "Crit Care 2023;27:56",
+          "ano": 2023,
+          "tipo": "Revisão sistemática e consenso",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Define quando usar hemodiálise na intoxicação por etilenoglicol",
+          "icon": "📋",
+          "resumo": "Revisão sistemática e recomendações do EXTRIP Workgroup sobre tratamento extracorpóreo na intoxicação por etilenoglicol. O grupo recomenda ou sugere ECTR conforme concentração de etilenoglicol/glicolato, gap osmolar, ânion gap, acidemia e gravidade clínica. Recomenda ECTR em características graves como coma, convulsões ou LRA, e recomenda hemodiálise intermitente como modalidade preferencial quando disponível.",
+          "conclusao": "Na intoxicação por etilenoglicol, acidose metabólica grave, anion gap muito elevado, LRA ou manifestações neurológicas justificam hemodiálise além de suporte e bloqueio da álcool desidrogenase.",
+          "curiosidade": "Com maior disponibilidade de fomepizol, o EXTRIP refinou os limiares de diálise para evitar tanto atraso terapêutico em casos graves quanto diálise desnecessária em intoxicações menos graves."
+        },
+        "AFTER": {
+          "label": "EXTRIP — Ethylene Glycol Poisoning Recommendations",
+          "url": "https://link.springer.com/article/10.1186/s13054-022-04227-2",
+          "journal": "Crit Care 2023;27:56",
+          "ano": 2023,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Define quando usar hemodiálise na intoxicação por etilenoglicol",
+          "icon": "📋",
+          "resumo": "Revisão sistemática e recomendações GRADE do EXTRIP para tratamento extracorpóreo (ECTR) na intoxicação por etilenoglicol; certeza muito baixa das recomendações clínicas. Critérios dependem de exposição, antídoto, concentrações e gravidade. Coma, convulsões ou LRA KDIGO2–3 justificam ECTR; o ânion gap usado pelo grupo inclui potássio. Recomenda hemodiálise intermitente quando disponível.",
+          "conclusao": "Integrar exposição e gravidade para decidir ECTR. Cristais de oxalato, hipocalcemia ou gap osmolar isolados não determinam hemodiálise. Gap osmolar pode ser normal após metabolização.",
+          "curiosidade": "Antídotos podem ser removidos durante ECTR; seus esquemas exigem ajuste. O artigo não fornece fundamento para dispensar bloqueio da álcool desidrogenase durante a terapia."
+        },
+        "beforeSHA256": "4cc5da47fe53a3d418f8954048ad800b8013f19add935f766db2d767790fc0ee",
+        "afterSHA256": "b3b2ef057fceeb22c30f92433996dbaca41341d7491d9c9cd2ef22f208527912",
+        "verdictV2": "revisão maior",
+        "confidence": "moderada",
+        "evidenceStatus": "NÃO VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Fonte primária do literal inteiro não foi conferida pelo peer; ausência de acesso não é falsidade, mas impede autorização.",
+        "sourceReadings": [
+          {
+            "id": "extrip2023",
+            "url": "https://link.springer.com/article/10.1186/s13054-022-04227-2",
+            "sourcePin": null,
+            "readByIndependentReviewer": false,
+            "readScope": "Página/header acessado antesrejeição, trechos científicos decisivos não lidos. Não declarado full-text científico conferido por título, acesso ou gate autoral."
+          }
+        ],
+        "scientificSourcePending": true,
+        "usedByThisBatch": [
+          "bc72d377"
+        ],
+        "currentBankConsumers": [
+          "bc72d377",
+          "387cdad2"
+        ],
+        "sharedCardGate": "Não validar outros consumers por associação nem misturar versões. LiteralA010 igualA009 emUKKA/Sterns/Warren, próprio sourceRead distinto do autor.",
+        "integration": "NÃO APLICADA"
+      }
+    ],
+    "independentExternalVerification": [
+      {
+        "id": "sterns2024",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 113891,
+          "sha256": "67d5be85e869c401842de8ea7e3db552c3472b466d3197682c1c74a2016911ea"
+        },
+        "readByIndependentReviewer": true,
+        "readScope": "Original própriofront/bodyA009eA010: alto risco8qualquer24h/meta4-6, atraso2-6dias/lesõespontinasextrapontinas/resoluçãopossível, fonteCJASN2024online2023.",
+        "newExternalRequest": false,
+        "authorGateNotInherited": true
+      },
+      {
+        "id": "warren2023",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 565541,
+          "sha256": "cd2ee6512874717c9e15b4a94ae5569098e80efb9cde451a2398ba6a486e7008"
+        },
+        "readByIndependentReviewer": true,
+        "readScope": "Body próprioV2,AQP2,aquarese/risco; EndocrRev2023;44:819-861.",
+        "newExternalRequest": false,
+        "authorGateNotInherited": true
+      },
+      {
+        "id": "samsca2026",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 218606,
+          "sha256": "d684ac28507dc721a29480216499c40fbc98f961540594b8200a3fd1c06cccfc"
+        },
+        "readByIndependentReviewer": true,
+        "readScope": "SPLjáobtida e lidaantesrejeição:boxed/1/2.1/12.1,inpatientinit/reinit,emergências/benefícionãoestabelecido;updated2026/highlights2021distintos.",
+        "newExternalRequest": false,
+        "authorGateNotInherited": true
+      },
+      {
+        "id": "ukka2026",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 4970372,
+          "sha256": "6910acb34f04d145e7828e9bf3c9a55f182def8764caf2a91fbac667215c0eb3"
+        },
+        "readByIndependentReviewer": true,
+        "readScope": "PDF180p própriojulho2026:cardinteirop14/15/77/86/114-115;A010focal65-67/81não sequência/Testreita simétrica/ECGnormal/limites. Não atribuir grau alto à narrativa.",
+        "newExternalRequest": false,
+        "authorGateNotInherited": true
+      },
+      {
+        "id": "palmer2021",
+        "sourcePin": null,
+        "url": "https://link.springer.com/article/10.1007/s12325-020-01587-5",
+        "readByIndependentReviewer": true,
+        "readScope": "Corpo primárioeditora aberto/lidoANTESrejeição,l139-147,160-164,177-219:distalKloss,proximalfasebicarbonato,pH,ATR4,NH3,mistosDRC/diarreia. Publicadoonline26dez2020/volume38p949-968em2021; autoriaPalmer/Kelepouris/Clegg. Não cachePDFnem estudo/diretriz graduada alegados.",
+        "newExternalRequest": false,
+        "fullBodyCacheClaimed": false
+      },
+      {
+        "id": "berend2017",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5757610/",
+        "sourcePin": null,
+        "readByIndependentReviewer": false,
+        "readScope": "Corpo decisivo e card literal não obtidos por este peer. CorroboraçãoPalmer não é leitura/atribuiçãoBerend. Sem falso erro clínico; referência exige gate posterior."
+      },
+      {
+        "id": "extrip2023",
+        "url": "https://link.springer.com/article/10.1186/s13054-022-04227-2",
+        "sourcePin": null,
+        "readByIndependentReviewer": false,
+        "readScope": "Página/header acessado antesrejeição, trechos científicos decisivos não lidos. Não declarado full-text científico conferido por título, acesso ou gate autoral."
+      }
+    ],
+    "summaryTable": [
+      {
+        "qid": "d9257155",
+        "OP": "Reconhecer desmielinização osmótica como complicação de correção excessiva da hiponatremia crônica grave.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "reviewStatus": "REVIEWED",
+        "score": 20
+      },
+      {
+        "qid": "5c743fb2",
+        "OP": "Relacionar diarreia à acidose com gap normal por perda gastrointestinal de bicarbonato.",
+        "verdictV2": "revisão maior",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "reviewStatus": "PENDENTE_VERIFICAÇÃO_DE_FONTE",
+        "score": null
+      },
+      {
+        "qid": "21a89255",
+        "OP": "Identificar o perfil de gap normal e hipercalemia típico de ATR4, sem concluir etiologia só pelo perfil.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "reviewStatus": "REVIEWED",
+        "score": 20
+      },
+      {
+        "qid": "85e1d082",
+        "OP": "Distinguir resposta do pH urinário na ATR distal completa e proximal após bicarbonato abaixo do limiar, no padrão clínico comparado.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "reviewStatus": "REVIEWED",
+        "score": 19
+      },
+      {
+        "qid": "bc72d377",
+        "OP": "Identificar agente tóxico integrando acidose com gap elevado, gap osmolar e cristais identificados de oxalato.",
+        "verdictV2": "revisão maior",
+        "evidenceStatus": "NÃO VERIFICADA",
+        "pendingNature": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "reviewStatus": "PENDENTE_VERIFICAÇÃO_DE_FONTE",
+        "score": null
+      },
+      {
+        "qid": "9c8d6b1e",
+        "OP": "Aplicar o limite de8mmol/L em qualquer24h ao alto risco explicitamente atribuído ao painel US/Irish, distinto de meta.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "reviewStatus": "REVIEWED",
+        "score": 20
+      },
+      {
+        "qid": "4c7d3db3",
+        "OP": "Explicar antagonismoV2 e aquarese na elevação do sódio por tolvaptana selecionada.",
+        "verdictV2": "fundir",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "reviewStatus": "REVIEWED",
+        "score": 19
+      },
+      {
+        "qid": "b35be598",
+        "OP": "Reconhecer ondaT apiculada/simétrica como sinal clássico possível, sem sequência eletrocardiográfica obrigatória.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "reviewStatus": "REVIEWED",
+        "score": 19
+      }
+    ],
+    "counts": {
+      "questionObjectsExamined": 8,
+      "completeIndependentQuestionGates": 6,
+      "sourcePendingQuestionGates": 2,
+      "acceptedAfter": 5,
+      "blockedAfter": 3,
+      "duplicateHolds": 1,
+      "sourceQuestionHolds": 2,
+      "cardsReviewed": 6,
+      "cardsAccepted": 4,
+      "cardSourceHolds": 2,
+      "cardsAdd": 3,
+      "cardsReplace": 2,
+      "cardsKeep": 1,
+      "newEightFromTechnicalErratum": 0,
+      "implemented": 0
+    },
+    "validation": {
+      "own33ReplayInverse": true,
+      "optionNonWhitespaceTokensAndAnsPreserved": true,
+      "allSixCardsLiteralA2A4": true,
+      "author286Plus59Pass": true,
+      "eightBeforeExactMBCurrent": true,
+      "originMEqualsB": true,
+      "current741Delta10OutsideBatch": true,
+      "sourcePinsVerified": true,
+      "onlyAlreadyObtainedSourcesAfterRejection": true,
+      "twoIncompleteScientificGatesNotFalselyPassed": true,
+      "fourDimensionTolvaptanOwn": true,
+      "publicationDerivedAllFourteenObjects": true,
+      "noProductOrGitEdits": true
+    },
+    "accessBlock": {
+      "action": "AnonymousEuropePMCBerend+SpringerPalmer/EXTRIPGET",
+      "executed": false,
+      "autoReviewRejected": true,
+      "reason": "A ação faz requisições a EuropePMC e Springer, contrariando a instrução explícita do usuário de não contatar serviços externos ou terceiros.",
+      "noWorkaroundUsed": true,
+      "rootInstruction": "Continue somente fontes já obtidas/local; root verificará autorização real por mecanismo permitido antes de qualquer nova tentativa."
+    },
+    "limits": [
+      "Dois gates de questões e dois cards ainda requerem fontes próprias; não são itens médicos considerados errados pelo acesso ausente. Não afirmar oito certificações científicas.",
+      "Aprovação autoral não supera BLOCK do peer; autorização fonte/consulta não equivale a publicação.",
+      "Novo adendo apenas dos objetos afetados poderá resolver leitura futura; preserva originais, dados, IDs e FSRS. Não repetir outrosseis como8novos.",
+      "Nenhum navegador pessoal, produto/Git ou comunicação externa nova nesta etapa; raws já obtidos permanecem foraGit."
+    ]
+  }
+}

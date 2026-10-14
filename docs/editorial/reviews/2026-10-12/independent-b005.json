@@ -1,0 +1,3027 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 172916,
+  "sourceReportSHA256": "ce0f151bb94a7c0a3d44c72052b35fb52bf93e230ef915c73fe0276bf88572c5",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_EDITORIAL_INDEPENDENT_BATCH_REVIEW_V2",
+    "reviewer": "clinical_independent_resume",
+    "batch": "B005",
+    "verifiedAtOfficialUTC": "2026-10-12 23:17:32 UTC",
+    "reviewMode": "Revisão formal independente dos oito AFTER e seis cards congelados; somente artefatos próprios, sem produto ou autoria.",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "publishedTechnicalMerge": "135899077669af6dcf564717833227828ba03fe5",
+    "authorReport": {
+      "path": "docs/editorial/reviews/2026-10-12/group-b-output-005.json",
+      "bytes": 211344,
+      "sha256": "34f300b276dc227b342059242cc098a34299ff5085bd78741dc69e3ae94ca407"
+    },
+    "authorManifest": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 5307,
+      "sha256": "c2c5f46a1e3f2fec13db84ad57f136f744f7db476cee82ef612cc3b02e68baf6"
+    },
+    "authorValidation": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 8036,
+      "sha256": "cb30a63acaa362150fc4947e9ab40e2f77b98b019dca2eda03b4af2f33ca0700"
+    },
+    "sourceBankSHA256Authored": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "bankObservedForBeforeChecks": {
+      "path": "data/topics.js",
+      "bytes": 970485,
+      "sha256": "56deb215d2da0ea0c212d1d121483423159652d2bea9e8f9521d160ac48054a5"
+    },
+    "bankLFNormalizedSHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "bankCRLFPairs": 743,
+    "bankQualification": "O hash raw corrente difere do autoral por CRLF. A normalização CRLF para LF reproduz o SHA256 autoral. Os oito BEFORE e suas linhas foram conferidos individualmente e continuam idênticos; nenhum dos oito AFTER aplicado.",
+    "normativeSources": [
+      {
+        "path": "AGENTS.md",
+        "bytes": 15910,
+        "sha256": "123d3bf57a43e23dd21adb277295bfbaa8a0d46dccb584f12265396abe4dfe83"
+      },
+      {
+        "path": "CLAUDE.md",
+        "bytes": 16274,
+        "sha256": "7653b34456e9da0354acb150bcb3c768021a2487f8a524233c0aa0a1e9889f99"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 10511,
+        "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      }
+    ],
+    "summaryTable": [
+      {
+        "qid": "9b77534d",
+        "OP": "Explicar a hiperprodução hepática de oxalato na PH1 confirmada por AGXT, distinguindo o defeito de AGT dos mecanismos de PH2/PH3 e da glicolato oxidase.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "9961a406",
+        "OP": "Orientar sobre óleo de peixe na IgAN à luz da KDIGO 2025, evitando seu uso rotineiro ou a substituição da nefroproteção indicada.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 18,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "cf84c115",
+        "OP": "Interpretar uma biópsia pequena negativa diante de suspeita forte de GN necrosante focal, reconhecendo erro amostral e adequação dependente do padrão.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "cd49b7a6",
+        "OP": "Identificar o par autoantígeno e padrão de imunofluorescência na doença anti-MBG clássica.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 18,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "04cb2429",
+        "OP": "Interpretar ANCA na suspeita de EGPA integrando especificidade e fenótipo, sem exigir positividade nem diagnosticar por p-ANCA isolado.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "61d4ad11",
+        "OP": "Identificar idade e volume renal ajustado à altura como eixos da classificação de imagem de Mayo no padrão típico de DRPAD.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "c18e6af7",
+        "OP": "Relacionar o antagonismo ETA/AT1 da sparsentana à substituição de IECA/BRA, evitando duplicação do bloqueio do SRAA.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      },
+      {
+        "qid": "ddfb3df6",
+        "OP": "Interpretar pauci-imune como escassez de depósitos na imunofluorescência, distinguindo esse padrão da intensidade da lesão e da sorologia ANCA.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "score": 19,
+        "eliminator": false,
+        "publicationAuthorization": "LIBERADA",
+        "action": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE"
+      }
+    ],
+    "questions": [
+      {
+        "qid": "9b77534d",
+        "sourceLine": 78,
+        "BEFORE": {
+          "t": "Hiperoxalúria Primária Tipo 1 — Defeito Metabólico",
+          "qid": "9b77534d",
+          "q": "Criança com litíase recorrente, nefrocalcinose e oxalato urinário muito elevado tem variantes bialélicas em AGXT. Qual defeito metabólico explica o quadro?",
+          "refs": [
+            "genereviews_ph1_2025"
+          ],
+          "opts": [
+            "Deficiência hepática peroxissomal de alanina-glioxilato aminotransferase, com desvio do glioxilato para oxalato",
+            "Deficiência de glioxilato redutase, mecanismo específico da hiperoxalúria primária tipo 1",
+            "Ativação da xantina oxidase, com produção de cristais de ácido úrico",
+            "Falha de reabsorção intestinal de oxalato, sem aumento da produção hepática"
+          ],
+          "ans": 0,
+          "exp": "Na hiperoxalúria primária tipo 1, variantes bialélicas em AGXT reduzem ou alteram a localização da alanina-glioxilato aminotransferase peroxissomal hepática. O glioxilato deixa de ser convertido eficientemente em glicina e é desviado para oxalato, causando hiperoxalúria, nefrocalcinose e perda renal; com TFGe baixa, pode ocorrer oxalose sistêmica. Deficiência de GRHPR define principalmente PH2, não PH1. O lumasiran atua a montante ao silenciar HAO1, e não substitui AGT.",
+          "diff": "medium",
+          "cat": "genetica"
+        },
+        "beforeQuestionSHA256": "c1b0268b959aba5a690dca04b224a6bdbe6242287ad5cc8751b0a8c6d34edd3e",
+        "AFTER": {
+          "t": "Hiperoxalúria Primária Tipo 1 — Defeito Metabólico",
+          "qid": "9b77534d",
+          "q": "Criança com litíase recorrente, nefrocalcinose e oxalato urinário muito elevado tem variantes bialélicas em AGXT. Qual defeito metabólico explica o quadro?",
+          "refs": [
+            "ph_erknet_oxaleurope_2023"
+          ],
+          "opts": [
+            "Deficiência de alanina-glioxilato aminotransferase, com menor conversão de glioxilato em glicina.",
+            "Deficiência de glioxilato redutase/hidroxipiruvato redutase, com menor conversão de glioxilato em glicolato.",
+            "Deficiência de 4-hidroxi-2-oxoglutarato aldolase, ligada ao metabolismo hepático da hidroxiprolina.",
+            "Deficiência de glicolato oxidase, com menor produção de glioxilato a partir do glicolato hepático."
+          ],
+          "ans": 0,
+          "exp": "O defeito é da alanina-glioxilato aminotransferase (AGT), codificada por AGXT e localizada nos peroxissomos hepáticos. Sua atividade insuficiente reduz a conversão de glioxilato em glicina e favorece o desvio para oxalato. O excesso de oxalato explica litíase e nefrocalcinose e pode causar depósitos sistêmicos quando a depuração renal se deteriora. GRHPR corresponde à PH 2; HOGA 1, à PH 3. A glicolato oxidase é codificada por HAO 1 e produz glioxilato a montante: reduzir sua atividade tende a diminuir a produção de oxalato, em vez de representar o defeito causal descrito em AGXT. A confirmação molecular já fornecida pelo enunciado permite discriminar o mecanismo; não é necessário inferir uma resposta a tratamento.",
+          "diff": "easy",
+          "cat": "genetica"
+        },
+        "afterQuestionSHA256": "450bdb41722ce743190d94f666585328636c771ebdf9c024480785f7719e4580",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4, Regra 7(a)",
+        "OP": "Explicar a hiperprodução hepática de oxalato na PH1 confirmada por AGXT, distinguindo o defeito de AGT dos mecanismos de PH2/PH3 e da glicolato oxidase.",
+        "classification": {
+          "competency": "Interpretação de mecanismo metabólico",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "difficulty": "Básica",
+          "targetProfile": "R1-R2 de nefrologia; instrumento ou definição básica quando declarado",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem nova calibração IRT, habilidade do usuário ou estatística empírica.",
+          "centralConcept": "Explicar a hiperprodução hepática de oxalato na PH1 confirmada por AGXT, distinguindo o defeito de AGT dos mecanismos de PH2/PH3 e da glicolato oxidase."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "justification": "O genótipo confirmado permite discriminar a enzima causal. GRHPR, HOGA1 e glicolato oxidase são mecanismos reais, porém não explicam o defeito AGXT. A distinção tem utilidade diagnóstica e terapêutica, sem exigir inferir resposta a tratamento.",
+        "findings": [
+          "Nenhum problema substantivo identificado."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "A alternativa A corresponde a AGXT/AGT. B e C descrevem outras hiperoxalúrias; D reduz o precursor a montante e não é o defeito causal da PH1. Não há segunda resposta defensável. O texto não atribui toda litíase por oxalato a PH1, pois fornece confirmação molecular."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "deductionsExplained": "Ausência de cara de IA: 1/2 por fecho que explica ao leitor como o item foi delimitado; não altera o mecanismo nem cria pista de comprimento."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA: prossegue",
+          "step1": "Nenhum eliminatório confirmado",
+          "step2": "Sem argumento plausível de anulação",
+          "step3": "Score 18–20: aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "qualification": "Estado editorial derivado; aplicação e publicação físicas não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "source": "https://pure.amsterdamumc.nl/ws/files/139845886/Clinical-practice-recommendations-for-primary-hyperoxaluria.pdf",
+            "locator": "PDF p1-5; versão publicada, DOI 10.1038/s41581-022-00661-1; genética e Figura 1",
+            "scope": "48 statements graduados; AGXT/AGT peroxissomal hepática, GRHPR e HOGA1; via glioxilato/glicina e glicolato oxidase a montante.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "ph_erknet_oxaleurope_2023",
+            "exactCardSHA256": "20198d21b9f656e37fa7b574f3fc3357dd8b4bbb1808147f507715214fb015eb"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Criança com litíase recorrente, nefrocalcinose e oxalato urinário muito elevado tem variantes bialélicas em AGXT. Qual defeito metabólico explica o quadro?",
+          "alternatives": {
+            "A": "Deficiência de alanina-glioxilato aminotransferase, com menor conversão de glioxilato em glicina.",
+            "B": "Deficiência de glioxilato redutase/hidroxipiruvato redutase, com menor conversão de glioxilato em glicolato.",
+            "C": "Deficiência de 4-hidroxi-2-oxoglutarato aldolase, ligada ao metabolismo hepático da hidroxiprolina.",
+            "D": "Deficiência de glicolato oxidase, com menor produção de glioxilato a partir do glicolato hepático."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Deficiência de alanina-glioxilato aminotransferase, com menor conversão de glioxilato em glicina."
+          },
+          "explanation": "O defeito é da alanina-glioxilato aminotransferase (AGT), codificada por AGXT e localizada nos peroxissomos hepáticos. Sua atividade insuficiente reduz a conversão de glioxilato em glicina e favorece o desvio para oxalato. O excesso de oxalato explica litíase e nefrocalcinose e pode causar depósitos sistêmicos quando a depuração renal se deteriora. GRHPR corresponde à PH 2; HOGA 1, à PH 3. A glicolato oxidase é codificada por HAO 1 e produz glioxilato a montante: reduzir sua atividade tende a diminuir a produção de oxalato, em vez de representar o defeito causal descrito em AGXT. A confirmação molecular já fornecida pelo enunciado permite discriminar o mecanismo; não é necessário inferir uma resposta a tratamento.",
+          "referenceCards": {
+            "ph_erknet_oxaleurope_2023": {
+              "label": "ERKNet/OxalEurope — Hiperoxalúria Primária (2023)",
+              "url": "https://doi.org/10.1038/s41581-022-00661-1",
+              "journal": "Nat Rev Nephrol. 2023;19(3):194-211",
+              "ano": 2023,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Distingue os defeitos enzimáticos das três hiperoxalúrias primárias.",
+              "icon": "📋",
+              "resumo": "Recomendações de prática clínica ERKNet/OxalEurope de 2023, com 48 statements graduados. A PH1 decorre de variantes em AGXT, que codifica a alanina-glioxilato aminotransferase peroxissomal hepática. A conversão insuficiente de glioxilato em glicina favorece a produção de oxalato. PH2 e PH3 relacionam-se a GRHPR e HOGA1, respectivamente. A glicolato oxidase, codificada por HAO1, atua a montante: reduzir sua atividade diminui a oferta de glioxilato, sem substituir AGT. Este card apresenta apenas o mecanismo necessário ao item, sem prescrever doses ou extrapolar tratamentos.",
+              "conclusao": "AGXT/AGT identifica o defeito da PH1; GRHPR e HOGA1 correspondem a outras formas de hiperoxalúria primária.",
+              "curiosidade": ""
+            }
+          },
+          "readiness": "LIBERADA apenas nesta versão exata"
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Termos seletivos aplicados ao banco completo741; comandos das candidatas recuperados e lidos.",
+          "candidateQuestions": [
+            {
+              "qid": "8071ef90",
+              "title": "Hiperoxalúria Primária Tipo 1 — Diagnóstico e Tratamento",
+              "question": "Paciente jovem tem nefrolitíase recorrente por oxalato de cálcio, nefrocalcinose e hiperoxalúria acentuada sem causa entérica clara. Qual abordagem melhor confirma e trata hiperoxalúria primária tipo 1?"
+            },
+            {
+              "qid": "ae31e58e",
+              "title": "Lumasiran na Hiperoxalúria Primária Tipo 1",
+              "question": "Paciente com hiperoxalúria primária tipo 1 confirmada por AGXT tem oxalúria elevada apesar de medidas gerais e avaliação de piridoxina. Qual terapia reduz a produção hepática de oxalato por interferência de RNA?"
+            }
+          ],
+          "fourDimensionAssessments": [
+            {
+              "qid": "8071ef90",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Confirmação diagnóstica e escolha terapêutica a partir de fenótipo sem genótipo; aqui AGXT já foi confirmado e a decisão é identificar o defeito enzimático."
+            },
+            {
+              "qid": "ae31e58e",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Identifica terapia RNAi depois de medidas gerais; aqui o gabarito é a enzima causal, não lumasiran ou elegibilidade."
+            }
+          ],
+          "result": "Variações legítimas nos candidatos examinados; proximidade de cf84c115/cd455e49 explicitamente sinalizada para reconciliação. Não é auditoria semântica de todos os pares.",
+          "independentlyChecked": true,
+          "candidatePins": [
+            {
+              "qid": "8071ef90",
+              "questionSHA256": "b836e57c29aba7cbe4c374cba3d0d4664bbc7bcaaa5cd740f7d675417ecc9282",
+              "sourceLine": 348
+            },
+            {
+              "qid": "ae31e58e",
+              "questionSHA256": "99fc182eed5667ee18cdea4a81df359fb5e8818d77a24e697a6e9e745a8837da",
+              "sourceLine": 567
+            }
+          ],
+          "scopeQualification": "Leitura independente dos candidatos relacionados; não é varredura semântica exaustiva de todos os pares do banco.",
+          "independentConclusion": "Manter: as decisões ou os dados decisivos dos candidatos diferem de modo útil, conforme comparação de quatro dimensões conferida."
+        },
+        "lengthMetrics": {
+          "BEFORE": {
+            "characters": [
+              111,
+              89,
+              68,
+              75
+            ],
+            "correctCharacters": 111,
+            "correctIsUniqueLongest": true,
+            "maxToMin": 1.632,
+            "measurement": "Unicode code points including spaces; diagnostic, not a rule for clinical approval."
+          },
+          "AFTER": {
+            "characters": [
+              97,
+              108,
+              99,
+              98
+            ],
+            "correctIsUniqueLongest": false,
+            "maxToMin": 1.113
+          },
+          "qualification": "Comprimento diagnóstico conferido; distratores julgados pelo erro clínico. Nenhuma alteração ou padding foi proposta."
+        },
+        "verificationPending": [],
+        "implementationObservation": "Preservar qid, índice do gabarito, respostas, recursos, FSRS e snapshots. A autorização vale para o AFTER e seus cards vinculados por hash; exige reconciliação dos consumidores compartilhados antes de sobrescrita global. Nenhuma mudança aplicada."
+      },
+      {
+        "qid": "9961a406",
+        "sourceLine": 83,
+        "BEFORE": {
+          "t": "IgAN — Papel do Óleo de Peixe",
+          "qid": "9961a406",
+          "q": "Pessoa com nefropatia por IgA pergunta se deve acrescentar óleo de peixe para prevenir perda de função renal. Qual orientação é mais alinhada à KDIGO 2025?",
+          "opts": [
+            "O benefício foi inconsistente; óleo de peixe não é terapia rotineira nem substitui nefroproteção ou tratamento dirigido, embora quem opte por usá-lo deva discutir formulação e dose estudadas",
+            "Óleo de peixe é primeira linha obrigatória para toda IgAN, mesmo sem proteinúria",
+            "Ômega-3 substitui IECA ou BRA e elimina a necessidade de monitorar proteinúria",
+            "O tratamento é formalmente contraindicado em toda IgAN por causar hemorragia glomerular"
+          ],
+          "ans": 0,
+          "exp": "Ensaios pequenos e heterogêneos de óleo de peixe não mostraram benefício consistente na IgAN. Por isso, ele não integra o núcleo terapêutico recomendado e não deve deslocar controle pressórico, bloqueio do sistema renina-angiotensina quando tolerado, iSGLT2 ou terapias dirigidas conforme risco. A KDIGO observa que, se a pessoa ainda desejar utilizá-lo, deve receber orientação sobre dose e formulação empregadas nos estudos que relataram eficácia; isso é diferente de recomendação universal ou de contraindicação absoluta.",
+          "diff": "medium",
+          "cat": "glomerular",
+          "refs": [
+            "kdigo_igan_igav_2025"
+          ]
+        },
+        "beforeQuestionSHA256": "9adb7ebffd5edb7efefe772732be48c37004918c175fc2a28f8f7ffab1112091",
+        "AFTER": {
+          "t": "IgAN — Papel do Óleo de Peixe",
+          "qid": "9961a406",
+          "q": "Pessoa com nefropatia por IgA pergunta se deve acrescentar óleo de peixe para prevenir perda de função renal. Qual orientação é mais alinhada à KDIGO 2025?",
+          "opts": [
+            "Não recomendar seu uso rotineiro, pois não há benefício renal consistente na IgAN.",
+            "Recomendar seu uso rotineiro quando a proteinúria persistir após nefroproteção otimizada.",
+            "Recomendar seu uso como substituto do bloqueio do SRAA quando houver proteinúria residual.",
+            "Recomendar seu uso como etapa prévia necessária à seleção de terapias dirigidas à IgAN."
+          ],
+          "ans": 0,
+          "exp": "Óleo de peixe não deve ser recomendado como tratamento rotineiro da IgAN, porque os resultados de benefício renal foram inconsistentes. A KDIGO 2025 o classifica como não recomendado no PP 1.4.3.4 e na Figura 4. Persistência de proteinúria não transforma o suplemento em terapia comprovada nem permite substituir o bloqueio do SRAA ou adiar tratamentos indicados pelo risco. Se a pessoa ainda optar por usá-lo, a diretriz orienta aconselhar sobre dose e formulação dos ensaios que relataram eficácia; esse aconselhamento não equivale a uma recomendação de prescrição. Não se transfere a essa população um resultado cardiovascular obtido em hemodiálise, nem se inventa contraindicação absoluta por hemorragia glomerular.",
+          "diff": "medium",
+          "cat": "glomerular",
+          "refs": [
+            "kdigo_igan_igav_2025"
+          ]
+        },
+        "afterQuestionSHA256": "b326ae69ab39962dade51b2217759f33bf0cbbe52c7fbc031beffeef442c7217",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4, Regra 7(a)",
+        "OP": "Orientar sobre óleo de peixe na IgAN à luz da KDIGO 2025, evitando seu uso rotineiro ou a substituição da nefroproteção indicada.",
+        "classification": {
+          "competency": "Aconselhamento terapêutico",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficulty": "Intermediária",
+          "targetProfile": "R1-R2 de nefrologia; instrumento ou definição básica quando declarado",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem nova calibração IRT, habilidade do usuário ou estatística empírica.",
+          "centralConcept": "Orientar sobre óleo de peixe na IgAN à luz da KDIGO 2025, evitando seu uso rotineiro ou a substituição da nefroproteção indicada."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "justification": "Aplica uma recomendação atual de aconselhamento à IgAN. A orientação para quem escolhe o suplemento não equivale a indicação rotineira. A população e o objetivo renal estão explícitos, sem importar resultados de hemodiálise.",
+        "findings": [
+          "Nenhum problema substantivo identificado."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "Os distratores reproduzem extrapolações possíveis, mas proteinúria residual não torna óleo de peixe obrigatório, substituto do SRAA ou pré-requisito de terapia específica. A ressalva de aconselhamento não cria um segundo gabarito. Nenhuma alternativa exige uma contraindicação hemorrágica inventada."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 18,
+          "band": "Excelente",
+          "deductionsExplained": "Distratores: 1/2 porque a etapa obrigatória antes de terapia específica é menos forte que os dois erros clínicos restantes. Ausência de cara de IA: 1/2 pelo fecho de delimitação editorial. Não são eliminatórios."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA: prossegue",
+          "step1": "Nenhum eliminatório confirmado",
+          "step2": "Sem argumento plausível de anulação",
+          "step3": "Score 18–20: aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "qualification": "Estado editorial derivado; aplicação e publicação físicas não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "source": "kdigo_igan_005.pdf",
+            "locator": "PDF índices 23 e 44, PP 1.4.3.4 e Figura 4",
+            "scope": "Não recomendado; benefício inconsistente; orientar dose/formulação dos estudos se o paciente optar pelo uso.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "kdigo_igan_igav_2025",
+            "exactCardSHA256": "c9b93f989e8531f7ad070564fb0a30550583631d68a5a792245b4da163cfa8b6"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Pessoa com nefropatia por IgA pergunta se deve acrescentar óleo de peixe para prevenir perda de função renal. Qual orientação é mais alinhada à KDIGO 2025?",
+          "alternatives": {
+            "A": "Não recomendar seu uso rotineiro, pois não há benefício renal consistente na IgAN.",
+            "B": "Recomendar seu uso rotineiro quando a proteinúria persistir após nefroproteção otimizada.",
+            "C": "Recomendar seu uso como substituto do bloqueio do SRAA quando houver proteinúria residual.",
+            "D": "Recomendar seu uso como etapa prévia necessária à seleção de terapias dirigidas à IgAN."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Não recomendar seu uso rotineiro, pois não há benefício renal consistente na IgAN."
+          },
+          "explanation": "Óleo de peixe não deve ser recomendado como tratamento rotineiro da IgAN, porque os resultados de benefício renal foram inconsistentes. A KDIGO 2025 o classifica como não recomendado no PP 1.4.3.4 e na Figura 4. Persistência de proteinúria não transforma o suplemento em terapia comprovada nem permite substituir o bloqueio do SRAA ou adiar tratamentos indicados pelo risco. Se a pessoa ainda optar por usá-lo, a diretriz orienta aconselhar sobre dose e formulação dos ensaios que relataram eficácia; esse aconselhamento não equivale a uma recomendação de prescrição. Não se transfere a essa população um resultado cardiovascular obtido em hemodiálise, nem se inventa contraindicação absoluta por hemorragia glomerular.",
+          "referenceCards": {
+            "kdigo_igan_igav_2025": {
+              "label": "KDIGO 2025 IgAN/IgAV Guideline",
+              "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+              "journal": "Kidney Int. 2025;108(Suppl 4S):S1-S71",
+              "ano": 2025,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Distingue óleo de peixe de terapias indicadas e orienta substituir o bloqueio do SRAA ao usar sparsentana.",
+              "icon": "📋",
+              "resumo": "KDIGO 2025 para IgAN/IgAV. No PP 1.4.3.4 e na Figura 4, óleo de peixe não é recomendado para tratar IgAN, devido à ausência de benefício consistente. Quem optar por usá-lo deve receber orientação sobre as doses e formulações empregadas nos estudos que relataram eficácia. A recomendação 1.4.4.2 sugere sparsentana para pacientes em risco de progressão (2B); o PP 1.4.4.3 explica que o antagonismo dual de endotelina e angiotensina já incorpora bloqueio do SRAA e orienta não associá-la a outro inibidor desse sistema.",
+              "conclusao": "Não recomendar óleo de peixe como terapia renal rotineira. A sparsentana substitui o IECA/BRA quando escolhida; não deve ser somada a eles.",
+              "curiosidade": "A orientação sobre dose e formulação do óleo de peixe é aconselhamento para quem ainda o escolhe; não transforma a intervenção em recomendação terapêutica."
+            }
+          },
+          "readiness": "LIBERADA apenas nesta versão exata"
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Termos seletivos aplicados ao banco completo741; comandos das candidatas recuperados e lidos.",
+          "candidateQuestions": [
+            {
+              "qid": "ff4c8b9e",
+              "title": "PISCES — Eventos Cardiovasculares em Hemodiálise",
+              "question": "No PISCES, adultos em hemodiálise de manutenção receberam óleo de peixe ou placebo. Qual interpretação melhor representa o desfecho cardiovascular principal?"
+            },
+            {
+              "qid": "f5e0666b",
+              "title": "PISCES — Inferência Mecanística",
+              "question": "O PISCES mostrou menos eventos cardiovasculares com óleo de peixe em hemodiálise. O que se pode concluir sobre o mecanismo desse benefício?"
+            }
+          ],
+          "fourDimensionAssessments": [
+            {
+              "qid": "ff4c8b9e",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "PISCES testa desfecho cardiovascular de ensaio em hemodiálise, não recomendação para prevenir progressão renal de IgAN."
+            },
+            {
+              "qid": "f5e0666b",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Inferência causal de mecanismo do PISCES em hemodiálise, não aconselhamento sobre óleo de peixe na IgAN."
+            }
+          ],
+          "result": "Variações legítimas nos candidatos examinados; proximidade de cf84c115/cd455e49 explicitamente sinalizada para reconciliação. Não é auditoria semântica de todos os pares.",
+          "independentlyChecked": true,
+          "candidatePins": [
+            {
+              "qid": "ff4c8b9e",
+              "questionSHA256": "4d94122ca16e54819e83bb49d505c1643f19a194698cc2831efb4e01a6d96b34",
+              "sourceLine": 670
+            },
+            {
+              "qid": "f5e0666b",
+              "questionSHA256": "c19ee51ddf7804daed84921a86b86b909d90cb5bd20ecfee18316f8363794889",
+              "sourceLine": 673
+            }
+          ],
+          "scopeQualification": "Leitura independente dos candidatos relacionados; não é varredura semântica exaustiva de todos os pares do banco.",
+          "independentConclusion": "Manter: as decisões ou os dados decisivos dos candidatos diferem de modo útil, conforme comparação de quatro dimensões conferida."
+        },
+        "lengthMetrics": {
+          "BEFORE": {
+            "characters": [
+              190,
+              80,
+              78,
+              87
+            ],
+            "correctCharacters": 190,
+            "correctIsUniqueLongest": true,
+            "maxToMin": 2.436,
+            "measurement": "Unicode code points including spaces; diagnostic, not a rule for clinical approval."
+          },
+          "AFTER": {
+            "characters": [
+              82,
+              89,
+              90,
+              87
+            ],
+            "correctIsUniqueLongest": false,
+            "maxToMin": 1.098
+          },
+          "qualification": "Comprimento diagnóstico conferido; distratores julgados pelo erro clínico. Nenhuma alteração ou padding foi proposta."
+        },
+        "verificationPending": [],
+        "implementationObservation": "Preservar qid, índice do gabarito, respostas, recursos, FSRS e snapshots. A autorização vale para o AFTER e seus cards vinculados por hash; exige reconciliação dos consumidores compartilhados antes de sobrescrita global. Nenhuma mudança aplicada."
+      },
+      {
+        "qid": "cf84c115",
+        "sourceLine": 84,
+        "BEFORE": {
+          "t": "Biópsia Renal — Adequação e Erro Amostral",
+          "qid": "cf84c115",
+          "q": "Uma biópsia renal contém cinco glomérulos e não mostra necrose segmentar nem crescentes. Há forte suspeita clínica de glomerulonefrite necrosante focal. Qual interpretação é mais adequada?",
+          "refs": [
+            "kdigo_gn"
+          ],
+          "opts": [
+            "A amostra pode ser insuficiente para excluir uma lesão focal; em geral, 8–10 glomérulos são necessários e a adequação deve considerar o padrão suspeito e o material destinado a microscopia óptica, imunofluorescência e microscopia eletrônica",
+            "Cinco glomérulos sempre excluem glomerulonefrite necrosante quando nenhum crescente é visto",
+            "A imunofluorescência isolada compensa qualquer escassez de córtex e define a atividade da lesão",
+            "A ausência de crescentes permite descartar vasculite ANCA sem integrar clínica, sorologia ou nova amostragem"
+          ],
+          "ans": 0,
+          "exp": "A KDIGO ressalta que o número necessário depende da lesão que se pretende diagnosticar ou excluir, mas uma biópsia costuma precisar de pelo menos 8–10 glomérulos. Doenças focais, como GESF e glomerulonefrite necrosante associada ao ANCA, podem acometer apenas alguns segmentos de alguns glomérulos; portanto, uma amostra pequena aumenta o erro amostral. A adequação também exige representação cortical e distribuição apropriada do tecido para microscopia óptica, imunofluorescência e, quando indicada, microscopia eletrônica. Resultado negativo em cinco glomérulos não prevalece isoladamente sobre uma suspeita clínica forte.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "beforeQuestionSHA256": "b18096392d37c61634b52dc62f91a8c1e3e1c0baebf0d507c2297f2676870b32",
+        "AFTER": {
+          "t": "Biópsia Renal — Adequação e Erro Amostral",
+          "qid": "cf84c115",
+          "q": "Uma biópsia renal contém cinco glomérulos e não mostra necrose segmentar nem crescentes. Há forte suspeita clínica de glomerulonefrite necrosante focal. Qual interpretação é mais adequada?",
+          "refs": [
+            "kdigo_gn"
+          ],
+          "opts": [
+            "A amostra pequena pode não excluir lesão focal, mesmo sem necrose ou crescentes.",
+            "A ausência de necrose nos cinco glomérulos fornece uma amostra representativa da atividade renal.",
+            "A ausência de crescentes nos cinco glomérulos torna a investigação sorológica dispensável.",
+            "A ausência de depósitos na imunofluorescência corrige a limitação da amostra para necrose focal."
+          ],
+          "ans": 0,
+          "exp": "Uma biópsia com cinco glomérulos pode não excluir glomerulonefrite necrosante focal: a lesão pode não estar nos glomérulos ou segmentos examinados. A KDIGO, PP 1.1.2, informa que geralmente são necessários 8-10 glomérulos, mas a adequação depende da doença suspeita, da distribuição da lesão, dos níveis histológicos e da alocação de córtex para microscopia óptica, imunofluorescência e microscopia eletrônica. Esse número não é uma garantia universal de exclusão, e algumas doenças difusas podem ser reconhecidas em amostras menores. Imunofluorescência negativa não aumenta a representatividade para necrose ou crescentes; sorologia e quadro clínico continuam relevantes. Diante da discordância descrita, discutir adequação com a nefropatologia e necessidade de investigação ou nova amostragem conforme o caso, sem converter a amostra pequena em exclusão definitiva.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "afterQuestionSHA256": "eb267fd457d25cddf69905f551741b7f32d9f850d9727a8088f1e0672f3e9a92",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4, Regra 7(a)",
+        "OP": "Interpretar uma biópsia pequena negativa diante de suspeita forte de GN necrosante focal, reconhecendo erro amostral e adequação dependente do padrão.",
+        "classification": {
+          "competency": "Interpretação clinicopatológica",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficulty": "Intermediária",
+          "targetProfile": "R1-R2 de nefrologia; instrumento ou definição básica quando declarado",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem nova calibração IRT, habilidade do usuário ou estatística empírica.",
+          "centralConcept": "Interpretar uma biópsia pequena negativa diante de suspeita forte de GN necrosante focal, reconhecendo erro amostral e adequação dependente do padrão."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "justification": "Aplica o erro amostral a uma discordância clínica concreta. O AFTER não transforma 8–10 glomérulos em mínimo universal ou garantia de exclusão. A imunofluorescência não corrige a representatividade da amostra para necrose focal.",
+        "findings": [
+          "Nenhum problema substantivo identificado."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "A falta de necrose/crescentes em cinco glomérulos não demonstra representatividade nem dispensa sorologia. O comando pede interpretação, não indicação universal de repetir biópsia. A resposta A é a única que respeita o padrão focal e a suspeita forte, sem prometer que qualquer amostra maior excluiria doença."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "deductionsExplained": "Ausência de cara de IA: 1/2 pelo fecho longo de cautela; a ressalva é clinicamente pertinente e não constitui padding nas alternativas."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA: prossegue",
+          "step1": "Nenhum eliminatório confirmado",
+          "step2": "Sem argumento plausível de anulação",
+          "step3": "Score 18–20: aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "qualification": "Estado editorial derivado; aplicação e publicação físicas não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "source": "kdigo_gn_2024_chapters-retrieved.pdf",
+            "locator": "S89, PDF índice 93, PP 1.1.2",
+            "scope": "Geralmente pelo menos 8–10 glomérulos; GESF e GN necrosante podem ter lesões focais/segmentares; vários níveis e MO/IF/ME; doenças difusas podem requerer menos.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "kdigo_gn",
+            "exactCardSHA256": "1e95b4f46b24af9f529bfd6c973dee27f818667aec1fdb98a1e423b2015ac415"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Uma biópsia renal contém cinco glomérulos e não mostra necrose segmentar nem crescentes. Há forte suspeita clínica de glomerulonefrite necrosante focal. Qual interpretação é mais adequada?",
+          "alternatives": {
+            "A": "A amostra pequena pode não excluir lesão focal, mesmo sem necrose ou crescentes.",
+            "B": "A ausência de necrose nos cinco glomérulos fornece uma amostra representativa da atividade renal.",
+            "C": "A ausência de crescentes nos cinco glomérulos torna a investigação sorológica dispensável.",
+            "D": "A ausência de depósitos na imunofluorescência corrige a limitação da amostra para necrose focal."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "A amostra pequena pode não excluir lesão focal, mesmo sem necrose ou crescentes."
+          },
+          "explanation": "Uma biópsia com cinco glomérulos pode não excluir glomerulonefrite necrosante focal: a lesão pode não estar nos glomérulos ou segmentos examinados. A KDIGO, PP 1.1.2, informa que geralmente são necessários 8-10 glomérulos, mas a adequação depende da doença suspeita, da distribuição da lesão, dos níveis histológicos e da alocação de córtex para microscopia óptica, imunofluorescência e microscopia eletrônica. Esse número não é uma garantia universal de exclusão, e algumas doenças difusas podem ser reconhecidas em amostras menores. Imunofluorescência negativa não aumenta a representatividade para necrose ou crescentes; sorologia e quadro clínico continuam relevantes. Diante da discordância descrita, discutir adequação com a nefropatologia e necessidade de investigação ou nova amostragem conforme o caso, sem converter a amostra pequena em exclusão definitiva.",
+          "referenceCards": {
+            "kdigo_gn": {
+              "label": "KDIGO Glomerular Diseases 2021",
+              "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+              "journal": "Kidney Int 2021;100(4S):S1-S276",
+              "ano": 2021,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Interpreta adequação da biópsia e o par antigênico/imunofluorescente anti-MBG.",
+              "icon": "📋",
+              "resumo": "KDIGO Glomerular Diseases 2021, compilação com atualizações de capítulos em 2024. O PP 1.1.2 descreve adequação da biópsia conforme o padrão suspeito: geralmente são necessários 8-10 glomérulos, e lesões focais exigem atenção ao erro amostral e aos níveis examinados. Microscopia óptica, imunofluorescência e microscopia eletrônica são complementares. No capítulo 11, a doença anti-MBG clássica é atribuída a autoanticorpos contra o domínio não colagenoso da cadeia alfa-3 do colágeno IV; a imunofluorescência pode demonstrar IgG linear na MBG. Estes trechos diagnósticos foram conferidos; capítulos terapêuticos com atualizações posteriores devem ser lidos nas versões correspondentes.",
+              "conclusao": "Uma amostra pequena negativa pode não excluir lesão focal. Na anti-MBG clássica, o alvo alfa-3(IV)NC1 corresponde ao padrão linear de IgG.",
+              "curiosidade": "A contagem de glomérulos não é um limite absoluto para toda doença: alterações difusas globais podem ser identificadas em amostras menores."
+            }
+          },
+          "readiness": "LIBERADA apenas nesta versão exata"
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Termos seletivos aplicados ao banco completo741; comandos das candidatas recuperados e lidos.",
+          "candidateQuestions": [
+            {
+              "qid": "cd455e49",
+              "title": "GESF — Amostragem e Integração da Biópsia",
+              "question": "Por que uma biópsia renal com poucos glomérulos pode não excluir glomeruloesclerose segmentar e focal (GESF), e qual é a interpretação adequada?"
+            }
+          ],
+          "fourDimensionAssessments": [
+            {
+              "qid": "cd455e49",
+              "decisionCoincides": true,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Proximidade alta: ambas previnem excluir lesão focal por amostra pequena. A candidata é conceitual sobre GESF sem contagem nem situação clínica discordante. Este item aplica o princípio a cinco glomérulos negativos para necrose/crescentes diante de suspeita forte de GN necrosante, cuja interpretação se integra a sorologia e urgência. Decisão geral coincide, mas estrutura de dados e aplicação clinicopatológica variam de modo útil. Manter como variação, sujeito à reconciliação independente; não alegar decisão inteiramente diferente."
+            }
+          ],
+          "result": "Variações legítimas nos candidatos examinados; proximidade de cf84c115/cd455e49 explicitamente sinalizada para reconciliação. Não é auditoria semântica de todos os pares.",
+          "independentlyChecked": true,
+          "candidatePins": [
+            {
+              "qid": "cd455e49",
+              "questionSHA256": "5a0ec1010bcc8239a0478d2ea933f1c8a4e059f495ccbd18f5d28d84c0533f77",
+              "sourceLine": 8
+            }
+          ],
+          "scopeQualification": "Leitura independente dos candidatos relacionados; não é varredura semântica exaustiva de todos os pares do banco.",
+          "independentConclusion": "Variação legítima. A decisão geral coincide com cd455e49, mas a estrutura de dados difere de modo útil: cinco glomérulos sem necrose/crescentes e suspeita clínica forte de GN necrosante, em contraste com a integração conceitual de GESF. Perfil e idioma coincidem; não cumpre os quatro critérios simultâneos de duplicata."
+        },
+        "lengthMetrics": {
+          "BEFORE": {
+            "characters": [
+              240,
+              91,
+              95,
+              108
+            ],
+            "correctCharacters": 240,
+            "correctIsUniqueLongest": true,
+            "maxToMin": 2.637,
+            "measurement": "Unicode code points including spaces; diagnostic, not a rule for clinical approval."
+          },
+          "AFTER": {
+            "characters": [
+              80,
+              97,
+              90,
+              96
+            ],
+            "correctIsUniqueLongest": false,
+            "maxToMin": 1.212
+          },
+          "qualification": "Comprimento diagnóstico conferido; distratores julgados pelo erro clínico. Nenhuma alteração ou padding foi proposta."
+        },
+        "verificationPending": [],
+        "implementationObservation": "Preservar qid, índice do gabarito, respostas, recursos, FSRS e snapshots. A autorização vale para o AFTER e seus cards vinculados por hash; exige reconciliação dos consumidores compartilhados antes de sobrescrita global. Nenhuma mudança aplicada."
+      },
+      {
+        "qid": "cd49b7a6",
+        "sourceLine": 85,
+        "BEFORE": {
+          "t": "Doença Anti-MBG — Autoantígeno e Padrão Linear",
+          "qid": "cd49b7a6",
+          "q": "Na doença anti-membrana basal glomerular clássica, qual autoantígeno e achado de imunofluorescência formam o par mais característico?",
+          "refs": [
+            "mcadoo_antigbm_2017",
+            "kdigo_gn"
+          ],
+          "opts": [
+            "Domínio NC1 da cadeia alfa-3 do colágeno IV e deposição linear de IgG ao longo da MBG",
+            "PLA2R podocitário e depósitos granulares subepiteliais de IgA",
+            "Mieloperoxidase neutrofílica e ausência obrigatória de qualquer IgG linear",
+            "Colágeno tipo I mesangial e padrão full house"
+          ],
+          "ans": 0,
+          "exp": "Os autoanticorpos clássicos reconhecem epítopos do domínio alfa-3(IV)NC1 da rede de colágeno IV presente nas membranas basais glomerular e alveolar. Na biópsia, a ligação ao antígeno distribuído uniformemente produz IgG linear ao longo da MBG, frequentemente com GN necrosante e crescêntica. Complexos imunes geram padrão granular, e vasculite ANCA costuma ser pauci-imune. A expressão alveolar explica hemorragia pulmonar, mas doença renal isolada também ocorre.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "beforeQuestionSHA256": "a5894c425709234622e47f4eff4454feab91356c85311d23a5873318bde317ba",
+        "AFTER": {
+          "t": "Doença Anti-MBG — Autoantígeno e Padrão Linear",
+          "qid": "cd49b7a6",
+          "q": "Na doença anti-membrana basal glomerular clássica, qual autoantígeno e achado de imunofluorescência formam o par mais característico?",
+          "refs": [
+            "kdigo_gn"
+          ],
+          "opts": [
+            "Domínio NC1 da cadeia alfa-3 do colágeno IV; IgG linear na membrana basal glomerular.",
+            "Domínio NC1 da cadeia alfa-3 do colágeno IV; IgG granular na membrana basal glomerular.",
+            "Mieloperoxidase de neutrófilos; depósitos escassos de imunoglobulinas nos capilares glomerulares.",
+            "Receptor de fosfolipase A2 podocitário; IgG granular nas paredes dos capilares glomerulares."
+          ],
+          "ans": 0,
+          "exp": "O par característico é alfa-3(IV)NC 1 e deposição linear de IgG ao longo da membrana basal glomerular. A KDIGO descreve autoanticorpos contra o domínio não colagenoso da cadeia alfa-3 do colágeno IV e o padrão linear no capítulo 11. O domínio também participa da membrana basal alveolar, mas comprometimento pulmonar não é obrigatório: pode haver doença renal isolada. Um padrão granular não corresponde à deposição linear característica da forma clássica. MPO remete à vasculite associada a ANCA, frequentemente pauci-imune; PLA 2R remete à nefropatia membranosa, com depósitos granulares, não ao par anti-MBG pedido. Trata-se de reconhecer o padrão clássico; a palavra clássica delimita o escopo e não afirma que toda marcação linear isolada seja suficiente para qualquer diagnóstico.",
+          "diff": "easy",
+          "cat": "glomerular"
+        },
+        "afterQuestionSHA256": "602036adcccddf5a9865471cb397964d80af2ae01b1c6874588296f0279eff79",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4, Regra 7(a)",
+        "OP": "Identificar o par autoantígeno e padrão de imunofluorescência na doença anti-MBG clássica.",
+        "classification": {
+          "competency": "Reconhecimento clinicopatológico",
+          "bloom": "Lembrar",
+          "miller": "Sabe",
+          "difficulty": "Básica",
+          "targetProfile": "R1-R2 de nefrologia; instrumento ou definição básica quando declarado",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem nova calibração IRT, habilidade do usuário ou estatística empírica.",
+          "centralConcept": "Identificar o par autoantígeno e padrão de imunofluorescência na doença anti-MBG clássica."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "justification": "Reconhece o par clássico anti-MBG, com alvo alfa-3(IV)NC1 e IgG linear. Os outros pares são padrões reais de glomerulopatias, e a palavra clássica delimita adequadamente formas atípicas e diagnósticos diferenciais.",
+        "findings": [
+          "Nenhum problema substantivo identificado."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "Granular não é o padrão clássico de anti-MBG. MPO/pauci-imune e PLA2R/granular correspondem a outras entidades. A possibilidade de doença renal isolada não contesta o par pedido. O AFTER não declara que toda IgG linear isolada estabelece o diagnóstico."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 1
+          },
+          "total": 18,
+          "band": "Excelente",
+          "deductionsExplained": "Valor pedagógico: 1/2 por recall do padrão fornecido, com utilidade diagnóstica. Ausência de cara de IA: 1/2 pelo comentário final sobre a formulação do item. Não exige reescrita material."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA: prossegue",
+          "step1": "Nenhum eliminatório confirmado",
+          "step2": "Sem argumento plausível de anulação",
+          "step3": "Score 18–20: aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "qualification": "Estado editorial derivado; aplicação e publicação físicas não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "source": "kdigo_gn_2024_chapters-retrieved.pdf",
+            "locator": "S231, PDF índice 235, introdução do capítulo 11 e PP 11.1.1",
+            "scope": "Domínio não colagenoso da cadeia alfa-3 do colágeno IV; IgG linear; apresentação renal isolada ou pulmão-rim.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "kdigo_gn",
+            "exactCardSHA256": "1e95b4f46b24af9f529bfd6c973dee27f818667aec1fdb98a1e423b2015ac415"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Na doença anti-membrana basal glomerular clássica, qual autoantígeno e achado de imunofluorescência formam o par mais característico?",
+          "alternatives": {
+            "A": "Domínio NC1 da cadeia alfa-3 do colágeno IV; IgG linear na membrana basal glomerular.",
+            "B": "Domínio NC1 da cadeia alfa-3 do colágeno IV; IgG granular na membrana basal glomerular.",
+            "C": "Mieloperoxidase de neutrófilos; depósitos escassos de imunoglobulinas nos capilares glomerulares.",
+            "D": "Receptor de fosfolipase A2 podocitário; IgG granular nas paredes dos capilares glomerulares."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Domínio NC1 da cadeia alfa-3 do colágeno IV; IgG linear na membrana basal glomerular."
+          },
+          "explanation": "O par característico é alfa-3(IV)NC 1 e deposição linear de IgG ao longo da membrana basal glomerular. A KDIGO descreve autoanticorpos contra o domínio não colagenoso da cadeia alfa-3 do colágeno IV e o padrão linear no capítulo 11. O domínio também participa da membrana basal alveolar, mas comprometimento pulmonar não é obrigatório: pode haver doença renal isolada. Um padrão granular não corresponde à deposição linear característica da forma clássica. MPO remete à vasculite associada a ANCA, frequentemente pauci-imune; PLA 2R remete à nefropatia membranosa, com depósitos granulares, não ao par anti-MBG pedido. Trata-se de reconhecer o padrão clássico; a palavra clássica delimita o escopo e não afirma que toda marcação linear isolada seja suficiente para qualquer diagnóstico.",
+          "referenceCards": {
+            "kdigo_gn": {
+              "label": "KDIGO Glomerular Diseases 2021",
+              "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+              "journal": "Kidney Int 2021;100(4S):S1-S276",
+              "ano": 2021,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Interpreta adequação da biópsia e o par antigênico/imunofluorescente anti-MBG.",
+              "icon": "📋",
+              "resumo": "KDIGO Glomerular Diseases 2021, compilação com atualizações de capítulos em 2024. O PP 1.1.2 descreve adequação da biópsia conforme o padrão suspeito: geralmente são necessários 8-10 glomérulos, e lesões focais exigem atenção ao erro amostral e aos níveis examinados. Microscopia óptica, imunofluorescência e microscopia eletrônica são complementares. No capítulo 11, a doença anti-MBG clássica é atribuída a autoanticorpos contra o domínio não colagenoso da cadeia alfa-3 do colágeno IV; a imunofluorescência pode demonstrar IgG linear na MBG. Estes trechos diagnósticos foram conferidos; capítulos terapêuticos com atualizações posteriores devem ser lidos nas versões correspondentes.",
+              "conclusao": "Uma amostra pequena negativa pode não excluir lesão focal. Na anti-MBG clássica, o alvo alfa-3(IV)NC1 corresponde ao padrão linear de IgG.",
+              "curiosidade": "A contagem de glomérulos não é um limite absoluto para toda doença: alterações difusas globais podem ser identificadas em amostras menores."
+            }
+          },
+          "readiness": "LIBERADA apenas nesta versão exata"
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Termos seletivos aplicados ao banco completo741; comandos das candidatas recuperados e lidos.",
+          "candidateQuestions": [
+            {
+              "qid": "2a595b23",
+              "title": "IgAN Rapidamente Progressiva — Definição e Indução",
+              "question": "Pessoa com IgAN perde 55% da TFGe em dez semanas; causas reversíveis, vasculite ANCA e doença anti-MBG foram excluídas, e a biópsia mostra necrose e muitos crescentes. Qual conduta é mais alinhada à KDIGO 2025?"
+            },
+            {
+              "qid": "df6caaed",
+              "title": "Doença Anti-MBG — Tratamento Urgente",
+              "question": "Paciente com hemorragia alveolar e glomerulonefrite rapidamente progressiva tem anti-MBG positivo. Qual estratégia inicial é mais coerente?"
+            },
+            {
+              "qid": "6d007422",
+              "title": "GN Relacionada à Infecção — Integração Diagnóstica",
+              "question": "Paciente com infecção cutânea estafilocócica ativa evolui com LRA, hematúria, C3 baixo e biópsia mostrando GN exsudativa proliferativa com depósitos granulares de C3 e IgG. ANCA e anti-MBG são negativos. Qual é a interpretação mais adequada?"
+            },
+            {
+              "qid": "673a9acf",
+              "title": "Doença Anti-MBG — Cenário de Baixíssima Recuperação Renal",
+              "question": "Paciente com doença anti-membrana basal glomerular chega dependente de diálise. Biópsia adequada mostra crescentes em 100% dos glomérulos, e não há hemorragia pulmonar. Qual interpretação melhor orienta a decisão terapêutica?"
+            }
+          ],
+          "fourDimensionAssessments": [
+            {
+              "qid": "2a595b23",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Define IgAN rapidamente progressiva após exclusão de ANCA/anti-MBG e pede indução; não reconhece antígeno/padrão anti-MBG."
+            },
+            {
+              "qid": "df6caaed",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Indução urgente em doença anti-MBG já diagnosticada, não par antigênico e imunofluorescente."
+            },
+            {
+              "qid": "6d007422",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Integra infecção ativa, hipocomplementemia e GN granular; pede diagnóstico etiológico, não alvo da doença anti-MBG clássica."
+            },
+            {
+              "qid": "673a9acf",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Pondera exceção terapêutica em doença anti-MBG terminal com100% crescentes/diálise, não identificação molecular."
+            }
+          ],
+          "result": "Variações legítimas nos candidatos examinados; proximidade de cf84c115/cd455e49 explicitamente sinalizada para reconciliação. Não é auditoria semântica de todos os pares.",
+          "independentlyChecked": true,
+          "candidatePins": [
+            {
+              "qid": "2a595b23",
+              "questionSHA256": "d300a601a53ba526c17ce170c5ed7211fba074e42995fd765d88c7c7f1ed9f0d",
+              "sourceLine": 207
+            },
+            {
+              "qid": "df6caaed",
+              "questionSHA256": "f64fa0b8edf2a670f62fcf4b96d7843eee7543c50e51e38972c480510af105d5",
+              "sourceLine": 326
+            },
+            {
+              "qid": "6d007422",
+              "questionSHA256": "4a5d32e9f90257dd9dbe3a6de023d11277a77566d1f922eaf16e93096eaa0e00",
+              "sourceLine": 382
+            },
+            {
+              "qid": "673a9acf",
+              "questionSHA256": "d06e1183b7cb5e12b97384d02a10e949fb25c2021eb4c1c99f03e402cbc1b783",
+              "sourceLine": 505
+            }
+          ],
+          "scopeQualification": "Leitura independente dos candidatos relacionados; não é varredura semântica exaustiva de todos os pares do banco.",
+          "independentConclusion": "Manter: as decisões ou os dados decisivos dos candidatos diferem de modo útil, conforme comparação de quatro dimensões conferida."
+        },
+        "lengthMetrics": {
+          "BEFORE": {
+            "characters": [
+              85,
+              61,
+              74,
+              45
+            ],
+            "correctCharacters": 85,
+            "correctIsUniqueLongest": true,
+            "maxToMin": 1.889,
+            "measurement": "Unicode code points including spaces; diagnostic, not a rule for clinical approval."
+          },
+          "AFTER": {
+            "characters": [
+              85,
+              87,
+              97,
+              92
+            ],
+            "correctIsUniqueLongest": false,
+            "maxToMin": 1.141
+          },
+          "qualification": "Comprimento diagnóstico conferido; distratores julgados pelo erro clínico. Nenhuma alteração ou padding foi proposta."
+        },
+        "verificationPending": [],
+        "implementationObservation": "Preservar qid, índice do gabarito, respostas, recursos, FSRS e snapshots. A autorização vale para o AFTER e seus cards vinculados por hash; exige reconciliação dos consumidores compartilhados antes de sobrescrita global. Nenhuma mudança aplicada."
+      },
+      {
+        "qid": "04cb2429",
+        "sourceLine": 88,
+        "BEFORE": {
+          "t": "EGPA — MPO-ANCA não é Obrigatório",
+          "qid": "04cb2429",
+          "q": "Como interpretar o ANCA na suspeita de granulomatose eosinofílica com poliangeíte (EGPA)?",
+          "refs": [
+            "egpa_guideline_2023",
+            "eular_aav_2022"
+          ],
+          "opts": [
+            "ANCA aparece em cerca de 30% a 40% e geralmente é MPO-ANCA; resultado negativo não exclui EGPA e o fenótipo clínico permanece central",
+            "PR3-ANCA está presente em mais de 90% e é obrigatório para o diagnóstico",
+            "Todo caso ANCA-negativo exclui vasculite e representa apenas asma eosinofílica",
+            "O padrão p-ANCA isolado, sem especificidade MPO nem contexto clínico, confirma EGPA"
+          ],
+          "ans": 0,
+          "exp": "A maioria das pessoas com EGPA é ANCA-negativa. Entre as positivas, predomina MPO-ANCA, associado com maior frequência a manifestações vasculíticas como glomerulonefrite, púrpura e neuropatia; formas ANCA-negativas podem ter doença eosinofílica e cardíaca importante. O diagnóstico integra asma, eosinofilia, rinossinusite, infiltrados, neuropatia e outros órgãos, excluindo causas alternativas. Deve-se preferir teste específico para MPO e PR3, e não transformar um padrão de imunofluorescência em diagnóstico isolado.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "beforeQuestionSHA256": "b648f89273034a037de8bea4a92f0c8d4e521f88b779fa868b54bed067102751",
+        "AFTER": {
+          "t": "EGPA — MPO-ANCA não é Obrigatório",
+          "qid": "04cb2429",
+          "q": "Como interpretar o ANCA na suspeita de granulomatose eosinofílica com poliangeíte (EGPA)?",
+          "refs": [
+            "egpa_guideline_2023"
+          ],
+          "opts": [
+            "MPO-ANCA apoia um fenótipo compatível; ANCA negativo permite manter a suspeita clínica de EGPA.",
+            "MPO-ANCA estabelece EGPA por sua especificidade, mesmo sem asma, eosinofilia ou lesão de órgãos.",
+            "ANCA negativo favorece excluir EGPA, mesmo diante de asma, eosinofilia e neuropatia multifocal.",
+            "p-ANCA positivo permite substituir o teste específico de MPO/PR3 na avaliação da suspeita de EGPA."
+          ],
+          "ans": 0,
+          "exp": "MPO-ANCA pode apoiar EGPA no contexto compatível, mas ANCA negativo não exclui a doença. A diretriz de 2023 informa positividade em 30-40%, com predomínio de MPO entre as pessoas positivas. O diagnóstico integra asma, eosinofilia, manifestações de órgãos e exclusão de outras doenças eosinofílicas ou vasculíticas. GN, neuropatia e púrpura são mais frequentes no grupo ANCA positivo; cardiomiopatia e determinadas manifestações eosinofílicas são mais frequentes no negativo, com sobreposição importante. Um padrão p-ANCA isolado tem menor especificidade que MPO-ANCA e não confirma EGPA; a investigação usa testes específicos para MPO/PR 3 e avaliação clínica. A sorologia não deve apagar o fenótipo nem determinar sozinha o tratamento.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "afterQuestionSHA256": "3c03b5ee8bf3fbe513892cff3ac3fe9c31b6d56a7592f5b566f886157b4c29a7",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4, Regra 7(a)",
+        "OP": "Interpretar ANCA na suspeita de EGPA integrando especificidade e fenótipo, sem exigir positividade nem diagnosticar por p-ANCA isolado.",
+        "classification": {
+          "competency": "Interpretação de teste diagnóstico",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "difficulty": "Intermediária",
+          "targetProfile": "R1-R2 de nefrologia; instrumento ou definição básica quando declarado",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem nova calibração IRT, habilidade do usuário ou estatística empírica.",
+          "centralConcept": "Interpretar ANCA na suspeita de EGPA integrando especificidade e fenótipo, sem exigir positividade nem diagnosticar por p-ANCA isolado."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "justification": "Distingue apoio sorológico de diagnóstico isolado e evita excluir EGPA por ANCA negativo. Os números, os fenótipos sobrepostos e a especificidade MPO versus p-ANCA estão expressos no Statement 4 integral.",
+        "findings": [
+          "Nenhum problema substantivo identificado."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "A alternativa B superestima a especificidade e apaga o fenótipo; C ignora que a maioria pode ser ANCA negativa; D substitui indevidamente ensaios específicos pelo padrão de IF. Nenhuma concorre com A. ANCA isolado também não seleciona o tratamento."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "deductionsExplained": "Ausência de cara de IA: 1/2 por explicação extensa para comando conceitual curto. As ressalvas sobre fenótipo e especificidade têm conteúdo, não são enchimento das alternativas."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA: prossegue",
+          "step1": "Nenhum eliminatório confirmado",
+          "step2": "Sem argumento plausível de anulação",
+          "step3": "Score 18–20: aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "qualification": "Estado editorial derivado; aplicação e publicação físicas não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "source": "egpa-005-accepted.pdf",
+            "locator": "PDF índices 7–9, Statements 1–4; índice 33, Tabela 2; identidade PMID 37161084",
+            "scope": "ANCA 30–40%, predominância MPO, fenótipos sobrepostos, ensaios MPO/PR3 e p-ANCA menos específico; Statement 4: evidência 2a, recomendação B; PR3 raro.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "egpa_guideline_2023",
+            "exactCardSHA256": "2c23d00eb1597dd65ca2f80a5d898c2766496dc5a815b7203a2b0f6a69aa16dd"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Como interpretar o ANCA na suspeita de granulomatose eosinofílica com poliangeíte (EGPA)?",
+          "alternatives": {
+            "A": "MPO-ANCA apoia um fenótipo compatível; ANCA negativo permite manter a suspeita clínica de EGPA.",
+            "B": "MPO-ANCA estabelece EGPA por sua especificidade, mesmo sem asma, eosinofilia ou lesão de órgãos.",
+            "C": "ANCA negativo favorece excluir EGPA, mesmo diante de asma, eosinofilia e neuropatia multifocal.",
+            "D": "p-ANCA positivo permite substituir o teste específico de MPO/PR3 na avaliação da suspeita de EGPA."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "MPO-ANCA apoia um fenótipo compatível; ANCA negativo permite manter a suspeita clínica de EGPA."
+          },
+          "explanation": "MPO-ANCA pode apoiar EGPA no contexto compatível, mas ANCA negativo não exclui a doença. A diretriz de 2023 informa positividade em 30-40%, com predomínio de MPO entre as pessoas positivas. O diagnóstico integra asma, eosinofilia, manifestações de órgãos e exclusão de outras doenças eosinofílicas ou vasculíticas. GN, neuropatia e púrpura são mais frequentes no grupo ANCA positivo; cardiomiopatia e determinadas manifestações eosinofílicas são mais frequentes no negativo, com sobreposição importante. Um padrão p-ANCA isolado tem menor especificidade que MPO-ANCA e não confirma EGPA; a investigação usa testes específicos para MPO/PR 3 e avaliação clínica. A sorologia não deve apagar o fenótipo nem determinar sozinha o tratamento.",
+          "referenceCards": {
+            "egpa_guideline_2023": {
+              "label": "Emmi et al. — Diretriz de EGPA (2023)",
+              "url": "https://doi.org/10.1038/s41584-023-00958-w",
+              "journal": "Nat Rev Rheumatol. 2023;19:378-393",
+              "ano": 2023,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Integra ANCA, fenótipo e diagnósticos diferenciais na suspeita de EGPA.",
+              "icon": "📋",
+              "resumo": "Emmi et al. 2023, Statements 1-4. ANCA é detectável em 30-40% das pessoas com EGPA, com predomínio de MPO entre as positivas. Positividade associa-se mais a glomerulonefrite, neuropatia e púrpura; cardiomiopatia e certas manifestações eosinofílicas são mais frequentes nas negativas, com sobreposição entre grupos. A investigação deve integrar asma, eosinofilia, órgãos envolvidos e alternativas diagnósticas. Imunoensaios específicos para MPO/PR3 são mais informativos que o padrão p-ANCA isolado. O Statement 4 tem nível de evidência 2a e recomendação B no sistema da própria diretriz.",
+              "conclusao": "ANCA negativo não exclui EGPA; MPO-ANCA apoia um fenótipo compatível, sem estabelecer o diagnóstico isoladamente.",
+              "curiosidade": "PR3-ANCA ocorre raramente em EGPA e pode acompanhar apresentações mais próximas de GPA; a sorologia não substitui a avaliação clínica."
+            }
+          },
+          "readiness": "LIBERADA apenas nesta versão exata"
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Termos seletivos aplicados ao banco completo741; comandos das candidatas recuperados e lidos.",
+          "candidateQuestions": [],
+          "fourDimensionAssessments": [],
+          "result": "Variações legítimas nos candidatos examinados; proximidade de cf84c115/cd455e49 explicitamente sinalizada para reconciliação. Não é auditoria semântica de todos os pares.",
+          "independentlyChecked": true,
+          "candidatePins": [],
+          "scopeQualification": "Leitura independente dos candidatos relacionados; não é varredura semântica exaustiva de todos os pares do banco.",
+          "independentConclusion": "Manter: as decisões ou os dados decisivos dos candidatos diferem de modo útil, conforme comparação de quatro dimensões conferida."
+        },
+        "lengthMetrics": {
+          "BEFORE": {
+            "characters": [
+              133,
+              72,
+              78,
+              83
+            ],
+            "correctCharacters": 133,
+            "correctIsUniqueLongest": true,
+            "maxToMin": 1.847,
+            "measurement": "Unicode code points including spaces; diagnostic, not a rule for clinical approval."
+          },
+          "AFTER": {
+            "characters": [
+              95,
+              96,
+              95,
+              98
+            ],
+            "correctIsUniqueLongest": false,
+            "maxToMin": 1.032
+          },
+          "qualification": "Comprimento diagnóstico conferido; distratores julgados pelo erro clínico. Nenhuma alteração ou padding foi proposta."
+        },
+        "verificationPending": [],
+        "implementationObservation": "Preservar qid, índice do gabarito, respostas, recursos, FSRS e snapshots. A autorização vale para o AFTER e seus cards vinculados por hash; exige reconciliação dos consumidores compartilhados antes de sobrescrita global. Nenhuma mudança aplicada."
+      },
+      {
+        "qid": "61d4ad11",
+        "sourceLine": 91,
+        "BEFORE": {
+          "t": "Classificação de Imagem de Mayo — Componentes",
+          "qid": "61d4ad11",
+          "q": "Em um adulto com DRPAD de morfologia típica bilateral e difusa, uma ressonância mede o volume renal total. Quais informações são integradas pela Classificação de Imagem de Mayo para estimar risco de progressão?",
+          "refs": [
+            "kdigo_adpkd_2025"
+          ],
+          "opts": [
+            "Volume renal total ajustado à altura e idade do paciente, após confirmar o padrão típico de classe 1",
+            "Creatinina isolada e número bruto de cistos, sem considerar morfologia ou idade",
+            "Volume hepático, proteinúria e presença de aneurisma intracraniano",
+            "Genótipo PKD1/PKD2 como único determinante da classe 1A–1E"
+          ],
+          "ans": 0,
+          "exp": "A Classificação de Imagem de Mayo aplica-se ao fenótipo típico, classe 1, com comprometimento bilateral e difuso. Ela relaciona o volume renal total ajustado à altura com a idade para distribuir o paciente entre 1A e 1E. A medida é preferencialmente obtida por ressonância, embora tomografia e, em situações limitadas, estimativa ultrassonográfica possam ser usadas. TFGe, história familiar, PROPKD e genótipo podem complementar a avaliação, mas não são os eixos que definem a classe de imagem.",
+          "diff": "medium",
+          "cat": "genetica"
+        },
+        "beforeQuestionSHA256": "48ba48d9a4c639b1a214100be882e5b6542d6e1ff0d9e6c98a9512ddf94dde34",
+        "AFTER": {
+          "t": "Classificação de Imagem de Mayo — Componentes",
+          "qid": "61d4ad11",
+          "q": "Em um adulto com DRPAD de morfologia típica bilateral e difusa, uma ressonância mede o volume renal total. Quais informações são integradas pela Classificação de Imagem de Mayo para estimar risco de progressão?",
+          "refs": [
+            "kdigo_adpkd_2025"
+          ],
+          "opts": [
+            "Volume renal total ajustado à altura e idade do paciente.",
+            "Volume renal total não ajustado à altura e idade do paciente.",
+            "Volume renal total ajustado à altura e TFGe atual do paciente.",
+            "Volume renal total ajustado à altura e genótipo PKD1/PKD2 do paciente."
+          ],
+          "ans": 0,
+          "exp": "A Classificação de Imagem de Mayo integra idade e volume renal total ajustado à altura (htTKV) no padrão típico, classe 1, de DRPAD. A confirmação morfológica já consta do enunciado: distribuição bilateral e difusa. O volume não ajustado à altura não é intercambiável com htTKV; substituir idade pela TFGe ou usar genótipo como eixo da classificação não reproduz os eixos dessa classificação. Ressonância ou tomografia são preferidas para quantificar volume, enquanto a ultrassonografia tem menor precisão. TFGe, trajetória funcional, genótipo e história familiar complementam a avaliação clínica do risco, mas não determinam isoladamente a subclasse 1A-1E. A ferramenta não deve ser automaticamente aplicada ao padrão atípico, classe 2.",
+          "diff": "easy",
+          "cat": "genetica"
+        },
+        "afterQuestionSHA256": "bf3dee25cb652aee0bf0dfb80fd7bb6ccb344f3602f7877414d0bd43fdb57708",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4, Regra 7(a)",
+        "OP": "Identificar idade e volume renal ajustado à altura como eixos da classificação de imagem de Mayo no padrão típico de DRPAD.",
+        "classification": {
+          "competency": "Interpretação de instrumento prognóstico",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "difficulty": "Básica",
+          "targetProfile": "R1-R2 de nefrologia; instrumento ou definição básica quando declarado",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem nova calibração IRT, habilidade do usuário ou estatística empírica.",
+          "centralConcept": "Identificar idade e volume renal ajustado à altura como eixos da classificação de imagem de Mayo no padrão típico de DRPAD."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "justification": "O caso fornece morfologia típica bilateral difusa, condição necessária para o uso prognóstico da classificação. A discriminação entre htTKV/idade e outros marcadores reais é válida, sem confundir risco global com eixos da ferramenta.",
+        "findings": [
+          "Nenhum problema substantivo identificado."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "O volume não ajustado não equivale a htTKV; TFGe e genótipo podem complementar o prognóstico, mas não substituem a idade nas subclasses 1A–1E. A explicação distingue essas funções. A existência de informações adicionais no calculador para estimar TFGe não muda os eixos da classificação de imagem."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "deductionsExplained": "Ausência de cara de IA: 1/2 pela repetição da condição morfológica e de eixos na explicação. Não há aumento artificial do comprimento das alternativas."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA: prossegue",
+          "step1": "Nenhum eliminatório confirmado",
+          "step2": "Sem argumento plausível de anulação",
+          "step3": "Score 18–20: aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "qualification": "Estado editorial derivado; aplicação e publicação físicas não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "source": "kdigo_adpkd_005.pdf",
+            "locator": "PDF índices 28, 77–79 e 82; recomendação 1.4.2.1, PP 1.4.2.1–4 e Figuras 8–9",
+            "scope": "Classificação típica com htTKV/idade; MRI/CT preferidos e US menos preciso; excluir padrões atípicos; outros fatores complementam risco.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "kdigo_adpkd_2025",
+            "exactCardSHA256": "7b94a96363974d58d3e5a85015ed5d7d64768e8d83476536d00a7c548715bcdb"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Em um adulto com DRPAD de morfologia típica bilateral e difusa, uma ressonância mede o volume renal total. Quais informações são integradas pela Classificação de Imagem de Mayo para estimar risco de progressão?",
+          "alternatives": {
+            "A": "Volume renal total ajustado à altura e idade do paciente.",
+            "B": "Volume renal total não ajustado à altura e idade do paciente.",
+            "C": "Volume renal total ajustado à altura e TFGe atual do paciente.",
+            "D": "Volume renal total ajustado à altura e genótipo PKD1/PKD2 do paciente."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Volume renal total ajustado à altura e idade do paciente."
+          },
+          "explanation": "A Classificação de Imagem de Mayo integra idade e volume renal total ajustado à altura (htTKV) no padrão típico, classe 1, de DRPAD. A confirmação morfológica já consta do enunciado: distribuição bilateral e difusa. O volume não ajustado à altura não é intercambiável com htTKV; substituir idade pela TFGe ou usar genótipo como eixo da classificação não reproduz os eixos dessa classificação. Ressonância ou tomografia são preferidas para quantificar volume, enquanto a ultrassonografia tem menor precisão. TFGe, trajetória funcional, genótipo e história familiar complementam a avaliação clínica do risco, mas não determinam isoladamente a subclasse 1A-1E. A ferramenta não deve ser automaticamente aplicada ao padrão atípico, classe 2.",
+          "referenceCards": {
+            "kdigo_adpkd_2025": {
+              "label": "KDIGO ADPKD 2025 (Rim Policístico Autossômico Dominante)",
+              "url": "https://kdigo.org/wp-content/uploads/2025/01/KDIGO-2025-ADPKD-Guideline.pdf",
+              "journal": "Kidney International 2025;107(Suppl 2S):S1-S239",
+              "ano": 2025,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Aplica volume renal ajustado à altura e idade ao fenótipo típico de DRPAD.",
+              "icon": "📋",
+              "resumo": "KDIGO 2025 para DRPAD, recomendação 1.4.2.1 e PP 1.4.2.1-4. A Classificação de Imagem de Mayo usa idade e volume renal total ajustado à altura para prognóstico no padrão típico, classe 1. A morfologia deve ser avaliada antes de aplicar as subclasses 1A-1E. Ressonância ou tomografia permitem medir o volume; a ultrassonografia é menos precisa. Função renal, genótipo e história familiar complementam a avaliação clínica, mas não substituem os eixos da classificação de imagem.",
+              "conclusao": "Na DRPAD típica, combinar htTKV e idade; não aplicar automaticamente a classificação 1A-1E ao padrão atípico.",
+              "curiosidade": ""
+            }
+          },
+          "readiness": "LIBERADA apenas nesta versão exata"
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Termos seletivos aplicados ao banco completo741; comandos das candidatas recuperados e lidos.",
+          "candidateQuestions": [
+            {
+              "qid": "b7a28d0b",
+              "title": "Tolvaptana na DRPAD — Seleção pelo Risco",
+              "question": "Paciente de 43 anos com DRPAD de morfologia típica, TFGe de 52 mL/min/1,73 m² e classificação de imagem de Mayo 1D não apresenta contraindicação ao fármaco. Qual é a interpretação mais adequada sobre tolvaptana?"
+            },
+            {
+              "qid": "eba4f29e",
+              "title": "DRPAD — História Familiar na Estratificação",
+              "question": "Paciente de 38 anos com DRPAD e Mayo 1C tem TFGe ainda estável. Pai e irmã iniciaram terapia renal substitutiva antes dos 60 anos. Como essa história familiar deve influenciar a avaliação de progressão?"
+            },
+            {
+              "qid": "ef5b94e4",
+              "title": "Classificação de Mayo — Fenótipo Atípico",
+              "question": "Paciente com diagnóstico de DRPAD apresenta cistos predominantemente unilaterais e segmentares, com atrofia do parênquima contralateral. A equipe pretende inserir o volume renal total em um calculador para classificá-lo de 1A a 1E. Qual é a melhor conduta?"
+            }
+          ],
+          "fourDimensionAssessments": [
+            {
+              "qid": "b7a28d0b",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Classe1D já fornecida; pede decisão compartilhada de tolvaptana com TFGe/idade, não inputs da ferramenta."
+            },
+            {
+              "qid": "eba4f29e",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Classe1C já fornecida; pede usar história familiar para risco limítrofe, não eixos htTKV/idade."
+            },
+            {
+              "qid": "ef5b94e4",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Fenótipo atípico e dúvida de elegibilidade do calculador; este item fornece fenótipo típico e pede as variáveis. Variação útil de decisão e dados."
+            }
+          ],
+          "result": "Variações legítimas nos candidatos examinados; proximidade de cf84c115/cd455e49 explicitamente sinalizada para reconciliação. Não é auditoria semântica de todos os pares.",
+          "independentlyChecked": true,
+          "candidatePins": [
+            {
+              "qid": "b7a28d0b",
+              "questionSHA256": "9f3126588f0e2058d509cf5a709abade9ffa6dee5f4c9284f25fbc6861c61057",
+              "sourceLine": 53
+            },
+            {
+              "qid": "eba4f29e",
+              "questionSHA256": "4a0db769f65fc483f1d24df99aad3af8c49ecc8d041967b76ae8e5af25aa7d12",
+              "sourceLine": 264
+            },
+            {
+              "qid": "ef5b94e4",
+              "questionSHA256": "20c6275c88798c2708f4207fce905fd03bcfb7b7a95c9327312132232dbbab4c",
+              "sourceLine": 343
+            }
+          ],
+          "scopeQualification": "Leitura independente dos candidatos relacionados; não é varredura semântica exaustiva de todos os pares do banco.",
+          "independentConclusion": "Manter: as decisões ou os dados decisivos dos candidatos diferem de modo útil, conforme comparação de quatro dimensões conferida."
+        },
+        "lengthMetrics": {
+          "BEFORE": {
+            "characters": [
+              100,
+              79,
+              66,
+              58
+            ],
+            "correctCharacters": 100,
+            "correctIsUniqueLongest": true,
+            "maxToMin": 1.724,
+            "measurement": "Unicode code points including spaces; diagnostic, not a rule for clinical approval."
+          },
+          "AFTER": {
+            "characters": [
+              57,
+              61,
+              62,
+              70
+            ],
+            "correctIsUniqueLongest": false,
+            "maxToMin": 1.228
+          },
+          "qualification": "Comprimento diagnóstico conferido; distratores julgados pelo erro clínico. Nenhuma alteração ou padding foi proposta."
+        },
+        "verificationPending": [],
+        "implementationObservation": "Preservar qid, índice do gabarito, respostas, recursos, FSRS e snapshots. A autorização vale para o AFTER e seus cards vinculados por hash; exige reconciliação dos consumidores compartilhados antes de sobrescrita global. Nenhuma mudança aplicada."
+      },
+      {
+        "qid": "c18e6af7",
+        "sourceLine": 100,
+        "BEFORE": {
+          "t": "Sparsentana — Bloqueio Dual sem IECA/BRA",
+          "qid": "c18e6af7",
+          "q": "Pessoa com IgAN em risco de progressão trocará irbesartana por sparsentana. Qual princípio farmacológico e de segurança é correto?",
+          "refs": [
+            "protect_trial",
+            "kdigo_igan_igav_2025"
+          ],
+          "opts": [
+            "Sparsentana antagoniza ETA e AT1; já incorpora bloqueio do SRAA e não deve ser combinada a IECA ou BRA",
+            "É antagonista seletiva de ETA e precisa ser somada obrigatoriamente a IECA e BRA",
+            "É anticorpo anti-APRIL sem efeito hemodinâmico",
+            "É inibidor de SGLT2 e não exige atenção a pressão, potássio ou retenção hídrica"
+          ],
+          "ans": 0,
+          "exp": "Sparsentana é um antagonista dual dos receptores de endotelina A e angiotensina II tipo 1, classificado como DEARA. Como já bloqueia AT1, substitui o IECA ou BRA e não deve ser prescrita junto a outro bloqueador do SRAA. O tratamento requer atenção a hipotensão, hipercalemia, função renal, edema ou retenção de fluido, hepatotoxicidade e toxicidade embriofetal. Seu efeito hemodinâmico e antifibrótico não a transforma em terapia anti-APRIL nem em iSGLT2.",
+          "diff": "hard",
+          "cat": "glomerular"
+        },
+        "beforeQuestionSHA256": "9271b5dacf0e0f102b3ac54395493230d9e4ddedd77ddbc46eb4ec7c1596f6de",
+        "AFTER": {
+          "t": "Sparsentana — Bloqueio Dual sem IECA/BRA",
+          "qid": "c18e6af7",
+          "q": "Pessoa com IgAN em risco de progressão trocará irbesartana por sparsentana. Qual princípio farmacológico e de segurança é correto?",
+          "refs": [
+            "kdigo_igan_igav_2025"
+          ],
+          "opts": [
+            "Antagoniza ETA e AT1; deve substituir a irbesartana ao iniciar o tratamento.",
+            "Antagoniza ETA seletivamente; deve complementar a irbesartana ao iniciar o tratamento.",
+            "Antagoniza ETA e AT1; deve complementar a irbesartana para reforçar a nefroproteção.",
+            "Antagoniza ETA seletivamente; deve substituir a irbesartana por dispensar o bloqueio de AT1."
+          ],
+          "ans": 0,
+          "exp": "A sparsentana antagoniza ETA e AT 1 em uma única molécula; por incorporar bloqueio do SRAA, substitui a irbesartana e não deve ser associada a IECA ou BRA. A KDIGO 2025 orienta não usá-la com outro inibidor do SRAA (PP 1.4.4.3). O rótulo norte-americano vigente, revisado em abril 2026, confirma o mecanismo (§12.1), a retirada de inibidores do SRAA antes do início (§2.1) e a contraindicação de associação a BRA (§4). O bloqueio seletivo de ETA não descreve a molécula, e duplicar AT 1 não é uma estratégia de reforço indicada. Deve-se acompanhar pressão, função renal, potássio e retenção hídrica, além dos riscos hepático e embriofetal. O item não transfere uma indicação ou um regime regulatório estrangeiro para todos os contextos de acesso.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "afterQuestionSHA256": "e4914f5e8474d0d76f5c78432b4de09160b62e31410f64de781250096c504882",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4, Regra 7(a)",
+        "OP": "Relacionar o antagonismo ETA/AT1 da sparsentana à substituição de IECA/BRA, evitando duplicação do bloqueio do SRAA.",
+        "classification": {
+          "competency": "Mecanismo farmacológico e segurança",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficulty": "Intermediária",
+          "targetProfile": "R1-R2 de nefrologia; instrumento ou definição básica quando declarado",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem nova calibração IRT, habilidade do usuário ou estatística empírica.",
+          "centralConcept": "Relacionar o antagonismo ETA/AT1 da sparsentana à substituição de IECA/BRA, evitando duplicação do bloqueio do SRAA."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "justification": "Integra mecanismo dual ETA/AT1 com a decisão de retirar a irbesartana. A recomendação KDIGO e o rótulo norte-americano atual sustentam o princípio; a versão exata não afirma posologia ou regra de acesso mundial.",
+        "findings": [
+          "Nenhum problema substantivo identificado."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "ETA seletivo não descreve a molécula; adicionar irbesartana duplicaria o bloqueio de AT1. O comando já fornece a escolha da troca, logo não precisa resolver elegibilidade regulatória. A única opção compatível com mecanismo e segurança é A. O AFTER não mantém a monitorização hepática mensal de versões antigas do rótulo."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "deductionsExplained": "Ausência de cara de IA: 1/2 por comentário final sobre limites regulatórios do item; não altera a conduta nem produz alternativa longa correta."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA: prossegue",
+          "step1": "Nenhum eliminatório confirmado",
+          "step2": "Sem argumento plausível de anulação",
+          "step3": "Score 18–20: aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "qualification": "Estado editorial derivado; aplicação e publicação físicas não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "source": "kdigo_igan_005.pdf",
+            "locator": "PDF índices 24 e 46; recomendação 1.4.4.2 e PP 1.4.4.3",
+            "scope": "Sugestão 2B em risco de progressão; não combinar sparsentana com outro RASi; disponibilidade/indicação variam.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          },
+          {
+            "source": "filspari-005-current.html",
+            "locator": "DailyMed setid d7354af1-f304-f4d9-e053-2995a90ab219, revisão 4/2026, §§2.1, 4, 5 e 12.1",
+            "scope": "ETA/AT1; retirar RAASi antes do início; associação com ARB contraindicada; monitorar riscos renal, hemodinâmico, potássio, volume, hepático e embriofetal.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "kdigo_igan_igav_2025",
+            "exactCardSHA256": "c9b93f989e8531f7ad070564fb0a30550583631d68a5a792245b4da163cfa8b6"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Pessoa com IgAN em risco de progressão trocará irbesartana por sparsentana. Qual princípio farmacológico e de segurança é correto?",
+          "alternatives": {
+            "A": "Antagoniza ETA e AT1; deve substituir a irbesartana ao iniciar o tratamento.",
+            "B": "Antagoniza ETA seletivamente; deve complementar a irbesartana ao iniciar o tratamento.",
+            "C": "Antagoniza ETA e AT1; deve complementar a irbesartana para reforçar a nefroproteção.",
+            "D": "Antagoniza ETA seletivamente; deve substituir a irbesartana por dispensar o bloqueio de AT1."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Antagoniza ETA e AT1; deve substituir a irbesartana ao iniciar o tratamento."
+          },
+          "explanation": "A sparsentana antagoniza ETA e AT 1 em uma única molécula; por incorporar bloqueio do SRAA, substitui a irbesartana e não deve ser associada a IECA ou BRA. A KDIGO 2025 orienta não usá-la com outro inibidor do SRAA (PP 1.4.4.3). O rótulo norte-americano vigente, revisado em abril 2026, confirma o mecanismo (§12.1), a retirada de inibidores do SRAA antes do início (§2.1) e a contraindicação de associação a BRA (§4). O bloqueio seletivo de ETA não descreve a molécula, e duplicar AT 1 não é uma estratégia de reforço indicada. Deve-se acompanhar pressão, função renal, potássio e retenção hídrica, além dos riscos hepático e embriofetal. O item não transfere uma indicação ou um regime regulatório estrangeiro para todos os contextos de acesso.",
+          "referenceCards": {
+            "kdigo_igan_igav_2025": {
+              "label": "KDIGO 2025 IgAN/IgAV Guideline",
+              "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+              "journal": "Kidney Int. 2025;108(Suppl 4S):S1-S71",
+              "ano": 2025,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Distingue óleo de peixe de terapias indicadas e orienta substituir o bloqueio do SRAA ao usar sparsentana.",
+              "icon": "📋",
+              "resumo": "KDIGO 2025 para IgAN/IgAV. No PP 1.4.3.4 e na Figura 4, óleo de peixe não é recomendado para tratar IgAN, devido à ausência de benefício consistente. Quem optar por usá-lo deve receber orientação sobre as doses e formulações empregadas nos estudos que relataram eficácia. A recomendação 1.4.4.2 sugere sparsentana para pacientes em risco de progressão (2B); o PP 1.4.4.3 explica que o antagonismo dual de endotelina e angiotensina já incorpora bloqueio do SRAA e orienta não associá-la a outro inibidor desse sistema.",
+              "conclusao": "Não recomendar óleo de peixe como terapia renal rotineira. A sparsentana substitui o IECA/BRA quando escolhida; não deve ser somada a eles.",
+              "curiosidade": "A orientação sobre dose e formulação do óleo de peixe é aconselhamento para quem ainda o escolhe; não transforma a intervenção em recomendação terapêutica."
+            }
+          },
+          "readiness": "LIBERADA apenas nesta versão exata"
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Termos seletivos aplicados ao banco completo741; comandos das candidatas recuperados e lidos.",
+          "candidateQuestions": [
+            {
+              "qid": "bcb1293d",
+              "title": "Sparsentana — Retenção Hídrica e Monitorização",
+              "question": "Paciente com nefropatia por IgA inicia sparsentana e evolui com ganho de peso e edema periférico. Qual interpretação é mais segura?"
+            },
+            {
+              "qid": "bafcbcd4",
+              "title": "Filspari na União Europeia — Indicação e Bloqueio do SRAA",
+              "question": "Adulto com nefropatia por IgA primária confirmada por biópsia apresenta proteinúria de 1,1 g/dia, relação proteína/creatinina urinária de 0,8 g/g e usa losartana na dose máxima tolerada. Se a decisão seguir a indicação regulatória europeia da sparsentana, qual é a interpretação correta?"
+            },
+            {
+              "qid": "856f45a6",
+              "title": "PROTECT — Proteinúria e Slope da TFGe",
+              "question": "Como interpretar corretamente os resultados do PROTECT com sparsentana versus irbesartana na IgAN?"
+            }
+          ],
+          "fourDimensionAssessments": [
+            {
+              "qid": "bcb1293d",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Edema após iniciar sparsentana; pede avaliação do efeito adverso, não alvo dual/substituição inicial de BRA."
+            },
+            {
+              "qid": "bafcbcd4",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Proximidade relevante na retirada do BRA, mas a candidata pede interpretar limiar regulatório europeu com quantificação de proteinúria. Este item fornece a decisão de troca e discrimina mecanismo ETA/AT1. Não duplica a decisão regulatória; shared card precisa de reconciliação central."
+            },
+            {
+              "qid": "856f45a6",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Interpreta resultados de proteinúria e slopes do PROTECT; este item não cobra resultados ou número de participantes."
+            }
+          ],
+          "result": "Variações legítimas nos candidatos examinados; proximidade de cf84c115/cd455e49 explicitamente sinalizada para reconciliação. Não é auditoria semântica de todos os pares.",
+          "independentlyChecked": true,
+          "candidatePins": [
+            {
+              "qid": "bcb1293d",
+              "questionSHA256": "58a931f479d3da2bd4ac3dd6bd7914a42d66121f6469f3db24339d312211d44e",
+              "sourceLine": 121
+            },
+            {
+              "qid": "bafcbcd4",
+              "questionSHA256": "6599e5432090c47c87fb6444e26a41b96358e3f367dbad720d704e661437acf8",
+              "sourceLine": 656
+            },
+            {
+              "qid": "856f45a6",
+              "questionSHA256": "e7197889c272dd0bd05ab74675d4064b6609bb2cab69fa73142c958879cadbe9",
+              "sourceLine": 702
+            }
+          ],
+          "scopeQualification": "Leitura independente dos candidatos relacionados; não é varredura semântica exaustiva de todos os pares do banco.",
+          "independentConclusion": "Manter: as decisões ou os dados decisivos dos candidatos diferem de modo útil, conforme comparação de quatro dimensões conferida."
+        },
+        "lengthMetrics": {
+          "BEFORE": {
+            "characters": [
+              102,
+              80,
+              46,
+              79
+            ],
+            "correctCharacters": 102,
+            "correctIsUniqueLongest": true,
+            "maxToMin": 2.217,
+            "measurement": "Unicode code points including spaces; diagnostic, not a rule for clinical approval."
+          },
+          "AFTER": {
+            "characters": [
+              76,
+              86,
+              84,
+              92
+            ],
+            "correctIsUniqueLongest": false,
+            "maxToMin": 1.211
+          },
+          "qualification": "Comprimento diagnóstico conferido; distratores julgados pelo erro clínico. Nenhuma alteração ou padding foi proposta."
+        },
+        "verificationPending": [],
+        "implementationObservation": "Preservar qid, índice do gabarito, respostas, recursos, FSRS e snapshots. A autorização vale para o AFTER e seus cards vinculados por hash; exige reconciliação dos consumidores compartilhados antes de sobrescrita global. Nenhuma mudança aplicada."
+      },
+      {
+        "qid": "ddfb3df6",
+        "sourceLine": 102,
+        "BEFORE": {
+          "t": "GN Pauci-imune — O que a Imunofluorescência Diz",
+          "qid": "ddfb3df6",
+          "q": "Biópsia renal mostra glomerulonefrite necrosante com crescentes e imunofluorescência com depósitos ausentes ou escassos. O que significa classificá-la como pauci-imune?",
+          "refs": [
+            "kdigo_anca_2024",
+            "eular_aav_2022"
+          ],
+          "opts": [
+            "Há pouca deposição de imunoglobulinas e complemento, apesar de poder existir inflamação glomerular intensa; o achado favorece vasculite ANCA no contexto correto",
+            "Há poucos neutrófilos no sangue e, portanto, não pode haver necrose",
+            "O título sérico de ANCA é necessariamente baixo ou negativo",
+            "A biópsia não mostra crescentes, fibrina nem ruptura capilar"
+          ],
+          "ans": 0,
+          "exp": "Pauci-imune descreve o padrão da imunofluorescência: ausência ou pequena quantidade de imunoglobulinas e complemento, em contraste com GN por complexos imunes ou anti-MBG linear. Isso não significa pouca lesão; necrose, fibrina e crescentes podem ser extensos. O padrão, associado ao fenótipo e aos testes específicos PR3/MPO, sustenta vasculite ANCA, mas ANCA pode ser negativo e depósitos ocasionais não anulam automaticamente toda possibilidade diagnóstica.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "beforeQuestionSHA256": "e271a5ff6db290e18d56095e41e6da1b3841d51a87076b6ece36589be7d1355b",
+        "AFTER": {
+          "t": "GN Pauci-imune — O que a Imunofluorescência Diz",
+          "qid": "ddfb3df6",
+          "q": "Biópsia renal mostra glomerulonefrite necrosante com crescentes e imunofluorescência com depósitos ausentes ou escassos. O que significa classificá-la como pauci-imune?",
+          "refs": [
+            "kdigo_anca_2024"
+          ],
+          "opts": [
+            "Há escassez de depósitos de imunoglobulinas, apesar da lesão glomerular intensa.",
+            "Há escassez de infiltrado inflamatório, apesar de depósitos de imunoglobulinas.",
+            "Há baixo título sérico de ANCA, apesar de depósitos imunes na biópsia renal.",
+            "Há deposição glomerular dominante e intensa de complemento, com poucas imunoglobulinas."
+          ],
+          "ans": 0,
+          "exp": "Pauci-imune descreve pouca ou nenhuma deposição de imunoglobulinas/imunocomplexos na biópsia, e não inflamação necessariamente discreta. A KDIGO 2024 descreve GN focal ou segmentar necrosante e crescêntica nesse grupo, compatível com a lesão intensa apresentada. O padrão deve ser integrado à avaliação clínica e aos testes específicos para MPO/PR 3; GN pauci-imune também pode ocorrer com ANCA negativo. A expressão não se refere ao número de neutrófilos nem ao título sérico de ANCA. Deposição dominante e intensa de complemento representa outro padrão de depósitos e não define pauci-imunidade. Depósitos imunes abundantes granulares favorecem GN por imunocomplexos; IgG linear na MBG favorece doença anti-MBG no contexto apropriado.",
+          "diff": "easy",
+          "cat": "glomerular"
+        },
+        "afterQuestionSHA256": "a743b5ad04ba1b34091509b50c2e55c91e1cc91b3d9363ee2aa4125a6963df2e",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4, Regra 7(a)",
+        "OP": "Interpretar pauci-imune como escassez de depósitos na imunofluorescência, distinguindo esse padrão da intensidade da lesão e da sorologia ANCA.",
+        "classification": {
+          "competency": "Interpretação histopatológica",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "difficulty": "Básica",
+          "targetProfile": "R1-R2 de nefrologia; instrumento ou definição básica quando declarado",
+          "difficultyAxes": "Dificuldade intrínseca editorial; sem nova calibração IRT, habilidade do usuário ou estatística empírica.",
+          "centralConcept": "Interpretar pauci-imune como escassez de depósitos na imunofluorescência, distinguindo esse padrão da intensidade da lesão e da sorologia ANCA."
+        },
+        "classificationIndependentlyConfirmed": true,
+        "justification": "O padrão pauci-imune é definido pelos depósitos, não pela intensidade da inflamação ou pelo título sérico. A lesão necrosante com crescentes fornece contexto histológico útil e a explicação mantém a possibilidade de ANCA negativo.",
+        "findings": [
+          "Nenhum problema substantivo identificado."
+        ],
+        "advogadoDoRecurso": {
+          "result": "Nenhum argumento plausível de anulação",
+          "analysis": "Pouco infiltrado e baixo título ANCA não definem pauci-imunidade. Deposição dominante/intensa de complemento não é equivalente a IF pauci-imune. A escassez de depósitos não contradiz lesão grave. Nenhuma alternativa adicional é defensável no padrão apresentado."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada ou ensinada como aceitável": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": []
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "deductionsExplained": "Ausência de cara de IA: 1/2 por explicação maior que a necessária à definição, embora os diferenciais sejam pertinentes."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA / NENHUMA: prossegue",
+          "step1": "Nenhum eliminatório confirmado",
+          "step2": "Sem argumento plausível de anulação",
+          "step3": "Score 18–20: aprovada",
+          "result": "aprovada",
+          "lifecycle": "publicado",
+          "qualification": "Estado editorial derivado; aplicação e publicação físicas não realizadas."
+        },
+        "claimsVerified": [
+          {
+            "source": "kdigo_anca_004.pdf",
+            "locator": "S90–S91, PDF índices 20–21, diagnóstico; complementar anti-MBG em KDIGO GN S231",
+            "scope": "Pouco ou nenhum imunocomplexo; GN focal/segmentar necrosante/crescêntica; clínica e MPO/PR3; negatividade ANCA não exclui.",
+            "status": "VERIFICADA",
+            "independentlyRead": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "kdigo_anca_2024",
+            "exactCardSHA256": "6ec759b368def836efde47037068447e4fbc29c144464a2b6138c06dd21cb5d0"
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "MANTER O AFTER EXATO AUTORAL; APLICAÇÃO PENDENTE",
+          "question": "Biópsia renal mostra glomerulonefrite necrosante com crescentes e imunofluorescência com depósitos ausentes ou escassos. O que significa classificá-la como pauci-imune?",
+          "alternatives": {
+            "A": "Há escassez de depósitos de imunoglobulinas, apesar da lesão glomerular intensa.",
+            "B": "Há escassez de infiltrado inflamatório, apesar de depósitos de imunoglobulinas.",
+            "C": "Há baixo título sérico de ANCA, apesar de depósitos imunes na biópsia renal.",
+            "D": "Há deposição glomerular dominante e intensa de complemento, com poucas imunoglobulinas."
+          },
+          "correctAnswer": {
+            "index": 0,
+            "letter": "A",
+            "text": "Há escassez de depósitos de imunoglobulinas, apesar da lesão glomerular intensa."
+          },
+          "explanation": "Pauci-imune descreve pouca ou nenhuma deposição de imunoglobulinas/imunocomplexos na biópsia, e não inflamação necessariamente discreta. A KDIGO 2024 descreve GN focal ou segmentar necrosante e crescêntica nesse grupo, compatível com a lesão intensa apresentada. O padrão deve ser integrado à avaliação clínica e aos testes específicos para MPO/PR 3; GN pauci-imune também pode ocorrer com ANCA negativo. A expressão não se refere ao número de neutrófilos nem ao título sérico de ANCA. Deposição dominante e intensa de complemento representa outro padrão de depósitos e não define pauci-imunidade. Depósitos imunes abundantes granulares favorecem GN por imunocomplexos; IgG linear na MBG favorece doença anti-MBG no contexto apropriado.",
+          "referenceCards": {
+            "kdigo_anca_2024": {
+              "label": "KDIGO — Vasculite Associada ao ANCA (2024)",
+              "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2024-ANCA-Vasculitis-Guideline-Update.pdf",
+              "journal": "Kidney Int. 2024;105(Suppl 3S):S71-S116",
+              "ano": 2024,
+              "tipo": "Diretriz",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Define o padrão pauci-imune e integra histologia e sorologia.",
+              "icon": "📋",
+              "resumo": "KDIGO 2024 para vasculite ANCA, capítulo 9, diagnóstico. Pauci-imune descreve pouca ou nenhuma deposição de imunocomplexos; a lesão renal pode ser necrosante, focal/segmentar e crescêntica. Portanto, escassez de depósitos não significa inflamação leve. A histologia deve ser integrada ao contexto e aos testes específicos para MPO/PR3. Glomerulonefrite necrosante pauci-imune também pode ocorrer com ANCA negativo, exigindo investigação de diagnósticos alternativos. Este card se limita ao diagnóstico; não revalida terapias ou situações regulatórias posteriores à diretriz.",
+              "conclusao": "Pauci-imune é uma descrição dos depósitos na biópsia, não do título sérico de ANCA nem da intensidade da lesão.",
+              "curiosidade": ""
+            }
+          },
+          "readiness": "LIBERADA apenas nesta versão exata"
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Termos seletivos aplicados ao banco completo741; comandos das candidatas recuperados e lidos.",
+          "candidateQuestions": [
+            {
+              "qid": "cc9dc9d0",
+              "title": "PAM — Serótipo e Fenótipo",
+              "question": "Pessoa com síndrome pulmão-rim tem MPO-ANCA positivo, glomerulonefrite pauci-imune e doença pulmonar intersticial, sem nódulos granulomatosos ou doença destrutiva de vias aéreas. Qual interpretação é mais adequada?"
+            },
+            {
+              "qid": "89af997c",
+              "title": "Vasculite ANCA Renal Grave — Indução com Função Muito Reduzida",
+              "question": "Paciente com glomerulonefrite pauci-imune associada a PR3-ANCA apresenta creatinina de 4,8 mg/dL em rápida elevação, sem hemorragia alveolar. Qual estrutura de indução é mais alinhada à KDIGO 2024?"
+            }
+          ],
+          "fourDimensionAssessments": [
+            {
+              "qid": "cc9dc9d0",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Interpreta síndrome pulmão-rim, MPO e doença pulmonar intersticial para fenótipo PAM; não define o termo histológico pauci-imune."
+            },
+            {
+              "qid": "89af997c",
+              "decisionCoincides": false,
+              "sameDataStructure": false,
+              "sameProfile": true,
+              "sameLanguage": true,
+              "assessment": "Padrão pauci-imune já informado; pergunta tratamento de indução na função renal muito reduzida, não significado dos depósitos."
+            }
+          ],
+          "result": "Variações legítimas nos candidatos examinados; proximidade de cf84c115/cd455e49 explicitamente sinalizada para reconciliação. Não é auditoria semântica de todos os pares.",
+          "independentlyChecked": true,
+          "candidatePins": [
+            {
+              "qid": "cc9dc9d0",
+              "questionSHA256": "886fb8b8f3ef4388e5ab64b6b0643530920b65af0b360bbfc8809b9e4c38e212",
+              "sourceLine": 299
+            },
+            {
+              "qid": "89af997c",
+              "questionSHA256": "77247ee52792a5ad51904be3cd99bf3d5b9d30de91a67c104d40395df3b14d23",
+              "sourceLine": 449
+            }
+          ],
+          "scopeQualification": "Leitura independente dos candidatos relacionados; não é varredura semântica exaustiva de todos os pares do banco.",
+          "independentConclusion": "Manter: as decisões ou os dados decisivos dos candidatos diferem de modo útil, conforme comparação de quatro dimensões conferida."
+        },
+        "lengthMetrics": {
+          "BEFORE": {
+            "characters": [
+              160,
+              67,
+              59,
+              60
+            ],
+            "correctCharacters": 160,
+            "correctIsUniqueLongest": true,
+            "maxToMin": 2.712,
+            "measurement": "Unicode code points including spaces; diagnostic, not a rule for clinical approval."
+          },
+          "AFTER": {
+            "characters": [
+              80,
+              79,
+              76,
+              87
+            ],
+            "correctIsUniqueLongest": false,
+            "maxToMin": 1.145
+          },
+          "qualification": "Comprimento diagnóstico conferido; distratores julgados pelo erro clínico. Nenhuma alteração ou padding foi proposta."
+        },
+        "verificationPending": [],
+        "implementationObservation": "Preservar qid, índice do gabarito, respostas, recursos, FSRS e snapshots. A autorização vale para o AFTER e seus cards vinculados por hash; exige reconciliação dos consumidores compartilhados antes de sobrescrita global. Nenhuma mudança aplicada."
+      }
+    ],
+    "cardReviews": [
+      {
+        "id": "ph_erknet_oxaleurope_2023",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "ERKNet/OxalEurope — Hiperoxalúria Primária (2023)",
+          "url": "https://doi.org/10.1038/s41581-022-00661-1",
+          "journal": "Nat Rev Nephrol. 2023;19(3):194-211",
+          "ano": 2023,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Distingue os defeitos enzimáticos das três hiperoxalúrias primárias.",
+          "icon": "📋",
+          "resumo": "Recomendações de prática clínica ERKNet/OxalEurope de 2023, com 48 statements graduados. A PH1 decorre de variantes em AGXT, que codifica a alanina-glioxilato aminotransferase peroxissomal hepática. A conversão insuficiente de glioxilato em glicina favorece a produção de oxalato. PH2 e PH3 relacionam-se a GRHPR e HOGA1, respectivamente. A glicolato oxidase, codificada por HAO1, atua a montante: reduzir sua atividade diminui a oferta de glioxilato, sem substituir AGT. Este card apresenta apenas o mecanismo necessário ao item, sem prescrever doses ou extrapolar tratamentos.",
+          "conclusao": "AGXT/AGT identifica o defeito da PH1; GRHPR e HOGA1 correspondem a outras formas de hiperoxalúria primária.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "20198d21b9f656e37fa7b574f3fc3357dd8b4bbb1808147f507715214fb015eb",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4, Regra 7(a)",
+        "usedByThisBatch": [
+          "9b77534d"
+        ],
+        "currentBankConsumers": [],
+        "currentBankConsumerCount": 0,
+        "qualification": "Objeto completo conferido: identidade, desenho, população, conteúdo, taxonomia Diretriz/GUIDELINE, cor e ícone. A liberação do card exato não libera as outras questões consumidoras.",
+        "integrationGate": "Inclusão atômica com questão vinculada, sem sobrescrita global automática.",
+        "otherVersionsPreviouslyReviewed": [],
+        "crossVersionQualification": "A autorização desta versão não migra por ID de referência. Qualquer rebind material requer novo parecer formal do pacote exato."
+      },
+      {
+        "id": "kdigo_igan_igav_2025",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "KDIGO 2025 IgAN/IgAV Guideline",
+          "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+          "journal": "Kidney International",
+          "ano": 2025,
+          "tipo": "Diretriz clínica",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Referência central atual para manejo da NIgA.",
+          "icon": "📋",
+          "resumo": "Diretriz KDIGO 2025 específica para nefropatia por IgA e vasculite por IgA. Atualiza o capítulo de NIgA da diretriz KDIGO 2021 e organiza recomendações sobre avaliação de risco, terapia de suporte e terapias adicionais. Não estabelece dieta isenta de glúten como tratamento rotineiro da NIgA primária.",
+          "conclusao": "Na NIgA, a base do manejo é nefroproteção e tratamento guiado por risco; dieta sem glúten não é recomendação universal.",
+          "curiosidade": "A atualização de 2025 reflete a transição da NIgA de uma abordagem centrada apenas em suporte para um modelo com terapias direcionadas em pacientes selecionados."
+        },
+        "AFTER": {
+          "label": "KDIGO 2025 IgAN/IgAV Guideline",
+          "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+          "journal": "Kidney Int. 2025;108(Suppl 4S):S1-S71",
+          "ano": 2025,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Distingue óleo de peixe de terapias indicadas e orienta substituir o bloqueio do SRAA ao usar sparsentana.",
+          "icon": "📋",
+          "resumo": "KDIGO 2025 para IgAN/IgAV. No PP 1.4.3.4 e na Figura 4, óleo de peixe não é recomendado para tratar IgAN, devido à ausência de benefício consistente. Quem optar por usá-lo deve receber orientação sobre as doses e formulações empregadas nos estudos que relataram eficácia. A recomendação 1.4.4.2 sugere sparsentana para pacientes em risco de progressão (2B); o PP 1.4.4.3 explica que o antagonismo dual de endotelina e angiotensina já incorpora bloqueio do SRAA e orienta não associá-la a outro inibidor desse sistema.",
+          "conclusao": "Não recomendar óleo de peixe como terapia renal rotineira. A sparsentana substitui o IECA/BRA quando escolhida; não deve ser somada a eles.",
+          "curiosidade": "A orientação sobre dose e formulação do óleo de peixe é aconselhamento para quem ainda o escolhe; não transforma a intervenção em recomendação terapêutica."
+        },
+        "beforeSHA256": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+        "afterSHA256": "c9b93f989e8531f7ad070564fb0a30550583631d68a5a792245b4da163cfa8b6",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4, Regra 7(a)",
+        "usedByThisBatch": [
+          "9961a406",
+          "c18e6af7"
+        ],
+        "currentBankConsumers": [
+          {
+            "qid": "d81defbb",
+            "questionSHA256": "c375779e5b4d883252586388304b0541bdb406a90bafc9741fd21b8d68ae2c88",
+            "sourceLine": 12
+          },
+          {
+            "qid": "ce79d609",
+            "questionSHA256": "cb69780349ebbf5c52ba4e14acf194d6d7a72a8a59b30431007d7dbc44ffdfcb",
+            "sourceLine": 36
+          },
+          {
+            "qid": "9fd2cfdb",
+            "questionSHA256": "cac134169e14123f684ee77973d454e5d939ad92812c84a70ab6fff1662af8c7",
+            "sourceLine": 50
+          },
+          {
+            "qid": "9961a406",
+            "questionSHA256": "9adb7ebffd5edb7efefe772732be48c37004918c175fc2a28f8f7ffab1112091",
+            "sourceLine": 83
+          },
+          {
+            "qid": "c18e6af7",
+            "questionSHA256": "9271b5dacf0e0f102b3ac54395493230d9e4ddedd77ddbc46eb4ec7c1596f6de",
+            "sourceLine": 100
+          },
+          {
+            "qid": "0e1a838d",
+            "questionSHA256": "8a962c5d6ae5262123ebb05d33502eaad9f5657a8fe8ea82a62e765efbdd31d7",
+            "sourceLine": 133
+          },
+          {
+            "qid": "f7107bc3",
+            "questionSHA256": "eceb69dc1bd50fb8264a1222d869de0958fdb1c5c17b5268cf35dc3c4d72ac28",
+            "sourceLine": 148
+          },
+          {
+            "qid": "795d4589",
+            "questionSHA256": "5d2b0720f8600289b8d73c479bc3154e4812fd948ecd63d5215237918155d7d5",
+            "sourceLine": 168
+          },
+          {
+            "qid": "ddb4938a",
+            "questionSHA256": "56883ce1dfe5bd7693a33db724129ec72a282503f87d9d47d4abc28fae82fb88",
+            "sourceLine": 178
+          },
+          {
+            "qid": "5530b59c",
+            "questionSHA256": "e80317068d6f3eb684e4c03f7d3aafe2b293915e3c23c5aa077399c7947de18c",
+            "sourceLine": 191
+          },
+          {
+            "qid": "2a595b23",
+            "questionSHA256": "d300a601a53ba526c17ce170c5ed7211fba074e42995fd765d88c7c7f1ed9f0d",
+            "sourceLine": 207
+          },
+          {
+            "qid": "3a01ea4b",
+            "questionSHA256": "e7050fe6f08e3b8ea197450deb55c7cff46b3232fa0ee48c9af857927b9d0e81",
+            "sourceLine": 210
+          },
+          {
+            "qid": "b7a93d7a",
+            "questionSHA256": "b66e7f2d734abd24fa3f78b1f7091c73fdb3657a666fde400f11f240aef907e3",
+            "sourceLine": 223
+          },
+          {
+            "qid": "5e5b8558",
+            "questionSHA256": "2c9ac7475d900cf788faa10dc9e11ff74fe09fe56a801844644871accfbfcdec",
+            "sourceLine": 255
+          },
+          {
+            "qid": "26804856",
+            "questionSHA256": "1ccce85c48a91c66b1f7595bcca91c045e59e08b8b593b21ab7fd15bc6793b04",
+            "sourceLine": 373
+          },
+          {
+            "qid": "12328a3e",
+            "questionSHA256": "88bc8cc717729dd6951d4558e9242d9e6bdd231851a60ec31e4815fc91444111",
+            "sourceLine": 506
+          },
+          {
+            "qid": "ea37c153",
+            "questionSHA256": "a5e252630c39635c2156830f410289e690b44acee6f659a2817a73095b253f61",
+            "sourceLine": 557
+          },
+          {
+            "qid": "c1089f2e",
+            "questionSHA256": "5ae127af7d2254563f943fd9ea40d0a0b36a9d9116e19a78b5033ad6285eeaed",
+            "sourceLine": 654
+          },
+          {
+            "qid": "18784ef8",
+            "questionSHA256": "e96a5135a2362257b951c86ee6b90b76e89f941d6b0a231c3c7404985acf55ef",
+            "sourceLine": 655
+          },
+          {
+            "qid": "03397c91",
+            "questionSHA256": "f362f5647f41da0f9714f0b13baab54ec39c5ad21bff3b05798e72e994bce289",
+            "sourceLine": 676
+          },
+          {
+            "qid": "9dd26bf4",
+            "questionSHA256": "2b873bdc2f52b591baaf45aa77bb8fa547c74c6c6d02a5e501a1df940ca12a02",
+            "sourceLine": 691
+          },
+          {
+            "qid": "856f45a6",
+            "questionSHA256": "e7197889c272dd0bd05ab74675d4064b6609bb2cab69fa73142c958879cadbe9",
+            "sourceLine": 702
+          },
+          {
+            "qid": "ff676013",
+            "questionSHA256": "f5ab989fb0ad775d0d7f43932b0df5ab880af2143077dfe22dc15234d78ed56c",
+            "sourceLine": 703
+          }
+        ],
+        "currentBankConsumerCount": 23,
+        "qualification": "Objeto completo conferido: identidade, desenho, população, conteúdo, taxonomia Diretriz/GUIDELINE, cor e ícone. A liberação do card exato não libera as outras questões consumidoras.",
+        "integrationGate": "DEPENDÊNCIA: reconciliar versão e avaliar consumidores antes de substituir o card compartilhado.",
+        "otherVersionsPreviouslyReviewed": [],
+        "crossVersionQualification": "A autorização desta versão não migra por ID de referência. Qualquer rebind material requer novo parecer formal do pacote exato."
+      },
+      {
+        "id": "kdigo_gn",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "KDIGO Glomerular Diseases 2021",
+          "url": "https://kdigo.org/guidelines/glomerular-diseases/",
+          "journal": "Kidney Int 2021;100(4S):S1-S276",
+          "ano": 2021,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Referência global para diagnóstico e tratamento das glomerulopatias",
+          "icon": "📋",
+          "resumo": "Primeira diretriz KDIGO dedicada às glomerulopatias, cobrindo síndrome nefrótica de lesões mínimas, GESF, nefropatia membranosa, nefropatia por IgA, nefrite lúpica, vasculites ANCA, C3 glomerulopatia e MPGN. Incorpora biomarcadores serológicos no diagnóstico — anti-PLA2R (presente em cerca de 70–80% dos casos de nefropatia membranosa primária) e ANCA-PR3/MPO — e gradua recomendações pelo sistema GRADE. Alguns capítulos foram complementados por atualizações posteriores específicas, como a diretriz dedicada à IgAN 2025; usar em conjunto com fontes mais recentes quando disponíveis.",
+          "conclusao": "Referência unificada para diagnóstico e imunossupressão nas glomerulopatias — substituiu capítulos fragmentados de diretrizes anteriores.",
+          "curiosidade": "O anti-PLA2R, descoberto por Beck et al. em 2009 (NEJM), permite o diagnóstico sorológico da nefropatia membranosa primária em contextos típicos — reduzindo a dependência exclusiva da biópsia renal — e serve como marcador de atividade e resposta ao tratamento pelo título sérico."
+        },
+        "AFTER": {
+          "label": "KDIGO Glomerular Diseases 2021",
+          "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+          "journal": "Kidney Int 2021;100(4S):S1-S276",
+          "ano": 2021,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Interpreta adequação da biópsia e o par antigênico/imunofluorescente anti-MBG.",
+          "icon": "📋",
+          "resumo": "KDIGO Glomerular Diseases 2021, compilação com atualizações de capítulos em 2024. O PP 1.1.2 descreve adequação da biópsia conforme o padrão suspeito: geralmente são necessários 8-10 glomérulos, e lesões focais exigem atenção ao erro amostral e aos níveis examinados. Microscopia óptica, imunofluorescência e microscopia eletrônica são complementares. No capítulo 11, a doença anti-MBG clássica é atribuída a autoanticorpos contra o domínio não colagenoso da cadeia alfa-3 do colágeno IV; a imunofluorescência pode demonstrar IgG linear na MBG. Estes trechos diagnósticos foram conferidos; capítulos terapêuticos com atualizações posteriores devem ser lidos nas versões correspondentes.",
+          "conclusao": "Uma amostra pequena negativa pode não excluir lesão focal. Na anti-MBG clássica, o alvo alfa-3(IV)NC1 corresponde ao padrão linear de IgG.",
+          "curiosidade": "A contagem de glomérulos não é um limite absoluto para toda doença: alterações difusas globais podem ser identificadas em amostras menores."
+        },
+        "beforeSHA256": "1afbec67c4d02443041f9f6768d96a0c2604433458ef5aeac27f4c700baf6db4",
+        "afterSHA256": "1e95b4f46b24af9f529bfd6c973dee27f818667aec1fdb98a1e423b2015ac415",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4, Regra 7(a)",
+        "usedByThisBatch": [
+          "cf84c115",
+          "cd49b7a6"
+        ],
+        "currentBankConsumers": [
+          {
+            "qid": "cd455e49",
+            "questionSHA256": "5a0ec1010bcc8239a0478d2ea933f1c8a4e059f495ccbd18f5d28d84c0533f77",
+            "sourceLine": 8
+          },
+          {
+            "qid": "d2a32c19",
+            "questionSHA256": "849d15322188a91dd54e3507a7e70617d6ffcb643c9f9b7ed31606f89144b450",
+            "sourceLine": 37
+          },
+          {
+            "qid": "00d410e2",
+            "questionSHA256": "cde5bfaa5454844fb1ed2bd6be6350063ef80904c97aceb5b0d3c946605734fb",
+            "sourceLine": 54
+          },
+          {
+            "qid": "ff741767",
+            "questionSHA256": "3ea0deefd4cd27b7f2120ab5d82a1dbad555f9268da7950c7fd7c2f05fead9e6",
+            "sourceLine": 72
+          },
+          {
+            "qid": "cf84c115",
+            "questionSHA256": "b18096392d37c61634b52dc62f91a8c1e3e1c0baebf0d507c2297f2676870b32",
+            "sourceLine": 84
+          },
+          {
+            "qid": "cd49b7a6",
+            "questionSHA256": "a5894c425709234622e47f4eff4454feab91356c85311d23a5873318bde317ba",
+            "sourceLine": 85
+          },
+          {
+            "qid": "f9d81f9d",
+            "questionSHA256": "b2a81720fb01ffc2b901bd507d93c66449869fe1a0fb5f14eece29c5c4b99064",
+            "sourceLine": 163
+          },
+          {
+            "qid": "68cbe570",
+            "questionSHA256": "a7fef171136d0fc3a472d84dde23c77ec0adfd67fd0e64a94237d821a71fd0e7",
+            "sourceLine": 170
+          },
+          {
+            "qid": "033aed49",
+            "questionSHA256": "81d6c15e4d50dc01049b4dce7690516111efb91e7a04d6976c663051e6268f54",
+            "sourceLine": 199
+          },
+          {
+            "qid": "68cb9c42",
+            "questionSHA256": "27fd0db7296db69552fe36fc6371706db2de5b275cf2b1be300098ba72d45457",
+            "sourceLine": 234
+          },
+          {
+            "qid": "cf42455e",
+            "questionSHA256": "7bd65aa77bd9959498833178f10d4fee778b0c452609e507b54cf7e2f200716d",
+            "sourceLine": 236
+          },
+          {
+            "qid": "aca17286",
+            "questionSHA256": "e2ba07201a1df79d4c02f08225f8f0967abe8403ebfaeee28253b8509ea554ac",
+            "sourceLine": 252
+          },
+          {
+            "qid": "fbb4edd0",
+            "questionSHA256": "bf25432e4062e7c52d871a9fb930cbdb77617b09f03460b0f137f84dcafd6aa6",
+            "sourceLine": 263
+          },
+          {
+            "qid": "d14954d1",
+            "questionSHA256": "7e507abaa9defaeb7c4c94267322170b4f1fb266f76f0542ae958a015ec2fe7c",
+            "sourceLine": 267
+          },
+          {
+            "qid": "2493e0dc",
+            "questionSHA256": "a854c01ddc7cc2221b2bb9329e62558c08fc2918ad8d3cbd68a056cc8832cb18",
+            "sourceLine": 271
+          },
+          {
+            "qid": "b1976a3f",
+            "questionSHA256": "61139ed7a36d9171e1a351612211683a74008ca4d80bd35a45cd37462355fcc8",
+            "sourceLine": 325
+          },
+          {
+            "qid": "df6caaed",
+            "questionSHA256": "f64fa0b8edf2a670f62fcf4b96d7843eee7543c50e51e38972c480510af105d5",
+            "sourceLine": 326
+          },
+          {
+            "qid": "1366eca9",
+            "questionSHA256": "5594a5d92b62666594cf4cae30cee937833b3f2270d3ec269de9bfb0237e0b69",
+            "sourceLine": 328
+          },
+          {
+            "qid": "750c9baf",
+            "questionSHA256": "60a349c3d9090b6517687eb89670365c11b0924f04a7d1c6142993948b5aca17",
+            "sourceLine": 366
+          },
+          {
+            "qid": "8e6474eb",
+            "questionSHA256": "a3c9f1925ab2e2f3388ea7f4a86ce311fc493257366cd94e66c4941899df1493",
+            "sourceLine": 367
+          },
+          {
+            "qid": "26804856",
+            "questionSHA256": "1ccce85c48a91c66b1f7595bcca91c045e59e08b8b593b21ab7fd15bc6793b04",
+            "sourceLine": 373
+          },
+          {
+            "qid": "6fb809f3",
+            "questionSHA256": "b4a677627020f252ffb1d1a629ab8d94dbbb83be0458f902e2763cd6f5ff45e3",
+            "sourceLine": 380
+          },
+          {
+            "qid": "6d007422",
+            "questionSHA256": "4a5d32e9f90257dd9dbe3a6de023d11277a77566d1f922eaf16e93096eaa0e00",
+            "sourceLine": 382
+          },
+          {
+            "qid": "7888b974",
+            "questionSHA256": "4a9b643e80b8569bd2768ecd8df4851310a0acd4bf1ee46bca480ccd325e3531",
+            "sourceLine": 393
+          },
+          {
+            "qid": "8fd9452a",
+            "questionSHA256": "25e4b855453884eb9b407cb6cf2c707b3eed29995030ea95966921cdb8989953",
+            "sourceLine": 407
+          },
+          {
+            "qid": "68f04699",
+            "questionSHA256": "5e63e920955a59c0a95174885361f043058167542d69cd022c88a08507e31761",
+            "sourceLine": 418
+          },
+          {
+            "qid": "80fb7281",
+            "questionSHA256": "50365cf2bee12bfab80e0096eb62a7ceb57b6ee266fed4b706601d2680567acf",
+            "sourceLine": 422
+          },
+          {
+            "qid": "bdcaa30c",
+            "questionSHA256": "f57a74a08d451f7c319b0a316cc55e5a82b0a29a89899eaa6b3eb89bf980abfe",
+            "sourceLine": 425
+          },
+          {
+            "qid": "5dcf36ae",
+            "questionSHA256": "017058a251032a9e2ad850b2620c217f18edb80de7e5b835dec0e3b192425db6",
+            "sourceLine": 427
+          },
+          {
+            "qid": "38da9430",
+            "questionSHA256": "6d7f33f8269e9d643c0c7f883fa6590c85ee997caa18c2b62cac6791b4bfd451",
+            "sourceLine": 448
+          },
+          {
+            "qid": "2198d3ba",
+            "questionSHA256": "65e35e59f75ad00286cffba01c270b41d954d02fa117cc2f6a1d191d5c5ce74e",
+            "sourceLine": 502
+          },
+          {
+            "qid": "87f96e78",
+            "questionSHA256": "3b49241571960a7576be71177b8bd49dc831fb7eed07b0920ac2add831480537",
+            "sourceLine": 504
+          },
+          {
+            "qid": "673a9acf",
+            "questionSHA256": "d06e1183b7cb5e12b97384d02a10e949fb25c2021eb4c1c99f03e402cbc1b783",
+            "sourceLine": 505
+          },
+          {
+            "qid": "12328a3e",
+            "questionSHA256": "88bc8cc717729dd6951d4558e9242d9e6bdd231851a60ec31e4815fc91444111",
+            "sourceLine": 506
+          },
+          {
+            "qid": "ea37c153",
+            "questionSHA256": "a5e252630c39635c2156830f410289e690b44acee6f659a2817a73095b253f61",
+            "sourceLine": 557
+          },
+          {
+            "qid": "d2143d46",
+            "questionSHA256": "518eeedc1beda1d8a2b847764ee239886ebfbc3a134f8a0c962401121fc81065",
+            "sourceLine": 609
+          },
+          {
+            "qid": "4adc13fd",
+            "questionSHA256": "7d02465d91b3ac85db05ae641b2e3f24ad9c26e4976eca4fc06d69a5fd2efc88",
+            "sourceLine": 628
+          },
+          {
+            "qid": "72fbf8f7",
+            "questionSHA256": "69275f6fb600feeb7e02a660c214872a2a19648e05c6e32fea15bee4c6197285",
+            "sourceLine": 639
+          },
+          {
+            "qid": "66905ee2",
+            "questionSHA256": "33d77935626ed6e56b6f86a2d77508d01b33c4ea8b08607ae4d0f7b78cc57a54",
+            "sourceLine": 679
+          },
+          {
+            "qid": "d43f9988",
+            "questionSHA256": "d0cc08e28a7d91079bc177256ee6fb1f188df71590c747201ad3793fc3ba2070",
+            "sourceLine": 714
+          },
+          {
+            "qid": "05fd9be9",
+            "questionSHA256": "463dd1659b9cc57ff5e42a7f97f512c3613c5a57360cf388b0f4a4fd3a0979c8",
+            "sourceLine": 723
+          },
+          {
+            "qid": "21c883d5",
+            "questionSHA256": "b1503208164c92a66edaad13a7f9660ab7c73d7c2cf8794630368902816c78d8",
+            "sourceLine": 741
+          }
+        ],
+        "currentBankConsumerCount": 42,
+        "qualification": "Objeto completo conferido: identidade, desenho, população, conteúdo, taxonomia Diretriz/GUIDELINE, cor e ícone. A liberação do card exato não libera as outras questões consumidoras.",
+        "integrationGate": "DEPENDÊNCIA: reconciliar versão e avaliar consumidores antes de substituir o card compartilhado.",
+        "otherVersionsPreviouslyReviewed": [
+          {
+            "batch": "B004",
+            "hash": "734ec74bac6662b2d75e08cecfd20b1ae056969e704907827a40ad9422cc8f02"
+          }
+        ],
+        "crossVersionQualification": "A autorização desta versão não migra por ID de referência. Qualquer rebind material requer novo parecer formal do pacote exato."
+      },
+      {
+        "id": "egpa_guideline_2023",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "Emmi et al. — Diretriz de EGPA (2023)",
+          "url": "https://doi.org/10.1038/s41584-023-00958-w",
+          "journal": "Nat Rev Rheumatol. 2023;19:378-393",
+          "ano": 2023,
+          "tipo": "Diretriz baseada em evidência",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Diagnóstico multidisciplinar, fenótipos e manejo da granulomatose eosinofílica com poliangeíte",
+          "icon": "📋",
+          "resumo": "ANCA é detectável em cerca de 30% a 40% das pessoas com EGPA e, quando presente, é predominantemente MPO-ANCA. Positividade associa-se mais a neuropatia, púrpura e envolvimento renal; doença ANCA-negativa pode ter manifestações eosinofílicas e cardíacas importantes.",
+          "conclusao": "MPO-ANCA apoia, mas sua ausência não exclui EGPA; o diagnóstico exige asma, eosinofilia e fenótipo compatível, com exclusão de outras doenças eosinofílicas e vasculíticas.",
+          "curiosidade": "PR3-ANCA em EGPA é raro e pode acompanhar um fenótipo menos típico, reforçando que nenhum marcador isolado substitui a avaliação clínica."
+        },
+        "AFTER": {
+          "label": "Emmi et al. — Diretriz de EGPA (2023)",
+          "url": "https://doi.org/10.1038/s41584-023-00958-w",
+          "journal": "Nat Rev Rheumatol. 2023;19:378-393",
+          "ano": 2023,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Integra ANCA, fenótipo e diagnósticos diferenciais na suspeita de EGPA.",
+          "icon": "📋",
+          "resumo": "Emmi et al. 2023, Statements 1-4. ANCA é detectável em 30-40% das pessoas com EGPA, com predomínio de MPO entre as positivas. Positividade associa-se mais a glomerulonefrite, neuropatia e púrpura; cardiomiopatia e certas manifestações eosinofílicas são mais frequentes nas negativas, com sobreposição entre grupos. A investigação deve integrar asma, eosinofilia, órgãos envolvidos e alternativas diagnósticas. Imunoensaios específicos para MPO/PR3 são mais informativos que o padrão p-ANCA isolado. O Statement 4 tem nível de evidência 2a e recomendação B no sistema da própria diretriz.",
+          "conclusao": "ANCA negativo não exclui EGPA; MPO-ANCA apoia um fenótipo compatível, sem estabelecer o diagnóstico isoladamente.",
+          "curiosidade": "PR3-ANCA ocorre raramente em EGPA e pode acompanhar apresentações mais próximas de GPA; a sorologia não substitui a avaliação clínica."
+        },
+        "beforeSHA256": "b6029b562dfb9bedbc2ef9260aae12d26d863699a291b4941591a0603ffdab0c",
+        "afterSHA256": "2c23d00eb1597dd65ca2f80a5d898c2766496dc5a815b7203a2b0f6a69aa16dd",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4, Regra 7(a)",
+        "usedByThisBatch": [
+          "04cb2429"
+        ],
+        "currentBankConsumers": [
+          {
+            "qid": "04cb2429",
+            "questionSHA256": "b648f89273034a037de8bea4a92f0c8d4e521f88b779fa868b54bed067102751",
+            "sourceLine": 88
+          }
+        ],
+        "currentBankConsumerCount": 1,
+        "qualification": "Objeto completo conferido: identidade, desenho, população, conteúdo, taxonomia Diretriz/GUIDELINE, cor e ícone. A liberação do card exato não libera as outras questões consumidoras.",
+        "integrationGate": "DEPENDÊNCIA: reconciliar versão e avaliar consumidores antes de substituir o card compartilhado.",
+        "otherVersionsPreviouslyReviewed": [],
+        "crossVersionQualification": "A autorização desta versão não migra por ID de referência. Qualquer rebind material requer novo parecer formal do pacote exato."
+      },
+      {
+        "id": "kdigo_adpkd_2025",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "KDIGO ADPKD 2025 (Rim Policístico Autossômico Dominante)",
+          "url": "https://kdigo.org/guidelines/adpkd/",
+          "journal": "Kidney International 2025;107(Suppl 2S):S1-S239",
+          "ano": 2025,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Diagnóstico, prognóstico, tolvaptana e complicações renais e extrarrenais da DRPAD",
+          "icon": "📋",
+          "resumo": "Primeira diretriz KDIGO dedicada à DRPAD. Organiza diagnóstico por imagem e genética, aplica a Classificação de Imagem de Mayo ao fenótipo típico e recomenda oferecer tolvaptana a adultos com TFGe ≥25 mL/min/1,73 m² e risco de progressão rápida por Mayo 1C–1E ou declínio histórico da TFGe ≥3 mL/min/1,73 m² ao ano. Classe 1C tem sobreposição e pode exigir dados adicionais, como PROPKD, história familiar e trajetória funcional. A diretriz também recomenda rastreamento de aneurisma intracraniano em alto risco e decisão informada em outros contextos.",
+          "conclusao": "O manejo da DRPAD depende de integrar idade, morfologia, volume renal ajustado à altura, trajetória da TFGe e contexto familiar; nenhum marcador isolado deve transformar diagnóstico, prognóstico ou tolvaptana em decisão automática.",
+          "curiosidade": "A angiorressonância por tempo de voo sem gadolínio é o exame preferido quando se decide rastrear aneurisma intracraniano, evitando simultaneamente radiação e contraste."
+        },
+        "AFTER": {
+          "label": "KDIGO ADPKD 2025 (Rim Policístico Autossômico Dominante)",
+          "url": "https://kdigo.org/wp-content/uploads/2025/01/KDIGO-2025-ADPKD-Guideline.pdf",
+          "journal": "Kidney International 2025;107(Suppl 2S):S1-S239",
+          "ano": 2025,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Aplica volume renal ajustado à altura e idade ao fenótipo típico de DRPAD.",
+          "icon": "📋",
+          "resumo": "KDIGO 2025 para DRPAD, recomendação 1.4.2.1 e PP 1.4.2.1-4. A Classificação de Imagem de Mayo usa idade e volume renal total ajustado à altura para prognóstico no padrão típico, classe 1. A morfologia deve ser avaliada antes de aplicar as subclasses 1A-1E. Ressonância ou tomografia permitem medir o volume; a ultrassonografia é menos precisa. Função renal, genótipo e história familiar complementam a avaliação clínica, mas não substituem os eixos da classificação de imagem.",
+          "conclusao": "Na DRPAD típica, combinar htTKV e idade; não aplicar automaticamente a classificação 1A-1E ao padrão atípico.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "4d8cdc3401c08c521f98cb0bb84df9a9819e4923904f3e1ec7af22d3d6a2eb7f",
+        "afterSHA256": "7b94a96363974d58d3e5a85015ed5d7d64768e8d83476536d00a7c548715bcdb",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4, Regra 7(a)",
+        "usedByThisBatch": [
+          "61d4ad11"
+        ],
+        "currentBankConsumers": [
+          {
+            "qid": "2af04ec7",
+            "questionSHA256": "d81d6a04703183fda4cc03efd2e4238df91ada3491d413396e403339c91b71b0",
+            "sourceLine": 23
+          },
+          {
+            "qid": "b7a28d0b",
+            "questionSHA256": "9f3126588f0e2058d509cf5a709abade9ffa6dee5f4c9284f25fbc6861c61057",
+            "sourceLine": 53
+          },
+          {
+            "qid": "61d4ad11",
+            "questionSHA256": "48ba48d9a4c639b1a214100be882e5b6542d6e1ff0d9e6c98a9512ddf94dde34",
+            "sourceLine": 91
+          },
+          {
+            "qid": "eba4f29e",
+            "questionSHA256": "4a0db769f65fc483f1d24df99aad3af8c49ecc8d041967b76ae8e5af25aa7d12",
+            "sourceLine": 264
+          },
+          {
+            "qid": "ef5b94e4",
+            "questionSHA256": "20c6275c88798c2708f4207fce905fd03bcfb7b7a95c9327312132232dbbab4c",
+            "sourceLine": 343
+          },
+          {
+            "qid": "72c98d51",
+            "questionSHA256": "0c2232475eefbdd6d2f6521165406af12f7e6d090e0785a0cf8d71c324189217",
+            "sourceLine": 344
+          },
+          {
+            "qid": "f2f49b49",
+            "questionSHA256": "d8b3a099156468ff603aee4e33e65763353340f942ddaf9455ad2af4b6f233dd",
+            "sourceLine": 657
+          },
+          {
+            "qid": "1ebc64f7",
+            "questionSHA256": "121736fe8b4d0cc1859b2e09316e682ebe2f75de15aa6a4ec3cd9e32f32fa7b2",
+            "sourceLine": 658
+          },
+          {
+            "qid": "341da45b",
+            "questionSHA256": "5c5415a29cadf047d5cc5d4a5ede4bc1d96feebbe68c8286be1088cd7eae21fa",
+            "sourceLine": 659
+          },
+          {
+            "qid": "0c7eb6ce",
+            "questionSHA256": "d1b289d8e8586b27ef75c161dc38219e65cd4a4cb01e61ec8c811e887461df71",
+            "sourceLine": 660
+          },
+          {
+            "qid": "1ee3dfa2",
+            "questionSHA256": "267a8240c9db63ac29da5e5cf1e646a4750603f796093c7996b89659c1926bba",
+            "sourceLine": 661
+          },
+          {
+            "qid": "11ecbc0f",
+            "questionSHA256": "69c3833edc820bcbb2f672fd57fc2beba293ad80fda18134702d1bd2f0c56dc7",
+            "sourceLine": 662
+          },
+          {
+            "qid": "d7c0052b",
+            "questionSHA256": "25f99a029b1601cc4893731fbea602ac46d0a4ffa85b21fef105480b5fc52bc9",
+            "sourceLine": 695
+          },
+          {
+            "qid": "481c9380",
+            "questionSHA256": "46679747d29992764ded3077629804e60330b4f371791548282ed50eacf4d1b6",
+            "sourceLine": 696
+          },
+          {
+            "qid": "1bd9b438",
+            "questionSHA256": "dfdd0e4b250d86a88a31e88389f86b49dbb9e488d6ce3876025b62f3fa5fa18c",
+            "sourceLine": 708
+          },
+          {
+            "qid": "c8364d4e",
+            "questionSHA256": "932422d519937a48bd725e154239b56e74eb1619848887032a1f91f594d8ee95",
+            "sourceLine": 710
+          },
+          {
+            "qid": "ef396e94",
+            "questionSHA256": "e0810dcd708ea2b55aafef0b54ea5d5c8d532e01e3eadb3c068eee5db07f2b41",
+            "sourceLine": 715
+          }
+        ],
+        "currentBankConsumerCount": 17,
+        "qualification": "Objeto completo conferido: identidade, desenho, população, conteúdo, taxonomia Diretriz/GUIDELINE, cor e ícone. A liberação do card exato não libera as outras questões consumidoras.",
+        "integrationGate": "DEPENDÊNCIA: reconciliar versão e avaliar consumidores antes de substituir o card compartilhado.",
+        "otherVersionsPreviouslyReviewed": [],
+        "crossVersionQualification": "A autorização desta versão não migra por ID de referência. Qualquer rebind material requer novo parecer formal do pacote exato."
+      },
+      {
+        "id": "kdigo_anca_2024",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "KDIGO — Vasculite Associada ao ANCA (2024)",
+          "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2024-ANCA-Vasculitis-Guideline-Update.pdf",
+          "journal": "Kidney Int. 2024;105(Suppl 3S):S71-S116",
+          "ano": 2024,
+          "tipo": "Diretriz internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Indução, troca plasmática, manutenção e redução de toxicidade na vasculite ANCA",
+          "icon": "📋",
+          "resumo": "Atualização focada recomenda glicocorticoide associado a rituximabe ou ciclofosfamida para indução de doença nova, favorece regime reduzido de glicocorticoide e recomenda rituximabe ou azatioprina com baixa dose de glicocorticoide para manutenção. A troca plasmática pode ser considerada em risco renal extremo, hemorragia alveolar com hipoxemia ou sobreposição anti-MBG.",
+          "conclusao": "A terapia deve separar indução de manutenção e individualizar rituximabe, ciclofosfamida, glicocorticoide e troca plasmática pelo fenótipo e risco. A diretriz antecede a retratação do ADVOCATE em 2026 e não resolve a situação regulatória atual do avacopan.",
+          "curiosidade": "A própria KDIGO trata a troca plasmática como decisão de preferência sensível ao balanço entre possível redução de falência renal em alto risco e aumento de infecções graves."
+        },
+        "AFTER": {
+          "label": "KDIGO — Vasculite Associada ao ANCA (2024)",
+          "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2024-ANCA-Vasculitis-Guideline-Update.pdf",
+          "journal": "Kidney Int. 2024;105(Suppl 3S):S71-S116",
+          "ano": 2024,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Define o padrão pauci-imune e integra histologia e sorologia.",
+          "icon": "📋",
+          "resumo": "KDIGO 2024 para vasculite ANCA, capítulo 9, diagnóstico. Pauci-imune descreve pouca ou nenhuma deposição de imunocomplexos; a lesão renal pode ser necrosante, focal/segmentar e crescêntica. Portanto, escassez de depósitos não significa inflamação leve. A histologia deve ser integrada ao contexto e aos testes específicos para MPO/PR3. Glomerulonefrite necrosante pauci-imune também pode ocorrer com ANCA negativo, exigindo investigação de diagnósticos alternativos. Este card se limita ao diagnóstico; não revalida terapias ou situações regulatórias posteriores à diretriz.",
+          "conclusao": "Pauci-imune é uma descrição dos depósitos na biópsia, não do título sérico de ANCA nem da intensidade da lesão.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "7ab82aa91fca245fbbe5cff064c923b8ddb5f4c215214c43c78e3a6ea751f0f7",
+        "afterSHA256": "6ec759b368def836efde47037068447e4fbc29c144464a2b6138c06dd21cb5d0",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4, Regra 7(a)",
+        "usedByThisBatch": [
+          "ddfb3df6"
+        ],
+        "currentBankConsumers": [
+          {
+            "qid": "1fd6a5cf",
+            "questionSHA256": "6418e6a8c873c6b5fb336d64c7b6d146f21ebde0d899b3304c211a897e8e1c8d",
+            "sourceLine": 14
+          },
+          {
+            "qid": "4efef2a5",
+            "questionSHA256": "f392e14e3aad9ae3313c30ed0767f7e4c67e11230498b08a268c2e7dad50674b",
+            "sourceLine": 63
+          },
+          {
+            "qid": "ddfb3df6",
+            "questionSHA256": "e271a5ff6db290e18d56095e41e6da1b3841d51a87076b6ece36589be7d1355b",
+            "sourceLine": 102
+          },
+          {
+            "qid": "60efeb87",
+            "questionSHA256": "e20e1ac4ccb9ff488cd44e3b4948c4eaab74f67518a59cc40b021fcf67ec3d7d",
+            "sourceLine": 146
+          },
+          {
+            "qid": "2a595b23",
+            "questionSHA256": "d300a601a53ba526c17ce170c5ed7211fba074e42995fd765d88c7c7f1ed9f0d",
+            "sourceLine": 207
+          },
+          {
+            "qid": "cc9dc9d0",
+            "questionSHA256": "886fb8b8f3ef4388e5ab64b6b0643530920b65af0b360bbfc8809b9e4c38e212",
+            "sourceLine": 299
+          },
+          {
+            "qid": "e5b44fbe",
+            "questionSHA256": "ccbd46a5c3df7acfd71428d934f8160051e53e17ac113df7dc60c787ca67a28c",
+            "sourceLine": 330
+          },
+          {
+            "qid": "89af997c",
+            "questionSHA256": "77247ee52792a5ad51904be3cd99bf3d5b9d30de91a67c104d40395df3b14d23",
+            "sourceLine": 449
+          },
+          {
+            "qid": "ebd066db",
+            "questionSHA256": "e3dda9e6a57cb3150d1c7804d9fcf1e0684f974e16e7e7f173aeff96ccc0d917",
+            "sourceLine": 563
+          },
+          {
+            "qid": "91cfbe6c",
+            "questionSHA256": "0584a9e4cea6f517c93777b9623461f02b6a6a2f9ea3dfb0fdede19fa9eced23",
+            "sourceLine": 564
+          }
+        ],
+        "currentBankConsumerCount": 10,
+        "qualification": "Objeto completo conferido: identidade, desenho, população, conteúdo, taxonomia Diretriz/GUIDELINE, cor e ícone. A liberação do card exato não libera as outras questões consumidoras.",
+        "integrationGate": "DEPENDÊNCIA: reconciliar versão e avaliar consumidores antes de substituir o card compartilhado.",
+        "otherVersionsPreviouslyReviewed": [
+          {
+            "batch": "B004",
+            "hash": "fa5879777377e43bdab7fcf2ab787349faf1172f09094f2d98688d06782e07c0"
+          }
+        ],
+        "crossVersionQualification": "A autorização desta versão não migra por ID de referência. Qualquer rebind material requer novo parecer formal do pacote exato."
+      }
+    ],
+    "localSourcePinsVerified": [
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 11902,
+        "sha256": "4501e88fd948470c8f2115944407cde6a157825e88388a90d3f522ee1dcbcb01"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 5812,
+        "sha256": "2b07283692c610946da3b5d72616d01235e493c215e3083ed1fa96252b1a4b81"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 11563,
+        "sha256": "b34f3984e32abea11ec60a1aae2fcca259c6279a0215df10d7b3294f09bd702d"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1278,
+        "sha256": "be8be7efd2ed22946aa4d4f6f4fcec83f634b7e6b2a8d4272003e75c13530c2b"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 469,
+        "sha256": "a6ddb8a1bd1b3cbf310e1be448a13eab28e60d54469eceec478dd08de3c01e03"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 2272042,
+        "sha256": "6e4458916dd929caec1fab7505e858ab3e079e0acc843589dc7b31a439e6202c"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 297161,
+        "sha256": "9c71ab8916a112506126905b365912aeec95a20c182072e96c1b1e601bafb5b9"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 9537380,
+        "sha256": "302f80af1aa44377ad2f23b619933412ab3c306b6a00cc90bce7e1471839bc0c"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1176498,
+        "sha256": "b9ad2da0aabeb15b99d98f175f38ab17bffe95fa5d3dfeb481f71a6c3cdd922b"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1076012,
+        "sha256": "63532ff2e291144d55580ce6c27f711bc077b37ef4234407544a5d00c2499a5e"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 113464,
+        "sha256": "636a3eb24ca8f0d2bf3a44c11b8db0f7ee122b99d5598874aec9a398ada23a79"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 246867,
+        "sha256": "03c4af98794196490438ea31ef44de19adf3a76270b451ba81d82775a437501b"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 545,
+        "sha256": "73c2ce706221efe13d89eaae247daf79422491af8cf9516f967d3077d3989520"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 39009,
+        "sha256": "affa11dbb17b0612923204a032be0ac4b8384708e111e5e29c82bb2c79926495"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 32758,
+        "sha256": "48165832ade67978a3d465ee6697821d67d3ae0069c8c1f27d642b1454936ec1"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 20005,
+        "sha256": "0de5f7c7110ed391dffb57607472f219b4c0f63ffa4c4ff87f45917173b52897"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 44066,
+        "sha256": "9321c16d7cbf787ad3941396e246294d3baa60a541325925b110f49a64de26e2"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 8380,
+        "sha256": "1cf40b9427d8428f2ec75c067cb0c64c914e9966ab81ddb2fef1240f59d95476"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 327193,
+        "sha256": "796f12b44750d7f6bb6711e97c6de95996612bd84256dfc3b2580dca52327266"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1072179,
+        "sha256": "fd82ccfe096f4a4854222ecdfa7055f18956730bbe217da353c8edede576174d"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 11320223,
+        "sha256": "8ed871ec098c7eba1cfb0ff6bf2355a6c422166b2691aac138f0273307b2acff"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 2119291,
+        "sha256": "f1b71336d847a2aab8e44129c099a09d1c383580ea38f31187c45be8f9bfdec8"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 165574,
+        "sha256": "bc813064cc1f53e1dcccaa594bd30e25d7c45d2fbf42bcb038ad6102e252f167"
+      },
+      {
+        "path": "docs/editorial/reviews/2026-10-12/group-b-output-004.json",
+        "bytes": 232146,
+        "sha256": "6903f5ef6ba88438ac224c4a2d1932369309eb6e35128a16012e421ca4fcdd85"
+      }
+    ],
+    "independentExternalVerification": [
+      {
+        "url": "https://pure.amsterdamumc.nl/ws/files/139845886/Clinical-practice-recommendations-for-primary-hyperoxaluria.pdf",
+        "status": "OPENED_PRIMARY_PUBLISHED_PDF",
+        "locator": "19 páginas; DOI 10.1038/s41581-022-00661-1, pp194–198, genética/Figura 1",
+        "qualification": "Fonte pública institucional; sem download local ou hash do PDF. A falha TLS autoral não foi contornada; não equivale a liberar GeneReviews."
+      },
+      {
+        "url": "https://ueaeprints.uea.ac.uk/id/eprint/93394/1/56400_2_merged_166920431784.pdf",
+        "status": "OPENED_PRIMARY_ACCEPTED_MANUSCRIPT",
+        "locator": "40 páginas; título/autores conferidos com PMID 37161084 e DOI 10.1038/s41584-023-00958-w; Statements 1–4",
+        "qualification": "Manuscrito primário institucional e arquivo local de hash conferido; não confundir paginação do aceito com publicação378–393."
+      },
+      {
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d7354af1-f304-f4d9-e053-2995a90ab219",
+        "status": "OPENED_CURRENT_OFFICIAL_LABEL",
+        "locator": "Revised4/2026, §§2.1,4,5,12.1",
+        "qualification": "Rótulo vigente e HTML local conferidos; alteração regulatória não inferida de fonte histórica."
+      },
+      {
+        "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+        "status": "OPENED_PRIMARY_GUIDELINE",
+        "locator": "71 páginas; PP1.4.3.4, Figura4, recomendação1.4.4.2, PP1.4.4.3",
+        "qualification": "Identidade externa conferida; corpo local de hash verificado lido nos trechos decisivos."
+      },
+      {
+        "url": "https://kdigo.org/wp-content/uploads/2025/01/KDIGO-2025-ADPKD-Guideline.pdf",
+        "status": "OPENED_PRIMARY_GUIDELINE",
+        "locator": "240 páginas; recomendação1.4.2.1 e PP1.4.2.1–4; classificação e morfologia",
+        "qualification": "Identidade externa conferida; corpo local de hash verificado lido nos trechos decisivos."
+      }
+    ],
+    "preservedAccessLimitations": [
+      "GeneReviews permaneceu inacessível por captcha na autoria; não é fonte liberada por associação à diretriz PH alternativa.",
+      "McAdoo JATS com HTTP200 tem metadados/resumo e corpo ausente; não foi chamado texto integral. Card retirado do AFTER, sem aprovação global.",
+      "EULAR abstract não basta para todos os claims do antigo card. Card retirado dos AFTER; não recebeu certificação integral.",
+      "B004 b1f746f3 e card ISN/RPS2018 continuam bloqueados por falta do trecho primário da definição classeV. Este lote não reabre ou supera o403."
+    ],
+    "protectQualification": {
+      "primaryLocalSource": "protect_trial-005-pubmed.xml",
+      "independentlyRead": true,
+      "interim": {
+        "pmid": "37015244",
+        "doi": "10.1016/S0140-6736(23)00569-X"
+      },
+      "final": {
+        "pmid": "37931634",
+        "doi": "10.1016/S0140-6736(23)02302-4"
+      },
+      "population": "406 randomizados; 404 receberam fármaco e integram análises descritas. 404 não é erro universal.",
+      "slopes": "Declive crônico significativo; total com p0,058. Não são endpoints cobrados em c18e6af7.",
+      "oldCard": "Bibliografia/URL PIIS0140-6736(22)02605-5 e401(10372):173–183 não correspondem aos artigos primários recuperados. Card retirado; nenhuma proposta nova de correção aprovada neste lote."
+    },
+    "counts": {
+      "questionsReviewed": 8,
+      "exactAfterAccepted": 8,
+      "exactAfterBlocked": 0,
+      "cardsReviewed": 6,
+      "cardsAccepted": 6,
+      "cardsBlocked": 0,
+      "cardsAdd": 1,
+      "cardsReplace": 5,
+      "implemented": 0
+    },
+    "validation": {
+      "eightBeforeMatches": true,
+      "eightExactAfterHashes": true,
+      "eightFourOptions": true,
+      "stableQidsAndAnswerIndices": true,
+      "cardsExactHashes": true,
+      "all24LocalSourcePinsMatch": true,
+      "authored66ChecksPassVerified": true,
+      "uniqueLongestCorrectAfter": 0,
+      "publicationDerived": true,
+      "noProductEdits": true,
+      "noGitMutation": true
+    },
+    "limits": [
+      "Parecer libera o conteúdo exato, não a aplicação global de cards compartilhados ou suas outras questões.",
+      "Nenhum rebind material por ID é aprovado automaticamente; propostas GN/ANCA B005 diferem de B004.",
+      "Nenhum teste de integração de runtime, CAS, saves, FSRS ou publicação foi realizado nesta auditoria clínica report-only."
+    ]
+  }
+}

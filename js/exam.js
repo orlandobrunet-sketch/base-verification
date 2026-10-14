@@ -20,8 +20,95 @@
     let _examOrigem = null;
     let _examConfirmandoSaida = false;
     let _examProgressBinding = null;
+    let _examJourneyBinding = null;
+    let _examRequestToken = 0;
+    let _examSavedRaw = null;
+    let _examRevisionBlocked = false;
     function _examBindingCurrent(binding = _examProgressBinding) {
-      return !window.NQPilot || window.NQPilot.matchesBinding(binding);
+      return (!window.NQPilot || window.NQPilot.matchesBinding(binding)) &&
+        (!_examJourneyBinding || (typeof _matchesJourneyBinding === 'function' && _matchesJourneyBinding(_examJourneyBinding)));
+    }
+    function _examRequiresRevisions() {
+      return ['NQ_REQUIRES_QUESTION_REVISIONS', 'NQQuestionRevisions', 'NQQuestionRevisionManifest',
+        'NQQuestionRevisionHistory', 'questionRevisionCatalog'].some(key => typeof window[key] !== 'undefined');
+    }
+    function _examRevisionCatalog() {
+      const catalog = window.questionRevisionCatalog;
+      return window.NQQuestionRevisions && window.NQQuestionRevisionManifest && window.NQQuestionRevisionHistory
+        && typeof catalog?.resolve === 'function' ? catalog : null;
+    }
+    function _examQuestionRevision(question, binding) {
+      if (_examRequiresRevisions()) {
+        const checked = _examRevisionCatalog()?.inspect(question, { profile: 'exam', ...(binding !== undefined ? { binding } : {}) });
+        return checked?.status === 'known' ? checked.value : null;
+      }
+      const restored = window.NQAnswers ? window.NQAnswers.restore(question)
+        : (question && !question._answerPresentation && Array.isArray(question.o) ? { ...question, o: [...question.o] } : null);
+      return restored ? { question: restored, historical: false, legacyRuntime: true } : null;
+    }
+    function _examValidateSaved(saved) {
+      try {
+        if (!saved || !Array.isArray(saved.questions) || !saved.questions.length || !Array.isArray(saved.answers) ||
+            !Number.isInteger(saved.idx) || saved.idx < 0 || saved.idx > saved.questions.length ||
+            !Number.isFinite(saved.startTime) || saved.startTime <= 0) return null;
+        const bindings = saved.questionRevisionBindings;
+        if (bindings !== undefined && (!Array.isArray(bindings) || bindings.length !== saved.questions.length)) return null;
+        const revisionViews = saved.questions.map((q, i) => _examQuestionRevision(q, bindings?.[i]));
+        if (revisionViews.some(view => !view?.question)) return null;
+        const questions = revisionViews.map(view => view.question);
+        if (saved.answers.length > questions.length || !questions.every((q, i) => {
+          const answer = saved.answers[i];
+          if (!Array.isArray(q.o) || !Number.isInteger(q.a) || q.a < 0 || q.a >= q.o.length) return false;
+          if (answer === undefined || answer === null) return true;
+          if (answer.qId !== q.id) return false;
+          if (answer.answered === false) return answer.correct === false && answer.chosen === undefined;
+          if (answer.answered !== true || !Number.isInteger(answer.chosen) || answer.chosen < 0 || answer.chosen >= q.o.length ||
+              answer.correct !== (answer.chosen === q.a)) return false;
+          return !q._answerPresentation || (answer.authoredChoice === window.NQAnswers?.originalIndex(q, answer.chosen) &&
+            answer.optionId === window.NQAnswers?.optionId(q, answer.chosen));
+        })) return null;
+        const origins = saved.questionRevisionOrigins === undefined ? [] : saved.questionRevisionOrigins;
+        const originIndices = new Set();
+        if (!Array.isArray(origins) || !origins.every(origin => {
+          if (!origin || !Number.isInteger(origin.index) || origin.index < 0 || origin.index >= questions.length ||
+              originIndices.has(origin.index) || origin.question?.id !== questions[origin.index].id) return false;
+          originIndices.add(origin.index);
+          const original = _examQuestionRevision(origin.question, origin.binding);
+          return !!original && (!_examRequiresRevisions() || (original.historical && original.policy?.material &&
+            original.binding.recordRevision !== revisionViews[origin.index].binding.recordRevision));
+        })) return null;
+        if (saved.questionRevisionOriginalRaw !== undefined && typeof saved.questionRevisionOriginalRaw !== 'string') return null;
+        return { questions, revisionViews, questionRevisionBindings: revisionViews.map(view => view.binding),
+          questionRevisionOrigins: origins, ...(saved.questionRevisionOriginalRaw !== undefined
+            ? { questionRevisionOriginalRaw: saved.questionRevisionOriginalRaw } : {}) };
+      } catch (_) { return null; }
+    }
+    function _examNeedsCurrentRevision() {
+      const view = _examState?.revisionViews?.[_examState.idx];
+      return !!(view?.historical && view.policy?.material && !_examState.answers[_examState.idx]?.answered);
+    }
+    function _examRevisionHold(message) {
+      _examRevisionBlocked = true;
+      const pagina = document.getElementById('examPage') || _examPagina();
+      pagina.innerHTML = `<div class="nq-study-content nq-exam-intro">
+        <h1 id="examTitulo" tabindex="-1">Prova preservada</h1>
+        <p class="nq-exam-erro" role="alert">${escapeHtml(message)}</p>
+        <p>A prova precisa ser conferida antes de continuar.</p>
+        <div class="nq-exam-acoes"><button type="button" class="btn sec" data-action="_examFechar">Voltar</button>
+        <button type="button" class="btn sec" data-action="_examDescartarSalva">Descartar e começar outra</button></div></div>`;
+      _examFocar('#examTitulo');
+    }
+    function _examRevisionHtml(view, answered) {
+      if (!view?.historical) return '';
+      const current = _examRevisionCatalog()?.current(view.binding.qid, 'exam');
+      const updated = current?.source;
+      return `<aside class="nq-exam-aviso" data-question-revision="historical">
+        <p>${answered ? `Avaliação registrada na versão ${escapeHtml(view.release)}. Sua resposta e sua nota permanecem as registradas.`
+          : 'Esta questão mudou desde a versão salva. Confirme a versão atual antes de responder.'}</p>
+        ${answered && updated ? `<details><summary>Conteúdo atual, separado da avaliação registrada</summary>
+          <p>${escapeHtml(updated.q)}</p><ol>${updated.o.map((text, index) => `<li>${escapeHtml(text)}${index === updated.a ? ' <strong>Resposta correta atual</strong>' : ''}</li>`).join('')}</ol>
+          <p>${escapeHtml(updated.e || '')}</p></details>` : ''}
+        ${!answered ? '<button type="button" class="btn gold" data-action="_examUseCurrentRevision">Usar versão atual desta questão</button>' : ''}</aside>`;
     }
     function _examProgressStorage() {
       if (typeof window.nqProgressStorage === 'function') return window.nqProgressStorage(_examProgressBinding || undefined);
@@ -30,11 +117,42 @@
     }
 
     function _saveExamState() {
-      if (!_examState || !_examBindingCurrent()) return;
+      if (!_examState || !_examBindingCurrent() || _examRevisionBlocked) return false;
+      const priorRaw = _examSavedRaw;
+      let storage = null, candidateRaw = null, candidateAttempted = false;
       try {
+        const checked = _examValidateSaved(_examState);
+        if (!checked) return false;
+        storage = _examProgressStorage();
+        if (storage.getItem(EXAM_SAVE_KEY) !== priorRaw || !_examBindingCurrent()) return false;
         const { questions, idx, answers, startTime } = _examState;
-        _examProgressStorage().setItem(EXAM_SAVE_KEY, JSON.stringify({ questions, idx, answers, startTime, savedAt: Date.now() }));
-      } catch(e) { console.error('[NQ] _saveExamState failed', e); }
+        const payload = { questions, idx, answers, startTime, savedAt: Date.now() };
+        if (_examRequiresRevisions()) {
+          payload.questionRevisionBindings = checked.questionRevisionBindings;
+          payload.questionRevisionOrigins = checked.questionRevisionOrigins;
+          if (checked.questionRevisionOriginalRaw !== undefined) payload.questionRevisionOriginalRaw = checked.questionRevisionOriginalRaw;
+        }
+        candidateRaw = JSON.stringify(payload);
+        candidateAttempted = true;
+        if (storage.setItem(EXAM_SAVE_KEY, candidateRaw) === false || storage.getItem(EXAM_SAVE_KEY) !== candidateRaw || !_examBindingCurrent()) {
+          throw new Error('Exam save confirmation failed.');
+        }
+        _examSavedRaw = candidateRaw;
+        return true;
+      } catch(e) {
+        // A failed readback may follow a completed write. Compensate only our own bytes.
+        if (candidateAttempted && _examBindingCurrent()) {
+          try {
+            if (storage.getItem(EXAM_SAVE_KEY) === candidateRaw) {
+              if (priorRaw === null) storage.removeItem(EXAM_SAVE_KEY);
+              else storage.setItem(EXAM_SAVE_KEY, priorRaw);
+              if (storage.getItem(EXAM_SAVE_KEY) !== priorRaw) throw new Error('Exam save compensation unconfirmed.');
+            }
+          } catch (compensationError) { console.error('[NQ] Exam save compensation failed', compensationError); }
+        }
+        console.error('[NQ] _saveExamState failed', e);
+        return false;
+      }
     }
 
     /* Prova salva: `null` se não há ou se ficou velha demais; `expirada` se o
@@ -43,18 +161,29 @@
     function _loadExamState() {
       try {
         const raw = _examProgressStorage().getItem(EXAM_SAVE_KEY);
+        _examSavedRaw = raw;
         if (!raw) return null;
         const s = JSON.parse(raw);
-        if (!s?.startTime || !Array.isArray(s.questions) || !s.questions.length || !Array.isArray(s.answers) ||
-            !Number.isInteger(s.idx) || s.idx < 0 || s.idx > s.questions.length) return null;
-        if (Date.now() - s.savedAt > EXAM_TTL_MS) { _examProgressStorage().removeItem(EXAM_SAVE_KEY); return null; }
+        if (!Number.isFinite(s?.startTime) || s.startTime <= 0 || !Number.isFinite(s.savedAt) || !Array.isArray(s.questions) || !s.questions.length || !Array.isArray(s.answers) ||
+            !Number.isInteger(s.idx) || s.idx < 0 || s.idx > s.questions.length) return _examRequiresRevisions() ? { preserved: true } : null;
+        if (Date.now() - s.savedAt > EXAM_TTL_MS) {
+          if (_examRequiresRevisions()) return { ...s, preserved: true };
+          _examProgressStorage().removeItem(EXAM_SAVE_KEY); _examSavedRaw = null; return null;
+        }
         const elapsed = Math.floor((Date.now() - s.startTime) / 1000);
         return { ...s, expirada: elapsed >= EXAM_DURATION_SEC };
-      } catch(e) { return null; }
+      } catch(e) { return _examRequiresRevisions() && _examSavedRaw ? { preserved: true } : null; }
     }
 
     function _clearExamState() {
-      try { _examProgressStorage().removeItem(EXAM_SAVE_KEY); } catch(e) {}
+      if (!_examBindingCurrent()) return false;
+      try {
+        const storage = _examProgressStorage();
+        if (storage.getItem(EXAM_SAVE_KEY) !== _examSavedRaw) return false;
+        storage.removeItem(EXAM_SAVE_KEY);
+        if (storage.getItem(EXAM_SAVE_KEY) !== null) return false;
+        _examSavedRaw = null; return true;
+      } catch(e) { return false; }
     }
 
     const _examRestante = () => Math.max(0, EXAM_DURATION_SEC - Math.floor((Date.now() - _examState.startTime) / 1000));
@@ -65,6 +194,7 @@
       if (!_examProgressBinding) _examProgressBinding = window.NQPilot?.captureBinding() || null;
       let pagina = document.getElementById('examPage');
       if (pagina) return pagina;
+      _examJourneyBinding = typeof _captureJourneyBinding === 'function' ? _captureJourneyBinding() : null;
       _examOrigem = {
         foco: document.activeElement,
         scroll: window.scrollY,
@@ -111,6 +241,9 @@
       if (_examState?.timerInterval) clearInterval(_examState.timerInterval);
       _examState = null;
       _examProgressBinding = null;
+      _examJourneyBinding = null;
+      _examRequestToken++;
+      _examRevisionBlocked = false;
       _examConfirmandoSaida = false;
       document.getElementById('examPage')?.remove();
       document.body.classList.remove('nq-studying');
@@ -136,10 +269,12 @@
 
     // ── Início e retomada ─────────────────────────────────────────────────
     async function startExamMode() {
+      if (!_examBindingCurrent()) _examFechar(false);
       const pagina = _examPagina();
-      if (_examState) { _examIniciarRelogio(); showExamQuestion(); return; }
+      if (_examState && !_examRevisionBlocked) { _examIniciarRelogio(); showExamQuestion(); return; }
 
       const saved = _loadExamState();
+      if (saved?.preserved) { _examRevisionHold('Não foi possível retomar esta prova com segurança. O registro salvo foi preservado.'); return; }
       if (saved?.expirada) {
         _examRetomar();
         return;
@@ -164,6 +299,7 @@
     }
 
     function _examIntro(erro = '') {
+      _examRevisionBlocked = false;
       const pagina = _examPagina();
       pagina.innerHTML = `
         <div class="nq-study-content nq-exam-intro">
@@ -181,16 +317,19 @@
 
     async function _examComecar() {
       const binding = _examProgressBinding;
+      const request = ++_examRequestToken;
+      const pagina = document.getElementById('examPage');
       const botao = document.querySelector('[data-action="_examComecar"]');
       if (botao) { botao.disabled = true; botao.textContent = 'Carregando questões…'; }
       try {
-        if (!questionBank) await _loadTopics();
+        if (!questionBank || _examRequiresRevisions()) await _loadTopics();
       } catch (e) {
         if (!_examBindingCurrent(binding)) return;
         _examIntro('Não foi possível carregar as questões. Verifique a conexão e tente de novo.');
         return;
       }
-      if (!_examBindingCurrent(binding) || !document.getElementById('examPage')) return;
+      if (!_examBindingCurrent(binding) || request !== _examRequestToken || document.getElementById('examPage') !== pagina) return;
+      const prior = _examState;
       _examState = {
         questions: shuffle([...questionBank]).slice(0, EXAM_QUESTION_COUNT)
           .map(q => window.NQAnswers ? window.NQAnswers.present(q) : { ...q, o: [...q.o] }),
@@ -204,42 +343,69 @@
         _examIntro('Não foi possível conferir as alternativas da prova. Tente novamente.');
         return;
       }
-      _saveExamState();
+      const checked = _examValidateSaved(_examState);
+      if (!checked) { _examState = prior; _examRevisionHold('Não foi possível conferir as revisões publicadas da prova.'); return; }
+      Object.assign(_examState, checked);
+      if (!_saveExamState()) { _examState = prior; _examRevisionHold('Não foi possível confirmar o salvamento da prova. Confira o registro salvo antes de continuar.'); return; }
       _examIniciarRelogio();
       showExamQuestion();
     }
 
-    function _examRetomar() {
-      const saved = _loadExamState();
+    async function _examRetomar() {
+      const binding = _examProgressBinding;
+      const request = ++_examRequestToken;
+      const pagina = document.getElementById('examPage');
+      const saved = _loadExamState(), originalRaw = _examSavedRaw;
       if (!saved) { _examIntro(); return; }
-      // A prova salva é um snapshot: não trocar por uma questão do banco atual
-      // nem sortear outra ordem, inclusive nas provas anteriores ao helper.
-      const questions = saved.questions.map(q => window.NQAnswers
-        ? window.NQAnswers.restore(q)
-        : (!q._answerPresentation ? { ...q, o: [...q.o] } : null));
-      const answersValid = questions.every((q, i) => {
-        const answer = saved.answers[i];
-        if (!q || !Array.isArray(q.o) || !Number.isInteger(q.a) || q.a < 0 || q.a >= q.o.length) return false;
-        if (!answer) return true;
-        if (answer.qId !== q.id) return false;
-        if (answer.answered === false) return answer.correct === false && answer.chosen === undefined;
-        if (answer.answered !== true || !Number.isInteger(answer.chosen) || answer.chosen < 0 || answer.chosen >= q.o.length ||
-            answer.correct !== (answer.chosen === q.a)) return false;
-        return !q._answerPresentation || (answer.authoredChoice === window.NQAnswers?.originalIndex(q, answer.chosen) &&
-          answer.optionId === window.NQAnswers?.optionId(q, answer.chosen));
-      });
-      if (!answersValid) {
-        _examIntro('Não foi possível conferir as alternativas da prova salva. Ela foi preservada.');
+      if (saved.preserved) { _examRevisionHold('Não foi possível retomar esta prova com segurança.'); return; }
+      try {
+        if (_examRequiresRevisions()) await _loadTopics();
+      } catch (_) {
+        if (_examBindingCurrent(binding) && request === _examRequestToken && document.getElementById('examPage') === pagina)
+          _examRevisionHold('O catálogo publicado de revisões está indisponível.');
         return;
       }
-      _examState = { questions, idx: saved.idx, answers: saved.answers, startTime: saved.startTime, timerInterval: null };
+      if (!_examBindingCurrent(binding) || request !== _examRequestToken || document.getElementById('examPage') !== pagina) return;
+      const checked = _examValidateSaved(saved);
+      let rawUnchanged = false;
+      try { rawUnchanged = _examProgressStorage().getItem(EXAM_SAVE_KEY) === originalRaw; } catch (_) {}
+      if (!checked || !rawUnchanged) {
+        _examRevisionHold('Não foi possível conferir todas as questões da prova salva.'); return;
+      }
+      if (_examState?.timerInterval) clearInterval(_examState.timerInterval);
+      _examRevisionBlocked = false;
+      _examState = { ...checked, idx: saved.idx, answers: saved.answers, startTime: saved.startTime, timerInterval: null,
+        readOnlyResult: _examRequiresRevisions() };
       if (saved.expirada) { _examEsgotarTempo(); return; }
       _examIniciarRelogio();
       showExamQuestion();
     }
 
+    function _examUseCurrentRevision() {
+      if (!_examBindingCurrent() || _examRevisionBlocked || !_examNeedsCurrentRevision()) return;
+      const prior = _examState, idx = prior.idx;
+      const current = _examRevisionCatalog()?.current(prior.questions[idx].id, 'exam');
+      const question = current?.source && window.NQAnswers?.present(current.source);
+      if (!question) { _examRevisionHold('A versão atual desta questão está indisponível.'); return; }
+      const questions = [...prior.questions], bindings = [...prior.questionRevisionBindings];
+      const origins = [...(prior.questionRevisionOrigins || [])];
+      if (!origins.some(origin => origin.index === idx)) origins.push({ index: idx, question: prior.questions[idx], binding: bindings[idx] });
+      questions[idx] = question; bindings[idx] = current.binding;
+      const checked = _examValidateSaved({ ...prior, questions, questionRevisionBindings: bindings, questionRevisionOrigins: origins });
+      if (!checked) { _examRevisionHold('Não foi possível conferir a versão atual.'); return; }
+      _examState = { ...prior, ...checked, questionRevisionOriginalRaw: prior.questionRevisionOriginalRaw ?? _examSavedRaw };
+      if (!_saveExamState()) {
+        _examState = prior;
+        _examRevisionHold('Não foi possível confirmar o salvamento da alteração. Confira a versão salva antes de continuar.'); return;
+      }
+      _examState.readOnlyResult = false;
+      showExamQuestion(); _examFocar('#examQuestaoTitulo');
+    }
+
     function _examDescartarSalva() {
-      _clearExamState();
+      if (!_clearExamState()) { _examRevisionHold('O registro salvo mudou ou não pôde ser descartado.'); return; }
+      if (_examState?.timerInterval) clearInterval(_examState.timerInterval);
+      _examState = null;
       _examIntro();
     }
 
@@ -251,8 +417,10 @@
     }
 
     function _examEsgotarTempo() {
+      if (!_examState || !_examBindingCurrent() || _examRevisionBlocked) return;
       if (_examState.timerInterval) clearInterval(_examState.timerInterval);
       _examState.tempoEsgotado = true;
+      if (_examState.readOnlyResult) { showExamResults(); return; }
       // As questões que faltaram contam como não respondidas.
       for (let i = 0; i < _examState.questions.length; i++) {
         if (!_examState.answers[i]) {
@@ -265,7 +433,7 @@
     }
 
     function _updateExamTimer() {
-      if (!_examBindingCurrent() || !_examState || document.getElementById('examResultado')) return;
+      if (!_examBindingCurrent() || !_examState || _examRevisionBlocked || document.getElementById('examResultado')) return;
       const restante = _examRestante();
       if (restante <= 0) { _examEsgotarTempo(); return; }
       const el = document.getElementById('examTimer');
@@ -281,6 +449,8 @@
       if (idx >= questions.length) { showExamResults(); return; }
       const q = questions[idx];
       const resposta = answers[idx];
+      const pendingRevision = _examNeedsCurrentRevision();
+      const revision = _examState.revisionViews?.[idx];
       const restante = _examRestante();
       const letras = ['A', 'B', 'C', 'D', 'E'];
 
@@ -295,8 +465,9 @@
           </header>
           <article class="nq-exam-questao">
             <h1 id="examQuestaoTitulo" tabindex="-1">Questão ${idx + 1} de ${questions.length}</h1>
+            ${_examRevisionHtml(revision, resposta?.answered === true)}
             <p class="nq-exam-enunciado">${escapeHtml(q.q)}</p>
-            ${resposta ? `
+            ${pendingRevision ? '' : resposta ? `
             <ol id="examOpts" class="nq-exam-opcoes" aria-label="Alternativas corrigidas">
               ${q.o.map((opt, i) => {
                 let marca = '', estado = '';
@@ -345,28 +516,38 @@
     }
 
     function _examAnswer(chosen) {
-      if (!_examBindingCurrent() || !_examState || _examState.answers[_examState.idx]) return;
-      const { questions, idx } = _examState;
+      if (!_examBindingCurrent() || !_examState || _examRevisionBlocked || _examState.answers[_examState.idx] || _examNeedsCurrentRevision()) return;
+      const prior = _examState;
+      const { questions, idx } = prior;
       const q = questions[idx];
       if (!Number.isInteger(chosen) || chosen < 0 || chosen >= q.o.length) return;
       const correct = chosen === q.a;
-      _examState.answers[idx] = {
+      const answers = [...prior.answers];
+      answers[idx] = {
         qId: q.id, correct, cat: q.c || 'geral', chosen, answered: true,
         authoredChoice: window.NQAnswers ? window.NQAnswers.originalIndex(q, chosen) : chosen,
         optionId: window.NQAnswers ? window.NQAnswers.optionId(q, chosen) : null
       };
-      if (typeof trackQuestionAnswer === 'function') {
-        trackQuestionAnswer(q, correct, 0);
+      _examState = { ...prior, answers };
+      if (!_saveExamState()) {
+        _examState = prior;
+        _examRevisionHold('Não foi possível salvar esta resposta. Ela não foi contabilizada.'); return;
       }
-      _saveExamState();
+      _examState.readOnlyResult = false;
+      if (typeof trackQuestionAnswer === 'function') trackQuestionAnswer(q, correct, 0);
       showExamQuestion();
       _examFocar('#examCorrecao');
     }
 
     function _examNext() {
-      if (!_examBindingCurrent() || !_examState) return;
-      _examState.idx++;
-      _saveExamState();
+      if (!_examBindingCurrent() || !_examState || _examRevisionBlocked || _examState.idx >= _examState.questions.length || _examNeedsCurrentRevision()) return;
+      const prior = _examState;
+      _examState = { ...prior, idx: prior.idx + 1 };
+      if (!_saveExamState()) {
+        _examState = prior;
+        _examRevisionHold('Não foi possível salvar o avanço da prova.'); return;
+      }
+      _examState.readOnlyResult = false;
       if (_examState.idx >= _examState.questions.length) { showExamResults(); }
       else { showExamQuestion(); _examFocar('#examQuestaoTitulo'); }
     }
@@ -385,19 +566,20 @@
     }
 
     function _examConfirmarSaida() {
-      _clearExamState();
+      if (!_clearExamState()) { _examRevisionHold('Não foi possível descartar a prova salva.'); return; }
       _examFechar();
     }
 
     function _examSairDepois() {
-      _saveExamState();
+      if (!_saveExamState()) { _examRevisionHold('Não foi possível salvar a prova antes de sair.'); return; }
       _examFechar();
     }
 
     // ── Resultado ─────────────────────────────────────────────────────────
     function showExamResults() {
+      if (!_examState || !_examBindingCurrent() || _examRevisionBlocked) return;
       if (_examState.timerInterval) clearInterval(_examState.timerInterval);
-      _clearExamState();
+      if (!_examState.readOnlyResult) _clearExamState();
       const pagina = document.getElementById('examPage') || _examPagina();
       const { questions, answers, startTime, tempoEsgotado } = _examState;
       const elapsed = Math.min(EXAM_DURATION_SEC, Math.floor((Date.now() - startTime) / 1000));
@@ -431,6 +613,7 @@
         }).join('');
 
       const letras = ['A','B','C','D','E'];
+      const historicalViews = _examState.revisionViews?.filter((view, i) => view.historical && answers[i]?.answered) || [];
       const erros = questions.map((q, i) => ({q, ans: answers[i]})).filter(({ans}) => ans && ans.answered && !ans.correct);
       const mensagem = totalAnswered === 0 ? 'Nenhuma questão foi respondida.'
         : pct>=70?'Excelente! Aprovado com distinção.':pct>=60?'Aprovado! Continue estudando para aperfeiçoar.':pct>=40?'Abaixo da média. Revise as categorias com menor acerto.':'Resultado insuficiente. Use o Modo de Estudo para reforçar.';
@@ -438,6 +621,7 @@
       pagina.innerHTML = `
         <div class="nq-study-content" id="examResultado">
           <h1 id="examResultadoTitulo" tabindex="-1">Resultado da Prova</h1>
+          ${historicalViews.map(view => _examRevisionHtml(view, true)).join('')}
           ${tempoEsgotado ? `<p class="nq-exam-aviso">O tempo de ${EXAM_DURATION_SEC / 60} minutos terminou. ${semResposta} ${semResposta === 1 ? 'questão ficou' : 'questões ficaram'} sem resposta.</p>` : ''}
           <dl class="nq-study-result-metrics">
             <div><dt>Acerto nas respondidas</dt><dd>${pct}%</dd></div>
@@ -466,7 +650,7 @@
     }
 
     function _finishExam() {
-      _clearExamState();
+      if (!_examState?.readOnlyResult) _clearExamState();
       _examFechar();
     }
 
@@ -476,5 +660,8 @@
         if (_examState?.timerInterval) clearInterval(_examState.timerInterval);
         _examState = null;
         _examProgressBinding = null;
+        _examJourneyBinding = null;
+        _examRequestToken++;
+        _examRevisionBlocked = false;
       }
     });

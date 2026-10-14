@@ -1,0 +1,831 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 56509,
+  "sourceReportSHA256": "e5414faa0c7f65710dd7a109ab8587647a31e3a307df9a00f07db29f4043392a",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "NQ_INDEPENDENT_FORMAL_PEER_BACKFILL_v2",
+    "reviewer": "clinical_peer_initial_backfill, independent clinical reading",
+    "batch": "b001",
+    "verifiedAtOfficialUTC": "2026-10-13 16:42:11 UTC",
+    "timestampQualification": "Official clock tool. Raw host clock known approximately3h behind; not used or corrected.",
+    "reviewMode": "Independent peer of exact author AFTER and cards; original primary texts/records plus explicitly authorized public retrieval; no inherited author gate.",
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "publishedTechnicalMerge": "135899077669af6dcf564717833227828ba03fe5",
+    "clinicalCheckoutObserved": "nefroquest-clinical-13 / candidate16.11 / supplied HEAD1db4a28; not independently mutated or QA tested",
+    "authorReport": {
+      "path": "docs/editorial/reviews/2026-10-12/group-b-output-001.json",
+      "bytes": 139883,
+      "sha256": "f9abc070cada27be5a60140d3f84d40ac13eaa94ba2b0e678aa53b247e096552"
+    },
+    "portableAuthorReport": {
+      "path": "docs/editorial/reviews/2026-10-12/group-b-output-001.json",
+      "bytes": 142640,
+      "sha256": "7e04078d999f603377c9ec3d67d4e8dff1dfe4402b52d9147cd7e7dbdaf6132b"
+    },
+    "originInput": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 17389,
+      "sha256": "804d94fcebf575145479efd2da3b1c6e373a97c42c5b2ec410112c782663182f"
+    },
+    "scopePin": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 2410,
+      "sha256": "cb9c7ca8cb52a14407ea72444fe8c6d28f9be2fe80f1972e6ec3e907cb55ad2a"
+    },
+    "normativeSources": [
+      {
+        "path": "AGENTS.md",
+        "bytes": 15910,
+        "sha256": "123d3bf57a43e23dd21adb277295bfbaa8a0d46dccb584f12265396abe4dfe83"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 11714,
+        "sha256": "65972c80bb1ac7afc0f1ccca6849c6b2d4812af0f0789b1dcf30c5d17bd9b5ff"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      }
+    ],
+    "medicalEvidenceSkill": {
+      "packages": [
+        "c31/instructions",
+        "c32/verified-medical-answer"
+      ],
+      "read": true,
+      "publicScientificAuthorization": "Explicit user2026-10-13: autorizo sim, sempre pode consultar fontes científicas - DEVE consultar; parent relayed transcript. Public reading/download only, no login or data upload."
+    },
+    "sourceProof": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 13289,
+      "sha256": "8e8616275abeffdb34d16ea994ae1b20b977ed31f1d17b9657d9fd198794ff0f"
+    },
+    "summaryTable": [
+      {
+        "qid": "66905ee2",
+        "OP": "Reconhecer risco renal e recorrência heterogênea de C3G/IC-MPGN primária sem aplicar taxa universal.",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "verdictV2": "revisão maior",
+        "publicationAuthorization": "BLOQUEADA",
+        "score": 18,
+        "eliminatorTriggered": false
+      }
+    ],
+    "questions": [
+      {
+        "qid": "66905ee2",
+        "sourceLine": 679,
+        "BEFORE": {
+          "t": "C3G e IC-MPGN — Prognóstico e Recorrência",
+          "qid": "66905ee2",
+          "q": "Qual afirmação resume melhor o prognóstico renal e o risco de recorrência pós-transplante em C3G e IC-MPGN primária?",
+          "opts": [
+            "São doenças geralmente benignas: progressão para falência renal e recorrência pós-transplante são raras",
+            "Têm risco relevante de progressão para falência renal; após transplante, a recorrência é particularmente comum na C3G e mais variável na IC-MPGN primária",
+            "A recorrência pós-transplante é impossível porque a doença fica restrita ao rim nativo",
+            "O prognóstico é definido apenas pela antiga classe histológica da MPGN, sem relação com complemento, proteinúria ou causa subjacente"
+          ],
+          "ans": 1,
+          "exp": "A melhor resposta é a alternativa B. C3G e IC-MPGN primária não devem ser ensinadas como doenças benignas: ambas podem evoluir com perda progressiva de função renal, especialmente quando há proteinúria importante, redução de TFG ou atividade persistente do complemento. No transplante, a recorrência é uma preocupação real, particularmente na C3G, porque a desregulação sistêmica do complemento pode persistir após a troca do rim; na IC-MPGN primária o risco é mais heterogêneo e depende da causa/imunopatogênese subjacente. Por isso, números únicos e absolutos não devem ser generalizados para todo o espectro C3G/IC-MPGN. As demais alternativas minimizam o risco, negam a recorrência ou reduzem indevidamente o prognóstico a uma classe histológica antiga.",
+          "diff": "medium",
+          "cat": "glomerular",
+          "refs": [
+            "kdigo_gn",
+            "c3g_consensus",
+            "c3g_servais"
+          ]
+        },
+        "beforeQuestionSHA256": "f8d2384c6e9e7aa03587e972a87ed1fbfbf84561e341ab3a1365a2eb136a8c5c",
+        "AFTER": {
+          "t": "C3G e IC-MPGN — Prognóstico e Recorrência",
+          "qid": "66905ee2",
+          "q": "Qual afirmação resume melhor o prognóstico renal e o risco de recorrência pós-transplante em C3G e IC-MPGN primária?",
+          "opts": [
+            "O risco de falência renal é baixo em ambas; o transplante modifica pouco esse prognóstico.",
+            "O risco de falência renal é relevante; a recorrência é comum na C3G e variável na IC-MPGN.",
+            "O risco de falência renal é relevante; a recorrência no enxerto depende apenas da imunossupressão.",
+            "O risco de falência renal é definido pelo antigo subtipo de GNMP; a etiologia pouco contribui."
+          ],
+          "ans": 1,
+          "exp": "C3G e IC-MPGN primária podem evoluir com perda progressiva de função renal. A recorrência no enxerto é preocupação relevante, particularmente na C3G, pois a desregulação do complemento pode persistir após o transplante. Na IC-MPGN primária, a heterogeneidade de causa e imunopatogênese impede atribuir uma taxa única a todo o grupo. A avaliação integra etiologia, proteinúria, função renal e curso clínico; o antigo subtipo morfológico de GNMP não resume esse risco.",
+          "diff": "medium",
+          "cat": "glomerular",
+          "refs": [
+            "kdigo_gn",
+            "c3g_consensus"
+          ]
+        },
+        "afterQuestionSHA256": "b5707b609ca4d36c8c221e7bfc30853dbe016e1141b025f2ed8217aa1b471ebd",
+        "authorAfterQuestionSHA256": "47e6bf3925b2e346c2a77dbd55312dbe943d543dc369461c48988a6254559ecf",
+        "exactAfterPreserved": true,
+        "reviewObject": "Author AFTER literal plus exact reference cards; no new replacement version evaluated.",
+        "verdictV2": "revisão maior",
+        "legacyAuxiliary": "REESCREVER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4Regra7: VERIFICADA/NENHUMA, revisão maior => BLOQUEADA.",
+        "OP": "Reconhecer risco renal e recorrência heterogênea de C3G/IC-MPGN primária sem aplicar taxa universal.",
+        "classification": {
+          "primaryCompetence": "prognóstico",
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "intermediária",
+          "targetProfile": "estudantes avançados e residentes, pt-BR",
+          "observedPhysicalDiff": "medium",
+          "classificationOnly": true
+        },
+        "caseReconstruction": {
+          "populationContextAndDecisiveData": "Comparação qualitativa de prognóstico nativo/transplante; não pede porcentagem única.",
+          "decision": "Reconhecer risco renal e recorrência heterogênea de C3G/IC-MPGN primária sem aplicar taxa universal.",
+          "temporalHorizon": "O especificado no AFTER literal; não extrapolado para outra população ou momento.",
+          "hiddenAssumptions": "Nenhum dado ausente completado silenciosamente; limitações de fonte e interpretação constam nos achados."
+        },
+        "justification": "KDIGO capítulo8 distingue padrão GNMP de etiologia e define IC idiopática após investigação extensa. Pickering2013 confirma recorrência de C3G em pequenas séries. A coorte2016 inclui grupos mistos e investigação etiológica incompleta: sua taxa agregada não representa toda IC primária. O abstract da coorte2023 também distingue causas. A revisão original2026 explica a heterogeneidade das definições e da vigilância por biópsia. O conjunto sustenta a comparação qualitativa do AFTER, sem certificar uma taxa universal ou atribuir a tabela de uma revisão ao corpo da coorte não obtido. Risco baixo em ambas, recorrência determinada apenas pela imunossupressão e prognóstico definido apenas pelo subtipo morfológico não são defensáveis. A ciência foi lida independentemente; o frame autoral ainda chama esta proposta de rascunho e precisa de conciliação editorial.",
+        "findings": [
+          {
+            "severity": "MAIOR",
+            "problem": "O relatório canônico denomina a proposta rascunho não implementável. Confirmação científica nova não converte silenciosamente esse frame em versão final."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "Cardsexatos antigos cobrem classificação/C3G; uma referência contemporânea específica melhor localiza a síntese prognóstica, com limites de etiologia e biópsia."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "No card KDIGO literal, qualificar DDD como subtipo de C3G e distinguir C3GN/DDD; reparo do card exige gate da nova versão. A fonte original resolve a classificação; não é fonte ausente."
+          },
+          {
+            "severity": "MENOR",
+            "problem": "O card de consenso mantém badge REVIEW legado. O contrato atual possui CONSENSUS; reparar somente em nova versão de card com gate, sem herdar liberação por manutenção de gênero."
+          }
+        ],
+        "advogadoDoRecurso": {
+          "result": "Argumento plausível: resolução obrigatória antes de aprovação",
+          "analysis": "O objeto científico qualitativo é defensável; o objeto editorial permanece enquadrado explicitamente como rascunho. Conciliar e submeter a versão final identificada ao gate, sem presumir publicação pelo novo acesso à fonte.",
+          "sourceAccessLimitationKeptSeparate": true
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "Referência não sustenta gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização relevante": false
+          },
+          "triggered": [],
+          "scoreAnnulled": false,
+          "unconfirmedCriterion2": false,
+          "rationale": "Falta de acesso à fonte gera teto no passo0, não se fabrica prova de referência falsa. Somente defeitos demonstrados constam como disparados."
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 1,
+            "Referências": 1,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "provisionalDimensionSum": 18,
+          "total": 18,
+          "band": "Excelente",
+          "scoreAnnulled": false,
+          "override": "Teto de evidência/pendência, recurso ou eliminatório prevalece sobre nota; dimensões explicitadas, sem nota liberar fonte ausente."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA; avaliação normal permitida",
+          "step1": "Nenhum eliminatório comprovado",
+          "step2": "O objeto científico qualitativo é defensável; o objeto editorial permanece enquadrado explicitamente como rascunho. Conciliar e submeter a versão final identificada ao gate, sem presumir publicação pelo novo acesso à fonte.",
+          "step3": "18/20 antes de overrides",
+          "result": "revisão maior",
+          "lifecycle": "em_revisão",
+          "qualification": "Estado editorial proposto; nenhum deploy, publicação ou banco alterado."
+        },
+        "validity": {
+          "content": "KDIGO capítulo8 distingue padrão GNMP de etiologia e define IC idiopática após investigação extensa. Pickering2013 confirma recorrência de C3G em pequenas séries. A coorte2016 inclui grupos mistos e investigação etiológica incompleta: sua taxa agregada não representa toda IC primária. O abstract da coorte2023 também distingue causas. A revisão original2026 explica a heterogeneidade das definições e da vigilância por biópsia. O conjunto sustenta a comparação qualitativa do AFTER, sem certificar uma taxa universal ou atribuir a tabela de uma revisão ao corpo da coorte não obtido. Risco baixo em ambas, recorrência determinada apenas pela imunossupressão e prognóstico definido apenas pelo subtipo morfológico não são defensáveis. A ciência foi lida independentemente; o frame autoral ainda chama esta proposta de rascunho e precisa de conciliação editorial.",
+          "construct": "O OP exige Compreender; dificuldade intermediária classificada independentemente.",
+          "response": "Alternativas testadas contra dados expressos; sem dados psicométricos ou produçãoQA.",
+          "consequential": "Limites de população, segurança e evidência mantidos; autorização de implementação derivada, não presumida.",
+          "alignmentAllFive": true,
+          "objectiveDrift": false
+        },
+        "duplicateAssessment": {
+          "dimensions": [
+            "decisão",
+            "estrutura de dados",
+            "perfil-alvo",
+            "língua"
+          ],
+          "result": "Não se declara fusão por associação temática. Este parecer não adjudica qids fora da ownership.",
+          "bankWideDuplicateSearchPerformed": false,
+          "limitation": "Apenas repetição literal dos AFTER selecionados é testada; ausência de duplicidade em todo banco não é alegada."
+        },
+        "claimsVerified": [
+          {
+            "sourceId": "gn_initial_b",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 11320223,
+              "sha256": "8ed871ec098c7eba1cfb0ff6bf2355a6c422166b2691aac138f0273307b2acff"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 89078,
+              "sha256": "f17d4fffb59f410d54650fd31e533628966cf4eccd849dacf7833dea93dd784d"
+            },
+            "finding": "KDIGO capítulo8 distingue padrão GNMP de etiologia e define IC idiopática após investigação extensa. Pickering2013 confirma recorrência de C3G em pequenas séries. A coorte2016 inclui grupos mistos e investigação etiológica incompleta: sua taxa agregada não representa toda IC primária. O abstract da coorte2023 também distingue causas. A revisão original2026 explica a heterogeneidade das definições e da vigilância por biópsia. O conjunto sustenta a comparação qualitativa do AFTER, sem certificar uma taxa universal ou atribuir a tabela de uma revisão ao corpo da coorte não obtido. Risco baixo em ambas, recorrência determinada apenas pela imunossupressão e prognóstico definido apenas pelo subtipo morfológico não são defensáveis. A ciência foi lida independentemente; o frame autoral ainda chama esta proposta de rascunho e precisa de conciliação editorial.",
+            "independentlyRead": true,
+            "newExternalRetrieval": false
+          },
+          {
+            "sourceId": "c3_initial_b",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 93706,
+              "sha256": "59ef4bcaa319c61bdef5f560dec6a9da01eed60918652f4e14c2b3549970cca9"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 93784,
+              "sha256": "0fa82e5f857af369a396c762158cee5bba4f5ac66440d7d941ad1b76a97f528a"
+            },
+            "finding": "KDIGO capítulo8 distingue padrão GNMP de etiologia e define IC idiopática após investigação extensa. Pickering2013 confirma recorrência de C3G em pequenas séries. A coorte2016 inclui grupos mistos e investigação etiológica incompleta: sua taxa agregada não representa toda IC primária. O abstract da coorte2023 também distingue causas. A revisão original2026 explica a heterogeneidade das definições e da vigilância por biópsia. O conjunto sustenta a comparação qualitativa do AFTER, sem certificar uma taxa universal ou atribuir a tabela de uma revisão ao corpo da coorte não obtido. Risco baixo em ambas, recorrência determinada apenas pela imunossupressão e prognóstico definido apenas pelo subtipo morfológico não são defensáveis. A ciência foi lida independentemente; o frame autoral ainda chama esta proposta de rascunho e precisa de conciliação editorial.",
+            "independentlyRead": true,
+            "newExternalRetrieval": false
+          },
+          {
+            "sourceId": "mpgn2016_initial_b",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 78639,
+              "sha256": "986e0d7e62ec9dcf1a5ee6442c85a5cd62deeb08f978e561769ff9036cf32094"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 78671,
+              "sha256": "5608ea68279d846954b2181c7d4f4fb179196afed91f5d5f17f11cc94e108001"
+            },
+            "finding": "KDIGO capítulo8 distingue padrão GNMP de etiologia e define IC idiopática após investigação extensa. Pickering2013 confirma recorrência de C3G em pequenas séries. A coorte2016 inclui grupos mistos e investigação etiológica incompleta: sua taxa agregada não representa toda IC primária. O abstract da coorte2023 também distingue causas. A revisão original2026 explica a heterogeneidade das definições e da vigilância por biópsia. O conjunto sustenta a comparação qualitativa do AFTER, sem certificar uma taxa universal ou atribuir a tabela de uma revisão ao corpo da coorte não obtido. Risco baixo em ambas, recorrência determinada apenas pela imunossupressão e prognóstico definido apenas pelo subtipo morfológico não são defensáveis. A ciência foi lida independentemente; o frame autoral ainda chama esta proposta de rascunho e precisa de conciliação editorial.",
+            "independentlyRead": true,
+            "newExternalRetrieval": true
+          },
+          {
+            "sourceId": "mpgn2023_abstract_initial_b",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 90056,
+              "sha256": "995a0d7584e84f3b8229d320c2d3efd98535de5b5f7038930ff39a3b59eee38f"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 90060,
+              "sha256": "d7c25e1c3b930f835d24296dcf825c8316ea724c44efd532d81c0ee4ff4d7cbe"
+            },
+            "finding": "KDIGO capítulo8 distingue padrão GNMP de etiologia e define IC idiopática após investigação extensa. Pickering2013 confirma recorrência de C3G em pequenas séries. A coorte2016 inclui grupos mistos e investigação etiológica incompleta: sua taxa agregada não representa toda IC primária. O abstract da coorte2023 também distingue causas. A revisão original2026 explica a heterogeneidade das definições e da vigilância por biópsia. O conjunto sustenta a comparação qualitativa do AFTER, sem certificar uma taxa universal ou atribuir a tabela de uma revisão ao corpo da coorte não obtido. Risco baixo em ambas, recorrência determinada apenas pela imunossupressão e prognóstico definido apenas pelo subtipo morfológico não são defensáveis. A ciência foi lida independentemente; o frame autoral ainda chama esta proposta de rascunho e precisa de conciliação editorial.",
+            "independentlyRead": true,
+            "newExternalRetrieval": false
+          },
+          {
+            "sourceId": "mpgn2026_initial_b",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 128859,
+              "sha256": "1205d56caedbf7342c302f6989013c7122a6bc8a7bc06c73209f7a385a881ace"
+            },
+            "independentTextPin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 128864,
+              "sha256": "6d9dd174775430ce3ae484c7c65977f283dced231d1de7f25786d62241909a27"
+            },
+            "finding": "KDIGO capítulo8 distingue padrão GNMP de etiologia e define IC idiopática após investigação extensa. Pickering2013 confirma recorrência de C3G em pequenas séries. A coorte2016 inclui grupos mistos e investigação etiológica incompleta: sua taxa agregada não representa toda IC primária. O abstract da coorte2023 também distingue causas. A revisão original2026 explica a heterogeneidade das definições e da vigilância por biópsia. O conjunto sustenta a comparação qualitativa do AFTER, sem certificar uma taxa universal ou atribuir a tabela de uma revisão ao corpo da coorte não obtido. Risco baixo em ambas, recorrência determinada apenas pela imunossupressão e prognóstico definido apenas pelo subtipo morfológico não são defensáveis. A ciência foi lida independentemente; o frame autoral ainda chama esta proposta de rascunho e precisa de conciliação editorial.",
+            "independentlyRead": true,
+            "newExternalRetrieval": true
+          }
+        ],
+        "referenceBindings": [
+          {
+            "id": "kdigo_gn",
+            "exactCardSHA256": "b1fe282818bf14d588ddd8bd0fb07a6faa5bd8dacbed27c198907bad394f53ae",
+            "bindingKey": "66905ee2::kdigo_gn",
+            "bindingOrigin": {
+              "kind": "Literal author formal referenceCards of this qid",
+              "pathPin": {
+                "path": "docs/editorial/reviews/2026-10-12/group-b-output-001.json",
+                "bytes": 139883,
+                "sha256": "f9abc070cada27be5a60140d3f84d40ac13eaa94ba2b0e678aa53b247e096552"
+              },
+              "qid": "66905ee2",
+              "id": "kdigo_gn"
+            }
+          },
+          {
+            "id": "c3g_consensus",
+            "exactCardSHA256": "402d894b56913fe1bda2e26efc8fef81a543434763347abf8cb747f2bc928e99",
+            "bindingKey": "66905ee2::c3g_consensus",
+            "bindingOrigin": {
+              "kind": "Literal author formal referenceCards of this qid",
+              "pathPin": {
+                "path": "docs/editorial/reviews/2026-10-12/group-b-output-001.json",
+                "bytes": 139883,
+                "sha256": "f9abc070cada27be5a60140d3f84d40ac13eaa94ba2b0e678aa53b247e096552"
+              },
+              "qid": "66905ee2",
+              "id": "c3g_consensus"
+            }
+          }
+        ],
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR: requer nova versão e novo full gate; não há replacement liberado neste parecer",
+          "BEFORE": {
+            "t": "C3G e IC-MPGN — Prognóstico e Recorrência",
+            "qid": "66905ee2",
+            "q": "Qual afirmação resume melhor o prognóstico renal e o risco de recorrência pós-transplante em C3G e IC-MPGN primária?",
+            "opts": [
+              "São doenças geralmente benignas: progressão para falência renal e recorrência pós-transplante são raras",
+              "Têm risco relevante de progressão para falência renal; após transplante, a recorrência é particularmente comum na C3G e mais variável na IC-MPGN primária",
+              "A recorrência pós-transplante é impossível porque a doença fica restrita ao rim nativo",
+              "O prognóstico é definido apenas pela antiga classe histológica da MPGN, sem relação com complemento, proteinúria ou causa subjacente"
+            ],
+            "ans": 1,
+            "exp": "A melhor resposta é a alternativa B. C3G e IC-MPGN primária não devem ser ensinadas como doenças benignas: ambas podem evoluir com perda progressiva de função renal, especialmente quando há proteinúria importante, redução de TFG ou atividade persistente do complemento. No transplante, a recorrência é uma preocupação real, particularmente na C3G, porque a desregulação sistêmica do complemento pode persistir após a troca do rim; na IC-MPGN primária o risco é mais heterogêneo e depende da causa/imunopatogênese subjacente. Por isso, números únicos e absolutos não devem ser generalizados para todo o espectro C3G/IC-MPGN. As demais alternativas minimizam o risco, negam a recorrência ou reduzem indevidamente o prognóstico a uma classe histológica antiga.",
+            "diff": "medium",
+            "cat": "glomerular",
+            "refs": [
+              "kdigo_gn",
+              "c3g_consensus",
+              "c3g_servais"
+            ]
+          },
+          "AFTER": {
+            "t": "C3G e IC-MPGN — Prognóstico e Recorrência",
+            "qid": "66905ee2",
+            "q": "Qual afirmação resume melhor o prognóstico renal e o risco de recorrência pós-transplante em C3G e IC-MPGN primária?",
+            "opts": [
+              "O risco de falência renal é baixo em ambas; o transplante modifica pouco esse prognóstico.",
+              "O risco de falência renal é relevante; a recorrência é comum na C3G e variável na IC-MPGN.",
+              "O risco de falência renal é relevante; a recorrência no enxerto depende apenas da imunossupressão.",
+              "O risco de falência renal é definido pelo antigo subtipo de GNMP; a etiologia pouco contribui."
+            ],
+            "ans": 1,
+            "exp": "C3G e IC-MPGN primária podem evoluir com perda progressiva de função renal. A recorrência no enxerto é preocupação relevante, particularmente na C3G, pois a desregulação do complemento pode persistir após o transplante. Na IC-MPGN primária, a heterogeneidade de causa e imunopatogênese impede atribuir uma taxa única a todo o grupo. A avaliação integra etiologia, proteinúria, função renal e curso clínico; o antigo subtipo morfológico de GNMP não resume esse risco.",
+            "diff": "medium",
+            "cat": "glomerular",
+            "refs": [
+              "kdigo_gn",
+              "c3g_consensus"
+            ]
+          },
+          "correctAnswer": {
+            "canonicalIndex": 1,
+            "canonicalLetter": "B",
+            "text": "O risco de falência renal é relevante; a recorrência é comum na C3G e variável na IC-MPGN."
+          },
+          "referenceCards": {
+            "kdigo_gn": {
+              "label": "KDIGO Glomerular Diseases 2021",
+              "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+              "journal": "Kidney Int 2021;100(4S):S1-S276",
+              "ano": 2021,
+              "tipo": "Diretriz Internacional",
+              "badge": "GUIDELINE",
+              "badgeColor": "#6366f1",
+              "impacto": "Referência global para diagnóstico e tratamento das glomerulopatias",
+              "icon": "📋",
+              "resumo": "KDIGO 2021, capítulo 8: a GNMP é um padrão de lesão, não uma etiologia. GN mediada por imunocomplexos exige investigação de infecção, autoimunidade e gamopatia; casos sem causa após investigação extensa são idiopáticos. Distingue C3G e doença de depósitos densos pela imunofluorescência e microscopia eletrônica. Os capítulos atualizados de ANCA, lúpus e IgAN devem ser consultados em suas versões próprias.",
+              "conclusao": "Atribuir a etiologia após investigação adequada; não definir IC-MPGN primária apenas pelo padrão morfológico.",
+              "curiosidade": ""
+            },
+            "c3g_consensus": {
+              "label": "Pickering MC et al. — C3 Glomerulopathy Consensus (Kidney Int 2013)",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+              "journal": "Kidney Int 2013;84(6):1079-1089",
+              "ano": 2013,
+              "tipo": "Consenso clínico",
+              "badge": "REVIEW",
+              "badgeColor": "#8b5cf6",
+              "impacto": "Integra C3 dominante, ultraestrutura e curso clínico no diagnóstico de C3G.",
+              "icon": "🔬",
+              "resumo": "Consenso internacional de 2013 sobre definição histopatológica e investigação de C3G. Distingue depósitos intramembranosos muito densos da doença de depósitos densos dos depósitos da C3GN. A recuperação de C3 em 8–12 semanas apoia o curso pós-infeccioso; persistência exige reconsideração diagnóstica. Descreve C3NeF como autoanticorpo estabilizador da convertase e reconhece recorrência no enxerto. É consenso, não ensaio de tratamento.",
+              "conclusao": "C3 dominante e C3NeF isolados não substituem integração morfológica e clínica; acompanhar o complemento evita confundir GN pós-infecciosa e C3G.",
+              "curiosidade": ""
+            }
+          },
+          "suggestedWork": "Conciliar o frame rascunho com revisão autoral formal atual do AFTER/cards corretos; se acrescentar card de coorte/revisão contemporânea, novo gate do card e vínculo exato. Não aplicar taxa agregada a toda ICprimária.",
+          "replacementCreated": false,
+          "materialChangeRequiresNewFullGate": true
+        },
+        "implementationObservation": {
+          "productMutationAuthorizedHere": false,
+          "questionsOrCardsApplied": 0,
+          "preserve": [
+            "qid",
+            "histórico",
+            "FSRS",
+            "ordem do banco"
+          ],
+          "noBackendOrProductionQA": true,
+          "originIsSourceBank": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+          "currentQuestionIsNotAssumedNewClinicalDelta": true
+        },
+        "verificationPending": [],
+        "claimLedger": [
+          {
+            "field": "q",
+            "exactText": "Qual afirmação resume melhor o prognóstico renal e o risco de recorrência pós-transplante em C3G e IC-MPGN primária?",
+            "status": "VERIFICADA",
+            "qualification": "Dados fictícios do caso são premissas, não medidas de estudo; recomendações/desenho dependem dos sources abaixo."
+          },
+          {
+            "field": "correctAnswer",
+            "exactText": "O risco de falência renal é relevante; a recorrência é comum na C3G e variável na IC-MPGN.",
+            "status": "VERIFICADA",
+            "qualification": "KDIGO capítulo8 distingue padrão GNMP de etiologia e define IC idiopática após investigação extensa. Pickering2013 confirma recorrência de C3G em pequenas séries. A coorte2016 inclui grupos mistos e investigação etiológica incompleta: sua taxa agregada não representa toda IC primária. O abstract da coorte2023 também distingue causas. A revisão original2026 explica a heterogeneidade das definições e da vigilância por biópsia. O conjunto sustenta a comparação qualitativa do AFTER, sem certificar uma taxa universal ou atribuir a tabela de uma revisão ao corpo da coorte não obtido. Risco baixo em ambas, recorrência determinada apenas pela imunossupressão e prognóstico definido apenas pelo subtipo morfológico não são defensáveis. A ciência foi lida independentemente; o frame autoral ainda chama esta proposta de rascunho e precisa de conciliação editorial."
+          },
+          {
+            "field": "exp",
+            "exactText": "C3G e IC-MPGN primária podem evoluir com perda progressiva de função renal. A recorrência no enxerto é preocupação relevante, particularmente na C3G, pois a desregulação do complemento pode persistir após o transplante. Na IC-MPGN primária, a heterogeneidade de causa e imunopatogênese impede atribuir uma taxa única a todo o grupo. A avaliação integra etiologia, proteinúria, função renal e curso clínico; o antigo subtipo morfológico de GNMP não resume esse risco.",
+            "status": "VERIFICADA",
+            "qualification": "KDIGO capítulo8 distingue padrão GNMP de etiologia e define IC idiopática após investigação extensa. Pickering2013 confirma recorrência de C3G em pequenas séries. A coorte2016 inclui grupos mistos e investigação etiológica incompleta: sua taxa agregada não representa toda IC primária. O abstract da coorte2023 também distingue causas. A revisão original2026 explica a heterogeneidade das definições e da vigilância por biópsia. O conjunto sustenta a comparação qualitativa do AFTER, sem certificar uma taxa universal ou atribuir a tabela de uma revisão ao corpo da coorte não obtido. Risco baixo em ambas, recorrência determinada apenas pela imunossupressão e prognóstico definido apenas pelo subtipo morfológico não são defensáveis. A ciência foi lida independentemente; o frame autoral ainda chama esta proposta de rascunho e precisa de conciliação editorial."
+          },
+          {
+            "field": "referenceCard.kdigo_gn.label",
+            "exactText": "KDIGO Glomerular Diseases 2021",
+            "status": "VERIFICADA",
+            "qualification": "Original Chapter8 actually192–196confirms IF/pathogenesis/workup/idiopathic/C3GvsDDD; Chapter1/FSGSalsoindependentlyread for question. Each qid literal version checked separately; no shared registry overwrite or genre repair authorizes clinical integration."
+          },
+          {
+            "field": "referenceCard.kdigo_gn.url",
+            "exactText": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+            "status": "VERIFICADA",
+            "qualification": "Original Chapter8 actually192–196confirms IF/pathogenesis/workup/idiopathic/C3GvsDDD; Chapter1/FSGSalsoindependentlyread for question. Each qid literal version checked separately; no shared registry overwrite or genre repair authorizes clinical integration."
+          },
+          {
+            "field": "referenceCard.kdigo_gn.journal",
+            "exactText": "Kidney Int 2021;100(4S):S1-S276",
+            "status": "VERIFICADA",
+            "qualification": "Original Chapter8 actually192–196confirms IF/pathogenesis/workup/idiopathic/C3GvsDDD; Chapter1/FSGSalsoindependentlyread for question. Each qid literal version checked separately; no shared registry overwrite or genre repair authorizes clinical integration."
+          },
+          {
+            "field": "referenceCard.kdigo_gn.ano",
+            "exactText": 2021,
+            "status": "VERIFICADA",
+            "qualification": "Original Chapter8 actually192–196confirms IF/pathogenesis/workup/idiopathic/C3GvsDDD; Chapter1/FSGSalsoindependentlyread for question. Each qid literal version checked separately; no shared registry overwrite or genre repair authorizes clinical integration."
+          },
+          {
+            "field": "referenceCard.kdigo_gn.tipo",
+            "exactText": "Diretriz Internacional",
+            "status": "VERIFICADA",
+            "qualification": "Original Chapter8 actually192–196confirms IF/pathogenesis/workup/idiopathic/C3GvsDDD; Chapter1/FSGSalsoindependentlyread for question. Each qid literal version checked separately; no shared registry overwrite or genre repair authorizes clinical integration."
+          },
+          {
+            "field": "referenceCard.kdigo_gn.impacto",
+            "exactText": "Referência global para diagnóstico e tratamento das glomerulopatias",
+            "status": "VERIFICADA",
+            "qualification": "Original Chapter8 actually192–196confirms IF/pathogenesis/workup/idiopathic/C3GvsDDD; Chapter1/FSGSalsoindependentlyread for question. Each qid literal version checked separately; no shared registry overwrite or genre repair authorizes clinical integration."
+          },
+          {
+            "field": "referenceCard.kdigo_gn.resumo",
+            "exactText": "KDIGO 2021, capítulo 8: a GNMP é um padrão de lesão, não uma etiologia. GN mediada por imunocomplexos exige investigação de infecção, autoimunidade e gamopatia; casos sem causa após investigação extensa são idiopáticos. Distingue C3G e doença de depósitos densos pela imunofluorescência e microscopia eletrônica. Os capítulos atualizados de ANCA, lúpus e IgAN devem ser consultados em suas versões próprias.",
+            "status": "VERIFICADA",
+            "qualification": "Original Chapter8 actually192–196confirms IF/pathogenesis/workup/idiopathic/C3GvsDDD; Chapter1/FSGSalsoindependentlyread for question. Each qid literal version checked separately; no shared registry overwrite or genre repair authorizes clinical integration."
+          },
+          {
+            "field": "referenceCard.kdigo_gn.conclusao",
+            "exactText": "Atribuir a etiologia após investigação adequada; não definir IC-MPGN primária apenas pelo padrão morfológico.",
+            "status": "VERIFICADA",
+            "qualification": "Original Chapter8 actually192–196confirms IF/pathogenesis/workup/idiopathic/C3GvsDDD; Chapter1/FSGSalsoindependentlyread for question. Each qid literal version checked separately; no shared registry overwrite or genre repair authorizes clinical integration."
+          },
+          {
+            "field": "referenceCard.kdigo_gn.curiosidade",
+            "exactText": "",
+            "status": "VERIFICADA",
+            "qualification": "Original Chapter8 actually192–196confirms IF/pathogenesis/workup/idiopathic/C3GvsDDD; Chapter1/FSGSalsoindependentlyread for question. Each qid literal version checked separately; no shared registry overwrite or genre repair authorizes clinical integration."
+          },
+          {
+            "field": "referenceCard.c3g_consensus.label",
+            "exactText": "Pickering MC et al. — C3 Glomerulopathy Consensus (Kidney Int 2013)",
+            "status": "VERIFICADA",
+            "qualification": "OriginalPickering2013fullbody confirms denseintramembranousDDvsC3GN,C3NeFstabilizesC3bBb,8–12wkpostinfectiousmonitoring and recurrence in small series. Exactcard avoids extrapolated percentages and labels consensus,notRCT."
+          },
+          {
+            "field": "referenceCard.c3g_consensus.url",
+            "exactText": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+            "status": "VERIFICADA",
+            "qualification": "OriginalPickering2013fullbody confirms denseintramembranousDDvsC3GN,C3NeFstabilizesC3bBb,8–12wkpostinfectiousmonitoring and recurrence in small series. Exactcard avoids extrapolated percentages and labels consensus,notRCT."
+          },
+          {
+            "field": "referenceCard.c3g_consensus.journal",
+            "exactText": "Kidney Int 2013;84(6):1079-1089",
+            "status": "VERIFICADA",
+            "qualification": "OriginalPickering2013fullbody confirms denseintramembranousDDvsC3GN,C3NeFstabilizesC3bBb,8–12wkpostinfectiousmonitoring and recurrence in small series. Exactcard avoids extrapolated percentages and labels consensus,notRCT."
+          },
+          {
+            "field": "referenceCard.c3g_consensus.ano",
+            "exactText": 2013,
+            "status": "VERIFICADA",
+            "qualification": "OriginalPickering2013fullbody confirms denseintramembranousDDvsC3GN,C3NeFstabilizesC3bBb,8–12wkpostinfectiousmonitoring and recurrence in small series. Exactcard avoids extrapolated percentages and labels consensus,notRCT."
+          },
+          {
+            "field": "referenceCard.c3g_consensus.tipo",
+            "exactText": "Consenso clínico",
+            "status": "VERIFICADA",
+            "qualification": "OriginalPickering2013fullbody confirms denseintramembranousDDvsC3GN,C3NeFstabilizesC3bBb,8–12wkpostinfectiousmonitoring and recurrence in small series. Exactcard avoids extrapolated percentages and labels consensus,notRCT."
+          },
+          {
+            "field": "referenceCard.c3g_consensus.impacto",
+            "exactText": "Integra C3 dominante, ultraestrutura e curso clínico no diagnóstico de C3G.",
+            "status": "VERIFICADA",
+            "qualification": "OriginalPickering2013fullbody confirms denseintramembranousDDvsC3GN,C3NeFstabilizesC3bBb,8–12wkpostinfectiousmonitoring and recurrence in small series. Exactcard avoids extrapolated percentages and labels consensus,notRCT."
+          },
+          {
+            "field": "referenceCard.c3g_consensus.resumo",
+            "exactText": "Consenso internacional de 2013 sobre definição histopatológica e investigação de C3G. Distingue depósitos intramembranosos muito densos da doença de depósitos densos dos depósitos da C3GN. A recuperação de C3 em 8–12 semanas apoia o curso pós-infeccioso; persistência exige reconsideração diagnóstica. Descreve C3NeF como autoanticorpo estabilizador da convertase e reconhece recorrência no enxerto. É consenso, não ensaio de tratamento.",
+            "status": "VERIFICADA",
+            "qualification": "OriginalPickering2013fullbody confirms denseintramembranousDDvsC3GN,C3NeFstabilizesC3bBb,8–12wkpostinfectiousmonitoring and recurrence in small series. Exactcard avoids extrapolated percentages and labels consensus,notRCT."
+          },
+          {
+            "field": "referenceCard.c3g_consensus.conclusao",
+            "exactText": "C3 dominante e C3NeF isolados não substituem integração morfológica e clínica; acompanhar o complemento evita confundir GN pós-infecciosa e C3G.",
+            "status": "VERIFICADA",
+            "qualification": "OriginalPickering2013fullbody confirms denseintramembranousDDvsC3GN,C3NeFstabilizesC3bBb,8–12wkpostinfectiousmonitoring and recurrence in small series. Exactcard avoids extrapolated percentages and labels consensus,notRCT."
+          },
+          {
+            "field": "referenceCard.c3g_consensus.curiosidade",
+            "exactText": "",
+            "status": "VERIFICADA",
+            "qualification": "OriginalPickering2013fullbody confirms denseintramembranousDDvsC3GN,C3NeFstabilizesC3bBb,8–12wkpostinfectiousmonitoring and recurrence in small series. Exactcard avoids extrapolated percentages and labels consensus,notRCT."
+          }
+        ],
+        "editorialPending": {
+          "nature": "MATERIAL",
+          "scientificGapNotAssumed": true,
+          "frame": "Canonical author explicitly calls this proposal rascunho; new science confirms central claim but does not silently turn it into final version",
+          "requires": "Reconcile author frame and full gate of final question/exact cards before integration"
+        },
+        "historicalImmutableQualification": "Independent prospective proposal judgment only; previous historical publication and author checkpoint unchanged. Reconcile before any integration.",
+        "normativeSevenVerdicts": [
+          "aprovada",
+          "aprovada com pequenos ajustes",
+          "revisão maior",
+          "reprovada",
+          "fundir",
+          "redirecionar",
+          "aposentar"
+        ]
+      }
+    ],
+    "cardReviews": [
+      {
+        "id": "kdigo_gn",
+        "bindingKey": "66905ee2::kdigo_gn",
+        "usedByQids": [
+          "66905ee2"
+        ],
+        "literalBindingOrigin": {
+          "kind": "Literal author formal referenceCards of this qid",
+          "pathPin": {
+            "path": "docs/editorial/reviews/2026-10-12/group-b-output-001.json",
+            "bytes": 139883,
+            "sha256": "f9abc070cada27be5a60140d3f84d40ac13eaa94ba2b0e678aa53b247e096552"
+          },
+          "qid": "66905ee2",
+          "id": "kdigo_gn"
+        },
+        "exactCard": {
+          "label": "KDIGO Glomerular Diseases 2021",
+          "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2021-Glomerular-Diseases-Guideline_English_2024-Chapter-Updates.pdf",
+          "journal": "Kidney Int 2021;100(4S):S1-S276",
+          "ano": 2021,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Referência global para diagnóstico e tratamento das glomerulopatias",
+          "icon": "📋",
+          "resumo": "KDIGO 2021, capítulo 8: a GNMP é um padrão de lesão, não uma etiologia. GN mediada por imunocomplexos exige investigação de infecção, autoimunidade e gamopatia; casos sem causa após investigação extensa são idiopáticos. Distingue C3G e doença de depósitos densos pela imunofluorescência e microscopia eletrônica. Os capítulos atualizados de ANCA, lúpus e IgAN devem ser consultados em suas versões próprias.",
+          "conclusao": "Atribuir a etiologia após investigação adequada; não definir IC-MPGN primária apenas pelo padrão morfológico.",
+          "curiosidade": ""
+        },
+        "exactCardSHA256": "b1fe282818bf14d588ddd8bd0fb07a6faa5bd8dacbed27c198907bad394f53ae",
+        "verdictV2": "aprovada com pequenos ajustes",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7 aplicada ao card exato, sem herdar autor.",
+        "reason": "Original Chapter8 actually192–196confirms IF/pathogenesis/workup/idiopathic/C3GvsDDD; Chapter1/FSGSalsoindependentlyread for question. Each qid literal version checked separately; no shared registry overwrite or genre repair authorizes clinical integration.",
+        "editorialFindings": [
+          {
+            "severity": "MENOR",
+            "field": "resumo",
+            "problem": "C3G é a categoria que inclui C3GN e doença de depósitos densos. A frase distingue C3G e DDD pode sugerir categorias mutuamente exclusivas; substituir por distingue C3GN e DDD dentro de C3G, pela ultraestrutura, em novo card com gate."
+          }
+        ],
+        "sourceReadings": [
+          {
+            "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+            "bytes": 11320223,
+            "sha256": "8ed871ec098c7eba1cfb0ff6bf2355a6c422166b2691aac138f0273307b2acff"
+          }
+        ],
+        "independentlyRead": true,
+        "newExternalRetrieval": false,
+        "changedOrApplied": false,
+        "scope": "Card literal vinculado; alterar qualquer campo exige nova avaliação da versão resultante."
+      },
+      {
+        "id": "c3g_consensus",
+        "bindingKey": "66905ee2::c3g_consensus",
+        "usedByQids": [
+          "66905ee2"
+        ],
+        "literalBindingOrigin": {
+          "kind": "Literal author formal referenceCards of this qid",
+          "pathPin": {
+            "path": "docs/editorial/reviews/2026-10-12/group-b-output-001.json",
+            "bytes": 139883,
+            "sha256": "f9abc070cada27be5a60140d3f84d40ac13eaa94ba2b0e678aa53b247e096552"
+          },
+          "qid": "66905ee2",
+          "id": "c3g_consensus"
+        },
+        "exactCard": {
+          "label": "Pickering MC et al. — C3 Glomerulopathy Consensus (Kidney Int 2013)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+          "journal": "Kidney Int 2013;84(6):1079-1089",
+          "ano": 2013,
+          "tipo": "Consenso clínico",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Integra C3 dominante, ultraestrutura e curso clínico no diagnóstico de C3G.",
+          "icon": "🔬",
+          "resumo": "Consenso internacional de 2013 sobre definição histopatológica e investigação de C3G. Distingue depósitos intramembranosos muito densos da doença de depósitos densos dos depósitos da C3GN. A recuperação de C3 em 8–12 semanas apoia o curso pós-infeccioso; persistência exige reconsideração diagnóstica. Descreve C3NeF como autoanticorpo estabilizador da convertase e reconhece recorrência no enxerto. É consenso, não ensaio de tratamento.",
+          "conclusao": "C3 dominante e C3NeF isolados não substituem integração morfológica e clínica; acompanhar o complemento evita confundir GN pós-infecciosa e C3G.",
+          "curiosidade": ""
+        },
+        "exactCardSHA256": "402d894b56913fe1bda2e26efc8fef81a543434763347abf8cb747f2bc928e99",
+        "verdictV2": "aprovada com pequenos ajustes",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7 aplicada ao card exato, sem herdar autor.",
+        "reason": "OriginalPickering2013fullbody confirms denseintramembranousDDvsC3GN,C3NeFstabilizesC3bBb,8–12wkpostinfectiousmonitoring and recurrence in small series. Exactcard avoids extrapolated percentages and labels consensus,notRCT.",
+        "editorialFindings": [
+          {
+            "severity": "MENOR",
+            "fields": [
+              "tipo",
+              "badge",
+              "badgeColor"
+            ],
+            "problem": "Fonte é consenso, corretamente descrita no conteúdo, mas badge REVIEW permanece legado. Contrato atual acrescentou CONSENSUS/#6366f1. Não migrar automaticamente; propor nova versão literal do card e avaliá-la antes de integração. A alteração de gênero não muda hierarquia, evidência ou autorização científica."
+          }
+        ],
+        "sourceReadings": [
+          {
+            "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+            "bytes": 93706,
+            "sha256": "59ef4bcaa319c61bdef5f560dec6a9da01eed60918652f4e14c2b3549970cca9"
+          }
+        ],
+        "independentlyRead": true,
+        "newExternalRetrieval": false,
+        "changedOrApplied": false,
+        "scope": "Card literal vinculado; alterar qualquer campo exige nova avaliação da versão resultante."
+      }
+    ],
+    "counts": {
+      "questions": 1,
+      "publication": {
+        "BLOQUEADA": 1
+      },
+      "verdicts": {
+        "revisão maior": 1
+      },
+      "evidence": {
+        "VERIFICADA": 1
+      },
+      "exactCards": 2,
+      "questionsOrCardsApplied": 0
+    },
+    "limits": [
+      "No Library materialization, Git mutation, commit/push/deploy, backend access, product patch, ID exclusion, FSRS reset or production16.09QA. Only public scientific reading/downloads explicitly authorized.",
+      "Ownership only missing peers from source scope; full card approvals do not imply approval of other associated qids.",
+      "Source proofs/raw/auxiliaries do not count as new questions.",
+      "Question/card AFTERs preserved literally. Changes proposed in prose remain unevaluated until a new full gate of the correct resulting object."
+    ],
+    "retrievalReceipts": [
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 2491,
+        "sha256": "57d8a6ee5aeef2cdc7f92addd1464d4a987ce887c342f7225ca8044d06d7bd9e"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1700,
+        "sha256": "5899a7f3481dbc5c893c1288c7a71e53ae2d2087acd93e70ebbd71ab95e48698"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 2919,
+        "sha256": "3c0c9471018ef2ebfe2368319c8b64fbd368da64b92053d4239cadeb9d8b11bd"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 2693,
+        "sha256": "026fc0dfb12a8dda338e56fbd9edf7ee8c00b9eb2837125f0d3a17a7841a2b02"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1085,
+        "sha256": "b290535676270ce1c01810edb072968b3acf1fc26e1ea771a72ebe8a78aa7a36"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 4373,
+        "sha256": "0bbb9a4b134f41489ed04115b9bbb8a60e3fda2663ff799c7b362e407445148d"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 922,
+        "sha256": "49dbc8ee91a230e0c338cea2c7ca6f7aa42b6136a61cbdf8bd7cf88d9e9a10ab"
+      },
+      {
+        "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+        "bytes": 1057,
+        "sha256": "aa776c11bd66d6d29e6d86e831ece7488657a0f7e07154827fb46958cb6813e8"
+      }
+    ],
+    "supersedesCheckpoint": {
+      "path": "docs/editorial/reviews/2026-10-12/independent-initial-b001-A1.json",
+      "bytes": 54929,
+      "sha256": "ac977e912279fd4a1d53783e3d8977067ef0b3e87e43cb38e3537e52b4c0ee0f"
+    },
+    "supersessionReason": "Same qids and literal BEFORE/AFTER/cards; explicit independent recheck of exact consensus-card legacy REVIEW badges under the additive current source-genre contract. Central source science, draft blocks and no-product scope unchanged. No additional questions or silent card migration.",
+    "validation": {
+      "formalAllQuestionsPassed": true,
+      "qidScopeExact": true,
+      "rawPortableSourceHashMatches": true,
+      "BEFOREOriginInputExact": true,
+      "AFTERAuthorLiteralExact": true,
+      "cardsLiteralAndBindingHashesMatch": true,
+      "threeAxesDerived": true,
+      "noProductMutation": true,
+      "sourcePinBytesAndHashesRead": true
+    },
+    "reconnectionReceipt": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 2184,
+      "sha256": "9d49ce8f8c581b85e06f5a52982386fa15ae389873b4f2526a20dd8be42a8dea"
+    },
+    "cardBindingPolicy": "Every card pinned by qid and literal version, including shared IDs. Empty author arrays bind the explicit physical registry snapshot; no cross-qid inference.",
+    "availableVerdictsV2": [
+      "aprovada",
+      "aprovada com pequenos ajustes",
+      "revisão maior",
+      "reprovada",
+      "fundir",
+      "redirecionar",
+      "aposentar"
+    ],
+    "sourceGenreMaintenanceReceipt": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 2095,
+      "sha256": "70baf906bd7cf76b46bbce4f4454ebba6575cdbcdb41449eac6350ae2c205669"
+    }
+  }
+}

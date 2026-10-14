@@ -1,0 +1,3237 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 181452,
+  "sourceReportSHA256": "dfe4279e42e6fa2b7dd17136d86c1e8a9c6273073cab577dd432f915428107ee",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "nq-independent-exact-question-and-card-review-v2",
+    "batch": "A014 independent exact authorA3",
+    "reviewer": "clinical_peer_a008_continue, revisor clínico/editorial independente",
+    "verifiedAtOfficialUTC": "2026-10-13 17:19:30 UTC",
+    "timestampProvenance": {
+      "officialProvider": "tools.clock__curr_time",
+      "officialReturnedValue": "2026-10-13 17:19:30 UTC",
+      "clockOffsetAssumed": false
+    },
+    "reviewMode": "Primeiro gate próprio de oito propostas e oito cards, A3bibliográfico reversível. Fontes próprias e score/recurso/4eixos completos, sem herdar autoria. A2gêneroGUIDELINEinadequado preservado no original, novo gênero/método A3 julgado no documento primário.",
+    "authorReport": {
+      "path": "docs/editorial/reviews/2026-10-12/group-a-output-014-A3.json",
+      "bytes": 230626,
+      "sha256": "3ec546fc90ff2c2a8deacdeea184605dcdd96bfd1e71bd6959cbf93463a12a0b"
+    },
+    "authorOriginalPreserved": {
+      "path": "docs/editorial/reviews/2026-10-12/group-a-output-014-A2.json",
+      "bytes": 227775,
+      "sha256": "01238e76206147ade3385ed9f56b4e3985886dc131ed25afae4cfa9b571b97c2"
+    },
+    "authorManifest": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 2188,
+      "sha256": "8220b26b84b07590ff18266c331b680a8e897961025fc949167c4ffba8592d0d"
+    },
+    "authorValidation": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 34123,
+      "sha256": "8b4f7cff1e88a27b7099b69f03aea392a902d154a27439a7b2a8818c9c39e975"
+    },
+    "authorPreservationProof": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 3308,
+      "sha256": "0b56cec74af63e2f3d7c5eef39649819d39674a5680264630af95bf9087a64e8"
+    },
+    "sourceCommit": "25f44e4449e770314c94f9a59256dfc2e1ab4d17",
+    "publishedTechnicalMerge": "135899077669af6dcf564717833227828ba03fe5",
+    "originBankLF_SHA256": "83fb21eb7f79cf9da8d68f9901cf20fbec7b816492dfa8313d4ec25ebe8dd635",
+    "bankObserved": [
+      {
+        "path": "data/topics.js",
+        "bytes": 971537,
+        "sha256": "45c283a5a9634fe72e166762bd2461158ebc1647f5b5a026b7ae1ea68f6ee130"
+      },
+      {
+        "path": "data/refs.js",
+        "bytes": 491073,
+        "sha256": "d12c230d80f505fc8fd1893f489014fca8bbeced681c1224f03f4c3f4c7f01f7"
+      }
+    ],
+    "currentBankDelta10OutsideBatch": [
+      "7c0daeca",
+      "00b4d27e",
+      "ca6370dc",
+      "1b8baaac",
+      "04cb2429",
+      "c952567a",
+      "547a3dc2",
+      "051a5d1b",
+      "86949ab7",
+      "7780350a"
+    ],
+    "normativeSources": [
+      {
+        "path": ".claude/skills/revisar-nefroquest/SKILL.md",
+        "bytes": 18523,
+        "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/output-contract.md",
+        "bytes": 11714,
+        "sha256": "65972c80bb1ac7afc0f1ccca6849c6b2d4812af0f0789b1dcf30c5d17bd9b5ff"
+      },
+      {
+        "path": ".claude/skills/revisar-nefroquest/references/verification-protocol.md",
+        "bytes": 4208,
+        "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+      },
+      {
+        "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+        "bytes": 33587,
+        "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+      },
+      {
+        "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+        "bytes": 41098,
+        "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+      },
+      {
+        "path": "docs/editorial/annex-c-nefrologia.md",
+        "bytes": 17343,
+        "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+      }
+    ],
+    "questions": [
+      {
+        "qid": "ece4696c",
+        "sourceLine": 404,
+        "BEFORE": {
+          "t": "Acidose Metabólica na DRC — Catabolismo Muscular",
+          "qid": "ece4696c",
+          "q": "Paciente com DRC G4 e HCO3 14 mEq/L evolui com perda de massa magra. Qual mecanismo liga acidose metabólica crônica à sarcopenia?",
+          "refs": [
+            "ckd_metabolic_acidosis_core_2019",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Redução da proteólise muscular por inibição da ubiquitina-proteassoma.",
+            "Aumento predominante da síntese proteica muscular.",
+            "Ativação de vias catabólicas musculares, incluindo caspase-3 e ubiquitina-proteassoma.",
+            "Redução direta da produção de ureia como causa da perda de força."
+          ],
+          "ans": 2,
+          "exp": "A acidose metabólica crônica na DRC favorece degradação proteica muscular e resistência anabólica, com ativação de vias como caspase-3 e ubiquitina-proteassoma. Isso contribui para balanço nitrogenado negativo, perda de massa magra e pior desempenho físico. A correção da acidose pode melhorar parâmetros nutricionais/musculares em alguns estudos, mas não deve ser apresentada como desfecho renal duro universal.",
+          "diff": "medium",
+          "cat": "acido_base"
+        },
+        "beforeQuestionSHA256": "8e9d95c793fd48079ef88fd4ce522341b30f228cd15931eca68271ee813d5568",
+        "AFTER": {
+          "t": "Acidose Metabólica na Doença Renal Crônica — Catabolismo Muscular",
+          "qid": "ece4696c",
+          "q": "Adulto com doença renal crônica (DRC) G4 e acidose metabólica crônica confirmada mantém bicarbonato de 14 mEq/L e perde massa magra. Qual processo pode contribuir para essa perda?",
+          "refs": [
+            "wang_mitch_muscle_2014"
+          ],
+          "opts": [
+            "Redução da degradação proteica pelo sistema ubiquitina-proteassoma.",
+            "Aumento da síntese de proteínas por maior sinalização anabólica.",
+            "Ativação de caspase-3 e do sistema ubiquitina-proteassoma.",
+            "Supressão de vias proteolíticas com menor mobilização de aminoácidos."
+          ],
+          "ans": 2,
+          "exp": "Acidose pode favorecer degradação de proteínas musculares por vias que incluem caspase-3 e ubiquitina-proteassoma. A revisão integra modelos e estudos clínicos; resistência à insulina, inflamação, nutrição e outros fatores também contribuem. O mecanismo não prova que bicarbonato isolado restaure função ou garanta desfecho renal em todo paciente.",
+          "diff": "medium",
+          "cat": "acido_base"
+        },
+        "afterQuestionSHA256": "cf3006dd3ad15771daa05d38dd4d57d8eefabb9e0846b159b3d06da6e0e120b1",
+        "OP": "Relacionar acidose metabólica crônica na DRC a vias de catabolismo muscular.",
+        "classification": {
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium",
+          "candidateDifficulty": "medium",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false,
+          "ownClassificationNotInherited": true
+        },
+        "reviewStatus": "REVIEWED",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): fontes/eliminatórios/score/recurso próprios, aprovação doAFTER exato.",
+        "ownJustification": "Wang/Mitch2014 original abstract e passagens14/16–23/35–36 descrevem acidose e catabolismo, caspase-3 preparando substratos e estimulando UPS, modelos e observações clínicas. C é única via catabólica entre opções. Acidose é confirmada no caso; perda muscular multifatorial e ausência de prova de recuperação funcional/renal universal são explícitas.",
+        "appeal": {
+          "finding": "A/B/D invertem proteólise ou prometem maior anabolismo. Não se pede atribuir toda perda muscular à acidose, nem indicar alcalino por um nome molecular. O OP relaciona complicação clínica a via de degradação; nomes caspase/UPS não são estatística decorativa, embora os distratores pouco sutis mereçam desconto.",
+          "plausibleScientificChallenge": false,
+          "duplicateChallengeUpheld": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "A/B/D invertem proteólise ou prometem maior anabolismo. Não se pede atribuir toda perda muscular à acidose, nem indicar alcalino por um nome molecular. O OP relaciona complicação clínica a via de degradação; nomes caspase/UPS não são estatística decorativa, embora os distratores pouco sutis mereçam desconto.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Wang/Mitch2014 original abstract e passagens14/16–23/35–36 descrevem acidose e catabolismo, caspase-3 preparando substratos e estimulando UPS, modelos e observações clínicas. C é única via catabólica entre opções. Acidose é confirmada no caso; perda muscular multifatorial e ausência de prova de recuperação funcional/renal universal são explícitas.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "O comando mede o OP declarado: Relacionar acidose metabólica crônica na DRC a vias de catabolismo muscular.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "A/B/D invertem proteólise ou prometem maior anabolismo. Não se pede atribuir toda perda muscular à acidose, nem indicar alcalino por um nome molecular. O OP relaciona complicação clínica a via de degradação; nomes caspase/UPS não são estatística decorativa, embora os distratores pouco sutis mereçam desconto.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Distratores correspondem a sinais/mecanismos/indicações invertidos; não são alternativas aleatórias. Pouca sutileza emmuscle/UF recebe desconto.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Fisiologia informa interpretação/conduta; não pede recall de estatística de artigo.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Wang/Mitch2014 original abstract e passagens14/16–23/35–36 descrevem acidose e catabolismo, caspase-3 preparando substratos e estimulando UPS, modelos e observações clínicas. C é única via catabólica entre opções. Acidose é confirmada no caso; perda muscular multifatorial e ausência de prova de recuperação funcional/renal universal são explícitas.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "A/B/D invertem proteólise ou prometem maior anabolismo. Não se pede atribuir toda perda muscular à acidose, nem indicar alcalino por um nome molecular. O OP relaciona complicação clínica a via de degradação; nomes caspase/UPS não são estatística decorativa, embora os distratores pouco sutis mereçam desconto.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Sem protocolo institucional oculto ou dose universal exigida.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Wang/Mitch2014 original abstract e passagens14/16–23/35–36 descrevem acidose e catabolismo, caspase-3 preparando substratos e estimulando UPS, modelos e observações clínicas. C é única via catabólica entre opções. Acidose é confirmada no caso; perda muscular multifatorial e ausência de prova de recuperação funcional/renal universal são explícitas.",
+            "status": "REASSESSED_EXACT"
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 1
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 18,
+          "band": "Excelente",
+          "annulled": false,
+          "notComputableDueToEvidenceGate": false,
+          "reason": "Rubrica própria: estilo1, distratores1muscle/UF;db25construto1 pela classificação medium de relação básica, recomendação easy sem modificarAFTER."
+        },
+        "decisionTree": [
+          "0: VERIFICADA/NENHUMA",
+          "1: dez eliminatórios sem disparo",
+          "2: recurso não sustenta anulação/pares distintos",
+          "3: 18/20/Excelente",
+          "publicação derivada:LIBERADA"
+        ],
+        "lifecycle": "publicado",
+        "actualLifecycle": "CANDIDATO LOCAL — NÃO APLICADO",
+        "sourceReadings": [
+          {
+            "id": "muscle2014",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4269363/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 159941,
+              "sha256": "543f1fb479842f16b6d96a398d48f1cd60357ca7b4634ee83cf786a78052eaa1"
+            },
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "OriginalNIHMS/BioC, front/passages1/14/16–23/35–36 próprios: acidose, UPS/caspase3/multifatorial, modelos versusobservações. Pub2014MED24981816/DOInrneph2014.112/NatRevNephrol10:504–516; não data de availability. SemRCTuniversal."
+          }
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "Acidose pode iniciar vias catabólicas; caspase-3 e UPS têm funções complementares.",
+            "sourceIds": [
+              "muscle2014"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          },
+          {
+            "claim": "Modelos/observações e multifatorialidade não são prova de benefício universal da alcalinização.",
+            "sourceIds": [
+              "muscle2014"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          }
+        ],
+        "duplicateComparisons": [],
+        "packageIntegrationHold": false,
+        "difficultyCalibrationRecommendation": null,
+        "correctAnswer": {
+          "letter": "C",
+          "text": "Ativação de caspase-3 e do sistema ubiquitina-proteassoma."
+        },
+        "verificationPending": [],
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "qid": "ed78156f",
+        "sourceLine": 408,
+        "BEFORE": {
+          "t": "Hemodiálise — Alcalemia Pós-Diálise e Bicarbonato",
+          "qid": "ed78156f",
+          "q": "Paciente em hemodiálise tem bicarbonato pré-diálise de 24 mEq/L e usa dialisato com bicarbonato de 37 mEq/L. Ao final da sessão, apresenta pH 7,51 e bicarbonato de 30 mEq/L, sem vômitos ou ingestão de álcali. Qual interpretação é mais apropriada?",
+          "refs": [
+            "park_dialysate_bicarbonate_2020"
+          ],
+          "opts": [
+            "O gradiente amplo de bicarbonato pode produzir alcalemia pós-diálise; devem-se confirmar as medidas, rever outras causas e individualizar a prescrição sem provocar acidose interdialítica",
+            "A hemodiálise não altera o equilíbrio ácido-base, portanto o resultado confirma erro laboratorial",
+            "A concentração do dialisato deve ser aumentada para corrigir a elevação do pH",
+            "Toda pessoa com alcalemia pós-diálise deve receber o menor bicarbonato disponível, independentemente do valor pré-diálise"
+          ],
+          "ans": 0,
+          "exp": "O bicarbonato é transferido do dialisato para o sangue conforme o gradiente e a sessão. Estudos fisiológicos mostraram alcalemia ao final da hemodiálise com 37 mEq/L, enquanto concentrações muito baixas podem produzir perda líquida de bicarbonato e piorar a acidose antes da sessão seguinte. Por isso, o achado deve ser confirmado com amostra adequada e interpretado junto de bicarbonato pré e pós-diálise, ventilação, ingestão de álcali, vômitos e estado nutricional. A resposta é ajustar de forma individualizada, não aplicar um banho universalmente alto ou baixo.",
+          "diff": "hard",
+          "cat": "dialise"
+        },
+        "beforeQuestionSHA256": "c3a8a5cf547f1f02dceff7c217fb968687a5e0dc3dc31a5fedb1601b10465aff",
+        "AFTER": {
+          "t": "Hemodiálise — Alcalemia Pós-Diálise e Bicarbonato",
+          "qid": "ed78156f",
+          "q": "Caso didático: adulto em hemodiálise tem bicarbonato pré-diálise 24 mEq/L e dialisato 37 mEq/L. Depois da sessão: pH 7,51, bicarbonato 30 mEq/L e pressão parcial arterial de dióxido de carbono (PaCO2) 39 mmHg, sem vômitos ou ingestão de álcali. Qual interpretação orienta a reavaliação?",
+          "refs": [
+            "abramowitz_bicarbonate_dialysis_2017"
+          ],
+          "opts": [
+            "Gradiente de bicarbonato como possível causa; reavaliar a prescrição.",
+            "Alcalose respiratória como causa exclusiva; manter o dialisato atual.",
+            "Falta de bicarbonato como causa; aumentar sua concentração no dialisato.",
+            "Excesso de bicarbonato como regra; prescrever sempre a menor concentração."
+          ],
+          "ans": 0,
+          "exp": "A transferência de bicarbonato pode contribuir à alcalemia pós-diálise. Confirmar coleta e medidas, integrar pH, valores antes e depois da sessão e outras causas. A concentração deve ser individualizada, considerando risco de acidose interdialítica. O bicarbonato elevado não é explicado por uma alcalose respiratória exclusiva. O ajuste não é um banho mínimo obrigatório nem benefício de desfecho demonstrado.",
+          "diff": "medium",
+          "cat": "dialise"
+        },
+        "afterQuestionSHA256": "c64ff5f1f9b53d492d51d5d22fb777238a3fffb27bfae062f1bf7d54c1cb8592",
+        "OP": "Interpretar alcalemia após hemodiálise e integrar o gradiente de bicarbonato à reavaliação da prescrição.",
+        "classification": {
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "candidateDifficulty": "medium",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false,
+          "ownClassificationNotInherited": true
+        },
+        "reviewStatus": "REVIEWED",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): fontes/eliminatórios/score/recurso próprios, aprovação doAFTER exato.",
+        "ownJustification": "Abramowitz2017 original descreve correlação do ganho de HCO com gradiente dialisato/sangue, alcalemia pós-HD e acidose interdialítica, necessidade de pH/coleta e individualização. A formulação “possível causa/reavaliar” é adequada. HCO30/PaCO239 produzem pH calculado7,50894, arredondado7,51. Caso didático não é dado de estudo nem diagnóstico de distúrbio puro.",
+        "appeal": {
+          "finding": "B chama alcalose respiratória exclusiva um quadro com HCO elevado; C intensifica aporte apesar da alcalemia; D impõe banho mínimo universal. Não se exclui componente respiratório concomitante ou problema de amostra. Ausência de gases prévios não impede a reavaliação proposta sem uma concentração/dose rígida. Park2020 não é referência no AFTER; BioC6140B de erro não foi usado.",
+          "plausibleScientificChallenge": false,
+          "duplicateChallengeUpheld": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "B chama alcalose respiratória exclusiva um quadro com HCO elevado; C intensifica aporte apesar da alcalemia; D impõe banho mínimo universal. Não se exclui componente respiratório concomitante ou problema de amostra. Ausência de gases prévios não impede a reavaliação proposta sem uma concentração/dose rígida. Park2020 não é referência no AFTER; BioC6140B de erro não foi usado.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Abramowitz2017 original descreve correlação do ganho de HCO com gradiente dialisato/sangue, alcalemia pós-HD e acidose interdialítica, necessidade de pH/coleta e individualização. A formulação “possível causa/reavaliar” é adequada. HCO30/PaCO239 produzem pH calculado7,50894, arredondado7,51. Caso didático não é dado de estudo nem diagnóstico de distúrbio puro.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "O comando mede o OP declarado: Interpretar alcalemia após hemodiálise e integrar o gradiente de bicarbonato à reavaliação da prescrição.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "B chama alcalose respiratória exclusiva um quadro com HCO elevado; C intensifica aporte apesar da alcalemia; D impõe banho mínimo universal. Não se exclui componente respiratório concomitante ou problema de amostra. Ausência de gases prévios não impede a reavaliação proposta sem uma concentração/dose rígida. Park2020 não é referência no AFTER; BioC6140B de erro não foi usado.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Distratores correspondem a sinais/mecanismos/indicações invertidos; não são alternativas aleatórias. Pouca sutileza emmuscle/UF recebe desconto.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Fisiologia informa interpretação/conduta; não pede recall de estatística de artigo.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Abramowitz2017 original descreve correlação do ganho de HCO com gradiente dialisato/sangue, alcalemia pós-HD e acidose interdialítica, necessidade de pH/coleta e individualização. A formulação “possível causa/reavaliar” é adequada. HCO30/PaCO239 produzem pH calculado7,50894, arredondado7,51. Caso didático não é dado de estudo nem diagnóstico de distúrbio puro.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "B chama alcalose respiratória exclusiva um quadro com HCO elevado; C intensifica aporte apesar da alcalemia; D impõe banho mínimo universal. Não se exclui componente respiratório concomitante ou problema de amostra. Ausência de gases prévios não impede a reavaliação proposta sem uma concentração/dose rígida. Park2020 não é referência no AFTER; BioC6140B de erro não foi usado.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Sem protocolo institucional oculto ou dose universal exigida.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Abramowitz2017 original descreve correlação do ganho de HCO com gradiente dialisato/sangue, alcalemia pós-HD e acidose interdialítica, necessidade de pH/coleta e individualização. A formulação “possível causa/reavaliar” é adequada. HCO30/PaCO239 produzem pH calculado7,50894, arredondado7,51. Caso didático não é dado de estudo nem diagnóstico de distúrbio puro.",
+            "status": "REASSESSED_EXACT"
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 19,
+          "band": "Excelente",
+          "annulled": false,
+          "notComputableDueToEvidenceGate": false,
+          "reason": "Rubrica própria: estilo1, distratores1muscle/UF;db25construto1 pela classificação medium de relação básica, recomendação easy sem modificarAFTER."
+        },
+        "decisionTree": [
+          "0: VERIFICADA/NENHUMA",
+          "1: dez eliminatórios sem disparo",
+          "2: recurso não sustenta anulação/pares distintos",
+          "3: 19/20/Excelente",
+          "publicação derivada:LIBERADA"
+        ],
+        "lifecycle": "publicado",
+        "actualLifecycle": "CANDIDATO LOCAL — NÃO APLICADO",
+        "sourceReadings": [
+          {
+            "id": "abramowitz2017",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5328170/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 237880,
+              "sha256": "95c1800b19f0fbf63812b4ea57081ff5e0f287dfee86d7c1af816789d278f354"
+            },
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "OriginalPMC HTML íntegro identificado, parser próprio efront/gradiente/pré-pós/pH/mortalidade/confundimento/individualização, não helperparecer herdado. JASN2017;28:726–734/PMID27881607; ePress23/11/2016 diferente de edição2017. BioC6140B de erro excluído; Park2020 não empregado para alegarresultadosíntegros."
+          }
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "Gradiente pode contribuir à alcalemia pós-HD; avaliar pH/coleta/pré/pós e contexto.",
+            "sourceIds": [
+              "abramowitz2017"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          },
+          {
+            "claim": "Equilíbrio entre acidose interdialítica e alcalemia não estabelece alvo universal ou benefício de desfecho.",
+            "sourceIds": [
+              "abramowitz2017"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          }
+        ],
+        "duplicateComparisons": [],
+        "packageIntegrationHold": false,
+        "difficultyCalibrationRecommendation": null,
+        "correctAnswer": {
+          "letter": "A",
+          "text": "Gradiente de bicarbonato como possível causa; reavaliar a prescrição."
+        },
+        "verificationPending": [],
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "qid": "db25ef93",
+        "sourceLine": 416,
+        "BEFORE": {
+          "t": "Mecanismo celular do ECG na hipercalemia",
+          "qid": "db25ef93",
+          "q": "Na hipercalemia, qual mecanismo celular explica a toxicidade elétrica cardíaca e o surgimento de alterações como ondas T apiculadas?",
+          "refs": [
+            "ukka_hyperkalemia_2023",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Aumento do potássio extracelular reduz o gradiente transmembrana e torna o potencial de repouso menos negativo",
+            "Redução do potássio extracelular hiperpolariza o cardiomiócito e acelera a condução atrioventricular",
+            "Ativação primária da Na+/K+-ATPase aumenta a extrusão de potássio do cardiomiócito",
+            "Bloqueio dos canais de cálcio tipo L encurta diretamente o complexo QRS"
+          ],
+          "ans": 0,
+          "exp": "Na hipercalemia, o aumento do K extracelular reduz o gradiente de potássio através da membrana celular, deixando o potencial de repouso menos negativo. Essa despolarização parcial altera repolarização e condução, gerando ondas T apiculadas e, em estágios mais graves, alargamento do QRS e risco de arritmia. As demais alternativas invertem a direção do distúrbio ou atribuem o ECG a mecanismos que não são o evento primário.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "4f5128e654cf300663ef967e07ced72efdddd5ee3276e886b6659655103f7d13",
+        "AFTER": {
+          "t": "Hipercalemia — Gradiente de Potássio e Potencial de Repouso",
+          "qid": "db25ef93",
+          "q": "Na hipercalemia, qual mudança do gradiente de potássio e do potencial de repouso dos cardiomiócitos é esperada?",
+          "refs": [
+            "campese_hyperkalemia_electrophysiology_2016"
+          ],
+          "opts": [
+            "Gradiente menor e potencial de repouso menos negativo.",
+            "Gradiente menor e potencial de repouso mais negativo.",
+            "Gradiente maior e potencial de repouso menos negativo.",
+            "Gradiente maior e potencial de repouso mais negativo."
+          ],
+          "ans": 0,
+          "exp": "O aumento de potássio extracelular reduz o gradiente com o meio intracelular e despolariza o potencial de repouso, tornando-o menos negativo. Efeitos sobre excitabilidade e condução dependem da intensidade, rapidez e contexto. Essa relação não explica sozinha cada onda T nem impõe uma sequência eletrocardiográfica obrigatória. O eletrocardiograma (ECG) precisa ser interpretado clinicamente e não exclui gravidade por ser normal.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "c40398b0135ab68a653c8d9c70aea2685bc7957cb0a49ffc0369a91cd9646ec0",
+        "OP": "Explicar a mudança do potencial de repouso decorrente do aumento do potássio extracelular.",
+        "classification": {
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "candidateDifficulty": "medium",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false,
+          "ownClassificationNotInherited": true
+        },
+        "reviewStatus": "REVIEWED",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): fontes/eliminatórios/score/recurso próprios, aprovação doAFTER exato.",
+        "ownJustification": "Campese/Adenuga2016 original front e seção dos efeitos de K, Nernst/RMP, sustentam gradiente menor com K extracelular maior e potencial de repouso menos negativo. A é única; não se usa RMP como sinônimo de sequência ECG. Altitude própria easy por relação fisiológica básica, AFTERmedium preservado sem edição.",
+        "appeal": {
+          "finding": "As quatro opções cruzam direção do gradiente e polarização; B/C/D erram pelo menos um sinal. A conclusão não determina excitabilidade ou condução uniformes em toda intensidade nem explica sozinha ondaT. ECG normal não exclui risco. Candidatos ECG/cálcio cobram reconhecimento ou intervenção, não direção de potencial.",
+          "plausibleScientificChallenge": false,
+          "duplicateChallengeUpheld": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "As quatro opções cruzam direção do gradiente e polarização; B/C/D erram pelo menos um sinal. A conclusão não determina excitabilidade ou condução uniformes em toda intensidade nem explica sozinha ondaT. ECG normal não exclui risco. Candidatos ECG/cálcio cobram reconhecimento ou intervenção, não direção de potencial.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Campese/Adenuga2016 original front e seção dos efeitos de K, Nernst/RMP, sustentam gradiente menor com K extracelular maior e potencial de repouso menos negativo. A é única; não se usa RMP como sinônimo de sequência ECG. Altitude própria easy por relação fisiológica básica, AFTERmedium preservado sem edição.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "O comando mede o OP declarado: Explicar a mudança do potencial de repouso decorrente do aumento do potássio extracelular.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "As quatro opções cruzam direção do gradiente e polarização; B/C/D erram pelo menos um sinal. A conclusão não determina excitabilidade ou condução uniformes em toda intensidade nem explica sozinha ondaT. ECG normal não exclui risco. Candidatos ECG/cálcio cobram reconhecimento ou intervenção, não direção de potencial.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Distratores correspondem a sinais/mecanismos/indicações invertidos; não são alternativas aleatórias. Pouca sutileza emmuscle/UF recebe desconto.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Fisiologia informa interpretação/conduta; não pede recall de estatística de artigo.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Campese/Adenuga2016 original front e seção dos efeitos de K, Nernst/RMP, sustentam gradiente menor com K extracelular maior e potencial de repouso menos negativo. A é única; não se usa RMP como sinônimo de sequência ECG. Altitude própria easy por relação fisiológica básica, AFTERmedium preservado sem edição.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "As quatro opções cruzam direção do gradiente e polarização; B/C/D erram pelo menos um sinal. A conclusão não determina excitabilidade ou condução uniformes em toda intensidade nem explica sozinha ondaT. ECG normal não exclui risco. Candidatos ECG/cálcio cobram reconhecimento ou intervenção, não direção de potencial.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Sem protocolo institucional oculto ou dose universal exigida.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Campese/Adenuga2016 original front e seção dos efeitos de K, Nernst/RMP, sustentam gradiente menor com K extracelular maior e potencial de repouso menos negativo. A é única; não se usa RMP como sinônimo de sequência ECG. Altitude própria easy por relação fisiológica básica, AFTERmedium preservado sem edição.",
+            "status": "REASSESSED_EXACT"
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 1
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 18,
+          "band": "Excelente",
+          "annulled": false,
+          "notComputableDueToEvidenceGate": false,
+          "reason": "Rubrica própria: estilo1, distratores1muscle/UF;db25construto1 pela classificação medium de relação básica, recomendação easy sem modificarAFTER."
+        },
+        "decisionTree": [
+          "0: VERIFICADA/NENHUMA",
+          "1: dez eliminatórios sem disparo",
+          "2: recurso não sustenta anulação/pares distintos",
+          "3: 18/20/Excelente",
+          "publicação derivada:LIBERADA"
+        ],
+        "lifecycle": "publicado",
+        "actualLifecycle": "CANDIDATO LOCAL — NÃO APLICADO",
+        "sourceReadings": [
+          {
+            "id": "campese2016",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6340902/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 140973,
+              "sha256": "15f0a862f21f190b01ac5ed9ae71c31651d893c3280ce2777f64a2340a07b21b"
+            },
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "OriginalPMC HTML íntegro, parserpróprio/front/gradiente/Nernst/RMP/ECGvariabilidade ebaixa sensibilidade lidos. Campese/Adenuga2016KI Suppl6:16–19/PMID30675415/DOI2016.01.003; dataindex2019 não pubYear. Sem sequências/limiaresobrigatórios, sem afirmar mecanismos específicos deondaT/canais não usados."
+          }
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "Aumento de Kextracelular reduz gradiente e despolariza RMP.",
+            "sourceIds": [
+              "campese2016"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          },
+          {
+            "claim": "Efeitos elétricos variam com intensidade/rapidez/contexto; ECG tem sensibilidade limitada.",
+            "sourceIds": [
+              "campese2016"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          }
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "b35be598",
+            "currentQuestion": {
+              "qid": "b35be598",
+              "q": "Na suspeita de hipercalemia grave, qual alteração eletrocardiográfica costuma aparecer mais precocemente?",
+              "opts": [
+                "Desaparecimento da onda P.",
+                "Fibrilação ventricular.",
+                "Ondas T elevadas, simétricas e apiculadas.",
+                "Alargamento extremo do QRS."
+              ],
+              "ans": 2,
+              "exp": "A alteração eletrocardiográfica inicial mais clássica da hipercalemia é o surgimento de ondas T altas, simétricas e apiculadas. Com a progressão da toxicidade, podem ocorrer prolongamento do PR, achatamento/desaparecimento da onda P, alargamento do QRS e padrões pré-parada. Onda P ausente, QRS muito largo e fibrilação ventricular indicam toxicidade mais avançada, não o sinal inicial.",
+              "refs": [
+                "ukka_hyperkalemia_2023",
+                "brenner_rector"
+              ],
+              "cat": "eletrólitos",
+              "diff": "medium",
+              "t": "ECG na Hipercalemia — Primeira Alteração"
+            },
+            "currentQuestionSHA256": "bdf4f0b5ccc244e61a0af0bcbbc7f23392170876074d6dea44977da23877127b",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Reconhece sinalECG precoce; db25 explica gradiente/RMP sem interpretar onda isolada.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "8b80b0a9",
+            "currentQuestion": {
+              "t": "Hipercalemia e ECG",
+              "qid": "8b80b0a9",
+              "q": "Qual sequência eletrocardiográfica é mais compatível com hipercalemia progressiva?",
+              "refs": [
+                "ukka_hyperkalemia_2023",
+                "brenner_rector"
+              ],
+              "opts": [
+                "Ondas T apiculadas → prolongamento do PR/achatamento da onda P → alargamento do QRS → padrão sinusoidal",
+                "Onda U proeminente → depressão do ST → prolongamento do QT → torsades de pointes",
+                "Supradesnivelamento difuso do ST → onda Q patológica → inversão tardia da onda T",
+                "Bloqueio atrioventricular completo isolado → fibrilação atrial → encurtamento progressivo do QRS"
+              ],
+              "ans": 0,
+              "exp": "A sequência clássica da hipercalemia progressiva começa com ondas T altas e apiculadas, seguida por lentificação da condução atrioventricular/intraventricular (prolongamento do PR, achatamento ou desaparecimento da onda P), alargamento do QRS e, em toxicidade extrema, padrão sinusoidal ou parada. Onda U e prolongamento de QT apontam mais para hipocalemia; supradesnivelamento de ST e ondas Q pertencem a outro raciocínio diagnóstico.",
+              "diff": "medium",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "b6990004c340b218d98ff7e7fedf86e30b13987da6770775cc431a1d49080ff2",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Seleciona sequênciaECG; db25 relaciona Kextracelular/potencial, sem impor sequência.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "6a19aece",
+            "currentQuestion": {
+              "qid": "6a19aece",
+              "q": "Em paciente com hipercalemia e alterações no ECG, qual é o objetivo primordial do cálcio intravenoso?",
+              "opts": [
+                "Reduzir diretamente o potássio sérico por precipitação intestinal.",
+                "Antagonizar a toxicidade elétrica do potássio na membrana miocárdica, sem baixar o K sérico.",
+                "Induzir a entrada de potássio nas células por estímulo beta-2.",
+                "Aumentar a excreção renal de potássio por maior fluxo tubular distal."
+              ],
+              "ans": 1,
+              "exp": "O cálcio intravenoso é a etapa de proteção cardíaca: antagoniza a toxicidade elétrica do potássio elevado na membrana miocárdica e reduz o risco imediato de arritmias. Ele não diminui o K sérico; por isso deve ser acompanhado de terapias que desloquem o potássio para o intracelular e de estratégias de remoção. Estímulo beta-2 é papel do salbutamol, e excreção renal depende de diuréticos/função renal, não do cálcio.",
+              "refs": [
+                "ukka_hyperkalemia_2023",
+                "brenner_rector"
+              ],
+              "cat": "eletrólitos",
+              "diff": "medium",
+              "t": "Cálcio IV na Hipercalemia — Mecanismo"
+            },
+            "currentQuestionSHA256": "bd119c950126dbdce61a02866602c5b3f58caf4122de80d5cbc9b9fc960061c7",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Explica objetivo terapêutico do cálcioIV; db25 descreve efeito do K no repouso.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "packageIntegrationHold": false,
+        "difficultyCalibrationRecommendation": {
+          "proposed": "easy",
+          "candidate": "medium",
+          "afterLiteralPreserved": true,
+          "requiresExactTechnicalBindingIfChanged": true
+        },
+        "correctAnswer": {
+          "letter": "A",
+          "text": "Gradiente menor e potencial de repouso menos negativo."
+        },
+        "verificationPending": [],
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "qid": "a4c85d32",
+        "sourceLine": 421,
+        "BEFORE": {
+          "t": "Hiponatremia na insuficiência cardíaca",
+          "qid": "a4c85d32",
+          "q": "Paciente de 65 anos com insuficiência cardíaca congestiva apresenta hiponatremia. Os exames mostram sódio urinário de 8 mEq/L e osmolalidade urinária de 520 mOsm/kg. Qual é o diagnóstico mais provável?",
+          "refs": [
+            "hyponatremia_adrogue2000",
+            "hyponatremia_verbalis2022",
+            "brenner_rector"
+          ],
+          "opts": [
+            "SIADH",
+            "Insuficiência adrenal",
+            "Hiponatremia hipervolêmica por insuficiência cardíaca",
+            "Polidipsia primária"
+          ],
+          "ans": 2,
+          "exp": "O quadro é mais compatível com hiponatremia hipervolêmica por insuficiência cardíaca, em que a redução do volume arterial efetivo ativa sistema renina-angiotensina-aldosterona e secreção não osmótica de ADH, levando à retenção de água livre, urina concentrada e sódio urinário baixo por avididez renal ao sódio. SIADH costuma cursar com urina inapropriadamente concentrada, mas em geral com sódio urinário mais alto e sem contexto de baixo volume arterial efetivo. Insuficiência adrenal pode causar hiponatremia, porém frequentemente cursa com outras alterações clínicas e laboratoriais, e não é a melhor explicação neste cenário. Polidipsia primária geralmente causa urina muito diluída, com osmolalidade urinária baixa, o oposto do achado apresentado.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "2390f3dbbd86d094c3a6262fa0c2f46998b122c76530de602ac7f467f2b6f00e",
+        "AFTER": {
+          "t": "Hiponatremia na insuficiência cardíaca",
+          "qid": "a4c85d32",
+          "q": "Adulto de 65 anos com insuficiência cardíaca descompensada tem edema, turgência jugular e congestão pulmonar. Sódio sérico 126 mmol/L, osmolalidade plasmática medida 260 mOsm/kg, sódio urinário 8 mmol/L e osmolalidade urinária 520 mOsm/kg, antes de diurético e com glicemia normal. Qual classificação melhor integra o quadro?",
+          "refs": [
+            "warren_siadh_aquaresis_2023"
+          ],
+          "opts": [
+            "Hiponatremia euvolêmica por antidiurese inapropriada.",
+            "Hiponatremia hipovolêmica por perda renal de sódio.",
+            "Hiponatremia hipervolêmica de origem cardíaca.",
+            "Hiponatremia euvolêmica por polidipsia primária."
+          ],
+          "ans": 2,
+          "exp": "Hipotonicidade, sinais de congestão e contexto cardíaco sustentam a classificação hipervolêmica. Baixo volume arterial efetivo pode estimular vasopressina apesar do excesso de volume total, favorecendo retenção de água. Urina concentrada e sódio urinário baixo são coerentes, mas não definem diagnóstico isoladamente; diuréticos, ingestão e evolução interferem. A classificação isolada não determina a terapia.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "e2391a05ab53004e1750b81da04bc0ed8cea725e48f1fca735552e254dfd349e",
+        "OP": "Classificar hiponatremia hipotônica no contexto de congestão por insuficiência cardíaca.",
+        "classification": {
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "candidateDifficulty": "medium",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false,
+          "ownClassificationNotInherited": true
+        },
+        "reviewStatus": "REVIEWED",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): fontes/eliminatórios/score/recurso próprios, aprovação doAFTER exato.",
+        "ownJustification": "Warren2023 original seção Volume status and urine sodium: congestão/edema na IC descompensada apontam excessoECF, porém volume arterial efetivo reduzido pode estimular AVP. Osmolalidade260, congestão explícita, UNa8/Uosm520 antes de diurético/glicemia normal favorecem C. Não se fecha diagnóstico pela UNa isolada nem se determina terapia só pela classe.",
+        "appeal": {
+          "finding": "A ignora congestão e contexto cardíaco; B chama perda renal de sal um quadro congesto com UNa baixa; D contradiz urina concentrada. Inspeção volêmica imperfeita e dieta/diuréticos podem alterar UNa, ressalvas preservadas. Caso integra múltiplos achados, sem afirmar que qualquer edema ou UNa baixa define uma causa única.",
+          "plausibleScientificChallenge": false,
+          "duplicateChallengeUpheld": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "A ignora congestão e contexto cardíaco; B chama perda renal de sal um quadro congesto com UNa baixa; D contradiz urina concentrada. Inspeção volêmica imperfeita e dieta/diuréticos podem alterar UNa, ressalvas preservadas. Caso integra múltiplos achados, sem afirmar que qualquer edema ou UNa baixa define uma causa única.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Warren2023 original seção Volume status and urine sodium: congestão/edema na IC descompensada apontam excessoECF, porém volume arterial efetivo reduzido pode estimular AVP. Osmolalidade260, congestão explícita, UNa8/Uosm520 antes de diurético/glicemia normal favorecem C. Não se fecha diagnóstico pela UNa isolada nem se determina terapia só pela classe.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "O comando mede o OP declarado: Classificar hiponatremia hipotônica no contexto de congestão por insuficiência cardíaca.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "A ignora congestão e contexto cardíaco; B chama perda renal de sal um quadro congesto com UNa baixa; D contradiz urina concentrada. Inspeção volêmica imperfeita e dieta/diuréticos podem alterar UNa, ressalvas preservadas. Caso integra múltiplos achados, sem afirmar que qualquer edema ou UNa baixa define uma causa única.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Distratores correspondem a sinais/mecanismos/indicações invertidos; não são alternativas aleatórias. Pouca sutileza emmuscle/UF recebe desconto.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Fisiologia informa interpretação/conduta; não pede recall de estatística de artigo.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Warren2023 original seção Volume status and urine sodium: congestão/edema na IC descompensada apontam excessoECF, porém volume arterial efetivo reduzido pode estimular AVP. Osmolalidade260, congestão explícita, UNa8/Uosm520 antes de diurético/glicemia normal favorecem C. Não se fecha diagnóstico pela UNa isolada nem se determina terapia só pela classe.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "A ignora congestão e contexto cardíaco; B chama perda renal de sal um quadro congesto com UNa baixa; D contradiz urina concentrada. Inspeção volêmica imperfeita e dieta/diuréticos podem alterar UNa, ressalvas preservadas. Caso integra múltiplos achados, sem afirmar que qualquer edema ou UNa baixa define uma causa única.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Sem protocolo institucional oculto ou dose universal exigida.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Warren2023 original seção Volume status and urine sodium: congestão/edema na IC descompensada apontam excessoECF, porém volume arterial efetivo reduzido pode estimular AVP. Osmolalidade260, congestão explícita, UNa8/Uosm520 antes de diurético/glicemia normal favorecem C. Não se fecha diagnóstico pela UNa isolada nem se determina terapia só pela classe.",
+            "status": "REASSESSED_EXACT"
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 19,
+          "band": "Excelente",
+          "annulled": false,
+          "notComputableDueToEvidenceGate": false,
+          "reason": "Rubrica própria: estilo1, distratores1muscle/UF;db25construto1 pela classificação medium de relação básica, recomendação easy sem modificarAFTER."
+        },
+        "decisionTree": [
+          "0: VERIFICADA/NENHUMA",
+          "1: dez eliminatórios sem disparo",
+          "2: recurso não sustenta anulação/pares distintos",
+          "3: 19/20/Excelente",
+          "publicação derivada:LIBERADA"
+        ],
+        "lifecycle": "publicado",
+        "actualLifecycle": "CANDIDATO LOCAL — NÃO APLICADO",
+        "sourceReadings": [
+          {
+            "id": "warren2023",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10502587/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 565541,
+              "sha256": "cd2ee6512874717c9e15b4a94ae5569098e80efb9cde451a2398ba6a486e7008"
+            },
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "OriginalXML íntegro; nova seçãoVolume status/UNa/ECFexcess/IC/AVP própria, incerteza euvolemia/hipovolemia eUNadieta/diuréticos. CardliteralA009 após igualdade: própria leitura anterior V2/AQP2/aquarese/sobrecorreção e ausênciahardbenefit aproveitada; gate novo do literal, não herdado."
+          }
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "ExcessoECF naIC pode coexistir com baixo volume arterial efetivo/AVP.",
+            "sourceIds": [
+              "warren2023"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          },
+          {
+            "claim": "Congestão e hipotonicidade integram classehipervolêmica; UNa/Uosm corroboram com limitações.",
+            "sourceIds": [
+              "warren2023"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          }
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "e0b825bb",
+            "currentQuestion": {
+              "t": "Síndrome Nefrótica — Hiponatremia Dilucional",
+              "qid": "e0b825bb",
+              "q": "Paciente com síndrome nefrótica, edema, hipoalbuminemia intensa e sinais de baixo volume arterial efetivo desenvolve hiponatremia hipo-osmolar. Qual mecanismo a explica melhor?",
+              "refs": [
+                "brenner_rector",
+                "hyponatremia_verbalis2022"
+              ],
+              "opts": [
+                "Liberação não osmótica de vasopressina, com retenção de água desproporcional à de sódio",
+                "Supressão de vasopressina e excreção de urina maximamente diluída",
+                "Perda urinária seletiva de sódio causada por deficiência obrigatória de aldosterona",
+                "Entrada de sódio nas células por aumento da pressão oncótica plasmática"
+              ],
+              "ans": 0,
+              "exp": "No fenótipo underfill, a queda do volume arterial efetivo estimula vasopressina apesar da hipo-osmolalidade. O rim retém água livre, diluindo o sódio plasmático; ativação do sistema renina-angiotensina-aldosterona e do simpático também retém sódio e água. Essa explicação não se aplica automaticamente a todo edema nefrótico, pois pacientes com overfill podem ter volume preservado ou expandido. A avaliação deve integrar osmolalidade, urina, volemia e uso de diuréticos.",
+              "diff": "hard",
+              "cat": "glomerular"
+            },
+            "currentQuestionSHA256": "359f59da86ef9f8b43d4da22e38ebbf5ae250fa2a09117e0cd3ee7e9d7524633",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "e0 explica AVP/underfill em síndrome nefrótica já fornecida; a4 classifica volemia na IC com dadososmóticos/urinários.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "e2aae4c7",
+            "currentQuestion": {
+              "t": "SIADH — Critérios Laboratoriais",
+              "qid": "e2aae4c7",
+              "q": "Mulher com hiponatremia hipotônica apresenta osmolaridade urinária 620 mOsm/kg, sódio urinário 68 mEq/L, exame sem edema ou sinais de hipovolemia. Qual interpretação é mais adequada antes de fechar SIADH?",
+              "refs": [
+                "hypona",
+                "hyponatremia_verbalis2022"
+              ],
+              "opts": [
+                "O padrão sugere SIADH, mas é obrigatório excluir insuficiência adrenal, hipotireoidismo, insuficiência renal relevante e uso de diuréticos",
+                "Insuficiência cardíaca descompensada é o diagnóstico mais provável pelo sódio urinário alto",
+                "Polidipsia primária é provável porque a urina está muito concentrada",
+                "Hiponatremia por perda renal de sal está confirmada e exige SF 0,9% em todo caso"
+              ],
+              "ans": 0,
+              "exp": "Hiponatremia hipotônica com euvolemia clínica, urina inapropriadamente concentrada e sódio urinário elevado sugere SIADH, mas SIADH é diagnóstico de exclusão. Antes de fechá-lo, devem ser afastados insuficiência adrenal, hipotireoidismo, insuficiência renal relevante e efeitos de diuréticos. Insuficiência cardíaca costuma ter hipervolemia clínica e baixo volume arterial efetivo; polidipsia primária tipicamente cursa com urina diluída; perda renal de sal exige contexto e volemia compatíveis.",
+              "diff": "medium",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "e007fd8af389124a2fee77a432c757e9fc31366116c97d750672e49ce49c55ef",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "e2 avalia exclusões antes deSIADem euvolemia; a4 tem congestão e contexto cardíaco.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "ab12c0a9",
+            "currentQuestion": {
+              "t": "SIADH vs Insuficiência Adrenal",
+              "qid": "ab12c0a9",
+              "q": "Paciente com hiponatremia hipotônica, euvolemia clínica, sódio urinário 52 mEq/L e osmolaridade urinária 520 mOsm/kg está em investigação. Qual achado adicional favorece SIADH em vez de insuficiência adrenal primária?",
+              "refs": [
+                "hypona",
+                "hyponatremia_verbalis2022",
+                "hyponatremia_adrogue2000"
+              ],
+              "opts": [
+                "Hipercalemia e hipotensão postural",
+                "Hipoglicemia e hiperpigmentação",
+                "Aldosterona baixa com renina alta",
+                "Ureia baixa e ácido úrico baixo"
+              ],
+              "ans": 3,
+              "exp": "Ureia baixa e ácido úrico baixo favorecem SIADH, pois a discreta expansão efetiva de volume aumenta a excreção desses solutos. SIADH continua sendo diagnóstico de exclusão: é preciso afastar hipotireoidismo e insuficiência adrenal. Hipercalemia, hipotensão postural, hipoglicemia, hiperpigmentação, aldosterona baixa e renina alta apontam para insuficiência adrenal primária, não para SIADH.",
+              "diff": "medium",
+              "cat": "eletrólitos"
+            },
+            "currentQuestionSHA256": "30f2a5b724ad58a1c7d652311a59bb6b57a2cf56bdf35fb9ed28ff43664d4039",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "ab12 distingue SIAD de adrenal por achado adicional emeuvolemia; a4 classifica hipervolemia congestiva.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "packageIntegrationHold": false,
+        "difficultyCalibrationRecommendation": null,
+        "correctAnswer": {
+          "letter": "C",
+          "text": "Hiponatremia hipervolêmica de origem cardíaca."
+        },
+        "verificationPending": [],
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "qid": "2310ea28",
+        "sourceLine": 424,
+        "BEFORE": {
+          "t": "Síndrome de Fanconi e Acidose Tubular Proximal",
+          "qid": "2310ea28",
+          "q": "Paciente com síndrome de Fanconi apresenta acidose metabólica. Qual defeito tubular explica essa alteração?",
+          "refs": [
+            "atr_rodriguez_soriano",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Redução da reabsorção proximal de bicarbonato",
+            "Redução da secreção distal de H+",
+            "Redução da produção de amônia",
+            "Redução da reabsorção de sódio distal"
+          ],
+          "ans": 0,
+          "exp": "A síndrome de Fanconi é um defeito generalizado do túbulo proximal, com perda urinária de solutos como bicarbonato, glicose, fosfato e aminoácidos. A acidose metabólica decorre da menor reabsorção proximal de bicarbonato, caracterizando acidose tubular renal proximal (tipo 2). Defeito de secreção distal de H+ aponta para ATR distal; redução da amoniogênese é central em outros contextos, como DRC avançada ou ATR tipo 4; e redução isolada da reabsorção distal de sódio não explica a acidose de Fanconi.",
+          "diff": "hard",
+          "cat": "acido_base"
+        },
+        "beforeQuestionSHA256": "68d31ceb480ce214213497a0d4ca08ab05ea00e4ba6fec397161de51d399ba62",
+        "AFTER": {
+          "t": "Síndrome de Fanconi — Mecanismo da Acidose",
+          "qid": "2310ea28",
+          "q": "Na síndrome de Fanconi, qual defeito tubular contribui diretamente para a acidose metabólica?",
+          "refs": [
+            "palmer_rta_2021"
+          ],
+          "opts": [
+            "Menor reabsorção de bicarbonato no túbulo proximal.",
+            "Menor secreção de prótons no túbulo coletor distal.",
+            "Menor produção de amônio no rim sem bicarbonatúria.",
+            "Menor excreção de ácido titulável sem perda de bicarbonato."
+          ],
+          "ans": 0,
+          "exp": "Fanconi envolve disfunção proximal generalizada. A menor reabsorção proximal de bicarbonato causa bicarbonatúria e contribui à acidose tubular renal proximal, tipo 2. Secreção distal de prótons e produção de amônio pertencem a outros mecanismos; urina pode acidificar quando bicarbonato cai abaixo do limiar proximal. O nome do Fanconi não estabelece sua causa individual.",
+          "diff": "easy",
+          "cat": "acido_base"
+        },
+        "afterQuestionSHA256": "6c1decdc5e2b21b0181ff71156adfc6879c5e2be1c6c664e53dfd39017837fd6",
+        "OP": "Relacionar acidose no Fanconi à perda proximal de bicarbonato.",
+        "classification": {
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "candidateDifficulty": "easy",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false,
+          "ownClassificationNotInherited": true
+        },
+        "reviewStatus": "REVIEWED",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): fontes/eliminatórios/score/recurso próprios, aprovação doAFTER exato.",
+        "ownJustification": "Palmer2021 original pp955–957 diferencia bicarbonatúria proximal de defeito de secreção distal e descreve Fanconi/perdas globais. A liga menor reabsorção proximal à acidose tipo2; urina pode acidificar após HCO abaixo do limiar. OP causal específico, não identificação de perfil completo ou tratamento.",
+        "appeal": {
+          "finding": "B descreve defeito distal, C/D propõem mecanismos sem bicarbonatúria, deixando o processo proximal pedido. NomeFanconi não prova causa individual. fb5contrasta dois defeitos, exigindo relação distal versusproximal; este aplica perdaHCOaoFanconi. É granularidade próxima explicitamente julgada, sem fusão por compartilhar metade da resposta.",
+          "plausibleScientificChallenge": false,
+          "duplicateChallengeUpheld": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "B descreve defeito distal, C/D propõem mecanismos sem bicarbonatúria, deixando o processo proximal pedido. NomeFanconi não prova causa individual. fb5contrasta dois defeitos, exigindo relação distal versusproximal; este aplica perdaHCOaoFanconi. É granularidade próxima explicitamente julgada, sem fusão por compartilhar metade da resposta.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Palmer2021 original pp955–957 diferencia bicarbonatúria proximal de defeito de secreção distal e descreve Fanconi/perdas globais. A liga menor reabsorção proximal à acidose tipo2; urina pode acidificar após HCO abaixo do limiar. OP causal específico, não identificação de perfil completo ou tratamento.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "O comando mede o OP declarado: Relacionar acidose no Fanconi à perda proximal de bicarbonato.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "B descreve defeito distal, C/D propõem mecanismos sem bicarbonatúria, deixando o processo proximal pedido. NomeFanconi não prova causa individual. fb5contrasta dois defeitos, exigindo relação distal versusproximal; este aplica perdaHCOaoFanconi. É granularidade próxima explicitamente julgada, sem fusão por compartilhar metade da resposta.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Distratores correspondem a sinais/mecanismos/indicações invertidos; não são alternativas aleatórias. Pouca sutileza emmuscle/UF recebe desconto.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Fisiologia informa interpretação/conduta; não pede recall de estatística de artigo.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Palmer2021 original pp955–957 diferencia bicarbonatúria proximal de defeito de secreção distal e descreve Fanconi/perdas globais. A liga menor reabsorção proximal à acidose tipo2; urina pode acidificar após HCO abaixo do limiar. OP causal específico, não identificação de perfil completo ou tratamento.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "B descreve defeito distal, C/D propõem mecanismos sem bicarbonatúria, deixando o processo proximal pedido. NomeFanconi não prova causa individual. fb5contrasta dois defeitos, exigindo relação distal versusproximal; este aplica perdaHCOaoFanconi. É granularidade próxima explicitamente julgada, sem fusão por compartilhar metade da resposta.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Sem protocolo institucional oculto ou dose universal exigida.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Palmer2021 original pp955–957 diferencia bicarbonatúria proximal de defeito de secreção distal e descreve Fanconi/perdas globais. A liga menor reabsorção proximal à acidose tipo2; urina pode acidificar após HCO abaixo do limiar. OP causal específico, não identificação de perfil completo ou tratamento.",
+            "status": "REASSESSED_EXACT"
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 19,
+          "band": "Excelente",
+          "annulled": false,
+          "notComputableDueToEvidenceGate": false,
+          "reason": "Rubrica própria: estilo1, distratores1muscle/UF;db25construto1 pela classificação medium de relação básica, recomendação easy sem modificarAFTER."
+        },
+        "decisionTree": [
+          "0: VERIFICADA/NENHUMA",
+          "1: dez eliminatórios sem disparo",
+          "2: recurso não sustenta anulação/pares distintos",
+          "3: 19/20/Excelente",
+          "publicação derivada:LIBERADA"
+        ],
+        "lifecycle": "publicado",
+        "actualLifecycle": "CANDIDATO LOCAL — NÃO APLICADO",
+        "sourceReadings": [
+          {
+            "id": "palmer2021",
+            "url": "https://link.springer.com/article/10.1007/s12325-020-01587-5",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 1665513,
+              "sha256": "56b74fc82378d753ed852bdcd3a6dc2ed531cf77fa26e5fc0b2c834eb45335e9"
+            },
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "Original20p próprio; pp955–957 Fanconi/absorçãoHCO/limiar e própria leitura distal/type4 do cardinteiroA012/A013. NarrativeReview2021; triade incoerente caso3 não usada, semGRADE."
+          }
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "Perda proximal de HCO causa bicarbonatúria/acidose tipo2 noFanconi.",
+            "sourceIds": [
+              "palmer2021"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          },
+          {
+            "claim": "Distal pode acidificar abaixo do limiar; não fechar etiologia individual pelo nome.",
+            "sourceIds": [
+              "palmer2021"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          }
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "fb5a347d",
+            "currentQuestion": {
+              "t": "ATR Tipo 1 vs Tipo 2 — Defeito Primário",
+              "qid": "fb5a347d",
+              "q": "Qual diferença fisiopatológica separa melhor a acidose tubular renal (ATR) tipo 1 da ATR tipo 2?",
+              "refs": [
+                "atr_rodriguez_soriano",
+                "nongap_acidosis_kraut_madias"
+              ],
+              "opts": [
+                "ATR tipo 1: defeito distal de secreção de H+; ATR tipo 2: defeito proximal de reabsorção de bicarbonato filtrado.",
+                "ATR tipo 1: defeito proximal de bicarbonato; ATR tipo 2: defeito distal de secreção de H+.",
+                "ATR tipo 1 cursa tipicamente com hipercalemia; ATR tipo 2 cursa obrigatoriamente com hipercalemia grave.",
+                "Não há diferença fisiopatológica relevante; ambas têm tratamento e achados idênticos."
+              ],
+              "ans": 0,
+              "exp": "Na ATR tipo 1 (distal), o defeito central é incapacidade de acidificar a urina por secreção distal inadequada de H+, mantendo pH urinário inapropriadamente alto durante acidose. Na ATR tipo 2 (proximal), o problema é perda/reabsorção inadequada de bicarbonato filtrado; após queda do bicarbonato sérico abaixo do limiar, o néfron distal ainda consegue acidificar a urina. Ambas podem cursar com hipocalemia, mas nefrocalcinose é mais típica da ATR distal.",
+              "diff": "medium",
+              "cat": "acido_base"
+            },
+            "currentQuestionSHA256": "16c0bad9f0ecd1c1c3516340fca35c6b4098f79ba46c4296093b2ba280d42209",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "fb5 exige contraste de dois mecanismos distais/proximais;2310 relaciona defeito proximal generalizado à acidose. Há sobreposição de conhecimento, mas muda operação/estrutura de contraste, variação útil não identificada por tema apenas.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "85e1d082",
+            "currentQuestion": {
+              "qid": "85e1d082",
+              "q": "Ao avaliar o pH urinário para diferenciar a ATR tipo 1 (distal) da ATR tipo 2 (proximal), qual é o achado clássico?",
+              "opts": [
+                "Na ATR tipo 1, o pH urinário permanece inapropriadamente > 5,5 durante acidose sistêmica, enquanto na tipo 2 pode cair < 5,5 após queda do bicarbonato sérico.",
+                "Ambas são incapazes de baixar o pH urinário abaixo de 6,5.",
+                "Na ATR tipo 1, o pH urinário cai para menos de 4,0 devido à hiperamonemia.",
+                "Na ATR tipo 2, o pH urinário é obrigatoriamente alcalino o tempo todo, mesmo com acidose grave."
+              ],
+              "ans": 0,
+              "exp": "Na Acidose Tubular Renal (ATR) tipo 1 (distal), há defeito de secreção distal de íons hidrogênio, de modo que o pH urinário fica inapropriadamente alto, tipicamente >5,5, apesar de acidose metabólica sistêmica. Na ATR tipo 2 (proximal), o defeito primário é a reabsorção reduzida de bicarbonato filtrado; porém, o néfron distal está funcional e, depois que o bicarbonato sérico cai abaixo do limiar de reabsorção, a urina pode voltar a ser acidificada para pH <5,5.",
+              "refs": [
+                "atr_rodriguez_soriano",
+                "brenner_rector"
+              ],
+              "cat": "acido_base",
+              "diff": "hard",
+              "t": "ATR Tipo 1 vs Tipo 2 — pH Urinário"
+            },
+            "currentQuestionSHA256": "5939f1b2889c63ff0000fa7117bb3022d7c63b0217ac62697697c7192ead0ed4",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "85 interpreta mudança de pH/limiar para diferenciarATR;2310 explica perda de bicarbonato na síndrome já nomeada.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "cc3248a3",
+            "currentQuestion": {
+              "t": "Diagnóstico Diferencial de ATR Distal (Tipo 1)",
+              "qid": "cc3248a3",
+              "q": "Um paciente apresenta nefrocalcinose medular, cálculos de fosfato de cálcio recorrentes, hipocalemia e pH urinário persistentemente acima de 5,5 em vigência de acidose sistêmica. Qual é o diagnóstico mais provável e o tratamento inicial adequado?",
+              "refs": [
+                "atr_rodriguez_soriano",
+                "brenner_rector"
+              ],
+              "opts": [
+                "Acidose extrarrenal por diarreia; hidratação vigorosa",
+                "ATR Tipo 4 (hipercalêmica); restrição de potássio",
+                "ATR Tipo 1 (distal); administração de citrato de potássio",
+                "ATR Tipo 2 (proximal); reposição de bicarbonato em altas doses"
+              ],
+              "ans": 2,
+              "exp": "O quadro clínico (nefrocalcinose medular, cálculos de fosfato de cálcio, hipocalemia, pH urinário persistentemente >5,5 mesmo com acidose sistêmica) é característico de acidose tubular renal distal (tipo 1). O tratamento de escolha é o citrato de potássio oral, porque: (1) o citrato é metabolizado em bicarbonato, corrigindo a acidose; (2) o potássio corrige a hipocalemia; e (3) o aumento do citrato urinário inibe a cristalização do oxalato/fosfato de cálcio, prevenindo novos cálculos e nefrocalcinose. O bicarbonato de sódio, embora corrija a acidose, não trata a hipocalemia nem aumenta a citratúria, sendo inferior ao citrato de potássio nesse contexto. ATR tipo 4 cursa com HIPERcalemia; ATR tipo 2 não causa nefrocalcinose medular.",
+              "diff": "medium",
+              "cat": "acido_base"
+            },
+            "currentQuestionSHA256": "6a93f7dbd373cdb87898f69849df5b1d506c582248e753d4accb8a73accc939e",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "cc324 diagnostica distal por cálculo/K/pH e escolhe citrato;2310 explica acidose proximal sem decisão de tratamento.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "c3222d12",
+            "currentQuestion": {
+              "t": "Síndrome de Fanconi",
+              "qid": "c3222d12",
+              "q": "A Síndrome de Fanconi caracteriza-se por uma disfunção generalizada de qual segmento do néfron e quais são os achados urinários típicos?",
+              "refs": [
+                "kdigo_ckd",
+                "brenner_rector"
+              ],
+              "opts": [
+                "Alça de Henle; Defeito na reabsorção de sódio e água, resultando em poliúria e natriurese aumentada",
+                "Túbulo Proximal; Glicosúria (com glicemia normal), fosfatúria, uricosúria e aminoacidúria",
+                "Túbulo Distal; Alteração na secreção de potássio e hidrogênio, causando acidose metabólica e hipocalemia",
+                "Ducto Coletor; Resistência ao ADH com poliúria osmótica e incapacidade de concentrar a urina adequadamente"
+              ],
+              "ans": 1,
+              "exp": "A síndrome de Fanconi é defeito global de reabsorção no túbulo proximal, com perda urinária de glicose (com glicemia normal), fosfato, urato, aminoácidos e bicarbonato. Portanto, o padrão clássico é o da alternativa do túbulo proximal; segmentos distais não explicam esse conjunto de perdas.",
+              "diff": "medium",
+              "cat": "acido_base"
+            },
+            "currentQuestionSHA256": "84d4b7fc7c73d0725da202da1fb3009b122d1c0928f9b56d4f7c100e1c4a6f82",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "c322 reconhece segmento/conjunto de perdas globais;2310 pede causalidade acidobásica específica.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "d889795b",
+            "currentQuestion": {
+              "t": "Paciente com síndrome de Fanconi apresenta qual co",
+              "qid": "d889795b",
+              "q": "Paciente de 38 anos em uso de tenofovir (antirretroviral) por 3 anos desenvolve fraqueza muscular, hipocalemia, hipofosfatemia e glicosúria com glicemia normal. A biópsia renal mostra lesão tubular proximal. Qual combinação laboratorial é característica da síndrome de Fanconi?",
+              "refs": [
+                "brenner_rector"
+              ],
+              "opts": [
+                "Hiperglicemia e proteinúria seletiva",
+                "Glicosúria, fosfatúria e aminoacidúria",
+                "Hematúria e cilindros hemáticos",
+                "Hipercalcemia e hipercalciúria"
+              ],
+              "ans": 1,
+              "exp": "A síndrome de Fanconi é caracterizada por disfunção do túbulo proximal, resultando em perda de substâncias que normalmente são reabsorvidas nessa região, como glicose, fosfato, bicarbonato e aminoácidos. Isso leva a glicosúria com glicemia normal, hipofosfatemia, hipocalemia e acidose metabólica com ânion gap normal (acidose tubular renal proximal). O uso de tenofovir é uma causa conhecida de síndrome de Fanconi devido à toxicidade tubular proximal. As outras opções estão incorretas porque não refletem a combinação clássica de distúrbios eletrolíticos e ácido-base observada na síndrome de Fanconi.",
+              "diff": "hard",
+              "cat": "acido_base"
+            },
+            "currentQuestionSHA256": "d8a7fcad7ef11ca2d85441bd0afccb19e9698f462fcb18725ffd3bbb61dbff09",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "d889 reconhece glicosúria/fosfatúria/aminoacidúria, sem operação causal da perdaHCO;2310 foi distinguido também na revisão própriaA013.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "packageIntegrationHold": false,
+        "difficultyCalibrationRecommendation": null,
+        "correctAnswer": {
+          "letter": "A",
+          "text": "Menor reabsorção de bicarbonato no túbulo proximal."
+        },
+        "verificationPending": [],
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "qid": "db438123",
+        "sourceLine": 428,
+        "BEFORE": {
+          "t": "Paciente com DRC apresenta acidose metabólica. Qual efeito o...",
+          "qid": "db438123",
+          "q": "Paciente com doença renal crônica (DRC) apresenta acidose metabólica. Qual é o efeito da acidose metabólica sobre o metabolismo ósseo?",
+          "refs": [
+            "kdigo_ckd",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Redução da reabsorção óssea",
+            "Redução da atividade osteoclástica",
+            "Liberação de cálcio e fosfato do osso",
+            "Redução do PTH"
+          ],
+          "ans": 2,
+          "exp": "A acidose metabólica na doença renal crônica leva a um aumento da reabsorção óssea. Isso ocorre porque a acidose estimula a atividade dos osteoclastos, células responsáveis pela reabsorção óssea, como um mecanismo compensatório para liberar íons bicarbonato e tamponar o excesso de ácido. A ativação dos osteoclastos resulta em aumento da liberação de cálcio e fosfato do osso, contribuindo para a osteodistrofia renal. As outras opções estão incorretas porque a acidose não inibe os osteoclastos, nem promove a formação óssea através dos osteoblastos.",
+          "diff": "hard",
+          "cat": "acido_base"
+        },
+        "beforeQuestionSHA256": "644b2314fc4c85c3d0279a0426e4db92c19c7dec2954a6edcf4ea3a797af051d",
+        "AFTER": {
+          "t": "Acidose Metabólica na Doença Renal Crônica — Efeito Mineral Ósseo",
+          "qid": "db438123",
+          "q": "Adulto com doença renal crônica (DRC) e acidose metabólica persistente tem qual efeito mineral ósseo esperado associado à carga ácida?",
+          "refs": [
+            "bushinsky_acid_bone_2022"
+          ],
+          "opts": [
+            "Menor perda mineral por inibição da reabsorção óssea.",
+            "Maior ganho mineral por estímulo da formação óssea.",
+            "Perda mineral com liberação de cálcio e fosfato.",
+            "Retenção mineral por menor consumo dos tampões ósseos."
+          ],
+          "ans": 2,
+          "exp": "O osso participa do tamponamento da carga ácida com componentes minerais; acidose persistente também pode alterar formação e reabsorção. Há perda mineral e liberação de cálcio e fosfato. A revisão diferencia processos físico-químicos e celulares, com evidência experimental e clínica heterogênea. Não se prova fratura, histologia individual ou benefício universal de alcalino apenas por este mecanismo.",
+          "diff": "easy",
+          "cat": "acido_base"
+        },
+        "afterQuestionSHA256": "2d4ee8f9c2fee99ad1960fc1233975fe160e4df7b12a34c782c1a6829cd80736",
+        "OP": "Relacionar acidose metabólica crônica na DRC à perda mineral óssea.",
+        "classification": {
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy",
+          "candidateDifficulty": "easy",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false,
+          "ownClassificationNotInherited": true
+        },
+        "reviewStatus": "REVIEWED",
+        "verdictV2": "fundir",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "publicationDerivation": "Handbook18.4: FUNDIRbloqueia apesar de fonte/clínica válidas; IDs/survivorformalpendente.",
+        "ownJustification": "Bushinsky/Krieger2022 original lido por mim noA013 e novamente confrontado ao literal: tamponamento mineral/dissolução e efeitos celulares crônicos podem liberarCa/P. C é científica. O comando sobre efeito mineral naDRC+acidose persistente coincide com e8ca8ba5; FUNDIR apesar da correção científica, sem sobrevivente aprovado.",
+        "appeal": {
+          "finding": "A/B/D invertem balanço mineral ou proteção por menor consumo. Não se inferem fratura, histologia ou dose universal. Recurso de duplicidade procede: valor16/duração concreta doA013 versus expressão persistente aqui não mudam mecanismo escolhido, perfil ou língua. O título atual truncado não ocultou o corpo, que foi lido.",
+          "plausibleScientificChallenge": false,
+          "duplicateChallengeUpheld": true
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "A/B/D invertem balanço mineral ou proteção por menor consumo. Não se inferem fratura, histologia ou dose universal. Recurso de duplicidade procede: valor16/duração concreta doA013 versus expressão persistente aqui não mudam mecanismo escolhido, perfil ou língua. O título atual truncado não ocultou o corpo, que foi lido.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Bushinsky/Krieger2022 original lido por mim noA013 e novamente confrontado ao literal: tamponamento mineral/dissolução e efeitos celulares crônicos podem liberarCa/P. C é científica. O comando sobre efeito mineral naDRC+acidose persistente coincide com e8ca8ba5; FUNDIR apesar da correção científica, sem sobrevivente aprovado.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "O comando mede o OP declarado: Relacionar acidose metabólica crônica na DRC à perda mineral óssea.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "A/B/D invertem balanço mineral ou proteção por menor consumo. Não se inferem fratura, histologia ou dose universal. Recurso de duplicidade procede: valor16/duração concreta doA013 versus expressão persistente aqui não mudam mecanismo escolhido, perfil ou língua. O título atual truncado não ocultou o corpo, que foi lido.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Distratores correspondem a sinais/mecanismos/indicações invertidos; não são alternativas aleatórias. Pouca sutileza emmuscle/UF recebe desconto.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Fisiologia informa interpretação/conduta; não pede recall de estatística de artigo.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Bushinsky/Krieger2022 original lido por mim noA013 e novamente confrontado ao literal: tamponamento mineral/dissolução e efeitos celulares crônicos podem liberarCa/P. C é científica. O comando sobre efeito mineral naDRC+acidose persistente coincide com e8ca8ba5; FUNDIR apesar da correção científica, sem sobrevivente aprovado.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "A/B/D invertem balanço mineral ou proteção por menor consumo. Não se inferem fratura, histologia ou dose universal. Recurso de duplicidade procede: valor16/duração concreta doA013 versus expressão persistente aqui não mudam mecanismo escolhido, perfil ou língua. O título atual truncado não ocultou o corpo, que foi lido.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Sem protocolo institucional oculto ou dose universal exigida.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Bushinsky/Krieger2022 original lido por mim noA013 e novamente confrontado ao literal: tamponamento mineral/dissolução e efeitos celulares crônicos podem liberarCa/P. C é científica. O comando sobre efeito mineral naDRC+acidose persistente coincide com e8ca8ba5; FUNDIR apesar da correção científica, sem sobrevivente aprovado.",
+            "status": "REASSESSED_EXACT"
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 19,
+          "band": "Excelente",
+          "annulled": false,
+          "notComputableDueToEvidenceGate": false,
+          "reason": "Rubrica própria: estilo1, distratores1muscle/UF;db25construto1 pela classificação medium de relação básica, recomendação easy sem modificarAFTER."
+        },
+        "decisionTree": [
+          "0: VERIFICADA/NENHUMA",
+          "1: dez eliminatórios sem disparo",
+          "2: quatro eixos duplicados → FUNDIR",
+          "3: 19/20/Excelente",
+          "publicação derivada:BLOQUEADA"
+        ],
+        "lifecycle": "em_revisão",
+        "actualLifecycle": "CANDIDATO LOCAL — NÃO APLICADO",
+        "sourceReadings": [
+          {
+            "id": "bone2022",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9133222/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 143689,
+              "sha256": "90727b8cbd8c5158294812b583a5ba9f6e5fec0cb8f013e4b781615b63e40eab"
+            },
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "Corpo originalNIHMS/BioC identificado já lido próprio e reconfrontado ao literal: físico-químico/celular, modelos/observações/DRChormônios/turnover. MED35351460/pub2022 diferente deBioCavailability2023; cardliteralA013 por igualdade, gate inteiro próprio novo."
+          }
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "Carga ácida pode consumir tampões minerais e liberarCa/P.",
+            "sourceIds": [
+              "bone2022"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          },
+          {
+            "claim": "Mecanismo experimental/clínico heterogêneo não comprova fratura ou benefício universal de alcalino.",
+            "sourceIds": [
+              "bone2022"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          }
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "e8ca8ba5",
+            "currentQuestion": {
+              "t": "Acidose Metabólica na DRC — Efeito Ósseo",
+              "qid": "e8ca8ba5",
+              "q": "Paciente com DRC avançada mantém bicarbonato sérico de 16 mEq/L por meses. Qual consequência óssea é esperada da acidose metabólica crônica?",
+              "refs": [
+                "ckd_metabolic_acidosis_core_2019",
+                "brenner_rector"
+              ],
+              "opts": [
+                "Redução da reabsorção óssea e aumento sustentado de formação óssea.",
+                "Supressão completa do PTH como mecanismo protetor principal.",
+                "Tamponamento ósseo do excesso de H+, com liberação de minerais e contribuição para perda óssea.",
+                "Hipofosfatemia obrigatória por bloqueio direto da absorção intestinal."
+              ],
+              "ans": 2,
+              "exp": "Na DRC, a acidose metabólica crônica promove retenção ácida e usa o osso como tampão, favorecendo liberação de minerais, alteração da remodelação e perda óssea. A acidose não é protetora para o esqueleto: pode estimular reabsorção e inibir formação óssea. O ponto pedagógico é reconhecer que bicarbonato baixo persistente tem consequências sistêmicas, não apenas laboratoriais.",
+              "diff": "medium",
+              "cat": "acido_base"
+            },
+            "currentQuestionSHA256": "1276a8c0613b72d1b03b09186ce1c3efcb1de671b5f1f1180444b38a1da60935",
+            "sameDecision": true,
+            "sameDataStructure": true,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": true,
+            "reason": "Mesma decisão causal do efeito mineral ósseo daacidose naDRC, mesma estrutura doença+acidose persistente, mesmo médico/residente/PT-BR. Valor16 e meses não mudam a operação. BothIDs/FSRSpreservados, nenhum survivor aprovado por associação.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "packageIntegrationHold": false,
+        "difficultyCalibrationRecommendation": null,
+        "correctAnswer": {
+          "letter": "C",
+          "text": "Perda mineral com liberação de cálcio e fosfato."
+        },
+        "verificationPending": [],
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "qid": "f7fd9e8a",
+        "sourceLine": 432,
+        "BEFORE": {
+          "t": "Hipotensão Intradialítica — Mecanismo Hemodinâmico",
+          "qid": "f7fd9e8a",
+          "q": "Paciente de 70 kg chega à hemodiálise com 4 kg acima do peso-alvo e todo o volume é programado para remoção em uma sessão curta. Na segunda metade da sessão, apresenta queda sintomática da pressão arterial. Qual mecanismo é mais provável?",
+          "refs": [
+            "kdigo_bp_volume_dialysis_2020"
+          ],
+          "opts": [
+            "A taxa de ultrafiltração supera o reenchimento vascular e a resposta cardiovascular compensatória, reduzindo o volume circulante efetivo",
+            "A remoção de ureia aumenta diretamente a volemia e causa vasodilatação obrigatória",
+            "A hipercalemia pré-diálise impede qualquer vasoconstrição periférica durante a sessão",
+            "O sódio do dialisato provoca perda sanguínea aguda para o circuito extracorpóreo"
+          ],
+          "ans": 0,
+          "exp": "A hipotensão intradialítica ocorre quando a retirada de líquido não pode ser acompanhada pelo reenchimento do compartimento intravascular e pelas respostas cardiovasculares compensatórias. Grande ganho interdialítico, sessão curta, peso-alvo inadequado e baixa reserva cardíaca ou autonômica estreitam essa margem. A prevenção exige reavaliar volemia e peso-alvo, reduzir a taxa de ultrafiltração com maior tempo ou frequência quando necessário e diminuir o ganho interdialítico; não existe um único limite de ultrafiltração seguro para todos os pacientes.",
+          "diff": "medium",
+          "cat": "dialise"
+        },
+        "beforeQuestionSHA256": "31bec09b5b8a0fa6cb4bbfa196e2cef7fb9b52cea0bbcf7e499dc31cda5a7db2",
+        "AFTER": {
+          "t": "Hipotensão Intradialítica — Mecanismo Hemodinâmico",
+          "qid": "f7fd9e8a",
+          "q": "Adulto de 70 kg em hemodiálise chega 4 kg acima do peso-alvo. A remoção desse volume foi programada em uma sessão curta. Durante a retirada, apresenta queda sintomática da pressão arterial, sem sangramento ou arritmia identificados. Qual mecanismo melhor explica o episódio?",
+          "refs": [
+            "kdigo_bp_volume_dialysis_2020"
+          ],
+          "opts": [
+            "Retirada de volume superior ao reenchimento vascular e à compensação cardiovascular.",
+            "Reenchimento vascular aumentado, com expansão do volume circulante durante a retirada.",
+            "Retenção de volume por ultrafiltração insuficiente, com vasoconstrição compensatória.",
+            "Expansão intravascular por transferência de sódio, com aumento do retorno venoso."
+          ],
+          "ans": 0,
+          "exp": "Ultrafiltração pode superar o reenchimento intravascular e as respostas cardiovasculares, reduzindo o volume circulante efetivo. O quadro exige avaliação e estabilização clínica; reavaliar peso-alvo, ganho entre sessões, tempo e frequência para prevenir recorrência. Não há limiar de ultrafiltração seguro único para todos. A fonte é relatório de conferência, sem recomendação pelo sistema Grading of Recommendations Assessment, Development and Evaluation (GRADE) nova ou demonstração de sobrevida por um teto universal.",
+          "diff": "medium",
+          "cat": "dialise"
+        },
+        "afterQuestionSHA256": "dca1c12f9d638c99247e7e2c984ab0296bd76e68b365e2e7410a5fbbd0cbca0d",
+        "OP": "Explicar hipotensão durante retirada rápida de volume na hemodiálise.",
+        "classification": {
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium",
+          "candidateDifficulty": "medium",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false,
+          "ownClassificationNotInherited": true
+        },
+        "reviewStatus": "REVIEWED",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): fontes/eliminatórios/score/recurso próprios, aprovação doAFTER exato.",
+        "ownJustification": "Flythe2020 original pp865–867 afirma volume intravascular insuficiente àUF e resposta cardiovascular inadequada, ausência de cutoffuniversal e individualização. A aplica esse mecanismo à retirada4kg em sessão curta com queda sintomática. Não se calcula taxa sem duração nem se impõe um limiar. Fonte é conclusões de conferência, gêneroConsenso corrigidoA3 no alcance do contrato atual.",
+        "appeal": {
+          "finding": "B/D afirmam expansão/reenchimento maior que explicaria o oposto, C atribui episódio à remoção insuficiente com retenção. Sangramento/arritmia estão excluídos, mas não se nega contribuição de vasodilatação/reserva/autonômica. Explicação exige avaliar/estabilizar, sem deixar o mecanismo substituir conduta. Os distratores têm erros hemodinâmicos pertinentes porém fáceis.",
+          "plausibleScientificChallenge": false,
+          "duplicateChallengeUpheld": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "B/D afirmam expansão/reenchimento maior que explicaria o oposto, C atribui episódio à remoção insuficiente com retenção. Sangramento/arritmia estão excluídos, mas não se nega contribuição de vasodilatação/reserva/autonômica. Explicação exige avaliar/estabilizar, sem deixar o mecanismo substituir conduta. Os distratores têm erros hemodinâmicos pertinentes porém fáceis.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "Flythe2020 original pp865–867 afirma volume intravascular insuficiente àUF e resposta cardiovascular inadequada, ausência de cutoffuniversal e individualização. A aplica esse mecanismo à retirada4kg em sessão curta com queda sintomática. Não se calcula taxa sem duração nem se impõe um limiar. Fonte é conclusões de conferência, gêneroConsenso corrigidoA3 no alcance do contrato atual.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "O comando mede o OP declarado: Explicar hipotensão durante retirada rápida de volume na hemodiálise.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "B/D afirmam expansão/reenchimento maior que explicaria o oposto, C atribui episódio à remoção insuficiente com retenção. Sangramento/arritmia estão excluídos, mas não se nega contribuição de vasodilatação/reserva/autonômica. Explicação exige avaliar/estabilizar, sem deixar o mecanismo substituir conduta. Os distratores têm erros hemodinâmicos pertinentes porém fáceis.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Distratores correspondem a sinais/mecanismos/indicações invertidos; não são alternativas aleatórias. Pouca sutileza emmuscle/UF recebe desconto.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Fisiologia informa interpretação/conduta; não pede recall de estatística de artigo.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "Flythe2020 original pp865–867 afirma volume intravascular insuficiente àUF e resposta cardiovascular inadequada, ausência de cutoffuniversal e individualização. A aplica esse mecanismo à retirada4kg em sessão curta com queda sintomática. Não se calcula taxa sem duração nem se impõe um limiar. Fonte é conclusões de conferência, gêneroConsenso corrigidoA3 no alcance do contrato atual.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "B/D afirmam expansão/reenchimento maior que explicaria o oposto, C atribui episódio à remoção insuficiente com retenção. Sangramento/arritmia estão excluídos, mas não se nega contribuição de vasodilatação/reserva/autonômica. Explicação exige avaliar/estabilizar, sem deixar o mecanismo substituir conduta. Os distratores têm erros hemodinâmicos pertinentes porém fáceis.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Sem protocolo institucional oculto ou dose universal exigida.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "Flythe2020 original pp865–867 afirma volume intravascular insuficiente àUF e resposta cardiovascular inadequada, ausência de cutoffuniversal e individualização. A aplica esse mecanismo à retirada4kg em sessão curta com queda sintomática. Não se calcula taxa sem duração nem se impõe um limiar. Fonte é conclusões de conferência, gêneroConsenso corrigidoA3 no alcance do contrato atual.",
+            "status": "REASSESSED_EXACT"
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 1
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 18,
+          "band": "Excelente",
+          "annulled": false,
+          "notComputableDueToEvidenceGate": false,
+          "reason": "Rubrica própria: estilo1, distratores1muscle/UF;db25construto1 pela classificação medium de relação básica, recomendação easy sem modificarAFTER."
+        },
+        "decisionTree": [
+          "0: VERIFICADA/NENHUMA",
+          "1: dez eliminatórios sem disparo",
+          "2: recurso não sustenta anulação/pares distintos",
+          "3: 18/20/Excelente",
+          "publicação derivada:LIBERADA"
+        ],
+        "lifecycle": "publicado",
+        "actualLifecycle": "CANDIDATO LOCAL — NÃO APLICADO",
+        "sourceReadings": [
+          {
+            "id": "volume2020",
+            "url": "https://kdigo.org/wp-content/uploads/2017/05/KDIGO-BP-Volume-in-Dialysis-FINAL.pdf",
+            "sourcePin": null,
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "Original oficial16p aberto próprioWeb, front/p1–2 conferênciaLisboaFeb2019/médicos e pacientes/apresentações/discussões/heterogeneidade, pp5–6pesoalvo/refill/compensação/UFsemcutoff,pp8–9cooling/limites. Consenso de conferência2020KI97:861–876/DOI2020.01.046; não guidelineGRADE, semDelphi/votação/ninventados. Toda nova descrição de método/gênero A3 confrontada ao original."
+          }
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "Volume retirado pode exceder refill/resposta cardiovascular e precipitar hipotensão.",
+            "sourceIds": [
+              "volume2020"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          },
+          {
+            "claim": "Peso-alvo/ganho/tempo/frequência individualizados, sem taxaUF segura universal ouGRADEnovo.",
+            "sourceIds": [
+              "volume2020"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          }
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "236ed8f1",
+            "currentQuestion": {
+              "t": "Hipotensão Intradialítica Recorrente — Ajuste da Prescrição",
+              "qid": "236ed8f1",
+              "q": "Paciente de 70 kg em hemodiálise por quatro horas ganha 3,5 kg entre as sessões e apresenta quedas sintomáticas recorrentes da pressão durante a ultrafiltração. Após estabilizar o episódio agudo, qual ajuste preventivo deve ser priorizado?",
+              "refs": [
+                "kdigo_bp_volume_dialysis_2020"
+              ],
+              "opts": [
+                "Aumentar a ultrafiltração para alcançar o peso-alvo mais cedo e encurtar o período de sintomas",
+                "Reavaliar peso-alvo e estado volêmico, reduzir a taxa de ultrafiltração com sessões mais longas ou adicionais e diminuir o ganho interdialítico; banho mais frio pode ser adjuvante",
+                "Elevar rotineiramente o sódio do dialisato, sem considerar sede, ganho interdialítico ou pressão fora da diálise",
+                "Prescrever midodrina como primeira e única medida, mantendo inalterados tempo de sessão, peso-alvo e volume a remover"
+              ],
+              "ans": 1,
+              "exp": "A hipotensão intradialítica resulta frequentemente de retirada de volume incompatível com o reenchimento vascular e com a reserva cardiovascular. A prioridade é revisar o peso-alvo e o estado volêmico e reduzir a taxa de ultrafiltração, aumentando o tempo ou a frequência quando necessário e controlando sódio e ganho de peso interdialítico. Não há um único limite de ultrafiltração apropriado para todos os pacientes; a prescrição deve integrar sintomas, hemodinâmica e comorbidades. Dialisato mais frio pode melhorar tolerância. Sódio alto e fármacos como midodrina exigem seleção individual e não corrigem uma prescrição volêmica inadequada.",
+              "diff": "hard",
+              "cat": "nefrologia_geral"
+            },
+            "currentQuestionSHA256": "639ecb748408cc4bcb91123dca6a05aba071b4789d9deadc47aca5c5cb52881f",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "236 escolhe ajuste preventivo depois de estabilizar;f7 explica mecanismo da retirada nesta sessão, sem escolher regime.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "f3ab76f3",
+            "currentQuestion": {
+              "t": "Hipotensão Intradialítica — Reserva Cardíaca Reduzida",
+              "qid": "f3ab76f3",
+              "q": "Paciente em hemodiálise apresenta hipotensão intradialítica recorrente mesmo após redução da taxa de ultrafiltração. O ecocardiograma mostra fração de ejeção de 30%, sem derrame pericárdico. Qual interpretação e próximo passo são mais apropriados?",
+              "refs": [
+                "kdigo_bp_volume_dialysis_2020"
+              ],
+              "opts": [
+                "A reserva cardíaca reduzida pode limitar a resposta ao estresse circulatório; é necessário reavaliar coração, volemia, peso-alvo, tempo e frequência da diálise de forma integrada",
+                "A fração de ejeção baixa prova neuropatia autonômica; midodrina deve ser a única medida preventiva",
+                "A hipotensão demonstra excesso de volume; a taxa de ultrafiltração deve ser aumentada até desaparecer o edema",
+                "O quadro exige terapia renal substitutiva contínua permanente, independentemente da estabilidade entre as sessões"
+              ],
+              "ans": 0,
+              "exp": "Disfunção sistólica reduz a capacidade de aumentar débito cardíaco e resistência vascular durante a retirada de volume, favorecendo hipotensão mesmo com taxa de ultrafiltração aparentemente moderada. A conduta é integrada: confirmar peso-alvo e estado volêmico, revisar cardiopatia e medicamentos, prolongar ou aumentar a frequência das sessões quando necessário e considerar medidas adjuvantes conforme o mecanismo. Midodrina ou dialisato mais frio podem ajudar em pacientes selecionados, mas não substituem a correção da prescrição e da doença cardiovascular subjacente; terapia contínua não é solução crônica automática.",
+              "diff": "hard",
+              "cat": "dialise"
+            },
+            "currentQuestionSHA256": "57b43d3230e64bf87d0697cfa986be69b0affb4e5d05668cb0fc6766bf161382",
+            "sameDecision": true,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Ambos interpretam hipotensão, porémf3persiste após reduçãoUF/FE30 e testa reserva cardíaca;f7tem retirada rápida/carga4kg e mecanismo de retirada versusrefill. Mudam decisivamente dados e ângulo, não apenas peso.",
+            "scientificallyApprovedByAssociation": false
+          },
+          {
+            "qid": "4b27ea54",
+            "currentQuestion": {
+              "t": "Hipotensão Intradialítica — Resfriamento do Dialisato",
+              "qid": "4b27ea54",
+              "q": "Paciente continua apresentando hipotensão intradialítica sintomática após revisão do peso-alvo, redução da taxa de ultrafiltração e prolongamento da sessão. Qual ajuste do dialisato é um adjuvante razoável?",
+              "refs": [
+                "kdigo_bp_volume_dialysis_2020"
+              ],
+              "opts": [
+                "Usar dialisato mais frio de forma individualizada, monitorando tremores, desconforto e tolerância",
+                "Elevar rotineiramente a temperatura para 38°C para aumentar a vasodilatação cutânea",
+                "Aumentar sempre o sódio do dialisato, sem considerar sede, ganho interdialítico ou pressão fora da diálise",
+                "Manter 37°C obrigatoriamente, pois a temperatura do dialisato não influencia a estabilidade hemodinâmica"
+              ],
+              "ans": 0,
+              "exp": "Reduzir a temperatura do dialisato pode melhorar a estabilidade hemodinâmica e é um adjuvante razoável após corrigir fatores volêmicos e a taxa de ultrafiltração. A prescrição deve ser individualizada porque frio, tremores e desconforto podem limitar a tolerância, e a evidência não define uma temperatura universal para todos. Elevar sistematicamente o sódio pode aumentar sede, ganho de peso e hipertensão; resfriamento não substitui a reavaliação do peso-alvo, do volume e da duração da sessão.",
+              "diff": "medium",
+              "cat": "dialise"
+            },
+            "currentQuestionSHA256": "05b90a2e08860d747ed84586010ff0938f482b5b54674617b589883a87dc9f22",
+            "sameDecision": false,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "4b escolhe resfriamento após medidas preventivas iniciais;f7explica retirada/compensação sem escolher adjuvante.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "packageIntegrationHold": false,
+        "difficultyCalibrationRecommendation": null,
+        "correctAnswer": {
+          "letter": "A",
+          "text": "Retirada de volume superior ao reenchimento vascular e à compensação cardiovascular."
+        },
+        "verificationPending": [],
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "qid": "31138710",
+        "sourceLine": 435,
+        "BEFORE": {
+          "t": "ITU na DRC/Diálise",
+          "qid": "31138710",
+          "q": "Mulher de 72 anos em diálise peritoneal apresenta secreção purulenta no óstio do cateter. Cultura do swab: Staphylococcus aureus sensível à oxacilina. Não há dor abdominal, efluente turvo, febre persistente nem sinais de infecção de túnel. Qual conduta é mais adequada?",
+          "opts": [
+            "Antibiótico oral com cobertura para S. aureus, como cefalexina, monitorando resposta clínica e cultura.",
+            "Remoção imediata do cateter, pois qualquer S. aureus no óstio contraindica manter DP.",
+            "Cefalosporina intraperitoneal isolada, mesmo sem peritonite.",
+            "Rifampicina em monoterapia por 3 semanas para evitar biofilme."
+          ],
+          "ans": 0,
+          "exp": "A conduta adequada é antibiótico oral cobrindo S. aureus, como cefalexina se MSSA, com monitorização clínica e ajuste pela cultura/sensibilidade. A ISPD 2023 recomenda cobertura empírica oral para S. aureus em infecção de óstio; a duração deve seguir resposta clínica, cultura e sensibilidade, podendo ser encurtada se houver resolução precoce. Remoção do cateter fica para infecção refratária, túnel profundo, peritonite associada ou falha de salvamento. Via intraperitoneal é central para peritonite, não para óstio isolado. Rifampicina nunca deve ser usada como monoterapia.",
+          "diff": "medium",
+          "cat": "infeccao",
+          "refs": [
+            "ispd_catheter_infection_2023"
+          ]
+        },
+        "beforeQuestionSHA256": "db49f6fd0d5e1aeacccac1412b1d7dbd18eaa6a89ea02b5535929c073d3e5e05",
+        "AFTER": {
+          "t": "Diálise Peritoneal — Infecção do Orifício de Saída do Cateter",
+          "qid": "31138710",
+          "q": "Mulher de 72 anos em diálise peritoneal (DP) tem secreção purulenta no orifício de saída do cateter. Cultura: Staphylococcus aureus sensível à oxacilina. Não há dor abdominal, efluente turvo, febre persistente nem achados de infecção de túnel. Qual plano inicial é mais adequado?",
+          "opts": [
+            "Antibiótico oral dirigido, com revisão precoce da resposta.",
+            "Troca imediata do cateter, antes de tentar tratamento dirigido.",
+            "Antibioticoterapia intraperitoneal isolada, como para peritonite.",
+            "Rifampicina isolada, mantendo três semanas fixas de tratamento."
+          ],
+          "ans": 0,
+          "exp": "A Sociedade Internacional de Diálise Peritoneal (ISPD), em 2023, recomenda antibiótico oral com cobertura de S. aureus, adaptado à cultura e sensibilidade; cefalexina é uma opção neste organismo sensível. Avaliar resposta em cerca de uma semana e ajustar duração; 7–10 dias podem bastar se resolução é confirmada, sem regra de 21 dias. Associar profilaxia antifúngica conforme a diretriz durante antibióticos. Peritonite pelo mesmo organismo ou infecção refratária pode exigir intervenção no cateter. Rifampicina não é monoterapia.",
+          "diff": "medium",
+          "cat": "infeccao",
+          "refs": [
+            "ispd_catheter_infection_2023"
+          ]
+        },
+        "afterQuestionSHA256": "01c847b919f7cf1f9e089add6cbf0f088b03ee27824dde3cb9ce5fa605f28ee0",
+        "OP": "Selecionar tratamento inicial da infecção isolada do orifício de saída do cateter de DP.",
+        "classification": {
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium",
+          "candidateDifficulty": "medium",
+          "targetProfile": "médico/residente",
+          "language": "PT-BR",
+          "LOIDInferred": false,
+          "ownClassificationNotInherited": true
+        },
+        "reviewStatus": "REVIEWED",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook18.4Regra7(a): fontes/eliminatórios/score/recurso próprios, aprovação doAFTER exato.",
+        "ownJustification": "ISPD2023 original p9 oralantiStaph1C, duração por resposta2C e7–10dias se resolução confirmada emcerca1semana2D; p10cefalexina/rifampicina não monoterapia e antifúngico concomitante; p11foco/peritonite/refratariedade. A é única no MSSAisolado sem peritonite/túnel, sem dose ou21dias fixos.",
+        "appeal": {
+          "finding": "B troca antes de tratamento apesar da ausência de doença complicada; C confunde infecçãoisolada do orifício com peritonite; D usa rifampicina isolada e duração rígida. Febre/peritonite/túnel posteriores exigem reavaliar. Falta de dose/eGFR não impede escolher plano dirigido com monitorização sem prescrever concentração individual.",
+          "plausibleScientificChallenge": false,
+          "duplicateChallengeUpheld": false
+        },
+        "eliminators": [
+          {
+            "number": 1,
+            "criterion": "Mais de uma resposta defensável",
+            "triggered": false,
+            "finding": "B troca antes de tratamento apesar da ausência de doença complicada; C confunde infecçãoisolada do orifício com peritonite; D usa rifampicina isolada e duração rígida. Febre/peritonite/túnel posteriores exigem reavaliar. Falta de dose/eGFR não impede escolher plano dirigido com monitorização sem prescrever concentração individual.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 2,
+            "criterion": "Referência não sustenta gabarito",
+            "triggered": false,
+            "finding": "ISPD2023 original p9 oralantiStaph1C, duração por resposta2C e7–10dias se resolução confirmada emcerca1semana2D; p10cefalexina/rifampicina não monoterapia e antifúngico concomitante; p11foco/peritonite/refratariedade. A é única no MSSAisolado sem peritonite/túnel, sem dose ou21dias fixos.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 3,
+            "criterion": "Mede outro OP",
+            "triggered": false,
+            "finding": "O comando mede o OP declarado: Selecionar tratamento inicial da infecção isolada do orifício de saída do cateter de DP.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 4,
+            "criterion": "Conduta insegura premiada",
+            "triggered": false,
+            "finding": "B troca antes de tratamento apesar da ausência de doença complicada; C confunde infecçãoisolada do orifício com peritonite; D usa rifampicina isolada e duração rígida. Febre/peritonite/túnel posteriores exigem reavaliar. Falta de dose/eGFR não impede escolher plano dirigido com monitorização sem prescrever concentração individual.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 5,
+            "criterion": "Distrator absurdo",
+            "triggered": false,
+            "finding": "Distratores correspondem a sinais/mecanismos/indicações invertidos; não são alternativas aleatórias. Pouca sutileza emmuscle/UF recebe desconto.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 6,
+            "criterion": "Trivia sem consequência clínica",
+            "triggered": false,
+            "finding": "Fisiologia informa interpretação/conduta; não pede recall de estatística de artigo.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 7,
+            "criterion": "Explicação contradiz gabarito",
+            "triggered": false,
+            "finding": "ISPD2023 original p9 oralantiStaph1C, duração por resposta2C e7–10dias se resolução confirmada emcerca1semana2D; p10cefalexina/rifampicina não monoterapia e antifúngico concomitante; p11foco/peritonite/refratariedade. A é única no MSSAisolado sem peritonite/túnel, sem dose ou21dias fixos.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 8,
+            "criterion": "Dado decisivo ausente",
+            "triggered": false,
+            "finding": "B troca antes de tratamento apesar da ausência de doença complicada; C confunde infecçãoisolada do orifício com peritonite; D usa rifampicina isolada e duração rígida. Febre/peritonite/túnel posteriores exigem reavaliar. Falta de dose/eGFR não impede escolher plano dirigido com monitorização sem prescrever concentração individual.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 9,
+            "criterion": "Protocolo local oculto",
+            "triggered": false,
+            "finding": "Sem protocolo institucional oculto ou dose universal exigida.",
+            "status": "REASSESSED_EXACT"
+          },
+          {
+            "number": 10,
+            "criterion": "Desatualização relevante",
+            "triggered": false,
+            "finding": "ISPD2023 original p9 oralantiStaph1C, duração por resposta2C e7–10dias se resolução confirmada emcerca1semana2D; p10cefalexina/rifampicina não monoterapia e antifúngico concomitante; p11foco/peritonite/refratariedade. A é única no MSSAisolado sem peritonite/túnel, sem dose ou21dias fixos.",
+            "status": "REASSESSED_EXACT"
+          }
+        ],
+        "NQEditorialScore": {
+          "dimensions": [
+            {
+              "dimension": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "dimension": "Validade de construto",
+              "score": 2
+            },
+            {
+              "dimension": "Qualidade do enunciado",
+              "score": 2
+            },
+            {
+              "dimension": "Alternativas",
+              "score": 2
+            },
+            {
+              "dimension": "Distratores",
+              "score": 2
+            },
+            {
+              "dimension": "Explicação",
+              "score": 2
+            },
+            {
+              "dimension": "Referências",
+              "score": 2
+            },
+            {
+              "dimension": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "dimension": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 19,
+          "band": "Excelente",
+          "annulled": false,
+          "notComputableDueToEvidenceGate": false,
+          "reason": "Rubrica própria: estilo1, distratores1muscle/UF;db25construto1 pela classificação medium de relação básica, recomendação easy sem modificarAFTER."
+        },
+        "decisionTree": [
+          "0: VERIFICADA/NENHUMA",
+          "1: dez eliminatórios sem disparo",
+          "2: recurso não sustenta anulação/pares distintos",
+          "3: 19/20/Excelente",
+          "publicação derivada:LIBERADA"
+        ],
+        "lifecycle": "publicado",
+        "actualLifecycle": "CANDIDATO LOCAL — NÃO APLICADO",
+        "sourceReadings": [
+          {
+            "id": "catheter2023",
+            "url": "https://ispd.org/wp-content/uploads/2025/09/ISPD-Catheter-related-Infection-Recommendations-2023-Update.pdf",
+            "publisherURL": "https://journals.sagepub.com/doi/10.1177/08968608231172740",
+            "sourcePin": null,
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "Original oficial19p próprioWeb: definição purulência±eritema/túnel; p9oralantiStaph1C/duração2C/7–10diasseconfirmado2D/Pseudomonas≥3wk1C/túnel≥3wk1D, p10antifúngico/rifampicinanãomonoterapia/cefalexinaTabela1, p11intervenção/peritonitemesmoorganismo/refratariedade/salvamento2C. Não dose individual ou21diasuniversais. IdentidadeDOI/PMID37232412/2023PDI43:201–219 no registro primário."
+          }
+        ],
+        "verifiedClaimLedger": [
+          {
+            "claim": "Oraldirigido/MSSA e reavaliação precoce;7–10dias comresolução confirmada, não21dias fixos.",
+            "sourceIds": [
+              "catheter2023"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          },
+          {
+            "claim": "Pseudomonas/túnel≥3wk, antifúngico concomitante e rifampicina nãomonoterapia; avaliar cateter em complicação/refratariedade.",
+            "sourceIds": [
+              "catheter2023"
+            ],
+            "status": "CONFIRMED_BY_OWN_PRIMARY_READ",
+            "scopeLimitedToExactAFTER": true
+          }
+        ],
+        "duplicateComparisons": [
+          {
+            "qid": "28b53ff8",
+            "currentQuestion": {
+              "t": "Peritonite por S. aureus — Avaliação do Cateter",
+              "qid": "28b53ff8",
+              "q": "Paciente em diálise peritoneal tem cultura do efluente positiva para Staphylococcus aureus, secreção purulenta no óstio e dor ao longo do túnel do cateter. Qual princípio deve orientar o manejo?",
+              "refs": [
+                "ispd_peritonitis_guideline",
+                "ispd_catheter_infection_2023"
+              ],
+              "opts": [
+                "Tratar como provável fonte relacionada ao cateter, usar antibiótico efetivo por 3 semanas e considerar retirada do cateter diante da infecção concomitante de óstio/túnel",
+                "Ignorar o óstio e tratar apenas o efluente por 5 dias, pois os dois sítios não se relacionam",
+                "Presumir perfuração intestinal e indicar laparotomia independentemente do exame ou das culturas",
+                "Manter o cateter obrigatoriamente, porque biofilme por S. aureus não modifica a chance de falha terapêutica"
+              ],
+              "ans": 0,
+              "exp": "Peritonite por S. aureus é frequentemente associada a infecção do óstio ou do túnel, embora contaminação por toque também possa ocorrer. A ISPD sugere antibiótico efetivo por 3 semanas, ajustado à sensibilidade; quando há infecção concomitante do óstio ou túnel pelo mesmo organismo, deve-se considerar retirada do cateter por possível foco persistente e biofilme. O trajeto precisa ser examinado e pode exigir ultrassom. Isso não equivale a remover todo cateter em qualquer episódio isolado nem a presumir origem intestinal.",
+              "diff": "hard",
+              "cat": "dialise"
+            },
+            "currentQuestionSHA256": "a510e01af819058aeb4dbb779e5caf47346be54556d6031a9ed485fc9905e069",
+            "sameDecision": true,
+            "sameDataStructure": false,
+            "sameProfile": true,
+            "sameLanguage": true,
+            "duplicateConfirmed": false,
+            "reason": "Ambos tratamS.aureus emDP, mas28temperitonite/túnel e decisão de foco/cateter;311éorifício isolado sem sinais de complicação. Dados e estrutura terapêutica mudam de forma útil.",
+            "scientificallyApprovedByAssociation": false
+          }
+        ],
+        "packageIntegrationHold": false,
+        "difficultyCalibrationRecommendation": null,
+        "correctAnswer": {
+          "letter": "A",
+          "text": "Antibiótico oral dirigido, com revisão precoce da resposta."
+        },
+        "verificationPending": [],
+        "integration": "NÃO APLICADA"
+      }
+    ],
+    "cardReviews": [
+      {
+        "id": "wang_mitch_muscle_2014",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Wang e Mitch — Catabolismo muscular na doença renal crônica (2014)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/24981816/",
+          "journal": "Nat Rev Nephrol.2014;10(9):504–516",
+          "ano": 2014,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Relacionar acidose e vias de degradação de proteínas musculares",
+          "icon": "🔬",
+          "resumo": "Revisão de mecanismos de perda muscular na doença renal crônica. Integra estudos clínicos e modelos experimentais: acidose, alterações de sinalização da insulina e inflamação podem ativar vias catabólicas. Caspase-3 e sistema ubiquitina-proteassoma atuam em etapas complementares da degradação proteica. A perda muscular é multifatorial.",
+          "conclusao": "Mecanismo plausível não demonstra benefício funcional, renal ou de sobrevida com uma intervenção universal de alcalinização.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "1352fb886f0987a1cbdd08e38a7a3901bd7a18a580611dc176e865557c11b170",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Cardliteral inteiro/identidade/gênero/método e limites confrontados às próprias fontes; novoConsenso correto e semGRADEinventado.",
+        "sourceReadings": [
+          {
+            "id": "muscle2014",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4269363/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 159941,
+              "sha256": "543f1fb479842f16b6d96a398d48f1cd60357ca7b4634ee83cf786a78052eaa1"
+            },
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "OriginalNIHMS/BioC, front/passages1/14/16–23/35–36 próprios: acidose, UPS/caspase3/multifatorial, modelos versusobservações. Pub2014MED24981816/DOInrneph2014.112/NatRevNephrol10:504–516; não data de availability. SemRCTuniversal."
+          }
+        ],
+        "wholeCardClaimsConfrontedToPrimarySource": true,
+        "scientificSourcePending": false,
+        "currentBankConsumers": [],
+        "usedByThisBatch": [
+          "ece4696c"
+        ],
+        "integrationGate": "Literal somente; propostas iguais identificadas por pins, sem liberar consumidores externos. Conciliação e compatibilidade pertencem ao coordenador.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "campese_hyperkalemia_electrophysiology_2016",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Campese e Adenuga — Eletrofisiologia da hipercalemia (2016)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6340902/",
+          "journal": "Kidney Int Suppl.2016;6(1):16–19",
+          "ano": 2016,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Distinguir potencial de repouso de padrão eletrocardiográfico obrigatório",
+          "icon": "🔬",
+          "resumo": "Revisão das consequências elétricas da hipercalemia. O aumento do potássio extracelular torna o potencial de repouso menos negativo. Os efeitos sobre excitabilidade e condução variam com intensidade, rapidez e contexto. Alterações no eletrocardiograma (ECG) podem ser imprevisíveis e têm sensibilidade limitada.",
+          "conclusao": "Não inferir gravidade apenas pelo ECG nem exigir uma progressão universal. O artigo não é diretriz de dose ou sequência terapêutica.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "2faf4f6ab64ba724a718b2ed14b3770f1f09e891f22a2d5903dd079b23021b49",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Cardliteral inteiro/identidade/gênero/método e limites confrontados às próprias fontes; novoConsenso correto e semGRADEinventado.",
+        "sourceReadings": [
+          {
+            "id": "campese2016",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6340902/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 140973,
+              "sha256": "15f0a862f21f190b01ac5ed9ae71c31651d893c3280ce2777f64a2340a07b21b"
+            },
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "OriginalPMC HTML íntegro, parserpróprio/front/gradiente/Nernst/RMP/ECGvariabilidade ebaixa sensibilidade lidos. Campese/Adenuga2016KI Suppl6:16–19/PMID30675415/DOI2016.01.003; dataindex2019 não pubYear. Sem sequências/limiaresobrigatórios, sem afirmar mecanismos específicos deondaT/canais não usados."
+          }
+        ],
+        "wholeCardClaimsConfrontedToPrimarySource": true,
+        "scientificSourcePending": false,
+        "currentBankConsumers": [],
+        "usedByThisBatch": [
+          "db25ef93"
+        ],
+        "integrationGate": "Literal somente; propostas iguais identificadas por pins, sem liberar consumidores externos. Conciliação e compatibilidade pertencem ao coordenador.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "abramowitz_bicarbonate_dialysis_2017",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Abramowitz — Bicarbonato e prescrição em diálise (2017)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5328170/",
+          "journal": "J Am Soc Nephrol.2017;28(3):726–734",
+          "ano": 2017,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Avaliar pH e limites da evidência sobre bicarbonato em hemodiálise",
+          "icon": "🔬",
+          "resumo": "Revisão sobre equilíbrio e prescrição de bicarbonato. O gradiente entre dialisato e sangue participa do aumento de bicarbonato durante a sessão. Recomenda integrar pH, valores antes e depois da hemodiálise, coleta e contexto clínico. Estudos são limitados; associações entre bicarbonato e mortalidade sofrem confundimento. Individualizar o balanço entre acidose interdialítica e alcalemia pós-diálise não equivale a benefício de desfecho comprovado.",
+          "conclusao": "A concentração sérica de bicarbonato, isoladamente, não estabelece a melhor prescrição nem prova dano causal por alcalemia. O alvo ideal permanece incerto.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "44792e381c43dec807f8e3ce2931b3532ce8dec7180c19e887ae512897dd65a5",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Cardliteral inteiro/identidade/gênero/método e limites confrontados às próprias fontes; novoConsenso correto e semGRADEinventado.",
+        "sourceReadings": [
+          {
+            "id": "abramowitz2017",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5328170/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 237880,
+              "sha256": "95c1800b19f0fbf63812b4ea57081ff5e0f287dfee86d7c1af816789d278f354"
+            },
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "OriginalPMC HTML íntegro identificado, parser próprio efront/gradiente/pré-pós/pH/mortalidade/confundimento/individualização, não helperparecer herdado. JASN2017;28:726–734/PMID27881607; ePress23/11/2016 diferente de edição2017. BioC6140B de erro excluído; Park2020 não empregado para alegarresultadosíntegros."
+          }
+        ],
+        "wholeCardClaimsConfrontedToPrimarySource": true,
+        "scientificSourcePending": false,
+        "currentBankConsumers": [],
+        "usedByThisBatch": [
+          "ed78156f"
+        ],
+        "integrationGate": "Literal somente; propostas iguais identificadas por pins, sem liberar consumidores externos. Conciliação e compatibilidade pertencem ao coordenador.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "warren_siadh_aquaresis_2023",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Warren et al. — SIAD e aquarese (2023)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10502587/",
+          "journal": "Endocr Rev 2023;44(5):819–861",
+          "ano": 2023,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Distinguir aquarese por bloqueio V2 de natriurese",
+          "icon": "🔬",
+          "resumo": "Revisão narrativa de síndrome de antidiurese inapropriada (SIAD). Tolvaptana bloqueia V2 e favorece excreção de água livre, elevando sódio, com risco de sobrecorreção. O mecanismo não estabelece benefício clínico duro nem indicação para toda SIAD. Na rotulagem norte-americana vigente consultada, iniciar ou reiniciar SAMSCA requer ambiente hospitalar com sódio monitorizado.",
+          "conclusao": "Aquarese não é perda proporcional de eletrólitos. A seleção terapêutica depende do cenário e fonte regulatória; não usar como solução de emergência neurológica nem tratar automaticamente toda hiponatremia.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "692ba4f677a5a71dc4164c09cbe8b83e573d88a73140b70b9c7f06903c499323",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Cardliteral inteiro/identidade/gênero/método e limites confrontados às próprias fontes; novoConsenso correto e semGRADEinventado.",
+        "sourceReadings": [
+          {
+            "id": "warren2023",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10502587/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 565541,
+              "sha256": "cd2ee6512874717c9e15b4a94ae5569098e80efb9cde451a2398ba6a486e7008"
+            },
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "OriginalXML íntegro; nova seçãoVolume status/UNa/ECFexcess/IC/AVP própria, incerteza euvolemia/hipovolemia eUNadieta/diuréticos. CardliteralA009 após igualdade: própria leitura anterior V2/AQP2/aquarese/sobrecorreção e ausênciahardbenefit aproveitada; gate novo do literal, não herdado."
+          },
+          {
+            "id": "samsca2026",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5526617c-c7b9-4556-886d-729bbabbc566",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 218606,
+              "sha256": "d684ac28507dc721a29480216499c40fbc98f961540594b8200a3fd1c06cccfc"
+            },
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "SPL próprio já obtido/lido nesta sessão: UpdatedMay7,2026 diferente de highlightsRevised4/2021;boxed/§1/2.1/12.1/14.2 hospitalinit/reinit/monitorNa, aquarese nãonatriurese proporcional, não emergêncianeurológica/benefício sintomático nãoestabelecido. Leitura própria reuse em cardliteral, sem falsa reabertura ou ANVISA/dose universal."
+          }
+        ],
+        "wholeCardClaimsConfrontedToPrimarySource": true,
+        "scientificSourcePending": false,
+        "currentBankConsumers": [],
+        "usedByThisBatch": [
+          "a4c85d32"
+        ],
+        "integrationGate": "Literal somente; propostas iguais identificadas por pins, sem liberar consumidores externos. Conciliação e compatibilidade pertencem ao coordenador.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "bushinsky_acid_bone_2022",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Bushinsky e Krieger — Efeitos da acidose no osso (2022)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35351460/",
+          "journal": "Kidney Int.2022;101(6):1160–1170",
+          "ano": 2022,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Relacionar tamponamento ácido e perda mineral óssea",
+          "icon": "🔬",
+          "resumo": "Revisão mecanística sobre resposta óssea à acidose metabólica. Descreve consumo de tampões minerais e dissolução físico-química, além de efeitos sobre formação e reabsorção óssea em modelos experimentais e observações clínicas. A doença renal crônica (DRC) acrescenta influências hormonais e de turnover; os mecanismos não determinam sozinhos o diagnóstico ou risco de fratura de cada pessoa.",
+          "conclusao": "Acidose persistente pode contribuir para perda mineral. O texto não é um ensaio que demonstre redução de fratura com uma dose universal de alcalino na DRC.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "deb07778fabb148d0bb3b915c2291e6596dcf1f35c650671b62edbfb11e86800",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Cardliteral inteiro/identidade/gênero/método e limites confrontados às próprias fontes; novoConsenso correto e semGRADEinventado.",
+        "sourceReadings": [
+          {
+            "id": "bone2022",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9133222/",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 143689,
+              "sha256": "90727b8cbd8c5158294812b583a5ba9f6e5fec0cb8f013e4b781615b63e40eab"
+            },
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "Corpo originalNIHMS/BioC identificado já lido próprio e reconfrontado ao literal: físico-químico/celular, modelos/observações/DRChormônios/turnover. MED35351460/pub2022 diferente deBioCavailability2023; cardliteralA013 por igualdade, gate inteiro próprio novo."
+          }
+        ],
+        "wholeCardClaimsConfrontedToPrimarySource": true,
+        "scientificSourcePending": false,
+        "currentBankConsumers": [],
+        "usedByThisBatch": [
+          "db438123"
+        ],
+        "integrationGate": "Literal somente; propostas iguais identificadas por pins, sem liberar consumidores externos. Conciliação e compatibilidade pertencem ao coordenador.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "palmer_rta_2021",
+        "action": "KEEP",
+        "BEFORE": {
+          "label": "Palmer et al. — Acidoses tubulares renais (2021)",
+          "url": "https://link.springer.com/article/10.1007/s12325-020-01587-5",
+          "journal": "Advances in Therapy 2021;38(2):949-968",
+          "ano": 2021,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Perda renal de potássio na ATR distal e distinção da ATR hipercalêmica",
+          "icon": "🔬",
+          "resumo": "Revisão narrativa de Palmer, Kelepouris e Clegg sobre fisiopatologia, diagnóstico e manejo das acidoses tubulares renais (ATR). Na ATR distal, descreve menor acidificação e perda renal de potássio: maior oferta distal de sódio, fluxo e ação da aldosterona contribuem para secreção de K+, e menor reabsorção pode participar conforme o defeito. A ATR tipo 4 relaciona deficiência ou resistência à aldosterona à menor excreção de K+. Necessária para verificar o mecanismo fisiológico; não representa ensaio nem diretriz terapêutica.",
+          "conclusao": "Hipocalemia na ATR distal envolve perda renal de K+; não presumir um mecanismo exclusivo em todos os defeitos nem confundi-la com a retenção de K+ da ATR tipo 4.",
+          "curiosidade": ""
+        },
+        "AFTER": {
+          "label": "Palmer et al. — Acidoses tubulares renais (2021)",
+          "url": "https://link.springer.com/article/10.1007/s12325-020-01587-5",
+          "journal": "Advances in Therapy 2021;38(2):949-968",
+          "ano": 2021,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Perda renal de potássio na ATR distal e distinção da ATR hipercalêmica",
+          "icon": "🔬",
+          "resumo": "Revisão narrativa de Palmer, Kelepouris e Clegg sobre fisiopatologia, diagnóstico e manejo das acidoses tubulares renais (ATR). Na ATR distal, descreve menor acidificação e perda renal de potássio: maior oferta distal de sódio, fluxo e ação da aldosterona contribuem para secreção de K+, e menor reabsorção pode participar conforme o defeito. A ATR tipo 4 relaciona deficiência ou resistência à aldosterona à menor excreção de K+. Necessária para verificar o mecanismo fisiológico; não representa ensaio nem diretriz terapêutica.",
+          "conclusao": "Hipocalemia na ATR distal envolve perda renal de K+; não presumir um mecanismo exclusivo em todos os defeitos nem confundi-la com a retenção de K+ da ATR tipo 4.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "704804b07f3164e3be0f34bb217f39472aa543a683139c957343883ad015c6dc",
+        "afterSHA256": "704804b07f3164e3be0f34bb217f39472aa543a683139c957343883ad015c6dc",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Cardliteral inteiro/identidade/gênero/método e limites confrontados às próprias fontes; novoConsenso correto e semGRADEinventado.",
+        "sourceReadings": [
+          {
+            "id": "palmer2021",
+            "url": "https://link.springer.com/article/10.1007/s12325-020-01587-5",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 1665513,
+              "sha256": "56b74fc82378d753ed852bdcd3a6dc2ed531cf77fa26e5fc0b2c834eb45335e9"
+            },
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "Original20p próprio; pp955–957 Fanconi/absorçãoHCO/limiar e própria leitura distal/type4 do cardinteiroA012/A013. NarrativeReview2021; triade incoerente caso3 não usada, semGRADE."
+          }
+        ],
+        "wholeCardClaimsConfrontedToPrimarySource": true,
+        "scientificSourcePending": false,
+        "currentBankConsumers": [
+          "c952567a"
+        ],
+        "usedByThisBatch": [
+          "2310ea28"
+        ],
+        "integrationGate": "Literal somente; propostas iguais identificadas por pins, sem liberar consumidores externos. Conciliação e compatibilidade pertencem ao coordenador.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "kdigo_bp_volume_dialysis_2020",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "KDIGO — Blood Pressure and Volume Management in Dialysis (2020)",
+          "url": "https://kdigo.org/wp-content/uploads/2017/05/KDIGO-BP-Volume-in-Dialysis-FINAL.pdf",
+          "journal": "Kidney International 2020;97(5):861-876",
+          "ano": 2020,
+          "tipo": "Relatório de Consenso",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Manejo individualizado de pressão, volume e hipotensão intradialítica",
+          "icon": "📋",
+          "resumo": "Relatório da conferência de controvérsias KDIGO sobre pressão arterial e volume em diálise. Identifica como principais determinantes da hipotensão intradialítica o volume intravascular insuficiente para sustentar a taxa de ultrafiltração desejada e respostas cardiovasculares compensatórias inadequadas. Recomenda reavaliar peso-alvo e estado volêmico, considerar sintomas e comorbidades e reduzir a taxa de ultrafiltração por maior duração ou frequência das sessões e menor ganho de peso interdialítico. Dialisato mais frio pode melhorar a tolerância hemodinâmica.",
+          "conclusao": "A prevenção da hipotensão intradialítica começa pela prescrição volêmica individualizada; nenhum limiar único de ultrafiltração é apropriado para todos os pacientes e em todas as sessões.",
+          "curiosidade": "O relatório distingue peso-alvo de peso seco estimado: em doença aguda ou sintomas intensos pode ser necessário aceitar temporariamente um peso-alvo um pouco maior, equilibrando hipoperfusão imediata e sobrecarga crônica."
+        },
+        "AFTER": {
+          "label": "Kidney Disease: Improving Global Outcomes (KDIGO) — Blood Pressure and Volume Management in Dialysis (2020)",
+          "url": "https://kdigo.org/wp-content/uploads/2017/05/KDIGO-BP-Volume-in-Dialysis-FINAL.pdf",
+          "journal": "Kidney International 2020;97(5):861-876",
+          "ano": 2020,
+          "tipo": "Consenso",
+          "badge": "CONSENSUS",
+          "badgeColor": "#6366f1",
+          "impacto": "Manejo individualizado de pressão, volume e hipotensão intradialítica",
+          "icon": "📋",
+          "resumo": "Conclusões da conferência KDIGO sobre pressão arterial e volume em diálise, realizada em Lisboa em fevereiro de 2019 com médicos e pacientes, por apresentações e discussões, sem nova graduação formal pelo sistema Grading of Recommendations Assessment, Development and Evaluation (GRADE). A hipotensão intradialítica envolve retirada de líquido superior ao reenchimento intravascular e compensação cardiovascular. Reavaliar peso-alvo, ganho entre sessões, tempo e frequência de tratamento. Resfriamento do dialisato pode melhorar estabilidade hemodinâmica; não se infere benefício universal de sobrevida.",
+          "conclusao": "Individualizar a prescrição e preservar controle de volume. Não existe um limite único de ultrafiltração seguro para toda pessoa.",
+          "curiosidade": "Peso-alvo varia entre tratamentos e não é sinônimo de peso seco estimado. Em doença aguda, pode ser necessário tolerar peso acima da estimativa, equilibrando risco de sobrecarga persistente."
+        },
+        "beforeSHA256": "a86a9b3550a75b11f4a754eb3027d93f4c34547546ef21798ed232ba649ec089",
+        "afterSHA256": "ce442d7013374aade728dc87e6e88fef951a5b94e4cc4f7b93c2b0e09f4846bd",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Cardliteral inteiro/identidade/gênero/método e limites confrontados às próprias fontes; novoConsenso correto e semGRADEinventado.",
+        "sourceReadings": [
+          {
+            "id": "volume2020",
+            "url": "https://kdigo.org/wp-content/uploads/2017/05/KDIGO-BP-Volume-in-Dialysis-FINAL.pdf",
+            "sourcePin": null,
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "Original oficial16p aberto próprioWeb, front/p1–2 conferênciaLisboaFeb2019/médicos e pacientes/apresentações/discussões/heterogeneidade, pp5–6pesoalvo/refill/compensação/UFsemcutoff,pp8–9cooling/limites. Consenso de conferência2020KI97:861–876/DOI2020.01.046; não guidelineGRADE, semDelphi/votação/ninventados. Toda nova descrição de método/gênero A3 confrontada ao original."
+          }
+        ],
+        "wholeCardClaimsConfrontedToPrimarySource": true,
+        "scientificSourcePending": false,
+        "currentBankConsumers": [
+          "f7fd9e8a",
+          "f3ab76f3",
+          "e3246f2c",
+          "4b27ea54",
+          "236ed8f1"
+        ],
+        "usedByThisBatch": [
+          "f7fd9e8a"
+        ],
+        "integrationGate": "Literal somente; propostas iguais identificadas por pins, sem liberar consumidores externos. Conciliação e compatibilidade pertencem ao coordenador.",
+        "integration": "NÃO APLICADA"
+      },
+      {
+        "id": "ispd_catheter_infection_2023",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "ISPD — Catheter-related Infection (2023)",
+          "url": "https://journals.sagepub.com/doi/10.1177/08968608231172740",
+          "journal": "Peritoneal Dialysis International 2023;43(3):201-219",
+          "ano": 2023,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Atualiza diagnóstico e tratamento de infecção de óstio/túnel do cateter de DP",
+          "icon": "📋",
+          "resumo": "Recomendações 2023 da International Society for Peritoneal Dialysis (ISPD) para infecções relacionadas ao cateter de diálise peritoneal. Define infecção definitiva de óstio pela presença de secreção purulenta, com ou sem eritema, e infecção de túnel por inflamação ao longo do trajeto, com ou sem coleção ao ultrassom. Recomenda antibiótico oral empírico cobrindo Staphylococcus aureus, como cefalosporina de primeira geração ou penicilina antiestafilocócica, salvo risco de MRSA ou Pseudomonas. A duração deve considerar resposta clínica, cultura e sensibilidade; curso fixo de 2 semanas pode ser encurtado para 7–10 dias se houver resolução precoce, enquanto Pseudomonas e infecção de túnel exigem pelo menos 3 semanas.",
+          "conclusao": "Infecção simples de óstio por MSSA sem túnel/peritonite não exige remoção imediata do cateter nem curso fixo de 21 dias; o tratamento oral antiestafilocócico deve ser monitorado e ajustado pela resposta.",
+          "curiosidade": "A ISPD passou a explicitar que eritema isolado ao redor do cateter não basta para diagnóstico definitivo de infecção de óstio, pois trauma e reação ao curativo podem imitar infecção."
+        },
+        "AFTER": {
+          "label": "Sociedade Internacional de Diálise Peritoneal (ISPD) — Infecções Relacionadas ao Cateter (2023)",
+          "url": "https://journals.sagepub.com/doi/10.1177/08968608231172740",
+          "journal": "Peritoneal Dialysis International 2023;43(3):201-219",
+          "ano": 2023,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Atualiza diagnóstico e tratamento de infecção de óstio/túnel do cateter de diálise peritoneal (DP)",
+          "icon": "📋",
+          "resumo": "Diretriz da Sociedade Internacional de Diálise Peritoneal (ISPD), de 2023. Define infecção do orifício de saída por secreção purulenta, com ou sem eritema; infecção de túnel exige avaliação própria. Recomenda tratamento oral empírico com cobertura de Staphylococcus aureus, adaptado a histórico, cultura e sensibilidade. Ajustar duração por resposta: 7–10 dias podem bastar com resolução confirmada em avaliação por volta de uma semana; Pseudomonas e túnel requerem pelo menos 3 semanas de antibiótico eficaz.",
+          "conclusao": "Infecção isolada por S. aureus sensível não exige retirada imediata ou 21 dias fixos. Revisar resposta precocemente e prescrever profilaxia antifúngica concomitante ao antibiótico conforme a diretriz. Peritonite pelo mesmo organismo ou infecção não resolvida pode exigir intervenção no cateter.",
+          "curiosidade": "Eritema isolado pode decorrer de trauma, curativo ou irritação; não basta para definir infecção. Rifampicina não deve ser usada em monoterapia."
+        },
+        "beforeSHA256": "eec59fc3e233fa044279343d31f071b3920b4eff7a6e294e3e3ee62fc3c772c4",
+        "afterSHA256": "68928481130ff80367efc3ed76cf337ec89082557782c4a09b90a831c93153e0",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Cardliteral inteiro/identidade/gênero/método e limites confrontados às próprias fontes; novoConsenso correto e semGRADEinventado.",
+        "sourceReadings": [
+          {
+            "id": "catheter2023",
+            "url": "https://ispd.org/wp-content/uploads/2025/09/ISPD-Catheter-related-Infection-Recommendations-2023-Update.pdf",
+            "publisherURL": "https://journals.sagepub.com/doi/10.1177/08968608231172740",
+            "sourcePin": null,
+            "readByIndependentReviewer": true,
+            "bodyRead": true,
+            "authorGateNotInherited": true,
+            "readScope": "Original oficial19p próprioWeb: definição purulência±eritema/túnel; p9oralantiStaph1C/duração2C/7–10diasseconfirmado2D/Pseudomonas≥3wk1C/túnel≥3wk1D, p10antifúngico/rifampicinanãomonoterapia/cefalexinaTabela1, p11intervenção/peritonitemesmoorganismo/refratariedade/salvamento2C. Não dose individual ou21diasuniversais. IdentidadeDOI/PMID37232412/2023PDI43:201–219 no registro primário."
+          }
+        ],
+        "wholeCardClaimsConfrontedToPrimarySource": true,
+        "scientificSourcePending": false,
+        "currentBankConsumers": [
+          "28b53ff8",
+          "31138710"
+        ],
+        "usedByThisBatch": [
+          "31138710"
+        ],
+        "integrationGate": "Literal somente; propostas iguais identificadas por pins, sem liberar consumidores externos. Conciliação e compatibilidade pertencem ao coordenador.",
+        "integration": "NÃO APLICADA"
+      }
+    ],
+    "independentExternalVerification": [
+      {
+        "id": "muscle2014",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4269363/",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 159941,
+          "sha256": "543f1fb479842f16b6d96a398d48f1cd60357ca7b4634ee83cf786a78052eaa1"
+        },
+        "readByIndependentReviewer": true,
+        "bodyRead": true,
+        "authorGateNotInherited": true,
+        "readScope": "OriginalNIHMS/BioC, front/passages1/14/16–23/35–36 próprios: acidose, UPS/caspase3/multifatorial, modelos versusobservações. Pub2014MED24981816/DOInrneph2014.112/NatRevNephrol10:504–516; não data de availability. SemRCTuniversal."
+      },
+      {
+        "id": "abramowitz2017",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5328170/",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 237880,
+          "sha256": "95c1800b19f0fbf63812b4ea57081ff5e0f287dfee86d7c1af816789d278f354"
+        },
+        "readByIndependentReviewer": true,
+        "bodyRead": true,
+        "authorGateNotInherited": true,
+        "readScope": "OriginalPMC HTML íntegro identificado, parser próprio efront/gradiente/pré-pós/pH/mortalidade/confundimento/individualização, não helperparecer herdado. JASN2017;28:726–734/PMID27881607; ePress23/11/2016 diferente de edição2017. BioC6140B de erro excluído; Park2020 não empregado para alegarresultadosíntegros."
+      },
+      {
+        "id": "campese2016",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6340902/",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 140973,
+          "sha256": "15f0a862f21f190b01ac5ed9ae71c31651d893c3280ce2777f64a2340a07b21b"
+        },
+        "readByIndependentReviewer": true,
+        "bodyRead": true,
+        "authorGateNotInherited": true,
+        "readScope": "OriginalPMC HTML íntegro, parserpróprio/front/gradiente/Nernst/RMP/ECGvariabilidade ebaixa sensibilidade lidos. Campese/Adenuga2016KI Suppl6:16–19/PMID30675415/DOI2016.01.003; dataindex2019 não pubYear. Sem sequências/limiaresobrigatórios, sem afirmar mecanismos específicos deondaT/canais não usados."
+      },
+      {
+        "id": "warren2023",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10502587/",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 565541,
+          "sha256": "cd2ee6512874717c9e15b4a94ae5569098e80efb9cde451a2398ba6a486e7008"
+        },
+        "readByIndependentReviewer": true,
+        "bodyRead": true,
+        "authorGateNotInherited": true,
+        "readScope": "OriginalXML íntegro; nova seçãoVolume status/UNa/ECFexcess/IC/AVP própria, incerteza euvolemia/hipovolemia eUNadieta/diuréticos. CardliteralA009 após igualdade: própria leitura anterior V2/AQP2/aquarese/sobrecorreção e ausênciahardbenefit aproveitada; gate novo do literal, não herdado."
+      },
+      {
+        "id": "samsca2026",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5526617c-c7b9-4556-886d-729bbabbc566",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 218606,
+          "sha256": "d684ac28507dc721a29480216499c40fbc98f961540594b8200a3fd1c06cccfc"
+        },
+        "readByIndependentReviewer": true,
+        "bodyRead": true,
+        "authorGateNotInherited": true,
+        "readScope": "SPL próprio já obtido/lido nesta sessão: UpdatedMay7,2026 diferente de highlightsRevised4/2021;boxed/§1/2.1/12.1/14.2 hospitalinit/reinit/monitorNa, aquarese nãonatriurese proporcional, não emergêncianeurológica/benefício sintomático nãoestabelecido. Leitura própria reuse em cardliteral, sem falsa reabertura ou ANVISA/dose universal."
+      },
+      {
+        "id": "palmer2021",
+        "url": "https://link.springer.com/article/10.1007/s12325-020-01587-5",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 1665513,
+          "sha256": "56b74fc82378d753ed852bdcd3a6dc2ed531cf77fa26e5fc0b2c834eb45335e9"
+        },
+        "readByIndependentReviewer": true,
+        "bodyRead": true,
+        "authorGateNotInherited": true,
+        "readScope": "Original20p próprio; pp955–957 Fanconi/absorçãoHCO/limiar e própria leitura distal/type4 do cardinteiroA012/A013. NarrativeReview2021; triade incoerente caso3 não usada, semGRADE."
+      },
+      {
+        "id": "bone2022",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9133222/",
+        "sourcePin": {
+          "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+          "bytes": 143689,
+          "sha256": "90727b8cbd8c5158294812b583a5ba9f6e5fec0cb8f013e4b781615b63e40eab"
+        },
+        "readByIndependentReviewer": true,
+        "bodyRead": true,
+        "authorGateNotInherited": true,
+        "readScope": "Corpo originalNIHMS/BioC identificado já lido próprio e reconfrontado ao literal: físico-químico/celular, modelos/observações/DRChormônios/turnover. MED35351460/pub2022 diferente deBioCavailability2023; cardliteralA013 por igualdade, gate inteiro próprio novo."
+      },
+      {
+        "id": "volume2020",
+        "url": "https://kdigo.org/wp-content/uploads/2017/05/KDIGO-BP-Volume-in-Dialysis-FINAL.pdf",
+        "sourcePin": null,
+        "readByIndependentReviewer": true,
+        "bodyRead": true,
+        "authorGateNotInherited": true,
+        "readScope": "Original oficial16p aberto próprioWeb, front/p1–2 conferênciaLisboaFeb2019/médicos e pacientes/apresentações/discussões/heterogeneidade, pp5–6pesoalvo/refill/compensação/UFsemcutoff,pp8–9cooling/limites. Consenso de conferência2020KI97:861–876/DOI2020.01.046; não guidelineGRADE, semDelphi/votação/ninventados. Toda nova descrição de método/gênero A3 confrontada ao original."
+      },
+      {
+        "id": "catheter2023",
+        "url": "https://ispd.org/wp-content/uploads/2025/09/ISPD-Catheter-related-Infection-Recommendations-2023-Update.pdf",
+        "publisherURL": "https://journals.sagepub.com/doi/10.1177/08968608231172740",
+        "sourcePin": null,
+        "readByIndependentReviewer": true,
+        "bodyRead": true,
+        "authorGateNotInherited": true,
+        "readScope": "Original oficial19p próprioWeb: definição purulência±eritema/túnel; p9oralantiStaph1C/duração2C/7–10diasseconfirmado2D/Pseudomonas≥3wk1C/túnel≥3wk1D, p10antifúngico/rifampicinanãomonoterapia/cefalexinaTabela1, p11intervenção/peritonitemesmoorganismo/refratariedade/salvamento2C. Não dose individual ou21diasuniversais. IdentidadeDOI/PMID37232412/2023PDI43:201–219 no registro primário."
+      }
+    ],
+    "physicalGasCheck": {
+      "calculatedPH": 7.5089353929735,
+      "roundedPH": 7.51,
+      "bicarbonate": 30,
+      "PaCO2": 39,
+      "fictionalCaseNotStudyResult": true,
+      "doesNotExcludeConcomitantRespiratoryComponent": true
+    },
+    "metadataRepairHistory": {
+      "id": "kdigo_bp_volume_dialysis_2020",
+      "oldAuthorReport": {
+        "path": "docs/editorial/reviews/2026-10-12/group-a-output-014-A2.json",
+        "bytes": 227775,
+        "sha256": "01238e76206147ade3385ed9f56b4e3985886dc131ed25afae4cfa9b571b97c2"
+      },
+      "oldExactAfter": {
+        "label": "Kidney Disease: Improving Global Outcomes (KDIGO) — Blood Pressure and Volume Management in Dialysis (2020)",
+        "url": "https://kdigo.org/wp-content/uploads/2017/05/KDIGO-BP-Volume-in-Dialysis-FINAL.pdf",
+        "journal": "Kidney International 2020;97(5):861-876",
+        "ano": 2020,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Manejo individualizado de pressão, volume e hipotensão intradialítica",
+        "icon": "📋",
+        "resumo": "Conclusões da conferência KDIGO sobre pressão arterial e volume em diálise, sem nova graduação formal pelo sistema Grading of Recommendations Assessment, Development and Evaluation (GRADE). A hipotensão intradialítica envolve retirada de líquido superior ao reenchimento intravascular e compensação cardiovascular. Reavaliar peso-alvo, ganho entre sessões, tempo e frequência de tratamento. Resfriamento do dialisato pode melhorar estabilidade hemodinâmica; não se infere benefício universal de sobrevida.",
+        "conclusao": "Individualizar a prescrição e preservar controle de volume. Não existe um limite único de ultrafiltração seguro para toda pessoa.",
+        "curiosidade": "Peso-alvo varia entre tratamentos e não é sinônimo de peso seco estimado. Em doença aguda, pode ser necessário tolerar peso acima da estimativa, equilibrando risco de sobrecarga persistente."
+      },
+      "oldExactAfterSHA256": "3a4f2c1ef87401492c3177bbf30c0ad452a79ddb47a51c44bef23447e3c74cd9",
+      "oldGenreInaccurate": true,
+      "oldObservationDidNotConstituteFinalEightQuestionReview": true,
+      "newExactAfterSHA256": "ce442d7013374aade728dc87e6e88fef951a5b94e4cc4f7b93c2b0e09f4846bd",
+      "newGenreAndMethodOwnPrimaryVerified": true,
+      "oldHistoryPreserved": true,
+      "notAClinicalPending": true,
+      "newReviewedQuestionCountFromBibliographicAddendum": 0
+    },
+    "summaryTable": [
+      {
+        "qid": "ece4696c",
+        "OP": "Relacionar acidose metabólica crônica na DRC a vias de catabolismo muscular.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "score": 18,
+        "band": "Excelente",
+        "eliminator": false
+      },
+      {
+        "qid": "ed78156f",
+        "OP": "Interpretar alcalemia após hemodiálise e integrar o gradiente de bicarbonato à reavaliação da prescrição.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "score": 19,
+        "band": "Excelente",
+        "eliminator": false
+      },
+      {
+        "qid": "db25ef93",
+        "OP": "Explicar a mudança do potencial de repouso decorrente do aumento do potássio extracelular.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "score": 18,
+        "band": "Excelente",
+        "eliminator": false
+      },
+      {
+        "qid": "a4c85d32",
+        "OP": "Classificar hiponatremia hipotônica no contexto de congestão por insuficiência cardíaca.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "score": 19,
+        "band": "Excelente",
+        "eliminator": false
+      },
+      {
+        "qid": "2310ea28",
+        "OP": "Relacionar acidose no Fanconi à perda proximal de bicarbonato.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "score": 19,
+        "band": "Excelente",
+        "eliminator": false
+      },
+      {
+        "qid": "db438123",
+        "OP": "Relacionar acidose metabólica crônica na DRC à perda mineral óssea.",
+        "verdictV2": "fundir",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "score": 19,
+        "band": "Excelente",
+        "eliminator": false
+      },
+      {
+        "qid": "f7fd9e8a",
+        "OP": "Explicar hipotensão durante retirada rápida de volume na hemodiálise.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "score": 18,
+        "band": "Excelente",
+        "eliminator": false
+      },
+      {
+        "qid": "31138710",
+        "OP": "Selecionar tratamento inicial da infecção isolada do orifício de saída do cateter de DP.",
+        "verdictV2": "aprovada",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "score": 19,
+        "band": "Excelente",
+        "eliminator": false
+      }
+    ],
+    "counts": {
+      "questionsReviewed": 8,
+      "completeIndependentQuestionGates": 8,
+      "acceptedAfter": 7,
+      "blockedAfter": 1,
+      "duplicateHolds": 1,
+      "sourceQuestionHolds": 0,
+      "editorialPackageHolds": 0,
+      "cardsReviewed": 8,
+      "cardsAccepted": 8,
+      "cardsAdd": 5,
+      "cardsReplace": 2,
+      "cardsKeep": 1,
+      "newEightFromBibliographicRevision": 0,
+      "implemented": 0
+    },
+    "validation": {
+      "author294Plus17Pass": true,
+      "eightWholeItemsLiteralA2A3": true,
+      "sevenOtherCardsLiteralA2A3": true,
+      "ownConferenceMethodAndGenreCorrectedExact": true,
+      "clinicalClauseOfConferenceCardLiteral": true,
+      "eightBeforeExactMBCurrent": true,
+      "originMEqualsB": true,
+      "current741Delta10OutsideBatch": true,
+      "all80OwnEliminatorsAnd80ScoreDimensions": true,
+      "sourcePinsVerified": true,
+      "wholeCardScopesOwn": true,
+      "fourDimensionComparisonsOwn": true,
+      "sharedLiteralWarrenBonePalmerProvedAgainstOwnPriorReports": true,
+      "gasPhysicalConsistencyOwn": true,
+      "noProductOrGitEdits": true
+    },
+    "limits": [
+      "db438123↔e8ca8ba5 FUNDIR/BLOCK, ambosIDs eFSRS mantidos, sem sobreviventeaprovado porassociação.",
+      "2310/Fanconi versusfb5a contrasta um mecanismo causal específico com dois defeitos; c322/d889reconhecemperfilglobal. Pares lidos, sem fusãopor tema.",
+      "db25calibração própria easy/AFTERmedium literal; mudança de diff requer adendo exato coordenado.",
+      "GaspH7,51/30/39 é didática/aritmética, não dado dePark ou comprovante de distúrbio puro; avaliar coleta/outrascausas sem banho mínimo universal.",
+      "Flythe2020 é Consenso/conclusõesconferência. A3método verdadeiro conferido; nenhumDelphi/votos/grade/UFcutoff inventados. A2preservada, nenhuma pendência médica falsa.",
+      "Campese2016pubyear distinto deindex2019;Abramowitz2017edição distinto deePress2016;BioC6140Bdeerro não é corpo.",
+      "Warren/Bone/Palmer literais de propostas próprias anteriores, novo gateinteiro e fontes próprias; não contar novosIDsbibliográficos ou consumidores aprovados porassociação.",
+      "0produto/0Git/0apply, nenhum reset/remoção de IDs ou alegação de validação psicométrica empírica."
+    ]
+  }
+}

@@ -1,0 +1,2830 @@
+{
+  "schema": "nefroquest-portable-formal-review-v1",
+  "purpose": "Review report and exact proposals; no question or reference card applied",
+  "sourceReportBytes": 179377,
+  "sourceReportSHA256": "852c51f8749b9ea71beff92a1da55aa879e8c12126a29e6485555560336ba927",
+  "locatorPolicy": "Private local locators omitted; exact clinical objects and primary source URLs preserved",
+  "report": {
+    "schema": "nq-independent-material-repair-addendum-v1",
+    "batch": "A008 author final A4",
+    "reviewer": "independent clinical reviewer",
+    "verifiedAtOfficialUTC": "2026-10-13 11:29:15 UTC",
+    "authorReport": {
+      "path": "docs/editorial/reviews/2026-10-12/group-a-output-008-A4.json",
+      "bytes": 241569,
+      "sha256": "f5bee792e8ef6110c0c8f93f6ac0a8938cccbcd4ee3c45c8f116f7b7ff57065a"
+    },
+    "originalIndependentReport": {
+      "path": "docs/editorial/reviews/2026-10-12/independent-a008-A3.json",
+      "bytes": 194891,
+      "sha256": "24293da3166902f31615a06119ab3dc93a046b72f2b6382879b0b18f6c9620d3"
+    },
+    "authorValidation": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 35617,
+      "sha256": "4450ec7a05e2aedb8838a952cf64107cb4be365cf36211236a2e1d7e68b4d6b7"
+    },
+    "authorDeltaProof": {
+      "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+      "bytes": 2112,
+      "sha256": "25a0a01e59569332f56f94cd9d463ebd9bbd4bea4d0f92ce24893f24d7acff07"
+    },
+    "questions": [
+      {
+        "qid": "cf609480",
+        "sourceLine": 190,
+        "BEFORE": {
+          "t": "Aquaporina 2 e Vasopressina",
+          "qid": "cf609480",
+          "q": "A vasopressina aumenta rapidamente a permeabilidade à água do ducto coletor. Qual evento celular explica esse efeito?",
+          "refs": [
+            "brenner_rector",
+            "guyton_and_hall_physiology"
+          ],
+          "opts": [
+            "Inserção de aquaporina 2 na membrana apical das células principais do ducto coletor",
+            "Bloqueio de aquaporina 1 no túbulo proximal por angiotensina II",
+            "Expressão de aquaporina em podócitos induzida por insulina",
+            "Abertura de canais de cloro na alça espessa mediada por aldosterona"
+          ],
+          "ans": 0,
+          "exp": "A vasopressina liga-se ao receptor V2 basolateral nas células principais do ducto coletor, aumenta AMPc/PKA e promove inserção de aquaporina 2 na membrana apical, elevando a reabsorção de água. Aquaporina 1 no túbulo proximal não é o alvo regulável por vasopressina; podócitos e insulina não explicam concentração urinária; aldosterona regula principalmente transporte de sódio e potássio, não a inserção de aquaporina 2.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "a6954c32ec95624bb6df2eda014b48066d5290f018a5c474a541d2e7999595ec",
+        "AFTER": {
+          "t": "Vasopressina — Tráfego de Aquaporina 2",
+          "qid": "cf609480",
+          "q": "As aquaporinas 2 e 3 (AQP2 e AQP3) são canais de água. A vasopressina aumenta rapidamente a permeabilidade à água do ducto coletor. Qual mudança de localização dos canais explica esse efeito?",
+          "refs": [
+            "wilson_aquaporin2_vasopressin_2013"
+          ],
+          "opts": [
+            "Inserir AQP2 na membrana apical das células principais do coletor.",
+            "Inserir AQP2 na membrana basolateral das células principais do coletor.",
+            "Retirar AQP2 da membrana apical das células principais do coletor.",
+            "Retirar AQP3 da membrana basolateral das células principais do coletor."
+          ],
+          "ans": 0,
+          "exp": "A resposta rápida envolve inserção de aquaporina 2 (AQP2) na membrana apical das células principais. A vasopressina age pelo receptor de vasopressina tipo 2 (V2) e monofosfato cíclico de adenosina (AMPc), com participação de proteína quinase A (PKA) no tráfego dos canais. Confundir face apical com basolateral ou retirar canais não explica o aumento da permeabilidade. As aquaporinas 3 e 4 (AQP3/AQP4) participam da saída basolateral de água; aumento da abundância total de AQP2 é uma regulação distinta, mais lenta.",
+          "diff": "easy",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "57e4b832b2aca16328e249eaab6923cce6e5f65a5ea244bae37e1860ae5c673d",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7: calculada a partir dos eixos e do veredito independente exato.",
+        "OP": "Explicar a inserção apical rápida de AQP2 pela vasopressina, distinguindo tráfego de canais de alteração lenta de abundância.",
+        "classification": {
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "básica",
+          "runtimeDiffPreserved": "easy",
+          "empiricalDifficultyOrFSRSChange": false
+        },
+        "caseReconstruction": {
+          "populationScenarioAndDecision": "As aquaporinas 2 e 3 (AQP2 e AQP3) são canais de água. A vasopressina aumenta rapidamente a permeabilidade à água do ducto coletor. Qual mudança de localização dos canais explica esse efeito?",
+          "missingDataQualification": "Não completados dados em silêncio; o escopo e eventuais recursos estão descritos no julgamento próprio."
+        },
+        "justification": "O resumo original identifica diretamente tráfego apical de AQP2 e regulação separada da abundância. A única alternativa com essa direção e localização é A; retirar canais não aumenta a permeabilidade.",
+        "findings": [
+          "Nenhum problema substantivo de resposta identificado; pendências secundárias de atribuição registradas quando aplicáveis."
+        ],
+        "advogadoDoRecurso": {
+          "plausibleArgumentFound": false,
+          "result": "A é sustentada diretamente pelo resumo primário. A apresentação de AQP2/AQP3 como canais de água é expansão neutra; não entrega localização. A via V2/AMPc/PKA e a atribuição basolateral de AQP3/AQP4 são detalhes secundários cuja formulação exata no corpo de Wilson permanece pendente, sem mudar a resposta apical AQP2."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "annulledByEliminator": false,
+          "qualification": "Score independente próprio; notas autorais não usadas para aprovar."
+        },
+        "decisionTree": {
+          "step0": "PARCIALMENTE VERIFICADA/NÃO DECISIVA",
+          "step1": "Nenhum eliminatório disparado; não encontrada duplicata completa nos pares inspecionados.",
+          "step2": "Nenhum argumento plausível de anulação remanescente para o gabarito.",
+          "step3": "19/20 → aprovada",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "validity": {
+          "content": "O resumo original identifica diretamente tráfego apical de AQP2 e regulação separada da abundância. A única alternativa com essa direção e localização é A; retirar canais não aumenta a permeabilidade.",
+          "construct": "Operação cognitiva classificada pelo comando, não pela raridade do tema.",
+          "responseProcess": "Avaliação editorial, sem validação empírica alegada.",
+          "consequential": "Não prescreve dose/intervalo universal ou dispensa de monitorização; não converte associações em causalidade."
+        },
+        "claimsVerified": [
+          {
+            "scope": "Gabarito, explicação e vínculo de fonte no alcance explicitamente declarado.",
+            "source": {
+              "id": "wilson2013",
+              "sourcePin": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 143391,
+                "sha256": "cea23f8eca823a284267aa49b75f95c0b4d1bb8127827c9299b1524cdb0013b7"
+              },
+              "originalURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3775849/",
+              "independentlyRead": true,
+              "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+              "extent": "Registro bibliográfico/resumo original completo; não alegada leitura integral do artigo.",
+              "limits": "Corpo integral de Wilson2013 indisponível nos canais tentados: não conferida nesta rodada a atribuição literal de V2/AMPc/PKA/AQP3-AQP4 à revisão citada. O resumo sustenta o gabarito, tráfego apical e diferença em relação à abundância. Pendência NÃO DECISIVA."
+            }
+          }
+        ],
+        "referenceBindings": {
+          "wilson_aquaporin2_vasopressin_2013": "EXACT_CARD_GATE_IN_THIS_REPORT_REQUIRED"
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — AFTER AUTORAL A3 EXATO",
+          "BEFORE": {
+            "t": "Aquaporina 2 e Vasopressina",
+            "qid": "cf609480",
+            "q": "A vasopressina aumenta rapidamente a permeabilidade à água do ducto coletor. Qual evento celular explica esse efeito?",
+            "refs": [
+              "brenner_rector",
+              "guyton_and_hall_physiology"
+            ],
+            "opts": [
+              "Inserção de aquaporina 2 na membrana apical das células principais do ducto coletor",
+              "Bloqueio de aquaporina 1 no túbulo proximal por angiotensina II",
+              "Expressão de aquaporina em podócitos induzida por insulina",
+              "Abertura de canais de cloro na alça espessa mediada por aldosterona"
+            ],
+            "ans": 0,
+            "exp": "A vasopressina liga-se ao receptor V2 basolateral nas células principais do ducto coletor, aumenta AMPc/PKA e promove inserção de aquaporina 2 na membrana apical, elevando a reabsorção de água. Aquaporina 1 no túbulo proximal não é o alvo regulável por vasopressina; podócitos e insulina não explicam concentração urinária; aldosterona regula principalmente transporte de sódio e potássio, não a inserção de aquaporina 2.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "AFTER": {
+            "t": "Vasopressina — Tráfego de Aquaporina 2",
+            "qid": "cf609480",
+            "q": "As aquaporinas 2 e 3 (AQP2 e AQP3) são canais de água. A vasopressina aumenta rapidamente a permeabilidade à água do ducto coletor. Qual mudança de localização dos canais explica esse efeito?",
+            "refs": [
+              "wilson_aquaporin2_vasopressin_2013"
+            ],
+            "opts": [
+              "Inserir AQP2 na membrana apical das células principais do coletor.",
+              "Inserir AQP2 na membrana basolateral das células principais do coletor.",
+              "Retirar AQP2 da membrana apical das células principais do coletor.",
+              "Retirar AQP3 da membrana basolateral das células principais do coletor."
+            ],
+            "ans": 0,
+            "exp": "A resposta rápida envolve inserção de aquaporina 2 (AQP2) na membrana apical das células principais. A vasopressina age pelo receptor de vasopressina tipo 2 (V2) e monofosfato cíclico de adenosina (AMPc), com participação de proteína quinase A (PKA) no tráfego dos canais. Confundir face apical com basolateral ou retirar canais não explica o aumento da permeabilidade. As aquaporinas 3 e 4 (AQP3/AQP4) participam da saída basolateral de água; aumento da abundância total de AQP2 é uma regulação distinta, mais lenta.",
+            "diff": "easy",
+            "cat": "eletrólitos"
+          },
+          "correctAnswer": {
+            "letter": "A",
+            "text": "Inserir AQP2 na membrana apical das células principais do coletor."
+          }
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Busca textual no banco real de741, seguida de leitura de comandos/alternativas/explicações dos pares; não aprovação científica dos candidatos.",
+          "candidates": [],
+          "fourDimensionResult": "Busca textual em enunciados e explicações por aquaporina/vasopressina/ADH e relação com coletor não encontrou outra pergunta que cobre esse mesmo evento celular. Itens de choque ou classificação de DI não têm essa decisão.",
+          "sameProfileAndLanguageUsually": true,
+          "duplicateConfirmed": false
+        },
+        "lengthMetrics": {
+          "optionCharacters": [
+            66,
+            71,
+            66,
+            71
+          ],
+          "correctUniqueLongest": false,
+          "qualification": "Diagnóstico de forma; não emite gate científico."
+        },
+        "verificationPending": [
+          "Corpo integral de Wilson2013 indisponível nos canais tentados: não conferida nesta rodada a atribuição literal de V2/AMPc/PKA/AQP3-AQP4 à revisão citada. O resumo sustenta o gabarito, tráfego apical e diferença em relação à abundância. Pendência NÃO DECISIVA."
+        ],
+        "authorEditorialDisposition": "LIBERADA",
+        "integrationHold": false,
+        "implementationObservation": "Preservar qid, gabarito, histórico e FSRS. Cards compartilhados e versões exigem conciliação antes de aplicação. Nenhuma alteração no produto realizada."
+      },
+      {
+        "qid": "0bc2e7aa",
+        "sourceLine": 193,
+        "BEFORE": {
+          "t": "Espironolactona em DRC Avançada — Hipercalemia",
+          "qid": "0bc2e7aa",
+          "q": "Em paciente com DRC G4/G5 não dialítica, qual é o principal cuidado ao considerar espironolactona para hipertensão resistente ou indicação cardíaca?",
+          "refs": [
+            "kdigo_ckd",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Evitar uso rotineiro e, se houver indicação forte, usar apenas com seleção cuidadosa e monitorização estreita de K e função renal",
+            "Usar doses altas sem monitorização, pois a DRC reduz a eficácia hipercalemiante do fármaco",
+            "Considerar absolutamente seguro abaixo de TFGe 30 mL/min/1,73 m²",
+            "Indicar apenas para tratar hipocalemia, sem considerar a função renal"
+          ],
+          "ans": 0,
+          "exp": "Na DRC avançada, antagonistas esteroidais do receptor mineralocorticoide como espironolactona aumentam substancialmente o risco de hipercalemia. Por isso, não devem ser usados de forma rotineira e exigem seleção cuidadosa, indicação forte e monitorização estreita de potássio e função renal. A versão anterior era ambígua: o gabarito sugeria cautela, mas a explicação dizia “geralmente contraindicado”; a redação nova explicita a zona correta de decisão.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "b8b1e448d448b7c1691bf865880897c524443af17e176a84e6297050f07d8648",
+        "AFTER": {
+          "t": "Espironolactona em Doença Renal Crônica (DRC) Avançada — Hipercalemia",
+          "qid": "0bc2e7aa",
+          "q": "Adulto com doença renal crônica (DRC) G4 não dialítica e hipertensão resistente é avaliado para acrescentar espironolactona. Qual preocupação deve orientar essa decisão?",
+          "refs": [
+            "kdigo_bp_ckd_2021",
+            "kdigo_ckd"
+          ],
+          "opts": [
+            "Risco de hipercalemia e queda da filtração, exigindo seleção e monitorização.",
+            "Risco de hipocalemia e queda da filtração, indicando reposição preventiva de K.",
+            "Risco de hipercalemia restrito à dose alta, dispensando controle em dose baixa.",
+            "Risco de hipocalemia por perda tubular, reduzido pela associação com tiazídico."
+          ],
+          "ans": 0,
+          "exp": "A espironolactona pode causar hipercalemia e queda reversível da filtração, sobretudo quando a função renal é baixa. A KDIGO trata esse cuidado como practice point (2021 §3.2.7; 2024 §3.8.5), não como autorização para iniciar em todo paciente G4/G5. A decisão exige avaliar indicação, potássio, função renal, fármacos concomitantes e possibilidade de monitorização. Dose baixa não elimina o risco; reposição preventiva de potássio pode agravá-lo. O item cobra reconhecer o risco, sem afirmar elegibilidade individual ou prescrever dose.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "15e23e60a09adebb37e39c0da0d778ccc91099fb5e813a50486d2149236c5b26",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7: calculada a partir dos eixos e do veredito independente exato.",
+        "OP": "Reconhecer a preocupação de segurança com espironolactona em DRC avançada, sem assumir elegibilidade individual.",
+        "classification": {
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária",
+          "runtimeDiffPreserved": "medium",
+          "empiricalDifficultyOrFSRSChange": false
+        },
+        "caseReconstruction": {
+          "populationScenarioAndDecision": "Adulto com doença renal crônica (DRC) G4 não dialítica e hipertensão resistente é avaliado para acrescentar espironolactona. Qual preocupação deve orientar essa decisão?",
+          "missingDataQualification": "Não completados dados em silêncio; o escopo e eventuais recursos estão descritos no julgamento próprio."
+        },
+        "justification": "Os pontos de prática KDIGO2021 3.2.7 e KDIGO2024 3.8.5 sustentam hipercalemia e declínio reversível da filtração com baixa função renal. A afirmação é de risco, não uma prescrição ou contraindicação absoluta para todo G4.",
+        "findings": [
+          "Nenhum problema substantivo de resposta identificado; pendências secundárias de atribuição registradas quando aplicáveis."
+        ],
+        "advogadoDoRecurso": {
+          "plausibleArgumentFound": false,
+          "result": "A é única. Dose baixa não dispensa controle e reposição preventiva de K não se justifica pela espironolactona. Não faltam dados para reconhecer o risco; faltariam para escolher dose ou indicar o tratamento, tarefas não pedidas."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "annulledByEliminator": false,
+          "qualification": "Score independente próprio; notas autorais não usadas para aprovar."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Nenhum eliminatório disparado; não encontrada duplicata completa nos pares inspecionados.",
+          "step2": "Nenhum argumento plausível de anulação remanescente para o gabarito.",
+          "step3": "19/20 → aprovada",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "validity": {
+          "content": "Os pontos de prática KDIGO2021 3.2.7 e KDIGO2024 3.8.5 sustentam hipercalemia e declínio reversível da filtração com baixa função renal. A afirmação é de risco, não uma prescrição ou contraindicação absoluta para todo G4.",
+          "construct": "Operação cognitiva classificada pelo comando, não pela raridade do tema.",
+          "responseProcess": "Avaliação editorial, sem validação empírica alegada.",
+          "consequential": "Não prescreve dose/intervalo universal ou dispensa de monitorização; não converte associações em causalidade."
+        },
+        "claimsVerified": [
+          {
+            "scope": "Gabarito, explicação e vínculo de fonte no alcance explicitamente declarado.",
+            "source": {
+              "id": "kdigoBP2021",
+              "sourcePin": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 4642743,
+                "sha256": "0f1c93de3b1598aae72b9d4f434a146151e1e17876f1351d9198030558ea305a"
+              },
+              "originalURL": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2021-BP-GL.pdf",
+              "independentlyRead": true,
+              "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+              "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado."
+            }
+          },
+          {
+            "scope": "Gabarito, explicação e vínculo de fonte no alcance explicitamente declarado.",
+            "source": {
+              "id": "kdigo2024",
+              "sourcePin": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 5966902,
+                "sha256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0"
+              },
+              "originalURL": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+              "independentlyRead": true,
+              "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+              "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado."
+            }
+          }
+        ],
+        "referenceBindings": {
+          "kdigo_bp_ckd_2021": "EXACT_CARD_GATE_IN_THIS_REPORT_REQUIRED",
+          "kdigo_ckd": "EXACT_CARD_GATE_IN_THIS_REPORT_REQUIRED"
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — AFTER AUTORAL A3 EXATO",
+          "BEFORE": {
+            "t": "Espironolactona em DRC Avançada — Hipercalemia",
+            "qid": "0bc2e7aa",
+            "q": "Em paciente com DRC G4/G5 não dialítica, qual é o principal cuidado ao considerar espironolactona para hipertensão resistente ou indicação cardíaca?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Evitar uso rotineiro e, se houver indicação forte, usar apenas com seleção cuidadosa e monitorização estreita de K e função renal",
+              "Usar doses altas sem monitorização, pois a DRC reduz a eficácia hipercalemiante do fármaco",
+              "Considerar absolutamente seguro abaixo de TFGe 30 mL/min/1,73 m²",
+              "Indicar apenas para tratar hipocalemia, sem considerar a função renal"
+            ],
+            "ans": 0,
+            "exp": "Na DRC avançada, antagonistas esteroidais do receptor mineralocorticoide como espironolactona aumentam substancialmente o risco de hipercalemia. Por isso, não devem ser usados de forma rotineira e exigem seleção cuidadosa, indicação forte e monitorização estreita de potássio e função renal. A versão anterior era ambígua: o gabarito sugeria cautela, mas a explicação dizia “geralmente contraindicado”; a redação nova explicita a zona correta de decisão.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "AFTER": {
+            "t": "Espironolactona em Doença Renal Crônica (DRC) Avançada — Hipercalemia",
+            "qid": "0bc2e7aa",
+            "q": "Adulto com doença renal crônica (DRC) G4 não dialítica e hipertensão resistente é avaliado para acrescentar espironolactona. Qual preocupação deve orientar essa decisão?",
+            "refs": [
+              "kdigo_bp_ckd_2021",
+              "kdigo_ckd"
+            ],
+            "opts": [
+              "Risco de hipercalemia e queda da filtração, exigindo seleção e monitorização.",
+              "Risco de hipocalemia e queda da filtração, indicando reposição preventiva de K.",
+              "Risco de hipercalemia restrito à dose alta, dispensando controle em dose baixa.",
+              "Risco de hipocalemia por perda tubular, reduzido pela associação com tiazídico."
+            ],
+            "ans": 0,
+            "exp": "A espironolactona pode causar hipercalemia e queda reversível da filtração, sobretudo quando a função renal é baixa. A KDIGO trata esse cuidado como practice point (2021 §3.2.7; 2024 §3.8.5), não como autorização para iniciar em todo paciente G4/G5. A decisão exige avaliar indicação, potássio, função renal, fármacos concomitantes e possibilidade de monitorização. Dose baixa não elimina o risco; reposição preventiva de potássio pode agravá-lo. O item cobra reconhecer o risco, sem afirmar elegibilidade individual ou prescrever dose.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "correctAnswer": {
+            "letter": "A",
+            "text": "Risco de hipercalemia e queda da filtração, exigindo seleção e monitorização."
+          }
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Busca textual no banco real de741, seguida de leitura de comandos/alternativas/explicações dos pares; não aprovação científica dos candidatos.",
+          "candidates": [
+            {
+              "qid": "bc95bd5f",
+              "currentQuestionSHA256": "1740c0baf1654c27a36f52baa4eef0cb97f0dd8a36a902a9509ef232d165737c",
+              "question": {
+                "t": "Hipertensão Resistente — Quarta Droga",
+                "qid": "bc95bd5f",
+                "q": "Paciente com hipertensão resistente confirmada por medida fora do consultório mantém pressão não controlada apesar de adesão a um bloqueador do sistema renina-angiotensina, um bloqueador de canal de cálcio e um diurético tiazídico de longa ação em doses toleradas. A TFGe é 58 mL/min/1,73m² e o potássio, 4,2 mEq/L. Qual é a quarta droga preferida?",
+                "refs": [
+                  "aha_acc_hypertension_2025",
+                  "pathway2_trial"
+                ],
+                "opts": [
+                  "Espironolactona",
+                  "Doxazosina",
+                  "Bisoprolol",
+                  "Hidralazina"
+                ],
+                "ans": 0,
+                "exp": "Na hipertensão resistente verdadeira, após esquema triplo otimizado com bloqueador do sistema renina-angiotensina, bloqueador de canal de cálcio e diurético tiazídico de longa ação, a espironolactona é a quarta droga preferida quando a função renal e o potássio permitem. O PATHWAY-2 mostrou maior redução da pressão domiciliar com espironolactona do que com placebo, doxazosina ou bisoprolol. É necessário monitorar potássio e função renal; em TFGe baixa ou hipercalemia, a escolha deve ser individualizada.",
+                "diff": "medium",
+                "cat": "hipertensao"
+              }
+            },
+            {
+              "qid": "78be79e7",
+              "currentQuestionSHA256": "e9650a2973a7ca286e83a3142bca172629c1cd16e86fc234cbd41830d02fdcce",
+              "question": {
+                "t": "Hipercalemia em DRC sob Bloqueio do SRAA",
+                "qid": "78be79e7",
+                "q": "Paciente estável com DRC G4 usa IECA por albuminúria e espironolactona por hipertensão resistente. Duas amostras mostram potássio de 5,9 mEq/L, sem alteração eletrocardiográfica. Qual abordagem é mais segura?",
+                "refs": [
+                  "kdigo_ckd_2024"
+                ],
+                "opts": [
+                  "Avaliar urgência e causas reversíveis, suspender ao menos temporariamente a espironolactona e tratar a hipercalemia; após controle, tentar preservar o IECA indicado com monitorização e medidas como correção de acidose, diurético ou quelante conforme o caso",
+                  "Manter todos os fármacos sem ajuste, pois potássio abaixo de 6,5 mEq/L não exige intervenção em DRC",
+                  "Substituir a espironolactona por patiromer, considerando que o quelante exerce o mesmo efeito anti-hipertensivo do antagonista mineralocorticoide",
+                  "Suspender definitivamente todo bloqueio do SRAA antes de revisar dieta, medicamentos, acidose ou volemia"
+                ],
+                "ans": 0,
+                "exp": "Potássio persistentemente em 5,9 mEq/L na DRC G4 exige avaliação de gravidade, confirmação, revisão de medicamentos e correção de fatores contribuintes. A espironolactona aumenta muito o risco nesse contexto e deve ser interrompida ao menos temporariamente; IECA ou BRA com indicação renal não precisam ser abandonados automaticamente se a hipercalemia puder ser controlada. A KDIGO propõe revisar fontes de potássio biodisponível, fármacos, acidose e volemia e considerar diurético e quelantes modernos em hipercalemia não emergente. Quelante não substitui o efeito anti-hipertensivo do antagonista mineralocorticoide, e a estratégia nunca deve atrasar tratamento urgente quando houver ECG alterado, sintomas ou elevação maior.",
+                "diff": "hard",
+                "cat": "hipertensao"
+              }
+            },
+            {
+              "qid": "e3f0e529",
+              "currentQuestionSHA256": "5ea9f17cd53419438b85f8e29476e4a5d0d15b4cb122566edceeda09f708e490",
+              "question": {
+                "t": "Finerenona — Seletividade vs Espironolactona",
+                "qid": "e3f0e529",
+                "q": "Qual é a principal vantagem farmacológica da finerenona em comparação com a espironolactona como antagonista do receptor mineralocorticoide?",
+                "opts": [
+                  "Meia-vida mais longa, permitindo dose única diária.",
+                  "Maior potência anti-hipertensiva.",
+                  "Maior seletividade pelo receptor mineralocorticoide, por ser não esteroidal, com menos efeitos endócrinos antiandrogênicos e progestínicos (ginecomastia, disfunção sexual).",
+                  "Disponibilidade apenas intravenosa, garantindo melhor adesão."
+                ],
+                "ans": 2,
+                "exp": "A finerenona é um antagonista não esteroidal do receptor mineralocorticoide, com maior seletividade por esse receptor e menor interação com receptores androgênicos e progestínicos do que a espironolactona; por isso causa menos efeitos endócrinos, como ginecomastia e disfunção sexual (alternativa C). A hipercalemia NÃO é uma vantagem da finerenona — permanece um efeito adverso relevante da classe e exige monitorização do potássio. A maior seletividade é uma diferença de tolerabilidade endócrina e não deve ser interpretada como superioridade clínica de desfechos. A alternativa A é incorreta (a finerenona tem meia-vida curta); a B está errada (o diferencial não é potência anti-hipertensiva); e a D está errada (a administração é oral).",
+                "diff": "medium",
+                "cat": "farmacologia",
+                "refs": [
+                  "fidelio_dkd"
+                ]
+              }
+            }
+          ],
+          "fourDimensionResult": "Escolher quarta droga com TFGe58/K4,2, manejar hipercalemia já presente em associação farmacológica e comparar finerenona com espironolactona são decisões distintas do reconhecimento de risco ao considerar o agente em G4. Dados e comando diferem.",
+          "sameProfileAndLanguageUsually": true,
+          "duplicateConfirmed": false
+        },
+        "lengthMetrics": {
+          "optionCharacters": [
+            77,
+            79,
+            79,
+            79
+          ],
+          "correctUniqueLongest": false,
+          "qualification": "Diagnóstico de forma; não emite gate científico."
+        },
+        "verificationPending": [],
+        "authorEditorialDisposition": "LIBERADA",
+        "integrationHold": false,
+        "implementationObservation": "Preservar qid, gabarito, histórico e FSRS. Cards compartilhados e versões exigem conciliação antes de aplicação. Nenhuma alteração no produto realizada."
+      },
+      {
+        "qid": "7ec80c77",
+        "sourceLine": 195,
+        "BEFORE": {
+          "t": "Poliestirenossulfonato de Sódio — Carga de Sódio",
+          "qid": "7ec80c77",
+          "q": "Por que o uso crônico de poliestirenossulfonato de sódio exige cautela em pacientes com DRC e insuficiência cardíaca?",
+          "refs": [
+            "ukka_hyperkalemia_2023",
+            "kdigo_ckd"
+          ],
+          "opts": [
+            "Pode contribuir para carga de sódio, edema e piora de congestão",
+            "Causa hiponatremia grave como efeito esperado",
+            "Produz hipocalcemia persistente como toxicidade principal",
+            "Promove perda ponderal por desidratação obrigatória"
+          ],
+          "ans": 0,
+          "exp": "O poliestirenossulfonato de sódio troca potássio por sódio no intestino; em uso repetido ou crônico, a carga de sódio pode ser problemática em pacientes com DRC, insuficiência cardíaca, edema ou hipertensão. O risco relevante é retenção hídrica/congestão, não hiponatremia. A antiga referência de hiponatremia foi removida por não sustentar o gabarito.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "043ae0df14cd970431c44160f6666504360616beaf4a67eb6f786971fa6831ba",
+        "AFTER": {
+          "t": "Poliestirenossulfonato de Sódio — Carga de Sódio",
+          "qid": "7ec80c77",
+          "q": "Em adulto com doença renal crônica (DRC) e insuficiência cardíaca, está sendo reavaliado o uso de poliestirenossulfonato de sódio. Qual característica do fármaco exige cautela diante de congestão?",
+          "refs": [
+            "chaitman_potassium_binders_2016"
+          ],
+          "opts": [
+            "Troca intestinal de potássio por sódio, acrescentando carga de sódio.",
+            "Troca intestinal de potássio por cálcio, acrescentando carga de cálcio.",
+            "Bloqueio da reabsorção renal de sódio, aumentando a perda de água.",
+            "Deslocamento celular de potássio por insulina, sem eliminação fecal."
+          ],
+          "ans": 0,
+          "exp": "O poliestirenossulfonato de sódio troca potássio por sódio no intestino; a carga de sódio pode agravar retenção de volume em quem tem congestão. A revisão de Chaitman e a rotulagem oficial recomendam cautela em insuficiência cardíaca, edema ou hipertensão. Troca por cálcio descreve outra resina; bloqueio tubular e redistribuição por insulina são mecanismos diferentes. Isso não endossa uso crônico rotineiro de poliestirenossulfonato de sódio (SPS): a necessidade e os riscos intestinais também devem ser revistos.",
+          "diff": "easy",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "591053a126354e3d9eec3cd5eb4fbc170f54a1ba155eef577994c0a6e46d27c8",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7: calculada a partir dos eixos e do veredito independente exato.",
+        "OP": "Relacionar a troca intestinal de potássio por sódio do SPS à cautela na congestão.",
+        "classification": {
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "básica",
+          "runtimeDiffPreserved": "easy",
+          "empiricalDifficultyOrFSRSChange": false
+        },
+        "caseReconstruction": {
+          "populationScenarioAndDecision": "Em adulto com doença renal crônica (DRC) e insuficiência cardíaca, está sendo reavaliado o uso de poliestirenossulfonato de sódio. Qual característica do fármaco exige cautela diante de congestão?",
+          "missingDataQualification": "Não completados dados em silêncio; o escopo e eventuais recursos estão descritos no julgamento próprio."
+        },
+        "justification": "A rotulagem oficial aberta confirma a troca Na/K no intestino e a cautela em insuficiência cardíaca, edema e hipertensão. A é a única descrição desse fármaco; troca por cálcio e mecanismos renal/celular não descrevem SPS.",
+        "findings": [
+          "Nenhum problema substantivo de resposta identificado; pendências secundárias de atribuição registradas quando aplicáveis."
+        ],
+        "advogadoDoRecurso": {
+          "plausibleArgumentFound": false,
+          "result": "Não se afirma agravamento obrigatório nem se indica tratamento crônico rotineiro. A fonte regulatória sustenta o mecanismo e a cautela. Atribuir as mesmas frases ao corpo de Chaitman2016 requer releitura ainda pendente; essa atribuição não altera a decisão ou a segurança ensinada."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "annulledByEliminator": false,
+          "qualification": "Score independente próprio; notas autorais não usadas para aprovar."
+        },
+        "decisionTree": {
+          "step0": "PARCIALMENTE VERIFICADA/NÃO DECISIVA",
+          "step1": "Nenhum eliminatório disparado; não encontrada duplicata completa nos pares inspecionados.",
+          "step2": "Nenhum argumento plausível de anulação remanescente para o gabarito.",
+          "step3": "19/20 → aprovada",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "validity": {
+          "content": "A rotulagem oficial aberta confirma a troca Na/K no intestino e a cautela em insuficiência cardíaca, edema e hipertensão. A é a única descrição desse fármaco; troca por cálcio e mecanismos renal/celular não descrevem SPS.",
+          "construct": "Operação cognitiva classificada pelo comando, não pela raridade do tema.",
+          "responseProcess": "Avaliação editorial, sem validação empírica alegada.",
+          "consequential": "Não prescreve dose/intervalo universal ou dispensa de monitorização; não converte associações em causalidade."
+        },
+        "claimsVerified": [
+          {
+            "scope": "Gabarito, explicação e vínculo de fonte no alcance explicitamente declarado.",
+            "source": {
+              "id": "chaitman2016",
+              "sourcePin": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 143391,
+                "sha256": "cea23f8eca823a284267aa49b75f95c0b4d1bb8127827c9299b1524cdb0013b7"
+              },
+              "originalURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4699486/",
+              "independentlyRead": true,
+              "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+              "extent": "Registro bibliográfico/resumo original completo; não alegada leitura integral do artigo.",
+              "limits": "O corpo exato de Chaitman2016 voltou a CAPTCHA/erros. Metadados originais foram conferidos, e as afirmações do item/card estão corroboradas pela rotulagem oficial; falta confirmar a atribuição literal ao corpo de2016. Pendência NÃO DECISIVA."
+            }
+          },
+          {
+            "scope": "Gabarito, explicação e vínculo de fonte no alcance explicitamente declarado.",
+            "source": {
+              "id": "kayexalatePI",
+              "sourcePin": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 33769,
+                "sha256": "fdc07703dc4cec21358a20e4ce4f3bd333fc1d189d9b8241e784656ddcba6b10"
+              },
+              "originalURL": "https://products.sanofi.us/kayexalate/kayexalate.pdf",
+              "independentlyRead": true,
+              "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+              "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado."
+            }
+          }
+        ],
+        "referenceBindings": {
+          "chaitman_potassium_binders_2016": "EXACT_CARD_GATE_IN_THIS_REPORT_REQUIRED"
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — AFTER AUTORAL A3 EXATO",
+          "BEFORE": {
+            "t": "Poliestirenossulfonato de Sódio — Carga de Sódio",
+            "qid": "7ec80c77",
+            "q": "Por que o uso crônico de poliestirenossulfonato de sódio exige cautela em pacientes com DRC e insuficiência cardíaca?",
+            "refs": [
+              "ukka_hyperkalemia_2023",
+              "kdigo_ckd"
+            ],
+            "opts": [
+              "Pode contribuir para carga de sódio, edema e piora de congestão",
+              "Causa hiponatremia grave como efeito esperado",
+              "Produz hipocalcemia persistente como toxicidade principal",
+              "Promove perda ponderal por desidratação obrigatória"
+            ],
+            "ans": 0,
+            "exp": "O poliestirenossulfonato de sódio troca potássio por sódio no intestino; em uso repetido ou crônico, a carga de sódio pode ser problemática em pacientes com DRC, insuficiência cardíaca, edema ou hipertensão. O risco relevante é retenção hídrica/congestão, não hiponatremia. A antiga referência de hiponatremia foi removida por não sustentar o gabarito.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "AFTER": {
+            "t": "Poliestirenossulfonato de Sódio — Carga de Sódio",
+            "qid": "7ec80c77",
+            "q": "Em adulto com doença renal crônica (DRC) e insuficiência cardíaca, está sendo reavaliado o uso de poliestirenossulfonato de sódio. Qual característica do fármaco exige cautela diante de congestão?",
+            "refs": [
+              "chaitman_potassium_binders_2016"
+            ],
+            "opts": [
+              "Troca intestinal de potássio por sódio, acrescentando carga de sódio.",
+              "Troca intestinal de potássio por cálcio, acrescentando carga de cálcio.",
+              "Bloqueio da reabsorção renal de sódio, aumentando a perda de água.",
+              "Deslocamento celular de potássio por insulina, sem eliminação fecal."
+            ],
+            "ans": 0,
+            "exp": "O poliestirenossulfonato de sódio troca potássio por sódio no intestino; a carga de sódio pode agravar retenção de volume em quem tem congestão. A revisão de Chaitman e a rotulagem oficial recomendam cautela em insuficiência cardíaca, edema ou hipertensão. Troca por cálcio descreve outra resina; bloqueio tubular e redistribuição por insulina são mecanismos diferentes. Isso não endossa uso crônico rotineiro de poliestirenossulfonato de sódio (SPS): a necessidade e os riscos intestinais também devem ser revistos.",
+            "diff": "easy",
+            "cat": "eletrólitos"
+          },
+          "correctAnswer": {
+            "letter": "A",
+            "text": "Troca intestinal de potássio por sódio, acrescentando carga de sódio."
+          }
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Busca textual no banco real de741, seguida de leitura de comandos/alternativas/explicações dos pares; não aprovação científica dos candidatos.",
+          "candidates": [
+            {
+              "qid": "43313455",
+              "currentQuestionSHA256": "72ba867059ce7725340b2b239ada52e03f91e4ba28368d451e86461a0913a687",
+              "question": {
+                "t": "Poliestirenossulfonato — Segurança Intestinal",
+                "qid": "43313455",
+                "q": "Qual complicação rara, porém clinicamente grave, limita o uso de poliestirenossulfonato de sódio ou cálcio, especialmente com sorbitol ou em pacientes com intestino vulnerável?",
+                "refs": [
+                  "ukka_hyperkalemia_2023",
+                  "brenner_rector"
+                ],
+                "opts": [
+                  "Necrose intestinal e perfuração",
+                  "Edema agudo de pulmão como efeito direto obrigatório",
+                  "Insuficiência hepática fulminante",
+                  "Crise convulsiva por toxicidade neurológica primária"
+                ],
+                "ans": 0,
+                "exp": "O risco raro, mas decisivo, das resinas de poliestirenossulfonato é lesão gastrointestinal grave, incluindo necrose intestinal e perfuração, com maior preocupação em cenários como uso com sorbitol, pós-operatório, íleo ou obstrução. Esse risco não transforma a complicação em evento comum, mas muda a seleção do fármaco e exige cautela. A antiga referência de hiponatremia não sustentava este item e foi substituída por fonte específica de hipercalemia.",
+                "diff": "hard",
+                "cat": "eletrólitos"
+              }
+            },
+            {
+              "qid": "65d19905",
+              "currentQuestionSHA256": "7d9a96d4a15a49797b6f0787826caca0564bdcb8d8674e1aa6de07396efb2287",
+              "question": {
+                "t": "Resinas de Potássio — Risco de Constipação",
+                "qid": "65d19905",
+                "q": "Ao usar poliestirenossulfonato em paciente com hipercalemia não emergencial, qual cuidado reduz risco de complicações gastrointestinais?",
+                "refs": [
+                  "ukka_hyperkalemia_2023",
+                  "brenner_rector"
+                ],
+                "opts": [
+                  "Avaliar trânsito intestinal, hidratação e constipação; evitar uso em íleo/obstrução",
+                  "Prescrever dieta rica em potássio para compensar o quelante",
+                  "Restringir fibras de forma absoluta em todos os pacientes",
+                  "Usar laxantes em dose máxima universalmente, independentemente do risco individual"
+                ],
+                "ans": 0,
+                "exp": "Resinas de poliestirenossulfonato podem causar constipação e, raramente, lesão intestinal grave. Antes de prescrever, é importante avaliar trânsito intestinal, hidratação, constipação, pós-operatório, íleo ou obstrução; nesses cenários o risco pode superar o benefício. Dieta rica em potássio contraria o tratamento, restrição absoluta de fibras não é regra universal e laxante em dose máxima para todos é conduta excessiva.",
+                "diff": "hard",
+                "cat": "eletrólitos"
+              }
+            },
+            {
+              "qid": "d92f30a9",
+              "currentQuestionSHA256": "33dce3f5381b0f9a904674c92aa8dd4020c0264e7600c2d6c90475ed2d0bbdc8",
+              "question": {
+                "t": "Resinas de Potássio em Íleo ou Obstrução",
+                "qid": "d92f30a9",
+                "q": "Por que resinas de troca de potássio, como poliestirenossulfonato, devem ser evitadas em íleo paralítico ou obstrução intestinal?",
+                "refs": [
+                  "ukka_hyperkalemia_2023",
+                  "brenner_rector"
+                ],
+                "opts": [
+                  "Pelo risco de lesão intestinal grave, incluindo necrose e perfuração",
+                  "Porque dependem de filtração glomerular para agir",
+                  "Porque o potássio precisa ser absorvido antes de chegar ao intestino",
+                  "Porque causam toxicidade ocular súbita"
+                ],
+                "ans": 0,
+                "exp": "Resinas de troca atuam no lúmen intestinal; em íleo, obstrução, pós-operatório ou trânsito intestinal comprometido, aumenta a preocupação com impactação, lesão de mucosa, necrose e perfuração, especialmente com sorbitol. A ação não depende de urina nem de filtração glomerular; o problema é a segurança gastrointestinal. Distratores absurdos foram substituídos por erros plausíveis.",
+                "diff": "hard",
+                "cat": "eletrólitos"
+              }
+            }
+          ],
+          "fourDimensionResult": "Os pares tratam de reconhecer lesão intestinal, evitar SPS diante de íleo/constipação ou explicar o risco intestinal. Este relaciona sódio e congestão. Compartilha fármaco, mas muda o dado decisivo e a operação cognitiva.",
+          "sameProfileAndLanguageUsually": true,
+          "duplicateConfirmed": false
+        },
+        "lengthMetrics": {
+          "optionCharacters": [
+            69,
+            71,
+            66,
+            68
+          ],
+          "correctUniqueLongest": false,
+          "qualification": "Diagnóstico de forma; não emite gate científico."
+        },
+        "verificationPending": [
+          "O corpo exato de Chaitman2016 voltou a CAPTCHA/erros. Metadados originais foram conferidos, e as afirmações do item/card estão corroboradas pela rotulagem oficial; falta confirmar a atribuição literal ao corpo de2016. Pendência NÃO DECISIVA."
+        ],
+        "authorEditorialDisposition": "LIBERADA",
+        "integrationHold": false,
+        "implementationObservation": "Preservar qid, gabarito, histórico e FSRS. Cards compartilhados e versões exigem conciliação antes de aplicação. Nenhuma alteração no produto realizada."
+      },
+      {
+        "qid": "6d52cb77",
+        "sourceLine": 201,
+        "BEFORE": {
+          "t": "Diabetes Insipidus Central — Desmopressina Crônica",
+          "qid": "6d52cb77",
+          "q": "Paciente com diabetes insipidus central confirmado será tratado ambulatorialmente. Qual afirmação sobre desmopressina é mais adequada para o manejo crônico?",
+          "refs": [
+            "central_di_tomkins_2022",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Pode ser usada por via oral ou intranasal, com dose individualizada e vigilância para hiponatremia",
+            "Deve ser aplicada por via intramuscular profunda como via crônica preferencial",
+            "Deve ser administrada por via retal para evitar variação de absorção",
+            "Deve ser substituída por tolvaptana para ativar o receptor V2"
+          ],
+          "ans": 0,
+          "exp": "No tratamento crônico do diabetes insipidus central, desmopressina pode ser usada por via oral ou intranasal, entre outras formulações, com dose individualizada conforme sede, diurese, natremia e risco de retenção hídrica. O principal perigo do excesso de desmopressina é hiponatremia. Via intramuscular profunda e via retal não são vias crônicas preferenciais. Tolvaptana antagoniza V2 e não repõe ação de vasopressina.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "71d6451f3106069ac420c2d12808adedc210b1dece1d9904a2391f169b785920",
+        "AFTER": {
+          "t": "Diabetes Insipidus Central — Desmopressina Crônica",
+          "qid": "6d52cb77",
+          "q": "Adulto com diabetes insipidus central confirmado, sede preservada e acesso à água iniciará tratamento ambulatorial. Qual orientação sobre desmopressina é adequada?",
+          "refs": [
+            "central_di_tomkins_2022"
+          ],
+          "opts": [
+            "Escolher via oral ou nasal e ajustar o esquema com controle da natremia.",
+            "Trocar via nasal por oral mantendo a mesma dose, sem nova titulação.",
+            "Aumentar a dose diante de ganho de peso, atribuindo-o à perda de água.",
+            "Considerar sede suficiente para evitar hiponatremia, sem controle de sódio."
+          ],
+          "ans": 0,
+          "exp": "Desmopressina oral ou intranasal pode controlar a poliúria, com escolha e esquema individualizados. Retenção de água e hiponatremia são riscos centrais; sede preservada não elimina esse risco quando o fármaco mantém antidiurese. A via e a absorção variam, portanto troca de formulação não é conversão direta de dose. Ganho de peso pode sugerir retenção hídrica, não justificar aumento automático. A orientação inclui natremia e ingestão de água; não prescreve intervalo universal nem pausa de doses sem plano individual.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "68939ab619d372e5d4fa89f595730a7635405e50ae1de038b52f8fa77de21bcb",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7: calculada a partir dos eixos e do veredito independente exato.",
+        "OP": "Selecionar orientação individualizada sobre desmopressina oral ou nasal e vigilância da natremia em DI central ambulatorial.",
+        "classification": {
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária",
+          "runtimeDiffPreserved": "medium",
+          "empiricalDifficultyOrFSRSChange": false
+        },
+        "caseReconstruction": {
+          "populationScenarioAndDecision": "Adulto com diabetes insipidus central confirmado, sede preservada e acesso à água iniciará tratamento ambulatorial. Qual orientação sobre desmopressina é adequada?",
+          "missingDataQualification": "Não completados dados em silêncio; o escopo e eventuais recursos estão descritos no julgamento próprio."
+        },
+        "justification": "Tomkins descreve formulações, variabilidade de absorção e risco de hiponatremia durante antidiurese. A preserva escolha e titulação individualizadas; não exige converter doses diretamente nem pressupõe que sede intacta elimine retenção hídrica.",
+        "findings": [
+          "Nenhum problema substantivo de resposta identificado; pendências secundárias de atribuição registradas quando aplicáveis."
+        ],
+        "advogadoDoRecurso": {
+          "plausibleArgumentFound": false,
+          "result": "A é a única orientação adequada. B propõe conversão sem titulação; C interpreta ganho de peso como perda de água; D dispensa natremia. Não é exigida dose, periodicidade universal ou pausa automática."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 20,
+          "band": "Excelente",
+          "annulledByEliminator": false,
+          "qualification": "Score independente próprio; notas autorais não usadas para aprovar."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Nenhum eliminatório disparado; não encontrada duplicata completa nos pares inspecionados.",
+          "step2": "Nenhum argumento plausível de anulação remanescente para o gabarito.",
+          "step3": "20/20 → aprovada",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "validity": {
+          "content": "Tomkins descreve formulações, variabilidade de absorção e risco de hiponatremia durante antidiurese. A preserva escolha e titulação individualizadas; não exige converter doses diretamente nem pressupõe que sede intacta elimine retenção hídrica.",
+          "construct": "Operação cognitiva classificada pelo comando, não pela raridade do tema.",
+          "responseProcess": "Avaliação editorial, sem validação empírica alegada.",
+          "consequential": "Não prescreve dose/intervalo universal ou dispensa de monitorização; não converte associações em causalidade."
+        },
+        "claimsVerified": [
+          {
+            "scope": "Gabarito, explicação e vínculo de fonte no alcance explicitamente declarado.",
+            "source": {
+              "id": "tomkins2022",
+              "sourcePin": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 578551,
+                "sha256": "3bcb6e7b0d8ec4c3367b77b14bd6386b6b516a474387bbde6e73dcd39ef209ed"
+              },
+              "originalURL": "https://academic.oup.com/jcem/article-pdf/107/10/2701/46112625/dgac381.pdf",
+              "independentlyRead": true,
+              "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+              "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado.",
+              "bodyURL": "https://oup.silverchair-cdn.com/article-minimal/6623615",
+              "qualification": "Canal público do editor, obtido pelo redirecionamento oficial da página article-abstract. PDF retornou403; a leitura integral é HTML, não PDF materializado."
+            }
+          }
+        ],
+        "referenceBindings": {
+          "central_di_tomkins_2022": "EXACT_CARD_GATE_IN_THIS_REPORT_REQUIRED"
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — AFTER AUTORAL A3 EXATO",
+          "BEFORE": {
+            "t": "Diabetes Insipidus Central — Desmopressina Crônica",
+            "qid": "6d52cb77",
+            "q": "Paciente com diabetes insipidus central confirmado será tratado ambulatorialmente. Qual afirmação sobre desmopressina é mais adequada para o manejo crônico?",
+            "refs": [
+              "central_di_tomkins_2022",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Pode ser usada por via oral ou intranasal, com dose individualizada e vigilância para hiponatremia",
+              "Deve ser aplicada por via intramuscular profunda como via crônica preferencial",
+              "Deve ser administrada por via retal para evitar variação de absorção",
+              "Deve ser substituída por tolvaptana para ativar o receptor V2"
+            ],
+            "ans": 0,
+            "exp": "No tratamento crônico do diabetes insipidus central, desmopressina pode ser usada por via oral ou intranasal, entre outras formulações, com dose individualizada conforme sede, diurese, natremia e risco de retenção hídrica. O principal perigo do excesso de desmopressina é hiponatremia. Via intramuscular profunda e via retal não são vias crônicas preferenciais. Tolvaptana antagoniza V2 e não repõe ação de vasopressina.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "AFTER": {
+            "t": "Diabetes Insipidus Central — Desmopressina Crônica",
+            "qid": "6d52cb77",
+            "q": "Adulto com diabetes insipidus central confirmado, sede preservada e acesso à água iniciará tratamento ambulatorial. Qual orientação sobre desmopressina é adequada?",
+            "refs": [
+              "central_di_tomkins_2022"
+            ],
+            "opts": [
+              "Escolher via oral ou nasal e ajustar o esquema com controle da natremia.",
+              "Trocar via nasal por oral mantendo a mesma dose, sem nova titulação.",
+              "Aumentar a dose diante de ganho de peso, atribuindo-o à perda de água.",
+              "Considerar sede suficiente para evitar hiponatremia, sem controle de sódio."
+            ],
+            "ans": 0,
+            "exp": "Desmopressina oral ou intranasal pode controlar a poliúria, com escolha e esquema individualizados. Retenção de água e hiponatremia são riscos centrais; sede preservada não elimina esse risco quando o fármaco mantém antidiurese. A via e a absorção variam, portanto troca de formulação não é conversão direta de dose. Ganho de peso pode sugerir retenção hídrica, não justificar aumento automático. A orientação inclui natremia e ingestão de água; não prescreve intervalo universal nem pausa de doses sem plano individual.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "correctAnswer": {
+            "letter": "A",
+            "text": "Escolher via oral ou nasal e ajustar o esquema com controle da natremia."
+          }
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Busca textual no banco real de741, seguida de leitura de comandos/alternativas/explicações dos pares; não aprovação científica dos candidatos.",
+          "candidates": [
+            {
+              "qid": "1e62bd9e",
+              "currentQuestionSHA256": "ca5d4fdb54f77a18e89db1cd4115998a98a88f7869647edbf4649d77c17f926d",
+              "question": {
+                "t": "Diabetes Insipidus Central vs. Nefrogênico",
+                "qid": "1e62bd9e",
+                "q": "Paciente com poliúria hipotônica e hipernatremia é avaliado após exclusão de diurese osmótica. Depois da desmopressina, a osmolaridade urinária aumenta de forma importante. Qual diagnóstico esse padrão favorece?",
+                "refs": [
+                  "central_di_tomkins_2022",
+                  "brenner_rector"
+                ],
+                "opts": [
+                  "Diabetes insipidus nefrogênico",
+                  "Diurese osmótica por hiperglicemia",
+                  "Diabetes insipidus central",
+                  "Polidipsia primária isolada"
+                ],
+                "ans": 2,
+                "exp": "A resposta importante da osmolaridade urinária à desmopressina favorece diabetes insipidus central, porque o rim ainda responde à vasopressina exógena e o problema principal é deficiência de secreção ou liberação de vasopressina. No diabetes insipidus nefrogênico, a resposta à desmopressina é pequena ou ausente. Diurese osmótica por glicose deve ser excluída antes de interpretar o teste, e polidipsia primária isolada costuma cursar com baixa tonicidade plasmática ou capacidade de concentração preservada após privação hídrica, não com hipernatremia típica.",
+                "diff": "medium",
+                "cat": "eletrólitos"
+              }
+            },
+            {
+              "qid": "b4165730",
+              "currentQuestionSHA256": "681d4c87a837b367e01e0ce8a37f0640858e3102fa9121860c9bff01ded03be3",
+              "question": {
+                "t": "Diagnóstico de Diabetes Insipidus Nefrogênico",
+                "qid": "b4165730",
+                "q": "Paciente com poliúria hipotônica mantém osmolaridade urinária muito baixa após privação hídrica supervisionada. Após desmopressina, a osmolaridade urinária muda pouco. Qual diagnóstico é mais provável?",
+                "refs": [
+                  "central_di_tomkins_2022",
+                  "brenner_rector"
+                ],
+                "opts": [
+                  "Polidipsia primária",
+                  "Diabetes insipidus nefrogênico",
+                  "Diabetes insipidus central",
+                  "Síndrome de secreção inapropriada de ADH"
+                ],
+                "ans": 1,
+                "exp": "Urina persistentemente diluída após privação hídrica e resposta mínima à desmopressina favorecem diabetes insipidus nefrogênico, isto é, resistência renal à vasopressina. No diabetes insipidus central, a desmopressina costuma elevar de forma relevante a osmolaridade urinária. Polidipsia primária pode se sobrepor em casos crônicos, mas não explica bem hipernatremia com ausência de resposta tubular. SIADH cursa com hiponatremia e urina inapropriadamente concentrada, o oposto do padrão descrito.",
+                "diff": "medium",
+                "cat": "eletrólitos"
+              }
+            },
+            {
+              "qid": "899cadd8",
+              "currentQuestionSHA256": "8766957e3b871798620ae7a9b842f785ae6f07e1271e4265c0a4c3e12c5e241d",
+              "question": {
+                "t": "Diabetes Insipidus Adípsico",
+                "qid": "899cadd8",
+                "q": "Paciente após cirurgia de craniofaringioma mantém Na 158 mEq/L apesar de água disponível à beira-leito. Tem poliúria hipotônica, resposta à desmopressina e não relata sede. Qual característica define o maior risco do diabetes insipidus adípsico?",
+                "refs": [
+                  "central_di_tomkins_2022",
+                  "hypernatremia_yun_2023",
+                  "brenner_rector"
+                ],
+                "opts": [
+                  "Deficiência central de vasopressina associada à perda da percepção de sede",
+                  "Secreção excessiva de vasopressina associada à polidipsia compulsiva",
+                  "Perda urinária primária de sódio sem alteração do eixo sede–vasopressina",
+                  "Resistência renal completa à vasopressina com sede preservada"
+                ],
+                "ans": 0,
+                "exp": "O diabetes insipidus adípsico combina deficiência central de vasopressina com perda ou redução importante da sede, geralmente por lesão hipotalâmica. Essa combinação é perigosa porque o paciente perde água livre pela urina e não compensa bebendo, mesmo com água disponível, favorecendo hipernatremia grave. Secreção excessiva de vasopressina sugeriria SIADH; perda urinária primária de sódio não explica poliúria hipotônica; resistência renal com sede preservada descreve diabetes insipidus nefrogênico, não a forma adípsica.",
+                "diff": "hard",
+                "cat": "eletrólitos"
+              }
+            },
+            {
+              "qid": "5ea4847a",
+              "currentQuestionSHA256": "43161f0aa44c6a2beb53d780c26d89268d4bc64f5ee929c8af8a2ad3ca8875fc",
+              "question": {
+                "t": "Diabetes Insipidus Gestacional",
+                "qid": "5ea4847a",
+                "q": "Gestante no terceiro trimestre apresenta poliúria hipotônica, polidipsia e hipernatremia leve, sem hiperglicemia. O quadro melhora com desmopressina. Qual mecanismo explica o diabetes insipidus gestacional clássico?",
+                "refs": [
+                  "central_di_tomkins_2022",
+                  "hypernatremia_yun_2023",
+                  "brenner_rector"
+                ],
+                "opts": [
+                  "Polidipsia fisiológica da gestação com supressão completa da vasopressina",
+                  "Resistência renal à ocitocina, sem participação do eixo vasopressina–rim",
+                  "Degradação aumentada da vasopressina endógena por vasopressinase placentária",
+                  "Autoimunidade contra hipófise anterior induzida pela placenta"
+                ],
+                "ans": 2,
+                "exp": "O diabetes insipidus gestacional clássico decorre do aumento da degradação da vasopressina endógena pela vasopressinase placentária, sobretudo no fim da gestação e em situações com maior massa placentária ou menor depuração hepática da enzima. A desmopressina tende a funcionar porque é mais resistente à vasopressinase. Polidipsia fisiológica não causa hipernatremia; ocitocina não é o eixo principal; autoimunidade hipofisária anterior não explica o padrão típico.",
+                "diff": "hard",
+                "cat": "eletrólitos"
+              }
+            }
+          ],
+          "fourDimensionResult": "Diagnóstico pela resposta à desmopressina, resistência renal, adipsia e mecanismo gestacional são decisões e cenários distintos do plano crônico ambulatorial com sede preservada.",
+          "sameProfileAndLanguageUsually": true,
+          "duplicateConfirmed": false
+        },
+        "lengthMetrics": {
+          "optionCharacters": [
+            72,
+            68,
+            70,
+            75
+          ],
+          "correctUniqueLongest": false,
+          "qualification": "Diagnóstico de forma; não emite gate científico."
+        },
+        "verificationPending": [],
+        "authorEditorialDisposition": "LIBERADA",
+        "integrationHold": false,
+        "implementationObservation": "Preservar qid, gabarito, histórico e FSRS. Cards compartilhados e versões exigem conciliação antes de aplicação. Nenhuma alteração no produto realizada."
+      },
+      {
+        "qid": "6a54b25c",
+        "sourceLine": 205,
+        "BEFORE": {
+          "t": "Tiazídicos na DRC — PA e Potássio",
+          "qid": "6a54b25c",
+          "q": "Em paciente com DRC, hipertensão e tendência à hipercalemia, qual papel os tiazídicos ou tiazídico-like podem ter quando ainda há resposta diurética?",
+          "refs": [
+            "kdigo_ckd",
+            "brenner_rector"
+          ],
+          "opts": [
+            "São sempre contraindicados por hipercalcemia inevitável",
+            "Não interferem no potássio, apenas no sódio",
+            "Podem ajudar no controle pressórico e aumentar caliurese como adjuvantes, com monitorização de eletrólitos",
+            "Causam invariavelmente acidose metabólica grave"
+          ],
+          "ans": 2,
+          "exp": "Tiazídicos e tiazídico-like reduzem pressão arterial e podem aumentar a entrega distal de sódio, favorecendo secreção de potássio; por isso podem ser úteis como adjuvantes em DRC selecionada, desde que haja resposta e monitorização de Na, K, creatinina e volume. Não são quelantes nem solução isolada para hipercalemia grave. O item foi reescrito para evitar o corte rígido por TFGe como se fosse absoluto.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "16bf569345c9f10322ed8782e20f30194ecc6d22095037b65fcfd81a7a8321d9",
+        "AFTER": {
+          "t": "Tiazídicos na Doença Renal Crônica (DRC) — Pressão Arterial (PA) e Potássio",
+          "qid": "6a54b25c",
+          "q": "Adulto com doença renal crônica (DRC), hipertensão e hipercalemia crônica leve mantém diurese e não está hipovolêmico. Se houver resposta ao diurético, que papel um tiazídico pode ter?",
+          "refs": [
+            "ukka_hyperkalemia_2023",
+            "click_chlorthalidone_2021"
+          ],
+          "opts": [
+            "Reduzir pressão e K por deslocamento celular, sem aumentar excreção urinária.",
+            "Reduzir pressão e K por ligação intestinal, sem exigir função tubular residual.",
+            "Reduzir pressão e favorecer caliurese, com controle de eletrólitos e volemia.",
+            "Reduzir pressão por menor entrega distal de sódio, favorecendo retenção de K."
+          ],
+          "ans": 2,
+          "exp": "Tiazídicos podem reduzir pressão e favorecer excreção de potássio por maior fluxo e entrega distal de sódio. São adjuvantes condicionados à diurese, resposta e volemia, com monitorização de eletrólitos e função renal; não são ligantes intestinais nem redistribuidores celulares. O CLICK demonstrou controle pressórico com clortalidona em G4, com mais hipocalemia e alterações reversíveis de creatinina, mas não testou tratamento de hipercalemia ou benefício renal duro. Não transformar taxa de filtração glomerular estimada (TFGe) baixa em perda obrigatória de eficácia, nem usar diurético como terapia isolada de uma emergência.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "0ecf71f477c3bf9bdb47b4c772b1a9f260927855879c2615468b79063b9b15a9",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7: calculada a partir dos eixos e do veredito independente exato.",
+        "OP": "Reconhecer o papel adjuvante do tiazídico no controle pressórico e na excreção urinária de K quando há resposta, diurese e volemia adequadas.",
+        "classification": {
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária",
+          "runtimeDiffPreserved": "medium",
+          "empiricalDifficultyOrFSRSChange": false
+        },
+        "caseReconstruction": {
+          "populationScenarioAndDecision": "Adulto com doença renal crônica (DRC), hipertensão e hipercalemia crônica leve mantém diurese e não está hipovolêmico. Se houver resposta ao diurético, que papel um tiazídico pode ter?",
+          "missingDataQualification": "Não completados dados em silêncio; o escopo e eventuais recursos estão descritos no julgamento próprio."
+        },
+        "justification": "A UKKA descreve fluxo/entrega distal de Na e evita diuréticos em hipovolemia ou oligúria. CLICK confirma controle pressórico com clortalidona em G4, não tratamento de hipercalemia ou benefício renal duro. O enunciado condiciona o papel à resposta, sem universalizar eficácia em toda DRC.",
+        "findings": [
+          "Nenhum problema substantivo de resposta identificado; pendências secundárias de atribuição registradas quando aplicáveis."
+        ],
+        "advogadoDoRecurso": {
+          "plausibleArgumentFound": false,
+          "result": "C é única. As outras confundem mecanismo com redistribuição celular, ligação intestinal ou menor entrega distal. Não se pergunta qual diurético prescrever sem TFGe; pergunta-se o papel quando existe resposta, condição expressa."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "annulledByEliminator": false,
+          "qualification": "Score independente próprio; notas autorais não usadas para aprovar."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Nenhum eliminatório disparado; não encontrada duplicata completa nos pares inspecionados.",
+          "step2": "Nenhum argumento plausível de anulação remanescente para o gabarito.",
+          "step3": "19/20 → aprovada",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "validity": {
+          "content": "A UKKA descreve fluxo/entrega distal de Na e evita diuréticos em hipovolemia ou oligúria. CLICK confirma controle pressórico com clortalidona em G4, não tratamento de hipercalemia ou benefício renal duro. O enunciado condiciona o papel à resposta, sem universalizar eficácia em toda DRC.",
+          "construct": "Operação cognitiva classificada pelo comando, não pela raridade do tema.",
+          "responseProcess": "Avaliação editorial, sem validação empírica alegada.",
+          "consequential": "Não prescreve dose/intervalo universal ou dispensa de monitorização; não converte associações em causalidade."
+        },
+        "claimsVerified": [
+          {
+            "scope": "Gabarito, explicação e vínculo de fonte no alcance explicitamente declarado.",
+            "source": {
+              "id": "ukka2026",
+              "sourcePin": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 4970372,
+                "sha256": "6910acb34f04d145e7828e9bf3c9a55f182def8764caf2a91fbac667215c0eb3"
+              },
+              "originalURL": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+              "independentlyRead": true,
+              "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+              "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado."
+            }
+          },
+          {
+            "scope": "Gabarito, explicação e vínculo de fonte no alcance explicitamente declarado.",
+            "source": {
+              "id": "click2021",
+              "sourcePin": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 143391,
+                "sha256": "cea23f8eca823a284267aa49b75f95c0b4d1bb8127827c9299b1524cdb0013b7"
+              },
+              "originalURL": "https://pubmed.ncbi.nlm.nih.gov/34739197/",
+              "independentlyRead": true,
+              "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+              "extent": "Registro bibliográfico/resumo original completo; não alegada leitura integral do artigo.",
+              "limits": "Todos os números do card constam no resumo original. O ensaio não estabelece tratamento de hipercalemia ou benefício renal duro."
+            }
+          }
+        ],
+        "referenceBindings": {
+          "ukka_hyperkalemia_2023": "EXACT_CARD_GATE_IN_THIS_REPORT_REQUIRED",
+          "click_chlorthalidone_2021": "EXACT_CARD_GATE_IN_THIS_REPORT_REQUIRED"
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — AFTER AUTORAL A3 EXATO",
+          "BEFORE": {
+            "t": "Tiazídicos na DRC — PA e Potássio",
+            "qid": "6a54b25c",
+            "q": "Em paciente com DRC, hipertensão e tendência à hipercalemia, qual papel os tiazídicos ou tiazídico-like podem ter quando ainda há resposta diurética?",
+            "refs": [
+              "kdigo_ckd",
+              "brenner_rector"
+            ],
+            "opts": [
+              "São sempre contraindicados por hipercalcemia inevitável",
+              "Não interferem no potássio, apenas no sódio",
+              "Podem ajudar no controle pressórico e aumentar caliurese como adjuvantes, com monitorização de eletrólitos",
+              "Causam invariavelmente acidose metabólica grave"
+            ],
+            "ans": 2,
+            "exp": "Tiazídicos e tiazídico-like reduzem pressão arterial e podem aumentar a entrega distal de sódio, favorecendo secreção de potássio; por isso podem ser úteis como adjuvantes em DRC selecionada, desde que haja resposta e monitorização de Na, K, creatinina e volume. Não são quelantes nem solução isolada para hipercalemia grave. O item foi reescrito para evitar o corte rígido por TFGe como se fosse absoluto.",
+            "diff": "hard",
+            "cat": "eletrólitos"
+          },
+          "AFTER": {
+            "t": "Tiazídicos na Doença Renal Crônica (DRC) — Pressão Arterial (PA) e Potássio",
+            "qid": "6a54b25c",
+            "q": "Adulto com doença renal crônica (DRC), hipertensão e hipercalemia crônica leve mantém diurese e não está hipovolêmico. Se houver resposta ao diurético, que papel um tiazídico pode ter?",
+            "refs": [
+              "ukka_hyperkalemia_2023",
+              "click_chlorthalidone_2021"
+            ],
+            "opts": [
+              "Reduzir pressão e K por deslocamento celular, sem aumentar excreção urinária.",
+              "Reduzir pressão e K por ligação intestinal, sem exigir função tubular residual.",
+              "Reduzir pressão e favorecer caliurese, com controle de eletrólitos e volemia.",
+              "Reduzir pressão por menor entrega distal de sódio, favorecendo retenção de K."
+            ],
+            "ans": 2,
+            "exp": "Tiazídicos podem reduzir pressão e favorecer excreção de potássio por maior fluxo e entrega distal de sódio. São adjuvantes condicionados à diurese, resposta e volemia, com monitorização de eletrólitos e função renal; não são ligantes intestinais nem redistribuidores celulares. O CLICK demonstrou controle pressórico com clortalidona em G4, com mais hipocalemia e alterações reversíveis de creatinina, mas não testou tratamento de hipercalemia ou benefício renal duro. Não transformar taxa de filtração glomerular estimada (TFGe) baixa em perda obrigatória de eficácia, nem usar diurético como terapia isolada de uma emergência.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "correctAnswer": {
+            "letter": "C",
+            "text": "Reduzir pressão e favorecer caliurese, com controle de eletrólitos e volemia."
+          }
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Busca textual no banco real de741, seguida de leitura de comandos/alternativas/explicações dos pares; não aprovação científica dos candidatos.",
+          "candidates": [
+            {
+              "qid": "23c732a4",
+              "currentQuestionSHA256": "d620ac8e91a4af01842dbcce4bac5d4c31c11cf0728168db8364f53baf813d7f",
+              "question": {
+                "t": "Nefrolitíase e Diuréticos Tiazídicos (Estudo NOSTONE)",
+                "qid": "23c732a4",
+                "q": "O estudo NOSTONE (2023) avaliou a hidroclorotiazida para prevenir recorrência de cálculos renais contendo cálcio. Qual foi a conclusão principal?",
+                "refs": [
+                  "nostone_study",
+                  "eau_urolithiasis_medical_2025"
+                ],
+                "opts": [
+                  "A hidroclorotiazida apresentou benefício robusto apenas quando combinada obrigatoriamente ao citrato de potássio",
+                  "A dose de 50 mg foi claramente superior às doses de 12,5 mg e 25 mg, com relação dose-resposta protetora",
+                  "A hidroclorotiazida reduziu a recorrência em aproximadamente 50%, independentemente da dose",
+                  "Não houve redução substancial da recorrência com hidroclorotiazida em comparação ao placebo, e eventos adversos metabólicos foram mais comuns"
+                ],
+                "ans": 3,
+                "exp": "O NOSTONE (NEJM, 2023) randomizou 416 pacientes com cálculos renais recorrentes contendo cálcio para hidroclorotiazida 12,5 mg, 25 mg ou 50 mg uma vez ao dia versus placebo. A incidência de recorrência sintomática ou radiológica não diferiu substancialmente entre os grupos, e não houve relação dose-resposta protetora. Além disso, hipocalemia, gota, diabetes de início recente, alergia cutânea e aumento de creatinina foram mais frequentes com hidroclorotiazida. Assim, o estudo enfraquece o uso rotineiro de hidroclorotiazida como prevenção universal de recorrência.",
+                "diff": "medium",
+                "cat": "litíase"
+              }
+            },
+            {
+              "qid": "bc95bd5f",
+              "currentQuestionSHA256": "1740c0baf1654c27a36f52baa4eef0cb97f0dd8a36a902a9509ef232d165737c",
+              "question": {
+                "t": "Hipertensão Resistente — Quarta Droga",
+                "qid": "bc95bd5f",
+                "q": "Paciente com hipertensão resistente confirmada por medida fora do consultório mantém pressão não controlada apesar de adesão a um bloqueador do sistema renina-angiotensina, um bloqueador de canal de cálcio e um diurético tiazídico de longa ação em doses toleradas. A TFGe é 58 mL/min/1,73m² e o potássio, 4,2 mEq/L. Qual é a quarta droga preferida?",
+                "refs": [
+                  "aha_acc_hypertension_2025",
+                  "pathway2_trial"
+                ],
+                "opts": [
+                  "Espironolactona",
+                  "Doxazosina",
+                  "Bisoprolol",
+                  "Hidralazina"
+                ],
+                "ans": 0,
+                "exp": "Na hipertensão resistente verdadeira, após esquema triplo otimizado com bloqueador do sistema renina-angiotensina, bloqueador de canal de cálcio e diurético tiazídico de longa ação, a espironolactona é a quarta droga preferida quando a função renal e o potássio permitem. O PATHWAY-2 mostrou maior redução da pressão domiciliar com espironolactona do que com placebo, doxazosina ou bisoprolol. É necessário monitorar potássio e função renal; em TFGe baixa ou hipercalemia, a escolha deve ser individualizada.",
+                "diff": "medium",
+                "cat": "hipertensao"
+              }
+            },
+            {
+              "qid": "fcf76497",
+              "currentQuestionSHA256": "053450bd9b17dab2784517f20bbfd2303ebab90f32431e560aeb5db10639bb4e",
+              "question": {
+                "qid": "fcf76497",
+                "q": "Paciente com cálculos recorrentes de cálcio apresenta hipercalciúria em urina de 24 horas e alto consumo de sal, com cálcio sérico normal. Qual conduta reduz melhor a recorrência?",
+                "opts": [
+                  "Restrição rigorosa de proteína e cálcio dietético para todos os pacientes",
+                  "Triamtereno como diurético de escolha para reduzir calciúria",
+                  "Aumentar suplementos de cálcio fora das refeições para quelar oxalato",
+                  "Reduzir sódio dietético e considerar tiazídico se recorrência/hipercalciúria persistirem"
+                ],
+                "ans": 3,
+                "exp": "Em formador recorrente de cálculo cálcico com hipercalciúria, reduzir sódio é central porque maior ingestão de sódio aumenta calciúria e reduz o efeito hipocalciúrico dos tiazídicos. Tiazídicos podem ser indicados em hipercalciúria recorrente, com monitorização de potássio e efeitos metabólicos; após o NOSTONE, a decisão deve ser individualizada em vez de automática para qualquer paciente. Cálcio dietético normal deve ser mantido, preferencialmente com refeições; restrição universal de cálcio pode aumentar absorção de oxalato. Triamtereno é inadequado porque pode formar cálculos.",
+                "cat": "litíase",
+                "diff": "medium",
+                "refs": [
+                  "eau_urolithiasis_medical_2025",
+                  "nostone_study",
+                  "brenner_rector"
+                ],
+                "t": "Hipercalciúria Recorrente — Sódio e Tiazídico"
+              }
+            }
+          ],
+          "fourDimensionResult": "NOSTONE/hipercalciúria tratam de recorrência de cálculo; quarta droga trata de escolha de anti-hipertensivo. O mecanismo/papel condicionado na hipercalemia é outro objetivo.",
+          "sameProfileAndLanguageUsually": true,
+          "duplicateConfirmed": false
+        },
+        "lengthMetrics": {
+          "optionCharacters": [
+            77,
+            79,
+            77,
+            77
+          ],
+          "correctUniqueLongest": false,
+          "qualification": "Diagnóstico de forma; não emite gate científico."
+        },
+        "verificationPending": [],
+        "authorEditorialDisposition": "LIBERADA",
+        "integrationHold": false,
+        "implementationObservation": "Preservar qid, gabarito, histórico e FSRS. Cards compartilhados e versões exigem conciliação antes de aplicação. Nenhuma alteração no produto realizada."
+      },
+      {
+        "qid": "9a545994",
+        "sourceLine": 208,
+        "BEFORE": {
+          "t": "Hipernatremia — Risco da Correção Rápida",
+          "qid": "9a545994",
+          "q": "Em hipernatremia crônica ou de duração desconhecida, por que a redução muito rápida da natremia deve ser evitada?",
+          "refs": [
+            "hypernatremia_yun_2023",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Porque aumenta o risco de síndrome de desmielinização osmótica",
+            "Porque pode causar edema cerebral, convulsões e hipertensão intracraniana",
+            "Porque induz hemorragia subaracnoidea por ruptura osmótica arterial",
+            "Porque causa atrofia cortical aguda por perda neuronal direta"
+          ],
+          "ans": 1,
+          "exp": "Na hipernatremia crônica, o cérebro se adapta à hiperosmolaridade acumulando osmóis. Se a natremia cai rápido demais, a água entra nas células cerebrais e pode causar edema cerebral, convulsões e hipertensão intracraniana. Síndrome de desmielinização osmótica é o risco clássico da correção excessivamente rápida da hiponatremia crônica, não da hipernatremia. Hemorragia subaracnoidea e atrofia cortical aguda não são o mecanismo esperado.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "47012188fc11dc7d2439b7f19c2d8a49d0557664ac846e836744e37de65c357c",
+        "AFTER": {
+          "t": "Hipernatremia Crônica — Adaptação Cerebral",
+          "qid": "9a545994",
+          "q": "Na hipernatremia crônica, as células cerebrais acumulam osmólitos para recuperar volume. Qual alteração fundamenta a preocupação fisiológica com queda muito rápida da tonicidade durante a reidratação?",
+          "refs": [
+            "hypernatremia_yun_2023"
+          ],
+          "opts": [
+            "Saída de água das células cerebrais, acompanhando osmólitos ainda retidos.",
+            "Entrada de água nas células cerebrais, favorecida por osmólitos ainda retidos.",
+            "Retenção de água nas células cerebrais, pela eliminação imediata de todo osmólito.",
+            "Entrada de água nas células cerebrais, pela redução do conteúdo de osmólitos."
+          ],
+          "ans": 1,
+          "exp": "O mecanismo de preocupação é entrada de água em células que ainda retêm osmólitos da adaptação, favorecendo edema. Isso difere da desmielinização osmótica clássica ligada à correção excessiva da hiponatremia. A evidência de edema por reidratação rápida provém sobretudo de pediatria; dados observacionais adultos são limitados e conflitantes, sem estabelecer causalidade universal. A questão testa o mecanismo, não uma taxa obrigatória de correção nem autorização para prolongar hipernatremia em adulto.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "8233ac89b4a5319af199ec8b2e710679a87bdc8e7694961859bb7816deff71d1",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7: calculada a partir dos eixos e do veredito independente exato.",
+        "OP": "Explicar a entrada de água quando a tonicidade extracelular cai antes da remoção de osmólitos cerebrais adaptativos.",
+        "classification": {
+          "Bloom": "Compreender",
+          "Miller": "Sabe",
+          "intrinsicDifficulty": "básica",
+          "runtimeDiffPreserved": "medium",
+          "empiricalDifficultyOrFSRSChange": false
+        },
+        "caseReconstruction": {
+          "populationScenarioAndDecision": "Na hipernatremia crônica, as células cerebrais acumulam osmólitos para recuperar volume. Qual alteração fundamenta a preocupação fisiológica com queda muito rápida da tonicidade durante a reidratação?",
+          "missingDataQualification": "Não completados dados em silêncio; o escopo e eventuais recursos estão descritos no julgamento próprio."
+        },
+        "justification": "Yun sustenta adaptação e direção osmótica; Chacon confirma a base pediátrica e a limitação causal adulta. B responde ao mecanismo, sem prescrever taxa universal nem confundir com desmielinização após corrigir hiponatremia.",
+        "findings": [
+          "Nenhum problema substantivo de resposta identificado; pendências secundárias de atribuição registradas quando aplicáveis."
+        ],
+        "advogadoDoRecurso": {
+          "plausibleArgumentFound": false,
+          "result": "B é única para osmólitos ainda retidos. O texto qualifica a preocupação fisiológica e a evidência clínica, não afirma dano universal comprovado em adulto. A/C/D invertem direção da água ou persistência dos osmólitos."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 1,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 2,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "annulledByEliminator": false,
+          "qualification": "Score independente próprio; notas autorais não usadas para aprovar."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Nenhum eliminatório disparado; não encontrada duplicata completa nos pares inspecionados.",
+          "step2": "Nenhum argumento plausível de anulação remanescente para o gabarito.",
+          "step3": "19/20 → aprovada",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "validity": {
+          "content": "Yun sustenta adaptação e direção osmótica; Chacon confirma a base pediátrica e a limitação causal adulta. B responde ao mecanismo, sem prescrever taxa universal nem confundir com desmielinização após corrigir hiponatremia.",
+          "construct": "Operação cognitiva classificada pelo comando, não pela raridade do tema.",
+          "responseProcess": "Avaliação editorial, sem validação empírica alegada.",
+          "consequential": "Não prescreve dose/intervalo universal ou dispensa de monitorização; não converte associações em causalidade."
+        },
+        "claimsVerified": [
+          {
+            "scope": "Gabarito, explicação e vínculo de fonte no alcance explicitamente declarado.",
+            "source": {
+              "id": "yun2023",
+              "sourcePin": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 219734,
+                "sha256": "57d7b4ec4d883a1b8f973fbb170dbe8b0740f8e98362fb7adb1be5399a4ca639"
+              },
+              "originalURL": "https://www.kjim.org/journal/view.php?doi=10.3904/kjim.2022.346",
+              "independentlyRead": true,
+              "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+              "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado."
+            }
+          },
+          {
+            "scope": "Gabarito, explicação e vínculo de fonte no alcance explicitamente declarado.",
+            "source": {
+              "id": "chacon2025",
+              "sourcePin": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 116307,
+                "sha256": "b22bb7fccc1839c4f3edc29bd2224997828c8ec6b15bf5dab3b4f73dd1c8b4bb"
+              },
+              "originalURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12407122/",
+              "independentlyRead": true,
+              "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+              "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado."
+            }
+          }
+        ],
+        "referenceBindings": {
+          "hypernatremia_yun_2023": "EXACT_CARD_GATE_IN_THIS_REPORT_REQUIRED"
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — AFTER AUTORAL A3 EXATO",
+          "BEFORE": {
+            "t": "Hipernatremia — Risco da Correção Rápida",
+            "qid": "9a545994",
+            "q": "Em hipernatremia crônica ou de duração desconhecida, por que a redução muito rápida da natremia deve ser evitada?",
+            "refs": [
+              "hypernatremia_yun_2023",
+              "brenner_rector"
+            ],
+            "opts": [
+              "Porque aumenta o risco de síndrome de desmielinização osmótica",
+              "Porque pode causar edema cerebral, convulsões e hipertensão intracraniana",
+              "Porque induz hemorragia subaracnoidea por ruptura osmótica arterial",
+              "Porque causa atrofia cortical aguda por perda neuronal direta"
+            ],
+            "ans": 1,
+            "exp": "Na hipernatremia crônica, o cérebro se adapta à hiperosmolaridade acumulando osmóis. Se a natremia cai rápido demais, a água entra nas células cerebrais e pode causar edema cerebral, convulsões e hipertensão intracraniana. Síndrome de desmielinização osmótica é o risco clássico da correção excessivamente rápida da hiponatremia crônica, não da hipernatremia. Hemorragia subaracnoidea e atrofia cortical aguda não são o mecanismo esperado.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "AFTER": {
+            "t": "Hipernatremia Crônica — Adaptação Cerebral",
+            "qid": "9a545994",
+            "q": "Na hipernatremia crônica, as células cerebrais acumulam osmólitos para recuperar volume. Qual alteração fundamenta a preocupação fisiológica com queda muito rápida da tonicidade durante a reidratação?",
+            "refs": [
+              "hypernatremia_yun_2023"
+            ],
+            "opts": [
+              "Saída de água das células cerebrais, acompanhando osmólitos ainda retidos.",
+              "Entrada de água nas células cerebrais, favorecida por osmólitos ainda retidos.",
+              "Retenção de água nas células cerebrais, pela eliminação imediata de todo osmólito.",
+              "Entrada de água nas células cerebrais, pela redução do conteúdo de osmólitos."
+            ],
+            "ans": 1,
+            "exp": "O mecanismo de preocupação é entrada de água em células que ainda retêm osmólitos da adaptação, favorecendo edema. Isso difere da desmielinização osmótica clássica ligada à correção excessiva da hiponatremia. A evidência de edema por reidratação rápida provém sobretudo de pediatria; dados observacionais adultos são limitados e conflitantes, sem estabelecer causalidade universal. A questão testa o mecanismo, não uma taxa obrigatória de correção nem autorização para prolongar hipernatremia em adulto.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "correctAnswer": {
+            "letter": "B",
+            "text": "Entrada de água nas células cerebrais, favorecida por osmólitos ainda retidos."
+          }
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Busca textual no banco real de741, seguida de leitura de comandos/alternativas/explicações dos pares; não aprovação científica dos candidatos.",
+          "candidates": [
+            {
+              "qid": "61fc6237",
+              "currentQuestionSHA256": "7dc3e3dfa915646f7f8c61c4a3e7480d59f734a1437b94c5f3c52745504b50f9",
+              "question": {
+                "t": "Hipernatremia — Déficit de Água Livre",
+                "qid": "61fc6237",
+                "q": "Paciente adulto com hipernatremia crônica precisa de estimativa inicial do déficit de água livre. Qual fórmula expressa corretamente esse cálculo antes de ajustar por perdas em curso e monitorização seriada?",
+                "refs": [
+                  "hypernatremia_yun_2023",
+                  "brenner_rector"
+                ],
+                "opts": [
+                  "Déficit de água = 140 − sódio sérico atual",
+                  "Déficit de água = água corporal total × [(Na sérico/140) − 1]",
+                  "Déficit de água = peso × 0,5, independentemente da natremia",
+                  "Déficit de água = (Na sérico − 140)/0,6"
+                ],
+                "ans": 1,
+                "exp": "A fórmula usada para estimar o déficit de água livre na hipernatremia é água corporal total × [(Na sérico/140) − 1]. Ela fornece uma estimativa inicial e deve ser ajustada por perdas contínuas, ingestão, função renal, glicemia e resposta da natremia. As demais alternativas são fórmulas truncadas ou matematicamente sem sentido. O alvo prático não é despejar todo o volume de uma vez, mas planejar correção segura com reavaliação seriada.",
+                "diff": "medium",
+                "cat": "eletrólitos"
+              }
+            },
+            {
+              "qid": "7987651d",
+              "currentQuestionSHA256": "3e2aac38fb0f88a1164c4f05fedd2691dd601f892f6700ba8271486f079fd68d",
+              "question": {
+                "t": "Hipernatremia — Escolha do Fluido",
+                "qid": "7987651d",
+                "q": "Paciente com hipernatremia crônica está hemodinamicamente estável, mas tem sinais clínicos de depleção de volume extracelular. Após excluir choque, qual fluido é mais útil para repor água livre enquanto também fornece algum sódio ao compartimento extracelular?",
+                "refs": [
+                  "hypernatremia_yun_2023",
+                  "brenner_rector"
+                ],
+                "opts": [
+                  "Solução glicosada a 5% isolada em todo paciente hipovolêmico",
+                  "Solução salina 0,45%, com ajuste pela natremia e perdas em curso",
+                  "Restrição hídrica até normalizar a osmolaridade urinária",
+                  "Bicarbonato hipertônico como reposição de água livre"
+                ],
+                "ans": 1,
+                "exp": "Na hipernatremia com depleção extracelular, após estabilização hemodinâmica, solução salina 0,45% pode ser útil porque oferece água livre e algum sódio para o compartimento extracelular. Se houver choque ou hipoperfusão, a prioridade inicial é restaurar perfusão com solução isotônica antes de corrigir a água livre. SG 5% fornece água livre, mas não expande o extracelular tão bem; restrição hídrica piora hipernatremia; bicarbonato hipertônico não é reposição de água livre.",
+                "diff": "hard",
+                "cat": "eletrólitos"
+              }
+            }
+          ],
+          "fourDimensionResult": "Cálculo de déficit e composição do fluido não são a explicação da adaptação cerebral; decisão e estrutura de dados diferem.",
+          "sameProfileAndLanguageUsually": true,
+          "duplicateConfirmed": false
+        },
+        "lengthMetrics": {
+          "optionCharacters": [
+            74,
+            78,
+            82,
+            77
+          ],
+          "correctUniqueLongest": false,
+          "qualification": "Diagnóstico de forma; não emite gate científico."
+        },
+        "verificationPending": [],
+        "authorEditorialDisposition": "LIBERADA",
+        "integrationHold": false,
+        "implementationObservation": "Preservar qid, gabarito, histórico e FSRS. Cards compartilhados e versões exigem conciliação antes de aplicação. Nenhuma alteração no produto realizada."
+      },
+      {
+        "qid": "06df2814",
+        "sourceLine": 216,
+        "BEFORE": {
+          "t": "Síndrome de Gitelman e Parestesias na Alcalose Respiratória",
+          "qid": "06df2814",
+          "q": "Paciente com síndrome de Gitelman e hipomagnesemia crônica apresenta parestesias e tetania durante crise de ansiedade com hiperventilação. Qual mecanismo explica a piora aguda dos sintomas?",
+          "refs": [
+            "brenner_rector",
+            "guyton_and_hall_physiology"
+          ],
+          "opts": [
+            "A alcalose respiratória aumenta a ligação do cálcio à albumina e reduz a fração ionizada, elevando a excitabilidade neuromuscular",
+            "A hiperventilação corrige rapidamente a hipomagnesemia e causa parestesias por efeito rebote",
+            "A alcalose respiratória aumenta diretamente o cálcio ionizado, gerando tetania por hipercalcemia aguda",
+            "A síndrome de Gitelman causa hipertensão maligna episódica, que explica as parestesias"
+          ],
+          "ans": 0,
+          "exp": "A hiperventilação gera alcalose respiratória, que aumenta a ligação do cálcio à albumina e reduz a fração ionizada do cálcio. A queda do cálcio ionizado aumenta a excitabilidade neuromuscular e precipita parestesias/tetania; isso é particularmente sintomático em pacientes com síndrome de Gitelman, que frequentemente já têm hipomagnesemia e hipocalemia crônicas. As demais alternativas invertem o efeito sobre cálcio ionizado ou atribuem ao Gitelman hipertensão, achado que não é típico da síndrome.",
+          "diff": "hard",
+          "cat": "acido_base"
+        },
+        "beforeQuestionSHA256": "a5744c45d60f5fbd90780805a10d9011e72143bf4bb2adb74617175223e5aa07",
+        "AFTER": {
+          "t": "Gitelman — Hiperventilação e Cálcio Ionizado",
+          "qid": "06df2814",
+          "q": "Paciente com síndrome de Gitelman e hipomagnesemia crônica apresenta hiperventilação, alcalemia e piora súbita de parestesias. O cálcio total permanece inalterado. Qual efeito do pH explica essa piora?",
+          "refs": [
+            "tinawi_calcium_ph_2021"
+          ],
+          "opts": [
+            "Maior ligação do cálcio à albumina, reduzindo a fração ionizada.",
+            "Menor ligação do cálcio à albumina, elevando a fração ionizada.",
+            "Maior ligação do cálcio à albumina, elevando a fração ionizada.",
+            "Menor ligação do cálcio à albumina, reduzindo a fração ionizada."
+          ],
+          "ans": 0,
+          "exp": "A alcalemia aumenta a ligação do cálcio à albumina e reduz a fração ionizada, mesmo com cálcio total preservado. A queda aguda da fração biologicamente ativa pode aumentar excitabilidade neuromuscular e causar parestesias/tetania. Hipomagnesemia crônica é contexto adicional, sem provar queda aguda de magnésio ou supressão obrigatória de paratormônio (PTH). As demais opções invertem a ligação ou sua consequência. Medir cálcio ionizado ajuda a esclarecer sintomas quando o pH varia; a questão não prescreve reposição baseada apenas no cálcio total.",
+          "diff": "medium",
+          "cat": "acido_base"
+        },
+        "afterQuestionSHA256": "8714e33a31b4875f59abc6f01f2066a6d94ea9672e819b50c62322834cf4b9a3",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7: calculada a partir dos eixos e do veredito independente exato.",
+        "OP": "Aplicar a relação pH-albumina-cálcio ionizado à piora aguda de parestesias com cálcio total estável.",
+        "classification": {
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária",
+          "runtimeDiffPreserved": "medium",
+          "empiricalDifficultyOrFSRSChange": false
+        },
+        "caseReconstruction": {
+          "populationScenarioAndDecision": "Paciente com síndrome de Gitelman e hipomagnesemia crônica apresenta hiperventilação, alcalemia e piora súbita de parestesias. O cálcio total permanece inalterado. Qual efeito do pH explica essa piora?",
+          "missingDataQualification": "Não completados dados em silêncio; o escopo e eventuais recursos estão descritos no julgamento próprio."
+        },
+        "justification": "Tinawi descreve aumento de ligação à albumina na alcalose, redução do ionizado e sintomas agudos. O caso separa a mudança aguda do pH da hipomagnesemia crônica; não presume PTH baixo em todo Gitelman.",
+        "findings": [
+          "Nenhum problema substantivo de resposta identificado; pendências secundárias de atribuição registradas quando aplicáveis."
+        ],
+        "advogadoDoRecurso": {
+          "plausibleArgumentFound": false,
+          "result": "A é a única combinação de direção de ligação e fração livre. Cálcio total inalterado não exclui queda do ionizado. A explicação exige medir ionizado, sem indicar reposição por total isolado."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "annulledByEliminator": false,
+          "qualification": "Score independente próprio; notas autorais não usadas para aprovar."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA",
+          "step1": "Nenhum eliminatório disparado; não encontrada duplicata completa nos pares inspecionados.",
+          "step2": "Nenhum argumento plausível de anulação remanescente para o gabarito.",
+          "step3": "19/20 → aprovada",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "validity": {
+          "content": "Tinawi descreve aumento de ligação à albumina na alcalose, redução do ionizado e sintomas agudos. O caso separa a mudança aguda do pH da hipomagnesemia crônica; não presume PTH baixo em todo Gitelman.",
+          "construct": "Operação cognitiva classificada pelo comando, não pela raridade do tema.",
+          "responseProcess": "Avaliação editorial, sem validação empírica alegada.",
+          "consequential": "Não prescreve dose/intervalo universal ou dispensa de monitorização; não converte associações em causalidade."
+        },
+        "claimsVerified": [
+          {
+            "scope": "Gabarito, explicação e vínculo de fonte no alcance explicitamente declarado.",
+            "source": {
+              "id": "tinawi2021",
+              "sourcePin": {
+                "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+                "bytes": 90565,
+                "sha256": "d85abf9269a34ae62d68eaf3d5d2f88344cd91687f11210f7bcc02ef075089aa"
+              },
+              "originalURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7849212/",
+              "independentlyRead": true,
+              "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+              "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado."
+            }
+          }
+        ],
+        "referenceBindings": {
+          "tinawi_calcium_ph_2021": "EXACT_CARD_GATE_IN_THIS_REPORT_REQUIRED"
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — AFTER AUTORAL A3 EXATO",
+          "BEFORE": {
+            "t": "Síndrome de Gitelman e Parestesias na Alcalose Respiratória",
+            "qid": "06df2814",
+            "q": "Paciente com síndrome de Gitelman e hipomagnesemia crônica apresenta parestesias e tetania durante crise de ansiedade com hiperventilação. Qual mecanismo explica a piora aguda dos sintomas?",
+            "refs": [
+              "brenner_rector",
+              "guyton_and_hall_physiology"
+            ],
+            "opts": [
+              "A alcalose respiratória aumenta a ligação do cálcio à albumina e reduz a fração ionizada, elevando a excitabilidade neuromuscular",
+              "A hiperventilação corrige rapidamente a hipomagnesemia e causa parestesias por efeito rebote",
+              "A alcalose respiratória aumenta diretamente o cálcio ionizado, gerando tetania por hipercalcemia aguda",
+              "A síndrome de Gitelman causa hipertensão maligna episódica, que explica as parestesias"
+            ],
+            "ans": 0,
+            "exp": "A hiperventilação gera alcalose respiratória, que aumenta a ligação do cálcio à albumina e reduz a fração ionizada do cálcio. A queda do cálcio ionizado aumenta a excitabilidade neuromuscular e precipita parestesias/tetania; isso é particularmente sintomático em pacientes com síndrome de Gitelman, que frequentemente já têm hipomagnesemia e hipocalemia crônicas. As demais alternativas invertem o efeito sobre cálcio ionizado ou atribuem ao Gitelman hipertensão, achado que não é típico da síndrome.",
+            "diff": "hard",
+            "cat": "acido_base"
+          },
+          "AFTER": {
+            "t": "Gitelman — Hiperventilação e Cálcio Ionizado",
+            "qid": "06df2814",
+            "q": "Paciente com síndrome de Gitelman e hipomagnesemia crônica apresenta hiperventilação, alcalemia e piora súbita de parestesias. O cálcio total permanece inalterado. Qual efeito do pH explica essa piora?",
+            "refs": [
+              "tinawi_calcium_ph_2021"
+            ],
+            "opts": [
+              "Maior ligação do cálcio à albumina, reduzindo a fração ionizada.",
+              "Menor ligação do cálcio à albumina, elevando a fração ionizada.",
+              "Maior ligação do cálcio à albumina, elevando a fração ionizada.",
+              "Menor ligação do cálcio à albumina, reduzindo a fração ionizada."
+            ],
+            "ans": 0,
+            "exp": "A alcalemia aumenta a ligação do cálcio à albumina e reduz a fração ionizada, mesmo com cálcio total preservado. A queda aguda da fração biologicamente ativa pode aumentar excitabilidade neuromuscular e causar parestesias/tetania. Hipomagnesemia crônica é contexto adicional, sem provar queda aguda de magnésio ou supressão obrigatória de paratormônio (PTH). As demais opções invertem a ligação ou sua consequência. Medir cálcio ionizado ajuda a esclarecer sintomas quando o pH varia; a questão não prescreve reposição baseada apenas no cálcio total.",
+            "diff": "medium",
+            "cat": "acido_base"
+          },
+          "correctAnswer": {
+            "letter": "A",
+            "text": "Maior ligação do cálcio à albumina, reduzindo a fração ionizada."
+          }
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Busca textual no banco real de741, seguida de leitura de comandos/alternativas/explicações dos pares; não aprovação científica dos candidatos.",
+          "candidates": [
+            {
+              "qid": "81740f2d",
+              "currentQuestionSHA256": "87a201d3d35891dd2c43344b6be3bfd38b6cf573578fe7fe78d93b0c59216057",
+              "question": {
+                "t": "Síndrome de Gitelman — Tetania e Hipomagnesemia",
+                "qid": "81740f2d",
+                "q": "Paciente com síndrome de Gitelman apresenta câimbras, parestesias periorais e episódios de tetania. Qual combinação fisiopatológica explica melhor a irritabilidade neuromuscular?",
+                "refs": [
+                  "gitelman_kdigo_2017",
+                  "hypomagnesemia_review_2019"
+                ],
+                "opts": [
+                  "Hiponatremia moderada isolada por perda renal de sal",
+                  "Acidose metabólica hiperclorêmica com lactato normal",
+                  "Hipomagnesemia com redução da secreção/ação do PTH, frequentemente agravada pela alcalose metabólica",
+                  "Hipercalcemia leve por aumento da reabsorção proximal de cálcio"
+                ],
+                "ans": 2,
+                "exp": "Na síndrome de Gitelman, a hipomagnesemia é uma característica central e pode produzir sintomas neuromusculares, inclusive tetania, por comprometer secreção e ação do PTH e favorecer hipocalcemia funcional. A alcalose metabólica pode reduzir a fração ionizada do cálcio e aumentar a excitabilidade neuromuscular. Hiponatremia isolada, acidose metabólica e hipercalcemia não explicam o padrão típico dessa tubulopatia.",
+                "diff": "hard",
+                "cat": "eletrólitos"
+              }
+            }
+          ],
+          "fourDimensionResult": "A proposta81740f2d cobra contribuição hormonal da hipomagnesemia intensa/PTH. Aqui o dado decisivo é hiperventilação aguda com alcalemia e total inalterado; dimensão causal e estrutura útil diferem.",
+          "sameProfileAndLanguageUsually": true,
+          "duplicateConfirmed": false
+        },
+        "lengthMetrics": {
+          "optionCharacters": [
+            64,
+            63,
+            63,
+            64
+          ],
+          "correctUniqueLongest": false,
+          "qualification": "Diagnóstico de forma; não emite gate científico."
+        },
+        "verificationPending": [],
+        "authorEditorialDisposition": "LIBERADA",
+        "integrationHold": false,
+        "implementationObservation": "Preservar qid, gabarito, histórico e FSRS. Cards compartilhados e versões exigem conciliação antes de aplicação. Nenhuma alteração no produto realizada."
+      },
+      {
+        "qid": "f3d5015d",
+        "sourceLine": 218,
+        "BEFORE": {
+          "t": "Hipercalemia Crônica em Uso de Bloqueio do SRAA",
+          "qid": "f3d5015d",
+          "q": "Paciente com DRC G4, proteinúria e benefício claro de IECA apresenta hipercalemia recorrente leve a moderada, sem alterações no ECG. Qual estratégia costuma permitir manter nefroproteção com maior segurança?",
+          "refs": [
+            "ukka_hyperkalemia_2023",
+            "kdigo_ckd"
+          ],
+          "opts": [
+            "Tratar apenas com bicarbonato, sem monitorização laboratorial",
+            "Rever dieta e fármacos, corrigir acidose/volume quando presentes e considerar quelante de potássio para manter SRAA quando possível",
+            "Aguardar sintomas neuromusculares antes de intervir",
+            "Suspender definitivamente todo bloqueio do SRAA na primeira elevação discreta do potássio"
+          ],
+          "ans": 1,
+          "exp": "Na hipercalemia crônica ou recorrente sem emergência elétrica, o objetivo é reduzir K sem perder automaticamente terapias cardiorrenais benéficas. Isso inclui revisar dieta e fármacos hipercalemiantes, tratar acidose ou hipervolemia quando presentes e considerar quelantes de potássio para permitir manutenção do bloqueio do SRAA quando o benefício é alto. A versão anterior usava K 6,4 mEq/L, valor que pode exigir manejo mais urgente; agora o cenário é deliberadamente crônico e não emergencial.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "beforeQuestionSHA256": "74423bc7d44f2ee0efa8aea64f6233883fd2890821a0ebf4bb04f8e1f400c629",
+        "AFTER": {
+          "t": "Hipercalemia Crônica em Uso de Bloqueio do Sistema Renina-Angiotensina-Aldosterona (SRAA)",
+          "qid": "f3d5015d",
+          "q": "Adulto estável com doença renal crônica (DRC) G4, albuminúria e indicação de inibidor da enzima conversora de angiotensina (IECA) tem potássio de 5,7 mmol/L confirmado, sem hipotensão sintomática, doença aguda ou sinais de urgência. Segundo a KDIGO 2024, qual abordagem favorece manter os benefícios do IECA com segurança?",
+          "refs": [
+            "kdigo_ckd",
+            "ukka_hyperkalemia_2023"
+          ],
+          "opts": [
+            "Trocar IECA por bloqueador do receptor de angiotensina, considerando resolvido o risco de potássio.",
+            "Investigar causas e tratar a hipercalemia, mantendo IECA se controlável com monitorização.",
+            "Suspender IECA antes de tentar manejar a hipercalemia, sem prever reavaliação de sua indicação.",
+            "Manter IECA sem tratar o potássio nem ampliar a vigilância, pois a elevação é leve e estável."
+          ],
+          "ans": 1,
+          "exp": "Priorizar investigação de causas reversíveis e manejo do potássio, mantendo o IECA quando a hipercalemia é controlável e há monitorização. O practice point 3.6.3 da KDIGO 2024 contempla essas medidas em vez de reduzir ou suspender automaticamente a terapia. Rever fármacos, dieta individualizada e acidose ou hipervolemia quando presentes; ligantes de potássio podem ser utilizados conforme indicação. Hipotensão sintomática ou hipercalemia não controlada apesar de tratamento pode justificar redução ou suspensão (practice point 3.6.5). A UKKA de julho de 2026 sugere vigilância mais frequente e considerar redução de dose com potássio entre 5,5 e 5,9 mmol/L (§2.5, 1B); isso pode integrar a individualização e não é um erro universal. Trocar entre bloqueadores não resolve o risco, e uma elevação leve não dispensa manejo e acompanhamento.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        },
+        "afterQuestionSHA256": "57888de466aa0c2a18a511ce798f2ff4b466283264145a2e069b4c369b68345d",
+        "verdictV2": "aprovada",
+        "legacyAuxiliary": "MANTER",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7(a), após nova avaliação material do AFTER A4 exato.",
+        "OP": "Aplicar o plano de avaliação e manejo do potássio da KDIGO2024 para preservar IECA indicado quando a hipercalemia é controlável, sem dispensar monitorização ou desconsiderar individualização.",
+        "classification": {
+          "Bloom": "Aplicar",
+          "Miller": "Sabe como",
+          "intrinsicDifficulty": "intermediária",
+          "runtimeDiffPreserved": "medium",
+          "empiricalDifficultyOrFSRSChange": false
+        },
+        "caseReconstruction": {
+          "populationScenarioAndDecision": "Adulto estável com doença renal crônica (DRC) G4, albuminúria e indicação de inibidor da enzima conversora de angiotensina (IECA) tem potássio de 5,7 mmol/L confirmado, sem hipotensão sintomática, doença aguda ou sinais de urgência. Segundo a KDIGO 2024, qual abordagem favorece manter os benefícios do IECA com segurança?",
+          "decisiveData": "K5,7 confirmado, estabilidade, ausência de hipotensão sintomática/doença aguda/urgência; comando explicitamente segundoKDIGO2024.",
+          "missingDataQualification": "Não exige prescrever dose ou escolher ligante específico. Não se infere ausência de todas as contraindicações individuais."
+        },
+        "justification": "B corresponde ao PP3.6.3 para o cenário descrito. A não resolve o risco, C abandona o IECA sem tentar controlar K ou planejar reavaliação, e D dispensa tratamento/vigilância. A consideração legítima de redução pela UKKA está preservada na explicação e não foi transformada em conduta sempre errada.",
+        "findings": [
+          "Recurso de unicidade da A3 resolvido na A4 exata. Menor limitação de naturalidade em opções que declaram considerar o risco resolvido; sem recurso plausível de anulação."
+        ],
+        "advogadoDoRecurso": {
+          "plausibleArgumentFound": false,
+          "result": "B é única para o comando KDIGO e K5,7 estável. UKKA§2.5 pode individualizar redução com monitorização, mas a C nova não representa essa conduta: propõe suspender antes do manejo e não prevê reavaliação. A4 explicita os critérios, mantendo a ressalva entre fontes; não herda aprovação da A3."
+        },
+        "eliminators": {
+          "all10Checked": {
+            "Mais de uma resposta defensável": false,
+            "A referência não sustenta o gabarito": false,
+            "Mede outro OP": false,
+            "Conduta insegura premiada": false,
+            "Distrator absurdo": false,
+            "Trivia sem consequência clínica": false,
+            "Explicação contradiz gabarito": false,
+            "Dado decisivo ausente": false,
+            "Protocolo local não informado": false,
+            "Desatualização científica relevante": false
+          },
+          "triggered": [],
+          "scoreAnnulled": false
+        },
+        "NQEditorialScore": {
+          "dimensions": {
+            "Alinhamento ao OP": 2,
+            "Validade de conteúdo": 2,
+            "Validade de construto": 2,
+            "Qualidade do enunciado": 2,
+            "Alternativas": 2,
+            "Distratores": 2,
+            "Explicação": 2,
+            "Referências": 2,
+            "Ausência de cara de IA": 1,
+            "Valor pedagógico": 2
+          },
+          "total": 19,
+          "band": "Excelente",
+          "annulledByEliminator": false,
+          "qualification": "Score independente novo do AFTER A4; um ponto de naturalidade descontado."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA após releitura própria dos PP3.6.3/3.6.5 eUKKA2.5.",
+          "step1": "Nenhum eliminatório; a informação decisiva e a fonte do comando agora são explícitas.",
+          "step2": "Recurso anterior resolvido; sem argumento plausível remanescente.",
+          "step3": "19/20 → aprovada/LIBERADA.",
+          "lifecycle": "publicado",
+          "actualDeployment": false
+        },
+        "validity": {
+          "content": "Fonte e faixa5,5–5,9 conferidas no original; não confunde reduzir dose com abandonar tratamento.",
+          "construct": "Aplica princípio de manutenção condicionada e controle deK em caso clínico.",
+          "responseProcess": "Avaliação editorial, sem validação psicométrica empírica.",
+          "consequential": "Não dispensa vigilância nem força manutenção em hipercalemia não controlada; não chama a individualizaçãoUKKA de erro universal.",
+          "identity": "Mesmo OP/competência/conceito da manutenção segura; preserva qid/ans/fontes/histórico/FSRS."
+        },
+        "claimsVerified": [
+          {
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 5966902,
+              "sha256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0"
+            },
+            "URL": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+            "locator": "PP3.6.3 e3.6.5; PDF43/97",
+            "status": "VERIFICADA",
+            "scope": "Manejo doK em vez de retirada automática, exceções por hipotensão sintomática/hipercalemia não controlada."
+          },
+          {
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 4970372,
+              "sha256": "6910acb34f04d145e7828e9bf3c9a55f182def8764caf2a91fbac667215c0eb3"
+            },
+            "URL": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+            "locator": "Guideline2.5 p12",
+            "status": "VERIFICADA",
+            "scope": "K5,5–5,9: monitorização mais frequente e considerar reduçãoRAASi,1B."
+          }
+        ],
+        "referenceBindings": {
+          "kdigo_ckd": "EXACT_CARD_GATE_IN_THIS_REPORT_REQUIRED",
+          "ukka_hyperkalemia_2023": "EXACT_CARD_GATE_IN_THIS_REPORT_REQUIRED"
+        },
+        "patchEditorialSugerido": {
+          "call": "SUBSTITUIR A QUESTÃO POR — AFTER AUTORAL A4 EXATO",
+          "BEFORE": {
+            "t": "Hipercalemia Crônica em Uso de Bloqueio do SRAA",
+            "qid": "f3d5015d",
+            "q": "Paciente com DRC G4, proteinúria e benefício claro de IECA apresenta hipercalemia recorrente leve a moderada, sem alterações no ECG. Qual estratégia costuma permitir manter nefroproteção com maior segurança?",
+            "refs": [
+              "ukka_hyperkalemia_2023",
+              "kdigo_ckd"
+            ],
+            "opts": [
+              "Tratar apenas com bicarbonato, sem monitorização laboratorial",
+              "Rever dieta e fármacos, corrigir acidose/volume quando presentes e considerar quelante de potássio para manter SRAA quando possível",
+              "Aguardar sintomas neuromusculares antes de intervir",
+              "Suspender definitivamente todo bloqueio do SRAA na primeira elevação discreta do potássio"
+            ],
+            "ans": 1,
+            "exp": "Na hipercalemia crônica ou recorrente sem emergência elétrica, o objetivo é reduzir K sem perder automaticamente terapias cardiorrenais benéficas. Isso inclui revisar dieta e fármacos hipercalemiantes, tratar acidose ou hipervolemia quando presentes e considerar quelantes de potássio para permitir manutenção do bloqueio do SRAA quando o benefício é alto. A versão anterior usava K 6,4 mEq/L, valor que pode exigir manejo mais urgente; agora o cenário é deliberadamente crônico e não emergencial.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "AFTER": {
+            "t": "Hipercalemia Crônica em Uso de Bloqueio do Sistema Renina-Angiotensina-Aldosterona (SRAA)",
+            "qid": "f3d5015d",
+            "q": "Adulto estável com doença renal crônica (DRC) G4, albuminúria e indicação de inibidor da enzima conversora de angiotensina (IECA) tem potássio de 5,7 mmol/L confirmado, sem hipotensão sintomática, doença aguda ou sinais de urgência. Segundo a KDIGO 2024, qual abordagem favorece manter os benefícios do IECA com segurança?",
+            "refs": [
+              "kdigo_ckd",
+              "ukka_hyperkalemia_2023"
+            ],
+            "opts": [
+              "Trocar IECA por bloqueador do receptor de angiotensina, considerando resolvido o risco de potássio.",
+              "Investigar causas e tratar a hipercalemia, mantendo IECA se controlável com monitorização.",
+              "Suspender IECA antes de tentar manejar a hipercalemia, sem prever reavaliação de sua indicação.",
+              "Manter IECA sem tratar o potássio nem ampliar a vigilância, pois a elevação é leve e estável."
+            ],
+            "ans": 1,
+            "exp": "Priorizar investigação de causas reversíveis e manejo do potássio, mantendo o IECA quando a hipercalemia é controlável e há monitorização. O practice point 3.6.3 da KDIGO 2024 contempla essas medidas em vez de reduzir ou suspender automaticamente a terapia. Rever fármacos, dieta individualizada e acidose ou hipervolemia quando presentes; ligantes de potássio podem ser utilizados conforme indicação. Hipotensão sintomática ou hipercalemia não controlada apesar de tratamento pode justificar redução ou suspensão (practice point 3.6.5). A UKKA de julho de 2026 sugere vigilância mais frequente e considerar redução de dose com potássio entre 5,5 e 5,9 mmol/L (§2.5, 1B); isso pode integrar a individualização e não é um erro universal. Trocar entre bloqueadores não resolve o risco, e uma elevação leve não dispensa manejo e acompanhamento.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          },
+          "correctAnswer": {
+            "letter": "B",
+            "text": "Investigar causas e tratar a hipercalemia, mantendo IECA se controlável com monitorização."
+          }
+        },
+        "duplicateReview": {
+          "candidateGenerator": "Busca textual no banco real de741, seguida de leitura de comandos/alternativas/explicações dos pares; não aprovação científica dos candidatos.",
+          "candidates": [
+            {
+              "qid": "e0853fac",
+              "currentQuestionSHA256": "f22d59458105c6fb52d9b4034719e98fe313c6d2b089abdb91afa366543c1448",
+              "question": {
+                "t": "Hipercalemia e Quelantes Modernos de Potássio",
+                "qid": "e0853fac",
+                "q": "Em paciente com DRC e hipercalemia recorrente que limita IECA/BRA ou antagonista do receptor mineralocorticoide, qual é a principal utilidade de patiromer ou ciclosilicato de zircônio sódico?",
+                "refs": [
+                  "ukka_hyperkalemia_2023",
+                  "kdigo_ckd"
+                ],
+                "opts": [
+                  "Ajudar a controlar hipercalemia crônica/recorrente e permitir manutenção de terapias cardioprotetoras ou nefroprotetoras quando possível",
+                  "Substituir o cálcio intravenoso na hipercalemia grave com alteração eletrocardiográfica",
+                  "Reduzir fósforo sérico como principal indicação em DRC avançada",
+                  "Eliminar a necessidade de monitorar potássio após reintrodução de bloqueio do SRAA"
+                ],
+                "ans": 0,
+                "exp": "Quelantes modernos de potássio podem ser usados para controlar hipercalemia recorrente e facilitar a manutenção de bloqueadores do SRAA quando o benefício cardiorrenal é relevante. Eles não são a primeira medida na hipercalemia com ECG tóxico, não têm como objetivo principal reduzir fósforo e não dispensam monitorização do K. A utilidade pedagógica aqui é evitar o erro de suspender automaticamente nefroproteção por hipercalemia manejável, sem confundir isso com tratamento emergencial.",
+                "diff": "medium",
+                "cat": "eletrólitos"
+              }
+            },
+            {
+              "qid": "78be79e7",
+              "currentQuestionSHA256": "e9650a2973a7ca286e83a3142bca172629c1cd16e86fc234cbd41830d02fdcce",
+              "question": {
+                "t": "Hipercalemia em DRC sob Bloqueio do SRAA",
+                "qid": "78be79e7",
+                "q": "Paciente estável com DRC G4 usa IECA por albuminúria e espironolactona por hipertensão resistente. Duas amostras mostram potássio de 5,9 mEq/L, sem alteração eletrocardiográfica. Qual abordagem é mais segura?",
+                "refs": [
+                  "kdigo_ckd_2024"
+                ],
+                "opts": [
+                  "Avaliar urgência e causas reversíveis, suspender ao menos temporariamente a espironolactona e tratar a hipercalemia; após controle, tentar preservar o IECA indicado com monitorização e medidas como correção de acidose, diurético ou quelante conforme o caso",
+                  "Manter todos os fármacos sem ajuste, pois potássio abaixo de 6,5 mEq/L não exige intervenção em DRC",
+                  "Substituir a espironolactona por patiromer, considerando que o quelante exerce o mesmo efeito anti-hipertensivo do antagonista mineralocorticoide",
+                  "Suspender definitivamente todo bloqueio do SRAA antes de revisar dieta, medicamentos, acidose ou volemia"
+                ],
+                "ans": 0,
+                "exp": "Potássio persistentemente em 5,9 mEq/L na DRC G4 exige avaliação de gravidade, confirmação, revisão de medicamentos e correção de fatores contribuintes. A espironolactona aumenta muito o risco nesse contexto e deve ser interrompida ao menos temporariamente; IECA ou BRA com indicação renal não precisam ser abandonados automaticamente se a hipercalemia puder ser controlada. A KDIGO propõe revisar fontes de potássio biodisponível, fármacos, acidose e volemia e considerar diurético e quelantes modernos em hipercalemia não emergente. Quelante não substitui o efeito anti-hipertensivo do antagonista mineralocorticoide, e a estratégia nunca deve atrasar tratamento urgente quando houver ECG alterado, sintomas ou elevação maior.",
+                "diff": "hard",
+                "cat": "hipertensao"
+              }
+            }
+          ],
+          "fourDimensionResult": "Utilidade de ligantes nomeados e decisão sobre espironolactona já associada com K5,9 diferem do plano inicial geral. O bloqueio é de unicidade, não fusão temática.",
+          "sameProfileAndLanguageUsually": true,
+          "duplicateConfirmed": false
+        },
+        "lengthMetrics": {
+          "optionCharacters": [
+            99,
+            90,
+            95,
+            93
+          ],
+          "correctUniqueLongest": false,
+          "qualification": "Aferido da versão exata; não é gate científico."
+        },
+        "verificationPending": [],
+        "authorEditorialDisposition": "LIBERADA",
+        "integrationHold": false,
+        "implementationObservation": "A4 aprovada para a versão exata; A3 permanece BLOQUEADA histórica. Integrar somente após conciliação de cards/versões e demais gates; sem alteração do produto ou resetFSRS."
+      }
+    ],
+    "cardReviews": [
+      {
+        "id": "wilson_aquaporin2_vasopressin_2013",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Wilson, Miranda e Knepper — Vasopressina e AQP2 (2013)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3775849/",
+          "journal": "Clin Exp Nephrol 2013;17(6)",
+          "ano": 2013,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Distinguir tráfego rápido de AQP2 de mudança lenta de abundância",
+          "icon": "🔬",
+          "resumo": "Revisão de fisiologia do ducto coletor, necessária para a pergunta de mecanismo. A vasopressina regula o tráfego de AQP2 à membrana apical e, em outra escala temporal, sua abundância. V2 ativa AMPc e mecanismos que incluem PKA; a resposta rápida envolve redistribuição de canais já presentes.",
+          "conclusao": "A inserção apical de AQP2 aumenta a permeabilidade à água; AQP3/AQP4 basolaterais e abundância total não são o mesmo evento celular.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "ca5eb7f8705b3e9b43eb34664f1a85b7622d1049d486d857867a4b3dc642b5c0",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7(b)",
+        "sourceReadings": [
+          {
+            "id": "wilson2013",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 143391,
+              "sha256": "cea23f8eca823a284267aa49b75f95c0b4d1bb8127827c9299b1524cdb0013b7"
+            },
+            "originalURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3775849/",
+            "independentlyRead": true,
+            "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+            "extent": "Registro bibliográfico/resumo original completo; não alegada leitura integral do artigo.",
+            "limits": "Corpo integral de Wilson2013 indisponível nos canais tentados: não conferida nesta rodada a atribuição literal de V2/AMPc/PKA/AQP3-AQP4 à revisão citada. O resumo sustenta o gabarito, tráfego apical e diferença em relação à abundância. Pendência NÃO DECISIVA."
+          }
+        ],
+        "sourceScopeAndRemainingPending": "Corpo integral de Wilson2013 indisponível nos canais tentados: não conferida nesta rodada a atribuição literal de V2/AMPc/PKA/AQP3-AQP4 à revisão citada. O resumo sustenta o gabarito, tráfego apical e diferença em relação à abundância. Pendência NÃO DECISIVA.",
+        "usedByThisBatch": [
+          "cf609480"
+        ],
+        "currentBankConsumers": [],
+        "integrationGate": "Não aprova consumidores externos por associação; ADD/REPLACE/KEEP só no escopo da versão exata e após gate de compatibilidade."
+      },
+      {
+        "id": "tinawi_calcium_ph_2021",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Tinawi — Cálcio ionizado e pH (2021)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7849212/",
+          "journal": "Cureus 2021;13(1):e12420",
+          "ano": 2021,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Explicar sintomas agudos com cálcio total preservado na alcalemia",
+          "icon": "🔬",
+          "resumo": "Revisão narrativa de metabolismo do cálcio. No escopo deste card, elevação do pH aumenta ligação do cálcio à albumina e reduz sua fração ionizada; hiperventilação está entre as causas de hipocalcemia funcional. Queda aguda do cálcio ionizado pode causar parestesias e tetania.",
+          "conclusao": "Em alteração de pH, cálcio total isolado pode ocultar alteração da fração biologicamente ativa. A revisão sustenta mecanismo fisiológico, não uma estratégia terapêutica específica para Gitelman.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "c622641e9b0c357b78a7bdc9405de34e6a298a375ba10a1209f0151b1e74400c",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7(a)",
+        "sourceReadings": [
+          {
+            "id": "tinawi2021",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 90565,
+              "sha256": "d85abf9269a34ae62d68eaf3d5d2f88344cd91687f11210f7bcc02ef075089aa"
+            },
+            "originalURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7849212/",
+            "independentlyRead": true,
+            "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+            "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado."
+          }
+        ],
+        "sourceScopeAndRemainingPending": "Afirmações do literal exato conferidas no alcance original indicado; não foi usado gate autoral como prova.",
+        "usedByThisBatch": [
+          "06df2814"
+        ],
+        "currentBankConsumers": [],
+        "integrationGate": "Não aprova consumidores externos por associação; ADD/REPLACE/KEEP só no escopo da versão exata e após gate de compatibilidade."
+      },
+      {
+        "id": "click_chlorthalidone_2021",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "CLICK — Clortalidona na DRC avançada (2021)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/34739197/",
+          "journal": "N Engl J Med 2021;385(27):2507–2519",
+          "ano": 2021,
+          "tipo": "Ensaio clínico randomizado",
+          "badge": "RCT",
+          "badgeColor": "#10b981",
+          "impacto": "Controle pressórico em G4 com monitorização de efeitos adversos",
+          "icon": "🔬",
+          "resumo": "CLICK: 160 adultos com DRC G4 e hipertensão mal controlada, clortalidona versus placebo. Desfecho primário: alteração da pressão sistólica ambulatorial de 24h em 12 semanas. Diferença entre grupos: −10,5 mmHg (IC95% −14,6 a −6,4; P<0,001). Hipocalemia e aumentos reversíveis de creatinina foram mais frequentes com clortalidona. Dados conferidos no abstract primário; não houve leitura integral nesta rodada.",
+          "conclusao": "O ensaio refuta perda obrigatória de efeito pressórico em G4. Não prova benefício renal duro nem tratamento de hipercalemia; monitorizar eletrólitos, função renal e volemia.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "0905b0e7f991bc750d6a42c31b5485145a5211e431be73ab879d382b5312aadc",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7(a)",
+        "sourceReadings": [
+          {
+            "id": "click2021",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 143391,
+              "sha256": "cea23f8eca823a284267aa49b75f95c0b4d1bb8127827c9299b1524cdb0013b7"
+            },
+            "originalURL": "https://pubmed.ncbi.nlm.nih.gov/34739197/",
+            "independentlyRead": true,
+            "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+            "extent": "Registro bibliográfico/resumo original completo; não alegada leitura integral do artigo.",
+            "limits": "Todos os números do card constam no resumo original. O ensaio não estabelece tratamento de hipercalemia ou benefício renal duro."
+          }
+        ],
+        "sourceScopeAndRemainingPending": "Afirmações do literal exato conferidas no alcance original indicado; não foi usado gate autoral como prova.",
+        "usedByThisBatch": [
+          "6a54b25c"
+        ],
+        "currentBankConsumers": [],
+        "integrationGate": "Não aprova consumidores externos por associação; ADD/REPLACE/KEEP só no escopo da versão exata e após gate de compatibilidade."
+      },
+      {
+        "id": "chaitman_potassium_binders_2016",
+        "action": "ADD",
+        "BEFORE": null,
+        "AFTER": {
+          "label": "Chaitman, Dixit e Bridgeman — Ligantes de potássio: segurança de SPS (2016)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4699486/",
+          "journal": "P&T 2016;41(1):43–50",
+          "ano": 2016,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Reconhecer riscos intestinais e carga de sódio de SPS",
+          "icon": "🔬",
+          "resumo": "Revisão farmacológica de ligantes de potássio. Este card limita-se à segurança do poliestirenossulfonato de sódio (SPS): pode causar constipação, impactação e lesão intestinal grave; doença intestinal obstrutiva contraindica seu uso. A associação com sorbitol é desaconselhada. A troca intestinal de potássio por sódio exige cautela em insuficiência cardíaca, edema e hipertensão pela carga de sódio. Mudar para via retal não elimina exposição intestinal. A rotulagem oficial consultada corrobora esses cuidados.",
+          "conclusao": "Avaliar trânsito e riscos antes de cogitar SPS; diante de trânsito intestinal comprometido, evitar a exposição e avaliar outra estratégia. A revisão de 2016 não estabelece uso rotineiro atual nem substitui a UKKA de julho de 2026.",
+          "curiosidade": "O uso histórico de sorbitol para prevenir constipação passou a ser desaconselhado após relatos de lesão intestinal grave; um laxante associado não garante segurança da resina."
+        },
+        "beforeSHA256": null,
+        "afterSHA256": "6e84408b1b0d8002f83e4209d319187e6ca585ee2a8375d4713c919abeb92506",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "PARCIALMENTE VERIFICADA",
+        "pendingNature": "NÃO DECISIVA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7(b)",
+        "sourceReadings": [
+          {
+            "id": "chaitman2016",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 143391,
+              "sha256": "cea23f8eca823a284267aa49b75f95c0b4d1bb8127827c9299b1524cdb0013b7"
+            },
+            "originalURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4699486/",
+            "independentlyRead": true,
+            "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+            "extent": "Registro bibliográfico/resumo original completo; não alegada leitura integral do artigo.",
+            "limits": "O corpo exato de Chaitman2016 voltou a CAPTCHA/erros. Metadados originais foram conferidos, e as afirmações do item/card estão corroboradas pela rotulagem oficial; falta confirmar a atribuição literal ao corpo de2016. Pendência NÃO DECISIVA."
+          },
+          {
+            "id": "kayexalatePI",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 33769,
+              "sha256": "fdc07703dc4cec21358a20e4ce4f3bd333fc1d189d9b8241e784656ddcba6b10"
+            },
+            "originalURL": "https://products.sanofi.us/kayexalate/kayexalate.pdf",
+            "independentlyRead": true,
+            "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+            "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado."
+          }
+        ],
+        "sourceScopeAndRemainingPending": "O corpo exato de Chaitman2016 voltou a CAPTCHA/erros. Metadados originais foram conferidos, e as afirmações do item/card estão corroboradas pela rotulagem oficial; falta confirmar a atribuição literal ao corpo de2016. Pendência NÃO DECISIVA.",
+        "usedByThisBatch": [
+          "7ec80c77"
+        ],
+        "currentBankConsumers": [],
+        "integrationGate": "Não aprova consumidores externos por associação; ADD/REPLACE/KEEP só no escopo da versão exata e após gate de compatibilidade."
+      },
+      {
+        "id": "kdigo_bp_ckd_2021",
+        "action": "KEEP",
+        "BEFORE": {
+          "label": "KDIGO Blood Pressure in CKD 2021",
+          "url": "https://kdigo.org/guidelines/blood-pressure-in-ckd/",
+          "journal": "Kidney International. 2021;99(3 Suppl):S1-S87",
+          "ano": 2021,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "PAS <120 mmHg padronizada quando tolerada; bloqueio do SRAA na DRC albuminúrica",
+          "icon": "📋",
+          "resumo": "Diretriz KDIGO para pressão arterial na DRC não dialítica. Sugere alvo de pressão arterial sistólica inferior a 120 mmHg quando tolerado, exclusivamente com medida padronizada de consultório (recomendação 2B). Recomenda iniciar IECA ou BRA em pessoas com hipertensão, DRC G1–G4 e albuminúria A3 sem diabetes (1B), e também sustenta bloqueio do sistema renina-angiotensina em albuminúria relevante com diabetes. O alvo deve ser individualizado e não traduzido diretamente para medida casual.",
+          "conclusao": "O alvo <120 mmHg depende de técnica padronizada e tolerabilidade; na DRC hipertensiva com albuminúria importante, IECA ou BRA integra a estratégia de proteção renal.",
+          "curiosidade": "A maior armadilha é tratar <120 mmHg como um número universal: medida automatizada após repouso não equivale à pressão casual obtida durante uma consulta apressada."
+        },
+        "AFTER": {
+          "label": "KDIGO Blood Pressure in CKD 2021",
+          "url": "https://kdigo.org/guidelines/blood-pressure-in-ckd/",
+          "journal": "Kidney International. 2021;99(3 Suppl):S1-S87",
+          "ano": 2021,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "PAS <120 mmHg padronizada quando tolerada; bloqueio do SRAA na DRC albuminúrica",
+          "icon": "📋",
+          "resumo": "Diretriz KDIGO para pressão arterial na DRC não dialítica. Sugere alvo de pressão arterial sistólica inferior a 120 mmHg quando tolerado, exclusivamente com medida padronizada de consultório (recomendação 2B). Recomenda iniciar IECA ou BRA em pessoas com hipertensão, DRC G1–G4 e albuminúria A3 sem diabetes (1B), e também sustenta bloqueio do sistema renina-angiotensina em albuminúria relevante com diabetes. O alvo deve ser individualizado e não traduzido diretamente para medida casual.",
+          "conclusao": "O alvo <120 mmHg depende de técnica padronizada e tolerabilidade; na DRC hipertensiva com albuminúria importante, IECA ou BRA integra a estratégia de proteção renal.",
+          "curiosidade": "A maior armadilha é tratar <120 mmHg como um número universal: medida automatizada após repouso não equivale à pressão casual obtida durante uma consulta apressada."
+        },
+        "beforeSHA256": "c8ada62dd09d8fa634e0203135701f666dae8c913ec818ec1f17c9df98930a13",
+        "afterSHA256": "c8ada62dd09d8fa634e0203135701f666dae8c913ec818ec1f17c9df98930a13",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7(a)",
+        "sourceReadings": [
+          {
+            "id": "kdigoBP2021",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 4642743,
+              "sha256": "0f1c93de3b1598aae72b9d4f434a146151e1e17876f1351d9198030558ea305a"
+            },
+            "originalURL": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2021-BP-GL.pdf",
+            "independentlyRead": true,
+            "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+            "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado."
+          }
+        ],
+        "sourceScopeAndRemainingPending": "Afirmações do literal exato conferidas no alcance original indicado; não foi usado gate autoral como prova.",
+        "usedByThisBatch": [
+          "0bc2e7aa"
+        ],
+        "currentBankConsumers": [
+          "13109735",
+          "11c26939",
+          "1e0e571c",
+          "e8a59de8"
+        ],
+        "integrationGate": "Não aprova consumidores externos por associação; ADD/REPLACE/KEEP só no escopo da versão exata e após gate de compatibilidade."
+      },
+      {
+        "id": "ukka_hyperkalemia_2023",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "UKKA Hyperkalaemia Guideline 2023",
+          "url": "https://www.ukkidney.org/health-professionals/guidelines/treatment-acute-hyperkalaemia-adults-0",
+          "journal": "UK Kidney Association",
+          "ano": 2023,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Diretriz específica para detecção, tratamento hospitalar agudo e prevenção de hipercalemia em adultos",
+          "icon": "⚡",
+          "resumo": "Diretriz da UK Kidney Association dedicada ao manejo da hipercalemia em adultos, com foco especial na atualização de 2023 para tratamento hospitalar agudo. Organiza a resposta em etapas práticas: proteger o coração quando há sinais eletrocardiográficos de toxicidade com cálcio intravenoso; deslocar potássio para o compartimento intracelular com insulina-glicose e, como adjuvante, salbutamol; remover potássio do organismo conforme gravidade, função renal e resposta; e monitorar potássio e glicemia para detectar rebote e hipoglicemia. Destaca que o cálcio intravenoso estabiliza rapidamente o miocárdio, mas não reduz o potássio sérico e tem efeito transitório, exigindo terapias complementares.",
+          "conclusao": "Na hipercalemia aguda, a conduta segura é sequencial e simultaneamente orientada por risco: ECG tóxico exige proteção cardíaca imediata com cálcio, seguida de terapias de deslocamento e remoção de potássio com monitorização estreita.",
+          "curiosidade": "A atualização de 2023 enfatizou segurança medicamentosa: reforçou diferenças práticas entre sais de cálcio, prevenção de hipoglicemia após insulina-glicose e uso do salbutamol como adjuvante, não como monoterapia em hipercalemia grave."
+        },
+        "AFTER": {
+          "label": "UK Kidney Association — Hipercalemia em adultos (julho/2026)",
+          "url": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+          "journal": "UK Kidney Association",
+          "ano": 2026,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Proteção cardíaca transitória, insulina-glicose e monitorização na hipercalemia",
+          "icon": "📋",
+          "resumo": "Diretriz da UK Kidney Association (UKKA), atualizada em julho de 2026, para hipercalemia em adultos. Sugere cálcio intravenoso diante de alterações no eletrocardiograma (16.2a, 2C); o efeito elétrico é rápido e transitório, aproximadamente 30–60 minutos, sem reduzir o potássio. Recomenda infusão intravenosa de insulina solúvel 10 unidades com glicose 25 g na hipercalemia grave (16.3.1, 1B), com glicemia seriada desde o basal até 6 horas (17.2, 1C), prolongada em pacientes de alto risco. Cálcio, deslocamento e remoção de potássio têm funções distintas. O grau do cálcio foi reduzido de 1C para 2C nesta atualização; a evidência de benefício em desfechos clínicos permanece limitada.",
+          "conclusao": "Tratar toxicidade elétrica e potássio em paralelo; cálcio não corrige a hipercalemia e insulina não elimina K+ do organismo. Acompanhar eletrocardiograma, potássio e glicemia conforme o contexto.",
+          "curiosidade": ""
+        },
+        "beforeSHA256": "dbac5964610515fe33ca448b15c53def346e5ec4b1112d3b8eb48909b30e882e",
+        "afterSHA256": "7a3cbcf898e3d56a2a8123cfd9c56a09aee43e35133dc346d7800ccdf8779bc8",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7(a)",
+        "sourceReadings": [
+          {
+            "id": "ukka2026",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 4970372,
+              "sha256": "6910acb34f04d145e7828e9bf3c9a55f182def8764caf2a91fbac667215c0eb3"
+            },
+            "originalURL": "https://www.ukkidney.org/sites/default/files/documents/FINAL%20VERSION%20-%20UKKA%20CLINICAL%20PRACTICE%20GUIDELINE%20-%20MANAGEMENT%20OF%20HYPERKALAEMIA%20IN%20ADULTS%20-%20UPDATED%20JULY%202026_0.pdf",
+            "independentlyRead": true,
+            "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+            "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado."
+          }
+        ],
+        "sourceScopeAndRemainingPending": "Afirmações do literal exato conferidas no alcance original indicado; não foi usado gate autoral como prova.",
+        "usedByThisBatch": [
+          "6a54b25c",
+          "f3d5015d"
+        ],
+        "currentBankConsumers": [
+          "e0853fac",
+          "8b80b0a9",
+          "985d735c",
+          "1f962c0e",
+          "17dc6d7e",
+          "43313455",
+          "ebea50d5",
+          "1b286739",
+          "a73f61f6",
+          "69018bb9",
+          "a799c154",
+          "65d19905",
+          "7ec80c77",
+          "d92f30a9",
+          "f3d5015d",
+          "805733f8",
+          "32f342fc",
+          "b35be598",
+          "6a19aece",
+          "db25ef93"
+        ],
+        "integrationGate": "Não aprova consumidores externos por associação; ADD/REPLACE/KEEP só no escopo da versão exata e após gate de compatibilidade."
+      },
+      {
+        "id": "hypernatremia_yun_2023",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "Yun G, Baek SH, Kim S — Evaluation and Management of Hypernatremia in Adults (2023)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36578134/",
+          "journal": "Korean J Intern Med 2023;38(3):290-302",
+          "ano": 2023,
+          "tipo": "Revisão Clínica",
+          "badge": "REVIEW",
+          "badgeColor": "#0ea5e9",
+          "impacto": "Abordagem diagnóstica e terapêutica da hipernatremia em adultos: água livre, volemia, ritmo de correção e diabetes insipidus",
+          "icon": "📖",
+          "resumo": "Revisão clínica prática sobre hipernatremia em adultos. Estrutura a avaliação em etapas: confirmar sódio corrigido, avaliar volemia, medir volume/osmolaridade urinária, considerar perdas de água livre e diabetes insipidus. No tratamento, separa hipernatremia aguda de crônica/desconhecida, calcula déficit de água livre por ACT × [(Na/140) − 1], repõe perdas contínuas e escolhe fluido conforme volemia: água enteral ou SG 5% quando se busca água livre, solução salina hipotônica quando também há depleção extracelular, e salina isotônica primeiro se houver choque/hipoperfusão.",
+          "conclusao": "Hipernatremia é problema de balanço de água em relação ao sódio; a correção segura exige tratar a causa, estimar déficit e perdas em curso, escolher o fluido pelo estado volêmico e monitorar a natremia seriada.",
+          "curiosidade": "Ao contrário da hiponatremia crônica, em que a correção rápida causa síndrome de desmielinização osmótica, a queda rápida da natremia na hipernatremia crônica preocupa por edema cerebral: o cérebro adaptado à hiperosmolaridade retém osmóis e incha quando a tonicidade plasmática cai abruptamente."
+        },
+        "AFTER": {
+          "label": "Yun G, Baek SH, Kim S — Evaluation and Management of Hypernatremia in Adults (2023)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/36578134/",
+          "journal": "Korean J Intern Med 2023;38(3):290-302",
+          "ano": 2023,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Abordagem diagnóstica e terapêutica da hipernatremia em adultos: água livre, volemia, ritmo de correção e diabetes insipidus",
+          "icon": "🔬",
+          "resumo": "Revisão clínica prática sobre hipernatremia em adultos. Estrutura a avaliação em etapas: confirmar sódio corrigido, avaliar volemia, medir volume/osmolaridade urinária, considerar perdas de água livre e diabetes insipidus. No tratamento, separa hipernatremia aguda de crônica/desconhecida, calcula déficit de água livre por ACT × [(Na/140) − 1], repõe perdas contínuas e escolhe fluido conforme volemia: água enteral ou SG 5% quando se busca água livre, solução salina hipotônica quando também há depleção extracelular, e salina isotônica primeiro se houver choque/hipoperfusão.",
+          "conclusao": "Hipernatremia é problema de balanço de água em relação ao sódio; a correção segura exige tratar a causa, estimar déficit e perdas em curso, escolher o fluido pelo estado volêmico e monitorar a natremia seriada.",
+          "curiosidade": "A adaptação cerebral na hipernatremia crônica fundamenta preocupação com edema durante reidratação, sobretudo na experiência pediátrica. A revisão distingue isso dos dados adultos, que não demonstraram universalmente esse dano por correção rápida; não transformar a ressalva em regra causal comprovada para todo adulto."
+        },
+        "beforeSHA256": "a9fd80ec187df69e382109af637a67aa994954c283e99fbcf816de10c9f74c19",
+        "afterSHA256": "59332336fd57c7dec74c696d6d9c0ab8e6218229ca03177ea07b0471f15b82ce",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7(a)",
+        "sourceReadings": [
+          {
+            "id": "yun2023",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 219734,
+              "sha256": "57d7b4ec4d883a1b8f973fbb170dbe8b0740f8e98362fb7adb1be5399a4ca639"
+            },
+            "originalURL": "https://www.kjim.org/journal/view.php?doi=10.3904/kjim.2022.346",
+            "independentlyRead": true,
+            "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+            "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado."
+          },
+          {
+            "id": "chacon2025",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 116307,
+              "sha256": "b22bb7fccc1839c4f3edc29bd2224997828c8ec6b15bf5dab3b4f73dd1c8b4bb"
+            },
+            "originalURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12407122/",
+            "independentlyRead": true,
+            "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+            "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado."
+          }
+        ],
+        "sourceScopeAndRemainingPending": "Afirmações do literal exato conferidas no alcance original indicado; não foi usado gate autoral como prova.",
+        "usedByThisBatch": [
+          "9a545994"
+        ],
+        "currentBankConsumers": [
+          "61fc6237",
+          "899cadd8",
+          "5ea4847a",
+          "7987651d",
+          "9a545994"
+        ],
+        "integrationGate": "Não aprova consumidores externos por associação; ADD/REPLACE/KEEP só no escopo da versão exata e após gate de compatibilidade."
+      },
+      {
+        "id": "central_di_tomkins_2022",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "Tomkins M et al. — Diagnosis and Management of Central Diabetes Insipidus in Adults (2022)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35771962/",
+          "journal": "J Clin Endocrinol Metab 2022;107(10):2701-2715",
+          "ano": 2022,
+          "tipo": "Revisão Clínica",
+          "badge": "REVIEW",
+          "badgeColor": "#0ea5e9",
+          "impacto": "Diagnóstico diferencial da poliúria hipotônica, uso de desmopressina/copeptina e manejo de diabetes insipidus central, adípsico e gestacional",
+          "icon": "📖",
+          "resumo": "Revisão atual sobre diabetes insipidus central em adultos. Discute a síndrome de poliúria hipotônica, a distinção entre diabetes insipidus central, diabetes insipidus nefrogênico e polidipsia primária, e o papel crescente da copeptina em testes com salina hipertônica ou arginina. Na prática clássica, resposta robusta da osmolaridade urinária à desmopressina favorece deficiência central de vasopressina; resposta mínima sugere resistência renal. O manejo crônico usa desmopressina individualizada, com atenção a sede, acesso à água e risco de hiponatremia por excesso de reposição.",
+          "conclusao": "A interpretação do diabetes insipidus depende de confirmar poliúria hipotônica e integrar resposta à desmopressina, sede, osmolaridade plasmática/urinária e contexto clínico; desmopressina trata deficiência central, não resistência renal completa.",
+          "curiosidade": "O diabetes insipidus adípsico é especialmente perigoso porque une falta de vasopressina e perda da sede: o paciente não compensa a perda urinária com ingestão de água, tornando a hipernatremia persistente uma pista clínica central."
+        },
+        "AFTER": {
+          "label": "Tomkins M et al. — Diagnosis and Management of Central Diabetes Insipidus in Adults (2022)",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/35771962/",
+          "journal": "J Clin Endocrinol Metab 2022;107(10):2701-2715",
+          "ano": 2022,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Diagnóstico diferencial da poliúria hipotônica, uso de desmopressina/copeptina e manejo de diabetes insipidus central, adípsico e gestacional",
+          "icon": "🔬",
+          "resumo": "Revisão atual sobre diabetes insipidus central em adultos. Discute a síndrome de poliúria hipotônica, a distinção entre diabetes insipidus central, diabetes insipidus nefrogênico e polidipsia primária, e o papel crescente da copeptina em testes com salina hipertônica ou arginina. Na prática clássica, resposta robusta da osmolaridade urinária à desmopressina favorece deficiência central de vasopressina; resposta mínima sugere resistência renal. O manejo crônico usa desmopressina individualizada, com atenção a sede, acesso à água e risco de hiponatremia por excesso de reposição.",
+          "conclusao": "A interpretação do diabetes insipidus depende de confirmar poliúria hipotônica e integrar resposta à desmopressina, sede, osmolaridade plasmática/urinária e contexto clínico; desmopressina trata deficiência central, não resistência renal completa.",
+          "curiosidade": "O diabetes insipidus adípsico é especialmente perigoso porque une falta de vasopressina e perda da sede: o paciente não compensa a perda urinária com ingestão de água, tornando a hipernatremia persistente uma pista clínica central."
+        },
+        "beforeSHA256": "e22b8496e9b42f372a94ac032cfd690dba27edd14caf4b6ca999b23ce72c7872",
+        "afterSHA256": "e39193223095a11155fc9dfbbb03b3ecc27bd66d8786b9c3cf8e3deaf399f4be",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7(a)",
+        "sourceReadings": [
+          {
+            "id": "tomkins2022",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 578551,
+              "sha256": "3bcb6e7b0d8ec4c3367b77b14bd6386b6b516a474387bbde6e73dcd39ef209ed"
+            },
+            "originalURL": "https://academic.oup.com/jcem/article-pdf/107/10/2701/46112625/dgac381.pdf",
+            "independentlyRead": true,
+            "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+            "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado.",
+            "bodyURL": "https://oup.silverchair-cdn.com/article-minimal/6623615",
+            "qualification": "Canal público do editor, obtido pelo redirecionamento oficial da página article-abstract. PDF retornou403; a leitura integral é HTML, não PDF materializado."
+          }
+        ],
+        "sourceScopeAndRemainingPending": "Afirmações do literal exato conferidas no alcance original indicado; não foi usado gate autoral como prova.",
+        "usedByThisBatch": [
+          "6d52cb77"
+        ],
+        "currentBankConsumers": [
+          "63040771",
+          "1e62bd9e",
+          "b4165730",
+          "899cadd8",
+          "5ea4847a",
+          "6d52cb77"
+        ],
+        "integrationGate": "Não aprova consumidores externos por associação; ADD/REPLACE/KEEP só no escopo da versão exata e após gate de compatibilidade."
+      },
+      {
+        "id": "kdigo_ckd",
+        "action": "REPLACE",
+        "BEFORE": {
+          "label": "KDIGO CKD 2024",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "journal": "Kidney International",
+          "ano": 2024,
+          "tipo": "Diretriz Internacional",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+          "icon": "📋",
+          "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+          "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+          "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+        },
+        "AFTER": {
+          "label": "KDIGO CKD 2024",
+          "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+          "journal": "Kidney International",
+          "ano": 2024,
+          "tipo": "Diretriz",
+          "badge": "GUIDELINE",
+          "badgeColor": "#6366f1",
+          "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+          "icon": "📋",
+          "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+          "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+          "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+        },
+        "beforeSHA256": "3ce5a188f86abdbef8d6f9ba8cf78ce5fc6e70cdb26cc28c5613cf3ebc86a31d",
+        "afterSHA256": "dafa44064c8be2d5e5bed86a84fc0c2b8525b2c2393e314dfc522f552b46ba34",
+        "verdictV2": "aprovada",
+        "confidence": "alta",
+        "evidenceStatus": "VERIFICADA",
+        "pendingNature": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "publicationDerivation": "Handbook §18.4 Regra7(a)",
+        "sourceReadings": [
+          {
+            "id": "kdigo2024",
+            "sourcePin": {
+              "path": "[local evidence locator omitted; retain its adjacent hash and source citations]",
+              "bytes": 5966902,
+              "sha256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0"
+            },
+            "originalURL": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+            "independentlyRead": true,
+            "readAtOfficialUTC": "2026-10-13 11:13:28 UTC",
+            "extent": "Corpo original integral recuperado legitimamente; lidos os trechos decisivos e as afirmações do card no escopo indicado."
+          }
+        ],
+        "sourceScopeAndRemainingPending": "Afirmações do literal exato conferidas no alcance original indicado; não foi usado gate autoral como prova.",
+        "usedByThisBatch": [
+          "0bc2e7aa",
+          "f3d5015d"
+        ],
+        "currentBankConsumers": [
+          "e0853fac",
+          "d39cf860",
+          "7e4990d5",
+          "bfb82aa0",
+          "c3222d12",
+          "e560d3c3",
+          "86ad6fc4",
+          "6f3fbd14",
+          "e0448d0b",
+          "e2181457",
+          "fe10a36e",
+          "e5c78a9f",
+          "b933be69",
+          "86949ab7",
+          "312ab0c7",
+          "f676438e",
+          "b8666d0a",
+          "69018bb9",
+          "6e1db964",
+          "a108228e",
+          "fcc5c08d",
+          "0bc2e7aa",
+          "7ec80c77",
+          "a79c0cc3",
+          "d305e74d",
+          "6a54b25c",
+          "ef084c2d",
+          "10d210a3",
+          "da24855e",
+          "f3d5015d",
+          "ac2d05ad",
+          "5fb482d4",
+          "f9976e40",
+          "a8bc43ae",
+          "19c5b8a4",
+          "0f739fb4",
+          "5c743fb2",
+          "7d8f1d58",
+          "10f8730b",
+          "98052e5c",
+          "63e137ec",
+          "96c0c85d",
+          "e24c60f6",
+          "235c52d8",
+          "efcbb8d4",
+          "db438123",
+          "60286409",
+          "23323f09",
+          "8c9be3b6",
+          "13109735",
+          "3fed706c",
+          "9661a8dd",
+          "d7ac22f6",
+          "00c75e38",
+          "4c428915",
+          "cee26d6b",
+          "6591eda7",
+          "63034956",
+          "67bdd826",
+          "53090d19",
+          "0583e607",
+          "0319aa8b",
+          "75d13f79",
+          "4f32d657",
+          "096ed861",
+          "50d30738",
+          "0792a38e",
+          "df2517a7",
+          "6b06f82b",
+          "ca8066c6",
+          "bb44dfd3",
+          "03cdd0ce"
+        ],
+        "integrationGate": "Não aprova consumidores externos por associação; ADD/REPLACE/KEEP só no escopo da versão exata e após gate de compatibilidade."
+      }
+    ],
+    "heldPriorVersion": {
+      "qid": "f3d5015d",
+      "AFTER_SHA256": "bedea97ff94aaa0e43903862ec62600b4857046c77332ef9151d186c6b0691de",
+      "verdictV2": "revisão maior",
+      "publicationAuthorization": "BLOQUEADA",
+      "oldEliminator1Preserved": true
+    },
+    "validation": {
+      "oneMaterialAfterFreshlyReviewed": true,
+      "sevenCompleteAuthorItemsDeepIdenticalA3A4": true,
+      "sevenOtherIndependentAfterAndGatesPreserved": true,
+      "nineCardVersionsAndGatesDeepIdentical": true,
+      "newMedicalReviewCount": 0,
+      "noProductOrGitEdits": true
+    },
+    "counts": {
+      "originalBatchQuestionsReviewedRemains": 8,
+      "newReviewedQuestionCount": 0,
+      "materialRepairsReevaluated": 1,
+      "exactAfterAccepted": 8,
+      "exactAfterBlocked": 0,
+      "partiallyVerifiedNonDecisiveQuestions": 2,
+      "cardsReviewedRemains": 9,
+      "partiallyVerifiedNonDecisiveCards": 2,
+      "implemented": 0
+    },
+    "limits": [
+      "As pendências secundárias Wilson/Chaitman seguem abertas, no mesmo escopo parcial não decisivo; não foram promovidas aVERIFICADA.",
+      "Conciliação de cards compartilhados e compatibilidade permanecem gates de integração. Não autoriza publicação automática."
+    ]
+  }
+}
