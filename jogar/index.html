@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.14',
+          release: 'nefroquest@16.15',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -134,11 +134,11 @@
        style.css aplicar .hidden. O CSS externo re-exibe quando o JS remove .hidden. */
     .hidden { display: none !important; }
   </style>
-  <link rel="stylesheet" href="style.css?v=16.14">
+  <link rel="stylesheet" href="style.css?v=16.15">
   <link rel="stylesheet" href="styles/lumen/tokens.css?v=15.77">
   <link rel="stylesheet" href="styles/lumen/shell.css?v=14.77">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=15.94">
-  <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.02">
+  <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.15">
   <link rel="stylesheet" href="styles/lumen/game.css?v=16.03">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.06">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.01">
@@ -1813,7 +1813,7 @@
   <script defer src="js/character-benefits.js?v=16.07"></script>
   <script defer src="js/answer-presentation.js?v=16.09"></script>
   <script>window.NQ_REQUIRES_QUESTION_REVISIONS = true;</script>
-  <script defer src="data/question-revision-manifest.js?v=16.14"></script>
+  <script defer src="data/question-revision-manifest.js?v=16.15"></script>
   <script defer src="data/question-revision-history.js?v=16.10"></script>
   <script defer src="js/question-revisions.js?v=16.12"></script>
   <script defer src="js/utils.js?v=16.12"></script>

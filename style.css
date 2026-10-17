@@ -13876,11 +13876,14 @@ body.nq-studying #mobileSoundControls { position: relative; top: auto; right: au
 .nq-forja-ouro strong { color: var(--gold); font-size: 1.15rem; }
 .nq-forja-cabecalho .nq-forja-motivo { grid-column: 1 / -1; }
 .nq-forja-opcoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 16px 32px; padding: 24px 0; border-bottom: 1px solid #34434e; }
-#forjaPage .nq-forja-opcoes .nq-forja-opcao { padding-inline: min(1.35rem, 22px); }
-#forjaPage .nq-forja-opcao-topo { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 10px; }
-#forjaPage .nq-forja-opcao-resumo { flex: 1 1 12rem; min-width: 0; }
-#forjaPage .nq-forja-opcao-resumo h3 { line-height: 1.35; overflow-wrap: anywhere; }
-#forjaPage .nq-forja-opcao .nq-forja-opcao-topo .nq-forja-rota { margin: 0 0 4px; font-size: .82rem; line-height: 1.4; }
+#forjaPage .nq-forja-opcoes .nq-forja-opcao { padding-inline: min(1.35rem, 22px); container: nqForjaOpcao / inline-size; }
+#forjaPage .nq-forja-opcao-topo { display: grid; grid-template-columns: 64px minmax(0, 1fr); align-items: start; gap: 4px 12px; margin-bottom: 0; }
+#forjaPage .nq-forja-opcao-resumo { display: contents; }
+#forjaPage .nq-forja-opcao-topo > .nq-forja-opcao-arte { grid-column: 1; grid-row: 1 / 3; }
+#forjaPage .nq-forja-opcao .nq-forja-opcao-resumo h3 { grid-column: 2; grid-row: 2; margin: 0; line-height: 1.35; overflow-wrap: anywhere; }
+#forjaPage .nq-forja-opcao .nq-forja-opcao-topo .nq-forja-rota { grid-column: 2; grid-row: 1; margin: 0; font-size: .82rem; line-height: 1.4; }
+#forjaPage .nq-forja-opcao .nq-forja-custo { grid-column: 1 / -1; grid-row: 3; margin: .35rem 0 0; line-height: 1.4; }
+#forjaPage .nq-forja-opcao > p:not(.nq-forja-motivo) { margin: .6rem 0 .9rem; }
 #forjaPage .nq-forja-opcao .nq-forja-opcao-arte { flex: 0 0 64px; width: 64px; height: 64px; aspect-ratio: 1; padding: 8px; border: 1px solid #5b6b7a; color: #a4becb; }
 #forjaPage .nq-forja-opcao .nq-forja-opcao-arte.nq-forja-arte-legendary { border-color: var(--gold); color: var(--gold); background: #1a1f24; }
 #forjaPage .nq-forja-opcao-arte svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; }
@@ -13934,8 +13937,24 @@ body.nq-studying #mobileSoundControls { position: relative; top: auto; right: au
 .nq-forja .rar-common { color: #b8c1cf; }
 @media (max-width: 40rem) {
   .nq-forja-cabecalho { grid-template-columns: minmax(0,1fr); }
-  #forjaPage .nq-forja-opcao-topo { gap: 10px; }
+  #forjaPage .nq-forja-opcao-topo { grid-template-columns: 56px minmax(0, 1fr); column-gap: 10px; }
   #forjaPage .nq-forja-opcao .nq-forja-opcao-arte { flex-basis: 56px; width: 56px; height: 56px; padding: 6px; }
+}
+
+/* A tipografia de fallback também precisa manter palavras inteiras no cabeçalho. */
+@media (max-width: 350px) {
+  #forjaPage .nq-forja-opcoes .nq-forja-opcao { padding-inline: 16px; }
+}
+@container nqForjaOpcao (max-width: 16rem) {
+  #forjaPage .nq-forja-opcao .nq-forja-opcao-resumo h3 { font-size: 1.5rem; }
+}
+/* Coluna estreita com texto ampliado: preserva a largura útil das palavras. */
+@container nqForjaOpcao (max-width: 12rem) {
+  #forjaPage .nq-forja-opcao-topo { grid-template-columns: minmax(0, 1fr); row-gap: 6px; }
+  #forjaPage .nq-forja-opcao-topo > .nq-forja-opcao-arte { grid-column: 1; grid-row: 1; }
+  #forjaPage .nq-forja-opcao .nq-forja-opcao-topo .nq-forja-rota { grid-column: 1; grid-row: 2; }
+  #forjaPage .nq-forja-opcao .nq-forja-opcao-resumo h3 { grid-column: 1; grid-row: 3; font-size: 1.15rem; }
+  #forjaPage .nq-forja-opcao .nq-forja-opcao-topo .nq-forja-custo { grid-row: 4; margin-top: .15rem; font-size: 1rem; }
 }
 
 /* Simulado: página própria no lugar da camada fixa sobre o jogo. */

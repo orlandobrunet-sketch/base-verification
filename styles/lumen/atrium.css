@@ -638,6 +638,15 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 #welcomeScreen[data-nq-ui="lumen"] #wsSavedXpText { color: var(--nql-journey-primary); font-size: .82rem; letter-spacing: 0; }
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-charname { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; }
+
+/* O nome completo precisa de espaço além do avatar, sem reduzir a ampliação. */
+#welcomeScreen[data-nq-ui="lumen"] :where(.nql-atrium__resume-shell[data-character="glomerulus"]) .wsaved-bottom {
+  grid-template-columns: minmax(18rem, .9fr) minmax(11rem, 1.25fr) minmax(5.35rem, auto);
+}
+#welcomeScreen[data-nq-ui="lumen"] :where(.nql-atrium__resume-shell[data-character="glomerulus"]) .wsaved-charname {
+  font-size: clamp(1.125rem, 2vw, 1.5rem) !important;
+  white-space: nowrap !important;
+}
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-flow-ticks { stroke: rgba(var(--nql-journey-primary-rgb), .45); stroke-width: 1; }
 #welcomeScreen[data-nq-ui="lumen"] .wsaved-flow-marker { fill: var(--nql-mastery); stroke: #111923; stroke-width: 2; }
 
@@ -1360,6 +1369,25 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__secondary { width: 100% !important; min-width: 0; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary { padding: .5rem .75rem !important; gap: .5rem; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__primary strong { overflow-wrap: anywhere; }
+}
+
+/* Com texto ampliado, o avatar ocupa outra linha e libera a largura do nome. */
+@container nql-saved-journey (max-width: 18rem) {
+  #welcomeScreen[data-nq-ui="lumen"] :where(.nql-atrium__resume-shell[data-character="glomerulus"]) .wsaved-bottom {
+    padding-inline: .125rem !important;
+  }
+  #welcomeScreen[data-nq-ui="lumen"] :where(.nql-atrium__resume-shell[data-character="glomerulus"]) .wsaved-identity {
+    grid-template-columns: minmax(0, 1fr);
+    gap: .5rem;
+  }
+}
+
+/* A fonte de reserva também precisa caber quando a margem em rem se amplia. */
+@container nql-atrium (max-width: 18rem) {
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__resume-shell[data-character="glomerulus"] {
+    width: calc(100% + 1rem);
+    margin-inline: -.5rem;
+  }
 }
 
 /* O container acompanha a fonte efetiva: em 1024px com texto a 200%, a
