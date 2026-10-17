@@ -18,7 +18,7 @@ body.boss-battle-mode #mainApp[data-nq-ui="lumen"] {
   max-width: none;
   padding: 0 24px 32px;
   margin: 0 auto;
-  grid-template-columns: 280px minmax(0, 1fr) 72px !important;
+  grid-template-columns: 280px minmax(0, 1fr) max-content !important;
   gap: 24px;
   background: transparent !important;
   color: var(--nql-text);
@@ -40,13 +40,13 @@ body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .game-title h1 {
   margin: 0;
   color: #efe6d2 !important;
   font: 700 1.65rem/1.1 var(--nql-font-display) !important;
-  letter-spacing: -.02em !important;
+  letter-spacing: .012em !important;
   background: none;
   -webkit-text-fill-color: currentColor !important;
   filter: none !important;
   text-shadow: none !important;
 }
-body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .game-title h1 em { color: #f1cf7a; }
+body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .game-title h1 em { margin-left: .015em; color: #f1cf7a; font-size: 1.02em; font-style: italic; font-weight: 600; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #bossTitleBar,
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #finalMeterStarsTop { display: none !important; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .sound-controls {
@@ -323,15 +323,15 @@ body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .btn { min-height: 44px; padd
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #nextBtn:not(.hidden) { min-height: 44px; padding: 12px 18px !important; border: 1px solid #f1cf7a8c !important; border-radius: 9px !important; background: #f1cf7a !important; color: #171b24 !important; font: 600 .95rem/1.4 var(--nql-font-body) !important; letter-spacing: 0 !important; text-transform: none; box-shadow: none !important; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #nextBtn:not(.hidden):hover { background: #f8dfa0 !important; transform: none !important; box-shadow: none !important; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #oraculoBtn:not(.hidden) { background: #271e38 !important; border-color: #c6a4ef66 !important; color: #d8c5f2 !important; }
-body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .action-dock { gap: 10px; padding-top: 0; }
-body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn { --nqb-tool: 145, 223, 227; width: 72px; max-width: 100%; height: 76px; min-height: 44px; padding: 10px 5px; gap: 7px; border: 1px solid rgba(var(--nqb-tool), .32) !important; border-radius: 10px; background: linear-gradient(155deg, rgba(var(--nqb-tool), .09), #111b2bcc) !important; color: rgb(var(--nqb-tool)) !important; box-shadow: none !important; }
+body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .action-dock { min-width: 72px; gap: 10px; padding-top: 0; }
+body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn { --nqb-tool: 145, 223, 227; width: 100%; min-width: 72px; max-width: 100%; height: auto; min-height: 76px; padding: 10px 5px; gap: 7px; border: 1px solid rgba(var(--nqb-tool), .32) !important; border-radius: 10px; background: linear-gradient(155deg, rgba(var(--nqb-tool), .09), #111b2bcc) !important; color: rgb(var(--nqb-tool)) !important; box-shadow: none !important; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn.next-question-dock { --nqb-tool: 131, 216, 173; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn.forge-btn { --nqb-tool: 233, 184, 121; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn.oraculo-dock { --nqb-tool: 198, 164, 239; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn.dashboard-btn { --nqb-tool: 139, 195, 229; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn[data-action="openBibliotecaModal"] { --nqb-tool: 241, 207, 122; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn svg { width: 26px; height: 26px; color: currentColor !important; filter: none !important; }
-body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn .dock-label { position: static; width: auto; max-width: 100%; padding: 0; color: currentColor !important; background: transparent !important; font: .58rem/1.3 var(--nql-font-body); letter-spacing: .03em; white-space: normal; overflow-wrap: anywhere; }
+body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn .dock-label { position: static; width: auto; max-width: 100%; height: auto; min-height: 26px; flex-shrink: 0; padding: 0; color: currentColor !important; background: transparent !important; font: .58rem/1.3 var(--nql-font-body); letter-spacing: .03em; white-space: nowrap; overflow-wrap: normal; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn:hover { border-color: rgba(var(--nqb-tool), .65) !important; box-shadow: none !important; transform: none; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] :is(button, [role="button"], .slot-diablo):focus-visible { outline: 2px solid #91dfe3; outline-offset: 3px; }
 
@@ -365,11 +365,11 @@ body[data-progress-sandbox="boss-preview"] #progressSandboxBanner button:focus-v
   body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .panel.left { position: relative; }
 }
 @media (min-width: 769px) and (max-width: 1100px) {
-  body.boss-battle-mode #mainApp[data-nq-ui="lumen"] { grid-template-columns: 260px minmax(0, 1fr) 64px !important; gap: 18px; padding-inline: 16px; }
-  body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn { width: 64px; }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"] { grid-template-columns: 260px minmax(0, 1fr) max-content !important; gap: 18px; padding-inline: 16px; }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn { width: 100%; }
 }
 @media (max-width: 768px) {
-  body.boss-battle-mode #mainApp[data-nq-ui="lumen"] { grid-template-columns: minmax(0, 1fr) !important; gap: 16px; padding: 0 12px max(100px, 6rem); }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"] { grid-template-columns: minmax(0, 1fr) !important; gap: 16px; padding: 0 12px max(100px, 6rem, calc(var(--nq-mobile-dock-height, 64px) + 24px)); }
   body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .game-title { min-height: 68px; flex-wrap: wrap; gap: 8px; }
   body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .game-title h1 { font-size: 1.4rem !important; }
   /* O dock já oferece Herói. Áudio usa o controle funcional do cabeçalho;
@@ -390,14 +390,14 @@ body[data-progress-sandbox="boss-preview"] #progressSandboxBanner button:focus-v
   body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .opt-body { font-size: .95rem; }
   body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .action-dock { display: none !important; }
   body.boss-battle-mode .mobile-bottom-dock { flex-wrap: wrap; border-top-color: #91dfe330; background: #101a2af5; box-shadow: none; }
-  body.boss-battle-mode .mobile-bottom-dock .mdock-btn { --nqb-tool: 145, 223, 227; flex: 1 1 3rem; max-width: none; min-height: 44px; border-color: rgba(var(--nqb-tool), .24); background: rgba(var(--nqb-tool), .06); color: rgb(var(--nqb-tool)) !important; font-family: var(--nql-font-body); }
+  body.boss-battle-mode .mobile-bottom-dock .mdock-btn { --nqb-tool: 145, 223, 227; flex: 1 1 3rem; min-width: max-content; max-width: none; min-height: 44px; border-color: rgba(var(--nqb-tool), .24); background: rgba(var(--nqb-tool), .06); color: rgb(var(--nqb-tool)) !important; font-family: var(--nql-font-body); }
   body.boss-battle-mode .mobile-bottom-dock .mdock-btn.personagem { --nqb-tool: 241, 207, 122; }
   body.boss-battle-mode .mobile-bottom-dock .mdock-btn.forge-item { --nqb-tool: 233, 184, 121; }
   body.boss-battle-mode .mobile-bottom-dock .mdock-btn.oraculo { --nqb-tool: 198, 164, 239; }
   body.boss-battle-mode .mobile-bottom-dock .mdock-btn.grimorio { --nqb-tool: 241, 207, 122; }
   body.boss-battle-mode .mobile-bottom-dock .mdock-btn.dashboard { --nqb-tool: 139, 195, 229; }
   body.boss-battle-mode .mobile-bottom-dock .mdock-btn :is(svg, .mdock-label) { color: currentColor !important; }
-  body.boss-battle-mode .mobile-bottom-dock .mdock-label { max-width: 100%; overflow: visible; white-space: normal; overflow-wrap: anywhere; opacity: 1; font: .6rem/1.4 var(--nql-font-body); letter-spacing: .02em; }
+  body.boss-battle-mode .mobile-bottom-dock .mdock-label { max-width: 100%; overflow: visible; white-space: nowrap; overflow-wrap: normal; opacity: 1; font: .6rem/1.4 var(--nql-font-body); letter-spacing: .02em; }
   body.boss-battle-mode #mobileProfilePopup.profile-popup { --nqb-menu-bottom: max(72px, calc(var(--nq-mobile-dock-height, 64px) + 8px)); bottom: var(--nqb-menu-bottom) !important; max-height: calc(100dvh - var(--nqb-menu-bottom) - 24px); overflow-y: auto; }
   body[data-progress-sandbox="boss-preview"] #progressSandboxBanner { width: calc(100% - 24px); padding: 10px 12px; }
 }

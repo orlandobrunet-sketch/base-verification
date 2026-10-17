@@ -733,22 +733,37 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     });
 
     // Renderiza o popup de resumo (mesmo visual usado no Grimório) a partir de
-    // um item com { label, autores, jornal, ano, resumo, conclusao, curiosidade, impacto }.
+    // um item com os textos e metadados já cadastrados da publicação.
     function _showResumoModal(it) {
       if (!it) return;
       document.querySelectorAll('.bib-resumo-modal').forEach(el => el.remove());
 
+      const rarity = String(it.raridade || it.rarity || '').trim().toLocaleLowerCase('pt-BR');
+      const rarityLabels = { comum: 'Comum', raro: 'Raro', 'épico': 'Épico', 'lendário': 'Lendário' };
+      const rarityLabel = Object.prototype.hasOwnProperty.call(rarityLabels, rarity) ? rarityLabels[rarity] : '';
+      const badge = String(it.badge || '');
+      const type = String(it.tipo || '');
+      const sourceType = (badge || type).trim();
+      const validType = sourceType && sourceType.length <= 160 && !/[\u0000-\u001f\u007f]/.test(sourceType);
+      const accent = String(it.badgeColor || it.tipoColor || '').trim();
+      const validAccent = /^#(?:[0-9a-f]{3}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(accent);
+      const metadata = [
+        badge ? `<span class="nqreader-badge">${escapeHtml(badge)}</span>` : '',
+        rarityLabel ? `<span class="nqreader-rarity">${rarityLabel}</span>` : '',
+        type && type !== badge ? `<span class="nqreader-type">${escapeHtml(type)}</span>` : '',
+      ].filter(Boolean).join('');
       const sections = [['resumo', 'Resumo'], ['conclusao', 'Conclusão principal'], ['curiosidade', 'Curiosidade'], ['impacto', 'Impacto na nefrologia']];
-      const bodyHtml = sections.filter(([key]) => it[key]).map(([key, title]) =>
-        `<section class="nqreader-section nqreader-${key}"><h3>${title}</h3><p>${escapeHtml(it[key])}</p></section>`
-      ).join('') || '<p class="nqreader-empty">Resumo em elaboração — disponível em breve.</p>';
+      const bodyHtml = sections.filter(([key]) => key === 'resumo' || it[key]).map(([key, title]) =>
+        `<section class="nqreader-section nqreader-${key}"><h3>${title}</h3><p>${escapeHtml(it[key] || 'Esta entrada não possui resumo cadastrado.')}</p></section>`
+      ).join('');
       const overlay = document.createElement('div');
       overlay.className = 'bib-resumo-modal nqnarr-overlay nqreader-overlay';
       overlay.innerHTML = `
-        <section class="nqnarr-card nqreader-card">
+        <section class="nqnarr-card nqreader-card"${rarityLabel ? ` data-reader-rarity="${rarity}"` : ''}${validType ? ` data-reader-type="${escapeHtml(sourceType)}"` : ''}${validAccent ? ` style="--nqreader-accent:${accent}"` : ''}>
           <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Resumo e referência do artigo">
             <p class="nqnarr-chapter">Resumo científico${it.ano ? ' · ' + escapeHtml(String(it.ano)) : ''}</p>
             <h2>${escapeHtml(it.label || '')}</h2>
+            ${metadata ? `<div class="nqreader-meta">${metadata}</div>` : ''}
             ${it.autores || it.jornal ? `<p class="nqreader-reference">${it.autores ? escapeHtml(it.autores) : ''}${it.autores && it.jornal ? '<br>' : ''}${it.jornal ? '<em>' + escapeHtml(it.jornal) + '</em>' : ''}</p>` : ''}
             <div class="nqreader-sections">${bodyHtml}</div>
           </div>
@@ -764,27 +779,23 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       const idx = parseInt(btn?.dataset?.itemIdx ?? '-1', 10);
       const it = _bibVisibleItems[idx];
       if (!it || it.locked) return;
-      _showResumoModal(it);
+      _showResumoModal({ ...it, badge: it._lockType === 'ref' ? it.tipo : '', tipo: it._lockType === 'article' ? 'ARTIGO' : '' });
     }
 
-    // Na questão, expande a leitura no próprio card; mantém fallback para acessos legados.
-    // Usado pelas referências exibidas em cada questão do jogo.
-    function openRefResumo(key) {
-      const button = [...document.querySelectorAll('.ref-resumo-btn[data-action="openRefResumo"]')]
-        .find(element => element.dataset.arg === key && element.getClientRects().length);
-      const reading = button && document.getElementById(button.getAttribute('aria-controls'));
-      if (reading) {
-        const expanded = button.getAttribute('aria-expanded') !== 'true';
-        button.setAttribute('aria-expanded', String(expanded));
-        reading.hidden = !expanded;
-        button.querySelector('[data-ref-summary-label]').textContent = expanded
-          ? (button.dataset.expandedLabel || 'Ocultar resumo')
-          : (button.dataset.collapsedLabel || 'Ver resumo');
-        try { if (expanded && typeof _track === 'function') _track('ref_resumo_opened', { key }); } catch {}
-        return;
-      }
-        if (typeof refsDB !== 'object' || !refsDB || !refsDB[key]) return;
-        const r = refsDB[key];
+    // Guarda apenas a fonte do cartão renderizado, sem alterar o objeto editorial.
+    const _refResumoSources = new WeakMap();
+
+    // Questão e Grimório compartilham o leitor em popup. Chamadas legadas por
+    // chave continuam válidas; o botão preserva a fonte de uma revisão histórica.
+    function openRefResumo(source) {
+      const key = typeof source === 'string' ? source : source?.dataset?.arg;
+      const button = typeof source === 'string'
+        ? [...document.querySelectorAll('.ref-resumo-btn[data-action="openRefResumo"]')]
+          .find(element => element.dataset.arg === key && element.getClientRects().length)
+        : source;
+      const r = (button && _refResumoSources.get(button)) ||
+        (typeof refsDB === 'object' && refsDB && refsDB[key]);
+      if (!r) return;
       _showResumoModal({
         label:       r.label || '',
         autores:     '',
@@ -794,6 +805,9 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
         conclusao:   r.conclusao || '',
         curiosidade: r.curiosidade || '',
         impacto:     r.impacto || '',
+        badge:       r.badge || '',
+        tipo:        r.tipo || '',
+        badgeColor:  r.badgeColor || '',
       });
       try { if (typeof _track === 'function') _track('ref_resumo_opened', { key }); } catch {}
     }

@@ -1,10 +1,12 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação:** 05/10/2026
+**Última reconciliação operacional:** 17/10/2026 — [plano de continuidade e pedidos](design/NQ_CONTINUITY_PLAN_2026-10-17.md)
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
 Este documento controla direção, prioridade e critérios de conclusão. Ele não autoriza execução automática: cada frente precisa ser solicitada explicitamente pelo proprietário do produto.
+
+O plano de continuidade de 17/10 distingue **pedido, implementado, testado e publicado**, registra a base 16.15 conferida, os ajustes visuais atuais, a revisão formal das 741 questões e os compromissos adiados de mobile, Câmara do Equilíbrio, troféus e membros honorários. O serrilhado dos equipamentos foi reaberto pelo proprietário e permanece pendente. O histórico abaixo conserva suas datas; não deve ser tratado como estado operacional atual.
 
 ## Ciclo de refinamento visual — outubro de 2026
 

@@ -170,12 +170,18 @@
   padding-inline: .4rem;
 }
 
+/* A marca permanece uma unidade; o botão inteiro muda de linha quando
+   necessário. O cabeçalho conserva a altura natural do conteúdo ampliado. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-rail-header { flex-shrink: 0; }
+
 #nqDashboard[data-nq-ui="lumen"] .nqd-brand-row {
   flex: 1;
   min-width: 0;
+  flex-wrap: wrap;
+  padding-inline: 0;
 }
 
-#nqDashboard[data-nq-ui="lumen"] .nqd-brand { min-width: 0; flex-wrap: wrap; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-brand { min-width: 0; flex-wrap: nowrap; flex-shrink: 0; }
 
 #nqDashboard[data-nq-ui="lumen"] .nqd-brand {
   display: inline-flex;
@@ -185,7 +191,7 @@
   font-family: var(--nql-font-display);
   font-size: 1.42rem;
   font-weight: 700;
-  letter-spacing: -.025em;
+  letter-spacing: .012em;
   text-decoration: none;
   overflow-wrap: normal;
   white-space: nowrap;
@@ -193,7 +199,9 @@
 
 #nqDashboard[data-nq-ui="lumen"] .nqd-brand em,
 #nqDashboard[data-nq-ui="lumen"] .nqd-brand-accent {
+  margin-left: .015em;
   color: var(--nql-mastery);
+  font-size: 1.02em;
   font-style: italic;
   font-weight: 600;
 }

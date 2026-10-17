@@ -89,6 +89,10 @@ test('retoma busca, filtro, resumo e leitura sem transferir contexto para outra 
   const first = page.locator('[data-library-item]:visible').first();
   const key = await first.locator('[data-library-key]').getAttribute('data-library-key');
   await first.locator('[data-action="_dashToggleArticle"]').click();
+  await expect(page.locator('.bib-resumo-modal [role="dialog"]')).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
+  await expect(first.locator('[data-action="_dashToggleArticle"]')).toBeFocused();
   const scroll = await page.locator('.nqd-main').evaluate(el => { el.scrollTop = 240; return el.scrollTop; });
   expect(scroll).toBeGreaterThan(0);
   await page.keyboard.press('Escape');
@@ -99,7 +103,8 @@ test('retoma busca, filtro, resumo e leitura sem transferir contexto para outra 
   await expect(page.locator('#nqDashLibraryFilter')).toHaveValue('guideline');
   await expect(page.locator('#nqDashLibrarySort')).toHaveValue('oldest');
   await expect(page.locator('[data-library-item]:visible').first().locator('[data-library-key]')).toHaveAttribute('data-library-key', key!);
-  await expect(page.locator('[data-library-item]:visible').first().locator('[data-action="_dashToggleArticle"]')).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.locator('[data-library-item]:visible').first().locator('[data-action="_dashToggleArticle"]')).toHaveAttribute('aria-haspopup', 'dialog');
+  await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
   await expect.poll(() => page.locator('.nqd-main').evaluate(el => el.scrollTop)).toBe(scroll);
   await page.keyboard.press('Escape');
   await page.evaluate(() => { (window as any).authUser = { id: 'outra-conta-local' }; });
@@ -111,7 +116,7 @@ test('retoma busca, filtro, resumo e leitura sem transferir contexto para outra 
 });
 
 
-test('lista compacta mantém um estudo por linha e permite comparar vários estudos', async ({ page }) => {
+test('lista compacta mantém um estudo por linha e abre a leitura em popup', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.locator('[data-portal-route="guest"]').click();
   await page.evaluate(() => { (window as any).isAdminUser = () => true; });
@@ -129,8 +134,11 @@ test('lista compacta mantém um estudo por linha e permite comparar vários estu
     if (i) expect(box.y).toBeGreaterThanOrEqual(boxes[i-1].y + boxes[i-1].height - 1);
   }
   await cards.first().getByRole('button', {name:'Ler resumo',exact:true}).click();
-  await expect(cards.first().getByRole('region')).toBeVisible();
-  expect((await cards.first().boundingBox())!.height).toBeGreaterThan(boxes[0].height);
+  await expect(page.locator('.bib-resumo-modal [role="dialog"]')).toBeVisible();
+  expect((await cards.first().boundingBox())!.height).toBeCloseTo(boxes[0].height, 1);
+  await page.keyboard.press('Escape');
+  await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
+  await expect(cards.first().getByRole('button', {name:'Ler resumo',exact:true})).toBeFocused();
 });
 
 test('ações do estudo exibem link e copiam o título sem abrir o resumo', async ({ page }) => {
@@ -154,7 +162,7 @@ test('ações do estudo exibem link e copiam o título sem abrir o resumo', asyn
   await copy.click();
   await expect(copy).toHaveText('Copiado');
   expect(await page.evaluate(() => (window as any).__copiedTitle)).toBe(title);
-  await expect(card.locator('[data-action="_dashToggleArticle"]')).toHaveAttribute('aria-expanded', 'false');
+  await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
   await page.evaluate(() => { navigator.clipboard.writeText = async () => { throw new Error('permission denied'); }; });
   await copy.click();
   await expect(copy).toHaveText('Tentar copiar');

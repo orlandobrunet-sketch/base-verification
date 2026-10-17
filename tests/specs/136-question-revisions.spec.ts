@@ -284,7 +284,7 @@ test('actual full 741 catalog loads all four current runtime profiles from the p
         return current && w.questionRevisionCatalog.inspect(w.NQAnswers.present(current.source), { profile, binding: current.binding }).status === 'known';
       })) };
   });
-  expect(report).toMatchObject({ count: 741, manifestCount: 741, release: '16.15', all: true });
+  expect(report).toMatchObject({ count: 741, manifestCount: 741, release: '16.18', all: true });
   await info.attach('actual-741-catalog', { contentType: 'application/json', body: JSON.stringify(report) });
 });
 
@@ -331,8 +331,10 @@ test('actual campaign archive preserves old answer, explanation, changed card an
   const oldCard = seeded.bundle.oldRefs.cni_hyperkalemia_duan_2024;
   expect(oldCard).not.toEqual(seeded.bundle.currentRefs.cni_hyperkalemia_duan_2024);
   await page.locator('#refs [data-action="openRefResumo"]').first().click();
-  await expect(page.locator('#questionRefSummary-0')).toContainText(oldCard.resumo);
-  await capture(page, info, 'actual-campaign-history-card', '#questionRefSummary-0');
+  await expect(page.locator('.bib-resumo-modal .nqreader-resumo p')).toHaveText(oldCard.resumo);
+  await capture(page, info, 'actual-campaign-history-card', '.bib-resumo-modal .nqreader-card');
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#refs [data-action="openRefResumo"]').first()).toBeFocused();
   await page.evaluate(() => (window as any).showSessionWrongAnswers());
   const dialog = page.getByRole('dialog', { name: 'Erros da Jornada' });
   await expect(dialog.locator('.nqreview-option.is-chosen .nqreview-option-text')).toHaveText(state.current.o[seeded.bundle.chosen]);
@@ -412,7 +414,9 @@ test('campaign historical answered mapping, archived card and error review stay 
   await page.locator('#campaignQuestionRevisionNotice summary').click();
   await expect(page.locator('#campaignQuestionRevisionNotice details')).toContainText(seeded.bundle.currentAuthor.exp);
   await page.locator('#refs [data-action="openRefResumo"]').click();
-  await expect(page.locator('#questionRefSummary-0')).toContainText('Resumo técnico anterior preservado.');
+  await expect(page.locator('.bib-resumo-modal .nqreader-resumo p')).toHaveText('Resumo técnico anterior preservado.');
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#refs [data-action="openRefResumo"]')).toBeFocused();
   await capture(page, info, 'campaign-history', '#options .option.correct');
   await page.evaluate(() => (window as any).showSessionWrongAnswers());
   const dialog = page.getByRole('dialog', { name: 'Erros da Jornada' });

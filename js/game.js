@@ -328,9 +328,8 @@
               <div class="nqevo-art"><img src="${escapeHtml(newImage)}" alt="">
                 <svg class="nqevo-light" aria-hidden="true" viewBox="0 0 180 220" preserveAspectRatio="none"><rect x="2" y="2" width="176" height="216" rx="7"/></svg>
               </div>
-              <div class="nqevo-identity"><span class="nqevo-level">Nível ${escapeHtml(String(newLevel))} alcançado</span><h2>${escapeHtml(newTitle)}</h2></div>
+              <div class="nqevo-identity"><span class="nqevo-level">Nível ${escapeHtml(String(newLevel))} alcançado</span><h2>${escapeHtml(newTitle)}</h2><p class="nqevo-description">${escapeHtml(narrative)}</p></div>
             </div>
-            <p class="nqevo-description">${escapeHtml(narrative)}</p>
           </div>
           <footer class="nqevo-footer"><button class="btn gold" data-close-closest=".evolution-popup">Continuar</button></footer>
         </div>
@@ -3817,7 +3816,7 @@
         return '#' + atual.map(v => Math.round(v).toString(16).padStart(2, '0')).join('');
       };
 
-      const cardsHTML = list.map(({ key, ref }, i) => {
+      const cardsHTML = list.map(({ key, ref }) => {
         const accent = ref.badgeColor || '#6366f1';
         const impactoClass = (ref.impacto && (ref.impacto.includes('↓') || ref.impacto.includes('superior') || ref.impacto.includes('reduz'))) ? 'green' :
                              (ref.impacto && (ref.impacto.includes('não') || ref.impacto.includes('n\u00e3o'))) ? 'amber' : '';
@@ -3839,7 +3838,7 @@
             </div>
             ${ref.impacto ? `<div class="ref-impacto ${impactoClass}">${escapeHtml(ref.impacto)}</div>` : ''}
             <div class="ref-actions">
-              <button class="ref-resumo-btn" data-action="openRefResumo" data-arg="${escapeHtml(key)}" aria-expanded="false" aria-controls="questionRefSummary-${i}" data-collapsed-label="${usesLumenDebrief() ? 'Ler resumo' : 'Ver resumo'}" data-expanded-label="${usesLumenDebrief() ? 'Fechar resumo' : 'Ocultar resumo'}">
+              <button class="ref-resumo-btn" data-action="openRefResumo" data-pass-this="1" data-arg="${escapeHtml(key)}" aria-haspopup="dialog">
                 <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                 <span data-ref-summary-label>${usesLumenDebrief() ? 'Ler resumo' : 'Ver resumo'}</span>
               </button>
@@ -3848,11 +3847,6 @@
                 ${usesLumenDebrief() ? 'Copiar referência' : 'copiar'}
               </button>
             </div>
-            <div class="ref-reading" id="questionRefSummary-${i}" role="region" aria-label="Resumo de ${escapeHtml(ref.label)}" hidden>
-              <section><h4>Resumo</h4><p>${escapeHtml(ref.resumo || 'Esta entrada não possui resumo cadastrado.')}</p></section>
-              ${ref.conclusao ? `<section><h4>Conclusão principal</h4><p>${escapeHtml(ref.conclusao)}</p></section>` : ''}
-              ${ref.curiosidade ? `<section><h4>Curiosidade</h4><p>${escapeHtml(ref.curiosidade)}</p></section>` : ''}
-            </div>
           </div>`;
       }).join('');
 
@@ -3860,6 +3854,11 @@
         <div class="refs-header">${usesLumenDebrief() ? 'Fontes desta questão' : 'Evidência Científica'}</div>
         <div class="ref-cards">${cardsHTML}</div>
       `;
+      // A leitura histórica deve abrir a mesma referência exibida no cartão,
+      // mesmo quando o catálogo atual já contém outra revisão dessa fonte.
+      ui.refs.querySelectorAll('.ref-resumo-btn').forEach((button, index) => {
+        _refResumoSources.set(button, list[index].ref);
+      });
     }
 
     function setLumenEvidenceAvailable(isAvailable) {
@@ -7278,7 +7277,7 @@
 
     // Atalhos de teclado para responder (1-4 ou A-D) e avançar (Enter/Space)
     document.addEventListener('keydown', function(e) {
-      if (document.getElementById('nqDashboard') || document.querySelector('.modal.show, .study-mode-popup')) return;
+      if (document.getElementById('nqDashboard') || document.querySelector('.modal.show, .study-mode-popup, .nqreader-overlay')) return;
       const target = e.target;
       const interactiveTarget = target instanceof Element
         ? target.closest('button, a[href], select, summary, [role="button"]')
