@@ -153,7 +153,7 @@ Todos os grupos têm **pedido registrado**. `Histórico` em Testado mantém o re
 
 ## Pendência técnica local: Python/DLL
 
-**Pedido registrado; mitigação aplicada; resolução global não comprovada.** Separada de defeitos do site. O executável verificado desta tarefa é `C:\Users\orlan\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe` (3.12.14). Não usar `python`, `python3`, `py` ou `pip` do PATH. `python3` aponta para `C:\Python314\python3.exe`, cuja DLL ausente causa popup. Diagnóstico local: `verification-drafts/PYTHON-DLL-CALLER-TRACE-20261010.json`. Não alterar instalação global/PATH para esta tarefa; não declarar o problema de sistema resolvido só porque as chamadas explícitas funcionam.
+**Pedido registrado; mitigação aplicada; resolução global não comprovada.** Separada de defeitos do site. Um interpretador selecionado pelo ambiente local apresenta DLL ausente e causa popup; as chamadas desta tarefa usam outro executável já verificado. Diagnóstico local: `verification-drafts/PYTHON-DLL-CALLER-TRACE-20261010.json`. Não declarar o problema de sistema resolvido só porque essas chamadas funcionam. As instruções específicas da máquina e os caminhos de executáveis permanecem no AGENTS.md do workspace, fora da publicação do produto. Nenhuma alteração global de instalação ou PATH foi feita para resolver a tarefa.
 
 O materializador oficial Library permanece bloqueado por ausência de `os.setxattr` no Windows. Preservar metadados e fluxo oficial; não contornar. A instrução operacional completa está no AGENTS.md local, que não integra a publicação do produto.
 
