@@ -15,13 +15,13 @@ Reconciliado em **17/10/2026**, com os pedidos recebidos até **21:04 UTC**. Inc
 
 | ID | Pedido | Implementado | Testado | Publicado |
 |---|---|---|---|---|
-| W1 | Proporção da marca em todas as telas | Em execução | Pendente | Pendente |
-| W2 | Serrilhado das seis molduras, **reaberto** | Diagnóstico atual | Pendente | Pendente para a reabertura |
-| W3 | Ler resumo em popup na pergunta e no Grimório | Em execução | Pendente | Pendente |
-| W4 | Batalha final/demonstração: auditoria reaberta | Auditoria atual | Pendente | Design anterior publicado; novo parecer pendente |
-| W5 | Narrativa das transições de capítulo com presença | Em execução | Pendente | Pendente |
-| W6 | Pergaminho de recompensa mais largo no desktop | Em execução | Pendente | Pendente |
-| W7 | Evolução concluída mais compacta | Em execução | Pendente | Pendente |
+| W1 | Proporção da marca em todas as telas | Sim, incluindo Dashboard | Prova focal; captura final/CI pendentes | Pendente |
+| W2 | Serrilhado das seis molduras, **reaberto** | Sim | Sete comparações locais; CI/pública pendentes | Pendente para a reabertura |
+| W3 | Ler resumo em popup na pergunta e no Grimório | Sim | Leitor/teclado/foco/estado locais; E2E/CI pendentes | Pendente |
+| W4 | Batalha final/demonstração: auditoria reaberta | Auditoria e correção dos rótulos | Vistas locais; E2E/CI pendentes | Design anterior publicado; novo parecer pendente |
+| W5 | Narrativa das transições de capítulo com presença | Sim | Capturas locais; E2E/CI pendentes | Pendente |
+| W6 | Pergaminho de recompensa mais largo no desktop | Sim | Capturas locais; E2E/CI pendentes | Pendente |
+| W7 | Evolução concluída mais compacta | Sim | Capturas locais; E2E/CI pendentes | Pendente |
 | W8 | Dr. Glomerulus inteiro em uma linha e alinhamento da Forja | Sim | CI e onze vistas públicas conferidas | **16.15**, PR 899 |
 
 **W1.** Comparar a marca da home com os demais cabeçalhos; preservar a proporção relativa entre Nefro e Quest, legibilidade e responsividade. Não confundir com o favicon Q já publicado.
@@ -72,6 +72,8 @@ Reconciliado em **17/10/2026**, com os pedidos recebidos até **21:04 UTC**. Inc
 **Q1.** Permutação de múltipla escolha com identidade autoral preservada nos modos cobertos. Exceções dependentes de letras/ordem conservam a ordem autoral; V/F e respostas numéricas têm contratos próprios. Letra exibida, índice autoral, gabarito, explicação, histórico, retomada, revisão de erros e save continuam associados. Embaralhar não corrige comprimento.
 
 **Q2.** Universo atual: 741. O inventário recebido preservava A7 com 648 disposições autorais e 624 independentes. A consolidação posterior **A9 foi concluída e validada**: 664 autorais e 624 independentes, faltando 77/117, base + 14 deltas, sem duplicação por eixo. Foram 704 verificações técnicas e 256 no segundo readback, zero falhas. SHA-256 do índice A9: `d8b8ecaeead16ddb06cd4266de1f6686b6f50c793d420ce9e56ff49459cedfe1`. Os totais incluem bloqueios, fusões e propostas não publicáveis. Finais ainda não incorporados não são somados sem consolidação. A última publicação clínica comprovada é de dez questões na 16.13; três questões/três cards adicionais estão aplicados somente localmente. O registro histórico de 61 lacunas de fonte precisa de reconciliação com avanços posteriores antes de ser usado como total atual.
+
+**Snapshot posterior da preparação da PR, 17/10 às 21:41 UTC:** A13 validado, **678 autorais / 640 independentes**, faltando 63/101, base + 18 deltas e zero duplicidade por eixo. Índice SHA-256 `0b1fa4697c0cf1164d3e7464fe173d9d3d0daecebfd00c0e0c51acb8d11fb4d8`. A025 independente tem FINAL ainda não contado nesse snapshot. B028 acrescentou seis QIDs próprios; o ID `fe54f9b1`, citado na fusão, não foi recontado. Continuam dez publicados e três apenas locais.
 
 Aceite: distratores plausíveis e equilibrados sem enchimento, uma melhor resposta defensável, fontes científicas e revisão independente. Publicar somente textos exatos liberados, com pendências explícitas; preservar IDs, respostas, progresso e históricos. A revisão completa não pode ser anunciada por uma release intermediária.
 

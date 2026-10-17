@@ -1559,7 +1559,6 @@
   function _libraryCards(items) {
     if (!items.length) return `<div class="nqd-empty" data-library-empty><strong>Seu Grimório aguarda a primeira descoberta.</strong><p>Referências e pergaminhos são liberados por acerto e por baú aberto.</p><button type="button" class="nqd-text-action" data-action="${_dashboardData && _dashboardData.save ? '_dashResumeJourney' : '_dashStartJourney'}"><span>${_dashboardData && _dashboardData.save ? 'Continuar jornada' : 'Começar jornada'}</span>${_svg('arrow')}</button></div>`;
     return items.map((item, index) => {
-      const detailId = `nqdLibraryDetail-${index}`;
       const titleId = `nqdLibraryTitle-${index}`;
       const rarityLabel = _libraryRarityLabel(item.rarity);
       const themes = Array.isArray(item.themes) ? item.themes : [];
@@ -1595,15 +1594,9 @@
         ${item.impact ? `<div class="nqd-library-impact"><strong>Impacto clínico</strong><p>${_escape(item.impact)}</p></div>` : ''}
         <button type="button" class="nqd-favorite${item.favorite ? ' is-active' : ''}" data-action="_dashToggleFavorite" data-pass-this="1" data-library-key="${_escape(item.key)}" aria-pressed="${item.favorite ? 'true' : 'false'}" aria-label="${item.favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}"><span>${item.favorite ? '★ Salvo' : '☆ Salvar'}</span></button>
         <div class="nqd-library-actions">
-          <button type="button" class="nqd-action" data-action="_dashToggleArticle" data-pass-this="1" aria-expanded="false" aria-controls="${detailId}"><span>Ler resumo</span>${_svg('arrow')}</button>
+          <button type="button" class="nqd-action" data-action="_dashToggleArticle" data-pass-this="1" data-library-read-key="${_escape(item.key)}" aria-haspopup="dialog"><span>Ler resumo</span>${_svg('arrow')}</button>
           <button type="button" class="nqd-action" data-action="_dashCopyTitle" data-pass-this="1" data-copy-title="${_escape(item.title)}">Copiar título</button>
           <a class="nqd-action" href="${_escape(item.url || `https://scholar.google.com/scholar?q=${encodeURIComponent(item.title)}`)}" target="_blank" rel="noopener noreferrer" title="${item.url ? 'Abrir publicação em nova aba' : 'Buscar o título no Google Scholar'}">${item.url ? 'Abrir artigo' : 'Buscar artigo'} ↗</a>
-        </div>
-        <div class="nqd-library-detail nqd-library-copy" id="${detailId}" role="region" aria-labelledby="${titleId}" hidden>
-          <section class="nqd-library-reading-section"><h4>Resumo</h4><p>${item.summary ? _escape(item.summary) : 'Esta entrada não possui resumo cadastrado.'}</p></section>
-          ${item.conclusion ? `<section class="nqd-library-reading-section is-conclusion"><h4>Conclusão principal</h4><p>${_escape(item.conclusion)}</p></section>` : ''}
-          ${item.curiosity ? `<section class="nqd-library-reading-section is-curiosity"><h4>Curiosidade</h4><p>${_escape(item.curiosity)}</p></section>` : ''}
-          ${item.url ? `<a href="${_escape(item.url)}" target="_blank" rel="noopener noreferrer">Abrir publicação</a>` : ''}
         </div>
       </article>
     `;
@@ -2653,15 +2646,15 @@
   }
 
   function _dashToggleArticle(element) {
-    const article = element && element.closest ? element.closest('.nqd-library-item') : null;
-    if (!article) return;
-    article.classList.toggle('is-expanded');
-    const expanded = article.classList.contains('is-expanded');
-    element.setAttribute('aria-expanded', String(expanded));
-    const label = element.querySelector('span');
-    if (label) label.textContent = expanded ? 'Fechar resumo' : 'Ler resumo';
-    const detail = article.querySelector('.nqd-library-detail');
-    if (detail) detail.hidden = !expanded;
+    const key = element?.dataset?.libraryReadKey;
+    const item = key && _libraryItems().items.find(entry => entry.key === key);
+    if (!item || typeof _showResumoModal !== 'function') return;
+    _showResumoModal({
+      label: item.title, autores: item.authors, jornal: item.source, ano: item.year,
+      resumo: item.summary, conclusao: item.conclusion,
+      curiosidade: item.curiosity, impacto: item.impact,
+      badge: item.badge, tipo: item.type, rarity: item.rarity, badgeColor: item.badgeColor,
+    });
   }
 
   function _dashToggleFavorite(element) {

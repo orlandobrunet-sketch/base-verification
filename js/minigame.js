@@ -556,7 +556,7 @@
       if (!isFinale && !isBoss && !isStun && !isStunRecovery) {
         popup.classList.add('nqnarr-overlay');
         popup.innerHTML=`
-          <section class="nqnarr-card" aria-describedby="nqNarrativeStory">
+          <section class="nqnarr-card" data-nq-chapter="${stage.at}" aria-describedby="nqNarrativeStory">
             <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Narrativa e progresso">
               <p class="nqnarr-chapter">${stage.ch}</p>
               <div class="nqnarr-heading"><svg class="nqnarr-book" viewBox="0 0 80 88" aria-hidden="true"><path class="pages" d="M40 17C29 10 14 13 8 17v51c10-5 22-4 32 2 10-6 22-7 32-2V17c-6-4-21-7-32 0Z"/><path d="M5 22H3v52c13-5 24-4 37 2 13-6 24-7 37-2V22h-2"/><path class="spine" d="M40 19v48"/><path class="water" d="M14 29c7-4 14-3 19 0m-19 9c7-4 14-3 19 0m-19 9c7-4 14-3 19 0m14-18c5-3 12-4 19 0m-19 9c5-3 12-4 19 0m-19 9c5-3 12-4 19 0"/><path d="M30 81h20" opacity=".5"/></svg><h2>${stage.title}</h2></div>

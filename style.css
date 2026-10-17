@@ -14197,6 +14197,9 @@ li.nq-exam-opcao { cursor: default; }
 #chestModal .nqscroll-dialog::before,#chestModal .nqscroll-dialog::after{display:none!important}
 #chestModal [data-rarity=legendary]{--rarity:#edce83}#chestModal [data-rarity=epic]{--rarity:#c7a2ed}#chestModal [data-rarity=rare]{--rarity:#a2c8ed}#chestModal [data-rarity=uncommon]{--rarity:#a4d5b0}
 #chestModal .nqscroll-reading{padding:24px 28px 20px;min-height:0;overflow-y:auto;scrollbar-width:thin;position:relative}
+/* A recompensa usa a largura disponível antes de recorrer à rolagem vertical.
+   O limite de leitura evita linhas excessivas e não reduz a tipografia. */
+@media(min-width:900px){#chestModal .nqscroll-dialog{width:min(100%,1120px);max-width:1120px}#chestModal .nqscroll-reading{padding:28px 40px 24px}#chestModal .nqscroll-sections p{max-width:100ch}#chestModal .nqscroll-footer{padding-inline:40px}}
 #chestModal .nqscroll-intro{display:flex;gap:12px;align-items:center;margin-bottom:18px}
 #chestModal #chestTitle{color:var(--soft);font:400 .85rem/1.4 Philosopher,sans-serif;margin:0}
 #chestModal .nqscroll-seal{width:36px;height:36px;flex:none;fill:none;stroke:var(--rarity);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
@@ -14221,8 +14224,8 @@ li.nq-exam-opcao { cursor: default; }
 .evolution-popup .nqevo-card::before,.evolution-popup .nqevo-card::after{display:none!important}
 .evolution-popup .nqevo-reading{padding:24px 28px 20px;min-height:0;overflow-y:auto;scrollbar-width:thin}
 .evolution-popup .nqevo-intro{color:var(--soft);font-size:.86rem;margin:0 0 18px}
-.evolution-popup .nqevo-hero{display:grid;grid-template-columns:180px minmax(0,1fr);gap:24px;align-items:center}
-.evolution-popup .nqevo-art{position:relative;width:180px;height:220px;border:1px solid var(--gold);border-radius:8px;padding:5px;overflow:hidden;background:#0b1521;box-shadow:0 8px 20px #0004}
+.evolution-popup .nqevo-hero{display:grid;grid-template-columns:160px minmax(0,1fr);gap:22px;align-items:center}
+.evolution-popup .nqevo-art{position:relative;width:160px;height:194px;border:1px solid var(--gold);border-radius:8px;padding:5px;overflow:hidden;background:#0b1521;box-shadow:0 8px 20px #0004}
 .evolution-popup .nqevo-art::before,.evolution-popup .nqevo-art::after{content:'';position:absolute;width:13px;height:13px;border:solid var(--gold);pointer-events:none;z-index:1}
 .evolution-popup .nqevo-art::before{top:7px;left:7px;border-width:1px 0 0 1px}.evolution-popup .nqevo-art::after{bottom:7px;right:7px;border-width:0 1px 1px 0}
 .evolution-popup .nqevo-art img{width:100%;height:100%;object-fit:cover;border-radius:4px;border:0;margin:0;filter:none;animation:none}
@@ -14231,11 +14234,11 @@ li.nq-exam-opcao { cursor: default; }
 @keyframes nqEvolutionLight{0%{stroke-dashoffset:800;opacity:0}15%{opacity:1}85%{opacity:1}100%{stroke-dashoffset:0;opacity:0}}
 .evolution-popup .nqevo-identity{min-width:0}.evolution-popup .nqevo-level{color:var(--gold);font-size:.87rem}
 .evolution-popup .nqevo-identity h2{font:600 1.4rem/1.3 Cinzel,serif!important;color:var(--ink)!important;letter-spacing:-.02em!important;background:none!important;-webkit-text-fill-color:var(--ink);text-transform:none;margin:10px 0 0;overflow-wrap:anywhere}
-.evolution-popup .nqevo-description{font-size:.98rem;line-height:1.65;color:var(--soft);margin:22px 0 0}
-.evolution-popup .nqevo-footer{padding:17px 28px 20px;flex:none;background:#0a15214d}
+.evolution-popup .nqevo-description{font-size:.98rem;line-height:1.65;color:var(--soft);margin:14px 0 0}
+.evolution-popup .nqevo-footer{padding:12px 28px 16px;flex:none;background:#0a15214d}
 .evolution-popup .nqevo-card .nqevo-footer button{display:block;width:100%;min-height:48px;margin:0;background:var(--gold);color:#12212b;border:1px solid #f3d991;border-radius:6px;padding:11px 16px;font:700 1rem/1.3 Philosopher,sans-serif;box-shadow:none;letter-spacing:normal;text-transform:none}
 .evolution-popup .nqevo-card .nqevo-footer button:hover{background:#f4d995}.evolution-popup :focus-visible{outline:2px solid #9fe1e8;outline-offset:3px}
-@media(max-width:600px){.evolution-popup .nqevo-reading{padding:20px 20px 18px;scrollbar-width:none}.evolution-popup .nqevo-reading::-webkit-scrollbar{display:none}.evolution-popup .nqevo-intro{text-align:center;margin-bottom:14px}.evolution-popup .nqevo-hero{display:flex;flex-direction:column;gap:17px;text-align:center}.evolution-popup .nqevo-art{width:166px;height:202px}.evolution-popup .nqevo-identity h2{font-size:1.22rem!important}.evolution-popup .nqevo-description{font-size:.92rem;margin-top:19px}.evolution-popup .nqevo-level{font-size:.8rem}.evolution-popup .nqevo-footer{padding:15px 20px 18px}}
+@media(max-width:600px){.evolution-popup .nqevo-reading{padding:20px 20px 18px;scrollbar-width:none}.evolution-popup .nqevo-reading::-webkit-scrollbar{display:none}.evolution-popup .nqevo-intro{text-align:center;margin-bottom:14px}.evolution-popup .nqevo-hero{display:flex;flex-direction:column;gap:17px;text-align:center}.evolution-popup .nqevo-art{width:150px;height:182px}.evolution-popup .nqevo-identity h2{font-size:1.22rem!important}.evolution-popup .nqevo-description{font-size:.92rem;margin-top:13px}.evolution-popup .nqevo-level{font-size:.8rem}.evolution-popup .nqevo-footer{padding:12px 20px 16px}}
 @container nqevo (max-width:26rem){.evolution-popup .nqevo-art{width:150px;height:182px}.evolution-popup .nqevo-identity h2{font-size:1.1rem!important}.evolution-popup .nqevo-description{font-size:.85rem}.evolution-popup .nqevo-level{font-size:.78rem}.evolution-popup .nqevo-intro{font-size:.8rem}.evolution-popup .nqevo-card .nqevo-footer button{font-size:.85rem}}
 @media(prefers-reduced-motion:reduce){.evolution-popup .nqevo-light{display:none}.evolution-popup .nqevo-light rect{animation:none}}
 /* Vida extra — celebração breve com recompensa explícita. */
@@ -14724,6 +14727,19 @@ h1{font:600 2rem/1.25 Cinzel,serif;letter-spacing:-.025em;margin:0;overflow-wrap
 @media(max-width:600px){.nqnarr-heading h2{font-size:1.45rem}}
 @container nqNarrative (max-width:16rem){.nqnarr-heading h2{font-size:1.15rem}}
 
+/* Só a narrativa do capítulo ganha a superfície temática; título e progresso
+   permanecem fora. Sem animação adicional, inclusive em movimento reduzido. */
+.nqnarr-card[data-nq-chapter]{--nq-chapter-rgb:104,171,193}
+.nqnarr-card:is([data-nq-chapter="10"],[data-nq-chapter="35"],[data-nq-chapter="90"]){--nq-chapter-rgb:160,143,201}
+.nqnarr-card:is([data-nq-chapter="15"],[data-nq-chapter="55"],[data-nq-chapter="85"]){--nq-chapter-rgb:69,163,135}
+.nqnarr-card:is([data-nq-chapter="25"],[data-nq-chapter="30"],[data-nq-chapter="40"],[data-nq-chapter="60"],[data-nq-chapter="65"],[data-nq-chapter="80"]){--nq-chapter-rgb:193,161,95}
+.nqnarr-card:is([data-nq-chapter="45"],[data-nq-chapter="50"],[data-nq-chapter="75"]){--nq-chapter-rgb:190,119,126}
+.nqnarr-card[data-nq-chapter] #nqNarrativeStory{padding:20px 24px;border:1px solid rgba(var(--nq-chapter-rgb),.38);border-radius:12px;background:linear-gradient(135deg,rgba(var(--nq-chapter-rgb),.16),#071a1bc2);box-shadow:inset 0 1px #e0fff00a,0 0 24px rgba(var(--nq-chapter-rgb),.07);color:#e3ece9}
+.nqnarr-card[data-nq-chapter="15"] #nqNarrativeStory{background:linear-gradient(135deg,#123b35eb,#082825e6)}
+.nqnarr-card[data-nq-chapter] #nqNarrativeStory::first-letter{color:#f2f4e8}
+@media(max-width:600px){.nqnarr-card[data-nq-chapter] #nqNarrativeStory{padding:17px 18px}}
+@container nqNarrative (max-width:16rem){.nqnarr-card[data-nq-chapter] #nqNarrativeStory{padding:14px 12px}}
+
 /* Feitiço do Arqui-Nefromante — atordoamento aprovado. */
 .nqstun-card{background:radial-gradient(ellipse at 12% 15%,#35243850,transparent 60%),linear-gradient(135deg,#192532,#0b141d 70%);border-color:#92829866}
 .nqstun-card .nqnarr-chapter{color:#d5b9d3}.nqstun-card .nqnarr-chapter::after{background:linear-gradient(90deg,#d5b9d342,transparent)}
@@ -14829,7 +14845,7 @@ h1{font:600 2rem/1.25 Cinzel,serif;letter-spacing:-.025em;margin:0;overflow-wrap
 @container nqNarrative (max-width:16rem){.nqflag-categories{grid-template-columns:minmax(0,1fr)}.nqflag-card h2{font-size:1.1rem!important}.nqflag-category{font-size:.85rem}.nqflag-footer{grid-template-columns:minmax(0,1fr)}}
 
 /* Leitor científico — layout aprovado, conteúdo integral preservado. */
-.bib-resumo-modal.nqreader-overlay{display:grid;padding:18px;background:#03080dda;backdrop-filter:blur(6px);z-index:var(--z-critical)}
+.bib-resumo-modal.nqreader-overlay{display:grid;padding:18px;background:#03080dda;backdrop-filter:blur(6px);z-index:12000}
 .nqreader-card{width:min(100%,780px)}.nqreader-card .nqnarr-chapter{margin:0 0 22px}.nqreader-card h2{font:600 1.65rem/1.3 Cinzel,serif;color:#eee8d9;margin:0;letter-spacing:normal;text-align:left;overflow-wrap:anywhere}
 .nqreader-reference{font-size:.9rem;line-height:1.7;color:#a9b8c5;margin:19px 0 0;overflow-wrap:anywhere}.nqreader-sections{margin-top:28px;border-top:1px solid #ffffff14}.nqreader-section{padding-top:24px}.nqreader-section h3{font:600 .92rem/1.5 Cinzel,serif;color:#dfc280;margin:0 0 12px;letter-spacing:normal;text-align:left}.nqreader-section p,.nqreader-empty{color:#b7c2cc;font-size:1rem;line-height:1.8;margin:0;max-width:none;overflow-wrap:anywhere}.nqreader-empty{padding-top:24px}.nqreader-conclusao{margin-top:24px;padding:20px;border:1px solid #91b8c633;border-radius:8px;background:#8cb8c409}.nqreader-conclusao h3{color:#b5d4dc}.nqreader-card .nqnarr-primary{min-width:170px}
 @media(max-width:600px){.bib-resumo-modal.nqreader-overlay{padding:12px}.nqreader-card h2{font-size:1.3rem}.nqreader-section p{font-size:.96rem}.nqreader-conclusao{padding:17px}.nqreader-card .nqnarr-primary{min-width:0}}
@@ -14854,6 +14870,17 @@ h1{font:600 2rem/1.25 Cinzel,serif;letter-spacing:-.025em;margin:0;overflow-wrap
 #goldMilestonePopup .nqgold-card{border-color:#f1cf7a55!important;background:radial-gradient(ellipse at 12% 0%,#f1cf7a12,transparent 60%),linear-gradient(135deg,#192733,#0b141d 70%)}.nqgold-award h2,.nqgold-cost{color:var(--nq-accent-gold)}
 .nqinvite-seal{color:var(--nq-accent-cyan)}.nqlast-chapter,.nqboss-chapter,.nqfinal-chapter{color:var(--nq-accent-violet)}
 .nqreader-section h3{color:var(--nq-accent-gold)}.nqreader-conclusao{border-color:#6bd4a74d;background:#6bd4a710}.nqreader-conclusao h3{color:var(--nq-accent-green)}.nqreader-curiosidade h3{color:var(--nq-accent-violet)}.nqreader-impacto h3{color:var(--nq-accent-cyan)}
+/* O leitor conserva apenas os metadados existentes da fonte selecionada. */
+.nqreader-card[data-reader-type]{border-left:3px solid var(--nqreader-accent,var(--nq-accent-cyan))}
+.nqreader-card[data-reader-rarity]{--nqreader-rarity:#c4cbd3}
+.nqreader-card[data-reader-rarity="raro"]{--nqreader-rarity:var(--nq-accent-cyan)}
+.nqreader-card[data-reader-rarity="épico"]{--nqreader-rarity:var(--nq-accent-violet)}
+.nqreader-card[data-reader-rarity="lendário"]{--nqreader-rarity:var(--nq-accent-gold)}
+.nqreader-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:18px}
+.nqreader-meta :is(.nqreader-badge,.nqreader-rarity,.nqreader-type){display:inline-block;max-width:100%;padding:4px 9px;border:1px solid #aecbd947;border-radius:5px;color:#d9e5e9;font-size:.78rem;line-height:1.4;overflow-wrap:anywhere}
+.nqreader-meta .nqreader-rarity{color:var(--nqreader-rarity);border-color:color-mix(in srgb,var(--nqreader-rarity) 60%,transparent);background:color-mix(in srgb,var(--nqreader-rarity) 12%,transparent)}
+.nqreader-meta .nqreader-type{border-color:color-mix(in srgb,var(--nqreader-accent,var(--nq-accent-cyan)) 60%,transparent)}
+
 .nqflag-category:has(input:checked){border-color:#e9b87999;background:#e9b87912}.nqflag-category input{accent-color:var(--nq-accent-amber)}.nqflag-card .flag-status{color:var(--nq-accent-green)}.nqflag-card .flag-status--error,.nqcost-poor .nqcost-remaining dd,.nqcost-poor .nqcost-notice{color:var(--nq-accent-rose)}.nqcost-ledger>div:first-child dd{color:var(--nq-accent-gold)}
 .nqpath-path:not(.combat)>svg{stroke:var(--nq-accent-cyan)}.nqpath-path.combat>svg{stroke:var(--nq-accent-gold)}
 body [role="dialog"] a[href]{color:var(--nq-accent-cyan);text-decoration:underline;text-underline-offset:3px}body [role="dialog"] a[href]:hover{color:#c5f4f6}

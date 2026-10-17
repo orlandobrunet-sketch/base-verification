@@ -8,15 +8,32 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo-filled {
   --nqe-frame: #718ca6;
   padding: 0 !important;
-  border: 1px solid var(--nqe-frame) !important;
+  border: 1px solid transparent !important;
   border-radius: 10px !important;
   background: #0a0e1a !important;
-  /* A moldura faz o único recorte: a imagem não ganha outra curva/borda. */
+  /* A arte mantém o recorte e a área interna originais. O contorno externo
+     fica no slot, acima desta superfície, sem cortar a própria curva. */
   overflow: hidden;
   box-shadow: 0 2px 6px #02050b45 !important;
   animation: none !important;
   isolation: isolate;
 }
+/* A curva é uma camada independente da imagem ampliada e recortada. */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo::before {
+  content: "";
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  box-sizing: border-box;
+  border: 1.25px solid #718ca6;
+  border-radius: inherit;
+  pointer-events: none;
+}
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo:has(.rar-border-rare)::before { border-color: #89c8d1; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo:has(.rar-border-epic)::before { border-color: #aaa4e3; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo:has(.rar-border-legendary)::before { border-color: #dfc68b; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo:has(.rar-border-mythic)::before { border-color: #edf2ff; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo:is(:hover,[aria-expanded="true"])::before { border-color: #c6e9ef; }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .rar-border-rare { --nqe-frame: #89c8d1; }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .rar-border-epic { --nqe-frame: #aaa4e3; }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .rar-border-legendary { --nqe-frame: #dfc68b; }
@@ -51,7 +68,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo.starter .slot-diablo-filled { background: #0d1425 !important; }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo:hover .slot-diablo-filled,
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #equipList .slot-diablo[aria-expanded="true"] .slot-diablo-filled {
-  border-color: #c6e9ef !important;
+  border-color: transparent !important;
   box-shadow: 0 3px 9px #02050b55 !important;
 }
 .nqe-preview {

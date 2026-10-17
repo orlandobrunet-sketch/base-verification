@@ -929,8 +929,8 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(library.locator('.nqd-library-summary')).not.toContainText(/\bde\s+\d+\b/i);
     await expect(library.locator('[role="progressbar"]')).toHaveCount(0);
 
-    // A apresentação conserva os dados editoriais da fonte e expõe a leitura
-    // no próprio card; filtros e favoritos não podem apagar esse conteúdo.
+    // O leitor em popup conserva os dados editoriais da fonte; filtros e
+    // favoritos mantêm a descoberta e devolvem o foco à ação de origem.
     const original = await page.evaluate(() => (0, eval)('nefroArticles[2]'));
     const card = library.locator('[data-library-item]').filter({ has: page.locator('[data-library-key="__art_2"]') });
     await expect(card.locator('.nqd-library-authors')).toHaveText(original.autores);
@@ -938,19 +938,25 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(card.locator('.nqd-library-rarity')).toHaveText('Épico');
     await expect(card.locator('.nqd-library-impact p')).toHaveText(original.impacto);
     await card.getByRole('button', { name: 'Ler resumo', exact: true }).click();
-    await expect(card.getByRole('region')).toBeVisible();
-    await expect(card.locator('.nqd-library-reading-section').first().locator('p')).toHaveText(original.resumo);
-    await expect(card.locator('.is-conclusion p')).toHaveText(original.conclusao);
-    await expect(card.locator('.is-curiosity p')).toHaveText(original.curiosidade);
+    const reader = page.locator('.bib-resumo-modal [role="dialog"]');
+    await expect(reader).toBeVisible();
+    await expect(reader.locator('.nqreader-rarity')).toHaveText('Épico');
+    await expect(reader.locator('.nqreader-resumo p')).toHaveText(original.resumo);
+    await expect(reader.locator('.nqreader-conclusao p')).toHaveText(original.conclusao);
+    await expect(reader.locator('.nqreader-curiosidade p')).toHaveText(original.curiosidade);
+    await reader.getByRole('button', { name: 'Fechar', exact: true }).click();
     await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
+    await expect(card.getByRole('button', { name: 'Ler resumo', exact: true })).toBeFocused();
     await card.getByRole('button', { name: 'Adicionar aos favoritos' }).click();
     expect(await page.evaluate(() => JSON.parse(localStorage.getItem('nq-bib-favorites') || '[]'))).toContain('__art_2');
     await library.getByRole('tab', { name: 'Favoritos' }).click();
     await library.getByRole('searchbox', { name: 'Buscar no Grimório' }).fill(original.autores);
     await expect(library.locator('[data-library-item]:visible')).toHaveCount(1);
-    await expect(card.getByRole('region')).toBeVisible();
-    await card.getByRole('button', { name: 'Fechar resumo', exact: true }).click();
-    await expect(card.getByRole('region')).toBeHidden();
+    await card.getByRole('button', { name: 'Ler resumo', exact: true }).click();
+    await expect(reader.locator('.nqreader-resumo p')).toHaveText(original.resumo);
+    await page.keyboard.press('Escape');
+    await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
+    await expect(card.getByRole('button', { name: 'Ler resumo', exact: true })).toBeFocused();
     await card.getByRole('button', { name: 'Remover dos favoritos' }).click();
     await expect(card).toBeHidden();
     await expect(library.locator('#nqDashLibraryNoResults')).toBeVisible();
