@@ -5649,14 +5649,22 @@
       const opcao = (tipo, titulo, descricao) => {
         const motivo = _forjaBloqueio(tipo);
         const id = `forjaMotivo-${tipo}`;
+        const icone = tipo === 'lendario'
+          ? '<svg viewBox="0 0 24 24" stroke-width="1.2" focusable="false"><circle cx="12" cy="12" r="10.5"/><path class="nq-forja-opcao-estrela" d="m12 3 2.8 5.7 6.3.9-4.5 4.4 1.1 6.3-5.7-3-5.7 3 1.1-6.3L3.2 9.6l6.3-.9Z"/></svg>'
+          : '<svg viewBox="0 0 64 64" stroke-width="2.4" focusable="false"><path d="m17 40 20-20 7 7-20 20zM32 15l10-10 17 17-10 10zM8 53h28M11 53v-7h22v7"/><circle class="nq-forja-opcao-surpresa" cx="50" cy="50" r="10"/><text x="50" y="55" text-anchor="middle">?</text></svg>';
         return `
           <article class="nq-forja-opcao">
-            <p class="nq-forja-rota">${tipo === 'comum' ? 'Sorteio livre' : 'Raridade garantida'}</p>
-            <h3>${titulo}</h3>
-            <p class="nq-forja-custo">${FORJA_CUSTO[tipo]} de ouro</p>
+            <div class="nq-forja-opcao-topo">
+              <span class="nq-forja-arte nq-forja-opcao-arte${tipo === 'lendario' ? ' nq-forja-arte-legendary' : ''}" aria-hidden="true">${icone}</span>
+              <div class="nq-forja-opcao-resumo">
+                <p class="nq-forja-rota">${tipo === 'comum' ? 'Sorteio livre' : 'Raridade garantida'}</p>
+                <h3>${titulo}</h3>
+                <p class="nq-forja-custo">${FORJA_CUSTO[tipo]} de ouro</p>
+              </div>
+            </div>
             <p>${descricao}</p>
             <button type="button" class="btn gold" data-action="forjarNaPagina" data-arg="${tipo}"
-              ${motivo ? `disabled aria-describedby="${id}"` : ''}>Forjar ${tipo === 'comum' ? 'item comum' : 'item lendário'}</button>
+              ${motivo ? `disabled aria-describedby="${id}"` : ''}>Forjar ${tipo === 'comum' ? 'item aleatório' : 'item lendário'}</button>
             ${motivo ? `<p id="${id}" class="nq-forja-motivo">${motivo}</p>` : ''}
           </article>`;
       };

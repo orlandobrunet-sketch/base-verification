@@ -67,11 +67,31 @@ test.describe('Boss mode (Fase Final)', () => {
     expect(await cards.evaluate((element) => (element as HTMLElement).inert)).toBe(false);
   });
 
-  test('HP bar diminui após resposta correta', async ({ page }) => {
-    // O índice correto não é exposto antes de responder. Sondamos clicando a
-    // opção 0: a classe .correct é revelada após responder. Se acertamos,
-    // validamos a queda de HP; senão avançamos para a próxima carta e tentamos
-    // de novo (sem reload — vidas altas via injectBossState dão folga).
+  test('HP bar diminui após resposta correta', async ({ page }, testInfo) => {
+    // Só a fixture controla a entrada aleatória do apresentador real. Uma
+    // questão publicada com resposta original 1 fica correta em A: [1,2,3,0].
+    await page.waitForFunction(() => !(0, eval)('_loadingNextQuestion'));
+    const fixture = await page.evaluate(() => {
+      const w = window as any;
+      const source = w.questionBank.find((q: any) => q.a === 1 && q.o.length === 4 &&
+        w.NQAnswers.eligibility(q).eligible);
+      if (!source || JSON.stringify(w.questionRevisionCatalog.current(source.id, 'main')?.source) !== JSON.stringify(source)) {
+        throw new Error('A fixture exige uma questão elegível do catálogo publicado.');
+      }
+      const api = w.NQAnswers;
+      w.NQAnswers = { ...api, present: (q: any, options: any = {}) =>
+        api.present(q, q.id === source.id ? { ...options, random: () => 0 } : options) };
+      (0, eval)('state').queue = [source];
+      (0, eval)('state').idx = 0;
+      w.renderQuestion();
+      const question = (0, eval)('state.current');
+      return { source, order: question._answerPresentation.order,
+        originalChoice: w.NQAnswers.originalIndex(question, 0),
+        optionId: w.NQAnswers.optionId(question, 0) };
+    });
+    expect(fixture.order).toEqual([1, 2, 3, 0]);
+    expect(fixture.originalChoice).toBe(1);
+    const ledger: Record<string, unknown>[] = [];
     const hpFill = page.locator('#bossHpFill');
     let validated = false;
 
@@ -90,6 +110,8 @@ test.describe('Boss mode (Fase Final)', () => {
         const hpAfter = await hpFill.evaluate(el =>
           parseFloat((el as HTMLElement).style.width || '100'));
         expect(hpAfter).toBeLessThan(hpBefore);
+        ledger.push({ id: fixture.source.id, correctIdx, hpBefore, hpAfter,
+          order: fixture.order, originalChoice: fixture.originalChoice, optionId: fixture.optionId });
         validated = true;
       } else {
         await nextBtn.click(); // próxima carta
@@ -97,6 +119,21 @@ test.describe('Boss mode (Fase Final)', () => {
       }
     }
 
+    // Observa o autosave nativo; não força o escritor nem seus timers.
+    await page.waitForFunction(id => {
+      const save = JSON.parse(localStorage.getItem('nefroquest-save-v7') || 'null');
+      return save?.answered === true && save?.questionAnswer?.questionId === id;
+    }, fixture.source.id);
+    const saved = await page.evaluate(() => JSON.parse(localStorage.getItem('nefroquest-save-v7')!));
+    expect(saved.questionAnswer).toMatchObject({ questionId: fixture.source.id, choice: 0,
+      originalChoice: 1, optionId: fixture.optionId, correct: true });
+    expect(saved.questionPresentation._answerPresentation.sourceQuestion).toEqual(fixture.source);
+    expect(saved.questionPresentation._answerPresentation.order).toEqual(fixture.order);
+    expect(saved.questionRevisionBinding).toBeTruthy();
+    expect(saved.correctTotal).toBe(91);
+    expect(saved.wrongAnswerSnapshots).toEqual([]);
+    expect(ledger).toHaveLength(1);
+    await testInfo.attach('boss-hp-sequence', { body: JSON.stringify(ledger, null, 2), contentType: 'application/json' });
     expect(validated, 'não acertou a alternativa 0 em 12 cartas').toBe(true);
   });
 });

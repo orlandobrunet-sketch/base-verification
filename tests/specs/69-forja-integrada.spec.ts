@@ -66,7 +66,7 @@ test('é página, não sobreposição, e mostra ouro e os seis espaços', async 
 
 test('espaço vazio: forja, equipa e mostra o resultado na página', async ({ page }) => {
   await abrirForja(page);
-  await page.getByRole('button', { name: 'Forjar item comum' }).click();
+  await page.getByRole('button', { name: 'Forjar item aleatório' }).click();
   const resultado = page.locator('#forjaResultado');
   await expect(resultado.getByRole('heading', { name: 'Forja concluída' })).toBeVisible();
   await expect(resultado).toBeFocused();
@@ -84,7 +84,7 @@ test('espaço vazio: forja, equipa e mostra o resultado na página', async ({ pa
 for (const escolha of ['manter', 'substituir'] as const) {
   test(`espaço ocupado: a comparação acontece na página (${escolha})`, async ({ page }) => {
     await abrirForja(page, { ajuste: OCUPAR });
-    await page.getByRole('button', { name: 'Forjar item comum' }).click();
+    await page.getByRole('button', { name: 'Forjar item aleatório' }).click();
 
     const equipar = page.getByRole('button', { name: /^Equipar .+ vira 20 de ouro$/ });
     const manter = page.getByRole('button', { name: /^Manter Item de teste \w+.+ vira \d+ de ouro$/ });
@@ -101,7 +101,7 @@ for (const escolha of ['manter', 'substituir'] as const) {
     // Com a decisão pendente, o ouro já foi gasto: não dá para sair nem forjar de novo.
     await expect(page.getByRole('button', { name: '← Voltar à jornada' })).toBeDisabled();
     await expect(page.locator('#forjaMotivoSaida')).toContainText('o ouro já foi gasto');
-    await expect(page.getByRole('button', { name: 'Forjar item comum' })).toBeDisabled();
+    await expect(page.getByRole('button', { name: 'Forjar item aleatório' })).toBeDisabled();
     await page.keyboard.press('Escape');
     await expect(page.locator('#forjaPage')).toBeVisible();
 
@@ -126,10 +126,10 @@ for (const escolha of ['manter', 'substituir'] as const) {
 
 test('bloqueios dizem o motivo na página', async ({ page }) => {
   await abrirForja(page, { gold: 100 });
-  await expect(page.getByRole('button', { name: 'Forjar item comum' })).toBeDisabled();
+  await expect(page.getByRole('button', { name: 'Forjar item aleatório' })).toBeDisabled();
   await expect(page.locator('#forjaMotivo-comum')).toHaveText('Faltam 200 de ouro.');
   await expect(page.locator('#forjaMotivo-lendario')).toHaveText('Faltam 900 de ouro.');
-  await expect(page.getByRole('button', { name: 'Forjar item comum' })).toHaveAttribute('aria-describedby', 'forjaMotivo-comum');
+  await expect(page.getByRole('button', { name: 'Forjar item aleatório' })).toHaveAttribute('aria-describedby', 'forjaMotivo-comum');
 });
 
 test('jornada encerrada não parece falta de ouro', async ({ page }) => {
@@ -163,7 +163,7 @@ for (const largura of [320, 390]) {
   test(`cabe em ${largura}px com texto a 200%, contraste e alvos de toque`, async ({ page }) => {
     await abrirForja(page, { ajuste: OCUPAR, gold: 400, largura });
     await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
-    await page.getByRole('button', { name: 'Forjar item comum' }).click();
+    await page.getByRole('button', { name: 'Forjar item aleatório' }).click();
     await expect(page.getByRole('button', { name: /^Equipar / })).toBeVisible();
     expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth), 'rolagem horizontal').toBeLessThanOrEqual(1);
     // A superfície pode cortar em vez de rolar: cada item e botão precisa caber inteiro.
