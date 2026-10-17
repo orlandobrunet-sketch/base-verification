@@ -18,7 +18,7 @@ Reconciliado em **17/10/2026**, com os pedidos recebidos até **21:04 UTC**. Inc
 | W1 | Proporção da marca em todas as telas | Sim, incluindo Dashboard | Seis configurações finais; CI/pública pendentes | Pendente |
 | W2 | Serrilhado das seis molduras, **reaberto** | Sim | Sete comparações locais; CI/pública pendentes | Pendente para a reabertura |
 | W3 | Ler resumo em popup na pergunta e no Grimório | Sim | Leitor/teclado/foco/estado locais; E2E/CI pendentes | Pendente |
-| W4 | Batalha final/demonstração: auditoria reaberta | Auditoria; correção desktop em validação | Overflow1100/fonte32 reproduzido; nova E2E/CI pendentes | Design anterior publicado; novo parecer pendente |
+| W4 | Batalha final/demonstração: auditoria reaberta | Auditoria; correção desktop em validação | 32 casos locais/72 comparações; CI/pública pendentes | Design anterior publicado; novo parecer pendente |
 | W5 | Narrativa das transições de capítulo com presença | Sim | Capturas locais; E2E/CI pendentes | Pendente |
 | W6 | Pergaminho de recompensa mais largo no desktop | Sim | Capturas locais; E2E/CI pendentes | Pendente |
 | W7 | Evolução concluída mais compacta | Sim | Capturas locais; E2E/CI pendentes | Pendente |
@@ -30,7 +30,7 @@ Reconciliado em **17/10/2026**, com os pedidos recebidos até **21:04 UTC**. Inc
 
 **W3.** Abrir o artigo correto em popup nos dois pontos, manter contexto da questão/Grimório, fechamento e retorno de foco, leitura confortável e conteúdo integral. Preservar referências, estado e progresso, inclusive as versões históricas.
 
-**W4.** Há redesign publicado na versão 2.0; o pedido atual é verificar resíduos do layout antigo. Percorrer os estados relevantes da batalha e demonstração; registrar o que foi conferido. Corrigir resíduos concretos preservando regras, progresso, HP, áudio e controles. Não há defeito novo comprovado apenas pelo pedido. Posteriormente, a E2E da candidata 16.16 confirmou overflow real no rótulo Dashboard de desktop a 1100 px/fonte32. A candidata 16.17 corrige quebra e altura natural dos botões e exige nova CI/revisão; a 16.16 não foi publicada.
+**W4.** Há redesign publicado na versão 2.0; o pedido atual é verificar resíduos do layout antigo. Percorrer os estados relevantes da batalha e demonstração; registrar o que foi conferido. Corrigir resíduos concretos preservando regras, progresso, HP, áudio e controles. Não há defeito novo comprovado apenas pelo pedido. Posteriormente, a E2E da candidata 16.16 confirmou overflow real no rótulo Dashboard de desktop a 1100 px/fonte32. A candidata 16.17 corrigiu o overflow horizontal e passou 24 testes, mas a imagem revelou sobreposição vertical pela altura fixa herdada do rótulo; também ficou bloqueada. A candidata 16.18 usa largura intrínseca e altura natural, com novos asserts no mesmo teste e nova CI/revisão. Nenhuma das duas candidatas anteriores foi publicada.
 
 **W5.** Dar ao parágrafo narrativo central um fundo temático discreto, contraste e hierarquia; manter título, estatísticas e ação separados. Aplicar padrão coerente aos capítulos e movimento reduzido. No capítulo III, a direção é verde-petróleo/esmeralda translúcido com borda suave.
 
@@ -74,6 +74,8 @@ Reconciliado em **17/10/2026**, com os pedidos recebidos até **21:04 UTC**. Inc
 **Q2.** Universo atual: 741. O inventário recebido preservava A7 com 648 disposições autorais e 624 independentes. A consolidação posterior **A9 foi concluída e validada**: 664 autorais e 624 independentes, faltando 77/117, base + 14 deltas, sem duplicação por eixo. Foram 704 verificações técnicas e 256 no segundo readback, zero falhas. SHA-256 do índice A9: `d8b8ecaeead16ddb06cd4266de1f6686b6f50c793d420ce9e56ff49459cedfe1`. Os totais incluem bloqueios, fusões e propostas não publicáveis. Finais ainda não incorporados não são somados sem consolidação. A última publicação clínica comprovada é de dez questões na 16.13; três questões/três cards adicionais estão aplicados somente localmente. O registro histórico de 61 lacunas de fonte precisa de reconciliação com avanços posteriores antes de ser usado como total atual.
 
 **Snapshot posterior da preparação da PR, 17/10 às 21:41 UTC:** A13 validado, **678 autorais / 640 independentes**, faltando 63/101, base + 18 deltas e zero duplicidade por eixo. Índice SHA-256 `0b1fa4697c0cf1164d3e7464fe173d9d3d0daecebfd00c0e0c51acb8d11fb4d8`. A025 independente tem FINAL ainda não contado nesse snapshot. B028 acrescentou seis QIDs próprios; o ID `fe54f9b1`, citado na fusão, não foi recontado. Continuam dez publicados e três apenas locais.
+
+**Checkpoint posterior validado, 17/10 às 22:15 UTC:** A18, SHA-256 `b92ab5389abc0026b96f426d8da0e47aea33785ef6cb852677206fe1b74e94b1`: **694 autorais / 664 independentes**, restam 47/77, base + 23 deltas, zero duplicidade por eixo. C035 FINAL ainda não incorporado; os demais lotes ativos só contarão após pack próprio. Dez publicados e três apenas locais permanecem separados.
 
 Aceite: distratores plausíveis e equilibrados sem enchimento, uma melhor resposta defensável, fontes científicas e revisão independente. Publicar somente textos exatos liberados, com pendências explícitas; preservar IDs, respostas, progresso e históricos. A revisão completa não pode ser anunciada por uma release intermediária.
 

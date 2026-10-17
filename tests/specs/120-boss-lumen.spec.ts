@@ -191,6 +191,35 @@ for (const width of [320, 390, 1100]) {
       if (width > 768) {
         const colors = await page.locator('#actionDock .dock-btn').evaluateAll(buttons => buttons.map(btn => getComputedStyle(btn).color));
         expect(new Set(colors).size, 'instrumentos sem identidade de cor').toBeGreaterThanOrEqual(4);
+        // Texto ampliado precisa caber na caixa real, sem ocupar o SVG.
+        const dockGeometry: unknown[] = [];
+        for (const button of await page.locator('#actionDock .dock-btn').all()) {
+          const geometry = await button.evaluate(el => {
+            const icon = el.querySelector('svg')!.getBoundingClientRect();
+            const label = el.querySelector('.dock-label')!;
+            const box = label.getBoundingClientRect(), parent = el.getBoundingClientRect();
+            const range = document.createRange(); range.selectNodeContents(label);
+            return {
+              label: label.textContent, viewportWidth: innerWidth, documentWidth: document.documentElement.scrollWidth,
+              columns: getComputedStyle(document.getElementById('mainApp')!).gridTemplateColumns,
+              dockWidth: el.parentElement!.getBoundingClientRect().width,
+              buttonWidth: parent.width, buttonHeight: parent.height, labelWidth: box.width, labelHeight: box.height,
+              iconWidth: icon.width, iconHeight: icon.height,
+              iconSeparated: icon.bottom <= box.top + 1,
+              labelInsideButton: box.left >= parent.left - 1 && box.right <= parent.right + 1
+                && box.top >= parent.top - 1 && box.bottom <= parent.bottom + 1,
+              textInsideLabel: [...range.getClientRects()].every(line => line.left >= box.left - 1
+                && line.right <= box.right + 1 && line.top >= box.top - 1 && line.bottom <= box.bottom + 1),
+            };
+          });
+          dockGeometry.push(geometry);
+          expect(geometry.iconWidth).toBeGreaterThanOrEqual(26);
+          expect(geometry.iconHeight).toBeGreaterThanOrEqual(26);
+          expect(geometry.iconSeparated, 'rótulo ocupa a área do ícone').toBe(true);
+          expect(geometry.labelInsideButton, 'caixa do rótulo sai do botão').toBe(true);
+          expect(geometry.textInsideLabel, 'texto sai da caixa do rótulo').toBe(true);
+        }
+        await info.attach('dock-geometry', { body: Buffer.from(JSON.stringify(dockGeometry)), contentType: 'application/json' });
         for (const slot of await page.locator('#equipList .slot-diablo').all()) {
           const box = (await slot.boundingBox())!;
           expect(box.height, 'slot alto em relação aos demais').toBeLessThanOrEqual(59);
