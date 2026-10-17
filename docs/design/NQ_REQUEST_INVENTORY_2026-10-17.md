@@ -15,10 +15,10 @@ Reconciliado em **17/10/2026**, com os pedidos recebidos até **21:04 UTC**. Inc
 
 | ID | Pedido | Implementado | Testado | Publicado |
 |---|---|---|---|---|
-| W1 | Proporção da marca em todas as telas | Sim, incluindo Dashboard | Prova focal; captura final/CI pendentes | Pendente |
+| W1 | Proporção da marca em todas as telas | Sim, incluindo Dashboard | Seis configurações finais; CI/pública pendentes | Pendente |
 | W2 | Serrilhado das seis molduras, **reaberto** | Sim | Sete comparações locais; CI/pública pendentes | Pendente para a reabertura |
 | W3 | Ler resumo em popup na pergunta e no Grimório | Sim | Leitor/teclado/foco/estado locais; E2E/CI pendentes | Pendente |
-| W4 | Batalha final/demonstração: auditoria reaberta | Auditoria e correção dos rótulos | Vistas locais; E2E/CI pendentes | Design anterior publicado; novo parecer pendente |
+| W4 | Batalha final/demonstração: auditoria reaberta | Auditoria; correção desktop em validação | Overflow1100/fonte32 reproduzido; nova E2E/CI pendentes | Design anterior publicado; novo parecer pendente |
 | W5 | Narrativa das transições de capítulo com presença | Sim | Capturas locais; E2E/CI pendentes | Pendente |
 | W6 | Pergaminho de recompensa mais largo no desktop | Sim | Capturas locais; E2E/CI pendentes | Pendente |
 | W7 | Evolução concluída mais compacta | Sim | Capturas locais; E2E/CI pendentes | Pendente |
@@ -30,7 +30,7 @@ Reconciliado em **17/10/2026**, com os pedidos recebidos até **21:04 UTC**. Inc
 
 **W3.** Abrir o artigo correto em popup nos dois pontos, manter contexto da questão/Grimório, fechamento e retorno de foco, leitura confortável e conteúdo integral. Preservar referências, estado e progresso, inclusive as versões históricas.
 
-**W4.** Há redesign publicado na versão 2.0; o pedido atual é verificar resíduos do layout antigo. Percorrer os estados relevantes da batalha e demonstração; registrar o que foi conferido. Corrigir resíduos concretos preservando regras, progresso, HP, áudio e controles. Não há defeito novo comprovado apenas pelo pedido.
+**W4.** Há redesign publicado na versão 2.0; o pedido atual é verificar resíduos do layout antigo. Percorrer os estados relevantes da batalha e demonstração; registrar o que foi conferido. Corrigir resíduos concretos preservando regras, progresso, HP, áudio e controles. Não há defeito novo comprovado apenas pelo pedido. Posteriormente, a E2E da candidata 16.16 confirmou overflow real no rótulo Dashboard de desktop a 1100 px/fonte32. A candidata 16.17 corrige quebra e altura natural dos botões e exige nova CI/revisão; a 16.16 não foi publicada.
 
 **W5.** Dar ao parágrafo narrativo central um fundo temático discreto, contraste e hierarquia; manter título, estatísticas e ação separados. Aplicar padrão coerente aos capítulos e movimento reduzido. No capítulo III, a direção é verde-petróleo/esmeralda translúcido com borda suave.
 

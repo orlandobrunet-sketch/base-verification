@@ -324,14 +324,14 @@ body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #nextBtn:not(.hidden) { min-h
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #nextBtn:not(.hidden):hover { background: #f8dfa0 !important; transform: none !important; box-shadow: none !important; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #oraculoBtn:not(.hidden) { background: #271e38 !important; border-color: #c6a4ef66 !important; color: #d8c5f2 !important; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .action-dock { gap: 10px; padding-top: 0; }
-body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn { --nqb-tool: 145, 223, 227; width: 72px; max-width: 100%; height: 76px; min-height: 44px; padding: 10px 5px; gap: 7px; border: 1px solid rgba(var(--nqb-tool), .32) !important; border-radius: 10px; background: linear-gradient(155deg, rgba(var(--nqb-tool), .09), #111b2bcc) !important; color: rgb(var(--nqb-tool)) !important; box-shadow: none !important; }
+body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn { --nqb-tool: 145, 223, 227; width: 72px; max-width: 100%; height: auto; min-height: 76px; padding: 10px 5px; gap: 7px; border: 1px solid rgba(var(--nqb-tool), .32) !important; border-radius: 10px; background: linear-gradient(155deg, rgba(var(--nqb-tool), .09), #111b2bcc) !important; color: rgb(var(--nqb-tool)) !important; box-shadow: none !important; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn.next-question-dock { --nqb-tool: 131, 216, 173; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn.forge-btn { --nqb-tool: 233, 184, 121; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn.oraculo-dock { --nqb-tool: 198, 164, 239; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn.dashboard-btn { --nqb-tool: 139, 195, 229; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn[data-action="openBibliotecaModal"] { --nqb-tool: 241, 207, 122; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn svg { width: 26px; height: 26px; color: currentColor !important; filter: none !important; }
-body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn .dock-label { position: static; width: auto; max-width: 100%; padding: 0; color: currentColor !important; background: transparent !important; font: .58rem/1.3 var(--nql-font-body); letter-spacing: .03em; white-space: nowrap; overflow-wrap: normal; }
+body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn .dock-label { position: static; width: auto; max-width: 100%; padding: 0; color: currentColor !important; background: transparent !important; font: .58rem/1.3 var(--nql-font-body); letter-spacing: .03em; white-space: normal; overflow-wrap: anywhere; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn:hover { border-color: rgba(var(--nqb-tool), .65) !important; box-shadow: none !important; transform: none; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] :is(button, [role="button"], .slot-diablo):focus-visible { outline: 2px solid #91dfe3; outline-offset: 3px; }
 
