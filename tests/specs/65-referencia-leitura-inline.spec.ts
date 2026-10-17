@@ -16,8 +16,18 @@ test('referência abre em popup, preserva os textos e fecha pelo teclado', async
     })()`);
   });
   // O leitor não pode avançar a carta nem escrever no histórico/save/FSRS.
-  // Espera o debounce real do escritor nativo antes de congelar seus bytes.
-  await page.waitForFunction(() => (0, eval)('Date.now() - _revelouEm >= 700'));
+  // O Proxy agenda saveGame em 500 ms, seguido pelo save em 300 ms.
+  // Conte a barreira após o retorno da fixture e aguarde o writer nativo;
+  // nenhum campo do save é removido da comparação integral abaixo.
+  const nativeSaveBarriers: unknown[] = [];
+  const settleNativeSave = async () => {
+    const afterFixture = await page.evaluate(() => Date.now());
+    await page.waitForFunction(start => Date.now() - start >= 900 && (0, eval)('_saveTimer === null'), afterFixture);
+    nativeSaveBarriers.push(await page.evaluate(start => ({
+      elapsedAfterFixture: Date.now() - start, pendingNativeSave: (0, eval)('_saveTimer !== null')
+    }), afterFixture));
+  };
+  await settleNativeSave();
   const snapshot = () => page.evaluate(() => (0, eval)(`JSON.stringify({
     current:state.current,answered:state.answered,idx:state.idx,score:state.score,
     lives:state.lives,correctTotal:state.correctTotal,questionAnswer:state.questionAnswer,
@@ -102,7 +112,7 @@ test('referência abre em popup, preserva os textos e fecha pelo teclado', async
   // resposta. Avançar aqui é uma ação explícita da fixture, fora do leitor.
   await page.evaluate(() => (window as any).renderQuestion());
   await expect(page.locator('#options .option')).toHaveCount(4);
-  await page.waitForFunction(() => (0, eval)('Date.now() - _questionStartTime >= 700'));
+  await settleNativeSave();
   const unanswered = await snapshot();
   expect(await page.evaluate(() => (window as any).state.answered)).toBe(false);
   await page.evaluate(key => (window as any).openRefResumo(key), source.key);
@@ -112,4 +122,5 @@ test('referência abre em popup, preserva os textos e fecha pelo teclado', async
   expect(await snapshot()).toBe(unanswered);
   await page.keyboard.press('Escape');
   await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
+  await test.info().attach('native-save-barriers', { body: JSON.stringify(nativeSaveBarriers), contentType: 'application/json' });
 });

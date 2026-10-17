@@ -32,3 +32,11 @@ A candidata 16.16 da PR 900 ficou bloqueada por overflow horizontal do dock de d
 A 16.18 usa coluna desktop com largura intrínseca e rótulos/botões de altura natural, preservando o mobile. O mesmo teste recebe verificações de contenção e separação entre texto e ícone, sem alterar títulos ou contagens da CI. A cópia local pinada amplia somente os parâmetros de largura: 24 casos originais mais oito focais em 769/1440 px, 32 passes e 72 comparações geométricas. Ela não é confundida com a coleção da CI. O token do manifesto e os demais cache-busters alterados foram alinhados à release final.
 
 O novo HEAD precisa de parecer independente FINAL, CI completa própria, merge e deploy verificados e inspeção pública. Resultados sobre um HEAD anterior não o liberam.
+
+## Sincronização do teste de leitura
+
+A CI 940 da candidata antiga registrou uma falha no spec65 mobile, reproduzida em dois retries. A releitura dos três pares completos de snapshots encontrou somente `timestamp` e `saveRevision` diferentes nos dois slots do save; não demonstrou avanço da questão ou mudança de histórico/FSRS. A fonte tem um caminho de gravação nativa em aproximadamente 300 ms e outro em 500 + 300 ms, enquanto a fixture congelava os bytes após 700 ms. Os intervalos observados são compatíveis com esse caminho; os logs não trazem stack por gravação para atribuir cada callback.
+
+A correção deste HEAD fica nas duas barreiras da fixture: esperar 900 ms contados após o retorno completo da ação e o timer nativo de save sem pendência, antes de congelar o snapshot. Nenhuma escrita é forçada ou cancelada; todos os campos e bytes do armazenamento, estado e teclas continuam comparados. O attachment registra as duas barreiras. Os dois casos locais originais passaram sem retry, com quatro barreiras entre 904 e 916 ms e nenhum timer de save pendente. Essa coleta é funcional e não produziu novas imagens. Os 32 casos/72 geometrias anteriores continuam evidência da fonte visual literal, com escopo separado.
+
+Os assets, dados e versão 16.18 permanecem literalmente iguais ao commit `0a8447809417dbe116ccdd45c78a2df891d75ee3`. Esse commit fica retido para publicação, mesmo se sua CI 942 terminar verde. O novo HEAD precisa de CI completa e parecer independente próprios; as execuções anteriores permanecem preservadas.
