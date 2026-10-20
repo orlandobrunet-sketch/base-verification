@@ -1,0 +1,70 @@
+{
+  "batch": "CLINICAL-2026-10-14-03",
+  "change_type": "medical_editorial",
+  "expected_version": "16.19",
+  "allowed_files": [
+    "data/topics.js",
+    "data/refs.js",
+    "data/question-revision-history.js",
+    "data/question-revision-manifest.js",
+    "version.json",
+    "sw.js",
+    "index.html",
+    "jogar/index.html",
+    "offline.html",
+    "tests/specs/136-question-revisions.spec.ts",
+    "docs/editorial/review-batches/CLINICAL-2026-10-14-03.json"
+  ],
+  "questions": {
+    "312ab0c7": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA"
+    },
+    "d8fd9889": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA"
+    },
+    "9895f375": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA"
+    }
+  },
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "berend_normal_gap_2017": {
+      "action": "add",
+      "stable_id": true,
+      "before_sha256": null,
+      "after_sha256": "7d416aa9d010edcceaa6adeef542500eba10dee04c58a849f4292afdd92b28dc"
+    },
+    "society_endocrinology_hypercalcemia_2016": {
+      "action": "add",
+      "stable_id": true,
+      "before_sha256": null,
+      "after_sha256": "17857f8c4a83559eb6ba1bb68820d05f27b47556f2d692ac3717c47bcc91bf24"
+    },
+    "weiner_urea_metabolism_2015": {
+      "action": "add",
+      "stable_id": true,
+      "before_sha256": null,
+      "after_sha256": "0e92bf2c45bad876e7ebf4db64b5d3482d59d41ccebe48352508770f755af4c2"
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "ci938_watch; independent technical result review FINAL A2; verification-drafts/CLINICAL-THREE-CURRENT-BASE-INDEPENDENT-RESULT-REVIEW-20261018-A2.json; SHA256 8c6cfb880927d8422c641957165f19169ffcbdf792da752dd5f010df0135aa80"
+  }
+}
