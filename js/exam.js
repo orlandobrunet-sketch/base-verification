@@ -343,6 +343,18 @@
         _examIntro('Não foi possível conferir as alternativas da prova. Tente novamente.');
         return;
       }
+      if (_examRequiresRevisions()) {
+        // Only a new draw selects the published current revision. Resuming an
+        // older save must keep its explicit binding or the resolver's ambiguity.
+        const catalog = _examRevisionCatalog();
+        const bindings = _examState.questions.map(q => catalog?.current?.(String(q.id), 'exam')?.binding);
+        if (bindings.some(binding => !binding)) {
+          _examState = prior;
+          _examRevisionHold('Não foi possível conferir as revisões publicadas da prova.');
+          return;
+        }
+        _examState.questionRevisionBindings = bindings;
+      }
       const checked = _examValidateSaved(_examState);
       if (!checked) { _examState = prior; _examRevisionHold('Não foi possível conferir as revisões publicadas da prova.'); return; }
       Object.assign(_examState, checked);

@@ -26,4 +26,6 @@ O modo explícito `reference_only` permite declarar este caso sem inventar uma q
 
 Os testes específicos verificam o literal aprovado, consumidores, restauração histórica nos quatro perfis e leitura do texto completo no popup. A suíte de identidade existente também é exercitada. O diff deve receber conferência técnica independente antes do commit; os resultados executados são relatados na PR draft.
 
-O candidato técnico é16.20, incluindo Service Worker, releases Sentry e URLs dos dois arquivos de identidade alterados. O redesenho do popup pertence a outra branch e não integra este lote. Este envio não inclui merge nem publicação em produção.
+O candidato técnico é16.21, incluindo Service Worker, releases Sentry e URLs dos arquivos alterados. O redesenho do popup pertence a outra branch e não integra este lote. Este envio não inclui merge nem publicação em produção.
+
+A CI945 revelou um bloqueio ao iniciar o Simulado. A reprodução determinística com cada um dos três consumidores confirmou que uma prova nova, sem vínculos explícitos, encontra a identidade de fonte compartilhada pelas revisões atual e histórica. O início da prova agora seleciona os vínculos atuais antes da validação e do primeiro salvamento. Catálogo ausente, vínculo atual ausente ou fonte incompatível continuam bloqueados; a retomada de saves antigos e o resolvedor permanecem inalterados. O trace da CI não capturou os QIDs sorteados, portanto não se atribui seu sorteio a uma questão específica.

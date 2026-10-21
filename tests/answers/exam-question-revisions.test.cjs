@@ -1,4 +1,4 @@
-/* Synthetic technical revision fixtures; no clinical content or published bank changes. */
+/* Technical revision fixtures and read-only published-bank regressions; no clinical content changes. */
 'use strict';
 const test = require('node:test');
 const assert = require('node:assert/strict');
@@ -335,3 +335,118 @@ test('legacy bundle with no revision globals retains native expired-save complet
   const h = harness({ f, initial, legacy: true }); await h.run('_examRetomar()');
   assert.match(h.page.innerHTML, /Resultado da Prova/); assert.equal(h.map.has(KEY), false); assert.equal(h.events.tracks, 0);
 });
+
+// A reference-only revision can keep the exact question source while changing
+// its record revision. A fresh exam must select current bindings explicitly;
+// an older unbound save must retain the resolver's ambiguity.
+const REFERENCE_ONLY_QIDS = ['81740f2d', '1e2668d6', '940b2835'];
+let publishedExamBundle;
+function publishedBundle() {
+  if (publishedExamBundle) return publishedExamBundle;
+  const builder = require('../../tools/build-question-revision-manifest.cjs');
+  const topics = builder.load('data/topics.js', 'topics'), refs = builder.load('data/refs.js', 'refsDB');
+  const manifest = require('../../data/question-revision-manifest.js');
+  const history = require('../../data/question-revision-history.js');
+  const sources = { main: [], exam: [], study: [], offline: [] };
+  topics.forEach((author, index) => Object.entries(builder.sources(author, index))
+    .forEach(([profile, value]) => sources[profile].push(value)));
+  const catalog = revisions.createCatalog({ manifest, history, authors: topics, sources, references: refs });
+  assert.equal(topics.length, 741);
+  publishedExamBundle = { topics, refs, manifest, history, sources, catalog };
+  return publishedExamBundle;
+}
+function referenceOnlyFixture(qid) {
+  const bundle = publishedBundle(), current = bundle.catalog.current(qid, 'exam');
+  assert(current, qid + ': published current exam source');
+  const question = answers.present(current.source, { preserveOrder: true });
+  const unbound = bundle.catalog.inspect(question, { profile: 'exam' });
+  assert.equal(unbound.status, 'ambiguous', qid + ': reference-only ambiguity precondition');
+  const archived = unbound.candidates.find(value => value.historical &&
+    value.sourceRevision === current.sourceRevision &&
+    value.binding.recordRevision !== current.binding.recordRevision);
+  assert(archived, qid + ': unchanged source with distinct archived card revision');
+  return { ...bundle, question, binding: archived.binding, archived, current };
+}
+function publishedFreshHarness(qid, fault) {
+  const f = referenceOnlyFixture(qid), h = harness({ f, initial: null });
+  h.context.questionBank = clone(f.sources.exam);
+  let timers = 0;
+  h.context.setInterval = () => ++timers;
+  // Only the draw is forced. Presentation, catalog, validation and persistence
+  // still use their real implementations and the complete published bank.
+  h.context.shuffle = values => {
+    const target = values.find(question => question.id === qid);
+    assert(target); assert.equal(values.length, 741);
+    const first = fault === 'incompatible-source' ? { ...target, e: target.e + ' Technical fixture drift.' } : target;
+    return [first, ...values.filter(question => !REFERENCE_ONLY_QIDS.includes(question.id)),
+      ...values.filter(question => REFERENCE_ONLY_QIDS.includes(question.id) && question.id !== qid)];
+  };
+  if (fault === 'missing-catalog') h.context.window.questionRevisionCatalog = null;
+  if (fault === 'missing-current') {
+    h.context.window.questionRevisionCatalog = revisions.createCatalog({ manifest: f.manifest, history: f.history,
+      authors: f.topics, sources: { ...f.sources, exam: f.sources.exam.filter(question => question.id !== qid) },
+      references: f.refs });
+    assert.equal(h.context.window.questionRevisionCatalog.current(qid, 'exam'), null);
+  }
+  return { ...h, timers: () => timers };
+}
+for (const qid of REFERENCE_ONLY_QIDS) {
+  test('published reference-only ' + qid + ': fresh exam binds all 60 current questions and resumes exact save', async () => {
+    const h = publishedFreshHarness(qid);
+    await h.run('_examComecar()');
+    const state = h.state();
+    assert(state, 'fresh exam must start instead of preserving an ambiguous new draw');
+    assert.match(h.page.innerHTML, /Quest\u00e3o 1 de 60/);
+    assert.equal(state.questions.length, 60); assert.equal(state.questions[0].id, qid);
+    assert.equal(new Set(state.questions.map(question => question.id)).size, 60);
+    assert.equal(state.questionRevisionBindings.length, 60);
+    for (const [index, question] of state.questions.entries()) {
+      const expected = h.f.catalog.current(question.id, 'exam').binding;
+      assert.deepEqual(state.questionRevisionBindings[index], expected);
+      const checked = h.f.catalog.inspect(question, { profile: 'exam', binding: state.questionRevisionBindings[index] });
+      assert.equal(checked.status, 'known'); assert.equal(checked.value.historical, false);
+    }
+    assert.equal(h.events.writes, 1); assert.equal(h.events.tracks, 0); assert.equal(h.timers(), 1);
+    const raw = h.map.get(KEY), stored = JSON.parse(raw);
+    assert.deepEqual(stored.questions, state.questions);
+    assert.deepEqual(stored.questionRevisionBindings, state.questionRevisionBindings);
+    const resumed = harness({ f: h.f, initial: stored });
+    await resumed.run('_examRetomar()');
+    for (const key of ['questions', 'questionRevisionBindings', 'answers', 'idx', 'startTime'])
+      assert.deepEqual(resumed.state()[key], stored[key]);
+    assert.equal(resumed.map.get(KEY), raw); assert.equal(resumed.events.writes, 0); assert.equal(resumed.events.tracks, 0);
+  });
+
+  test('published reference-only ' + qid + ': legacy unbound save remains ambiguous without writes, credit or timer', async () => {
+    const f = referenceOnlyFixture(qid), initial = saved(f, { bindings: false }), h = harness({ f, initial });
+    const raw = h.map.get(KEY); let timers = 0; h.context.setInterval = () => ++timers;
+    await h.run('_examRetomar()');
+    assert.equal(h.state(), null); assert.match(h.page.innerHTML, /Prova preservada/);
+    assert.equal(h.map.get(KEY), raw); assert.equal(h.events.writes, 0); assert.equal(h.events.tracks, 0); assert.equal(timers, 0);
+    assert.equal(f.catalog.inspect(f.question, { profile: 'exam' }).status, 'ambiguous');
+  });
+
+  test('published reference-only ' + qid + ': explicit historical binding retains snapshot, grade and archived card', async () => {
+    const f = referenceOnlyFixture(qid), initial = saved(f, { answered: true }), h = harness({ f, initial });
+    const raw = h.map.get(KEY);
+    await h.run('_examRetomar()');
+    const state = h.state(); assert(state);
+    assert.deepEqual(state.questions, initial.questions); assert.deepEqual(state.answers, initial.answers);
+    assert.deepEqual(state.questionRevisionBindings, initial.questionRevisionBindings);
+    assert.equal(state.revisionViews[0].historical, true);
+    assert.equal(state.revisionViews[0].release, f.archived.release);
+    assert.deepEqual(state.revisionViews[0].references, f.archived.references);
+    assert.notDeepEqual(state.revisionViews[0].references.gitelman_kdigo_2017, f.current.references.gitelman_kdigo_2017);
+    assert.match(h.page.innerHTML, /data-question-revision="historical"/);
+    assert.equal(h.map.get(KEY), raw); assert.equal(h.events.writes, 0); assert.equal(h.events.tracks, 0);
+  });
+}
+for (const fault of ['missing-catalog', 'missing-current', 'incompatible-source']) {
+  test('fresh published exam fails closed for ' + fault + ' without storage writes, credit or timer', async () => {
+    const h = publishedFreshHarness(REFERENCE_ONLY_QIDS[0], fault), before = [...h.map.entries()];
+    await h.run('_examComecar()');
+    assert.equal(h.state(), null); assert.match(h.page.innerHTML, /Prova preservada/);
+    assert.deepEqual([...h.map.entries()], before);
+    assert.equal(h.events.writes, 0); assert.equal(h.events.tracks, 0); assert.equal(h.timers(), 0);
+  });
+}
