@@ -275,6 +275,12 @@ async function fault(page: Page, key: string, mode: string) {
 }
 
 test('actual full 741 catalog loads all four current runtime profiles from the published manifest', async ({ page }, info) => {
+  const expectedRelease = await page.evaluate(async () => {
+    const response = await fetch('/version.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error('Canonical version.json could not be loaded');
+    return (await response.json()).version;
+  });
+  expect(expectedRelease).toMatch(/^\d+\.\d+$/);
   const report = await page.evaluate(() => {
     const w = window as any, bank = w.questionBank;
     return { count: bank.length, manifestCount: Object.keys(w.NQQuestionRevisionManifest.current).length,
@@ -284,7 +290,7 @@ test('actual full 741 catalog loads all four current runtime profiles from the p
         return current && w.questionRevisionCatalog.inspect(w.NQAnswers.present(current.source), { profile, binding: current.binding }).status === 'known';
       })) };
   });
-  expect(report).toMatchObject({ count: 741, manifestCount: 741, release: '16.20', all: true });
+  expect(report).toMatchObject({ count: 741, manifestCount: 741, release: expectedRelease, all: true });
   await info.attach('actual-741-catalog', { contentType: 'application/json', body: JSON.stringify(report) });
 });
 
