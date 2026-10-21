@@ -1,0 +1,65 @@
+{
+  "batch": "CARD-GITELMAN-2026-10-21",
+  "change_type": "medical_editorial",
+  "reference_only": true,
+  "expected_version": "16.20",
+  "allowed_files": [
+    "data/question-revision-history.js",
+    "data/question-revision-manifest.js",
+    "data/refs.js",
+    "docs/editorial/review-batches/CARD-GITELMAN-2026-10-21.json",
+    "docs/editorial/reviews/2026-10-21/gitelman-whole-card-author-A1.json",
+    "docs/editorial/reviews/2026-10-21/gitelman-whole-card-candidate-A1.json",
+    "docs/editorial/reviews/2026-10-21/gitelman-whole-card-independent-A1.json",
+    "docs/editorial/reviews/2026-10-21/gitelman-whole-card-application.md",
+    "index.html",
+    "jogar/index.html",
+    "offline.html",
+    "scripts/editorial-batch-validator.mjs",
+    "scripts/editorial-batch/manifest.mjs",
+    "scripts/editorial-batch/references.mjs",
+    "scripts/editorial-batch/rules.mjs",
+    "sw.js",
+    "tests/answers/gitelman-reference.test.cjs",
+    "tests/answers/question-revisions.test.cjs",
+    "tests/editorial-batch/reference-only.test.mjs",
+    "tests/specs/136-question-revisions.spec.ts",
+    "tests/specs/137-gitelman-reference-card.spec.ts",
+    "version.json"
+  ],
+  "questions": {},
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "gitelman_kdigo_2017": {
+      "action": "update",
+      "before_sha256": "sha256:dc2ed96f52cab471d53e333a4ed0ae4ca237b611e315df84efbb02d10a3bfe6c",
+      "after_sha256": "sha256:aa02ffc07c33a7bf4b2aeb21c7c32839a9215e67dbd549ee5ff314b656ec361f",
+      "consumers": ["1e2668d6", "81740f2d", "940b2835"],
+      "author_review": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "report_path": "docs/editorial/reviews/2026-10-21/gitelman-whole-card-author-A1.json",
+        "report_sha256": "3791f335383d30aa64bf29721748cdf6134c5ae71cdbe3205632e99c43f11b0c",
+        "version_pointer": "/provenance/after",
+        "gate_pointer": "/afterOwnReview"
+      },
+      "independent_review": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "report_path": "docs/editorial/reviews/2026-10-21/gitelman-whole-card-independent-A1.json",
+        "report_sha256": "8127ab3d54a4bc1798407a688f4ddc01052387ac11c06de8088958b835d91aa2",
+        "version_pointer": "/reviewedVariant",
+        "gate_pointer": "/verdict"
+      }
+    }
+  },
+  "external_review": {
+    "greptile": "required",
+    "fallback_reviewer": "Independent technical diff review before commit; results recorded in the draft PR."
+  }
+}

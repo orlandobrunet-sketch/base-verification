@@ -1,4 +1,5 @@
 import { changedQuestionIds, equalExceptRefs } from './questions.mjs';
+import { validateReferenceOnlyBatch } from './references.mjs';
 
 const FORBIDDEN = [
   /(^|\/)\.playwright-mcp\//,
@@ -57,6 +58,7 @@ export function validateBatch(input) {
   } else if (!sameSet(changedQids, declaredQids)) {
     errors.push(diagnostic('QID_SCOPE', `Changed qids [${[...changedQids]}] do not equal declared qids [${[...declaredQids]}]`));
   }
+  if (manifest.reference_only === true) errors.push(...validateReferenceOnlyBatch(input));
 
   for (const [qid, declaration] of Object.entries(manifest.questions)) {
     const before = beforeQuestions.get(qid);
