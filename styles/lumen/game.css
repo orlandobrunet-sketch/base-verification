@@ -913,6 +913,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .opt-key {
+  position: relative;
   display: flex;
   min-width: 0;
   min-height: 26px;
@@ -957,11 +958,12 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.correct .opt-key {
   border-right-color: rgba(var(--nql-success-rgb), .26);
   background: rgba(var(--nql-success-rgb), .1);
-  color: var(--nql-success);
+  color: transparent;
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.correct .opt-key::after {
-  content: none;
+  content: "✓";
+  color: var(--nql-success);
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.correct .opt-body {
@@ -969,7 +971,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.correct::after {
-  content: "✓ Correta";
+  content: none;
   color: var(--nql-success);
   opacity: 1;
   text-transform: none;
@@ -991,11 +993,12 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.wrong .opt-key {
   border-right-color: rgba(var(--nql-danger-rgb), .26);
   background: rgba(var(--nql-danger-rgb), .1);
-  color: var(--nql-danger);
+  color: transparent;
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.wrong .opt-key::after {
-  content: none;
+  content: "×";
+  color: var(--nql-danger);
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.wrong .opt-body {
@@ -1003,7 +1006,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.wrong::after {
-  content: "× Sua escolha";
+  content: none;
   color: var(--nql-danger);
   opacity: 1;
   text-transform: uppercase;
@@ -1022,6 +1025,29 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.opt-eliminated {
   border-style: dashed;
   opacity: .36 !important;
+}
+
+/* O marcador usa a caixa da letra; o resultado não acrescenta linhas ao botão. */
+.opt-result-label { display: none; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option:is(.correct,.wrong) .opt-key::after {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font: 700 1rem/1 var(--nql-font-body);
+}
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.correct .opt-result-label-correct,
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .option.wrong .opt-result-label-wrong {
+  position: absolute;
+  display: block;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 /* ── Debrief e evidência ───────────────────────────────────────── */
@@ -1974,7 +2000,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   padding-top: .5rem;
   border: 1px solid var(--nql-line) !important;
   border-radius: var(--nql-radius-panel) !important;
-  background: rgba(var(--nql-cortex-rgb), .28);
+  background: #000;
   box-shadow: inset 0 1px 0 rgba(var(--nql-parchment-rgb), .025) !important;
 }
 

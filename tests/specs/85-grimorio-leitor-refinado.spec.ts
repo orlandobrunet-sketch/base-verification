@@ -26,11 +26,11 @@ test('leitura segue o favorito pelo teclado e mantém texto e foco ao fechar', a
   const reader = page.locator('.bib-resumo-modal [role="dialog"]');
   await expect(reader).toBeVisible();
   expect(await reader.locator('.nqreader-sections p').allTextContents()).toEqual(original);
-  await expect(reader.getByRole('button', { name: 'Fechar', exact: true })).toBeFocused();
+  await expect(reader.getByRole('button', { name: 'Concluir leitura', exact: true })).toBeFocused();
   await page.keyboard.press('Tab');
   await expect(reader.getByRole('region')).toBeFocused();
   await page.keyboard.press('Shift+Tab');
-  await expect(reader.getByRole('button', { name: 'Fechar', exact: true })).toBeFocused();
+  await expect(reader.getByRole('button', { name: 'Concluir leitura', exact: true })).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
   await expect(read).toBeFocused();

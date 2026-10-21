@@ -909,6 +909,8 @@ test.describe('Central de Comando do aprendizado', () => {
   });
 
   test('organiza o Grimório por descoberta sem inventar denominador de conhecimento', async ({ page }) => {
+    await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
+    await page.routeWebSocket('**/*', socket => socket.close());
     await gotoGame(page);
     await page.waitForFunction(() => typeof (window as any).openDashboard === 'function');
     await page.evaluate(() => (window as any)._loadTopics());
@@ -944,7 +946,7 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(reader.locator('.nqreader-resumo p')).toHaveText(original.resumo);
     await expect(reader.locator('.nqreader-conclusao p')).toHaveText(original.conclusao);
     await expect(reader.locator('.nqreader-curiosidade p')).toHaveText(original.curiosidade);
-    await reader.getByRole('button', { name: 'Fechar', exact: true }).click();
+    await reader.getByRole('button', { name: 'Concluir leitura', exact: true }).click();
     await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
     await expect(card.getByRole('button', { name: 'Ler resumo', exact: true })).toBeFocused();
     await card.getByRole('button', { name: 'Adicionar aos favoritos' }).click();

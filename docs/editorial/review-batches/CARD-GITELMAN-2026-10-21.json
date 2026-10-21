@@ -2,7 +2,7 @@
   "batch": "CARD-GITELMAN-2026-10-21",
   "change_type": "medical_editorial",
   "reference_only": true,
-  "expected_version": "16.21",
+  "expected_version": "16.22",
   "allowed_files": [
     "data/question-revision-history.js",
     "data/question-revision-manifest.js",
@@ -15,16 +15,25 @@
     "index.html",
     "jogar/index.html",
     "js/exam.js",
+    "js/game.js",
+    "js/utils.js",
     "offline.html",
     "scripts/editorial-batch-validator.mjs",
     "scripts/editorial-batch/manifest.mjs",
     "scripts/editorial-batch/references.mjs",
     "scripts/editorial-batch/rules.mjs",
+    "style.css",
+    "styles/lumen/game.css",
     "sw.js",
     "tests/answers/gitelman-reference.test.cjs",
     "tests/answers/exam-question-revisions.test.cjs",
     "tests/answers/question-revisions.test.cjs",
     "tests/editorial-batch/reference-only.test.mjs",
+    "tests/specs/21-dashboard-command-center.spec.ts",
+    "tests/specs/33-gabarito-sem-cor.spec.ts",
+    "tests/specs/65-referencia-leitura-inline.spec.ts",
+    "tests/specs/85-grimorio-leitor-refinado.spec.ts",
+    "tests/specs/106-leitor-resumo.spec.ts",
     "tests/specs/136-question-revisions.spec.ts",
     "tests/specs/137-gitelman-reference-card.spec.ts",
     "tests/specs/138-exam-reference-only-revisions.spec.ts",
@@ -62,7 +71,7 @@
     }
   },
   "external_review": {
-    "greptile": "required",
-    "fallback_reviewer": "Independent technical diff review before commit; results recorded in the draft PR."
+    "greptile": "unavailable",
+    "fallback_reviewer": "/root/release_review_v2; independent technical review of the final HEAD/tree before commit, with findings and validation recorded in PR 902."
   }
 }

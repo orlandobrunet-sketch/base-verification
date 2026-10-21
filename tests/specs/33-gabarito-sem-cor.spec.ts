@@ -1,6 +1,17 @@
 import { test, expect, Page } from '@playwright/test';
 import { injectBossState, injectGameState, pickFirstOption } from '../helpers/game';
 
+test.use({ serviceWorkers: 'block' });
+test.beforeEach(async ({ page, baseURL }) => {
+  const localPort = new URL(baseURL || 'http://localhost:5500').port;
+  await page.route('**/*', route => {
+    const url = new URL(route.request().url());
+    return url.protocol === 'http:' && ['localhost', '127.0.0.1'].includes(url.hostname) && url.port === localPort
+      ? route.continue() : route.abort();
+  });
+  await page.routeWebSocket('**/*', ws => ws.close());
+});
+
 /**
  * O gabarito não pode depender de cor, nem do mouse (v14.71).
  *
@@ -82,13 +93,16 @@ test.describe('Gabarito legível sem depender de cor', () => {
     expect(marca.toLowerCase(), 'a errada precisa dizer "sua escolha" em texto no boss').toContain('sua escolha');
   });
 
-  test('o modo normal não perdeu as marcações que já tinha', async ({ page }) => {
+  test('no modo normal a correta mantém nome acessível e ícone no marcador', async ({ page }) => {
     await page.goto('/jogar/');
     await injectGameState(page);
     await responder(page);
 
-    const marca = await conteudoDepois(page, '#options .option.correct');
-    expect(marca.toLowerCase()).toContain('correta');
+    const correta = page.locator('#options .option.correct').first();
+    await expect(correta).toHaveAccessibleName(/Resposta correta/);
+    await expect(correta.locator('.opt-result-label-correct')).toHaveText('Resposta correta');
+    const marca = await conteudoDepois(page, '#options .option.correct .opt-key');
+    expect(marca).toContain('✓');
   });
 
   test('responder não joga o foco no corpo da página', async ({ page }) => {
