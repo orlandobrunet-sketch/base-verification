@@ -1,22 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 
-/**
- * O Oráculo saiu da sobreposição e entrou na página.
- *
- * Era uma folha `position: fixed` no rodapé, com `aria-modal` e o resto da
- * página escurecido. Para perguntar SOBRE a questão, a pessoa perdia a
- * questão — tanto que o próprio diálogo precisava REIMPRIMIR o enunciado num
- * quadro apertado, e a conversa cabia numa faixa fina entre esse enunciado
- * duplicado e o campo de texto.
- *
- * Medido antes, em 390px: caixa de 337px de altura colada no rodapé, tudo
- * atrás escurecido e desfocado.
- *
- * Agora o painel entra logo abaixo do veredito: o enunciado continua legível
- * acima, a conversa cresce com a rolagem da própria página e não há enunciado
- * repetido. Não é diálogo, é região do documento.
- */
+/** Tela dedicada: questão e conversa juntas, com retorno ao estado original. */
 
 test.use({ serviceWorkers: 'block' });
 
@@ -29,7 +14,7 @@ async function abrirOraculo(page: Page, opcoes: { logado: boolean; largura?: num
   await page.setViewportSize({ width: opcoes.largura ?? 1280, height: (opcoes.largura ?? 1280) === 390 ? 844 : 800 });
   await page.route('**/*', (rota) => {
     const url = rota.request().url();
-    return (new URL(url).hostname === 'localhost' || url.includes('ai-mentor')) ? rota.continue() : rota.abort();
+    return new URL(url).hostname === 'localhost' ? rota.continue() : rota.abort();
   });
   if (opcoes.resposta) {
     await page.route('**/functions/v1/ai-mentor', (rota) => rota.fulfill({
@@ -53,30 +38,18 @@ const perguntar = async (page: Page) => {
   await page.locator('#mentorInput').press('Enter');
 };
 
-test.describe('Oráculo dentro da página', () => {
-  test('é região do fluxo, não sobreposição — e a questão continua visível', async ({ page }) => {
-    await abrirOraculo(page, { logado: true, largura: 390 });
+test.describe('Oráculo em tela dedicada', () => {
+  test('mostra o contexto ao lado da conversa e isola os controles da questão original', async ({ page }) => {
+    await abrirOraculo(page, { logado: true });
     const painel = page.locator('#mentorPanel');
-
-    const medida = await painel.evaluate((el) => ({
-      posicao: getComputedStyle(el).position,
-      papel: el.getAttribute('role'),
-      modal: el.getAttribute('aria-modal'),
-    }));
-    expect(medida.posicao, 'voltou a ser sobreposição').not.toBe('fixed');
-    expect(medida.papel).toBe('region');
-    expect(medida.modal, 'região do documento não é diálogo modal').toBeNull();
-
-    // O enunciado precisa continuar na tela: é sobre ele que se pergunta.
-    const questaoNaTela = await page.locator('#question').evaluate((el) => {
-      const r = el.getBoundingClientRect();
-      return r.top < window.innerHeight && r.bottom > 0;
-    });
-    expect(questaoNaTela, 'a questão saiu da tela ao abrir o Oráculo').toBe(true);
-
-    // E não pode haver enunciado duplicado dentro do painel.
-    await expect(painel, 'o enunciado voltou a ser reimpresso dentro do painel')
-      .not.toContainText(QUESTAO.q.slice(0, 40));
+    await expect(page.locator('#oraclePage')).toHaveAttribute('role', 'main');
+    await expect(page.locator('#oracleCase')).toContainText(QUESTAO.q);
+    await expect(page.locator('#oracleCase .nq-oracle-options li')).toHaveCount(4);
+    expect(await page.locator('#mainApp').evaluate(el => (el as HTMLElement).inert)).toBe(true);
+    const caso = (await page.locator('#oracleCase').boundingBox())!;
+    const chat = (await painel.boundingBox())!;
+    expect(caso.x + caso.width).toBeLessThan(chat.x);
+    expect(await page.locator('#oraclePage').evaluate(el => getComputedStyle(el).position)).toBe('fixed');
   });
 
   test('sem conta, não há campo — há o caminho para ter acesso', async ({ page }) => {
@@ -124,7 +97,7 @@ test.describe('Oráculo dentro da página', () => {
 
   test('Escape e "Voltar à questão" devolvem o foco a quem abriu', async ({ page }) => {
     await abrirOraculo(page, { logado: true });
-    // Sem armadilha de foco: quem abriu recebe o foco de volta ao fechar.
+    await page.evaluate(() => (window as any).closeMentorModal());
     await page.evaluate(() => {
       const botao = document.createElement('button');
       botao.id = 'origemFalsa';
@@ -135,14 +108,14 @@ test.describe('Oráculo dentro da página', () => {
     });
     await expect(page.locator('#mentorPanel')).toBeVisible();
 
-    await page.locator('#mentorPanel [data-action="closeMentorModal"]').first().click();
-    await expect(page.locator('#mentorPanel')).toHaveCount(0);
+    await page.locator('#oraclePage [data-action="closeMentorModal"]').first().click();
+    await expect(page.locator('#mentorPanel')).not.toBeVisible();
     expect(await page.evaluate(() => document.activeElement?.id)).toBe('origemFalsa');
 
     await page.evaluate(() => { (document.getElementById('origemFalsa') as HTMLElement).focus(); (window as any).openMentorModal(); });
     await expect(page.locator('#mentorPanel')).toBeVisible();
     await page.locator('#mentorInput').press('Escape');
-    await expect(page.locator('#mentorPanel')).toHaveCount(0);
+    await expect(page.locator('#mentorPanel')).not.toBeVisible();
     expect(await page.evaluate(() => document.activeElement?.id)).toBe('origemFalsa');
   });
 

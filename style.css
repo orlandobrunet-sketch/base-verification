@@ -13854,6 +13854,18 @@ body.nq-studying { padding-bottom: env(safe-area-inset-bottom, 0px) !important; 
 .nq-study-surface { --txt: #eee9d2; --txt-dim: #a4aebe; --gold: #e5cf83; font-family: 'Philosopher', system-ui, sans-serif; }
 .nq-study-surface .btn { font-family: inherit; text-transform: none; background: transparent; border: 1px solid #425563; border-radius: 6px; box-shadow: none; color: var(--txt); padding: 10px 16px; }
 .nq-study-surface .btn.gold { background: var(--gold); color: #101620; border-color: var(--gold); }
+/* A confirmação aberta pelo Mapa pertence ao mesmo fluxo de estudo. */
+.nq-study-confirmation { background: #080b11; font-family: var(--nql-font-body); }
+.nq-study-confirmation .nq-study-heading h1 { font-family: var(--nql-font-display); }
+.nq-study-surface .nq-study-start-choice { display: grid; grid-template-columns: minmax(0,1fr); gap: 20px; padding: clamp(20px, 4vw, 32px); background: #101721; border: 1px solid #364553; border-radius: 12px; max-width: 52rem; font-family: var(--nql-font-body); }
+.nq-study-start-choice h2 { font-family: var(--nql-font-display); font-size: 1.45rem; }
+.nq-study-start-selection { display: grid; gap: 7px; padding-bottom: 20px; border-bottom: 1px solid #364553; overflow-wrap: anywhere; }
+.nq-study-start-selection > span { color: var(--txt-dim); font-size: .95rem; }
+.nq-study-start-selection > span:first-child { font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+.nq-study-start-selection > strong { font-size: 1.25rem; font-weight: 600; color: var(--gold); }
+.nq-study-start-choice .nq-study-saved-status { color: #a9d8e4; font-size: .9rem; }
+.nq-study-start-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.nq-study-start-actions .btn { margin: 0; }
 .nq-study-surface #axisCardList [role="button"] { border-width: 0 0 1px 3px !important; border-color: #34434e !important; background: transparent !important; }
 .nq-study-surface #axisCardList [aria-pressed="true"] { border-left-color: #baa6d2 !important; background: #171e2c !important; }
 .nq-study-session-header { display: grid; grid-template-columns: auto minmax(0,1fr) auto; align-items: center; gap: 16px 24px; padding-bottom: 20px; border-bottom: 1px solid #34434e; }

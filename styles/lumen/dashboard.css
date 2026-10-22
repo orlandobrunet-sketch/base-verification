@@ -3548,7 +3548,7 @@
 
 /* Grimório aprovado: raridade legível, ação de leitura e expansão contida. */
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-list{gap:12px}
-#nqDashboard[data-nq-ui="lumen"] .nqd-library-item{--library-accent:#91a0ad;--library-ink:color-mix(in srgb,var(--library-accent) 55%,white);border:1px solid color-mix(in srgb,var(--library-accent) 28%,transparent);border-left:3px solid var(--library-accent);border-radius:8px;padding:21px 22px;background:color-mix(in srgb,var(--library-accent) var(--library-tint,11%),#0b111c);gap:15px 28px}
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-item{--library-accent:#91a0ad;--library-ink:color-mix(in srgb,var(--library-accent) 55%,white);border:1px solid color-mix(in srgb,var(--library-accent) 28%,transparent);border-left:5px solid var(--library-accent);border-radius:8px;padding:21px 22px 21px 20px;background:color-mix(in srgb,var(--library-accent) var(--library-tint,11%),#0b111c);gap:15px 28px}
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-item[data-library-kind="scroll"][data-library-rarity="raro"]{--library-accent:#67a8ed}
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-item[data-library-kind="scroll"][data-library-rarity="épico"]{--library-accent:#b59aeb}
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-item[data-library-kind="scroll"][data-library-rarity="lendário"]{--library-accent:#dfc47f;--library-tint:13%}
@@ -3577,7 +3577,7 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-item.is-expanded .nqd-library-detail{animation:nqdLibraryReadReveal .2s ease-out}
 @keyframes nqdLibraryReadReveal{from{opacity:0}to{opacity:1}}
 @container library-list (min-width:48rem){#nqDashboard[data-nq-ui="lumen"] .nqd-library-item{grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(175px,.7fr)}#nqDashboard[data-nq-ui="lumen"] .nqd-library-actions{padding-top:34px}}
-@container library-list (max-width:47.99rem){#nqDashboard[data-nq-ui="lumen"] .nqd-library-main{padding-right:26px}#nqDashboard[data-nq-ui="lumen"] .nqd-library-actions{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:4px 18px}#nqDashboard[data-nq-ui="lumen"] .nqd-library-actions [data-action="_dashToggleArticle"]{flex-basis:100%}#nqDashboard[data-nq-ui="lumen"] .nqd-library-item{padding:18px 16px}#nqDashboard[data-nq-ui="lumen"] .nqd-library-title{font-size:1.35rem}}
+@container library-list (max-width:47.99rem){#nqDashboard[data-nq-ui="lumen"] .nqd-library-main{padding-right:26px}#nqDashboard[data-nq-ui="lumen"] .nqd-library-actions{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:4px 18px}#nqDashboard[data-nq-ui="lumen"] .nqd-library-actions [data-action="_dashToggleArticle"]{flex-basis:100%}#nqDashboard[data-nq-ui="lumen"] .nqd-library-item{padding:18px 16px 18px 14px}#nqDashboard[data-nq-ui="lumen"] .nqd-library-title{font-size:1.35rem}}
 @media(prefers-reduced-motion:reduce){#nqDashboard[data-nq-ui="lumen"] .nqd-library-item.is-expanded .nqd-library-detail{animation:none}}
 
 /* Formas da jornada: somente os níveis existentes, com arte ampliada por ação. */
@@ -3876,7 +3876,8 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-item[data-library-rarity="raro"]{--library-accent:var(--nq-accent-cyan)}#nqDashboard[data-nq-ui="lumen"] .nqd-library-item[data-library-rarity="épico"]{--library-accent:var(--nq-accent-violet)}#nqDashboard[data-nq-ui="lumen"] .nqd-library-item[data-library-rarity="lendário"]{--library-accent:var(--nq-accent-gold);--library-tint:18%}
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-reading-section h4{color:var(--nq-accent-gold)}#nqDashboard[data-nq-ui="lumen"] .nqd-library-reading-section.is-conclusion h4{color:var(--nq-accent-green)}#nqDashboard[data-nq-ui="lumen"] .nqd-library-reading-section.is-curiosity h4{color:var(--nq-accent-violet)}
 #nqDashboard[data-nq-ui="lumen"] a[href]{color:var(--nq-accent-cyan);text-decoration:underline;text-underline-offset:3px}
-#nqDashboard[data-nq-ui="lumen"] .nqd-skill-row[data-state="attention"] .nqd-skill-sample{color:var(--nq-accent-rose)}#nqDashboard[data-nq-ui="lumen"] .nqd-skill-row[data-state="consistent"] .nqd-skill-sample{color:var(--nq-accent-green)}
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills .nqd-skill-sample{color:var(--nql-text-soft)}
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills .nqd-skill-row[data-skill-id="drc_nefroprotecao"] .nqd-skill-name{color:var(--nql-parchment)}
 
 /* Blocos opacos: uma superfície por assunto, com detalhes sob demanda. */
 #nqDashboard[data-nq-ui="lumen"] :is(.nqd-command-grid,.nqd-overview-details) { align-items: start; gap: 1rem; }
@@ -3908,6 +3909,10 @@
 
 /* Inventário do Grimório: descoberta pessoal separada da prévia administrativa. */
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-overview { display: block; padding: 1rem 1.2rem; border: 1px solid var(--nqd-rule-strong); border-radius: .6rem; background: #000; }
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-library:has(#nqDashLibraryDiscovery > option[value="all"]) > .nqd-library-overview {
+  background: #21182f;
+  border-color: color-mix(in srgb, var(--nq-accent-violet) 48%, #21182f);
+}
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-catalogue-note { max-width: 88ch; margin: .65rem 0 0; color: var(--nql-text-soft); font-size: .82rem; line-height: 1.6; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-tabs { flex-wrap: wrap; overflow: visible; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-tabs button { min-width: 0; }
@@ -4064,14 +4069,52 @@
 }
 #nqDashboard[data-nq-ui="lumen"] .nqd-map-suggestion {
   padding: 1rem;
-  border: 1px solid #715735;
+  border: 1px solid var(--nqd-rule-strong);
   border-inline-start: 3px solid var(--nqd-gold);
   border-radius: .65rem;
-  background: #271e16;
+  background: #000;
 }
 #nqDashboard[data-nq-ui="lumen"] .nqd-map-browse {
-  padding: 1rem 1.2rem;
-  border: 1px solid #365d62;
-  border-radius: .65rem;
-  background: #0c2529;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+/* Cada bloco corresponde a uma area; a faixa usa sua identidade, sem avaliar desempenho. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-area {
+  --nqd-area-accent: var(--nql-text-muted);
+  margin-top: .8rem;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid var(--nqd-rule-strong);
+  border-inline-start: 3px solid var(--nqd-area-accent);
+  border-radius: .55rem;
+  background: #000;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-area:has(> [data-map-skill="glomerulopatias"]) { --nqd-area-accent: var(--nqd-axis-glomerulopatias); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-area:has(> [data-map-skill="hidroeletrolitico_acidobase"]) { --nqd-area-accent: var(--nqd-axis-hidroeletrolitico_acidobase); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-area:has(> [data-map-skill="transplante"]) { --nqd-area-accent: var(--nqd-axis-transplante); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-area:has(> [data-map-skill="dialise"]) { --nqd-area-accent: var(--nqd-axis-dialise); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-area:has(> [data-map-skill="lra_critico"]) { --nqd-area-accent: var(--nqd-axis-lra_critico); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-area:has(> [data-map-skill="drc_nefroprotecao"]) { --nqd-area-accent: var(--nqd-axis-drc_nefroprotecao); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-area:has(> [data-map-skill="nefrologia_geral_diagnostico"]) { --nqd-area-accent: var(--nqd-axis-nefrologia_geral_diagnostico); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-area-heading > .nqd-action { border-color: var(--nqd-rule-strong); background: #0c1118; color: var(--nql-text); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-area-heading > .nqd-action:is(:hover, :focus-visible) { border-color: var(--nqd-area-accent); background: #141b24; }
+
+@media (min-width: 61.26rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-rail { background: #080c12; box-shadow: .6rem 0 2rem #0005; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-rail::after { background: var(--nqd-gold); opacity: .3; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-brand { color: var(--nql-parchment); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-rail-kicker { color: var(--nqd-gold); font-size: .75rem; letter-spacing: .16em; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-profile { margin-inline: 0; padding-block: 1rem; border-color: color-mix(in srgb, var(--nqd-gold) 30%, transparent); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-profile-avatar { border: 1px solid color-mix(in srgb, var(--nqd-gold) 58%, #161d28); border-radius: .45rem; box-shadow: 0 0 0 3px #f1cf7a09; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-profile-name { color: var(--nql-parchment); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav { gap: .4rem; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav-item { min-height: 3rem; padding: .7rem .75rem; border: 1px solid #222a36; border-radius: .4rem; background: #0b111a; color: var(--nql-text-soft); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav-icon { display: grid; place-items: center; width: 1.6rem; height: 1.6rem; color: var(--nqd-gold); filter: none; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav-icon svg { width: 1.2rem; height: 1.2rem; stroke-width: 1.7; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav-item:hover { background: #141c27; border-color: #526173; color: var(--nql-parchment); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav-item:is(.is-active, [aria-selected="true"]) { background: #12252b; border-color: #4c7d85; color: var(--nql-parchment); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav-item:is(.is-active, [aria-selected="true"]) .nqd-nav-icon { color: var(--nqd-cyan); filter: none; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav-item::before { box-shadow: none; }
 }

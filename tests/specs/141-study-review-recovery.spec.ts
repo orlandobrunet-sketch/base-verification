@@ -76,6 +76,14 @@ for (const held of ['expired', 'complete'] as const) {
     await practiceArea(page, 'drc');
     const notice = page.locator('[data-study-resume-choice]');
     await expect(notice).toBeVisible();
+    await expect(notice.locator('[data-study-selected-areas]')).toHaveText('DRC');
+    await expect(notice).toContainText('20 questões dos temas escolhidos');
+    const heading = page.locator('.study-mode-popup .nq-study-heading');
+    await expect(heading.getByRole('heading', { name: 'Estudo e Revisão', exact: true })).toBeVisible();
+    expect((await heading.boundingBox())!.y + (await heading.boundingBox())!.height)
+      .toBeLessThan((await notice.boundingBox())!.y);
+    expect(await notice.evaluate(el => getComputedStyle(el).fontFamily)).toContain('Source Sans 3');
+    expect(await notice.locator('p').first().evaluate(el => getComputedStyle(el).fontFamily)).toContain('Source Sans 3');
     await expect(notice).toContainText(held === 'expired'
       ? 'Esta sessão ultrapassou o prazo de 24 horas para retomada.'
       : 'Esta sessão está marcada como concluída.');
@@ -94,6 +102,7 @@ for (const held of ['expired', 'complete'] as const) {
     expect(await bytes(page)).toEqual(before);
     await notice.getByRole('button', { name: 'Iniciar nova sessão' }).click();
     await expect(page.locator('#studyOptions button')).toHaveCount(4);
+    await page.screenshot({ path: info.outputPath(`held-${held}-confirmed-session.png`), fullPage: true });
     const after = await bytes(page);
     expect(after.progress).toEqual(before.progress);
     expect(after.study).not.toBe(originalRaw);

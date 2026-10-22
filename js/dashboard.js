@@ -1334,22 +1334,30 @@
 
     const cards = cardModels.length ? cardModels.map(({ achievement, isUnlocked, progress, value, state }) => {
       return `
-        <article class="nqd-achievement${isUnlocked ? ' is-unlocked' : ' is-locked'}" data-state="${isUnlocked ? 'unlocked' : state}" data-achievement-id="${achievement.id}" data-achievement-status="${state}">
+        <article class="nqd-achievement${isUnlocked ? ' is-unlocked' : ' is-locked'}" data-state="${isUnlocked ? 'unlocked' : state}" data-achievement-id="${achievement.id}" data-achievement-status="${state}" data-achievement-category="${_escape(_achievementCategory(achievement.id))}">
           <button type="button" class="nqd-achievement-mark" data-action="_dashAchievementDetail" data-pass-this="1" data-achievement-preview="${achievement.id}" aria-label="${_escape(achievement.name)} — ampliar arte e requisito">${_achievementIconMarkup(achievement)}<span class="nqd-art-expand" aria-hidden="true">${_svg('search')}</span></button>
           <div class="nqd-achievement-body">
             <span class="nqd-state">${isUnlocked ? '✓ Conquistada' : progress && progress.status ? progress.status : state === 'progress' ? 'Em progresso' : 'A conquistar'}</span>
             <h3 class="nqd-achievement-title">${_escape(achievement.name)}</h3>
             <small class="nqd-achievement-category">${_escape(_achievementCategory(achievement.id))}</small>
             <p class="nqd-achievement-copy">${_escape(achievement.description)}</p>
-            ${progress && !isUnlocked && (progress.target > 0 || progress.note) ? `<div class="nqd-achievement-progress">${progress.target > 0 ? `<span>Progresso: ${_formatNumber(value)} / ${_formatNumber(progress.target)}</span>${_meterMarkup(value, progress.target, `Progresso de ${achievement.name}`, true)}` : ''}${progress.note ? `<small class="nqd-achievement-progress-note">${_escape(progress.note)}</small>` : ''}</div>` : ''}
+            ${progress && !isUnlocked && progress.target > 0 ? `<div class="nqd-achievement-progress"><span>Progresso: ${_formatNumber(value)} / ${_formatNumber(progress.target)}</span>${_meterMarkup(value, progress.target, `Progresso de ${achievement.name}`, true)}</div>` : ''}
+            ${!isUnlocked && progress && progress.note ? '<small class="nqd-achievement-progress-note">Condição e observações disponíveis na lupa.</small>' : ''}
           </div>
         </article>
       `;
     }).join('') : '<div class="nqd-empty"><strong>Selos indisponíveis.</strong><p>O catálogo de conquistas não pôde ser carregado.</p></div>';
 
+    const ownedBadges = BADGE_MILESTONES.filter(badge => correctTotal >= badge.required ||
+      (badgeHistory && typeof badgeHistory === 'object' && !Array.isArray(badgeHistory) && badgeHistory[badge.id]));
+    const ownedTrophies = cardModels.filter(model => model.isUnlocked);
+    const showcase = [...ownedBadges.map(badge => ({ name: badge.name, source: `assets/badges/badge${badge.id}.webp`, attribute: `data-badge-preview="${badge.id}"`, kind: 'Selo da jornada' })),
+      ...ownedTrophies.map(({achievement}) => ({ name: achievement.name, source: `assets/achievements/${ACHIEVEMENT_ART[achievement.id]}.webp`, attribute: `data-achievement-preview="${achievement.id}"`, kind: 'Conquista do perfil' }))];
+    const categories = [...new Set(achievements.map(achievement => _achievementCategory(achievement.id)))];
+
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-achievements" role="tabpanel" aria-labelledby="nqdTab-achievements" data-dash-pane="achievements" hidden>
-        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Conquistas</h1><p class="nqd-section-copy">Selos da jornada. Conquistas que ficam com você.</p></div></div>
+        <div class="nqd-section-header"><div><span class="nqd-eyebrow nqd-eyebrow--reward">Sua galeria de troféus</span><h1 class="nqd-title-lg">Conquistas</h1><p class="nqd-section-copy">Cada selo, uma etapa da sua história. Cada conquista, um marco que fica com você.</p></div></div>
 
         <section class="nqd-achievement-spotlight${nextBadge ? '' : ' is-complete'}" data-acquired="${!nextBadge || !!featuredOwned}" aria-labelledby="nqdAchievementSpotlightTitle">
           <button type="button" class="nqd-achievement-spotlight-art" data-action="_dashAchievementDetail" data-pass-this="1" data-badge-preview="${featuredBadge.id}" aria-label="${_escape(featuredBadge.name)} — ampliar próximo selo"><picture><source type="image/webp" srcset="assets/badges/badge${featuredBadge.id}-384.webp 384w, assets/badges/badge${featuredBadge.id}.webp 512w" sizes="88px"><img src="${featuredBadge.image}" srcset="${featuredBadge.image} 384w, assets/badges/badge${featuredBadge.id}.png 512w" sizes="88px" alt="" decoding="async" width="512" height="512"></picture></button>
@@ -1363,6 +1371,11 @@
           <button type="button" class="nqd-primary-action" data-action="${data.save ? '_dashResumeJourney' : '_dashStartJourney'}" data-nqd-primary="true">${data.save ? 'Continuar jornada' : 'Começar jornada'}${_svg('arrow')}</button>
         </section>
 
+        <section class="nqd-trophy-showcase" aria-labelledby="nqdTrophyShowcaseTitle">
+          <header><div><span class="nqd-eyebrow nqd-eyebrow--reward">O que você já conquistou</span><h2 id="nqdTrophyShowcaseTitle">Sua vitrine</h2></div><span>${ownedBadges.length} de 5 selos · ${unlocked.size} de ${achievements.length} conquistas</span></header>
+          ${showcase.length ? `<ul>${showcase.map(trophy => `<li><button type="button" data-action="_dashAchievementDetail" data-pass-this="1" ${trophy.attribute} aria-label="${_escape(trophy.name)} — conquistado — ampliar arte e requisito"><img src="${_escape(trophy.source)}" alt="" width="512" height="512" decoding="async"><span>${_escape(trophy.name)}</span><small>${trophy.kind}</small></button></li>`).join('')}</ul>` : '<p class="nqd-trophy-empty">Seu primeiro troféu terá lugar aqui. O próximo selo começa com 20 acertos na mesma jornada.</p>'}
+        </section>
+
         <div class="nqd-badge-path-header"><h2>Caminho dos 100 acertos</h2><span>na jornada atual</span></div>
         ${_badgePathMarkup(correctTotal)}
 
@@ -1370,10 +1383,11 @@
           <div><span class="nqd-eyebrow nqd-eyebrow--reward">Desafios do perfil</span><h2>Conquistas especiais</h2></div>
           <div class="nqd-achievement-summary" aria-label="${unlocked.size} de ${achievements.length} conquistas especiais conquistadas"><strong>${unlocked.size}</strong><span>de ${achievements.length}</span></div>
         </div>
-        <div class="nqd-achievement-filters" role="group" aria-label="Filtrar conquistas especiais">
+        <div class="nqd-achievement-tools"><div class="nqd-achievement-filters" role="group" aria-label="Filtrar conquistas especiais">
           <button type="button" class="nqd-achievement-filter" data-achievement-filter="unlocked" aria-pressed="false">Conquistadas</button>
+          <button type="button" class="nqd-achievement-filter" data-achievement-filter="progress" aria-pressed="false">A conquistar</button>
           <button type="button" class="nqd-achievement-filter is-active" data-achievement-filter="all" aria-pressed="true">Todas</button>
-        </div>
+        </div><label class="nqd-achievement-category-filter">Categoria<select id="nqdAchievementCategory"><option value="all">Todas</option>${categories.map(category => `<option value="${_escape(category)}">${_escape(category)}</option>`).join('')}</select></label></div>
         <p class="nqd-sr-only" id="nqdAchievementFilterStatus" role="status" aria-live="polite"></p>
         <div class="nqd-achievement-grid">${cards}</div>
         <div class="nqd-empty" id="nqdAchievementFilterEmpty" hidden><strong>Nenhuma conquista nesta seleção.</strong><p>Escolha outro filtro para ver seus desafios.</p></div>
@@ -1835,7 +1849,7 @@
 
     const center = size / 2;
     const radius = 108;
-    const labelRadius = 139;
+    const labelRadius = 160;
     const angleFor = index => -Math.PI / 2 + (Math.PI * 2 * index) / skills.length;
     const pointFor = (index, factor) => ({
       x: center + Math.cos(angleFor(index)) * radius * factor,
@@ -1942,15 +1956,16 @@
       const x = center + Math.cos(angle) * labelRadius;
       const y = center + Math.sin(angle) * labelRadius;
       context.fillStyle = identityColors.get(skill.id) || '#b8c6d8';
-      context.font = '600 11px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+      context.font = '600 18px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
       context.textAlign = Math.cos(angle) > 0.25 ? 'left' : Math.cos(angle) < -0.25 ? 'right' : 'center';
-      context.textBaseline = Math.sin(angle) > 0.5 ? 'top' : Math.sin(angle) < -0.5 ? 'bottom' : 'middle';
+      context.textBaseline = 'middle';
       const rotulo = medido(skill) ? `${Math.round(skill.accuracy)}%` : '—';
-      const label = `${shortLabels[skill.id] || skill.label.slice(0, 3).toUpperCase()} · ${rotulo}`;
-      const width = context.measureText(label).width;
+      const label = shortLabels[skill.id] || skill.label.slice(0, 3).toUpperCase();
+      const width = Math.max(context.measureText(label).width, context.measureText(rotulo).width);
       const offset = context.textAlign === 'right' ? -width : context.textAlign === 'center' ? -width / 2 : 0;
       const labelX = Math.max(8 - offset, Math.min(size - 8 - width - offset, x));
-      context.fillText(label, labelX, y);
+      context.fillText(label, labelX, y - 10);
+      context.fillText(rotulo, labelX, y + 12);
     });
   }
 
@@ -2009,8 +2024,10 @@
   }
 
   function _setAchievementFilter(root, filter, announce) {
-    const allowed = new Set(['unlocked', 'all']);
+    const allowed = new Set(['unlocked', 'progress', 'all']);
     const selected = allowed.has(filter) ? filter : 'all';
+    const category = root.querySelector('#nqdAchievementCategory')?.value || 'all';
+    root.dataset.achievementFilter = selected;
     let visible = 0;
     root.querySelectorAll('.nqd-achievement-filter').forEach(button => {
       const active = button.dataset.achievementFilter === selected;
@@ -2018,8 +2035,10 @@
       button.setAttribute('aria-pressed', String(active));
     });
     root.querySelectorAll('[data-achievement-status]').forEach(card => {
-      const matches = selected === 'all'
-        || (selected === 'unlocked' && card.dataset.achievementStatus === 'unlocked');
+      const matchesState = selected === 'all'
+        || (selected === 'unlocked' && card.dataset.achievementStatus === 'unlocked')
+        || (selected === 'progress' && card.dataset.achievementStatus !== 'unlocked');
+      const matches = matchesState && (category === 'all' || card.dataset.achievementCategory === category);
       card.hidden = !matches;
       if (matches) visible += 1;
     });
@@ -2128,6 +2147,7 @@
     root.querySelectorAll('.nqd-achievement-filter').forEach(button => {
       button.addEventListener('click', () => _setAchievementFilter(root, button.dataset.achievementFilter, true));
     });
+    root.querySelector('#nqdAchievementCategory')?.addEventListener('change', () => _setAchievementFilter(root, root.dataset.achievementFilter || 'all', true));
     _setAchievementFilter(root, 'all', false);
 
     _tabMediaQuery = window.matchMedia('(max-width: 61.25rem)');

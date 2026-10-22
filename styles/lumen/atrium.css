@@ -42,10 +42,13 @@
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium {
   --nql-atrium-rail: clamp(1rem, 4vw, 5rem);
   --nql-atrium-content-gutter: clamp(3rem, 6vw, 7rem);
+  --nql-atrium-shell-width: 96rem;
+  --nql-atrium-header-gutter: max(var(--nql-atrium-rail), calc((100% - var(--nql-atrium-shell-width)) / 2 + var(--nql-atrium-rail)));
   position: relative;
   z-index: 1;
   display: grid;
-  width: min(100%, 96rem);
+  /* A superfície do cabeçalho alcança as bordas; o conteúdo mantém o shell. */
+  width: 100%;
   min-height: 100svh;
   margin-inline: auto;
   /* Coluna explícita: a automática crescia até o maior conteúdo sem quebra e,
@@ -59,7 +62,7 @@
   z-index: -1;
   top: 0;
   bottom: 0;
-  left: var(--nql-atrium-rail);
+  left: var(--nql-atrium-header-gutter);
   width: 1px;
   background: linear-gradient(to bottom, transparent, var(--nql-line-strong) 18%, var(--nql-line) 82%, transparent);
   content: "";
@@ -73,7 +76,7 @@
   flex-wrap: wrap;
   justify-content: space-between;
   min-height: 4.75rem;
-  padding: .75rem clamp(1rem, 4vw, 5rem);
+  padding: .75rem var(--nql-atrium-header-gutter);
   border-bottom: 1px solid var(--nql-line);
   align-items: center;
   gap: .5rem 1rem;
@@ -181,7 +184,8 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   container-type: inline-size;
   container-name: nql-atrium;
   display: grid;
-  width: 100%;
+  width: min(100%, var(--nql-atrium-shell-width));
+  margin-inline: auto;
   padding: clamp(1.5rem, 2vw, 2rem) var(--nql-atrium-rail) clamp(3rem, 6vw, 5rem) var(--nql-atrium-content-gutter);
   grid-template-columns: minmax(0, 1.16fr) minmax(21rem, .84fr);
   align-items: start;
@@ -191,6 +195,11 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__journey {
   min-width: 0;
   max-width: 48rem;
+  margin-top: 12px;
+}
+
+#welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__journey {
+  --nql-atrium-card-bottom-gap: 8px;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__eyebrow,
@@ -240,7 +249,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   display: grid !important;
   width: 100% !important;
   max-width: 40rem;
-  margin: 1.6rem 0 0 !important;
+  margin: calc(1.6rem + var(--nql-atrium-card-bottom-gap, 0px)) 0 0 !important;
   padding: .9rem 0 .85rem !important;
   border: 0 !important;
   border-top: 1px solid var(--nql-line-gold) !important;
@@ -1051,7 +1060,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   grid-template-columns: 2.25rem minmax(0, 1fr) auto;
   align-items: center;
   gap: .8rem;
-  background: linear-gradient(100deg, rgba(var(--nql-route-rgb), .13), rgba(var(--nql-abyss-rgb), .15)) !important;
+  background: #05070b !important;
   color: var(--nql-text) !important;
   box-shadow: none !important;
   text-align: left !important;
@@ -1083,7 +1092,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route:focus-visible,
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route.is-current {
   border-color: rgba(var(--nql-route-rgb), .65) !important;
-  background: linear-gradient(100deg, rgba(var(--nql-route-rgb), .22), rgba(var(--nql-abyss-rgb), .1)) !important;
+  background: #0b1018 !important;
   color: var(--nql-route-accent) !important;
   transform: none !important;
 }
@@ -1097,10 +1106,10 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   display: grid;
   width: 2.25rem;
   height: 2.25rem;
-  border: 1px solid rgba(var(--nql-route-rgb), .38);
+  border: 1px solid rgba(var(--nql-route-rgb), .28);
   border-radius: .375rem;
   place-items: center;
-  background: rgba(var(--nql-route-rgb), .16);
+  background: #0b121b;
   color: var(--nql-route-accent) !important;
 }
 
@@ -1126,7 +1135,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__resume-shell { margin-top: 1.25rem; }
   #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__resume-shell { margin-top: .6rem; }
   #welcomeScreen[data-nq-ui="lumen"] .welcome-stats.nql-mastery-rail {
-    margin-top: .65rem !important;
+    margin-top: calc(.65rem + var(--nql-atrium-card-bottom-gap, 0px)) !important;
     padding-block: .5rem !important;
   }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum { margin-top: .4rem; }
@@ -1138,6 +1147,8 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__footer {
   display: flex;
+  width: min(100%, var(--nql-atrium-shell-width));
+  margin-inline: auto;
   min-height: 4rem;
   padding: 1rem clamp(1rem, 4vw, 5rem);
   border-top: 1px solid var(--nql-line);
@@ -1258,7 +1269,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   #welcomeScreen[data-nq-ui="lumen"] #atriumTitle { font-size: clamp(min(3rem, 13vw), 17vw, 4.7rem); }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes-head h2 { font-size: min(1.75rem, 9vw); }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__lede { font-size: 1rem; }
-  #welcomeScreen[data-nq-ui="lumen"] .welcome-stats.nql-mastery-rail { margin-top: 1.25rem !important; }
+  #welcomeScreen[data-nq-ui="lumen"] .welcome-stats.nql-mastery-rail { margin-top: calc(1.25rem + var(--nql-atrium-card-bottom-gap, 0px)) !important; }
   #welcomeScreen[data-nq-ui="lumen"] .welcome-stat { padding-inline: .75rem; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step small { font-size: .68rem; }
   #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__resume-shell { margin-top: .85rem; }
@@ -1455,6 +1466,14 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 /* O espaço acompanha a fonte ampliada: os rótulos e as palavras do ciclo
  * continuam inteiros, sem diminuir o texto nem depender da media query em px. */
 @container nql-atrium (max-width: 14rem) {
+  /* Texto ampliado: icone e seta deixam a segunda linha inteira para o rotulo. */
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-icon { grid-column: 1; grid-row: 1; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route > svg { grid-column: 2; grid-row: 1; justify-self: end; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route > span:nth-child(2) { grid-column: 1 / -1; grid-row: 2; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route strong { overflow-wrap: normal; }
   #welcomeScreen[data-nq-ui="lumen"] .welcome-stats.nql-mastery-rail {
     grid-template-columns: minmax(0, 1fr) !important;
     gap: .65rem !important;

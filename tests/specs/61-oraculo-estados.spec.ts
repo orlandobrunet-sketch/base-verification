@@ -28,7 +28,7 @@ const QUESTAO = { q: 'Paciente com hipercalemia grave.', o: ['A', 'B', 'C', 'D']
 async function abrirOraculo(page: Page, opcoes: { status: number; corpo: unknown; logado: boolean }) {
   await page.route('**/*', (rota) => {
     const url = rota.request().url();
-    return (new URL(url).hostname === 'localhost' || url.includes('ai-mentor')) ? rota.continue() : rota.abort();
+    return new URL(url).hostname === 'localhost' ? rota.continue() : rota.abort();
   });
   await page.route('**/functions/v1/ai-mentor', (rota) =>
     rota.fulfill({ status: opcoes.status, contentType: 'application/json', body: JSON.stringify(opcoes.corpo) }));

@@ -470,6 +470,7 @@
 
     function _stopLocalJourney() {
       ++_progressEpoch;
+      window.resetMentorQuestion?.();
       _currentQuestionRevision = null; _currentQuestionRevisionOriginRaw = null;
       window.NQPilot?.rollback();
       _pilotAnswerTransaction = null;
@@ -4729,7 +4730,10 @@
           if (!renderLumenAnswerFeedback(true, consequence)) {
             ui.feedback.innerHTML = `<strong>✅ Correto!</strong> ${consequence}<br><span class="fb-snip">${_full}</span>`;
           }
-          if (window.innerWidth <= 768) setTimeout(() => ui.feedback.scrollIntoView({behavior:'smooth', block:'nearest'}), 80);
+          if (window.innerWidth <= 768) setTimeout(() => {
+            if (document.getElementById('oraclePage')?.hidden === false) return;
+            ui.feedback.scrollIntoView({behavior:'smooth', block:'nearest'});
+          }, 80);
         }
         // Feedback de dano/XP flutuante
         let x, y;
@@ -4919,7 +4923,10 @@
           if (!renderLumenAnswerFeedback(false, (legendaryBlockMsg || blocked ? escapeHtml(_prefix) : '') + _pilotAnswerFeedback(pilotAnswer))) {
             ui.feedback.innerHTML = `<strong>${escapeHtml(_prefix)}</strong><br><span class="fb-snip">${_full2}</span>`;
           }
-          if (window.innerWidth <= 768) setTimeout(() => ui.feedback.scrollIntoView({behavior:'smooth', block:'nearest'}), 80);
+          if (window.innerWidth <= 768) setTimeout(() => {
+            if (document.getElementById('oraclePage')?.hidden === false) return;
+            ui.feedback.scrollIntoView({behavior:'smooth', block:'nearest'});
+          }, 80);
         }
         renderErrorReflection(state.current.id, choiceResult.originalChoice);
         log('⚠️ Você falhou nessa carta. Ajuste a estratégia e continue.');
@@ -4947,12 +4954,7 @@
         saveGame();
         // Oráculo button: set journey question context for mentor, show button
         if (typeof window.setMentorQuestion === 'function') {
-          const cur = state.current;
-          window.setMentorQuestion({
-            q: cur.q, opts: cur.o,
-            ans: cur.a, exp: cur.e,
-            correctOption: cur.o ? cur.o[cur.a] : ''
-          });
+          window.setMentorQuestion(_mentorJourneyQuestion());
         }
         if (ui.oraculoBtn) ui.oraculoBtn.classList.remove('hidden');
       }
@@ -5640,7 +5642,6 @@
           <button type="button" class="btn sec nq-forja-nova" data-action="forjarOutroItem">Forjar outro item</button>`;
       }
       return `<div class="nq-forja-convite">
-        <svg class="nq-forja-bigorna" viewBox="0 0 160 112" aria-hidden="true"><path d="M24 31h71V16h28v15h24c-5 17-20 24-38 24H96v16l17 14v11H44V85l17-14V55H44C23 55 11 44 8 31z"/><path d="M53 100h68M49 105h76M74 13l9-9 21 21-9 9z"/></svg>
         <h2>Dê forma ao próximo equipamento</h2>
         <p>Escolha a forja abaixo. Se o espaço estiver ocupado, compare os quatro atributos antes de equipar.</p>
       </div>`;
@@ -5658,7 +5659,7 @@
           ? '<svg viewBox="0 0 24 24" stroke-width="1.2" focusable="false"><circle cx="12" cy="12" r="10.5"/><path class="nq-forja-opcao-estrela" d="m12 3 2.8 5.7 6.3.9-4.5 4.4 1.1 6.3-5.7-3-5.7 3 1.1-6.3L3.2 9.6l6.3-.9Z"/></svg>'
           : '<svg viewBox="0 0 64 64" stroke-width="2.4" focusable="false"><path d="m17 40 20-20 7 7-20 20zM32 15l10-10 17 17-10 10zM8 53h28M11 53v-7h22v7"/><circle class="nq-forja-opcao-surpresa" cx="50" cy="50" r="10"/><text x="50" y="55" text-anchor="middle">?</text></svg>';
         return `
-          <article class="nq-forja-opcao">
+          <article class="nq-forja-opcao" data-forge-kind="${tipo}">
             <div class="nq-forja-opcao-topo">
               <span class="nq-forja-arte nq-forja-opcao-arte${tipo === 'lendario' ? ' nq-forja-arte-legendary' : ''}" aria-hidden="true">${icone}</span>
               <div class="nq-forja-opcao-resumo">
@@ -5674,23 +5675,27 @@
           </article>`;
       };
       const saidaBloqueada = !!_forja.pendente;
-      const retrato = ui.heroImg?.getAttribute('src');
+      const mostraResultado = saidaBloqueada || !!_forja.ultimo;
+      const resultado = `<section id="forjaResultado" class="nq-forja-resultado" role="status" aria-live="polite" tabindex="-1">
+        ${_forja.aviso ? `<p class="nq-forja-aviso" role="alert">${escapeHtml(_forja.aviso)}</p>` : ''}
+        ${_forjaResultadoHtml()}
+      </section>`;
       pagina.dataset.forgeState = saidaBloqueada ? 'decision' : _forja.ultimo ? 'complete' : 'ready';
       pagina.innerHTML = `
         <div class="nq-study-content nq-forja-shell">
           <header class="nq-forja-cabecalho">
             <button type="button" class="btn sec" data-action="fecharForja" ${saidaBloqueada ? 'disabled aria-describedby="forjaMotivoSaida"' : ''}>← Voltar à jornada</button>
-            <div><p class="nq-forja-eyebrow">Oficina do guardião</p><h1 id="forjaTitulo">Forja</h1></div>
-            <p class="nq-forja-ouro">Ouro disponível: <strong>${state.gold}</strong></p>
+            <p class="nq-forja-ouro"><span>Ouro disponível</span><strong>${state.gold}</strong></p>
             ${saidaBloqueada ? '<p id="forjaMotivoSaida" class="nq-forja-motivo">Decida o item forjado antes de voltar: o ouro já foi gasto nele.</p>' : ''}
           </header>
-          <div class="nq-forja-palco">
-            ${retrato ? `<figure class="nq-forja-guardiao"><img src="${escapeHtml(retrato)}" alt=""><figcaption>${escapeHtml(characters[state.character]?.name || 'Seu guardião')}</figcaption></figure>` : ''}
-            <section id="forjaResultado" class="nq-forja-resultado" role="status" aria-live="polite" tabindex="-1">
-              ${_forja.aviso ? `<p class="nq-forja-aviso" role="alert">${escapeHtml(_forja.aviso)}</p>` : ''}
-              ${_forjaResultadoHtml()}
-            </section>
-          </div>
+          <section class="nq-forja-banner" aria-labelledby="forjaTitulo">
+            <div class="nq-forja-banner-texto">
+              <p class="nq-forja-eyebrow">Oficina de equipamentos</p>
+              <h1 id="forjaTitulo">Forja</h1>
+              ${mostraResultado ? '<p class="nq-forja-banner-resumo">Cada escolha dá forma à sua jornada.</p>' : resultado}
+            </div>
+          </section>
+          ${mostraResultado ? resultado : ''}
           <section class="nq-forja-opcoes" aria-label="Tipos de forja">
             ${opcao('comum', 'Equipamento aleatório', 'Um item para qualquer um dos seis espaços. A raridade depende do seu nível e da sua sorte.')}
             ${opcao('lendario', 'Equipamento lendário', 'Um lendário para arma, armadura ou relíquia. Prioriza inéditos; após esgotá-los, pode repetir um item que não está equipado.')}
@@ -5935,7 +5940,7 @@
       const randomArticle = availableArticles[Math.floor(Math.random() * availableArticles.length)];
       const articleIndex = nefroArticles.indexOf(randomArticle);
       unlockedArticles.push(articleIndex);
-      nqProgressStorage().setItem('unlockedArticles', JSON.stringify(unlockedArticles));
+      if (!isProgressSandbox()) nqProgressStorage().setItem('unlockedArticles', JSON.stringify(unlockedArticles));
       state.chestsOpened++;
       const knoGain = state.chestsOpened;
       if(state.equipment.relic && state.equipment.relic.n !== 'Vazio') { const r={...state.equipment.relic}; r.kno=(r.kno||0)+knoGain; state.equipment.relic=r; }
@@ -6096,7 +6101,7 @@
       const articleIndex = nefroArticles.indexOf(randomArticle);
       
       unlockedArticles.push(articleIndex);
-      nqProgressStorage().setItem('unlockedArticles', JSON.stringify(unlockedArticles));
+      if (!isProgressSandbox()) nqProgressStorage().setItem('unlockedArticles', JSON.stringify(unlockedArticles));
       
       // Conhecimento progressivo: baú N dá +N conhecimento
       state.chestsOpened++;
@@ -6172,7 +6177,7 @@
         const articleIndex = nefroArticles.indexOf(randomArticle);
         
         unlockedArticles.push(articleIndex);
-        nqProgressStorage().setItem('unlockedArticles', JSON.stringify(unlockedArticles));
+        if (!isProgressSandbox()) nqProgressStorage().setItem('unlockedArticles', JSON.stringify(unlockedArticles));
         
         state.chestsOpened++;
         const knoGain = state.chestsOpened;
@@ -6189,7 +6194,7 @@
         
         const prevKnoTotal = parseInt(nqProgressStorage().getItem('nefroquest_total_accumulated_knowledge') || '0', 10);
         const newKnoTotal = prevKnoTotal + knoGain;
-        nqProgressStorage().setItem('nefroquest_total_accumulated_knowledge', String(newKnoTotal));
+        if (!isProgressSandbox()) nqProgressStorage().setItem('nefroquest_total_accumulated_knowledge', String(newKnoTotal));
         
         showChestModal(randomArticle, knoGain, chestPoints);
         playSound('chest');
@@ -6622,6 +6627,18 @@
 
     // ============ MODO PROVA SIMULADA ============
 
+    function _mentorJourneyQuestion() {
+      const cur = state.current;
+      if (!state.gameStarted || !cur || !state.answered || _currentQuestionRevision?.historical || isBossBattle()) return null;
+      const binding = _captureJourneyBinding();
+      return {
+        source: 'journey', qid: String(cur.id), q: cur.q, opts: cur.o,
+        ans: cur.a, exp: cur.e, chosen: state.questionAnswer?.choice,
+        isCurrent: () => _matchesJourneyBinding(binding) && state.gameStarted && state.current === cur &&
+          state.answered && !_currentQuestionRevision?.historical && !isBossBattle()
+      };
+    }
+
     function openOraculoFromJourney() {
       // No Confronto Final (últimas 10 questões) o Oráculo é silenciado.
       if (typeof isBossBattle === 'function' && isBossBattle()) {
@@ -6634,17 +6651,8 @@
         _showOracleAnswerFirst();
         return;
       }
-      // Alimenta o mentor com a questão ATUAL sempre que abre — o handler de
-      // resposta só fazia isso no ramo de ERRO, então ao ACERTAR o contexto
-      // ficava preso na questão anterior.
-      if (typeof window.setMentorQuestion === 'function' && state.current) {
-        const cur = state.current;
-        window.setMentorQuestion({
-          q: cur.q, opts: cur.o,
-          ans: cur.a, exp: cur.e,
-          correctOption: cur.o ? cur.o[cur.a] : ''
-        });
-      }
+      // O contexto é da apresentação respondida, vinculado à mesma sessão.
+      window.setMentorQuestion?.(_mentorJourneyQuestion());
       if (typeof window.openMentorModal === 'function') window.openMentorModal();
     }
     window.openOraculoFromJourney = openOraculoFromJourney;

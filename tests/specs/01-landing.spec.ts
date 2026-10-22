@@ -205,17 +205,22 @@ test.describe('Landing comercial', () => {
     await expect(evidence).toHaveAttribute('open', '');
     await expect(evidence.locator('.learning-evidence-note')).toBeVisible();
     await expect(evidence.locator('.learning-evidence-note')).toContainText('traduções nossas');
-    await expect(evidence.locator('.learning-evidence-note'))
-      .toContainText('não constituem validação específica do NefroQuest');
+    await expect(evidence.locator('.learning-evidence-lead')).toContainText('responda, entenda o raciocínio');
+    await expect(evidence.locator('.learning-evidence-method-note'))
+      .toContainText('sem constituir validação específica do NefroQuest');
     await expect(evidence.locator('.learning-evidence-columns h3'))
       .toHaveText(['Método de estudo', 'Elementos de jogo']);
-    await expect(evidence.locator('blockquote')).toHaveCount(6);
+    await expect(evidence.locator('blockquote')).toHaveCount(4);
     await expect(limits).not.toHaveAttribute('open');
-    await expect(limits.locator('blockquote').first()).not.toBeVisible();
+    await expect(limitsSummary).toHaveText('Fontes e nota metodológica');
+    await expect(limits.locator('.learning-evidence-sources')).not.toBeVisible();
     await limitsSummary.focus();
     await limitsSummary.press('Space');
     await expect(limits).toHaveAttribute('open', '');
-    await expect(limits.locator('blockquote').first()).toBeVisible();
+    await expect(limits.locator('.learning-evidence-sources')).toBeVisible();
+    await expect(limits).toContainText('O estudo de Do não foi randomizado');
+    await expect(limits).toContainText('sem demonstrar resultados em pacientes reais');
+    await expect(limits.locator('blockquote')).toHaveCount(0);
 
     const quotations = evidence.locator('blockquote');
     for (const quote of await quotations.all()) {
@@ -224,7 +229,7 @@ test.describe('Landing comercial', () => {
       await expect(citation).toContainText('Tradução nossa');
       await expect(citation.locator('a')).toHaveCount(1);
     }
-    const sources = evidence.locator('.learning-evidence-cite a');
+    const sources = limits.locator('.learning-evidence-sources a');
     const expectedSources = [
       'https://doi.org/10.1126/science.1199327',
       'https://doi.org/10.1111/j.1365-2923.2009.03518.x',
