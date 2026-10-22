@@ -13,6 +13,7 @@
   overflow-x: hidden;
   overflow-y: auto;
   background:
+    linear-gradient(103deg, #000 0%, #000 51%, transparent 51%),
     radial-gradient(circle at 78% 42%, rgba(var(--nql-lumen-rgb), .22), transparent 28rem),
     radial-gradient(circle at 16% 34%, rgba(105, 189, 231, .12), transparent 24rem),
     radial-gradient(circle at 12% 88%, rgba(var(--nql-mastery-rgb), .085), transparent 25rem),
@@ -390,6 +391,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 #welcomeScreen[data-nq-ui="lumen"][data-journey-state="saved"] .nql-atrium__resume-shell {
   margin-top: .75rem;
+  padding-bottom: 4px;
   overflow: hidden;
   border: 1px solid transparent;
   border-radius: .8rem;
@@ -498,7 +500,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   position: relative;
   z-index: 1;
   display: grid !important;
-  grid-template-columns: minmax(13rem, .9fr) minmax(16rem, 1.25fr) minmax(5.35rem, auto);
+  grid-template-columns: minmax(18rem, .9fr) minmax(11rem, 1.25fr) minmax(5.35rem, auto);
   grid-template-rows: auto;
   margin: 0 !important;
   padding: .55rem 1.2rem .28rem !important;
@@ -1221,6 +1223,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 @media (max-width: 55rem) {
   #welcomeScreen[data-nq-ui="lumen"] {
     background:
+      linear-gradient(166deg, #000 0%, #000 44%, transparent 74%),
       radial-gradient(circle at 74% 58%, rgba(var(--nql-lumen-rgb), .16), transparent 28rem),
       radial-gradient(circle at 12% 82%, rgba(var(--nql-mastery-rgb), .06), transparent 22rem),
       linear-gradient(166deg,
@@ -1373,10 +1376,10 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 /* Com texto ampliado, o avatar ocupa outra linha e libera a largura do nome. */
 @container nql-saved-journey (max-width: 18rem) {
-  #welcomeScreen[data-nq-ui="lumen"] :where(.nql-atrium__resume-shell[data-character="glomerulus"]) .wsaved-bottom {
+  #welcomeScreen[data-nq-ui="lumen"] .wsaved-bottom {
     padding-inline: .125rem !important;
   }
-  #welcomeScreen[data-nq-ui="lumen"] :where(.nql-atrium__resume-shell[data-character="glomerulus"]) .wsaved-identity {
+  #welcomeScreen[data-nq-ui="lumen"] .wsaved-identity {
     grid-template-columns: minmax(0, 1fr);
     gap: .5rem;
   }
@@ -1384,7 +1387,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 
 /* A fonte de reserva também precisa caber quando a margem em rem se amplia. */
 @container nql-atrium (max-width: 18rem) {
-  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__resume-shell[data-character="glomerulus"] {
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__resume-shell {
     width: calc(100% + 1rem);
     margin-inline: -.5rem;
   }

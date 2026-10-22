@@ -53,16 +53,24 @@ async function abrirCom(page: Page, srBuilder: (ids: string[]) => Record<string,
 }
 
 test.describe('Memória (FSRS na superfície)', () => {
-  test('exibe vencidos, consolidados e estabilidade mediana a partir do que o motor grava', async ({ page }) => {
+  test('exibe vencidos, histórico e estabilidade estimada a partir do que o motor grava', async ({ page }) => {
     await abrirCom(page, () => ({}));
     const secao = page.locator('#nqDashboard .nqd-memory-section');
     await expect(secao).toBeVisible();
     // Renomeada na v14.88 (NQ-06A): a seção deixou de ser um relatório de
     // memória e passou a abrir com ação, então o título diz o que ela faz.
     await expect(secao).toContainText('Estudo e revisão');
-    // 4 cards com S >= 21 dias (30, 45, 22, 60); o órfão não conta.
-    await expect(secao).toContainText('de 9 consolidados');
+    // A16.23 explica a estimativa sob demanda em vez de afirmar domínio.
+    const explicacao = secao.locator('details').filter({ has: page.getByText('Como o agendamento é estimado', { exact: true }) });
+    await expect(explicacao).not.toHaveAttribute('open', '');
+    await explicacao.locator('summary').click();
+    await expect(explicacao.locator('p')).toBeVisible();
+    // 4 cards com S >= 21 dias (30,45,22,60); mediana12 dos9 QIDs válidos.
+    await expect(explicacao).toContainText('4 de 9 questões têm estabilidade estimada de pelo menos 21 dias');
+    await expect(explicacao).toContainText('A mediana estimada é de 12 dias');
+    await expect(explicacao).toContainText('não garantem domínio ou lembrança');
     await expect(secao.locator('.nqd-metric-value').first()).toHaveText('2');
+    await expect(secao.locator('.nqd-metric-value').nth(1)).toHaveText('9');
   });
 
   test('o denominador é o que já foi visto, nunca o banco inteiro', async ({ page }) => {
@@ -83,8 +91,16 @@ test.describe('Memória (FSRS na superfície)', () => {
     await abrirCom(page, () => ({}));
     const secao = page.locator('#nqDashboard .nqd-memory-section');
     // 10 entradas gravadas, 1 sem questão correspondente -> 9 vistas
-    await expect(secao).toContainText('de 9 consolidados');
-    await expect(secao).not.toContainText('de 10 consolidados');
+    const explicacao = secao.locator('details').filter({ has: page.getByText('Como o agendamento é estimado', { exact: true }) });
+    const summary = explicacao.locator('summary');
+    await summary.focus();
+    await expect(summary).toBeFocused();
+    await page.keyboard.press('Space');
+    await expect(explicacao).toHaveAttribute('open', '');
+    await expect(explicacao.locator('p')).toBeVisible();
+    await expect(explicacao).toContainText('4 de 9 questões têm estabilidade estimada');
+    await expect(explicacao).not.toContainText('de 10 questões');
+    await expect(secao.locator('.nqd-metric-value').nth(1)).toHaveText('9');
   });
 
   test('o horizonte de sete dias tem rótulo acessível e um dia sem revisão não parece um dia com pouca', async ({ page }) => {

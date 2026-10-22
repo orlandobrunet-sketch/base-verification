@@ -549,7 +549,7 @@
         title: data.axisWeakness.label,
         detail: `${Math.round(data.axisWeakness.accuracy)}% em ${data.axisWeakness.total} respostas${needsAttention ? '' : ' · menor resultado relativo'}`,
         action: '_dashGoAxisWeakness',
-        actionLabel: 'Treinar este tema',
+        actionLabel: 'Estudar esta área',
       });
     }
 
@@ -567,9 +567,9 @@
         kind: 'practice',
         kicker: 'Explorar',
         title: 'Estudo livre',
-        detail: 'Escolha os temas que quer praticar.',
+        detail: 'Escolha as áreas que quer estudar.',
         action: '_dashExploreSkills',
-        actionLabel: 'Escolher temas',
+        actionLabel: 'Escolher áreas',
       });
     }
 
@@ -688,10 +688,10 @@
           <div class="nqd-rail-header">
             <div class="nqd-brand-row">
               <span class="nqd-brand" aria-label="NefroQuest">Nefro<em>Quest</em></span>
+              <span class="nqd-rail-kicker">${window.NQPilot?.active ? 'Dashboard · Piloto' : 'Dashboard'}</span>
               <button type="button" class="nqd-brand-close" data-action="closeDashboard" aria-label="${_returnLabel}">${_svg('back')}</button>
             </div>
           </div>
-          <span class="nqd-rail-kicker">${window.NQPilot?.active ? 'Dashboard · Piloto' : 'Dashboard'}</span>
           ${state === 'ready' ? `
             ${profile}
             <nav class="nqd-nav" aria-label="Áreas do Dashboard" role="navigation">
@@ -757,15 +757,15 @@
      * falta para haver memória a relatar, e oferecer a porta de entrada. */
     if (!memory || !memory.seen) {
       return `
-      <section class="nqd-section nqd-memory-section" aria-labelledby="nqdMemoryTitle">
+      <section class="nqd-section nqd-memory-section" data-overview-section="review" aria-labelledby="nqdMemoryTitle">
         <header class="nqd-section-header"><div>
           <h2 class="nqd-section-title" id="nqdMemoryTitle">Estudo e revisão</h2>
           <p>A revisão começa depois das primeiras respostas — é ela que traz de volta o que você acertou, no momento em que a lembrança começa a cair.</p>
         </div></header>
         <div class="nqd-study-actions">
           <button type="button" class="nqd-study-primary" data-action-seq="closeDashboard,showAxesSelector">
-            <strong>Escolher um eixo e estudar</strong>
-            <small>Você decide o tema; a revisão se monta a partir do que responder.</small>
+            <strong>Escolher uma área e estudar</strong>
+            <small>Você escolhe as áreas; a revisão se forma a partir das respostas.</small>
           </button>
         </div>
       </section>`;
@@ -785,8 +785,8 @@
     const acoes = `
         <div class="nqd-study-actions">
           <button type="button" class="nqd-study-primary" data-action-seq="closeDashboard,showAxesSelector">
-            <strong>Escolher um eixo e estudar</strong>
-            <small>Você define o tema da sessão.</small>
+            <strong>Escolher uma área e estudar</strong>
+            <small>Você escolhe uma ou mais áreas para a sessão.</small>
           </button>
           ${vencidas > 0 && !reviewPromoted ? `
           <button type="button" class="nqd-study-secondary" data-action-seq="closeDashboard,startSRReviewAll">
@@ -796,27 +796,23 @@
         </div>`;
 
     return `
-      <section class="nqd-section nqd-memory-section" aria-labelledby="nqdMemoryTitle">
+      <section class="nqd-section nqd-memory-section" data-overview-section="review" aria-labelledby="nqdMemoryTitle">
         <header class="nqd-section-header"><div>
           <h2 class="nqd-section-title" id="nqdMemoryTitle">Estudo e revisão</h2>
-          <p>Quanto do que você já viu segue disponível — e quando cada item volta.</p>
+          <p>Veja o que revisar agora e o que está agendado para os próximos dias.</p>
         </div></header>
 
         ${acoes}
         ${reviewPromoted && vencidas > 0 ? `<p class="nqd-review-context">${_formatNumber(vencidas)} ${vencidas === 1 ? 'revisão vencida' : 'revisões vencidas'} · acesso em “Agora”</p>` : ''}
 
-        <div class="nqd-summary-strip" style="--columns:3">
+        <div class="nqd-summary-strip" style="--columns:2">
           <div class="nqd-metric">
-            <strong class="nqd-metric-value">${memory.overdue > 0 ? _formatNumber(memory.overdue) : '—'}</strong>
-            <small class="nqd-metric-label">${memory.overdue === 1 ? 'item vencido' : 'itens vencidos'}</small>
+            <strong class="nqd-metric-value">${_formatNumber(memory.overdue)}</strong>
+            <small class="nqd-metric-label">${memory.overdue === 1 ? 'questão para revisar agora' : 'questões para revisar agora'}</small>
           </div>
           <div class="nqd-metric">
-            <strong class="nqd-metric-value">${_formatNumber(memory.consolidated)}</strong>
-            <small class="nqd-metric-label">de ${_formatNumber(memory.seen)} consolidados</small>
-          </div>
-          <div class="nqd-metric">
-            <strong class="nqd-metric-value">${memory.medianS == null ? '—' : `${Math.round(memory.medianS)}d`}</strong>
-            <small class="nqd-metric-label">estabilidade mediana</small>
+            <strong class="nqd-metric-value">${_formatNumber(memory.seen)}</strong>
+            <small class="nqd-metric-label">${memory.seen === 1 ? 'questão no histórico de revisão' : 'questões no histórico de revisão'}</small>
           </div>
         </div>
 
@@ -833,7 +829,8 @@
 
         <p class="nqd-memory-note">${naSemana > 0
           ? `${_formatNumber(naSemana)} ${naSemana === 1 ? 'revisão prevista' : 'revisões previstas'} nos próximos sete dias.`
-          : 'Nenhuma revisão prevista para os próximos sete dias.'} Consolidado = retenção estimada acima de 21 dias.</p>
+          : 'Nenhuma revisão prevista para os próximos sete dias.'}</p>
+        <details class="nqd-overview-explanation"><summary>Como o agendamento é estimado</summary><p>${_formatNumber(memory.consolidated)} de ${_formatNumber(memory.seen)} questões têm estabilidade estimada de pelo menos 21 dias.${memory.medianS == null ? '' : ` A mediana estimada é de ${Math.round(memory.medianS)} dias.`} Estes números ajudam a agendar as revisões; não garantem domínio ou lembrança.</p></details>
       </section>
     `;
   }
@@ -953,29 +950,6 @@
   }
 
   function _tabOverview(data) {
-    const journey = data.save ? `
-      <div class="nqd-journey-layout">
-        <div class="nqd-journey-portrait"><img src="${_escape(data.avatar)}" alt="${_escape(data.character.name)}" width="230" height="230"></div>
-        <div class="nqd-journey-body">
-          <span class="nqd-state">Jornada ativa</span>
-          <h2 class="nqd-journey-title">${_escape(data.character.name)}</h2>
-          <p class="nqd-journey-subtitle">${_escape(data.character.title)}</p>
-          <div class="nqd-level-line">
-            <span><small>Nível</small><strong>${data.level}</strong></span>
-            <span><small>XP</small><strong>${_formatNumber(data.xp)} / ${_formatNumber(data.xpToNext)}</strong></span>
-          </div>
-          ${_meterMarkup(Math.min(data.xp, data.xpToNext), data.xpToNext, 'Experiência do personagem', true)}
-          ${_levelGateMarkup(data)}
-        </div>
-      </div>${_formTrailMarkup(data)}` : `
-      <div class="nqd-journey-empty">
-        <span class="nqd-state">Primeira jornada</span>
-        <h2 class="nqd-journey-title">Seu guardião ainda não foi escolhido.</h2>
-        <p>Comece a jornada para definir personagem, dificuldade e ritmo de estudo.</p>
-        <section class="nqd-guardian-preview" aria-label="Guardiões disponíveis">
-          ${Object.values(CHARACTER_META).map(character => `<img src="assets/classes-cinema/${character.folder}/nivel_01.${character.ext}" alt="${_escape(character.name)}" width="230" height="230" loading="lazy">`).join('')}
-        </section>
-      </div>`;
     const reviewPromoted = data.actions[0]?.kind === 'review';
     return `
       <section class="nqd-pane nq-dash-pane active" id="nqdPane-overview" role="tabpanel" aria-labelledby="nqdTab-overview" data-dash-pane="overview">
@@ -983,31 +957,26 @@
           <h1 class="nqd-title-lg">Visão geral</h1>
         </div>
         ${data.topicsLoadError ? '<div class="nqd-notice" role="status">Alguns dados não carregaram. Exibindo seu progresso salvo.</div>' : ''}
-        <div class="nqd-command-grid">
-          <section class="nqd-next-actions" aria-labelledby="nqdActionsTitle">
-            <header><span class="nqd-eyebrow">Sua próxima ação</span><h2 id="nqdActionsTitle">Agora</h2></header>
-            <div class="nqd-next-actions-list">${_actionsMarkup(data.actions)}</div>
-          </section>
-          <article class="nqd-journey">${journey}</article>
-        </div>
-
-        <div class="nqd-overview-details">
-          <div class="nqd-progress-column">
-            <section class="nqd-learning-pulse">
+        <div class="nqd-overview-flow">
+            <section class="nqd-learning-pulse" data-overview-section="pace">
               <header class="nqd-section-header"><div><h2 class="nqd-section-title">Seu ritmo</h2><p>Respostas e acertos nos últimos sete dias.</p></div></header>
               ${data.stats.totalQuestions > 0 ? `
-                ${_pulseSummaryMarkup(data)}
-                ${data.evolution || ''}
-                ${_weekPulseMarkup(data.weekActivity)}
+                <div class="nqd-pace-summary">${_pulseSummaryMarkup(data)}${_weekPulseMarkup(data.weekActivity)}</div>
+                <details class="nqd-overview-explanation"><summary>Ver comparação e histórico</summary>
+                  ${data.evolution || ''}
+                  ${data.strength ? `<p class="nqd-strength"><span>Melhor desempenho observado</span><strong>${_escape(data.strength.label)}</strong><small>${Math.round(data.strength.accuracy)}% · ${data.strength.totalAnswered} respostas</small></p>` : ''}
+                </details>
               ` : '<p class="nqd-empty-learning">Os indicadores aparecem depois das primeiras respostas. Até lá, sua próxima decisão está em “Agora”.</p>'}
-              ${data.strength ? `<p class="nqd-strength"><span>Melhor desempenho observado</span><strong>${_escape(data.strength.label)}</strong><small>${Math.round(data.strength.accuracy)}% · ${data.strength.totalAnswered} respostas</small></p>` : ''}
             </section>
-            <section class="nqd-section nqd-reward-section">
+          <section class="nqd-next-actions" data-overview-section="now" aria-labelledby="nqdActionsTitle">
+            <header><h2 id="nqdActionsTitle">Agora</h2></header>
+            <div class="nqd-next-actions-list">${_actionsMarkup(data.actions)}</div>
+          </section>
+          ${_memoryMarkup(data.memory, data.stats, reviewPromoted)}
+            <section class="nqd-section nqd-reward-section" data-overview-section="reward">
               <header class="nqd-section-header"><div><h2 class="nqd-section-title">Próxima conquista</h2></div></header>
               ${_milestoneMarkup(data)}
             </section>
-          </div>
-          ${_memoryMarkup(data.memory, data.stats, reviewPromoted)}
         </div>
       </section>
     `;
@@ -1085,7 +1054,7 @@
         <section class="nqd-skill-priority${data.axisWeakness ? '' : ' is-forming'}">
           ${data.axisWeakness ? `
             <div><span class="nqd-eyebrow nqd-eyebrow--clinical">Tema para praticar</span><h2>${_escape(data.axisWeakness.label)}</h2><p>${Math.round(data.axisWeakness.accuracy)}% de acerto em ${_formatNumber(data.axisWeakness.total)} ${data.axisWeakness.total === 1 ? 'resposta' : 'respostas'} deste tema.</p></div>
-            <button type="button" class="nqd-primary-action" data-action="_dashGoAxisWeakness" data-nqd-primary="true">Treinar este tema${_svg('arrow')}</button>
+            <button type="button" class="nqd-primary-action" data-action="_dashGoAxisWeakness" data-nqd-primary="true">Estudar esta área${_svg('arrow')}</button>
           ` : `
             <div><span class="nqd-eyebrow">Próximo passo</span><h2>Seu perfil começa com as respostas.</h2><p>Escolha um tema para estudar. Após cinco respostas nele, a página poderá sugerir um treino com base no seu histórico.</p></div>
             <button type="button" class="nqd-primary-action" data-action="_dashExploreSkills" data-nqd-primary="true">Escolher temas${_svg('arrow')}</button>
@@ -1107,12 +1076,12 @@
   function _mapStatus(stat) {
     const total = _number(stat && stat.t, 0);
     const correct = _number(stat && stat.c, 0);
-    if (!total) return { key: 'unseen', label: 'Sem amostra', rank: 3 };
-    if (total < 5) return { key: 'sample', label: 'Amostra inicial', rank: 2 };
+    if (!total) return { key: 'unseen', label: 'Ainda sem respostas', rank: 3 };
+    if (total < 5) return { key: 'sample', label: 'Poucas respostas para comparar', rank: 2 };
     const accuracy = correct / total;
-    if (accuracy < 0.5) return { key: 'attention', label: 'Requer atenção', rank: 0 };
-    if (accuracy < 0.7 || total < 10) return { key: 'consolidating', label: 'Em consolidação', rank: 1 };
-    return { key: 'consistent', label: 'Consistente na amostra', rank: 4 };
+    if (accuracy < 0.5) return { key: 'attention', label: 'Menos da metade de acertos', rank: 0 };
+    if (accuracy < 0.7 || total < 10) return { key: 'consolidating', label: total < 10 ? 'Resultado de 5 a 9 respostas' : 'De 50% a menos de 70% de acertos', rank: 1 };
+    return { key: 'consistent', label: '70% ou mais em 10+ respostas', rank: 4 };
   }
 
   function _tabMapa() {
@@ -1157,55 +1126,57 @@
     const attentionCount = competencies.filter(comp => _mapStatus(stats[comp.id]).key === 'attention').length;
     const recommendationStat = recommendation && stats[recommendation.weakest.id];
     const mapAction = recommendation ? `
-      <section class="nqd-map-action has-data" aria-label="Área para praticar"><div><span class="nqd-map-eyebrow">Área para praticar</span><h2>${_escape(recommendation.label)}</h2><p>Em ${_escape(recommendation.weakest.label)}, ${Math.round(recommendationStat.c / recommendationStat.t * 100)}% de acerto em ${recommendationStat.t} ${recommendationStat.t === 1 ? 'resposta' : 'respostas'}.</p></div><button type="button" class="nqd-map-primary" data-action="_dashTrainCategories" data-arg="${_escape(recommendation.cat)}">Praticar esta área ${_svg('arrow')}</button></section>` : `
-      <section class="nqd-map-action" aria-label="Próximo passo"><div><span class="nqd-map-eyebrow">Próximo passo</span><h2>Escolha uma área para começar</h2><p>Busque um tema ou abra uma das ${groupEntries.length} áreas. Seu mapa detalhado se forma com as próximas respostas.</p></div><button type="button" class="nqd-map-primary" data-action="_dashFocusMapSearch">Explorar áreas ${_svg('arrow')}</button></section>`;
+      <aside class="nqd-map-suggestion" aria-label="Sugestão de estudo"><div><strong>Uma área para retomar: ${_escape(recommendation.label)}</strong><p>Em ${_escape(recommendation.weakest.label)}, ${recommendationStat.c} ${recommendationStat.c === 1 ? 'acerto' : 'acertos'} em ${recommendationStat.t} ${recommendationStat.t === 1 ? 'resposta' : 'respostas'}.</p></div><button type="button" class="nqd-action" data-action="_dashTrainCategories" data-arg="${_escape(recommendation.cat)}">Estudar ${_escape(recommendation.label)} ${_svg('arrow')}</button><small>Abre questões de toda a área, não apenas do tema citado.</small></aside>` : `
+      <p class="nqd-map-intro-note">As respostas por tema aparecem conforme você pratica. Escolha uma área abaixo para começar.</p>`;
 
     const content = groupEntries.length ? groupEntries.map((group, groupIndex) => {
       const searchable = [group.label, ...group.ordered.map(comp => comp.label)].join(' ').toLocaleLowerCase('pt-BR');
-      return `<details class="nqd-map-group" data-map-group data-map-skill="${_escape(group.identity)}" data-map-status="${_escape(group.statuses.join(' '))}" data-map-label="${_escape(group.label.toLocaleLowerCase('pt-BR'))}" data-search="${_escape(searchable)}"${recommendation && groupIndex === 0 ? ' open' : ''}>
+      return `<article class="nqd-map-area" data-map-area aria-labelledby="nqdMapArea-${groupIndex}">
+        <div class="nqd-map-area-heading"><div><h3 id="nqdMapArea-${groupIndex}">${_escape(group.label)}</h3><p>${group.ordered.length} ${group.ordered.length === 1 ? 'tema' : 'temas'} nesta área</p></div><button type="button" class="nqd-action" data-action="_dashTrainCategories" data-arg="${_escape(group.cat)}" aria-label="Estudar esta área: ${_escape(group.label)}">Estudar esta área ${_svg('arrow')}</button></div>
+        <p class="nqd-map-session-note">Questões de toda a área · até 20 por sessão</p>
+        <details class="nqd-map-group" data-map-group data-map-skill="${_escape(group.identity)}" data-map-status="${_escape(group.statuses.join(' '))}" data-map-label="${_escape(group.label.toLocaleLowerCase('pt-BR'))}" data-search="${_escape(searchable)}">
         <summary class="nqd-map-summary">
-          <span><strong>${_escape(group.label)}</strong><small>${group.ordered.length} ${group.ordered.length === 1 ? 'tema' : 'temas'} nesta área</small></span>
-          <span class="nqd-map-summary-state" data-map-summary-count data-default="${group.explored ? `${group.explored} de ${group.ordered.length} com respostas` : 'Ainda sem respostas'}">${group.explored ? `${group.explored} de ${group.ordered.length} com respostas` : 'Ainda sem respostas'}</span>
+          <span>Ver respostas por tema</span>
+          <span class="nqd-map-summary-state" data-map-summary-count data-default="${group.explored} de ${group.ordered.length} temas com registro">${group.explored} de ${group.ordered.length} temas com registro</span>
         </summary>
         <div class="nqd-map-group-body">
-          <div class="nqd-map-group-action"><button type="button" class="nqd-action" data-action="_dashTrainCategories" data-arg="${_escape(group.cat)}">Praticar esta área ${_svg('arrow')}</button></div>
           <div class="nqd-map-nodes">${group.ordered.map(comp => {
           const stat = stats[comp.id] || { c: 0, t: 0 };
           const status = _mapStatus(stat);
           const total = _number(stat.t, 0);
           const correct = _number(stat.c, 0);
-          const accuracy = total ? Math.round((correct / total) * 100) : null;
           return `
             <article class="nqd-map-node is-${status.key}" data-state="${status.key}" data-search="${_escape(comp.label.toLocaleLowerCase('pt-BR'))}">
-              <h3>${_escape(comp.label)}</h3>
-              <span class="nqd-state">${status.label}</span>
-              <p>${total >= 5 ? `${accuracy}% em ${total} ${total === 1 ? 'resposta' : 'respostas'}` : total ? `${total} ${total === 1 ? 'resposta' : 'respostas'}` : 'Ainda sem respostas'}</p>
+              <h4>${_escape(comp.label)}</h4>
+              <p>${total ? `${correct} ${correct === 1 ? 'acerto' : 'acertos'} em ${total} ${total === 1 ? 'resposta' : 'respostas'}` : 'Responda questões deste tema para começar.'}</p>
             </article>
           `;
         }).join('')}</div>
         </div>
-      </details>`;
+      </details></article>`;
     }) : [];
     const visibleGroups = content.slice(0, 6).join('');
     const moreGroups = content.slice(6).join('');
 
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-mapa" role="tabpanel" aria-labelledby="nqdTab-mapa" data-dash-pane="mapa" hidden>
-        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Mapa de prática clínica</h1><p class="nqd-section-copy">${competencies.length} temas em ${groupEntries.length} áreas. Busque um tema ou abra uma área para escolher o que praticar.</p></div></div>
+        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Mapa clínico</h1><p class="nqd-section-copy">Escolha uma área e estude em uma sessão de até 20 questões. Suas respostas por tema ajudam a decidir o que estudar depois.</p></div></div>
         ${mapAction}
         ${!mappedResponses && _dashboardData && _dashboardData.totalQuestions > 0 ? `
         <p class="nqd-map-history-note" role="status">Seu histórico anterior continua em <strong>Competências</strong>. O detalhamento por tema começa nas novas respostas.</p>` : ''}
         <section class="nqd-map-browse" aria-label="Explorar temas">
-        <div class="nqd-map-browse-title"><h2>Explorar temas</h2><span>Escolha uma área para ver seus temas.</span></div>
+        <div class="nqd-map-browse-title"><h2>Áreas para estudar</h2></div>
+        <p class="nqd-map-search-note">A busca filtra esta lista. Ao estudar, você recebe questões de toda a área escolhida.</p>
         <div class="nqd-map-toolbar">
           <label class="nqd-map-search"><span>Buscar área ou tema</span><input id="nqDashMapSearch" type="search" placeholder="Ex.: diálise, gasometria, DRC" autocomplete="off"></label>
           ${mappedResponses ? `
-          <label class="nqd-map-filter"><span>Estado</span><select id="nqDashMapFilter">
-            <option value="all">Todos os estados</option><option value="attention">Requer atenção</option><option value="consolidating">Em consolidação</option><option value="sample">Amostra inicial</option><option value="unseen">Sem amostra</option><option value="consistent">Consistente</option>
+          <label class="nqd-map-filter"><span>Histórico</span><select id="nqDashMapFilter">
+            <option value="all">Todos os temas</option><option value="answered">Com respostas</option><option value="unseen">Ainda sem respostas</option>
           </select></label>` : ''}
         </div>
         <p class="nqd-map-result" id="nqDashMapResult" aria-live="polite" data-total-themes="${competencies.length}" data-total-areas="${groupEntries.length}" data-with-responses="${withResponses}" data-attention="${attentionCount}"></p>
         <div class="nqd-map-route">${content.length ? `${visibleGroups}${moreGroups ? `<details class="nqd-map-more" data-map-more><summary>Ver outras ${content.length - 6} áreas</summary>${moreGroups}</details>` : ''}` : '<div class="nqd-empty"><strong>Mapa indisponível.</strong><p>As competências não puderam ser carregadas neste dispositivo.</p></div>'}</div>
+        <details class="nqd-overview-explanation nqd-map-reading-help"><summary>Como ler as respostas por tema</summary><p>${withResponses} de ${competencies.length} temas têm ao menos uma resposta registrada. Cada linha mostra acertos e tentativas, incluindo repetições. Uma resposta pode contar para mais de um tema; por isso, somar as linhas não equivale ao total de questões respondidas.</p></details>
         <div class="nqd-empty" id="nqDashMapEmpty" hidden><strong>Nenhum tema encontrado.</strong><p>Tente outro nome ou altere o estado.</p><button type="button" class="nqd-map-clear" data-action="_dashClearMapSearch">Limpar busca e filtro</button></div>
         </section>
       </section>
@@ -1455,16 +1426,18 @@
     const adminView = typeof window.isAdminUser === 'function' && window.isAdminUser();
     const totalRefs = typeof refsDB === 'object' && refsDB ? Object.keys(refsDB).length : 0;
     const totalArticles = typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles) ? nefroArticles.length : 0;
-    const unlockedRefs = new Set(typeof refsDB === 'object' && refsDB
-      ? (adminView ? Object.keys(refsDB) : [...storedRefs]).filter(key => Object.prototype.hasOwnProperty.call(refsDB, key))
+    const discoveredRefs = new Set(typeof refsDB === 'object' && refsDB
+      ? [...storedRefs].filter(key => typeof key === 'string' && Object.prototype.hasOwnProperty.call(refsDB, key))
       : []);
-    const unlockedArticles = new Set(typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)
-      ? (adminView ? nefroArticles.map((_, index) => index) : [...storedArticles]).map(Number).filter(index => Number.isInteger(index) && index >= 0 && index < nefroArticles.length)
+    const discoveredArticles = new Set(typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)
+      ? [...storedArticles].filter(index => typeof index === 'number' || (typeof index === 'string' && /^\d+$/.test(index.trim()))).map(Number).filter(index => Number.isInteger(index) && index >= 0 && index < nefroArticles.length)
       : []);
+    // O acesso administrativo é uma prévia, não uma descoberta do jogador.
+    const unlockedRefs = new Set(adminView && typeof refsDB === 'object' && refsDB ? Object.keys(refsDB) : discoveredRefs);
+    const unlockedArticles = new Set(adminView && typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles) ? nefroArticles.map((_, index) => index) : discoveredArticles);
 
     if (typeof refsDB === 'object' && refsDB) {
       Object.entries(refsDB).forEach(([key, ref]) => {
-        if (!unlockedRefs.has(key)) return;
         const rawType = String(ref.tipo || '').trim();
         const type = /^refer[eê]ncia$/i.test(rawType) || !rawType ? 'Fonte clínica' : rawType;
         const themes = linkedThemes.has(key) ? [...linkedThemes.get(key)] : [];
@@ -1472,6 +1445,9 @@
           key,
           kind: 'source',
           kindLabel: 'Fonte clínica',
+          unlocked: unlockedRefs.has(key),
+          discovered: discoveredRefs.has(key),
+          unlockHint: !bank.length ? 'O banco de questões não está disponível para conferir o desbloqueio desta fonte.' : reachableRefKeys.has(key) ? 'Acerte uma questão que cite esta fonte para liberar o resumo.' : 'Esta fonte não está vinculada às questões do banco atual. Não há desbloqueio disponível por questão neste momento.',
           type,
           title: ref.label || key,
           source: ref.journal || '',
@@ -1487,14 +1463,13 @@
           impact: ref.impacto || '',
           curiosity: ref.curiosidade || '',
           url: _safeHttpsUrl(ref.url),
-          favorite: favorites.has(key),
+          favorite: unlockedRefs.has(key) && favorites.has(key),
         });
       });
     }
 
     if (typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)) {
-      [...unlockedArticles].filter(Number.isInteger).sort((a, b) => a - b).forEach(index => {
-        const article = nefroArticles[index];
+      nefroArticles.forEach((article, index) => {
         if (!article) return;
         const key = `__art_${index}`;
         const rarity = String(article.raridade || '').trim().toLocaleLowerCase('pt-BR');
@@ -1502,6 +1477,9 @@
           key,
           kind: 'scroll',
           kindLabel: 'Pergaminho',
+          unlocked: unlockedArticles.has(index),
+          discovered: discoveredArticles.has(index),
+          unlockHint: 'Recompensa possível de um baú da jornada.',
           type: 'Artigo',
           title: article.titulo || 'Artigo',
           source: article.jornal || article.autores || '',
@@ -1517,12 +1495,12 @@
           impact: article.impacto || '',
           curiosity: article.curiosidade || '',
           url: _safeHttpsUrl(article.url),
-          favorite: favorites.has(key),
+          favorite: unlockedArticles.has(index) && favorites.has(key),
         });
       });
     }
 
-    _libraryCache = { items, favorites, unlockedRefs, unlockedArticles, totalRefs, totalArticles, adminView };
+    _libraryCache = { items, favorites, unlockedRefs, unlockedArticles, discoveredRefs, discoveredArticles, totalRefs, totalArticles, adminView };
     return _libraryCache;
   }
 
@@ -1557,7 +1535,6 @@
   }
 
   function _libraryCards(items) {
-    if (!items.length) return `<div class="nqd-empty" data-library-empty><strong>Seu Grimório aguarda a primeira descoberta.</strong><p>Referências e pergaminhos são liberados por acerto e por baú aberto.</p><button type="button" class="nqd-text-action" data-action="${_dashboardData && _dashboardData.save ? '_dashResumeJourney' : '_dashStartJourney'}"><span>${_dashboardData && _dashboardData.save ? 'Continuar jornada' : 'Começar jornada'}</span>${_svg('arrow')}</button></div>`;
     return items.map((item, index) => {
       const titleId = `nqdLibraryTitle-${index}`;
       const rarityLabel = _libraryRarityLabel(item.rarity);
@@ -1578,10 +1555,15 @@
         item.type,
         rarityLabel,
         theme,
-        item.impact,
+        item.unlocked ? item.impact : '',
       ].filter(Boolean).join(' ').toLocaleLowerCase('pt-BR');
+      if (!item.unlocked) return `
+        <article class="nqd-library-locked-item" data-library-entry data-library-kind="${_escape(item.kind)}" data-library-year="${_escape(item.year)}" data-library-type="${_escape(item.type)}" data-library-rarity="${_escape(item.rarity)}" data-library-theme="${_escape(theme)}" data-library-favorite="false" data-library-discovered="false" data-library-title="${_escape(item.title)}" data-search="${_escape(searchable)}" hidden>
+          <div class="nqd-library-locked-mark" aria-hidden="true">${_svg('lock')}</div>
+          <div class="nqd-library-locked-copy" data-library-guideline="${guideline}"><small>A descobrir · ${_escape(item.kindLabel)}</small><h3>${_escape(item.title)}</h3>${meta.length ? `<p>${_escape(meta.join(' · '))}</p>` : ''}<p class="nqd-library-unlock-hint">${_escape(item.unlockHint)}</p></div>
+        </article>`;
       return `
-      <article class="nqd-library-item" data-library-item data-library-kind="${_escape(item.kind)}" data-library-year="${_escape(item.year)}" data-library-type="${_escape(item.type)}" data-library-rarity="${_escape(item.rarity)}" data-library-theme="${_escape(theme)}" data-library-favorite="${item.favorite ? 'true' : 'false'}" data-library-title="${_escape(item.title)}" data-search="${_escape(searchable)}"${accentStyle}>
+      <article class="nqd-library-item" data-library-entry data-library-item data-library-kind="${_escape(item.kind)}" data-library-year="${_escape(item.year)}" data-library-type="${_escape(item.type)}" data-library-rarity="${_escape(item.rarity)}" data-library-theme="${_escape(theme)}" data-library-favorite="${item.favorite ? 'true' : 'false'}" data-library-discovered="${item.discovered ? 'true' : 'false'}" data-library-title="${_escape(item.title)}" data-search="${_escape(searchable)}"${accentStyle}>
         <div class="nqd-library-main" data-library-guideline="${guideline}">
           <div>
             <div class="nqd-library-kicker"><span class="nqd-library-insignia" aria-hidden="true">${_svg(item.kind === 'scroll' ? 'library' : 'publication')}</span><span class="nqd-state">${_escape(stateLabel)}</span>${rarityLabel ? `<span class="nqd-library-rarity">${_escape(rarityLabel)}</span>` : ''}</div>
@@ -1605,9 +1587,9 @@
 
   function _tabLibrary() {
     const library = _libraryItems();
-    const totalUnlocked = library.items.length;
-    const scrollCount = library.items.filter(item => item.kind === 'scroll').length;
-    const sourceCount = library.items.filter(item => item.kind === 'source').length;
+    const totalUnlocked = library.discoveredRefs.size + library.discoveredArticles.size;
+    const scrollCount = library.discoveredArticles.size;
+    const sourceCount = library.discoveredRefs.size;
     const favoriteCount = library.items.filter(item => item.favorite).length;
     const sortedItems = _sortLibraryItems(library.items, 'recent');
     const themes = [...new Set(library.items.flatMap(item => item.themes || []))].filter(Boolean).sort((a, b) => a.localeCompare(b, 'pt-BR'));
@@ -1623,21 +1605,22 @@
               Repetir a mesma ausência em três vozes não informa mais; faz a
               tela parecer defeituosa. Vazio agora fala uma vez só, no bloco de
               baixo, que é o único que oferece uma ação. */''}
-        ${library.items.length ? `
         <div class="nqd-library-overview">
           <div class="nqd-library-summary">
-            <small>${library.adminView ? 'Visão administrativa' : 'Acervo descoberto'}</small><strong>${totalUnlocked} ${library.adminView ? 'entradas no acervo' : totalUnlocked === 1 ? 'descoberta reunida' : 'descobertas reunidas'}</strong>
-            <span>${scrollCount} ${scrollCount === 1 ? 'pergaminho' : 'pergaminhos'} · ${sourceCount} ${sourceCount === 1 ? 'fonte clínica' : 'fontes clínicas'}</span>
+            <small>${library.adminView ? 'Visão administrativa' : 'Sua coleção'}</small><strong>${totalUnlocked} ${totalUnlocked === 1 ? 'descoberta reunida' : 'descobertas reunidas'}</strong>
+            <span>${scrollCount} de ${library.totalArticles} pergaminhos · ${sourceCount} de ${library.totalRefs} fontes do catálogo descobertos</span>
           </div>
-        </div>` : ''}
-        ${library.items.length ? `
+          <p class="nqd-library-catalogue-note">${library.adminView ? 'A prévia administrativa permite ler todo o catálogo sem registrar novas descobertas. ' : ''}Estas contagens são da coleção do jogo, não uma medida de conhecimento. Use “A descobrir” para ver os títulos que faltam e como liberá-los.</p>
+          <details class="nqd-overview-explanation"><summary>Como descobrir estudos</summary><p>Uma resposta correta que registra progresso libera as fontes citadas pela questão. Pergaminhos vêm dos baús: o baú de recompensa pode trazer um estudo ou equipamento, e o sorteio de pergaminhos evita os já descobertos. Fontes sem questão vinculada no banco atual são identificadas na lista.</p></details>
+        </div>
           <div class="nqd-library-tabs" role="tablist" aria-label="Coleções do Grimório">
-            <button type="button" role="tab" id="nqDashLibraryTab-scrolls" aria-selected="true" aria-controls="nqDashLibraryCollection" tabindex="0" data-library-collection="scrolls"><span>Pergaminhos</span><strong data-library-count>${scrollCount}</strong></button>
-            <button type="button" role="tab" id="nqDashLibraryTab-sources" aria-selected="false" aria-controls="nqDashLibraryCollection" tabindex="-1" data-library-collection="sources"><span>Fontes clínicas</span><strong data-library-count>${sourceCount}</strong></button>
+            <button type="button" role="tab" id="nqDashLibraryTab-scrolls" aria-selected="true" aria-controls="nqDashLibraryCollection" tabindex="0" data-library-collection="scrolls"><span>Pergaminhos</span><strong data-library-count>${scrollCount} / ${library.totalArticles}</strong></button>
+            <button type="button" role="tab" id="nqDashLibraryTab-sources" aria-selected="false" aria-controls="nqDashLibraryCollection" tabindex="-1" data-library-collection="sources"><span>Fontes clínicas</span><strong data-library-count>${sourceCount} / ${library.totalRefs}</strong></button>
             <button type="button" role="tab" id="nqDashLibraryTab-favorites" aria-selected="false" aria-controls="nqDashLibraryCollection" tabindex="-1" data-library-collection="favorites"><span>Favoritos</span><strong data-library-count>${favoriteCount}</strong></button>
           </div>
           <div class="nqd-library-tools">
             <label class="nqd-search">${_svg('search')}<span class="nqd-sr-only">Buscar no Grimório</span><input id="nqDashLibrarySearch" type="search" placeholder="Buscar título, autor ou ano" autocomplete="off"></label>
+            <label class="nqd-library-discovery"><span>Descoberta</span><select id="nqDashLibraryDiscovery">${library.adminView ? '<option value="all" selected>Catálogo completo (prévia)</option>' : ''}<option value="unlocked"${library.adminView ? '' : ' selected'}>Descobertos</option><option value="locked">A descobrir</option></select></label>
             <label class="nqd-library-filter"><span>Filtrar</span><select id="nqDashLibraryFilter">
               <option value="all">Todos</option>
               <option value="guideline" data-library-filter-for="sources" hidden>Diretrizes</option>
@@ -1651,13 +1634,13 @@
               <option value="type">Tipo</option>
             </select></label>
           </div>
-        ` : ''}
-        <div class="nqd-library-collection" id="nqDashLibraryCollection" ${library.items.length ? 'role="tabpanel" aria-labelledby="nqDashLibraryTab-scrolls"' : 'role="region" aria-label="Acervo descoberto"'}>
+        <div class="nqd-library-collection" id="nqDashLibraryCollection" role="tabpanel" aria-labelledby="nqDashLibraryTab-scrolls">
           <p class="nqd-library-collection-status" id="nqDashLibraryCollectionCount" aria-live="polite"></p>
+          ${!totalUnlocked && !library.adminView ? `<div class="nqd-empty" data-library-empty><strong>Seu Grimório aguarda a primeira descoberta.</strong><p>Uma resposta correta libera as fontes citadas. Baús podem trazer pergaminhos; consulte “A descobrir” para explorar a coleção.</p><button type="button" class="nqd-text-action" data-action="${_dashboardData && _dashboardData.save ? '_dashResumeJourney' : '_dashStartJourney'}"><span>${_dashboardData && _dashboardData.save ? 'Continuar jornada' : 'Começar jornada'}</span>${_svg('arrow')}</button></div>` : ''}
           <div class="nqd-library-list" id="nqDashLibraryList">${_libraryCards(sortedItems)}</div>
           <div class="nqd-empty nqd-library-no-results" id="nqDashLibraryNoResults" hidden><strong>Nada encontrado nesta coleção.</strong><p>Tente outro termo ou escolha uma coleção diferente.</p></div>
         </div>
-        ${!library.adminView && (library.totalRefs > sourceCount || library.totalArticles > scrollCount) ? `<aside class="nqd-library-locked" aria-label="Descobertas ainda bloqueadas">${_svg('lock')}<div>${library.totalRefs > sourceCount ? `<p><strong>${library.totalRefs - sourceCount} fontes clínicas ainda bloqueadas</strong><span>Acerte as questões que as citam para revelar essas referências.</span></p>` : ''}${library.totalArticles > scrollCount ? `<p><strong>${library.totalArticles - scrollCount} pergaminhos ainda bloqueados</strong><span>Abra baús na jornada para descobrir novos artigos.</span></p>` : ''}</div></aside>` : ''}
+        ${!library.adminView && (library.totalRefs > sourceCount || library.totalArticles > scrollCount) ? `<aside class="nqd-library-locked" aria-label="Descobertas ainda bloqueadas">${_svg('lock')}<div><p><strong>${library.totalArticles - scrollCount} pergaminhos e ${library.totalRefs - sourceCount} fontes ainda não descobertos</strong><span>A lista “A descobrir” mostra cada título e sua regra. Fontes sem questão vinculada são identificadas separadamente.</span></p></div></aside>` : ''}
         <div class="nqd-library-suggestion" data-library-suggestion></div>
       </section>
     `;
@@ -2095,6 +2078,7 @@
       collection: root.querySelector('[data-library-collection][aria-selected="true"]')?.dataset.libraryCollection || 'scrolls',
       search: root.querySelector('#nqDashLibrarySearch')?.value || '',
       filter: root.querySelector('#nqDashLibraryFilter')?.value || 'all',
+      discovery: root.querySelector('#nqDashLibraryDiscovery')?.value || 'unlocked',
       sort: root.querySelector('#nqDashLibrarySort')?.value || 'recent',
       expanded: [...root.querySelectorAll('[data-library-item].is-expanded [data-library-key]')].map(el => el.dataset.libraryKey),
       scroll: _activeTab === 'library' ? root.querySelector('.nqd-main').scrollTop : (_libraryReadingContext?.scroll || 0),
@@ -2106,7 +2090,7 @@
     if (!saved || saved.owner !== root.dataset.libraryReader) return;
     const collection = [...root.querySelectorAll('[data-library-collection]')].find(el => el.dataset.libraryCollection === saved.collection);
     _setLibraryCollection(root, collection);
-    for (const [id, value] of [['nqDashLibrarySearch', saved.search], ['nqDashLibrarySort', saved.sort], ['nqDashLibraryFilter', saved.filter]]) {
+    for (const [id, value] of [['nqDashLibrarySearch', saved.search], ['nqDashLibrarySort', saved.sort], ['nqDashLibraryFilter', saved.filter], ['nqDashLibraryDiscovery', saved.discovery]]) {
       const control = root.querySelector('#' + id);
       if (!control) continue;
       if (control.tagName !== 'SELECT' || [...control.options].some(option => option.value === value && !option.hidden)) control.value = value;
@@ -2179,6 +2163,8 @@
 
     const libraryFilter = root.querySelector('#nqDashLibraryFilter');
     if (libraryFilter) libraryFilter.addEventListener('change', () => _applyLibraryView(root));
+    const libraryDiscovery = root.querySelector('#nqDashLibraryDiscovery');
+    if (libraryDiscovery) libraryDiscovery.addEventListener('change', () => _applyLibraryView(root));
 
     const libraryTabs = [...root.querySelectorAll('[data-library-collection]')];
     libraryTabs.forEach((button, index) => {
@@ -2219,7 +2205,7 @@
       let groupVisibleNodes = 0;
       nodes.forEach(node => {
         const matchesQuery = !query || groupLabelMatches || normalize(node.dataset.search).includes(query);
-        const matchesFilter = filter === 'all' || node.dataset.state === filter;
+        const matchesFilter = filter === 'all' || (filter === 'answered' ? node.dataset.state !== 'unseen' : node.dataset.state === filter);
         node.hidden = !(matchesQuery && matchesFilter);
         if (!node.hidden) {
           groupVisibleNodes += 1;
@@ -2227,9 +2213,10 @@
         }
       });
       group.hidden = groupVisibleNodes === 0;
+      group.closest('[data-map-area]')?.toggleAttribute('hidden', group.hidden);
       if (!group.hidden) visibleGroups += 1;
       const count = group.querySelector('[data-map-summary-count]');
-      if (count) count.textContent = selected ? `${groupVisibleNodes} de ${nodes.length} nesta seleção` : count.dataset.default;
+      if (count) count.textContent = selected ? `${groupVisibleNodes} ${groupVisibleNodes === 1 ? 'tema nesta busca' : 'temas nesta busca'}` : count.dataset.default;
     });
     const more = root.querySelector('[data-map-more]');
     if (more) {
@@ -2243,13 +2230,13 @@
     }
     const result = root.querySelector('#nqDashMapResult');
     if (result) {
-      if (selected) result.textContent = `${visibleNodes} ${visibleNodes === 1 ? 'tema clínico' : 'temas clínicos'} em ${visibleGroups} ${visibleGroups === 1 ? 'área' : 'áreas'}`;
+      if (selected) result.textContent = `${visibleGroups} ${visibleGroups === 1 ? 'área encontrada' : 'áreas encontradas'} · ${visibleNodes} ${visibleNodes === 1 ? 'tema nesta lista' : 'temas nesta lista'}`;
       else {
         const total = Number(result.dataset.totalThemes) || 0;
         const areas = Number(result.dataset.totalAreas) || 0;
         const withResponses = Number(result.dataset.withResponses) || 0;
         const attention = Number(result.dataset.attention) || 0;
-        result.innerHTML = `<strong>${withResponses ? `${withResponses} de ${total} temas com respostas` : `${total} temas disponíveis`}</strong><span>${areas} áreas clínicas</span>${attention ? `<span class="nqd-map-attention">${attention} ${attention === 1 ? 'tema pede' : 'temas pedem'} atenção</span>` : ''}`;
+        result.innerHTML = `<strong>${areas} áreas para estudar</strong><span>${total} temas listados</span>`;
       }
     }
     const empty = root.querySelector('#nqDashMapEmpty');
@@ -2292,6 +2279,16 @@
         ? 'Buscar título, tema ou ano'
         : collection === 'favorites' ? 'Buscar nos favoritos' : 'Buscar título, autor ou ano';
     }
+    const discovery = root.querySelector('#nqDashLibraryDiscovery');
+    if (discovery) {
+      const entries = [...root.querySelectorAll('[data-library-entry]')].filter(entry => collection === 'favorites'
+        ? entry.dataset.libraryFavorite === 'true'
+        : entry.dataset.libraryKind === (collection === 'sources' ? 'source' : 'scroll'));
+      const discovered = entries.filter(entry => entry.dataset.libraryDiscovered === 'true').length;
+      discovery.querySelector('[value="unlocked"]').textContent = `Descobertos (${discovered})`;
+      discovery.querySelector('[value="locked"]').textContent = `A descobrir (${entries.length - discovered})`;
+      discovery.closest('label').hidden = collection === 'favorites';
+    }
     const filter = root.querySelector('#nqDashLibraryFilter');
     if (!filter) return;
     [...filter.options].forEach(option => {
@@ -2312,7 +2309,8 @@
     const query = (root.querySelector('#nqDashLibrarySearch')?.value || '').trim().toLocaleLowerCase('pt-BR');
     const sort = root.querySelector('#nqDashLibrarySort')?.value || 'recent';
     const filter = root.querySelector('#nqDashLibraryFilter')?.value || 'all';
-    const items = [...list.querySelectorAll('[data-library-item]')];
+    const discovery = root.querySelector('#nqDashLibraryDiscovery')?.value || 'unlocked';
+    const items = [...list.querySelectorAll('[data-library-entry]')];
     const title = item => item.dataset.libraryTitle || '';
     const year = item => {
       const parsed = Number.parseInt(item.dataset.libraryYear, 10);
@@ -2340,22 +2338,27 @@
         ? item.dataset.libraryFavorite === 'true'
         : item.dataset.libraryKind === (collection === 'sources' ? 'source' : 'scroll');
       const matches = !query || (item.dataset.search || '').includes(query);
+      const matchesDiscovery = collection === 'favorites' || discovery === 'all'
+        || (discovery === 'unlocked' ? item.dataset.libraryDiscovered === 'true' : item.dataset.libraryDiscovered !== 'true');
       const matchesFilter = filter === 'all'
         || (filter === 'guideline' && !!item.querySelector('[data-library-guideline="true"]'))
         || (filter.startsWith('rarity:') && item.dataset.libraryRarity === filter.slice(7))
         || (filter.startsWith('theme:') && (item.dataset.libraryTheme || '').split(' · ').includes(filter.slice(6)));
-      item.hidden = !(inCollection && matches && matchesFilter);
+      item.hidden = !(inCollection && matchesDiscovery && matches && matchesFilter);
       if (!item.hidden) visible += 1;
     });
 
-    const labels = { scrolls: 'pergaminho', sources: 'fonte clínica', favorites: 'favorito' };
+    const labels = { scrolls: ['pergaminho', 'pergaminhos'], sources: ['fonte clínica', 'fontes clínicas'], favorites: ['favorito', 'favoritos'] };
     const status = root.querySelector('#nqDashLibraryCollectionCount');
     if (status) {
-      const label = labels[collection] || 'item';
-      status.textContent = `${visible} ${label}${visible === 1 ? '' : 's'}${query ? ' encontrado' + (visible === 1 ? '' : 's') : ''}`;
+      const label = (labels[collection] || ['item', 'itens'])[visible === 1 ? 0 : 1];
+      const view = collection === 'favorites' ? '' : discovery === 'locked' ? ' a descobrir' : discovery === 'all' ? ' na prévia administrativa' : ' descobertos';
+      status.textContent = `${visible} ${label}${view}${query ? ' nesta busca' : ''}`;
     }
+    const empty = root.querySelector('[data-library-empty]');
+    if (empty) empty.hidden = !(collection !== 'favorites' && discovery === 'unlocked' && !query && filter === 'all' && visible === 0);
     const noResults = root.querySelector('#nqDashLibraryNoResults');
-    if (noResults) noResults.hidden = visible > 0;
+    if (noResults) noResults.hidden = visible > 0 || !!(empty && !empty.hidden);
   }
 
   async function openDashboard(options) {
@@ -2648,7 +2651,7 @@
   function _dashToggleArticle(element) {
     const key = element?.dataset?.libraryReadKey;
     const item = key && _libraryItems().items.find(entry => entry.key === key);
-    if (!item || typeof _showResumoModal !== 'function') return;
+    if (!item?.unlocked || typeof _showResumoModal !== 'function') return;
     _showResumoModal({
       label: item.title, autores: item.authors, jornal: item.source, ano: item.year,
       resumo: item.summary, conclusao: item.conclusion,
@@ -2659,7 +2662,7 @@
 
   function _dashToggleFavorite(element) {
     const key = element && element.dataset ? element.dataset.libraryKey : '';
-    if (!key) return;
+    if (!key || !_libraryItems().items.some(item => item.key === key && item.unlocked)) return;
     const favorites = new Set(_readArray('nq-bib-favorites'));
     if (favorites.has(key)) favorites.delete(key);
     else favorites.add(key);

@@ -53,6 +53,17 @@ async function abrir(page: Page, dailyActivity: Record<string, unknown>) {
   await page.evaluate(() => (window as any)._loadTopics?.());
   await page.evaluate(() => (window as any).openDashboard());
   await expect(page.locator('#nqDashboard')).toBeVisible();
+  const before = await page.evaluate(() => [localStorage.getItem('nefroquest-save'), localStorage.getItem('nefroquest-detailed-stats')]);
+  const comparison = page.locator('#nqdPane-overview .nqd-overview-explanation');
+  const summary = comparison.locator('summary');
+  await expect(summary).toBeVisible();
+  await expect(summary).toHaveText('Ver comparação e histórico');
+  await summary.focus();
+  await expect(summary).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(comparison).toHaveAttribute('open', '');
+  await expect(comparison.locator('.nqd-evolution')).toBeVisible();
+  expect(await page.evaluate(() => [localStorage.getItem('nefroquest-save'), localStorage.getItem('nefroquest-detailed-stats')])).toEqual(before);
 }
 
 test.describe('Evolução entre semanas', () => {
@@ -65,6 +76,20 @@ test.describe('Evolução entre semanas', () => {
     await expect(evo).toContainText('Subiu 30 pontos');
     await expect(evo).toContainText('90% em 20 respostas');
     await expect(evo).toContainText('60% em 20');
+    const comparison = page.locator('#nqdPane-overview .nqd-overview-explanation');
+    const summary = comparison.locator('summary');
+    const before = await page.evaluate(() => [localStorage.getItem('nefroquest-save'), localStorage.getItem('nefroquest-detailed-stats')]);
+    await expect(summary).toBeFocused();
+    await page.keyboard.press('Space');
+    await expect(comparison).not.toHaveAttribute('open', '');
+    await expect(evo).toBeHidden();
+    await expect(summary).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(comparison).toHaveAttribute('open', '');
+    await expect(evo).toBeVisible();
+    await expect(evo).toContainText('90% em 20 respostas');
+    await expect(evo).toContainText('60% em 20');
+    expect(await page.evaluate(() => [localStorage.getItem('nefroquest-save'), localStorage.getItem('nefroquest-detailed-stats')])).toEqual(before);
   });
 
   test('quando cai, diz que caiu — sem maquiar', async ({ page }) => {
