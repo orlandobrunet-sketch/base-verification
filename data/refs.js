@@ -56,17 +56,17 @@ const refsDB = {
     curiosidade:"O detalhe ultramicroscópico é bonito e traiçoeiro: o mesmo padrão lamelar pode representar erro inato lisossomal ou apenas uma assinatura farmacológica reversível."
   },
   gitelman_kdigo_2017:{
-    label:"Blanchard A et al. — Gitelman Syndrome: KDIGO Controversies Conference (2017)",
+    label:"Blanchard A et al. - Síndrome de Gitelman: consenso KDIGO (2017)",
     url:"https://discovery.ucl.ac.uk/id/eprint/1534450/",
     journal:"Kidney Int 2017;91(1):24-33",
     ano:2017,
-    tipo:"Consenso KDIGO",
-    badge:"GUIDELINE",
+    tipo:"Consenso internacional (KDIGO)",
+    badge:"CONSENSUS",
     badgeColor:"#6366f1",
-    impacto:"Diagnóstico e manejo da síndrome de Gitelman: hipocalemia, alcalose metabólica, hipomagnesemia, hipocalciúria e SLC12A3/NCC",
+    impacto:"Reconhecer o fenótipo de Gitelman e os limites do diagnóstico clínico",
     icon:"📋",
-    resumo:"Consenso de conferência KDIGO sobre síndrome de Gitelman, uma tubulopatia perdedora de sal causada por mutações inativantes em SLC12A3, gene do cotransportador NaCl sensível a tiazídicos (NCC) no túbulo contornado distal. Caracteriza o fenótipo clássico por alcalose metabólica hipocalêmica, hipomagnesemia e hipocalciúria, geralmente com apresentação mais tardia que Bartter. O manejo é individualizado e costuma combinar liberalização de sal, suplementação de potássio e magnésio e seguimento para sintomas, qualidade de vida, arritmias e complicações.",
-    conclusao:"Gitelman deve ser reconhecida pelo padrão de hipocalemia + alcalose metabólica + hipomagnesemia + hipocalciúria, distinguindo-se de Bartter pela localização distal/NCC e pelo perfil cálcio-magnésio.",
+    resumo:"Consenso de especialistas de uma conferência KDIGO, publicado em 2017, sobre diagnóstico, manejo e seguimento da síndrome de Gitelman, com evidência de alta qualidade limitada. A forma clássica é uma tubulopatia perdedora de sal, de herança autossômica recessiva, causada por variantes patogênicas bialélicas em SLC12A3, que codifica o cotransportador NaCl sensível a tiazídicos (NCC) no túbulo contornado distal. O fenótipo típico inclui alcalose metabólica hipocalêmica, hipomagnesemia e hipocalciúria, geralmente reconhecido na adolescência ou vida adulta, mas pode variar. O manejo é individualizado, com liberalização de sal e reposição oral de potássio e magnésio conforme necessidade e tolerância, além de seguimento dos sintomas, distúrbios eletrolíticos e complicações.",
+    conclusao:"O padrão típico sugere Gitelman, mas hipomagnesemia pode estar ausente e a calciúria é variável. Há sobreposição com Bartter associado a CLCNKB; o perfil cálcio-magnésio isolado não confirma o diagnóstico. A confirmação molecular se baseia em variantes patogênicas bialélicas em SLC12A3, com investigação genética orientada pelo diagnóstico diferencial.",
     curiosidade:"O fenótipo de Gitelman imita um 'tiazídico genético': o defeito fica no mesmo cotransportador que a hidroclorotiazida bloqueia, mas com consequências crônicas sobre magnésio e cálcio urinário."
   },
   liddle_syndrome_review_2019:{

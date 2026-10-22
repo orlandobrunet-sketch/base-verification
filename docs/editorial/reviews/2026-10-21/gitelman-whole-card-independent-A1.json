@@ -1,0 +1,759 @@
+{
+  "reportType": "parecer formal independente integral do AFTER A1",
+  "reportId": "B933BE69-GITELMAN-WHOLE-CARD-A1-INDEPENDENT-REVIEW-20261021",
+  "reviewDate": "2026-10-21",
+  "reviewer": "/root/gitelman_whole_independent_20261021",
+  "stage": "AFTER_A1_OWN_FULL_REVIEW_SEALED_BEFORE_ROOT_AUTHOR_REVIEW",
+  "verdict": {
+    "v2": "aprovada",
+    "legacyAuxiliary": "MANTER",
+    "confidence": "alta",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publicationAuthorization": "LIBERADA",
+    "derivation": "Derivação própria da variante A1: Evidência VERIFICADA + Pendência NENHUMA + veredito aprovada => LIBERADA, Handbook §18.4 Regra 7. Não herdada do BEFORE, da questão, de R2/R3 ou de outro revisor.",
+    "normativeLifecycleTargetIfApplied": "publicado",
+    "lifecycleTransitionPerformed": false,
+    "actualArtifactState": "rascunho local no arquivo candidate-A1.json; não publicado",
+    "scope": "Somente o literal integral de 12 campos /wholeCard de candidate-A1.json, com os pins abaixo.",
+    "executionAuthorization": "A liberação é editorial. O escopo autorizado desta tarefa continua revisão e preparação local; não autoriza aplicação no banco, commit, push, PR, merge, deploy ou publicação operacional."
+  },
+  "reviewedVariant": {
+    "candidateId": "GITELMAN-WHOLE-CARD-20261021-A1",
+    "referenceId": "gitelman_kdigo_2017",
+    "associatedQuestionId": "b933be69",
+    "path": "C:\\Users\\orlan\\Documents\\Codex\\2026-10-06\\task\\verification-drafts\\gitelman-whole-card-20261021-A1\\candidate-A1.json",
+    "jsonPointer": "/wholeCard",
+    "pointerClarification": "ROOT confirmou que /wholeCard é o apontador pretendido; 12campos era contagem em prosa, não parte do JSONPointer. A confirmação ocorreu antes do fechamento deste parecer.",
+    "fileBytes": 3154,
+    "fileSHA256": "e381b360c0359a02a152f74719648b660944b7428ae5df93ff2bd1f58daf560c",
+    "filePinVerification": "Tamanho e SHA256 conferidos com Get-Item e Get-FileHash nesta revisão.",
+    "orderedCompactPythonSHA256": "65950e77ed553f0478e5a39d1deed9226f89684722d4da662a80a6c9542cb24c",
+    "sortedSHA256": "aa02ffc07c33a7bf4b2aeb21c7c32839a9215e67dbd549ee5ff314b656ec361f",
+    "pythonLiteralPinStatus": "Pins de entrada fornecidos por ROOT; não recomputados por este agente. O literal completo foi extraído diretamente do arquivo pinado e será comparado campo a campo ao literal persistido neste parecer. ROOT pode recomputar os hashes exatos para o gate técnico.",
+    "fieldCount": 12,
+    "fullLiteral": {
+      "label": "Blanchard A et al. - Síndrome de Gitelman: consenso KDIGO (2017)",
+      "url": "https://discovery.ucl.ac.uk/id/eprint/1534450/",
+      "journal": "Kidney Int 2017;91(1):24-33",
+      "ano": 2017,
+      "tipo": "Consenso internacional (KDIGO)",
+      "badge": "CONSENSUS",
+      "badgeColor": "#6366f1",
+      "impacto": "Reconhecer o fenótipo de Gitelman e os limites do diagnóstico clínico",
+      "icon": "📋",
+      "resumo": "Consenso de especialistas de uma conferência KDIGO, publicado em 2017, sobre diagnóstico, manejo e seguimento da síndrome de Gitelman, com evidência de alta qualidade limitada. A forma clássica é uma tubulopatia perdedora de sal, de herança autossômica recessiva, causada por variantes patogênicas bialélicas em SLC12A3, que codifica o cotransportador NaCl sensível a tiazídicos (NCC) no túbulo contornado distal. O fenótipo típico inclui alcalose metabólica hipocalêmica, hipomagnesemia e hipocalciúria, geralmente reconhecido na adolescência ou vida adulta, mas pode variar. O manejo é individualizado, com liberalização de sal e reposição oral de potássio e magnésio conforme necessidade e tolerância, além de seguimento dos sintomas, distúrbios eletrolíticos e complicações.",
+      "conclusao": "O padrão típico sugere Gitelman, mas hipomagnesemia pode estar ausente e a calciúria é variável. Há sobreposição com Bartter associado a CLCNKB; o perfil cálcio-magnésio isolado não confirma o diagnóstico. A confirmação molecular se baseia em variantes patogênicas bialélicas em SLC12A3, com investigação genética orientada pelo diagnóstico diferencial.",
+      "curiosidade": "O fenótipo de Gitelman imita um 'tiazídico genético': o defeito fica no mesmo cotransportador que a hidroclorotiazida bloqueia, mas com consequências crônicas sobre magnésio e cálcio urinário."
+    },
+    "stableId": "Preservado o ID existente; nenhum novo ID foi inventado.",
+    "iconVerification": {
+      "literal": "📋",
+      "unicodeScalar": "U+1F4CB",
+      "decimalScalar": 128203
+    },
+    "sourcePacket": {
+      "path": "verification-drafts/gitelman-whole-card-20261021-A1/input-whole-card.json",
+      "jsonPointer": "/wholeCard",
+      "fileBytes": 2584,
+      "fileSHA256": "7b8748e86c96fd269fc6fa8dda36d58db9ea8fd63367ea4556235d93f3ddee94",
+      "fileHashVerification": "Get-FileHash conferido nesta revisão.",
+      "provenance": "ROOT informou recomputação do literal BEFORE e igualdade com RAW e com a captura estática do bloco corrente. Usado somente para identidade documental, não como evidência científica."
+    },
+    "initialReviewPreserved": {
+      "path": "verification-drafts/B933BE69-GITELMAN-WHOLE-CARD-INDEPENDENT-REVIEW-20261021.json",
+      "fileBytes": 31119,
+      "fileSHA256": "b61fb1ab81f4bdaff829ea4d35ca9c187235cf2b416267453b7324fbed262722",
+      "role": "Somente identificação dos achados F1–F5; veredito e eixos não transferidos."
+    }
+  },
+  "reviewIndependence": {
+    "scope": "Leitura integral dos 12 campos do AFTER, inclusive os campos preservados, e nova confrontação das alegações com fontes.",
+    "rootAuthorFindings": "Não recebidos antes de selar este parecer.",
+    "oldQuestionReviews": "Não consultados nem herdados.",
+    "otherCardsAndBatches": "Não abertos.",
+    "supportingSourceReviewer": "Subrevisor source_check conferiu bibliografia, gênero documental e manejo do A1; não é um parecer integral substitutivo. A fonte decisiva foi aberta também por este revisor.",
+    "helpers": "Nenhum helper novo ou Python foi executado. Somente leituras/metadados normais e escrita deste parecer."
+  },
+  "declaredPedagogicalObjective": {
+    "description": "Apoiar o reconhecimento do fenótipo típico de Gitelman e dos limites do diagnóstico clínico, relacionando-o ao defeito do NCC e ao escopo do consenso de 2017.",
+    "primaryCompetenceForCard": "interpretação diagnóstica",
+    "thematicBloomMiller": "Compreender / Sabe; descrição do material de apoio, sem medir desempenho.",
+    "intrinsicDifficulty": "N/A: card de referência, sem MCQ.",
+    "loid": "N/A: nenhum identificador físico inventado."
+  },
+  "justification": "A versão exata A1 cumpre o schema de 12 campos, identifica fielmente a fonte e sua taxonomia, apresenta a ressalva da evidência e delimita a interpretação diagnóstica. A síntese permanece concisa, coerente com o documento e sem doses, metas ou efeitos de intervenção acrescentados. Nenhum problema substantivo novo foi identificado.",
+  "findings": [],
+  "initialFindingsResolution": [
+    {
+      "findingId": "F1",
+      "status": "RESOLVIDO",
+      "fields": [
+        "conclusao",
+        "resumo"
+      ],
+      "verification": "A1 distingue suspeita clínica de confirmação, declara variabilidade e sobreposição com CLCNKB. Conferidos os trechos exatos na fonte.",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "pp. 24–26, introdução, Clinical characteristics and diagnosis e Tabela 2"
+        }
+      ],
+      "remainingRequiredRepair": false
+    },
+    {
+      "findingId": "F2",
+      "status": "RESOLVIDO",
+      "fields": [
+        "tipo",
+        "badge",
+        "resumo",
+        "badgeColor",
+        "icon"
+      ],
+      "verification": "Consenso internacional, CONSENSUS e método por especialistas estão identificados; a ressalva da evidência está explícita. Cor e ícone correspondem à taxonomia.",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "pp. 24–25 e 31"
+        },
+        {
+          "id": "N1",
+          "location": "output-contract §§5–7"
+        }
+      ],
+      "remainingRequiredRepair": false
+    },
+    {
+      "findingId": "F3",
+      "status": "RESOLVIDO",
+      "fields": [
+        "resumo",
+        "conclusao"
+      ],
+      "verification": "A1 explicita herança recessiva e variantes patogênicas bialélicas da forma clássica; não usa variante incerta como confirmação.",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 24, introdução; p. 26, Tabela 2"
+        }
+      ],
+      "remainingRequiredRepair": false
+    },
+    {
+      "findingId": "F4",
+      "status": "RESOLVIDO",
+      "fields": [
+        "impacto"
+      ],
+      "verification": "69 caracteres, conferidos por leitura normal da propriedade; atende ao ideal de até 90.",
+      "sources": [
+        {
+          "id": "N1",
+          "location": "output-contract §5, campo impacto"
+        }
+      ],
+      "remainingRequiredRepair": false
+    },
+    {
+      "findingId": "F5",
+      "status": "RESOLVIDO",
+      "fields": [
+        "label",
+        "resumo",
+        "ano"
+      ],
+      "verification": "O label agora nomeia consenso; o resumo explicita publicado em 2017. A data da reunião não é apresentada como 2017.",
+      "sources": [
+        {
+          "id": "S2",
+          "location": "metadados bibliográficos"
+        },
+        {
+          "id": "S3",
+          "location": "página oficial da conferência"
+        }
+      ],
+      "remainingRequiredRepair": false
+    }
+  ],
+  "fieldCoverage": [
+    {
+      "field": "label",
+      "status": "APROVADO",
+      "reason": "Título curto identificável, autoria e ano corretos; não atribui grau de diretriz.",
+      "claims": [
+        "A01",
+        "A02"
+      ]
+    },
+    {
+      "field": "url",
+      "status": "APROVADO",
+      "reason": "O endereço exato abriu e remete ao artigo citado em repositório institucional.",
+      "claims": [
+        "A03"
+      ]
+    },
+    {
+      "field": "journal",
+      "status": "APROVADO",
+      "reason": "Periódico, ano, volume, número e páginas conferidos.",
+      "claims": [
+        "A02"
+      ]
+    },
+    {
+      "field": "ano",
+      "status": "APROVADO",
+      "reason": "Inteiro 2017; corresponde à publicação.",
+      "claims": [
+        "A02"
+      ]
+    },
+    {
+      "field": "tipo",
+      "status": "APROVADO",
+      "reason": "Consenso internacional (KDIGO) é gênero fiel.",
+      "claims": [
+        "A04"
+      ]
+    },
+    {
+      "field": "badge",
+      "status": "APROVADO",
+      "reason": "CONSENSUS corresponde à taxonomia vigente.",
+      "claims": [
+        "A05"
+      ]
+    },
+    {
+      "field": "badgeColor",
+      "status": "APROVADO",
+      "reason": "#6366f1 corresponde a CONSENSUS.",
+      "claims": [
+        "A05"
+      ]
+    },
+    {
+      "field": "impacto",
+      "status": "APROVADO",
+      "reason": "69 caracteres; finalidade clínica específica, sem prometer desfecho.",
+      "claims": [
+        "A06"
+      ]
+    },
+    {
+      "field": "icon",
+      "status": "APROVADO",
+      "reason": "📋 U+1F4CB corresponde a consenso.",
+      "claims": [
+        "A05"
+      ]
+    },
+    {
+      "field": "resumo",
+      "status": "APROVADO",
+      "reason": "Escopo, método, genética, fenótipo, manejo e limite de evidência conferidos.",
+      "claims": [
+        "A04",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "A15",
+        "A16"
+      ]
+    },
+    {
+      "field": "conclusao",
+      "status": "APROVADO",
+      "reason": "Limites e confirmação molecular conferidos, sem excluir por teste genético negativo.",
+      "claims": [
+        "A17",
+        "A18",
+        "A19",
+        "A20",
+        "A21"
+      ]
+    },
+    {
+      "field": "curiosidade",
+      "status": "APROVADO",
+      "reason": "Analogia restrita ao mecanismo; não recomenda teste ou tratamento.",
+      "claims": [
+        "A22",
+        "A23"
+      ]
+    }
+  ],
+  "claimSourceMatrix": [
+    {
+      "id": "A01",
+      "field": "label",
+      "claim": "Blanchard A et al.; síndrome de Gitelman, consenso KDIGO",
+      "assessment": "sustentado",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 24, cabeçalho e autores"
+        },
+        {
+          "id": "S2",
+          "location": "título e autoria"
+        }
+      ]
+    },
+    {
+      "id": "A02",
+      "field": "label/journal/ano",
+      "claim": "Kidney Int 2017;91(1):24-33; publicação em 2017",
+      "assessment": "sustentado",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 24, identificação bibliográfica"
+        },
+        {
+          "id": "S2",
+          "location": "metadados"
+        }
+      ]
+    },
+    {
+      "id": "A03",
+      "field": "url",
+      "claim": "https://discovery.ucl.ac.uk/id/eprint/1534450/",
+      "assessment": "URL exato aberto; corresponde à versão publicada e DOI",
+      "sources": [
+        {
+          "id": "S2",
+          "location": "registro integral e link Published Version"
+        }
+      ]
+    },
+    {
+      "id": "A04",
+      "field": "tipo/resumo",
+      "claim": "Consenso internacional de especialistas de conferência KDIGO sobre diagnóstico, manejo e seguimento",
+      "assessment": "sustentado",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 24, resumo; p. 25, introdução"
+        }
+      ]
+    },
+    {
+      "id": "A05",
+      "field": "badge/badgeColor/icon",
+      "claim": "CONSENSUS / #6366f1 / 📋",
+      "assessment": "combinação válida",
+      "sources": [
+        {
+          "id": "N1",
+          "location": "§6, Consenso / consenso internacional"
+        }
+      ]
+    },
+    {
+      "id": "A06",
+      "field": "impacto",
+      "claim": "Reconhecer o fenótipo de Gitelman e os limites do diagnóstico clínico",
+      "assessment": "síntese pedagógica pertinente; não alega efeito clínico ou certeza quantitativa",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "pp. 24–26, escopo e diagnóstico"
+        },
+        {
+          "id": "N1",
+          "location": "§5, impacto"
+        }
+      ]
+    },
+    {
+      "id": "A07",
+      "field": "resumo",
+      "claim": "Evidência de alta qualidade limitada",
+      "assessment": "sustentado; não fabrica grade",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 24, resumo; p. 31, Conclusion and perspectives"
+        }
+      ]
+    },
+    {
+      "id": "A08",
+      "field": "resumo",
+      "claim": "Forma clássica: tubulopatia perdedora de sal",
+      "assessment": "sustentado",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 24, introdução"
+        }
+      ]
+    },
+    {
+      "id": "A09",
+      "field": "resumo",
+      "claim": "Herança autossômica recessiva, variantes patogênicas bialélicas em SLC12A3",
+      "assessment": "sustentado",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 24, introdução; p. 26, Tabela 2"
+        }
+      ]
+    },
+    {
+      "id": "A10",
+      "field": "resumo",
+      "claim": "SLC12A3 codifica NCC, cotransportador NaCl sensível a tiazídicos",
+      "assessment": "sustentado",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 24, introdução"
+        }
+      ]
+    },
+    {
+      "id": "A11",
+      "field": "resumo",
+      "claim": "NCC no túbulo contornado distal",
+      "assessment": "sustentado",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 24, introdução"
+        }
+      ]
+    },
+    {
+      "id": "A12",
+      "field": "resumo",
+      "claim": "Fenótipo típico de alcalose metabólica hipocalêmica, hipomagnesemia e hipocalciúria; pode variar",
+      "assessment": "sustentado com qualificação apropriada",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "pp. 24–26, introdução e Tabela 2"
+        },
+        {
+          "id": "S5",
+          "location": "Methods e Results, características gerais"
+        }
+      ]
+    },
+    {
+      "id": "A13",
+      "field": "resumo",
+      "claim": "Geralmente reconhecido na adolescência ou vida adulta",
+      "assessment": "sustentado como tendência, não exclusão de crianças",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "pp. 24–25, resumo e Clinical characteristics and diagnosis"
+        }
+      ]
+    },
+    {
+      "id": "A14",
+      "field": "resumo",
+      "claim": "Manejo individualizado e liberalização de sal",
+      "assessment": "sustentado",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 28, Treatment; p. 29, Management and follow-up"
+        }
+      ]
+    },
+    {
+      "id": "A15",
+      "field": "resumo",
+      "claim": "Reposição oral de potássio e magnésio conforme necessidade e tolerância",
+      "assessment": "sustentado como manejo individualizado; qualificadores evitam imposição de ambos a todos",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 28, Treatment, individualização e tolerabilidade"
+        }
+      ]
+    },
+    {
+      "id": "A16",
+      "field": "resumo",
+      "claim": "Seguimento dos sintomas, distúrbios eletrolíticos e complicações",
+      "assessment": "sustentado; sem alegação de prevenção demonstrada",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 29, Management and follow-up"
+        }
+      ]
+    },
+    {
+      "id": "A17",
+      "field": "conclusao",
+      "claim": "Padrão típico sugere Gitelman",
+      "assessment": "sustentado como suspeita",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "pp. 25–26, diagnóstico e Tabela 2"
+        }
+      ]
+    },
+    {
+      "id": "A18",
+      "field": "conclusao",
+      "claim": "Hipomagnesemia pode estar ausente e calciúria é variável",
+      "assessment": "sustentado",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 24, introdução"
+        },
+        {
+          "id": "S5",
+          "location": "Results, características gerais"
+        }
+      ]
+    },
+    {
+      "id": "A19",
+      "field": "conclusao",
+      "claim": "Sobreposição com Bartter associado a CLCNKB",
+      "assessment": "sustentado",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 25, introdução; p. 26, diagnóstico diferencial"
+        }
+      ]
+    },
+    {
+      "id": "A20",
+      "field": "conclusao",
+      "claim": "Perfil cálcio-magnésio isolado não confirma diagnóstico",
+      "assessment": "síntese fiel dos limites expostos pela fonte",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "pp. 24–26, sobreposição, variabilidade e Tabela 2"
+        }
+      ]
+    },
+    {
+      "id": "A21",
+      "field": "conclusao",
+      "claim": "Confirmação molecular baseada em variantes patogênicas bialélicas de SLC12A3; investigação genética orientada pelo diferencial",
+      "assessment": "sustentado; não afirma que resultado negativo exclua doença",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 26, Tabela 2; p. 27, Genetic testing"
+        }
+      ]
+    },
+    {
+      "id": "A22",
+      "field": "curiosidade",
+      "claim": "Analogia de tiazídico genético e mesmo cotransportador inibido pela hidroclorotiazida",
+      "assessment": "sustentado no nível do alvo molecular",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "p. 24, defeito do NCC"
+        },
+        {
+          "id": "S4",
+          "location": "Abstract e Introduction, inibição de NCC pela hidroclorotiazida"
+        }
+      ]
+    },
+    {
+      "id": "A23",
+      "field": "curiosidade",
+      "claim": "Consequências crônicas sobre magnésio e cálcio urinário",
+      "assessment": "compatível com o fenótipo, lido com as ressalvas expressas do resumo e da conclusão",
+      "sources": [
+        {
+          "id": "S1",
+          "location": "pp. 24 e 27, fenótipo e manifestações"
+        }
+      ]
+    }
+  ],
+  "adversarialReview": {
+    "adaptedFrom": "Handbook §16, aplicado a todo o card.",
+    "outcome": "Nenhum argumento plausível de anulação editorial da variante exata.",
+    "challengesExamined": [
+      {
+        "challenge": "A formulação de K e Mg poderia prescrever ambos universalmente?",
+        "resolution": "A leitura integral contém individualizado e conforme necessidade e tolerância. Não a interpreto como obrigação universal de ambos. Nenhuma alteração exigida."
+      },
+      {
+        "challenge": "O padrão bioquímico ainda seria apresentado como diagnóstico definitivo?",
+        "resolution": "A conclusão agora distingue sugestão clínica de confirmação e declara explicitamente sobreposição e variação."
+      },
+      {
+        "challenge": "Um teste genético negativo excluiria a doença?",
+        "resolution": "O texto descreve confirmação molecular, sem fazer regra de exclusão por teste negativo."
+      },
+      {
+        "challenge": "O ano 2017 ainda confundiria data da conferência e da publicação?",
+        "resolution": "O resumo informa explicitamente publicado em 2017; o label não nomeia a reunião."
+      },
+      {
+        "challenge": "A curiosidade poderia levar ao uso de hidroclorotiazida?",
+        "resolution": "É analogia de alvo, sem comando de teste, dose, prescrição ou orientação de manejo."
+      },
+      {
+        "challenge": "A ausência de detalhes de emergência torna a síntese insegura?",
+        "resolution": "O card oferece visão geral individualizada, sem apresentar protocolo de correção aguda ou doses. Não exige detalhamento de emergências para esse objetivo."
+      }
+    ],
+    "optionalNonRequiredStyleNote": "O subrevisor sugeriu que potássio, magnésio ou ambos seria ainda mais explícito; concordo que é alternativa estilística facultativa, sem defeito clínico decisivo na A1. Não solicito alteração nem condicionei aprovação a ela. Se adotada como nova variante, exige registro e checagem próprios."
+  },
+  "eliminatoriesAndScore": {
+    "mcqEliminatories": "N/A: não há questão, alternativa ou gabarito nesta revisão.",
+    "cardScientificSafety": "Nenhum eliminatório científico equivalente identificado na variante exata.",
+    "nqEditorialScore": "N/A: sem score de 10 dimensões ou total 0–20, pois a rubrica é de MCQ. Não inventei questão ou pontuação de card.",
+    "otherMCQChecks": "N/A: quatro alternativas A–D, letra do gabarito, unicidade da resposta, distratores e duplicidade por quatro dimensões.",
+    "adaptation": "Mantidos validade científica, segurança, atualidade, rastreabilidade, completude, taxonomia e análise adversarial. Cobertura dos 12 campos e matriz por alegação fundamentam a decisão qualitativa; não simulam banda numérica."
+  },
+  "decisionTree": {
+    "step0": "VERIFICADA + NENHUMA: combinação válida; prossegue.",
+    "step1": "Nenhuma falha científica eliminatória do card; critérios exclusivos de MCQ N/A.",
+    "step2": "Nenhum argumento substantivo ou trivial que exija reparo.",
+    "step3": "Banda numérica N/A para card; aprovação qualitativa fundamentada nas verificações integrais, com a adaptação declarada.",
+    "result": "aprovada",
+    "publicationDerivation": "LIBERADA apenas para este literal exato, nos termos do Handbook §18.4 Regra 7."
+  },
+  "suggestedEditorialPatch": {
+    "result": "Nenhum ajuste obrigatório.",
+    "implementation": "Não aplicar no produto nesta tarefa. Conservar este parecer junto ao literal e aos pins. Não alterar o BEFORE, os históricos R2/R3 ou o candidato como efeito deste relatório.",
+    "futureMaterialChanges": "Qualquer A2 ou mudança material recebe revisão integral nova e não herda LIBERADA."
+  },
+  "verifiedReferences": [
+    {
+      "id": "S1",
+      "role": "fonte primária oficial decisiva, texto integral",
+      "citation": "Blanchard A et al. Kidney International. 2017;91(1):24–33.",
+      "doi": "10.1016/j.kint.2016.09.046",
+      "url": "https://kdigo.org/wp-content/uploads/2017/02/KDIGO-Gitelman-conf-report.pdf",
+      "access": "PDF oficial integral aberto novamente para A1; conferidos diagnóstico, genética, manejo, seguimento e conclusão.",
+      "locations": "pp. 24–31, incluindo Tabela 2.",
+      "nature": "Consenso de especialistas, não diretriz formal graduada."
+    },
+    {
+      "id": "S2",
+      "role": "URL exato do card e bibliografia",
+      "url": "https://discovery.ucl.ac.uk/id/eprint/1534450/",
+      "access": "Registro integral reaberto para A1; metadados e link de versão publicada conferidos.",
+      "doi": "10.1016/j.kint.2016.09.046"
+    },
+    {
+      "id": "S3",
+      "role": "data da reunião e busca focal de atualização",
+      "url": "https://kdigo.org/conferences/gitelman/",
+      "catalogueURL": "https://kdigo.org/conference-reports/",
+      "access": "Páginas oficiais conferidas neste trabalho independente, antes do fechamento do parecer inicial.",
+      "currency": "Não identifiquei relatório KDIGO específico substitutivo no catálogo consultado em 2026-10-21; trata-se de busca focal, não prova de inexistência mundial."
+    },
+    {
+      "id": "S4",
+      "role": "fonte original de apoio ao mecanismo da curiosidade",
+      "citation": "Peng X et al. Frontiers in Endocrinology. 2018;9:559.",
+      "doi": "10.3389/fendo.2018.00559",
+      "url": "https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2018.00559/full",
+      "access": "Texto integral aberto neste trabalho independente; Abstract e Introduction conferidos para o alvo molecular.",
+      "limit": "Não adotei a proposta diagnóstica do teste de hidroclorotiazida, nem seus números, doses ou custos."
+    },
+    {
+      "id": "S5",
+      "role": "fonte clínica primária atual de apoio à variabilidade",
+      "citation": "Zhang L et al. Clinical Kidney Journal. 2025;18(12):sfaf311.",
+      "doi": "10.1093/ckj/sfaf311",
+      "url": "https://academic.oup.com/ckj/article/18/12/sfaf311/8300381",
+      "access": "Texto integral da editora aberto neste trabalho independente, com Methods, Results e limitações conferidos.",
+      "limit": "Estudo transversal de centro único chinês voltado à hiperuricemia; serve para coerência da variação fenotípica observada, não para universalizar desempenho diagnóstico ou manejo."
+    }
+  ],
+  "normativeSources": [
+    {
+      "id": "N1",
+      "path": "nefroquest-clinical-base-18/.claude/skills/revisar-nefroquest/references/output-contract.md",
+      "sections": "§§5–7; §1 adaptado para card"
+    },
+    {
+      "id": "N2",
+      "path": "nefroquest-clinical-base-18/docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "sections": "§§12–19, em especial §§16, 18.4 e 19"
+    },
+    {
+      "id": "N3",
+      "path": "nefroquest-clinical-base-18/docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "sections": "§§3.6 e 8"
+    },
+    {
+      "id": "N4",
+      "path": "nefroquest-clinical-base-18/docs/editorial/annex-c-nefrologia.md",
+      "sections": "C.1–C.2 e C.6–C.7"
+    },
+    {
+      "id": "N5",
+      "path": "nefroquest-clinical-base-18/.claude/skills/revisar-nefroquest/SKILL.md",
+      "sections": "fluxo em modo relatório; arquivos auxiliares lidos previamente e aplicados à A1"
+    },
+    {
+      "id": "N6",
+      "path": "nefroquest-clinical-base-18/.claude/skills/revisar-nefroquest/references/verification-protocol.md",
+      "sections": "§§1–4"
+    },
+    {
+      "id": "N7",
+      "path": "skill://plugins_6ac51620f8708191992359f3e35d0e36/verified-medical-answer/SKILL.md",
+      "sections": "verificação externa para doença rara e recomendações"
+    },
+    {
+      "id": "N8",
+      "path": "AGENTS.md; nefroquest-clinical-base-18/AGENTS.md",
+      "sections": "escopo local, instruções de execução e gates"
+    }
+  ],
+  "verificationPending": [],
+  "limitations": [
+    "Aprovação restrita ao card completo A1; não valida a questão b933be69, outros consumidores, banco ou variantes posteriores.",
+    "É síntese de consenso de 2017, não protocolo abrangente de emergência, gestação, anestesia ou terapias adjuvantes. Esse limite não conflita com o objetivo declarado.",
+    "A busca de atualidade foi focal. Existe consenso chinês posterior, identificado bibliograficamente no periódico original; suas recomendações integrais não foram avaliadas e não são usadas para aprovar o card.",
+    "O estudo amplo de Wieërs et al. 2025 permaneceu sem texto integral acessível pelos canais tentados e não foi usado para alegações clínicas: editora e PDF Erasmus 403, PMC verificação/reCAPTCHA, EuropePMC inacessível e portal Gencat 502. As alegações do A1 não dependem exclusivamente dele.",
+    "ERKNet retornou 503 e não foi usado como confirmação de vigência. A fonte essencial KDIGO e o URL exato UCL abriram.",
+    "Hashes Python do literal são pins recebidos, sujeitos à conferência técnica ROOT; a integridade do arquivo candidato e sua leitura integral foram conferidas independentemente."
+  ],
+  "finalAudit": {
+    "allTwelveFieldsRead": true,
+    "preservedFieldsAlsoReviewed": true,
+    "previousGateInherited": false,
+    "formalQuestionReviewInvented": false,
+    "mcqScoreInvented": false,
+    "allF1F5Resolved": true,
+    "mandatoryRepairsRequested": false,
+    "candidateEdited": false,
+    "productSourceEdited": false,
+    "oldReviewsEdited": false,
+    "newHelperExecuted": false,
+    "operationalPublicationPerformed": false,
+    "exactVariantEditoriallyApproved": true
+  }
+}
+

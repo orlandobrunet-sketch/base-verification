@@ -1,0 +1,154 @@
+{
+  "schema": "nq-whole-reference-card-author-review-v1",
+  "reportId": "B933BE69-GITELMAN-WHOLE-CARD-AUTHOR-20261021-A1",
+  "reviewDate": "2026-10-21",
+  "reviewer": "/root",
+  "referenceId": "gitelman_kdigo_2017",
+  "associatedQuestionId": "b933be69",
+  "scope": "Revisão autoral integral dos 12 campos do BEFORE e nova leitura integral dos 12 campos do AFTER. Exclusivamente card científico, sem reabrir a questão ou herdar os gates R2/R3 históricos.",
+  "provenance": {
+    "before": {
+      "path": "verification-drafts/gitelman-whole-card-20261021-A1/input-whole-card.json",
+      "jsonPointer": "/wholeCard",
+      "bytes": 2584,
+      "sha256": "7b8748e86c96fd269fc6fa8dda36d58db9ea8fd63367ea4556235d93f3ddee94",
+      "orderedCompactPythonSHA256": "5f49f8152b8e3f4b94588d1bf491f4c6b4eef18a2feb818762ee75cc0504a2b8",
+      "sortedCompactPythonSHA256": "dc2ed96f52cab471d53e333a4ed0ae4ca237b611e315df84efbb02d10a3bfe6c",
+      "originalRaw": "verification-drafts/question-review-20261012/group-a/output-001.json#/verifiedExistingCards/gitelman_kdigo_2017",
+      "originalRawBytes": 95560,
+      "originalRawSHA256": "64bf5cabfe631640a41099f34968253286c4a0fcfd02ef1a087b69e63924bb41",
+      "currentProductLiteral": "nefroquest-clinical-base-18/data/refs.js",
+      "currentProductFileSHA256": "0b318c6f10337113d84b95fda37ff638143f9c2f60e577ae401d15f18c0e01c9",
+      "currentProductAll12FieldsAndKeyOrderMatchOriginal": true
+    },
+    "after": {
+      "path": "verification-drafts/gitelman-whole-card-20261021-A1/candidate-A1.json",
+      "jsonPointer": "/wholeCard",
+      "bytes": 3154,
+      "sha256": "e381b360c0359a02a152f74719648b660944b7428ae5df93ff2bd1f58daf560c",
+      "orderedCompactPythonSHA256": "65950e77ed553f0478e5a39d1deed9226f89684722d4da662a80a6c9542cb24c",
+      "sortedCompactPythonSHA256": "aa02ffc07c33a7bf4b2aeb21c7c32839a9215e67dbd549ee5ff314b656ec361f",
+      "materialChange": true,
+      "ownCompleteReviewPerformed": true
+    },
+    "hashDefinition": "Python 3.12 json.dumps(value, ensure_ascii=False, separators=(',', ':')), UTF-8; segundo pin acrescenta sort_keys=True. Pins de literal não são hashes de arquivo nem declaração de identidade com serialização ECMAScript/JCS.",
+    "independentInitialReview": {
+      "path": "verification-drafts/B933BE69-GITELMAN-WHOLE-CARD-INDEPENDENT-REVIEW-20261021.json",
+      "bytes": 31119,
+      "sha256": "b61fb1ab81f4bdaff829ea4d35ca9c187235cf2b416267453b7324fbed262722",
+      "independence": "O revisor recebeu apenas escopo, fontes de entrada e normas antes de selar o parecer. Não recebeu achados autorais nem candidato. ROOT leu esse parecer depois da própria identificação dos problemas e antes de finalizar o AFTER.",
+      "literalIndependentlyRecomputedByRoot": true,
+      "afterGate": "Exige novo parecer independente específico ao candidato acima; não é herdado do parecer inicial."
+    }
+  },
+  "pedagogy": {
+    "objective": "Compreender o fenótipo típico, o alvo NCC e os limites diagnósticos e documentais da referência sobre Gitelman.",
+    "competence": "interpretação diagnóstica como apoio de leitura",
+    "bloomMiller": "Compreender / Sabe; descrição do card, sem inferência de desempenho",
+    "loid": null,
+    "difficulty": "N/A: card de referência",
+    "mcqScore": "N/A: não existem alternativas, distratores ou gabarito neste objeto. Não se fabrica escore de 10 dimensões, total 0-20 ou uma nova rubrica numérica.",
+    "adaptation": "Aplicados validade, segurança, atualidade, rastreabilidade, taxonomia, cobertura integral e Advogado do Recurso. Veredito clínico qualitativo para card; eliminatórios exclusivos de MCQ não se aplicam."
+  },
+  "beforeReview": {
+    "verdict": "revisão maior",
+    "legacyAuxiliary": "REESCREVER",
+    "confidence": "alta",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publicationAuthorization": "BLOQUEADA",
+    "lifecycle": "em_revisão",
+    "derivation": "Handbook §18.4: verificação concluída não significa correção de todas as alegações. O veredito recuperável de revisão maior bloqueia a variante original.",
+    "findings": [
+      {"id": "A-F1", "severity": "MAIOR", "fields": ["conclusao"], "issue": "Distinção de Bartter excessivamente categórica.", "sources": ["S1: pp.24-26, diagnóstico diferencial"], "action": "Reformular a conclusão e submeter todo AFTER a revisão própria."},
+      {"id": "A-F2", "severity": "MAIOR", "fields": ["badge", "resumo"], "issue": "Gênero e limite da evidência insuficientemente representados.", "sources": ["N1: §§6-7", "S1: pp.24-25,31"], "action": "CONSENSUS e método/limitação explícitos."},
+      {"id": "A-F3", "severity": "MENOR", "fields": ["resumo"], "issue": "Precisão genética pode melhorar.", "sources": ["S3: Introduction", "S1: pp.24,26"], "action": "Explicitar herança recessiva e bialelia patogênica da forma clássica."},
+      {"id": "A-F4", "severity": "MENOR", "fields": ["impacto"], "issue": "123 caracteres; ideal editorial até90.", "sources": ["N1: §5"], "action": "Encurtar sem nova promessa clínica."},
+      {"id": "A-F5", "severity": "MENOR", "fields": ["label"], "issue": "Melhoria opcional da identificação em português.", "sources": ["S2: metadados"], "action": "Manter2017 como ano bibliográfico e nomear consenso."}
+    ]
+  },
+  "wholeCardFieldCoverage": [
+    {"field": "label", "before": "bibliografia correta; clareza melhorável", "after": "correto", "sources": ["S2: título/autoria/ano"]},
+    {"field": "url", "before": "institucional e autêntico", "after": "preservado e válido", "sources": ["S2: registro e versão publicada"]},
+    {"field": "journal", "before": "conferido", "after": "preservado e correto", "sources": ["S2:91(1):24-33", "S1:p.24"]},
+    {"field": "ano", "before": "2017 correto", "after": "inteiro2017 preservado", "sources": ["S2:ano de publicação"]},
+    {"field": "tipo", "before": "consenso correto; padronização possível", "after": "gênero fiel", "sources": ["S1:p.24 meeting report", "N1:§6"]},
+    {"field": "badge", "before": "GUIDELINE inadequado", "after": "CONSENSUS correto", "sources": ["N1:§6"]},
+    {"field": "badgeColor", "before": "compatível", "after": "#6366f1 preservada", "sources": ["N1:§6"]},
+    {"field": "impacto", "before": "pertinente;123caracteres", "after": "69caracteres; objetivo delimitado", "sources": ["N1:§5", "S1:diagnóstico"]},
+    {"field": "icon", "before": "U+1F4CB compatível", "after": "U+1F4CB preservado", "sources": ["N1:linhaCONSENSUS"]},
+    {"field": "resumo", "before": "núcleo factual utilizável; ressalvas faltantes", "after": "todas as proposições conferidas; método, limites, genética, fenótipo e manejo delimitados", "sources": ["S1:pp.24-25,28-29,31", "S3:Introduction", "S4:Methods/Results"]},
+    {"field": "conclusao", "before": "objeção substantiva A-F1", "after": "sugestão clínica e confirmação distinguidas; ressalvas presentes", "sources": ["S1:pp.24-26,27", "S4:Overall characteristics"]},
+    {"field": "curiosidade", "before": "analogia mecanística aceitável", "after": "preservada; lida como analogia do alvo, sem recomendar teste ou tratamento", "sources": ["S3:Introduction"]}
+  ],
+  "claimSourceMatrixAfter": [
+    {"id": "C01", "fields": ["label", "url", "journal", "ano"], "result": "CONFERE", "source": "S2: autoria, DOI,2017,91(1),24-33; S1:p.24"},
+    {"id": "C02", "fields": ["tipo", "badge", "badgeColor", "icon"], "result": "CONFERE", "source": "N1:§6; S1:meeting report"},
+    {"id": "C03", "fields": ["impacto"], "result": "SEM EXTRAPOLAÇÃO;69caracteres", "source": "N1:§5; S1:Clinical characteristics and diagnosis"},
+    {"id": "C04", "fields": ["resumo"], "topic": "método e certeza", "result": "CONFERE", "source": "S1:pp.24-25,31, escopo/painel/lacunas"},
+    {"id": "C05", "fields": ["resumo"], "topic": "genética, transporte e segmento", "result": "CONFERE", "source": "S3:Introduction; S1:pp.24,26"},
+    {"id": "C06", "fields": ["resumo"], "topic": "fenótipo típico, idade usual e variabilidade", "result": "CONFERE", "source": "S3:Introduction; S4:Methods e Overall characteristics; S1:p.25"},
+    {"id": "C07", "fields": ["resumo"], "topic": "manejo e seguimento individualizados", "result": "CONFERE", "source": "S1:pp.28-29, Treatment/Management and follow-up"},
+    {"id": "C08", "fields": ["conclusao"], "topic": "limites de magnésio/calciúria", "result": "CONFERE", "source": "S3:Introduction; S4:Results; S1:p.24"},
+    {"id": "C09", "fields": ["conclusao"], "topic": "sobreposição e confirmação molecular", "result": "CONFERE", "source": "S1:pp.25-27, diagnóstico diferencial/genética"},
+    {"id": "C10", "fields": ["curiosidade"], "topic": "analogia restrita ao alvo NCC", "result": "CONFERE", "source": "S3:Introduction"}
+  ],
+  "adversarialReviewAfter": {
+    "result": "Nenhuma objeção substantiva remanescente identificada nesta leitura integral.",
+    "tests": [
+      "Não transformar padrão típico em critério obrigatório: ressalva expressa na conclusão.",
+      "Não confundir uma variante de significado incerto ou um resultado negativo com confirmação/exclusão: somente bialelia patogênica é mencionada; não se declara sensibilidade universal.",
+      "Não generalizar idade de apresentação nem prometer separação absoluta de tubulopatias: texto usa geralmente/pode variar e reconhece sobreposição.",
+      "Não converter a analogia da hidroclorotiazida em recomendação de teste: nenhum teste provocativo é prescrito.",
+      "Não atribuir grau de recomendação, dose, meta bioquímica, benefício de desfecho ou dado numérico ausente ao consenso.",
+      "Não substituir fonte específica de2017 por estudo observacional posterior nem alegar revisão sistemática de atualidade."
+    ]
+  },
+  "afterOwnReview": {
+    "verdict": "aprovada",
+    "legacyAuxiliary": "MANTER",
+    "confidence": "alta",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publicationAuthorization": "LIBERADA",
+    "normativeLifecycleTargetIfApplied": "publicado",
+    "lifecycleTransitionPerformed": false,
+    "currentArtifactState": "candidato local; nenhuma transição no banco",
+    "derivation": "Aplicação qualitativa da árvore do Handbook a card: fontes decisivas abertas, cobertura12/12 e nenhum problema substantivo remanescente. Rubrica MCQ não transposta. Eixos desta revisão autoral próprios e exclusivos do AFTER exato.",
+    "scientificGateOnly": true,
+    "independentAfterReviewStillRequiredAtIssue": true,
+    "userPermissionToApplyCommitOrPublish": false,
+    "restriction": "LIBERADA é o eixo científico do literal revisado, não autorização operacional. Sem aplicar no banco, commit, push, PR, merge ou publicação. Mudança material exige nova revisão integral e novos hashes/eixos."
+  },
+  "sources": [
+    {"id": "S1", "citation": "Blanchard A et al. Kidney Int.2017;91(1):24-33.", "doi": "10.1016/j.kint.2016.09.046", "url": "https://kdigo.org/wp-content/uploads/2017/02/KDIGO-Gitelman-conf-report.pdf", "access": "PDF oficial integral10páginas aberto; seções pertinentes à totalidade do card lidas, inclusive diagnóstico/genética, tratamento, seguimento e limites.", "kind": "consenso primário oficial de especialistas"},
+    {"id": "S2", "url": "https://discovery.ucl.ac.uk/id/eprint/1534450/", "access": "Registro institucional aberto; URL do card, autoria, título, ano, revista, DOI e link da versão publicada conferidos.", "kind": "metadados institucionais"},
+    {"id": "S3", "citation": "Peng X et al. Front Endocrinol.2018;9:559.", "doi": "10.3389/fendo.2018.00559", "url": "https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2018.00559/full", "access": "Texto integral disponível; Abstract e Introduction lidos para mecanismo/fenótipo e cautelas diagnósticas.", "limit": "Não adoto o teste de hidroclorotiazida proposto pelo estudo, nem suas doses, acurácia ou custos. Não usado como diretriz de manejo."},
+    {"id": "S4", "citation": "Zhang L et al. Clinical Kidney Journal.2025;18(12):sfaf311.", "doi": "10.1093/ckj/sfaf311", "url": "https://academic.oup.com/ckj/article/18/12/sfaf311/8300381", "access": "Texto integral da editora aberto. Methods/Results e limitações lidos para variabilidade e checagem focal de atualidade.", "limit": "Transversal de centro único chinês focado em hiperuricemia; sem extrapolar incidência, causalidade ou nova recomendação. Nenhum resultado numérico incorporado ao card."},
+    {"id": "S5", "url": "https://kdigo.org/conference-reports/", "access": "Catálogo oficial consultado em2026-10-21.", "limit": "Nenhuma substituição KDIGO específica identificada na consulta focal; não prova ausência mundial de consenso posterior. Registro independente de consenso chinês2021 não foi usado para alegações clínicas autorais."}
+  ],
+  "normativeSources": [
+    {"id": "N1", "path": "nefroquest-clinical-base-18/.claude/skills/revisar-nefroquest/references/output-contract.md", "sections": "§§5-7:12campos, taxonomia CONSENSUS e conteúdo mínimo do consenso"},
+    {"id": "N2", "path": "nefroquest-clinical-base-18/docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md", "sections": "§§10-19, especialmente16-19, revisão por versão e eixos"},
+    {"id": "N3", "path": "nefroquest-clinical-base-18/docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md", "sections": "§§3.6 e8-9.4"},
+    {"id": "N4", "path": "nefroquest-clinical-base-18/docs/editorial/annex-c-nefrologia.md", "sections": "C.1-C.3,C.7, quando aplicáveis a card"},
+    {"id": "N5", "path": "nefroquest-clinical-base-18/.claude/skills/revisar-nefroquest/SKILL.md", "sections": "fluxo de revisão integral e fontes auxiliares obrigatórias"},
+    {"id": "N6", "path": "nefroquest-clinical-base-18/.claude/skills/revisar-nefroquest/references/verification-protocol.md", "sections": "verificação e relato explícito de limites"},
+    {"id": "N7", "path": "skill://plugins_6ac51620f8708191992359f3e35d0e36/verified-medical-answer/SKILL.md", "sections": "doença rara, fonte primária e conferência externa"},
+    {"id": "N8", "path": "AGENTS.md; nefroquest-clinical-base-18/AGENTS.md", "sections": "runtime explícito, escopo local e gates editoriais"}
+  ],
+  "accessLimitations": [
+    {"url": "https://www.kireports.org/article/S2468-0249%2825%2900561-3/fulltext", "result": "403 Forbidden", "effect": "Wieërs2025 não foi lido integralmente e não sustenta alegações deste parecer."},
+    {"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12640036/", "result": "reCAPTCHA", "effect": "Não tratado como texto integral acessível; sem contornar a restrição."},
+    {"url": "https://pubmed.ncbi.nlm.nih.gov/41278357/", "result": "resposta incompleta", "effect": "Não usado para alegações clínicas."},
+    {"url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4310664/", "result": "reCAPTCHA", "effect": "Ensaio2015 não lido integralmente nesta revisão e não incorporado como evidência de resultados."}
+  ],
+  "verificationPending": [],
+  "scopeAndImplementationLimits": [
+    "Fonte essencial integral acessível; nenhum acesso decisivo pendente. Busca focal de atualidade, sem pretensão de revisão sistemática.",
+    "Candidato somente em verification-drafts; refs.js e R2/R3 permanecem intactos. Nenhuma outra questão ou card alterado.",
+    "Este parecer não cria automaticamente vínculo qualificado de publicação, não modifica censo de450itens nem aprova todos os consumidores do card.",
+    "Alegações bibliográficas e clínicas foram verificadas em páginas abertas; não se presume leitura dos complementos bloqueados.",
+    "Não houve materialização Library, alteração de instalação global, testes de produto repetidos ou ação de produção."
+  ]
+}

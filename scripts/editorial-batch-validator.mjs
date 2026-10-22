@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { changedPaths, readAtRevision } from './editorial-batch/git-diff.mjs';
 import { findChangedManifest, validateManifest } from './editorial-batch/manifest.mjs';
 import { parseQuestions } from './editorial-batch/questions.mjs';
-import { parseReferenceIds, referenceConsumers } from './editorial-batch/references.mjs';
+import { parseReferenceIds, referenceConsumers, referenceReviewPaths } from './editorial-batch/references.mjs';
 import { extractVersions } from './editorial-batch/versions.mjs';
 import { validateBatch } from './editorial-batch/rules.mjs';
 
@@ -57,12 +57,16 @@ function main() {
   const afterQuestions = parseQuestions(afterTopics, `${head}:data/topics.js`);
   const beforeReferenceIds = parseReferenceIds(beforeRefsText, `${base}:data/refs.js`);
   const afterReferenceIds = parseReferenceIds(afterRefsText, `${head}:data/refs.js`);
+  const referenceReviewReports = new Map();
+  if (manifest.reference_only === true) {
+    for (const path of referenceReviewPaths(manifest)) referenceReviewReports.set(path, readAtRevision(head, path, cwd));
+  }
   const errors = validateBatch({
     manifest, manifestPath, changedPaths: paths,
     beforeQuestions, afterQuestions, beforeReferenceIds, afterReferenceIds,
     beforeConsumers: referenceConsumers(beforeQuestions),
     afterConsumers: referenceConsumers(afterQuestions),
-    beforeRefsText, afterRefsText,
+    beforeRefsText, afterRefsText, beforeTopicsText: beforeTopics, afterTopicsText: afterTopics, referenceReviewReports,
     beforeVersions: loadVersions(base, cwd), afterVersions: loadVersions(head, cwd),
   });
   if (errors.length) {

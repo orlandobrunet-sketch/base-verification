@@ -181,7 +181,9 @@ test('published 741 authors and all 2964 actual profiles agree with the runtime 
   topics.forEach((raw, index) => Object.entries(builder.sources(raw, index)).forEach(([profile, value]) => sourceLists[profile].push(value)));
   const catalog = revisions.createCatalog({manifest, history, authors: topics, sources: sourceLists, references: refs});
   for (const [profile, list] of Object.entries(sourceLists)) for (const source of list) {
-    const snapshot = answers.present(source, {preserveOrder: true}), resolved = catalog.resolve(snapshot, {profile});
+    const snapshot = answers.present(source, {preserveOrder: true}), current = catalog.current(source.id, profile);
+    assert(current, source.id + ':' + profile);
+    const resolved = catalog.resolve(snapshot, {profile, binding: current.binding});
     assert(resolved && !resolved.historical, source.id + ':' + profile);
     assert.deepEqual(resolved.question, snapshot);
     assert.equal(resolved.binding.recordRevision, manifest.current[source.id].recordRevision);

@@ -3905,6 +3905,12 @@
         bodySpan.textContent = opt;
         b.appendChild(keySpan);
         b.appendChild(bodySpan);
+        [['correct', 'Resposta correta'], ['wrong', 'Sua escolha: incorreta']].forEach(([result, label]) => {
+          const statusSpan = document.createElement('span');
+          statusSpan.className = 'opt-result-label opt-result-label-' + result;
+          statusSpan.textContent = label;
+          b.appendChild(statusSpan);
+        });
         ui.options.appendChild(b);
       });
     }

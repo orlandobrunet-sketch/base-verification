@@ -753,21 +753,31 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
         type && type !== badge ? `<span class="nqreader-type">${escapeHtml(type)}</span>` : '',
       ].filter(Boolean).join('');
       const sections = [['resumo', 'Resumo'], ['conclusao', 'Conclusão principal'], ['curiosidade', 'Curiosidade'], ['impacto', 'Impacto na nefrologia']];
-      const bodyHtml = sections.filter(([key]) => key === 'resumo' || it[key]).map(([key, title]) =>
-        `<section class="nqreader-section nqreader-${key}"><h3>${title}</h3><p>${escapeHtml(it[key] || 'Esta entrada não possui resumo cadastrado.')}</p></section>`
-      ).join('');
+      const renderSection = ([key, title]) =>
+        `<section class="nqreader-section nqreader-${key}"><h3>${title}</h3><p>${escapeHtml(it[key] || 'Esta entrada não possui resumo cadastrado.')}</p></section>`;
+      const detailsHtml = sections.slice(1).filter(([key]) => it[key]).map(renderSection).join('');
+      const bodyHtml = renderSection(sections[0]) + (detailsHtml ? `<div class="nqreader-details">${detailsHtml}</div>` : '');
+      const layout = sections.reduce((length, [key]) => length + String(it[key] || '').length, 0) <= 700 ? 'compact' : 'extended';
       const overlay = document.createElement('div');
       overlay.className = 'bib-resumo-modal nqnarr-overlay nqreader-overlay';
       overlay.innerHTML = `
-        <section class="nqnarr-card nqreader-card"${rarityLabel ? ` data-reader-rarity="${rarity}"` : ''}${validType ? ` data-reader-type="${escapeHtml(sourceType)}"` : ''}${validAccent ? ` style="--nqreader-accent:${accent}"` : ''}>
+        <section class="nqnarr-card nqreader-card" data-reader-layout="${layout}"${rarityLabel ? ` data-reader-rarity="${rarity}"` : ''}${validType ? ` data-reader-type="${escapeHtml(sourceType)}"` : ''}${validAccent ? ` style="--nqreader-accent:${accent}"` : ''}>
           <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Resumo e referência do artigo">
-            <p class="nqnarr-chapter">Resumo científico${it.ano ? ' · ' + escapeHtml(String(it.ano)) : ''}</p>
-            <h2>${escapeHtml(it.label || '')}</h2>
-            ${metadata ? `<div class="nqreader-meta">${metadata}</div>` : ''}
-            ${it.autores || it.jornal ? `<p class="nqreader-reference">${it.autores ? escapeHtml(it.autores) : ''}${it.autores && it.jornal ? '<br>' : ''}${it.jornal ? '<em>' + escapeHtml(it.jornal) + '</em>' : ''}</p>` : ''}
+            <header class="nqreader-heading">
+              <div class="nqreader-emblem" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none"><path class="nqreader-seal-ring" d="M32 3 40 8 49 9 54 18 61 25 58 35 58 44 48 49 42 58 32 57 22 58 16 49 6 44 6 35 3 25 10 18 15 9 24 8Z"/><path d="M17 22c6-3 10-2 15 1 5-3 9-4 15-1v23c-6-3-10-2-15 1-5-3-9-4-15-1Z"/><path d="M32 23v23M22 28l5 1M22 34l5 1M37 29l5-1M37 35l5-1"/><path class="nqreader-seal-spark" d="m32 10 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z"/></svg>
+              </div>
+              <p class="nqnarr-chapter">Resumo científico${it.ano ? ' · ' + escapeHtml(String(it.ano)) : ''}</p>
+              <h2>${escapeHtml(it.label || '')}</h2>
+              ${metadata ? `<div class="nqreader-meta">${metadata}</div>` : ''}
+              ${it.autores || it.jornal ? `<p class="nqreader-reference">${it.autores ? escapeHtml(it.autores) : ''}${it.autores && it.jornal ? '<br>' : ''}${it.jornal ? '<em>' + escapeHtml(it.jornal) + '</em>' : ''}</p>` : ''}
+            </header>
             <div class="nqreader-sections">${bodyHtml}</div>
           </div>
-          <footer class="nqnarr-footer"><button class="nqnarr-primary" data-action="closeBibResumo">Fechar</button></footer>
+          <footer class="nqnarr-footer">
+            <span class="nqreader-footer-seal" aria-hidden="true"><span>✧</span> ${rarityLabel ? rarityLabel + ' · ' : ''}Acervo científico</span>
+            <button class="nqnarr-primary nqreader-finish" data-action="closeBibResumo"><span class="nqreader-finish-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M5 4h12a2 2 0 0 1 2 2v14H6a3 3 0 0 1-3-3V6a2 2 0 0 1 2-2Z"/><path d="M6 4v13m-3 0h16M10 9l2 2 4-4"/></svg></span><span>Concluir leitura</span><span class="nqreader-finish-arrow" aria-hidden="true">→</span></button>
+          </footer>
         </section>
       `;
       document.body.appendChild(overlay);

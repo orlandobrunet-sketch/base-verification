@@ -82,7 +82,7 @@ test('referência abre em popup, preserva os textos e fecha pelo teclado', async
         });
         expect(metrics.scrollWidth).toBeLessThanOrEqual(metrics.clientWidth + 1);
         expect(metrics.cut, 'os títulos e parágrafos devem caber na largura do leitor').toEqual([]);
-        const close = reader.getByRole('button', { name: 'Fechar', exact: true });
+        const close = reader.getByRole('button', { name: 'Concluir leitura', exact: true });
         await expect(close).toBeInViewport();
         expect(await close.evaluate(el => {
           const r = el.getBoundingClientRect();
