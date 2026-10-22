@@ -39,7 +39,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/landing/styles.css?v=16.01">
+  <link rel="stylesheet" href="/landing/styles.css?v=16.23">
 
   <meta property="og:title" content="NefroQuest — Domine a nefrologia. Evolua a cada decisão.">
   <meta property="og:description" content="Da formação à atualização na especialidade: questões, revisão adaptativa, tutor educacional de IA e evidências organizadas.">
@@ -86,7 +86,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function () {
           Sentry.init({
-            release: 'nefroquest@16.22',
+            release: 'nefroquest@16.23',
             environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
             tracesSampleRate: 0.05
           });
@@ -121,9 +121,9 @@
     </a>
 
     <nav class="nav-links" aria-label="Navegação principal">
-      <a href="#como-funciona">Como funciona</a>
-      <a href="#oraculo">Oráculo</a>
       <a href="#metodo">Método</a>
+      <a href="#oraculo">Oráculo</a>
+      <a href="#como-funciona">Como funciona</a>
       <a href="#classes">O jogo</a>
     </nav>
 
@@ -321,113 +321,12 @@
       </div>
     </section>
 
-    <section class="journey atlas-section" id="como-funciona" aria-labelledby="journey-title">
-      <div class="section-intro">
-        <p class="section-label reveal-up"><span>I</span> Anatomia da evolução</p>
-        <div class="section-copy reveal-up" style="--i:1">
-          <h2 id="journey-title">Um ciclo de estudo desenhado <em>como um néfron.</em></h2>
-          <p>Você não precisa de mais uma lista infinita de questões. Precisa de um ciclo que transforme resposta em compreensão, compreensão em memória e memória em domínio.</p>
-        </div>
-      </div>
-
-      <div class="route reveal-up" style="--i:2">
-        <svg class="route-line" viewBox="0 0 1100 190" preserveAspectRatio="none" aria-hidden="true">
-          <path class="route-bed" d="M40 98C175 28 212 166 340 98S505 28 620 98s176 70 282 0 128-38 158 0"/>
-          <path class="route-current" pathLength="1" d="M40 98C175 28 212 166 340 98S505 28 620 98s176 70 282 0 128-38 158 0"/>
-          <circle class="route-runner" r="5"><animateMotion dur="8s" repeatCount="indefinite" path="M40 98C175 28 212 166 340 98S505 28 620 98s176 70 282 0 128-38 158 0"/></circle>
-        </svg>
-        <article class="route-step">
-          <span class="route-number">01</span>
-          <span class="route-dot" aria-hidden="true"></span>
-          <p class="route-verb">Filtra</p>
-          <h3>Responda com intenção</h3>
-          <p>Entre por tema ou deixe o motor ajustar a dificuldade com base no seu desempenho.</p>
-        </article>
-        <article class="route-step">
-          <span class="route-number">02</span>
-          <span class="route-dot" aria-hidden="true"></span>
-          <p class="route-verb">Interpreta</p>
-          <h3>Entenda o ponto decisivo</h3>
-          <p>Compare sua escolha com a explicação e use o Oráculo para explorar onde o raciocínio desviou.</p>
-        </article>
-        <article class="route-step">
-          <span class="route-number">03</span>
-          <span class="route-dot" aria-hidden="true"></span>
-          <p class="route-verb">Retém</p>
-          <h3>Revise com propósito</h3>
-          <p>O histórico alimenta revisões espaçadas para trazer de volta o que ainda merece atenção.</p>
-        </article>
-        <article class="route-step">
-          <span class="route-number">04</span>
-          <span class="route-dot" aria-hidden="true"></span>
-          <p class="route-verb">Conquista</p>
-          <h3>Veja a evolução acontecer</h3>
-          <p>XP, classes, equipamentos e domínio por tema transformam consistência em progresso visível.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="oracle atlas-section" id="oraculo" aria-labelledby="oracle-title">
-      <div class="oracle-copy">
-        <p class="section-label reveal-up"><span>II</span> Oráculo dos Néfrons</p>
-        <h2 class="reveal-up" id="oracle-title" style="--i:1">Entenda o raciocínio, <em>não apenas o gabarito.</em></h2>
-        <p class="oracle-lede reveal-up" style="--i:2">Depois de responder, use o tutor educacional de IA para investigar a armadilha, organizar o raciocínio e consolidar o ponto que merece ser lembrado.</p>
-
-        <div class="oracle-seal reveal-up" style="--i:3">
-          <div class="oracle-core" aria-hidden="true">
-            <svg viewBox="0 0 180 180" role="presentation">
-              <circle class="oracle-core__scope" cx="90" cy="90" r="72"/>
-              <circle class="oracle-core__ring oracle-core__ring--a" cx="90" cy="90" r="58"/>
-              <circle class="oracle-core__ring oracle-core__ring--b" cx="90" cy="90" r="43"/>
-              <path class="oracle-core__flow" d="M49 89c7-29 55-38 77-9 17 22 1 42-21 45-17 3-25 14-25 30"/>
-              <circle class="oracle-core__particle oracle-core__particle--a" cx="49" cy="89" r="3"/>
-              <circle class="oracle-core__particle oracle-core__particle--b" cx="126" cy="80" r="2.5"/>
-              <path class="oracle-core__axis" d="M90 8v18M90 154v18M8 90h18M154 90h18"/>
-            </svg>
-            <span class="oracle-core__lumen"><i></i></span>
-          </div>
-          <div>
-            <span class="mono-label">Recurso educacional</span>
-            <strong>Lúmen Oracular: uma conversa no fluxo do estudo.</strong>
-            <p>Sem abrir outra aba e sem perder o contexto da questão.</p>
-          </div>
-        </div>
-
-        <ul class="oracle-benefits reveal-up" style="--i:4">
-          <li><span aria-hidden="true">01</span> Ajuda a nomear a lacuna</li>
-          <li><span aria-hidden="true">02</span> Explica no contexto da questão</li>
-          <li><span aria-hidden="true">03</span> Mantém referências por perto</li>
-        </ul>
-      </div>
-
-      <div class="chat reveal-up" style="--i:2" aria-describedby="oracle-note">
-        <div class="chat-chrome">
-          <span><i aria-hidden="true"></i> Exemplo de interação</span>
-          <span class="chat-id">CASO / SÓDIO</span>
-        </div>
-        <div class="chat-question">
-          <span class="chat-tag">Questão · Distúrbios do sódio</span>
-          <p>Paciente com hiponatremia hipovolêmica. Você respondeu: <strong>restrição hídrica</strong>.</p>
-        </div>
-        <div class="chat-bubble" data-line="1">
-          <span class="chat-who"><span class="chat-avatar" aria-hidden="true"><i></i></span> Oráculo dos Néfrons</span>
-          <p>Cuidado — aqui está a armadilha. Você tratou como se fosse <strong>SIADH</strong>, mas o paciente está <em>hipovolêmico</em>. O corpo dele retém sódio e água por depleção de volume.</p>
-        </div>
-        <div class="chat-bubble" data-line="2">
-          <p>Restringir água aqui piora a perfusão. A conduta é <strong>salina isotônica</strong> para corrigir o volume — e o sódio sobe junto. Regra de ouro: <em>sempre avalie a volemia antes de escolher o tratamento da hiponatremia.</em></p>
-          <span class="chat-cite">↳ Fundamentado em UpToDate &amp; Diretriz SBN de distúrbios hidroeletrolíticos</span>
-        </div>
-        <div class="chat-typing" data-typing aria-hidden="true"><span></span><span></span><span></span></div>
-        <p class="chat-disclaimer" id="oracle-note">Ferramenta educacional. Não substitui diretrizes, supervisão ou decisão clínica.</p>
-      </div>
-    </section>
-
     <section class="method atlas-section" id="metodo" aria-labelledby="method-title">
       <div class="section-intro">
-        <p class="section-label reveal-up"><span>III</span> Sob a aventura</p>
+        <p class="section-label reveal-up"><span>I</span> O método de estudo</p>
         <div class="section-copy reveal-up" style="--i:1">
-          <h2 id="method-title">Fantasia para voltar. <em>Método para aprender.</em></h2>
-          <p>O RPG cuida da motivação. Por baixo dele, mecanismos de adaptação, memória e referência organizam uma rotina de estudo mais consistente.</p>
+          <h2 id="method-title">Um método para estudar. <em>Várias formas de praticar.</em></h2>
+          <p>Responda questões, confira explicações e retome revisões programadas. Adaptação e referências ajudam a organizar o estudo; a experiência de jogo acompanha o progresso.</p>
         </div>
       </div>
 
@@ -485,14 +384,166 @@
           </div>
         </article>
       </div>
+
+      <details class="learning-evidence" id="evidencias-aprendizagem">
+        <summary>O que a pesquisa diz sobre o método e a gamificação</summary>
+        <p class="learning-evidence-note">As referências fundamentam a abordagem educacional; não constituem validação específica do NefroQuest. As citações abaixo são traduções nossas.</p>
+        <div class="learning-evidence-columns">
+          <div>
+            <h3>Método de estudo</h3>
+            <article>
+              <blockquote><p>“A prática de recuperação produziu a melhor aprendizagem”</p></blockquote>
+              <p class="learning-evidence-cite">Tradução nossa — <a href="https://doi.org/10.1126/science.1199327" target="_blank" rel="noopener noreferrer">Karpicke e Blunt · Science · 2011</a></p>
+              <p>Universitários estudaram textos científicos; a prática de recuperação foi comparada a mapas conceituais em uma avaliação após uma semana. O resultado se refere a essa comparação, não a uma superioridade universal.</p>
+            </article>
+            <article>
+              <h4>Testes repetidos e feedback</h4>
+              <p>Em um estudo com 40 residentes, testes repetidos com feedback foram comparados à releitura espaçada. Após seis meses, os resultados foram 39% versus 26%. Esse estudo trata de prática de recuperação, não de gamificação.</p>
+              <p class="learning-evidence-cite"><a href="https://doi.org/10.1111/j.1365-2923.2009.03518.x" target="_blank" rel="noopener noreferrer">Larsen e colaboradores · Medical Education · 2009</a></p>
+            </article>
+          </div>
+          <div>
+            <h3>Elementos de jogo</h3>
+            <article>
+              <blockquote><p>“A gamificação parece promissora para melhorar resultados de aprendizagem”</p></blockquote>
+              <p class="learning-evidence-cite">Tradução nossa — <a href="https://doi.org/10.1007/s10459-020-10000-3" target="_blank" rel="noopener noreferrer">van Gaalen e colaboradores · Advances in Health Sciences Education · 2021</a></p>
+              <p>A revisão encontrou potencial, com evidência ainda limitada para definir quais elementos isolados funcionam melhor.</p>
+            </article>
+            <article>
+              <blockquote><p>“As pontuações no teste de conhecimento foram maiores”</p></blockquote>
+              <p class="learning-evidence-cite">Tradução nossa — <a href="https://doi.org/10.1186/s12909-023-04951-5" target="_blank" rel="noopener noreferrer">Do e colaboradores · BMC Medical Education · 2023</a></p>
+              <p>Comparação entre módulos com e sem gamificação, com 171 estudantes de medicina e um teste imediato. Não foi um ensaio randomizado e não avaliou retenção.</p>
+            </article>
+            <article>
+              <blockquote><p>“melhorou a tomada de decisão na triagem em uma simulação virtual validada”</p></blockquote>
+              <p class="learning-evidence-cite">Tradução nossa — <a href="https://www.bmj.com/content/359/bmj.j5416" target="_blank" rel="noopener noreferrer">Mohan e colaboradores · BMJ · 2017</a></p>
+              <p>O ensaio avaliou o jogo sério Night Shift em uma simulação. O resultado não demonstra efeitos em pacientes reais nem o efeito isolado de XP ou conquistas.</p>
+            </article>
+          </div>
+        </div>
+        <details class="learning-evidence-limits">
+          <summary>Limites da literatura</summary>
+          <article>
+            <blockquote><p>“a evidência disponível é, em sua maioria, de baixa qualidade”</p></blockquote>
+            <p class="learning-evidence-cite">Tradução nossa — <a href="https://www.jmir.org/2019/3/e12994" target="_blank" rel="noopener noreferrer">Gentry e colaboradores · JMIR · 2019</a></p>
+            <p>A revisão reuniu estudos heterogêneos de jogos sérios e gamificação. Apenas dois ensaios tratavam de gamificação; os resultados não foram agrupados em uma metanálise.</p>
+          </article>
+          <article>
+            <blockquote><p>“Nenhum dos jogos sérios havia concluído um processo completo de validação”</p></blockquote>
+            <p class="learning-evidence-cite">Tradução nossa — <a href="https://doi.org/10.1002/bjs.8819" target="_blank" rel="noopener noreferrer">Graafland e colaboradores · BJS · 2012</a></p>
+            <p>Revisão de jogos voltados à cirurgia e seus processos de validação. Não é uma demonstração de eficácia de pontos de experiência.</p>
+          </article>
+        </details>
+      </details>
+    </section>
+
+    <section class="oracle atlas-section" id="oraculo" aria-labelledby="oracle-title">
+      <div class="oracle-copy">
+        <p class="section-label reveal-up"><span>II</span> Oráculo dos Néfrons</p>
+        <h2 class="reveal-up" id="oracle-title" style="--i:1">Entenda o raciocínio, <em>não apenas o gabarito.</em></h2>
+        <p class="oracle-lede reveal-up" style="--i:2">Depois de responder, use o tutor educacional de IA para investigar a armadilha, organizar o raciocínio e consolidar o ponto que merece ser lembrado.</p>
+
+        <div class="oracle-seal reveal-up" style="--i:3">
+          <div class="oracle-core" aria-hidden="true">
+            <svg viewBox="0 0 180 180" role="presentation">
+              <circle class="oracle-core__scope" cx="90" cy="90" r="72"/>
+              <circle class="oracle-core__ring oracle-core__ring--a" cx="90" cy="90" r="58"/>
+              <circle class="oracle-core__ring oracle-core__ring--b" cx="90" cy="90" r="43"/>
+              <path class="oracle-core__flow" d="M49 89c7-29 55-38 77-9 17 22 1 42-21 45-17 3-25 14-25 30"/>
+              <circle class="oracle-core__particle oracle-core__particle--a" cx="49" cy="89" r="3"/>
+              <circle class="oracle-core__particle oracle-core__particle--b" cx="126" cy="80" r="2.5"/>
+              <path class="oracle-core__axis" d="M90 8v18M90 154v18M8 90h18M154 90h18"/>
+            </svg>
+            <span class="oracle-core__lumen"><i></i></span>
+          </div>
+          <div>
+            <span class="mono-label">Recurso educacional</span>
+            <strong>Lúmen Oracular: uma conversa no fluxo do estudo.</strong>
+            <p>Sem abrir outra aba e sem perder o contexto da questão.</p>
+          </div>
+        </div>
+
+        <ul class="oracle-benefits reveal-up" style="--i:4">
+          <li><span aria-hidden="true">01</span> Ajuda a nomear a lacuna</li>
+          <li><span aria-hidden="true">02</span> Explica no contexto da questão</li>
+          <li><span aria-hidden="true">03</span> Mantém referências por perto</li>
+        </ul>
+      </div>
+
+      <div class="chat reveal-up" style="--i:2" aria-describedby="oracle-note">
+        <div class="chat-chrome">
+          <span><i aria-hidden="true"></i> Exemplo de interação</span>
+          <span class="chat-id">CASO / SÓDIO</span>
+        </div>
+        <div class="chat-question">
+          <span class="chat-tag">Questão · Distúrbios do sódio</span>
+          <p>Paciente com hiponatremia hipovolêmica. Você respondeu: <strong>restrição hídrica</strong>.</p>
+        </div>
+        <div class="chat-bubble" data-line="1">
+          <span class="chat-who"><span class="chat-avatar" aria-hidden="true"><i></i></span> Oráculo dos Néfrons</span>
+          <p>Cuidado — aqui está a armadilha. Você tratou como se fosse <strong>SIADH</strong>, mas o paciente está <em>hipovolêmico</em>. O corpo dele retém sódio e água por depleção de volume.</p>
+        </div>
+        <div class="chat-bubble" data-line="2">
+          <p>Restringir água aqui piora a perfusão. A conduta é <strong>salina isotônica</strong> para corrigir o volume — e o sódio sobe junto. Regra de ouro: <em>sempre avalie a volemia antes de escolher o tratamento da hiponatremia.</em></p>
+          <span class="chat-cite">↳ Fundamentado em UpToDate &amp; Diretriz SBN de distúrbios hidroeletrolíticos</span>
+        </div>
+        <div class="chat-typing" data-typing aria-hidden="true"><span></span><span></span><span></span></div>
+        <p class="chat-disclaimer" id="oracle-note">Ferramenta educacional. Não substitui diretrizes, supervisão ou decisão clínica.</p>
+      </div>
+    </section>
+
+    <section class="journey atlas-section" id="como-funciona" aria-labelledby="journey-title">
+      <div class="section-intro">
+        <p class="section-label reveal-up"><span>III</span> Anatomia da evolução</p>
+        <div class="section-copy reveal-up" style="--i:1">
+          <h2 id="journey-title">Um ciclo de estudo desenhado <em>como um néfron.</em></h2>
+          <p>Você não precisa de mais uma lista infinita de questões. Precisa de um ciclo que transforme resposta em compreensão, compreensão em memória e memória em domínio.</p>
+        </div>
+      </div>
+
+      <div class="route reveal-up" style="--i:2">
+        <svg class="route-line" viewBox="0 0 1100 190" preserveAspectRatio="none" aria-hidden="true">
+          <path class="route-bed" d="M40 98C175 28 212 166 340 98S505 28 620 98s176 70 282 0 128-38 158 0"/>
+          <path class="route-current" pathLength="1" d="M40 98C175 28 212 166 340 98S505 28 620 98s176 70 282 0 128-38 158 0"/>
+          <circle class="route-runner" r="5"><animateMotion dur="8s" repeatCount="indefinite" path="M40 98C175 28 212 166 340 98S505 28 620 98s176 70 282 0 128-38 158 0"/></circle>
+        </svg>
+        <article class="route-step">
+          <span class="route-number">01</span>
+          <span class="route-dot" aria-hidden="true"></span>
+          <p class="route-verb">Filtra</p>
+          <h3>Responda com intenção</h3>
+          <p>Entre por tema ou deixe o motor ajustar a dificuldade com base no seu desempenho.</p>
+        </article>
+        <article class="route-step">
+          <span class="route-number">02</span>
+          <span class="route-dot" aria-hidden="true"></span>
+          <p class="route-verb">Interpreta</p>
+          <h3>Entenda o ponto decisivo</h3>
+          <p>Compare sua escolha com a explicação e use o Oráculo para explorar onde o raciocínio desviou.</p>
+        </article>
+        <article class="route-step">
+          <span class="route-number">03</span>
+          <span class="route-dot" aria-hidden="true"></span>
+          <p class="route-verb">Retém</p>
+          <h3>Revise com propósito</h3>
+          <p>O histórico alimenta revisões espaçadas para trazer de volta o que ainda merece atenção.</p>
+        </article>
+        <article class="route-step">
+          <span class="route-number">04</span>
+          <span class="route-dot" aria-hidden="true"></span>
+          <p class="route-verb">Conquista</p>
+          <h3>Veja a evolução acontecer</h3>
+          <p>XP, classes, equipamentos e domínio por tema transformam consistência em progresso visível.</p>
+        </article>
+      </div>
     </section>
 
     <section class="classes atlas-section" id="classes" aria-labelledby="classes-title">
       <div class="section-intro">
-        <p class="section-label reveal-up"><span>IV</span> Desenvolva seu personagem</p>
+        <p class="section-label reveal-up"><span>IV</span> Experiência gamificada</p>
         <div class="section-copy reveal-up" style="--i:1">
-          <h2 id="classes-title">Seu conhecimento evolui. <em>Seu personagem também.</em></h2>
-          <p>Escolha uma classe e acompanhe 10 estágios de evolução visual. Conforme seu domínio cresce, equipamentos, presença e poder tornam o progresso impossível de ignorar.</p>
+          <h2 id="classes-title">Uma experiência gamificada <em>de aprendizado.</em></h2>
+          <p>Escolha seu personagem e acompanhe seus 10 estágios visuais. Na Jornada, XP, capítulos, equipamentos e conquistas tornam o progresso no jogo visível.</p>
         </div>
       </div>
 
@@ -505,78 +556,78 @@
       </div>
 
       <div class="class-gallery">
-        <article class="class-profile reveal-up" style="--class-color:87,168,233" tabindex="0" aria-label="Evolução do Guerreiro Glomerular, do nível 1 ao nível 10">
+        <article class="class-profile reveal-up" style="--class-color:87,168,233" tabindex="0" aria-label="Evolução de Dr. Glomerulus, do nível 1 ao nível 10">
           <div class="class-evolution">
             <figure class="evolution-stage evolution-stage--one">
-              <img src="/assets/classes-cinema/guerreiro_glomerular/nivel_01.webp" alt="Guerreiro Glomerular no nível 1, iniciando como estudante no laboratório" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/guerreiro_glomerular/nivel_01.webp" alt="Dr. Glomerulus no nível 1, Despertar" loading="lazy" width="230" height="230">
               <figcaption><b>01</b><span>Despertar</span></figcaption>
             </figure>
             <figure class="evolution-stage evolution-stage--five">
-              <img src="/assets/classes-cinema/guerreiro_glomerular/nivel_05.webp" alt="Guerreiro Glomerular no nível 5, em domínio clínico crescente" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/guerreiro_glomerular/nivel_05.webp" alt="Dr. Glomerulus no nível 5, Ascensão" loading="lazy" width="230" height="230">
               <figcaption><b>05</b><span>Ascensão</span></figcaption>
             </figure>
             <figure class="evolution-stage evolution-stage--ten">
-              <img src="/assets/classes-cinema/guerreiro_glomerular/nivel_10.webp" alt="Guerreiro Glomerular no nível 10, em sua forma de maestria" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/guerreiro_glomerular/nivel_10.webp" alt="Dr. Glomerulus no nível 10, Maestria" loading="lazy" width="230" height="230">
               <figcaption><b>10</b><span>Maestria</span></figcaption>
             </figure>
             <span class="evolution-flow" aria-hidden="true"><i></i></span>
           </div>
           <div class="class-profile__body">
             <p class="class-evolution-legend">01 Despertar · 05 Ascensão · 10 Maestria</p>
-            <p class="class-path">Via glomerular</p>
-            <h3>Guerreiro Glomerular</h3>
+            <p class="class-path">Lâmina dos Glomérulos</p>
+            <h3>Dr. Glomerulus</h3>
             <p class="class-mantra">Defenda a barreira. Domine a complexidade glomerular.</p>
             <p class="class-detail">Glomerulonefrites, síndromes nefrótica e nefrítica, biópsia e imunossupressão.</p>
             <ul><li>Síndrome nefrótica</li><li>GNRP</li><li>Nefrite lúpica</li></ul>
           </div>
         </article>
 
-        <article class="class-profile reveal-up" style="--class-color:176,111,222;--i:1" tabindex="0" aria-label="Evolução da Maga Metabólica, do nível 1 ao nível 10">
+        <article class="class-profile reveal-up" style="--class-color:176,111,222;--i:1" tabindex="0" aria-label="Evolução de Dra. Aquaria, do nível 1 ao nível 10">
           <div class="class-evolution">
             <figure class="evolution-stage evolution-stage--one">
-              <img src="/assets/classes-cinema/maga_metabolica/nivel_01.webp" alt="Maga Metabólica no nível 1, estudando o equilíbrio dos fluidos" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/maga_metabolica/nivel_01.webp" alt="Dra. Aquaria no nível 1, Despertar" loading="lazy" width="230" height="230">
               <figcaption><b>01</b><span>Despertar</span></figcaption>
             </figure>
             <figure class="evolution-stage evolution-stage--five">
-              <img src="/assets/classes-cinema/maga_metabolica/nivel_05.webp" alt="Maga Metabólica no nível 5, controlando o equilíbrio metabólico" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/maga_metabolica/nivel_05.webp" alt="Dra. Aquaria no nível 5, Ascensão" loading="lazy" width="230" height="230">
               <figcaption><b>05</b><span>Ascensão</span></figcaption>
             </figure>
             <figure class="evolution-stage evolution-stage--ten">
-              <img src="/assets/classes-cinema/maga_metabolica/nivel_10.webp" alt="Maga Metabólica no nível 10, em sua forma de maestria" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/maga_metabolica/nivel_10.webp" alt="Dra. Aquaria no nível 10, Maestria" loading="lazy" width="230" height="230">
               <figcaption><b>10</b><span>Maestria</span></figcaption>
             </figure>
             <span class="evolution-flow" aria-hidden="true"><i></i></span>
           </div>
           <div class="class-profile__body">
             <p class="class-evolution-legend">01 Despertar · 05 Ascensão · 10 Maestria</p>
-            <p class="class-path">Via metabólica</p>
-            <h3>Maga Metabólica</h3>
+            <p class="class-path">Mestra das Águas</p>
+            <h3>Dra. Aquaria</h3>
             <p class="class-mantra">Leia o equilíbrio invisível. Transforme números em decisão clínica.</p>
             <p class="class-detail">Distúrbios hidroeletrolíticos, ácido-base e metabolismo ósseo-mineral.</p>
             <ul><li>Sódio &amp; potássio</li><li>Ácido-base</li><li>Cálcio-fósforo</li></ul>
           </div>
         </article>
 
-        <article class="class-profile reveal-up" style="--class-color:214,169,74;--i:2" tabindex="0" aria-label="Evolução do Clérigo Renal, do nível 1 ao nível 10">
+        <article class="class-profile reveal-up" style="--class-color:214,169,74;--i:2" tabindex="0" aria-label="Evolução de Dr. Nephros, do nível 1 ao nível 10">
           <div class="class-evolution">
             <figure class="evolution-stage evolution-stage--one">
-              <img src="/assets/classes-cinema/clerigo_renal/nivel_01.webp" alt="Clérigo Renal no nível 1, iniciando a jornada de cuidado longitudinal" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/clerigo_renal/nivel_01.webp" alt="Dr. Nephros no nível 1, Despertar" loading="lazy" width="230" height="230">
               <figcaption><b>01</b><span>Despertar</span></figcaption>
             </figure>
             <figure class="evolution-stage evolution-stage--five">
-              <img src="/assets/classes-cinema/clerigo_renal/nivel_05.webp" alt="Clérigo Renal no nível 5, ampliando seu domínio de proteção renal" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/clerigo_renal/nivel_05.webp" alt="Dr. Nephros no nível 5, Ascensão" loading="lazy" width="230" height="230">
               <figcaption><b>05</b><span>Ascensão</span></figcaption>
             </figure>
             <figure class="evolution-stage evolution-stage--ten">
-              <img src="/assets/classes-cinema/clerigo_renal/nivel_10.webp" alt="Clérigo Renal no nível 10, em sua forma de maestria" loading="lazy" width="230" height="230">
+              <img src="/assets/classes-cinema/clerigo_renal/nivel_10.webp" alt="Dr. Nephros no nível 10, Maestria" loading="lazy" width="230" height="230">
               <figcaption><b>10</b><span>Maestria</span></figcaption>
             </figure>
             <span class="evolution-flow" aria-hidden="true"><i></i></span>
           </div>
           <div class="class-profile__body">
             <p class="class-evolution-legend">01 Despertar · 05 Ascensão · 10 Maestria</p>
-            <p class="class-path">Via longitudinal</p>
-            <h3>Clérigo Renal</h3>
+            <p class="class-path">Guardião dos Néfrons</p>
+            <h3>Dr. Nephros</h3>
             <p class="class-mantra">Faça da constância uma forma de proteção.</p>
             <p class="class-detail">DRC, terapia renal substitutiva, diálise e transplante.</p>
             <ul><li>DRC &amp; TRS</li><li>Hemodiálise</li><li>Transplante</li></ul>
@@ -584,20 +635,60 @@
         </article>
       </div>
 
+      <div class="game-experience">
+        <div class="game-experience-grid">
+          <article class="game-experience-card reveal-up">
+            <div class="game-experience-art" aria-hidden="true"><span class="game-experience-xp">XP</span></div>
+            <h3>XP e evolução</h3>
+            <p>Na Jornada, os acertos rendem XP e ouro. O nível avança quando há XP e acertos suficientes.</p>
+          </article>
+
+          <article class="game-experience-card reveal-up" style="--i:1">
+            <div class="game-experience-art" aria-hidden="true">
+              <svg viewBox="0 0 24 24" focusable="false"><path d="M3 4h5c3 0 4 2 4 3v14c0-3-4-4-9-3zM21 4h-5c-3 0-4 2-4 3v14c0-3 4-4 9-3zM12 7v14"/></svg>
+            </div>
+            <h3>Capítulos da aventura</h3>
+            <p>A narrativa acompanha o nível do personagem, do prólogo ao capítulo final. Cada capítulo marca um momento da aventura.</p>
+          </article>
+
+          <article class="game-experience-card reveal-up" style="--i:2">
+            <div class="game-experience-art" aria-hidden="true">
+              <img src="/assets/items/elmo_filtrador_supremo.png" alt="" width="96" height="96" loading="lazy" decoding="async">
+            </div>
+            <h3>Equipamentos e escolhas</h3>
+            <p>Na Forja, compare os atributos dos itens e decida o que equipar. Seu personagem tem seis espaços de equipamento.</p>
+          </article>
+
+          <article class="game-experience-card reveal-up" style="--i:3">
+            <div class="game-experience-art" aria-hidden="true">
+              <img src="/assets/achievements/louros.webp" alt="" width="96" height="96" loading="lazy" decoding="async">
+            </div>
+            <h3>Conquistas e marcos</h3>
+            <p>Acompanhe conquistas desbloqueadas e metas a conquistar. Cada conquista mostra sua condição; os marcos da Jornada acompanham a quantidade de acertos.</p>
+          </article>
+        </div>
+
+        <p class="game-experience-mode-note">Na Jornada, você acompanha XP e evolução do personagem. No Estudo e na revisão espaçada, acompanha respostas, sessões e agendamentos de revisão.</p>
+      </div>
+
       <p class="class-journey-note reveal-up"><span aria-hidden="true">✦</span> Sua classe dá identidade à jornada sem limitar o conteúdo: você continua explorando toda a nefrologia.</p>
     </section>
 
     <section class="boss" id="confronto" aria-labelledby="boss-title" data-flow-scene>
-      <img class="boss-backdrop" src="/landing/assets/nefromancer-cajado-renal.jpg" alt="" loading="lazy" decoding="async" width="1672" height="941">
-      <svg class="boss-current" viewBox="0 0 1440 760" preserveAspectRatio="none" aria-hidden="true">
-        <defs><linearGradient id="boss-flow-gradient" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#57bfc8" stop-opacity="0"/><stop offset=".42" stop-color="#57bfc8"/><stop offset=".68" stop-color="#8050a6"/><stop offset="1" stop-color="#b678db" stop-opacity="0"/></linearGradient></defs>
-        <path class="boss-current__bed" d="M-80 360C180 260 286 430 480 340s294-190 474-155 220 178 570 70"/>
-        <path class="boss-current__flow" d="M-80 360C180 260 286 430 480 340s294-190 474-155 220 178 570 70"/>
-      </svg>
+      <div class="boss-art" aria-hidden="true">
+        <div class="boss-art__plane">
+          <img class="boss-backdrop" src="/landing/assets/nefromancer-cajado-renal.jpg" alt="" loading="lazy" decoding="async" width="1672" height="941">
+          <svg class="boss-current" viewBox="0 0 1672 941" preserveAspectRatio="none">
+            <defs><linearGradient id="boss-flow-gradient" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#57bfc8" stop-opacity="0"/><stop offset=".42" stop-color="#57bfc8"/><stop offset=".68" stop-color="#8050a6"/><stop offset="1" stop-color="#b678db" stop-opacity="0"/></linearGradient></defs>
+            <path class="boss-current__bed" d="M-80 380C200 270 430 450 650 320C800 245 900 100 1040 180C1180 260 1370 340 1752 230"/>
+            <path class="boss-current__flow" d="M-80 380C200 270 430 450 650 320C800 245 900 100 1040 180C1180 260 1370 340 1752 230"/>
+          </svg>
+        </div>
+      </div>
       <div class="boss-shell">
         <div class="boss-copy">
           <p class="boss-label reveal-up"><span>V</span> O confronto final</p>
-          <h2 class="reveal-up" id="boss-title" style="--i:1">O Arqui-Nefromante espera por quem <em>realmente domina.</em></h2>
+          <h2 class="reveal-up" id="boss-title" style="--i:1">O <span class="boss-name">Arqui-Nefromante</span> espera por quem <em>realmente domina.</em></h2>
           <p class="reveal-up" style="--i:2">Cada acerto aproxima você do confronto que prova sua maestria. XP, classes, equipamentos e ranking dão forma à consistência que faltava para estudar todos os dias.</p>
           <a class="btn btn-primary reveal-up" href="https://nefroquest.com/jogar/" data-cta="boss" style="--i:3">
             <span>Começar grátis</span>

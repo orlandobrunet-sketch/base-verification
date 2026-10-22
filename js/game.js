@@ -3827,7 +3827,7 @@
           <div class="ref-card" data-ref-rarity="${rar.id}" style="--ref-accent:${accent};--ref-accent-texto:${_acentoLegivel(accent)}">
             <div class="ref-card-top">
               <span class="ref-icon">${ref.icon || '📄'}</span>
-              <a class="ref-title" href="${scholarUrl}" target="_blank" rel="noopener noreferrer" title="Buscar no Google Scholar" style="color:inherit;text-decoration:none;">${escapeHtml(ref.label)} <span style="font-size:0.7em;opacity:0.55;">↗</span></a>
+              <a class="ref-title" href="${scholarUrl}" target="_blank" rel="noopener noreferrer" title="Buscar no Google Scholar" style="color:inherit;text-decoration:none;"><span class="ref-title-label">${escapeHtml(ref.label)}</span><span class="ref-title-arrow" aria-hidden="true">↗</span></a>
               <span class="ref-rarity" style="color:${rar.color};background:${rar.bg};border:1px solid ${rar.border};">${rar.label}</span>
               <span class="ref-badge" style="background:${_fundoDeCracha(accent)}">${escapeHtml(ref.badge || 'REF')}</span>
             </div>
@@ -6904,7 +6904,7 @@
       });
       // Fechar drawer ao clicar em botão dentro do painel esquerdo
       leftPanel.addEventListener('click', function(e) {
-        if (isMobile() && e.target.closest('button') && !e.target.closest('.drawer-close-btn, .stat-badge, .slot-diablo') && !e.target.closest('.forge-popup') && !e.target.closest('.narrative-popup')) {
+        if (isMobile() && e.target.closest('button') && !e.target.closest('.drawer-close-btn, .stat-badge, .slot-diablo, .nql-motion-toggle') && !e.target.closest('.forge-popup') && !e.target.closest('.narrative-popup')) {
           clearTimeout(drawerCloseTimer);
           drawerCloseTimer = setTimeout(closeDrawer, 200);
         }

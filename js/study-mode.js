@@ -1525,8 +1525,13 @@
           notice = document.createElement('section');
           notice.className = 'nq-study-resume';
           notice.dataset.studyResumeChoice = '';
+          const holdReason = saved.revisionHold === 'expired'
+            ? 'Esta sessão ultrapassou o prazo de 24 horas para retomada.'
+            : saved.revisionHold === 'complete'
+              ? 'Esta sessão está marcada como concluída.'
+              : 'Não foi possível verificar se esta sessão pode ser retomada.';
           notice.innerHTML = saved.revisionHold
-            ? '<div><h2>Sessão salva preservada</h2><p>O estudo anterior não pode ser retomado como uma sessão em andamento. Seus dados permanecem intactos. Você pode substituí-lo por uma nova sessão com os temas selecionados.</p></div><div><button class="btn sec" data-action="startStudyMode" data-arg="true" data-arg-type="boolean">Iniciar nova sessão</button></div>'
+            ? `<div><h2>Sessão salva preservada</h2><p>${holdReason}</p><p>Para estudar os temas escolhidos, inicie uma nova sessão. Ao confirmar, você substitui somente a sessão salva; sua Jornada e suas estatísticas gerais continuam preservadas. Voltar mantém a sessão salva como está.</p></div><div><button class="btn sec" data-action="startStudyMode" data-arg="true" data-arg-type="boolean">Iniciar nova sessão</button></div>`
             : '<div><h2>Você tem um estudo em andamento</h2><p>Retome a sessão salva ou substitua por uma sessão com os temas selecionados.</p></div><div><button class="btn gold" data-action="resumeSavedStudyMode">Retomar estudo</button><button class="btn sec" data-action="startStudyMode" data-arg="true" data-arg-type="boolean">Iniciar nova sessão</button></div>';
           surface.querySelector('.nq-study-content').prepend(notice);
         }

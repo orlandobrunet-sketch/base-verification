@@ -329,7 +329,7 @@ test.describe('Central de Comando do aprendizado', () => {
     await page.getByRole('tab', { name: 'Competências', exact: true }).click();
     const priority = page.locator('#nqDashboard .nqd-skill-priority');
     await expect(priority.getByRole('heading')).toHaveText('DRC');
-    const cta = priority.getByRole('button', { name: 'Treinar este tema', exact: true });
+    const cta = priority.getByRole('button', { name: 'Estudar esta área', exact: true });
     await expect(cta).toBeVisible();
     await cta.click();
 
@@ -415,7 +415,7 @@ test.describe('Central de Comando do aprendizado', () => {
     expect(trackingDidNotThrow).toBe(true);
   });
 
-  test('no nível máximo não projeta um nível inexistente', async ({ page }) => {
+  test('no nível máximo conserva o avatar pessoal sem recolocar evoluções na Visão geral', async ({ page }) => {
     await gotoGame(page);
     await page.waitForFunction(() => typeof (window as any).openDashboard === 'function');
     await page.evaluate(save => {
@@ -425,13 +425,9 @@ test.describe('Central de Comando do aprendizado', () => {
     }, SAVE);
     const dashboard = page.locator('#nqDashboard[data-dashboard-state="ready"]');
     await expect(dashboard).toBeVisible({ timeout: 15_000 });
-    const trail = dashboard.locator('.nqd-form-trail');
-    await expect(trail).toBeVisible();
-    await expect(trail).toContainText('Forma máxima');
-    await expect(trail.locator('.nqd-form-node')).toHaveCount(1);
-    await expect(trail.locator('.nqd-form-node[data-form-level="10"]')).toHaveCount(1);
-    await expect(trail.locator('.nqd-form-node[data-form-level="11"]')).toHaveCount(0);
-    await expect(trail).not.toContainText('Nível 11');
+    await expect(dashboard.locator('#nqdPane-overview .nqd-journey,.nqd-form-trail,.nqd-form-node')).toHaveCount(0);
+    await expect(dashboard.locator('.nqd-profile-avatar img')).toHaveAttribute('src', /\/nivel_10\.webp$/);
+    expect(await page.evaluate(() => JSON.parse(localStorage.getItem('nefroquest-save') || '{}').level)).toBe(10);
     await expect(dashboard.locator('.nqd-milestone')).not.toContainText('Nível 11');
   });
 
@@ -723,7 +719,7 @@ test.describe('Central de Comando do aprendizado', () => {
     const expected = [
       ['Visão geral', 'Visão geral'],
       ['Competências', 'Competências'],
-      ['Mapa clínico', 'Mapa de prática clínica'],
+      ['Mapa clínico', 'Mapa clínico'],
       ['Conquistas', 'Conquistas'],
       ['Grimório', 'Grimório'],
       ['Ranking', 'Ranking da Ordem'],
@@ -736,21 +732,24 @@ test.describe('Central de Comando do aprendizado', () => {
 
     await page.getByRole('tab', { name: 'Mapa clínico', exact: true }).click();
     await expect(page.getByRole('tabpanel', { name: 'Mapa clínico' })).not.toContainText('Bloqueada');
-    await expect(page.getByRole('tabpanel', { name: 'Mapa clínico' })).toContainText('Sem amostra');
+    await expect(page.getByRole('tabpanel', { name: 'Mapa clínico' })).toContainText('As respostas por tema aparecem conforme você pratica.');
     const newMap = page.getByRole('tabpanel', { name: 'Mapa clínico' });
     await expect(newMap.locator('#nqDashMapSearch')).toBeVisible();
     await expect(newMap.locator('#nqDashMapFilter')).toHaveCount(0);
     await expect(newMap.locator('[data-map-group][open]')).toHaveCount(0);
     await expect(newMap.locator('[data-map-more]')).toContainText('Ver outras 10 áreas');
-    await expect(newMap.locator('#nqDashMapResult')).toContainText('60 temas disponíveis');
-    await newMap.getByRole('button', { name: 'Explorar áreas' }).click();
+    await expect(newMap.locator('#nqDashMapResult strong')).toHaveText('16 áreas para estudar');
+    const firstArea = newMap.locator('[data-map-area]:visible').first();
+    await expect(firstArea.getByRole('button', { name: /^Estudar esta área:/ })).toBeVisible();
+    await expect(firstArea).toContainText('Questões de toda a área · até 20 por sessão');
+    await newMap.locator('#nqDashMapSearch').focus();
     await expect(newMap.locator('#nqDashMapSearch')).toBeFocused();
     await newMap.locator('#nqDashMapSearch').fill('dialise');
     await expect(newMap.locator('.nqd-map-node:visible')).not.toHaveCount(0);
-    await expect(newMap.locator('#nqDashMapResult')).toContainText(/\d+ temas clínicos em \d+ áreas/);
+    await expect(newMap.locator('#nqDashMapResult')).toContainText(/\d+ áreas? encontradas? · \d+ temas? nesta lista/);
   });
 
-  test('o mapa expande uma área por vez e filtra somente estados realmente presentes', async ({ page }) => {
+  test('o mapa expande uma área por vez e filtra o histórico sem mudar as respostas', async ({ page }) => {
     await openCommandCenter(page, {
       compStats: {
         ab_disturbio_misto: { c: 1, t: 5 },
@@ -762,18 +761,22 @@ test.describe('Central de Comando do aprendizado', () => {
     const map = page.getByRole('tabpanel', { name: 'Mapa clínico' });
     const groups = map.locator('details[data-map-group]');
     expect(await groups.count()).toBeGreaterThan(1);
+    await expect(groups.first()).not.toHaveAttribute('open', '');
+    await groups.first().locator('summary').click();
     await expect(groups.first()).toHaveAttribute('open', '');
     await expect(map.locator('.nqd-map-node[data-state="sample"] p').first()).not.toContainText('%');
     await groups.nth(1).locator('summary').click();
     await expect(groups.nth(1)).toHaveAttribute('open', '');
     await expect(groups.first()).not.toHaveAttribute('open', '');
 
-    await map.locator('#nqDashMapFilter').selectOption('attention');
-    const visibleAttentionNodes = map.locator('.nqd-map-node:visible');
-    expect(await visibleAttentionNodes.count()).toBeGreaterThan(0);
-    for (const node of await visibleAttentionNodes.all()) await expect(node).toHaveAttribute('data-state', 'attention');
-    await expect(map.locator('.nqd-map-node:not([data-state="attention"]):visible')).toHaveCount(0);
-    await expect(map.locator('#nqDashMapResult')).toContainText(/temas? clínicos?/);
+    const storedBefore = await page.evaluate(() => localStorage.getItem('nefroquest-comp-stats'));
+    await map.locator('#nqDashMapFilter').selectOption('answered');
+    await expect(map.locator('.nqd-map-node:visible')).toHaveCount(2);
+    await expect(map.locator('.nqd-map-node[data-state="unseen"]:visible')).toHaveCount(0);
+    await expect(map.locator('#nqDashMapResult')).toHaveText('1 área encontrada · 2 temas nesta lista');
+    await map.locator('#nqDashMapFilter').selectOption('unseen');
+    expect(await map.locator('.nqd-map-node:visible').count()).toBeGreaterThan(0);
+    await expect(map.locator('.nqd-map-node:not([data-state="unseen"]):visible')).toHaveCount(0);
 
     await map.locator('#nqDashMapFilter').selectOption('all');
     const uniqueTheme = await map.locator('.nqd-map-node').evaluateAll(nodes => {
@@ -784,14 +787,18 @@ test.describe('Central de Comando do aprendizado', () => {
     await map.locator('#nqDashMapSearch').fill(uniqueTheme);
     await expect(map.locator('.nqd-map-node:visible')).toHaveCount(1);
     await expect(map.locator('.nqd-map-node:visible')).toHaveAttribute('data-search', uniqueTheme);
-    await expect(map.locator('#nqDashMapResult')).toHaveText(/1 tema clínico em 1 área/);
+    await expect(map.locator('#nqDashMapResult')).toHaveText('1 área encontrada · 1 tema nesta lista');
+    await expect(map.locator('[data-map-area]:visible').getByRole('button', { name: /^Estudar esta área:/ })).toBeVisible();
+    await expect(map.locator('[data-map-area]:visible')).toContainText('Questões de toda a área · até 20 por sessão');
 
     await map.locator('#nqDashMapSearch').fill('tema que certamente não existe');
     await expect(map.locator('#nqDashMapEmpty')).toBeVisible();
     await expect(map.locator('details[data-map-group]:visible')).toHaveCount(0);
+    await expect(map.locator('[data-map-area]:visible')).toHaveCount(0);
     await map.getByRole('button', { name: 'Limpar busca e filtro' }).click();
     await expect(map.locator('#nqDashMapSearch')).toHaveValue('');
     await expect(map.locator('#nqDashMapEmpty')).toBeHidden();
+    expect(await page.evaluate(() => localStorage.getItem('nefroquest-comp-stats'))).toBe(storedBefore);
   });
 
   test('devolve desejo às conquistas com badges reais carregados de forma eager e sem progresso decorativo', async ({ page }) => {
@@ -928,7 +935,9 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(library.locator('.nqd-library-item .nqd-state', { hasText: /^Referência$/ })).toHaveCount(0);
     await expect(library.locator('.nqd-library-item').first()).toHaveAttribute('data-library-year', /\d{4}/);
     await expect(library.locator('.nqd-library-summary')).toContainText('descobertas reunidas');
-    await expect(library.locator('.nqd-library-summary')).not.toContainText(/\bde\s+\d+\b/i);
+    const catalogue = await page.evaluate(() => ({ articles: (0, eval)('nefroArticles.length'), sources: (0, eval)('Object.keys(refsDB).length') }));
+    await expect(library.locator('.nqd-library-summary')).toContainText(`3 de ${catalogue.articles} pergaminhos`);
+    await expect(library.locator('.nqd-library-summary')).toContainText(`3 de ${catalogue.sources} fontes`);
     await expect(library.locator('[role="progressbar"]')).toHaveCount(0);
 
     // O leitor em popup conserva os dados editoriais da fonte; filtros e
@@ -964,13 +973,13 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(library.locator('#nqDashLibraryNoResults')).toBeVisible();
   });
 
-  test('texto ampliado mantém personagem e ações dentro do painel e permite percorrer os sete dias', async ({ page }) => {
+  test('texto ampliado mantém a coluna e as ações dentro do painel e permite percorrer os sete dias', async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 844 });
     await openCommandCenter(page);
     await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
     const pane = page.locator('#nqdPane-overview');
     const bounds = await pane.boundingBox();
-    for (const selector of ['.nqd-journey-body', '.nqd-next-form', '.nqd-study-primary', '.nqd-study-secondary', '.nqd-pulse-bars']) {
+    for (const selector of ['[data-overview-section]', '.nqd-study-primary', '.nqd-study-secondary', '.nqd-pulse-bars']) {
       for (const element of await pane.locator(selector).all()) {
         const box = await element.boundingBox();
         if (!box) continue;
@@ -978,8 +987,7 @@ test.describe('Central de Comando do aprendizado', () => {
         expect(box.x + box.width, selector).toBeLessThanOrEqual(bounds!.x + bounds!.width + 1);
       }
     }
-    const label = pane.locator('.nqd-journey-body > .nqd-state');
-    expect((await label.boundingBox())!.height).toBeLessThan(90);
+    await expect(pane.locator('.nqd-journey,.nqd-form-trail')).toHaveCount(0);
     const pulse = pane.locator('.nqd-pulse-bars');
     await pulse.focus();
     await expect(pulse).toBeFocused();
@@ -1039,8 +1047,14 @@ test.describe('Central de Comando do aprendizado', () => {
     await page.setViewportSize({ width: 360, height: 800 });
     await openCommandCenter(page);
 
-    const primaryBottom = await page.locator('[data-nqd-primary="true"]:visible').evaluate(element => element.getBoundingClientRect().bottom);
-    expect(primaryBottom).toBeLessThanOrEqual(800);
+    const primary = page.locator('[data-nqd-primary="true"]:visible');
+    await primary.scrollIntoViewIfNeeded();
+    const primaryReachable = await primary.evaluate(element => {
+      const box = element.getBoundingClientRect(), frame = element.closest('.nqd-main')!.getBoundingClientRect();
+      return box.top >= frame.top - 1 && box.bottom <= frame.bottom + 1
+        && element.contains(document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2));
+    });
+    expect(primaryReachable, 'a ação em Agora fica alcançável após Seu ritmo, sem ser obstruída').toBe(true);
 
     for (const tabInfo of DASHBOARD_TABS) {
       await page.locator(`[data-dash-tab="${tabInfo.id}"]`).click();

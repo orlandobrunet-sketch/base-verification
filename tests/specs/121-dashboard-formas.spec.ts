@@ -2,6 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+
 test.beforeEach(async ({ page }) => {
   await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
   await page.goto('/jogar/');
@@ -13,77 +14,90 @@ async function abrir(page: Page, level = 5) {
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
 }
 
-test('preview da próxima forma declara os dois requisitos e devolve foco sem responder a questão', async ({ page }, testInfo) => {
+const journeySnapshot = (page: Page) => page.evaluate(() => JSON.stringify((0, eval)('({idx:state.idx,level:state.level,xp:state.xp,correctTotal:state.correctTotal,lives:state.lives,score:state.score})')));
+
+test('Visão geral conserva a identidade pessoal sem card de personagem ou evoluções e sem responder a jornada', async ({ page }) => {
   await abrir(page);
-  const snapshot = () => page.evaluate(() => JSON.stringify((0, eval)('({idx:state.idx,level:state.level,xp:state.xp,correctTotal:state.correctTotal,lives:state.lives,score:state.score})')));
-  const before = await snapshot();
-  const nodes = page.locator('.nqd-form-node');
-  await expect(nodes).toHaveCount(3);
-  await expect(nodes.nth(2).locator('svg')).toHaveCount(1);
-  const next = nodes.nth(1);
-  if (testInfo.project.name === 'mobile') await next.tap();
-  else await next.click();
-  const dialog = page.locator('.nqd-form-dialog');
-  await expect(dialog).toBeVisible();
-  await expect(dialog.locator('img')).toHaveAttribute('src', 'assets/classes-cinema/clerigo_renal/nivel_06.webp');
-  await expect(dialog).toContainText('50 acertos na jornada — faltam 6');
-  await expect(dialog).toContainText('XP restante até esta forma: 199');
+  const before = await journeySnapshot(page);
+  const overview = page.locator('#nqdPane-overview');
+  await expect(overview.locator('.nqd-journey,.nqd-form-trail,.nqd-form-node,.nqd-form-dialog')).toHaveCount(0);
+  await expect(page.locator('.nqd-profile-avatar img')).toHaveAttribute('src', 'assets/classes-cinema/clerigo_renal/nivel_05.webp');
+  await expect(overview.getByRole('heading', { name: 'Seu ritmo', exact: true })).toBeVisible();
   await page.keyboard.press('1');
-  await page.keyboard.press('Tab');
-  await expect(dialog.getByRole('button', { name: 'Fechar arte ampliada' })).toBeFocused();
-  await page.keyboard.press('Escape');
-  await expect(dialog).toHaveCount(0);
-  await expect(next).toBeFocused();
-  await expect(page.locator('#nqDashboard')).toBeVisible();
-  expect(await snapshot()).toBe(before);
+  expect(await journeySnapshot(page)).toBe(before);
+  await page.locator('.nqd-brand-close').click();
+  await expect(page.locator('#nqDashboard')).toHaveCount(0);
+  await expect(page.locator('#question')).not.toBeEmpty();
+  expect(await journeySnapshot(page)).toBe(before);
 });
 
-test('a silhueta abre a arte real e o XP acumulado até a forma seguinte', async ({ page }) => {
+test('sidebar mantém o título pessoal inteiro em uma linha legível e Dashboard junto da marca', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
   await abrir(page);
-  await page.locator('.nqd-form-node').nth(2).click();
-  const dialog = page.locator('.nqd-form-dialog');
-  await expect(dialog.locator('img')).toHaveAttribute('src', 'assets/classes-cinema/clerigo_renal/nivel_07.webp');
-  await expect(dialog).toContainText('60 acertos na jornada — faltam 16');
-  await expect(dialog).toContainText('XP restante até esta forma: 601');
-  await dialog.getByRole('button', { name: 'Fechar arte ampliada' }).click();
-  await expect(dialog).toHaveCount(0);
-  await expect(page.locator('.nqd-form-node').nth(2)).toBeFocused();
+  await page.evaluate(() => {
+    (window as any).closeDashboard();
+    localStorage.setItem('nefroquest-detailed-stats', JSON.stringify({
+      version: 1, totalQuestions: 300, totalCorrect: 200, totalWrong: 100,
+      byTopic: {}, byCategory: {}, questionHistory: [], dailyActivity: {},
+      timeStats: { totalTime: 9000, questionCount: 300 }, mostMissed: {},
+    }));
+    return (window as any).openDashboard();
+  });
+  await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
+  const title = page.locator('.nqd-profile-level');
+  await expect(title).toHaveText('Erudito do Equilíbrio');
+  await expect(title).toBeVisible();
+  const metrics = await title.evaluate(el => {
+    const rect = el.getBoundingClientRect(), rail = el.closest('.nqd-rail')!.getBoundingClientRect();
+    const range = document.createRange(); range.selectNodeContents(el);
+    const lines = [...range.getClientRects()].filter(line => line.width > 0);
+    const brand = document.querySelector('.nqd-brand')!.getBoundingClientRect();
+    const kicker = document.querySelector('.nqd-rail-kicker')!.getBoundingClientRect();
+    return { lines: lines.length, fontSize: parseFloat(getComputedStyle(el).fontSize),
+      inside: lines.every(line => line.left >= rect.left - 1 && line.right <= rect.right + 1 && line.left >= rail.left && line.right <= rail.right),
+      kickerGap: kicker.top - brand.bottom };
+  });
+  expect(metrics.lines).toBe(1);
+  expect(metrics.fontSize).toBeGreaterThanOrEqual(12);
+  expect(metrics.inside).toBe(true);
+  expect(metrics.kickerGap).toBeGreaterThanOrEqual(-1);
+  expect(metrics.kickerGap).toBeLessThanOrEqual(12);
 });
 
-test('arte ampliada em 320px e texto200% preserva leitura e fechamento após rolar', async ({ page }) => {
+test('320px e texto a 200% preservam a coluna de leitura e o retorno após rolar', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 700 });
   await abrir(page);
+  const before = await journeySnapshot(page);
   await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
-  await page.locator('.nqd-form-node').nth(1).click();
-  const dialog = page.locator('.nqd-form-dialog');
-  const close = dialog.getByRole('button', { name: 'Fechar arte ampliada' });
-  await dialog.evaluate(el => { el.scrollTop = el.scrollHeight; });
-  const geometry = await dialog.evaluate(el => {
-    const close = el.querySelector('.nqd-form-close')!;
-    const r = close.getBoundingClientRect();
-    const title = el.querySelector('h2')!, box = title.getBoundingClientRect();
-    const range = document.createRange(); range.selectNodeContents(title);
-    return { width: el.clientWidth, scrollWidth: el.scrollWidth, closeWidth: r.width, closeHeight: r.height,
-      hit: close.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)),
-      clipping: [...range.getClientRects()].some(line => line.width && (line.left < box.left - 1 || line.right > box.right + 1)) };
+  const overview = page.locator('#nqdPane-overview');
+  await expect(overview.locator('.nqd-journey,.nqd-form-trail,.nqd-form-node')).toHaveCount(0);
+  const main = page.locator('.nqd-main');
+  expect(await main.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+  await main.evaluate(el => { el.scrollTop = el.scrollHeight; });
+  const back = page.locator('.nqd-brand-close');
+  const geometry = await back.evaluate(el => {
+    const r = el.getBoundingClientRect();
+    return { width: r.width, height: r.height, hit: el.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)) };
   });
-  expect(geometry.scrollWidth).toBeLessThanOrEqual(geometry.width + 1);
-  expect(geometry.closeWidth).toBeGreaterThanOrEqual(44);
-  expect(geometry.closeHeight).toBeGreaterThanOrEqual(44);
+  expect(geometry.width).toBeGreaterThanOrEqual(44);
+  expect(geometry.height).toBeGreaterThanOrEqual(44);
   expect(geometry.hit).toBe(true);
-  expect(geometry.clipping).toBe(false);
-  await close.click();
-  await expect(dialog).toHaveCount(0);
+  await back.click();
+  await expect(page.locator('#nqDashboard')).toHaveCount(0);
+  expect(await journeySnapshot(page)).toBe(before);
 });
 
-for (const [level, expected] of [[1, ['1', '2', '3']], [9, ['9', '10']], [10, ['10']]] as const) {
-  test(`nível ${level} mostra apenas as formas existentes`, async ({ page }) => {
+for (const level of [1, 9, 10]) {
+  test(`nível ${level} mantém o avatar atual sem criar uma galeria de evoluções na Visão geral`, async ({ page }) => {
     await abrir(page, level);
-    const levels = await page.locator('.nqd-form-node').evaluateAll(nodes => nodes.map(node => (node as HTMLElement).dataset.formLevel));
-    expect(levels).toEqual(expected);
-    await page.locator('.nqd-form-node').first().click();
-    await expect(page.locator('.nqd-form-dialog')).toContainText(level === 1 ? 'Forma inicial' : 'forma atual');
-    await expect(page.locator('.nqd-form-dialog')).not.toContainText('XP restante');
+    const before = await journeySnapshot(page);
+    const overview = page.locator('#nqdPane-overview');
+    await expect(overview.locator('.nqd-journey,.nqd-form-trail,.nqd-form-node')).toHaveCount(0);
+    await expect(page.locator('.nqd-profile-avatar img')).toHaveAttribute('src', `assets/classes-cinema/clerigo_renal/nivel_${String(level).padStart(2, '0')}.webp`);
+    await expect(overview.locator('[data-action="_dashPreviewForm"]')).toHaveCount(0);
+    await expect(overview).not.toContainText('Nível 11');
+    await page.locator('.nqd-brand-close').click();
+    expect(await journeySnapshot(page)).toBe(before);
   });
 }
 

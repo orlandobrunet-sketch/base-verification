@@ -1,7 +1,11 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Landing comercial', () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, context, baseURL }) => {
+    const origin = new URL(baseURL!).origin;
+    await context.route('**/*', route => route.request().method() === 'GET'
+      && new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+    await context.routeWebSocket('**/*', socket => socket.close());
     await page.goto('/');
   });
 
@@ -91,7 +95,7 @@ test.describe('Landing comercial', () => {
 
   test('alinha o início do atlas ao conteúdo e preserva o respiro do portal', async ({ page }) => {
     for (const viewport of [
-      { width: 1440, height: 900, minGap: 36, maxGap: 48 },
+      { width: 1440, height: 900, minGap: 12, maxGap: 24 },
       { width: 1024, height: 900, minGap: 32, maxGap: 48 },
       { width: 760, height: 900, minGap: 18, maxGap: 34 },
       { width: 390, height: 844, minGap: 14, maxGap: 28 },
@@ -143,6 +147,109 @@ test.describe('Landing comercial', () => {
     expect(geometry.topGap).toBeLessThanOrEqual(16);
     expect(geometry.labHeight).toBeLessThanOrEqual(650);
     expect(geometry.controlsBottom).toBeLessThanOrEqual(geometry.viewportHeight - 8);
+  });
+
+  test('preserva a ordem da narrativa e as três formas dos personagens canônicos', async ({ page }) => {
+    const sequence = await page.locator('#metodo, #oraculo, #como-funciona, #classes, #confronto')
+      .evaluateAll(sections => sections.map(section => ({
+        id: section.id,
+        top: section.getBoundingClientRect().top + window.scrollY,
+      })));
+    expect(sequence.map(section => section.id)).toEqual(['metodo', 'oraculo', 'como-funciona', 'classes', 'confronto']);
+    for (let i = 1; i < sequence.length; i++) {
+      expect(sequence[i].top, `a seção ${sequence[i].id} deve vir após a anterior`)
+        .toBeGreaterThan(sequence[i - 1].top);
+    }
+
+    const experience = page.locator('#classes .game-experience-card');
+    await expect(experience).toHaveCount(4);
+    await expect(experience.locator('h3')).toHaveText([
+      'XP e evolução', 'Capítulos da aventura', 'Equipamentos e escolhas', 'Conquistas e marcos',
+    ]);
+
+    const characters = [
+      { name: 'Dr. Glomerulus', title: 'Lâmina dos Glomérulos', folder: 'guerreiro_glomerular' },
+      { name: 'Dra. Aquaria', title: 'Mestra das Águas', folder: 'maga_metabolica' },
+      { name: 'Dr. Nephros', title: 'Guardião dos Néfrons', folder: 'clerigo_renal' },
+    ];
+    const profiles = page.locator('#classes .class-profile');
+    await expect(profiles).toHaveCount(characters.length);
+    for (const [index, character] of characters.entries()) {
+      const profile = profiles.nth(index);
+      await profile.scrollIntoViewIfNeeded();
+      await expect(profile.getByRole('heading', { name: character.name, exact: true })).toBeVisible();
+      await expect(profile.locator('.class-path')).toHaveText(character.title);
+      await expect(profile.locator('.evolution-stage')).toHaveCount(3);
+      await expect(profile.locator('figcaption b')).toHaveText(['01', '05', '10']);
+      const portraits = profile.locator('.evolution-stage img');
+      for (const [stage, level] of ['01', '05', '10'].entries()) {
+        await expect(portraits.nth(stage))
+          .toHaveAttribute('src', `/assets/classes-cinema/${character.folder}/nivel_${level}.webp`);
+        await expect(portraits.nth(stage)).toHaveAttribute('alt', new RegExp(character.name.replace('.', '\\.')));
+      }
+      await expect.poll(() => portraits.evaluateAll(images =>
+        images.map(image => (image as HTMLImageElement).complete && (image as HTMLImageElement).naturalWidth > 0)
+      )).toEqual([true, true, true]);
+    }
+  });
+
+  test('permite consultar fontes e traduções sem confundir resultados com limites', async ({ page }) => {
+    const evidence = page.locator('#evidencias-aprendizagem');
+    const summary = evidence.locator(':scope > summary');
+    const limits = evidence.locator('.learning-evidence-limits');
+    const limitsSummary = limits.locator(':scope > summary');
+    await expect(evidence).not.toHaveAttribute('open');
+    await expect(evidence.locator('.learning-evidence-note')).not.toBeVisible();
+    await summary.focus();
+    await summary.press('Enter');
+    await expect(evidence).toHaveAttribute('open', '');
+    await expect(evidence.locator('.learning-evidence-note')).toBeVisible();
+    await expect(evidence.locator('.learning-evidence-note')).toContainText('traduções nossas');
+    await expect(evidence.locator('.learning-evidence-note'))
+      .toContainText('não constituem validação específica do NefroQuest');
+    await expect(evidence.locator('.learning-evidence-columns h3'))
+      .toHaveText(['Método de estudo', 'Elementos de jogo']);
+    await expect(evidence.locator('blockquote')).toHaveCount(6);
+    await expect(limits).not.toHaveAttribute('open');
+    await expect(limits.locator('blockquote').first()).not.toBeVisible();
+    await limitsSummary.focus();
+    await limitsSummary.press('Space');
+    await expect(limits).toHaveAttribute('open', '');
+    await expect(limits.locator('blockquote').first()).toBeVisible();
+
+    const quotations = evidence.locator('blockquote');
+    for (const quote of await quotations.all()) {
+      await expect(quote).toHaveText(/^“[^“”]+”$/);
+      const citation = quote.locator('xpath=..').locator('.learning-evidence-cite');
+      await expect(citation).toContainText('Tradução nossa');
+      await expect(citation.locator('a')).toHaveCount(1);
+    }
+    const sources = evidence.locator('.learning-evidence-cite a');
+    const expectedSources = [
+      'https://doi.org/10.1126/science.1199327',
+      'https://doi.org/10.1111/j.1365-2923.2009.03518.x',
+      'https://doi.org/10.1007/s10459-020-10000-3',
+      'https://doi.org/10.1186/s12909-023-04951-5',
+      'https://www.bmj.com/content/359/bmj.j5416',
+      'https://www.jmir.org/2019/3/e12994',
+      'https://doi.org/10.1002/bjs.8819',
+    ];
+    await expect(sources).toHaveCount(expectedSources.length);
+    for (const [index, href] of expectedSources.entries()) {
+      await expect(sources.nth(index)).toHaveAttribute('href', href);
+      await expect(sources.nth(index)).toHaveAttribute('target', '_blank');
+      await expect(sources.nth(index)).toHaveAttribute('rel', /\bnoopener\b/);
+      await expect(sources.nth(index)).toHaveAttribute('rel', /\bnoreferrer\b/);
+    }
+
+    await limitsSummary.focus();
+    await limitsSummary.press('Enter');
+    await expect(limits).not.toHaveAttribute('open');
+    await summary.focus();
+    await summary.press('Space');
+    await expect(evidence).not.toHaveAttribute('open');
+    await expect(summary).toBeFocused();
+    await expect(evidence.locator('.learning-evidence-note')).not.toBeVisible();
   });
 
   test('oferece entrada direta para quem já possui conta', async ({ page }) => {
