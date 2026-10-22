@@ -81,13 +81,34 @@ test.describe('Grimório vazio', () => {
     ).toBe(1);
   });
 
-  test('vazio não mostra contagem de zeros nem estante sem nada', async ({ page }) => {
+  test('vazio distingue zero descobertas do catálogo a descobrir sem criar estante vazia ou desbloqueios', async ({ page }) => {
     await abrirGrimorio(page, false);
     const painel = page.locator('#nqdPane-library');
-
-    await expect(painel.locator('.nqd-library-summary'), 'resumo de zeros não deve existir').toHaveCount(0);
+    const keys = [...CHAVES_DE_ACERVO, 'nefroquest-save', 'nefroquest-detailed-stats'];
+    const before = await page.evaluate(keys => keys.map(key => localStorage.getItem(key)), keys);
+    const catalogue = await page.evaluate(() => ({
+      articles: (0, eval)('nefroArticles.length'), sources: (0, eval)('Object.keys(refsDB).length'),
+    }));
+    expect(catalogue.articles).toBeGreaterThan(0);
+    expect(catalogue.sources).toBeGreaterThan(0);
+    const summary = painel.locator('.nqd-library-summary');
+    await expect(summary.locator('strong')).toHaveText('0 descobertas reunidas');
+    await expect(summary.locator('span')).toContainText(`0 de ${catalogue.articles} pergaminhos`);
+    await expect(summary.locator('span')).toContainText(`0 de ${catalogue.sources} fontes`);
     await expect(painel.locator('.nqd-library-shelf'), 'estante vazia parecia elemento quebrado').toHaveCount(0);
-    await expect(painel, 'não anunciar "0 pergaminhos"').not.toContainText(/0 pergaminhos/i);
+    await expect(painel.locator('[data-library-entry]:visible')).toHaveCount(0);
+    await expect(painel.locator('[data-library-empty] button')).toBeVisible();
+
+    // O proprietário pediu que o catálogo faltante pudesse ser explorado.
+    // Consultar seus títulos/regras não concede a leitura nem altera o save.
+    await painel.locator('#nqDashLibraryDiscovery').selectOption('locked');
+    const locked = painel.locator('[data-library-entry]:visible');
+    await expect(locked).toHaveCount(catalogue.articles);
+    await expect(locked.first().locator('h3')).toBeVisible();
+    await expect(locked.first().locator('.nqd-library-unlock-hint')).toContainText('baú');
+    await expect(locked.locator('button, .nqd-library-impact')).toHaveCount(0);
+    await expect(summary.locator('strong')).toHaveText('0 descobertas reunidas');
+    expect(await page.evaluate(keys => keys.map(key => localStorage.getItem(key)), keys)).toEqual(before);
   });
 
   test('vazio mantém a ação de sair dali', async ({ page }) => {

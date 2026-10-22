@@ -2,15 +2,39 @@ import { test, expect, Page } from '@playwright/test';
 import { saveBase } from '../helpers/fixtures';
 
 /**
- * O portão real do nível (v14.60).
- *
- * A "próxima forma" é a recompensa visual mais forte da Visão geral, e o nível
- * não destrava por XP: `levelCapForCorrect` é `min(10, 1 + floor(acertos/10))`
- * e o XP excedente é descartado ao teto (js/game.js). O jogador via a barra
- * encher, parar, e não se mexer mais — sem explicação.
+ * O portão real do nível é apresentado no Átrio. A Visão geral já não tem
+ * galeria de personagem: ela não deve ser restaurada para satisfazer o teste.
+ * XP e acertos são requisitos distintos; a prévia não aplica a evolução nem
+ * modifica a jornada salva.
  */
 
 const BASE_SAVE = saveBase();
+
+async function abrirPortaoNoAtrio(page: Page, extra: Record<string, unknown> = {}) {
+  await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => typeof (window as any).playAsGuest === 'function');
+  const original = await page.evaluate(save => {
+    const raw = JSON.stringify(save);
+    localStorage.setItem('nefroquest-save', raw);
+    return raw;
+  }, { ...BASE_SAVE, ...extra });
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => typeof (window as any).playAsGuest === 'function');
+  await page.evaluate(() => (window as any).playAsGuest());
+  await expect(page.locator('#welcomeScreen')).toBeVisible();
+  await expect(page.locator('#welcomeSavedInfo')).toBeVisible();
+  expect(await page.evaluate(() => localStorage.getItem('nefroquest-save'))).toBe(original);
+  return original;
+}
+
+async function expectPreviewPreserved(page: Page, original: string) {
+  const resume = page.locator('#welcomeContinueBtn');
+  await resume.focus();
+  await expect(resume).toBeFocused();
+  await page.evaluate(() => window.dispatchEvent(new PageTransitionEvent('pageshow')));
+  await expect(page.locator('#welcomeSavedInfo')).toBeVisible();
+  expect(await page.evaluate(() => localStorage.getItem('nefroquest-save'))).toBe(original);
+}
 
 async function abrir(page: Page, extra: Record<string, unknown> = {}) {
   await page.goto('/jogar/');
@@ -32,46 +56,67 @@ async function abrir(page: Page, extra: Record<string, unknown> = {}) {
 }
 
 test.describe('Portão do nível', () => {
-  test('diz em quantos acertos a próxima forma abre e quantos faltam', async ({ page }) => {
-    await abrir(page); // nível 6, 47 acertos -> nível 7 abre em 60, faltam 13
-    const gate = page.locator('#nqdPane-overview .nqd-level-gate');
-    await expect(gate).toBeVisible();
-    await expect(gate).toContainText('Nível 7 abre em 60 acertos');
-    await expect(gate).toContainText('faltam 13');
+  test('o Átrio mostra a próxima forma e quantos acertos faltam sem alterar a jornada', async ({ page }) => {
+    const original = await abrirPortaoNoAtrio(page); // nível 6, 47 acertos: faltam 13 para o nível 7
+    const next = page.locator('#wsSavedNextLevel');
+    const milestone = page.locator('#wsSavedMilestone');
+    await expect(next).toBeVisible();
+    await expect(next).toHaveText('Nível 7');
+    await expect(milestone).toBeVisible();
+    await expect(milestone).toContainText('13 acertos');
+    expect(await page.evaluate(() => [(window as any).levelCapForCorrect(59), (window as any).levelCapForCorrect(60)])).toEqual([6, 7]);
+    await expectPreviewPreserved(page, original);
   });
 
   test('com a barra de XP cheia, explica que o que destrava é acerto', async ({ page }) => {
-    await abrir(page, { xp: 480, xpToNext: 480, correctTotal: 52 });
-    const gate = page.locator('#nqdPane-overview .nqd-level-gate');
-    await expect(gate).toContainText('faltam 8');
-    await expect(gate, 'a barra parada sem explicação era o defeito').toContainText('acerto, não experiência');
+    const original = await abrirPortaoNoAtrio(page, { xp: 480, xpToNext: 480, correctTotal: 52 });
+    const milestone = page.locator('#wsSavedMilestone');
+    await expect(milestone).toBeVisible();
+    await expect(milestone, 'XP completo não pode esconder os acertos pendentes').toHaveText('XP completo · 8 acertos para evoluir');
+    await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', '100');
+    await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 7');
+    await expectPreviewPreserved(page, original);
   });
 
-  test('atingido o limiar, anuncia liberado em vez de exigir mais', async ({ page }) => {
-    await abrir(page, { correctTotal: 60 });
-    const gate = page.locator('#nqdPane-overview .nqd-level-gate');
-    await expect(gate).toContainText('Nível 7 liberado');
-    await expect(gate).not.toContainText('faltam');
+  test('atingidos os requisitos de XP e acertos, convida a retomar sem exigir mais', async ({ page }) => {
+    const original = await abrirPortaoNoAtrio(page, { xp: 480, correctTotal: 60 });
+    const milestone = page.locator('#wsSavedMilestone');
+    await expect(milestone).toBeVisible();
+    await expect(milestone).toHaveText('Requisitos completos · retome a jornada');
+    await expect(milestone).not.toContainText(/faltam|acertos para evoluir/);
+    await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 7');
+    // A prévia não consome XP nem promove o nível antes da próxima resposta.
+    await expect(page.locator('#wsSavedLevel')).toHaveText('06');
+    await expectPreviewPreserved(page, original);
   });
 
   test('no nível máximo não promete um nível que não existe', async ({ page }) => {
-    await abrir(page, { level: 10, correctTotal: 100 });
-    await expect(page.locator('#nqdPane-overview .nqd-level-gate')).toHaveCount(0);
-    const trail = page.locator('#nqdPane-overview .nqd-form-trail');
-    await expect(trail).toBeVisible();
-    await expect(trail).toContainText('Forma máxima');
-    await expect(trail.locator('.nqd-form-node')).toHaveCount(1);
-    await expect(trail.locator('.nqd-form-node[data-form-level="10"]')).toHaveCount(1);
-    await expect(trail.locator('.nqd-form-node[data-form-level="11"]')).toHaveCount(0);
-    await expect(trail).not.toContainText('Nível 11');
+    const original = await abrirPortaoNoAtrio(page, { level: 10, correctTotal: 100 });
+    const next = page.locator('#wsSavedNextLevel');
+    await expect(next).toBeVisible();
+    await expect(next).toHaveText('Domínio máximo');
+    await expect(page.locator('#wsSavedLevel')).toHaveText('10');
+    await expect(page.locator('#wsSavedXpText')).toHaveText('Domínio máximo alcançado');
+    await expect(page.locator('#wsSavedMilestone')).toHaveText('100 de 100 acertos na jornada');
+    const avatar = page.locator('#wsSavedAvatar');
+    await expect(avatar).toBeVisible();
+    await expect(avatar).toHaveAttribute('src', /\/nivel_10\.webp(?:\?.*)?$/);
+    await expect(page.locator('#welcomeSavedInfo')).not.toContainText('Nível 11');
+    expect(await page.evaluate(() => (window as any).levelCapForCorrect(100))).toBe(10);
+    await expectPreviewPreserved(page, original);
   });
 
-  test('o número exibido é o portão real, não o XP', async ({ page }) => {
-    await abrir(page);
-    const gate = await page.locator('#nqdPane-overview .nqd-level-gate').innerText();
-    // 210/480 é o XP; nada disso pode aparecer como condição de evolução.
-    expect(gate).not.toContain('210');
-    expect(gate).not.toContain('480');
+  test('atingir os acertos não oculta XP ainda pendente nem aplica a evolução', async ({ page }) => {
+    const original = await abrirPortaoNoAtrio(page, { correctTotal: 60 });
+    const missingXp = await page.evaluate(() => (window as any).xpForLevel(6) - 210);
+    expect(missingXp).toBeGreaterThan(0);
+    const milestone = page.locator('#wsSavedMilestone');
+    await expect(milestone).toBeVisible();
+    await expect(milestone).toHaveText(`Acertos completos · faltam ${missingXp} XP`);
+    await expect(milestone).not.toContainText('acertos para evoluir');
+    await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 7');
+    await expect(page.locator('#wsSavedLevel')).toHaveText('06');
+    await expectPreviewPreserved(page, original);
   });
 });
 

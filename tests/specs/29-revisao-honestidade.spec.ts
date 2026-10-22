@@ -126,7 +126,15 @@ test.describe('Mapa sem amostra: exploração sem filtro de desempenho', () => {
     const aviso = page.locator('#nqdPane-mapa .nqd-map-history-note');
     await expect(aviso).toBeVisible();
     await expect(aviso).toContainText('Competências');
-    await expect(page.locator('#nqDashMapResult')).toContainText('60 temas disponíveis');
+    const catalogue = await page.evaluate(() => {
+      const competencies = (0, eval)('NQ_COMPETENCIES') as { cat: string }[];
+      return { themes: competencies.length, areas: new Set(competencies.map(comp => comp.cat)).size };
+    });
+    const result = page.locator('#nqDashMapResult');
+    await expect(result.locator('strong')).toHaveText(`${catalogue.areas} áreas para estudar`);
+    await expect(result.locator('span')).toHaveText(`${catalogue.themes} temas listados`);
+    await expect(result).toHaveAttribute('data-total-themes', String(catalogue.themes));
+    await expect(result).toHaveAttribute('data-with-responses', '0');
 
     await page.locator('#nqDashMapSearch').fill('dialise');
     await expect(page.locator('#nqdPane-mapa .nqd-map-node:visible')).not.toHaveCount(0);

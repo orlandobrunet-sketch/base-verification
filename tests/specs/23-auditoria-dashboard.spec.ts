@@ -92,11 +92,29 @@ test.describe('Correções da auditoria', () => {
     await expect(pessoal).toContainText('nenhuma partida pontuada ainda');
   });
 
-  test('o Grimório vazio não abre com um zero em tipo de display', async ({ page }) => {
+  test('o Grimório vazio informa a coleção sem transformar o zero em tipo de display', async ({ page }) => {
     await abrirCentral(page);
+    const keys = ['nq-unlocked-refs', 'unlockedArticles', 'nefroquest-save', 'nefroquest-detailed-stats'];
+    const before = await page.evaluate(keys => keys.map(key => localStorage.getItem(key)), keys);
     await page.getByRole('tab', { name: 'Grimório', exact: true }).click();
-    const destaque = page.locator('#nqdPane-library strong').first();
-    await expect(destaque).not.toHaveText(/^0/);
+    const pane = page.locator('#nqdPane-library');
+    const summary = pane.locator('.nqd-library-summary');
+    const catalogue = await page.evaluate(() => ({
+      articles: (0, eval)('nefroArticles.length'), sources: (0, eval)('Object.keys(refsDB).length'),
+    }));
+    // A16.23 mostra descobertos e catálogo mesmo quando a coleção começa vazia.
+    // O número é uma contagem do jogo, não uma dívida ou medida de conhecimento.
+    await expect(summary.locator('strong')).toHaveText('0 descobertas reunidas');
+    await expect(summary.locator('span')).toContainText(`0 de ${catalogue.articles} pergaminhos`);
+    await expect(summary.locator('span')).toContainText(`0 de ${catalogue.sources} fontes`);
+    await expect(pane.locator('.nqd-library-catalogue-note')).toContainText('não uma medida de conhecimento');
+    const typography = await summary.locator('strong').evaluate(el => ({
+      size: parseFloat(getComputedStyle(el).fontSize), root: parseFloat(getComputedStyle(document.documentElement).fontSize),
+    }));
+    expect(typography.size, 'a contagem vazia permanece no corpo de texto, sem display gigante').toBeLessThanOrEqual(typography.root + 1);
+    await expect(pane.locator('[data-library-empty] button')).toBeVisible();
+    await expect(pane.locator('[role="progressbar"]')).toHaveCount(0);
+    expect(await page.evaluate(keys => keys.map(key => localStorage.getItem(key)), keys)).toEqual(before);
   });
 
   // ── Reflexo motor do usuário ──────────────────────────────────────────────

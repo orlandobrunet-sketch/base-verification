@@ -1,4 +1,4 @@
-import { test, expect, type Page } from '@playwright/test';
+import { test, expect, type Page, type CDPSession } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
@@ -31,7 +31,7 @@ test('Visão geral conserva a identidade pessoal sem card de personagem ou evolu
   expect(await journeySnapshot(page)).toBe(before);
 });
 
-test('sidebar mantém o título pessoal inteiro em uma linha legível e Dashboard junto da marca', async ({ page }) => {
+test('sidebar mantém o título pessoal inteiro em uma linha legível e Dashboard junto da marca', async ({ page }, testInfo) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await abrir(page);
   await page.evaluate(() => {
@@ -54,12 +54,35 @@ test('sidebar mantém o título pessoal inteiro em uma linha legível e Dashboar
     const brand = document.querySelector('.nqd-brand')!.getBoundingClientRect();
     const kicker = document.querySelector('.nqd-rail-kicker')!.getBoundingClientRect();
     return { lines: lines.length, fontSize: parseFloat(getComputedStyle(el).fontSize),
+      fontFamily: getComputedStyle(el).fontFamily, titleBounds: {left: rect.left, right: rect.right},
+      railBounds: {left: rail.left, right: rail.right}, glyphBounds: lines.map(line => ({left: line.left, right: line.right})),
       inside: lines.every(line => line.left >= rect.left - 1 && line.right <= rect.right + 1 && line.left >= rail.left && line.right <= rail.right),
       kickerGap: kicker.top - brand.bottom };
   });
+  // Registra a fonte realmente escolhida pelo Chromium, além da pilha CSS.
+  // O diagnóstico é opcional; as verificações de geometria abaixo são obrigatórias.
+  const typography: Record<string, unknown> = {};
+  let session: CDPSession | undefined;
+  try {
+    session = await page.context().newCDPSession(page);
+    await session.send('DOM.enable');
+    await session.send('CSS.enable');
+    const { root } = await session.send('DOM.getDocument');
+    for (const selector of ['.nqd-profile-level', '.nqd-metric-context', '#nqdPane-overview h2']) {
+      const { nodeId } = await session.send('DOM.querySelector', { nodeId: root.nodeId, selector });
+      typography[selector] = nodeId ? (await session.send('CSS.getPlatformFontsForNode', { nodeId })).fonts : [];
+    }
+  } catch (error) {
+    typography.unavailable = String(error);
+  } finally {
+    if (session) await session.detach().catch(error => { typography.detachError = String(error); });
+  }
+  await testInfo.attach('sidebar-typography-and-bounds', {
+    body: Buffer.from(JSON.stringify({ metrics, typography }, null, 2)), contentType: 'application/json',
+  });
   expect(metrics.lines).toBe(1);
   expect(metrics.fontSize).toBeGreaterThanOrEqual(12);
-  expect(metrics.inside).toBe(true);
+  expect(metrics.inside, JSON.stringify(metrics)).toBe(true);
   expect(metrics.kickerGap).toBeGreaterThanOrEqual(-1);
   expect(metrics.kickerGap).toBeLessThanOrEqual(12);
 });
@@ -69,6 +92,8 @@ test('320px e texto a 200% preservam a coluna de leitura e o retorno após rolar
   await abrir(page);
   const before = await journeySnapshot(page);
   await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  expect(await page.evaluate(() => getComputedStyle(document.documentElement).fontSize)).toBe('32px');
   const overview = page.locator('#nqdPane-overview');
   await expect(overview.locator('.nqd-journey,.nqd-form-trail,.nqd-form-node')).toHaveCount(0);
   const main = page.locator('.nqd-main');

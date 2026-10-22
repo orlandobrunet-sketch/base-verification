@@ -58,11 +58,15 @@ test('superfícies distintas mantêm contraste AA, reflow e controles do Mapa co
   for (const [width, size] of sizes) {
     await page.setViewportSize({width, height: 1000});
     await page.evaluate(value => { document.documentElement.style.fontSize = `${value}px`; }, size);
+    await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+    expect(await page.evaluate(() => getComputedStyle(document.documentElement).fontSize)).toBe(`${size}px`);
     for (const [tab, pane] of [['Visão geral', '#nqdPane-overview'], ['Mapa clínico', '#nqdPane-mapa']]) {
       await page.getByRole('tab', {name: tab, exact: true}).click();
       const main = page.locator('.nqd-main');
       expect(await main.evaluate(el => el.scrollWidth <= el.clientWidth + 1), `${tab}, ${width}px/${size}px`).toBe(true);
-      expect(await page.locator(pane).evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
+      const paneGeometry = await page.locator(pane).evaluate(el => ({id: el.id, scrollWidth: el.scrollWidth, clientWidth: el.clientWidth,
+        width: el.getBoundingClientRect().width, fontSize: getComputedStyle(el).fontSize, fontFamily: getComputedStyle(el).fontFamily}));
+      expect(paneGeometry.scrollWidth, `${tab}, ${width}px/${size}px: ${JSON.stringify(paneGeometry)}`).toBeLessThanOrEqual(paneGeometry.clientWidth + 1);
       const contrast = await new AxeBuilder({page}).include(pane).withRules(['color-contrast']).analyze();
       expect(contrast.violations, `${tab}, ${width}px/${size}px: contraste AA`).toEqual([]);
     }

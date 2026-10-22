@@ -93,10 +93,13 @@ test.describe('Cor com função', () => {
     expect(aplicada).toBe(alvo);
   });
 
-  test('o eyebrow neutro não usa a cor de leitura clínica', async ({ page }) => {
+  test('as descrições neutras da Visão geral não usam a cor de leitura clínica', async ({ page }) => {
     await abrirCentral(page);
-    const neutro = page.locator('#nqdPane-overview .nqd-eyebrow:not(.nqd-eyebrow--reward):not(.nqd-eyebrow--clinical)');
-    expect(await neutro.count()).toBeGreaterThan(0);
+    // O redesenho removeu o eyebrow da Visão geral. A regra continua nas
+    // descrições existentes; os títulos de revisão, atenção e jornada têm
+    // acentos próprios, mas isso não deve colorir todo o texto de apoio.
+    const neutros = page.locator('#nqdPane-overview .nqd-next-action-copy p');
+    expect(await neutros.count()).toBeGreaterThan(0);
 
     const ciano = await page.evaluate(() => {
       const raiz = document.querySelector('#nqDashboard') as Element;
@@ -105,8 +108,11 @@ test.describe('Cor com função', () => {
       d.style.color = v; document.body.appendChild(d);
       const c = getComputedStyle(d).color; d.remove(); return c;
     });
-    const aplicada = await neutro.first().evaluate(el => getComputedStyle(el).color);
-    expect(aplicada, 'metadado neutro não pode competir com a leitura clínica').not.toBe(ciano);
+    for (const descricao of await neutros.all()) {
+      await expect(descricao).toBeVisible();
+      const aplicada = await descricao.evaluate(el => getComputedStyle(el).color);
+      expect(aplicada, 'descrição neutra não pode competir com a leitura clínica').not.toBe(ciano);
+    }
   });
 
   test('magenta saiu do sistema — só as cinco funções permanecem', async ({ page }) => {

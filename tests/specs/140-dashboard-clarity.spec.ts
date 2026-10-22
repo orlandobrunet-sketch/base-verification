@@ -160,10 +160,14 @@ test('320px e texto a 200% preservam controles, títulos e coleções sem rolage
   await page.setViewportSize({width: 320, height: 844});
   await openClarity(page);
   await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  expect(await page.evaluate(() => getComputedStyle(document.documentElement).fontSize)).toBe('32px');
   for (const name of ['Visão geral', 'Mapa clínico', 'Grimório']) {
     await page.getByRole('tab', {name, exact: true}).click();
     const pane = page.locator('[data-dash-pane]:visible');
-    expect(await pane.evaluate(el => el.scrollWidth <= el.clientWidth + 1), name).toBe(true);
+    const paneGeometry = await pane.evaluate(el => ({id: el.id, scrollWidth: el.scrollWidth, clientWidth: el.clientWidth,
+      width: el.getBoundingClientRect().width, fontSize: getComputedStyle(el).fontSize, fontFamily: getComputedStyle(el).fontFamily}));
+    expect(paneGeometry.scrollWidth, `${name}: ${JSON.stringify(paneGeometry)}`).toBeLessThanOrEqual(paneGeometry.clientWidth + 1);
     expect(await page.locator('.nqd-main').evaluate(el => el.scrollWidth <= el.clientWidth + 1), name).toBe(true);
   }
   await page.locator('#nqDashLibraryDiscovery').selectOption('locked');

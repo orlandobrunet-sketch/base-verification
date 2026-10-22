@@ -67,12 +67,13 @@ test.describe('Estudo e revisão na Central', () => {
     await expect(modalDeEstudo(page), 'o modal de estudo precisa aparecer').toHaveCount(1, { timeout: 8000 });
   }
 
-  test('clicar em estudar por eixo abre o seletor à vista', async ({ page }) => {
+  test('clicar em escolher uma área para estudar abre o seletor à vista', async ({ page }) => {
     await abrirCentral(page, semear(6, 4));
 
     const principal = page.locator('.nqd-study-primary');
     await expect(principal, 'a seção precisa abrir com uma ação').toHaveCount(1);
-    await expect(principal).toContainText(/eixo/i);
+    await expect(principal).toBeVisible();
+    await expect(principal.locator('strong')).toHaveText('Escolher uma área e estudar');
 
     await clicarEEsperarModal(page, '.nqd-study-primary');
 
