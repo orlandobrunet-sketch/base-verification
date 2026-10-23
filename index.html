@@ -39,7 +39,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,600;0,700;1,500;1,600&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Source+Sans+3:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/landing/styles.css?v=16.23">
+  <link rel="stylesheet" href="/landing/styles.css?v=16.25">
 
   <meta property="og:title" content="NefroQuest — Domine a nefrologia. Evolua a cada decisão.">
   <meta property="og:description" content="Da formação à atualização na especialidade: questões, revisão adaptativa, tutor educacional de IA e evidências organizadas.">
@@ -86,7 +86,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function () {
           Sentry.init({
-            release: 'nefroquest@16.23',
+            release: 'nefroquest@16.25',
             environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
             tracesSampleRate: 0.05
           });
@@ -386,19 +386,20 @@
       </div>
 
       <details class="learning-evidence" id="evidencias-aprendizagem">
-        <summary>O que a pesquisa diz sobre o método e a gamificação</summary>
-        <p class="learning-evidence-note">As referências fundamentam a abordagem educacional; não constituem validação específica do NefroQuest. As citações abaixo são traduções nossas.</p>
+        <summary>Praticar, revisar e acompanhar a evolução: o que a pesquisa mostra</summary>
+        <p class="learning-evidence-lead">Transforme o estudo em uma rotina de ação: responda, entenda o raciocínio e volte aos pontos que merecem revisão. No NefroQuest, XP, conquistas e etapas tornam essa trajetória visível.</p>
+        <p class="learning-evidence-note">Pesquisas sobre recuperação ativa e elementos de jogo ajudam a fundamentar essa abordagem educacional. As citações abaixo são traduções nossas.</p>
         <div class="learning-evidence-columns">
           <div>
             <h3>Método de estudo</h3>
             <article>
               <blockquote><p>“A prática de recuperação produziu a melhor aprendizagem”</p></blockquote>
               <p class="learning-evidence-cite">Tradução nossa — <a href="https://doi.org/10.1126/science.1199327" target="_blank" rel="noopener noreferrer">Karpicke e Blunt · Science · 2011</a></p>
-              <p>Universitários estudaram textos científicos; a prática de recuperação foi comparada a mapas conceituais em uma avaliação após uma semana. O resultado se refere a essa comparação, não a uma superioridade universal.</p>
+              <p>Ao estudar textos científicos, universitários que praticaram recuperar o conteúdo tiveram melhores resultados do que os que elaboraram mapas conceituais, em uma avaliação após uma semana.</p>
             </article>
             <article>
               <h4>Testes repetidos e feedback</h4>
-              <p>Em um estudo com 40 residentes, testes repetidos com feedback foram comparados à releitura espaçada. Após seis meses, os resultados foram 39% versus 26%. Esse estudo trata de prática de recuperação, não de gamificação.</p>
+              <p>Em um estudo com 40 residentes, testes repetidos com feedback alcançaram 39% de acertos após seis meses, frente a 26% com releitura espaçada. É um exemplo de recuperação ativa aplicada à educação médica.</p>
               <p class="learning-evidence-cite"><a href="https://doi.org/10.1111/j.1365-2923.2009.03518.x" target="_blank" rel="noopener noreferrer">Larsen e colaboradores · Medical Education · 2009</a></p>
             </article>
           </div>
@@ -407,32 +408,34 @@
             <article>
               <blockquote><p>“A gamificação parece promissora para melhorar resultados de aprendizagem”</p></blockquote>
               <p class="learning-evidence-cite">Tradução nossa — <a href="https://doi.org/10.1007/s10459-020-10000-3" target="_blank" rel="noopener noreferrer">van Gaalen e colaboradores · Advances in Health Sciences Education · 2021</a></p>
-              <p>A revisão encontrou potencial, com evidência ainda limitada para definir quais elementos isolados funcionam melhor.</p>
+              <p>A revisão em educação das profissões da saúde encontrou potencial para apoiar a aprendizagem ao integrar elementos de jogo às atividades de estudo.</p>
             </article>
             <article>
               <blockquote><p>“As pontuações no teste de conhecimento foram maiores”</p></blockquote>
               <p class="learning-evidence-cite">Tradução nossa — <a href="https://doi.org/10.1186/s12909-023-04951-5" target="_blank" rel="noopener noreferrer">Do e colaboradores · BMC Medical Education · 2023</a></p>
-              <p>Comparação entre módulos com e sem gamificação, com 171 estudantes de medicina e um teste imediato. Não foi um ensaio randomizado e não avaliou retenção.</p>
+              <p>Entre 171 estudantes de medicina, o grupo que utilizou módulos gamificados obteve maior pontuação no teste imediato do que o grupo com módulos sem gamificação.</p>
             </article>
             <article>
               <blockquote><p>“melhorou a tomada de decisão na triagem em uma simulação virtual validada”</p></blockquote>
               <p class="learning-evidence-cite">Tradução nossa — <a href="https://www.bmj.com/content/359/bmj.j5416" target="_blank" rel="noopener noreferrer">Mohan e colaboradores · BMJ · 2017</a></p>
-              <p>O ensaio avaliou o jogo sério Night Shift em uma simulação. O resultado não demonstra efeitos em pacientes reais nem o efeito isolado de XP ou conquistas.</p>
+              <p>O ensaio com o jogo sério Night Shift mostrou melhora na triagem em uma simulação virtual: um exemplo de jogo voltado à prática de decisões em um cenário educacional.</p>
             </article>
           </div>
         </div>
+        <p class="learning-evidence-method-note">Cada estudo avaliou uma intervenção e um contexto próprios. Recuperação ativa e gamificação têm evidências distintas; essas referências fundamentam a abordagem, sem constituir validação específica do NefroQuest.</p>
         <details class="learning-evidence-limits">
-          <summary>Limites da literatura</summary>
-          <article>
-            <blockquote><p>“a evidência disponível é, em sua maioria, de baixa qualidade”</p></blockquote>
-            <p class="learning-evidence-cite">Tradução nossa — <a href="https://www.jmir.org/2019/3/e12994" target="_blank" rel="noopener noreferrer">Gentry e colaboradores · JMIR · 2019</a></p>
-            <p>A revisão reuniu estudos heterogêneos de jogos sérios e gamificação. Apenas dois ensaios tratavam de gamificação; os resultados não foram agrupados em uma metanálise.</p>
-          </article>
-          <article>
-            <blockquote><p>“Nenhum dos jogos sérios havia concluído um processo completo de validação”</p></blockquote>
-            <p class="learning-evidence-cite">Tradução nossa — <a href="https://doi.org/10.1002/bjs.8819" target="_blank" rel="noopener noreferrer">Graafland e colaboradores · BJS · 2012</a></p>
-            <p>Revisão de jogos voltados à cirurgia e seus processos de validação. Não é uma demonstração de eficácia de pontos de experiência.</p>
-          </article>
+          <summary>Fontes e nota metodológica</summary>
+          <p>Os resultados de recuperação ativa vêm de comparações específicas de estudo e revisão. Na gamificação, ainda há incerteza sobre a contribuição de cada elemento isolado. O estudo de Do não foi randomizado e avaliou desempenho imediato, sem medir retenção; o de Mohan avaliou decisões em simulação, sem demonstrar resultados em pacientes reais.</p>
+          <p>A revisão de Gentry reuniu estudos heterogêneos, em sua maioria de baixa qualidade; apenas dois ensaios eram de gamificação, sem resultados agrupados em metanálise. A revisão de Graafland, publicada em 2012, examinou jogos cirúrgicos e encontrou processos de validação ainda incompletos. Esses contextos orientam a interpretação dos achados.</p>
+          <ol class="learning-evidence-sources">
+            <li><a href="https://doi.org/10.1126/science.1199327" target="_blank" rel="noopener noreferrer">Karpicke e Blunt · Science · 2011</a> — recuperação ativa e mapas conceituais.</li>
+            <li><a href="https://doi.org/10.1111/j.1365-2923.2009.03518.x" target="_blank" rel="noopener noreferrer">Larsen e colaboradores · Medical Education · 2009</a> — testes repetidos com feedback.</li>
+            <li><a href="https://doi.org/10.1007/s10459-020-10000-3" target="_blank" rel="noopener noreferrer">van Gaalen e colaboradores · Advances in Health Sciences Education · 2021</a> — revisão sobre gamificação em saúde.</li>
+            <li><a href="https://doi.org/10.1186/s12909-023-04951-5" target="_blank" rel="noopener noreferrer">Do e colaboradores · BMC Medical Education · 2023</a> — módulos gamificados na educação médica.</li>
+            <li><a href="https://www.bmj.com/content/359/bmj.j5416" target="_blank" rel="noopener noreferrer">Mohan e colaboradores · BMJ · 2017</a> — jogo sério e triagem simulada.</li>
+            <li><a href="https://www.jmir.org/2019/3/e12994" target="_blank" rel="noopener noreferrer">Gentry e colaboradores · JMIR · 2019</a> — revisão de jogos sérios e gamificação.</li>
+            <li><a href="https://doi.org/10.1002/bjs.8819" target="_blank" rel="noopener noreferrer">Graafland e colaboradores · BJS · 2012</a> — revisão da validação de jogos cirúrgicos.</li>
+          </ol>
         </details>
       </details>
     </section>
@@ -638,7 +641,7 @@
       <div class="game-experience">
         <div class="game-experience-grid">
           <article class="game-experience-card reveal-up">
-            <div class="game-experience-art" aria-hidden="true"><span class="game-experience-xp">XP</span></div>
+            <div class="game-experience-art" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M4 4v16h16M8 16v-5m5 5V7m5 9v-7"/></svg></div>
             <h3>XP e evolução</h3>
             <p>Na Jornada, os acertos rendem XP e ouro. O nível avança quando há XP e acertos suficientes.</p>
           </article>
@@ -653,7 +656,7 @@
 
           <article class="game-experience-card reveal-up" style="--i:2">
             <div class="game-experience-art" aria-hidden="true">
-              <img src="/assets/items/elmo_filtrador_supremo.png" alt="" width="96" height="96" loading="lazy" decoding="async">
+              <svg viewBox="0 0 24 24" focusable="false"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/></svg>
             </div>
             <h3>Equipamentos e escolhas</h3>
             <p>Na Forja, compare os atributos dos itens e decida o que equipar. Seu personagem tem seis espaços de equipamento.</p>
@@ -661,7 +664,7 @@
 
           <article class="game-experience-card reveal-up" style="--i:3">
             <div class="game-experience-art" aria-hidden="true">
-              <img src="/assets/achievements/louros.webp" alt="" width="96" height="96" loading="lazy" decoding="async">
+              <svg viewBox="0 0 24 24" focusable="false"><path d="M8 3h8v5a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 12v6m-4 3h8m-7-3h6v3"/></svg>
             </div>
             <h3>Conquistas e marcos</h3>
             <p>Acompanhe conquistas desbloqueadas e metas a conquistar. Cada conquista mostra sua condição; os marcos da Jornada acompanham a quantidade de acertos.</p>

@@ -756,7 +756,10 @@
       window.scrollTo(0, 0);
       const binding = _studyProgressBinding;
       window.requestAnimationFrame(() => {
-        if (_studyBindingCurrent(binding) && surface.isConnected) surface.querySelector('button, [tabindex="0"]')?.focus({ preventScroll: true });
+        if (_studyBindingCurrent(binding) && surface.isConnected) {
+          const target = surface.querySelector('[data-study-resume-choice] button') || surface.querySelector('button, [tabindex="0"]');
+          target?.focus({ preventScroll: true });
+        }
       });
     }
 
@@ -901,6 +904,7 @@
     function _studyToggleAxis(id) {
       if (_studySelectedAxes.has(id)) _studySelectedAxes.delete(id);
       else _studySelectedAxes.add(id);
+      document.querySelector('[data-study-resume-choice]')?.remove();
       // Re-render cards
       const list = document.getElementById('axisCardList');
       if (!list) return;
@@ -936,6 +940,7 @@
     function _studySelectAll(sel) {
       if (sel) NEFRO_AXES.forEach(a => _studySelectedAxes.add(a.id));
       else _studySelectedAxes.clear();
+      document.querySelector('[data-study-resume-choice]')?.remove();
       // Re-render todos os cards
       const list = document.getElementById('axisCardList');
       if (!list) return;
@@ -978,6 +983,7 @@
       if (!ids) return;
       _studySelectedAxes.clear();
       ids.forEach(id => _studySelectedAxes.add(id));
+      document.querySelector('[data-study-resume-choice]')?.remove();
       const list = document.getElementById('axisCardList');
       if (!list) return;
       const stats = getDetailedStats();
@@ -1302,6 +1308,7 @@
     let _mentorHistory = [];
     let _mentorContextVersion = 0;
     let _mentorRequestController = null;
+    let _mentorContextKey = null;
 
     async function startFreeStudyMode() {
       const binding = _studyCaptureBinding();
@@ -1513,28 +1520,38 @@
 
       const saved = _loadStudyState();
       if (saved && (saved.revisionHold || saved.index < saved.questions.length) && replaceSaved !== true) {
+        const selectedAxes = NEFRO_AXES.filter(axis => _studySelectedAxes.has(axis.id));
+        const selectedLabels = selectedAxes.map(axis => axis.label).join(', ');
+        const selectedCategories = new Set(selectedAxes.map(axis => axis.cat));
+        const questionCount = Math.min(20, topics.filter(q => selectedCategories.has(q.cat)).length);
         let surface = document.querySelector('.study-mode-popup');
         if (!surface) {
           surface = document.createElement('div');
-          surface.className = 'study-mode-popup';
-          surface.innerHTML = '<div class="nq-study-content"><button class="btn sec" data-action="closeStudySetup">← Voltar</button><h1>Estudo e Revisão</h1></div>';
+          surface.className = 'study-mode-popup nq-study-confirmation';
+          surface.innerHTML = `<div class="nq-study-content"><header class="nq-study-heading">
+            <button class="btn sec" data-action="closeStudySetup">← Voltar</button>
+            <div><h1>Estudo e Revisão</h1><p>Escolha como continuar seu estudo.</p></div>
+          </header></div>`;
           _mountStudySurface(surface, 'Escolha o modo de estudo', document.activeElement);
         }
         let notice = surface.querySelector('[data-study-resume-choice]');
         if (!notice) {
           notice = document.createElement('section');
-          notice.className = 'nq-study-resume';
+          notice.className = 'nq-study-resume nq-study-start-choice';
           notice.dataset.studyResumeChoice = '';
-          const holdReason = saved.revisionHold === 'expired'
+          const heading = surface.querySelector('.nq-study-heading');
+          if (heading) heading.after(notice);
+          else surface.querySelector('.nq-study-content').prepend(notice);
+        }
+        const holdReason = saved.revisionHold === 'expired'
             ? 'Esta sessão ultrapassou o prazo de 24 horas para retomada.'
             : saved.revisionHold === 'complete'
               ? 'Esta sessão está marcada como concluída.'
               : 'Não foi possível verificar se esta sessão pode ser retomada.';
-          notice.innerHTML = saved.revisionHold
-            ? `<div><h2>Sessão salva preservada</h2><p>${holdReason}</p><p>Para estudar os temas escolhidos, inicie uma nova sessão. Ao confirmar, você substitui somente a sessão salva; sua Jornada e suas estatísticas gerais continuam preservadas. Voltar mantém a sessão salva como está.</p></div><div><button class="btn sec" data-action="startStudyMode" data-arg="true" data-arg-type="boolean">Iniciar nova sessão</button></div>`
-            : '<div><h2>Você tem um estudo em andamento</h2><p>Retome a sessão salva ou substitua por uma sessão com os temas selecionados.</p></div><div><button class="btn gold" data-action="resumeSavedStudyMode">Retomar estudo</button><button class="btn sec" data-action="startStudyMode" data-arg="true" data-arg-type="boolean">Iniciar nova sessão</button></div>';
-          surface.querySelector('.nq-study-content').prepend(notice);
-        }
+        const selection = `<div class="nq-study-start-selection"><span>Nova sessão</span><strong data-study-selected-areas>${escapeHtml(selectedLabels)}</strong><span>${questionCount} ${questionCount === 1 ? 'questão' : 'questões'} dos temas escolhidos</span></div>`;
+        notice.innerHTML = saved.revisionHold
+            ? `${selection}<div><h2>Pronto para começar?</h2><p class="nq-study-saved-status">Sessão salva preservada</p><p>${holdReason}</p><p>Ao confirmar, você substitui somente a sessão salva; sua Jornada e suas estatísticas gerais continuam preservadas. Voltar mantém a sessão salva como está.</p></div><div class="nq-study-start-actions"><button class="btn gold" data-action="startStudyMode" data-arg="true" data-arg-type="boolean">Iniciar nova sessão</button></div>`
+            : `${selection}<div><h2>Você tem um estudo em andamento</h2><p>Retome a sessão anterior ou comece uma nova com os temas escolhidos acima. A nova sessão substitui somente o estudo salvo; sua Jornada e suas estatísticas gerais continuam preservadas.</p></div><div class="nq-study-start-actions"><button class="btn gold" data-action="resumeSavedStudyMode">Retomar estudo</button><button class="btn sec" data-action="startStudyMode" data-arg="true" data-arg-type="boolean">Iniciar nova sessão</button></div>`;
         notice.querySelector('button').focus();
         return;
       }
@@ -1803,7 +1820,16 @@
       `;
 
       // Guardar questão atual para o mentor
-      if (!revision?.historical && !_studyConsultationOnly) window.setMentorQuestion(q);
+      if (!revision?.historical && !_studyConsultationOnly) {
+        const binding = _studyProgressBinding;
+        window.setMentorQuestion({
+          source: 'study', qid: _studyQuestionId(q), q: presentation.q,
+          opts: presentation.o, ans: presentation.a, exp: presentation.e, chosen: selectedIdx,
+          isCurrent: () => _studyBindingCurrent(binding) && studyModeActive &&
+            studyModeQuestions[studyModeIndex] === q && _studyPresentations[studyModeIndex] === presentation &&
+            !_studyConsultationOnly && !_studyRevisions[studyModeIndex]?.historical
+        });
+      }
 
       if (recordProgress) playSound(isCorrect ? 'correct' : 'wrong');
     }
@@ -2072,6 +2098,7 @@
     }
     
     function exitStudyMode() {
+      resetMentorQuestion();
       const nextIndex = studyModeIndex + (document.querySelector('#studyModePage [data-action="nextStudyQuestion"]') ? 1 : 0);
       if (_studyConsultationOnly) { /* Read-only consultation preserves the original saved bytes. */ }
       else if (nextIndex >= studyModeQuestions.length) _clearStudyState();
@@ -2087,54 +2114,74 @@
       }
     }
 
-    // ── Oráculo: painel no fluxo, não sobreposição ──────────────────────────
-    //
-    // Era uma folha `position: fixed` no rodapé, com `aria-modal` e o resto da
-    // página escurecido. Para perguntar SOBRE a questão, a pessoa perdia a
-    // questão — por isso o próprio modal precisava reimprimir o enunciado num
-    // quadro apertado, e a conversa cabia numa faixa fina entre o contexto
-    // repetido e o campo.
-    //
-    // Agora o Oráculo entra na página, logo abaixo do veredito: o enunciado
-    // continua legível acima, a conversa cresce com a rolagem natural e não há
-    // enunciado duplicado. Não é um diálogo, é uma região do documento — daí
-    // `role="region"` no lugar de `dialog`, e nenhuma armadilha de foco.
+    // ── Oráculo: tela própria, sem reconstruir a questão ao voltar ──────────
     let _mentorOrigemFoco = null;
+    let _mentorSurfaceOrigin = null;
 
-    /** Onde o Oráculo mora em cada superfície, na ordem de preferência. */
-    function _ancoraDoMentor() {
-      const noEstudo = document.getElementById('studyFeedback');
-      if (noEstudo && noEstudo.offsetParent !== null) return { pai: noEstudo.parentNode, depois: noEstudo };
-      const refs = document.getElementById('refs');
-      if (refs) return { pai: refs.parentNode, depois: refs };
-      const feedback = document.getElementById('feedback');
-      if (feedback) return { pai: feedback.parentNode, depois: feedback };
-      return null;
+    function _mentorContextValid(q = _mentorCurrentQ) {
+      return !!q && (typeof q.isCurrent !== 'function' || q.isCurrent());
+    }
+
+    function _mentorCaseHTML(q) {
+      return `<p class="nq-oracle-case-origin">${q.source === 'study' ? 'Estudo e revisão' : 'Jornada'} · questão respondida</p>
+        <h2 id="oracleCaseHeading">Questão em discussão</h2>
+        <p class="nq-oracle-question">${escapeHtml(q.q)}</p>
+        <ol class="nq-oracle-options">${q.opts.map((option, index) => `<li class="${index === q.ans ? 'is-correct' : ''}">
+          <span class="nq-oracle-option-letter" aria-hidden="true">${String.fromCharCode(65 + index)}</span>
+          <div>${escapeHtml(option)}${index === q.ans ? '<small>✓ Resposta correta</small>' : ''}${index === q.chosen ? '<small>Sua escolha</small>' : ''}</div>
+        </li>`).join('')}</ol>
+        ${q.exp ? `<details class="nq-oracle-explanation"><summary>Rever explicação</summary><p>${escapeHtml(q.exp)}</p></details>` : ''}`;
     }
 
     function openMentorModal() {
       const q = _mentorCurrentQ;
-      if (!q) return;
-
-      document.getElementById('mentorPanel')?.remove();
+      if (!_mentorContextValid(q)) { resetMentorQuestion(); return; }
+      let view = document.getElementById('oraclePage');
+      if (view && !view.hidden) return;
       _mentorOrigemFoco = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      // A rolagem suave do feedback não deve continuar atrás desta tela.
+      window.scrollTo({ left: window.scrollX, top: window.scrollY, behavior: 'instant' });
 
+      if (!view) view = _createMentorView(q);
+      _mentorSurfaceOrigin = {
+        x: window.scrollX, y: window.scrollY, overflow: document.body.style.overflow,
+        surfaces: [...document.body.children].filter(el => el instanceof HTMLElement && el !== view &&
+          !['SCRIPT', 'STYLE', 'LINK'].includes(el.tagName)).map(el => ({
+            el, inert: el.inert, ariaHidden: el.getAttribute('aria-hidden')
+          }))
+      };
+      _mentorSurfaceOrigin.surfaces.forEach(({ el }) => { el.inert = true; el.setAttribute('aria-hidden', 'true'); });
+      document.body.style.overflow = 'hidden';
+      view.hidden = false;
+      view.inert = false;
+      const input = view.querySelector('#mentorInput');
+      (input && !input.disabled ? input : view.querySelector('button'))?.focus({ preventScroll: true });
+    }
+
+    function _createMentorView(q) {
       const isGuest = typeof authUser === 'undefined' || authUser === null;
-      const painel = document.createElement('section');
-      painel.id = 'mentorPanel';
-      painel.className = 'mentor-panel';
-      painel.setAttribute('role', 'region');
-      painel.setAttribute('aria-label', 'Oráculo dos Néfrons');
-
-      painel.innerHTML = `
-        <div class="mentor-header">
-          <div class="mentor-header-title">
-            <div class="mentor-title-main">🔮 Oráculo dos Néfrons</div>
-            <div class="mentor-title-sub">Sobre a questão acima</div>
-          </div>
-          <button type="button" class="mentor-close-btn" data-action="closeMentorModal" aria-label="Fechar o Oráculo e voltar à questão">✕</button>
+      const view = document.createElement('section');
+      view.id = 'oraclePage';
+      view.className = 'nq-oracle-view';
+      view.dataset.questionId = String(q.qid || '');
+      view.dataset.source = q.source || '';
+      view.setAttribute('role', 'main');
+      view.setAttribute('aria-labelledby', 'oracleTitle');
+      view.innerHTML = `<header class="nq-oracle-heading">
+        <button type="button" class="nq-oracle-back" data-action="closeMentorModal"><span aria-hidden="true">←</span> Voltar à questão</button>
+        <div><p class="nq-oracle-eyebrow">Aprender com seu raciocínio</p><h1 id="oracleTitle">Oráculo dos Néfrons</h1></div>
+        <span class="nq-oracle-seal" aria-hidden="true">✧</span>
+      </header>
+      <div class="nq-oracle-columns">
+        <details class="nq-oracle-case" id="oracleCase">
+          <summary>Ver questão e alternativas <span aria-hidden="true">⌄</span></summary>
+          <div class="nq-oracle-case-content">${_mentorCaseHTML(q)}</div>
+        </details>
+        <section id="mentorPanel" class="mentor-panel visible" role="region" aria-label="Conversa com o Oráculo">
+        <div class="nq-oracle-chat-heading"><h2>Vamos entender juntos</h2><p>Traga sua dúvida ou explique como chegou à resposta.</p></div>
+        <div class="mentor-chat" id="mentorChat" role="log" aria-label="Mensagens da conversa" aria-live="polite" aria-relevant="additions text">
+          <p class="nq-oracle-chat-intro">A questão fica ao seu alcance enquanto você conversa. Por onde quer começar?</p>
         </div>
-        <div class="mentor-chat" id="mentorChat" role="log" aria-live="polite"></div>
         ${isGuest ? `
           <div class="mentor-access-panel">
             <p>O Oráculo dos Néfrons precisa de uma conta ativa para analisar suas dúvidas. Crie a sua gratuitamente para salvar o progresso, entrar no ranking e consultar a IA.</p>
@@ -2144,46 +2191,64 @@
         ` : `
           <div class="mentor-quota-bar" id="mentorQuotaBar">${_mentorRemainingText()}</div>
           <div class="mentor-input-row">
-            <label class="nq-sr-only" for="mentorInput">Sua dúvida sobre esta questão</label>
+            <label for="mentorInput">Sua dúvida sobre esta questão</label>
             <textarea id="mentorInput" class="mentor-textarea"
               placeholder="O que você não entendeu? Qual foi o seu raciocínio?" rows="2"
-              maxlength="400"></textarea>
+              maxlength="400" aria-describedby="oracleInputHint"></textarea>
             <button type="button" class="btn gold mentor-send-btn" data-action="_sendMentorMessage">Enviar</button>
+            <small id="oracleInputHint">Enter envia · Shift + Enter cria uma nova linha</small>
           </div>
         `}
-        <button type="button" class="mentor-voltar" data-action="closeMentorModal">← Voltar à questão</button>
-      `;
-
-      const ancora = _ancoraDoMentor();
-      if (ancora) ancora.pai.insertBefore(painel, ancora.depois.nextSibling);
-      else document.getElementById('mainApp')?.appendChild(painel);
-
-      /* Escape fecha e devolve o foco. Sem armadilha: quem quiser sair pelo
-       * Tab alcança o resto da página, que continua sendo parte do fluxo. */
-      painel.addEventListener('keydown', (e) => {
+        </section>
+      </div>`;
+      const casePanel = view.querySelector('#oracleCase');
+      const mobile = window.matchMedia('(max-width: 760px)');
+      const adaptCase = () => { casePanel.open = !mobile.matches; };
+      adaptCase();
+      mobile.addEventListener('change', adaptCase);
+      const ownKeyboard = event => {
+        if (!view.isConnected || view.hidden) return;
+        if (event.key === 'Escape') {
+          event.preventDefault(); event.stopImmediatePropagation(); closeMentorModal();
+        } else if (!(event.target instanceof Node) || !view.contains(event.target)) {
+          event.stopImmediatePropagation();
+        }
+      };
+      window.addEventListener('keydown', ownKeyboard, true);
+      view._mentorDispose = () => {
+        mobile.removeEventListener('change', adaptCase);
+        window.removeEventListener('keydown', ownKeyboard, true);
+      };
+      view.addEventListener('keydown', (e) => {
+        // A tela mantém seu próprio contexto de teclado, sem atalhos da Jornada.
+        e.stopPropagation();
         if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); closeMentorModal(); }
       });
-
-      const input = document.getElementById('mentorInput');
-      // Enter envia; Shift+Enter quebra linha.
-      input?.addEventListener('keydown', e => {
-        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); _sendMentorMessage(); }
+      view.querySelector('#mentorInput')?.addEventListener('keydown', e => {
+        if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); _sendMentorMessage(); }
       });
-
-      requestAnimationFrame(() => {
-        if (!painel.isConnected) return;
-        painel.classList.add('visible');
-        painel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
-        (input || painel.querySelector('button'))?.focus({ preventScroll: true });
-      });
+      document.body.appendChild(view);
+      return view;
     }
 
     function closeMentorModal(restoreFocus = true) {
-      const painel = document.getElementById('mentorPanel');
-      if (!painel) return;
+      const view = document.getElementById('oraclePage');
+      if (!view || view.hidden) return;
       const voltarPara = _mentorOrigemFoco;
       _mentorOrigemFoco = null;
-      painel.remove();
+      view.hidden = true;
+      view.inert = true;
+      const origin = _mentorSurfaceOrigin;
+      _mentorSurfaceOrigin = null;
+      if (origin) {
+        origin.surfaces.forEach(({ el, inert, ariaHidden }) => {
+          el.inert = inert;
+          if (ariaHidden === null) el.removeAttribute('aria-hidden');
+          else el.setAttribute('aria-hidden', ariaHidden);
+        });
+        document.body.style.overflow = origin.overflow;
+        window.scrollTo(origin.x, origin.y);
+      }
       if (restoreFocus && voltarPara && voltarPara.isConnected) {
         voltarPara.focus({ preventScroll: true });
       }
@@ -2191,9 +2256,13 @@
 
     function resetMentorQuestion() {
       closeMentorModal(false);
+      const view = document.getElementById('oraclePage');
+      view?._mentorDispose?.();
+      view?.remove();
       _mentorRequestController?.abort();
       _mentorRequestController = null;
       _mentorCurrentQ = null;
+      _mentorContextKey = null;
       _mentorHistory = [];
       _mentorContextVersion++;
     }
@@ -2204,7 +2273,8 @@
       const q = _mentorCurrentQ;
       const input = document.getElementById('mentorInput');
       const chat = document.getElementById('mentorChat');
-      if (!input || !chat || !q || input.disabled) return;
+      if (!input || !chat || input.disabled || document.getElementById('oraclePage')?.hidden) return;
+      if (!_mentorContextValid(q)) { resetMentorQuestion(); return; }
 
       const text = input.value.trim();
       if (!text) return;
@@ -2220,10 +2290,13 @@
       }
 
       _appendMentorMsg(chat, 'user', text);
+      chat.querySelector('.nq-oracle-chat-intro')?.remove();
       input.value = '';
       input.disabled = true;
+      const sendButton = input.closest('.mentor-panel').querySelector('.mentor-send-btn');
+      if (sendButton) sendButton.disabled = true;
 
-      const thinkingEl = _appendMentorMsg(chat, 'assistant', '...');
+      const thinkingEl = _appendMentorMsg(chat, 'assistant', 'O Oráculo está preparando uma resposta…');
       thinkingEl.classList.add('mentor-thinking');
 
       const requestController = new AbortController();
@@ -2231,7 +2304,7 @@
       try {
         const _mentorToken = (typeof window.getAuthToken === 'function') ? (await window.getAuthToken()) : null;
         // A autenticação pode demorar: não enviar se a questão já mudou.
-        if (!_studyBindingCurrent(binding) || contextVersion !== _mentorContextVersion || !input.isConnected) return;
+        if (!_studyBindingCurrent(binding) || !_mentorContextValid(q) || contextVersion !== _mentorContextVersion || !input.isConnected) return;
         const res = await fetch(`${SUPA_URL}/functions/v1/ai-mentor`, {
           signal: requestController.signal,
           method: 'POST',
@@ -2247,7 +2320,7 @@
         });
 
         const data = await res.json();
-        if (!_studyBindingCurrent(binding) || contextVersion !== _mentorContextVersion || !chat.isConnected) return;
+        if (!_studyBindingCurrent(binding) || !_mentorContextValid(q) || contextVersion !== _mentorContextVersion || !chat.isConnected) return;
         if (res.status === 429) throw new Error('quota_exceeded');
         if (!res.ok || !data.reply) throw new Error(data.error || 'Erro ao contatar o mentor.');
 
@@ -2268,7 +2341,7 @@
           document.querySelector('[data-action="openMentorModal"]')?.remove();
         }
       } catch (err) {
-        if (!_studyBindingCurrent(binding) || contextVersion !== _mentorContextVersion || requestController.signal.aborted) return;
+        if (!_studyBindingCurrent(binding) || !_mentorContextValid(q) || contextVersion !== _mentorContextVersion || requestController.signal.aborted) return;
         _track('error_mentor_send', { msg: String(err) });
         thinkingEl.classList.remove('mentor-thinking');
         if (String(err).includes('quota_exceeded')) {
@@ -2283,7 +2356,9 @@
       } finally {
         if (_mentorRequestController === requestController) _mentorRequestController = null;
         input.disabled = false;
-        if (_studyBindingCurrent(binding) && input.isConnected && input.closest('.mentor-panel')) input.focus();
+        if (sendButton) sendButton.disabled = false;
+        if (_studyBindingCurrent(binding) && _mentorContextValid(q) && contextVersion === _mentorContextVersion &&
+            input.isConnected && !document.getElementById('oraclePage')?.hidden) input.focus({ preventScroll: true });
       }
     }
 
@@ -2334,7 +2409,18 @@
     window.closeMentorModal  = closeMentorModal;
     window._sendMentorMessage = _sendMentorMessage;
     window.resetMentorQuestion = resetMentorQuestion;
-    window.setMentorQuestion = function(q) { resetMentorQuestion(); _mentorCurrentQ = q; };
+    window.setMentorQuestion = function(q) {
+      const opts = q?.opts || q?.o;
+      const ans = q?.ans ?? q?.a;
+      if (!q || typeof q.q !== 'string' || !Array.isArray(opts) || !Number.isInteger(ans) || ans < 0 || ans >= opts.length) {
+        resetMentorQuestion(); return;
+      }
+      const normalized = { ...q, qid: q.qid ?? q.id, opts: [...opts], ans, exp: q.exp ?? q.e ?? '' };
+      const key = JSON.stringify([normalized.source || '', normalized.qid ?? '', normalized.q, opts, ans, normalized.exp, normalized.chosen]);
+      if (!_mentorContextValid() || key !== _mentorContextKey) resetMentorQuestion();
+      _mentorCurrentQ = normalized;
+      _mentorContextKey = key;
+    };
     window.closeMentorModalAndRegister = closeMentorModalAndRegister;
     window.closeMentorModalAndLogin = closeMentorModalAndLogin;
     window.showRegisterFromDiagnosis = showRegisterFromDiagnosis;
