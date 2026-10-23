@@ -81,6 +81,14 @@
 #nqDashboard[data-nq-ui="lumen"] :is(.nqd-trophy-showcase button,.nqd-badge-art,.nqd-achievement-mark,.nqd-achievement-spotlight-art):focus-visible { outline:2px solid #e3c580; outline-offset:4px; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-achievement-category-filter select:focus-visible { outline:2px solid #e3c580; outline-offset:3px; }
 
+/* Em desktop, duas colunas cabem em 2×15rem+1rem de intervalo. O título
+   pode crescer além de duas linhas; o layout touch permanece preservado. */
+@media (min-width:61.26rem) and (hover:hover) and (pointer:fine) {
+ @container achievement-pane (min-width:31rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-achievement-title { min-height:2.7em; }
+ }
+}
+
 @container achievement-pane (max-width:48rem) {
  #nqDashboard[data-nq-ui="lumen"] .nqd-achievement-spotlight { grid-template-columns:128px minmax(0,1fr); padding:1.25rem; gap:1rem; }
  #nqDashboard[data-nq-ui="lumen"] .nqd-achievement-spotlight-art { width:128px; height:128px; }

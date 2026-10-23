@@ -46,6 +46,12 @@ async function abrir(page: Page, width = 1440) {
 }
 
 async function fecharNarrativas(page: Page) {
+  // O 100º acerto encerra este cenário na vitória. Um baú simultâneo pode
+  // continuar atrás dela; não se tenta acionar um controle encoberto.
+  if (await page.evaluate(() => (window as any).state.gameCompleted)) {
+    await expect(page.locator('#victoryModal')).toBeVisible();
+    return;
+  }
   // A evolução nativa aparece600ms e o baú1200ms após o acerto. Aguarda
   // ambos os prazos e usa
   // exclusivamente os botões reais dos diálogos, sem remover nós ou gates.
@@ -120,6 +126,50 @@ for (const width of [390, 1440]) test(`dez golpes até a vitória em${width}px p
   expect(await page.evaluate(() => (window as any).isProgressSandbox())).toBe(true);
   expect(await storage(page)).toEqual(saved);
   await info.attach('boss-native-ten-hit-ledger', { body: JSON.stringify(ledger, null, 2), contentType: 'application/json' });
+});
+
+test('baú no décimo estágio mantém a vitória como endpoint sem gravar progresso real', async ({ page }, info) => {
+  await abrir(page, 1440);
+  const saved = await storage(page);
+  // Fixture no último estágio: as quatro jornadas completas acima continuam
+  // percorrendo os dez acertos nativos. Aqui isolamos a colisão baú/vitória.
+  await page.evaluate(() => {
+    const w = window as any;
+    Object.assign(w.state, { correctTotal: 99, chestCorrectCount: 0, chestTarget: 1 });
+    w.renderHUD();
+    w.updateBossUI();
+  });
+  await fecharNarrativas(page);
+  await expect(page.locator('#bossQuestionNum')).toHaveText('FASE FINAL 10/10');
+  const before = await page.evaluate(() => {
+    const w = window as any;
+    w._fixtureRandom = Math.random;
+    Math.random = () => 0; // O baú nativo entrega um artigo, sem alterar o sorteio do produto.
+    return { answer: w.state.current.a, correct: w.state.correctTotal, hp: w.getBossHP(), chests: w.state.chestsOpened, score: w.state.score };
+  });
+  try {
+    expect(before.correct).toBe(99);
+    expect(before.hp).toBe(10);
+    await page.locator(`#options .option[data-idx="${before.answer}"]`).click();
+    await expect(page.locator('#victoryModal')).toBeVisible();
+    await expect(page.locator('#autoChestPopup')).toBeVisible();
+    await page.locator('#autoChestPopup').getByRole('button', { name: 'Abrir baú', exact: true }).click();
+    await expect(page.locator('#autoChestPopup')).toHaveCount(0);
+    await expect(page.locator('#chestModal.show')).toBeVisible();
+    await expect.poll(() => page.evaluate(() => (window as any).state.chestsOpened)).toBe(before.chests + 1);
+    expect(await page.evaluate(() => (window as any).state.score)).toBeGreaterThan(before.score);
+    await fecharNarrativas(page);
+  } finally {
+    await page.evaluate(() => { Math.random = (window as any)._fixtureRandom; delete (window as any)._fixtureRandom; });
+  }
+  await expect(page.locator('#victoryModal').getByRole('heading', { name: 'Jornada concluída' })).toBeVisible();
+  expect(await page.evaluate(() => ({ correct: (window as any).state.correctTotal, hp: (window as any).getBossHP(), completed: (window as any).state.gameCompleted, sandbox: (window as any).isProgressSandbox() })))
+    .toEqual({ correct: 100, hp: 0, completed: true, sandbox: true });
+  // O save tem debounce de 500 ms; aguarda sua janela sem fechar a vitória nem
+  // limpar manualmente DOM, armazenamento ou gates.
+  await page.waitForTimeout(700);
+  expect(await storage(page)).toEqual(saved);
+  await info.attach('boss-last-chest-native-endpoint', { body: JSON.stringify({ fixture: 'final stage99; native answer100; native article chest', before, persistedBytesPreserved: true }), contentType: 'application/json' });
 });
 
 test('erro mantém HP e dez etapas, resposta única e derrota continuam nativos', async ({ page }) => {

@@ -115,7 +115,7 @@ test('Header covers both edges at widths equivalent to100,90,80and75percent whil
  }
 });
 
-test('Saved journey has modest external breathing room without enlarging card or CTA',async({page})=>{
+test('Saved journey has modest external breathing room without enlarging card or CTA',async({page},info)=>{
  await page.evaluate(()=>(window as any)._loadTopics());
  const qid=await page.evaluate(()=>(window as any).questionBank[0].id);
  await page.evaluate(save=>localStorage.setItem('nefroquest-save',JSON.stringify(save)),saveBase({level:3,correctTotal:32,queueIds:[qid]}));
@@ -123,6 +123,9 @@ test('Saved journey has modest external breathing room without enlarging card or
  await expect(page.locator('#welcomeSavedInfo')).toBeVisible();
  for(const [width,height,font] of [[1280,800,16],[1920,1080,16],[2560,1440,16],[390,844,16],[390,844,32],[320,900,32]]){
   await page.setViewportSize({width,height});await page.evaluate(size=>document.documentElement.style.fontSize=size+'px',font);
+   await page.evaluate(()=>document.fonts.ready);
+   await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
+   expect(await page.evaluate(()=>getComputedStyle(document.documentElement).fontSize)).toBe(`${font}px`);
   const layout=await page.locator('#welcomeScreen').evaluate(root=>{
    const main=root.querySelector('.nql-atrium__main')!,journey=root.querySelector('.nql-atrium__journey')!;
    const card=root.querySelector('.nql-atrium__resume-shell')!,metrics=root.querySelector('.nql-mastery-rail')!;
@@ -130,14 +133,16 @@ test('Saved journey has modest external breathing room without enlarging card or
    const title=root.querySelector('#atriumTitle')!,range=document.createRange();range.selectNodeContents(title);
    const titleBounds=journey.getBoundingClientRect();
    return{leftOffset:journey.getBoundingClientRect().top-main.getBoundingClientRect().top-parseFloat(getComputedStyle(main).paddingTop),
-    outsideGap:m.top-c.bottom,cardPaddingBottom:getComputedStyle(card).paddingBottom,
+     outsideGap:m.top-c.bottom,cardPaddingBottom:getComputedStyle(card).paddingBottom,
+     metricsMarginTop:getComputedStyle(metrics).marginTop,rootFont:getComputedStyle(document.documentElement).fontSize,
     titleFits:[...range.getClientRects()].every(r=>r.left>=titleBounds.left-1&&r.right<=titleBounds.right+1),
     finalStepBottom:root.querySelector('.nql-atrium__continuum')!.getBoundingClientRect().bottom,
     header:root.querySelector('.nql-atrium__topbar')!.getBoundingClientRect().toJSON(),
     overflow:root.scrollWidth>root.clientWidth+1,
     clipped:[...root.querySelectorAll('header .nql-brand,header button,header [role="button"],.nql-atrium__primary')].some(el=>el.scrollWidth>el.clientWidth+1)};
   });
-  expect(layout.leftOffset).toBeCloseTo(12,0);expect(layout.outsideGap).toBeGreaterThanOrEqual(font===32?40:18);
+   await info.attach(`atrium-layout-${width}-${height}-${font}`,{contentType:'application/json',body:JSON.stringify({width,height,font,...layout})});
+   expect(layout.leftOffset).toBeCloseTo(12,0);expect(layout.outsideGap).toBeGreaterThanOrEqual(font===32?40:18);
   expect(layout.cardPaddingBottom).toBe('4px');expect(layout.titleFits).toBe(true);
   expect(layout.header.x).toBe(0);expect(layout.header.width).toBe(width);
   expect(layout.overflow).toBe(false);expect(layout.clipped).toBe(false);

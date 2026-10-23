@@ -67,11 +67,10 @@ for (const failure of ['profile', 'auth', 'throw']) {
   });
 }
 
-/* O Oráculo é região do documento (#mentorPanel), não diálogo: não há
- * armadilha de foco e o painel pode começar abaixo da dobra. O que continua
- * valendo é alcançar cada controle pelo teclado, na ordem, sem sair do painel
- * antes do fim — e nunca transbordar a largura. O painel entra abaixo do
- * veredito, então os testes abrem o Oráculo com uma questão real na tela. */
+/* O Oráculo tem uma tela própria (#oraclePage, role=main). O caso é
+ * recolhível no mobile; o cabeçalho, o resumo, a conversa e o envio pertencem
+ * à mesma tela. Fechar preserva o DOM, a conversa e o rascunho; mudar ou
+ * invalidar o contexto é que descarta a tela anterior. */
 // injectGameState volta em domcontentloaded; medir estilo exige folhas e fontes prontas.
 async function naQuestao(page: Page) {
   await injectGameState(page);
@@ -79,11 +78,13 @@ async function naQuestao(page: Page) {
   await page.evaluate(() => document.fonts.ready);
 }
 
-async function percorrePainel(page: Page, alvos: string[]) {
+const ALTERNATIVAS_FICTICIAS = ['Alternativa A', 'Alternativa B', 'Alternativa C', 'Alternativa D'];
+
+async function percorreTela(page: Page, alvos: string[]) {
   for (const alvo of alvos) {
     await page.keyboard.press('Tab');
     await expect(page.locator(alvo)).toBeFocused();
-    expect(await page.locator('#mentorPanel').evaluate(el => el.contains(document.activeElement))).toBe(true);
+    expect(await page.locator('#oraclePage').evaluate(el => el.contains(document.activeElement))).toBe(true);
   }
 }
 
@@ -91,15 +92,21 @@ for (const viewport of [{ width: 320, height: 568 }, { width: 390, height: 400 }
   for (const status of [200, 429, 503]) {
     test(`Oráculo: envio alcançável e resposta ${status} em ${viewport.width}×${viewport.height}`, async ({ page }, testInfo) => {
       await page.setViewportSize(viewport);
-      await page.route('**/functions/v1/ai-mentor', route => route.fulfill({ status, json: { reply: 'Resposta fictícia para teste de apresentação.' } }));
+      let requests = 0;
+      await page.route('**/functions/v1/ai-mentor', route => {
+        requests++;
+        return route.fulfill({ status, json: { reply: 'Resposta fictícia para teste de apresentação.' } });
+      });
       await naQuestao(page);
-      await page.evaluate(() => {
+      await page.evaluate(opts => {
         (0, eval)(`authUser = {id:'00000000-0000-4000-8000-000000000001',user_metadata:{},app_metadata:{}}`);
         (window as any).getAuthToken = async () => null;
-        (window as any).setMentorQuestion({ q: 'Contexto fictício de apresentação. '.repeat(18), opts: [], ans: 0, exp: '' });
+        (window as any).setMentorQuestion({ q: 'Contexto fictício de apresentação. '.repeat(18), opts, ans: 0, exp: '' });
         (window as any).openMentorModal();
-      });
+      }, ALTERNATIVAS_FICTICIAS);
+      await expect(page.locator('#oraclePage')).toHaveAttribute('role', 'main');
       await expect(page.locator('#mentorInput')).toBeFocused();
+      await expect(page.locator('#oracleCase .nq-oracle-options li')).toHaveCount(4);
       // Alcançável: rolando até o campo, ele cabe inteiro na tela — nada o corta.
       const campo = page.locator('.mentor-input-row');
       await campo.scrollIntoViewIfNeeded();
@@ -108,48 +115,122 @@ for (const viewport of [{ width: 320, height: 568 }, { width: 390, height: 400 }
         return box && box.y >= 0 && box.y + box.height <= viewport.height + 1
           && box.x >= 0 && box.x + box.width <= viewport.width + 1;
       }).toBe(true);
-      const largura = await page.locator('#mentorPanel').evaluate(el => {
+      const largura = await page.locator('#oraclePage').evaluate(el => {
         const r = el.getBoundingClientRect();
         return { dentro: r.left >= -1 && r.right <= window.innerWidth + 1,
           semRolagem: document.documentElement.scrollWidth <= window.innerWidth + 1 };
       });
-      expect(largura, 'o painel do Oráculo transborda a largura').toEqual({ dentro: true, semRolagem: true });
+      expect(largura, 'a tela do Oráculo transborda a largura').toEqual({ dentro: true, semRolagem: true });
       await page.locator('#mentorInput').fill('Mensagem fictícia');
       await page.getByRole('button', { name: 'Enviar', exact: true }).click();
-      await expect(page.locator('#mentorChat')).toContainText(status === 200 ? 'Resposta fictícia' : status === 429 ? 'Limite diário atingido' : 'Oráculo indisponível');
+      const resposta = status === 200 ? 'Resposta fictícia' : status === 429 ? 'Limite diário atingido' : 'Oráculo indisponível';
+      await expect(page.locator('#mentorChat')).toContainText(resposta);
       await expect(page.locator('#mentorInput')).toBeEnabled();
+      expect(requests).toBe(1);
       if (status === 429) await expect(page.getByRole('button', { name: 'Faça upgrade para Premium' })).toBeVisible();
-      await expect(page.locator('.mentor-title-sub')).toBeVisible();
-      expect(await page.evaluate(medirContraste, '.mentor-title-sub')).toEqual([]);
+      // O mobile oculta os textos auxiliares de desktop; medir os rótulos
+      // visíveis evita aprovar contraste de um elemento que ninguém vê.
+      await expect(page.locator('.mentor-input-row label')).toBeVisible();
+      await expect(page.locator('#mentorQuotaBar')).toBeVisible();
+      await expect(page.locator('#oracleCase > summary')).toBeVisible();
+      expect(await page.evaluate(medirContraste, '.mentor-input-row label, #mentorQuotaBar, #oracleCase > summary')).toEqual([]);
+      // A auditoria mantém o escopo original da conversa. O helper legado
+      // mede Range de descendentes de <details> fechado como se estivessem
+      // pintados; por isso o caso tem um percurso explícito, aberto, abaixo.
       const auditoria = await page.evaluate(auditarVisual, '#mentorPanel');
       await testInfo.attach('auditoria-visual', { body: JSON.stringify(auditoria, null, 2), contentType: 'application/json' });
       expect(auditoria.medidos.geometria).toBeGreaterThan(0);
       expect(auditoria.falhas).toEqual([]);
       // Fundos complexos continuam explícitos no anexo, não viram aprovação.
-      await page.locator('#mentorInput').focus();
-      await percorrePainel(page, ['#mentorPanel .mentor-send-btn', '#mentorPanel .mentor-voltar']);
+      const caso = page.locator('#oracleCase');
+      await caso.locator('summary').click();
+      await expect(caso).toHaveAttribute('open');
+      await expect(caso.locator('.nq-oracle-question')).toBeVisible();
+      const ultimaAlternativa = caso.locator('.nq-oracle-options li').last();
+      await ultimaAlternativa.scrollIntoViewIfNeeded();
+      await expect(ultimaAlternativa).toBeInViewport({ ratio: 1 });
+      await caso.locator('summary').click();
+      await expect(caso).not.toHaveAttribute('open');
+      await campo.scrollIntoViewIfNeeded();
+      if (status === 200) await testInfo.attach('oracle-functional-view', {
+        body: await page.screenshot({ fullPage: false }), contentType: 'image/png',
+      });
+      // Chromium inclui na ordem de Tab regiões roláveis sem controles
+      // focáveis internos. A conversa continua sendo uma parada útil de
+      // teclado quando a resposta ocupa mais altura que a região do log.
+      const logTemParadaNativa = await page.locator('#mentorChat').evaluate(el =>
+        el.scrollHeight > el.clientHeight + 1 && !el.querySelector(
+          'a[href], button:not(:disabled), input:not(:disabled), select:not(:disabled), textarea:not(:disabled), [tabindex]:not([tabindex="-1"])'
+        ));
+      await expect(page.locator('#mentorChat')).toHaveAttribute('role', 'log');
+      await page.locator('.nq-oracle-back').focus();
+      await percorreTela(page, [
+        '#oracleCase > summary',
+        ...(status === 429 ? ['#mentorChat [data-action="closeMentorModalAndUpgrade"]'] : []),
+        ...(logTemParadaNativa ? ['#mentorChat'] : []),
+        '#mentorInput', '#mentorPanel .mentor-send-btn',
+      ]);
+      await page.locator('#mentorInput').fill('Rascunho preservado');
       await page.keyboard.press('Escape');
-      await expect(page.locator('#mentorPanel')).toHaveCount(0);
+      await expect(page.locator('#oraclePage')).toBeHidden();
+      expect(await page.locator('#oraclePage').evaluate(el => (el as HTMLElement).inert)).toBe(true);
+      await expect(page.locator('#mentorPanel')).toHaveCount(1);
+      await page.evaluate(() => (window as any).openMentorModal());
+      await expect(page.locator('#mentorInput')).toHaveValue('Rascunho preservado');
+      await expect(page.locator('#mentorChat')).toContainText(resposta);
+      expect(requests).toBe(1);
     });
   }
 }
 
 test('Oráculo visitante: login acessível por teclado', async ({ page }) => {
   await naQuestao(page);
-  await page.evaluate(() => {
-    (window as any).setMentorQuestion({ q: 'Contexto fictício.', opts: [] });
+  await page.evaluate(opts => {
+    (window as any).setMentorQuestion({ q: 'Contexto fictício.', opts, ans: 0, exp: '' });
     (window as any).openMentorModal();
-  });
-  await expect(page.locator('#mentorPanel .mentor-close-btn')).toBeFocused();
-  await percorrePainel(page, [
+  }, ALTERNATIVAS_FICTICIAS);
+  await expect(page.locator('#oraclePage')).toHaveAttribute('role', 'main');
+  await expect(page.locator('#mentorInput')).toHaveCount(0);
+  await expect(page.locator('.nq-oracle-back')).toBeFocused();
+  const caseSummary = page.locator('#oracleCase > summary');
+  await percorreTela(page, [
+    ...(await caseSummary.isVisible() ? ['#oracleCase > summary'] : []),
     '#mentorPanel [data-action="closeMentorModalAndRegister"]',
     '#mentorPanel [data-action="closeMentorModalAndLogin"]',
   ]);
   await expect(page.getByRole('button', { name: 'Fazer login', exact: true })).toBeFocused();
   await page.keyboard.press('Enter');
-  await expect(page.locator('#mentorPanel')).toHaveCount(0);
+  await expect(page.locator('#oraclePage')).toBeHidden();
+  expect(await page.locator('#oraclePage').evaluate(el => (el as HTMLElement).inert)).toBe(true);
   await expect(page.locator('#authModal')).toBeVisible();
 });
+
+for (const invalid of [
+  { name: 'sem alternativas', opts: [], ans: 0 },
+  { name: 'sem gabarito', opts: ALTERNATIVAS_FICTICIAS },
+  { name: 'com gabarito fora das alternativas', opts: ALTERNATIVAS_FICTICIAS, ans: 4 },
+]) {
+  test(`Oráculo: contexto ${invalid.name} não abre nem envia uma consulta`, async ({ page }) => {
+    await naQuestao(page);
+    let requests = 0;
+    await page.route('**/functions/v1/ai-mentor', route => { requests++; return route.abort(); });
+    await page.evaluate(opts => {
+      (0, eval)(`authUser = {id:'00000000-0000-4000-8000-000000000001',user_metadata:{},app_metadata:{}}`);
+      (window as any).setMentorQuestion({ q: 'Contexto fictício válido.', opts, ans: 0, exp: '' });
+      (window as any).openMentorModal();
+    }, ALTERNATIVAS_FICTICIAS);
+    await expect(page.locator('#mentorInput')).toBeVisible();
+    await page.locator('#mentorInput').fill('Rascunho que não pode sair');
+    await page.evaluate(invalid => {
+      (window as any).setMentorQuestion({ q: 'Contexto fictício inválido.', ...invalid });
+      (window as any).openMentorModal();
+      (window as any)._sendMentorMessage();
+    }, invalid);
+    await expect(page.locator('#oraclePage')).toHaveCount(0);
+    expect(await page.locator('#mainApp').evaluate(el => (el as HTMLElement).inert)).toBe(false);
+    expect(requests).toBe(0);
+  });
+}
 
 test('Classe: abertura real, teclado contido e cancelamento retorna ao início', async ({ page }) => {
   const start = page.locator('[data-action="startNewFromWelcome"]').first();

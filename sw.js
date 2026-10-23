@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v16.24
-const CACHE = 'nefroquest-v16.24';
+// NefroQuest Service Worker — v16.25
+const CACHE = 'nefroquest-v16.25';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -122,32 +122,32 @@ const STATIC_ASSETS = [
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
   '/js/question-revisions.js': '16.12',
-  '/style.css': '16.24',
+  '/style.css': '16.25',
   '/styles/lumen/tokens.css': '15.77',
   '/styles/lumen/shell.css': '16.18',
   '/styles/lumen/portal.css': '15.94',
-  '/styles/lumen/atrium.css': '16.24',
+  '/styles/lumen/atrium.css': '16.25',
   '/styles/lumen/game.css': '16.23',
   '/styles/lumen/difficulty.css': '16.06',
-  '/styles/lumen/dashboard.css': '16.24',
+  '/styles/lumen/dashboard.css': '16.25',
   '/styles/lumen/charselect.css': '16.07',
   '/styles/lumen/modes.css': '15.98',
-  '/styles/lumen/forge.css': '16.24',
+  '/styles/lumen/forge.css': '16.25',
   '/styles/lumen/header.css': '15.91',
   '/styles/lumen/equipment.css': '16.18',
-  '/styles/lumen/boss.css': '16.24',
+  '/styles/lumen/boss.css': '16.25',
   '/styles/lumen/ritual.css': '15.94',
   '/styles/lumen/ranking.css': '15.94',
-  '/styles/lumen/achievements.css': '16.24',
-  '/styles/lumen/oracle.css': '16.24',
+  '/styles/lumen/achievements.css': '16.25',
+  '/styles/lumen/oracle.css': '16.25',
   '/js/utils.js': '16.22',
   '/js/pilot.js': '16.06',
   '/js/character-benefits.js': '16.07',
   '/js/answer-presentation.js': '16.09',
   '/js/audio.js': '15.91',
   '/js/leaderboard.js': '16.07',
-  '/js/study-mode.js': '16.24',
-  '/js/game.js': '16.24',
+  '/js/study-mode.js': '16.25',
+  '/js/game.js': '16.25',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '15.92',
   '/js/portal.js': '13.20',
@@ -162,7 +162,7 @@ const ASSET_VERSIONS = {
   '/js/achievements.js': '16.06',
   '/js/changelog.js': '15.94',
   '/js/equipment-preview.js': '16.00',
-  '/js/dashboard.js': '16.24',
+  '/js/dashboard.js': '16.25',
 };
 // bump-release:asset-versions:fim
 

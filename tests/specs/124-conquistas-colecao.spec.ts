@@ -5,6 +5,15 @@ test.use({ serviceWorkers: 'block' });
 
 const preservedKeys = ['nefroquest-save', 'nefroquest-save-v7', 'nefroquest-detailed-stats', 'nefroquest-achievements', 'nefroquest-badge-history', 'nq-unlocked-refs', 'unlockedArticles'];
 
+function acquiredArtIsVivid(images: Element[]) {
+  return images.every(image => {
+    const style = getComputedStyle(image);
+    // A sombra do emblema pode separar a arte do fundo; filtros que apaguem
+    // ou dessaturem uma aquisição real continuam proibidos.
+    return style.opacity === '1' && (style.filter === 'none' || /^drop-shadow\((?:[^()]|\([^()]*\))*\)$/.test(style.filter));
+  });
+}
+
 async function openCollection(page: Page, correctTotal = 32, earned: 'none' | 'some' | 'all' = 'some', remembered: boolean | null = true) {
   await page.route('**/*', route => ['localhost', '127.0.0.1'].includes(new URL(route.request().url()).hostname) ? route.continue() : route.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
@@ -51,33 +60,39 @@ test('coleção começa completa, reconhece posses e mostra progresso real sem c
   expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
 });
 
-test('grade mantém os cards do mesmo tamanho e os requisitos inteiros em desktop e mobile', async ({ page }, info) => {
+test('galeria alinha os cards de cada linha e mantém os requisitos inteiros em desktop e mobile', async ({ page }, info) => {
   const rootFontSize = info.project.metadata.rootFontSize as number | undefined;
   const pane = await openCollection(page);
   if (rootFontSize) await page.evaluate(size => { document.documentElement.style.fontSize = `${size}px`; }, rootFontSize);
-  await expect.poll(async () => pane.locator('.nqd-achievement-grid').evaluate(grid => grid.style.getPropertyValue('--achievement-title-height'))).not.toBe('');
+  await page.evaluate(() => document.fonts.ready);
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   const cards = await pane.locator('.nqd-achievement').evaluateAll(elements => elements.map(card => {
     const box = card.getBoundingClientRect();
     const copy = card.querySelector('.nqd-achievement-copy')!;
     const range = document.createRange(); range.selectNodeContents(copy);
-    return { width: box.width, height: box.height, title: card.querySelector('.nqd-achievement-title')!.getBoundingClientRect().top - box.top,
+    const title = card.querySelector('.nqd-achievement-title')!.getBoundingClientRect();
+    const requirement = copy.getBoundingClientRect();
+    return { top: box.top, bottom: box.bottom, width: box.width, height: box.height, title: title.top - box.top,
       requirement: copy.getBoundingClientRect().top - box.top, progress: card.querySelector('.nqd-achievement-progress')?.getBoundingClientRect().top! - box.top,
+      ordered: title.bottom <= requirement.top + 1 && (!card.querySelector('.nqd-achievement-progress') || requirement.bottom <= card.querySelector('.nqd-achievement-progress')!.getBoundingClientRect().top + 1),
       entire: [...range.getClientRects()].every(rect => rect.left >= box.left - 1 && rect.right <= box.right + 1 && rect.bottom <= box.bottom + 1),
       noScroll: !['auto', 'scroll'].includes(getComputedStyle(card).overflowY) && card.scrollHeight <= card.clientHeight + 1 };
   }));
-  for (const field of ['width', 'height'] as const) expect(Math.max(...cards.map(card => card[field])) - Math.min(...cards.map(card => card[field]))).toBeLessThan(1);
-  const alignedSlotsRequired = await pane.evaluate(element => {
-    const style = getComputedStyle(element), rect = element.getBoundingClientRect();
-    const contentWidth = rect.width - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight) - parseFloat(style.borderLeftWidth) - parseFloat(style.borderRightWidth);
-    return contentWidth > 24 * parseFloat(getComputedStyle(document.documentElement).fontSize);
-  });
-  if (alignedSlotsRequired) {
-    expect(await pane.locator('.nqd-achievement-body').first().evaluate(body => getComputedStyle(body).display)).toBe('grid');
-    for (const field of ['title', 'requirement'] as const) expect(Math.max(...cards.map(card => card[field])) - Math.min(...cards.map(card => card[field]))).toBeLessThan(1);
-    const progress = cards.map(card => card.progress).filter(Number.isFinite);
-    expect(Math.max(...progress) - Math.min(...progress)).toBeLessThan(1);
+  expect(Math.max(...cards.map(card => card.width)) - Math.min(...cards.map(card => card.width))).toBeLessThan(1);
+  const rows: typeof cards[] = [];
+  for (const card of cards) {
+    const row = rows.find(row => Math.abs(row[0].top - card.top) < 1);
+    if (row) row.push(card); else rows.push([card]);
   }
-  expect(cards.every(card => card.entire && card.noScroll)).toBe(true);
+  // A galeria usa a altura necessária por linha. Em mobile, igualar todos os
+  // doze cards ao texto mais longo recriaria os vazios rejeitados no desenho.
+  for (const row of rows) {
+    for (const field of ['height', 'title', 'requirement'] as const) expect(Math.max(...row.map(card => card[field])) - Math.min(...row.map(card => card[field]))).toBeLessThan(1);
+    const progress = row.map(card => card.progress).filter(Number.isFinite);
+    if (progress.length > 1) expect(Math.max(...progress) - Math.min(...progress)).toBeLessThan(1);
+  }
+  for (let index = 1; index < rows.length; index++) expect(rows[index][0].top).toBeGreaterThanOrEqual(Math.max(...rows[index - 1].map(card => card.bottom)));
+  expect(cards.every(card => card.entire && card.noScroll && card.ordered)).toBe(true);
 });
 
 for (const fixture of ['admin', 'complete', 'registered'] as const) test(`Grimório usa desbloqueios do perfil e aquisição registrada: ${fixture}`, async ({ page }) => {
@@ -109,7 +124,7 @@ for (const fixture of ['admin', 'complete', 'registered'] as const) test(`Grimó
     await expect(card.locator('[role="progressbar"]')).toHaveAttribute('aria-valuemax', String(expected.target));
     await expect(card.locator('[role="progressbar"]')).toHaveAttribute('aria-valuenow', String(fixture === 'admin' ? 0 : expected.target));
     await expect(card.locator('.nqd-state')).toHaveText(fixture === 'admin' ? 'A conquistar' : 'Objetivo completo');
-    await expect(card.locator('.nqd-achievement-progress-note')).toContainText(fixture === 'admin' ? 'não registra desbloqueios do perfil' : 'conquista ainda não registrada');
+    await expect(card.locator('.nqd-achievement-progress-note')).toHaveText('Condição e observações disponíveis na lupa.');
     expect(await card.locator('img').evaluate(image => getComputedStyle(image).filter)).toContain('grayscale(1)');
   }
   const art = card.locator('.nqd-achievement-mark');
@@ -174,13 +189,14 @@ test('falha de carga do banco não apresenta o Grimório como objetivo completo'
   await expect(card).toHaveClass(/is-locked/);
   await expect(card.locator('.nqd-state')).toHaveText('Dados indisponíveis');
   await expect(card.locator('[role="progressbar"]')).toHaveCount(0);
-  await expect(card.locator('.nqd-achievement-progress-note')).toContainText('Não foi possível carregar o acervo');
+  await expect(card.locator('.nqd-achievement-progress-note')).toHaveText('Condição e observações disponíveis na lupa.');
   expect(failedTopicRequest).toBe(true);
   expect(await page.evaluate(() => ({ bankAvailable: Array.isArray((window as any).questionBank), complete: (0, eval)('ACHIEVEMENTS_LIST').find((achievement: any) => achievement.id === 'grimoire_master').condition() }))).toEqual({ bankAvailable: false, complete: false });
   await card.locator('.nqd-achievement-mark').focus(); await page.keyboard.press('Enter');
   const detail = page.getByRole('dialog', { name: 'Guardião do Grimório Eterno', exact: true });
   await expect(detail).toHaveAttribute('data-acquired', 'false');
   await expect(detail).toContainText('Dados indisponíveis');
+  await expect(detail).toContainText('Não foi possível carregar o acervo');
   await expect(detail.locator('[role="progressbar"]')).toHaveCount(0);
   await page.keyboard.press('Escape');
   expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
@@ -188,7 +204,7 @@ test('falha de carga do banco não apresenta o Grimório como objetivo completo'
 
 test('logout fecha detalhe e libera o fundo sem devolver foco à jornada encerrada', async ({ page }) => {
   const pane = await openCollection(page);
-  await pane.getByRole('button', { name: /^Clube dos 100.*ampliar arte e requisito$/ }).click();
+  await pane.locator('.nqd-achievement-grid').getByRole('button', { name: 'Clube dos 100 — ampliar arte e requisito', exact: true }).click();
   await expect(page.getByRole('dialog', { name: 'Clube dos 100' })).toBeVisible();
   await page.evaluate(async () => {
     (window as any).__hiddenFocus = [];
@@ -217,7 +233,7 @@ test('trilha completa mantém o último selo e não inventa um próximo marco', 
   await expect(pane.locator('.nqd-badge-node[data-state="unlocked"]')).toHaveCount(5);
   await expect(pane.locator('.nqd-badge-node[aria-current]')).toHaveCount(0);
   await expect(pane.locator('.nqd-badge-node[data-acquired="true"]')).toHaveCount(5);
-  expect(await pane.locator('.nqd-badge-art img, .nqd-achievement-spotlight-art img').evaluateAll(images => images.every(img => getComputedStyle(img).filter === 'none'))).toBe(true);
+  expect(await pane.locator('.nqd-badge-art img, .nqd-achievement-spotlight-art img').evaluateAll(acquiredArtIsVivid)).toBe(true);
 });
 
 for (const earned of ['none', 'all'] as const) test(`aquisição real e filtros com ${earned === 'none' ? 'nenhuma' : 'todas as'} conquistas`, async ({ page }) => {
@@ -229,7 +245,8 @@ for (const earned of ['none', 'all'] as const) test(`aquisição real e filtros 
   await expect(pane.locator('.nqd-badge-node[data-acquired="true"]')).toHaveCount(earned === 'all' ? 5 : 0);
   const spotlight = pane.locator('.nqd-achievement-spotlight');
   await expect(spotlight).toHaveAttribute('data-acquired', String(earned === 'all'));
-  expect(await spotlight.locator('img').evaluate((img, acquired) => acquired ? getComputedStyle(img).filter === 'none' : getComputedStyle(img).filter.includes('grayscale(1)'), earned === 'all')).toBe(true);
+  if (earned === 'all') expect(await spotlight.locator('img').evaluateAll(acquiredArtIsVivid)).toBe(true);
+  else expect(await spotlight.locator('img').evaluate(img => getComputedStyle(img).filter.includes('grayscale(1)'))).toBe(true);
   if (earned === 'none') {
     // 100% de progresso sem aquisição registrada continua sem cor.
     await expect(pane.locator('[data-achievement-id="century_club"] [role="progressbar"]')).toHaveAttribute('aria-valuenow', '100');
@@ -258,7 +275,7 @@ test('próximo selo não obtido fica cinza e posse histórica continua colorida'
   await expect(pane.locator('.nqd-badge-node[data-acquired="true"]')).toHaveCount(1);
   await expect(pane.locator('.nqd-badge-node[aria-current]')).toHaveAttribute('data-acquired', 'false');
   expect(await pane.locator('.nqd-badge-node[data-acquired="false"] img').evaluateAll(images => images.every(img => getComputedStyle(img).filter.includes('grayscale(1)')))).toBe(true);
-  expect(await pane.locator('.nqd-badge-node[data-acquired="true"] img').evaluateAll(images => images.every(img => getComputedStyle(img).filter === 'none'))).toBe(true);
+  expect(await pane.locator('.nqd-badge-node[data-acquired="true"] img').evaluateAll(acquiredArtIsVivid)).toBe(true);
   await pane.locator('[data-achievement-id="hd_master"] .nqd-achievement-mark').click();
   const detail = page.getByRole('dialog', { name: 'Mestre da Hemodiálise' });
   await expect(detail).toHaveAttribute('data-acquired', 'false');
@@ -332,7 +349,14 @@ for (const width of [320, 390, 1100]) test(`coleção e detalhes contidos em ${w
   for (const art of await pane.locator('.nqd-achievement-mark').all()) {
     const box = await art.boundingBox();
     expect(box!.width).toBeGreaterThanOrEqual(44);
-    expect(box!.width).toBeLessThanOrEqual(104);
+    expect(box!.height).toBeGreaterThanOrEqual(44);
+    // As artes protagonistas do desenho aprovado têm até172px; não precisam
+    // encolher ao tamanho das miniaturas da coleção anterior ao redesign.
+    expect(box!.width).toBeLessThanOrEqual(172);
+    expect(await art.evaluate(element => {
+      const art = element.getBoundingClientRect(), card = element.closest('.nqd-achievement')!.getBoundingClientRect();
+      return art.left >= card.left && art.right <= card.right && art.top >= card.top && art.bottom <= card.bottom;
+    })).toBe(true);
   }
   const art = pane.getByRole('button', { name: 'Clube dos 100 — ampliar arte e requisito', exact: true });
   await art.click();

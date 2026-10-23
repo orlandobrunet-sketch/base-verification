@@ -43,6 +43,7 @@ async function abrirOraculo(page: Page, opcoes: { status: number; corpo: unknown
     g.setMentorQuestion?.(questao);
     g.openMentorModal?.();
   }, { logado: opcoes.logado, questao: QUESTAO });
+  await expect(page.locator('#oraclePage')).toHaveAttribute('role', 'main');
   await expect(page.locator('#mentorPanel')).toBeVisible({ timeout: 15000 });
 }
 
@@ -52,8 +53,7 @@ async function perguntar(page: Page) {
 }
 
 test.describe('Oráculo: o que a pessoa vê quando não dá certo', () => {
-  test('sem conta, o Oráculo não deixa nem perguntar — e diz como ter acesso', async ({ page }, info) => {
-    test.skip(info.project.name !== 'chromium', 'Um percurso basta para o contrato.');
+  test('sem conta, o Oráculo não deixa nem perguntar — e diz como ter acesso', async ({ page }) => {
     test.setTimeout(120000);
     await abrirOraculo(page, { status: 401, corpo: { error: 'unauthorized' }, logado: false });
 
@@ -66,8 +66,7 @@ test.describe('Oráculo: o que a pessoa vê quando não dá certo', () => {
     await expect(painel.locator('[data-action="closeMentorModalAndLogin"]')).toBeVisible();
   });
 
-  test('na cota esgotada, o contador para de prometer o que não existe', async ({ page }, info) => {
-    test.skip(info.project.name !== 'chromium', 'Um percurso basta para o contrato.');
+  test('na cota esgotada, o contador para de prometer o que não existe', async ({ page }) => {
     test.setTimeout(120000);
     await abrirOraculo(page, {
       status: 429,
@@ -86,8 +85,7 @@ test.describe('Oráculo: o que a pessoa vê quando não dá certo', () => {
     await expect(barra).toContainText('0/5');
   });
 
-  test('em falha do servidor, a mensagem convida a tentar de novo — e a cota é preservada', async ({ page }, info) => {
-    test.skip(info.project.name !== 'chromium', 'Um percurso basta para o contrato.');
+  test('em falha do servidor, a mensagem convida a tentar de novo — e a cota é preservada', async ({ page }) => {
     test.setTimeout(120000);
     /* A contrapartida do conserto acima: zerar a cota local é certo quando o
      * servidor diz "acabou", e ERRADO quando ele só está fora do ar. Uma
