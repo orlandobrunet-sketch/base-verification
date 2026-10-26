@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
+import { desktopCinemaEligible } from '../helpers/cinema';
 import { medirContraste } from '../helpers/contraste';
 
 /**
@@ -24,6 +25,16 @@ async function abrir(page: Page, largura = 1280) {
   await page.locator(ORIGEM).first().focus();
   await page.evaluate(() => (window as any).showAcidBaseMinigame());
   await expect(page.locator('#acidBaseOverlay')).toBeVisible();
+  if(await desktopCinemaEligible(page)){
+    const intro=page.locator('#nqEntryCinema[open]');
+    await expect(intro).toBeVisible();
+    expect(await intro.evaluate(el=>el.contains(document.activeElement))).toBe(true);
+    await page.keyboard.press('Tab');
+    expect(await intro.evaluate(el=>el.contains(document.activeElement))).toBe(true);
+    await page.keyboard.press('Escape');
+    await expect(intro).toBeHidden();
+    await expect(page.getByRole('heading',{name:'Alquimista Renal'})).toBeFocused();
+  }
 }
 
 async function entrarNoCaso(page: Page) {
