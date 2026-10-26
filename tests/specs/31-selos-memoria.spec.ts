@@ -1,3 +1,4 @@
+import { characterIntro } from '../helpers/cinema';
 import { test, expect, Page } from '@playwright/test';
 import { openPilotChoice, setupPilotPage } from '../helpers/pilot';
 
@@ -115,12 +116,12 @@ test.describe('Selos: memória entre jornadas', () => {
     await expect(page.locator('#charSelectModal')).toBeVisible();
     expect(await readStorage()).toEqual(before);
     await page.locator('#charSelectModal [data-action="selectCharacter"][data-arg="nephros"]').click();
-    const intro = page.locator('#charIntroOverlay');
+    const intro = (await characterIntro(page)).overlay;
     await expect(intro).toBeVisible();
     expect(await readStorage()).toEqual(before);
 
     // Percorrer o início real: só o commit confirmado limpa anúncios da jornada.
-    await intro.getByRole('button', { name: 'Iniciar Jornada', exact: true }).click();
+    await (await characterIntro(page)).start.click();
     await page.waitForFunction(() => {
       const state = (0, eval)('state');
       const raw = localStorage.getItem('nefroquest-save-v7');

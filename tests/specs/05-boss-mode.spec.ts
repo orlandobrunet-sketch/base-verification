@@ -1,3 +1,4 @@
+import { bossPresentation } from '../helpers/cinema';
 import { test, expect } from '@playwright/test';
 import { injectBossState, waitForGame, enterGame } from '../helpers/game';
 
@@ -9,14 +10,17 @@ test.describe('Boss mode (Fase Final)', () => {
   });
 
   test('painel do boss aparece (HP bar, imagem)', async ({ page }) => {
-    await expect(page.locator('#bossHpContainer')).toBeVisible({ timeout: 5_000 });
-    await expect(page.locator('#arquiBossImageDesktop')).toBeVisible({ timeout: 5_000 });
+    const view = await bossPresentation(page);
+    await expect(view.hp).toBeVisible({ timeout: 5_000 });
+    await expect(view.image).toBeVisible({ timeout: 5_000 });
+    if (view.cinematic) await expect(page.locator('#bossHpContainer')).toBeHidden();
   });
 
   test('contador de questão final é exibido', async ({ page }) => {
-    const counter = page.locator('#bossQuestionNum');
+    const view = await bossPresentation(page);
+    const counter = view.stage;
     await expect(counter).toBeVisible({ timeout: 5_000 });
-    await expect(counter).toContainText('FASE FINAL');
+    await expect(counter).toHaveText(view.stageText(0));
   });
 
   test('botão de ataque tem texto correto', async ({ page }) => {
@@ -92,7 +96,7 @@ test.describe('Boss mode (Fase Final)', () => {
     expect(fixture.order).toEqual([1, 2, 3, 0]);
     expect(fixture.originalChoice).toBe(1);
     const ledger: Record<string, unknown>[] = [];
-    const hpFill = page.locator('#bossHpFill');
+    const hpFill = (await bossPresentation(page)).fill;
     let validated = false;
 
     for (let attempt = 0; attempt < 12 && !validated; attempt++) {
@@ -106,7 +110,7 @@ test.describe('Boss mode (Fase Final)', () => {
       await expect(nextBtn).toBeVisible({ timeout: 5_000 });
 
       if (correctIdx === '0') {
-        await page.waitForTimeout(400); // animação da barra de HP
+        await expect.poll(() => hpFill.evaluate(el => parseFloat((el as HTMLElement).style.width))).toBeLessThan(hpBefore);
         const hpAfter = await hpFill.evaluate(el =>
           parseFloat((el as HTMLElement).style.width || '100'));
         expect(hpAfter).toBeLessThan(hpBefore);

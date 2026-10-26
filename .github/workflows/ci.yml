@@ -25,6 +25,9 @@ jobs:
       - name: Service worker install lifecycle
         run: node --test tests/service-worker/*.test.mjs
 
+      - name: Cinematic native result handoff
+        run: node --test tests/cinema/*.test.cjs
+
       - name: Optional character pilot storage and ranking isolation
         run: node --test tests/pilot/*.test.cjs
 

@@ -1,3 +1,4 @@
+import { bossPresentation, finishBossCinema } from '../helpers/cinema';
 import { test, expect, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -42,13 +43,17 @@ async function abrir(page: Page, width = 1440) {
   await expect(page.locator('#question')).not.toBeEmpty();
   await page.waitForFunction(() => !(0, eval)('_loadingNextQuestion'));
   await page.evaluate(() => document.fonts.ready);
-  await expect.poll(() => page.locator('#arquiBossImgEl').evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+  const view = await bossPresentation(page);
+  await expect(view.image).toBeVisible();
+  const image = view.cinematic ? view.image : page.locator('#arquiBossImgEl');
+  await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
 }
 
 async function fecharNarrativas(page: Page) {
   // O 100º acerto encerra este cenário na vitória. Um baú simultâneo pode
   // continuar atrás dela; não se tenta acionar um controle encoberto.
   if (await page.evaluate(() => (window as any).state.gameCompleted)) {
+    await finishBossCinema(page);
     await expect(page.locator('#victoryModal')).toBeVisible();
     return;
   }
@@ -99,8 +104,11 @@ for (const width of [390, 1440]) test(`dez golpes até a vitória em${width}px p
   for (let progress = 0; progress < 10; progress++) {
     const hp = page.getByRole('progressbar', { name: 'Vida do Arqui-Nefromante' });
     await expect(hp).toHaveAttribute('aria-valuenow', String(100 - progress * 10));
-    await expect(page.locator('#arquiStarsDesktop')).toHaveAttribute('aria-label', `${progress} de 10 golpes concluídos`);
-    await expect(page.locator('#bossQuestionNum')).toHaveText(`FASE FINAL ${progress + 1}/10`);
+    const view = await bossPresentation(page);
+    await expect(hp).toHaveAttribute('aria-valuetext', `HP ${100 - progress * 10}%, ${progress} de 10 golpes concluídos`);
+    await expect(view.stage).toHaveText(view.stageText(progress));
+    if (view.cinematic) await expect(page.locator('#arquiStarsDesktop')).toBeHidden();
+    else await expect(page.locator('#arquiStarsDesktop')).toHaveAttribute('aria-label', `${progress} de 10 golpes concluídos`);
     const before = await page.evaluate(() => {
       const s = (window as any).state;
       return { answer: s.current.a, correct: s.correctTotal, gold: s.gold, score: s.score, id: s.current.id };
@@ -115,7 +123,9 @@ for (const width of [390, 1440]) test(`dez golpes até a vitória em${width}px p
     await fecharNarrativas(page);
     expect(await storage(page), 'demonstração gravou progresso real').toEqual(saved);
     if (progress < 9) {
-      await expect(page.locator('#arquiStarsDesktop .filled')).toHaveCount(progress + 1);
+      const view = await bossPresentation(page);
+      await expect(hp).toHaveAttribute('aria-valuenow', String(90 - progress * 10));
+      if (!view.cinematic) await expect(page.locator('#arquiStarsDesktop .filled')).toHaveCount(progress + 1);
       await page.locator('#nextBtn').click();
       await page.waitForFunction(() => !(0, eval)('_loadingNextQuestion') && !(window as any).state.answered);
     }
@@ -140,7 +150,8 @@ test('baú no décimo estágio mantém a vitória como endpoint sem gravar progr
     w.updateBossUI();
   });
   await fecharNarrativas(page);
-  await expect(page.locator('#bossQuestionNum')).toHaveText('FASE FINAL 10/10');
+  const view = await bossPresentation(page);
+  await expect(view.stage).toHaveText(view.stageText(9));
   const before = await page.evaluate(() => {
     const w = window as any;
     w._fixtureRandom = Math.random;
@@ -151,13 +162,19 @@ test('baú no décimo estágio mantém a vitória como endpoint sem gravar progr
     expect(before.correct).toBe(99);
     expect(before.hp).toBe(10);
     await page.locator(`#options .option[data-idx="${before.answer}"]`).click();
-    await expect(page.locator('#victoryModal')).toBeVisible();
     await expect(page.locator('#autoChestPopup')).toBeVisible();
+    if (view.cinematic) {
+      await expect.poll(() => page.evaluate(() => (window as any).NQVictoryBridge.inspection.records.at(-1)?.status)).toBe('waiting-native-overlay');
+      await expect(page.locator('#victoryModal')).toHaveCount(0);
+      expect(await page.evaluate(() => (window as any).state.gameCompleted)).toBe(true);
+      await info.attach('native-reward-before-results', { body: await page.screenshot(), contentType: 'image/png' });
+    } else await expect(page.locator('#victoryModal')).toBeVisible();
     await page.locator('#autoChestPopup').getByRole('button', { name: 'Abrir baú', exact: true }).click();
     await expect(page.locator('#autoChestPopup')).toHaveCount(0);
     await expect(page.locator('#chestModal.show')).toBeVisible();
     await expect.poll(() => page.evaluate(() => (window as any).state.chestsOpened)).toBe(before.chests + 1);
     expect(await page.evaluate(() => (window as any).state.score)).toBeGreaterThan(before.score);
+    if (view.cinematic) await page.locator('#chestModal.show').getByRole('button').last().click();
     await fecharNarrativas(page);
   } finally {
     await page.evaluate(() => { Math.random = (window as any)._fixtureRandom; delete (window as any)._fixtureRandom; });
@@ -165,6 +182,7 @@ test('baú no décimo estágio mantém a vitória como endpoint sem gravar progr
   await expect(page.locator('#victoryModal').getByRole('heading', { name: 'Jornada concluída' })).toBeVisible();
   expect(await page.evaluate(() => ({ correct: (window as any).state.correctTotal, hp: (window as any).getBossHP(), completed: (window as any).state.gameCompleted, sandbox: (window as any).isProgressSandbox() })))
     .toEqual({ correct: 100, hp: 0, completed: true, sandbox: true });
+  await info.attach('native-results-after-reward', { body: await page.screenshot(), contentType: 'image/png' });
   // O save tem debounce de 500 ms; aguarda sua janela sem fechar a vitória nem
   // limpar manualmente DOM, armazenamento ou gates.
   await page.waitForTimeout(700);
@@ -211,23 +229,32 @@ test('erro mantém HP e dez etapas, resposta única e derrota continuam nativos'
   expect(await storage(page)).toEqual(saved);
 });
 
-for (const width of [320, 390, 1100, 1440]) test(`cena compacta e texto200% cabem em${width}px`, async ({ page }) => {
+for (const width of [320, 390, 1100, 1440]) test(`cena do dispositivo e texto200% cabem em${width}px`, async ({ page }) => {
   await abrir(page, width);
   const saved = await storage(page);
-  const encounter = (await page.locator('#nqBossEncounter').boundingBox())!;
-  const image = (await page.locator('#arquiBossImageDesktop').boundingBox())!;
+  const view = await bossPresentation(page);
+  await expect(view.root).toBeVisible();
+  const encounter = (await view.root.boundingBox())!;
+  const image = (await view.image.boundingBox())!;
   expect(image.width).toBeGreaterThan(encounter.width * .5);
-  expect(image.height).toBeGreaterThanOrEqual(encounter.height - 3);
+  if (view.cinematic) {
+    const scene = (await page.locator('#nqBossStatic .nq-static-scene').boundingBox())!;
+    expect(image.height).toBeGreaterThanOrEqual(scene.height - 3);
+    await expect(page.locator('#nqBossArena')).toBeHidden();
+  } else expect(image.height).toBeGreaterThanOrEqual(encounter.height - 3);
   const question = (await page.locator('#mainApp .qbox').boundingBox())!;
-  expect(question.y).toBeLessThan(width < 500 ? 450 : 400);
+  if (view.cinematic) {
+    expect(question.y).toBeGreaterThanOrEqual(encounter.y + encounter.height - 1);
+    expect(question.y).toBeLessThanOrEqual(encounter.y + encounter.height + 32);
+  } else expect(question.y).toBeLessThan(width < 500 ? 450 : 400);
   await semOverflow(page);
   await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
   await semOverflow(page);
-  for (const selector of ['#question', '.opt-body', '#bossHpPct', '#bossQuestionNum', '#progressSandboxBanner']) {
+  for (const selector of ['#question', '.opt-body', view.cinematic ? '#nqStaticHpText' : '#bossHpPct', view.cinematic ? '#nqStaticStage' : '#bossQuestionNum', '#progressSandboxBanner']) {
     expect(await page.evaluate(medirContraste, selector), selector).toEqual([]);
   }
   for (const button of await page.locator('#options .option').all()) expect((await button.boundingBox())!.height).toBeGreaterThanOrEqual(44);
-  expect(await page.locator('#arquiBossTitleDesktop').evaluate(el => getComputedStyle(el).animationName)).toBe('none');
+  expect(await page.locator(view.cinematic ? '#nqStaticTitle' : '#arquiBossTitleDesktop').evaluate(el => getComputedStyle(el).animationName)).toBe('none');
   await page.getByRole('button', { name: 'Sair da demonstração' }).click();
   await expect(page.locator('#progressSandboxBanner')).toHaveCount(0);
   expect(await storage(page)).toEqual(saved);

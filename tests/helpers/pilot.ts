@@ -1,3 +1,4 @@
+import { characterIntro } from './cinema';
 import { expect, type Page, type TestInfo } from '@playwright/test';
 import { routeTechnicalQuestionBank, technicalQuestionBundle } from './technical-question-bank';
 
@@ -99,7 +100,7 @@ export async function attachPilotFailureDiagnostics(page: Page, testInfo: TestIn
             character: save.character, difficulty: save.difficulty, lives: save.lives,
             answered: save.answered } },
         screens: Object.fromEntries(['mainApp', 'welcomeScreen', 'landingScreen',
-          'charSelectModal', 'charIntroOverlay', 'characterPilotBanner', 'leavePilotBtn',
+          'charSelectModal', 'charIntroOverlay', 'nqEntryCinema', 'characterPilotBanner', 'leavePilotBtn',
           'resumePilotBtn'].map(id => [id, node(id)])),
         loadedScripts: [...document.scripts].filter(script => script.src).map(script => {
           const url = new URL(script.src); return url.pathname + url.search;
@@ -250,7 +251,7 @@ export async function startNormalCharacter(page: Page, character: PilotClass = '
   await page.locator('#diffConfirmBtn').click();
   await expect(page.locator('#charSelectModal')).toHaveClass(/show/);
   await page.locator(`#charSelectModal [data-action="selectCharacter"][data-arg="${character}"]`).click();
-  await page.locator('#charIntroOverlay [data-action="closeIntroAndStart"]').click();
+  await (await characterIntro(page)).start.click();
   await expect(page.locator('#mainApp')).toBeVisible();
   await page.waitForFunction(() => (0, eval)('state.gameStarted && !!state.current && !_loadingNextQuestion'));
   expect((await pilotState(page)).classBenefits).toMatchObject({

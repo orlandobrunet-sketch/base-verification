@@ -1,3 +1,4 @@
+import { characterIntro } from '../helpers/cinema';
 import { test, expect, type Page } from '@playwright/test';
 import {
   answerTechnical, attachPilotFailureDiagnostics, PILOT_KEY, pilotState,
@@ -38,9 +39,9 @@ async function openChoiceFromActiveGame(page: Page, intro: boolean) {
   expect(await page.evaluate(() => (window as any)._pendingDiff)).toBe('hard');
   if (intro) {
     await page.locator('#charSelectModal [data-action="selectCharacter"][data-arg="aquaria"]').click();
-    await expect(page.locator('#charIntroOverlay')).toBeVisible();
-    await expect(page.locator('#charIntroOverlay [data-action="cancelCharacterIntro"]')).toBeVisible();
-    await expect(page.locator('#charIntroOverlay [data-action="closeIntroAndStart"]')).toBeVisible();
+    await expect((await characterIntro(page)).overlay).toBeVisible();
+    await expect((await characterIntro(page)).cancel).toBeVisible();
+    await expect((await characterIntro(page)).start).toBeVisible();
   }
   expect(await pilotState(page)).toMatchObject({ gameStarted: true, character: 'nephros',
     difficulty: 'normal', classBenefits: { lockedClass: 'nephros', windowAnswers: 1 } });
@@ -51,6 +52,7 @@ async function expectRetiredChoice(page: Page) {
   // perform the cleanup. No synthetic event, reset or state override runs here.
   await expect.poll(async () => (await pilotState(page)).gameStarted).toBe(false);
   await expect(page.locator('#charIntroOverlay')).toHaveCount(0);
+  await expect(page.locator('#nqEntryCinema[open]')).toHaveCount(0);
   await expect(page.locator('#charSelectModal')).toBeHidden();
   await expect(page.locator('#charSelectModal')).not.toHaveClass(/show/);
   await expect(page.locator('#diffSelectorOverlay')).toHaveCount(0);
@@ -65,6 +67,8 @@ async function expectRetiredChoice(page: Page) {
   expect(await pilotState(page)).toMatchObject({ gameStarted: false, character: null,
     classBenefits: null, characterLastAnswer: null });
   await expect(page.locator([
+    '#nqEntryCinema[open] .nq-entry-cinema__close',
+    '#nqEntryCinema[open] .nq-entry-cinema__skip',
     '#charIntroOverlay [data-action="cancelCharacterIntro"]',
     '#charIntroOverlay [data-action="closeIntroAndStart"]',
     '#charSelectModal.show [data-action="closeCharSelectModal"]',

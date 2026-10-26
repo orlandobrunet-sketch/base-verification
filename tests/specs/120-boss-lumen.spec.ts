@@ -1,3 +1,4 @@
+import { bossPresentation } from '../helpers/cinema';
 import { test, expect, type Page } from '@playwright/test';
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
@@ -17,7 +18,10 @@ async function abrir(page: Page) {
     await new Promise(requestAnimationFrame);
     await new Promise(requestAnimationFrame);
   });
-  await expect.poll(() => page.locator('#arquiBossImgEl').evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+  const view = await bossPresentation(page);
+  await expect(view.image).toBeVisible();
+  const image = view.cinematic ? view.image : page.locator('#arquiBossImgEl');
+  await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
 }
 
 function textOverflow(selector = '#mainApp .panel.right') {
@@ -44,11 +48,15 @@ test('HP e golpes têm valores acessíveis reais e acompanham a resposta certa',
   const hp = page.getByRole('progressbar', { name: 'Vida do Arqui-Nefromante' });
   await expect(hp).toHaveAttribute('aria-valuenow', '100');
   await expect(hp).toHaveAttribute('aria-valuetext', 'HP 100%, 0 de 10 golpes concluídos');
-  await expect(page.locator('#arquiStarsDesktop')).toHaveAttribute('aria-label', '0 de 10 golpes concluídos');
+  const view = await bossPresentation(page);
+  await expect(view.stage).toHaveText(view.stageText(0));
+  if (view.cinematic) await expect(page.locator('#arquiStarsDesktop')).toBeHidden();
+  else await expect(page.locator('#arquiStarsDesktop')).toHaveAttribute('aria-label', '0 de 10 golpes concluídos');
   const correct = await page.evaluate(() => (window as any).state.current.a);
   await page.locator(`#options .option[data-idx="${correct}"]`).click();
   await expect(hp).toHaveAttribute('aria-valuenow', '90');
-  await expect(page.locator('#arquiStarsDesktop .filled')).toHaveCount(1);
+  await expect(hp).toHaveAttribute('aria-valuetext', 'HP 90%, 1 de 10 golpes concluídos');
+  if (!view.cinematic) await expect(page.locator('#arquiStarsDesktop .filled')).toHaveCount(1);
   await expect(page.locator('#options .option.correct')).toBeVisible();
   expect(await page.evaluate(() => (window as any).isProgressSandbox())).toBe(true);
 });

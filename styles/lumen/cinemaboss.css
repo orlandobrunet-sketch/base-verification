@@ -1,0 +1,147 @@
+/* Local A3: this file owns only the desktop battle-card interior. */
+@media (min-width:769px) and (hover:hover) and (pointer:fine) {
+  @media not all and (any-pointer:coarse) {
+    body #mainApp[data-nq-ui="lumen"].nq-arena-active #nqBossEncounter.nq-static-context {
+      display:block !important;
+      width:100%;
+      height:var(--nq-static-outer-height,352.796875px);
+      min-width:0;
+      min-height:0 !important;
+      box-sizing:border-box;
+      position:relative;
+      margin:0 0 16px !important;
+      padding:0 !important;
+      border:1px solid #7464894a !important;
+      border-radius:8px;
+      background:#020204;
+      box-shadow:none;
+      overflow:hidden;
+      isolation:isolate;
+    }
+    #mainApp.nq-arena-active #nqBossEncounter.nq-static-context > :not(#nqBossStatic) {display:none !important;}
+    #nqBossStatic,#nqBossStatic * {box-sizing:border-box;}
+    #nqBossStatic {
+      --nq-static-accent:#c4a9e6;
+      --nq-static-haze:rgba(112,73,169,.14);
+      display:grid;
+      grid-template-rows:minmax(56px,max-content) minmax(0,1fr);
+      position:relative;
+      width:100%;height:100%;min-width:0;min-height:0;
+      margin:0;padding:0;
+      color:#e9e0d4;background:#020204;
+      font-family:var(--nql-font-body,sans-serif);
+      container-type:inline-size;
+    }
+    #nqBossStatic[hidden] {display:none !important;}
+    #nqBossStatic[data-phase="mist"] {--nq-static-accent:#ba9cde;--nq-static-haze:rgba(104,80,163,.24);}
+    #nqBossStatic[data-phase="flame"] {--nq-static-accent:#e5c480;--nq-static-haze:rgba(180,132,60,.19);}
+    #nqBossStatic[data-phase="last"] {--nq-static-accent:#e3b3c5;--nq-static-haze:rgba(149,64,97,.18);}
+    #nqBossStatic .nq-static-hud {
+      display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,37%);
+      gap:12px;align-items:center;min-width:0;
+      margin:0;padding:7px 16px;
+      border-bottom:1px solid #7464894a;
+      background:#07060b;
+    }
+    #nqBossStatic .nq-static-identity {min-width:0;}
+    #nqBossStatic .nq-static-eyebrow {display:block;color:#a79cba;font:.61rem/1.2 var(--nql-font-instrument,monospace);letter-spacing:.16em;}
+    #nqBossStatic .nq-static-identity h1 {margin:3px 0 0 !important;padding:0;color:#e5d7b7;font:600 1.05rem/1.15 var(--nql-font-display,'Alegreya',serif) !important;letter-spacing:.01em;}
+    #nqBossStatic .nq-static-progress {display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:4px 10px;min-width:0;}
+    #nqBossStatic #nqStaticStage {color:#c4bacd;font:.69rem/1.2 var(--nql-font-instrument,monospace);}
+    #nqBossStatic #nqStaticHpText {color:#eadce8;font:600 .78rem/1.2 var(--nql-font-instrument,monospace);font-variant-numeric:tabular-nums;}
+    #nqBossStatic #nqStaticHpTrack {
+      grid-column:1/-1;position:relative;height:12px;
+      border:1px solid #a88e657a;border-radius:3px;
+      background:linear-gradient(180deg,#050207,#150b1a);
+      box-shadow:0 0 0 2px #030204,inset 0 1px 3px #000,0 0 10px #7e4bad1a;
+      overflow:hidden;isolation:isolate;
+    }
+    #nqBossStatic #nqStaticHpTrail,#nqBossStatic #nqStaticHpFill {
+      display:block;position:absolute;left:0;top:0;height:100%;width:100%;
+      border-radius:1px;transition:none;animation:none;pointer-events:none;
+    }
+    #nqBossStatic #nqStaticHpTrail {
+      z-index:0;background:linear-gradient(180deg,#e2bd71,#a96934);
+      box-shadow:inset 0 1px #f4dca88a,inset 0 -1px #4f271a;
+    }
+    #nqBossStatic #nqStaticHpFill {
+      z-index:1;overflow:hidden;
+      background:linear-gradient(180deg,#d1a8ed 0%,#9b59cd 24%,#6c348c 65%,#49245e 100%);
+      box-shadow:inset 0 1px #f5ddff80,inset 0 -1px #2a123b;
+    }
+    #nqBossStatic #nqStaticHpFill::before {
+      content:"";position:absolute;inset:-1px -55%;opacity:.37;
+      background:repeating-linear-gradient(115deg,transparent 0 23px,#eed6ff5c 26px,transparent 31px),
+        radial-gradient(ellipse at 50% 20%,#ffe8ff6b,transparent 55%);
+      transform:translateX(-9%);pointer-events:none;
+    }
+    #nqBossStatic #nqStaticHpFill::after {
+      content:"";position:absolute;right:0;top:0;bottom:0;width:2px;
+      background:#f5d9ff;box-shadow:-2px 0 5px #e0b6ff,0 0 9px #a266d8;
+    }
+    #nqBossStatic[data-hp-awake="true"] #nqStaticHpFill::before {animation:nq-static-hp-current 3200ms linear 1;}
+    #nqBossStatic[data-hp-motion="active"] #nqStaticHpTrack {box-shadow:0 0 0 2px #030204,inset 0 1px 3px #000,0 0 13px #b56be74a;}
+    @keyframes nq-static-hp-current {0%{transform:translateX(-9%);opacity:.28}45%{opacity:.58}100%{transform:translateX(9%);opacity:.28}}
+    #nqBossStatic .nq-static-scene {position:relative;min-width:0;min-height:0;overflow:hidden;background:#020204;}
+    #nqBossStatic .nq-static-art {
+      position:absolute;z-index:0;inset:0 0 0 auto;
+      /* Approximate the inspected source's upper55%, x12–92% at1016px.
+         Only the bounded right art layer crops; face, orb and raised hand
+         keep the same framing in every phase. The scene owns clipping. */
+      display:block;width:65%;height:184%;min-width:0;max-width:none;
+      object-fit:cover;object-position:60% top;
+      margin:0;padding:0;border:0;transform:none;filter:none;
+      -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 14%,#000 100%);
+      mask-image:linear-gradient(90deg,transparent 0%,#000 14%,#000 100%);
+    }
+    #nqBossStatic .nq-static-art--next {opacity:0;}
+    #nqBossStatic .nq-static-art[data-art-layout="panoramic"] {
+      inset:0;display:block;width:100%;height:100%;max-width:none;
+      object-fit:cover;object-position:50% 0%;
+      -webkit-mask-image:none;mask-image:none;
+    }
+    #nqBossStatic[data-art-layout="panoramic"] .nq-static-copy {width:30%;}
+    #nqBossStatic[data-art-layout="panoramic"] .nq-static-atmosphere {
+      background:linear-gradient(90deg,#020204 0%,#020204e8 21%,#02020480 29%,transparent 34%);
+    }
+    #nqBossStatic .nq-static-atmosphere {position:absolute;z-index:1;inset:0;pointer-events:none;background:radial-gradient(ellipse at 77% 42%,var(--nq-static-haze),transparent 57%),linear-gradient(90deg,#020204 0%,#020204 27%,#020204cc 34%,transparent 50%),linear-gradient(0deg,#020204 0%,transparent 23%);}
+    #nqBossStatic .nq-static-copy {position:relative;z-index:2;display:flex;flex-direction:column;justify-content:safe center;align-items:flex-start;gap:12px;width:54%;height:100%;min-width:0;padding:20px 24px;overflow:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#756482 #08060c;}
+    #nqBossStatic .nq-static-copy > * {flex-shrink:0;}
+    #nqBossStatic .nq-static-copy:focus-visible {outline:2px solid #91dfe3;outline-offset:-3px;}
+    #nqBossStatic .nq-static-chapter {margin:0;color:var(--nq-static-accent);font:.68rem/1.35 var(--nql-font-instrument,monospace);letter-spacing:.1em;text-transform:uppercase;}
+    #nqBossStatic .nq-static-copy h2 {margin:0;color:#eee2cd;font:500 clamp(1.15rem,2.4cqw,1.6rem)/1.2 var(--nql-font-display,'Alegreya',serif);letter-spacing:.01em;}
+    #nqBossStatic .nq-static-narration {max-width:42ch;margin:0;color:#c1b7c4;font:.92rem/1.5 var(--nql-font-body,sans-serif);overflow-wrap:anywhere;text-wrap:pretty;}
+    #nqBossStatic #nqStaticIntro {display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:36px;margin:3px 0 0;padding:7px 10px;border:1px solid #9d8aaf69;border-radius:5px;background:#111018;color:#ddcde9;font:.76rem/1.25 var(--nql-font-body,sans-serif);cursor:pointer;}
+    #nqBossStatic #nqStaticIntro svg {width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linejoin:round;}
+    #nqBossStatic #nqStaticIntro:hover {background:#211a2b;border-color:#c7acd9;}
+    #nqBossStatic #nqStaticIntro:focus-visible {outline:2px solid #91dfe3;outline-offset:3px;}
+    @media(max-height:800px) {
+      #nqBossStatic .nq-static-copy {gap:9px;padding:16px 22px;}
+      #nqBossStatic .nq-static-narration {font-size:.87rem;line-height:1.45;}
+    }
+    @container(max-width:760px) {
+      #nqBossStatic .nq-static-hud {padding:7px 12px;grid-template-columns:minmax(0,1fr) minmax(130px,36%);}
+      #nqBossStatic .nq-static-identity h1 {font-size:.86rem !important;}
+      #nqBossStatic .nq-static-copy {width:58%;padding:16px;gap:9px;}
+      #nqBossStatic .nq-static-narration {font-size:.86rem;line-height:1.35;}
+      #nqBossStatic .nq-static-copy h2 {font-size:1.15rem;}
+    }
+    @media(prefers-reduced-motion:reduce) {
+      #nqBossStatic *,#nqBossStatic *::before,#nqBossStatic *::after {animation:none !important;transition:none !important;}
+    }
+  }
+}
+
+/* R1 desktop notices occupy their own row before the banner. Native nodes and
+   lifetimes are untouched; no fixed overlay can cover HP, answers or Next. */
+@media (min-width:769px) and (hover:hover) and (pointer:fine) {
+ @media not all and (any-pointer:coarse) {
+  #nqDesktopNoticeRail {display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px;width:100%;min-width:0;margin:0 0 12px;padding:0 0 20px;box-sizing:border-box;}
+  #nqDesktopNoticeRail[hidden] {display:none!important;}
+  #nqDesktopNoticeRail>#nqAchievementCelebrations {position:static;inset:auto;flex:0 1 360px;width:min(360px,100%);max-height:none;overflow:visible;}
+  #nqDesktopNoticeRail>.nq-toast {position:relative;inset:auto;flex:0 1 340px;width:min(340px,100%);max-width:100%;margin:0;box-sizing:border-box;transform:none;animation-name:nqNoticeRailIn;}
+  #nqDesktopNoticeRail>.nq-toast.out {animation-name:nqNoticeRailOut;}
+  @keyframes nqNoticeRailIn {from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+  @keyframes nqNoticeRailOut {from{opacity:1;transform:none}to{opacity:0;transform:translateY(10px)}}
+ }
+}

@@ -1,3 +1,4 @@
+import { characterIntro } from '../helpers/cinema';
 import { test, expect } from '@playwright/test';
 import { normalBytes, openPilotChoice, setupPilotPage } from '../helpers/pilot';
 
@@ -86,12 +87,12 @@ test.describe('Dashboard, Core Skills & Layout Reset E2E Tests', () => {
     expect(provisional).toContain('boss-battle-mode');
     expect(await normalBytes(page)).toEqual(bytesBefore);
     await page.locator('#charSelectModal [data-action="selectCharacter"][data-arg="nephros"]').click();
-    await expect(page.locator('#charIntroOverlay')).toBeVisible();
+    await expect((await characterIntro(page)).overlay).toBeVisible();
     expect(await normalBytes(page)).toEqual(bytesBefore);
     expect(await page.evaluate(() => document.body.classList.contains('rd-game-over'))).toBe(true);
     expect(await page.evaluate(() => document.body.classList.contains('boss-battle-mode'))).toBe(true);
 
-    await page.locator('#charIntroOverlay [data-action="closeIntroAndStart"]').click();
+    await (await characterIntro(page)).start.click();
     await page.waitForFunction(() => {
       const save = JSON.parse(localStorage.getItem('nefroquest-save-v7') || 'null');
       return save?.schemaVersion === 9 && save.character === 'nephros' &&

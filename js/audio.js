@@ -53,9 +53,26 @@ let activeTrack = bgA, _crossfading = false;
 // Updating the slider applies the latest volume immediately, including while
 // play() is pending and throughout fade-in, fade-out and crossfade callbacks.
 const _musicEnvelopes = new Map([[wmTrack, 0], [bgA, 0], [bgB, 0]]);
+// A film owns only a transient output gate. Native clocks, playback instances,
+// envelopes and saved user preferences remain under their existing authority.
+const _cinemaAudioOwners = new Set();
+window.NQNativeCinemaAudio = Object.freeze({
+  acquire() {
+    const owner = {}; _cinemaAudioOwners.add(owner);
+    _applyMusicVolume();
+    Object.values(SFX).forEach(track => { track.pause(); track.volume = 0; });
+    let released = false;
+    return () => {
+      if (released) return; released = true; _cinemaAudioOwners.delete(owner);
+      _applyMusicVolume();
+      Object.values(SFX).forEach(track => { track.volume = _cinemaAudioOwners.size ? 0 : sfxVolume; });
+    };
+  },
+  get inspection() { return { owners: _cinemaAudioOwners.size }; }
+});
 function _applyMusicVolume() {
   _musicEnvelopes.forEach((gain, track) => {
-    track.volume = _audioVolume(gain * (track === wmTrack ? WELCOME_MUSIC_VOL : MUSIC_VOL), 0);
+    track.volume = _audioVolume((_cinemaAudioOwners.size ? 0 : gain) * (track === wmTrack ? WELCOME_MUSIC_VOL : MUSIC_VOL), 0);
   });
 }
 function _setMusicEnvelope(track, gain) {
@@ -197,7 +214,7 @@ function stopBgMusic() {
   transitionBgMusic('stopped');
 }
 function playSound(name) {
-  if (!soundEnabled || !SFX[name] || sfxVolume === 0) return;
+  if (_cinemaAudioOwners.size || !soundEnabled || !SFX[name] || sfxVolume === 0) return;
   SFX[name].currentTime = 0; SFX[name].volume = sfxVolume;
   SFX[name].play().catch(() => {});
 }
@@ -210,7 +227,7 @@ function setMusicVolume(value) {
 }
 function setSfxVolume(value) {
   sfxVolume = _audioVolume(value, sfxVolume); _audioSave('nefroquest-sfx-vol', sfxVolume); _saveAudioPreferencesVersion();
-  Object.values(SFX).forEach(track => { track.volume = sfxVolume; });
+  Object.values(SFX).forEach(track => { track.volume = _cinemaAudioOwners.size ? 0 : sfxVolume; });
   updateAudioIcons();
 }
 function toggleSound() {

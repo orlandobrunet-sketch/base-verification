@@ -1,3 +1,4 @@
+import { characterIntro } from '../helpers/cinema';
 import { test, expect, type Page } from '@playwright/test';
 import {
   advanceTechnical, answerTechnical, attachPilotFailureDiagnostics, changeState, installBackendRecorder,
@@ -180,7 +181,7 @@ for (const stage of ['character', 'intro']) {
     if (stage === 'character') await page.keyboard.press('Escape');
     else {
       await page.locator('#charSelectModal [data-action="selectCharacter"][data-arg="nephros"]').click();
-      await page.locator('#charIntroOverlay [data-action="cancelCharacterIntro"]').click();
+      await (await characterIntro(page)).cancel.click();
     }
     expect(await page.evaluate(() => (window as any).NQPilot.active)).toBe(false);
     expect(await pilotEnvelope(page)).toBeNull();

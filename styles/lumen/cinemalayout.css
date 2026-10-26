@@ -1,0 +1,147 @@
+/* TRIO prototype: the existing NefroQuest shell and question component stay in place. */
+#nqBossArena[hidden] { display: none !important; }
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
+  @media not all and (any-pointer: coarse) {
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active #nqBossEncounter {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto auto;
+    gap: 8px 16px;
+    min-height: 0;
+    min-width: 0;
+    margin: 0 0 16px;
+    padding: 0;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    isolation: isolate;
+  }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active #arquiBossTitleDesktop {
+    grid-column: 1; grid-row: 1;
+    margin: 0 !important;
+    font-size: 1.5rem !important;
+    line-height: 1.2 !important;
+  }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active #bossQuestionNum {
+    grid-column: 2; grid-row: 1;
+    align-self: end;
+    margin: 0 !important;
+    padding-bottom: 2px !important;
+    text-align: right !important;
+    white-space: normal;
+  }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active #bossHpContainer {
+    grid-column: 1 / -1; grid-row: 2;
+    width: 100%; margin: 0 !important;
+  }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active #bossHpFill {
+    transition: none !important;
+    animation: none !important;
+  }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active :is(#arquiBossImageDesktop, #arquiStarsDesktop, #arquiStarsMobile, #arquiHeroStrip) {
+    display: none !important;
+  }
+  #mainApp.nq-arena-active #nqBossArena {
+    --nq-arena-scene-height: 208px;
+    grid-column: 1 / -1; grid-row: 3;
+    min-width: 0; width: 100%;
+    margin: 0; padding: 0;
+    border: 0; background: #050407;
+  }
+  #nqBossArena .nq-arena-caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    min-height: 48px;
+    padding: 6px 10px;
+    border-top: 1px solid #9b7ba03d;
+    background: #09070d;
+  }
+  #nqBossArena #nqArenaStatus {
+    position: static;
+    order: 0;
+    flex: 1 1 17rem;
+    min-width: 0;
+    margin: 0;
+    color: #d6cbdc;
+    font: .85rem/1.5 var(--nql-font-body);
+    overflow-wrap: anywhere;
+  }
+  #nqBossArena .nq-arena-controls { display: flex; order: 2; align-items: center; flex-wrap: wrap; gap: 6px; }
+  #nqBossArena .nq-arena-native-feedback {
+    display: flex; order: 1; flex: 0 1 auto; justify-content: space-between;
+    flex-wrap: wrap; gap: 4px 12px; min-height: 0;
+    color: #dbc897; font: .8rem/1.3 var(--nql-font-body);
+    pointer-events: none;
+  }
+  #nqBossArena .nq-arena-native-feedback:not(:has(> span:not(:empty))) { display: none; }
+  #nqBossArena .nq-arena-native-feedback > span { min-width: 0; overflow-wrap: anywhere; }
+  #nqBossArena .nq-arena-controls button {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 36px; padding: 7px 10px;
+    border: 1px solid #a48ab752; border-radius: 5px;
+    background: #100c17; color: #d4c4df;
+    font: .75rem/1.4 var(--nql-font-body);
+    cursor: pointer;
+  }
+  #nqBossArena .nq-arena-controls button[hidden] { display: none !important; }
+  #nqBossArena .nq-arena-controls button:hover { background: #251a30; border-color: #cfb1e4; }
+  #nqBossArena .nq-arena-controls button:focus-visible { outline: 2px solid #91dfe3; outline-offset: 3px; }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active .option {
+    position: relative !important;
+    display: grid !important;
+    grid-template-columns: 2.25rem minmax(0, 1fr) 1.5rem !important;
+    align-items: center;
+    gap: 8px 12px !important;
+    min-width: 0;
+  }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active .opt-key {
+    position: static !important; inset: auto !important; transform: none !important;
+    grid-column: 1; grid-row: 1;
+    display: grid; place-items: center;
+    min-width: 0; width: 2.25rem !important; min-height: 2rem;
+    margin: 0; padding: 4px;
+  }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active .opt-body {
+    position: static; grid-column: 2; grid-row: 1;
+    min-width: 0; padding: 0 !important; margin: 0 !important;
+  }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active .option::after { content: none !important; }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active .option.correct::after,
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active .option.wrong::after {
+    content: "✓" !important;
+    position: static !important;
+    grid-column: 3; grid-row: 1;
+    display: grid; place-items: center;
+    width: 1.5rem; height: 1.5rem;
+    margin: 0; padding: 0;
+    color: #a3dbbc;
+    font: 600 1.1rem/1 var(--nql-font-body);
+  }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active .option.wrong::after { content: "×" !important; color: #edb8c6; }
+  #mainApp.nq-arena-active .option.correct .opt-result-label-correct,
+  #mainApp.nq-arena-active .option.wrong .opt-result-label-wrong {
+    display: block; position: absolute;
+    width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+  }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active .equip-total-attributes {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
+  }
+  #mainApp.nq-arena-active .equip-total-attributes > strong {
+    grid-column: 1 / -1;
+    width: 100%;
+    white-space: nowrap;
+  }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active .equip-total-attributes .stat-badge { min-width: 0; }
+  @media (max-height: 800px) {
+    #mainApp.nq-arena-active #nqBossArena { --nq-arena-scene-height: 168px; }
+    #nqBossArena .nq-arena-caption { min-height: 44px; }
+  }
+  }
+}
