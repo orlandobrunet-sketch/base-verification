@@ -190,6 +190,102 @@ test('baú no décimo estágio mantém a vitória como endpoint sem gravar progr
   await info.attach('boss-last-chest-native-endpoint', { body: JSON.stringify({ fixture: 'final stage99; native answer100; native article chest', before, persistedBytesPreserved: true }), contentType: 'application/json' });
 });
 
+for (const withChest of [false, true]) test(`evolução do último acerto aguarda filme e resultados ${withChest ? 'com' : 'sem'} baú, sem repetir recompensa`, async ({ page }, info) => {
+  test.setTimeout(45000);
+  await abrir(page, 1440);
+  const saved = await storage(page);
+  await page.evaluate(withChest => {
+    const w = window as any;
+    Object.assign(w.state, { correctTotal: 99, narrativeShown: 99, bossIntroShown: true,
+      battleFinalShown: true, level: 9, xpToNext: w.xpForLevel(9), xp: w.xpForLevel(9) - 1,
+      lives: w.effectiveMaxLives(), chestCorrectCount: 0, chestTarget: withChest ? 1 : 999 });
+    w.renderHUD(); w.updateBossUI();
+    w.__finalEvolutionCalls = 0;
+    const native = w.showEvolutionPopup;
+    w.showEvolutionPopup = function(...args: unknown[]) { w.__finalEvolutionCalls++; return native.apply(this, args); };
+    const append = document.body.appendChild;
+    (document.body as any).appendChild = function(node: Node) {
+      if (node instanceof HTMLElement && node.matches('.evolution-popup')) w.__finalEvolutionNode ||= node;
+      return append.call(this, node);
+    };
+  }, withChest);
+  await fecharNarrativas(page);
+  const before = await page.evaluate(() => ({ level: (window as any).state.level,
+    answer: (window as any).state.current.a }));
+  await page.locator(`#options .option[data-idx="${before.answer}"]`).click();
+  await expect.poll(() => page.evaluate(() => (window as any).__finalEvolutionCalls)).toBe(1);
+  const view = await bossPresentation(page);
+  let resolved = await page.evaluate(() => JSON.stringify({ level: (window as any).state.level,
+    gold: (window as any).state.gold, score: (window as any).state.score, xp: (window as any).state.xp,
+    lives: (window as any).state.lives, correct: (window as any).state.correctTotal }));
+  expect(JSON.parse(resolved).level).toBeGreaterThan(before.level);
+  if (view.cinematic) {
+    await expect.poll(() => page.evaluate(() => (window as any).NQVictoryBridge.inspection.evolution?.held)).toBe(1);
+    await expect(page.locator('.evolution-popup')).toHaveCount(0);
+    if (withChest) {
+      const chest = page.locator('#autoChestPopup');
+      await expect(chest).toBeVisible();
+      await expect.poll(() => page.evaluate(() => (window as any).NQVictoryBridge.inspection.active?.status)).toBe('waiting-native-overlay');
+      await finishBossCinema(page, true);
+      resolved = await page.evaluate(() => JSON.stringify({ level: (window as any).state.level,
+        gold: (window as any).state.gold, score: (window as any).state.score, xp: (window as any).state.xp,
+        lives: (window as any).state.lives, correct: (window as any).state.correctTotal }));
+    }
+    await expect(page.locator('#nqVictoryCinema[open]')).toBeVisible();
+    await expect.poll(() => page.evaluate(() => (window as any).NQVictoryCinema.inspection.stage)).toBe('playing');
+    await expect(page.locator('#nqVictoryCinema video')).toHaveCount(1);
+    await expect(page.locator('#nqVictoryCinema video')).toHaveJSProperty('muted', true);
+    await page.locator('#nqVictoryCinema .nq-victory-cinema__skip').click();
+    await expect(page.locator('#victoryModal')).toBeVisible();
+    await expect(page.locator('.evolution-popup')).toHaveCount(0);
+    await info.attach('results-before-final-evolution', { body: await page.screenshot(), contentType: 'image/png' });
+    await page.locator('#victoryModal').getByRole('button', { name: 'Continuar jogando', exact: true }).click();
+    await expect.poll(() => page.evaluate(() => (window as any).NQVictoryBridge.inspection.evolution.released)).toBe(1);
+  } else {
+    await expect(page.locator('#nqVictoryCinema[open]')).toHaveCount(0);
+  }
+  await expect(page.locator('.evolution-popup')).toBeVisible();
+  expect(await page.evaluate(() => document.querySelector('.evolution-popup') === (window as any).__finalEvolutionNode)).toBe(true);
+  expect(await page.evaluate(() => (window as any).__finalEvolutionCalls)).toBe(1);
+  expect(await page.evaluate(() => JSON.stringify({ level: (window as any).state.level,
+    gold: (window as any).state.gold, score: (window as any).state.score, xp: (window as any).state.xp,
+    lives: (window as any).state.lives, correct: (window as any).state.correctTotal }))).toBe(resolved);
+  expect(await storage(page)).toEqual(saved);
+});
+
+test('pulo aceito não reinicia filme quando recompensa aparece durante o fade', async ({ page }) => {
+  await abrir(page, 1440);
+  const view = await bossPresentation(page);
+  test.skip(!view.cinematic, 'The cinematic exit fade exists only on desktop.');
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.evaluate(() => {
+    const w = window as any;
+    Object.assign(w.state, { correctTotal: 99, narrativeShown: 99, battleFinalShown: true,
+      bossIntroShown: true, chestCorrectCount: 0, chestTarget: 999 });
+    w.updateBossUI(); w.renderHUD();
+  });
+  await fecharNarrativas(page);
+  await page.locator(`#options .option[data-idx="${await page.evaluate(() => (window as any).state.current.a)}"]`).click();
+  await expect.poll(() => page.evaluate(() => (window as any).NQVictoryCinema.inspection.stage)).toBe('playing');
+  await page.evaluate(() => {
+    const w = window as any;
+    document.querySelector('#nqVictoryCinema .nq-victory-cinema__skip')!.addEventListener('click', () => {
+      queueMicrotask(() => {
+        w.__skipRaceWasClosing = w.NQVictoryCinema.inspection.stage === 'closing';
+        w.showExtraLifeModal();
+      });
+    }, { once: true });
+  });
+  await page.locator('#nqVictoryCinema .nq-victory-cinema__skip').click();
+  expect(await page.evaluate(() => (window as any).__skipRaceWasClosing)).toBe(true);
+  await expect(page.locator('.extra-life-popup')).toBeVisible();
+  await page.locator('.extra-life-popup').getByRole('button', { name: 'Continuar', exact: true }).click();
+  await expect(page.locator('#victoryModal')).toBeVisible();
+  await expect(page.locator('#nqVictoryCinema[open]')).toHaveCount(0);
+  expect(await page.evaluate(() => (window as any).NQVictoryBridge.inspection.records.at(-1).reason)).toBe('skipped');
+  expect(await page.evaluate(() => (window as any).NQVictoryBridge.inspection.deliveredCount)).toBe(1);
+});
+
 test('erro mantém HP e dez etapas, resposta única e derrota continuam nativos', async ({ page }) => {
   await abrir(page, 390);
   const saved = await storage(page);

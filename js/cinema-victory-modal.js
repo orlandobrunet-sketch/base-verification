@@ -54,7 +54,7 @@
   if(!valid(active)){finishNow('context-lost',false);return false;}
   if(!dialog?.isConnected||!dialog.open){finishNow('external-close',true);return false;}
   if(!eligible()){finishNow('desktop-only',true);return false;}
-  if(othersOpen()){finishNow('interrupted',true);return false;}return true;
+  if(othersOpen()){finishNow(active.closing?active.closeReason:'interrupted',true);return false;}return true;
  }
  function stage(name){view.stage=name;if(dialog)dialog.dataset.stage=name;}
  function requestFinish(reason){

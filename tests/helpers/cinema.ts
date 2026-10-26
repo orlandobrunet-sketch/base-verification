@@ -33,17 +33,22 @@ export async function bossPresentation(page: Page) {
 }
 
 /** Walk the desktop ending before asserting the authoritative native results. */
-export async function finishBossCinema(page: Page) {
+export async function finishBossCinema(page: Page, stopAtFilm = false) {
   if (await desktopCinemaEligible(page)) {
     const ending = page.locator('#nqVictoryCinema[open]');
     const results = page.locator('#victoryModal');
     const chest = page.locator('#autoChestPopup');
     const loot = page.locator('#chestModal.show');
     const narrative = page.locator('.evolution-popup:visible,.narrative-popup:visible').last();
+    const native = page.locator('.nq-overlay:visible,[aria-modal="true"]:visible');
     for (let attempt = 0; attempt < 12 && !await results.isVisible(); attempt++) {
       await expect.poll(async () => await ending.isVisible() || await results.isVisible() ||
-        await chest.isVisible() || await loot.isVisible() || await narrative.isVisible()).toBe(true);
+        await chest.isVisible() || await loot.isVisible() || await narrative.isVisible() || await native.count() > 0).toBe(true);
       if (await ending.isVisible()) {
+        if (stopAtFilm) {
+          await expect.poll(() => page.evaluate(() => (window as any).NQVictoryCinema.inspection.stage)).toBe('playing');
+          return;
+        }
         const skip = ending.locator('.nq-victory-cinema__skip');
         if (await skip.isVisible()) await skip.click();
         await ending.waitFor({ state: 'hidden' });
@@ -54,6 +59,14 @@ export async function finishBossCinema(page: Page) {
         await loot.getByRole('button').last().click();
       } else if (await narrative.isVisible()) {
         await narrative.getByRole('button').last().click();
+      } else {
+        const buttons = page.locator('.nq-overlay button,[aria-modal="true"] button');
+        const hit = await buttons.evaluateAll(nodes => nodes.map((node, index) => {
+          const box = node.getBoundingClientRect(), top = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
+          return box.width && box.height && !node.closest('[hidden],[inert]') && (top === node || node.contains(top)) ? index : -1;
+        }).filter(index => index >= 0).at(-1) ?? -1);
+        expect(hit, 'native reward must have an exposed control').toBeGreaterThanOrEqual(0);
+        await buttons.nth(hit).click();
       }
     }
     await expect(results).toBeVisible();
