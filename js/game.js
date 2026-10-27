@@ -4555,6 +4555,8 @@
 
 
     function showFloatingFeedback(text, isCorrect, x, y) {
+      try { if (window.NQBossArena?.presentNativeFeedback(text, isCorrect)) return; }
+      catch (error) { console.warn('[NQ] Boss feedback skipped', error); }
       const el = document.createElement('div');
       el.className = 'floating-text ' + (isCorrect ? 'correct' : 'wrong');
       el.textContent = text;
@@ -4571,6 +4573,7 @@
     window.showFloatingFeedback = showFloatingFeedback;
 
     function triggerScreenShake() {
+      try { if (window.NQBossArena?.active) return; } catch (_) { /* Native feedback remains available. */ }
       const app = document.getElementById('mainApp');
       if (!app) return;
       app.classList.remove('shake-screen');
@@ -4597,6 +4600,29 @@
     window.triggerHapticFeedback = triggerHapticFeedback;
 
 
+    // Cosmetic observer only: run after the native answer finishes resolving.
+    function _notifyBossArenaOutcome(before, correct, blocked) {
+      if (!before) return;
+      const event = {
+        wasBoss: true, accepted: true, answerIdentity: state.questionAnswer,
+        contextEpoch: before.epoch, correct, blocked,
+        progressBefore: before.progress, progressAfter: getBossProgress(),
+        hpBefore: before.hp, hpAfter: getBossHP(),
+        livesBefore: before.lives, livesAfter: state.lives
+      };
+      try { window.NQBossArena?.prepareOutcome(event); }
+      catch (error) { console.warn('[NQ] Boss scene preparation skipped', error); }
+      queueMicrotask(() => {
+        if (before.epoch !== _progressEpoch) return;
+        try {
+          window.NQBossArena?.outcome({...event,
+            livesAfter: state.lives,
+            gameCompleted: !!state.gameCompleted, gameOver: !!state.gameOver
+          });
+        } catch (error) { console.warn('[NQ] Boss scene update skipped', error); }
+      });
+    }
+
     function answer(i,btn){
       if(!state.gameStarted) return;
       if(state.answered) return;
@@ -4609,6 +4635,11 @@
       if (!choiceResult) return;
       const pilotAnswer = _beginPilotAnswer(i);
       if (pilotAnswer === false) return;
+      let bossArenaBefore = null;
+      try {
+        if (window.NQBossArena?.active && isBossBattle())
+          bossArenaBefore = {epoch: _progressEpoch, progress: getBossProgress(), hp: getBossHP(), lives: state.lives};
+      } catch (error) { console.warn('[NQ] Boss presentation capture skipped', error); }
       state.questionAnswer = choiceResult;
       state.answered=true;
 
@@ -4718,6 +4749,7 @@
           if (lv) checkExtraLife();
         }
         if (!_commitPilotAnswer(pilotAnswer, true)) return;
+        _notifyBossArenaOutcome(bossArenaBefore, true, false);
 
         if(state.level>=MAX_LEVEL&&legendaryCount()>=2){
           log('👑 Objetivo final desbloqueado! Você está pronto para vencer o Arqui-Nefromante.');
@@ -4896,6 +4928,7 @@
           }
         }
         if (!_commitPilotAnswer(pilotAnswer, false)) return;
+        _notifyBossArenaOutcome(bossArenaBefore, false, blocked);
 
         let lx, ly;
         const livesEl = document.getElementById('lives') || document.getElementById('msbLivesIcons');

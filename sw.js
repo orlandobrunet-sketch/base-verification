@@ -1,8 +1,25 @@
-// NefroQuest Service Worker — v16.25
-const CACHE = 'nefroquest-v16.25';
+// NefroQuest Service Worker — v16.28
+const CACHE = 'nefroquest-v16.28';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
+  '/js/cinema-boss-art-states.js',
+  '/js/cinema-boss-static-adapter.js',
+  '/js/cinema-cinematic-intro.js',
+  '/js/cinema-entry-bridge.js',
+  '/js/cinema-entry-cinema.js',
+  '/js/cinema-entry-seen.js',
+  '/js/cinema-entry-source-config.js',
+  '/js/cinema-intro-bridge.js',
+  '/js/cinema-intro-source-config.js',
+  '/js/cinema-victory-bridge.js',
+  '/js/cinema-victory-modal.js',
+  '/js/cinema-victory-source-config.js',
+  '/styles/lumen/cinemaboss.css',
+  '/styles/lumen/cinemaentry.css',
+  '/styles/lumen/cinemaframe.css',
+  '/styles/lumen/cinemalayout.css',
+  '/styles/lumen/cinemavictory.css',
   '/offline.html',
   '/assets/sounds/bgmusic.mp3',
   '/assets/sounds/correct.mp3',
@@ -121,6 +138,23 @@ const STATIC_ASSETS = [
 // chave canônica (sem query), que é a que canonicalAssetKey() consulta.
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
+  '/js/cinema-boss-art-states.js': '16.28',
+  '/js/cinema-boss-static-adapter.js': '16.28',
+  '/js/cinema-cinematic-intro.js': '16.28',
+  '/js/cinema-entry-bridge.js': '16.28',
+  '/js/cinema-entry-cinema.js': '16.28',
+  '/js/cinema-entry-seen.js': '16.28',
+  '/js/cinema-entry-source-config.js': '16.28',
+  '/js/cinema-intro-bridge.js': '16.28',
+  '/js/cinema-intro-source-config.js': '16.28',
+  '/js/cinema-victory-bridge.js': '16.28',
+  '/js/cinema-victory-modal.js': '16.28',
+  '/js/cinema-victory-source-config.js': '16.28',
+  '/styles/lumen/cinemaboss.css': '16.28',
+  '/styles/lumen/cinemaentry.css': '16.28',
+  '/styles/lumen/cinemaframe.css': '16.28',
+  '/styles/lumen/cinemalayout.css': '16.28',
+  '/styles/lumen/cinemavictory.css': '16.28',
   '/js/question-revisions.js': '16.12',
   '/style.css': '16.25',
   '/styles/lumen/tokens.css': '15.77',
@@ -144,17 +178,17 @@ const ASSET_VERSIONS = {
   '/js/pilot.js': '16.06',
   '/js/character-benefits.js': '16.07',
   '/js/answer-presentation.js': '16.09',
-  '/js/audio.js': '15.91',
+  '/js/audio.js': '16.28',
   '/js/leaderboard.js': '16.07',
   '/js/study-mode.js': '16.25',
-  '/js/game.js': '16.25',
+  '/js/game.js': '16.28',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '15.92',
   '/js/portal.js': '13.20',
   '/js/atrium.js': '13.23',
   '/js/paywall.js': '15.34',
   '/js/account.js': '15.80',
-  '/js/boss.js': '16.07',
+  '/js/boss.js': '16.28',
   '/js/exam.js': '16.21',
   '/js/admin.js': '15.35',
   '/js/minigame.js': '16.18',
@@ -241,6 +275,9 @@ self.addEventListener('fetch', e => {
   if (url.origin !== location.origin) return;
   if (url.pathname === '/clear-cache.html') return;
   if (url.pathname === '/version.json') return;
+  // Filmes usam respostas HTTP Range (206), que Cache.put nao aceita.
+  // Deixe o navegador transmitir e buscar trechos sem interceptar a midia.
+  if (url.pathname.startsWith('/assets/cinema/') && url.pathname.endsWith('.mp4')) return;
 
   // HTML e navegação → network-first com fallback para offline.html
   const isNav = e.request.mode === 'navigate'

@@ -1,3 +1,4 @@
+import { characterIntro } from '../helpers/cinema';
 import { test, expect, Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -64,7 +65,7 @@ test.describe('Escolha de Classe', () => {
       expect(titulo.length, 'o card precisa declarar um título').toBeGreaterThan(0);
 
       await card.click();
-      await expect(page.locator('#charIntroOverlay')).toContainText(titulo);
+      await expect((await characterIntro(page)).overlay).toContainText(titulo);
     });
   }
 
@@ -94,15 +95,15 @@ test.describe('Escolha de Classe', () => {
     await page.locator('#charSelectModal [data-arg="aquaria"]').click();
 
     await expect(page.locator('#charSelectModal')).not.toBeVisible();
-    await expect(page.locator('#charIntroOverlay')).toBeVisible();
-    await expect(page.locator('#charIntroOverlay')).toContainText('Iniciar Jornada');
+    await expect((await characterIntro(page)).overlay).toBeVisible();
+    await expect((await characterIntro(page)).start).toBeVisible();
     expect(await page.evaluate(() => ({
       character: (0, eval)('state.character'),
       canonical: localStorage.getItem('nefroquest-save-v7'),
       mirror: localStorage.getItem('nefroquest-save'),
     }))).toEqual(before);
 
-    await page.locator('#charIntroOverlay [data-action="closeIntroAndStart"]').click();
+    await (await characterIntro(page)).start.click();
     await page.waitForFunction(() => (0, eval)('state.gameStarted && !!state.current && !_loadingNextQuestion'));
     await expect(page.locator('#mainApp')).toBeVisible();
     const started = await page.evaluate(() => ({
@@ -139,7 +140,7 @@ test.describe('Escolha de Classe', () => {
     expect(anel, 'o card focado precisa de indicação visível').toBe(true);
 
     await page.keyboard.press('Enter');
-    await expect(page.locator('#charIntroOverlay')).toBeVisible();
+    await expect((await characterIntro(page)).overlay).toBeVisible();
   });
 
   test('em 360×800 nada vaza horizontalmente e os alvos têm 44px', async ({ page }) => {

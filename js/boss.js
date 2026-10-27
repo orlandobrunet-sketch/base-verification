@@ -34,6 +34,14 @@
       return '"Após noventa batalhas, você chega ao Trono da Uremia. O Arqui-Nefromante ergue-se diante de você."';
     }
 
+    function syncBossArenaPresentation() {
+      try {
+        window.NQBossArena?.sync();
+      } catch (error) {
+        console.warn('[NQ] Boss presentation update skipped', error);
+      }
+    }
+
     /**
      * Atualiza TODA a UI do Confronto Final.
      * Chamada após renderQuestion() e após cada resposta.
@@ -83,6 +91,7 @@
         if (sd) sd.style.display = 'none';
         if (sm) sm.style.display = 'none';
         document.body.classList.remove('boss-battle-mode', 'arqui-nefromante-final');
+        syncBossArenaPresentation();
         return;
       }
 
@@ -320,6 +329,8 @@
           popup.style.display = 'flex';
         }
       }
+      // Presentation reads the native HUD after its authoritative updates.
+      syncBossArenaPresentation();
     }
 
     /**

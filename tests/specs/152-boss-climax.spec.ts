@@ -1,3 +1,4 @@
+import { bossPresentation, finishBossCinema } from '../helpers/cinema';
 import { test, expect, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
@@ -42,13 +43,17 @@ async function abrir(page: Page, width = 1440) {
   await expect(page.locator('#question')).not.toBeEmpty();
   await page.waitForFunction(() => !(0, eval)('_loadingNextQuestion'));
   await page.evaluate(() => document.fonts.ready);
-  await expect.poll(() => page.locator('#arquiBossImgEl').evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+  const view = await bossPresentation(page);
+  await expect(view.image).toBeVisible();
+  const image = view.cinematic ? view.image : page.locator('#arquiBossImgEl');
+  await expect.poll(() => image.evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
 }
 
 async function fecharNarrativas(page: Page) {
   // O 100º acerto encerra este cenário na vitória. Um baú simultâneo pode
   // continuar atrás dela; não se tenta acionar um controle encoberto.
   if (await page.evaluate(() => (window as any).state.gameCompleted)) {
+    await finishBossCinema(page);
     await expect(page.locator('#victoryModal')).toBeVisible();
     return;
   }
@@ -99,8 +104,11 @@ for (const width of [390, 1440]) test(`dez golpes até a vitória em${width}px p
   for (let progress = 0; progress < 10; progress++) {
     const hp = page.getByRole('progressbar', { name: 'Vida do Arqui-Nefromante' });
     await expect(hp).toHaveAttribute('aria-valuenow', String(100 - progress * 10));
-    await expect(page.locator('#arquiStarsDesktop')).toHaveAttribute('aria-label', `${progress} de 10 golpes concluídos`);
-    await expect(page.locator('#bossQuestionNum')).toHaveText(`FASE FINAL ${progress + 1}/10`);
+    const view = await bossPresentation(page);
+    await expect(hp).toHaveAttribute('aria-valuetext', `HP ${100 - progress * 10}%, ${progress} de 10 golpes concluídos`);
+    await expect(view.stage).toHaveText(view.stageText(progress));
+    if (view.cinematic) await expect(page.locator('#arquiStarsDesktop')).toBeHidden();
+    else await expect(page.locator('#arquiStarsDesktop')).toHaveAttribute('aria-label', `${progress} de 10 golpes concluídos`);
     const before = await page.evaluate(() => {
       const s = (window as any).state;
       return { answer: s.current.a, correct: s.correctTotal, gold: s.gold, score: s.score, id: s.current.id };
@@ -115,7 +123,9 @@ for (const width of [390, 1440]) test(`dez golpes até a vitória em${width}px p
     await fecharNarrativas(page);
     expect(await storage(page), 'demonstração gravou progresso real').toEqual(saved);
     if (progress < 9) {
-      await expect(page.locator('#arquiStarsDesktop .filled')).toHaveCount(progress + 1);
+      const view = await bossPresentation(page);
+      await expect(hp).toHaveAttribute('aria-valuenow', String(90 - progress * 10));
+      if (!view.cinematic) await expect(page.locator('#arquiStarsDesktop .filled')).toHaveCount(progress + 1);
       await page.locator('#nextBtn').click();
       await page.waitForFunction(() => !(0, eval)('_loadingNextQuestion') && !(window as any).state.answered);
     }
@@ -140,7 +150,8 @@ test('baú no décimo estágio mantém a vitória como endpoint sem gravar progr
     w.updateBossUI();
   });
   await fecharNarrativas(page);
-  await expect(page.locator('#bossQuestionNum')).toHaveText('FASE FINAL 10/10');
+  const view = await bossPresentation(page);
+  await expect(view.stage).toHaveText(view.stageText(9));
   const before = await page.evaluate(() => {
     const w = window as any;
     w._fixtureRandom = Math.random;
@@ -151,13 +162,19 @@ test('baú no décimo estágio mantém a vitória como endpoint sem gravar progr
     expect(before.correct).toBe(99);
     expect(before.hp).toBe(10);
     await page.locator(`#options .option[data-idx="${before.answer}"]`).click();
-    await expect(page.locator('#victoryModal')).toBeVisible();
     await expect(page.locator('#autoChestPopup')).toBeVisible();
+    if (view.cinematic) {
+      await expect.poll(() => page.evaluate(() => (window as any).NQVictoryBridge.inspection.records.at(-1)?.status)).toBe('waiting-native-overlay');
+      await expect(page.locator('#victoryModal')).toHaveCount(0);
+      expect(await page.evaluate(() => (window as any).state.gameCompleted)).toBe(true);
+      await info.attach('native-reward-before-results', { body: await page.screenshot(), contentType: 'image/png' });
+    } else await expect(page.locator('#victoryModal')).toBeVisible();
     await page.locator('#autoChestPopup').getByRole('button', { name: 'Abrir baú', exact: true }).click();
     await expect(page.locator('#autoChestPopup')).toHaveCount(0);
     await expect(page.locator('#chestModal.show')).toBeVisible();
     await expect.poll(() => page.evaluate(() => (window as any).state.chestsOpened)).toBe(before.chests + 1);
     expect(await page.evaluate(() => (window as any).state.score)).toBeGreaterThan(before.score);
+    if (view.cinematic) await page.locator('#chestModal.show').getByRole('button').last().click();
     await fecharNarrativas(page);
   } finally {
     await page.evaluate(() => { Math.random = (window as any)._fixtureRandom; delete (window as any)._fixtureRandom; });
@@ -165,11 +182,108 @@ test('baú no décimo estágio mantém a vitória como endpoint sem gravar progr
   await expect(page.locator('#victoryModal').getByRole('heading', { name: 'Jornada concluída' })).toBeVisible();
   expect(await page.evaluate(() => ({ correct: (window as any).state.correctTotal, hp: (window as any).getBossHP(), completed: (window as any).state.gameCompleted, sandbox: (window as any).isProgressSandbox() })))
     .toEqual({ correct: 100, hp: 0, completed: true, sandbox: true });
+  await info.attach('native-results-after-reward', { body: await page.screenshot(), contentType: 'image/png' });
   // O save tem debounce de 500 ms; aguarda sua janela sem fechar a vitória nem
   // limpar manualmente DOM, armazenamento ou gates.
   await page.waitForTimeout(700);
   expect(await storage(page)).toEqual(saved);
   await info.attach('boss-last-chest-native-endpoint', { body: JSON.stringify({ fixture: 'final stage99; native answer100; native article chest', before, persistedBytesPreserved: true }), contentType: 'application/json' });
+});
+
+for (const withChest of [false, true]) test(`evolução do último acerto aguarda filme e resultados ${withChest ? 'com' : 'sem'} baú, sem repetir recompensa`, async ({ page }, info) => {
+  test.setTimeout(45000);
+  await abrir(page, 1440);
+  const saved = await storage(page);
+  await page.evaluate(withChest => {
+    const w = window as any;
+    Object.assign(w.state, { correctTotal: 99, narrativeShown: 99, bossIntroShown: true,
+      battleFinalShown: true, level: 9, xpToNext: w.xpForLevel(9), xp: w.xpForLevel(9) - 1,
+      lives: w.effectiveMaxLives(), chestCorrectCount: 0, chestTarget: withChest ? 1 : 999 });
+    w.renderHUD(); w.updateBossUI();
+    w.__finalEvolutionCalls = 0;
+    const native = w.showEvolutionPopup;
+    w.showEvolutionPopup = function(...args: unknown[]) { w.__finalEvolutionCalls++; return native.apply(this, args); };
+    const append = document.body.appendChild;
+    (document.body as any).appendChild = function(node: Node) {
+      if (node instanceof HTMLElement && node.matches('.evolution-popup')) w.__finalEvolutionNode ||= node;
+      return append.call(this, node);
+    };
+  }, withChest);
+  await fecharNarrativas(page);
+  const before = await page.evaluate(() => ({ level: (window as any).state.level,
+    answer: (window as any).state.current.a }));
+  await page.locator(`#options .option[data-idx="${before.answer}"]`).click();
+  await expect.poll(() => page.evaluate(() => (window as any).__finalEvolutionCalls)).toBe(1);
+  const view = await bossPresentation(page);
+  let resolved = await page.evaluate(() => JSON.stringify({ level: (window as any).state.level,
+    gold: (window as any).state.gold, score: (window as any).state.score, xp: (window as any).state.xp,
+    lives: (window as any).state.lives, correct: (window as any).state.correctTotal }));
+  expect(JSON.parse(resolved).level).toBeGreaterThan(before.level);
+  if (view.cinematic) {
+    await expect.poll(() => page.evaluate(() => (window as any).NQVictoryBridge.inspection.evolution?.held)).toBe(1);
+    await expect(page.locator('.evolution-popup')).toHaveCount(0);
+    if (withChest) {
+      const chest = page.locator('#autoChestPopup');
+      await expect(chest).toBeVisible();
+      await expect.poll(() => page.evaluate(() => (window as any).NQVictoryBridge.inspection.active?.status)).toBe('waiting-native-overlay');
+      await finishBossCinema(page, true);
+      resolved = await page.evaluate(() => JSON.stringify({ level: (window as any).state.level,
+        gold: (window as any).state.gold, score: (window as any).state.score, xp: (window as any).state.xp,
+        lives: (window as any).state.lives, correct: (window as any).state.correctTotal }));
+    }
+    await expect(page.locator('#nqVictoryCinema[open]')).toBeVisible();
+    await expect.poll(() => page.evaluate(() => (window as any).NQVictoryCinema.inspection.stage)).toBe('playing');
+    await expect(page.locator('#nqVictoryCinema video')).toHaveCount(1);
+    await expect(page.locator('#nqVictoryCinema video')).toHaveJSProperty('muted', true);
+    await page.locator('#nqVictoryCinema .nq-victory-cinema__skip').click();
+    await expect(page.locator('#victoryModal')).toBeVisible();
+    await expect(page.locator('.evolution-popup')).toHaveCount(0);
+    await info.attach('results-before-final-evolution', { body: await page.screenshot(), contentType: 'image/png' });
+    await page.locator('#victoryModal').getByRole('button', { name: 'Continuar jogando', exact: true }).click();
+    await expect.poll(() => page.evaluate(() => (window as any).NQVictoryBridge.inspection.evolution.released)).toBe(1);
+  } else {
+    await expect(page.locator('#nqVictoryCinema[open]')).toHaveCount(0);
+  }
+  await expect(page.locator('.evolution-popup')).toBeVisible();
+  expect(await page.evaluate(() => document.querySelector('.evolution-popup') === (window as any).__finalEvolutionNode)).toBe(true);
+  expect(await page.evaluate(() => (window as any).__finalEvolutionCalls)).toBe(1);
+  expect(await page.evaluate(() => JSON.stringify({ level: (window as any).state.level,
+    gold: (window as any).state.gold, score: (window as any).state.score, xp: (window as any).state.xp,
+    lives: (window as any).state.lives, correct: (window as any).state.correctTotal }))).toBe(resolved);
+  expect(await storage(page)).toEqual(saved);
+});
+
+test('pulo aceito não reinicia filme quando recompensa aparece durante o fade', async ({ page }) => {
+  await abrir(page, 1440);
+  const view = await bossPresentation(page);
+  test.skip(!view.cinematic, 'The cinematic exit fade exists only on desktop.');
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.evaluate(() => {
+    const w = window as any;
+    Object.assign(w.state, { correctTotal: 99, narrativeShown: 99, battleFinalShown: true,
+      bossIntroShown: true, chestCorrectCount: 0, chestTarget: 999 });
+    w.updateBossUI(); w.renderHUD();
+  });
+  await fecharNarrativas(page);
+  await page.locator(`#options .option[data-idx="${await page.evaluate(() => (window as any).state.current.a)}"]`).click();
+  await expect.poll(() => page.evaluate(() => (window as any).NQVictoryCinema.inspection.stage)).toBe('playing');
+  await page.evaluate(() => {
+    const w = window as any;
+    document.querySelector('#nqVictoryCinema .nq-victory-cinema__skip')!.addEventListener('click', () => {
+      queueMicrotask(() => {
+        w.__skipRaceWasClosing = w.NQVictoryCinema.inspection.stage === 'closing';
+        w.showExtraLifeModal();
+      });
+    }, { once: true });
+  });
+  await page.locator('#nqVictoryCinema .nq-victory-cinema__skip').click();
+  expect(await page.evaluate(() => (window as any).__skipRaceWasClosing)).toBe(true);
+  await expect(page.locator('.extra-life-popup')).toBeVisible();
+  await page.locator('.extra-life-popup').getByRole('button', { name: 'Continuar', exact: true }).click();
+  await expect(page.locator('#victoryModal')).toBeVisible();
+  await expect(page.locator('#nqVictoryCinema[open]')).toHaveCount(0);
+  expect(await page.evaluate(() => (window as any).NQVictoryBridge.inspection.records.at(-1).reason)).toBe('skipped');
+  expect(await page.evaluate(() => (window as any).NQVictoryBridge.inspection.deliveredCount)).toBe(1);
 });
 
 test('erro mantém HP e dez etapas, resposta única e derrota continuam nativos', async ({ page }) => {
@@ -211,23 +325,32 @@ test('erro mantém HP e dez etapas, resposta única e derrota continuam nativos'
   expect(await storage(page)).toEqual(saved);
 });
 
-for (const width of [320, 390, 1100, 1440]) test(`cena compacta e texto200% cabem em${width}px`, async ({ page }) => {
+for (const width of [320, 390, 1100, 1440]) test(`cena do dispositivo e texto200% cabem em${width}px`, async ({ page }) => {
   await abrir(page, width);
   const saved = await storage(page);
-  const encounter = (await page.locator('#nqBossEncounter').boundingBox())!;
-  const image = (await page.locator('#arquiBossImageDesktop').boundingBox())!;
+  const view = await bossPresentation(page);
+  await expect(view.root).toBeVisible();
+  const encounter = (await view.root.boundingBox())!;
+  const image = (await view.image.boundingBox())!;
   expect(image.width).toBeGreaterThan(encounter.width * .5);
-  expect(image.height).toBeGreaterThanOrEqual(encounter.height - 3);
+  if (view.cinematic) {
+    const scene = (await page.locator('#nqBossStatic .nq-static-scene').boundingBox())!;
+    expect(image.height).toBeGreaterThanOrEqual(scene.height - 3);
+    await expect(page.locator('#nqBossArena')).toBeHidden();
+  } else expect(image.height).toBeGreaterThanOrEqual(encounter.height - 3);
   const question = (await page.locator('#mainApp .qbox').boundingBox())!;
-  expect(question.y).toBeLessThan(width < 500 ? 450 : 400);
+  if (view.cinematic) {
+    expect(question.y).toBeGreaterThanOrEqual(encounter.y + encounter.height - 1);
+    expect(question.y).toBeLessThanOrEqual(encounter.y + encounter.height + 32);
+  } else expect(question.y).toBeLessThan(width < 500 ? 450 : 400);
   await semOverflow(page);
   await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
   await semOverflow(page);
-  for (const selector of ['#question', '.opt-body', '#bossHpPct', '#bossQuestionNum', '#progressSandboxBanner']) {
+  for (const selector of ['#question', '.opt-body', view.cinematic ? '#nqStaticHpText' : '#bossHpPct', view.cinematic ? '#nqStaticStage' : '#bossQuestionNum', '#progressSandboxBanner']) {
     expect(await page.evaluate(medirContraste, selector), selector).toEqual([]);
   }
   for (const button of await page.locator('#options .option').all()) expect((await button.boundingBox())!.height).toBeGreaterThanOrEqual(44);
-  expect(await page.locator('#arquiBossTitleDesktop').evaluate(el => getComputedStyle(el).animationName)).toBe('none');
+  expect(await page.locator(view.cinematic ? '#nqStaticTitle' : '#arquiBossTitleDesktop').evaluate(el => getComputedStyle(el).animationName)).toBe('none');
   await page.getByRole('button', { name: 'Sair da demonstração' }).click();
   await expect(page.locator('#progressSandboxBanner')).toHaveCount(0);
   expect(await storage(page)).toEqual(saved);

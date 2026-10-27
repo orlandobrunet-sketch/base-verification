@@ -1,3 +1,4 @@
+import { characterIntro } from '../helpers/cinema';
 import { test, expect, type Page } from '@playwright/test';
 import {
   advanceTechnical, answerTechnical, attachPilotFailureDiagnostics, changeState,
@@ -339,7 +340,7 @@ for (const stage of ['difficulty', 'character', 'intro'] as const) {
       if (stage === 'character') await page.locator('#charSelectModal [data-action="closeCharSelectModal"]').click();
       else {
         await page.locator('#charSelectModal [data-action="selectCharacter"][data-arg="aquaria"]').click();
-        await page.locator('#charIntroOverlay [data-action="cancelCharacterIntro"]').click();
+        await (await characterIntro(page)).cancel.click();
       }
     }
     expect(await normalBytes(page)).toEqual(bytes);

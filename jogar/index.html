@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.25',
+          release: 'nefroquest@16.28',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -148,6 +148,11 @@
   <link rel="stylesheet" href="styles/lumen/modes.css?v=15.98">
   <link rel="stylesheet" href="styles/lumen/equipment.css?v=16.18">
   <link rel="stylesheet" href="styles/lumen/boss.css?v=16.25">
+  <link rel="stylesheet" href="styles/lumen/cinemalayout.css?v=16.28">
+  <link rel="stylesheet" href="styles/lumen/cinemaboss.css?v=16.28">
+  <link rel="stylesheet" href="styles/lumen/cinemaframe.css?v=16.28">
+  <link rel="stylesheet" href="styles/lumen/cinemavictory.css?v=16.28">
+  <link rel="stylesheet" href="styles/lumen/cinemaentry.css?v=16.28">
   <link rel="stylesheet" href="styles/lumen/ritual.css?v=15.94">
   <link rel="stylesheet" href="styles/lumen/ranking.css?v=15.94">
   <link rel="stylesheet" href="styles/lumen/achievements.css?v=16.25">
@@ -965,7 +970,7 @@
     </div>
 
     <!-- LEFT PANEL -->
-    <section class="panel left">
+    <section class="panel left" id="nqArenaEquipment">
 
       <!-- BOSS PARTY PANEL (visível só no boss mode) -->
       <div id="bossPartyPanel" style="display:none;">
@@ -1179,6 +1184,25 @@
 
       <!-- BOSS QUESTION COUNTER (abaixo da imagem, acima da questão) -->
       <div id="bossQuestionNum" style="display:none;">FASE FINAL 1/10</div>
+
+      <section id="nqBossArena" hidden aria-label="Arena do confronto final">
+        <div class="nq-arena-scene">
+          <div class="nq-arena-environment" aria-hidden="true"></div>
+          <div class="nq-arena-character nq-arena-player" data-slot="leader" aria-hidden="true"><img id="nqArenaPlayerImg" src="assets/classes-cinema/clerigo_renal/nivel_01.webp" width="768" height="768" alt=""></div>
+          <div class="nq-arena-character" data-slot="ally-a" aria-hidden="true"><img id="nqArenaAllyAImg" src="assets/classes-cinema/maga_metabolica/nivel_01.webp" width="768" height="768" alt=""></div>
+          <div class="nq-arena-character" data-slot="ally-b" aria-hidden="true"><img id="nqArenaAllyBImg" src="assets/classes-cinema/guerreiro_glomerular/nivel_01.webp" width="768" height="768" alt=""></div>
+          <div class="nq-arena-character nq-arena-antagonist" data-slot="boss" aria-hidden="true"><img id="nqArenaBossImg" src="landing/assets/nefromancer-cajado-renal.jpg" data-fallback-src="landing/assets/nefromancer-cajado-renal.jpg" width="1672" height="941" alt=""></div>
+          <div class="nq-arena-effects" aria-hidden="true"></div>
+        </div>
+        <div class="nq-arena-caption">
+          <div class="nq-arena-native-feedback" aria-hidden="true"><span data-arena-feedback="reward"></span><span data-arena-feedback="health"></span><span data-arena-feedback="guard"></span></div>
+          <p id="nqArenaStatus" role="status" aria-live="polite" aria-atomic="true"></p>
+          <div class="nq-arena-controls">
+            <button type="button" id="nqArenaSkipIntro" hidden>Pular apresentação</button>
+            <button type="button" id="nqArenaPause" aria-pressed="false" aria-label="Pausar efeitos da arena">Pausar efeitos</button>
+          </div>
+        </div>
+      </section>
 
       </div>
 
@@ -1821,10 +1845,10 @@
   <script defer src="data/question-revision-history.js?v=16.20"></script>
   <script defer src="js/question-revisions.js?v=16.12"></script>
   <script defer src="js/utils.js?v=16.22"></script>
-  <script defer src="js/audio.js?v=15.91"></script>
+  <script defer src="js/audio.js?v=16.28"></script>
   <script defer src="js/leaderboard.js?v=16.07"></script>
   <script defer src="js/study-mode.js?v=16.25"></script>
-  <script defer src="js/game.js?v=16.25"></script>
+  <script defer src="js/game.js?v=16.28"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=15.92"></script>
@@ -1832,11 +1856,23 @@
   <script defer src="js/atrium.js?v=13.23"></script>
   <script defer src="js/paywall.js?v=15.34"></script>
   <script defer src="js/account.js?v=15.80"></script>
-  <script defer src="js/boss.js?v=16.07"></script>
+  <script defer src="js/boss.js?v=16.28"></script>
+  <script defer src="js/cinema-intro-source-config.js?v=16.28"></script>
+  <script defer src="js/cinema-cinematic-intro.js?v=16.28"></script>
+  <script defer src="js/cinema-boss-art-states.js?v=16.28"></script>
+  <script defer src="js/cinema-boss-static-adapter.js?v=16.28"></script>
   <script defer src="js/exam.js?v=16.21"></script>
   <script defer src="js/admin.js?v=15.35"></script>
   <script defer src="js/minigame.js?v=16.18"></script>
+  <script defer src="js/cinema-intro-bridge.js?v=16.28"></script>
+  <script defer src="js/cinema-victory-source-config.js?v=16.28"></script>
+  <script defer src="js/cinema-victory-modal.js?v=16.28"></script>
+  <script defer src="js/cinema-victory-bridge.js?v=16.28"></script>
   <script defer src="js/minigame-acidbase.js?v=16.09"></script>
+  <script defer src="js/cinema-entry-source-config.js?v=16.28"></script>
+  <script defer src="js/cinema-entry-seen.js?v=16.28"></script>
+  <script defer src="js/cinema-entry-cinema.js?v=16.28"></script>
+  <script defer src="js/cinema-entry-bridge.js?v=16.28"></script>
   <script defer src="js/achievements.js?v=16.06"></script>
   <script defer src="js/changelog.js?v=15.94"></script>
   <script defer src="js/equipment-preview.js?v=16.00"></script>

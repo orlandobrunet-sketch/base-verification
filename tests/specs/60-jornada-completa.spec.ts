@@ -1,3 +1,4 @@
+import { characterIntro } from '../helpers/cinema';
 import { test, expect, type Page } from '@playwright/test';
 
 /**
@@ -99,13 +100,13 @@ async function percorrer(page: Page, aoChegar?: (etapa: string) => Promise<void>
   await aoChegar?.('classe');
 
   await page.locator('.nqc-card[data-char="nephros"]').click();
-  await expect(page.locator('#charIntroOverlay')).toBeVisible({ timeout: 20000 });
+  await expect((await characterIntro(page)).overlay).toBeVisible({ timeout: 20000 });
   await expect(page.locator(PASSOS.jogo)).toBeHidden();
 
   /* A narrativa apresenta a escolha provisória antes de confirmar o início.
    * Ela É parte da jornada — não um estorvo do teste —, e por isso
    * aparece aqui como etapa, com o mesmo clique que a pessoa daria. */
-  const abertura = page.locator('[data-action="closeIntroAndStart"]');
+  const abertura = (await characterIntro(page)).start;
   await expect(abertura).toBeVisible({ timeout: 20000 });
   await aoChegar?.('abertura');
   await abertura.click();
@@ -139,7 +140,11 @@ test.describe('A jornada completa, do portal à retomada', () => {
     // presa e recarrega, perdendo o contexto.
     const semVolta: string[] = [];
     await percorrer(page, async (etapa) => {
-      if (etapa === 'portal') return; // o portal É o começo
+      if (etapa === 'portal') return;
+      if (etapa === 'abertura') {
+        if (!await (await characterIntro(page)).cancel.isVisible()) semVolta.push(etapa);
+        return;
+      } // o portal É o começo
       /* Seletores medidos na tela, não deduzidos da marcação: a primeira
        * versão deste teste acusou "atrio, dificuldade, jogo" sem saída, e as
        * três tinham. O defeito era meu. */
@@ -147,7 +152,6 @@ test.describe('A jornada completa, do portal à retomada', () => {
         atrio: 'a[aria-label*="voltar à página inicial"]',
         dificuldade: '[data-action="_closeDifficultySelector"]',
         classe: '[data-action="closeCharSelectModal"]',
-        abertura: '[data-action="closeIntroAndStart"]',
         jogo: '[data-action="goToWelcomeFromGame"]',
       };
       const saida = saidas[etapa];
