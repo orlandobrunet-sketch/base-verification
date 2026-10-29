@@ -1,4 +1,4 @@
-import { characterIntro } from '../helpers/cinema';
+import { characterIntro, confirmCharacterStart } from '../helpers/cinema';
 import { test, expect, type Page, type TestInfo } from '@playwright/test';
 
 // Published archive and separate technical fixtures. Product scripts run intact in Chromium.
@@ -53,7 +53,7 @@ async function begin(page: Page) {
   await page.locator('.difficulty-card[data-diff-key="normal"]').click();
   await page.locator('#diffConfirmBtn').click();
   await page.locator('#charSelectModal [data-action="selectCharacter"][data-arg="nephros"]').click();
-  await (await characterIntro(page)).start.click();
+  await confirmCharacterStart(page);
   await expect(page.locator('#mainApp')).toBeVisible();
   await page.waitForFunction(() => (0, eval)('state.gameStarted && !!state.current && !_loadingNextQuestion'));
 }

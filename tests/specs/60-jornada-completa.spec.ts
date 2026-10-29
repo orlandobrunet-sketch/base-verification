@@ -1,4 +1,4 @@
-import { characterIntro } from '../helpers/cinema';
+import { characterIntro, confirmCharacterStart } from '../helpers/cinema';
 import { test, expect, type Page } from '@playwright/test';
 
 /**
@@ -109,7 +109,7 @@ async function percorrer(page: Page, aoChegar?: (etapa: string) => Promise<void>
   const abertura = (await characterIntro(page)).start;
   await expect(abertura).toBeVisible({ timeout: 20000 });
   await aoChegar?.('abertura');
-  await abertura.click();
+  await confirmCharacterStart(page);
 
   await expect(page.locator(PASSOS.jogo)).toBeVisible({ timeout: 20000 });
   await page.waitForFunction(() => (0, eval)('state.gameStarted && !!state.current && !_loadingNextQuestion'),

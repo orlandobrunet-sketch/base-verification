@@ -1,4 +1,4 @@
-import { characterIntro } from '../helpers/cinema';
+import { characterIntro, confirmCharacterStart } from '../helpers/cinema';
 import { test, expect, type Page } from '@playwright/test';
 import { attachPilotFailureDiagnostics, seedLegacyPilot } from '../helpers/pilot';
 import { routeTechnicalQuestionBank, technicalQuestionBundle } from '../helpers/technical-question-bank';
@@ -41,7 +41,7 @@ async function begin(page: Page, character = 'nephros', difficulty = 'normal') {
   await page.locator(`.difficulty-card[data-diff-key="${difficulty}"]`).click();
   await page.locator('#diffConfirmBtn').click();
   await page.locator(`#charSelectModal [data-action="selectCharacter"][data-arg="${character}"]`).click();
-  await (await characterIntro(page)).start.click();
+  await confirmCharacterStart(page);
   await expect(page.locator('#mainApp')).toBeVisible();
   await ready(page);
 }

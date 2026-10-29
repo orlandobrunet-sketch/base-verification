@@ -1,4 +1,4 @@
-import { characterIntro } from '../helpers/cinema';
+import { characterIntro, confirmCharacterStart } from '../helpers/cinema';
 import { test, expect } from '@playwright/test';
 import { normalBytes, openPilotChoice, setupPilotPage } from '../helpers/pilot';
 
@@ -92,7 +92,7 @@ test.describe('Dashboard, Core Skills & Layout Reset E2E Tests', () => {
     expect(await page.evaluate(() => document.body.classList.contains('rd-game-over'))).toBe(true);
     expect(await page.evaluate(() => document.body.classList.contains('boss-battle-mode'))).toBe(true);
 
-    await (await characterIntro(page)).start.click();
+    await confirmCharacterStart(page);
     await page.waitForFunction(() => {
       const save = JSON.parse(localStorage.getItem('nefroquest-save-v7') || 'null');
       return save?.schemaVersion === 9 && save.character === 'nephros' &&

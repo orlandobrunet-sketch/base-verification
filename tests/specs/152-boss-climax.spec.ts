@@ -2,6 +2,8 @@ import { bossPresentation, finishBossCinema } from '../helpers/cinema';
 import { test, expect, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
+import { mkdirSync } from 'node:fs';
+import path from 'node:path';
 import { saveBase } from '../helpers/fixtures';
 import { medirContraste } from '../helpers/contraste';
 
@@ -109,6 +111,20 @@ for (const width of [390, 1440]) test(`dez golpes até a vitória em${width}px p
     await expect(view.stage).toHaveText(view.stageText(progress));
     if (view.cinematic) await expect(page.locator('#arquiStarsDesktop')).toBeHidden();
     else await expect(page.locator('#arquiStarsDesktop')).toHaveAttribute('aria-label', `${progress} de 10 golpes concluídos`);
+    if(view.cinematic){
+      await page.locator('#nqBossStatic').scrollIntoViewIfNeeded();
+      const artKey=['throne','hit1','hit2','mist','hit4','hit5','hit6','hit7','flame','last'][progress];
+      await expect.poll(()=>page.evaluate(()=>(window as any).NQBossCinema.inspection.image.artKey)).toBe(artKey);
+      await expect.poll(()=>page.evaluate(()=>(window as any).NQBossCinema.inspection.image.ready)).toBe(true);
+      const geometry=await page.locator('#nqBossStatic .nq-static-art:not([aria-hidden])').evaluate((img:HTMLImageElement)=>{const b=img.getBoundingClientRect();return{width:b.width,height:b.height,naturalWidth:img.naturalWidth,naturalHeight:img.naturalHeight,fit:getComputedStyle(img).objectFit};});
+      expect(geometry.fit).toBe('contain');
+      expect(Math.abs(geometry.width/geometry.height-geometry.naturalWidth/geometry.naturalHeight)).toBeLessThan(.015);
+      const dir=path.resolve(__dirname,'../../../cinema-art-evidence/boss-six-visual');mkdirSync(dir,{recursive:true});
+      await page.locator('#nqBossStatic').screenshot({path:path.join(dir,`state-${progress}.png`)});
+      if(progress===5)await page.screenshot({path:path.join(dir,'state-5-full.png'),fullPage:true});
+      await info.attach('art-'+progress,{body:JSON.stringify({artKey,...geometry}),contentType:'application/json'});
+    }
+    if(view.cinematic){const poison=await page.evaluate(()=>(window as any).NQPoisonPortraits?.inspection);if(poison?.nativeActive)await expect(page.locator('#heroImg')).toHaveAttribute('data-nq-poison-v2',poison.character);else await expect(page.locator('#heroImg')).not.toHaveAttribute('data-nq-poison-v2',/.+/);}
     const before = await page.evaluate(() => {
       const s = (window as any).state;
       return { answer: s.current.a, correct: s.correctTotal, gold: s.gold, score: s.score, id: s.current.id };
@@ -233,8 +249,9 @@ for (const withChest of [false, true]) test(`evolução do último acerto aguard
     }
     await expect(page.locator('#nqVictoryCinema[open]')).toBeVisible();
     await expect.poll(() => page.evaluate(() => (window as any).NQVictoryCinema.inspection.stage)).toBe('playing');
-    await expect(page.locator('#nqVictoryCinema video')).toHaveCount(1);
-    await expect(page.locator('#nqVictoryCinema video')).toHaveJSProperty('muted', true);
+    await expect(page.locator('#nqVictoryCinema video')).toHaveCount(0);
+    await expect(page.locator('#nqVictoryCinema .nq-victory-epilogue__image')).toBeVisible();
+    await expect(page.locator('#nqVictoryCinema audio')).toHaveJSProperty('muted', true);
     await page.locator('#nqVictoryCinema .nq-victory-cinema__skip').click();
     await expect(page.locator('#victoryModal')).toBeVisible();
     await expect(page.locator('.evolution-popup')).toHaveCount(0);

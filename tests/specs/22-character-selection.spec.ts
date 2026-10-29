@@ -1,4 +1,4 @@
-import { characterIntro } from '../helpers/cinema';
+import { characterIntro, confirmCharacterStart } from '../helpers/cinema';
 import { test, expect, Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
@@ -103,7 +103,7 @@ test.describe('Escolha de Classe', () => {
       mirror: localStorage.getItem('nefroquest-save'),
     }))).toEqual(before);
 
-    await (await characterIntro(page)).start.click();
+    await confirmCharacterStart(page);
     await page.waitForFunction(() => (0, eval)('state.gameStarted && !!state.current && !_loadingNextQuestion'));
     await expect(page.locator('#mainApp')).toBeVisible();
     const started = await page.evaluate(() => ({

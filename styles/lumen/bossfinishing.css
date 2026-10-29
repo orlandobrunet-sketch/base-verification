@@ -1,0 +1,28 @@
+/* Narrow presentation fixes. The normal question layout and mobile layout keep their own sizing. */
+.nqvictory-card{position:relative}
+.nqvictory-close{position:absolute;right:12px;top:10px;z-index:2;min-width:44px;min-height:44px;background:#10151bd9;color:#eee4d2;border:1px solid #a8956a66;border-radius:4px;font-size:26px;cursor:pointer}
+.nqvictory-awarded{display:flex;align-items:center;justify-content:center;gap:16px;text-align:left}
+.nqvictory-awarded img{display:block;object-fit:contain;width:84px;height:84px}
+.nqvictory-awarded p{margin:0}
+.nq-victory-results-trigger{min-height:44px;font-size:.8rem!important}
+@media(min-width:769px) and (hover:hover) and (pointer:fine){@media not all and (any-pointer:coarse){
+ body #mainApp[data-nq-ui="lumen"].nq-arena-active #nqBossEncounter.nq-static-context{height:auto}
+ #nqBossStatic{height:auto;grid-template-rows:minmax(56px,max-content) auto}
+ #nqBossStatic .nq-static-scene{aspect-ratio:var(--nq-art-ratio,3/1)}
+ #nqBossStatic .nq-static-copy{position:absolute;inset:0 auto 0 0}
+ #nqBossStatic .nq-static-art[data-art-layout="panoramic"]{object-fit:contain}
+ #mainApp[data-nq-ui="lumen"] #heroImg{animation:none!important;translate:none!important;scale:none!important}
+ #mainApp[data-nq-ui="lumen"] #guardianMotionToggle{display:none!important}
+ #mainApp[data-nq-ui="lumen"] #heroImg[data-nq-poison-v2]{object-fit:contain!important;object-position:center!important;transform:none!important;mask-image:none!important;background:#0b0a12}
+ #mainApp[data-nq-ui="lumen"] .portrait-frame:has(#heroImg[data-nq-poison-v2]){align-self:center;aspect-ratio:1;height:auto!important}
+ body.boss-battle-mode #mainApp[data-nq-ui="lumen"]{width:min(100%,1336px);padding-inline:28px}
+ body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #bossLogSection{max-height:none;overflow:visible}
+ body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #bossLogEntries{max-height:170px;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
+ body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .equip-stun-overlay{grid-row:auto;grid-column:1/-1;position:relative;padding:8px 10px;font-size:.75rem;background:#20172b;color:#e4d8ee;border:1px solid #b9a4d27d;box-shadow:none}
+ body.boss-stun-active #mainApp[data-nq-ui="lumen"] .slot-diablo{isolation:isolate;opacity:1!important;border-color:#b3a4cf!important;background:linear-gradient(135deg,#34233e,#101b22)!important;box-shadow:inset 0 0 15px #a7c78926!important}
+ body.boss-stun-active #mainApp[data-nq-ui="lumen"] .slot-diablo img{opacity:.42;filter:saturate(.35)}
+ .nq-uremic-seal{position:absolute;z-index:5;inset:auto 1px 2px;display:flex;align-items:center;justify-content:center;gap:2px;min-height:17px;border-top:1px solid #b4abc9a3;background:#21192ee8;color:#efe5fa;font:600 9px/1.3 sans-serif;letter-spacing:.04em;pointer-events:none}
+ .nq-uremic-seal svg{width:10px;height:11px;flex:none}
+ .nq-uremic-seal .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+ #nqBossStatic[data-outcome="defeat"] .nq-static-atmosphere{opacity:.35;background:linear-gradient(0deg,#32113b66,transparent 65%)}
+}}

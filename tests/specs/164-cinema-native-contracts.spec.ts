@@ -1,5 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
-import { characterIntro } from '../helpers/cinema';
+import { desktopCinemaEligible } from '../helpers/cinema';
 import { normalBytes, openPilotChoice, pilotState, setupPilotPage } from '../helpers/pilot';
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
@@ -8,7 +8,10 @@ async function choose(page: Page) {
   await openPilotChoice(page, 'normal');
   await page.locator('#diffConfirmBtn').click();
   await page.locator('#charSelectModal [data-action="selectCharacter"][data-arg="glomerulus"]').click();
-  const intro = await characterIntro(page);
+  // The explicit native confirmation now precedes the cinematic player on every device.
+  const intro = {cinematic:await desktopCinemaEligible(page),overlay:page.locator('#charIntroOverlay'),
+    start:page.locator('#charIntroOverlay [data-action="closeIntroAndStart"]'),
+    cancel:page.locator('#charIntroOverlay [data-action="cancelCharacterIntro"]')};
   await expect(intro.overlay).toBeVisible();
   return intro;
 }
@@ -19,6 +22,7 @@ async function audio(page: Page) {
     preferences: Object.fromEntries(['nefroquest-sound', 'nefroquest-music', 'nefroquest-sfx-vol',
       'nefroquest-music-vol', 'nefroquest-audio-preferences-version'].map(key => [key, localStorage.getItem(key)])),
     musicVolumes: (0, eval)('[wmTrack, bgA, bgB].map(track => track.volume)'),
+    musicMatchesNativeEnvelopes: (0, eval)('[..._musicEnvelopes].every(([track,gain])=>Math.abs(track.volume-(_cinemaAudioOwners.size?0:gain)*(track===wmTrack?WELCOME_MUSIC_VOL:MUSIC_VOL))<1e-6)'),
     sfxVolumes: (0, eval)('Object.values(SFX).map(track => track.volume)'),
   }));
 }
@@ -30,10 +34,8 @@ test('escolha provisória cancela sem iniciar nem alterar o save em cada disposi
   const intro = await choose(page);
   expect(await normalBytes(page)).toEqual(before);
   expect(await pilotState(page)).toEqual(state);
-  if (intro.cinematic) {
-    await expect(page.locator('#charIntroOverlay')).toHaveCount(0);
-    await expect(intro.overlay).toHaveAttribute('data-stage', 'story');
-  } else await expect(page.locator('#nqEntryCinema[open]')).toHaveCount(0);
+  await expect(page.locator('#charIntroOverlay')).toBeVisible();
+  await expect(page.locator('#nqEntryCinema[open]')).toHaveCount(0);
   await intro.cancel.click();
   await expect(intro.overlay).toBeHidden();
   await expect(page.locator('#welcomeScreen')).toBeVisible();
@@ -52,10 +54,10 @@ test('filme real inicia mudo; opt-in, pausa, mute e fechamento controlam o gate 
   });
   await setupPilotPage(page);
   const preferences = (await audio(page)).preferences;
-  const intro = await choose(page);
-  if (!intro.cinematic) {
+  const confirmation = await choose(page);
+  await confirmation.start.click();
+  if (!confirmation.cinematic) {
     await expect(page.locator('#nqEntryCinema[open]')).toHaveCount(0);
-    await intro.start.click();
     await page.waitForFunction(() => (window as any).state.gameStarted && !!(window as any).state.current);
     await expect(page.locator('#mainApp')).toBeVisible();
     await expect(page.locator('#nqEntryCinema[open]')).toHaveCount(0);
@@ -63,7 +65,9 @@ test('filme real inicia mudo; opt-in, pausa, mute e fechamento controlam o gate 
     expect((await audio(page)).preferences).toEqual(preferences);
     return;
   }
-  await intro.overlay.locator('.nq-entry-cinema__next').click();
+  const intro={overlay:page.locator('#nqEntryCinema[open]'),cancel:page.locator('#nqEntryCinema .nq-entry-cinema__close')};
+  await expect(intro.overlay).toBeVisible();
+  await intro.overlay.getByRole('button',{name:'Pular histórias',exact:true}).click();
   const video = intro.overlay.locator('video');
   await expect.poll(() => video.evaluate((el: HTMLVideoElement) => el.readyState >= 2 && !el.paused)).toBe(true);
   await expect(video).toHaveJSProperty('muted', true);
@@ -82,6 +86,7 @@ test('filme real inicia mudo; opt-in, pausa, mute e fechamento controlam o gate 
     expect(observed.preferences).toEqual(preferences);
     expect(observed.sfxVolumes.every((value: number) => Math.abs(value - (owners ? 0 : .37)) < .000001)).toBe(true);
     if (owners) expect(observed.musicVolumes.every((value: number) => value === 0)).toBe(true);
+    expect(observed.musicMatchesNativeEnvelopes, 'native music gain was not restored from its current envelope').toBe(true);
     ledger.push({ stage, ...observed });
   };
   await sound.click();

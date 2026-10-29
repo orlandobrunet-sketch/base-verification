@@ -6,17 +6,40 @@ export async function desktopCinemaEligible(page: Page) {
     !matchMedia('(any-pointer:coarse)').matches && navigator.maxTouchPoints === 0);
 }
 
-/** Normal journeys use the desktop preflight; pilot/sandbox and mobile retain native UI. */
+/** Selection always opens the explicit native confirmation before any automatic film. */
 export async function characterIntro(page: Page) {
   const normal = await page.evaluate(() => !(window as any).NQPilot?.active &&
     !(typeof (window as any).isProgressSandbox === 'function' && (window as any).isProgressSandbox()));
-  const cinematic = normal && await desktopCinemaEligible(page);
+  const confirming = await page.locator('#charIntroOverlay').isVisible();
+  const cinematic = !confirming && normal && await desktopCinemaEligible(page);
   return {
     cinematic,
     overlay: page.locator(cinematic ? '#nqEntryCinema[open]' : '#charIntroOverlay'),
     start: page.locator(cinematic ? '#nqEntryCinema[open] .nq-entry-cinema__skip' : '#charIntroOverlay [data-action="closeIntroAndStart"]'),
     cancel: page.locator(cinematic ? '#nqEntryCinema[open] .nq-entry-cinema__close' : '#charIntroOverlay [data-action="cancelCharacterIntro"]'),
   };
+}
+
+/** Confirm via the real native control, then dismiss the optional presentation through Escape. */
+export async function confirmCharacterStart(page: Page) {
+  const intro=await characterIntro(page);
+  const normal=await page.evaluate(()=>!(window as any).NQPilot?.active&&
+    !(typeof(window as any).isProgressSandbox==='function'&&(window as any).isProgressSandbox()));
+  const expectedFilm=normal&&await desktopCinemaEligible(page)&&await page.evaluate(()=>{
+    const w=window as any,id=(0,eval)('_lastSelectedCharacter'),config=w.NQ_ENTRY_CINEMA_CONFIG,
+      entry=config.entries[id];let owner=null;try{owner=(0,eval)('authUser?.id||null');}catch{}
+    return !w.NQEntrySeen.has({owner,place:'hero',character:id,
+      version:(entry.narrativeVersion||config.heroVersion)+'-story-v1',domain:'normal'});
+  });
+  await intro.start.click();
+  if(expectedFilm){
+    const cinema=page.locator('#nqEntryCinema[open]');
+    await expect(cinema).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(cinema).toBeHidden();
+  }else if(normal&&await desktopCinemaEligible(page)){
+    await expect(page.locator('#nqEntryCinema[open]')).toHaveCount(0);
+  }
 }
 
 export async function bossPresentation(page: Page) {

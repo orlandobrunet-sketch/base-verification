@@ -113,12 +113,15 @@
       }
     }
     
-    function showGameCompletionModal() {
+    function showGameCompletionModal() { return renderVictoryResults(); }
+    function renderVictoryResults() {
+      if (!state.gameCompleted || state.correctTotal < 100 || document.getElementById('victoryModal')) return false;
+      const awarded = typeof getUnlockedAchievements === 'function' && getUnlockedAchievements().includes('arqui_nefromante_slayer');
       const modal = document.createElement('div');
       modal.className = 'nq-overlay victory-popup';
       modal.id = 'victoryModal';
       modal.innerHTML = `
-        <section class="nqvictory-card" aria-describedby="victoryDescription">
+        <section class="nqvictory-card" aria-describedby="victoryDescription"><button type="button" class="nqvictory-close" aria-label="Fechar resultados" data-action="closeVictoryResults">×</button>
           <div class="nqvictory-reading" role="region" tabindex="0" aria-label="Resultado da jornada">
             <div class="nqvictory-hero">
               <img class="nqvictory-art" src="assets/victory-jornada.webp" alt="Os três heróis celebram a vitória" width="1402" height="1122">
@@ -134,12 +137,12 @@
               <div><dt>Acertos</dt><dd>100</dd></div>
               <div><dt>Ouro</dt><dd>${state.gold}</dd></div>
             </dl>
-            <p class="nqvictory-champion">Você recebeu o <strong>Título de Campeão</strong>! Este badge ficará visível no Leaderboard.</p>
+            ${awarded ? '<div class="nqvictory-champion nqvictory-awarded"><img src="assets/achievements/campeao.webp" width="84" height="84" alt="Badge conquistado: Campeão da Nefrologia"><p><strong>Campeão da Nefrologia</strong><br>Conquista obtida nesta jornada.</p></div>' : ''}
           </div>
           <footer class="nqvictory-footer">
             <div class="nqvictory-actions">
               <button type="button" class="btn nqvictory-continue" data-action="continueAfterCompletion">Continuar jogando</button>
-              <button type="button" class="btn nqvictory-finish" data-action="finishGameCompletely">Encerrar jornada</button>
+              <button type="button" class="btn nqvictory-finish" data-action="returnHomeAfterVictory">Voltar à tela inicial</button>
             </div>
             <button type="button" class="btn nqvictory-share" data-action="shareVictory" data-pass-this="1">Compartilhar</button>
           </footer>
@@ -147,7 +150,24 @@
       `;
       document.body.appendChild(modal);
       nqDialogo(modal, { painel: modal.querySelector('.nqvictory-card') });
-      playSound('victory');
+      return true;
+    }
+    function closeVictoryResults() {
+      document.getElementById('victoryModal')?.remove();
+      renderHUD();
+      saveGame();
+    }
+    function reopenVictoryResults() {
+      if (!state.gameCompleted || state.correctTotal < 100 || state.gameOver ||
+          document.querySelector('dialog[open], .nq-overlay, .evolution-popup')) return false;
+      return renderVictoryResults();
+    }
+    function returnHomeAfterVictory() {
+      if (!state.gameCompleted || state.correctTotal < 100) return false;
+      document.getElementById('victoryModal')?.remove();
+      if (!_doSaveGame()) { _toast('Não foi possível salvar. Sua jornada continua aberta.', 'warning', 6000); return false; }
+      goToWelcomeFromGame();
+      return true;
     }
 
     function shareVictory(btn) {
@@ -1333,6 +1353,10 @@
         extraLifeGiven: state.extraLifeGiven || false,
         chestCorrectCount: state.chestCorrectCount || 0,
         chestTarget: state.chestTarget || 5,
+        gameStarted: !!state.gameStarted,
+        gameOver: !!state.gameOver,
+        gameCompleted: !!state.gameCompleted,
+        completedGame: !!state.completedGame,
         timestamp: Date.now(),
         schemaVersion: SAVE_SCHEMA_VERSION,
         saveOwner: owner,
@@ -2057,7 +2081,7 @@
       if ((window.NQPilot?.active || save.journeyDomain === 'pilot') &&
           (save.gameStarted !== true || save.gameOver || save.gameCompleted || save.completedGame || save.lives === 0)) return false;
       if (!window.NQPilot?.active && save.classBenefits &&
-          (!_normalCharacterSaveValid(save) || save.gameOver || save.completedGame || save.lives === 0)) {
+          (!_normalCharacterSaveValid(save) || save.gameOver || (save.completedGame && !(save.gameCompleted === true && save.correctTotal >= 100)) || save.lives === 0)) {
         _toast('O registro desta jornada não pode ser retomado com segurança. O save foi preservado.', 'warning', 6000);
         return false;
       }
@@ -2101,7 +2125,7 @@
       state.chestTarget = save.chestTarget || (Math.floor(Math.random() * 3) + 5);
       state.gameCompleted = (window.NQPilot?.active || save.classBenefits) ? !!save.gameCompleted
         : !!nqProgressStorage().getItem('nefroquest-arqui-defeated');
-      state.completedGame = (window.NQPilot?.active || save.classBenefits) ? !!save.completedGame : false;
+      state.completedGame = (window.NQPilot?.active || save.classBenefits) ? !!save.completedGame : !!save.completedGame && !!save.gameCompleted && save.correctTotal >= 100;
       state.gameOver = false;
       state.gameStarted = true;
       state.answered = false;
@@ -3524,6 +3548,15 @@
           if(heroCard) { heroCard.style.position='relative'; heroCard.appendChild(champBadge); }
         }
       } else if(existingChampBadge) { existingChampBadge.remove(); }
+      let resultsButton = document.getElementById('victoryResultsBtn');
+      if (state.gameCompleted && state.correctTotal >= 100) {
+        if (!resultsButton) {
+          resultsButton = document.createElement('button');resultsButton.id='victoryResultsBtn';resultsButton.type='button';
+          resultsButton.className='btn nq-victory-results-trigger';resultsButton.dataset.action='reopenVictoryResults';
+          resultsButton.textContent='Ver resultado da vitória';
+          document.getElementById('mainApp')?.querySelector('.game-title')?.append(resultsButton);
+        }
+      } else resultsButton?.remove();
       ui.heroImg.src=img; ui.heroImg.className=`portrait ${cls}`;
       const loadoutShell = ui.heroImg.closest('.nql-loadout-shell');
       if(loadoutShell) {

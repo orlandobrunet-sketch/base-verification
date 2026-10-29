@@ -2111,6 +2111,18 @@
   function showAcidBaseMinigame(){
     const progress = _loadProgress();
     const completed = new Set(progress.completed || []);
+    // Display derives from the catalog; it never grants access or writes progress.
+    const completedCount = CASES.filter(c => completed.has(c.id)).length;
+    const nextCase = CASES.find(c => !completed.has(c.id) && _isPlayable(c, completed));
+    const nextHTML = nextCase ? `
+      <div class="ab-next-label">Seu próximo atendimento</div>
+      <div class="ab-next-number">${nextCase.caso}</div>
+      <h2>${nextCase.title}</h2>
+      <p>${nextCase.character}</p>
+      <button type="button" class="ab-btn-primary" data-ab-next="${nextCase.id}">Iniciar caso</button>` : `
+      <div class="ab-next-label">Percurso concluído</div>
+      <h2>O equilíbrio foi restaurado</h2>
+      <p>Todos os casos foram concluídos. Escolha um atendimento abaixo para jogar novamente com novos valores.</p>`;
     try { if (typeof _track === 'function') _track('minigame_acid_base_opened', {}); } catch {}
 
     const cardsHTML = CASES.map((c, idx) => {
@@ -2143,14 +2155,35 @@
         <button type="button" class="ab-close" data-ab-close aria-label="Sair da Câmara">✕</button>
         <div class="ab-scroll">
           <div class="ab-hub">
+            <div class="ab-hub-layout">
+            <div class="ab-hub-banner">
             <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
             <h1 class="ab-title">Alquimista Renal</h1>
+            </div>
+            <div class="ab-hub-opening">
+            <div class="ab-hub-heading">
             <p class="ab-lead">Vinte pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta ratio, o cloreto e o pH urinário, os distúrbios mistos e triplos e o gap osmolar para restaurar o equilíbrio.</p>
+            </div>
+            <aside class="ab-desktop-only ab-next-case">
+              <svg class="ab-balance-seal" viewBox="0 0 120 120" fill="none" aria-hidden="true" focusable="false">
+                <circle cx="60" cy="60" r="53"/><circle cx="60" cy="60" r="44"/>
+                <path d="M60 25v66M44 92h32M30 44h60M60 25l5 9-5 9-5-9 5-9ZM33 44 20 69h26L33 44Zm54 0L74 69h26L87 44ZM20 69q13 18 26 0M74 69q13 18 26 0"/>
+              </svg>
+              ${nextHTML}
+            </aside>
+            </div>
+            <div class="ab-desktop-only ab-collection-heading">
+              <h2>Os pacientes do reino</h2>
+              <div class="ab-hub-progress"><span><strong>${completedCount}</strong> de ${CASES.length} casos concluídos</span><progress max="${CASES.length}" value="${completedCount}" aria-label="Casos concluídos"></progress></div>
+            </div>
             <div class="ab-grid">${cardsHTML}</div>
+            <p class="ab-desktop-only ab-hub-note">Conclua um caso para liberar o próximo. Os casos concluídos podem ser repetidos com novos valores.</p>
+            </div>
           </div>
         </div>
       </div>`;
     _abFocar(overlay, '.ab-title');
+    window.NQChamberWorkspace?.mount(overlay);
   }
 
   function _bindOverlayEvents(overlay){
@@ -2160,9 +2193,9 @@
       if (!_abCurrent(overlay)) return;
       const t = e.target;
       if (t.closest('[data-ab-close]')) { _abFechar(overlay); return; }
-      const caseBtn = t.closest('[data-ab-case]');
+      const caseBtn = t.closest('[data-ab-case], [data-ab-next]');
       if (caseBtn){
-        const id = caseBtn.getAttribute('data-ab-case');
+        const id = caseBtn.getAttribute('data-ab-case') || caseBtn.getAttribute('data-ab-next');
         const c = CASES.find(x => x.id === id);
         const completed = new Set((_loadProgress(overlay._abBinding).completed) || []);
         if (c && _isPlayable(c, completed)) _startCase(overlay, c);
@@ -2219,8 +2252,13 @@
     const g = kase.gas;
     return `
       <div class="ab-context">
+        <div class="ab-patient-heading">
+        ${window.NQChamberArt?.portraitHTML(kase.id) || ''}
+        <div class="ab-patient-identity">
         <div class="ab-ornament">${kase.chapter}</div>
         <h1 class="ab-title">${kase.title}</h1>
+        </div>
+        </div>
         <p class="ab-narrative">${kase.narrative}</p>
         <div class="ab-gas-grid">
           <div class="ab-gas"><span>pH</span><strong>${_c(g.pH)}</strong></div>
@@ -2246,9 +2284,11 @@
           <button type="button" class="ab-btn-primary" data-ab-start-acts>Iniciar Diagnóstico em ${kase.acts.length} Atos →</button>
         </div>
       </div>`;
+    window.NQChamberArt?.hydrate(card);
     card.querySelector('[data-ab-start-acts]').onclick = () => _renderAct(overlay, kase, sess);
     _abFocar(card, '.ab-title');
     card.querySelector('[data-ab-close]').onclick = () => _abFechar(overlay);
+    window.NQChamberWorkspace?.mount(overlay);
   }
 
   function _renderAct(overlay, kase, sess){
@@ -2360,7 +2400,8 @@
       <div class="ab-scroll">
         ${_contextHeaderHTML(kase)}
         <div class="ab-body">
-          <div class="ab-progress">${progressDots}</div>
+          <div class="ab-desktop-only ab-act-count">Ato ${sess.actIdx + 1} de ${kase.acts.length}</div>
+          <div class="ab-progress" aria-label="Etapas do caso">${progressDots}</div>
           <div class="ab-prompt">${act.prompt}</div>
           ${grimoireBtn}
           <div class="ab-grimoire-panel" id="abGrimoirePanel" hidden></div>
@@ -2370,6 +2411,7 @@
       </div>`;
 
     card.querySelector('[data-ab-close]').onclick = () => _abFechar(overlay);
+    window.NQChamberArt?.hydrate(card);
     if (!(act.kind === 'num' && !actRes)) _abFocar(card, '.ab-prompt');
     card.querySelectorAll('[data-ab-goto]').forEach(b => {
       b.onclick = () => { sess.actIdx = parseInt(b.getAttribute('data-ab-goto'), 10); _renderAct(overlay, kase, sess); };
@@ -2436,6 +2478,7 @@
         card.querySelector('[data-ab-cards-submit]').onclick = () => _handleAnswerCards(overlay, kase, sess);
       }
     }
+    window.NQChamberWorkspace?.mount(overlay);
   }
 
   // Constrói o feedback (reutilizado na 1ª resposta e ao revisitar pelos dots).
@@ -2609,12 +2652,14 @@
         </div>
       </div>`;
     card.querySelector('[data-ab-close]').onclick = () => _abFechar(overlay);
+    window.NQChamberArt?.hydrate(card);
     card.querySelector('[data-ab-back]').onclick = () => showAcidBaseMinigame();
     _abFocar(card, '.ab-summary-title');
     card.querySelector('[data-ab-replay]').onclick = () => {
       const meta = CASES.find(c => c.id === kase.id);
       if (meta) _startCase(overlay, meta);
     };
+    window.NQChamberWorkspace?.mount(overlay);
   }
 
   // ── Expor entry point ──────────────────────────────────────────────────

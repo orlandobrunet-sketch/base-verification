@@ -1,4 +1,4 @@
-import { characterIntro } from '../helpers/cinema';
+import { characterIntro, confirmCharacterStart } from '../helpers/cinema';
 import { test, expect, Page } from '@playwright/test';
 import { openPilotChoice, setupPilotPage } from '../helpers/pilot';
 
@@ -121,7 +121,7 @@ test.describe('Selos: memória entre jornadas', () => {
     expect(await readStorage()).toEqual(before);
 
     // Percorrer o início real: só o commit confirmado limpa anúncios da jornada.
-    await (await characterIntro(page)).start.click();
+    await confirmCharacterStart(page);
     await page.waitForFunction(() => {
       const state = (0, eval)('state');
       const raw = localStorage.getItem('nefroquest-save-v7');

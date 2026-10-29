@@ -142,12 +142,15 @@
   function artManifest(value){
     if(!value||value.approved!==true||!value.states)return null;
     const rows={};const hashes=new Set();
-    for(const phase of phases){
-      const row=value.states[phase.id];
-      if(!row||typeof row.src!=='string'||!/^\/assets\/boss-cinema\/v1\/[a-zA-Z0-9._-]+\.(?:webp|png|jpg|jpeg)$/.test(row.src)||
+    const hits=['throne','hit1','hit2','mist','hit4','hit5','hit6','hit7','flame','last'];
+    if(value.hits&&(!Array.isArray(value.hits)||value.hits.length!==10||value.hits.some((key,i)=>key!==hits[i])))return null;
+    const keys=value.hits?hits:phases.map(phase=>phase.id);
+    for(const id of keys){
+      const row=value.states[id];
+      if(!row||typeof row.src!=='string'||!/^\/assets\/boss-cinema\/v[12]\/[a-zA-Z0-9._-]+\.(?:webp|png|jpg|jpeg)$/.test(row.src)||
          !/^[a-fA-F0-9]{64}$/.test(row.sha256||'')||typeof row.description!=='string')return null;
       const hash=row.sha256.toLowerCase();if(hashes.has(hash))return null;hashes.add(hash);
-      rows[phase.id]={src:row.src,sha256:hash,libraryFileId:row.libraryFileId??null,description:row.description,
+      rows[id]={src:row.src,sha256:hash,libraryFileId:row.libraryFileId??null,description:row.description,
         layout:row.layout==='panoramic'?'panoramic':'portrait',width:row.width,height:row.height,
         objectPosition:typeof row.objectPosition==='string'&&/^[0-9.]+% [0-9.]+%$/.test(row.objectPosition)?row.objectPosition:null};
     }
@@ -275,11 +278,12 @@
     imageState.imagesPending=!manifest;
     if(!manifest){imageState.ready=false;imageState.error=null;return;}
     if(!root||!activeArt||document.hidden)return;
-    const row=manifest[snapshot.phase.id],key=snapshot.contextKey+':'+snapshot.phase.id+':'+row.sha256;
+    const artKey=snapshot.defeated?'throne':window.NQBossArtStates.hits?.[snapshot.progress]||snapshot.phase.id;
+    const row=manifest[artKey],key=snapshot.contextKey+':'+artKey+':'+row.sha256;
     if(imageRequestKey===key)return;
     cancelImageTransition();imageRequestKey=key;imageTargetKey=key;imageState.ready=false;imageState.error=null;
-    const generation=imageGeneration,context=snapshot.contextKey,phase=snapshot.phase.id;
-    const valid=()=>!disposed&&root&&current?.contextKey===context&&current?.phase.id===phase&&imageGeneration===generation&&imageTargetKey===key&&!document.hidden;
+    const generation=imageGeneration,context=snapshot.contextKey,phase=snapshot.phase.id,progress=snapshot.progress,defeated=!!snapshot.defeated;
+    const valid=()=>!disposed&&root&&current?.contextKey===context&&current?.progress===progress&&!!current?.defeated===defeated&&imageGeneration===generation&&imageTargetKey===key&&!document.hidden;
     verifiedImage(row).then(async loaded=>{
       if(!valid())return;
       const incoming=inactiveArt,outgoing=activeArt;
@@ -288,12 +292,14 @@
       incoming.style.objectPosition=row.objectPosition||(row.layout==='panoramic'?'50% 0%':'60% top');
       await incoming.decode();if(!valid())return;
       root.dataset.artLayout=row.layout;
+      root.dataset.artKey=artKey;
+      root.style.setProperty('--nq-art-ratio',row.width+'/'+row.height);
       const commit=()=>{
         if(!valid())return;
         outgoing.style.opacity='0';outgoing.alt='';outgoing.setAttribute('aria-hidden','true');
         incoming.style.opacity='1';incoming.alt=row.description;incoming.removeAttribute('aria-hidden');
         activeArt=incoming;inactiveArt=outgoing;imageTimer=0;imageState.transitioning=false;
-        imageState.phase=phase;imageState.currentSrc=row.src;imageState.ready=true;
+        imageState.phase=phase;imageState.artKey=artKey;imageState.currentSrc=row.src;imageState.ready=true;
       };
       if(reduced.matches||!hpVisible()){commit();return;}
       imageState.transitioning=true;
@@ -377,18 +383,22 @@
   }
   function sync(){
     if(disposed)return false;
-    const raw=readNativeRaw(),snapshot=normalizeSnapshot(raw),previousKey=current?.contextKey;
+    const raw=readNativeRaw(),defeated=!!raw&&raw.over===true&&raw.lives===0&&raw.completed===false&&raw.continued===false;
+    // Presentation-only projection: the native defeat flags and HP remain authoritative.
+    const loss=defeated?normalizeSnapshot({...raw,over:false}):null;
+    const snapshot=normalizeSnapshot(raw)||(loss?{...loss,phase:phases[0],defeated:true}:null),previousKey=current?.contextKey;
     if(terminal){if(renderTerminal(raw))return true;clearTerminal();}
     hp.setVisible(hpVisible());hp.sync(raw);
     if(!snapshot){if(root)restore();current=null;return false;}
     current=snapshot;if(!mount())return false;placeNativeNotices();
+    root.dataset.outcome=snapshot.defeated?'defeat':'playing';
     hp.setVisible(hpVisible());renderHp(hp.inspection());
     root.dataset.context=snapshot.contextKey;root.dataset.phase=snapshot.phase.id;
     put('nqStaticStage','Etapa '+(snapshot.progress+1)+'/10');put('nqStaticHpText','HP '+snapshot.hp+'%');
     const track=$('nqStaticHpTrack');
     track.setAttribute('aria-valuenow',String(snapshot.hp));
     track.setAttribute('aria-valuetext','HP '+snapshot.hp+'%, '+snapshot.progress+' de 10 golpes concluídos');
-    put('nqStaticChapter',snapshot.phase.chapter);put('nqStaticTitle',snapshot.phase.title);put('nqStaticNarration',snapshot.phase.text);
+    put('nqStaticChapter',snapshot.defeated?'CONFRONTO FINAL':snapshot.phase.chapter);put('nqStaticTitle',snapshot.defeated?'Derrota':snapshot.phase.title);put('nqStaticNarration',snapshot.defeated?'':snapshot.phase.text);
     syncArt(snapshot);
     if(previousKey!==snapshot.contextKey){hp.wake(snapshot.contextKey);runHp();}
     return true;

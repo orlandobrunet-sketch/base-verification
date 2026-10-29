@@ -1,8 +1,8 @@
 /* Isolated local presentation. Never reads/writes combat, rewards, saves or RNG. */
 (function () {
   'use strict';
-  const canonicalSource='/assets/cinema/v1/NefroQuest-intro-batalha-v6.mp4';
-  const canonicalSHA256='ed14697042da460bb232c19e73a532c637f8cf3238d64230222de7ede4aee3ef';
+  const canonicalSource='/assets/cinema/v1/NefroQuest-camera-isolada-teste-04.mp4';
+  const canonicalSHA256='535a8a93b93a49f2cfe9c1284904c26e2287f5fcada2ebf48827c5a789136b9c';
   const desktop=matchMedia('(min-width:769px) and (hover:hover) and (pointer:fine)');
   const coarse=matchMedia('(any-pointer:coarse)');
   const motion=matchMedia('(prefers-reduced-motion:reduce)');
@@ -130,7 +130,7 @@
   }
   function configure(){
     const raw=window.NQ_BATTLE_INTRO_CONFIG||{};
-    // Exactly the selected original Fast v6. Neither camera04 nor old trials qualify.
+    // Owner selected camera04 for the new local revision.
     const source=raw.source===undefined?canonicalSource:raw.source;
     let valid=false;
     try{const url=new URL(source,location.href);valid=url.origin===location.origin&&url.pathname===canonicalSource&&!url.search&&!url.hash;}catch(_){}
