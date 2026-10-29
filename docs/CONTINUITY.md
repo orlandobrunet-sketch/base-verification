@@ -4,18 +4,18 @@
 
 **Publicado:** 16.28, `main` `5eba704` (PR905, 26/10). Site conferido contra a `main` por hash em 29/10.
 
-**Candidata visual em revisão:** 16.37, branch `claude/visual-consolidado-1637`, sobre `5eba704`. Consolida cinema 16.31, seis estados do chefe, três venenos V2, Câmara ilustrada com 20 retratos e Câmara paginada, mais o popup de tamanho fixo entre História e Exames. Composição, procedência das imagens e limites em [NQ_VISUAL_CONSOLIDATION_16.37.md](design/NQ_VISUAL_CONSOLIDATION_16.37.md). Merge e deploy dependem da aprovação do proprietário.
+**Candidata visual em revisão:** 16.38, branch `claude/visual-consolidado-1637`, sobre `5eba704`. Consolida cinema 16.31, seis estados do chefe, três venenos V2, Câmara ilustrada com 20 retratos e Câmara paginada, mais o popup de tamanho fixo entre História e Exames. Composição, procedência das imagens e limites em [NQ_VISUAL_CONSOLIDATION_16.38.md](design/NQ_VISUAL_CONSOLIDATION_16.38.md). Merge e deploy dependem da aprovação do proprietário.
 
 | Situação | Itens |
 |---|---|
 | Publicado | PR900/16.18 marca, equipamentos, leitores e modais · PR901/16.19 três questões clínicas · PR902/16.22 Gitelman, Simulado, recompensa V2 · PR903/16.23 Dashboard, Mapa, landing · PR904/16.25 Estudo, recompensas, Oráculo, demo · PR905/16.28 primeira integração do cinema · PR835 tag GA4 · PR831 canal `/contato/` · 15.85 trinta retratos das classes |
-| Implementado, aguardando aprovação | Candidata 16.37 acima |
-| Aguardando decisão do proprietário | Boss TRIO A7 (protótipo alternativo de 13 poses, fora do repositório; não carregar junto com a 16.37) · 12 fundos RGB de Conquistas (acabamento opcional) |
+| Implementado, aguardando aprovação | Candidata 16.38 acima |
+| Aguardando decisão do proprietário | Boss TRIO A7 (protótipo alternativo de 13 poses, fora do repositório; não carregar junto com a 16.38) · 12 fundos RGB de Conquistas (acabamento opcional) |
 | Não iniciado | Caixas gerais de perguntas (sem referência visual localizada) · pergaminho no modo antigo (pedido de 24/10, referência ainda não examinada) |
 
 ### Frentes ativas — no máximo três
 
-1. **Publicar a candidata visual 16.37** após revisão do proprietário e CI do SHA final.
+1. **Publicar a candidata visual 16.38** após revisão do proprietário e CI do SHA final.
 2. **PR834 — classificador por palavra inteira e negação.** A correção ainda não está na `main`. Reaplicar só o delta sobre a base vigente, preservando `nqCompProgressStorage`, com bump próprio; não reutilizar o arquivo antigo nem o número 15.38.
 3. **Integrações editoriais por elegibilidade.** O índice A37 registra 741 disposições autorais e 741 independentes, incluindo bloqueadas, fusões e holds — não são 741 aprovações. Os 72 vínculos curados de competência continuam congelados. Cada objeto exige gate, skill e autorização próprios.
 

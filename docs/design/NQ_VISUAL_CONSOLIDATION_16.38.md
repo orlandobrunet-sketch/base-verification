@@ -1,10 +1,10 @@
-# Consolidação visual 16.37 — cinema, chefe, veneno e Câmara
+# Consolidação visual 16.38 — cinema, chefe, veneno e Câmara
 
 Candidata montada em 29/10/2026 sobre a `main` publicada **16.28** (`5eba704`, PR905). Reúne em um único release o trabalho local posterior que nunca foi publicado:
 
 `Cinema 16.31 + Câmara → 16.32 → banner/infra 16.33 → 20 retratos 16.34 → workspace paginado 16.35 → popup estável`.
 
-Os números 16.29–16.36 só existiram em prévias locais. Esta entrega usa **16.37** para não colidir com nenhum deles nem rebaixar a versão publicada.
+Os números 16.29–16.36 só existiram em prévias locais, e 16.37 foi o primeiro número desta mesma candidata no PR906, antes do ajuste da moldura. Esta entrega usa **16.38** para não colidir com nenhum deles nem rebaixar a versão publicada.
 
 ## Composição
 
@@ -20,7 +20,9 @@ Ficaram **fora** de propósito: `local-preview.html` e `chamber-preview.html` (p
 
 Pedido: *"mantenha o tamanho do popup fixo — ele diminui quando clica em história e aumenta nos exames"*.
 
-No workspace desktop (≥961px, ponteiro fino, altura ≥600px, fonte ≤20px) o cartão fora do hub passa a ter `min-height: calc(100dvh - 20px)`, exatamente a altura útil da janela descontado o padding do overlay. Como as leituras longas já são paginadas para caber na janela, o cartão fica com a mesma largura, altura e posição em todas as abas. Foi escolhido `min-height` em vez do `height` do experimento: com conteúdo que coubesse, os dois resultam iguais; se algum conteúdo exceder a janela, o cartão cresce e continua envolvendo o texto em vez de deixá-lo vazar pela borda. Nada é ocultado e nenhuma fonte é reduzida. Texto ampliado, janelas baixas, touch e mobile continuam no reflow nativo, porque o workspace não é montado nesses casos.
+No workspace desktop (≥961px, ponteiro fino, altura ≥600px, fonte ≤20px) a Câmara inteira usa **uma única moldura**: hub (Visão geral e 20 pacientes), introdução, todos os atos e o resumo. A moldura ocupa a altura útil da janela até 760px e, em telas mais altas, fica centralizada — em 1920×1080 é um cartão de 1160×760 em vez de uma coluna quase vazia de 1058px. As leituras longas são paginadas para caber nessa moldura, não na janela, então largura, altura e posição não mudam entre abas nem entre telas.
+
+O cartão usa `min-height` em vez da `height` do experimento: com conteúdo que cabe, o resultado é o mesmo; se algo exceder, o cartão cresce e continua envolvendo o texto em vez de deixá-lo vazar pela borda. Nada é ocultado e nenhuma fonte é reduzida. Texto ampliado, janelas baixas, touch e mobile continuam no reflow nativo, porque o workspace não é montado nesses casos.
 
 ## Procedência das imagens
 
@@ -44,8 +46,9 @@ Banco de questões, referências, histórico de revisões, gabaritos, IDs, FSRS,
 
 Provas novas, sobre os arquivos desta branch; não somadas às suítes históricas 16.32–16.35.
 
-- **Geometria do popup:** os 20 casos percorridos do primeiro ato ao resumo, todas as abas de cada tela, em 1280×720, 1159×684, 1857×721, 1440×900, 1920×1080 e 1024×768. Sem a regra: 200 telas mudam de tamanho em 1280×720. Com a regra: 0 telas instáveis em 9.840 medições, sem vazamento do cartão, sem página maior que a janela e sem perda de texto nas leituras paginadas.
-- **Spec 179** ganhou o teste permanente "card keeps its size between História and Exames" em três tamanhos, incluindo o estado após responder e o redimensionamento. Ele falha sem a regra (saltos de 93–105 px) e passa com ela.
+- **Geometria do popup:** os 20 casos percorridos do primeiro ato ao resumo, todas as abas de cada tela, em 1280×720, 1159×684, 1857×721, 1440×900, 1920×1080 e 1024×768. Sem a regra: 200 telas mudam de tamanho em 1280×720. Com a moldura única: um só retângulo por tamanho de tela em hub, introdução e todos os atos dos 20 casos (9.984 medições), sem vazamento do cartão, sem página maior que a janela e sem perda de texto nas leituras paginadas.
+- **Spec 179** ganhou dois testes permanentes: "card keeps its size between História and Exames" (três tamanhos, após responder e no redimensionamento; falha sem a regra com saltos de 93–105 px) e "hub and acts share one frame" (1159×684 e 1920×1080, moldura limitada e centralizada).
+- **Specs da Câmara após a moldura única** (78, 176, 177, 178, 179, chamber-art-manifest), desktop e mobile: 55 aprovados, 0 falhas, 39 skips por perfil.
 - **Specs focais** (10, 22, 31, 60, 78, 101, 131, 134, 136, 152, 164–179 e chamber-art-manifest), desktop e mobile: 331 aprovados, 0 falhas, 0 instáveis, 59 skips por perfil.
 - **Gates Node da CI:** editorial 67, service worker 29, cinema 7, piloto 118, respostas 104 — 325 aprovados, 0 falhas. Sintaxe, versão/Sentry, tamanho, segredos, XSS e `bump-release --check` sem acusações.
 - **Imagens:** 31/31 iguais ao inventário; 20 entradas de retrato com o próprio ID.

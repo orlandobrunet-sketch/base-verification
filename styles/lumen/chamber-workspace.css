@@ -3,10 +3,10 @@
 .nq-chamber-workspace .nql-reading-page[hidden],
 .nq-chamber-workspace .nql-reader-controls[hidden] { display: none !important; }
 @media (min-width: 961px) and (pointer: fine) {
-  .acid-base-overlay.acid-base-page.nq-chamber-workspace { padding: 12px 20px 8px; }
-  .acid-base-page.nq-chamber-workspace .ab-card { width: min(1160px,100%); }
-  /* Same card geometry on every tab (História/Exames, Questão/Comentário); grows instead of clipping if a page ever overflows. */
-  .acid-base-page.nq-chamber-workspace:not([data-ab-tela=hub]) .ab-card { min-height: calc(100dvh - 20px); }
+  /* One frame for every screen and tab: fills short windows, stops at 760px and centres on tall ones.
+     Readers paginate to this frame; min-height lets the card grow instead of clipping if a page ever overflows. */
+  .acid-base-overlay.acid-base-page.nq-chamber-workspace { --nql-frame: min(calc(100dvh - 20px), 760px); padding: max(12px, calc((100dvh - var(--nql-frame)) / 2)) 20px max(8px, calc((100dvh - var(--nql-frame)) / 2 - 4px)); }
+  .acid-base-page.nq-chamber-workspace .ab-card { width: min(1160px,100%); min-height: var(--nql-frame); }
   .acid-base-page.nq-chamber-workspace .ab-scroll { padding: 64px 28px 22px; }
   .acid-base-page.nq-chamber-workspace .ab-close { top: 12px; right: 20px; }
   .acid-base-page.nq-chamber-workspace .ab-hub > .nq-entry-replay { top:12px;left:28px; }

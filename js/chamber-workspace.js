@@ -93,7 +93,10 @@
       const column=root.closest('.ab-body,.ab-context');
       const trailing=column?Math.max(0,column.getBoundingClientRect().bottom-rect.bottom):reserve;
       // Reserve the real trailing controls plus reader navigation and outer spacing.
-      const available=Math.max(100,innerHeight-top-trailing-118);
+      // The card frame (not the window) bounds a page; +8 keeps the original window-height calibration.
+      const card=root.closest('.ab-card'),frame=card&&parseFloat(getComputedStyle(card).minHeight);
+      const limit=frame?card.getBoundingClientRect().top+frame+8:innerHeight;
+      const available=Math.max(100,limit-top-trailing-118);
       if(root.getBoundingClientRect().height<=available+1)return;
       const collected=[];let guard=0;
       while(root.childNodes.length&&root.getBoundingClientRect().height>available+1&&guard++<40){
