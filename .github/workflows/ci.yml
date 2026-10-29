@@ -233,7 +233,8 @@ jobs:
   # ── Job separado: Playwright Smoke E2E ────────────────────────────────────
   smoke-e2e:
     name: Smoke E2E Tests (Playwright)
-    runs-on: ubuntu-latest
+    # ubuntu-latest virou 26.04 em out/2026 e o Playwright 1.60 não instala Chromium nele.
+    runs-on: ubuntu-24.04
     needs: quality
     timeout-minutes: 10
 
@@ -293,7 +294,8 @@ jobs:
   # ── Job separado: Playwright E2E Completo (Informativo) ───────────────────
   e2e:
     name: Full E2E Tests (Playwright)
-    runs-on: ubuntu-latest
+    # ubuntu-latest virou 26.04 em out/2026 e o Playwright 1.60 não instala Chromium nele.
+    runs-on: ubuntu-24.04
     needs: smoke-e2e
     # A suíte cresceu de 21 para 24 specs (charselect, auditoria, taxonomia) e
     # passou a estourar os 20min, terminando por timeout — um job que não
