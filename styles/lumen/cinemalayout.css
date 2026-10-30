@@ -1,7 +1,7 @@
 /* TRIO prototype: the existing NefroQuest shell and question component stay in place. */
 #nqBossArena[hidden] { display: none !important; }
 @media (min-width: 769px) and (hover: hover) and (pointer: fine) {
-  @media not all and (any-pointer: coarse) {
+  @media all {
   body.boss-battle-mode #mainApp[data-nq-ui="lumen"].nq-arena-active #nqBossEncounter {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;

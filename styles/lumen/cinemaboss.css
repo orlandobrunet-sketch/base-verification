@@ -1,6 +1,6 @@
 /* Local A3: this file owns only the desktop battle-card interior. */
 @media (min-width:769px) and (hover:hover) and (pointer:fine) {
-  @media not all and (any-pointer:coarse) {
+  @media all {
     body #mainApp[data-nq-ui="lumen"].nq-arena-active #nqBossEncounter.nq-static-context {
       display:block !important;
       width:100%;
@@ -135,7 +135,7 @@
 /* R1 desktop notices occupy their own row before the banner. Native nodes and
    lifetimes are untouched; no fixed overlay can cover HP, answers or Next. */
 @media (min-width:769px) and (hover:hover) and (pointer:fine) {
- @media not all and (any-pointer:coarse) {
+ @media all {
   #nqDesktopNoticeRail {display:flex;flex-wrap:wrap;align-items:flex-start;gap:10px;width:100%;min-width:0;margin:0 0 12px;padding:0 0 20px;box-sizing:border-box;}
   #nqDesktopNoticeRail[hidden] {display:none!important;}
   #nqDesktopNoticeRail>#nqAchievementCelebrations {position:static;inset:auto;flex:0 1 360px;width:min(360px,100%);max-height:none;overflow:visible;}

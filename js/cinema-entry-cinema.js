@@ -4,7 +4,7 @@
 const fine=matchMedia('(min-width:769px) and (hover:hover) and (pointer:fine)'),coarse=matchMedia('(any-pointer:coarse)'),motion=matchMedia('(prefers-reduced-motion:reduce)');
 let dialog=null,nodes=null,active=null,revision=0,disposed=false,monitor=0,loadTimer=0,stallTimer=0,idleTimer=0,observer=null,phaseTimer=0,phaseDeadline=0,phaseRemaining=0,phaseAction=null,scrollLock=null,scrollObserver=null;
 const view={open:false,key:null,kind:null,stage:'closed',manual:false,available:false,source:null,started:false,muted:true,paused:true,soundOptIn:false,userVolume:1,maximumLinearPlaybackGain:1,effectiveVolume:1,audibleVolume:0,reducedMotion:motion.matches,visibilityPaused:false,firstFrameReady:false,frameReady:false,frameVisible:false,preflight:false,committed:false,storyParagraphs:0,reason:null,error:null};
-const eligible=()=>fine.matches&&!coarse.matches&&!(navigator.maxTouchPoints>0);
+const eligible=()=>fine.matches;
 const visible=n=>!!n?.isConnected&&!n.hidden&&n.getClientRects().length>0&&!n.closest('[hidden],[inert]')&&getComputedStyle(n).visibility!=='hidden';
 function contextCurrent(s){try{return !!s&&s.isCurrent(s.key)===true;}catch(_){return false;}}
 const valid=s=>!!s&&!s.done&&contextCurrent(s);

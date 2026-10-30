@@ -2,8 +2,7 @@ import { expect, type Locator, type Page } from '@playwright/test';
 
 /** Device contract, independent of whether the expected presentation mounted. */
 export async function desktopCinemaEligible(page: Page) {
-  return page.evaluate(() => matchMedia('(min-width:769px) and (hover:hover) and (pointer:fine)').matches &&
-    !matchMedia('(any-pointer:coarse)').matches && navigator.maxTouchPoints === 0);
+  return page.evaluate(() => matchMedia('(min-width:769px) and (hover:hover) and (pointer:fine)').matches);
 }
 
 /** Selection always opens the explicit native confirmation before any automatic film. */

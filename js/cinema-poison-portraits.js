@@ -1,7 +1,7 @@
 /* Desktop presentation reads the native equipment-block flag; never owns its duration or effects. */
 (()=>{'use strict';const fine=matchMedia('(min-width:769px) and (hover:hover) and (pointer:fine)'),coarse=matchMedia('(any-pointer:coarse)'),paths=Object.freeze({nephros:'/assets/poison-cinema/v2/nephros-nivel10-veneno-v2.webp',aquaria:'/assets/poison-cinema/v2/aquaria-nivel10-veneno-v2.webp',glomerulus:'/assets/poison-cinema/v2/glomerulus-nivel10-veneno-v2.webp'}),failed=new Set();let queued=false;
  function read(){try{const main=document.getElementById('mainApp');return{character:state.character,active:state.bossStunActive===true&&state.gameStarted===true&&typeof isBossBattle==='function'&&isBossBattle()&&document.body.classList.contains('boss-stun-active')&&!!main&&!main.classList.contains('hidden'),canonical:heroMeta()[1]};}catch(_){return null;}}
- function sync(){queued=false;const image=document.getElementById('heroImg'),s=read();if(!image||!s)return;const selected=paths[s.character],enabled=fine.matches&&!coarse.matches&&!(navigator.maxTouchPoints>0)&&s.active&&selected&&!failed.has(selected),source=enabled?selected:s.canonical;
+ function sync(){queued=false;const image=document.getElementById('heroImg'),s=read();if(!image||!s)return;const selected=paths[s.character],enabled=fine.matches&&s.active&&selected&&!failed.has(selected),source=enabled?selected:s.canonical;
   if(enabled){if(image.dataset.nqPoisonV2!==s.character)image.dataset.nqPoisonV2=s.character;}else delete image.dataset.nqPoisonV2;
   if(source&&image.src!==new URL(source,document.baseURI).href)image.src=source;
  }

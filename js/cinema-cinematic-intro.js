@@ -14,7 +14,7 @@
     reducedMotion:motion.matches,muted:true,paused:true,firstFrameReady:false,mediaError:null,
     closingReason:null,sourceProvenance:null,played:false,ended:false,
     userVolume:1,maximumLinearPlaybackGain:1,effectiveVolume:1,soundOptIn:false};
-  const eligible=()=>desktop.matches&&!coarse.matches&&!(navigator.maxTouchPoints>0);
+  const eligible=()=>desktop.matches;
   const visible=node=>!!node&&node.isConnected&&!node.hidden&&node.getClientRects().length>0&&getComputedStyle(node).visibility!=='hidden';
   const content=(node,value)=>{const text=String(value||'');if(node.textContent!==text)node.textContent=text;};
   function othersOpen(){

@@ -43,7 +43,7 @@ Em aberto:
 
 1. **Refazer o filme do Glomerulus.** Entre 4,4 s e 6,4 s a mão some e o rosto muda. Pedir pelo menos 3 s de gesto, câmera fixa, usando o quadro de 4,2 s como referência.
 2. **Som dos filmes de herói.** Quase mudos (-38 a -44 dB). Precisam de três faixas de 8 s, ou o botão de som deve sair deles.
-3. **Celular.** Não vê nenhum filme, nem o epílogo, que pesaria só 1,25 MB. Notebooks com tela de toque também ficam de fora. Conferir no GA4 quantos concluem pelo celular.
+3. **Celular.** Não vê nenhum filme, nem o epílogo, que pesaria só 1,25 MB. Conferir no GA4 quantos concluem pelo celular. Notebooks com tela de toque passaram a ver os filmes na 16.43.
 4. **Arte final da vitória.** Tem outro acabamento em relação aos filmes. A 16.42 aplica só um ajuste leve de cor; na tela o retrato aparece recortado em 16:9, e o quadro inteiro segue nos resultados. No filme da queda quem lidera é o Dr. Glomerulus, e no filme do chefe, o Dr. Nephros.
 5. **Raio do filme do chefe.** Nasce sem origem visível e o vilão não reage. Refazer ou abrir com `NefroQuest-intro-batalha-v6.mp4`, hoje sem uso.
 

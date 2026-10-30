@@ -11,7 +11,7 @@
   let startWrapper = null, chamberWrapper = null, loreWrapper = null, introWrapper = null;
   const stories = new Map();
   const metrics = {automaticOpened:0, manualOpened:0, skipped:0, started:0, failedOpen:0};
-  const eligible = () => !disposed && fine.matches && !coarse.matches && !(navigator.maxTouchPoints > 0);
+  const eligible = () => !disposed && fine.matches;
   function owner() { try { return authUser?.id || null; } catch (_) { return null; } }
   function normal() {
     try { return !window.NQPilot?.active && !(typeof isProgressSandbox === 'function' && isProgressSandbox()); }
