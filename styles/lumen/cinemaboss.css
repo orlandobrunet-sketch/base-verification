@@ -145,3 +145,10 @@
   @keyframes nqNoticeRailOut {from{opacity:1;transform:none}to{opacity:0;transform:translateY(10px)}}
  }
 }
+/* The last hit is the only one the jump-to-zero would otherwise leave without impact. */
+@media(prefers-reduced-motion:no-preference){
+  #nqBossStatic[data-terminal="true"] #nqStaticHpFill {transition:width 320ms ease-out;}
+  #nqBossStatic[data-terminal="true"] #nqStaticHpTrail {transition:width 520ms ease-out 150ms;}
+  #nqBossStatic[data-terminal="true"] .nq-static-atmosphere {animation:nq-static-final-flash 1100ms ease-out both;}
+}
+@keyframes nq-static-final-flash {0%{filter:brightness(1);}16%{filter:brightness(2.6);}100%{filter:brightness(1);}}

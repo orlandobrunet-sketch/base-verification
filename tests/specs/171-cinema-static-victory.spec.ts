@@ -3,9 +3,9 @@ test('static epilogue pauses, replays without music duplication and finishes onc
  await page.goto('/cinema-preview.html');await page.locator('[data-preview="victory"]').click();const d=page.locator('#nqVictoryCinema[open]');
  await expect(d.locator('video')).toHaveCount(0);await expect(d.locator('img.nq-victory-epilogue__image')).toBeVisible();await expect(d.locator('audio')).toHaveCount(1);
  await expect(d.locator('audio')).toHaveJSProperty('paused',true);await d.getByRole('button',{name:'Ativar som',exact:true}).click();await expect(d.locator('audio')).toHaveJSProperty('muted',false);
- await d.getByRole('button',{name:'Pausar epílogo',exact:true}).click();const time=await page.evaluate(()=>(window as any).NQVictoryCinema.inspection.elapsed);await page.waitForTimeout(900);expect(await page.evaluate(()=>(window as any).NQVictoryCinema.inspection.elapsed)).toBe(time);await expect(d.locator('audio')).toHaveJSProperty('paused',true);
- await d.getByRole('button',{name:'Rever epílogo',exact:true}).click();await expect(d.locator('audio')).toHaveCount(1);await expect(d.locator('audio')).toHaveJSProperty('muted',true);
- await expect(d.locator('.nq-epilogue-caption')).toHaveText('OS RINS FORAM SALVOS!',{timeout:6000});await expect(d).toBeHidden({timeout:12000});
+ await d.getByRole('button',{name:'Pausar',exact:true}).click();const time=await page.evaluate(()=>(window as any).NQVictoryCinema.inspection.elapsed);await page.waitForTimeout(900);expect(await page.evaluate(()=>(window as any).NQVictoryCinema.inspection.elapsed)).toBe(time);await expect(d.locator('audio')).toHaveJSProperty('paused',true);
+ await d.getByRole('button',{name:'Rever',exact:true}).click();await expect(d.locator('audio')).toHaveCount(1);await expect(d.locator('audio')).toHaveJSProperty('muted',false);
+ await expect(d.locator('.nq-epilogue-caption')).toHaveText('OS RINS FORAM SALVOS!',{timeout:9000});await expect(d).toBeHidden({timeout:12000});
  expect(await page.evaluate(()=>(window as any).NQNativeCinemaAudio.inspection.owners)).toBe(0);await expect(page.locator('audio[data-nq-movie-music]')).toHaveCount(0);
 });
 

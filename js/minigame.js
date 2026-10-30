@@ -461,7 +461,7 @@
           <p class="nqboss-story">Após noventa batalhas, você finalmente chega ao <strong>Trono da Uremia</strong> — o coração sombrio do reino corrompido. Diante de você ergue-se o <strong>Arqui-Nefromante</strong>, senhor da insuficiência renal eterna, cujos feitiços de azotemia e hiperfiltração maligna destruíram milhares de néfrons.</p>
           <blockquote>
           <p>Ele sorri com desprezo:</p>
-          <p class="nqboss-quote">“Você chegou longe demais para um simples médico. Mas o conhecimento que carrega não é suficiente para me derrotar.”</p>
+          <p class="nqboss-quote">“Longe demais para quem só tem um diploma. O que você sabe não basta para me derrotar.”</p>
           </blockquote>
           </div>
           <div id="bossIntroChallenge" hidden>

@@ -1,5 +1,7 @@
 /* One owner-supplied replacement bed per movie. Native preference/gate ownership stays in the players. */
-(()=>{'use strict';const instances=new WeakMap(),tracks={battle:{source:'/assets/cinema-audio/v1/battle-dragon-due.mp3',gain:.3,offset:0},victory:{source:'/assets/cinema-audio/v1/victory-sovereign-ascent.mp3',gain:.3,offset:0}};
+(()=>{'use strict';const instances=new WeakMap(),tracks={battle:{source:'/assets/cinema-audio/v1/battle-dragon-due.mp3',gain:.55,offset:0},victory:{source:'/assets/cinema-audio/v1/victory-sovereign-ascent.mp3',gain:.55,offset:0}},SOUND_KEY='nefroquest-cinema-sound';
+ // Device preference only: restored after playback starts, and only once the page has a user gesture.
+ const rememberedOn=()=>{try{return localStorage.getItem(SOUND_KEY)==='on'&&navigator.userActivation?.hasBeenActive===true;}catch(_){return false;}},remember=on=>{try{localStorage.setItem(SOUND_KEY,on?'on':'off');}catch(_){}};
  function attach(video,key,onError){const config=tracks[key];if(!config)return null;instances.get(video)?.dispose();
   const audio=new Audio();audio.hidden=true;audio.dataset.nqMovieMusic=key;audio.preload='auto';audio.loop=false;audio.muted=true;audio.volume=0;video.parentElement.append(audio);
   let disposed=false,enabled=false,level=0,waiting=false,pending=false,failed=false,exiting=false,tail=false,raf=0;const events=[];
@@ -15,5 +17,5 @@
   function tick(){if(disposed)return;volume();raf=requestAnimationFrame(tick);}tick();audio.src=config.source;audio.load();
   const api={sync,beginExit(){exiting=true;tail=!audio.paused&&!audio.muted&&audio.volume>0;},get tailPlaying(){return tail&&!audio.paused;},get failed(){return failed;},get inspection(){return{source:audio.currentSrc,paused:audio.paused,muted:audio.muted,volume:audio.volume,time:audio.currentTime,failed};},dispose(){if(disposed)return;disposed=true;cancelAnimationFrame(raf);for(const[t,e,f]of events)t.removeEventListener(e,f);audio.pause();audio.muted=true;audio.removeAttribute('src');audio.load();audio.remove();instances.delete(video);}};instances.set(video,api);return api;
  }
- window.NQMovieSound=Object.freeze({attach,dispose:video=>instances.get(video)?.dispose()});
+ window.NQMovieSound=Object.freeze({attach,dispose:video=>instances.get(video)?.dispose(),rememberedOn,remember});
 })();

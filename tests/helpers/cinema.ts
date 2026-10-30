@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+import { expect, type Locator, type Page } from '@playwright/test';
 
 /** Device contract, independent of whether the expected presentation mounted. */
 export async function desktopCinemaEligible(page: Page) {
@@ -95,4 +95,13 @@ export async function finishBossCinema(page: Page, stopAtFilm = false) {
     await expect(results).toBeVisible();
     await expect.poll(() => page.evaluate(() => (window as any).NQVictoryBridge.inspection.deliveredCount)).toBe(1);
   }
+}
+
+/** Walks the character cards with the real control; the film starts after the last one. */
+export async function advanceToFilm(dialog: Locator) {
+  const next = dialog.getByRole('button', { name: 'Avançar', exact: true });
+  await expect(async () => {
+    if (await next.isVisible()) await next.click({ timeout: 500 }).catch(() => {});
+    await expect(next).toBeHidden({ timeout: 250 });
+  }).toPass({ timeout: 20000 });
 }

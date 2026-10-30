@@ -1,14 +1,17 @@
 /* Presentation clock follows decoded media time; never owns game state or audio. */
 (function(){'use strict';
  const players=new WeakMap();
- const copy={nephros:['Dr. Nephros','A jornada começa agora.'],aquaria:['Dra. Aquaria','O reino aguarda sua maestria.'],glomerulus:['Dr. Glomerulus','Cada questão correta é um glomérulo preservado.'],chamber:['Câmara do Equilíbrio'],battle:['O Trono da Uremia','Você não está sozinho.'],victory:['OS RINS FORAM SALVOS!']};
+ const copy={nephros:['Dr. Nephros, primeiro plantão.','Cem acertos para salvar o reino.'],aquaria:['Dra. Aquaria, primeiro plantão.','Cem acertos para conter a maré.'],glomerulus:['Dr. Glomerulus, primeiro plantão.','Cem lâminas para vencer a guerra.'],chamber:['Câmara do Equilíbrio','O Arquivista lacrou vinte casos.'],battle:['Noventa batalhas depois.','Três guardiões, dez acertos.'],victory:['OS RINS FORAM SALVOS!']};
+ const smooth=p=>{const v=Math.max(0,Math.min(1,p));return v*v*(3-2*v);},TAIL=.56;
  function attach(dialog,video,aperture,key){
   players.get(dialog)?.dispose();const reduced=matchMedia('(prefers-reduced-motion:reduce)'),caption=document.createElement('p'),veil=document.createElement('div');
   caption.className='nq-movie-caption';caption.setAttribute('aria-live','polite');caption.setAttribute('aria-atomic','true');veil.className='nq-movie-veil';veil.setAttribute('aria-hidden','true');aperture.append(veil,caption);
   dialog.dataset.movieArt='true';dialog.dataset.movieKey=key;dialog.dataset.moviePhase='loading';
   dialog.style.setProperty('--nq-movie-exit','340ms');let raf=0,closed=false,last='',opening=false;
   const cues=(copy[key]||[]).map((text,i)=>({text,start:key==='victory'?5.1:i===0?.75:4.05,end:key==='victory'?7.75:i===0?3.75:7.35}));
-  function paint(){if(closed)return;const time=video.currentTime,cue=cues.find(c=>time>=c.start&&time<c.end),text=cue?.text||'';if(text!==last){caption.textContent=text;last=text;}const fade=reduced.matches?.08:.18,opacity=cue?String(Math.max(0,Math.min(1,(time-cue.start)/fade,(cue.end-time)/fade))):'0';if(caption.style.opacity!==opacity)caption.style.opacity=opacity;raf=requestAnimationFrame(paint);}
+  function paint(){if(closed)return;const time=video.currentTime,cue=cues.find(c=>time>=c.start&&time<c.end),text=cue?.text||'';if(text!==last){caption.textContent=text;last=text;}const fadeIn=reduced.matches?.08:.42,fadeOut=reduced.matches?.08:.32,opacity=cue?String(Math.min(smooth((time-cue.start)/fadeIn),smooth((cue.end-time)/fadeOut))):'0';if(caption.style.opacity!==opacity)caption.style.opacity=opacity;
+   // Fade over moving picture, so the film never freezes before it closes.
+   const phase=dialog.dataset.moviePhase;if(!reduced.matches&&Number.isFinite(video.duration)&&(phase==='playing'||phase==='tail')){const next=video.duration-time<=TAIL&&(!video.paused||video.ended)?'tail':'playing';if(phase!==next)dialog.dataset.moviePhase=next;}raf=requestAnimationFrame(paint);}
   function playing(){if(opening||closed)return;opening=true;dialog.dataset.moviePhase='opening';requestAnimationFrame(()=>{if(!closed)dialog.dataset.moviePhase='playing';});}
   video.addEventListener('playing',playing);paint();
   let freeze=null,exitRaf=0;

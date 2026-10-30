@@ -461,7 +461,7 @@
     // ============================================================
     // ============ SISTEMA DE NARRATIVA PROGRESSIVA ============
     const narrativeStages = [
-      {at:5, ch:"Capítulo I", title:"O Chamado das Águas", text:"Nos corredores sombrios do Hospital dos Néfrons Perdidos, um pergaminho antigo cai em suas mãos. Nele, um alerta: o Arqui-Nefromante está corrompendo os rins do reino, transformando néfrons saudáveis em pedra. Apenas um médico corajoso pode impedi-lo. Sua jornada começa agora."},
+      {at:5, ch:"Capítulo I", title:"O Chamado das Águas", text:"Nos corredores sombrios do Hospital dos Néfrons Perdidos, um pergaminho antigo cai em suas mãos. Nele, um alerta: o Arqui-Nefromante está corrompendo os rins do reino, transformando néfrons saudáveis em pedra. Só quem souber ler esse alerta pode impedi-lo. Sua jornada começa agora."},
       {at:10, ch:"Capítulo II", title:"As Criptas da Creatinina", text:"Você desce às Criptas da Creatinina, onde os primeiros sinais da corrupção são visíveis. Túbulos proximais enegrecidos, glomérulos encolhidos... O Arqui-Nefromante deixou rastros de ureia cristalizada. Cada questão que você domina purifica um néfron. Continue — os rins precisam de você."},
       {at:15, ch:"Capítulo III", title:"A Floresta dos Eletrólitos", text:"A Floresta dos Eletrólitos é um lugar traiçoeiro. Sódio e potássio flutuam como espíritos desequilibrados. Você encontra um velho mestre nefrologista que sussurra: 'O equilíbrio ácido-base é a chave. Sem ele, nenhum rim sobrevive.' Suas respostas corretas restauram a harmonia iônica."},
       {at:20, ch:"Capítulo IV", title:"O Lago da Filtração", text:"No Lago da Filtração, a água cristalina está turva. A barreira glomerular foi danificada — proteínas escapam para a urina como ouro derramado. Você precisa reconstruir os podócitos, um por um. Cada acerto é um passo para restaurar a membrana basal. A proteinúria diminui."},
@@ -574,9 +574,9 @@
     refreshCharacterPilotUI();
 
     const CHARACTER_INTROS = {
-      nephros:   { ch: 'Dr. Nephros · Guardião dos Néfrons',   text: 'O Reino dos Néfrons está sob ameaça. O Arqui-Nefromante corrompe cada túbulo com ignorância clínica — hipercalemia subestimada, DRC diagnosticada tarde, néfrons perdidos para sempre. Você enxerga o que outros ignoram: cada questão correta é um néfron preservado. A jornada começa agora.' },
-      aquaria:   { ch: 'Dra. Aquaria · Mestra das Águas',      text: 'Onde outros veem números, você vê correntes. O Arqui-Nefromante semeia desequilíbrio — hiponatremia que destrói neurônios, acidose que afoga tecidos. Seu domínio é o equilíbrio hidroeletrolítico. Cada resposta certa é uma maré controlada. O reino aguarda sua maestria.' },
-      glomerulus:{ ch: 'Dr. Glomerulus · Lâmina dos Glomérulos', text: 'A guerra acontece no nível celular. IgA se deposita, podócitos são apagados, glomérulos perdidos não se regeneram. O Arqui-Nefromante conta com a ignorância dos clínicos. Seu raciocínio é sua arma, as diretrizes são sua armadura. Cada questão correta é um glomérulo preservado.' }
+      nephros:   { ch: 'Dr. Nephros · Guardião dos Néfrons',   text: 'Os néfrons do reino estão virando pedra. O Arqui-Nefromante corrompe cada túbulo com ignorância clínica — hipercalemia subestimada, DRC diagnosticada tarde, néfrons perdidos para sempre. Cada acerto seu salva um. Cem acertos para salvar o reino.' },
+      aquaria:   { ch: 'Dra. Aquaria · Mestra das Águas',      text: 'Onde outros veem números, você vê correntes. O Arqui-Nefromante envenenou as águas do reino — hiponatremia que destrói neurônios, acidose que afoga tecidos. Seu domínio é o equilíbrio hidroeletrolítico. Cem acertos para conter a maré.' },
+      glomerulus:{ ch: 'Dr. Glomerulus · Lâmina dos Glomérulos', text: 'A guerra acontece no nível celular. IgA se deposita, podócitos são apagados, glomérulos perdidos não se regeneram. O Arqui-Nefromante semeia imunocomplexos pelo reino e conta com a ignorância dos clínicos. Seu raciocínio é sua arma, as diretrizes são sua armadura. Cem lâminas para vencer a guerra.' }
     };
 
     const CHARACTER_INITIAL_BONUS_COPY = {

@@ -15,7 +15,7 @@ for(const key of ['battle','victory'])for(const exit of ['close','skip','escape'
  expect(await page.evaluate(()=>(0,eval)('[wmTrack,bgA,bgB,...Object.values(SFX)].every(a=>a.volume===0)'))).toBe(true);
  if(key==='battle')await expect(d.locator('video')).toHaveJSProperty('muted',true);
  const range=d.locator('input[type=range]');await range.focus();await page.keyboard.press('Home');for(let i=0;i<(key==='victory'?20:20);i++)await page.keyboard.press('ArrowRight');
- await expect.poll(()=>bed.evaluate((a:HTMLAudioElement)=>a.volume)).toBeCloseTo(.06,3);
+ await expect.poll(()=>bed.evaluate((a:HTMLAudioElement)=>a.volume)).toBeCloseTo(.11,3);
  if(exit==='navigation'){
   await page.evaluate(()=>window.addEventListener('pagehide',()=>sessionStorage.setItem('qa-pagehide',JSON.stringify({owners:(window as any).NQNativeCinemaAudio.inspection.owners,beds:document.querySelectorAll('audio[data-nq-movie-music]').length})),{once:true}));
   await page.goto('/cinema-preview.html?after-navigation');expect(await page.evaluate(()=>JSON.parse(sessionStorage.getItem('qa-pagehide')!))).toEqual({owners:0,beds:0});
@@ -39,9 +39,9 @@ test.beforeEach(async({page})=>{test.skip(!await page.evaluate(()=>matchMedia('(
 for(const key of ['battle','victory'])test(`${key}: repeated opens and exits never accumulate players`,async({page})=>{
  await setup(page);const before=await prefs(page);
  for(const action of ['skip','escape','close']){
-  const d=await open(page,key);await d.getByRole('button',{name:'Ativar som',exact:true}).click();await expect.poll(()=>page.evaluate(()=>(window as any).NQNativeCinemaAudio.inspection.owners)).toBe(1);
+  await page.evaluate(()=>localStorage.removeItem('nefroquest-cinema-sound'));const d=await open(page,key);await d.getByRole('button',{name:'Ativar som',exact:true}).click();await expect.poll(()=>page.evaluate(()=>(window as any).NQNativeCinemaAudio.inspection.owners)).toBe(1);
   await expect(page.locator('audio[data-nq-movie-music]')).toHaveCount(1);
-  if(key==='victory'){await d.getByRole('button',{name:'Rever epílogo',exact:true}).click();await expect(d.locator('audio')).toHaveJSProperty('muted',true);await expect.poll(()=>page.evaluate(()=>(window as any).NQNativeCinemaAudio.inspection.owners)).toBe(0);await expect(d.locator('audio')).toHaveCount(1);}
+  if(key==='victory'){await d.getByRole('button',{name:'Rever',exact:true}).click();await expect(d.locator('audio')).toHaveJSProperty('muted',false);await expect.poll(()=>page.evaluate(()=>(window as any).NQNativeCinemaAudio.inspection.owners)).toBe(1);await expect(d.locator('audio')).toHaveCount(1);}
   if(action==='skip')await d.getByRole('button',{name:key==='victory'?'Ver resultados':'Pular introdução',exact:true}).click();
   if(action==='escape')await page.keyboard.press('Escape');
   if(action==='close')await d.locator(key==='victory'?'.nq-victory-cinema__close':'.nq-entry-cinema__close').click();
@@ -61,10 +61,10 @@ test('same character may start again without replaying an already seen film',asy
  }
  expect(await page.evaluate(()=>(window as any).state.correctTotal)).toBe(0);
 });
-test('black reading cards and cinema controls fit at1100 with enlarged text',async({page})=>{
+test('dark reading cards and cinema controls fit at1100 with enlarged text',async({page})=>{
  await setup(page);await page.setViewportSize({width:1100,height:740});await page.locator('[data-preview="nephros"]').click();const d=page.locator('dialog[open]'),card=d.locator('.nq-movie-prologue');
  await expect.poll(()=>card.locator('.nq-prologue-copy').evaluate(el=>Number(getComputedStyle(el).opacity))).toBe(1);
- await d.getByRole('button',{name:'Pausar história',exact:true}).click();await page.evaluate(()=>document.documentElement.style.fontSize='32px');
+ await d.getByRole('button',{name:'Pausar',exact:true}).click();await page.evaluate(()=>document.documentElement.style.fontSize='32px');
  await expect(card.locator('.nq-prologue-copy')).toBeVisible();expect(await card.evaluate(el=>el.scrollHeight<=el.clientHeight)).toBe(true);
  expect(await page.evaluate(medirContraste,'.nq-movie-prologue')).toEqual([]);
  for(const control of await d.locator('button:visible,input:visible').all()){const b=(await control.boundingBox())!;expect(b.x).toBeGreaterThanOrEqual(0);expect(b.y).toBeGreaterThanOrEqual(0);expect(b.x+b.width).toBeLessThanOrEqual(1101);expect(b.y+b.height).toBeLessThanOrEqual(741);}

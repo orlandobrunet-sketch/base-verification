@@ -4,10 +4,10 @@
   'use strict';
   const names = {nephros:'Dr. Nephros', aquaria:'Dra. Aquaria', glomerulus:'Dr. Glomerulus'};
   const phases = Object.freeze([
-    Object.freeze({id:'throne', title:'O Trono da Uremia', chapter:'O confronto começa', text:'Após noventa batalhas, você chega ao Trono da Uremia.'}),
-    Object.freeze({id:'mist', title:'A Névoa da Azotemia', chapter:'O feitiço do Arqui-Nefromante', text:'A névoa tóxica invade seus sentidos. Mas a chama do conhecimento ainda pulsa dentro de você.'}),
-    Object.freeze({id:'flame', title:'A Chama dos Néfrons', chapter:'A força retorna', text:'A névoa se dissipa. Seus equipamentos voltam a brilhar — a força retorna!'}),
-    Object.freeze({id:'last', title:'A Última Prova', chapter:'Uma última questão', text:'Uma última questão. Uma última resposta. O destino dos rins do reino depende de você.'})
+    Object.freeze({id:'throne', title:'O Trono da Uremia', chapter:'O confronto começa', text:'“Longe demais para quem só tem um diploma.”'}),
+    Object.freeze({id:'mist', title:'A Névoa da Azotemia', chapter:'O feitiço do Arqui-Nefromante', text:'A névoa travou seus equipamentos. Sobrou o que você sabe.'}),
+    Object.freeze({id:'flame', title:'A Chama dos Néfrons', chapter:'A força retorna', text:'Os néfrons que você salvou filtram o veneno. Seus equipamentos voltam.'}),
+    Object.freeze({id:'last', title:'A Última Prova', chapter:'Uma última questão', text:'Uma última questão. Uma última resposta.'})
   ]);
   function phaseForProgress(progress) {
     if (!Number.isSafeInteger(progress) || progress < 0 || progress > 9) return null;
@@ -220,6 +220,7 @@
     cancelHp();hp.setVisible(false);if(raw.completed)hp.sync(raw);
     root.dataset.terminal='true';root.dataset.hpMotion='rest';root.dataset.hpAwake='false';
     put('nqStaticStage','Etapa 10/10');put('nqStaticHpText','HP 0%');
+    put('nqStaticChapter','Golpe final');put('nqStaticTitle','O Último Acerto');put('nqStaticNarration','“Você... venceu. Mas a Uremia... sempre volta...”');
     const track=$('nqStaticHpTrack');track?.setAttribute('aria-valuenow','0');
     track?.setAttribute('aria-valuetext','HP 0%, 10 de 10 golpes concluídos');
     if($('nqStaticHpFill'))$('nqStaticHpFill').style.width='0%';

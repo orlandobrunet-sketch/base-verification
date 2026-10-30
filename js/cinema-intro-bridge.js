@@ -6,7 +6,7 @@
  const seen = new Set(), stories = new Map();
  const fine = matchMedia('(min-width:769px) and (hover:hover) and (pointer:fine)');
  const coarse = matchMedia('(any-pointer:coarse)');
- let original = null, active = null, serial = 0, observer = null, disposed = false, pending = null, retryTimer = 0;
+ let original = null, nativeEvolution = null, heldEvolution = null, active = null, serial = 0, observer = null, disposed = false, pending = null, retryTimer = 0;
  const metrics = {authoredStoryParses:0, automaticOpened:0, manualOpened:0, fallbacks:0};
  const eligible = () => !disposed && fine.matches && !coarse.matches && !(navigator.maxTouchPoints > 0);
  function owner() { try { return authUser?.id || null; } catch (_) { return null; } }
@@ -137,13 +137,15 @@
      if (active === session) active = null;
      if (!manual && !detail?.started && detail?.reason === 'interrupted' && current(session)) {pending = session;scheduleRetry();}
      announceClosed(session, detail?.reason || 'closed');
+     const held = heldEvolution;heldEvolution = null;
+     if (held && current(session)) nativeEvolution.apply(held.receiver, held.args);
     }}) === true;
   } catch (_) { accepted = false; }
   if (!accepted) {
    if (active === session) active = null;
    return false;
   }
-  if (manual) metrics.manualOpened++; else metrics.automaticOpened++;
+  if (manual) metrics.manualOpened++; else { metrics.automaticOpened++; try { playSound('boss'); } catch (_) {} }
   return true;
  }
  function openManual() {
@@ -158,6 +160,12 @@
   original = typeof window.showBossIntroPopup === 'function' ? window.showBossIntroPopup : null;
   if (original) window.showBossIntroPopup = function () {
    if (!open(false)) {metrics.fallbacks++;return original.apply(this, arguments);}
+  };
+  // A level-up popup arrives 600 ms after the 90th hit; it waits for the film instead of cutting it.
+  nativeEvolution = typeof window.showEvolutionPopup === 'function' ? window.showEvolutionPopup : null;
+  if (nativeEvolution) window.showEvolutionPopup = function () {
+   if (active && current(active)) {heldEvolution = {receiver:this, args:arguments};return undefined;}
+   return nativeEvolution.apply(this, arguments);
   };
   const arena = window.NQBossArena;
   for (const method of ['sync','outcome']) {

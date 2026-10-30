@@ -128,7 +128,7 @@
               <div class="nqvictory-identity">
                 <p class="nqvictory-intro">NefroQuest</p>
                 <h2 id="victoryTitle">Jornada concluída</h2>
-                <p class="nqvictory-description" id="victoryDescription">Você purificou o Reino e venceu o NefroQuest!</p>
+                <p class="nqvictory-description" id="victoryDescription">Você purificou o Reino e derrotou o Arqui-Nefromante!</p>
               </div>
             </div>
             <dl class="nqvictory-stats">
