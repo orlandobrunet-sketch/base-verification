@@ -1,10 +1,10 @@
-# Consolidação visual 16.38 — cinema, chefe, veneno e Câmara
+# Consolidação visual 16.39 — cinema, chefe, veneno e Câmara
 
 Candidata montada em 29/10/2026 sobre a `main` publicada **16.28** (`5eba704`, PR905). Reúne em um único release o trabalho local posterior que nunca foi publicado:
 
 `Cinema 16.31 + Câmara → 16.32 → banner/infra 16.33 → 20 retratos 16.34 → workspace paginado 16.35 → popup estável`.
 
-Os números 16.29–16.36 só existiram em prévias locais, e 16.37 foi o primeiro número desta mesma candidata no PR906, antes do ajuste da moldura. Esta entrega usa **16.38** para não colidir com nenhum deles nem rebaixar a versão publicada.
+Os números 16.29–16.36 só existiram em prévias locais, e 16.37–16.38 foram commits intermediários desta mesma candidata no PR906. Esta entrega usa **16.39** para não colidir com nenhum deles nem rebaixar a versão publicada.
 
 ## Composição
 
@@ -37,6 +37,13 @@ Todas conferidas por SHA256 contra `IMAGENS-INVENTARIO.json` da auditoria de 29/
 | Epílogo estático | `assets/victory-jornada.webp`, 1402×1122 | Imagem canônica já publicada, sem alteração |
 
 Vídeo da câmera 04 e as duas músicas opt-in também conferem com os hashes de `victory-reframed-20261028/MEDIA-HASHES.json`.
+
+## Reconciliações com a main encontradas pela CI completa
+
+O E2E completo do PR906 apontou duas diferenças de comportamento vindas do pacote 16.31 que os specs da main ainda cobriam:
+
+- **Retrato do personagem no desktop.** O acabamento da batalha deixou o retrato parado e escondeu o botão de pausar a animação no desktop inteiro, embora o handoff pedisse "retrato estático" só na batalha. A regra agora vale só durante o chefe e no retrato de veneno V2; na jornada normal a animação e o botão de pausa voltam a funcionar como na 16.28 (specs 19 e 139).
+- **Encerrar jornada.** O resultado redesenhado trocou "Encerrar jornada" por "Voltar à tela inicial", e com isso a vitória deixava de contar a partida nas estatísticas e de enviar a pontuação ao ranking. O botão "Encerrar jornada" voltou, abaixo das outras duas ações; fechar, reabrir os resultados e voltar à tela inicial sem encerrar continuam disponíveis. Os specs 75 e 92 foram ajustados ao resultado novo (a janela só abre para uma vitória real, e o selo de Campeão só aparece quando a conquista foi concedida) sem perder nenhuma verificação de foco, contraste, toque ou texto ampliado.
 
 ## O que não muda
 

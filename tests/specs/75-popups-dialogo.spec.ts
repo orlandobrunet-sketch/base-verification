@@ -26,7 +26,8 @@ test.beforeEach(({}, info) => {
 const POPUPS: [string, string][] = [
   ['Oráculo antes da resposta', '_showOracleAnswerFirst()'],
   ['Oráculo no confronto', '_showOracleBlockedNarrative()'],
-  ['conclusão da jornada', 'showGameCompletionModal()'],
+  // O resultado só abre para uma vitória real (100 acertos e jornada concluída).
+  ['conclusão da jornada', 'state.gameCompleted=true;state.correctTotal=100;showGameCompletionModal()'],
   ['vida extra', 'showExtraLifeModal()'],
   ['evolução', "showEvolutionPopup(6, 'Título de teste', 'assets/classes/glomerulus_6.png')"],
   ['equipamento encontrado', "showForgePopup({n:'Gorro de CTI',rar:'rare',atk:1,def:2,kno:1,luck:0}, 'helmet', ['ATK 1','DEF 2'], 'Equipamento Encontrado!')"],

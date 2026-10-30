@@ -4,6 +4,7 @@
 .nqvictory-awarded{display:flex;align-items:center;justify-content:center;gap:16px;text-align:left}
 .nqvictory-awarded img{display:block;object-fit:contain;width:84px;height:84px}
 .nqvictory-awarded p{margin:0}
+.victory-popup .nqvictory-actions .nqvictory-end{grid-column:1/-1}
 .nq-victory-results-trigger{min-height:44px;font-size:.8rem!important}
 @media(min-width:769px) and (hover:hover) and (pointer:fine){@media not all and (any-pointer:coarse){
  body #mainApp[data-nq-ui="lumen"].nq-arena-active #nqBossEncounter.nq-static-context{height:auto}
@@ -11,8 +12,9 @@
  #nqBossStatic .nq-static-scene{aspect-ratio:var(--nq-art-ratio,3/1)}
  #nqBossStatic .nq-static-copy{position:absolute;inset:0 auto 0 0}
  #nqBossStatic .nq-static-art[data-art-layout="panoramic"]{object-fit:contain}
- #mainApp[data-nq-ui="lumen"] #heroImg{animation:none!important;translate:none!important;scale:none!important}
- #mainApp[data-nq-ui="lumen"] #guardianMotionToggle{display:none!important}
+ /* Static portrait only during the boss battle and the poison V2 portrait; the normal journey keeps its motion and pause control. */
+ body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #heroImg,#mainApp[data-nq-ui="lumen"] #heroImg[data-nq-poison-v2]{animation:none!important;translate:none!important;scale:none!important}
+ body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #guardianMotionToggle,#mainApp[data-nq-ui="lumen"]:has(#heroImg[data-nq-poison-v2]) #guardianMotionToggle{display:none!important}
  #mainApp[data-nq-ui="lumen"] #heroImg[data-nq-poison-v2]{object-fit:contain!important;object-position:center!important;transform:none!important;mask-image:none!important;background:#0b0a12}
  #mainApp[data-nq-ui="lumen"] .portrait-frame:has(#heroImg[data-nq-poison-v2]){align-self:center;aspect-ratio:1;height:auto!important}
  body.boss-battle-mode #mainApp[data-nq-ui="lumen"]{width:min(100%,1336px);padding-inline:28px}

@@ -143,6 +143,7 @@
             <div class="nqvictory-actions">
               <button type="button" class="btn nqvictory-continue" data-action="continueAfterCompletion">Continuar jogando</button>
               <button type="button" class="btn nqvictory-finish" data-action="returnHomeAfterVictory">Voltar à tela inicial</button>
+              <button type="button" class="btn nqvictory-finish nqvictory-end" data-action="finishGameCompletely">Encerrar jornada</button>
             </div>
             <button type="button" class="btn nqvictory-share" data-action="shareVictory" data-pass-this="1">Compartilhar</button>
           </footer>
