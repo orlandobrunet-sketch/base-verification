@@ -11,7 +11,7 @@
   answer:state.questionAnswer,answered:state.answered,correct:state.correctTotal,hp:getBossHP(),progress:getBossProgress(),
   completed:state.gameCompleted,continued:state.completedGame,over:state.gameOver,started:state.gameStarted,lives:state.lives,level:state.level};}catch(_){return null;}}
  function mainVisible(){const main=document.getElementById('mainApp');return !disposed&&!!main&&!main.hidden&&!main.classList.contains('hidden')&&!!main.getClientRects().length;}
- function eligible(){return mainVisible()&&fine.matches&&!coarse.matches&&!(navigator.maxTouchPoints>0);}
+ function eligible(){return mainVisible()&&fine.matches;}
  function matches(rec,complete){const s=read();try{return !!rec&&!rec.cancelled&&mainVisible()&&!!s&&s.epoch===rec.epoch&&s.character===rec.character&&s.question===rec.question&&s.qid===rec.qid&&s.answer===rec.answer&&s.answered===true&&s.correct===100&&s.progress===10&&s.hp===0&&s.started===true&&s.over===false&&s.continued===false&&s.lives>0&&(!complete||s.completed===true)&&_matchesJourneyBinding(rec.binding);}catch(_){return false;}}
  // Selective A7 port: run native rendering once at its scheduled time and keep
  // the actual authored node until the final results have closed.

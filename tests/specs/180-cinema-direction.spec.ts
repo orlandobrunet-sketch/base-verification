@@ -16,8 +16,7 @@ const playing = (dialog: ReturnType<Page['locator']>, time = .1) => expect.poll(
   dialog.locator('video').evaluate((v: HTMLVideoElement, t) => !v.paused && v.currentTime > t, time)).toBe(true);
 
 test.beforeEach(async ({ page }) => {
-  test.skip(!await page.evaluate(() => matchMedia('(min-width:769px) and (hover:hover) and (pointer:fine)').matches &&
-    !matchMedia('(any-pointer:coarse)').matches && navigator.maxTouchPoints === 0), 'Desktop cinema only');
+  test.skip(!await page.evaluate(() => matchMedia('(min-width:769px) and (hover:hover) and (pointer:fine)').matches), 'Desktop cinema only');
 });
 
 test('one click on Pular introdução leaves the cards and the film together', async ({ page }) => {
@@ -128,4 +127,16 @@ test.describe('reduced motion', () => {
     await page.waitForTimeout(600);
     await expect(dialog.locator('video')).toHaveJSProperty('paused', true);
   });
+});
+
+test('a notebook with a touch screen keeps the films, because the mouse stays its primary pointer', async ({ page }) => {
+  // Playwright's hasTouch turns the primary pointer coarse, like a phone; a touch notebook only adds a secondary one.
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, 'maxTouchPoints', { get: () => 10 });
+    const media = window.matchMedia.bind(window);
+    window.matchMedia = query => query === '(any-pointer:coarse)' ? { ...media('all'), matches: true, media: query, addEventListener() {}, removeEventListener() {} } as unknown as MediaQueryList : media(query);
+  });
+  const dialog = await preview(page, 'battle');
+  expect(await page.evaluate(() => navigator.maxTouchPoints)).toBe(10);
+  await playing(dialog);
 });

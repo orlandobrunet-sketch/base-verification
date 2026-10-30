@@ -6,7 +6,7 @@
  let dialog=null,nodes=null,active=null,disposed=false,finishing=false,opening=false,observer=null,monitor=0;
  let focusBefore=null,scrollLock=null,scrollObserver=null;
  const view={open:false,stage:'closed',contextKey:null,available:false,source:null,frameReady:false,reducedMotion:motion.matches,visibilityPaused:false,closingReason:null,callbackInvoked:false,callbackError:null,started:false,muted:true,userVolume:1,maximumLinearPlaybackGain:.78,effectiveVolume:.78,revealComplete:false,error:null};
- const eligible=()=>fine.matches&&!coarse.matches&&!(navigator.maxTouchPoints>0);
+ const eligible=()=>fine.matches;
  const visible=n=>!!n?.isConnected&&!n.hidden&&n.getClientRects().length>0&&!n.closest('[hidden],[inert]')&&getComputedStyle(n).visibility!=='hidden';
  function mediaConfig(){
   const c=window.NQ_VICTORY_CINEMA_CONFIG;

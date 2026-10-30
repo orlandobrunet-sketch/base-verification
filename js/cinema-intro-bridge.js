@@ -8,7 +8,7 @@
  const coarse = matchMedia('(any-pointer:coarse)');
  let original = null, nativeEvolution = null, heldEvolution = null, active = null, serial = 0, observer = null, disposed = false, pending = null, retryTimer = 0;
  const metrics = {authoredStoryParses:0, automaticOpened:0, manualOpened:0, fallbacks:0};
- const eligible = () => !disposed && fine.matches && !coarse.matches && !(navigator.maxTouchPoints > 0);
+ const eligible = () => !disposed && fine.matches;
  function owner() { try { return authUser?.id || null; } catch (_) { return null; } }
  function binding() { try { return _captureJourneyBinding(); } catch (_) { return null; } }
  function matches(token) { try { return !!token && _matchesJourneyBinding(token); } catch (_) { return false; } }

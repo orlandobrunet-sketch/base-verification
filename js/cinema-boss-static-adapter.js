@@ -193,7 +193,7 @@
   }
   function cancelHp(){if(hpFrame)cancelAnimationFrame(hpFrame);hpFrame=0;}
   const put=(id,value)=>{const node=$(id);if(node&&node.textContent!==String(value))node.textContent=String(value);};
-  function eligible(){return fine.matches&&!coarse.matches&&!(navigator.maxTouchPoints>0);}
+  function eligible(){return fine.matches;}
   function mainVisible(){const main=$('mainApp');return !!main&&!main.hidden&&!main.classList.contains('hidden')&&main.getClientRects().length>0;}
   function readNativeRaw(){
     try {

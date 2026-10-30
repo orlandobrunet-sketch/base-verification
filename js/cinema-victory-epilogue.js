@@ -6,7 +6,7 @@
  const cues=[{text:'O Arqui-Nefromante caiu.',start:1.6,end:4.4},{text:'O reino volta a filtrar.',start:5.2,end:7.4},{text:'OS RINS FORAM SALVOS!',start:7.8,end:10.3}],smooth=p=>{const v=Math.max(0,Math.min(1,p));return v*v*(3-2*v);};
  let dialog=null,nodes=null,active=null,disposed=false,monitor=0,observer=null;
  const view={open:false,stage:'closed',elapsed:0,muted:true,userVolume:1,started:false,callbackInvoked:false,callbackError:null,closingReason:null,error:null};
- const eligible=()=>fine.matches&&!coarse.matches&&!(navigator.maxTouchPoints>0);
+ const eligible=()=>fine.matches;
  const visible=n=>!!n&&!n.hidden&&n.getClientRects().length>0&&getComputedStyle(n).visibility!=='hidden';
  const others=()=>[...document.querySelectorAll('dialog[open],[aria-modal="true"],.nq-overlay,#arquiQ9Popup')].some(n=>n!==dialog&&!dialog?.contains(n)&&visible(n));
  const valid=s=>{try{return!!s&&!s.done&&s.isCurrent(s.contextKey)===true;}catch(_){return false;}};
