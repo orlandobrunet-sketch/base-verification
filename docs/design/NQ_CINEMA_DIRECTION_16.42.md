@@ -1,4 +1,4 @@
-# Direção das aberturas e filmes — 16.41
+# Direção das aberturas e filmes — 16.42
 
 Crítica feita em 30/10/2026 por três frentes (direção de jogo, de criação e de arte) sobre a 16.40 publicada, com medição dos vídeos, da linha do tempo real e leitura do código. Nota geral antes dos ajustes: 6,5/10. A arte estava boa; a montagem, não.
 
@@ -11,7 +11,7 @@ Crítica feita em 30/10/2026 por três frentes (direção de jogo, de criação 
 - Pular exigia dois cliques, e sete controles ficavam fixos durante um filme de 8 s.
 - Subir de nível no acerto 90 derrubava o filme do chefe.
 
-## O que mudou na 16.41
+## O que mudou na 16.42
 
 | Área | Antes | Agora |
 |---|---|---|
@@ -21,7 +21,7 @@ Crítica feita em 30/10/2026 por três frentes (direção de jogo, de criação 
 | Controles | Fixos, dois sentidos de "pular" | Um clique pula tudo; somem após 1,8 s sem mexer o mouse; volume só com som ligado |
 | Som | Esquecido a cada filme, música em -24,8 dB | Escolha lembrada no aparelho; música em cerca de -19,5 dB, no nível da Câmara |
 | Golpe final | 350 ms e corte | HP escorre, clarão, fala do vilão, som de vitória, 1,8 s de pausa |
-| Epílogo | 597×478, parado, 2 legendas | 715×572, aproximação lenta, partículas visíveis, legenda dentro da imagem, 3 legendas |
+| Epílogo | Retrato parado de 597×478, 2 legendas, 10,5 s | Filme da queda do vilão (4,6 s) dissolve no retrato em 900 ms, tudo na moldura 16:9 de 1020×574; 3 legendas, 11,9 s. O vídeo é pré-carregado no golpe final; sem ele, o retrato segue sozinho |
 
 ### Textos
 
@@ -35,14 +35,17 @@ Cada cartela agora diz quem ameaça o reino, e cada filme diz qual é a meta. As
 - Clique em Avançar entre duas cartelas não se perde.
 - O Service Worker deixou de baixar os 6,4 MB do filme do chefe a cada versão: o arquivo nunca era servido do cache.
 
-## Decisões do proprietário em aberto
+## Decisões do proprietário
 
-1. **Filme da queda do vilão antes do retrato.** `NefroQuest-vitoria-coletiva-v6.mp4` existe e mostra o golpe e a queda, mas o epílogo estático foi escolha registrada. É a melhoria de maior efeito e não exige arte nova.
-2. **Refazer o filme do Glomerulus.** Entre 4,4 s e 6,4 s a mão some e o rosto muda. Pedir pelo menos 3 s de gesto, câmera fixa, usando o quadro de 4,2 s como referência.
-3. **Som dos filmes de herói.** Quase mudos (-38 a -44 dB). Precisam de três faixas de 8 s, ou o botão de som deve sair deles.
-4. **Celular.** Não vê nenhum filme, nem o epílogo, que pesaria só 1,25 MB. Notebooks com tela de toque também ficam de fora. Conferir no GA4 quantos concluem pelo celular.
-5. **Arte final da vitória.** Tem outro acabamento em relação aos filmes. A 16.41 aplica só um ajuste leve de cor.
-6. **Raio do filme do chefe.** Nasce sem origem visível e o vilão não reage. Refazer ou abrir com `NefroQuest-intro-batalha-v6.mp4`, hoje sem uso.
+Tomada: mostrar a queda do vilão antes do retrato (pedido de 30/10/2026), o que revoga o epílogo só com imagem.
+
+Em aberto:
+
+1. **Refazer o filme do Glomerulus.** Entre 4,4 s e 6,4 s a mão some e o rosto muda. Pedir pelo menos 3 s de gesto, câmera fixa, usando o quadro de 4,2 s como referência.
+2. **Som dos filmes de herói.** Quase mudos (-38 a -44 dB). Precisam de três faixas de 8 s, ou o botão de som deve sair deles.
+3. **Celular.** Não vê nenhum filme, nem o epílogo, que pesaria só 1,25 MB. Notebooks com tela de toque também ficam de fora. Conferir no GA4 quantos concluem pelo celular.
+4. **Arte final da vitória.** Tem outro acabamento em relação aos filmes. A 16.42 aplica só um ajuste leve de cor; na tela o retrato aparece recortado em 16:9, e o quadro inteiro segue nos resultados. No filme da queda quem lidera é o Dr. Glomerulus, e no filme do chefe, o Dr. Nephros.
+5. **Raio do filme do chefe.** Nasce sem origem visível e o vilão não reage. Refazer ou abrir com `NefroQuest-intro-batalha-v6.mp4`, hoje sem uso.
 
 ## Limites
 

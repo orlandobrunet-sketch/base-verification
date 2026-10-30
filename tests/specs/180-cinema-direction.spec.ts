@@ -69,18 +69,39 @@ test('volume appears only with sound on, and the choice carries to the next film
   await expect(dialog.locator('audio[data-nq-movie-music]')).toHaveJSProperty('muted', false);
 });
 
-test('epilogue tells the villain fate in the picture, at full height, and restarts its motion on replay', async ({ page }) => {
+test('epilogue shows the fall, dissolves into the portrait at film size, and replays from the fall', async ({ page }) => {
   await page.setViewportSize({ width: 1366, height: 768 });
   const dialog = await preview(page, 'victory');
   const caption = dialog.locator('.nq-epilogue-caption');
+  await playing(dialog);
+  await expect(dialog).toHaveAttribute('data-epilogue-phase', 'film');
   await expect(caption).toHaveText('O Arqui-Nefromante caiu.', { timeout: 3000 });
-  await expect(caption).toHaveText('O reino volta a filtrar.', { timeout: 5000 });
-  const image = await dialog.locator('img').boundingBox();
-  expect(image!.height).toBeGreaterThan(560);
+  await expect(dialog).toHaveAttribute('data-epilogue-phase', 'portrait', { timeout: 5000 });
+  await expect(caption).toHaveText('O reino volta a filtrar.', { timeout: 3000 });
+  await expect.poll(() => dialog.locator('video').evaluate(v => Number(getComputedStyle(v).opacity))).toBe(0);
+  const frame = await dialog.locator('.nq-victory-cinema__aperture').boundingBox();
+  expect(frame!.width / frame!.height).toBeCloseTo(16 / 9, 2);
+  expect(frame!.height).toBeGreaterThan(560);
   expect(await dialog.evaluate(d => d.scrollHeight <= d.clientHeight)).toBe(true);
   await dialog.getByRole('button', { name: 'Rever', exact: true }).click();
+  await expect(dialog).toHaveAttribute('data-epilogue-phase', 'film');
+  await playing(dialog);
   await expect(caption).toHaveText('O Arqui-Nefromante caiu.', { timeout: 3000 });
-  expect(await dialog.locator('img').evaluate(n => n.getAnimations()[0]?.currentTime ?? 99999)).toBeLessThan(4000);
+});
+
+test('the portrait carries the ending alone when the film cannot play', async ({ page }) => {
+  await page.route('**/NefroQuest-vitoria-coletiva-v6.mp4', r => r.abort());
+  await page.route('**/*', r => {
+    if (r.request().url().endsWith('vitoria-coletiva-v6.mp4')) return r.abort();
+    return new URL(r.request().url()).hostname === 'localhost' ? r.continue() : r.abort();
+  });
+  await page.goto('/cinema-preview.html', { waitUntil: 'domcontentloaded' });
+  await page.locator('[data-preview="victory"]').click();
+  const dialog = page.locator('#nqVictoryCinema[open]');
+  await expect(dialog).toHaveAttribute('data-epilogue-phase', 'portrait', { timeout: 4000 });
+  await expect(dialog.locator('.nq-epilogue-caption')).toHaveText('O Arqui-Nefromante caiu.', { timeout: 4000 });
+  await page.keyboard.press('Escape');
+  await expect(dialog).toBeHidden();
 });
 
 test('a level-up arriving during the boss film waits for it to close', async ({ page }) => {
