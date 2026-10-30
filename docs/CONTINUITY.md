@@ -1,5 +1,35 @@
 # Continuidade do NefroQuest
 
+## Estado atual — 29/10/2026
+
+**Publicado:** 16.28, `main` `5eba704` (PR905, 26/10). Site conferido contra a `main` por hash em 29/10.
+
+**Candidata visual em revisão:** 16.39, branch `claude/visual-consolidado-1637`, sobre `5eba704`. Consolida cinema 16.31, seis estados do chefe, três venenos V2, Câmara ilustrada com 20 retratos e Câmara paginada, mais o popup de tamanho fixo entre História e Exames. Composição, procedência das imagens e limites em [NQ_VISUAL_CONSOLIDATION_16.39.md](design/NQ_VISUAL_CONSOLIDATION_16.39.md). Merge e deploy dependem da aprovação do proprietário.
+
+| Situação | Itens |
+|---|---|
+| Publicado | PR900/16.18 marca, equipamentos, leitores e modais · PR901/16.19 três questões clínicas · PR902/16.22 Gitelman, Simulado, recompensa V2 · PR903/16.23 Dashboard, Mapa, landing · PR904/16.25 Estudo, recompensas, Oráculo, demo · PR905/16.28 primeira integração do cinema · PR835 tag GA4 · PR831 canal `/contato/` · 15.85 trinta retratos das classes |
+| Implementado, aguardando aprovação | Candidata 16.39 acima |
+| Aguardando decisão do proprietário | Boss TRIO A7 (protótipo alternativo de 13 poses, fora do repositório; não carregar junto com a 16.39) · 12 fundos RGB de Conquistas (acabamento opcional) |
+| Não iniciado | Caixas gerais de perguntas (sem referência visual localizada) · pergaminho no modo antigo (pedido de 24/10, referência ainda não examinada) |
+
+### Frentes ativas — no máximo três
+
+1. **Publicar a candidata visual 16.39** após revisão do proprietário e CI do SHA final.
+2. **PR834 — classificador por palavra inteira e negação.** A correção ainda não está na `main`. Reaplicar só o delta sobre a base vigente, preservando `nqCompProgressStorage`, com bump próprio; não reutilizar o arquivo antigo nem o número 15.38.
+3. **Integrações editoriais por elegibilidade.** O índice A37 registra 741 disposições autorais e 741 independentes, incluindo bloqueadas, fusões e holds — não são 741 aprovações. Os 72 vínculos curados de competência continuam congelados. Cada objeto exige gate, skill e autorização próprios.
+
+### Registrados, sem bloquear a entrega visual
+
+Versão mobile dedicada (aguarda proposta) · pagamentos mensal/vitalício ponta a ponta · Android · recompensas futuras (troféus, honorários, vitalício Hardcore) · leitor de tela real · verificações autenticadas (GA4 no console, Supabase, Sentry) · envio real pelo `/contato/` · CSP (depende de remover handlers inline) · reparo manual do save histórico (origem não inferível; não automatizar).
+
+---
+
+## Histórico — checkpoint editorial de 14/10/2026
+
+Preservado como registro. As contagens abaixo (448/741, PR897, 16.13) foram superadas pelo índice A37 e pelas publicações 16.18–16.28.
+
+
 A etapa autorizada é revisar as 741 questões principais, obter revisão independente e integrar propostas liberadas preservando IDs, gabaritos, históricos e versões. Recompensas Hardcore, membros honorários e Meus troféus ficam depois das questões. A revisão integral continua em andamento.
 
 Checkout `nefroquest-clinical-13`, branch `codex/clinical-review-2026-10-12`, base publicada `135899077669af6dcf564717833227828ba03fe5` (16.09). O [PR897](https://github.com/orlandobrunet-sketch/base-verification/pull/897) ainda aguarda os gates do novo HEAD. O último HEAD remoto confirmado antes deste checkpoint é `80eeb2163ddeaeb8412f5ad5c932412ff07ef1c5`. A candidata é **16.13**, com SW, Sentry, assets e cache-busters coerentes. A 16.09 permanece publicada; não repetir sua auditoria de produto.

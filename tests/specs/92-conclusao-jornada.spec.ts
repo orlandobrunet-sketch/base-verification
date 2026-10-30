@@ -19,7 +19,10 @@ async function abrir(page: Page) {
 test('conclusão mostra arte e resultados reais; continuar preserva a jornada', async ({ page }) => {
   const card = await abrir(page);
   await expect(card.locator('.nqvictory-stats dd')).toHaveText(['25.000', '15', '100', '800']);
-  await expect(card.locator('.nqvictory-champion')).toContainText('Título de Campeão');
+  // O selo só aparece quando a conquista nativa foi de fato concedida (coberto no spec 173);
+  // este estado injetado não a concede, então nenhum título é anunciado à toa.
+  await expect(card.locator('.nqvictory-champion')).toHaveCount(0);
+  await expect(card.getByRole('button', { name: 'Voltar à tela inicial', exact: true })).toBeVisible();
   await expect.poll(() => card.locator('img').evaluate((e: HTMLImageElement) => e.complete && e.naturalWidth > 0)).toBe(true);
   expect(await card.locator('img').evaluate(e => getComputedStyle(e).animationName)).toBe('none');
   const shareBox = (await card.getByRole('button', { name: 'Compartilhar', exact: true }).boundingBox())!;

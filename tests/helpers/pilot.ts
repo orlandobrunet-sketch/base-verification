@@ -1,4 +1,4 @@
-import { characterIntro } from './cinema';
+import { characterIntro, confirmCharacterStart } from './cinema';
 import { expect, type Page, type TestInfo } from '@playwright/test';
 import { routeTechnicalQuestionBank, technicalQuestionBundle } from './technical-question-bank';
 
@@ -251,7 +251,7 @@ export async function startNormalCharacter(page: Page, character: PilotClass = '
   await page.locator('#diffConfirmBtn').click();
   await expect(page.locator('#charSelectModal')).toHaveClass(/show/);
   await page.locator(`#charSelectModal [data-action="selectCharacter"][data-arg="${character}"]`).click();
-  await (await characterIntro(page)).start.click();
+  await confirmCharacterStart(page);
   await expect(page.locator('#mainApp')).toBeVisible();
   await page.waitForFunction(() => (0, eval)('state.gameStarted && !!state.current && !_loadingNextQuestion'));
   expect((await pilotState(page)).classBenefits).toMatchObject({

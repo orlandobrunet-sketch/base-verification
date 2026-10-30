@@ -1,3 +1,4 @@
+import { openChamberCase } from '../helpers/chamber';
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 import { desktopCinemaEligible } from '../helpers/cinema';
@@ -38,7 +39,7 @@ async function abrir(page: Page, largura = 1280) {
 }
 
 async function entrarNoCaso(page: Page) {
-  await page.locator('[data-ab-case="aldric"]').click();
+  await openChamberCase(page,'aldric');
   await page.locator('[data-ab-start-acts]').click();
   await expect(page.locator('.ab-prompt')).toBeFocused();
 }
@@ -130,7 +131,7 @@ for (const largura of [320, 390]) {
         return fora;
       });
       expect(cortes, tela).toEqual([]);
-      for (const b of await page.locator('#acidBaseOverlay button:not([disabled])').all()) {
+      for (const b of await page.locator('#acidBaseOverlay button:not([disabled]):visible').all()) {
         const caixa = (await b.boundingBox())!;
         expect(Math.min(caixa.height, caixa.width), `alvo de toque (${tela})`).toBeGreaterThanOrEqual(24);
       }

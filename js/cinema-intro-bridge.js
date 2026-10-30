@@ -49,6 +49,11 @@
   }, 180);
  }
  function guardContext() {
+  const intro=document.getElementById('nqStaticIntro');
+  if(eligible()&&intro&&!intro.parentElement.querySelector('.nq-movie-lore-trigger')){
+   const button=document.createElement('button');button.type='button';button.className='nq-movie-lore-trigger';button.textContent='Ler história';button.setAttribute('aria-label','Ler história do confronto');
+   button.addEventListener('click',()=>{const story=readNativeStory();if(story)window.NQMovieArt?.openLore('O Trono da Uremia',story.paragraphs);});const row=document.createElement('div');row.className='nq-movie-lore-actions';intro.before(row);row.append(intro,button);
+  }
   const session = active;
   if (session && !current(session)) {
    active = null;
@@ -123,7 +128,7 @@
   active = session;
   let accepted = false;
   try {
-   accepted = window.NQEntryCinema.open({key:session.key, kind:'battle', title:'O TRONO DA UREMIA',
+   accepted = window.NQEntryCinema.open({key:session.key, kind:'battle',artKey:'battle', title:'O TRONO DA UREMIA',
     subtitle:'O Arqui-Nefromante aguarda.', storyParagraphs, benefitText, manual:!!manual,
     media:config, isCurrent:() => current(session),
     onStarted:() => {if (active === session && current(session)) seen.add(session.contextKey);},

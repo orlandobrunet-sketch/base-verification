@@ -1,0 +1,93 @@
+/* Explicit desktop pages, never a clipped viewport. Mobile/large text keep native reflow. */
+.nq-chamber-workspace .nql-hidden,
+.nq-chamber-workspace .nql-reading-page[hidden],
+.nq-chamber-workspace .nql-reader-controls[hidden] { display: none !important; }
+@media (min-width: 961px) and (pointer: fine) {
+  /* One frame for every screen and tab: fills short windows, stops at 760px and centres on tall ones.
+     Readers paginate to this frame; min-height lets the card grow instead of clipping if a page ever overflows. */
+  .acid-base-overlay.acid-base-page.nq-chamber-workspace { --nql-frame: min(calc(100dvh - 20px), 760px); padding: max(12px, calc((100dvh - var(--nql-frame)) / 2)) 20px max(8px, calc((100dvh - var(--nql-frame)) / 2 - 4px)); }
+  .acid-base-page.nq-chamber-workspace .ab-card { width: min(1160px,100%); min-height: var(--nql-frame); }
+  .acid-base-page.nq-chamber-workspace .ab-scroll { padding: 64px 28px 22px; }
+  .acid-base-page.nq-chamber-workspace .ab-close { top: 12px; right: 20px; }
+  .acid-base-page.nq-chamber-workspace .ab-hub > .nq-entry-replay { top:12px;left:28px; }
+  .nq-chamber-workspace :is(.nql-tabs,.nql-body-tools,.nql-pager,.nql-reader-controls) { display:flex;align-items:center;gap:8px;flex-wrap:wrap; }
+  .nq-chamber-workspace :is(.nql-tabs,.nql-pager,.nql-reader-controls) button { min-height:44px;padding:8px 14px;border:1px solid #91dfe34d;border-radius:5px;background:#0c1924;color:#c7d2db;font:400 1rem/1.4 Philosopher,Georgia,serif;cursor:pointer;box-shadow:none;letter-spacing:normal;transform:none; }
+  .nq-chamber-workspace .nql-tabs button[aria-selected=true] { border-color:#d8bf7e;color:#f0d78e;background:#d8bf7e12;box-shadow:inset 0 -2px #d8bf7e; }
+  .nq-chamber-workspace :is(.nql-pager,.nql-reader-controls) button:disabled { opacity:.45;cursor:default; }
+  .nq-chamber-workspace .nql-tabs { gap:6px; }
+  .nq-chamber-workspace .nql-hub-nav { margin-bottom:14px; }
+  .nq-chamber-workspace .ab-hub-banner { min-height:176px;margin-bottom:16px;padding:20px 24px; }
+  .nq-chamber-workspace .ab-hub-banner::before { width:calc(176px * 16 / 9);height:176px;right:0;left:auto;top:0;bottom:auto;transform:none; }
+  .nq-chamber-workspace .ab-hub-banner::after { background:linear-gradient(90deg,#0a1620 0%,#0a1620 38%,#0a1620c7 52%,transparent 72%); }
+  .nq-chamber-workspace .ab-hub-banner :is(.ab-title,.ab-ornament) { max-width:calc(100% - 290px); }
+  .nq-chamber-workspace .ab-hub-banner .ab-ornament { margin-bottom:10px; }
+  .nq-chamber-workspace .ab-hub-banner .ab-title { font-size:2rem; }
+  .nq-chamber-workspace .ab-hub-opening { grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:28px;margin:0; }
+  .nq-chamber-workspace .ab-hub-heading { padding:0; }
+  .nq-chamber-workspace .ab-hub-heading .ab-lead { font-size:1.05rem;line-height:1.65; }
+  .nq-chamber-workspace .ab-next-case { padding:16px 20px; }
+  .nq-chamber-workspace .ab-next-label { margin-bottom:12px; }
+  .nq-chamber-workspace .ab-next-number { margin-bottom:4px; }
+  .nq-chamber-workspace .ab-next-case h2 { font-size:1.3rem;line-height:1.35; }
+  .nq-chamber-workspace .ab-next-case p { margin-bottom:4px;line-height:1.5; }
+  .nq-chamber-workspace .ab-next-case .ab-btn-primary { margin-top:10px; }
+  .nq-chamber-workspace .ab-collection-heading { flex-direction:row;align-items:center;padding-top:0;border-top:0;margin:0 0 12px; }
+  .nq-chamber-workspace .ab-hub-progress { width:260px; }
+  .nq-chamber-workspace .ab-grid { grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px; }
+  .acid-base-page.nq-chamber-workspace .ab-case { padding:14px 16px;min-height:112px; }
+  .nq-chamber-workspace .ab-hub-note { margin-top:14px;font-size:.95rem;line-height:1.5; }
+  .nq-chamber-workspace .nql-pager { justify-content:space-between;margin:0 0 12px; }
+  .nq-chamber-workspace .nql-page-status { color:#c7d2db;font:400 .95rem/1.5 Philosopher,Georgia,serif; }
+  .acid-base-page.nq-chamber-workspace:not([data-ab-tela=hub]) .ab-scroll { display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:24px;align-items:start; }
+  .acid-base-page.nq-chamber-workspace .ab-context { border-bottom:0;border-right:1px solid #91dfe333;padding:0 24px 0 0; }
+  .acid-base-page.nq-chamber-workspace .ab-context .ab-patient-heading { gap:16px;margin-bottom:12px; }
+  .nq-chamber-workspace .ab-patient-heading.has-portrait .ab-patient-identity { flex-basis:10rem; }
+  .acid-base-page.nq-chamber-workspace .ab-context .ab-title { font-size:1.5rem;line-height:1.4;margin-bottom:0; }
+  .acid-base-page.nq-chamber-workspace .ab-context .ab-ornament { font-size:.9rem;margin-bottom:8px; }
+  .nq-chamber-workspace .nql-context-tabs { margin-bottom:12px; }
+  .acid-base-page.nq-chamber-workspace .ab-context .ab-narrative { font-size:1.05rem;line-height:1.6;margin:0; }
+  .acid-base-page.nq-chamber-workspace .ab-context .ab-gas-grid { grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;padding:8px; }
+  .acid-base-page.nq-chamber-workspace .ab-context .ab-gas { padding:9px 2px;gap:4px; }
+  .nq-chamber-workspace .ab-body { padding-top:0; }
+  .nq-chamber-workspace .ab-act-count { display:inline-block;vertical-align:middle;margin:0 12px 10px 0;font-size:.95rem;line-height:1.5; }
+  .nq-chamber-workspace .ab-progress { display:inline-flex;vertical-align:middle;margin:0 0 10px;gap:2px; }
+  .nq-chamber-workspace .ab-prompt { font-size:1.1rem;line-height:1.55;margin-bottom:12px; }
+  .nq-chamber-workspace .nql-body-tools { align-items:flex-start;margin-bottom:12px; }
+  .nq-chamber-workspace .nql-body-tools .ab-grimoire-btn { min-height:44px;margin:0;padding:8px 12px;font-size:.95rem; }
+  .nq-chamber-workspace .ab-options { gap:8px; }
+  .nq-chamber-workspace .ab-option { padding:11px 16px;min-height:44px;font-size:1.05rem;line-height:1.5; }
+  .nq-chamber-workspace .ab-btn-primary { margin-top:10px; }
+  .nq-chamber-workspace .ab-feedback { margin-top:0;padding:12px; }
+  .nq-chamber-workspace :is(.ab-feedback-body,.ab-grimoire-body,.ab-ref-body) { font-size:1rem;line-height:1.6; }
+  .nq-chamber-workspace .nql-choice-summary { color:#c7d2db;font-size:.95rem;line-height:1.55;margin:0 0 10px; }
+  .nq-chamber-workspace .nql-reading-page { display:block; }
+  .nq-chamber-workspace .nql-reader-controls { flex:1 1 100%;justify-content:space-between;margin:0 0 10px; }
+  .nq-chamber-workspace .ab-feedback { flex-wrap:wrap; }
+  .nq-chamber-workspace .ab-feedback-icon { display:none; }
+  .nq-chamber-workspace .ab-feedback-body { flex:1 1 100%; }
+  .nq-chamber-workspace .ab-ddx-table { display:block; }
+  .nq-chamber-workspace .ab-ddx-card { width:100%; }
+  .nq-chamber-workspace .ab-ddx-actions { gap:8px; }
+  .nq-chamber-workspace .ab-ddx-submit { margin-top:0; }
+  .nq-chamber-workspace .ab-ddx-judgment { margin-bottom:0; }
+  .nq-chamber-workspace .ab-ddx-counter { margin:8px 0; }
+  .nq-chamber-workspace .ab-ddx-card-title { font-size:1.05rem; }
+  .nq-chamber-workspace :is(.ab-ddx-clue,.ab-ddx-reveal-block) { font-size:1rem;line-height:1.55; }
+  .nq-chamber-workspace :is(.ab-ddx-narrative,.ab-ddx-instruction,.ab-ddx-arquivista) { text-align:left;font-size:1rem;line-height:1.6; }
+  .nq-chamber-workspace .nql-summary-nav { margin-bottom:12px; }
+  .nq-chamber-workspace .ab-summary-title { font-size:1.35rem;line-height:1.4;margin:8px 0 12px; }
+  .nq-chamber-workspace .ab-summary-text { font-size:1.05rem;line-height:1.6;margin-bottom:14px; }
+  .nq-chamber-workspace .ab-summary-stats { margin:12px 0;gap:28px; }
+  .nq-chamber-workspace .ab-summary-actions { gap:10px; }
+  .nq-chamber-workspace .ab-summary-actions :is(button) { margin-top:0; }
+  .nq-chamber-workspace .ab-refs { margin:0; }
+  .nq-chamber-workspace .ab-ref-card { margin-bottom:0; }
+  /* The introductory story uses the previously empty horizontal area. */
+  .acid-base-page.nq-chamber-workspace .ab-scroll.nql-intro { display:block; }
+  .acid-base-page.nq-chamber-workspace .nql-intro .ab-context { display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:18px 28px;border:0;padding:0; }
+  .nq-chamber-workspace .nql-intro .ab-patient-heading { margin:0; }
+  .nq-chamber-workspace .nql-intro .ab-narrative { align-self:center; }
+  .acid-base-page.nq-chamber-workspace .nql-intro .ab-gas-grid { grid-column:1/-1;grid-template-columns:repeat(8,minmax(0,1fr)); }
+  .nq-chamber-workspace .nql-intro .ab-body--intro { display:flex;justify-content:flex-end;border-top:1px solid #91dfe333;margin-top:18px;padding-top:14px; }
+  .nq-chamber-workspace .nql-intro .ab-btn-primary { margin:0; }
+}

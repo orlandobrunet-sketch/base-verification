@@ -1,10 +1,16 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação operacional:** 17/10/2026 — [plano de continuidade e pedidos](design/NQ_CONTINUITY_PLAN_2026-10-17.md)
+**Última reconciliação operacional:** 29/10/2026 — [estado atual e três frentes ativas](CONTINUITY.md)
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
 Este documento controla direção, prioridade e critérios de conclusão. Ele não autoriza execução automática: cada frente precisa ser solicitada explicitamente pelo proprietário do produto.
+
+## Estado operacional — 29/10/2026
+
+Publicado: **16.28** (PR905). Candidata visual **16.39** em revisão: cinema, seis estados do chefe, venenos V2, Câmara ilustrada e paginada e popup de tamanho fixo — ver [consolidação 16.39](design/NQ_VISUAL_CONSOLIDATION_16.39.md). As frentes ativas, o que está publicado, implementado, aguardando decisão e não iniciado ficam em [`CONTINUITY.md`](CONTINUITY.md), que prevalece sobre os status das seções abaixo.
+
+Saem da fila: W1–W7 (PR900/16.18), três questões clínicas (PR901/16.19), 30 retratos das classes (15.85, antes NQ-04E), 20 retratos da Câmara (na candidata 16.39) e o diagnóstico antigo de MX (canal atual `/contato/`, PR831). A revisão documental das 741 questões está completa no índice A37, o que não equivale a 741 aprovações ou publicações.
 
 O plano de continuidade de 17/10 distingue **pedido, implementado, testado e publicado**, registra a base 16.15 conferida, os ajustes visuais atuais, a revisão formal das 741 questões e os compromissos adiados de mobile, Câmara do Equilíbrio, troféus e membros honorários. O serrilhado dos equipamentos foi reaberto pelo proprietário e permanece pendente. O histórico abaixo conserva suas datas; não deve ser tratado como estado operacional atual.
 

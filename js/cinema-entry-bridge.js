@@ -185,7 +185,7 @@
     try {
       opened = window.NQEntryCinema.open({key:session.key,kind:session.place,
         title:session.entry.title,subtitle:session.entry.subtitle,manual:!!manual,
-        storyParagraphs:session.story?.paragraphs || [],benefitText:session.story?.benefitText || '',
+        storyParagraphs:session.story?.paragraphs || [],benefitText:session.story?.benefitText || '',artKey:session.place==='chamber'?'chamber':session.character,
         preflight:session.preflight===true,onContinue:()=>commit(session),
         shouldPlay:()=>manual || !window.NQEntrySeen.has(session.descriptor),
         onCancel:()=>{
@@ -272,9 +272,13 @@
     nativeIntro=window.showCharacterIntroModal;
     if (typeof nativeIntro==='function') {
       introWrapper=function(character){
-        if (eligible() && normal() && !active && openPreflight(character)) return;
+        // Native explicit confirmation remains authoritative before cinema.
         if (document.getElementById('charIntroOverlay')) return;
-        return nativeIntro.apply(this,arguments);
+        const result=nativeIntro.apply(this,arguments);
+        if(eligible()&&normal()){
+          const modal=document.getElementById('charIntroOverlay'),story=modal?.querySelector('#nqIntroStory');
+          if(modal&&story){modal.classList.add('nq-movie-confirm');const details=document.createElement('details'),summary=document.createElement('summary');details.className='nq-entry-full-lore';summary.textContent='Ler história completa';story.before(details);details.append(summary,story);}
+        }return result;
       };
       window.showCharacterIntroModal=introWrapper;
     }
@@ -317,7 +321,7 @@
     }
     nativeLore = window.showHeroLore;
     if (typeof nativeLore === 'function') {
-      loreWrapper = function () {const result=nativeLore.apply(this,arguments);syncControls();return result;};
+      loreWrapper = function () {const result=nativeLore.apply(this,arguments);if(eligible()&&normal()){const modal=document.getElementById('heroLoreModal'),body=modal?.querySelector('[role="region"]');let hero;try{hero=state.character;}catch(_){}const story=canonicalHeroStory(hero);if(body&&story&&!body.querySelector('.nq-entry-full-lore')){const details=document.createElement('details'),summary=document.createElement('summary'),p=document.createElement('p');details.className='nq-entry-full-lore';summary.textContent='Início da jornada — história completa';p.textContent=story.paragraphs.join('\n\n');details.append(summary,p);body.append(details);}}syncControls();return result;};
       window.showHeroLore = loreWrapper;
     }
     observer = new MutationObserver(guard);

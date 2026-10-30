@@ -1,4 +1,4 @@
-import { characterIntro } from '../helpers/cinema';
+import { characterIntro, confirmCharacterStart } from '../helpers/cinema';
 import { test, expect, type Page } from '@playwright/test';
 import {
   answerTechnical, attachPilotFailureDiagnostics, installBackendRecorder,
@@ -73,7 +73,7 @@ async function beginChosenJourney(page: Page, character: PilotClass, difficulty:
   const choice = await openCharacterChoice(page, difficulty);
   await choice.locator('[data-action="selectCharacter"][data-arg="' + character + '"]').click();
   await expect((await characterIntro(page)).overlay).toBeVisible();
-  await (await characterIntro(page)).start.click();
+  await confirmCharacterStart(page);
   await expect(page.locator('#mainApp')).toBeVisible();
   await page.waitForFunction(() => (0, eval)('state.gameStarted && !!state.current && !_loadingNextQuestion'));
   const state = await pilotState(page);

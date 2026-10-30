@@ -58,7 +58,7 @@ try {
 // `style.css` entra explicitamente: é o maior CSS do projeto (520 KB) e ficava
 // fora do padrão `styles/lumen/`, então a ferramenta nunca subia o buster dele
 // — quem já tinha o arquivo em cache continuava com a versão velha.
-const BUSTER = /(js\/[a-z0-9-]+\.js|styles\/lumen\/[a-z]+\.css|style\.css)\?v=([0-9.]+)/g;
+const BUSTER = /(js\/[a-z0-9-]+\.js|styles\/lumen\/[a-z0-9-]+\.css|style\.css)\?v=([0-9.]+)/g;
 
 const html = ler('jogar/index.html');
 const comBuster = [...html.matchAll(BUSTER)]
