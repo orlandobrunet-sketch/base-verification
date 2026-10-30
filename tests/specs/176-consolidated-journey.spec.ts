@@ -1,4 +1,5 @@
 import{test,expect}from'@playwright/test';import{enterGame}from'../helpers/game';
+import{advanceToFilm}from'../helpers/cinema';
 import path from'node:path';import{mkdirSync}from'node:fs';
 test.use({serviceWorkers:'block',reducedMotion:'no-preference'});
 test('combined normal entry, Chamber, boss, epilogue and continuation',async({page})=>{
@@ -10,7 +11,7 @@ test('combined normal entry, Chamber, boss, epilogue and continuation',async({pa
  await page.evaluate(()=>{document.getElementById('landingScreen')?.classList.add('hidden');return(0,eval)('_pendingDiff="normal";_confirmDiff(false)');});
  await page.locator('#charSelectModal [data-arg="nephros"]').click();await page.locator('#charIntroOverlay [data-action="closeIntroAndStart"]').click();
  const cinema=page.locator('#nqEntryCinema[open]');await expect(cinema.locator('.nq-movie-prologue')).toBeVisible();await page.screenshot({path:path.join(dir,'character-cards.png')});
- await cinema.getByRole('button',{name:'Pular histórias',exact:true}).click();await expect.poll(()=>cinema.locator('video').evaluate((v:HTMLVideoElement)=>!v.paused&&v.currentTime>.1)).toBe(true);await expect(cinema.locator('video')).toHaveJSProperty('muted',true);
+ await advanceToFilm(cinema);await expect.poll(()=>cinema.locator('video').evaluate((v:HTMLVideoElement)=>!v.paused&&v.currentTime>.1)).toBe(true);await expect(cinema.locator('video')).toHaveJSProperty('muted',true);
  await page.keyboard.press('Escape');await expect(cinema).toHaveCount(0);await expect(page.locator('#question')).not.toBeEmpty();
  const origin=page.locator('#forgeBtn:visible');await origin.focus();await page.evaluate(()=>(window as any).showAcidBaseMinigame());await expect(cinema).toBeVisible();await expect(cinema.locator('video')).toHaveJSProperty('muted',true);await page.keyboard.press('Tab');expect(await cinema.evaluate(el=>el.contains(document.activeElement))).toBe(true);await page.keyboard.press('Escape');await expect(cinema).toHaveCount(0);
  const hub=page.locator('#acidBaseOverlay');await expect(hub).toHaveAttribute('data-ab-tela','hub');await expect(page.getByRole('heading',{name:'Alquimista Renal'})).toBeFocused();
@@ -32,9 +33,9 @@ test('combined normal entry, Chamber, boss, epilogue and continuation',async({pa
  await expect(page.locator('#arquiQ9Popup')).toBeVisible();await page.locator('#arquiQ9CloseBtn').click();
  await page.locator('#nqBossStatic').scrollIntoViewIfNeeded();await expect.poll(()=>page.evaluate(()=>(window as any).NQBossCinema.inspection.image.artKey)).toBe('last');await page.screenshot({path:path.join(dir,'boss-final.png')});
  await page.waitForFunction(()=>!(0,eval)('_loadingNextQuestion'));await page.locator('#options .option[data-idx="'+await page.evaluate(()=>(window as any).state.current.a)+'"]').click();
- const victory=page.locator('#nqVictoryCinema[open]');await expect(victory).toBeVisible();await expect(victory.locator('video')).toHaveCount(0);await victory.getByRole('button',{name:'Ativar som',exact:true}).click();await expect(victory.locator('audio')).toHaveJSProperty('muted',false);
- await expect(victory.locator('.nq-epilogue-caption')).toHaveText('OS RINS FORAM SALVOS!',{timeout:7000});await victory.getByRole('button',{name:'Pausar epílogo',exact:true}).click();
- const geometry=await victory.evaluate(d=>{const img=d.querySelector('img')!,caption=d.querySelector('.nq-epilogue-reading')!,a=img.getBoundingClientRect(),b=caption.getBoundingClientRect();return{ratio:a.width/a.height,below:b.top>=a.bottom-1,overflow:d.scrollHeight>d.clientHeight};});expect(geometry.ratio).toBeCloseTo(1402/1122,2);expect(geometry.below).toBe(true);expect(geometry.overflow).toBe(false);await page.screenshot({path:path.join(dir,'victory-epilogue.png')});
+ const victory=page.locator('#nqVictoryCinema[open]');await expect(victory).toBeVisible();await expect(victory.locator('video')).toHaveCount(1);await victory.getByRole('button',{name:'Ativar som',exact:true}).click();await expect(victory.locator('audio')).toHaveJSProperty('muted',false);
+ await expect(victory.locator('.nq-epilogue-caption')).toHaveText('OS RINS FORAM SALVOS!',{timeout:11000});await victory.getByRole('button',{name:'Pausar',exact:true}).click();
+ const geometry=await victory.evaluate(d=>{const img=d.querySelector('.nq-victory-cinema__aperture')!,caption=d.querySelector('.nq-epilogue-reading')!,a=img.getBoundingClientRect(),b=caption.getBoundingClientRect();return{ratio:a.width/a.height,inside:b.top>=a.top&&b.bottom<=a.bottom+1,overflow:d.scrollHeight>d.clientHeight};});expect(geometry.ratio).toBeCloseTo(16/9,2);expect(geometry.inside).toBe(true);expect(geometry.overflow).toBe(false);await page.screenshot({path:path.join(dir,'victory-epilogue.png')});
  await victory.locator('.nq-victory-cinema__skip').click();const results=page.locator('#victoryModal');await expect(results).toBeVisible();await expect(results.locator('.nqvictory-awarded img')).toBeVisible();await page.screenshot({path:path.join(dir,'victory-results.png')});
  const earned=await page.evaluate(()=>JSON.stringify({score:(window as any).state.score,gold:(window as any).state.gold,correct:(window as any).state.correctTotal,ach:localStorage.getItem('nefroquest-achievements')}));
  await results.getByRole('button',{name:'Continuar jogando',exact:true}).click();await expect(results).toHaveCount(0);await page.reload();await enterGame(page);

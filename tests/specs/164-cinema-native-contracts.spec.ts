@@ -1,5 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
-import { desktopCinemaEligible } from '../helpers/cinema';
+import { advanceToFilm, desktopCinemaEligible } from '../helpers/cinema';
 import { normalBytes, openPilotChoice, pilotState, setupPilotPage } from '../helpers/pilot';
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
@@ -67,7 +67,7 @@ test('filme real inicia mudo; opt-in, pausa, mute e fechamento controlam o gate 
   }
   const intro={overlay:page.locator('#nqEntryCinema[open]'),cancel:page.locator('#nqEntryCinema .nq-entry-cinema__close')};
   await expect(intro.overlay).toBeVisible();
-  await intro.overlay.getByRole('button',{name:'Pular histórias',exact:true}).click();
+  await advanceToFilm(intro.overlay);
   const video = intro.overlay.locator('video');
   await expect.poll(() => video.evaluate((el: HTMLVideoElement) => el.readyState >= 2 && !el.paused)).toBe(true);
   await expect(video).toHaveJSProperty('muted', true);

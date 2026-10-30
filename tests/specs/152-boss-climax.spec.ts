@@ -249,7 +249,7 @@ for (const withChest of [false, true]) test(`evolução do último acerto aguard
     }
     await expect(page.locator('#nqVictoryCinema[open]')).toBeVisible();
     await expect.poll(() => page.evaluate(() => (window as any).NQVictoryCinema.inspection.stage)).toBe('playing');
-    await expect(page.locator('#nqVictoryCinema video')).toHaveCount(0);
+    await expect(page.locator('#nqVictoryCinema video')).toHaveCount(1);
     await expect(page.locator('#nqVictoryCinema .nq-victory-epilogue__image')).toBeVisible();
     await expect(page.locator('#nqVictoryCinema audio')).toHaveJSProperty('muted', true);
     await page.locator('#nqVictoryCinema .nq-victory-cinema__skip').click();

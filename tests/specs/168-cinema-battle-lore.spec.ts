@@ -4,7 +4,7 @@ async function boss(page){await page.route('**/*',r=>new URL(r.request().url()).
 test('real battle uses camera04 and battle captions, not the chamber copy',async({page})=>{
  await boss(page);await page.locator('#nqStaticIntro').click();const d=page.locator('#nqEntryCinema[open]');await expect(d).toBeVisible();await expect(d).toHaveAttribute('data-movie-key','battle');
  await expect.poll(()=>d.locator('video').evaluate((v:HTMLVideoElement)=>v.currentSrc)).toContain('NefroQuest-camera-isolada-teste-04.mp4');
- await expect(d.locator('.nq-movie-caption')).toHaveText('O Trono da Uremia');await page.keyboard.press('Escape');await expect(d).toBeHidden();
+ await expect(d.locator('.nq-movie-caption')).toHaveText('Noventa batalhas depois.');await page.keyboard.press('Escape');await expect(d).toBeHidden();
 });
 test('full battle lore remains readable outside the film without changing native state',async({page})=>{
  await boss(page);const before=await page.evaluate(()=>(0,eval)('JSON.stringify({correct:state.correctTotal,score:state.score,level:state.level,lives:state.lives})'));

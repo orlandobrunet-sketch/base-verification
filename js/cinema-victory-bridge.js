@@ -84,7 +84,7 @@
  function confirm(rec,event){
   const s=read();
   if(!rec||rec!==active||rec.confirmed||!matches(rec,true)||!event||event.answerIdentity!==rec.answer||event.accepted!==true||event.wasBoss!==true||event.correct!==true||event.blocked!==false||event.contextEpoch!==rec.epoch||event.progressBefore!==9||event.progressAfter!==10||event.hpBefore!==10||event.hpAfter!==0||event.gameCompleted!==true||event.gameOver!==false||event.livesAfter!==s.lives)return false;
-  rec.confirmed=true;clearTimeout(rec.watchdog);rec.status='paint-pending';
+  rec.confirmed=true;clearTimeout(rec.watchdog);rec.status='paint-pending';try{if(!document.hidden)playSound('victory');window.NQVictoryCinema?.prepare?.();}catch(_){}
   if(document.hidden)return deliver(rec,'hidden-before-beat');
   // Two animation frames ensure HP0 gets a painted opportunity before the hold.
   rec.frame1=requestAnimationFrame(()=>{rec.frame2=requestAnimationFrame(()=>{
@@ -92,7 +92,7 @@
    // Offscreen HP does not invalidate a resolved victory. Keep native overlay safety.
    if(otherOverlay())return deliver(rec,'native-overlay-before-beat');
    rec.terminalPaintVisible=terminalVisible();
-   rec.paintedAt=performance.now();rec.status='resolved-beat';rec.beat=setTimeout(()=>present(rec),350);
+   rec.paintedAt=performance.now();rec.status='resolved-beat';rec.beat=setTimeout(()=>present(rec),matchMedia('(prefers-reduced-motion:reduce)').matches?350:1800);
   });});return true;
  }
  function capture(event){
