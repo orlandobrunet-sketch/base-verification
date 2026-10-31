@@ -35,6 +35,20 @@ test('no celular o título longo do capítulo não invade o cronômetro', async 
   expect(capitulo.x + capitulo.width).toBeLessThanOrEqual(cronometro.x + 1);
 });
 
+for (const largura of [320, 390]) {
+  test(`a 200% em ${largura} px o capítulo aparece inteiro e empurra a questão`, async ({ page }) => {
+    await abrir(page, { width: largura, height: 800 });
+    await page.addStyleTag({ content: 'html { font-size: 32px !important; }' });
+    const capitulo = page.locator('#questionChapter');
+    expect(await capitulo.evaluate(el => el.scrollWidth <= el.clientWidth + 1 && el.scrollHeight <= el.clientHeight + 1)).toBe(true);
+    const caixa = (await capitulo.boundingBox())!;
+    const questao = (await page.locator('#question').boundingBox())!;
+    const cronometro = (await page.locator('#timerWidget').boundingBox())!;
+    expect(caixa.y + caixa.height).toBeLessThanOrEqual(questao.y);
+    expect(caixa.x + caixa.width).toBeLessThanOrEqual(cronometro.x + 1);
+  });
+}
+
 test('a sequência sobe de nível aos 3, 5 e 10 acertos e some ao errar', async ({ page }) => {
   await abrir(page, NOTEBOOK);
   const nivel = () => page.evaluate(() => document.body.dataset.nqStreak ?? null);
