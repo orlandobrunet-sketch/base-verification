@@ -99,7 +99,7 @@ Deno.serve(async (req) => {
         {
           id: plan,
           title: PRICES[plan].title,
-          description: '1.000+ questões comentadas de Nefrologia, atualizadas constantemente.',
+          description: 'Mais de 700 questões comentadas de Nefrologia, atualizadas constantemente.',
           quantity: 1,
           currency_id: 'BRL',
           unit_price: PRICES[plan].amount,
