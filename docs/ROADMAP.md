@@ -14,6 +14,28 @@ Saem da fila: W1–W7 (PR900/16.18), três questões clínicas (PR901/16.19), 30
 
 O plano de continuidade de 17/10 distingue **pedido, implementado, testado e publicado**, registra a base 16.15 conferida, os ajustes visuais atuais, a revisão formal das 741 questões e os compromissos adiados de mobile, Câmara do Equilíbrio, troféus e membros honorários. O serrilhado dos equipamentos, reaberto pelo proprietário, foi conferido em 30/10 e está resolvido. O histórico abaixo conserva suas datas; não deve ser tratado como estado operacional atual.
 
+## Depois do app pronto — crescimento
+
+Decisão do proprietário em 30/10/2026: as frentes abaixo só começam com o app pronto. Enquanto isso, a prioridade é o produto.
+
+Base da decisão, medida no Supabase em 30/10/2026: 15 contas, nenhuma nova em 30 dias (a última é de 22/07), 1 ativa em 30 dias, nenhum pagamento registrado, 2 premium sem pagamento e nenhum uso do Oráculo com IA. Quem joga sem conta não aparece nesses números, e o GA4 não foi consultado.
+
+**Executáveis sem depender do proprietário:**
+
+1. Páginas públicas por tema: o sitemap tem uma única URL. Criar páginas como hipercalemia e hiponatremia, com questão comentada e chamada para jogar, usando só itens aprovados e sem alterar o banco.
+2. Primeira sessão: medir o caminho da página inicial até a primeira questão e cortar atritos. Só 3 das 15 contas têm progresso salvo.
+3. Termos de uso: não há página própria. Faltam regras de reembolso e cancelamento para a venda de R$ 199. O texto final passa pelo proprietário e, de preferência, por advogado.
+4. Campanha semanal: uma questão por semana em carrossel do Instagram, pronta para publicar.
+5. Painel semanal: contas, uso e vendas em um lugar só.
+
+**Dependem do proprietário:**
+
+1. Compra real do plano mensal, seguida de estorno, antes de qualquer divulgação. Nenhuma venda foi registrada até hoje.
+2. Conversar com cinco estudantes ou residentes sobre valor e preço.
+3. Dar acesso ao GA4 ou repassar os números de visitas.
+
+**Depois das primeiras vendas:** avaliar assinatura recorrente. O plano mensal é um pagamento único que vale 32 dias.
+
 ## Ciclo de refinamento visual — outubro de 2026
 
 O proprietário autorizou concluir o plano de layout sem novas pausas para aprovação de cada tela. Conta, Plano, páginas de apoio, administração e acabamento dos modos de aprendizagem fecham a fila visual após os refinamentos da jornada, Dashboard, Grimório e popups. O inventário e os limites desta rodada estão em [Conferência do ciclo de layout](design/NQ_LAYOUT_REFINEMENT_2026-10.md). Consulte a versão e a publicação de cada entrega; as seções abaixo preservam o histórico de setembro.
