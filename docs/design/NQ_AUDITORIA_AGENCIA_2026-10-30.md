@@ -4,6 +4,16 @@ Avaliação da versão 16.46 como faria uma agência de jogos. Foram abertas 79 
 
 **Veredito:** a base visual é forte: retratos, Forja, Câmara e filmes estão acima do esperado. O problema é outro: **no computador o NefroQuest é um jogo; no celular é um questionário**. E mesmo no computador, responder uma questão quase não tem consequência visível. O maior ganho está em fazer cada resposta parecer uma jogada.
 
+## Situação em 31/10/2026
+
+Os itens **P1** foram concluídos na versão 16.47. A conferência no código corrigiu três afirmações desta auditoria:
+
+- **Atalhos:** 1 a 4, A a D, Enter e Espaço já existiam. O que faltava era mostrá-los na tela.
+- **"Próxima" no computador:** o botão do painel lateral já resolvia. O problema era só o painel sair da tela ao rolar; ele agora acompanha a rolagem.
+- **Escolha de classe:** a 1366×768 os cards cabiam. Faltava só dizer como escolher, e o card ganhou "Escolher".
+
+Vidas e sequência foram para uma faixa fixa acima da questão, em vez do card do herói, porque ela serve ao computador e ao celular. Ao corrigir a derrota, apareceu um defeito fora da auditoria: comprar a pergunta bônus zerava a jornada. Foi corrigido na mesma versão.
+
 ## Prioridade
 
 | Etapa | O que entra | Efeito |
@@ -23,7 +33,7 @@ Onde o jogador passa quase todo o tempo, e por isso vale mais que qualquer outra
 | 3 | **P1** | **Computador:** em 720p as vidas ficam na borda inferior (y=698 de 720) e a sequência fica fora da tela (y=765). O que mais importa no jogo é o que menos se vê. | Subir vidas e sequência para o topo do card do herói |
 | 4 | **P1** | O card mostra "15/741 questões", mas a meta do jogo são 100 acertos. A pessoa não vê quanto falta. | Trocar por "15/100 acertos" com o próximo selo marcado na barra |
 | 5 | **P1** | A explicação começa no fim da tela (y=640 de 720) e continua para baixo. | Rolar suavemente até a explicação, ou dar a ela uma coluna própria |
-| 6 | **P1** | Não há atalhos de jogo. | Teclas 1 a 4 para responder e Enter para avançar. Economiza segundos em toda questão |
+| 6 | **P1** | Os atalhos de teclado existem, mas nada na tela os mostra. | Dizer as teclas ao lado da instrução |
 | 7 | **P2** | Acertar não atinge nada. Não há inimigo, cena nem consequência no centro da tela. | **A maior melhoria do projeto:** um inimigo por capítulo, com barra de vida, retrato pequeno e reação ao acerto e ao erro |
 | 8 | **P2** | O capítulo e o objetivo ficam abaixo da dobra. A história some durante o jogo. | Mostrar o capítulo atual no topo, com o nome do inimigo |
 | 9 | **P2** | Sequência de acertos sem efeito visível. | Escala visual a partir de 3 acertos: brilho no retrato, som e contador que cresce |

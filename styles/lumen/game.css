@@ -2109,3 +2109,132 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   animation: none;
   transition: none;
 }
+
+/* Situação da jornada: o que mais importa no jogo fica sempre à vista. */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final):not(.rd-game-over) #mainApp[data-nq-ui="lumen"] .mobile-status-bar {
+  position: sticky;
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: auto;
+  z-index: 40;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .25rem 1.25rem;
+  margin: 0 0 .6rem;
+  padding: .45rem .9rem;
+  border: 1px solid var(--nql-line);
+  border-radius: 8px;
+  background: rgba(var(--nql-abyss-rgb), .97);
+  box-shadow: none;
+}
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-item {
+  display: flex;
+  flex: 0 1 auto;
+  align-items: baseline;
+  gap: .4rem;
+  border: 0;
+}
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-label {
+  color: var(--nql-text-muted);
+  font: .75rem/1.4 var(--nql-font-body);
+}
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-value {
+  color: var(--nql-parchment);
+  font: 600 .875rem/1.4 var(--nql-font-body);
+  font-variant-numeric: tabular-nums;
+}
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-streak .msb-value { color: #f3b27a; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-gold .msb-value { color: var(--nql-mastery); }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-icon { font-size: .875rem; line-height: 1.4; letter-spacing: .06em; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-icon span[style*="#ef4444"] { color: #ef96a0 !important; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-icon span[style*="#555"] { color: #8795a3 !important; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-correct { margin-left: auto; }
+
+/* A explicação rola até caber acima da borda; o painel lateral acompanha,
+ * porque é nele que a pessoa com mouse encontra "Próxima". */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .feedback { scroll-margin: 4.5rem 0 1.5rem; }
+
+@media (min-width: 769px) {
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .action-dock {
+    position: sticky;
+    top: .75rem;
+  }
+}
+
+/* Quem usa teclado só descobria os atalhos por acaso. */
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-choice-instruction::after {
+    content: ' Teclas 1 a 4 respondem.';
+    color: var(--nql-text-muted);
+  }
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-choice-instruction::after {
+    content: ' Enter avança.';
+  }
+}
+
+/* Celular: "Próxima" ficava 1.400 px abaixo. Depois de responder, ela sobe para
+ * cima da barra inferior, que continua dando acesso ao Oráculo. */
+@media (max-width: 768px) {
+  body:has(#mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] #nextBtn:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) {
+    padding-bottom: calc(9rem + env(safe-area-inset-bottom, 0px));
+  }
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] #nextBtn:not(.hidden) {
+    position: fixed;
+    right: .75rem;
+    bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+    left: .75rem;
+    z-index: 900;
+    box-shadow: 0 .25rem 1rem rgba(var(--nql-abyss-rgb), .8);
+  }
+  /* html e body cortam a lateral com overflow-x: hidden, e isso soltava a faixa
+   * ao rolar. O botão de som ocupa o canto: a faixa não usa o lado direito. */
+  body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) {
+    overflow-x: clip;
+    overflow-y: visible;
+  }
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final):not(.rd-game-over) #mainApp[data-nq-ui="lumen"] .mobile-status-bar {
+    gap: .25rem .9rem;
+    padding: .4rem .7rem;
+  }
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-correct { margin-left: 0; }
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .feedback { scroll-margin: 4.5rem 0 8.5rem; }
+}
+
+@media (max-width: 340px) {
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-correct .msb-label { display: none; }
+}
+
+@media (max-width: 400px) {
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-gold,
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-lives .msb-label { display: none; }
+}
+
+/* Fim de jornada por falta de vidas. */
+.nqdefeat-overlay { z-index: 9990; }
+.nqdefeat-card { width: min(100%, 560px); }
+.nqdefeat-card .nqnarr-reading { padding: 30px 32px 22px; }
+.nqdefeat-card .nqnarr-chapter { margin-bottom: 18px; }
+.nqdefeat-heading { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 18px; align-items: center; }
+.nqdefeat-heading img { width: 84px; height: 84px; border: 1px solid #dfc28059; border-radius: 12px; object-fit: cover; object-position: top; filter: saturate(.7); }
+.nqdefeat-heading h2 { margin: 0 0 6px; color: #eee8d9; font: 600 1.6rem/1.2 var(--nql-font-display); text-align: left; }
+.nqdefeat-heading p { margin: 0; color: #b7c2cc; font: 1rem/1.5 var(--nql-font-body); }
+.nqdefeat-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 22px 0 0; padding: 16px 0 0; border-top: 1px solid #ffffff12; }
+.nqdefeat-stats div { min-width: 0; }
+.nqdefeat-stats dt { color: #9fadb9; font: .8125rem/1.4 var(--nql-font-body); }
+.nqdefeat-stats dd { margin: 2px 0 0; color: #eee8d9; font: 600 1.25rem/1.3 var(--nql-font-body); font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.nqdefeat-topics { margin: 16px 0 0; color: #eee8d9; font: 1rem/1.5 var(--nql-font-body); overflow-wrap: anywhere; }
+.nqdefeat-topics span { display: block; color: #9fadb9; font-size: .8125rem; }
+.nqdefeat-actions { flex-wrap: wrap; gap: 10px; justify-content: stretch; padding: 16px 32px 20px; }
+.nqdefeat-actions .nqnarr-primary { flex: 1 1 100%; }
+.nqdefeat-secondary { flex: 1 1 11rem; min-height: 44px; padding: 10px 14px; border: 1px solid #9faeae52; border-radius: 6px; background: transparent; color: #dbe3ea; font: 500 .9375rem/1.3 var(--nql-font-body); cursor: pointer; }
+.nqdefeat-secondary:hover { border-color: #dfc280; color: #efe2bf; }
+.nqdefeat-card button:focus-visible { outline: 2px solid var(--nql-lumen); outline-offset: 2px; }
+@media (max-width: 480px) {
+  .nqdefeat-card .nqnarr-reading { padding: 26px 20px 18px; }
+  .nqdefeat-actions { padding: 14px 20px 18px; }
+  .nqdefeat-heading { grid-template-columns: 64px minmax(0, 1fr); gap: 14px; }
+  .nqdefeat-heading img { width: 64px; height: 64px; }
+  .nqdefeat-heading h2 { font-size: 1.35rem; }
+}

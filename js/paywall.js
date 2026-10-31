@@ -114,7 +114,7 @@
             <div class="pricing-card">
               <div class="pricing-icon">🎓</div>
               <h3>Gratuito</h3>
-              <div class="pricing-amount">${isPt ? 'R$0' : 'US$0'}</div>
+              <div class="pricing-amount">R$0</div>
               <div class="pricing-period">${isPt ? 'para sempre' : 'forever'}</div>
               <hr class="pricing-divider">
               <ul class="pricing-features">
@@ -132,7 +132,7 @@
               <div class="pricing-icon">⚡</div>
               <h3>${isPt ? 'Mensal' : 'Monthly'}</h3>
               <div class="pricing-amount">${PRICE_MONTHLY}</div>
-              <div class="pricing-period">${isPt ? 'por mês · cancele quando quiser' : 'per month · cancel anytime'}</div>
+              <div class="pricing-period">${isPt ? '32 dias de acesso · sem renovação automática' : '32 days of access · no auto-renewal'}</div>
               <hr class="pricing-divider">
               <ul class="pricing-features">
                 <li>${questionBank?.length ?? '+'} questões de nefrologia</li>
@@ -143,8 +143,8 @@
                 <li>Apoia o desenvolvimento da ferramenta</li>
               </ul>
               ${_isTWA
-                ? `<div class="pricing-twa-notice">${isPt ? '🌐 Para assinar, acesse <strong>nefroquest.com</strong> no seu navegador.' : '🌐 To subscribe, visit <strong>nefroquest.com</strong> in your browser.'}</div>`
-                : `<button class="pricing-choose-btn btn-monthly" data-action="pricingChoose" data-arg="monthly">${isPt ? 'Assinar Agora' : 'Subscribe Now'}</button>`}
+                ? `<div class="pricing-twa-notice">${isPt ? '🌐 Para comprar, acesse <strong>nefroquest.com</strong> no seu navegador.' : '🌐 To purchase, visit <strong>nefroquest.com</strong> in your browser.'}</div>`
+                : `<button class="pricing-choose-btn btn-monthly" data-action="pricingChoose" data-arg="monthly">${isPt ? 'Comprar 32 dias' : 'Buy 32 days'}</button>`}
             </div>
             <div class="pricing-card">
               <div class="pricing-icon">👑</div>

@@ -24,5 +24,15 @@
  .nq-uremic-seal{position:absolute;z-index:5;inset:auto 1px 2px;display:flex;align-items:center;justify-content:center;gap:2px;min-height:17px;border-top:1px solid #b4abc9a3;background:#21192ee8;color:#efe5fa;font:600 9px/1.3 sans-serif;letter-spacing:.04em;pointer-events:none}
  .nq-uremic-seal svg{width:10px;height:11px;flex:none}
  .nq-uremic-seal .sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+ @media(max-height:800px){
+  #nqBossStatic[data-outcome="playing"] .nq-static-scene{aspect-ratio:auto;height:192px}
+  #nqBossStatic[data-outcome="playing"] .nq-static-art[data-art-layout="panoramic"]{object-fit:cover;object-position:50% 18%}
+  #nqBossStatic[data-outcome="playing"] .nq-static-copy{gap:5px;padding:10px 20px}
+  #nqBossStatic[data-outcome="playing"] .nq-static-narration{font-size:.82rem;line-height:1.35}
+ }
+ @media(max-height:740px){
+  #nqBossStatic[data-outcome="playing"] .nq-static-scene{height:150px}
+  #nqBossStatic[data-outcome="playing"] .nq-static-narration{display:none}
+ }
  #nqBossStatic[data-outcome="defeat"] .nq-static-atmosphere{opacity:.35;background:linear-gradient(0deg,#32113b66,transparent 65%)}
 }}

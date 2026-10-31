@@ -195,7 +195,8 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
         questionTop: document.querySelector('.qbox')!.getBoundingClientRect().top,
         drawerPosition: getComputedStyle(document.querySelector('.panel.left')!).position,
       }));
-      expect(mobileLayout.questionTop).toBeLessThan(100);
+      // A faixa de vidas, sequência e acertos fica acima da questão.
+      expect(mobileLayout.questionTop).toBeLessThan(130);
       expect(mobileLayout.drawerPosition).toBe('fixed');
 
       await page.locator('.mobile-bottom-dock [data-action="openMobileDrawer"]').click();

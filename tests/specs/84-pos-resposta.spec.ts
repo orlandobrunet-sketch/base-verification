@@ -131,7 +131,7 @@ test('fim da partida mantém próxima pergunta oculta e defesa mantém o aviso',
       (0, eval)('state.lives = 1; answer((state.current.a + 1) % state.current.o.length, document.querySelectorAll("#options .option")[(state.current.a + 1) % state.current.o.length])');
     } finally { Math.random = random; }
   });
-  await expect(page.locator('#nameModal')).toBeVisible();
+  await expect(page.locator('#defeatScreen')).toBeVisible();
   expect(await page.evaluate(() => (0, eval)('state.lives'))).toBe(0);
   await expect(page.locator('#nextBtn')).toBeHidden();
 });
