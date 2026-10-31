@@ -85,7 +85,9 @@ const NQ_COMPETENCIES = [
 
   { id:'gl_gesf', cat:'glomerular', label:'GESF — glomeruloesclerose segmentar e focal',
     icon:'🎯',
-    keywords:['gesf','glomeruloesclerose segmentar','focal ','justa medular','justamedulares','tip lesion','colapsante','perihilar','fsgs','sparsentan','atrasentan'] },
+    // 'focal ' saiu: não identificava nenhuma questão de GESF que as outras
+    // palavras já não pegassem, e casava com "glomerulonefrite necrosante focal".
+    keywords:['gesf','glomeruloesclerose segmentar','justa medular','justamedulares','tip lesion','colapsante','perihilar','fsgs','sparsentan','atrasentan'] },
 
   { id:'gl_igan', cat:'glomerular', label:'Nefropatia por IgA',
     icon:'💉',
@@ -140,7 +142,7 @@ const NQ_COMPETENCIES = [
   // ──────────────── DRC (136 q) ─────────────────────────────────────────────
   { id:'drc_isglt2_glp1', cat:'drc', label:'iSGLT2 e GLP-1 na DRC',
     icon:'💊',
-    keywords:['sglt2','dapagliflozina','empagliflozina','canagliflozina','glp-1','semaglutida','liraglutida','empa-kidney','dapa-ckd','credence','flow estudo','isglt2 drc','sglt-2'] },
+    keywords:['sglt2','dapagliflozina','empagliflozina','canagliflozina','glp-1','semaglutida','liraglutida','empa-kidney','dapa-ckd','credence','flow estudo','isglt2','sglt-2'] },
 
   { id:'drc_complicacoes', cat:'drc', label:'Complicações da DRC',
     icon:'⚠️',
@@ -355,13 +357,48 @@ function _nqNorm(str) {
 // ── Índice qid → [compId, ...] (construído lazily) ──────────────────────────
 var _nqCompIndex = null;
 
+// ── Casamento de palavra-chave ────────────────────────────────────────────────
+// Era `text.includes(kw)`, com dois defeitos conhecidos (NQ-10, conserto A):
+// - pedaço de palavra: 'rave ' (o estudo RAVE) casava dentro de "grave",
+//   e 'dose na drc' dentro de "acidose na drc";
+// - negação: "não iniciou terapia renal substitutiva" contava como TRS.
+// Agora o início da palavra-chave precisa coincidir com o início de uma
+// palavra do texto. O fim só é exigido quando a palavra-chave foi escrita com
+// espaço no final ('atr ', 'pth ', 'dp ') — sem ele, ela é radical de
+// propósito ('tolvaptan' → "tolvaptana", 'polici' → "policística").
+// Uma ocorrência precedida, em até duas palavras, por negação ("sem", "não é",
+// "ausência de") não conta; "qual NÃO é causa de hipocalemia" continua
+// sendo sobre hipocalemia, porque o "não" está a três palavras.
+var _NQ_NEGACOES = ['nao', 'sem', 'nega', 'negou', 'ausencia', 'afastada', 'afastado', 'descartada', 'descartado', 'excluida', 'excluido'];
+
+function _nqNegado(text, i) {
+  var antes = text.slice(Math.max(0, i - 40), i).split(/[^a-z0-9]+/).filter(Boolean).slice(-2);
+  return antes.some(function(w) { return _NQ_NEGACOES.indexOf(w) >= 0; });
+}
+
+function _nqCasa(text, kw) {
+  var bruto = _nqNorm(kw);
+  var k = bruto.trim();
+  if (!k) return false;
+  var alnum = /[a-z0-9]/;
+  var fimEstrito = /\s$/.test(bruto) || !/[a-z]/.test(k[k.length - 1]);
+  for (var i = text.indexOf(k); i >= 0; i = text.indexOf(k, i + 1)) {
+    var antes = i > 0 ? text[i - 1] : '';
+    var depois = text[i + k.length] || '';
+    var inicioOk = !alnum.test(k[0]) || !alnum.test(antes);
+    var fimOk = !fimEstrito || !alnum.test(k[k.length - 1]) || !alnum.test(depois);
+    if (inicioOk && fimOk && !_nqNegado(text, i)) return true;
+  }
+  return false;
+}
+
 function _nqMatchComps(text, cat) {
   // `text` já chega normalizado por _nqNorm (sem acentos), então a keyword
   // precisa passar pela mesma normalização — senão toda keyword acentuada é
   // letra morta. Custava 12 keywords, entre elas as duas de hipotensão
   // intradialítica e as três de rejeição do enxerto.
   var specific = NQ_COMPETENCIES.filter(function(c) {
-    return c.cat === cat && !c.fallback && c.keywords.some(function(kw) { return text.includes(_nqNorm(kw)); });
+    return c.cat === cat && !c.fallback && c.keywords.some(function(kw) { return _nqCasa(text, kw); });
   });
   if (specific.length > 0) return specific.map(function(c) { return c.id; });
   var fb = NQ_COMPETENCIES.find(function(c) { return c.cat === cat && c.fallback; });
