@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.43',
+          release: 'nefroquest@16.44',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -139,7 +139,7 @@
   <link rel="stylesheet" href="styles/lumen/shell.css?v=16.18">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=15.94">
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.25">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=16.23">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=16.44">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.06">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.25">
   <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.07">
@@ -154,7 +154,7 @@
   <link rel="stylesheet" href="styles/lumen/cinemavictory.css?v=16.28">
   <link rel="stylesheet" href="styles/lumen/cinemaentry.css?v=16.28">
   <link rel="stylesheet" href="styles/lumen/cinemamotion.css?v=16.42">
-  <link rel="stylesheet" href="styles/lumen/bossfinishing.css?v=16.43">
+  <link rel="stylesheet" href="styles/lumen/bossfinishing.css?v=16.44">
   <link rel="stylesheet" href="styles/lumen/ritual.css?v=15.94">
   <link rel="stylesheet" href="styles/lumen/ranking.css?v=15.94">
   <link rel="stylesheet" href="styles/lumen/achievements.css?v=16.40">
@@ -997,10 +997,6 @@
       </div>
 
       <div class="nql-loadout-shell" role="group" aria-label="Personagem e equipamentos">
-        <button type="button" id="guardianMotionToggle" class="nql-motion-toggle" data-action="toggleGuardianMotion" aria-label="Pausar animação do personagem" title="Pausar animação do personagem" aria-pressed="false">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path class="nql-motion-pause" d="M8 6v12M16 6v12"/><path class="nql-motion-play" d="m9 5 10 7-10 7z"/></svg>
-        </button>
-
         <div class="hero">
           <div class="hero-wrap">
             <div class="portrait-frame" data-action="showHeroLore" role="button" tabindex="0" aria-label="Ver história do personagem" title="Ver história do personagem">
@@ -1852,7 +1848,7 @@
   <script defer src="js/audio.js?v=16.28"></script>
   <script defer src="js/leaderboard.js?v=16.07"></script>
   <script defer src="js/study-mode.js?v=16.25"></script>
-  <script defer src="js/game.js?v=16.42"></script>
+  <script defer src="js/game.js?v=16.44"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=15.92"></script>

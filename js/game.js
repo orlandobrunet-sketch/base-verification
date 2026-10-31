@@ -2857,12 +2857,6 @@
       dockNextBtn:$("dockNextBtn")
     };
 
-    const GUARDIAN_MOTION_KEY = 'nq-guardian-motion-paused';
-    let _guardianMotionPaused = (() => {
-      try { return localStorage.getItem(GUARDIAN_MOTION_KEY) === '1'; }
-      catch (e) { return false; }
-    })();
-
     // Feedback só entre dois estados da mesma jornada. Restaurar/iniciar ou
     // trocar de personagem estabelece uma nova base, sem simular recompensas.
     let _guardianHudSnapshot = null;
@@ -2881,7 +2875,7 @@
     }
 
     function guardianMotionVisible() {
-      if (_guardianMotionPaused || _guardianReducedMotion.matches || !state.gameStarted
+      if (_guardianReducedMotion.matches || !state.gameStarted
         || document.hidden || document.body.matches('.boss-battle-mode, .arqui-nefromante-final')
         || (typeof isBossBattle === 'function' && isBossBattle())) return false;
       const shell = ui.heroImg?.closest('#mainApp[data-nq-ui="lumen"] .nql-loadout-shell');
@@ -3007,29 +3001,6 @@
       if (_guardianReducedMotion.matches) cancelGuardianEffects();
     });
 
-    function renderGuardianMotion() {
-      if (_guardianMotionPaused || _guardianReducedMotion.matches) cancelGuardianEffects();
-      document.querySelectorAll('.nql-loadout-shell').forEach(shell => {
-        shell.classList.toggle('nql-motion-paused', _guardianMotionPaused);
-      });
-      const button = $('guardianMotionToggle');
-      if (!button) return;
-      const label = _guardianMotionPaused
-        ? 'Retomar animação do personagem'
-        : 'Pausar animação do personagem';
-      button.setAttribute('aria-pressed', String(_guardianMotionPaused));
-      button.setAttribute('aria-label', label);
-      button.title = label;
-    }
-
-    function toggleGuardianMotion() {
-      _guardianMotionPaused = !_guardianMotionPaused;
-      try { localStorage.setItem(GUARDIAN_MOTION_KEY, _guardianMotionPaused ? '1' : '0'); }
-      catch (e) { /* A preferência continua válida nesta sessão sem armazenamento. */ }
-      renderGuardianMotion();
-    }
-    window.toggleGuardianMotion = toggleGuardianMotion;
-    renderGuardianMotion();
 
     // === SUPABASE LEADERBOARD ===
 
@@ -3563,7 +3534,6 @@
       if(loadoutShell) {
         loadoutShell.dataset.character = characters[state.character] ? state.character : 'nephros';
       }
-      renderGuardianMotion();
       $('guardianLevelLabel').textContent = `Nível ${state.level}`;
       $('guardianXpAmount').textContent = `${state.xp}/${state.xpToNext}`;
       ui.storyTitle.textContent=chapter.title;
@@ -6979,7 +6949,7 @@
       });
       // Fechar drawer ao clicar em botão dentro do painel esquerdo
       leftPanel.addEventListener('click', function(e) {
-        if (isMobile() && e.target.closest('button') && !e.target.closest('.drawer-close-btn, .stat-badge, .slot-diablo, .nql-motion-toggle') && !e.target.closest('.forge-popup') && !e.target.closest('.narrative-popup')) {
+        if (isMobile() && e.target.closest('button') && !e.target.closest('.drawer-close-btn, .stat-badge, .slot-diablo') && !e.target.closest('.forge-popup') && !e.target.closest('.narrative-popup')) {
           clearTimeout(drawerCloseTimer);
           drawerCloseTimer = setTimeout(closeDrawer, 200);
         }

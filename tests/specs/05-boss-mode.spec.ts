@@ -52,7 +52,7 @@ test.describe('Boss mode (Fase Final)', () => {
   test('elementos exclusivos da Câmara de Conduta não vazam para o confronto final', async ({ page }) => {
     for (const selector of [
       '.nql-portrait-light', '.nql-question-meta', '.nql-feedback-kicker',
-      '.nql-hero-archetype', '#guardianMotionToggle', '.nql-choice-instruction',
+      '.nql-hero-archetype', '.nql-choice-instruction',
     ]) {
       await expect(page.locator(selector)).toBeAttached();
       await expect(page.locator(selector)).toBeHidden();
