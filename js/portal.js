@@ -18,7 +18,7 @@
     var routeCopy = {
       google: 'Acesso rápido com sua conta Google',
       email: 'Conta, progresso e revisões sincronizados',
-      guest: '15 questões neste dispositivo, sem sincronização'
+      guest: '15 questões sem conta; com conta grátis, são 50'
     };
 
     function setRoute(route) {

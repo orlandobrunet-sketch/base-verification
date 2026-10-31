@@ -1287,4 +1287,63 @@
       renderRefs(["kdigo_ckd","kdigo_aki","kdigo_gn","kdigo_tx","dapa","empa"]);
       renderHUD();
       updateBadges(); renderBoard().catch(() => {});
+      if (_fimPorDerrota()) showDefeatScreen();
+    }
+
+    /* Perder abria um formulário de ranking ou deixava só uma linha de texto.
+     * O resumo vem antes: quanto a pessoa avançou, o que estudar e como voltar. */
+    function showDefeatScreen() {
+      document.getElementById('defeatScreen')?.remove();
+      const proximoSelo = BADGES.find(badge => state.correctTotal < badge.required);
+      const errosPorTema = {};
+      _sessionWrongAnswers.forEach(q => {
+        const nome = window.NQ_CAT_LABELS?.[q.c || q.cat]?.replace(/^[^\p{L}]+/u, '');
+        if (nome) errosPorTema[nome] = (errosPorTema[nome] || 0) + 1;
+      });
+      const temas = Object.entries(errosPorTema).sort((a, b) => b[1] - a[1]).slice(0, 3).map(([nome]) => nome);
+      const cost = bonusCost();
+      const podeBonus = state.gold >= cost && state.bonusUses < 1;
+      const erros = _sessionWrongAnswers.length;
+      const modal = document.createElement('div');
+      modal.id = 'defeatScreen';
+      modal.className = 'nqnarr-overlay nqdefeat-overlay';
+      modal.setAttribute('role', 'presentation');
+      modal.innerHTML = `
+        <section class="nqnarr-card nqdefeat-card">
+          <button class="nqnarr-close" data-remove-id="defeatScreen" aria-label="Fechar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+          <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Resumo da jornada">
+            <p class="nqnarr-chapter">Fim da jornada</p>
+            <div class="nqdefeat-heading">
+              <img src="${escapeHtml(document.getElementById('heroImg')?.getAttribute('src') || '')}" alt="" width="84" height="84">
+              <div>
+                <h2>As vidas acabaram</h2>
+                <p>Você chegou a ${state.correctTotal} de 100 acertos.${proximoSelo ? ` Faltaram ${proximoSelo.required - state.correctTotal} para o selo ${escapeHtml(proximoSelo.name)}.` : ''}</p>
+              </div>
+            </div>
+            <dl class="nqdefeat-stats">
+              <div><dt>Acertos</dt><dd>${state.correctTotal}</dd></div>
+              <div><dt>Nível</dt><dd>${state.level}</dd></div>
+              <div><dt>Pontos</dt><dd>${state.score.toLocaleString('pt-BR')}</dd></div>
+            </dl>
+            ${temas.length ? `<p class="nqdefeat-topics"><span>Temas para revisar</span>${temas.map(escapeHtml).join(' · ')}</p>` : ''}
+          </div>
+          <footer class="nqnarr-footer nqdefeat-actions">
+            <button class="nqnarr-primary" data-defeat="restart">Tentar de novo</button>
+            ${podeBonus ? `<button class="nqdefeat-secondary" data-defeat="bonus">Usar pergunta bônus (${cost} ouro)</button>` : ''}
+            ${erros ? `<button class="nqdefeat-secondary" data-defeat="review">Revisar ${erros} ${erros > 1 ? 'erros' : 'erro'}</button>` : ''}
+            <button class="nqdefeat-secondary" data-defeat="ranking">${pendingScore ? 'Registrar no ranking' : 'Ver ranking'}</button>
+          </footer>
+        </section>`;
+      modal.addEventListener('click', event => {
+        const acao = event.target.closest('[data-defeat]')?.dataset.defeat;
+        if (!acao) return;
+        if (acao === 'review') { showSessionWrongAnswers(); return; }
+        modal.remove();
+        if (acao === 'restart') ui.newBtn.click();
+        else if (acao === 'bonus') ui.bonusBtn.click();
+        else if (pendingScore) _abrirRegistroDeNome();
+        else ui.boardBtn?.click();
+      });
+      document.body.appendChild(modal);
+      nqDialogo(modal, { painel: modal.querySelector('.nqdefeat-card') });
     }

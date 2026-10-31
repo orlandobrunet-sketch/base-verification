@@ -81,7 +81,7 @@
         } catch(e2) {
           if (typeof _reportError === 'function') _reportError(e2, { action: 'boardFetch_parseCache' });
         }
-        _toast('Erro ao carregar o leaderboard. Verifique sua conexão.', 'error');
+        _toast('Erro ao carregar o ranking. Verifique sua conexão.', 'error');
         /* Antes: `return []`.
          *
          * Lista vazia é indistinguível de ranking realmente vazio, e quem

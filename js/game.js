@@ -545,6 +545,7 @@
       }
       document.getElementById('autoChestPopup')?.remove();
       document.getElementById('goldMilestonePopup')?.remove();
+      document.getElementById('defeatScreen')?.remove();
       _pilotRestoredQuestion = false;
       if (window.NQPilot?.active) window.NQPilot.release();
       document.body.classList.remove('nq-studying', 'boss-battle-mode', 'arqui-nefromante-final', 'boss-stun-active', 'boss-hp-critical', 'rd-game-over');
@@ -684,8 +685,9 @@
     // Veja o helper t(pt, en) em utils.js para strings bilíngues.
     window.NQ_CONFIG = window.NQ_CONFIG || {};
     window.NQ_CONFIG.lang = _lang;
-    const PRICE_MONTHLY  = _lang === 'pt' ? 'R$14,90' : 'US$14.90';
-    const PRICE_LIFETIME = _lang === 'pt' ? 'R$199,00' : 'US$199.00';
+    // O checkout cobra em reais para todo mundo; mostrar dólar prometia outro preço.
+    const PRICE_MONTHLY  = 'R$14,90';
+    const PRICE_LIFETIME = 'R$199,00';
     
     // ── Cache de stats (evita JSON.parse a cada resposta) ──
     let _statsCache = null;
@@ -3577,7 +3579,12 @@
         $('guardianXpHint').textContent = '';
       }
       const _qCtr = document.getElementById('questionCounterTxt');
-      if (_qCtr) _qCtr.textContent = `${state.correctTotal}/${questionBank?.length ?? '+'} questões`;
+      if (_qCtr) {
+        const _proximoSelo = BADGES.find(badge => state.correctTotal < badge.required);
+        _qCtr.textContent = state.correctTotal < 100
+          ? `${state.correctTotal}/100 acertos · selo aos ${_proximoSelo.required}`
+          : `${state.correctTotal} acertos`;
+      }
       // Barra de progresso do ciclo
       const _cpf = document.getElementById('cycleProgressFill');
       const _cpt = document.getElementById('cycleProgressTxt');
@@ -3600,6 +3607,8 @@
       const msbLivesEl = document.getElementById('msbLivesIcons');
       if(msbGoldEl) msbGoldEl.textContent = state.gold;
       if(msbStreakEl) msbStreakEl.textContent = state.streak;
+      const msbCorrectEl = document.getElementById('msbCorrect');
+      if(msbCorrectEl) msbCorrectEl.textContent = state.correctTotal < 100 ? `${state.correctTotal}/100` : state.correctTotal;
       if(msbLivesEl) {
         const lives = Math.max(0, state.lives);
         const maxLives = effectiveMaxLives();
@@ -3981,6 +3990,16 @@
     }
 
     let _loadingNextQuestion = false;
+    /* A explicação nasce no fim da tela, e só o celular rolava até ela. Respeita
+     * movimento reduzido e deixa a escolha de rolar de lado com o Oráculo aberto. */
+    function _revealFeedback() {
+      setTimeout(() => {
+        if (document.getElementById('oraclePage')?.hidden === false) return;
+        const reduz = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        ui.feedback.scrollIntoView({ behavior: reduz ? 'auto' : 'smooth', block: 'nearest' });
+      }, 80);
+    }
+
     function usesLumenDebrief() {
       return !!document.querySelector('#mainApp[data-nq-ui="lumen"]') &&
         !isBossBattle() && !document.body.classList.contains('arqui-nefromante-final') &&
@@ -4205,6 +4224,8 @@
         ui.dockNextBtn?.classList.remove('disabled');
       }
       _renderCampaignQuestionRevisionNotice(wasAnswered);
+      // A explicação deixa a página rolada; a próxima pergunta começa do topo.
+      if (!wasAnswered && window.scrollY > 0) window.scrollTo({ top: 0, behavior: 'instant' });
       if (!isProgressSandbox() && (isCharacterPilot() || !!state.classBenefits || !!q._answerPresentation) &&
           !_normalJourneyStaging && !restoringPilot && !wasAnswered && !_doSaveGame()) {
         _stopLocalJourney(); _reloadJourneyCollections(); refreshWelcomeSave();
@@ -4766,10 +4787,7 @@
           if (!renderLumenAnswerFeedback(true, consequence)) {
             ui.feedback.innerHTML = `<strong>✅ Correto!</strong> ${consequence}<br><span class="fb-snip">${_full}</span>`;
           }
-          if (window.innerWidth <= 768) setTimeout(() => {
-            if (document.getElementById('oraclePage')?.hidden === false) return;
-            ui.feedback.scrollIntoView({behavior:'smooth', block:'nearest'});
-          }, 80);
+          _revealFeedback();
         }
         // Feedback de dano/XP flutuante
         let x, y;
@@ -4960,10 +4978,7 @@
           if (!renderLumenAnswerFeedback(false, (legendaryBlockMsg || blocked ? escapeHtml(_prefix) : '') + _pilotAnswerFeedback(pilotAnswer))) {
             ui.feedback.innerHTML = `<strong>${escapeHtml(_prefix)}</strong><br><span class="fb-snip">${_full2}</span>`;
           }
-          if (window.innerWidth <= 768) setTimeout(() => {
-            if (document.getElementById('oraclePage')?.hidden === false) return;
-            ui.feedback.scrollIntoView({behavior:'smooth', block:'nearest'});
-          }, 80);
+          _revealFeedback();
         }
         renderErrorReflection(state.current.id, choiceResult.originalChoice);
         log('⚠️ Você falhou nessa carta. Ajuste a estratégia e continue.');
@@ -5364,7 +5379,16 @@
        *
        * A trava protege também o boardPush abaixo — sem ela, a mesma partida
        * era enviada duas vezes ao ranking global. */
-      if (_jornadaJaContabilizada) return;
+      if (_jornadaJaContabilizada) {
+        // A pergunta bônus reabre a jornada já contada. Perder de novo não
+        // conta outra partida, mas precisa chegar à tela final.
+        if (state.bonusUses > 0 && state.lives <= 0 && !state.gameOver) {
+          deleteSave();
+          if (pendingScore) Object.assign(pendingScore, {score: state.score, level: state.level});
+          finishGameUI();
+        }
+        return;
+      }
       _jornadaJaContabilizada = true;
       const origin = _pilotOrigin();
 
@@ -5412,7 +5436,19 @@
         return;
       }
 
+      // Convidado que perdeu vê primeiro o resumo; o ranking é opção de lá.
+      if (_fimPorDerrota()) { finishGameUI(); return; }
+
       // Guardar score e abrir modal de nome (convidado)
+      _abrirRegistroDeNome();
+    }
+
+    function _fimPorDerrota() {
+      return state.lives <= 0 && !state.completedGame && !isBossBattle() &&
+        !isCharacterPilot() && !isProgressSandbox();
+    }
+
+    function _abrirRegistroDeNome() {
       document.getElementById('nameModal').classList.add('show');
       const input = document.getElementById('playerName');
       input.value = state.lastSubmittedName || '';
@@ -5431,6 +5467,9 @@
       state.bonusUses++;
       state.lives=1;
       state.gameOver=false;
+      // deleteSave() desligou a jornada ao perder. Sem religar, a pergunta não
+      // grava e o progresso é descartado. Direto no dado: não é uma nova partida.
+      _stateData.gameStarted = true;
       if (isCharacterPilot() || state.classBenefits) _nextQuestionOrigin = 'bonus';
       log(`✨ Pergunta Bônus comprada por ${cost} ouro. A jornada continua.`);
       renderHUD();
@@ -5942,6 +5981,7 @@
     }
     function closeNameModal() {
       document.getElementById('nameModal').classList.remove('show');
+      if (state.gameOver && _fimPorDerrota()) showDefeatScreen();
     }
     window.closeBoardModal = closeBoardModal;
     window.closeCharSelectModal = closeCharSelectModal;

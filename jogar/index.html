@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.46',
+          release: 'nefroquest@16.47',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -139,10 +139,10 @@
   <link rel="stylesheet" href="styles/lumen/shell.css?v=16.18">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=15.94">
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.25">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=16.44">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=16.47">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.06">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.25">
-  <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.07">
+  <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.47">
   <link rel="stylesheet" href="styles/lumen/forge.css?v=16.25">
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
   <link rel="stylesheet" href="styles/lumen/modes.css?v=15.98">
@@ -154,7 +154,7 @@
   <link rel="stylesheet" href="styles/lumen/cinemavictory.css?v=16.28">
   <link rel="stylesheet" href="styles/lumen/cinemaentry.css?v=16.28">
   <link rel="stylesheet" href="styles/lumen/cinemamotion.css?v=16.42">
-  <link rel="stylesheet" href="styles/lumen/bossfinishing.css?v=16.44">
+  <link rel="stylesheet" href="styles/lumen/bossfinishing.css?v=16.47">
   <link rel="stylesheet" href="styles/lumen/ritual.css?v=15.94">
   <link rel="stylesheet" href="styles/lumen/ranking.css?v=15.94">
   <link rel="stylesheet" href="styles/lumen/achievements.css?v=16.40">
@@ -398,7 +398,7 @@
               <span class="nql-portal__route-index">15</span>
               <span class="nql-portal__route-copy">
                 <strong>Experimentar 15 questões</strong>
-                <small>Sem conta ou sincronização</small>
+                <small>Sem conta. Com conta grátis, são 50</small>
               </span>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M14 7l5 5-5 5"/></svg>
             </button>
@@ -1065,6 +1065,26 @@
         <button type="button" id="leavePilotBtn" class="nq-pilot-button" data-action="leavePilotGame">Sair do piloto e voltar ao início</button>
       </aside>
 
+      <!-- Vidas, sequência e acertos sempre à vista, no computador e no celular -->
+      <div class="mobile-status-bar" id="mobileStatusBar" role="group" aria-label="Situação da jornada">
+        <div class="msb-item msb-lives">
+          <span class="msb-label">Vidas</span>
+          <span class="msb-icon" id="msbLivesIcons">❤❤❤</span>
+        </div>
+        <div class="msb-item msb-streak">
+          <span class="msb-label">Sequência</span>
+          <span class="msb-value" id="msbStreak">0</span>
+        </div>
+        <div class="msb-item msb-correct">
+          <span class="msb-label">Acertos</span>
+          <span class="msb-value" id="msbCorrect">0/100</span>
+        </div>
+        <div class="msb-item msb-gold">
+          <span class="msb-label">Ouro</span>
+          <span class="msb-value" id="msbGold">0</span>
+        </div>
+      </div>
+
       <!-- RUNIC COLUMNS (boss mode decoration) -->
       <div id="runeColLeft" aria-hidden="true">
         <div class="rune-track">
@@ -1384,21 +1404,6 @@
   <!-- MOBILE: Overlay escuro quando drawer aberto -->
   <div class="mobile-overlay" id="mobileOverlay"></div>
 
-  <!-- MOBILE: Barra de status (ouro/streak/vidas) acima do dock -->
-  <div class="mobile-status-bar" id="mobileStatusBar">
-    <div class="msb-item msb-gold">
-      <span class="msb-icon">💰</span>
-      <span class="msb-value" id="msbGold">0</span>
-    </div>
-    <div class="msb-item msb-streak">
-      <span class="msb-icon">🔥</span>
-      <span class="msb-value" id="msbStreak">0</span>
-    </div>
-    <div class="msb-item msb-lives">
-      <span class="msb-icon" id="msbLivesIcons">❤❤❤</span>
-    </div>
-  </div>
-
   <!-- MOBILE: Bottom dock (visível apenas em mobile) -->
   <div class="mobile-bottom-dock" id="mobileBottomDock" style="display:none;">
 
@@ -1552,6 +1557,7 @@
               <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
             </span>
             <span class="nqc-path-label">10 estágios de arte</span>
+            <span class="nqc-choose">Escolher</span>
           </button>
         </li>
         <li>
@@ -1571,6 +1577,7 @@
               <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
             </span>
             <span class="nqc-path-label">10 estágios de arte</span>
+            <span class="nqc-choose">Escolher</span>
           </button>
         </li>
         <li>
@@ -1591,6 +1598,7 @@
               <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
             </span>
             <span class="nqc-path-label">10 estágios de arte</span>
+            <span class="nqc-choose">Escolher</span>
           </button>
         </li>
       </ul>
@@ -1603,8 +1611,8 @@
   <div id="nameModal" class="chest-modal">
     <div class="chest-content" style="position:relative; max-width:480px;">
       <button type="button" class="auth-close-btn" style="z-index:10;" data-action="closeNameModal" aria-label="Fechar">✕</button>
-      <h2>Registrar Pontuação</h2>
-      <p style="color:var(--txt-dim);margin-bottom:16px;font-size:0.9rem;">Digite seu nome para o leaderboard!</p>
+      <h2>Registrar no ranking</h2>
+      <p style="color:var(--txt-dim);margin-bottom:16px;font-size:0.9rem;">Digite o nome que vai aparecer no ranking.</p>
       <div class="name-input-box">
         <label for="playerName">Seu Nome:</label>
         <input type="text" id="playerName" maxlength="20" placeholder="Ex: Dr. Silva" />
@@ -1846,15 +1854,15 @@
   <script defer src="js/question-revisions.js?v=16.12"></script>
   <script defer src="js/utils.js?v=16.22"></script>
   <script defer src="js/audio.js?v=16.28"></script>
-  <script defer src="js/leaderboard.js?v=16.07"></script>
+  <script defer src="js/leaderboard.js?v=16.47"></script>
   <script defer src="js/study-mode.js?v=16.25"></script>
-  <script defer src="js/game.js?v=16.44"></script>
+  <script defer src="js/game.js?v=16.47"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=15.92"></script>
-  <script defer src="js/portal.js?v=13.20"></script>
+  <script defer src="js/portal.js?v=16.47"></script>
   <script defer src="js/atrium.js?v=13.23"></script>
-  <script defer src="js/paywall.js?v=15.34"></script>
+  <script defer src="js/paywall.js?v=16.47"></script>
   <script defer src="js/account.js?v=15.80"></script>
   <script defer src="js/boss.js?v=16.42"></script>
   <script defer src="js/cinema-intro-source-config.js?v=16.39"></script>
@@ -1866,7 +1874,7 @@
   <script defer src="js/cinema-boss-static-adapter.js?v=16.43"></script>
   <script defer src="js/exam.js?v=16.21"></script>
   <script defer src="js/admin.js?v=15.35"></script>
-  <script defer src="js/minigame.js?v=16.42"></script>
+  <script defer src="js/minigame.js?v=16.47"></script>
   <script defer src="js/cinema-intro-bridge.js?v=16.43"></script>
   <script defer src="js/cinema-victory-source-config.js?v=16.28"></script>
   <script defer src="js/cinema-victory-epilogue.js?v=16.43"></script>
