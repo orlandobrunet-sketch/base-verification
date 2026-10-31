@@ -147,7 +147,7 @@
 
       // ── Botão Próxima: mantém o título normal "Próxima Carta" também no Confronto Final ──
       const nextBtn = document.getElementById('nextBtn');
-      if (nextBtn) nextBtn.textContent = 'Próxima Carta';
+      if (nextBtn) nextBtn.textContent = 'Próxima pergunta';
 
       // ── Hint do botão ──
       if (elHint) {

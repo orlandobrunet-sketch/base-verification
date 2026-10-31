@@ -3112,7 +3112,7 @@
 
     // Capítulos baseados em level (1-10) — Atualiza a narrativa conforme sobe de nível.
     const chapters = [
-      { lvl:1, title:"Prólogo — O Chamado das Águas",            goal:"Domine os fundamentos da nefrologia e sobreviva às primeiras cartas da jornada." },
+      { lvl:1, title:"Prólogo — O Chamado das Águas",            goal:"Domine os fundamentos da nefrologia e sobreviva às primeiras questões da jornada." },
       { lvl:2, title:"Capítulo I — As Criptas da Creatinina",    goal:"Interprete função renal, creatinina e os marcadores básicos de lesão." },
       { lvl:3, title:"Capítulo II — O Vale da Albuminúria",      goal:"Consolide a estratificação de risco renal e a terapia nefroprotetora essencial." },
       { lvl:4, title:"Capítulo III — Torre das Glomerulopatias", goal:"Domine os sinais de gravidade glomerular e decisões de intervenção com precisão." },
@@ -3540,6 +3540,8 @@
       $('guardianXpAmount').textContent = `${state.xp}/${state.xpToNext}`;
       ui.storyTitle.textContent=chapter.title;
       ui.storyGoal.textContent=`Objetivo: ${chapter.goal}`;
+      const _capituloEl = document.getElementById('questionChapter');
+      if (_capituloEl) _capituloEl.textContent = chapter.title;
       ui.level.textContent=state.level; ui.score.textContent=state.score;
       const _ml=effectiveMaxLives();
       const _livesHtml='<span style="color:#ef4444">❤</span>'.repeat(Math.max(0,state.lives))+'<span style="color:#555">♡</span>'.repeat(Math.max(0,_ml-Math.max(0,state.lives)));
@@ -3607,6 +3609,7 @@
       const msbLivesEl = document.getElementById('msbLivesIcons');
       if(msbGoldEl) msbGoldEl.textContent = state.gold;
       if(msbStreakEl) msbStreakEl.textContent = state.streak;
+      _renderSequencia();
       const msbCorrectEl = document.getElementById('msbCorrect');
       if(msbCorrectEl) msbCorrectEl.textContent = state.correctTotal < 100 ? `${state.correctTotal}/100` : state.correctTotal;
       if(msbLivesEl) {
@@ -4154,7 +4157,7 @@
       document.getElementById('nqlQuestionReview')?.remove();
       const instruction = document.querySelector('.nql-choice-instruction');
       if (instruction) instruction.textContent = 'Escolha uma alternativa.';
-      ui.nextBtn.textContent = usesLumenDebrief() ? 'Próxima pergunta' : 'Próxima Carta';
+      ui.nextBtn.textContent = 'Próxima pergunta';
 
       // Envia a avaliação da questão anterior antes de carregar a próxima.
       flushPendingRating();
@@ -4579,6 +4582,45 @@
     }
 
 
+    // Reinicia uma animação de CSS: tirar e pôr a classe no mesmo quadro não repete.
+    function _pulsar(el, classe) {
+      if (!el) return;
+      el.classList.remove(classe);
+      void el.offsetWidth;
+      el.classList.add(classe);
+    }
+
+    // A sequência ganha peso a partir de 3 acertos, quando o multiplicador começa.
+    let _sequenciaVista = 0;
+    function _renderSequencia() {
+      const sequencia = isBossBattle() ? 0 : state.streak;
+      const nivel = sequencia >= 10 ? 3 : sequencia >= 5 ? 2 : sequencia >= 3 ? 1 : 0;
+      if (nivel) document.body.dataset.nqStreak = nivel;
+      else delete document.body.dataset.nqStreak;
+      const mult = document.getElementById('msbMult');
+      if (mult) mult.textContent = getStreakMultiplier(sequencia).label.replace('.', ',');
+      if (nivel && sequencia > _sequenciaVista) _pulsar(document.getElementById('msbStreak'), 'msb-subiu');
+      _sequenciaVista = sequencia;
+    }
+
+    function _sentirErro() {
+      if (isBossBattle()) return;
+      _pulsar(document.getElementById('options'), 'nql-erro');
+      _pulsar(document.querySelector('.msb-lives'), 'msb-perdeu');
+    }
+
+    // No celular o ganho flutuava sobre a explicação; a faixa não cobre o texto.
+    let _ganhoTimer = null;
+    function _mostrarGanho(texto) {
+      const el = document.getElementById('msbGain');
+      if (!el || !el.offsetParent) return false;
+      el.textContent = texto;
+      el.classList.add('is-on');
+      clearTimeout(_ganhoTimer);
+      _ganhoTimer = setTimeout(() => el.classList.remove('is-on'), 1600);
+      return true;
+    }
+
     function showFloatingFeedback(text, isCorrect, x, y) {
       try { if (window.NQBossArena?.presentNativeFeedback(text, isCorrect)) return; }
       catch (error) { console.warn('[NQ] Boss feedback skipped', error); }
@@ -4806,7 +4848,8 @@
             y = rect.top + rect.height * .79;
           }
         }
-        showFloatingFeedback(`+${xp} XP  +${g}💰`, true, x, y);
+        const naFaixa = !isBossBattle() && window.innerWidth <= 768 && _mostrarGanho(`+${xp} XP · +${g} ouro`);
+        if (!naFaixa) showFloatingFeedback(`+${xp} XP  +${g}💰`, true, x, y);
 
         // Boss log & damage animation
         if (isBossBattle()) {
@@ -4877,7 +4920,7 @@
           playSound('correct');
           triggerHapticFeedback('correct');
         }
-        if(state.streak >= 5) playSound('streak');
+        if(state.streak >= 3) playSound('streak');
         // Verificar narrativa a cada 5 acertos
         checkNarrative();
         // Auto-save após acerto
@@ -4970,6 +5013,7 @@
           showFloatingFeedback('🛡️ Absorvido', true, lx, ly);
         } else {
           showFloatingFeedback('-1 ❤️', false, lx, ly);
+          _sentirErro();
         }
 
         ui.feedback.className='feedback bad';
@@ -4981,7 +5025,7 @@
           _revealFeedback();
         }
         renderErrorReflection(state.current.id, choiceResult.originalChoice);
-        log('⚠️ Você falhou nessa carta. Ajuste a estratégia e continue.');
+        log('⚠️ Você falhou nessa questão. Ajuste a estratégia e continue.');
         playSound('wrong');
         // Boss log para erro
         if (isBossBattle()) {
@@ -5070,7 +5114,7 @@
         updateBossUI();
         animateLastBossStar();
         // Botão mantém o título normal ("Próxima Carta") também no Confronto Final.
-        if (isBossBattle()) ui.nextBtn.textContent = 'Próxima Carta';
+        if (isBossBattle()) ui.nextBtn.textContent = 'Próxima pergunta';
       }
 
       if (typeof checkAchievements === 'function') {

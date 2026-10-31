@@ -620,7 +620,7 @@
             ${bossImgHtml}
             <div class='narr-text' style="${textStyle}">${stage.text}</div>
             <div class='narr-progress'>
-              <strong>${state.correctTotal}</strong> acertos · Nível <strong>${state.level}</strong> · ${state.queue.length - state.idx} cartas restantes
+              <strong>${state.correctTotal}</strong> acertos · Nível <strong>${state.level}</strong>
             </div>
             <button class='btn sec' style="${btnStyle}" data-close-closest=".narrative-popup">${btnLabel}</button>
           </div>
