@@ -424,6 +424,11 @@
       var last = guidelineCovers[guidelineCovers.length - 1];
       archiveStart = guidelineFlow.clientWidth / 2 - (first.offsetLeft + first.offsetWidth / 2);
       archiveEnd = guidelineFlow.clientWidth / 2 - (last.offsetLeft + last.offsetWidth / 2);
+      // Começa no meio do acervo: a primeira capa no centro deixava a metade esquerda vazia.
+      if (!archiveMeasured) {
+        archiveCurrent = archiveTarget = (archiveStart + archiveEnd) / 2;
+        if (usesNativeArchive()) guidelineFlow.scrollLeft = (guidelineFlow.scrollWidth - guidelineFlow.clientWidth) / 2;
+      }
       archiveTarget = clampArchive(archiveTarget);
       archiveCurrent = clampArchive(archiveCurrent);
       archiveMeasured = true;

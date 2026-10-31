@@ -104,11 +104,8 @@ test.describe('Correções da auditoria', () => {
     }));
     // A16.23 mostra descobertos e catálogo mesmo quando a coleção começa vazia.
     // O número é uma contagem do jogo, não uma dívida ou medida de conhecimento.
-    await expect(summary.locator('strong')).toHaveText('0 descobertas reunidas');
-    await expect(summary.locator('span')).toContainText(`0 de ${catalogue.articles} pergaminhos`);
-    await expect(summary.locator('span')).toContainText(`0 de ${catalogue.sources} fontes`);
-    await expect(pane.locator('.nqd-library-catalogue-note')).toContainText('não uma medida de conhecimento');
-    const typography = await summary.locator('strong').evaluate(el => ({
+    await expect(summary).toHaveText(`0 de ${catalogue.articles + catalogue.sources} estudos descobertos.`);
+    const typography = await summary.evaluate(el => ({
       size: parseFloat(getComputedStyle(el).fontSize), root: parseFloat(getComputedStyle(document.documentElement).fontSize),
     }));
     expect(typography.size, 'a contagem vazia permanece no corpo de texto, sem display gigante').toBeLessThanOrEqual(typography.root + 1);

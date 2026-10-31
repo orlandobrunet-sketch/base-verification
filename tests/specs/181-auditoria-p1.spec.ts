@@ -52,14 +52,14 @@ test('celular: Próxima fica à mão e a faixa acompanha a rolagem', async ({ pa
 
 test('notebook: explicação à vista, Próxima no painel e atalhos de teclado', async ({ page }) => {
   await abrir(page, NOTEBOOK);
-  await expect(page.locator('#mobileStatusBar')).toBeVisible();
-  await expect(page.locator('#msbGold')).toBeVisible();
+  // No computador vidas, sequência e ouro ficam só no painel do herói.
+  await expect(page.locator('#mobileStatusBar')).toBeHidden();
+  await expect(page.locator('#lives')).toBeVisible();
 
   await page.keyboard.press(String(await alternativaCerta(page) + 1));
   await expect(page.locator('#nextBtn')).toBeVisible();
   await expect.poll(() => noQuadro(page, '#feedback .nql-answer-result')).toBe(true);
   await expect.poll(() => noQuadro(page, '#dockNextBtn')).toBe(true);
-  await expect.poll(() => noQuadro(page, '#mobileStatusBar')).toBe(true);
 
   await page.waitForTimeout(750); // o guarda do Enter segura o repique do reflexo
   await page.keyboard.press('Enter');

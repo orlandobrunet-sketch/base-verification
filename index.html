@@ -86,7 +86,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function () {
           Sentry.init({
-            release: 'nefroquest@16.50',
+            release: 'nefroquest@16.51',
             environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
             tracesSampleRate: 0.05
           });
@@ -123,6 +123,7 @@
     <nav class="nav-links" aria-label="Navegação principal">
       <a href="#metodo">Método</a>
       <a href="#oraculo">Oráculo</a>
+      <a href="#diretrizes">Biblioteca</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#classes">O jogo</a>
     </nav>

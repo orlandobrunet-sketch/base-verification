@@ -63,7 +63,7 @@ test('raridades e fonte longa mantêm comandos acessíveis em 320px e texto a 20
     await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
     await expect(read).toBeFocused();
   }
-  await page.getByRole('tab', { name: 'Fontes clínicas' }).click();
+  await page.locator('#nqDashLibraryFilter').selectOption('all');
   await page.locator('#nqDashLibrarySearch').fill('ACR Manual');
   const source = page.locator('[data-library-item]:visible').first();
   await source.getByRole('button', { name: 'Ler resumo', exact: true }).click();

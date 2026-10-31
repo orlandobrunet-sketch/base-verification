@@ -837,139 +837,83 @@
       const modal = document.createElement('div');
       modal.className = 'study-mode-popup';
 
-      const stats = getDetailedStats();
-
-      function renderAxesHTML() {
-        const _allAxisStats = getAxisStats(stats);
-        return NEFRO_AXES.map(axis => {
-          const sel = _studySelectedAxes.has(axis.id);
-          const axisData = _allAxisStats.find(a => a.id === axis.id);
-          const qCount = topics.filter(q => q.cat === axis.cat).length;
-          const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
-          const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
-          return `
-            <div role="button" tabindex="0" aria-pressed="${sel}" data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
-              style="cursor:pointer;padding:8px 10px;border-radius:10px;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${sel ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:10px;">
-
-              <div style="flex:1;text-align:left;">
-                <div style="color:var(--txt);font-weight:600;font-size:0.9rem;">${axis.label}</div>
-                <div style="color:var(--txt-dim);font-size:0.7rem;margin-top:2px;">${qCount} questões</div>
-              </div>
-              <div style="text-align:right;">
-                <div style="color:${color};font-weight:bold;font-size:0.85rem;">${pct}</div>
-                <div style="color:var(--txt-dim);font-size:0.65rem;">acerto</div>
-              </div>
-              <div style="width:20px;height:20px;border-radius:50%;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.3)'};background:${sel ? '#8b5cf6' : 'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-                ${sel ? '<span style="color:#fff;font-size:0.7rem;">&#10003;</span>' : ''}
-              </div>
-            </div>
-          `;
-        }).join('');
-      }
-
+      modal.dataset.nqUi = 'lumen';
+      modal.classList.add('nqs-temas-pagina');
       modal.innerHTML = `
-        <div class="modal-content" style="max-width:460px;width:100%;text-align:center;background:linear-gradient(180deg,#12192e,#0b1428);border:2px solid var(--blue-dark);border-radius:14px;padding:18px 20px;box-shadow:0 0 40px rgba(139,92,246,0.3);">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
-            <button class="btn sec" data-action="showTopicSelector" style="padding:4px 10px;font-size:0.78rem;">← Voltar</button>
-            <h2 style="color:var(--blue);margin:0;font-family:'Cinzel',serif;font-size:1rem;flex:1;">Escolha os Temas</h2>
-          </div>
-          <p style="color:var(--txt-dim);font-size:0.78rem;margin:0 0 12px;">20 questões serão sorteadas dos temas selecionados</p>
-
-          <div style="margin-bottom:10px;">
-            <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-bottom:6px;">
-              <button class="btn sec" data-action="_selectTrail" data-arg="residencia" style="font-size:0.72rem;padding:4px 9px;">🏥 Residência</button>
-              <button class="btn sec" data-action="_selectTrail" data-arg="titulo" style="font-size:0.72rem;padding:4px 9px;">📋 Título</button>
-              <button class="btn sec" data-action="_selectTrail" data-arg="eletrolitos" style="font-size:0.72rem;padding:4px 9px;">⚡ Eletrólitos & AB</button>
+        <div class="modal-content nqs-temas">
+          <header class="nqs-temas-topo">
+            <button class="btn sec" data-action="showTopicSelector">Voltar</button>
+            <div>
+              <h2>Escolha os temas</h2>
+              <p>20 questões serão sorteadas dos temas marcados.</p>
             </div>
+          </header>
+
+          <div class="nqs-temas-atalhos" role="group" aria-label="Seleções prontas">
+            <button class="btn sec" data-action="_selectTrail" data-arg="residencia">Residência</button>
+            <button class="btn sec" data-action="_selectTrail" data-arg="titulo">Título</button>
+            <button class="btn sec" data-action="_selectTrail" data-arg="eletrolitos">Eletrólitos e ácido-base</button>
+            <span class="nqs-temas-separador"></span>
+            <button class="btn sec" data-action="_studySelectAll" data-arg="true" data-arg-type="boolean">Todos</button>
+            <button class="btn sec" data-action="_studySelectAll" data-arg="false" data-arg-type="boolean">Nenhum</button>
           </div>
 
-          <div class="modal-scroll-body">
-            <div id="axisCardList" style="display:flex;flex-direction:column;gap:5px;margin-bottom:12px;">
-              ${renderAxesHTML()}
-            </div>
-          </div>
+          <div id="axisCardList" class="nqs-temas-lista">${_temasHTML()}</div>
 
-          <div style="display:flex;gap:8px;justify-content:center;margin:10px 0 12px;">
-            <button class="btn sec" data-action="_studySelectAll" data-arg="true" data-arg-type="boolean" style="font-size:0.76rem;padding:6px 12px;">✓ Todos</button>
-            <button class="btn sec" data-action="_studySelectAll" data-arg="false" data-arg-type="boolean" style="font-size:0.76rem;padding:6px 12px;">✗ Nenhum</button>
-          </div>
-
-          <button class="btn gold" data-action="startStudyMode" style="width:100%;padding:12px;">Iniciar Sessão</button>
+          <footer class="nqs-temas-rodape">
+            <p id="nqsTemasResumo" aria-live="polite">${_temasResumo()}</p>
+            <button class="btn gold" data-action="startStudyMode">Iniciar Sessão</button>
+          </footer>
         </div>
       `;
       _mountStudySurface(modal, 'Escolha os temas de estudo', returnFocus);
       playSound('click');
     }
 
+    function _temaHTML(axis, estatisticas) {
+      const marcado = _studySelectedAxes.has(axis.id);
+      const dado = estatisticas.find(a => a.id === axis.id);
+      const total = topics.filter(q => q.cat === axis.cat).length;
+      const acerto = dado ? Math.round(dado.accuracy) : null;
+      const dominio = acerto === null ? 'novo' : acerto >= 70 ? 'forte' : acerto >= 50 ? 'medio' : 'fraco';
+      return `
+        <div role="button" tabindex="0" class="nqs-tema" aria-pressed="${marcado}" data-dominio="${dominio}" data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}">
+          <span class="nqs-tema-marca" aria-hidden="true"></span>
+          <span class="nqs-tema-nome">${axis.label}<small>${total} questões</small></span>
+          <span class="nqs-tema-acerto">${acerto === null ? 'Sem respostas' : `${acerto}% de acerto`}<i aria-hidden="true" style="--acerto:${acerto ?? 0}%"></i></span>
+        </div>
+      `;
+    }
+
+    function _temasHTML() {
+      const estatisticas = getAxisStats(getDetailedStats());
+      return NEFRO_AXES.map(axis => _temaHTML(axis, estatisticas)).join('');
+    }
+
+    function _temasResumo() {
+      const quantos = _studySelectedAxes.size;
+      return quantos === 1 ? '1 tema marcado' : `${quantos} temas marcados`;
+    }
+
+    function _redesenharTemas() {
+      document.querySelector('[data-study-resume-choice]')?.remove();
+      const lista = document.getElementById('axisCardList');
+      if (lista) lista.innerHTML = _temasHTML();
+      const resumo = document.getElementById('nqsTemasResumo');
+      if (resumo) resumo.textContent = _temasResumo();
+    }
+
     function _studyToggleAxis(id) {
       if (_studySelectedAxes.has(id)) _studySelectedAxes.delete(id);
       else _studySelectedAxes.add(id);
-      document.querySelector('[data-study-resume-choice]')?.remove();
-      // Re-render cards
-      const list = document.getElementById('axisCardList');
-      if (!list) return;
-      const stats = getDetailedStats();
-      const _axisStatsCache = getAxisStats(stats);
-      list.innerHTML = NEFRO_AXES.map(axis => {
-        const sel = _studySelectedAxes.has(axis.id);
-        const axisData = _axisStatsCache.find(a => a.id === axis.id);
-        const qCount = topics.filter(q => q.cat === axis.cat).length;
-        const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
-        const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
-        return `
-          <div role="button" tabindex="0" aria-pressed="${sel}" data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
-            style="cursor:pointer;padding:12px 14px;border-radius:10px;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${sel ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:12px;">
-
-            <div style="flex:1;text-align:left;">
-              <div style="color:var(--txt);font-weight:600;font-size:0.9rem;">${axis.label}</div>
-              <div style="color:var(--txt-dim);font-size:0.7rem;margin-top:2px;">${qCount} questões</div>
-            </div>
-            <div style="text-align:right;">
-              <div style="color:${color};font-weight:bold;font-size:0.85rem;">${pct}</div>
-              <div style="color:var(--txt-dim);font-size:0.65rem;">acerto</div>
-            </div>
-            <div style="width:20px;height:20px;border-radius:50%;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.3)'};background:${sel ? '#8b5cf6' : 'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              ${sel ? '<span style="color:#fff;font-size:0.7rem;">&#10003;</span>' : ''}
-            </div>
-          </div>
-        `;
-      }).join('');
+      _redesenharTemas();
       document.getElementById(`axis-card-${id}`)?.focus({ preventScroll: true });
     }
 
     function _studySelectAll(sel) {
       if (sel) NEFRO_AXES.forEach(a => _studySelectedAxes.add(a.id));
       else _studySelectedAxes.clear();
-      document.querySelector('[data-study-resume-choice]')?.remove();
-      // Re-render todos os cards
-      const list = document.getElementById('axisCardList');
-      if (!list) return;
-      const stats = getDetailedStats();
-      const _axisStatsCache2 = getAxisStats(stats);
-      list.innerHTML = NEFRO_AXES.map(axis => {
-        const selected = _studySelectedAxes.has(axis.id);
-        const axisData = _axisStatsCache2.find(a => a.id === axis.id);
-        const qCount = topics.filter(q => q.cat === axis.cat).length;
-        const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
-        const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
-        return `
-          <div role="button" tabindex="0" aria-pressed="${selected}" data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
-            style="cursor:pointer;padding:12px 14px;border-radius:10px;border:2px solid ${selected ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${selected ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:12px;">
-
-            <div style="flex:1;text-align:left;">
-              <div style="color:var(--txt);font-weight:600;font-size:0.9rem;">${axis.label}</div>
-              <div style="color:var(--txt-dim);font-size:0.7rem;margin-top:2px;">${qCount} questões</div>
-            </div>
-            <div style="text-align:right;">
-              <div style="color:${color};font-weight:bold;font-size:0.85rem;">${pct}</div>
-              <div style="color:var(--txt-dim);font-size:0.65rem;">acerto</div>
-            </div>
-            <div style="width:20px;height:20px;border-radius:50%;border:2px solid ${selected ? '#8b5cf6' : 'rgba(255,255,255,0.3)'};background:${selected ? '#8b5cf6' : 'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              ${selected ? '<span style="color:#fff;font-size:0.7rem;">&#10003;</span>' : ''}
-            </div>
-          </div>
-        `;
-      }).join('');
+      _redesenharTemas();
     }
 
     const _TRAILS = {
@@ -983,35 +927,7 @@
       if (!ids) return;
       _studySelectedAxes.clear();
       ids.forEach(id => _studySelectedAxes.add(id));
-      document.querySelector('[data-study-resume-choice]')?.remove();
-      const list = document.getElementById('axisCardList');
-      if (!list) return;
-      const stats = getDetailedStats();
-      const _axisStatsCache = getAxisStats(stats);
-      list.innerHTML = NEFRO_AXES.map(axis => {
-        const sel = _studySelectedAxes.has(axis.id);
-        const axisData = _axisStatsCache.find(a => a.id === axis.id);
-        const qCount = topics.filter(q => q.cat === axis.cat).length;
-        const pct = axisData ? axisData.accuracy.toFixed(0) + '%' : '—';
-        const color = axisData ? (axisData.accuracy >= 70 ? '#34d399' : axisData.accuracy >= 50 ? '#fbbf24' : '#fb7185') : 'var(--txt-dim)';
-        return `
-          <div role="button" tabindex="0" aria-pressed="${sel}" data-action="_studyToggleAxis" data-arg="${axis.id}" id="axis-card-${axis.id}"
-            style="cursor:pointer;padding:12px 14px;border-radius:10px;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.1)'};background:${sel ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.03)'};transition:all 0.2s;display:flex;align-items:center;gap:12px;">
-
-            <div style="flex:1;text-align:left;">
-              <div style="color:var(--txt);font-weight:600;font-size:0.9rem;">${axis.label}</div>
-              <div style="color:var(--txt-dim);font-size:0.7rem;margin-top:2px;">${qCount} questões</div>
-            </div>
-            <div style="text-align:right;">
-              <div style="color:${color};font-weight:bold;font-size:0.85rem;">${pct}</div>
-              <div style="color:var(--txt-dim);font-size:0.65rem;">acerto</div>
-            </div>
-            <div style="width:20px;height:20px;border-radius:50%;border:2px solid ${sel ? '#8b5cf6' : 'rgba(255,255,255,0.3)'};background:${sel ? '#8b5cf6' : 'transparent'};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-              ${sel ? '<span style="color:#fff;font-size:0.7rem;">&#10003;</span>' : ''}
-            </div>
-          </div>
-        `;
-      }).join('');
+      _redesenharTemas();
     }
 
     // Estado do modo de estudo

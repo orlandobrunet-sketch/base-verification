@@ -92,9 +92,7 @@ test.describe('Grimório vazio', () => {
     expect(catalogue.articles).toBeGreaterThan(0);
     expect(catalogue.sources).toBeGreaterThan(0);
     const summary = painel.locator('.nqd-library-summary');
-    await expect(summary.locator('strong')).toHaveText('0 descobertas reunidas');
-    await expect(summary.locator('span')).toContainText(`0 de ${catalogue.articles} pergaminhos`);
-    await expect(summary.locator('span')).toContainText(`0 de ${catalogue.sources} fontes`);
+    await expect(summary).toHaveText(`0 de ${catalogue.articles + catalogue.sources} estudos descobertos.`);
     await expect(painel.locator('.nqd-library-shelf'), 'estante vazia parecia elemento quebrado').toHaveCount(0);
     await expect(painel.locator('[data-library-entry]:visible')).toHaveCount(0);
     await expect(painel.locator('[data-library-empty] button')).toBeVisible();
@@ -103,11 +101,11 @@ test.describe('Grimório vazio', () => {
     // Consultar seus títulos/regras não concede a leitura nem altera o save.
     await painel.locator('#nqDashLibraryDiscovery').selectOption('locked');
     const locked = painel.locator('[data-library-entry]:visible');
-    await expect(locked).toHaveCount(catalogue.articles);
+    await expect(locked).toHaveCount(catalogue.articles + catalogue.sources);
     await expect(locked.first().locator('h3')).toBeVisible();
-    await expect(locked.first().locator('.nqd-library-unlock-hint')).toContainText('baú');
+    await expect(painel.locator('[data-library-entry][data-library-kind="scroll"]:visible').first().locator('.nqd-library-unlock-hint')).toContainText('baú');
     await expect(locked.locator('button, .nqd-library-impact')).toHaveCount(0);
-    await expect(summary.locator('strong')).toHaveText('0 descobertas reunidas');
+    await expect(summary).toContainText('0 de ');
     expect(await page.evaluate(keys => keys.map(key => localStorage.getItem(key)), keys)).toEqual(before);
   });
 

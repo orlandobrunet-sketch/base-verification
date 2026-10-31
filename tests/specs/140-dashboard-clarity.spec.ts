@@ -102,17 +102,15 @@ test('oferece o inventário faltante sem resumo bloqueado nem novas descobertas'
   const before = await page.evaluate(() => [localStorage.getItem('nq-unlocked-refs'), localStorage.getItem('unlockedArticles')]);
   await page.getByRole('tab', {name: 'Grimório', exact: true}).click();
   const library = page.locator('#nqdPane-library');
-  await expect(library.locator('.nqd-library-summary')).toContainText('4 descobertas reunidas');
-  await expect(library.locator('.nqd-library-summary')).toContainText(`2 de ${meta.articles} pergaminhos`);
-  await expect(library.locator('[data-library-entry]:visible')).toHaveCount(2);
+  await expect(library.locator('.nqd-library-summary')).toContainText(`4 de ${meta.articles + meta.refs} estudos descobertos`);
+  await expect(library.locator('[data-library-entry]:visible')).toHaveCount(4);
   await library.locator('#nqDashLibraryDiscovery').selectOption('locked');
-  await expect(library.locator('[data-library-entry]:visible')).toHaveCount(meta.articles - 2);
+  await expect(library.locator('[data-library-entry]:visible')).toHaveCount(meta.articles + meta.refs - 4);
   await expect(library.locator('[data-library-entry]:visible button')).toHaveCount(0);
   await expect(library.locator('[data-library-entry]:visible .nqd-library-impact')).toHaveCount(0);
-  await page.getByRole('tab', {name: 'Fontes clínicas', exact: false}).click();
-  await expect(library.locator('[data-library-entry]:visible')).toHaveCount(meta.refs - 2);
   await library.locator('#nqDashLibraryFilter').selectOption('guideline');
-  await expect(library.locator('[data-library-entry]:visible')).toHaveCount(meta.guidelines);
+  // Além das fontes, entram os artigos que o catálogo marca como diretriz.
+  expect(await library.locator('[data-library-entry]:visible').count()).toBeGreaterThanOrEqual(meta.guidelines);
   await library.locator('#nqDashLibraryFilter').selectOption('all');
   if (meta.unlinkedTitle) {
     await library.locator('#nqDashLibrarySearch').fill(meta.unlinkedTitle);
@@ -132,15 +130,14 @@ test('mantém acesso administrativo separado das descobertas pessoais e conserva
   const before = await page.evaluate(() => [localStorage.getItem('nq-unlocked-refs'), localStorage.getItem('unlockedArticles')]);
   await page.getByRole('tab', {name: 'Grimório', exact: true}).click();
   const library = page.locator('#nqdPane-library');
-  await expect(library.locator('.nqd-library-summary')).toContainText('Visão administrativa');
-  await expect(library.locator('.nqd-library-summary')).toContainText('4 descobertas reunidas');
-  await expect(library.locator('[data-library-item]:visible')).toHaveCount(meta.articles);
+  await expect(library.locator('.nqd-library-summary')).toContainText('Catálogo completo');
+  await expect(library.locator('[data-library-item]:visible')).toHaveCount(meta.articles + meta.refs);
   await library.locator('#nqDashLibraryDiscovery').selectOption('unlocked');
-  await expect(library.locator('[data-library-item]:visible')).toHaveCount(2);
+  await expect(library.locator('[data-library-item]:visible')).toHaveCount(4);
   await page.keyboard.press('Escape');
   await page.evaluate(() => (window as any).openDashboard({tab: 'library'}));
   await expect(page.locator('#nqDashLibraryDiscovery')).toHaveValue('unlocked');
-  await expect(page.locator('[data-library-item]:visible')).toHaveCount(2);
+  await expect(page.locator('[data-library-item]:visible')).toHaveCount(4);
   expect(await page.evaluate(() => [localStorage.getItem('nq-unlocked-refs'), localStorage.getItem('unlockedArticles')])).toEqual(before);
 });
 
@@ -151,9 +148,9 @@ test('deixa a coleção vazia explorável e não inventa ausência de vínculo q
   await page.locator('#nqDashLibraryDiscovery').selectOption('locked');
   await expect(page.locator('[data-library-empty]')).toBeHidden();
   await expect(page.locator('.nqd-library-locked-item:visible').first()).toBeVisible();
-  await page.getByRole('tab', {name: 'Fontes clínicas', exact: false}).click();
-  await expect(page.locator('.nqd-library-locked-item:visible').first()).toContainText('não está disponível para conferir');
-  await expect(page.locator('.nqd-library-locked-item:visible').first()).not.toContainText('não está vinculada');
+  const fonte = page.locator('.nqd-library-locked-item[data-library-kind="source"]:visible').first();
+  await expect(fonte).toContainText('não está disponível para conferir');
+  await expect(fonte).not.toContainText('não está vinculada');
 });
 
 test('320px e texto a 200% preservam controles, títulos e coleções sem rolagem lateral', async ({page}) => {
@@ -174,9 +171,9 @@ test('320px e texto a 200% preservam controles, títulos e coleções sem rolage
   const pane = page.locator('#nqdPane-library');
   expect(await pane.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
   await expect(page.locator('.nqd-library-locked-item:visible').first()).toBeVisible();
-  await page.getByRole('tab', {name: 'Fontes clínicas', exact: false}).focus();
+  await page.getByRole('tab', {name: 'Favoritos', exact: false}).focus();
   await page.keyboard.press('ArrowLeft');
-  await expect(page.getByRole('tab', {name: 'Pergaminhos', exact: false})).toBeFocused();
+  await expect(page.getByRole('tab', {name: 'Todos', exact: false})).toBeFocused();
 });
 
 test('390px e 320px mantêm busca e filtro do Mapa separados e inteiros', async ({page}) => {
