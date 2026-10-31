@@ -17,7 +17,7 @@ async function abrir(page:Page,id:keyof typeof personagens='nephros',level=8){
 }
 for(const id of Object.keys(personagens) as (keyof typeof personagens)[])test('evolução preserva retrato, título e narrativa '+id,async({page})=>{
  const {card,before,origin}=await abrir(page,id);await expect(page.getByRole('dialog',{name:personagens[id].title})).toBeVisible();await expect(card.locator('.nqevo-level')).toHaveText('Nível 8 alcançado');await expect(card.locator('.nqevo-description')).toHaveText(personagens[id].lore);
- await expect.poll(()=>card.locator('img').evaluate(el=>(el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);const button=card.getByRole('button',{name:'Continuar'});await expect(button).toBeFocused();expect((await button.boundingBox())!.height).toBeGreaterThanOrEqual(48);
+ await expect.poll(()=>card.locator('.nqevo-art img').evaluate(el=>(el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);const button=card.getByRole('button',{name:'Continuar'});await expect(button).toBeFocused();expect((await button.boundingBox())!.height).toBeGreaterThanOrEqual(48);
  for(const key of ['Tab','Tab','Shift+Tab']){await page.keyboard.press(key);expect(await card.evaluate(el=>el.contains(document.activeElement))).toBe(true);}
  if(process.env.NQ_CAPTURE_DIR)await page.screenshot({path:process.env.NQ_CAPTURE_DIR+'/evolucao-integrada-'+test.info().project.name+'-'+id+'.png'});
  if(id==='aquaria')await page.keyboard.press('Escape');else await button.click();await expect(card).toHaveCount(0);await expect(origin).toBeFocused();expect(await page.evaluate(()=>(0,eval)('JSON.stringify(state)'))).toBe(before);
