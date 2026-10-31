@@ -2241,14 +2241,19 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 
 /* ── Sensação de jogo ─────────────────────────────────────────── */
 
-/* O capítulo atual acompanha a questão; o painel lateral fica abaixo da dobra. */
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-question-meta { right: 5.5rem; }
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #questionChapter {
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+/* O capítulo atual acompanha a questão; o painel lateral fica abaixo da dobra.
+ * Fica no fluxo, e não flutuando, para quebrar em linhas com texto ampliado:
+ * o título inteiro empurra a questão em vez de ser cortado. Os 58px somados
+ * (44px da linha + margem) são o espaço que o padding superior reservava. */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .qbox { padding-top: 0; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-question-meta {
+  position: relative;
+  top: auto;
+  right: auto;
+  left: auto;
+  margin: 0 min(5.5rem, 55%) .9rem 0;
 }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #questionChapter { min-width: 0; overflow-wrap: anywhere; }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-streak .msb-value { display: inline-block; }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-mult {
