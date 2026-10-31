@@ -29,7 +29,7 @@ test.describe('Boss mode (Fase Final)', () => {
     const nextBtn = page.locator('#nextBtn:not(.hidden)');
     await expect(nextBtn).toBeVisible({ timeout: 5_000 });
     const text = await nextBtn.textContent();
-    expect(text).toMatch(/Próxima Carta|GOLPE FINAL/i);
+    expect(text).toMatch(/Próxima pergunta|GOLPE FINAL/i);
   });
 
   test('botão NOVO JOGO aparece ao lado do botão de ataque', async ({ page }) => {

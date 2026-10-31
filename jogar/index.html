@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.47',
+          release: 'nefroquest@16.48',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -139,7 +139,7 @@
   <link rel="stylesheet" href="styles/lumen/shell.css?v=16.18">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=15.94">
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.25">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=16.47">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=16.48">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.06">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.25">
   <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.47">
@@ -1042,7 +1042,7 @@
       <div class="story">
         <h3>Capítulo da Narrativa</h3>
         <p id="storyTitle">Prólogo — O Chamado das Águas</p>
-        <p id="storyGoal">Objetivo: domine os fundamentos da nefrologia e sobreviva às primeiras cartas da jornada.</p>
+        <p id="storyGoal">Objetivo: domine os fundamentos da nefrologia e sobreviva às primeiras questões da jornada.</p>
       </div>
 
       <!-- BOSS MODE: narrative box — aparece entre HUD e equipamento -->
@@ -1074,6 +1074,7 @@
         <div class="msb-item msb-streak">
           <span class="msb-label">Sequência</span>
           <span class="msb-value" id="msbStreak">0</span>
+          <span class="msb-mult" id="msbMult" aria-hidden="true"></span>
         </div>
         <div class="msb-item msb-correct">
           <span class="msb-label">Acertos</span>
@@ -1083,6 +1084,7 @@
           <span class="msb-label">Ouro</span>
           <span class="msb-value" id="msbGold">0</span>
         </div>
+        <span class="msb-gain" id="msbGain" aria-hidden="true"></span>
       </div>
 
       <!-- RUNIC COLUMNS (boss mode decoration) -->
@@ -1258,7 +1260,7 @@
 
       <div class="qbox">
         <div class="nql-question-meta" aria-hidden="true">
-          <span>Jornada</span>
+          <span id="questionChapter">Jornada</span>
         </div>
         <!-- CRONÔMETRO -->
         <div id="timerWidget">
@@ -1856,7 +1858,7 @@
   <script defer src="js/audio.js?v=16.28"></script>
   <script defer src="js/leaderboard.js?v=16.47"></script>
   <script defer src="js/study-mode.js?v=16.25"></script>
-  <script defer src="js/game.js?v=16.47"></script>
+  <script defer src="js/game.js?v=16.48"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=15.92"></script>
@@ -1864,7 +1866,7 @@
   <script defer src="js/atrium.js?v=13.23"></script>
   <script defer src="js/paywall.js?v=16.47"></script>
   <script defer src="js/account.js?v=15.80"></script>
-  <script defer src="js/boss.js?v=16.42"></script>
+  <script defer src="js/boss.js?v=16.48"></script>
   <script defer src="js/cinema-intro-source-config.js?v=16.39"></script>
   <script defer src="js/cinema-equipment-seals.js?v=16.43"></script>
   <script defer src="js/cinema-poison-portraits.js?v=16.43"></script>
@@ -1874,7 +1876,7 @@
   <script defer src="js/cinema-boss-static-adapter.js?v=16.43"></script>
   <script defer src="js/exam.js?v=16.21"></script>
   <script defer src="js/admin.js?v=15.35"></script>
-  <script defer src="js/minigame.js?v=16.47"></script>
+  <script defer src="js/minigame.js?v=16.48"></script>
   <script defer src="js/cinema-intro-bridge.js?v=16.43"></script>
   <script defer src="js/cinema-victory-source-config.js?v=16.28"></script>
   <script defer src="js/cinema-victory-epilogue.js?v=16.43"></script>

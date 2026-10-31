@@ -2126,7 +2126,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final):not(.rd-game-over) #mai
   padding: .45rem .9rem;
   border: 1px solid var(--nql-line);
   border-radius: 8px;
-  background: rgba(var(--nql-abyss-rgb), .97);
+  background: rgb(var(--nql-abyss-rgb));
   box-shadow: none;
 }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-item {
@@ -2237,4 +2237,81 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   .nqdefeat-heading { grid-template-columns: 64px minmax(0, 1fr); gap: 14px; }
   .nqdefeat-heading img { width: 64px; height: 64px; }
   .nqdefeat-heading h2 { font-size: 1.35rem; }
+}
+
+/* ── Sensação de jogo ─────────────────────────────────────────── */
+
+/* O capítulo atual acompanha a questão; o painel lateral fica abaixo da dobra. */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-question-meta { right: 5.5rem; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #questionChapter {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-streak .msb-value { display: inline-block; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-mult {
+  color: #f3b27a;
+  font: 600 .75rem/1.4 var(--nql-font-body);
+  font-variant-numeric: tabular-nums;
+}
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-mult:empty { display: none; }
+
+/* Sequência: o contador cresce e o retrato acende, sem movimento no retrato. */
+body:not(.boss-battle-mode):not(.arqui-nefromante-final)[data-nq-streak="1"] #mainApp[data-nq-ui="lumen"] .msb-streak .msb-value { scale: 1.08; }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final)[data-nq-streak="2"] #mainApp[data-nq-ui="lumen"] .msb-streak .msb-value { scale: 1.16; text-shadow: 0 0 .5rem rgba(243, 178, 122, .55); }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final)[data-nq-streak="3"] #mainApp[data-nq-ui="lumen"] .msb-streak .msb-value { scale: 1.26; color: #ffd9a8; text-shadow: 0 0 .7rem rgba(243, 178, 122, .8); }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final)[data-nq-streak="1"] #mainApp[data-nq-ui="lumen"] #heroImg { box-shadow: 0 0 0 1px rgba(243, 178, 122, .45), 0 0 .9rem rgba(243, 178, 122, .22); }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final)[data-nq-streak="2"] #mainApp[data-nq-ui="lumen"] #heroImg { box-shadow: 0 0 0 1px rgba(243, 178, 122, .65), 0 0 1.3rem rgba(243, 178, 122, .36); }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final)[data-nq-streak="3"] #mainApp[data-nq-ui="lumen"] #heroImg { box-shadow: 0 0 0 2px rgba(243, 178, 122, .85), 0 0 1.8rem rgba(243, 178, 122, .5); }
+
+/* No celular o multiplicador ocupa o lugar do rótulo: o canto é do botão de som. */
+@media (max-width: 768px) {
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final)[data-nq-streak] #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-streak .msb-label { display: none; }
+}
+@media (max-width: 340px) {
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final):not(.rd-game-over) #mainApp[data-nq-ui="lumen"] .mobile-status-bar { gap: .25rem .45rem; }
+}
+
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-gain {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding: .1rem .6rem;
+  border-radius: 6px;
+  background: rgb(var(--nql-abyss-rgb));
+  color: var(--nql-mastery);
+  font: 600 .8125rem/1.4 var(--nql-font-body);
+  white-space: nowrap;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  translate: -50% -50%;
+}
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-gain.is-on { visibility: visible; opacity: 1; }
+
+@media (prefers-reduced-motion: no-preference) {
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #msbStreak.msb-subiu { animation: nql-sequencia-sobe .4s ease-out; }
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #options.nql-erro { animation: nql-erro-treme .32s ease-out; }
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .msb-perdeu .msb-icon span[style*="#ef4444"] + span[style*="#555"],
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .msb-perdeu .msb-icon > span[style*="#555"]:first-child {
+    display: inline-block;
+    animation: nql-coracao-parte .6s ease-out;
+  }
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .mobile-status-bar .msb-gain { transition: opacity .2s ease-out, visibility .2s; }
+}
+
+@keyframes nql-sequencia-sobe {
+  40% { scale: 1.5; }
+}
+@keyframes nql-erro-treme {
+  20% { translate: -6px 0; }
+  45% { translate: 5px 0; }
+  70% { translate: -3px 0; }
+}
+@keyframes nql-coracao-parte {
+  0% { scale: 1.7; filter: drop-shadow(0 0 .35rem #ef4444); }
+  35% { rotate: -14deg; }
+  65% { rotate: 10deg; }
 }

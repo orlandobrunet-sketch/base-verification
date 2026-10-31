@@ -14,6 +14,13 @@ Os itens **P1** foram concluídos na versão 16.47. A conferência no código co
 
 Vidas e sequência foram para uma faixa fixa acima da questão, em vez do card do herói, porque ela serve ao computador e ao celular. Ao corrigir a derrota, apareceu um defeito fora da auditoria: comprar a pergunta bônus zerava a jornada. Foi corrigido na mesma versão.
 
+A versão 16.48 trouxe o primeiro lote de **P2**, sem arte nova: capítulo no topo da questão, sequência com peso visual e som a partir de 3 acertos, erro com tremida e coração partindo, ganho de XP na faixa do celular, questões separadas dos desafios na página inicial e "cartas" trocado por "questões".
+
+Dois itens mudaram de leitura:
+
+- **Vantagens das classes:** a diferença não é só de apresentação. Dr. Glomerulus tem 3 pontos de atributo, e os outros dois têm 2. Alinhar as linhas esconderia uma diferença real, então o card ficou como está até que se decida o equilíbrio.
+- **"Dashboard" e "Painel":** a troca atinge 252 trechos de teste e fica para um lote próprio.
+
 ## Prioridade
 
 | Etapa | O que entra | Efeito |
