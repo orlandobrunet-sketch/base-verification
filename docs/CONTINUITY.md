@@ -2,7 +2,7 @@
 
 ## Estado atual — 30/10/2026
 
-**Publicado:** visual 16.39 (PR906), moldura da vitrine 16.40 (PR907) e direção das aberturas 16.42. O registro da direção e as cinco decisões em aberto do proprietário estão em docs/design/NQ_CINEMA_DIRECTION_16.42.md. Os itens abaixo que citam a candidata 16.39 como pendente já foram publicados.
+**Publicado:** visual 16.39 (PR906), moldura da vitrine 16.40 (PR907) e direção das aberturas 16.42. O registro da direção e as quatro decisões em aberto do proprietário estão em docs/design/NQ_CINEMA_DIRECTION_16.42.md. Os itens abaixo que citam a candidata 16.39 como pendente já foram publicados.
 
 ## Estado em 29/10/2026
 

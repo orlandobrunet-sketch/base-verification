@@ -461,50 +461,6 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     await expect(page.locator('#nextBtn')).not.toHaveClass(/hidden/);
   });
 
-  test('permite pausar e retomar a animação por teclado e conserva a preferência', async ({ page }, testInfo) => {
-    await page.emulateMedia({ reducedMotion: 'no-preference' });
-    const openCard = async () => {
-      if (testInfo.project.name === 'mobile') {
-        await openVisibleHero(page);
-        await expect(page.locator('.panel.left')).toHaveClass(/mobile-open/);
-      }
-    };
-    await openCard();
-    const toggle = page.locator('#guardianMotionToggle');
-    const motionStates = () => page.locator('.nql-portrait-light').evaluateAll(elements =>
-      elements.flatMap(element => element.getAnimations().map(animation => animation.playState))
-    );
-    await expect(toggle).toHaveAccessibleName('Pausar animação do personagem');
-    await expect.poll(motionStates).toEqual(['running']);
-
-    await toggle.focus();
-    await toggle.press('Enter');
-    await expect(toggle).toHaveAttribute('aria-pressed', 'true');
-    await expect(toggle).toHaveAccessibleName('Retomar animação do personagem');
-    await expect.poll(motionStates).toEqual(['paused']);
-    const pausedProgress = await page.locator('.nql-portrait-light').evaluate(async element => {
-      const animation = element.getAnimations()[0];
-      const before = animation.currentTime;
-      await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
-      return { before, after: animation.currentTime };
-    });
-    expect(pausedProgress.after, 'a iluminação permanece pausada').toBe(pausedProgress.before);
-
-    await page.reload({ waitUntil: 'domcontentloaded' });
-    await enterGame(page);
-    await openCard();
-    await expect(toggle).toHaveAttribute('aria-pressed', 'true');
-    await expect(toggle).toHaveAccessibleName('Retomar animação do personagem');
-    await expect.poll(motionStates).toEqual(['paused']);
-
-    await toggle.focus();
-    await toggle.press('Space');
-    await expect(toggle).toHaveAttribute('aria-pressed', 'false');
-    await expect(toggle).toHaveAccessibleName('Pausar animação do personagem');
-    await expect.poll(motionStates).toEqual(['running']);
-    await expect(page.locator('#question')).not.toBeEmpty();
-  });
-
   test('restaurar e redesenhar o card não simula uma recompensa', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'chromium', 'ganhos são observados com o card visível no desktop');
     await page.emulateMedia({ reducedMotion: 'no-preference' });
@@ -620,7 +576,6 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     await expect.poll(() => light.evaluate(element =>
       element.getAnimations().filter(animation => animation.playState === 'running').length
     )).toBe(0);
-    await expect(page.locator('#guardianMotionToggle')).toBeHidden();
   });
 
   test('aplica uma assinatura cromática própria a cada personagem', async ({ page }) => {

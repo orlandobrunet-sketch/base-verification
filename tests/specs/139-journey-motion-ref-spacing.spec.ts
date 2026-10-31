@@ -23,38 +23,22 @@ test.beforeEach(async ({page, context}) => {
   await injectGameState(page, {gold: 0, streak: 0, narrativeShown: 5});
 });
 
-test('Play moves the artwork, Pause freezes it, and the frame stays still', async ({page}, info) => {
+test('the portrait stays still for all three characters, with no pause control', async ({page}, info) => {
   await page.emulateMedia({reducedMotion: 'no-preference'});
   await openHero(page, info.project.name === 'mobile');
-  const toggle = page.locator('#guardianMotionToggle'), portrait = page.locator('#heroImg');
-  const frame = page.locator('.portrait-frame'), frameBefore = await frame.boundingBox();
-  await toggle.focus(); await toggle.press('Enter');
-  await expect(toggle).toHaveAccessibleName('Retomar animação do personagem');
-  await expect.poll(() => portrait.evaluate(el => el.getAnimations().map(a => a.playState))).toEqual(['paused']);
-  const frozen = await portrait.boundingBox();
-  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-  expect(await portrait.boundingBox()).toEqual(frozen);
-  await toggle.press('Space');
-  await expect(toggle).toHaveAccessibleName('Pausar animação do personagem');
-  // Start at a known point, then let the real browser clock move the artwork.
-  await portrait.evaluate(el => { el.getAnimations()[0].currentTime = 0; });
-  const start = await portrait.boundingBox();
-  await expect.poll(async () => Math.abs((await portrait.boundingBox())!.width - start!.width), {timeout: 5000}).toBeGreaterThan(2);
-  expect(await frame.boundingBox()).toEqual(frameBefore);
-  await toggle.click();
-  await expect.poll(() => portrait.evaluate(el => el.getAnimations().map(a => a.playState))).toEqual(['paused']);
-  expect(await page.locator('.nql-portrait-light').evaluate(el => el.getAnimations()[0].playState)).toBe('paused');
-  const paused = await portrait.boundingBox();
-  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-  expect(await portrait.boundingBox()).toEqual(paused);
-  await page.reload(); await enterGame(page); await openHero(page, info.project.name === 'mobile');
-  await expect(toggle).toHaveAttribute('aria-pressed', 'true');
-  await expect.poll(() => portrait.evaluate(el => el.getAnimations().map(a => a.playState))).toEqual(['paused']);
-  await page.emulateMedia({reducedMotion: 'reduce'});
-  await expect(toggle).toBeHidden();
-  await expect.poll(() => portrait.evaluate(el => el.getAnimations().length)).toBe(0);
-  await expect(portrait).toHaveCSS('translate', 'none');
-  await expect(portrait).toHaveCSS('scale', 'none');
+  await expect(page.locator('#guardianMotionToggle')).toHaveCount(0);
+  const portrait = page.locator('#heroImg'), light = page.locator('.nql-portrait-light');
+  for (const character of ['nephros', 'aquaria', 'glomerulus']) {
+    await page.evaluate(id => { const w = window as any; w.state.character = id; w.renderHUD(); }, character);
+    await expect(portrait).toBeVisible();
+    expect(await portrait.evaluate(el => el.getAnimations().length), character).toBe(0);
+    expect(await light.evaluate(el => el.getAnimations().length), character).toBe(0);
+    await expect(portrait).toHaveCSS('translate', 'none');
+    await expect(portrait).toHaveCSS('scale', 'none');
+    const before = await portrait.boundingBox();
+    await page.waitForTimeout(350);
+    expect(await portrait.boundingBox(), character).toEqual(before);
+  }
 });
 
 test('source titles keep a separate arrow and the question has no loose cycle mark', async ({page}) => {

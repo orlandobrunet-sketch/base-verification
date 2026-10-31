@@ -8,7 +8,6 @@
 /* Novos nós são opt-in: no Confronto Final permanecem totalmente ausentes. */
 .nql-progress-level,
 .nql-stat-icon,
-.nql-motion-toggle,
 .nql-hero-archetype,
 .nql-stat-label,
 .nql-choice-instruction,
@@ -355,15 +354,6 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   object-position: 45% center;
   mask-image: linear-gradient(#000 80%, transparent 100%);
   filter: none;
-  transform-origin: center 55%;
-  animation: nql-portrait-breathe 6s ease-in-out infinite;
-}
-
-/* Move only the artwork: the frame, focus target and equipment stay still.
-   Individual transforms preserve the portraits that face the question via scaleX. */
-@keyframes nql-portrait-breathe {
-  0%, 100% { translate: 0 1px; scale: 1.025; }
-  50% { translate: 0 -5px; scale: 1.07; }
 }
 
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #heroImg[src*="clerigo_renal/nivel_06"],
@@ -409,55 +399,9 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   background: radial-gradient(ellipse at 75% 24%, rgba(var(--nql-hero-primary-rgb), .55), transparent 70%);
   mix-blend-mode: screen;
   pointer-events: none;
-  animation: nql-portrait-daylight 12s ease-in-out infinite;
+  opacity: .14;
 }
 
-@keyframes nql-portrait-daylight {
-  0%, 100% { opacity: .06; }
-  50% { opacity: .24; }
-}
-
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-motion-paused .nql-portrait-light,
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-motion-paused .portrait {
-  animation-play-state: paused;
-}
-
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-motion-toggle {
-  position: absolute;
-  top: 7px;
-  right: 7px;
-  z-index: 3;
-  display: grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  border: 1px solid transparent;
-  border-radius: 50%;
-  background: transparent;
-  color: #aebac7;
-  cursor: pointer;
-}
-
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-motion-toggle svg {
-  width: 15px;
-  height: 15px;
-}
-
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-motion-toggle .nql-motion-play,
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-motion-toggle[aria-pressed="true"] .nql-motion-pause {
-  display: none;
-}
-
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-motion-toggle[aria-pressed="true"] .nql-motion-play {
-  display: block;
-}
-
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-motion-toggle:hover {
-  background: rgba(145, 223, 227, .08);
-}
-
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-motion-toggle:focus-visible,
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .portrait-frame:focus-visible {
   outline: 2px solid var(--nql-lumen);
   outline-offset: 3px;
@@ -1782,8 +1726,7 @@ body.reading-mode:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[d
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-portrait-light,
-  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-motion-toggle { display: none; }
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-portrait-light { display: none; }
 
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .portrait,
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-portrait-light,
