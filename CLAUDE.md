@@ -135,11 +135,10 @@ git config core.hooksPath .githooks
 
 | Tabela | Descrição |
 |--------|-----------|
-| `profiles` | Dados do usuário: `premium_plan`, `premium_expires_at`, `mp_payment_id`, `is_premium` (migration 001) |
+| `profiles` | Dados do usuário: `premium_plan`, `premium_expires_at`, `mp_payment_id`, `is_premium` (migration 001) e `game_progress`, o progresso sincronizado entre dispositivos (migration 005) |
 | `leaderboard` | Ranking global: `user_id`, `player_name`, `score`, `level`. RLS habilitada (migration 002) |
 | `ai_usage` | Quota diária de IA: PK composta `(user_id, feature, date)` (migration 003) |
 | `push_subscriptions` | Inscrições Web Push por usuário (migration 004) |
-| `game_progress` | Progresso de jogo sincronizado entre dispositivos (migration 005) |
 | `processed_payments` | Idempotência do webhook Mercado Pago por `paymentId` (migration 007) |
 | `question_ratings` | Avaliação 5★ (qualidade + aprendizado) por questão; insert público, leitura só admin (migration 008) |
 | `profiles_stats` | Perfil Global acumulado: `total_correct`, `total_games`, `best_level` (DC-4/DC-5, migration 009) |

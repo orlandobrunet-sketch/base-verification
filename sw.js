@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v16.45
-const CACHE = 'nefroquest-v16.45';
+// NefroQuest Service Worker — v16.46
+const CACHE = 'nefroquest-v16.46';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -57,7 +57,6 @@ const STATIC_ASSETS = [
   '/js/cinema-intro-bridge.js',
   '/js/cinema-intro-source-config.js',
   '/js/cinema-victory-bridge.js',
-  '/js/cinema-victory-modal.js',
   '/js/cinema-victory-source-config.js',
   '/styles/lumen/cinemaboss.css',
   '/styles/lumen/cinemaentry.css',
@@ -196,7 +195,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/bossfinishing.css': '16.44',
   '/js/cinema-boss-art-states.js': '16.39',
   '/js/cinema-boss-static-adapter.js': '16.43',
-  '/js/cinema-cinematic-intro.js': '16.43',
+  '/js/cinema-cinematic-intro.js': '16.46',
   '/js/cinema-entry-bridge.js': '16.43',
   '/js/cinema-entry-cinema.js': '16.43',
   '/js/cinema-entry-seen.js': '16.28',

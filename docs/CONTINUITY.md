@@ -2,7 +2,29 @@
 
 ## Estado atual — 30/10/2026
 
-**Publicado:** visual 16.39 (PR906), moldura da vitrine 16.40 (PR907) e direção das aberturas 16.42. O registro da direção e as quatro decisões em aberto do proprietário estão em docs/design/NQ_CINEMA_DIRECTION_16.42.md. Os itens abaixo que citam a candidata 16.39 como pendente já foram publicados.
+**Publicado:** 16.46. A consolidação visual (PR906), a direção das aberturas (PR908), a vitrine (PR907), notebooks com toque (PR909), o retrato parado (PR910), o classificador (PR911) e a correção do webhook entraram em 30/10. O proprietário autorizou agir e publicar sem nova consulta; o gate editorial de `data/topics.js` continua valendo.
+
+**Fluxo:** testes focais e gates locais, PR, merge e conferência do site. A `main` não exige CI, e o merge automático do GitHub não espera os testes sem essa regra. Quem criar a regra precisa fazê-lo no GitHub.
+
+### Verificações de 30/10
+
+- **Sentry:** nenhum erro aberto em 90 dias. Um evento de teste enviado de produção chegou ao painel, então o canal funciona.
+- **Supabase:** API saudável, banco sem erros nos logs. Avisos restantes: proteção contra senhas vazadas desligada (ligar no painel Auth), `is_admin()` exposta por RPC (usada pelas regras de acesso, retorna só o próprio status) e `processed_payments` sem política (intencional, só o service role escreve).
+- **Pagamentos:** nenhuma notificação ou pagamento registrado até hoje. Retorno ao jogo, assinatura e idempotência do webhook foram revisados por leitura. A falha transitória do Mercado Pago agora gera nova tentativa. O fluxo completo em teste continua sem execução.
+- **Serrilhado dos equipamentos:** conferido em DPR 1, 1,25 e 2; resolvido no PR900.
+- **CSP:** a produção é servida pelo GitHub Pages, sem cabeçalhos. Uma meta CSP exigiria `bypassCSP` nos testes, que usam `eval`, e ainda manteria `unsafe-inline`. Fica para quando os scripts embutidos saírem. A política da prévia na Vercel passou a permitir o bundle do Sentry.
+
+### Pendências
+
+| Quem | Itens |
+|---|---|
+| Proprietário: material | Trilha dos filmes de herói · arte final da vitória · raio do filme do chefe · referências das caixas de perguntas e do pergaminho |
+| Proprietário: decisão | Boss TRIO A7 · 12 fundos de Conquistas · filmes e vitória no celular (depende do GA4) · versão mobile dedicada · regra de CI na `main` |
+| Proprietário: conta | Pagamento real · envio pelo `/contato/` · leitor de tela · GA4 · senhas vazadas no Supabase |
+| Editorial, com gate por item | Integrações por elegibilidade (índice A37: 741 disposições, não 741 aprovações) · 72 vínculos de competência congelados · mais de 1.000 questões · resumos genéricos |
+| Futuro | Android · recompensas (troféus, honorários, vitalício Hardcore) · reparo manual do save histórico · remover scripts embutidos para permitir CSP |
+
+Direção das aberturas e decisões abertas em [NQ_CINEMA_DIRECTION_16.42.md](design/NQ_CINEMA_DIRECTION_16.42.md).
 
 ## Estado em 29/10/2026
 

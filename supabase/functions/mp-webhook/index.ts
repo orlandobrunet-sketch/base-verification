@@ -139,7 +139,10 @@ Deno.serve(async (req) => {
 
     if (!mpRes.ok) {
       console.error('Failed to fetch payment from MP:', mpRes.status, await mpRes.text());
-      return new Response('ok', { status: 200 }); // Retorna 200 para MP não retentar
+      // Instabilidade do MP precisa de retry: responder 200 aqui deixaria o
+      // pagamento aprovado sem ativação. Erro 4xx não melhora ao repetir.
+      const transient = mpRes.status === 429 || mpRes.status >= 500;
+      return new Response(transient ? 'MP unavailable' : 'ok', { status: transient ? 502 : 200 });
     }
 
     const payment = await mpRes.json();
