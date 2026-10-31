@@ -252,7 +252,7 @@
         let x, y;
         if (clickedBtn) {
           const rect = clickedBtn.getBoundingClientRect();
-          x = rect.left + rect.width / 2;
+          x = window.innerWidth / 2; // com dois botões lado a lado, o texto vazaria da tela
           y = rect.top + rect.height / 2;
         }
         if (typeof nqRecordAnswer === 'function') nqRecordAnswer(q.qid, isCorrect, q.cat, q.q);

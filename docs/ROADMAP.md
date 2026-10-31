@@ -8,7 +8,7 @@ Este documento controla direção, prioridade e critérios de conclusão. Ele n�
 
 ## Estado operacional — 30/10/2026
 
-Publicado: **16.48**, com os itens P1 e o primeiro lote de P2 da auditoria de jogo; o restante está em `docs/design/NQ_AUDITORIA_AGENCIA_2026-10-30.md`. A consolidação visual, a direção das aberturas e o classificador entraram em 30/10. As pendências ficam em [`CONTINUITY.md`](CONTINUITY.md), que prevalece sobre os status das seções abaixo.
+Publicado: **16.49**, com os itens P1 e dois lotes de P2 da auditoria de jogo; o restante está em `docs/design/NQ_AUDITORIA_AGENCIA_2026-10-30.md`. A consolidação visual, a direção das aberturas e o classificador entraram em 30/10. As pendências ficam em [`CONTINUITY.md`](CONTINUITY.md), que prevalece sobre os status das seções abaixo.
 
 Saem da fila: W1–W7 (PR900/16.18), três questões clínicas (PR901/16.19), 30 retratos das classes (15.85, antes NQ-04E), 20 retratos da Câmara (publicados em 16.39) e o diagnóstico antigo de MX (canal atual `/contato/`, PR831). A revisão documental das 741 questões está completa no índice A37, o que não equivale a 741 aprovações ou publicações.
 

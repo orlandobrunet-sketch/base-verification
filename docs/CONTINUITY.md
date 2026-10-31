@@ -2,7 +2,7 @@
 
 ## Estado atual — 31/10/2026
 
-**Publicado:** 16.48, com os itens P1 e o primeiro lote de P2 da [auditoria de jogo](design/NQ_AUDITORIA_AGENCIA_2026-10-30.md). Base anterior, 16.47. A consolidação visual (PR906), a direção das aberturas (PR908), a vitrine (PR907), notebooks com toque (PR909), o retrato parado (PR910), o classificador (PR911) e o PR912 entraram em 30/10. O proprietário autorizou agir e publicar sem nova consulta; o gate editorial de `data/topics.js` continua valendo.
+**Publicado:** 16.49, com os itens P1 e dois lotes de P2 da [auditoria de jogo](design/NQ_AUDITORIA_AGENCIA_2026-10-30.md). Base anterior, 16.48. A consolidação visual (PR906), a direção das aberturas (PR908), a vitrine (PR907), notebooks com toque (PR909), o retrato parado (PR910), o classificador (PR911) e o PR912 entraram em 30/10. O proprietário autorizou agir e publicar sem nova consulta; o gate editorial de `data/topics.js` continua valendo.
 
 **Fluxo:** testes focais e gates locais, PR, merge e conferência do site. A `main` não exige CI, e o merge automático do GitHub não espera os testes sem essa regra. Quem criar a regra precisa fazê-lo no GitHub.
 

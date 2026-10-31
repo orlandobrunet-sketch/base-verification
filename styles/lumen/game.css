@@ -2315,3 +2315,123 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   35% { rotate: -14deg; }
   65% { rotate: 10deg; }
 }
+
+/* ── Momentos de pico ─────────────────────────────────────────── */
+
+/* Evolução: o maior prêmio do jogo ocupa a tela, com antes e depois. */
+.evolution-popup {
+  background: radial-gradient(ellipse at 50% 38%, rgba(237, 206, 131, .13), transparent 62%), #02060b;
+  backdrop-filter: none;
+}
+.evolution-popup .nqevo-card {
+  width: min(100%, 980px);
+  max-width: 980px;
+  border-color: transparent !important;
+  background: transparent !important;
+  box-shadow: none;
+}
+.evolution-popup .nqevo-intro { color: var(--gold); text-align: center; font-size: 1rem; }
+.evolution-popup .nqevo-footer { background: transparent; }
+.evolution-popup .nqevo-card .nqevo-footer button { width: min(100%, 22rem); margin-inline: auto; }
+.evolution-popup .nqevo-identity h2 { font-size: clamp(1.4rem, 3vw, 2rem) !important; }
+.evolution-popup .nqevo-hero { grid-template-columns: minmax(180px, 300px) minmax(0, 1fr); gap: clamp(1.25rem, 3vw, 2.25rem); }
+.evolution-popup .nqevo-hero--antes { grid-template-columns: minmax(96px, 160px) 1.75rem minmax(180px, 300px) minmax(0, 1fr); }
+.evolution-popup .nqevo-art { width: 100%; height: auto; aspect-ratio: 4 / 5; }
+.evolution-popup .nqevo-antes { min-width: 0; margin: 0; text-align: center; }
+.evolution-popup .nqevo-antes img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  filter: saturate(.55) brightness(.72);
+}
+.evolution-popup .nqevo-antes figcaption { margin-top: .5rem; color: var(--soft); font-size: .85rem; }
+.evolution-popup .nqevo-seta { width: 1.75rem; height: 1.75rem; fill: none; stroke: var(--gold); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+@media (max-width: 768px) {
+  .evolution-popup .nqevo-hero,
+  .evolution-popup .nqevo-hero--antes {
+    display: grid;
+    grid-template-columns: minmax(0, 5.5rem) 1.25rem minmax(0, 11rem);
+    justify-content: center;
+    gap: .6rem;
+  }
+  .evolution-popup .nqevo-hero:not(.nqevo-hero--antes) { grid-template-columns: minmax(0, 11rem); }
+  .evolution-popup .nqevo-seta { width: 1.25rem; height: 1.25rem; }
+  .evolution-popup .nqevo-identity { grid-column: 1 / -1; margin-top: .75rem; text-align: center; }
+  .evolution-popup .nqevo-antes,
+  .evolution-popup .nqevo-art { width: 100%; height: auto; }
+  .evolution-popup .nqevo-antes figcaption { font-size: .75rem; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .evolution-popup .nqevo-antes { animation: nqevo-entra .5s ease-out both; }
+  .evolution-popup .nqevo-seta { animation: nqevo-entra .4s ease-out .3s both; }
+  .evolution-popup .nqevo-art { animation: nqevo-surge .7s cubic-bezier(.2, 1.1, .4, 1) .45s both; }
+  .evolution-popup .nqevo-identity { animation: nqevo-entra .5s ease-out .85s both; }
+}
+@keyframes nqevo-entra { from { opacity: 0; translate: 0 .5rem; } }
+@keyframes nqevo-surge { from { opacity: 0; scale: .9; } }
+
+/* Baú: selo, raridade e só então a leitura. */
+#chestModal .nqscroll-rarity { padding: .35rem .8rem; font-size: 1rem; font-weight: 700; }
+#chestModal [data-rarity=epic] .nqscroll-rarity { box-shadow: 0 0 1rem color-mix(in srgb, var(--rarity) 45%, transparent); }
+#chestModal [data-rarity=legendary] .nqscroll-rarity { box-shadow: 0 0 1.5rem color-mix(in srgb, var(--rarity) 65%, transparent); }
+
+@media (prefers-reduced-motion: no-preference) {
+  #chestModal.show .nqscroll-rarity { animation: nqscroll-raridade .5s cubic-bezier(.2, 1.4, .4, 1) .35s both; }
+  #chestModal.show .nqscroll-identity { animation: nqevo-entra .35s ease-out .65s both; }
+  #chestModal.show .nqscroll-reward { animation: nqevo-entra .35s ease-out .8s both; }
+  #chestModal.show .nqscroll-sections { animation: nqevo-entra .4s ease-out .95s both; }
+}
+@keyframes nqscroll-raridade { from { opacity: 0; scale: 1.8; } }
+
+/* Pedra do Julgamento: cenário, contagem forte e duas escolhas grandes. */
+#rapidQuizPage {
+  background: linear-gradient(rgba(4, 8, 15, .58), rgba(4, 8, 15, .86)), url("../../assets/bg-hall.jpg") center / cover fixed;
+}
+#rapidQuizPage .nq-exam-cabecalho { border-bottom: 0; padding-bottom: .5rem; }
+#rapidQuizPage .nq-exam-relogio { color: #7ee2a8; font: 700 clamp(2rem, 6vw, 2.75rem)/1 Cinzel, serif; }
+#rapidQuizPage .nq-exam-relogio.nq-exam-urgente { color: #f7b2bf; }
+#rapidQuizPage .nq-exam-progresso { height: .5rem; border-radius: 4px; }
+#rapidQuizPage .nq-exam-titulo { color: #d9e2ea; }
+#rapidQuizPage .nq-exam-questao {
+  max-width: none;
+  margin-top: 1rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border: 1px solid rgba(237, 206, 131, .42);
+  border-radius: 10px;
+  background: #0a1320;
+  box-shadow: inset 0 0 0 4px rgba(237, 206, 131, .05), 0 1.5rem 3rem rgba(0, 0, 0, .45);
+}
+#rapidQuizPage .nq-exam-enunciado { font-size: clamp(1.1rem, 2.4vw, 1.3rem); line-height: 1.6; }
+#rapidQuizPage .nq-exam-opcoes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+#rapidQuizPage .nq-exam-opcao {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .25rem;
+  min-height: 6.5rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 600;
+}
+#rapidQuizPage .nq-exam-opcao .nq-exam-letra {
+  border: 0;
+  background: none;
+  color: var(--gold);
+  font: 700 2rem/1 Cinzel, serif;
+}
+#rapidQuizPage #mgTrue:hover:not(:disabled) { border-color: #7ee2a8; }
+#rapidQuizPage #mgFalse:hover:not(:disabled) { border-color: #f7b2bf; }
+#rapidQuizPage .nq-exam-marca { display: block; font-size: .8rem; }
+
+@media (min-width: 769px) and (hover: hover) and (pointer: fine) {
+  #rapidQuizPage .nq-exam-titulo::after { content: " · Teclas V e F"; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  #rapidQuizPage .nq-exam-relogio.nq-exam-urgente { animation: nqjulgamento-urgente .8s ease-in-out infinite; }
+}
+@keyframes nqjulgamento-urgente { 50% { scale: 1.12; } }

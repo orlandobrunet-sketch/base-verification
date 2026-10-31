@@ -341,11 +341,16 @@
       const modal = document.createElement('div');
       modal.className = 'nq-overlay evolution-popup';
       const narrative = loreText ? loreText.replace(/<[^>]*>/g, '') : text;
+      // A arte muda até o nível 10; depois não há um "antes" para comparar.
+      const arteAntes = newLevel >= 2 && newLevel <= 10
+        ? String(newImage).replace(/nivel_\d+/, `nivel_${String(newLevel - 1).padStart(2, '0')}`) : '';
       modal.innerHTML = `
         <div class="modal-content nqevo-card">
           <div class="nqevo-reading" role="region" tabindex="0" aria-label="Detalhes da evolução">
             <p class="nqevo-intro">Evolução concluída</p>
-            <div class="nqevo-hero">
+            <div class="nqevo-hero${arteAntes ? ' nqevo-hero--antes' : ''}">
+              ${arteAntes ? `<figure class="nqevo-antes"><img src="${escapeHtml(arteAntes)}" alt=""><figcaption>Antes</figcaption></figure>
+              <svg class="nqevo-seta" aria-hidden="true" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg>` : ''}
               <div class="nqevo-art"><img src="${escapeHtml(newImage)}" alt="">
                 <svg class="nqevo-light" aria-hidden="true" viewBox="0 0 180 220" preserveAspectRatio="none"><rect x="2" y="2" width="176" height="216" rx="7"/></svg>
               </div>
@@ -6380,6 +6385,10 @@
 
       modal.classList.add('show');
       nqDialogo(modal, { painel: modal.querySelector('.chest-content'), visivel: el => el.classList.contains('show') });
+      // Raridade alta soa quando o selo se revela (ver atraso em game.css).
+      if (rarity === 'legendary' || rarity === 'epic') {
+        setTimeout(() => { if (modal.classList.contains('show')) playSound('levelup'); }, 350);
+      }
     }
     
     function closeChestModal() {
