@@ -128,4 +128,49 @@ test.describe('Classificador de competências', () => {
     // Antes: 25 de 27 (93%). O balde não pode voltar a engolir a categoria.
     expect(dist.noFallback / dist.totalCat).toBeLessThan(0.5);
   });
+
+  /* NQ-10, conserto A: pedaço de palavra e negação.
+   * O casamento era `text.includes(kw)`: 'rave ' (estudo RAVE) casava dentro de
+   * "grave" e marcava nefrite lúpica como vasculite; 'dose na drc' casava
+   * dentro de "acidose na drc"; "não iniciou terapia renal substitutiva"
+   * contava como TRS. Medido no banco real: essas 3 questões mudam e nenhuma
+   * outra. */
+  test('palavra inteira e negação, sem perder radicais nem o "qual NÃO é"', async ({ page }) => {
+    await carregar(page);
+    const r = await page.evaluate(() => {
+      const m = (window as any)._nqMatchComps;
+      const n = (window as any)._nqNorm;
+      const cls = (texto: string, cat: string) => m(n(texto), cat) as string[];
+      const porQid = (qid: string) => {
+        const q = eval('topics').find((x: any) => (x.qid || x.id) === qid);
+        return m(n(`${q.t} ${q.q}`), q.cat) as string[];
+      };
+      return {
+        grave: cls('Nefrite lúpica grave — conduta urgente', 'glomerular'),
+        acidose: cls('Bicarbonato e acidose na DRC', 'drc'),
+        naoE: cls('O quadro não é hipocalemia', 'eletrólitos'),
+        sem: cls('Paciente sem hipocalemia', 'eletrólitos'),
+        qualNao: cls('Qual NÃO é causa de hipocalemia?', 'eletrólitos'),
+        radical: cls('Tolvaptana na DRPAD — seleção', 'genetica'),
+        isglt2: cls('iSGLT2 na diálise — lacuna', 'drc'),
+        atrFim: cls('Atrasentana e acidose', 'acido_base'),
+        atrPalavra: cls('Suspeita de ATR distal', 'acido_base'),
+        real67: porQid('67cb9059'),
+        real03: porQid('0319aa8b'),
+        real8d: porQid('8da939d9'),
+      };
+    });
+    expect(r.grave, '"grave" não é o estudo RAVE').not.toContain('gl_vasculite');
+    expect(r.acidose, '"acidose na drc" não é "dose na drc"').not.toContain('drc_farmacologia');
+    expect(r.naoE, 'negação imediata').not.toContain('el_potassio');
+    expect(r.sem, 'negação imediata').not.toContain('el_potassio');
+    expect(r.qualNao, 'a questão continua sendo sobre hipocalemia').toContain('el_potassio');
+    expect(r.radical, 'radical de propósito continua casando').toContain('gen_pkd');
+    expect(r.isglt2).toContain('drc_isglt2_glp1');
+    expect(r.atrPalavra, "'atr ' casa com a palavra ATR").toContain('ab_atr');
+    expect(r.atrFim, "'atr ' (com espaço) não casa dentro de atrasentana").not.toContain('ab_atr');
+    expect(r.real67).not.toContain('gl_vasculite');
+    expect(r.real03).not.toContain('drc_farmacologia');
+    expect(r.real8d).not.toContain('lra_terapia');
+  });
 });
