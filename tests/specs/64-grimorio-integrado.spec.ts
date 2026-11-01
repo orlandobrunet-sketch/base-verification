@@ -25,6 +25,9 @@ test('pergunta → Grimório → mesma pergunta, com foco e rascunho preservados
   await page.locator('.bib-suggest-toggle').click();
   await page.locator('#bibSuggestReason').fill('Rascunho local de teste');
   await page.keyboard.press('Escape');
+  await expect(page.locator('#bibSuggestFields')).toBeHidden();
+  await expect(page.locator('.bib-suggest-toggle')).toBeFocused();
+  await page.keyboard.press('Escape');
   await expect(page.locator('#nqDashboard')).toHaveCount(0);
   await expect(opener).toBeFocused();
   await expect(page.locator('#question')).toHaveText(question);

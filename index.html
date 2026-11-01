@@ -86,7 +86,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function () {
           Sentry.init({
-            release: 'nefroquest@16.53',
+            release: 'nefroquest@16.54',
             environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
             tracesSampleRate: 0.05
           });
@@ -123,7 +123,7 @@
     <nav class="nav-links" aria-label="Navegação principal">
       <a href="#metodo">Método</a>
       <a href="#oraculo">Oráculo</a>
-      <a href="#diretrizes">Biblioteca</a>
+      <a href="#biblioteca">Biblioteca</a>
       <a href="#como-funciona">Como funciona</a>
       <a href="#classes">O jogo</a>
     </nav>
@@ -238,6 +238,7 @@
 
     </section>
 
+    <div id="biblioteca">
     <section class="proof" id="prova" aria-label="Números e acesso do NefroQuest">
       <dl class="proof-ledger">
         <div class="proof-item reveal-up">
@@ -321,6 +322,7 @@
         <div class="guideline-flow__status"><span>Em foco</span><b data-guideline-active>KDIGO CKD 2024</b><i>cursor ou toque para percorrer</i></div>
       </div>
     </section>
+    </div>
 
     <section class="method atlas-section" id="metodo" aria-labelledby="method-title">
       <div class="section-intro">

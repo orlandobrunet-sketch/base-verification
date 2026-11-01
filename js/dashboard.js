@@ -674,11 +674,9 @@
     const profile = state === 'ready' && _dashboardData
       ? (_dashboardData.save
         ? `<div class="nqd-profile">
-            <span class="nqd-profile-avatar"><img src="${_escape(_dashboardData.avatar)}" alt=""></span>
             <span class="nqd-profile-copy"><strong class="nqd-profile-name">${_escape(_playerName())}</strong><small class="nqd-profile-level">${_escape(_plainUserTitle(_dashboardData.totalCorrect))}</small></span>
           </div>`
         : `<div class="nqd-profile is-new">
-            <span class="nqd-profile-avatar" aria-hidden="true">✦</span>
             <span class="nqd-profile-copy"><strong class="nqd-profile-name">Novo jogador</strong><small class="nqd-profile-level">Escolha seu guardião</small></span>
           </div>`)
       : '';
@@ -803,8 +801,6 @@
         </div></header>
 
         ${acoes}
-        ${reviewPromoted && vencidas > 0 ? `<p class="nqd-review-context">${_formatNumber(vencidas)} ${vencidas === 1 ? 'revisão vencida' : 'revisões vencidas'} · acesso em “Agora”</p>` : ''}
-
         <div class="nqd-summary-strip" style="--columns:2">
           <div class="nqd-metric">
             <strong class="nqd-metric-value">${_formatNumber(memory.overdue)}</strong>
@@ -961,8 +957,7 @@
         ${_stageMarkup(data)}
         ${data.topicsLoadError ? '<div class="nqd-notice" role="status">Alguns dados não carregaram. Exibindo seu progresso salvo.</div>' : ''}
         <div class="nqd-overview-flow">
-          <section class="nqd-next-actions" data-overview-section="now" aria-labelledby="nqdActionsTitle">
-            <header><h2 id="nqdActionsTitle">Agora</h2></header>
+          <section class="nqd-next-actions" data-overview-section="now" aria-label="Próximos passos">
             <div class="nqd-next-actions-list">${_actionsMarkup(data.actions)}</div>
           </section>
             <section class="nqd-learning-pulse" data-overview-section="pace">
@@ -973,7 +968,7 @@
                   ${data.evolution || ''}
                   ${data.strength ? `<p class="nqd-strength"><span>Melhor desempenho observado</span><strong>${_escape(data.strength.label)}</strong><small>${Math.round(data.strength.accuracy)}% · ${data.strength.totalAnswered} respostas</small></p>` : ''}
                 </details>
-              ` : '<p class="nqd-empty-learning">Os indicadores aparecem depois das primeiras respostas. Até lá, sua próxima decisão está em “Agora”.</p>'}
+              ` : '<p class="nqd-empty-learning">Os indicadores aparecem depois das primeiras respostas. Até lá, comece pelos cartões acima.</p>'}
             </section>
           ${_memoryMarkup(data.memory, data.stats, reviewPromoted)}
         </div>
@@ -1050,15 +1045,11 @@
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-skills" role="tabpanel" aria-labelledby="nqdTab-skills" data-dash-pane="skills" hidden>
         <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Competências</h1><p class="nqd-section-copy">Veja os resultados observados e o tamanho da amostra em cada área.</p></div></div>
-        <section class="nqd-skill-priority${data.axisWeakness ? '' : ' is-forming'}">
-          ${data.axisWeakness ? `
-            <div><span class="nqd-eyebrow nqd-eyebrow--clinical">Tema para praticar</span><h2>${_escape(data.axisWeakness.label)}</h2><p>${Math.round(data.axisWeakness.accuracy)}% de acerto em ${_formatNumber(data.axisWeakness.total)} ${data.axisWeakness.total === 1 ? 'resposta' : 'respostas'} deste tema.</p></div>
-            <button type="button" class="nqd-primary-action" data-action="_dashGoAxisWeakness" data-nqd-primary="true">Estudar esta área${_svg('arrow')}</button>
-          ` : `
-            <div><span class="nqd-eyebrow">Próximo passo</span><h2>Seu perfil começa com as respostas.</h2><p>Escolha um tema para estudar. Após cinco respostas nele, a página poderá sugerir um treino com base no seu histórico.</p></div>
+        ${measured.length ? '' : `
+          <section class="nqd-skill-priority is-forming">
+            <div><span class="nqd-eyebrow">Próximo passo</span><h2>Seu perfil começa com as respostas.</h2><p>Escolha um tema para estudar. Depois de cinco respostas, o resultado dele aparece aqui.</p></div>
             <button type="button" class="nqd-primary-action" data-action="_dashExploreSkills" data-nqd-primary="true">Escolher temas${_svg('arrow')}</button>
-          `}
-        </section>
+          </section>`}
         ${measured.length ? `
           <section class="nqd-section nqd-skill-list-section" aria-label="Desempenho por competência ampla">
             <header class="nqd-skill-list-header"><div><h2>Desempenho por área</h2><p>Áreas amplas reúnem vários temas.</p></div><span>${measured.length} de ${skills.length} áreas com dados</span></header>
@@ -2103,7 +2094,7 @@
     if (suggestion && suggestionHost) {
       _librarySuggestionHome = suggestion.parentElement;
       suggestionHost.appendChild(suggestion);
-      const form = suggestion.querySelector('form');
+      const form = document.getElementById('bibSuggestForm');
       if (form && typeof _bibSubmitSuggest === 'function') form.onsubmit = _bibSubmitSuggest;
     }
     root.querySelectorAll('[data-dash-tab]').forEach(button => {

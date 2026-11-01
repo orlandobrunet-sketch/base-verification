@@ -83,3 +83,20 @@ test('atalhos dos temas não quebram texto no celular', async ({ page }) => {
   expect(Math.max(...alturas)).toBeLessThan(60);
   await expect(page.getByRole('button', { name: 'Eletrólitos e ácido-base' })).toBeVisible();
 });
+
+test('Biblioteca da home para com as estatísticas logo abaixo do menu', async ({ page }) => {
+  await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto('/', { waitUntil: 'load' });
+  const link = page.locator('.nav-links a', { hasText: 'Biblioteca' });
+  await link.click();
+  const estatisticas = page.locator('.proof-ledger');
+  await expect.poll(async () => (await estatisticas.boundingBox())!.y).toBeLessThan(140);
+  const menu = (await page.locator('.nav-links').boundingBox())!;
+  expect((await estatisticas.boundingBox())!.y).toBeGreaterThanOrEqual(menu.y + menu.height);
+  await expect(page.locator('#guideline-archive-title')).toBeInViewport();
+  await expect(link).toHaveAttribute('aria-current', 'true');
+  await page.mouse.wheel(0, 500);
+  await expect(link).toHaveAttribute('aria-current', 'true');
+});

@@ -103,3 +103,58 @@ test('ranking cabe no celular sem rolagem lateral', async ({ page }) => {
   const tabela = (await page.locator('.nqd-ranking-table').boundingBox())!;
   expect(tabela.x + tabela.width).toBeLessThanOrEqual(390);
 });
+
+test('o menu não repete o retrato, e a palavra "Agora" não aparece mais', async ({ page }) => {
+  await abrir(page, { width: 1280, height: 800 });
+  await expect(page.locator('.nqd-rail img')).toHaveCount(0);
+  await expect(page.locator('.nqd-profile-name')).toBeVisible();
+  await expect(page.locator('.nqd-stage-art img')).toBeVisible();
+  await expect(page.locator('#nqdPane-overview')).not.toContainText('Agora');
+  const palco = (await page.locator('.nqd-stage').boundingBox())!;
+  const cartoes = (await page.locator('.nqd-next-actions-list').boundingBox())!;
+  expect(cartoes.y - (palco.y + palco.height)).toBeLessThan(48);
+});
+
+test('próximo selo no canto direito superior e selos maiores', async ({ page }) => {
+  await abrir(page, { width: 1440, height: 900 });
+  const corpo = (await page.locator('.nqd-stage-body').boundingBox())!;
+  const frase = (await page.locator('.nqd-stage-next').boundingBox())!;
+  const nome = (await page.locator('.nqd-stage-name').boundingBox())!;
+  expect(frase.y).toBeLessThan(nome.y + nome.height);
+  expect(frase.x + frase.width).toBeGreaterThan(corpo.x + corpo.width - 2);
+  expect(frase.x).toBeGreaterThan(nome.x);
+  const selo = (await page.locator('.nqd-stage-trail img').first().boundingBox())!;
+  expect(selo.width).toBeGreaterThanOrEqual(80);
+});
+
+test('competências não sugere tema: isso fica no Mapa clínico', async ({ page }) => {
+  await abrir(page, { width: 1280, height: 800 }, 'skills');
+  await expect(page.locator('#nqdPane-skills')).not.toContainText('Tema para praticar');
+  await expect(page.locator('#nqdPane-skills [data-action="_dashGoAxisWeakness"]')).toHaveCount(0);
+});
+
+test('Sugerir artigo abre em popup e fecha pelo X', async ({ page }) => {
+  await abrir(page, { width: 1280, height: 800 }, 'library');
+  await page.getByRole('button', { name: 'Sugerir artigo', exact: true }).click();
+  const dialogo = page.getByRole('dialog', { name: 'Sugerir artigo' });
+  await expect(dialogo).toBeVisible();
+  await expect(page.locator('#bibSuggestUrl')).toBeFocused();
+  const caixa = (await dialogo.boundingBox())!;
+  expect(caixa.x).toBeGreaterThan(200);
+  expect(caixa.y).toBeGreaterThanOrEqual(0);
+  await dialogo.getByRole('button', { name: 'Fechar' }).click();
+  await expect(dialogo).toBeHidden();
+  await expect(page.locator('.bib-suggest-toggle')).toBeFocused();
+});
+
+test('o popup de sugestão cabe no celular', async ({ page }) => {
+  await abrir(page, { width: 390, height: 700 }, 'library');
+  await page.locator('.bib-suggest-toggle').click();
+  const dialogo = page.getByRole('dialog', { name: 'Sugerir artigo' });
+  await expect(dialogo).toBeVisible();
+  const caixa = (await dialogo.boundingBox())!;
+  expect(caixa.x).toBeGreaterThanOrEqual(0);
+  expect(caixa.x + caixa.width).toBeLessThanOrEqual(390);
+  await page.locator('.bib-submit-btn').scrollIntoViewIfNeeded();
+  await expect(page.locator('.bib-submit-btn')).toBeInViewport();
+});

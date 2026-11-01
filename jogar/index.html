@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.53',
+          release: 'nefroquest@16.54',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -137,11 +137,11 @@
   <link rel="stylesheet" href="style.css?v=16.25">
   <link rel="stylesheet" href="styles/lumen/tokens.css?v=15.77">
   <link rel="stylesheet" href="styles/lumen/shell.css?v=16.18">
-  <link rel="stylesheet" href="styles/lumen/portal.css?v=16.53">
+  <link rel="stylesheet" href="styles/lumen/portal.css?v=16.54">
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.25">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=16.53">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=16.54">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.06">
-  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.52">
+  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.54">
   <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.47">
   <link rel="stylesheet" href="styles/lumen/forge.css?v=16.25">
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
@@ -1792,25 +1792,29 @@
       </div>
       <div class="bib-list" id="bibList"></div>
       <div class="bib-suggest-section">
-        <button type="button" class="bib-suggest-toggle" data-action="toggleBibSuggestForm" aria-expanded="false" aria-controls="bibSuggestFields">
-          Sugerir artigo <em class="bib-suggest-chevron" aria-hidden="true">▾</em>
-        </button>
-        <div id="bibSuggestFields" class="bib-suggest-fields">
-          <p class="bib-suggest-desc">Encontrou um artigo relevante para o NefroQuest? Envie a sugestão.</p>
-          <form id="bibSuggestForm" class="bib-suggest-form" novalidate>
-            <label class="bib-label" for="bibSuggestUrl">Artigo</label>
-            <input type="text" id="bibSuggestUrl" class="bib-input" placeholder="Link, DOI ou referência completa" autocomplete="off">
-            <label class="bib-label" for="bibSuggestReason">Por que é relevante</label>
-            <textarea id="bibSuggestReason" class="bib-textarea" placeholder="O que ele acrescenta ao acervo?" rows="3"></textarea>
-            <label class="bib-label" for="bibSuggestName">Seu nome</label>
-            <input type="text" id="bibSuggestName" class="bib-input" placeholder="Como devemos te chamar" autocomplete="name" required aria-required="true">
-            <label class="bib-label" for="bibSuggestEmail">Seu e-mail</label>
-            <input type="email" id="bibSuggestEmail" class="bib-input" placeholder="seu@email.com" autocomplete="email" required aria-required="true">
-            <button type="submit" class="btn gold bib-submit-btn">Enviar sugestão</button>
-          </form>
-          <p id="bibSuggestMsg" class="bib-suggest-msg" style="display:none;"></p>
-        </div>
+        <button type="button" class="bib-suggest-toggle" data-action="toggleBibSuggestForm" aria-haspopup="dialog" aria-expanded="false" aria-controls="bibSuggestFields">Sugerir artigo</button>
       </div>
+    </div>
+  </div>
+
+  <!-- Fora do Grimório e do Dashboard para cobrir o menu em qualquer tela. -->
+  <div id="bibSuggestFields" class="bib-suggest-fields" data-nq-ui="lumen">
+    <div class="bib-suggest-panel">
+    <button type="button" class="popup-x" data-action="toggleBibSuggestForm" aria-label="Fechar">✕</button>
+    <h2 class="bib-suggest-title">Sugerir artigo</h2>
+    <p class="bib-suggest-desc">Encontrou um artigo relevante para o NefroQuest? Envie a sugestão.</p>
+    <form id="bibSuggestForm" class="bib-suggest-form" novalidate>
+      <label class="bib-label" for="bibSuggestUrl">Artigo</label>
+      <input type="text" id="bibSuggestUrl" class="bib-input" placeholder="Link, DOI ou referência completa" autocomplete="off">
+      <label class="bib-label" for="bibSuggestReason">Por que é relevante</label>
+      <textarea id="bibSuggestReason" class="bib-textarea" placeholder="O que ele acrescenta ao acervo?" rows="3"></textarea>
+      <label class="bib-label" for="bibSuggestName">Seu nome</label>
+      <input type="text" id="bibSuggestName" class="bib-input" placeholder="Como devemos te chamar" autocomplete="name" required aria-required="true">
+      <label class="bib-label" for="bibSuggestEmail">Seu e-mail</label>
+      <input type="email" id="bibSuggestEmail" class="bib-input" placeholder="seu@email.com" autocomplete="email" required aria-required="true">
+      <button type="submit" class="btn gold bib-submit-btn">Enviar sugestão</button>
+    </form>
+    <p id="bibSuggestMsg" class="bib-suggest-msg" style="display:none;"></p>
     </div>
   </div>
 
@@ -1836,17 +1840,17 @@
   <script defer src="data/question-revision-manifest.js?v=16.25"></script>
   <script defer src="data/question-revision-history.js?v=16.20"></script>
   <script defer src="js/question-revisions.js?v=16.12"></script>
-  <script defer src="js/utils.js?v=16.22"></script>
+  <script defer src="js/utils.js?v=16.54"></script>
   <script defer src="js/audio.js?v=16.28"></script>
   <script defer src="js/leaderboard.js?v=16.47"></script>
-  <script defer src="js/study-mode.js?v=16.53"></script>
-  <script defer src="js/game.js?v=16.53"></script>
+  <script defer src="js/study-mode.js?v=16.54"></script>
+  <script defer src="js/game.js?v=16.54"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=15.92"></script>
   <script defer src="js/portal.js?v=16.47"></script>
   <script defer src="js/atrium.js?v=13.23"></script>
-  <script defer src="js/paywall.js?v=16.53"></script>
+  <script defer src="js/paywall.js?v=16.54"></script>
   <script defer src="js/account.js?v=15.80"></script>
   <script defer src="js/boss.js?v=16.48"></script>
   <script defer src="js/cinema-intro-source-config.js?v=16.39"></script>
@@ -1873,7 +1877,7 @@
   <script defer src="js/achievements.js?v=16.06"></script>
   <script defer src="js/changelog.js?v=15.94"></script>
   <script defer src="js/equipment-preview.js?v=16.00"></script>
-  <script defer src="js/dashboard.js?v=16.52"></script>
+  <script defer src="js/dashboard.js?v=16.54"></script>
 
   <!-- Single source of truth for profile popup menu items -->
   <template id="profilePopupItems">

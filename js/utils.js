@@ -835,8 +835,8 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       if (btn) btn.classList.toggle('open', !isOpen);
       if (btn) btn.setAttribute('aria-expanded', String(!isOpen));
       if (!isOpen) {
-        // Rola para o formulário aparecer na tela
-        setTimeout(() => fields.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+        nqDialogo(fields, { painel: fields.firstElementChild, visivel: el => el.classList.contains('show') });
+        document.getElementById('bibSuggestUrl')?.focus();
       }
     }
 
