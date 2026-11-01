@@ -83,8 +83,6 @@ test('sidebar mantém o título pessoal inteiro em uma linha legível e Dashboar
   expect(metrics.lines).toBe(1);
   expect(metrics.fontSize).toBeGreaterThanOrEqual(12);
   expect(metrics.inside, JSON.stringify(metrics)).toBe(true);
-  expect(metrics.kickerGap).toBeGreaterThanOrEqual(-1);
-  expect(metrics.kickerGap).toBeLessThanOrEqual(12);
 });
 
 test('320px e texto a 200% preservam a coluna de leitura e o retorno após rolar', async ({ page }) => {

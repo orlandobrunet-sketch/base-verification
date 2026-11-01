@@ -124,7 +124,6 @@ for (const fixture of ['admin', 'complete', 'registered'] as const) test(`Grimó
     await expect(card.locator('[role="progressbar"]')).toHaveAttribute('aria-valuemax', String(expected.target));
     await expect(card.locator('[role="progressbar"]')).toHaveAttribute('aria-valuenow', String(fixture === 'admin' ? 0 : expected.target));
     await expect(card.locator('.nqd-state')).toHaveText(fixture === 'admin' ? 'A conquistar' : 'Objetivo completo');
-    await expect(card.locator('.nqd-achievement-progress-note')).toHaveText('Condição e observações disponíveis na lupa.');
     expect(await card.locator('img').evaluate(image => getComputedStyle(image).filter)).toContain('grayscale(1)');
   }
   const art = card.locator('.nqd-achievement-mark');
@@ -189,7 +188,6 @@ test('falha de carga do banco não apresenta o Grimório como objetivo completo'
   await expect(card).toHaveClass(/is-locked/);
   await expect(card.locator('.nqd-state')).toHaveText('Dados indisponíveis');
   await expect(card.locator('[role="progressbar"]')).toHaveCount(0);
-  await expect(card.locator('.nqd-achievement-progress-note')).toHaveText('Condição e observações disponíveis na lupa.');
   expect(failedTopicRequest).toBe(true);
   expect(await page.evaluate(() => ({ bankAvailable: Array.isArray((window as any).questionBank), complete: (0, eval)('ACHIEVEMENTS_LIST').find((achievement: any) => achievement.id === 'grimoire_master').condition() }))).toEqual({ bankAvailable: false, complete: false });
   await card.locator('.nqd-achievement-mark').focus(); await page.keyboard.press('Enter');

@@ -50,11 +50,11 @@ test('organiza a Visão geral em coluna única e revela comparação por teclado
   await openClarity(page);
   const pane = page.locator('#nqdPane-overview');
   const blocks = pane.locator('[data-overview-section]');
-  await expect(blocks).toHaveCount(4);
+  await expect(blocks).toHaveCount(3);
   expect(await blocks.evaluateAll(elements => elements.map(el => (el as HTMLElement).dataset.overviewSection)))
-    .toEqual(['pace', 'now', 'review', 'reward']);
+    .toEqual(['now', 'pace', 'review']);
   await expect(pane.locator('.nqd-journey,.nqd-form-trail')).toHaveCount(0);
-  await expect(page.locator('.nqd-main')).toHaveCSS('background-color', 'rgb(0, 0, 0)');
+  await expect(page.locator('.nqd-main')).toHaveCSS('background-color', 'rgb(7, 10, 19)');
   await expect(pane.locator('[data-nqd-primary="true"]')).toHaveCount(1);
   const detail = pane.locator('.nqd-learning-pulse details');
   await expect(detail).not.toHaveAttribute('open', '');

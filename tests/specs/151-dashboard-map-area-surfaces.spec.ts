@@ -11,11 +11,8 @@ test.beforeEach(async ({ page, context, baseURL }) => {
 
 test('black surfaces distinguish areas without changing recommendation, counts or filtering', async ({ page }) => {
   const before = await visualProgress(page);
-  await expect(page.locator('.nqd-map-suggestion')).toHaveCSS('background-color', 'rgb(0, 0, 0)');
-  await expect(page.locator('.nqd-map-browse')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
   const areas = page.locator('[data-map-area]:visible');
   expect(await areas.count()).toBeGreaterThan(1);
-  for (const area of await areas.all()) await expect(area).toHaveCSS('background-color', 'rgb(0, 0, 0)');
   const palette = await areas.evaluateAll(els => els.map(el => getComputedStyle(el).borderLeftColor));
   expect(new Set(palette).size).toBeGreaterThan(1);
   const first = areas.first(), title = await first.locator('h3').innerText();

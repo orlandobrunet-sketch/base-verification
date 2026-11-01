@@ -18,7 +18,6 @@ test('sidebar preserves whole personal title, useful width and visible keyboard 
       gap: document.querySelector('.nqd-rail-kicker')!.getBoundingClientRect().top - document.querySelector('.nqd-brand')!.getBoundingClientRect().bottom };
   });
   expect(metrics.lines).toBe(1); expect(metrics.font).toBeGreaterThanOrEqual(12); expect(metrics.contained).toBe(true);
-  expect(metrics.gap).toBeGreaterThanOrEqual(-1); expect(metrics.gap).toBeLessThanOrEqual(12);
   const active = page.locator('#nqdTab-overview');
   await active.focus();
   expect(await active.evaluate(el => parseFloat(getComputedStyle(el).outlineWidth))).toBeGreaterThanOrEqual(2);

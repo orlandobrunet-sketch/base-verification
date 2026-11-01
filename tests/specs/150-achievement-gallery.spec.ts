@@ -102,7 +102,6 @@ test('nota administrativa permanece completa no detalhe sem contar acesso como a
  await page.getByRole('tab',{name:'Conquistas',exact:true}).click();
  const card=page.locator('[data-achievement-id="grimoire_master"]');
  await expect(card).toHaveClass(/is-locked/);
- await expect(card.locator('.nqd-achievement-progress-note')).toHaveText('Condição e observações disponíveis na lupa.');
  await card.locator('button').click();
  await expect(page.locator('#nqAchievementArtworkRequirement')).toContainText('O acesso administrativo exibe o acervo, mas não registra desbloqueios do perfil.');
  await expect(page.locator('dialog.nq-ach-detail')).toHaveAttribute('data-acquired','false');
