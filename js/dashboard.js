@@ -1690,7 +1690,8 @@
     document.body.style.overflow = 'hidden';
     _inertedElements = [];
     [...document.body.children].forEach(element => {
-      if (element === root || element.tagName === 'SCRIPT' || element.tagName === 'STYLE') return;
+      // O popup de sugestão abre por cima do Dashboard e precisa continuar operável.
+      if (element === root || element.id === 'bibSuggestFields' || element.tagName === 'SCRIPT' || element.tagName === 'STYLE') return;
       _inertedElements.push({
         element,
         inert: !!element.inert,
