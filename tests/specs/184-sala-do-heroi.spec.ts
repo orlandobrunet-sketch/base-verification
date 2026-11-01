@@ -69,8 +69,8 @@ test('Agora vem primeiro também na ordem de leitura', async ({ page }) => {
   expect(ultimo.x + ultimo.width).toBeLessThanOrEqual(painel.x + painel.width);
 });
 
-test('conquistas: cartão baixo, com a arte ao lado do texto', async ({ page }) => {
-  await abrir(page, { width: 1280, height: 800 }, 'achievements');
+test('conquistas: cartão baixo, com a arte ao lado do texto', async ({ page }, info) => {
+  await abrir(page, { width: info.project.name === 'mobile' ? 390 : 1280, height: 800 }, 'achievements');
   const cartao = page.locator('.nqd-achievement').first();
   const arte = (await cartao.locator('.nqd-achievement-mark').boundingBox())!;
   const texto = (await cartao.locator('.nqd-achievement-body').boundingBox())!;
