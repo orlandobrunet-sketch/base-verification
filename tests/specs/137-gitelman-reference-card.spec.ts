@@ -19,7 +19,6 @@ test('Gitelman full card opens the reviewed text in the clinical library', async
   await page.evaluate(() => { (window as any).isAdminUser = () => true; });
   await page.locator('[data-atrium-route="library"]').click();
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
-  await page.getByRole('tab', {name: 'Fontes clínicas'}).click();
   await page.locator('#nqDashLibrarySearch').fill('Gitelman');
   const card = page.locator('[data-library-item]:visible').filter({
     has: page.locator('.nqd-favorite[data-library-key="' + referenceId + '"]')

@@ -930,14 +930,12 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(page.locator('#nqDashboard[data-dashboard-state="ready"]')).toBeVisible({ timeout: 15_000 });
     await page.getByRole('tab', { name: 'Grimório', exact: true }).click();
     const library = page.getByRole('tabpanel', { name: 'Grimório' });
-    await expect(library.getByRole('tab', { name: 'Pergaminhos' })).toBeVisible();
+    await expect(library.getByRole('tab', { name: 'Todos' })).toBeVisible();
     await expect(library.getByRole('option', { name: 'Publicação mais recente' })).toBeAttached();
     await expect(library.locator('.nqd-library-item .nqd-state', { hasText: /^Referência$/ })).toHaveCount(0);
     await expect(library.locator('.nqd-library-item').first()).toHaveAttribute('data-library-year', /\d{4}/);
-    await expect(library.locator('.nqd-library-summary')).toContainText('descobertas reunidas');
     const catalogue = await page.evaluate(() => ({ articles: (0, eval)('nefroArticles.length'), sources: (0, eval)('Object.keys(refsDB).length') }));
-    await expect(library.locator('.nqd-library-summary')).toContainText(`3 de ${catalogue.articles} pergaminhos`);
-    await expect(library.locator('.nqd-library-summary')).toContainText(`3 de ${catalogue.sources} fontes`);
+    await expect(library.locator('.nqd-library-summary')).toContainText(`6 de ${catalogue.articles + catalogue.sources} estudos descobertos`);
     await expect(library.locator('[role="progressbar"]')).toHaveCount(0);
 
     // O leitor em popup conserva os dados editoriais da fonte; filtros e

@@ -53,17 +53,12 @@ async function conferirCatalogoRecuperado(page: Page) {
   }));
   expect(catalogue.articles).toBeGreaterThan(0);
   expect(catalogue.sources).toBeGreaterThan(0);
-  await expect(pane.locator('.nqd-library-locked strong')).toHaveText(`${catalogue.articles} pergaminhos e ${catalogue.sources} fontes ainda não descobertos`);
   const discovery = pane.locator('#nqDashLibraryDiscovery');
   await expect(discovery).toHaveValue('unlocked');
   await expect(pane.locator('[data-library-entry]:visible')).toHaveCount(0);
   await discovery.selectOption('locked');
   const locked = pane.locator('[data-library-entry]:visible');
-  await expect(locked).toHaveCount(catalogue.articles);
-  await expect(locked.first().locator('h3')).toBeVisible();
-  await expect(locked.locator('button, .nqd-library-impact')).toHaveCount(0);
-  await pane.getByRole('tab', { name: 'Fontes clínicas', exact: false }).click();
-  await expect(locked).toHaveCount(catalogue.sources);
+  await expect(locked).toHaveCount(catalogue.articles + catalogue.sources);
   await expect(locked.first().locator('h3')).toBeVisible();
   await expect(locked.locator('button, .nqd-library-impact')).toHaveCount(0);
   expect(await page.evaluate(keys => keys.map(key => localStorage.getItem(key)), keys)).toEqual(before);

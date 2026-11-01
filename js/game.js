@@ -4197,11 +4197,6 @@
         state.questionAnswer = null;
       }
       ui.question.textContent = q.q;
-      const _adminBadge = document.getElementById('adminQidBadge');
-      if (_adminBadge) {
-        if (isAdminUser()) { _adminBadge.textContent = '#' + q.id; _adminBadge.style.display = 'inline-block'; }
-        else { _adminBadge.style.display = 'none'; }
-      }
       ui.feedback.className = 'feedback';
       ui.feedback.textContent = 'Escolha a melhor alternativa clínica.';
       renderRefs(q.r, _currentQuestionRevision?.historical ? _currentQuestionRevision.references || {} : refsDB);
@@ -4604,7 +4599,10 @@
       else delete document.body.dataset.nqStreak;
       const mult = document.getElementById('msbMult');
       if (mult) mult.textContent = getStreakMultiplier(sequencia).label.replace('.', ',');
-      if (nivel && sequencia > _sequenciaVista) _pulsar(document.getElementById('msbStreak'), 'msb-subiu');
+      if (nivel && sequencia > _sequenciaVista) {
+        _pulsar(document.getElementById('msbStreak'), 'msb-subiu');
+        _pulsar(document.getElementById('streak'), 'msb-subiu');
+      }
       _sequenciaVista = sequencia;
     }
 
@@ -4612,6 +4610,7 @@
       if (isBossBattle()) return;
       _pulsar(document.getElementById('options'), 'nql-erro');
       _pulsar(document.querySelector('.msb-lives'), 'msb-perdeu');
+      _pulsar(document.getElementById('lives'), 'msb-perdeu');
     }
 
     // No celular o ganho flutuava sobre a explicação; a faixa não cobre o texto.

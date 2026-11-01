@@ -1602,34 +1602,15 @@
   function _tabLibrary() {
     const library = _libraryItems();
     const totalUnlocked = library.discoveredRefs.size + library.discoveredArticles.size;
-    const scrollCount = library.discoveredArticles.size;
-    const sourceCount = library.discoveredRefs.size;
     const favoriteCount = library.items.filter(item => item.favorite).length;
     const sortedItems = _sortLibraryItems(library.items, 'recent');
     const themes = [...new Set(library.items.flatMap(item => item.themes || []))].filter(Boolean).sort((a, b) => a.localeCompare(b, 'pt-BR'));
     const rarities = [...new Set(library.items.map(item => item.rarity).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-library" role="tabpanel" aria-labelledby="nqdTab-library" data-dash-pane="library" hidden>
-        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Grimório</h1><p class="nqd-section-copy">Consulte a evidência por trás das questões. Compare os estudos, retome a leitura e guarde suas referências.</p></div></div>
-        ${/* Grimório vazio dizia a mesma coisa TRÊS vezes: "Seu Grimório começa
-              vazio" no resumo, "Sua primeira descoberta acenderá esta estante"
-              na estante, e "Seu Grimório aguarda a primeira descoberta" no
-              acervo — mais um "0 pergaminhos · 0 fontes clínicas" e uma estante
-              desenhada sem nada dentro, que parecia elemento quebrado.
-              Repetir a mesma ausência em três vozes não informa mais; faz a
-              tela parecer defeituosa. Vazio agora fala uma vez só, no bloco de
-              baixo, que é o único que oferece uma ação. */''}
-        <div class="nqd-library-overview">
-          <div class="nqd-library-summary">
-            <small>${library.adminView ? 'Visão administrativa' : 'Sua coleção'}</small><strong>${totalUnlocked} ${totalUnlocked === 1 ? 'descoberta reunida' : 'descobertas reunidas'}</strong>
-            <span>${scrollCount} de ${library.totalArticles} pergaminhos · ${sourceCount} de ${library.totalRefs} fontes do catálogo descobertos</span>
-          </div>
-          <p class="nqd-library-catalogue-note">${library.adminView ? 'A prévia administrativa permite ler todo o catálogo sem registrar novas descobertas. ' : ''}Estas contagens são da coleção do jogo, não uma medida de conhecimento. Use “A descobrir” para ver os títulos que faltam e como liberá-los.</p>
-          <details class="nqd-overview-explanation"><summary>Como descobrir estudos</summary><p>Uma resposta correta que registra progresso libera as fontes citadas pela questão. Pergaminhos vêm dos baús: o baú de recompensa pode trazer um estudo ou equipamento, e o sorteio de pergaminhos evita os já descobertos. Fontes sem questão vinculada no banco atual são identificadas na lista.</p></details>
-        </div>
+        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Grimório</h1><p class="nqd-section-copy nqd-library-summary">${library.adminView ? `Catálogo completo, com ${library.totalArticles + library.totalRefs} estudos.` : `${totalUnlocked} de ${library.totalArticles + library.totalRefs} estudos descobertos.`}</p></div></div>
           <div class="nqd-library-tabs" role="tablist" aria-label="Coleções do Grimório">
-            <button type="button" role="tab" id="nqDashLibraryTab-scrolls" aria-selected="true" aria-controls="nqDashLibraryCollection" tabindex="0" data-library-collection="scrolls"><span>Pergaminhos</span><strong data-library-count>${scrollCount} / ${library.totalArticles}</strong></button>
-            <button type="button" role="tab" id="nqDashLibraryTab-sources" aria-selected="false" aria-controls="nqDashLibraryCollection" tabindex="-1" data-library-collection="sources"><span>Fontes clínicas</span><strong data-library-count>${sourceCount} / ${library.totalRefs}</strong></button>
+            <button type="button" role="tab" id="nqDashLibraryTab-all" aria-selected="true" aria-controls="nqDashLibraryCollection" tabindex="0" data-library-collection="all"><span>Todos</span><strong data-library-count>${totalUnlocked}</strong></button>
             <button type="button" role="tab" id="nqDashLibraryTab-favorites" aria-selected="false" aria-controls="nqDashLibraryCollection" tabindex="-1" data-library-collection="favorites"><span>Favoritos</span><strong data-library-count>${favoriteCount}</strong></button>
           </div>
           <div class="nqd-library-tools">
@@ -1637,9 +1618,9 @@
             <label class="nqd-library-discovery"><span>Descoberta</span><select id="nqDashLibraryDiscovery">${library.adminView ? '<option value="all" selected>Catálogo completo (prévia)</option>' : ''}<option value="unlocked"${library.adminView ? '' : ' selected'}>Descobertos</option><option value="locked">A descobrir</option></select></label>
             <label class="nqd-library-filter"><span>Filtrar</span><select id="nqDashLibraryFilter">
               <option value="all">Todos</option>
-              <option value="guideline" data-library-filter-for="sources" hidden>Diretrizes</option>
-              ${rarities.map(rarity => `<option value="rarity:${_escape(rarity)}" data-library-filter-for="scrolls">${_escape(_libraryRarityLabel(rarity))}</option>`).join('')}
-              ${themes.map(theme => `<option value="theme:${_escape(theme)}" data-library-filter-for="sources" hidden>${_escape(theme)}</option>`).join('')}
+              <option value="guideline">Diretrizes</option>
+              ${rarities.map(rarity => `<option value="rarity:${_escape(rarity)}">${_escape(_libraryRarityLabel(rarity))}</option>`).join('')}
+              ${themes.map(theme => `<option value="theme:${_escape(theme)}">${_escape(theme)}</option>`).join('')}
             </select></label>
             <label class="nqd-library-sort"><span>Ordenar</span><select id="nqDashLibrarySort">
               <option value="recent" selected>Publicação mais recente</option>
@@ -1648,13 +1629,12 @@
               <option value="type">Tipo</option>
             </select></label>
           </div>
-        <div class="nqd-library-collection" id="nqDashLibraryCollection" role="tabpanel" aria-labelledby="nqDashLibraryTab-scrolls">
+        <div class="nqd-library-collection" id="nqDashLibraryCollection" role="tabpanel" aria-labelledby="nqDashLibraryTab-all">
           <p class="nqd-library-collection-status" id="nqDashLibraryCollectionCount" aria-live="polite"></p>
           ${!totalUnlocked && !library.adminView ? `<div class="nqd-empty" data-library-empty><strong>Seu Grimório aguarda a primeira descoberta.</strong><p>Uma resposta correta libera as fontes citadas. Baús podem trazer pergaminhos; consulte “A descobrir” para explorar a coleção.</p><button type="button" class="nqd-text-action" data-action="${_dashboardData && _dashboardData.save ? '_dashResumeJourney' : '_dashStartJourney'}"><span>${_dashboardData && _dashboardData.save ? 'Continuar jornada' : 'Começar jornada'}</span>${_svg('arrow')}</button></div>` : ''}
           <div class="nqd-library-list" id="nqDashLibraryList">${_libraryCards(sortedItems)}</div>
           <div class="nqd-empty nqd-library-no-results" id="nqDashLibraryNoResults" hidden><strong>Nada encontrado nesta coleção.</strong><p>Tente outro termo ou escolha uma coleção diferente.</p></div>
         </div>
-        ${!library.adminView && (library.totalRefs > sourceCount || library.totalArticles > scrollCount) ? `<aside class="nqd-library-locked" aria-label="Descobertas ainda bloqueadas">${_svg('lock')}<div><p><strong>${library.totalArticles - scrollCount} pergaminhos e ${library.totalRefs - sourceCount} fontes ainda não descobertos</strong><span>A lista “A descobrir” mostra cada título e sua regra. Fontes sem questão vinculada são identificadas separadamente.</span></p></div></aside>` : ''}
         <div class="nqd-library-suggestion" data-library-suggestion></div>
       </section>
     `;
@@ -2094,7 +2074,7 @@
     }
     _libraryReadingContext = {
       owner: root.dataset.libraryReader,
-      collection: root.querySelector('[data-library-collection][aria-selected="true"]')?.dataset.libraryCollection || 'scrolls',
+      collection: root.querySelector('[data-library-collection][aria-selected="true"]')?.dataset.libraryCollection || 'all',
       search: root.querySelector('#nqDashLibrarySearch')?.value || '',
       filter: root.querySelector('#nqDashLibraryFilter')?.value || 'all',
       discovery: root.querySelector('#nqDashLibraryDiscovery')?.value || 'unlocked',
@@ -2204,7 +2184,7 @@
     });
 
     if (libraryTabs.length) {
-      _syncLibraryTools(root, 'scrolls');
+      _syncLibraryTools(root, 'all');
       _applyLibraryView(root);
       _restoreLibraryReading(root);
     }
@@ -2295,15 +2275,11 @@
   function _syncLibraryTools(root, collection) {
     const search = root.querySelector('#nqDashLibrarySearch');
     if (search) {
-      search.placeholder = collection === 'sources'
-        ? 'Buscar título, tema ou ano'
-        : collection === 'favorites' ? 'Buscar nos favoritos' : 'Buscar título, autor ou ano';
+      search.placeholder = collection === 'favorites' ? 'Buscar nos favoritos' : 'Buscar título, autor, tema ou ano';
     }
     const discovery = root.querySelector('#nqDashLibraryDiscovery');
     if (discovery) {
-      const entries = [...root.querySelectorAll('[data-library-entry]')].filter(entry => collection === 'favorites'
-        ? entry.dataset.libraryFavorite === 'true'
-        : entry.dataset.libraryKind === (collection === 'sources' ? 'source' : 'scroll'));
+      const entries = [...root.querySelectorAll('[data-library-entry]')].filter(entry => collection !== 'favorites' || entry.dataset.libraryFavorite === 'true');
       const discovered = entries.filter(entry => entry.dataset.libraryDiscovered === 'true').length;
       discovery.querySelector('[value="unlocked"]').textContent = `Descobertos (${discovered})`;
       discovery.querySelector('[value="locked"]').textContent = `A descobrir (${entries.length - discovered})`;
@@ -2311,12 +2287,6 @@
     }
     const filter = root.querySelector('#nqDashLibraryFilter');
     if (!filter) return;
-    [...filter.options].forEach(option => {
-      const target = option.dataset.libraryFilterFor;
-      option.hidden = !!target && target !== collection;
-    });
-    const selected = filter.options[filter.selectedIndex];
-    if (selected && selected.hidden) filter.value = 'all';
     filter.closest('label')?.toggleAttribute('hidden', collection === 'favorites');
   }
 
@@ -2325,7 +2295,7 @@
     const list = root.querySelector('#nqDashLibraryList');
     if (!list) return;
     const activeTab = root.querySelector('[data-library-collection][aria-selected="true"]');
-    const collection = activeTab ? activeTab.dataset.libraryCollection : 'scrolls';
+    const collection = activeTab ? activeTab.dataset.libraryCollection : 'all';
     const query = (root.querySelector('#nqDashLibrarySearch')?.value || '').trim().toLocaleLowerCase('pt-BR');
     const sort = root.querySelector('#nqDashLibrarySort')?.value || 'recent';
     const filter = root.querySelector('#nqDashLibraryFilter')?.value || 'all';
@@ -2354,9 +2324,7 @@
 
     let visible = 0;
     items.forEach(item => {
-      const inCollection = collection === 'favorites'
-        ? item.dataset.libraryFavorite === 'true'
-        : item.dataset.libraryKind === (collection === 'sources' ? 'source' : 'scroll');
+      const inCollection = collection !== 'favorites' || item.dataset.libraryFavorite === 'true';
       const matches = !query || (item.dataset.search || '').includes(query);
       const matchesDiscovery = collection === 'favorites' || discovery === 'all'
         || (discovery === 'unlocked' ? item.dataset.libraryDiscovered === 'true' : item.dataset.libraryDiscovered !== 'true');
@@ -2368,7 +2336,7 @@
       if (!item.hidden) visible += 1;
     });
 
-    const labels = { scrolls: ['pergaminho', 'pergaminhos'], sources: ['fonte clínica', 'fontes clínicas'], favorites: ['favorito', 'favoritos'] };
+    const labels = { all: ['estudo', 'estudos'], favorites: ['favorito', 'favoritos'] };
     const status = root.querySelector('#nqDashLibraryCollectionCount');
     if (status) {
       const label = (labels[collection] || ['item', 'itens'])[visible === 1 ? 0 : 1];

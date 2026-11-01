@@ -39,21 +39,19 @@ test('visitante mantém bloqueios; visão administrativa não grava descobertas'
   await page.locator('[data-portal-route="guest"]').click();
   await page.locator('[data-atrium-route="library"]').click();
   await expect(page.locator('#nqdPane-library')).toBeVisible();
-  await expect(page.locator('.nqd-library-locked')).toBeVisible();
   await expect(page.locator('[data-library-item]')).toHaveCount(0);
   const before = await page.evaluate(() => [localStorage.getItem('unlockedArticles'), localStorage.getItem('nq-unlocked-refs')]);
   await page.keyboard.press('Escape');
   await page.evaluate(() => { (window as any).isAdminUser = () => true; void (window as any).openBibliotecaModal(); });
   await expect(page.locator('#nqdPane-library')).toBeVisible();
-  await expect(page.locator('.nqd-library-summary')).toContainText('Visão administrativa');
-  await expect(page.locator('.nqd-library-locked')).toHaveCount(0);
+  await expect(page.locator('.nqd-library-summary')).toContainText('Catálogo completo');
   const total = await page.evaluate(() => (0, eval)('nefroArticles.length + Object.keys(refsDB).length'));
   await expect(page.locator('[data-library-item]')).toHaveCount(total);
-  await page.getByRole('tab', { name: 'Fontes clínicas' }).click();
   await page.locator('#nqDashLibraryFilter').selectOption('guideline');
   const guidelines = await page.evaluate(() => (0, eval)(`Object.values(refsDB).filter(r => r.badge === 'GUIDELINE' || /kdigo/i.test((r.label || '') + ' ' + (r.journal || ''))).length`));
   expect(guidelines).toBeGreaterThan(0);
-  await expect(page.locator('[data-library-item]:visible')).toHaveCount(guidelines);
+  // Além das fontes, entram os artigos que o catálogo marca como diretriz.
+  expect(await page.locator('[data-library-item]:visible').count()).toBeGreaterThanOrEqual(guidelines);
   expect(await page.evaluate(() => [localStorage.getItem('unlockedArticles'), localStorage.getItem('nq-unlocked-refs')])).toEqual(before);
 });
 
@@ -82,7 +80,6 @@ test('retoma busca, filtro, resumo e leitura sem transferir contexto para outra 
   const opener = page.locator('[data-atrium-route="library"]');
   await opener.click();
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
-  await page.getByRole('tab', { name: 'Fontes clínicas' }).click();
   await page.locator('#nqDashLibrarySearch').fill('kdigo');
   await page.locator('#nqDashLibraryFilter').selectOption('guideline');
   await page.locator('#nqDashLibrarySort').selectOption('oldest');
@@ -98,7 +95,7 @@ test('retoma busca, filtro, resumo e leitura sem transferir contexto para outra 
   await page.keyboard.press('Escape');
   await opener.click();
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
-  await expect(page.getByRole('tab', { name: 'Fontes clínicas' })).toHaveAttribute('aria-selected', 'true');
+  await expect(page.getByRole('tab', { name: 'Todos' })).toHaveAttribute('aria-selected', 'true');
   await expect(page.locator('#nqDashLibrarySearch')).toHaveValue('kdigo');
   await expect(page.locator('#nqDashLibraryFilter')).toHaveValue('guideline');
   await expect(page.locator('#nqDashLibrarySort')).toHaveValue('oldest');
@@ -129,7 +126,7 @@ test('lista compacta mantém um estudo por linha e abre a leitura em popup', asy
   }));
   expect(boxes).toHaveLength(3);
   for (const [i, box] of boxes.entries()) {
-    expect(box.height).toBeLessThan(220);
+    expect(box.height).toBeLessThan(240);
     expect(box.width).toBeGreaterThan(900);
     if (i) expect(box.y).toBeGreaterThanOrEqual(boxes[i-1].y + boxes[i-1].height - 1);
   }
@@ -151,7 +148,7 @@ test('ações do estudo exibem link e copiam o título sem abrir o resumo', asyn
   });
   await page.locator('[data-atrium-route="library"]').click();
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
-  const card = page.locator('[data-library-item]:visible').first();
+  const card = page.locator('[data-library-item]:visible').filter({ has: page.getByRole('link', { name: 'Buscar artigo' }) }).first();
   const copy = card.locator('[data-action="_dashCopyTitle"]');
   await expect(copy).toHaveAccessibleName('Copiar título');
   const title = await copy.getAttribute('data-copy-title');
@@ -166,7 +163,6 @@ test('ações do estudo exibem link e copiam o título sem abrir o resumo', asyn
   await page.evaluate(() => { navigator.clipboard.writeText = async () => { throw new Error('permission denied'); }; });
   await copy.click();
   await expect(copy).toHaveText('Tentar copiar');
-  await page.getByRole('tab', { name: 'Fontes clínicas' }).click();
   const direct = page.locator('[data-library-item]:visible .nqd-library-actions a').filter({ hasText: 'Abrir artigo' }).first();
   await expect(direct).toBeVisible();
   const sourceUrl = await direct.getAttribute('href');

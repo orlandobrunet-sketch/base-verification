@@ -18,6 +18,8 @@ A versão 16.48 trouxe o primeiro lote de **P2**, sem arte nova: capítulo no to
 
 A versão 16.49 tratou os momentos de pico: evolução em tela cheia com antes e depois, pergaminho que revela raridade antes do texto e Pedra do Julgamento com cenário, contagem forte e botões grandes. O baú automático já abria com animação; faltava a revelação depois dele.
 
+A versão 16.51 atendeu à lista do dono: no computador as vidas e a sequência voltaram só para o painel do herói, a faixa ficou para o celular, o número da questão saiu da tela, os temas de estudo foram para o visual novo, o Grimório virou lista única e a biblioteca viva entrou no menu.
+
 Dois itens mudaram de leitura:
 
 - **Vantagens das classes:** a diferença não é só de apresentação. Dr. Glomerulus tem 3 pontos de atributo, e os outros dois têm 2. Alinhar as linhas esconderia uma diferença real, então o card ficou como está até que se decida o equilíbrio.
