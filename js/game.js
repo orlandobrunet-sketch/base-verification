@@ -6790,16 +6790,15 @@
       document.getElementById('oracleAnswerFirstPopup')?.remove();
       const popup = document.createElement('div');
       popup.id = 'oracleAnswerFirstPopup';
-      popup.style.cssText = 'position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,0.85);display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;animation:fadeIn 0.3s ease;';
+      popup.className = 'nq-overlay';
+      popup.dataset.nqUi = 'lumen';
+      popup.style.cssText = 'z-index:99999;background:rgba(0,0,0,.8);';
       popup.innerHTML = `
-        <div style="position:relative;max-width:420px;width:100%;background:linear-gradient(160deg,#101a33 0%,#0b1428 100%);border:2px solid rgba(168,85,247,0.6);border-radius:16px;padding:26px 22px;text-align:center;box-shadow:0 0 40px rgba(168,85,247,0.3);">
+        <div class="modal-content nq-aviso-oraculo">
           <button class="popup-x" data-remove-id="oracleAnswerFirstPopup" aria-label="Fechar">✕</button>
-          <div style="font-size:2rem;margin-bottom:10px;">🔮</div>
-          <h3 style="font-family:'Cinzel',serif;color:#d8b4fe;font-size:1.02rem;letter-spacing:0.5px;margin:0 0 12px;">O Oráculo Aguarda</h3>
-          <p style="font-family:'Philosopher',serif;color:#c8d8f0;font-size:0.9rem;line-height:1.6;margin:0 0 20px;">
-            Tente responder primeiro a questão para discutirmos depois.
-          </p>
-          <button data-remove-id="oracleAnswerFirstPopup" style="font-family:'Cinzel',serif;background:linear-gradient(180deg,#7c3aed 0%,#5b21b6 100%);border:2px solid #a855f7;border-radius:10px;color:#f3e8ff;font-size:0.85rem;font-weight:700;letter-spacing:1px;padding:11px 26px;cursor:pointer;box-shadow:0 0 16px rgba(168,85,247,0.4);">Vou responder</button>
+          <h3>O Oráculo aguarda</h3>
+          <p>Tente responder primeiro a questão para discutirmos depois.</p>
+          <button class="btn gold" data-remove-id="oracleAnswerFirstPopup">Vou responder</button>
         </div>`;
       document.body.appendChild(popup);
       nqDialogo(popup, { painel: popup.firstElementChild });
@@ -7219,6 +7218,7 @@
 
       var PLAY_SVG  = '<polygon points="5,3 19,12 5,21"/>';
       var PAUSE_SVG = '<rect x="5" y="3" width="4" height="18"/><rect x="15" y="3" width="4" height="18"/>';
+      var CLOCK_SVG = '<path fill-rule="evenodd" d="M9 1h6v2H9zM12 4a9 9 0 1 0 0 18 9 9 0 0 0 0-18zm0 2.2a6.8 6.8 0 1 1 0 13.6 6.8 6.8 0 0 1 0-13.6zM11 8.5h2V13h3v2h-5z"/>';
 
       function _pad(n) { return n < 10 ? '0' + n : '' + n; }
 
@@ -7228,12 +7228,14 @@
         var m = Math.floor(_timerSec / 60);
         var s = _timerSec % 60;
         el.textContent = _pad(m) + ':' + _pad(s);
+        var widget = document.getElementById('timerWidget');
+        if (widget) widget.classList.toggle('is-zerado', !_timerRunning && _timerSec === 0);
       }
 
       function _setIcon(running) {
         var icon = document.getElementById('timerIcon');
         if (!icon) return;
-        icon.innerHTML = running ? PAUSE_SVG : PLAY_SVG;
+        icon.innerHTML = running ? PAUSE_SVG : (_timerSec ? PLAY_SVG : CLOCK_SVG);
       }
 
       function _start() {
@@ -7243,6 +7245,7 @@
         var widget = document.getElementById('timerWidget');
         if (widget) widget.classList.add('running');
         _setIcon(true);
+        _updateDisplay();
         _timerInterval = setInterval(function() {
           _timerSec++;
           _updateDisplay();
@@ -7257,11 +7260,13 @@
         var widget = document.getElementById('timerWidget');
         if (widget) widget.classList.remove('running');
         _setIcon(false);
+        _updateDisplay();
       }
 
       function _reset() {
         _pause();
         _timerSec = 0;
+        _setIcon(false);
         _updateDisplay();
         // Se o timer estava habilitado, reinicia automaticamente
         if (_timerEnabled) {
@@ -7288,6 +7293,7 @@
       };
 
       // Inicializar display
+      _setIcon(false);
       _updateDisplay();
     })();
   

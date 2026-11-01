@@ -24,6 +24,8 @@ async function abrirOraculo(page: Page, opcoes: { logado: boolean; largura?: num
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
   await injectGameState(page);
   await page.waitForLoadState('load');
+  // O `?.` abaixo calaria a falha se o study-mode.js ainda não tivesse carregado.
+  await page.waitForFunction(() => typeof (window as any).openMentorModal === 'function');
   await page.evaluate(({ logado, questao }) => {
     const g = window as any;
     if (logado) g.authUser = { id: 't1', email: 't@e.com', app_metadata: {} };

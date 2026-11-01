@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.52',
+          release: 'nefroquest@16.53',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -137,9 +137,9 @@
   <link rel="stylesheet" href="style.css?v=16.25">
   <link rel="stylesheet" href="styles/lumen/tokens.css?v=15.77">
   <link rel="stylesheet" href="styles/lumen/shell.css?v=16.18">
-  <link rel="stylesheet" href="styles/lumen/portal.css?v=15.94">
+  <link rel="stylesheet" href="styles/lumen/portal.css?v=16.53">
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.25">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=16.51">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=16.53">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.06">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.52">
   <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.47">
@@ -320,7 +320,6 @@
       <header class="nql-portal__topbar">
         <a class="nql-brand" href="/" aria-label="NefroQuest — voltar à página inicial">Nefro<em>Quest</em></a>
         <div class="nql-portal__top-actions">
-          <span class="nql-portal__edition" aria-hidden="true">ATLAS NQ · ACESSO</span>
           <a class="nql-portal__back" href="/">
             <span class="nql-portal__back-long">Conhecer o projeto</span>
             <span class="nql-portal__back-short">Site</span>
@@ -331,9 +330,8 @@
 
       <div class="nql-portal__main" id="portalMain" role="main" tabindex="-1">
         <section class="nql-portal__story" aria-labelledby="portalTitle">
-          <p class="nql-portal__eyebrow">Portal de acesso · fluxo clínico</p>
-          <h1 id="portalTitle"><span>Entre no seu</span><em>atlas clínico.</em></h1>
-          <p class="nql-portal__lede">Continue sua jornada, sincronize revisões e acompanhe o domínio que você constrói em cada tema.</p>
+          <h1 id="portalTitle"><span>Os rins</span><em>precisam de você.</em></h1>
+          <p class="nql-portal__lede">Escolha seu herói, resolva casos clínicos e evolua até enfrentar o Arqui-Nefromante. Sua conta guarda o progresso e as revisões.</p>
 
           <div class="nql-portal__audience" aria-label="Público do NefroQuest">
             <span>Estudantes</span>
@@ -341,33 +339,18 @@
             <span>Nefrologistas</span>
           </div>
 
-          <div class="nql-portal__journey" aria-label="Ciclo de aprendizagem: questão, revisão e domínio">
-            <div class="nql-portal__journey-line" aria-hidden="true"><span></span></div>
-            <div class="nql-portal__milestone is-current">
-              <span class="nql-portal__milestone-node" aria-hidden="true"></span>
-              <strong>Questão</strong>
-              <small>decisão clínica</small>
-            </div>
-            <div class="nql-portal__milestone">
-              <span class="nql-portal__milestone-node" aria-hidden="true"></span>
-              <strong>Revisão</strong>
-              <small>memória ativa</small>
-            </div>
-            <div class="nql-portal__milestone">
-              <span class="nql-portal__milestone-node" aria-hidden="true"></span>
-              <strong>Domínio</strong>
-              <small>evolução visível</small>
-            </div>
-          </div>
+          <ul class="nql-portal__heroes" aria-label="Heróis da jornada">
+            <li><img src="assets/classes-cinema/guerreiro_glomerular/nivel_10.webp" width="768" height="768" alt="" decoding="async"><strong>Dr. Glomerulus</strong><small>Guerreiro Glomerular</small></li>
+            <li><img src="assets/classes-cinema/maga_metabolica/nivel_10.webp" width="768" height="768" alt="" decoding="async"><strong>Dra. Aquaria</strong><small>Maga Metabólica</small></li>
+            <li><img src="assets/classes-cinema/clerigo_renal/nivel_10.webp" width="768" height="768" alt="" decoding="async"><strong>Dr. Nephros</strong><small>Clérigo Renal</small></li>
+          </ul>
         </section>
 
         <section class="nql-portal__entry" aria-labelledby="portalEntryTitle" data-route="email">
           <div class="nql-portal__entry-head">
             <div>
-              <p>Rota de entrada</p>
               <h2 id="portalEntryTitle">Retome sua jornada</h2>
             </div>
-            <span>NQ / ACESSO</span>
           </div>
 
           <div class="nql-portal__route-status" aria-live="polite">
@@ -1264,7 +1247,7 @@
         </div>
         <!-- CRONÔMETRO -->
         <div id="timerWidget">
-          <button type="button" id="timerPlayPause" title="Play/Pause cronômetro" data-action="timerToggle">
+          <button type="button" id="timerPlayPause" title="Cronômetro por questão" aria-label="Cronômetro por questão" data-action="timerToggle">
             <svg id="timerIcon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <!-- ícone play -->
               <polygon points="5,3 19,12 5,21" />
@@ -1486,8 +1469,8 @@
         <p class="board-subtitle">Os maiores nefrologistas do reino</p>
       </div>
       <div class="board-tabs">
-        <button type="button" class="board-tab-btn active" data-action="_setBoardMode" data-arg="record">🏆 Recorde</button>
-        <button type="button" class="board-tab-btn" data-action="_setBoardMode" data-arg="global">📊 Perfil Global</button>
+        <button type="button" class="board-tab-btn active" data-action="_setBoardMode" data-arg="record">Recorde</button>
+        <button type="button" class="board-tab-btn" data-action="_setBoardMode" data-arg="global">Perfil Global</button>
       </div>
       <div id="boardLoading" class="board-loading hidden">
         <div class="board-spinner"></div>
@@ -1856,14 +1839,14 @@
   <script defer src="js/utils.js?v=16.22"></script>
   <script defer src="js/audio.js?v=16.28"></script>
   <script defer src="js/leaderboard.js?v=16.47"></script>
-  <script defer src="js/study-mode.js?v=16.51"></script>
-  <script defer src="js/game.js?v=16.51"></script>
+  <script defer src="js/study-mode.js?v=16.53"></script>
+  <script defer src="js/game.js?v=16.53"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=15.92"></script>
   <script defer src="js/portal.js?v=16.47"></script>
   <script defer src="js/atrium.js?v=13.23"></script>
-  <script defer src="js/paywall.js?v=16.47"></script>
+  <script defer src="js/paywall.js?v=16.53"></script>
   <script defer src="js/account.js?v=15.80"></script>
   <script defer src="js/boss.js?v=16.48"></script>
   <script defer src="js/cinema-intro-source-config.js?v=16.39"></script>
