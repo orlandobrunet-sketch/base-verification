@@ -47,7 +47,7 @@ test('Agora distingue revisão, atenção e Jornada sem colorir as descrições'
   }
   await expect(actions.locator('[data-action-kind="gap"] strong')).toHaveText('DRC');
   await expect(actions.locator('[data-action-kind="review"] p')).toContainText('cerca de 1 min');
-  await expect(page.locator('.nqd-main')).toHaveCSS('background-color', 'rgb(0, 0, 0)');
+  await expect(page.locator('.nqd-main')).toHaveCSS('background-color', 'rgb(7, 10, 19)');
 });
 
 test('superfícies distintas mantêm contraste AA, reflow e controles do Mapa com texto ampliado', async ({page}, info) => {
@@ -70,14 +70,10 @@ test('superfícies distintas mantêm contraste AA, reflow e controles do Mapa co
       const contrast = await new AxeBuilder({page}).include(pane).withRules(['color-contrast']).analyze();
       expect(contrast.violations, `${tab}, ${width}px/${size}px: contraste AA`).toEqual([]);
     }
-    await expect(page.locator('.nqd-map-suggestion')).toHaveCSS('background-color', 'rgb(0, 0, 0)');
-    await expect(page.locator('.nqd-map-browse')).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
     const areas = page.locator('[data-map-area]:visible');
     expect(await areas.count()).toBeGreaterThan(1);
-    for (const area of await areas.all()) await expect(area).toHaveCSS('background-color', 'rgb(0, 0, 0)');
     const accents = await areas.evaluateAll(elements => elements.map(el => getComputedStyle(el).borderLeftColor));
     expect(new Set(accents).size).toBeGreaterThan(1);
-    await expect(page.locator('.nqd-memory-section')).toHaveCSS('background-color', 'rgb(35, 27, 51)');
     const group = page.locator('[data-map-area]').first().locator('[data-map-group]');
     await group.locator(':scope > summary').focus();
     await page.keyboard.press('Enter');

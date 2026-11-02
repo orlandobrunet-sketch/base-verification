@@ -133,3 +133,66 @@
   #boardModal .board-table td { padding-inline: .45rem; }
   #boardModal .board-update-time { flex-basis: 100%; line-height: 1.5; }
 }
+
+/* Ranking */
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-personal {
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(var(--nqh-ouro-rgb), .3);
+  border-radius: 12px;
+  background: var(--nqh-painel);
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-personal strong { font-family: var(--nql-font-display); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-context { padding: .6rem .9rem; border: 0; border-radius: 8px; background: rgba(var(--nql-lumen-rgb), .1); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-podium { align-items: end; gap: .75rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-podium li {
+  position: relative;
+  padding: 1rem .75rem;
+  border: 1px solid var(--nqh-linha);
+  border-top: 2px solid var(--nqh-linha);
+  border-radius: 12px;
+  background: var(--nqh-painel);
+  text-align: center;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-podium li[data-rank="1"] {
+  padding-block: 1.5rem 1.25rem;
+  border-color: rgba(var(--nqh-ouro-rgb), .6);
+  background: linear-gradient(170deg, rgba(var(--nqh-ouro-rgb), .16), rgba(var(--nql-cortex-rgb), .8));
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-podium li[data-rank="2"] { border-top-color: #c9d3dc; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-podium li[data-rank="3"] { border-top-color: #c98f5e; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-podium strong { display: block; color: var(--nql-parchment); font: 500 1.25rem/1.25 var(--nql-font-display); overflow-wrap: anywhere; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-podium li > span:not(.nqd-ranking-avatar) { color: var(--nqh-ouro); font: 600 .9375rem/1.3 var(--nql-font-body); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-avatar {
+  display: inline-grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: none;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(var(--nqh-ouro-rgb), .4);
+  border-radius: 50%;
+  background: rgba(var(--nql-raised-rgb), .8);
+  color: var(--nqh-ouro);
+  font: 600 1.125rem/1 var(--nql-font-display);
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 10%; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-podium .nqd-ranking-avatar { display: grid; width: 4.5rem; height: 4.5rem; margin: 0 auto .5rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-podium li[data-rank="1"] .nqd-ranking-avatar { width: 5.5rem; height: 5.5rem; border-color: var(--nqh-ouro); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-table { border-collapse: separate; border-spacing: 0 .35rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-table caption { text-align: left; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-table thead th { border: 0; color: var(--nql-text-soft); font: 500 .8125rem/1.3 var(--nql-font-body); letter-spacing: 0; text-transform: none; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-table tbody td { border: 0; border-block: 1px solid var(--nqh-linha); background: rgba(var(--nql-cortex-rgb), .55); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-table tbody td:first-child { border-left: 1px solid var(--nqh-linha); border-radius: 10px 0 0 10px; color: var(--nqh-ouro); font-weight: 600; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-table tbody td:last-child { border-right: 1px solid var(--nqh-linha); border-radius: 0 10px 10px 0; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-table tbody td:nth-child(2) { display: flex; gap: .75rem; align-items: center; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-table th:first-child,
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-table td:first-child { width: 3rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-player { display: block; min-width: 0; overflow-wrap: anywhere; }
+@media (max-width: 40rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-ranking-table tbody td:nth-child(2) .nqd-ranking-avatar { display: none; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-ranking-table th,
+  #nqDashboard[data-nq-ui="lumen"] .nqd-ranking-table td { padding-inline: .5rem; }
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-player strong,
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-player small { display: block; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-ranking-table tbody tr.is-user td { border-color: rgba(var(--nqh-ouro-rgb), .55); background: rgba(var(--nqh-ouro-rgb), .1); }

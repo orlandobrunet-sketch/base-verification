@@ -4118,3 +4118,220 @@
   #nqDashboard[data-nq-ui="lumen"] .nqd-nav-item:is(.is-active, [aria-selected="true"]) .nqd-nav-icon { color: var(--nqd-cyan); filter: none; }
   #nqDashboard[data-nq-ui="lumen"] .nqd-nav-item::before { box-shadow: none; }
 }
+
+/* ── Sala do Herói ─────────────────────────────────────────────────
+ * O Dashboard usa a mesma linguagem da tela de jogo: azul-noite no lugar do
+ * preto chapado, painéis com relevo e o herói como peça central. */
+#nqDashboard[data-nq-ui="lumen"] {
+  --nqh-ouro: #f1cf7a;
+  --nqh-ouro-rgb: 241, 207, 122;
+  --nqh-linha: rgba(var(--nql-parchment-rgb), .12);
+  --nqh-painel: linear-gradient(155deg, rgba(var(--nql-raised-rgb), .6), rgba(var(--nql-cortex-rgb), .78));
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-shell { background: var(--nql-abyss); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-main {
+  background:
+    radial-gradient(70rem 40rem at 88% -14%, rgba(var(--nql-lumen-rgb), .1), transparent 70%),
+    radial-gradient(52rem 36rem at 6% 108%, rgba(var(--nqh-ouro-rgb), .055), transparent 70%),
+    var(--nql-abyss);
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-title-lg { color: var(--nql-parchment); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-eyebrow,
+#nqDashboard[data-nq-ui="lumen"] .nqd-eyebrow--reward,
+#nqDashboard[data-nq-ui="lumen"] .nqd-eyebrow--clinical {
+  color: var(--nqh-ouro);
+  font: 600 .875rem/1.4 var(--nql-font-body);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* Painel comum às áreas que antes flutuavam soltas sobre o fundo. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-learning-pulse,
+#nqDashboard[data-nq-ui="lumen"] .nqd-memory-section,
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-priority,
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-list-section,
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-patterns,
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-browse,
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-suggestion {
+  padding: clamp(1rem, 2.4vw, 1.5rem);
+  border: 1px solid var(--nqh-linha);
+  border-radius: 12px;
+  background: var(--nqh-painel);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .03);
+}
+
+/* Menu lateral: herói grande e navegação sem caixas. */
+@media (min-width: 61.26rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-rail { background: linear-gradient(180deg, #0d1628, var(--nql-abyss) 70%); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-rail-header { padding-bottom: .5rem; border: 0; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-brand-row { display: flex; align-items: center; justify-content: space-between; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-rail-kicker { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-brand-close { position: static; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-profile { display: block; margin: .25rem 0 1rem; padding: 0; border: 0; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-profile-avatar {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 5 / 4;
+    overflow: hidden;
+    border: 1px solid rgba(var(--nqh-ouro-rgb), .45);
+    border-radius: 10px;
+  }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-profile-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 14%; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-profile-copy { display: block; margin-top: .6rem; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-profile-name { display: block; color: var(--nql-parchment); font: 500 1.25rem/1.2 var(--nql-font-display); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-profile-level { display: block; margin-top: .1rem; color: var(--nql-text-soft); font: 400 .875rem/1.4 var(--nql-font-body); letter-spacing: 0; text-transform: none; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav-item {
+    min-height: 44px;
+    margin: 0;
+    padding: .55rem .75rem;
+    border: 0;
+    border-radius: 6px;
+    background: none;
+    box-shadow: none;
+    color: var(--nql-text-soft);
+  }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav-item:hover { background: rgba(var(--nql-parchment-rgb), .05); color: var(--nql-parchment); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav-item.is-active {
+    border: 0;
+    background: linear-gradient(90deg, rgba(var(--nqh-ouro-rgb), .15), transparent);
+    box-shadow: inset 2px 0 0 var(--nqh-ouro);
+    color: var(--nqh-ouro);
+  }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-nav-item.is-active::before { display: none; }
+}
+
+/* A peça central: herói e trilha dos 100 acertos. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage {
+  display: grid;
+  grid-template-columns: clamp(9rem, 17vw, 12.5rem) minmax(0, 1fr);
+  gap: clamp(1rem, 3vw, 2.25rem);
+  align-items: center;
+  padding: clamp(1rem, 2.4vw, 1.5rem);
+  border: 1px solid rgba(var(--nqh-ouro-rgb), .3);
+  border-radius: 14px;
+  background:
+    radial-gradient(40rem 22rem at 100% 0, rgba(var(--nqh-ouro-rgb), .09), transparent 70%),
+    var(--nqh-painel);
+  box-shadow: 0 1.25rem 2.5rem rgba(0, 0, 0, .3), inset 0 1px 0 rgba(255, 255, 255, .04);
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-art {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border: 1px solid rgba(var(--nqh-ouro-rgb), .55);
+  border-radius: 10px;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-body { min-width: 0; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-title { margin: 0; color: var(--nqh-ouro); font: 600 .9375rem/1.4 var(--nql-font-body); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-name { margin: .1rem 0 .25rem; color: var(--nql-parchment); font: 500 clamp(1.75rem, 3.6vw, 2.75rem)/1.1 var(--nql-font-display); overflow-wrap: anywhere; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-meta { margin: 0; color: var(--nql-text-soft); font: 400 1rem/1.5 var(--nql-font-body); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail { position: relative; height: 5.25rem; margin: 1.25rem 1.9rem 0 0; padding: 0; list-style: none; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail::before,
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail::after {
+  content: "";
+  position: absolute;
+  top: 1.75rem;
+  left: 0;
+  height: 4px;
+  border-radius: 2px;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail::before { right: 0; background: rgba(var(--nql-parchment-rgb), .13); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail::after { width: var(--acertos); background: linear-gradient(90deg, #8a7339, var(--nqh-ouro)); box-shadow: 0 0 .6rem rgba(var(--nqh-ouro-rgb), .5); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail li { position: absolute; top: 0; left: var(--pos); z-index: 1; width: 3.75rem; text-align: center; translate: -50% 0; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail img { display: block; width: 3.75rem; height: 3.75rem; object-fit: contain; filter: grayscale(1) brightness(.5); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail li.is-next img { filter: grayscale(.25) brightness(.95); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail li.is-done img { filter: drop-shadow(0 0 .35rem rgba(var(--nqh-ouro-rgb), .6)); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail li > span { display: block; color: var(--nql-text-soft); font: 500 .8125rem/1.3 var(--nql-font-body); font-variant-numeric: tabular-nums; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail li.is-done > span,
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail li.is-next > span { color: var(--nqh-ouro); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-next { margin: .35rem 0 0; color: var(--nql-text-soft); font: 400 .9375rem/1.45 var(--nql-font-body); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-next strong { color: var(--nql-parchment); font-weight: 600; }
+
+@media (max-width: 40rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-stage { grid-template-columns: minmax(0, 1fr); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-stage-art { aspect-ratio: 16 / 10; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-stage-art img { object-position: 50% 16%; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail { height: 4.5rem; margin-right: 1.3rem; margin-left: 0; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail::before,
+  #nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail::after { top: 1.25rem; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail li { width: 2.75rem; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail img { width: 2.75rem; height: 2.75rem; }
+}
+
+/* Agora: missões lado a lado, com a principal em destaque. */
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-overview .nqd-overview-flow {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+  margin-top: 1.25rem;
+  padding: 0;
+}
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-overview .nqd-overview-flow > section { min-width: 0; margin: 0; }
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-overview .nqd-overview-flow > .nqd-next-actions {
+  grid-column: 1 / -1;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+}
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-overview .nqd-overview-flow > :is(.nqd-learning-pulse, .nqd-memory-section) {
+  grid-column: auto;
+  padding: clamp(1rem, 2.4vw, 1.5rem);
+  border: 1px solid var(--nqh-linha);
+  border-radius: 12px;
+  background: var(--nqh-painel);
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-next-actions > header h2 { margin: 0 0 .6rem; padding: 0; border: 0; color: var(--nql-parchment); font: 500 1.5rem/1.2 var(--nql-font-display); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-next-actions-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: .75rem; padding: 0; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-next-actions-list .nqd-next-action {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--nqh-linha);
+  border-radius: 10px;
+  background: var(--nqh-painel);
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-next-actions-list .nqd-next-action.is-primary {
+  border-color: rgba(var(--nqh-ouro-rgb), .55);
+  background: linear-gradient(155deg, rgba(var(--nqh-ouro-rgb), .13), rgba(var(--nql-cortex-rgb), .8));
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-next-action-copy strong { font: 500 1.25rem/1.25 var(--nql-font-display); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-next-actions-list .nqd-primary-action,
+#nqDashboard[data-nq-ui="lumen"] .nqd-next-actions-list .nqd-text-action { align-self: flex-start; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-metric-label { font: 400 .875rem/1.35 var(--nql-font-body); letter-spacing: 0; text-transform: none; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-learning-pulse .nqd-pulse-bars { width: 100%; height: 6rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-pace-summary { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+
+@media (max-width: 75rem) {
+  #nqDashboard[data-nq-ui="lumen"] #nqdPane-overview .nqd-overview-flow { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Competências */
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-row { padding: .75rem 0; border-color: var(--nqh-linha); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-side { border: 0; background: rgba(var(--nql-abyss-rgb), .45); }
+
+/* Mapa clínico: áreas em grade, com o detalhe ocupando a linha ao abrir. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-route { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr)); gap: .75rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-more { grid-column: 1 / -1; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-more[open] > :not(summary) { margin-top: .75rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-area {
+  margin: 0;
+  padding: .9rem 1rem;
+  border-block: 1px solid var(--nqh-linha);
+  border-right: 1px solid var(--nqh-linha);
+  border-radius: 10px;
+  background: rgba(var(--nql-abyss-rgb), .45);
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-area:hover { border-color: rgba(var(--nql-lumen-rgb), .5); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-area:has(details[open]) { grid-column: 1 / -1; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-area-heading h3 { font: 500 1.25rem/1.25 var(--nql-font-display); }
+
+/* Grimório: os cartões ganham painel sobre o novo fundo. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-item { background: var(--nqh-painel); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-collection-status { font: 400 .875rem/1.4 var(--nql-font-body); letter-spacing: 0; text-transform: none; }

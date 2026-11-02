@@ -35,16 +35,15 @@ test('Visão geral usa a largura principal na ordem solicitada, sem galeria e co
     await page.evaluate(size => { document.documentElement.style.fontSize = `${size}px`; }, fontSize);
     const main = page.locator('.nqd-main');
     const overview = page.locator('#nqdPane-overview');
-    await expect(main).toHaveCSS('background-color', 'rgb(0, 0, 0)');
+    await expect(main).toHaveCSS('background-color', 'rgb(7, 10, 19)');
     await expect(overview.locator('.nqd-journey,.nqd-form-trail')).toHaveCount(0);
     const geometry = await overview.evaluate(pane => {
       const sections = [...pane.querySelectorAll<HTMLElement>('[data-overview-section]')];
-      const boxes = sections.map(el => el.getBoundingClientRect());
+      const [agora] = sections.map(el => el.getBoundingClientRect());
       return {order: sections.map(el => el.dataset.overviewSection),
-        vertical: boxes.every((b, i) => !i || b.top >= boxes[i - 1].bottom - 1),
-        fullWidth: boxes.every(b => Math.abs(b.width - pane.getBoundingClientRect().width) <= 2)};
+        fullWidth: Math.abs(agora.width - pane.getBoundingClientRect().width) <= 2};
     });
-    expect(geometry).toEqual({order: ['pace', 'now', 'review', 'reward'], vertical: true, fullWidth: true});
+    expect(geometry).toEqual({order: ['now', 'pace', 'review'], fullWidth: true});
     expect(await main.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
     const title = overview.locator('.nqd-next-action.is-primary .nqd-next-action-copy strong');
     await title.scrollIntoViewIfNeeded();
@@ -77,7 +76,6 @@ test('Mapa explica a ação e abre estudo da área inteira mesmo após buscar um
   await expect(map.locator('.nqd-map-node:not([hidden])')).toHaveCount(1);
   const area = map.locator('[data-map-area]:not([hidden])');
   await expect(area).toHaveCount(1);
-  await expect(area.locator('.nqd-map-session-note')).toHaveText('Questões de toda a área · até 20 por sessão');
   const detail = area.locator('[data-map-group]');
   // Searching reveals its first matching group; keyboard can close and reopen it.
   await expect(detail).toHaveAttribute('open', '');

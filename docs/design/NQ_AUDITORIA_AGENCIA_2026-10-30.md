@@ -20,6 +20,8 @@ A versão 16.49 tratou os momentos de pico: evolução em tela cheia com antes e
 
 A versão 16.51 atendeu à lista do dono: no computador as vidas e a sequência voltaram só para o painel do herói, a faixa ficou para o celular, o número da questão saiu da tela, os temas de estudo foram para o visual novo, o Grimório virou lista única e a biblioteca viva entrou no menu.
 
+A versão 16.52 redesenhou o Dashboard como Sala do Herói: fundo azul-noite, retrato grande no menu, trilha dos 100 acertos com os selos no topo da Visão geral, missões de "Agora" em cartões, Mapa em grade, Conquistas em cartões baixos e Ranking com retratos no pódio.
+
 Dois itens mudaram de leitura:
 
 - **Vantagens das classes:** a diferença não é só de apresentação. Dr. Glomerulus tem 3 pontos de atributo, e os outros dois têm 2. Alinhar as linhas esconderia uma diferença real, então o card ficou como está até que se decida o equilíbrio.

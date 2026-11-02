@@ -73,7 +73,7 @@ test('fechar durante o carregamento não reabre a Central quando a resposta cheg
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'loading');
   await page.locator('#nqDashboard [data-action="closeDashboard"]').first().click();
   liberar();
-  await page.evaluate(() => (window as any).carregarDadosGrimorio());
+  await page.evaluate(async () => { await (window as any).carregarDadosGrimorio(); });
   await expect(page.locator('#nqDashboard')).toHaveCount(0);
   await page.evaluate(() => (window as any).openDashboard());
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');

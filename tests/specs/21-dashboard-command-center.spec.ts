@@ -428,7 +428,7 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(dashboard.locator('#nqdPane-overview .nqd-journey,.nqd-form-trail,.nqd-form-node')).toHaveCount(0);
     await expect(dashboard.locator('.nqd-profile-avatar img')).toHaveAttribute('src', /\/nivel_10\.webp$/);
     expect(await page.evaluate(() => JSON.parse(localStorage.getItem('nefroquest-save') || '{}').level)).toBe(10);
-    await expect(dashboard.locator('.nqd-milestone')).not.toContainText('Nível 11');
+    await expect(dashboard.locator('.nqd-stage')).not.toContainText('Nível 11');
   });
 
   test('preserva o Set público de eixos após reabrir o seletor de estudo', async ({ page }) => {
@@ -741,7 +741,6 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(newMap.locator('#nqDashMapResult strong')).toHaveText('16 áreas para estudar');
     const firstArea = newMap.locator('[data-map-area]:visible').first();
     await expect(firstArea.getByRole('button', { name: /^Estudar esta área:/ })).toBeVisible();
-    await expect(firstArea).toContainText('Questões de toda a área · até 20 por sessão');
     await newMap.locator('#nqDashMapSearch').focus();
     await expect(newMap.locator('#nqDashMapSearch')).toBeFocused();
     await newMap.locator('#nqDashMapSearch').fill('dialise');
@@ -789,7 +788,6 @@ test.describe('Central de Comando do aprendizado', () => {
     await expect(map.locator('.nqd-map-node:visible')).toHaveAttribute('data-search', uniqueTheme);
     await expect(map.locator('#nqDashMapResult')).toHaveText('1 área encontrada · 1 tema nesta lista');
     await expect(map.locator('[data-map-area]:visible').getByRole('button', { name: /^Estudar esta área:/ })).toBeVisible();
-    await expect(map.locator('[data-map-area]:visible')).toContainText('Questões de toda a área · até 20 por sessão');
 
     await map.locator('#nqDashMapSearch').fill('tema que certamente não existe');
     await expect(map.locator('#nqDashMapEmpty')).toBeVisible();

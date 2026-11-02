@@ -847,27 +847,6 @@
     `;
   }
 
-  function _milestoneMarkup(data) {
-    const badge = data.nextBadge || BADGE_MILESTONES[BADGE_MILESTONES.length - 1];
-    const isComplete = !data.nextBadge;
-    const progress = Math.min(data.journeyCorrect, badge.required);
-    const remaining = Math.max(0, badge.required - data.journeyCorrect);
-    return `
-      <div class="nqd-milestone${isComplete ? ' is-complete' : ''}">
-        <div class="nqd-reward-portrait">
-          <img src="${_escape(badge.image)}" alt="" width="384" height="384" decoding="async">
-        </div>
-        <div class="nqd-reward-copy">
-          <small>${isComplete ? 'Caminho concluído' : 'Próxima insígnia'}</small>
-          <h3>${_escape(badge.name)}</h3>
-          <p>${isComplete ? 'Os cinco selos da jornada são seus.' : `Faltam ${remaining} ${remaining === 1 ? 'acerto' : 'acertos'} para conquistar.`}</p>
-          ${_meterMarkup(progress, badge.required, `Progresso para ${badge.name}`, true)}
-          <span>${progress} / ${badge.required} acertos na jornada</span>
-        </div>
-      </div>
-    `;
-  }
-
   function _formLevels(data) {
     const current = Math.min(10, Math.max(1, Math.floor(_number(data.level, 1))));
     return [current, current + 1, current + 2].filter(level => level <= 10);
@@ -949,15 +928,43 @@
     dialog.querySelector('.nqd-form-close').focus({ preventScroll: true });
   }
 
+  // A trilha mostra o caminho inteiro de uma vez: é o objetivo do jogo, e por
+  // isso abre a sala, no lugar de um cartão só com o próximo selo.
+  function _stageMarkup(data) {
+    const acertos = Math.min(100, data.journeyCorrect);
+    const proximo = data.nextBadge;
+    const faltam = proximo ? proximo.required - data.journeyCorrect : 0;
+    return `
+      <section class="nqd-stage" aria-label="Sua jornada">
+        ${data.save ? `<div class="nqd-stage-art"><img src="${_escape(data.avatar)}" alt="" decoding="async"></div>` : ''}
+        <div class="nqd-stage-body">
+          <p class="nqd-stage-title">${_escape(data.save ? _plainUserTitle(data.totalCorrect) : 'Escolha seu guardião')}</p>
+          <h2 class="nqd-stage-name">${_escape(data.save ? _playerName() : 'Novo jogador')}</h2>
+          <p class="nqd-stage-meta">${data.save ? `Nível ${_formatNumber(data.level)} · ${_formatNumber(data.journeyCorrect)} de 100 acertos nesta jornada` : 'Sua jornada começa na primeira questão.'}</p>
+          <ol class="nqd-stage-trail" style="--acertos:${acertos}%" aria-label="Selos da jornada">
+            ${BADGE_MILESTONES.map(selo => {
+              const estado = data.journeyCorrect >= selo.required ? 'is-done' : proximo && selo.id === proximo.id ? 'is-next' : '';
+              return `<li class="${estado}" style="--pos:${selo.required}%"><img src="assets/badges/badge${selo.id}.webp" alt="" decoding="async"><span>${selo.required}<span class="nqd-sr-only"> acertos: ${_escape(selo.name)}${estado === 'is-done' ? ', conquistado' : ''}</span></span></li>`;
+            }).join('')}
+          </ol>
+          <p class="nqd-stage-next">${proximo ? `Próximo selo: <strong>${_escape(proximo.name)}</strong>, ${faltam === 1 ? 'falta 1 acerto' : `faltam ${_formatNumber(faltam)} acertos`}.` : 'Os cinco selos da jornada são seus.'}</p>
+        </div>
+      </section>
+    `;
+  }
+
   function _tabOverview(data) {
     const reviewPromoted = data.actions[0]?.kind === 'review';
     return `
       <section class="nqd-pane nq-dash-pane active" id="nqdPane-overview" role="tabpanel" aria-labelledby="nqdTab-overview" data-dash-pane="overview">
-        <div class="nqd-section-header nqd-overview-heading">
-          <h1 class="nqd-title-lg">Visão geral</h1>
-        </div>
+        <h1 class="nqd-sr-only">Visão geral</h1>
+        ${_stageMarkup(data)}
         ${data.topicsLoadError ? '<div class="nqd-notice" role="status">Alguns dados não carregaram. Exibindo seu progresso salvo.</div>' : ''}
         <div class="nqd-overview-flow">
+          <section class="nqd-next-actions" data-overview-section="now" aria-labelledby="nqdActionsTitle">
+            <header><h2 id="nqdActionsTitle">Agora</h2></header>
+            <div class="nqd-next-actions-list">${_actionsMarkup(data.actions)}</div>
+          </section>
             <section class="nqd-learning-pulse" data-overview-section="pace">
               <header class="nqd-section-header"><div><h2 class="nqd-section-title">Seu ritmo</h2><p>Respostas e acertos nos últimos sete dias.</p></div></header>
               ${data.stats.totalQuestions > 0 ? `
@@ -968,15 +975,7 @@
                 </details>
               ` : '<p class="nqd-empty-learning">Os indicadores aparecem depois das primeiras respostas. Até lá, sua próxima decisão está em “Agora”.</p>'}
             </section>
-          <section class="nqd-next-actions" data-overview-section="now" aria-labelledby="nqdActionsTitle">
-            <header><h2 id="nqdActionsTitle">Agora</h2></header>
-            <div class="nqd-next-actions-list">${_actionsMarkup(data.actions)}</div>
-          </section>
           ${_memoryMarkup(data.memory, data.stats, reviewPromoted)}
-            <section class="nqd-section nqd-reward-section" data-overview-section="reward">
-              <header class="nqd-section-header"><div><h2 class="nqd-section-title">Próxima conquista</h2></div></header>
-              ${_milestoneMarkup(data)}
-            </section>
         </div>
       </section>
     `;
@@ -1133,7 +1132,6 @@
       const searchable = [group.label, ...group.ordered.map(comp => comp.label)].join(' ').toLocaleLowerCase('pt-BR');
       return `<article class="nqd-map-area" data-map-area aria-labelledby="nqdMapArea-${groupIndex}">
         <div class="nqd-map-area-heading"><div><h3 id="nqdMapArea-${groupIndex}">${_escape(group.label)}</h3><p>${group.ordered.length} ${group.ordered.length === 1 ? 'tema' : 'temas'} nesta área</p></div><button type="button" class="nqd-action" data-action="_dashTrainCategories" data-arg="${_escape(group.cat)}" aria-label="Estudar esta área: ${_escape(group.label)}">Estudar esta área ${_svg('arrow')}</button></div>
-        <p class="nqd-map-session-note">Questões de toda a área · até 20 por sessão</p>
         <details class="nqd-map-group" data-map-group data-map-skill="${_escape(group.identity)}" data-map-status="${_escape(group.statuses.join(' '))}" data-map-label="${_escape(group.label.toLocaleLowerCase('pt-BR'))}" data-search="${_escape(searchable)}">
         <summary class="nqd-map-summary">
           <span>Ver respostas por tema</span>
@@ -1166,7 +1164,6 @@
         <p class="nqd-map-history-note" role="status">Seu histórico anterior continua em <strong>Competências</strong>. O detalhamento por tema começa nas novas respostas.</p>` : ''}
         <section class="nqd-map-browse" aria-label="Explorar temas">
         <div class="nqd-map-browse-title"><h2>Áreas para estudar</h2></div>
-        <p class="nqd-map-search-note">A busca filtra esta lista. Ao estudar, você recebe questões de toda a área escolhida.</p>
         <div class="nqd-map-toolbar">
           <label class="nqd-map-search"><span>Buscar área ou tema</span><input id="nqDashMapSearch" type="search" placeholder="Ex.: diálise, gasometria, DRC" autocomplete="off"></label>
           ${mappedResponses ? `
@@ -1342,7 +1339,6 @@
             <small class="nqd-achievement-category">${_escape(_achievementCategory(achievement.id))}</small>
             <p class="nqd-achievement-copy">${_escape(achievement.description)}</p>
             ${progress && !isUnlocked && progress.target > 0 ? `<div class="nqd-achievement-progress"><span>Progresso: ${_formatNumber(value)} / ${_formatNumber(progress.target)}</span>${_meterMarkup(value, progress.target, `Progresso de ${achievement.name}`, true)}</div>` : ''}
-            ${!isUnlocked && progress && progress.note ? '<small class="nqd-achievement-progress-note">Condição e observações disponíveis na lupa.</small>' : ''}
           </div>
         </article>
       `;
@@ -2681,6 +2677,24 @@
     }
   }
 
+  function _rankingAvatar(row, nivel) {
+    const pastas = { 'Dr. Nephros': 'clerigo_renal', 'Dra. Aquaria': 'maga_metabolica', 'Dr. Glomerulus': 'guerreiro_glomerular' };
+    const avatar = document.createElement('span');
+    avatar.className = 'nqd-ranking-avatar';
+    avatar.setAttribute('aria-hidden', 'true');
+    const pasta = pastas[row.character_name];
+    if (pasta) {
+      const img = document.createElement('img');
+      img.src = `assets/classes-cinema/${pasta}/nivel_${String(Math.min(10, Math.max(1, nivel))).padStart(2, '0')}.webp`;
+      img.alt = '';
+      img.loading = 'lazy';
+      avatar.appendChild(img);
+    } else {
+      avatar.textContent = (row.player_name || 'A').trim().charAt(0).toLocaleUpperCase('pt-BR');
+    }
+    return avatar;
+  }
+
   function _renderLbRows(wrap, data, query, mode) {
     const isGlobal = mode === 'global';
     const normalized = (query || '').trim().toLocaleLowerCase('pt-BR');
@@ -2728,7 +2742,7 @@
         player.textContent = entry.row.player_name || 'Anônimo';
         const score = document.createElement('small');
         score.textContent = `${_formatNumber(isGlobal ? entry.row.total_correct : entry.row.score)} ${isGlobal ? 'acertos' : 'pontos'}`;
-        item.append(rankLabel, player, score);
+        item.append(_rankingAvatar(entry.row, _number(isGlobal ? entry.row.best_level : entry.row.level, 1)), rankLabel, player, score);
         podium.appendChild(item);
       });
       wrap.appendChild(podium);
@@ -2760,14 +2774,17 @@
       const rank = document.createElement('td');
       rank.textContent = String(originalRank);
       const player = document.createElement('td');
+      const playerCopy = document.createElement('span');
+      playerCopy.className = 'nqd-ranking-player';
       const playerName = document.createElement('strong');
       playerName.textContent = row.player_name || 'Anônimo';
-      player.appendChild(playerName);
+      playerCopy.appendChild(playerName);
       if (!isGlobal && row.character_name) {
         const character = document.createElement('small');
         character.textContent = row.character_name;
-        player.appendChild(character);
+        playerCopy.appendChild(character);
       }
+      player.append(_rankingAvatar(row, _number(isGlobal ? row.best_level : row.level, 1)), playerCopy);
       const score = document.createElement('td');
       score.textContent = _formatNumber(isGlobal ? row.total_correct : row.score);
       const level = document.createElement('td');
