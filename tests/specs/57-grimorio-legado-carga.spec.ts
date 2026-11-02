@@ -85,7 +85,7 @@ test.describe('Acesso ao Grimório: acervo ausente, atrasado e recuperado', () =
   test('durante a carga a tela diz que está carregando, não que está vazia', async ({ page }) => {
     await abrir(page, 'atrasa');
     await expect(lista(page)).toHaveAttribute('data-dashboard-state', 'loading');
-    await expect(lista(page)).toContainText(/Preparando seu Dashboard/i);
+    await expect(lista(page)).toContainText(/Preparando seu Painel/i);
     await expect(lista(page), 'vazio e carregando são coisas diferentes').not.toContainText(/Nenhuma referência/i);
     // E o estado transitório termina sozinho quando a resposta chega.
     await expect(page.locator('#nqdPane-library')).toBeVisible({ timeout: 15000 });

@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.55',
+          release: 'nefroquest@16.57',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -139,7 +139,7 @@
   <link rel="stylesheet" href="styles/lumen/shell.css?v=16.18">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=16.55">
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.25">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=16.55">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=16.57">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.06">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.55">
   <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.47">
@@ -896,7 +896,7 @@
           <div class="nql-atrium__route-status" aria-live="polite"><span aria-hidden="true"></span><p id="atriumRouteStatus">Explore uma rota sem perder o fio da sua jornada.</p></div>
           <div class="nql-atrium__route-list">
             <button type="button" class="nql-atrium__route" data-atrium-route="modes" data-action="openGameModesPopup"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10a3 3 0 0 1 2.9 2.3l1.5 7a2.5 2.5 0 0 1-4.3 2.2L15 16H9l-2.1 2.5a2.5 2.5 0 0 1-4.3-2.2l1.5-7A3 3 0 0 1 7 7Z"/><path d="M7 10v4m-2-2h4"/><circle cx="16" cy="10.5" r=".7"/><circle cx="18" cy="13" r=".7"/></svg></span><span><strong>Modos de jogo</strong><small>Treinos, provas e desafios</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
-            <button type="button" class="nql-atrium__route" data-atrium-route="dashboard" data-action="openDashboard"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4v16h16M8 16v-5m5 5V7m5 9v-7"/></svg></span><span><strong>Dashboard</strong><small>Sua conduta de aprendizado</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" data-atrium-route="dashboard" data-action="openDashboard"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4v16h16M8 16v-5m5 5V7m5 9v-7"/></svg></span><span><strong>Painel</strong><small>Sua conduta de aprendizado</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
             <button type="button" class="nql-atrium__route" id="welcomeRitualBtn" data-atrium-route="ritual" data-action="openRitual"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m16 8-2.5 5.5L8 16l2.5-5.5L16 8Z"/></svg></span><span><strong>Ritual de iniciação</strong><small>Descubra seu nível recomendado</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
             <button type="button" class="nql-atrium__route" data-atrium-route="ranking" data-action="showLeaderboardFromWelcome"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8v5a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 12v6m-4 3h8m-7-3h6v3"/></svg></span><span><strong>Classificação</strong><small>Compare sua evolução</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
             <button type="button" class="nql-atrium__route" data-atrium-route="library" data-action="openBibliotecaModal"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span><span><strong>Biblioteca clínica</strong><small>Referências para aprofundar</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
@@ -1336,16 +1336,16 @@
 
 
 
-    <!-- Dashboard (desktop) -->
+    <!-- Painel (desktop) -->
     <button type="button"
       class="dock-btn dashboard-btn"
       data-action="openDashboard"
-      data-tip="Dashboard">
+      data-tip="Painel">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
         <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
       </svg>
-      <span class="dock-label">Dashboard</span>
+      <span class="dock-label">Painel</span>
     </button>
 
     <!-- Biblioteca (desktop) -->
@@ -1430,12 +1430,12 @@
     </button>
 
     <!-- Dashboard (mobile) -->
-    <button type="button" class="mdock-btn dashboard" data-action="openDashboard" title="Dashboard">
+    <button type="button" class="mdock-btn dashboard" data-action="openDashboard" title="Painel">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
         <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
         <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
       </svg>
-      <span class="mdock-label">Dashboard</span>
+      <span class="mdock-label">Painel</span>
     </button>
 
     <!-- Menu (conta / configurações) -->
@@ -1844,14 +1844,14 @@
   <script defer src="js/audio.js?v=16.28"></script>
   <script defer src="js/leaderboard.js?v=16.47"></script>
   <script defer src="js/study-mode.js?v=16.55"></script>
-  <script defer src="js/game.js?v=16.55"></script>
+  <script defer src="js/game.js?v=16.57"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=15.92"></script>
   <script defer src="js/portal.js?v=16.47"></script>
   <script defer src="js/atrium.js?v=13.23"></script>
   <script defer src="js/paywall.js?v=16.55"></script>
-  <script defer src="js/account.js?v=15.80"></script>
+  <script defer src="js/account.js?v=16.57"></script>
   <script defer src="js/boss.js?v=16.48"></script>
   <script defer src="js/cinema-intro-source-config.js?v=16.39"></script>
   <script defer src="js/cinema-equipment-seals.js?v=16.43"></script>
@@ -1862,7 +1862,7 @@
   <script defer src="js/cinema-boss-static-adapter.js?v=16.43"></script>
   <script defer src="js/exam.js?v=16.21"></script>
   <script defer src="js/admin.js?v=15.35"></script>
-  <script defer src="js/minigame.js?v=16.48"></script>
+  <script defer src="js/minigame.js?v=16.57"></script>
   <script defer src="js/cinema-intro-bridge.js?v=16.43"></script>
   <script defer src="js/cinema-victory-source-config.js?v=16.28"></script>
   <script defer src="js/cinema-victory-epilogue.js?v=16.43"></script>
@@ -1877,7 +1877,7 @@
   <script defer src="js/achievements.js?v=16.06"></script>
   <script defer src="js/changelog.js?v=15.94"></script>
   <script defer src="js/equipment-preview.js?v=16.00"></script>
-  <script defer src="js/dashboard.js?v=16.55"></script>
+  <script defer src="js/dashboard.js?v=16.57"></script>
 
   <!-- Single source of truth for profile popup menu items -->
   <template id="profilePopupItems">
@@ -1893,7 +1893,7 @@
     </div>
     <div class="profile-popup-group profile-popup-admin-group" role="group" aria-label="Administração" hidden>
       <p class="profile-popup-group-title" aria-hidden="true">Administração</p>
-      <button type="button" class="profile-popup-item admin-item" data-action="openDashboard" data-stop-propagation="1">Dashboard</button>
+      <button type="button" class="profile-popup-item admin-item" data-action="openDashboard" data-stop-propagation="1">Painel</button>
       <button type="button" class="profile-popup-item admin-item" data-action="openAdminPanel" data-stop-propagation="1">Administração</button>
       <button type="button" class="profile-popup-item admin-item" data-action="openAssetGallery" data-stop-propagation="1">Galeria de Assets</button>
       <button type="button" class="profile-popup-item admin-item" data-action="adminJumpToBoss" data-stop-propagation="1">Fase Final</button>

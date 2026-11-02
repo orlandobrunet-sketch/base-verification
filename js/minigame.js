@@ -553,6 +553,7 @@
           : isBoss ? 'background:linear-gradient(180deg,#a855f7,#7c3aed);border-color:#6d28d9;color:#fff;text-shadow:0 0 10px rgba(168,85,247,0.5);' : '';
 
       // Capítulos e feitiço: recortes visuais aprovados; regras do combate preservadas.
+      const proximoCapitulo = (typeof narrativeStages !== 'undefined' ? narrativeStages : []).find(s => s.at > state.correctTotal);
       if (!isFinale && !isBoss && !isStun && !isStunRecovery) {
         popup.classList.add('nqnarr-overlay');
         popup.innerHTML=`
@@ -564,7 +565,7 @@
               <div class="nqnarr-progress">
                 <div class="nqnarr-metric"><strong>${state.correctTotal}</strong><span>Acertos</span></div>
                 <div class="nqnarr-metric"><strong>${state.level}</strong><span>Nível</span></div>
-                <div class="nqnarr-metric"><strong>${state.queue.length - state.idx}</strong><span>Cartas restantes</span></div>
+                ${proximoCapitulo ? `<div class="nqnarr-metric"><strong>${proximoCapitulo.at - state.correctTotal}</strong><span>Acertos até o próximo capítulo</span></div>` : ''}
               </div>
             </div>
             <footer class="nqnarr-footer"><button class="nqnarr-primary" data-close-closest=".narrative-popup">Continuar a Jornada</button></footer>

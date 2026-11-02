@@ -20,11 +20,12 @@
               <div class="nqaccount-fields">
                 <div class="nqaccount-field nqaccount-wide"><label for="acctNickname">Apelido <span>Aparece no ranking</span></label><input id="acctNickname" type="text" placeholder="ex.: NefroMestre — não precisa ser seu nome real" maxlength="40"></div>
                 <div class="nqaccount-field nqaccount-wide"><label for="acctEmail">Email</label><input id="acctEmail" type="email" placeholder="seu@email.com" disabled></div>
+                <div class="nqaccount-field nqaccount-wide"><label for="acctIdentity">Modo preferido</label><select id="acctIdentity"><option value="">Não definido</option><option value="study">📖 Estudar</option><option value="combat">⚔️ Combater</option></select></div>
+                <p class="nqaccount-group nqaccount-wide">Opcional<span>Não aparece para outros jogadores.</span></p>
                 <div class="nqaccount-field "><label for="acctName">Nome completo <span>Privado</span></label><input id="acctName" type="text" placeholder="Seu nome" ></div>
                 <div class="nqaccount-field "><label for="acctPhone">Telefone / WhatsApp</label><input id="acctPhone" type="tel" placeholder="+55 (11) 99999-9999" ></div>
                 <div class="nqaccount-field "><label for="acctSpec">Especialidade</label><input id="acctSpec" type="text" placeholder="ex: Nefrologia, Clínica Médica..." ></div>
                 <div class="nqaccount-field "><label for="acctCity">Cidade</label><input id="acctCity" type="text" placeholder="Sua cidade" ></div>
-                <div class="nqaccount-field nqaccount-wide"><label for="acctIdentity">Modo preferido</label><select id="acctIdentity"><option value="">Não definido</option><option value="study">📖 Estudar</option><option value="combat">⚔️ Combater</option></select></div>
               </div>
               <p id="accountSaveStatus" class="nqaccount-status" role="status"></p>
               <div class="nqaccount-delete"><button data-action="confirmDeleteAccount"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7M14 10v7"/></svg><span>Excluir minha conta e todos os dados</span></button></div>

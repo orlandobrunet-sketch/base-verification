@@ -3129,7 +3129,11 @@
     function chapterMeta(){
       let current=chapters[0];
       for(const c of chapters){ if((state.level||1)>=c.lvl) current=c; }
-      return current;
+      // O título segue os acertos, como o popup de capítulo (boss.js); pelo
+      // nível, o topo dizia "Capítulo IV" enquanto o popup anunciava o II.
+      const etapas = typeof narrativeStages !== 'undefined' ? narrativeStages : [];
+      const etapa = etapas.filter(s => s.at <= (state.correctTotal || 0)).pop();
+      return etapa ? { ...current, title: `${etapa.ch} — ${etapa.title}` } : { ...current, title: chapters[0].title };
     }
 
     const itemIcons = {
