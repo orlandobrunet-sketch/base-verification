@@ -2557,3 +2557,12 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 /* Conta: o que é opcional fica nomeado e separado do essencial. */
 .nqaccount-group { grid-column: 1 / -1; margin: .75rem 0 -.5rem; padding-top: 1rem; border-top: 1px solid rgba(138, 159, 182, .22); color: #f2ead8; font-size: 1rem; font-weight: 700; }
 .nqaccount-group span { display: block; margin-top: .15rem; color: #aebac7; font-size: .875rem; font-weight: 400; }
+
+/* Vitória: uma ação principal, Compartilhar em seguida e as saídas mais discretas. */
+.victory-popup .nqvictory-card .nqvictory-actions :is(.nqvictory-continue, .nqvictory-share) { grid-column: 1 / -1; }
+.victory-popup .nqvictory-card .nqvictory-actions .nqvictory-end { grid-column: auto; }
+.victory-popup .nqvictory-card .nqvictory-footer .nqvictory-actions .nqvictory-share { width: 100%; margin: 0; padding: 11px 12px; border: 1px solid var(--gold); background: transparent; color: var(--gold); font-weight: 700; font-size: 1rem; }
+@media (max-width: 600px) { .victory-popup .nqvictory-card .nqvictory-footer .nqvictory-actions .nqvictory-share { font-size: .85rem; } }
+.victory-popup .nqvictory-card .nqvictory-footer .nqvictory-actions .nqvictory-share:hover { background: rgba(236, 208, 136, .12); color: var(--gold); }
+.victory-popup .nqvictory-card .nqvictory-footer .nqvictory-actions .nqvictory-finish { border-color: transparent; font-weight: 400; }
+.victory-popup .nqvictory-card .nqvictory-footer .nqvictory-actions .nqvictory-finish:hover { border-color: #7b94a3; }
