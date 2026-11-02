@@ -24,7 +24,7 @@ A versão 16.52 redesenhou o Dashboard como Sala do Herói: fundo azul-noite, re
 
 A versão 16.55 fechou o acabamento sem arte nova: vidas e sequência no topo do cartão do herói, visíveis em 720p; portal com os três heróis e sem rótulos técnicos; cronômetro reduzido a um ícone até ser ligado; aviso "Evidência disponível" removido; aviso do Oráculo no padrão dos diálogos; ícones desenhados no paywall, nos preços e no ranking; atalhos dos temas em duas linhas no celular. Por pedido do dono, a mesma versão tirou o retrato do menu do painel, a palavra "Agora" da Visão geral e o tema para praticar de Competências, que fica só no Mapa clínico; levou o próximo selo para o canto do cartão, com selos maiores; abriu Sugerir artigo em popup; e fez Biblioteca, na página inicial, parar nas estatísticas.
 
-A versão 16.56 trocou "Dashboard" por "Painel" em tudo o que a pessoa lê, mantendo os identificadores internos; trocou "Cartas restantes" por "Acertos até o próximo capítulo"; separou na conta o essencial do opcional; tirou o retângulo de foco dos títulos do Julgamento e do Ritual; e unificou os capítulos: o topo da questão e o painel de narrativa seguem os acertos, como o popup, e não mais o nível.
+A versão 16.57 (a 16.56 não chegou a ir ao ar) trocou "Dashboard" por "Painel" em tudo o que a pessoa lê, mantendo os identificadores internos; trocou "Cartas restantes" por "Acertos até o próximo capítulo"; separou na conta o essencial do opcional; tirou o retângulo de foco dos títulos do Julgamento e do Ritual; e unificou os capítulos: o topo da questão e o painel de narrativa seguem os acertos, como o popup, e não mais o nível.
 
 Três itens da lista mudaram de leitura na conferência:
 

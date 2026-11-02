@@ -553,7 +553,7 @@
           : isBoss ? 'background:linear-gradient(180deg,#a855f7,#7c3aed);border-color:#6d28d9;color:#fff;text-shadow:0 0 10px rgba(168,85,247,0.5);' : '';
 
       // Capítulos e feitiço: recortes visuais aprovados; regras do combate preservadas.
-      const proximoCapitulo = narrativeStages.find(s => s.at > state.correctTotal);
+      const proximoCapitulo = (typeof narrativeStages !== 'undefined' ? narrativeStages : []).find(s => s.at > state.correctTotal);
       if (!isFinale && !isBoss && !isStun && !isStunRecovery) {
         popup.classList.add('nqnarr-overlay');
         popup.innerHTML=`
