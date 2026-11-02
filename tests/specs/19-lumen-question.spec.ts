@@ -438,7 +438,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     const placeholder = await page.locator('#refs').evaluate((element) =>
       getComputedStyle(element, '::after').content
     );
-    expect(placeholder).toContain('Evidência disponível');
+    expect(placeholder).toBe('none');
 
     const correctIndex = await page.evaluate(() => (window as any).state.current.a as number);
     await page.locator('#options .option').nth(correctIndex).click();

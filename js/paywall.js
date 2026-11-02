@@ -12,6 +12,17 @@
     })();
     window._isTWA = _isTWA;
 
+    // Ícones desenhados no lugar de emoji: acompanham a cor e o traço do jogo.
+    const _PW_ICONES = {
+      livro: 'M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5zm0 0v16',
+      escudo: 'M12 3l8 3v6c0 5-3.4 8-8 9-4.6-1-8-4-8-9V6z',
+      atualizar: 'M20 11a8 8 0 0 0-14.5-3L4 10m0-5v5h5m-5 3a8 8 0 0 0 14.5 3l1.5-2m0 5v-5h-5',
+      capelo: 'M2 9l10-5 10 5-10 5zm4 2.5V16c3.5 2.5 8.5 2.5 12 0v-4.5',
+      raio: 'M13 2L4 14h7l-1 8 9-12h-7z',
+      coroa: 'M3 19h18M4 15L3 6l5.5 4L12 4l3.5 6L21 6l-1 9z',
+    };
+    const _pwIcone = nome => `<svg class="nq-icone" viewBox="0 0 24 24" aria-hidden="true"><path d="${_PW_ICONES[nome]}"/></svg>`;
+
     // ============ PAYWALL ============
     // Paywall e Preços eram só caixas por cima: sem papel de diálogo nem nome,
     // o foco ficava atrás, o Tab caminhava pela jornada e o Escape não fechava
@@ -29,11 +40,11 @@
       modal.id = 'paywallModal';
       modal.className = 'show';
       const guestBtns = !authUser ? `
-        <button class="btn" style="background:rgba(96,165,250,0.12);border:2px solid rgba(96,165,250,0.5);color:var(--blue)" data-action="paywallRegister">📝 Criar conta gratuita</button>
+        <button class="btn" style="background:rgba(96,165,250,0.12);border:2px solid rgba(96,165,250,0.5);color:var(--blue)" data-action="paywallRegister">Criar conta gratuita</button>
         <button class="btn" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.2)" data-action="paywallLogin">Já tenho conta — Entrar</button>
       ` : '';
       const _identity = _getIdentity();
-      const _pwIcon  = _identity === 'study'  ? '📖' : '🏰';
+      const _pwIcon  = _pwIcone(_identity === 'study' ? 'livro' : 'escudo');
       const _pwTitle = _identity === 'study'  ? 'Banco de Questões Completo' : 'Jornada Gratuita Concluída';
       const _pwBody  = _identity === 'study'
         ? `Você esgotou as <strong class="nq-text-gold">${FREE_QUESTIONS_LIMIT} questões gratuitas</strong>.<br>Desbloqueie o banco completo e todas as trilhas temáticas!`
@@ -43,7 +54,7 @@
         : 'Acesso vitalício · Todas as questões · Futuras atualizações';
       modal.innerHTML = `
         <div class="paywall-content">
-          <div style="font-size:2.6rem;margin-bottom:12px;">${_pwIcon}</div>
+          <div style="font-size:2.6rem;margin-bottom:12px;color:var(--gold);">${_pwIcon}</div>
           <h2>${_pwTitle}</h2>
           <p>${_pwBody}</p>
           <div class="paywall-price">
@@ -51,7 +62,7 @@
             <div class="price-desc">${_pwDesc}</div>
           </div>
           <div style="display:flex;flex-direction:column;gap:10px;">
-            <button class="btn gold" data-action="paywallUpgrade">✨ Desbloquear Acesso Premium</button>
+            <button class="btn gold" data-action="paywallUpgrade">Desbloquear Acesso Premium</button>
             ${guestBtns}
           </div>
         </div>
@@ -106,13 +117,13 @@
           <div class="pricing-sub-title">Ascension</div>
           <p>${tagline}</p>
           <div class="pricing-stats-row">
-            <div class="pricing-stat-pill">🧠 <strong>${questionBank?.length ?? '+'}</strong> questões de nefrologia</div>
-            <div class="pricing-stat-pill">🔄 Atualizado <strong>constantemente</strong></div>
-            <div class="pricing-stat-pill">🏥 Foco em <strong>residência &amp; título</strong></div>
+            <div class="pricing-stat-pill">${_pwIcone('livro')} <strong>${questionBank?.length ?? '+'}</strong> questões de nefrologia</div>
+            <div class="pricing-stat-pill">${_pwIcone('atualizar')} Atualizado <strong>constantemente</strong></div>
+            <div class="pricing-stat-pill">${_pwIcone('capelo')} Foco em <strong>residência &amp; título</strong></div>
           </div>
           <div class="pricing-cards">
             <div class="pricing-card">
-              <div class="pricing-icon">🎓</div>
+              <div class="pricing-icon">${_pwIcone('capelo')}</div>
               <h3>Gratuito</h3>
               <div class="pricing-amount">R$0</div>
               <div class="pricing-period">${isPt ? 'para sempre' : 'forever'}</div>
@@ -128,8 +139,8 @@
               <button class="pricing-choose-btn btn-free" data-action="pricingChoose" data-arg="free">${isPt ? 'Começar Grátis' : 'Start Free'}</button>
             </div>
             <div class="pricing-card featured">
-              <div class="pricing-badge">⭐ ${isPt ? 'MAIS POPULAR' : 'MOST POPULAR'}</div>
-              <div class="pricing-icon">⚡</div>
+              <div class="pricing-badge">${isPt ? 'MAIS POPULAR' : 'MOST POPULAR'}</div>
+              <div class="pricing-icon">${_pwIcone('raio')}</div>
               <h3>${isPt ? 'Mensal' : 'Monthly'}</h3>
               <div class="pricing-amount">${PRICE_MONTHLY}</div>
               <div class="pricing-period">${isPt ? '32 dias de acesso · sem renovação automática' : '32 days of access · no auto-renewal'}</div>
@@ -143,11 +154,11 @@
                 <li>Apoia o desenvolvimento da ferramenta</li>
               </ul>
               ${_isTWA
-                ? `<div class="pricing-twa-notice">${isPt ? '🌐 Para comprar, acesse <strong>nefroquest.com</strong> no seu navegador.' : '🌐 To purchase, visit <strong>nefroquest.com</strong> in your browser.'}</div>`
+                ? `<div class="pricing-twa-notice">${isPt ? 'Para comprar, acesse <strong>nefroquest.com</strong> no seu navegador.' : 'To purchase, visit <strong>nefroquest.com</strong> in your browser.'}</div>`
                 : `<button class="pricing-choose-btn btn-monthly" data-action="pricingChoose" data-arg="monthly">${isPt ? 'Comprar 32 dias' : 'Buy 32 days'}</button>`}
             </div>
             <div class="pricing-card">
-              <div class="pricing-icon">👑</div>
+              <div class="pricing-icon">${_pwIcone('coroa')}</div>
               <h3>${isPt ? 'Vitalício' : 'Lifetime'}</h3>
               <div class="pricing-amount">${PRICE_LIFETIME}</div>
               <div class="pricing-period">${isPt ? 'pagamento único · acesso vitalício' : 'one-time payment · access forever'}</div>
@@ -161,7 +172,7 @@
                 <li>Formação de nefrologistas para sempre</li>
               </ul>
               ${_isTWA
-                ? `<div class="pricing-twa-notice">${isPt ? '🌐 Para comprar, acesse <strong>nefroquest.com</strong> no seu navegador.' : '🌐 To purchase, visit <strong>nefroquest.com</strong> in your browser.'}</div>`
+                ? `<div class="pricing-twa-notice">${isPt ? 'Para comprar, acesse <strong>nefroquest.com</strong> no seu navegador.' : 'To purchase, visit <strong>nefroquest.com</strong> in your browser.'}</div>`
                 : `<button class="pricing-choose-btn btn-lifetime" data-action="pricingChoose" data-arg="lifetime">${isPt ? 'Compra Única' : 'Buy Once'}</button>`}
             </div>
           </div>
@@ -209,7 +220,7 @@
       overlay.className = 'promo-banner-overlay';
       overlay.innerHTML = `
         <div class="promo-banner">
-          <div class="promo-banner-icon">🧠</div>
+          <div class="promo-banner-icon">${_pwIcone('livro')}</div>
           <div class="promo-banner-body">
             <div class="promo-banner-title">Você está dominando a Nefrologia!</div>
             <div class="promo-banner-text">
@@ -341,7 +352,7 @@
       const label = plan === 'lifetime' ? 'Vitalício' : 'Mensal';
       el.innerHTML = `
         <div style="text-align:center;max-width:420px;">
-          <div style="font-size:3rem;margin-bottom:16px;">👑</div>
+          <div style="font-size:3rem;margin-bottom:16px;color:#ffd700;">${_pwIcone('coroa')}</div>
           <h2 style="font-family:'Cinzel Decorative',serif;color:#ffd700;font-size:1.6rem;margin-bottom:8px;">Pagamento Confirmado!</h2>
           <p style="color:#a0c8e0;font-size:0.9rem;line-height:1.6;margin-bottom:24px;">
             Bem-vindo ao Plano ${label}!<br>
@@ -350,7 +361,7 @@
           </p>
           <button data-remove-id="paymentSuccessOverlay" data-action="_pollPremiumActivation"
             style="background:linear-gradient(135deg,#b8860b,#ffd700);color:#1a0e00;border:none;padding:14px 32px;border-radius:10px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;letter-spacing:1px;cursor:pointer;">
-            ⚔ Começar Jornada Premium
+            Começar Jornada Premium
           </button>
         </div>`;
       document.body.appendChild(el);
@@ -361,7 +372,7 @@
     function _showPaymentPending() {
       const el = document.createElement('div');
       el.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0d1a2e;border:1px solid rgba(255,200,0,0.4);color:#ffd060;padding:16px 24px;border-radius:10px;font-size:0.85rem;z-index:10001;max-width:360px;text-align:center;line-height:1.5;';
-      el.innerHTML = '⏳ <strong>Pagamento em processamento.</strong><br>Assim que aprovado seu acesso será ativado automaticamente.';
+      el.innerHTML = '<strong>Pagamento em processamento.</strong><br>Assim que aprovado seu acesso será ativado automaticamente.';
       document.body.appendChild(el);
       setTimeout(() => el.remove(), 8000);
     }
@@ -388,7 +399,7 @@
         }
         const btnEl = document.querySelector('#paymentSuccessOverlay button');
         if (btnEl) {
-          btnEl.textContent = '❌ Fechar & Verificar Depois';
+          btnEl.textContent = 'Fechar e verificar depois';
           btnEl.style.background = 'linear-gradient(135deg,#4b5563,#374151)';
           btnEl.style.color = '#fff';
         }

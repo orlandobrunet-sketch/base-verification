@@ -59,7 +59,7 @@ test.describe('Texto ampliado não corta a Central', () => {
     // E o que o corte fazia sumir precisa estar legível.
     const painel = page.locator('#nqdPane-overview');
     await expect(painel).toContainText('Visão geral');
-    await expect(painel).toContainText('Agora');
+    await expect(painel).toContainText('Seu ritmo');
   });
 
   test('a 100%, nada muda — o piso segue protegendo tela estreita', async ({ page }, info) => {

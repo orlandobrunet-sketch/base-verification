@@ -852,7 +852,7 @@
           <div class="nqs-temas-atalhos" role="group" aria-label="Seleções prontas">
             <button class="btn sec" data-action="_selectTrail" data-arg="residencia">Residência</button>
             <button class="btn sec" data-action="_selectTrail" data-arg="titulo">Título</button>
-            <button class="btn sec" data-action="_selectTrail" data-arg="eletrolitos">Eletrólitos e ácido-base</button>
+            <button class="btn sec" data-action="_selectTrail" data-arg="eletrolitos" aria-label="Eletrólitos e ácido-base">Eletrólitos<span class="nqs-so-largo"> e ácido-base</span></button>
             <span class="nqs-temas-separador"></span>
             <button class="btn sec" data-action="_studySelectAll" data-arg="true" data-arg-type="boolean">Todos</button>
             <button class="btn sec" data-action="_studySelectAll" data-arg="false" data-arg-type="boolean">Nenhum</button>

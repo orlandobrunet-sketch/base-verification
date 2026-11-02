@@ -10,7 +10,8 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
   });
 
   test('carrega a página real sem expor a landing legada', async ({ page }) => {
-    await expect(page.getByRole('heading', { name: 'Entre no seu atlas clínico.' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Os rins precisam de você.' })).toBeVisible();
+    await expect(page.getByRole('list', { name: 'Heróis da jornada' }).getByRole('listitem')).toHaveCount(3);
     await expect(page.getByRole('heading', { name: 'Retome sua jornada' })).toBeVisible();
     const titleLines = await page.locator('#portalTitle').evaluate((title) =>
       Array.from(title.children).map((line) => ({
@@ -400,13 +401,9 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.reload({ waitUntil: 'domcontentloaded' });
 
-    const journeyAnimation = await page.locator('.nql-portal__journey-line span').evaluate((element) =>
-      getComputedStyle(element).animationName
-    );
     const dividerAnimation = await page.locator('.nql-portal__entry-head').evaluate((element) =>
       getComputedStyle(element, '::after').animationName
     );
-    expect(journeyAnimation).toBe('none');
     expect(dividerAnimation).toBe('none');
     await expect(page.getByRole('heading', { name: 'Retome sua jornada' })).toBeVisible();
   });

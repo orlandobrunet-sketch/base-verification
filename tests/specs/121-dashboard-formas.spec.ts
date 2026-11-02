@@ -21,7 +21,7 @@ test('Visão geral conserva a identidade pessoal sem card de personagem ou evolu
   const before = await journeySnapshot(page);
   const overview = page.locator('#nqdPane-overview');
   await expect(overview.locator('.nqd-journey,.nqd-form-trail,.nqd-form-node,.nqd-form-dialog')).toHaveCount(0);
-  await expect(page.locator('.nqd-profile-avatar img')).toHaveAttribute('src', 'assets/classes-cinema/clerigo_renal/nivel_05.webp');
+  await expect(page.locator('.nqd-stage-art img')).toHaveAttribute('src', 'assets/classes-cinema/clerigo_renal/nivel_05.webp');
   await expect(overview.getByRole('heading', { name: 'Seu ritmo', exact: true })).toBeVisible();
   await page.keyboard.press('1');
   expect(await journeySnapshot(page)).toBe(before);
@@ -116,7 +116,7 @@ for (const level of [1, 9, 10]) {
     const before = await journeySnapshot(page);
     const overview = page.locator('#nqdPane-overview');
     await expect(overview.locator('.nqd-journey,.nqd-form-trail,.nqd-form-node')).toHaveCount(0);
-    await expect(page.locator('.nqd-profile-avatar img')).toHaveAttribute('src', `assets/classes-cinema/clerigo_renal/nivel_${String(level).padStart(2, '0')}.webp`);
+    await expect(page.locator('.nqd-stage-art img')).toHaveAttribute('src', `assets/classes-cinema/clerigo_renal/nivel_${String(level).padStart(2, '0')}.webp`);
     await expect(overview.locator('[data-action="_dashPreviewForm"]')).toHaveCount(0);
     await expect(overview).not.toContainText('Nível 11');
     await page.locator('.nqd-brand-close').click();

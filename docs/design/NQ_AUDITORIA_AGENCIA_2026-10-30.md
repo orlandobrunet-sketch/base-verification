@@ -22,6 +22,14 @@ A versão 16.51 atendeu à lista do dono: no computador as vidas e a sequência 
 
 A versão 16.52 redesenhou o Dashboard como Sala do Herói: fundo azul-noite, retrato grande no menu, trilha dos 100 acertos com os selos no topo da Visão geral, missões de "Agora" em cartões, Mapa em grade, Conquistas em cartões baixos e Ranking com retratos no pódio.
 
+A versão 16.55 fechou o acabamento sem arte nova: vidas e sequência no topo do cartão do herói, visíveis em 720p; portal com os três heróis e sem rótulos técnicos; cronômetro reduzido a um ícone até ser ligado; aviso "Evidência disponível" removido; aviso do Oráculo no padrão dos diálogos; ícones desenhados no paywall, nos preços e no ranking; atalhos dos temas em duas linhas no celular. Por pedido do dono, a mesma versão tirou o retrato do menu do painel, a palavra "Agora" da Visão geral e o tema para praticar de Competências, que fica só no Mapa clínico; levou o próximo selo para o canto do cartão, com selos maiores; abriu Sugerir artigo em popup; e fez Biblioteca, na página inicial, parar nas estatísticas.
+
+Três itens da lista mudaram de leitura na conferência:
+
+- **Linguagem sonora:** já havia som para acerto, erro, sequência, nível, baú, forja, chefe, vitória e vida extra, com volume único. Nada a fazer.
+- **Registrar Pontuação em visual antigo:** a tela de derrota já tinha substituído esse formulário.
+- **Herói e vilão frente a frente:** fica para depois da decisão do Boss TRIO A7, porque é a mesma cena.
+
 Dois itens mudaram de leitura:
 
 - **Vantagens das classes:** a diferença não é só de apresentação. Dr. Glomerulus tem 3 pontos de atributo, e os outros dois têm 2. Alinhar as linhas esconderia uma diferença real, então o card ficou como está até que se decida o equilíbrio.

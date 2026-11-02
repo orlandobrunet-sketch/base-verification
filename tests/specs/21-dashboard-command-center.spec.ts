@@ -326,10 +326,7 @@ test.describe('Central de Comando do aprendizado', () => {
 
   test('abre a recomendação exata de menor desempenho em vez de selecionar todos os temas', async ({ page }) => {
     await openCommandCenter(page);
-    await page.getByRole('tab', { name: 'Competências', exact: true }).click();
-    const priority = page.locator('#nqDashboard .nqd-skill-priority');
-    await expect(priority.getByRole('heading')).toHaveText('DRC');
-    const cta = priority.getByRole('button', { name: 'Estudar esta área', exact: true });
+    const cta = page.locator('#nqDashboard .nqd-next-actions').getByRole('button', { name: 'Estudar esta área', exact: true });
     await expect(cta).toBeVisible();
     await cta.click();
 
@@ -426,7 +423,7 @@ test.describe('Central de Comando do aprendizado', () => {
     const dashboard = page.locator('#nqDashboard[data-dashboard-state="ready"]');
     await expect(dashboard).toBeVisible({ timeout: 15_000 });
     await expect(dashboard.locator('#nqdPane-overview .nqd-journey,.nqd-form-trail,.nqd-form-node')).toHaveCount(0);
-    await expect(dashboard.locator('.nqd-profile-avatar img')).toHaveAttribute('src', /\/nivel_10\.webp$/);
+    await expect(dashboard.locator('.nqd-stage-art img')).toHaveAttribute('src', /\/nivel_10\.webp$/);
     expect(await page.evaluate(() => JSON.parse(localStorage.getItem('nefroquest-save') || '{}').level)).toBe(10);
     await expect(dashboard.locator('.nqd-stage')).not.toContainText('Nível 11');
   });
