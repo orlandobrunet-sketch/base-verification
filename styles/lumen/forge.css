@@ -136,3 +136,24 @@
 @media (prefers-reduced-motion: reduce) {
   #forjaPage *, #forjaPage *::before, #forjaPage *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* Martelada: o golpe vem antes do item. Movimento reduzido já desliga tudo acima. */
+#forjaPage .nq-forja-recem :is(.nq-forja-item-novo, .nq-forja-item-final) { animation: nq-forja-brasa .9s ease-out backwards; }
+#forjaPage .nq-forja-recem :is(.nq-forja-item-novo, .nq-forja-item-final) .nq-forja-arte { animation: nq-forja-golpe .7s cubic-bezier(.3, .7, .4, 1) backwards; }
+#forjaPage .nq-forja-recem :is(.nq-forja-item-novo, .nq-forja-item-final) .nq-forja-arte img { animation: nq-forja-surge .7s ease-out backwards; }
+@keyframes nq-forja-brasa {
+  0% { border-color: #f2c46d; box-shadow: 0 0 0 1px #f2c46d, 0 0 2rem rgba(242, 160, 70, .45); }
+  100% { box-shadow: none; }
+}
+@keyframes nq-forja-golpe {
+  0% { transform: scale(.72); background: #f6d38a; }
+  18% { transform: scale(.98); background: #f6d38a; }
+  30% { transform: scale(.88); }
+  44% { transform: scale(1); }
+  58% { transform: scale(.95); }
+  100% { transform: none; }
+}
+@keyframes nq-forja-surge {
+  0%, 18% { opacity: 0; filter: brightness(2.6); }
+  100% { opacity: 1; filter: none; }
+}

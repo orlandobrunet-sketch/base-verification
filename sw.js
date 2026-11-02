@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v16.57
-const CACHE = 'nefroquest-v16.57';
+// NefroQuest Service Worker — v16.58
+const CACHE = 'nefroquest-v16.58';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -215,12 +215,12 @@ const ASSET_VERSIONS = {
   '/styles/lumen/shell.css': '16.18',
   '/styles/lumen/portal.css': '16.55',
   '/styles/lumen/atrium.css': '16.25',
-  '/styles/lumen/game.css': '16.57',
+  '/styles/lumen/game.css': '16.58',
   '/styles/lumen/difficulty.css': '16.06',
   '/styles/lumen/dashboard.css': '16.55',
   '/styles/lumen/charselect.css': '16.47',
   '/styles/lumen/modes.css': '15.98',
-  '/styles/lumen/forge.css': '16.25',
+  '/styles/lumen/forge.css': '16.58',
   '/styles/lumen/header.css': '15.91',
   '/styles/lumen/equipment.css': '16.18',
   '/styles/lumen/boss.css': '16.25',
@@ -235,7 +235,7 @@ const ASSET_VERSIONS = {
   '/js/audio.js': '16.28',
   '/js/leaderboard.js': '16.47',
   '/js/study-mode.js': '16.55',
-  '/js/game.js': '16.57',
+  '/js/game.js': '16.58',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '15.92',
   '/js/portal.js': '16.47',

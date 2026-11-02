@@ -142,10 +142,10 @@
           <footer class="nqvictory-footer">
             <div class="nqvictory-actions">
               <button type="button" class="btn nqvictory-continue" data-action="continueAfterCompletion">Continuar jogando</button>
+              <button type="button" class="btn nqvictory-share" data-action="shareVictory" data-pass-this="1">Compartilhar</button>
               <button type="button" class="btn nqvictory-finish" data-action="returnHomeAfterVictory">Voltar à tela inicial</button>
               <button type="button" class="btn nqvictory-finish nqvictory-end" data-action="finishGameCompletely">Encerrar jornada</button>
             </div>
-            <button type="button" class="btn nqvictory-share" data-action="shareVictory" data-pass-this="1">Compartilhar</button>
           </footer>
         </section>
       `;
@@ -177,7 +177,7 @@
         navigator.share({ title: 'NefroQuest: Ascension - Vitória!', text: text, url: 'https://nefroquest.com' }).catch(()=>{});
       } else {
         navigator.clipboard.writeText(text).then(() => {
-          btn.textContent = '✅ Copiado!';
+          btn.textContent = 'Copiado';
           setTimeout(() => { btn.textContent = 'Compartilhar'; }, 2000);
         }).catch(() => {
           window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank');
@@ -5804,7 +5804,7 @@
       };
       const saidaBloqueada = !!_forja.pendente;
       const mostraResultado = saidaBloqueada || !!_forja.ultimo;
-      const resultado = `<section id="forjaResultado" class="nq-forja-resultado" role="status" aria-live="polite" tabindex="-1">
+      const resultado = `<section id="forjaResultado" class="nq-forja-resultado${_forja.revelar ? ' nq-forja-recem' : ''}" role="status" aria-live="polite" tabindex="-1">
         ${_forja.aviso ? `<p class="nq-forja-aviso" role="alert">${escapeHtml(_forja.aviso)}</p>` : ''}
         ${_forjaResultadoHtml()}
       </section>`;
@@ -5835,6 +5835,8 @@
             </div>
           </details>
         </div>`;
+      // A martelada toca só na renderização que segue a forja.
+      _forja.revelar = false;
     }
 
     function _forjaFocarResultado() {
@@ -5894,6 +5896,7 @@
           _toast('🏆 Coleção completa! Todos os equipamentos já foram forjados.', 'success', 5000);
           _track('all_items_collected', { correctTotal: state.correctTotal });
         }
+        _forja.revelar = true;
         playSound('forge');
         if (!precisaEscolher) log(`🔨 Forja concluída! ${_forja.ultimo.msg}`);
         renderHUD();

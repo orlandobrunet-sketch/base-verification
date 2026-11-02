@@ -26,6 +26,8 @@ A versão 16.55 fechou o acabamento sem arte nova: vidas e sequência no topo do
 
 A versão 16.57 (a 16.56 não chegou a ir ao ar) trocou "Dashboard" por "Painel" em tudo o que a pessoa lê, mantendo os identificadores internos; trocou "Cartas restantes" por "Acertos até o próximo capítulo"; separou na conta o essencial do opcional; tirou o retângulo de foco dos títulos do Julgamento e do Ritual; e unificou os capítulos: o topo da questão e o painel de narrativa seguem os acertos, como o popup, e não mais o nível.
 
+A versão 16.58 deu à Forja uma martelada antes de o item aparecer (brilho no cartão, golpe na moldura e o item surgindo depois do clarão; movimento reduzido mostra direto) e reorganizou a vitória: "Continuar jogando" como ação principal, "Compartilhar" logo abaixo e com o mesmo tamanho, e as duas saídas mais discretas. A imagem pronta para compartilhar fica para depois. As abas do Painel no celular continuam em grade, não em uma linha com rolagem: a regra de não rolar de lado com letra ampliada prevalece.
+
 Três itens da lista mudaram de leitura na conferência:
 
 - **Linguagem sonora:** já havia som para acerto, erro, sequência, nível, baú, forja, chefe, vitória e vida extra, com volume único. Nada a fazer.
