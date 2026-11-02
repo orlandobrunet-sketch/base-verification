@@ -13,7 +13,7 @@ async function abrir(page:Page, index=0){
 test('capítulo mostra o texto e progresso atuais; fechar devolve à questão sem mudar o jogo',async({page})=>{
  const card=await abrir(page);await expect(card).toHaveAccessibleName('O Chamado das Águas');
  await expect(card.locator('.nqnarr-story')).toHaveText(await page.evaluate(()=>(0,eval)('narrativeStages[0].text')));
- await expect(card.locator('.nqnarr-metric strong')).toHaveText(await page.evaluate(()=>(0,eval)('[state.correctTotal,state.level,state.queue.length-state.idx].map(String)')));
+ await expect(card.locator('.nqnarr-metric strong')).toHaveText(await page.evaluate(()=>(0,eval)('[state.correctTotal,state.level,narrativeStages.find(s=>s.at>state.correctTotal).at-state.correctTotal].map(String)')));
  const snapshot=()=>page.evaluate(()=>(0,eval)('JSON.stringify({gold:state.gold,score:state.score,lives:state.lives,correct:state.correctTotal,current:state.current,idx:state.idx,equipment:state.equipment})'));
  const before=await snapshot();const go=card.getByRole('button',{name:'Continuar a Jornada'});await expect(go).toBeFocused();
  for(const key of ['Tab','Tab','Tab','Shift+Tab']){await page.keyboard.press(key);expect(await card.evaluate(e=>e.contains(document.activeElement))).toBe(true)}

@@ -686,13 +686,13 @@
           <div class="nqd-rail-header">
             <div class="nqd-brand-row">
               <span class="nqd-brand" aria-label="NefroQuest">Nefro<em>Quest</em></span>
-              <span class="nqd-rail-kicker">${window.NQPilot?.active ? 'Dashboard · Piloto' : 'Dashboard'}</span>
+              <span class="nqd-rail-kicker">${window.NQPilot?.active ? 'Painel · Piloto' : 'Painel'}</span>
               <button type="button" class="nqd-brand-close" data-action="closeDashboard" aria-label="${_returnLabel}">${_svg('back')}</button>
             </div>
           </div>
           ${state === 'ready' ? `
             ${profile}
-            <nav class="nqd-nav" aria-label="Áreas do Dashboard" role="navigation">
+            <nav class="nqd-nav" aria-label="Áreas do Painel" role="navigation">
               <div role="tablist" aria-orientation="${mobileNav ? 'horizontal' : 'vertical'}">${_navMarkup()}</div>
             </nav>
           ` : ''}
@@ -709,7 +709,7 @@
     return _shellMarkup(`
       <div class="nqd-loading" role="status" aria-live="polite">
         <span class="nqd-loading-line" aria-hidden="true"></span>
-        <h2>Preparando seu Dashboard…</h2>
+        <h2>Preparando seu Painel…</h2>
       </div>
     `, 'loading');
   }
@@ -1669,7 +1669,7 @@
   function _errorMarkup(falhaGrimorio = false) {
     return _shellMarkup(`
       <div class="nqd-error" role="alert">
-        <span>Dashboard indisponível</span>
+        <span>Painel indisponível</span>
         <!-- h2, não h1: o estilo destes blocos alcança h2/h3, e o h1 escapava
              para o padrão do navegador (32px). No celular a frase quebrava em
              três linhas, destoando de todos os outros estados da Central. -->
@@ -2372,7 +2372,7 @@
     root.dataset.progressDomain = window.NQPilot?.active ? 'pilot' : 'normal';
     root.dataset.libraryReader = _libraryReaderIdentity();
     if (_libraryReadingContext?.owner !== root.dataset.libraryReader) _libraryReadingContext = null;
-    root.setAttribute('aria-label', 'Dashboard do aprendizado');
+    root.setAttribute('aria-label', 'Painel do aprendizado');
     root.innerHTML = _loadingMarkup();
     document.body.appendChild(root);
     root.addEventListener('keydown', _handleDashboardKeydown);

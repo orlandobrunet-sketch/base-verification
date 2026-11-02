@@ -200,10 +200,10 @@ test.describe('Central de Comando do aprendizado', () => {
     expect(new URL(cachedAssetUrls[0]).search).toBe('');
   });
 
-  test('apresenta a entrada do Átrio como Dashboard', async ({ page }) => {
+  test('apresenta a entrada do Átrio como Painel', async ({ page }) => {
     await gotoGame(page);
-    await expect(page.locator('button[data-atrium-route="dashboard"]')).toContainText('Dashboard');
-    await expect(page.locator('#welcomeProfilePopup [data-action="openDashboard"]')).toContainText('Dashboard');
+    await expect(page.locator('button[data-atrium-route="dashboard"]')).toContainText('Painel');
+    await expect(page.locator('#welcomeProfilePopup [data-action="openDashboard"]')).toContainText('Painel');
   });
 
   test('trackQuestionAnswer registra cada competência da questão exatamente uma vez', async ({ page }) => {
@@ -284,7 +284,7 @@ test.describe('Central de Comando do aprendizado', () => {
     const dashboard = page.locator('#nqDashboard');
     await expect(dashboard).toHaveClass(/nq-command-center/);
     await expect(dashboard).not.toHaveAttribute('aria-modal', 'true');
-    await expect(page.getByRole('navigation', { name: 'Áreas do Dashboard' })).toBeVisible();
+    await expect(page.getByRole('navigation', { name: 'Áreas do Painel' })).toBeVisible();
 
     const tabs = dashboard.locator('[data-dash-tab]');
     await expect(tabs).toHaveCount(6);
