@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v16.61
-const CACHE = 'nefroquest-v16.61';
+// NefroQuest Service Worker — v16.62
+const CACHE = 'nefroquest-v16.62';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -192,7 +192,7 @@ const ASSET_VERSIONS = {
   '/js/cinema-equipment-seals.js': '16.43',
   '/js/cinema-victory-epilogue.js': '16.43',
   '/styles/lumen/cinemamotion.css': '16.42',
-  '/styles/lumen/bossfinishing.css': '16.61',
+  '/styles/lumen/bossfinishing.css': '16.62',
   '/js/cinema-boss-art-states.js': '16.39',
   '/js/cinema-boss-static-adapter.js': '16.43',
   '/js/cinema-cinematic-intro.js': '16.46',
@@ -214,16 +214,16 @@ const ASSET_VERSIONS = {
   '/styles/lumen/tokens.css': '15.77',
   '/styles/lumen/shell.css': '16.18',
   '/styles/lumen/portal.css': '16.55',
-  '/styles/lumen/atrium.css': '16.61',
-  '/styles/lumen/game.css': '16.61',
+  '/styles/lumen/atrium.css': '16.62',
+  '/styles/lumen/game.css': '16.62',
   '/styles/lumen/difficulty.css': '16.06',
   '/styles/lumen/dashboard.css': '16.55',
   '/styles/lumen/charselect.css': '16.60',
   '/styles/lumen/modes.css': '15.98',
-  '/styles/lumen/forge.css': '16.61',
+  '/styles/lumen/forge.css': '16.62',
   '/styles/lumen/header.css': '15.91',
-  '/styles/lumen/equipment.css': '16.18',
-  '/styles/lumen/boss.css': '16.61',
+  '/styles/lumen/equipment.css': '16.62',
+  '/styles/lumen/boss.css': '16.62',
   '/styles/lumen/ritual.css': '15.94',
   '/styles/lumen/ranking.css': '16.52',
   '/styles/lumen/achievements.css': '16.60',
@@ -235,7 +235,7 @@ const ASSET_VERSIONS = {
   '/js/audio.js': '16.28',
   '/js/leaderboard.js': '16.47',
   '/js/study-mode.js': '16.55',
-  '/js/game.js': '16.61',
+  '/js/game.js': '16.62',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '15.92',
   '/js/portal.js': '16.47',
@@ -249,8 +249,8 @@ const ASSET_VERSIONS = {
   '/js/minigame-acidbase.js': '16.39',
   '/js/achievements.js': '16.06',
   '/js/changelog.js': '15.94',
-  '/js/equipment-preview.js': '16.00',
-  '/js/dashboard.js': '16.61',
+  '/js/equipment-preview.js': '16.62',
+  '/js/dashboard.js': '16.62',
 };
 // bump-release:asset-versions:fim
 

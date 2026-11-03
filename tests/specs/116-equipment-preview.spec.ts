@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
+import { medirContraste } from '../helpers/contraste';
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce', deviceScaleFactor: 2, hasTouch: true });
 const PREVIEW = '#nqEquipmentPreview';
@@ -399,4 +400,45 @@ test.describe('arte em alta densidade', () => {
     expect(new Set(detailRequests.map(url => new URL(url).pathname)).size).toBe(4);
     expect(await snapshot(page)).toBe(before);
   });
+});
+
+
+for (const [rarity, label, top] of [
+  ['common', 'Comum', 'rgb(24, 37, 58)'],
+  ['rare', 'Raro', 'rgb(20, 57, 63)'],
+  ['epic', 'Épico', 'rgb(56, 42, 80)'],
+  ['legendary', 'Lendário', 'rgb(73, 57, 25)'],
+  ['mythic', 'Mítico', 'rgb(48, 60, 82)'],
+]) test('fundo por raridade ' + rarity + ' mantém contraste no hover, foco e toque', async ({ page }) => {
+  const preview = await abrir(page);
+  await page.evaluate(rar => (0, eval)('state.equipment.helmet.rar=' + JSON.stringify(rar) + ';renderHUD()'), rarity);
+  const before = await snapshot(page), slot = page.locator(HELMET);
+  await slot.hover();
+  await expect(preview).toBeVisible();
+  await expect(preview).toHaveAttribute('data-rarity', rarity);
+  await expect(preview.locator('.nqe-preview-rarity')).toHaveText(label);
+  const background = await preview.evaluate(el => getComputedStyle(el).backgroundImage);
+  expect(background).toContain(top);
+  await expect(preview.locator('.nqe-preview-header')).toHaveCSS('background-color', top);
+  expect(await page.evaluate(medirContraste, PREVIEW)).toEqual([]);
+  await page.locator('#equipList .slot-diablo.starter').first().focus();
+  await slot.focus();
+  await expect(preview).toBeVisible();
+  await expect(preview).toHaveCSS('background-image', background);
+  await slot.tap();
+  await expect(preview).toHaveAttribute('role', 'dialog');
+  await expect(preview).toHaveCSS('background-image', background);
+  expect(await page.evaluate(medirContraste, PREVIEW)).toEqual([]);
+  expect(await snapshot(page)).toBe(before);
+  if (process.env.NQ_CAPTURE_DIR) {
+    await preview.locator('img').evaluate(img => (img as HTMLImageElement).decode());
+    await preview.screenshot({ path: process.env.NQ_CAPTURE_DIR + '/rarity-' + rarity + '-' + test.info().project.name + '.png' });
+  }
+  await preview.getByRole('button', { name: 'Fechar detalhes do equipamento' }).tap();
+  const starter = page.locator('#equipList .slot-diablo.starter').first();
+  await starter.scrollIntoViewIfNeeded();
+  await starter.tap();
+  await expect(preview).toHaveAttribute('data-rarity', 'common');
+  await expect(preview.locator('.nqe-preview-rarity')).toHaveText('Inicial \u00b7 sem b\u00f4nus');
+  expect(await preview.evaluate(el => getComputedStyle(el).backgroundImage)).toContain('rgb(24, 37, 58)');
 });

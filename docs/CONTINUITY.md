@@ -6,7 +6,7 @@
 
 **Pedido atual:** registrar e executar os [sete ajustes de 03/11](design/NQ_REQUESTS_2026-11-03.md), começando pela Biblioteca. O proprietário autorizou decidir a ordem. As imagens e os critérios estão no documento; a expansão de TTKG depende do gate editorial.
 
-**Candidata 16.61:** seis ajustes técnicos implementados na branch `codex/ajustes-pedidos-1661`; validação/publicação finais pendentes. TTKG permanece na fila, com triagem formal BLOQUEADA e banco intacto. O contador 158/544 misturava descobertas reais e catálogo administrativo; os 544 estudos já estavam montados.
+**Candidata 16.62 (PR927):** preserva os seis ajustes técnicos da 16.61 e acrescenta o fundo por raridade no card de inspeção de equipamentos. Branch `codex/ajustes-pedidos-1661`. Validação local: 39 cenários aprovados e 5 skips previstos, sem falhas ou retentativas nas suítes de equipamentos/leitor, além de 325 testes de qualidade. A CI993 aprovou o HEAD anterior (16.61); CI do novo HEAD e publicação pendentes. TTKG continua BLOQUEADO pelo gate editorial; conteúdo médico intacto e 741 bindings do manifesto idênticos. Revisão ampla de layout, jogabilidade e transições somente depois da publicação; alternativas e referências ficam para um segundo momento no roadmap.
 
 ### Contexto da entrega 16.60
 

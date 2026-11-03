@@ -72,6 +72,8 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   box-shadow: 0 3px 9px #02050b55 !important;
 }
 .nqe-preview {
+  --nqe-surface-top: #18253a;
+  --nqe-surface-bottom: #0d1423;
   position: fixed;
   /* A geometria medida no JS precisa valer no mesmo frame, inclusive quando
      a regra global de movimento reduzido define uma duração de transição. */
@@ -85,16 +87,21 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   overscroll-behavior: contain;
   scrollbar-width: thin;
   padding: 18px;
-  border: 1px solid #738ba9;
+  border: 1px solid var(--nqe-rarity, #738ba9);
   border-radius: 16px;
-  background: linear-gradient(155deg, #18253a, #0d1423 70%);
+  background: linear-gradient(155deg, var(--nqe-surface-top), var(--nqe-surface-bottom) 70%);
   box-shadow: 0 18px 52px #020610a6, inset 0 1px #edf5ff10;
   color: #ecf0f7;
   font: 400 .875rem/1.5 "Source Sans 3", sans-serif;
 }
+/* A mesma superfície acompanha a raridade no hover, foco e inspeção por toque. */
+.nqe-preview[data-rarity="rare"] { --nqe-surface-top: #14393f; --nqe-surface-bottom: #101e28; }
+.nqe-preview[data-rarity="epic"] { --nqe-surface-top: #382a50; --nqe-surface-bottom: #191527; }
+.nqe-preview[data-rarity="legendary"] { --nqe-surface-top: #493919; --nqe-surface-bottom: #211d13; }
+.nqe-preview[data-rarity="mythic"] { --nqe-surface-top: #303c52; --nqe-surface-bottom: #161e2c; }
 .nqe-preview[hidden] { display: none !important; }
 .nqe-preview *, .nqe-preview *::before, .nqe-preview *::after { box-sizing: border-box; }
-.nqe-preview-header { position: sticky; top: 0; z-index: 1; padding-right: 0; background: #18253a; }
+.nqe-preview-header { position: sticky; top: 0; z-index: 1; padding-right: 0; background: var(--nqe-surface-top); }
 .nqe-preview[data-pinned="true"] .nqe-preview-header { padding-right: 44px; }
 .nqe-preview-slot { color: #aec1d7; font-size: .6875rem; letter-spacing: .1em; text-transform: uppercase; }
 .nqe-preview-title { margin: 4px 0 6px; font: 500 1.4375rem/1.1 Alegreya, Georgia, serif; overflow-wrap: anywhere; }

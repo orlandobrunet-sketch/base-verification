@@ -16,6 +16,12 @@ Saem da fila: W1–W7 (PR900/16.18), três questões clínicas (PR901/16.19), 30
 
 O plano de continuidade de 17/10 distingue **pedido, implementado, testado e publicado**, registra a base 16.15 conferida, os ajustes visuais atuais, a revisão formal das 741 questões e os compromissos adiados de mobile, Câmara do Equilíbrio, troféus e membros honorários. O serrilhado dos equipamentos, reaberto pelo proprietário, foi conferido em 30/10 e está resolvido. O histórico abaixo conserva suas datas; não deve ser tratado como estado operacional atual.
 
+## Continuidade solicitada em 03/11/2026
+
+- Depois de concluir e publicar a tarefa atual (16.61 e fundo por raridade): revisar criteriosamente layout, jogabilidade e transições, reproduzir bugs e aplicar melhorias com validação. Aguardar a publicação antes de iniciar. Conteúdo médico fora desta rodada.
+- Segundo momento: revisar pistas involuntárias de alternativas corretas sistematicamente mais longas; manter o gate editorial antes de qualquer mudança em questões.
+- Segundo momento: revisar referências duplicadas e títulos misturados em português/inglês. Considerar títulos originais em inglês para a futura versão inglesa; a padronização ainda exige avaliação e não autoriza tradução ou exclusão automática.
+
 ## Depois do app pronto — crescimento
 
 Decisão do proprietário em 30/10/2026: as frentes abaixo só começam com o app pronto. Enquanto isso, a prioridade é o produto.
