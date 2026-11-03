@@ -5715,7 +5715,10 @@
         const v = vazio ? 0 : (item[k] || 0);
         if (!comparaCom) return `<strong>${v}</strong>`;
         const d = v - (comparaCom[k] || 0);
-        return `<strong>${v}</strong> <span class="${d > 0 ? 'pos' : d < 0 ? 'neg' : 'equal'}">(${d > 0 ? '+' : ''}${d})</span>`;
+        // O maior valor de cada atributo ganha destaque nos dois lados da comparação.
+        const forte = `<strong${d > 0 ? ' class="nq-forja-vence"' : ''}>${v}</strong>`;
+        if (variante === 'atual') return forte;
+        return `${forte} <span class="${d > 0 ? 'pos' : d < 0 ? 'neg' : 'equal'}">(${d > 0 ? '+' : ''}${d})</span>`;
       };
       return `
         <article class="nq-forja-item${variante ? ` nq-forja-item-${variante}` : ''}" data-rarity="${escapeHtml(item?.rar || 'common')}">
@@ -5752,16 +5755,14 @@
           <h2>Você forjou ${escapeHtml(novo.n)}</h2>
           <p>${_forjaVeredito(novo, atual)} Escolha qual fica em ${(slotLabels[slot] || slot).toLowerCase()}. O outro será vendido.</p>
           <p class="nq-forja-pago">${custo} de ouro já usados. Sua escolha está salva, inclusive se você recarregar.</p>
-          <div class="nq-forja-comparar">
-            ${_forjaCartaoItem(novo, slot, 'Recém-forjado', atual, 'novo')}
-            ${_forjaCartaoItem(atual, slot, 'Equipado agora', null, 'atual')}
-          </div>
-          <div class="nq-forja-acoes">
-            <div>
+          <div class="nq-forja-duelo">
+            <div class="nq-forja-lado nq-forja-lado-novo">
+              ${_forjaCartaoItem(novo, slot, 'Recém-forjado', atual, 'novo')}
               <button type="button" class="btn gold" data-action="decidirForja" data-arg="substituir" aria-describedby="forjaSaldoEquipar">Equipar ${escapeHtml(novo.n)}<span class="nq-forja-btn-sub">${escapeHtml(atual.n)} vira ${vendeAtual} de ouro</span></button>
               <p id="forjaSaldoEquipar" class="nq-forja-saldo">Saldo final: <strong>${state.gold + vendeAtual} de ouro</strong></p>
             </div>
-            <div>
+            <div class="nq-forja-lado nq-forja-lado-atual">
+              ${_forjaCartaoItem(atual, slot, 'Equipado agora', novo, 'atual')}
               <button type="button" class="btn sec" data-action="decidirForja" data-arg="manter" aria-describedby="forjaSaldoManter">Manter ${escapeHtml(atual.n)}<span class="nq-forja-btn-sub">${escapeHtml(novo.n)} vira ${vendeNovo} de ouro</span></button>
               <p id="forjaSaldoManter" class="nq-forja-saldo">Saldo final: <strong>${state.gold + vendeNovo} de ouro</strong></p>
             </div>

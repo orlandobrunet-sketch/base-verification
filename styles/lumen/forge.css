@@ -157,3 +157,44 @@
   0%, 18% { opacity: 0; filter: brightness(2.6); }
   100% { opacity: 1; filter: none; }
 }
+
+/* As duas forjas dividem as linhas: título, texto, botão e motivo ficam na mesma
+   altura nos dois cartões, mesmo quando só um deles mostra o que falta. */
+@supports (grid-template-rows: subgrid) {
+  #forjaPage .nq-forja-opcoes { grid-template-rows: auto auto auto auto; row-gap: 0; }
+  #forjaPage .nq-forja-opcoes .nq-forja-opcao { display: grid; grid-row: span 4; grid-template-rows: subgrid; align-content: start; }
+  #forjaPage .nq-forja-opcoes .nq-forja-opcao > .btn { grid-row: 3; align-self: end; margin-top: .35rem; }
+  #forjaPage .nq-forja-opcoes .nq-forja-opcao > .nq-forja-motivo { grid-row: 4; margin: .65rem 0 0; }
+}
+#forjaPage .nq-forja-opcao > .btn { min-height: 3.5rem; font-size: 1.08rem; font-weight: 700; letter-spacing: .01em; transition: filter .15s, box-shadow .15s, transform .15s; }
+#forjaPage .nq-forja-opcao[data-forge-kind="comum"] > .btn:not(:disabled) { background: linear-gradient(180deg, #4a2f1c, #2d1c11); border-color: #d08a52; color: #fbe6d2; box-shadow: inset 0 1px 0 #ffd7ae33, 0 0 0 1px #d08a5226, 0 .5rem 1.25rem -.6rem #e99b6880; }
+#forjaPage .nq-forja-opcao[data-forge-kind="lendario"] > .btn:not(:disabled) { background: linear-gradient(180deg, #f1d68e, #c9a54f); border-color: #f4dc9a; color: #1b1406; box-shadow: inset 0 1px 0 #fff6d999, 0 .5rem 1.4rem -.6rem #e7c87399; }
+#forjaPage .nq-forja-opcao > .btn:not(:disabled):hover { filter: brightness(1.1); transform: translateY(-1px); }
+#forjaPage .nq-forja-opcao > .btn:disabled { border-style: dashed; color: #c3ccd8; background: #141a22; }
+
+/* Comparação: novo e equipado lado a lado, cada um com o botão que o escolhe.
+   As linhas são compartilhadas para que nome, atributos e botões se alinhem. */
+#forjaPage .nq-forja-resultado { container: nqForjaResultado / inline-size; }
+#forjaPage .nq-forja-duelo { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; margin: 1.25rem 0 0; }
+#forjaPage .nq-forja-lado { display: flex; flex-direction: column; min-width: 0; }
+#forjaPage .nq-forja-lado > .btn { width: 100%; min-height: 4.5rem; margin-top: .75rem; scroll-margin-block: 8px; }
+#forjaPage .nq-forja-lado > .nq-forja-saldo { margin-top: .5rem; }
+#forjaPage .nq-forja-duelo .nq-forja-item { padding: 1.15rem; }
+#forjaPage .nq-forja-duelo .nq-forja-arte { flex-basis: 4.5rem; width: 4.5rem; border-radius: .7rem; }
+#forjaPage .nq-forja-duelo .nq-forja-item h3 { font-size: 1.45rem; }
+#forjaPage .nq-forja-duelo .nq-forja-atributos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#forjaPage .nq-forja-duelo .nq-forja-vence { color: var(--nql-success); }
+#forjaPage .nq-forja-item-atual .nq-forja-rotulo { color: #c5d2e4; }
+@container nqForjaResultado (min-width: 34rem) {
+  #forjaPage .nq-forja-duelo { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(5, auto); column-gap: 1.25rem; row-gap: 0; }
+  #forjaPage .nq-forja-lado { display: grid; grid-row: 1 / -1; grid-template-rows: subgrid; }
+  #forjaPage .nq-forja-lado > .nq-forja-item { display: grid; grid-row: 1 / 4; grid-template-rows: subgrid; align-content: start; }
+  #forjaPage .nq-forja-lado > .nq-forja-item > .nq-forja-rotulo { grid-row: 1; }
+  #forjaPage .nq-forja-lado > .nq-forja-item > .nq-forja-item-topo { grid-row: 2; align-self: start; }
+  #forjaPage .nq-forja-lado > .nq-forja-item > .nq-forja-atributos { grid-row: 3; align-self: end; }
+  #forjaPage .nq-forja-lado > .btn { grid-row: 4; }
+  #forjaPage .nq-forja-lado > .nq-forja-saldo { grid-row: 5; }
+}
+@container nqForjaResultado (min-width: 56rem) {
+  #forjaPage .nq-forja-duelo .nq-forja-atributos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}

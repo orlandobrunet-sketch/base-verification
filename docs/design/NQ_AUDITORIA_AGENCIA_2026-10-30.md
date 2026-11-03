@@ -30,6 +30,8 @@ A versão 16.58 deu à Forja uma martelada antes de o item aparecer (brilho no c
 
 A versão 16.59 atendeu a mais uma lista do dono: a escolha de classe cabe na janela do computador sem rolagem, com os três cartões alinhados e o retrato cedendo altura; vidas e sequência voltaram para logo abaixo do retrato; o pergaminho do baú passou a usar o mesmo cartão do resumo de artigo; Conquistas mostra a frase de abertura em uma linha e o Caminho dos 100 acertos inteiro na primeira tela; o detalhe de cada conquista ganhou moldura, luz e selo de estado; e a revisão dos Erros da Jornada passou para o modelo do leitor, com emblema, alternativas marcadas por letra e explicação destacada.
 
+A versão 16.60 fechou a Forja: os botões das duas forjas ficam na mesma linha e ganharam destaque, e a comparação do item forjado com o equipado passou a ser lado a lado, cada item com o botão que o escolhe e o maior valor de cada atributo destacado.
+
 Três itens da lista mudaram de leitura na conferência:
 
 - **Linguagem sonora:** já havia som para acerto, erro, sequência, nível, baú, forja, chefe, vitória e vida extra, com volume único. Nada a fazer.

@@ -255,12 +255,13 @@
 }
 @media (prefers-reduced-motion: no-preference) {
   .nq-ach-detail[open] .nq-ach-detail-art { animation: nq-ach-surge .45s cubic-bezier(.2, .8, .3, 1) both; }
-  .nq-ach-detail.is-unlocked[open] .nq-ach-detail-art img { animation: nq-ach-glow 1.4s ease-out .25s both; }
+  /* O brilho mora numa camada da moldura: a arte conquistada fica sem filtro. */
+  .nq-ach-detail.is-unlocked[open] .nq-ach-detail-art::after { content: ""; position: absolute; inset: -1px; border-radius: inherit; pointer-events: none; box-shadow: 0 0 30px rgba(var(--ach-rgb), .55), inset 0 0 26px rgba(var(--ach-rgb), .25); opacity: 0; animation: nq-ach-glow 1.4s ease-out .25s both; }
 }
 @keyframes nq-ach-surge { from { opacity: 0; transform: scale(.93); } }
 @keyframes nq-ach-glow {
-  0% { filter: drop-shadow(0 0 0 rgba(var(--ach-rgb), 0)); }
-  40% { filter: drop-shadow(0 0 22px rgba(var(--ach-rgb), .55)); }
-  100% { filter: drop-shadow(0 0 8px rgba(var(--ach-rgb), .22)); }
+  0% { opacity: 0; }
+  40% { opacity: 1; }
+  100% { opacity: .35; }
 }
 .nq-ach-detail.is-unlocked .nq-ach-detail-progress [role="progressbar"] > span { background: var(--ach); }
