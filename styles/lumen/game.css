@@ -2508,16 +2508,26 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final)[data-nq-streak="3"] #ma
 .nqs-temas-rodape p { margin: 0; color: var(--nql-text-soft); }
 .nqs-temas-rodape .btn { width: auto; min-width: 12rem; margin: 0; }
 
-/* Vidas e sequência no topo do cartão do herói, sempre à vista em 720p.
-   Continuam no .hud para o chefe e a gaveta do celular, que mostram os seis. */
+/* Vidas e sequência no cartão do herói, logo abaixo do retrato e à vista em 720p.
+   Continuam no .hud para o chefe e a gaveta do celular, que mostram os seis.
+   Ficam ancoradas ao retrato; sem âncora (Firefox), vão para o topo do cartão. */
 @media (min-width: 769px) {
-  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-shell { padding-top: 3.25rem; }
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .portrait-frame { anchor-name: --nq-retrato; }
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud { position: static; grid-template-columns: repeat(4, minmax(0, 1fr)); }
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud .tile:is(:nth-child(3), :nth-child(6)) { position: absolute; top: 1.2rem; z-index: 1; flex-direction: row; align-items: baseline; gap: .4rem; max-width: calc(50% - 1.4rem); padding: 0; border: 0; }
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud .tile:nth-child(3) { left: 1.3rem; }
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud .tile:nth-child(6) { right: 1.3rem; }
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud #lives { display: inline-block; font-size: 1rem; letter-spacing: .08em; white-space: nowrap; }
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud #lives span { display: inline; }
+}
+@media (min-width: 769px) {
+  @supports (top: anchor(bottom)) {
+    body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-hero-progress { margin-top: 2.6rem; }
+    body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud .tile:is(:nth-child(3), :nth-child(6)) { position-anchor: --nq-retrato; top: calc(anchor(bottom) + .6rem); }
+  }
+  @supports not (top: anchor(bottom)) {
+    body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-loadout-shell { padding-top: 3.25rem; }
+  }
 }
 
 /* Cronômetro desligado é só um ícone: os números aparecem quando a pessoa liga. */
@@ -2566,3 +2576,79 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 .victory-popup .nqvictory-card .nqvictory-footer .nqvictory-actions .nqvictory-share:hover { background: rgba(236, 208, 136, .12); color: var(--gold); }
 .victory-popup .nqvictory-card .nqvictory-footer .nqvictory-actions .nqvictory-finish { border-color: transparent; font-weight: 400; }
 .victory-popup .nqvictory-card .nqvictory-footer .nqvictory-actions .nqvictory-finish:hover { border-color: #7b94a3; }
+
+/* Pergaminho do baú no mesmo cartão do resumo de artigo. As regras antigas de
+   #chestModal .nqscroll-* (style.css) ficam anuladas aqui; a revelação da
+   raridade continua nas regras de #chestModal.show acima. */
+#chestModal .nqscroll-dialog.nqreader-card { width: min(100%, 980px); max-width: 980px; border-radius: 18px !important; font-family: var(--nql-font-body, sans-serif); }
+#chestModal .nqreader-emblem .nqscroll-seal { width: 100%; height: 100%; stroke: currentColor; stroke-width: 1.5; }
+#chestModal .nqreader-emblem .nqscroll-seal .nqreader-seal-ring { fill: color-mix(in srgb, var(--nqreader-rarity) 7%, #070d13); stroke-width: 1; }
+#chestModal .nqreader-emblem .nqscroll-seal .nqreader-seal-spark { fill: var(--nqreader-rarity); stroke-width: .7; }
+#chestModal .nqreader-meta .nqscroll-rarity { margin: 0; padding: 5px 12px; border-radius: 999px; color: var(--nqreader-rarity); border-color: color-mix(in srgb, var(--nqreader-rarity) 60%, transparent); font: 600 .75rem/1.4 var(--nql-font-body, sans-serif); letter-spacing: .06em; text-transform: uppercase; }
+#chestModal .nqreader-reference .nqscroll-authors,
+#chestModal .nqreader-reference .nqscroll-journal { margin: 0; font-size: inherit; color: inherit; }
+#chestModal .nqreader-heading .nqscroll-reward { grid-column: 2 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; margin: .25rem 0 0; padding: 0; border: 0; font-size: .85rem; color: #b3c1ca; }
+#chestModal .nqreader-heading .nqscroll-reward > span { padding: 3px 10px; border: 1px solid color-mix(in srgb, var(--nq-accent-gold) 35%, transparent); border-radius: 999px; background: color-mix(in srgb, var(--nq-accent-gold) 8%, transparent); }
+#chestModal .nqreader-heading .nqscroll-reward strong { font-size: .95rem; color: var(--nq-accent-gold); }
+#chestModal .nqreader-heading .nqscroll-reward small { margin: 0 0 0 .25rem; width: auto; font-size: .78rem; color: #93a3ae; }
+#chestModal .nqreader-sections.nqscroll-sections section + section { margin-top: 0; }
+#chestModal .nqreader-sections.nqscroll-sections p { max-width: none; font-size: 1rem; line-height: 1.7; color: #d0d9df; }
+@media (max-width: 600px) {
+  #chestModal .nqreader-heading .nqscroll-reward { grid-column: 1 / -1; }
+  #chestModal .nqreader-sections.nqscroll-sections p { font-size: .92rem; line-height: 1.6; }
+}
+#chestModal .nqscroll-dialog.nqreader-card { container-name: nqNarrative nqscroll; }
+#chestModal .nqreader-card h2 { color: #eee8d9; }
+#chestModal .nqreader-card .nqnarr-chapter { color: #dfc280; }
+#chestModal .nqreader-card .close-chest { text-transform: none; letter-spacing: normal; }
+#chestModal #chestTitle.nqnarr-chapter { color: var(--nqreader-rarity); font-family: var(--nql-font-instrument, monospace); }
+#chestModal .nqreader-footer-seal #chestSealText { font-size: inherit; }
+#chestModal .nqreader-card .close-chest { width: auto; min-width: 220px; }
+@media (max-width: 600px) { #chestModal .nqreader-card .close-chest { width: 100%; min-width: 0; } }
+#chestModal .nqreader-card h2.nqscroll-identity { background: none; -webkit-text-fill-color: currentColor; text-shadow: none; }
+#chestModal .nqscroll-dialog:not([data-rarity=epic], [data-rarity=legendary]) .nqreader-meta .nqscroll-rarity { box-shadow: none; }
+
+/* Erros da Jornada no padrão do resumo de artigo: emblema, cartões escuros,
+   alternativas com marcador redondo e selos de estado. Rosa marca o erro,
+   verde a resposta certa, dourado a explicação. */
+.session-review-popup.modal > .nqreview-card { --rev: var(--nq-accent-rose); border-color: color-mix(in srgb, var(--rev) 38%, transparent) !important; border-radius: 18px !important; background: radial-gradient(ellipse at 6% 0%, color-mix(in srgb, var(--rev) 10%, transparent), transparent 55%), linear-gradient(135deg, #192733, #0b141d 70%) !important; }
+.session-review-popup .nqreview-header { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 16px; align-items: center; padding: 22px 28px 18px; border-bottom: 1px solid #ffffff12; }
+.session-review-popup .nqreview-emblem { grid-row: 1 / span 2; width: 48px; height: 52px; color: var(--rev); filter: drop-shadow(0 0 8px color-mix(in srgb, var(--rev) 16%, transparent)); }
+.session-review-popup .nqreview-emblem svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.session-review-popup .nqreview-emblem .nqreview-emblem-ring { fill: color-mix(in srgb, var(--rev) 8%, #070d13); stroke-width: 1; }
+.session-review-popup .nqreview-card .nqreview-header h2 { grid-column: 2; margin: 0; font: 600 1.25rem/1.3 Cinzel, serif !important; color: #eee8d9 !important; }
+.session-review-popup .nqreview-header p { grid-column: 2; margin: 4px 0 0; color: #f2c3ca; font: .8rem/1.5 var(--nql-font-instrument, monospace); }
+.session-review-popup .nqreview-reading { display: grid; gap: 16px; align-content: start; padding: 22px 28px; }
+.session-review-popup .nqreview-question-card { padding: 20px 22px; border: 1px solid #ffffff18; border-radius: 12px; background: #050708; }
+.session-review-popup .nqreview-index { display: inline-block; margin: 0 0 12px; padding: 3px 10px; border: 1px solid color-mix(in srgb, var(--rev) 45%, transparent); border-radius: 999px; color: #f2c3ca; font: .74rem/1.4 var(--nql-font-instrument, monospace); }
+.session-review-popup .nqreview-question { margin-bottom: 16px; color: #eee8d9; font: 600 1.02rem/1.6 var(--nql-font-body, sans-serif); }
+.session-review-popup .nqreview-options { gap: 8px; }
+.session-review-popup .nqreview-option { grid-template-columns: 2rem minmax(0, 1fr); gap: 12px; align-items: center; padding: 10px 14px; border-color: #ffffff14; border-radius: 9px; background: #0a1117; color: #c9d4dc; }
+.session-review-popup .nqreview-letter { display: grid; place-items: center; width: 2rem; height: 2rem; border: 1px solid #ffffff24; border-radius: 50%; color: #eee8d9; font: 700 .85rem/1 var(--nql-font-body, sans-serif); }
+.session-review-popup .nqreview-option-text { font-family: var(--nql-font-body, sans-serif); font-size: .96rem; }
+.session-review-popup .nqreview-option.is-chosen { border-color: color-mix(in srgb, var(--rev) 55%, transparent); background: color-mix(in srgb, var(--rev) 10%, #0a1117); box-shadow: inset 3px 0 0 var(--rev); }
+.session-review-popup .nqreview-option.is-chosen .nqreview-letter { border-color: var(--rev); background: var(--rev); color: #1a0d10; }
+.session-review-popup .nqreview-option.is-correct { border-color: color-mix(in srgb, var(--nq-accent-green) 55%, transparent); background: color-mix(in srgb, var(--nq-accent-green) 10%, #0a1117); box-shadow: inset 3px 0 0 var(--nq-accent-green); }
+.session-review-popup .nqreview-option.is-correct .nqreview-letter { border-color: var(--nq-accent-green); background: var(--nq-accent-green); color: #08180f; }
+.session-review-popup .nqreview-statuses { margin-bottom: 6px; }
+.session-review-popup .nqreview-status { padding: 2px 9px; border: 1px solid; border-radius: 999px; font: 600 .72rem/1.5 var(--nql-font-body, sans-serif); }
+.session-review-popup .nqreview-status--chosen { border-color: color-mix(in srgb, var(--rev) 55%, transparent); background: color-mix(in srgb, var(--rev) 12%, transparent); color: #f6c4cc; }
+.session-review-popup .nqreview-status--correct { border-color: color-mix(in srgb, var(--nq-accent-green) 55%, transparent); background: color-mix(in srgb, var(--nq-accent-green) 12%, transparent); color: #b8efd0; }
+.session-review-popup .nqreview-explanation { margin-top: 18px; padding: 16px 18px; border-left: 2px solid var(--nq-accent-gold); border-radius: 0 10px 10px 0; background: #0c141b; }
+.session-review-popup .nqreview-explanation h4 { margin-bottom: 8px; color: #dfc280; font: 600 .9rem/1.5 Cinzel, serif; }
+.session-review-popup .nqreview-explanation p { color: #d0d9df; font: 1rem/1.7 var(--nql-font-body, sans-serif); }
+.session-review-popup .nqreview-footer { display: flex; justify-content: flex-end; padding: 14px 28px 16px; border-top: 1px solid #ffffff12; background: #070e13; }
+.session-review-popup .nqreview-footer [data-close-closest] { width: auto !important; min-width: 200px; border: 1px solid color-mix(in srgb, var(--nq-accent-gold) 65%, #25323b) !important; border-radius: 999px !important; background: linear-gradient(135deg, color-mix(in srgb, var(--nq-accent-gold) 14%, #101a23), #0a121a) !important; color: #eee9db !important; font: 600 1rem/1.4 var(--nql-font-body, sans-serif) !important; }
+.session-review-popup .nqreview-footer [data-close-closest]:hover { border-color: var(--nq-accent-gold) !important; }
+@media (max-width: 600px) {
+  .session-review-popup .nqreview-header { padding: 18px 16px 14px; column-gap: 12px; }
+  .session-review-popup .nqreview-emblem { width: 38px; height: 42px; }
+  .session-review-popup .nqreview-card .nqreview-header h2 { font-size: 1.08rem !important; }
+  .session-review-popup .nqreview-reading { padding: 16px 12px 22px; gap: 12px; }
+  .session-review-popup .nqreview-question-card { padding: 14px 12px; }
+  .session-review-popup .nqreview-option { grid-template-columns: 1.7rem minmax(0, 1fr); gap: 9px; padding: 9px 10px; }
+  .session-review-popup .nqreview-letter { width: 1.7rem; height: 1.7rem; }
+  .session-review-popup .nqreview-footer { padding: 12px 16px 16px; }
+  .session-review-popup .nqreview-footer [data-close-closest] { width: 100% !important; min-width: 0; }
+}
+.session-review-popup.modal > .nqreview-card { font-family: var(--nql-font-body, sans-serif); }

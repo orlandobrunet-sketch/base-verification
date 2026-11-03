@@ -5,6 +5,39 @@ on:
     branches: [main]
 
 jobs:
+  # Pagamento + premium precisam ser atômicos mesmo com duas notificações juntas.
+  payments:
+    name: Payment transactions (PostgreSQL)
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: local-test-only
+          POSTGRES_DB: nq_payments_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.22.3'
+          cache: npm
+          cache-dependency-path: tests/payments/package-lock.json
+      - name: Install payment test dependencies
+        working-directory: tests/payments
+        run: npm ci --ignore-scripts
+      - name: Verify grants, refunds, rollback, permissions and concurrent notifications
+        working-directory: tests/payments
+        run: npm test
+        env:
+          NQ_PAYMENTS_DATABASE_URL: postgresql://postgres:local-test-only@127.0.0.1:5432/nq_payments_test
+
   quality:
     name: Quality Gates
     runs-on: ubuntu-latest
@@ -309,14 +342,14 @@ jobs:
     # spec novo vire uma investigação de infraestrutura.
     timeout-minutes: 60
 
-    # Quatro shards mantêm toda a suíte e os mesmos limites por caso/job.
-    # Na CI927 ambas as metades atingiram 60min antes de concluir; os fixtures
-    # reprovados também precisam ser corrigidos, pois dividir não aprova falhas.
+    # Seis shards preservam toda a suíte, um worker e os limites por caso/job.
+    # Na CI988 a shard 1/4 passou 639 de 656 testes e atingiu 60min antes de
+    # concluir. Dividir o trabalho evita truncar a bateria sem afrouxar testes.
     # fail-fast desligado: uma shard reprovando não esconde as demais.
     strategy:
       fail-fast: false
       matrix:
-        shard: [1, 2, 3, 4]
+        shard: [1, 2, 3, 4, 5, 6]
 
     # `continue-on-error: true` era a SEGUNDA válvula de escape deste job, e ela
     # sobreviveu à remoção do `|| echo`: mesmo com o passo reprovando, o job
@@ -371,7 +404,7 @@ jobs:
       # Um portão que nunca reprova não é portão; é relatório que ninguém lê.
       - name: Run Playwright tests
         working-directory: tests
-        run: npx playwright test --shard=${{ matrix.shard }}/4 --timeout=20000
+        run: npx playwright test --shard=${{ matrix.shard }}/6 --timeout=20000
         env:
           BASE_URL: http://localhost:5500
 

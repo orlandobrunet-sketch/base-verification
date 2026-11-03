@@ -410,10 +410,10 @@
       try {
         const { data: profile } = await _supaClient
           .from('profiles')
-          .select('is_premium')
+          .select('is_premium, premium_expires_at')
           .eq('id', authUser.id)
           .single();
-        if (profile?.is_premium) {
+        if (window._premiumAtivo ? window._premiumAtivo(profile) : profile?.is_premium) {
           localStorage.setItem(PREMIUM_KEY, '1');
           if (window._generatePremiumSignature) {
             localStorage.setItem('nefroquest-premium-sig', window._generatePremiumSignature(authUser.id));

@@ -8,7 +8,7 @@ async function abrir(page:Page, index=0){
  await page.emulateMedia({reducedMotion:'reduce'});
  await page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first().focus();
  await page.evaluate(i=>(0,eval)('showNarrativePopup(narrativeStages['+i+'])'),index);
- const card=page.locator('.nqnarr-card');await expect(card).toBeVisible();return card;
+ const card=page.locator('.nqnarr-card[data-nq-chapter]');await expect(card).toBeVisible();return card;
 }
 test('capítulo mostra o texto e progresso atuais; fechar devolve à questão sem mudar o jogo',async({page})=>{
  const card=await abrir(page);await expect(card).toHaveAccessibleName('O Chamado das Águas');
@@ -17,7 +17,7 @@ test('capítulo mostra o texto e progresso atuais; fechar devolve à questão se
  const snapshot=()=>page.evaluate(()=>(0,eval)('JSON.stringify({gold:state.gold,score:state.score,lives:state.lives,correct:state.correctTotal,current:state.current,idx:state.idx,equipment:state.equipment})'));
  const before=await snapshot();const go=card.getByRole('button',{name:'Continuar a Jornada'});await expect(go).toBeFocused();
  for(const key of ['Tab','Tab','Tab','Shift+Tab']){await page.keyboard.press(key);expect(await card.evaluate(e=>e.contains(document.activeElement))).toBe(true)}
- expect(await page.evaluate(medirContraste,'.nqnarr-card')).toEqual([]);
+ expect(await page.evaluate(medirContraste,'.nqnarr-card[data-nq-chapter]')).toEqual([]);
  await go.click();await expect(card).toHaveCount(0);expect(await snapshot()).toBe(before);
  await expect(page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first()).toBeFocused();
  await page.evaluate(()=>(0,eval)('showNarrativePopup(narrativeStages[1])'));await page.keyboard.press('Escape');await expect(card).toHaveCount(0);expect(await snapshot()).toBe(before);

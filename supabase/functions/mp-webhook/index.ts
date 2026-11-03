@@ -87,139 +87,68 @@ async function verifySignature(req: Request, rawBody: string): Promise<boolean> 
   return true;
 }
 
-Deno.serve(async (req) => {
-  // Mercado Pago às vezes envia GET para validar o endpoint
-  if (req.method === 'GET') {
-    return new Response('ok', { status: 200 });
-  }
+// Mesmo preço de create-mp-preference; o banco também valida antes de conceder.
+const PLAN_AMOUNT: Record<string, number> = { monthly: 14.90, lifetime: 199.00 };
 
-  if (req.method !== 'POST') {
-    return new Response('Method Not Allowed', { status: 405 });
-  }
+Deno.serve(async (req) => {
+  if (req.method === 'GET') return new Response('ok', { status: 200 });
+  if (req.method !== 'POST') return new Response('Method Not Allowed', { status: 405 });
 
   try {
-    // Lê o body uma única vez (necessário para validar assinatura E parsear JSON)
     const rawBody = await req.text();
-
-    // Validar assinatura HMAC do Mercado Pago
-    const valid = await verifySignature(req, rawBody);
-    if (!valid) {
-      return new Response('Unauthorized', { status: 401 });
-    }
-
+    if (!await verifySignature(req, rawBody)) return new Response('Unauthorized', { status: 401 });
     const body = JSON.parse(rawBody);
-    console.log('MP webhook received:', JSON.stringify(body));
-
-    // MP envia diferentes tipos de notificação:
-    // - IPN clássico: { topic: 'payment', id: '...' }
-    // - Webhooks v2:  { type: 'payment', data: { id: '...' } }
-    let paymentId: string | null = null;
-
-    if (body.type === 'payment' && body.data?.id) {
-      paymentId = String(body.data.id);
-    } else if (body.topic === 'payment' && body.id) {
-      paymentId = String(body.id);
-    }
-
-    if (!paymentId) {
-      console.log('Not a payment notification, skipping:', body.type ?? body.topic);
-      return new Response('ok', { status: 200 });
+    const paymentId = body.type === 'payment' && body.data?.id ? String(body.data.id)
+      : body.topic === 'payment' && body.id ? String(body.id) : null;
+    if (!paymentId) return new Response('ok', { status: 200 });
+    const signedId = new URL(req.url).searchParams.get('data.id');
+    if (!/^[0-9]+$/.test(paymentId) || (signedId && signedId !== paymentId)) {
+      logInvalidAttempt('payment_id_mismatch');
+      return new Response('Invalid payment ID', { status: 400 });
     }
 
     const mpToken = Deno.env.get('MP_ACCESS_TOKEN');
-    if (!mpToken) {
-      console.error('MP_ACCESS_TOKEN not set');
-      return new Response('Config error', { status: 500 });
-    }
-
-    // Buscar detalhes do pagamento na API do Mercado Pago
+    if (!mpToken) return new Response('Config error', { status: 500 });
     const mpRes = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
       headers: { 'Authorization': `Bearer ${mpToken}` },
     });
-
     if (!mpRes.ok) {
-      console.error('Failed to fetch payment from MP:', mpRes.status, await mpRes.text());
-      // Instabilidade do MP precisa de retry: responder 200 aqui deixaria o
-      // pagamento aprovado sem ativação. Erro 4xx não melhora ao repetir.
       const transient = mpRes.status === 429 || mpRes.status >= 500;
+      console.error('Failed to fetch payment from MP:', mpRes.status);
       return new Response(transient ? 'MP unavailable' : 'ok', { status: transient ? 502 : 200 });
     }
 
     const payment = await mpRes.json();
-    console.log('Payment status:', payment.status, 'ref:', payment.external_reference);
-
-    // Só processa pagamentos aprovados
-    if (payment.status !== 'approved') {
+    if (!['approved', 'refunded', 'charged_back'].includes(payment.status)) {
       return new Response('ok', { status: 200 });
     }
-
-    // external_reference: "user_id:plan" (ex: "abc-123:monthly")
     const ref: string = payment.external_reference ?? '';
     const colonIdx = ref.lastIndexOf(':');
-    if (colonIdx === -1) {
-      console.error('Invalid external_reference:', ref);
+    if (colonIdx === -1) return new Response('ok', { status: 200 });
+    const userId = ref.substring(0, colonIdx);
+    const plan = ref.substring(colonIdx + 1);
+    const amount = Number(payment.transaction_amount);
+    const expected = PLAN_AMOUNT[plan];
+    if (payment.status === 'approved' && (typeof expected !== 'number' ||
+        payment.currency_id !== 'BRL' || !Number.isFinite(amount) || amount < expected)) {
+      logInvalidAttempt('amount_or_plan_mismatch', { paymentId, plan });
       return new Response('ok', { status: 200 });
     }
 
-    const userId = ref.substring(0, colonIdx);
-    const plan   = ref.substring(colonIdx + 1); // 'monthly' | 'lifetime'
-
-    // Calcular expiração
-    let expiresAt: string | null = null;
-    if (plan === 'monthly') {
-      const expires = new Date();
-      expires.setDate(expires.getDate() + 32); // 32 dias de margem
-      expiresAt = expires.toISOString();
-    }
-    // lifetime → expiresAt permanece null (nunca expira)
-
-    const supabase = createClient(
-      Deno.env.get('SUPABASE_URL')!,
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
-    );
-
-    // Tenta registrar o pagamento para garantir idempotência (chave única)
-    const { error: insertError } = await supabase
-      .from('processed_payments')
-      .insert({
-        payment_id: paymentId,
-        user_id: userId,
-        plan: plan,
-      });
-
-    if (insertError) {
-      if (insertError.code === '23505') {
-        console.log(`Payment ${paymentId} already processed (idempotency check). Skipping profile update.`);
-        return new Response('ok', { status: 200 });
-      }
-      console.error('Failed to log payment idempotency:', insertError);
-      return new Response('DB error', { status: 500 });
-    }
-
-    const { error } = await supabase
-      .from('profiles')
-      .update({
-        is_premium:          true,
-        premium_plan:        plan,
-        premium_expires_at:  expiresAt,
-        premium_updated_at:  new Date().toISOString(),
-        mp_payment_id:       paymentId,
-      })
-      .eq('id', userId);
-
+    const supabase = createClient(Deno.env.get('SUPABASE_URL')!, Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!);
+    // Migration 020 primeiro, deploy desta função depois. Uma única transação
+    // bloqueia o perfil e grava histórico + premium, sem janela entre os dois.
+    const { data, error } = await supabase.rpc('process_mp_payment', {
+      p_payment_id: paymentId, p_user_id: userId, p_plan: plan,
+      p_status: payment.status, p_amount: Number.isFinite(amount) ? amount : null,
+      p_currency: payment.currency_id ?? null,
+    });
     if (error) {
-      console.error('Supabase update error:', error);
-      // Desfaz o marcador de idempotência: a ativação NÃO ocorreu, então o
-      // retry do Mercado Pago precisa reprocessar este pagamento. Sem este
-      // rollback, o 23505 do retry pularia a ativação e o usuário ficaria
-      // "pago mas não ativado".
-      await supabase.from('processed_payments').delete().eq('payment_id', paymentId);
+      console.error('Atomic payment update failed:', error);
       return new Response('DB error', { status: 500 });
     }
-
-    console.log(`✅ User ${userId} activated ${plan} (expires: ${expiresAt ?? 'never'})`);
+    console.log('Payment processed:', paymentId, data?.outcome);
     return new Response('ok', { status: 200 });
-
   } catch (err) {
     console.error('Webhook error:', err);
     return new Response('Internal error', { status: 500 });

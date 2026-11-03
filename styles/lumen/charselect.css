@@ -406,3 +406,96 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ── Computador: a tela inteira cabe na janela ─────────────
+   Os três cards dividem as mesmas linhas (subgrid), então nome, bônus,
+   trilha e "Escolher" ficam alinhados entre si, e o retrato ocupa só a
+   altura que sobra. Se a letra ampliada não couber, a tela ainda rola. */
+
+@media (min-width: 60.0625rem) {
+  #charSelectModal.nqc-screen {
+    padding-block: clamp(.75rem, 2.2vh, 1.5rem);
+  }
+
+  #charSelectModal .nqc-shell {
+    min-height: 100%;
+    max-height: 62rem;
+    justify-content: flex-start;
+    gap: clamp(.75rem, 2vh, 1.25rem);
+  }
+
+  #charSelectModal .nqc-header h2 {
+    font-size: clamp(1.5rem, 4.2vh, 2.3rem);
+  }
+
+  #charSelectModal .nqc-eyebrow {
+    margin-bottom: .3rem;
+  }
+
+  #charSelectModal .nqc-grid {
+    flex: 1 1 0;
+    min-height: 0;
+    grid-template-rows: minmax(7rem, 1fr) repeat(7, auto);
+    column-gap: clamp(.75rem, 1.6vw, 1.25rem);
+    row-gap: 0;
+  }
+
+  #charSelectModal .nqc-grid > li {
+    display: grid;
+    grid-row: span 8;
+    grid-template-rows: subgrid;
+  }
+
+  #charSelectModal .nqc-card {
+    grid-row: 1 / -1;
+    display: grid;
+    grid-template-rows: subgrid;
+    justify-items: center;
+    gap: 0;
+    padding: clamp(.65rem, 1.6vh, 1rem);
+  }
+
+  #charSelectModal .nqc-art {
+    aspect-ratio: auto;
+    height: 100%;
+    min-height: 0;
+    margin-bottom: .6rem;
+  }
+
+  #charSelectModal .nqc-art img {
+    position: absolute;
+    inset: 0;
+    object-position: center 22%;
+  }
+
+  #charSelectModal .nqc-title,
+  #charSelectModal .nqc-pitch {
+    margin-top: .2rem;
+  }
+
+  #charSelectModal .nqc-boons {
+    align-self: start;
+    margin-top: .55rem;
+  }
+
+  #charSelectModal .nqc-path {
+    align-self: end;
+    margin-top: .6rem;
+    padding-top: 0;
+  }
+
+  #charSelectModal .nqc-path-label {
+    margin-top: .35rem;
+  }
+
+  #charSelectModal .nqc-choose {
+    margin-top: .55rem;
+  }
+
+  #charSelectModal .nqc-foot {
+    max-width: 62rem;
+    margin-inline: auto;
+    font-size: .74rem;
+    line-height: 1.45;
+  }
+}

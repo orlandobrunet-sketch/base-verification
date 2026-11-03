@@ -27,7 +27,7 @@ test('o capítulo diz quantos acertos faltam para o próximo, não as cartas res
     const g = (0, eval);
     g('showNarrativePopup')(g('narrativeStages').find((s: { at: number }) => s.at === 10));
   });
-  const capitulo = page.locator('.nqnarr-card');
+  const capitulo = page.locator('.nqnarr-card[data-nq-chapter]');
   await expect(capitulo).toBeVisible();
   await expect(capitulo).not.toContainText('Cartas restantes');
   await expect(capitulo.locator('.nqnarr-metric').filter({ hasText: 'Acertos até o próximo capítulo' }).locator('strong')).toHaveText('5');
