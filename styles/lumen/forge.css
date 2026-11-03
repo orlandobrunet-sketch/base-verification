@@ -218,6 +218,9 @@
 #forjaPage .nq-forja-resultado { container: nqForjaResultado / inline-size; }
 #forjaPage .nq-forja-duelo { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; margin: 1.25rem 0 0; }
 #forjaPage .nq-forja-lado { display: flex; flex-direction: column; min-width: 0; }
+/* Habilitar troca texto e fundo juntos: interpolar só o fundo apaga o texto
+   durante a proteção breve contra o segundo gesto da compra. */
+#forjaPage .nq-forja-resultado .btn { transition: border-color .2s, transform .2s, box-shadow .2s, filter .15s; }
 #forjaPage .nq-forja-lado > .btn { width: 100%; min-height: 4.5rem; margin-top: .75rem; scroll-margin-block: 8px; }
 #forjaPage .nq-forja-lado > .nq-forja-saldo { margin-top: .5rem; }
 #forjaPage .nq-forja-duelo .nq-forja-item { padding: 1.15rem; }

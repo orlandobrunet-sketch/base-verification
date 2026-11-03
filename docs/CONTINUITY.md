@@ -8,7 +8,7 @@
 
 **Pedido atual:** registrar e executar os [sete ajustes de 03/11](design/NQ_REQUESTS_2026-11-03.md), começando pela Biblioteca. O proprietário autorizou decidir a ordem. As imagens e os critérios estão no documento; a expansão de TTKG depende do gate editorial.
 
-**Revisão seguinte, candidata 16.63:** pente fino iniciado após conferir a publicação da 16.62. Seis achados corrigidos: foco no drawer fechado, nome do perfil cortado, foco no retorno ao Átrio, decisão involuntária na Forja com segundo gesto, reflow do Ranking e margens da fase final mobile. Baterias finais: 179 aprovados e 9 skips previstos, sem falhas/retentativas; 325 testes de qualidade aprovados. Relatório em [Auditoria de layout e jogabilidade](design/NQ_AUDITORIA_LAYOUT_JOGABILIDADE_2026-11-03.md). Nova CI/publicação pendentes; conteúdo médico intacto.
+**Revisão seguinte, candidata 16.64:** pente fino iniciado após conferir a publicação da 16.62. Seis achados corrigidos: foco no drawer fechado, nome do perfil cortado, foco no retorno ao Átrio, decisão involuntária na Forja com segundo gesto, reflow do Ranking e margens da fase final mobile. Baterias finais: 179 aprovados e 9 skips previstos, sem falhas/retentativas; 325 testes de qualidade aprovados. Relatório em [Auditoria de layout e jogabilidade](design/NQ_AUDITORIA_LAYOUT_JOGABILIDADE_2026-11-03.md). Nova CI/publicação pendentes; conteúdo médico intacto.
 
 ### Contexto da entrega 16.60
 

@@ -180,3 +180,21 @@ for (const largura of [320, 390]) {
     }
   });
 }
+
+test('resultado mantém contraste durante a liberação das ações da compra', async ({ page }) => {
+  await abrirForja(page, { ajuste: OCUPAR, gold: 400, largura: 390 });
+  await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
+  await page.getByRole('button', { name: 'Forjar item aleatório' }).click();
+  // Amostra o estado bloqueado e a transição para habilitado, sem esperar a
+  // animação acabar: o texto precisa continuar legível durante a troca.
+  const falhas = [];
+  const inicio = Date.now();
+  do {
+    falhas.push(...await page.evaluate(medirContraste, '#forjaResultado .nq-forja-btn-sub'));
+    await page.waitForTimeout(16);
+  } while (Date.now() - inicio < 850);
+  expect(falhas, 'contraste ao liberar as ações do resultado').toEqual([]);
+  await expect(page.getByRole('button', { name: /^Equipar / })).toBeEnabled();
+  expect(await ouro(page)).toBe(100);
+  await expect(page.locator('#forjaResultado')).toContainText('Saldo final');
+});

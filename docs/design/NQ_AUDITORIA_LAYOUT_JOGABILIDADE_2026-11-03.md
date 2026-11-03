@@ -1,6 +1,6 @@
 # Revisão de layout, jogabilidade e transições — 03/11/2026
 
-Iniciada depois de publicar e conferir a 16.62 (PR927, CI994 e Pages aprovados; 14 hashes públicos idênticos ao merge). Correções na candidata 16.63. Conteúdo médico, alternativas e referências fora desta rodada.
+Iniciada depois de publicar e conferir a 16.62 (PR927, CI994 e Pages aprovados; 14 hashes públicos idênticos ao merge). Correções na candidata 16.64. Conteúdo médico, alternativas e referências fora desta rodada.
 
 ## Cobertura
 
@@ -25,4 +25,14 @@ As regressões falharam pelas causas esperadas antes dos fixes. A primeira bater
 
 Relatórios de auditarVisual foram guardados integralmente, incluindo inconclusões. Alertas sobre o skip link fora da tela sem foco e filhos do inventário com details fechado foram tratados como estados intencionais, sem alterar o instrumento para fazê-los passar. O drawer fechado foi confirmado como defeito por navegação real, e não apenas pela geometria. As capturas do HUD foram inspecionadas: as caixas tipográficas sinalizadas não provaram perda dos glifos. Degradês e outras composições continuam explicitamente inconclusivos no instrumento; esta revisão não certifica acessibilidade integral nem substitui teste manual com leitor de tela.
 
-Evidências locais: audit-explore.log, audit-extended.log, audit-regression.log, audit-quality.log, audit-*.json/png e publication-verification.json no workspace da execução. A CI do novo HEAD precisa concluir antes de qualquer publicação da 16.63.
+Evidências locais: audit-explore.log, audit-extended.log, audit-regression.log, audit-quality.log, audit-*.json/png e publication-verification.json no workspace da execução. A CI do novo HEAD precisa concluir antes de qualquer publicação da 16.64.
+
+## Achado adicional na CI996
+
+A parte 3 concluiu com dois cenários instáveis da spec69 (320 e 390 px a 200%), aprovados somente na terceira tentativa. O texto auxiliar de Equipar atingiu 1,18:1 ao habilitar as ações: a cor do texto mudava imediatamente, mas o fundo herdava uma interpolação global de 200 ms. O defeito foi reproduzido localmente, sem retries, por um novo teste que amostra o contraste durante o bloqueio e sua liberação. A correção limita as transições dos botões do resultado a borda, movimento, sombra e filtro, trocando texto e fundo juntos. O bloqueio contra o segundo gesto continua intacto. O novo teste passou nos dois perfis. Nenhuma medição, assertion, limite ou política de retries foi afrouxada.
+
+O ajuste adicional de asset inclui versão/SW/cache-busters no mesmo commit, seguindo AGENTS.md; por isso a candidata do PR928 avança de 16.63 para 16.64. A 16.62 permanece publicada. A comparação profunda confirmou os 741 vínculos editoriais idênticos; somente a release mudou. A conclusão da CI996 e a validação do novo HEAD devem ser registradas no PR antes de considerar a candidata pronta.
+
+CI996 final (HEAD62768e79, run41725399665): status success, 2.382 aprovações, 258 skips previstos e dois flaky; zero falhas finais. Partes pass/skip/flaky: 1=454/8/0; 2=419/2/0; 3=446/7/2; 4=384/61/0; 5=343/78/0; 6=336/102/0. Os dois flaky são os cenários de contraste descritos acima, não foram descartados e motivaram o ajuste adicional. O HEAD corrigido precisa de uma nova CI completa.
+
+Validação local adicional da candidata 16.64: 77 testes aprovados e 1 skip previsto nas specs69/107/190, zero falhas/retentativas, um worker e timeout de 20 s por teste; 325 testes de qualidade aprovados. O teste novo passou nos dois perfis após falhar antes do ajuste (1,18:1). A listagem de shards confirmou 2.644 casos únicos atribuídos exatamente uma vez, incluindo os dez casos de raridade, sem omissões/duplicações. Logs preservados: ci996-contrast-red.log, ci996-contrast-green.log, ci996-contrast-regression-final.log e ci996-quality-final.log. Um lote local anterior foi interrompido com o servidor indisponível; seu log foi preservado e não conta como validação aprovada.
