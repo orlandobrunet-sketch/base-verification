@@ -1,8 +1,8 @@
 /*
  * NefroQuest — Câmara de Conduta / Lúmen Vivo
  *
- * Redesign visual da jornada normal. O Confronto Final preserva a direção
- * própria existente e fica explicitamente fora deste escopo.
+ * Leitura da jornada normal e geometria compartilhada das três colunas.
+ * A direção do Confronto Final continua nos seus estilos próprios.
  */
 
 /* Novos nós são opt-in: no Confronto Final permanecem totalmente ausentes. */
@@ -57,7 +57,7 @@ body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.
   display: none;
 }
 
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] {
+#mainApp[data-nq-ui="lumen"] {
   --nql-game-rail: 320px;
   --nql-game-dock: 82px;
   --nql-game-gap: 28px;
@@ -1446,7 +1446,7 @@ body.reading-mode:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[d
 /* ── Notebook ──────────────────────────────────────────────────── */
 
 @media (max-width: 78rem) and (min-width: 769px) {
-  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] {
+  #mainApp[data-nq-ui="lumen"] {
     --nql-game-rail: 280px;
     --nql-game-dock: 76px;
     --nql-game-gap: 20px;
@@ -2521,8 +2521,18 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final)[data-nq-streak="3"] #ma
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud #lives span { display: inline; }
 }
 @media (min-width: 769px) {
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud .tile:is(:nth-child(3), :nth-child(6)) {
+    width: max-content; max-width: calc(50% - 16px); min-height: 32px;
+    padding: 5px 8px; border-radius: 6px; background: #09131c;
+    align-items: center; justify-content: center; flex-wrap: wrap; gap: 3px 6px;
+  }
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud .tile:nth-child(3) { left: calc(50% - 8px); right: auto; transform: translateX(-100%); }
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud .tile:nth-child(6) { left: calc(50% + 8px); right: auto; border-left: 1px solid #dfc28040; }
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud #streak { font-size: 1.2rem; line-height: 1.1; color: #edce83; }
+}
+@media (min-width: 769px) {
   @supports (top: anchor(bottom)) {
-    body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-hero-progress { margin-top: 2.6rem; }
+    body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-hero-progress { margin-top: 3.5rem; }
     body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud .tile:is(:nth-child(3), :nth-child(6)) { position-anchor: --nq-retrato; top: calc(anchor(bottom) + .6rem); }
   }
   @supports not (top: anchor(bottom)) {

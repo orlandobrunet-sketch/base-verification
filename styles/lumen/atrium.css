@@ -1060,9 +1060,9 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   grid-template-columns: 2.25rem minmax(0, 1fr) auto;
   align-items: center;
   gap: .8rem;
-  background: #05070b !important;
+  background: linear-gradient(105deg, rgba(var(--nql-route-rgb), .09), transparent 72%), #0c1724 !important;
   color: var(--nql-text) !important;
-  box-shadow: none !important;
+  box-shadow: inset 0 1px 0 #e3f0ff0d, 0 3px 12px #0002 !important;
   text-align: left !important;
   text-transform: none !important;
   transition: padding var(--nql-duration-state), color var(--nql-duration-state), border-color var(--nql-duration-state), background var(--nql-duration-state) !important;
@@ -1092,7 +1092,7 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route:focus-visible,
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route.is-current {
   border-color: rgba(var(--nql-route-rgb), .65) !important;
-  background: #0b1018 !important;
+  background: linear-gradient(105deg, rgba(var(--nql-route-rgb), .16), transparent 80%), #101e2d !important;
   color: var(--nql-route-accent) !important;
   transform: none !important;
 }
@@ -1506,4 +1506,46 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step strong,
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step small { overflow-wrap: normal; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__continuum-step small { color: var(--nql-text-soft); }
+}
+
+/* Modos ocupa o próprio painel de rotas; a jornada continua no mesmo lugar. */
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__routes[data-atrium-view="modes"] > :not(#atriumModesPanel) { display: none !important; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes[hidden] { display: none !important; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes { min-width: 0; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes header { margin-bottom: 1rem; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes h2 { margin: .85rem 0 .4rem; font: 600 clamp(1.5rem, 3vw, 2.2rem)/1.15 var(--nql-font-display); color: var(--nql-text); }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes header p { margin: 0; color: var(--nql-text-soft); line-height: 1.5; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__back { display: inline-flex; align-items: center; gap: .7rem; min-height: 44px; padding: .4rem .6rem; color: #a9dce6; background: #112332; border: 1px solid #8dbece55; border-radius: 6px; font: inherit; cursor: pointer; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes .nqmodes-routes { display: grid; gap: .55rem; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes .nqmodes-route {
+  --nql-mode-accent: #9ad8e6;
+  display: grid; grid-template-columns: 36px minmax(0, 1fr) 20px; gap: .75rem; align-items: center;
+  min-width: 0; width: 100%; min-height: 76px; padding: .8rem; text-align: left;
+  color: #eee8d9; border: 1px solid #7893a64d; border-left: 2px solid var(--nql-mode-accent);
+  border-radius: 7px; background: linear-gradient(105deg, #91dfe30c, transparent), #0d1b2a; font: inherit; cursor: pointer;
+}
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes .nqmodes-route[data-mode-route="exam"] { --nql-mode-accent: #dfc280; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes .nqmodes-route[data-mode-route="rapid"] { --nql-mode-accent: #eead8e; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes .nqmodes-route[data-mode-route="balance"] { --nql-mode-accent: #b6afec; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes .nqmodes-route__copy { display: grid; gap: .2rem; min-width: 0; overflow-wrap: anywhere; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes .nqmodes-route strong { font: 600 1rem/1.3 var(--nql-font-display); }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes .nqmodes-route small { color: #bdcbd6; font-size: .8rem; line-height: 1.5; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes .nqmodes-route svg { display: block; width: 24px; height: 24px; fill: none; stroke: var(--nql-mode-accent); }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes :is(button:focus-visible) { outline: 2px solid #9ad8e6; outline-offset: 3px; }
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes .nqmodes-route:hover { border-color: var(--nql-mode-accent); background-color: #152b3b; }
+/* Luz de cenário: um ciclo de chegada e depois repouso, sem animação infinita. */
+#welcomeScreen[data-nq-ui="lumen"]::after {
+  content: ''; position: absolute; inset: 4.75rem 0 0; z-index: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 74% 48%, #7dd7ef12, transparent 46%),
+    repeating-radial-gradient(ellipse at 74% 48%, transparent 0 100px, #9ad8e605 101px 102px, transparent 103px 160px);
+}
+@media (prefers-reduced-motion: no-preference) {
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes:not([hidden]) { animation: nq-atrium-modes-enter .32s cubic-bezier(.2,.7,.3,1) both; }
+  #welcomeScreen[data-nq-ui="lumen"]::after { animation: nq-atrium-light-arrives 9s ease-out both; }
+}
+@keyframes nq-atrium-modes-enter { from { opacity: 0; transform: translateX(44px); } to { opacity: 1; transform: none; } }
+@keyframes nq-atrium-light-arrives { from { opacity: .15; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+@media (max-width: 400px) {
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes .nqmodes-route { grid-template-columns: 28px minmax(0,1fr); gap: .5rem; }
+  #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes .nqmodes-route__arrow { display: none; }
 }

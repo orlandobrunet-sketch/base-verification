@@ -5800,6 +5800,7 @@
           : '<svg viewBox="0 0 64 64" stroke-width="2.4" focusable="false"><path d="m17 40 20-20 7 7-20 20zM32 15l10-10 17 17-10 10zM8 53h28M11 53v-7h22v7"/><circle class="nq-forja-opcao-surpresa" cx="50" cy="50" r="10"/><text x="50" y="55" text-anchor="middle">?</text></svg>';
         return `
           <article class="nq-forja-opcao" data-forge-kind="${tipo}">
+            <div class="nq-forja-opcao-topo-shell">
             <div class="nq-forja-opcao-topo">
               <span class="nq-forja-arte nq-forja-opcao-arte${tipo === 'lendario' ? ' nq-forja-arte-legendary' : ''}" aria-hidden="true">${icone}</span>
               <div class="nq-forja-opcao-resumo">
@@ -5807,6 +5808,7 @@
                 <h3>${titulo}</h3>
                 <p class="nq-forja-custo">${FORJA_CUSTO[tipo]} de ouro</p>
               </div>
+            </div>
             </div>
             <p>${descricao}</p>
             <button type="button" class="btn gold" data-action="forjarNaPagina" data-arg="${tipo}"
@@ -7447,6 +7449,8 @@
         return;
       }
       // Fecha game modes overlay
+      const atriumModes = document.getElementById('atriumModesPanel');
+      if (atriumModes && !atriumModes.hidden && !document.getElementById('welcomeScreen')?.classList.contains('hidden')) { closeGameModesPopup(); return; }
       const gm = document.getElementById('gameModesOverlay');
       if (gm && gm.style.display !== 'none' && gm.classList.contains('show')) { closeGameModesPopup(); return; }
     });
@@ -7577,9 +7581,34 @@
 
     // ============ POPUP MODOS DE JOGO (mobile) ============
     let _gameModesFocus = null;
+    let _atriumModesOrigin = null;
     function openGameModesPopup() {
       const el = document.getElementById('gameModesOverlay');
       if (!el || el.classList.contains('show')) return;
+      const welcome = document.getElementById('welcomeScreen');
+      const routes = welcome?.querySelector('.nql-atrium__routes');
+      if (routes && !welcome.classList.contains('hidden') && welcome.getClientRects().length) {
+        let panel = document.getElementById('atriumModesPanel');
+        if (!panel) {
+          panel = document.createElement('section');
+          panel.id = 'atriumModesPanel';
+          panel.className = 'nql-atrium__modes';
+          panel.setAttribute('aria-labelledby', 'atriumModesTitle');
+          panel.innerHTML = '<header><button type="button" class="nql-atrium__back" data-action="closeGameModesPopup"><span aria-hidden="true">←</span> Voltar às rotas</button><h2 id="atriumModesTitle">Modos de jogo</h2><p>Escolha como você quer estudar agora.</p></header>';
+          const choices = el.querySelector('.nqmodes-routes');
+          if (choices) panel.appendChild(choices.cloneNode(true));
+          routes.appendChild(panel);
+        }
+        _atriumModesOrigin = document.activeElement;
+        routes.dataset.atriumView = 'modes';
+        routes.setAttribute('aria-labelledby', 'atriumModesTitle');
+        panel.hidden = false;
+        const trigger = welcome.querySelector('[data-atrium-route="modes"]');
+        trigger?.setAttribute('aria-expanded', 'true');
+        trigger?.setAttribute('aria-controls', 'atriumModesPanel');
+        panel.querySelector('.nqmodes-route')?.focus({ preventScroll: true });
+        return;
+      }
       const returnFocus = document.activeElement;
       el.classList.add('show');
       el.setAttribute('aria-hidden', 'false');
@@ -7587,6 +7616,15 @@
       _gameModesFocus = manageDialogFocus(el, closeGameModesPopup, returnFocus, el.querySelector('.nqmodes-route'));
     }
     function closeGameModesPopup() {
+      const panel = document.getElementById('atriumModesPanel');
+      if (panel && !panel.hidden) {
+        panel.hidden = true;
+        delete panel.parentElement.dataset.atriumView;
+        panel.parentElement.setAttribute('aria-labelledby', 'atriumRoutesTitle');
+        document.querySelector('[data-atrium-route="modes"]')?.setAttribute('aria-expanded', 'false');
+        if (_atriumModesOrigin?.isConnected && _atriumModesOrigin.getClientRects().length) _atriumModesOrigin.focus({ preventScroll: true });
+        _atriumModesOrigin = null;
+      }
       const el = document.getElementById('gameModesOverlay');
       if (!el) return;
       el.classList.remove('show');

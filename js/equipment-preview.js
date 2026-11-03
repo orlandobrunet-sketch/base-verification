@@ -290,7 +290,10 @@
     }
     hide();
     const source = sourceOf(slot), starter = slot.classList.contains('starter');
-    const meta = rarityMeta[source.getAttribute('data-item-rarity')] || rarityMeta.common;
+    const itemRarity = source.getAttribute('data-item-rarity');
+    const rarityKey = !starter && Object.hasOwn(rarityMeta, itemRarity) ? itemRarity : 'common';
+    const meta = rarityMeta[rarityKey];
+    panel.dataset.rarity = rarityKey;
     anchor = slot;
     pinned = pin;
     slot.setAttribute('aria-expanded', 'true');

@@ -1,18 +1,26 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação operacional:** 30/10/2026 — [estado atual e três frentes ativas](CONTINUITY.md)
+**Última reconciliação operacional:** 03/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
 Este documento controla direção, prioridade e critérios de conclusão. Ele não autoriza execução automática: cada frente precisa ser solicitada explicitamente pelo proprietário do produto.
 
-## Estado operacional — 30/10/2026
+## Estado operacional — 03/11/2026
 
-Base de produção conferida antes desta entrega: **16.58**. Entrega do PR926: **16.60**, com CI do HEAD final e conferência do deploy obrigatórias, com o lote de acabamento, o Dashboard redesenhado, os itens P1, dois lotes de P2 da auditoria de jogo e a lista de ajustes do dono; o restante está em `docs/design/NQ_AUDITORIA_AGENCIA_2026-10-30.md`. A consolidação visual, a direção das aberturas e o classificador entraram em 30/10. As pendências ficam em [`CONTINUITY.md`](CONTINUITY.md), que prevalece sobre os status das seções abaixo.
+**Publicado: 16.60, PR926.** CI991 aprovada: 2.349 testes completos, 253 skips previstos, 130 testes rápidos e 19 cenários de pagamentos. Deploy Pages e 12 arquivos estáticos conferidos. O proprietário aplicou a migration 020 e publicou `mp-webhook` v14; código e permissões confirmados no Supabase. Compra e estorno reais ainda não foram certificados. A consolidação visual, a direção das aberturas e o classificador entraram em 30/10. As pendências ficam em [`CONTINUITY.md`](CONTINUITY.md), que prevalece sobre os status históricos abaixo.
+
+**Rodada solicitada em 03/11:** sete pedidos registrados em [NOV03-01 a NOV03-07](design/NQ_REQUESTS_2026-11-03.md): sigla TTKG, colunas da fase final, faixa de vidas/sequência, recompensa da Forja, alinhamento/moldura da Forja, menu animado do Átrio e divergência de contagem da Biblioteca. Autorizado avançar pela ordem técnica mais adequada; a alteração da questão mantém gate editorial próprio.
 
 Saem da fila: W1–W7 (PR900/16.18), três questões clínicas (PR901/16.19), 30 retratos das classes (15.85, antes NQ-04E), 20 retratos da Câmara (publicados em 16.39) e o diagnóstico antigo de MX (canal atual `/contato/`, PR831). A revisão documental das 741 questões está completa no índice A37, o que não equivale a 741 aprovações ou publicações.
 
 O plano de continuidade de 17/10 distingue **pedido, implementado, testado e publicado**, registra a base 16.15 conferida, os ajustes visuais atuais, a revisão formal das 741 questões e os compromissos adiados de mobile, Câmara do Equilíbrio, troféus e membros honorários. O serrilhado dos equipamentos, reaberto pelo proprietário, foi conferido em 30/10 e está resolvido. O histórico abaixo conserva suas datas; não deve ser tratado como estado operacional atual.
+
+## Continuidade solicitada em 03/11/2026
+
+- Depois de concluir e publicar a tarefa atual (16.61 e fundo por raridade): revisar criteriosamente layout, jogabilidade e transições, reproduzir bugs e aplicar melhorias com validação. Aguardar a publicação antes de iniciar. Conteúdo médico fora desta rodada.
+- Segundo momento: revisar pistas involuntárias de alternativas corretas sistematicamente mais longas; manter o gate editorial antes de qualquer mudança em questões.
+- Segundo momento: revisar referências duplicadas e títulos misturados em português/inglês. Considerar títulos originais em inglês para a futura versão inglesa; a padronização ainda exige avaliação e não autoriza tradução ou exclusão automática.
 
 ## Depois do app pronto — crescimento
 

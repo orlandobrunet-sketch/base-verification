@@ -33,7 +33,7 @@ test.beforeEach(async ({page, context}) => {
   await expect(page.locator('#welcomeScreen')).toBeVisible();
 });
 
-test('Atrium routes use opaque dark surfaces, readable secondary text and distinct accents', async ({page}) => {
+test('Atrium routes use layered blue surfaces, readable secondary text and distinct accents', async ({page}) => {
   const buttons = page.locator('#welcomeScreen .nql-atrium__route');
   await expect(buttons).toHaveCount(5);
   const normal = await buttons.evaluateAll(els => els.map(el => {
@@ -50,7 +50,7 @@ test('Atrium routes use opaque dark surfaces, readable secondary text and distin
   for (const [i, row] of normal.entries()) {
     await expect(buttons.nth(i)).toBeEnabled();
     expect(row.opacity).toBe('1');
-    expect(row.image).toBe('none');
+    expect(row.image).toContain('linear-gradient');
     expect(rgba(row.background)[3] ?? 1).toBe(1);
     expect(luminance(rgba(row.background))).toBeLessThan(.01);
     expect(rgba(row.icon)[3] ?? 1).toBe(1);
@@ -61,7 +61,7 @@ test('Atrium routes use opaque dark surfaces, readable secondary text and distin
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
 });
 
-test('Keyboard focus remains visible on all five routes and Enter opens the real game-mode dialog', async ({page}, info) => {
+test('Keyboard focus remains visible on all five routes and Enter opens the inline game-mode panel', async ({page}, info) => {
   const buttons = page.locator('#welcomeScreen .nql-atrium__route');
   const originalBoxes = await buttons.evaluateAll(els => els.map(el => {
     const b = el.getBoundingClientRect(); return {width:b.width,height:b.height};
@@ -88,9 +88,11 @@ test('Keyboard focus remains visible on all five routes and Enter opens the real
     expect(contrast(hovered.small, hovered.bg)).toBeGreaterThanOrEqual(4.5);
   }
   await buttons.first().focus(); await buttons.first().press('Enter');
-  await expect(page.locator('#gameModesOverlay')).toHaveClass(/show/);
+  await expect(page.locator('#atriumModesPanel')).toBeVisible();
+  await expect(page.locator('#gameModesOverlay')).not.toHaveClass(/show/);
   await page.keyboard.press('Escape');
   await expect(page.locator('#gameModesOverlay')).not.toHaveClass(/show/);
+  await expect(page.locator('#atriumModesPanel')).toBeHidden();
   await expect(buttons.first()).toBeFocused();
 });
 

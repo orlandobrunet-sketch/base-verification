@@ -13,13 +13,13 @@ body.boss-battle-mode .bg-layer {
 body.boss-battle-mode .bg-overlay { background: transparent !important; }
 body.boss-battle-mode .particles { display: none; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] {
-  width: min(100%, 1488px);
+  width: min(100%, 1336px);
   min-width: 0;
   max-width: none;
-  padding: 0 24px 32px;
+  padding: 0 28px 32px;
   margin: 0 auto;
-  grid-template-columns: 256px minmax(0, 1fr) max-content !important;
-  gap: 24px;
+  grid-template-columns: var(--nql-game-rail) minmax(0, 1fr) var(--nql-game-dock) !important;
+  gap: var(--nql-game-gap);
   background: transparent !important;
   color: var(--nql-text);
   font-family: var(--nql-font-body);
@@ -331,7 +331,7 @@ body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn.oraculo-dock { --nq
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn.dashboard-btn { --nqb-tool: 139, 195, 229; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn[data-action="openBibliotecaModal"] { --nqb-tool: 241, 207, 122; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn svg { width: 26px; height: 26px; color: currentColor !important; filter: none !important; }
-body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn .dock-label { position: static; width: auto; max-width: 100%; height: auto; min-height: 26px; flex-shrink: 0; padding: 0; color: currentColor !important; background: transparent !important; font: .58rem/1.3 var(--nql-font-body); letter-spacing: .03em; white-space: nowrap; overflow-wrap: normal; }
+body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn .dock-label { position: static; width: auto; max-width: 100%; height: auto; min-height: 26px; flex-shrink: 0; padding: 0; color: currentColor !important; background: transparent !important; font: .58rem/1.3 var(--nql-font-body); letter-spacing: .03em; white-space: normal; overflow-wrap: anywhere; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn:hover { border-color: rgba(var(--nqb-tool), .65) !important; box-shadow: none !important; transform: none; }
 body.boss-battle-mode #mainApp[data-nq-ui="lumen"] :is(button, [role="button"], .slot-diablo):focus-visible { outline: 2px solid #91dfe3; outline-offset: 3px; }
 
@@ -365,7 +365,7 @@ body[data-progress-sandbox="boss-preview"] #progressSandboxBanner button:focus-v
   body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .panel.left { position: relative; }
 }
 @media (min-width: 769px) and (max-width: 1100px) {
-  body.boss-battle-mode #mainApp[data-nq-ui="lumen"] { grid-template-columns: 260px minmax(0, 1fr) max-content !important; gap: 18px; padding-inline: 16px; }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"] { grid-template-columns: var(--nql-game-rail) minmax(0, 1fr) var(--nql-game-dock) !important; gap: var(--nql-game-gap); padding-inline: .75rem; }
   body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn { width: 100%; }
 }
 @media (max-width: 768px) {
