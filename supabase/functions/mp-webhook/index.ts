@@ -104,6 +104,31 @@ function nextMonthlyExpiry(currentExpiry: string | null, now = new Date()): stri
 }
 
 const REFUND_SUFFIX = ':estorno';
+const PROFILE_FIELDS = 'is_premium, premium_plan, premium_expires_at, premium_updated_at, mp_payment_id';
+
+// Colunas que só o servidor altera (trigger da migration 017). Servem de trava
+// otimista; premium_updated_at não serve, porque o próprio usuário pode mudá-la.
+const GUARD_FIELDS = ['is_premium', 'premium_plan', 'premium_expires_at', 'mp_payment_id'] as const;
+
+/**
+ * Atualiza o perfil só se as colunas de premium não mudaram desde a leitura,
+ * para que dois avisos simultâneos não se sobrescrevam. 'conflict' pede nova tentativa.
+ */
+// deno-lint-ignore no-explicit-any
+async function guardedProfileUpdate(supabase: any, userId: string, previous: Record<string, unknown> | null,
+  fields: Record<string, unknown>): Promise<'ok' | 'conflict' | 'error'> {
+  let query = supabase.from('profiles').update(fields).eq('id', userId);
+  for (const col of GUARD_FIELDS) {
+    const value = previous?.[col] ?? null;
+    query = value === null ? query.is(col, null) : query.eq(col, value);
+  }
+  const { data, error } = await query.select('id');
+  if (error) {
+    console.error('Supabase update error:', error);
+    return 'error';
+  }
+  return data?.length ? 'ok' : 'conflict';
+}
 
 /**
  * Desfaz um pagamento estornado ou contestado. O mensal devolve os 32 dias que
@@ -112,19 +137,39 @@ const REFUND_SUFFIX = ':estorno';
  */
 // deno-lint-ignore no-explicit-any
 async function revokePayment(supabase: any, paymentId: string, userId: string, status: string): Promise<Response> {
-  const { data: rows, error: rowsError } = await supabase
-    .from('processed_payments')
-    .select('payment_id, plan')
-    .eq('user_id', userId);
-  if (rowsError) {
-    console.error('Supabase ledger read error:', rowsError);
+  const { data: current, error: currentError } = await supabase
+    .from('profiles')
+    .select(PROFILE_FIELDS)
+    .eq('id', userId)
+    .single();
+  if (currentError) {
+    console.error('Supabase profile read error:', currentError);
     return new Response('DB error', { status: 500 });
   }
 
-  const ledger: { payment_id: string; plan: string }[] = rows ?? [];
-  const granted = ledger.find(r => r.payment_id === paymentId);
-  if (!granted) {
-    logInvalidAttempt('refund_without_grant', { paymentId, userId, status });
+  const { data: grantedRow, error: grantedError } = await supabase
+    .from('processed_payments')
+    .select('payment_id, plan')
+    .eq('user_id', userId)
+    .eq('payment_id', paymentId)
+    .maybeSingle();
+  if (grantedError) {
+    console.error('Supabase ledger read error:', grantedError);
+    return new Response('DB error', { status: 500 });
+  }
+
+  const now = new Date();
+  if (!grantedRow) {
+    // Pagamento anterior ao registro em processed_payments: vale a regra antiga,
+    // que revoga quando ele é o pagamento guardado no perfil.
+    if (current?.mp_payment_id !== paymentId) {
+      logInvalidAttempt('refund_without_grant', { paymentId, userId, status });
+      return new Response('ok', { status: 200 });
+    }
+    const result = await guardedProfileUpdate(supabase, userId, current,
+      { is_premium: false, premium_expires_at: null, premium_updated_at: now.toISOString() });
+    if (result !== 'ok') return new Response('Retry', { status: result === 'conflict' ? 409 : 500 });
+    console.log(`Payment ${paymentId} ${status}: legacy grant revoked for ${userId}`);
     return new Response('ok', { status: 200 });
   }
 
@@ -140,31 +185,31 @@ async function revokePayment(supabase: any, paymentId: string, userId: string, s
     console.error('Failed to log refund idempotency:', markerError);
     return new Response('DB error', { status: 500 });
   }
+  const undoMarker = () => supabase.from('processed_payments').delete().eq('payment_id', marker);
 
-  const { data: current, error: currentError } = await supabase
-    .from('profiles')
-    .select('is_premium, premium_plan, premium_expires_at')
-    .eq('id', userId)
-    .single();
-  if (currentError) {
-    console.error('Supabase profile read error:', currentError);
-    await supabase.from('processed_payments').delete().eq('payment_id', marker);
+  // O histórico é lido depois de gravar o marcador: de dois estornos simultâneos,
+  // ao menos o último enxerga o marcador do outro.
+  const { data: rows, error: rowsError } = await supabase
+    .from('processed_payments')
+    .select('payment_id, plan')
+    .eq('user_id', userId);
+  if (rowsError) {
+    console.error('Supabase ledger read error:', rowsError);
+    await undoMarker();
     return new Response('DB error', { status: 500 });
   }
-
+  const ledger: { payment_id: string; plan: string }[] = rows ?? [];
   const refunded = new Set(ledger.filter(r => r.payment_id.endsWith(REFUND_SUFFIX))
     .map(r => r.payment_id.slice(0, -REFUND_SUFFIX.length)));
-  refunded.add(paymentId);
   const otherLifetime = ledger.some(r => r.plan === 'lifetime' && !r.payment_id.endsWith(REFUND_SUFFIX) && !refunded.has(r.payment_id));
 
-  const now = new Date();
   let update: Record<string, unknown> | null = null;
   if (current?.is_premium && current.premium_plan === 'lifetime') {
     // O vitalício só cai quando o estornado é um vitalício e não sobra outro.
-    if (granted.plan === 'lifetime' && !otherLifetime) {
+    if (grantedRow.plan === 'lifetime' && !otherLifetime) {
       update = { is_premium: false, premium_expires_at: null };
     }
-  } else if (current?.is_premium && granted.plan === 'monthly' && current.premium_expires_at) {
+  } else if (current?.is_premium && grantedRow.plan === 'monthly' && current.premium_expires_at) {
     const expires = new Date(current.premium_expires_at);
     expires.setDate(expires.getDate() - MONTHLY_DAYS);
     update = expires > now
@@ -173,14 +218,11 @@ async function revokePayment(supabase: any, paymentId: string, userId: string, s
   }
 
   if (update) {
-    const { error: revokeError } = await supabase
-      .from('profiles')
-      .update({ ...update, premium_updated_at: now.toISOString() })
-      .eq('id', userId);
-    if (revokeError) {
-      console.error('Supabase revoke error:', revokeError);
-      await supabase.from('processed_payments').delete().eq('payment_id', marker);
-      return new Response('DB error', { status: 500 });
+    const result = await guardedProfileUpdate(supabase, userId, current,
+      { ...update, premium_updated_at: now.toISOString() });
+    if (result !== 'ok') {
+      await undoMarker();
+      return new Response('Retry', { status: result === 'conflict' ? 409 : 500 });
     }
   }
 
@@ -288,7 +330,7 @@ Deno.serve(async (req) => {
 
     const { data: current, error: currentError } = await supabase
       .from('profiles')
-      .select('is_premium, premium_plan, premium_expires_at')
+      .select(PROFILE_FIELDS)
       .eq('id', userId)
       .single();
     if (currentError) {
@@ -322,27 +364,23 @@ Deno.serve(async (req) => {
       return new Response('DB error', { status: 500 });
     }
 
-    const { error } = await supabase
-      .from('profiles')
-      .update({
-        is_premium:          true,
-        premium_plan:        finalPlan,
-        premium_expires_at:  expiresAt,
-        premium_updated_at:  new Date().toISOString(),
-        // O vitalício guarda o pagamento que o concedeu: o estorno de um mensal
-        // comprado depois não pode retirá-lo.
-        ...(keepsLifetime ? {} : { mp_payment_id: paymentId }),
-      })
-      .eq('id', userId);
+    const result = await guardedProfileUpdate(supabase, userId, current, {
+      is_premium:          true,
+      premium_plan:        finalPlan,
+      premium_expires_at:  expiresAt,
+      premium_updated_at:  new Date().toISOString(),
+      // O vitalício guarda o pagamento que o concedeu.
+      ...(keepsLifetime ? {} : { mp_payment_id: paymentId }),
+    });
 
-    if (error) {
-      console.error('Supabase update error:', error);
+    if (result !== 'ok') {
       // Desfaz o marcador de idempotência: a ativação NÃO ocorreu, então o
       // retry do Mercado Pago precisa reprocessar este pagamento. Sem este
       // rollback, o 23505 do retry pularia a ativação e o usuário ficaria
-      // "pago mas não ativado".
+      // "pago mas não ativado". Um conflito (outro aviso mudou o perfil no
+      // meio) também volta para nova tentativa, com o perfil relido.
       await supabase.from('processed_payments').delete().eq('payment_id', paymentId);
-      return new Response('DB error', { status: 500 });
+      return new Response(result === 'conflict' ? 'Retry' : 'DB error', { status: result === 'conflict' ? 409 : 500 });
     }
 
     console.log(`✅ User ${userId} activated ${finalPlan} (expires: ${expiresAt ?? 'never'})`);
