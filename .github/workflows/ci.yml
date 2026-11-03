@@ -5,6 +5,39 @@ on:
     branches: [main]
 
 jobs:
+  # Pagamento + premium precisam ser atômicos mesmo com duas notificações juntas.
+  payments:
+    name: Payment transactions (PostgreSQL)
+    runs-on: ubuntu-24.04
+    services:
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_PASSWORD: local-test-only
+          POSTGRES_DB: nq_payments_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.22.3'
+          cache: npm
+          cache-dependency-path: tests/payments/package-lock.json
+      - name: Install payment test dependencies
+        working-directory: tests/payments
+        run: npm ci --ignore-scripts
+      - name: Verify grants, refunds, rollback, permissions and concurrent notifications
+        working-directory: tests/payments
+        run: npm test
+        env:
+          NQ_PAYMENTS_DATABASE_URL: postgresql://postgres:local-test-only@127.0.0.1:5432/nq_payments_test
+
   quality:
     name: Quality Gates
     runs-on: ubuntu-latest
