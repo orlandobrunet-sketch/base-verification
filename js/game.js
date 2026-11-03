@@ -5791,6 +5791,7 @@
       const pagina = document.getElementById('forjaPage');
       if (!pagina || !_forja) return;
       _forja.pendente = state.forjaPending;
+      if (_forja.revelar) _forja.interacaoLiberadaEm = performance.now() + 500;
       const detalhesAbertos = !!pagina.querySelector('.nq-forja-equipamento[open]');
       const opcao = (tipo, titulo, descricao) => {
         const motivo = _forjaBloqueio(tipo);
@@ -5849,13 +5850,26 @@
             </div>
           </details>
         </div>`;
+      // O segundo gesto da compra não pode decidir o item que acabou de aparecer.
+      const espera = Math.max(0, (_forja.interacaoLiberadaEm || 0) - performance.now());
+      const resultadoAtual = pagina.querySelector('#forjaResultado');
+      const acoes = [...resultadoAtual.querySelectorAll('button[data-action]')];
+      if (espera > 0 && acoes.length) {
+        const sessao = _forja;
+        acoes.forEach(botao => { botao.disabled = true; });
+        setTimeout(() => {
+          if (_forja !== sessao || !resultadoAtual.isConnected || !_matchesJourneyBinding(sessao.binding)) return;
+          acoes.forEach(botao => { botao.disabled = false; });
+          if (document.activeElement === resultadoAtual) _forjaFocarResultado();
+        }, espera);
+      }
       // A martelada toca só na renderização que segue a forja.
       _forja.revelar = false;
     }
 
     function _forjaFocarResultado() {
       const alvo = _forja?.pendente
-        ? document.querySelector('#forjaResultado [data-action="decidirForja"]')
+        ? document.querySelector('#forjaResultado [data-action="decidirForja"]:not(:disabled)') || document.getElementById('forjaResultado')
         : document.getElementById('forjaResultado');
       alvo?.focus({ preventScroll: true });
       alvo?.scrollIntoView({ block: 'nearest' });
@@ -6874,6 +6888,8 @@
       // Garantir que a barra de status mobile não sobreponha os menus da welcome screen
       document.getElementById('mobileStatusBar')?.classList.remove('active');
       refreshWelcomeSave();
+      const title = ws?.querySelector('#atriumTitle');
+      if (title) { title.tabIndex = -1; title.focus({ preventScroll: true }); }
       if (typeof startWelcomeMusic === 'function' && musicEnabled && !welcomeMusicStarted) startWelcomeMusic(true);
     }
     window.goToWelcomeFromGame = goToWelcomeFromGame;
@@ -6895,6 +6911,7 @@
       let drawerCloseTimer = null;
       function isMobile() { return window.innerWidth <= 768; }
       function openDrawer() {
+        leftPanel.inert = false;
         clearTimeout(drawerCloseTimer);
         leftPanel._drawerReturnFocus = document.activeElement;
         // No modo arqui-nefromante-final (mobile), mostrar o herói individual normalmente
@@ -7029,12 +7046,14 @@
           leftPanel._drawerReturnFocus.focus({ preventScroll: true });
         }
         leftPanel._drawerReturnFocus = null;
+        leftPanel.inert = isMobile();
       }
       // Expor globalmente para o botão do bottom dock
       window.openMobileDrawer = openDrawer;
       // (window._applyMobileState removido em v10.90 — sem chamadores externos;
       //  applyMobileState() é chamado internamente direto)
       function applyMobileState() {
+        leftPanel.inert = isMobile() && !leftPanel.classList.contains('mobile-open');
         const heroBtn = document.getElementById('mobileHeroBtn');
         if (isMobile()) {
           const mainAppVisible = !document.getElementById('mainApp').classList.contains('hidden');

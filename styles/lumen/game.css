@@ -61,6 +61,7 @@ body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.
   --nql-game-rail: 320px;
   --nql-game-dock: 82px;
   --nql-game-gap: 28px;
+  --nql-game-mobile-inset: .75rem;
   --nql-clinical-black: rgba(4, 7, 14, .94);
   --nql-choice-black: rgba(5, 8, 16, .95);
   --nql-hud-black: rgba(3, 5, 11, .9);
@@ -1509,7 +1510,7 @@ body.reading-mode:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[d
 
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] {
     width: 100%;
-    padding: 0 .75rem .75rem;
+    padding: 0 var(--nql-game-mobile-inset) .75rem;
     grid-template-columns: minmax(0, 1fr);
     gap: .7rem;
   }
@@ -1692,8 +1693,8 @@ body.reading-mode:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[d
 }
 
 @media (max-width: 370px) {
-  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] {
-    padding-inline: .45rem;
+  #mainApp[data-nq-ui="lumen"] {
+    --nql-game-mobile-inset: .45rem;
   }
 
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .game-title .subtitle {

@@ -56,19 +56,28 @@ test('recompensa da forja dá destaque ao equipamento e reflow sem cortes', asyn
   }
 });
 
-test('fase final mantém a largura das três colunas da jornada', async ({ page, isMobile }) => {
-  test.skip(isMobile, 'comparação das três colunas do computador');
+test('fase final mantém as larguras da jornada, inclusive no reflow', async ({ page, isMobile }) => {
+  test.skip(isMobile, 'O cenário fixa as próprias viewports de desktop e mobile.');
   await jogo(page, 1440);
-  for (const width of [1440, 1280, 1100]) {
+  for (const width of [1440, 1280, 1100, 768, 390, 320]) for (const font of [16, 32]) {
     await page.setViewportSize({ width, height: 900 });
-    await page.evaluate(() => document.body.classList.remove('boss-battle-mode', 'arqui-nefromante-final'));
-    const measure = () => page.locator('#mainApp').evaluate(el => ({
-      tracks: getComputedStyle(el).gridTemplateColumns, gap: getComputedStyle(el).columnGap,
-      padding: getComputedStyle(el).paddingInline, width: el.getBoundingClientRect().width,
-    }));
-    const normal = await measure();
-    await page.evaluate(() => document.body.classList.add('boss-battle-mode', 'arqui-nefromante-final'));
-    expect(await measure()).toEqual(normal);
+    await page.evaluate(size => { document.documentElement.style.fontSize = size + 'px'; }, font);
+    const phase = async (correct: number) => {
+      await page.evaluate(value => { (0, eval)('state.correctTotal=' + value + ';renderHUD();updateBossUI();'); }, correct);
+      await page.evaluate(async () => { await document.fonts.ready; await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))); });
+    };
+    const measure = () => page.locator('#mainApp').evaluate(el => {
+      const style = getComputedStyle(el), question = el.querySelector('.panel.right')!.getBoundingClientRect();
+      return { tracks: style.gridTemplateColumns, gap: innerWidth > 768 ? style.columnGap : null,
+        padding: style.paddingInline, width: el.getBoundingClientRect().width,
+        leftWidth: innerWidth > 768 ? el.querySelector('.panel.left')!.getBoundingClientRect().width : null,
+        questionWidth: question.width, questionX: question.x };
+    });
+    await phase(15); const normal = await measure();
+    await phase(90); await expect(page.locator('body')).toHaveClass(/arqui-nefromante-final/);
+    const final = await measure();
+    await test.info().attach('colunas-' + width + '-' + font, { contentType: 'application/json', body: JSON.stringify({ width, font, normal, final }) });
+    expect(final, width + 'px / fonte ' + font + 'px').toEqual(normal);
   }
 });
 
