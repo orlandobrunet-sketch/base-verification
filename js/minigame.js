@@ -1212,6 +1212,7 @@
       modal.innerHTML = `
         <section class="nqreview-card" aria-describedby="sessionReviewCount">
           <header class="nqreview-header">
+            <div class="nqreview-emblem" aria-hidden="true"><svg viewBox="0 0 64 64"><path class="nqreview-emblem-ring" d="M32 3 40 8 49 9 54 18 61 25 58 35 58 44 48 49 42 58 32 57 22 58 16 49 6 44 6 35 3 25 10 18 15 9 24 8Z"/><path d="M41 24a11 11 0 1 0 2 9M43 17v8h-8"/><path d="M32 26v7l4 3"/></svg></div>
             <h2 id="sessionReviewTitle">Erros da Jornada</h2>
             <p id="sessionReviewCount">${wrongs.length} ${wrongs.length>1?'questões erradas':'questão errada'} nesta sessão</p>
           </header>

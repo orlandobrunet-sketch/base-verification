@@ -87,6 +87,22 @@ async function verifySignature(req: Request, rawBody: string): Promise<boolean> 
   return true;
 }
 
+// Preço de cada plano, igual ao de create-mp-preference. Pagamento abaixo disso não ativa.
+const PLAN_AMOUNT: Record<string, number> = { monthly: 14.90, lifetime: 199.00 };
+const MONTHLY_DAYS = 32;
+
+/**
+ * Vencimento do mensal: soma 32 dias a partir do vencimento atual quando ele
+ * ainda está no futuro, para que renovar antes da hora não descarte dias pagos.
+ */
+function nextMonthlyExpiry(currentExpiry: string | null, now = new Date()): string {
+  const current = currentExpiry ? new Date(currentExpiry) : null;
+  const base = current && current > now ? current : now;
+  const expires = new Date(base);
+  expires.setDate(expires.getDate() + MONTHLY_DAYS);
+  return expires.toISOString();
+}
+
 Deno.serve(async (req) => {
   // Mercado Pago às vezes envia GET para validar o endpoint
   if (req.method === 'GET') {
@@ -148,11 +164,6 @@ Deno.serve(async (req) => {
     const payment = await mpRes.json();
     console.log('Payment status:', payment.status, 'ref:', payment.external_reference);
 
-    // Só processa pagamentos aprovados
-    if (payment.status !== 'approved') {
-      return new Response('ok', { status: 200 });
-    }
-
     // external_reference: "user_id:plan" (ex: "abc-123:monthly")
     const ref: string = payment.external_reference ?? '';
     const colonIdx = ref.lastIndexOf(':');
@@ -164,19 +175,57 @@ Deno.serve(async (req) => {
     const userId = ref.substring(0, colonIdx);
     const plan   = ref.substring(colonIdx + 1); // 'monthly' | 'lifetime'
 
-    // Calcular expiração
-    let expiresAt: string | null = null;
-    if (plan === 'monthly') {
-      const expires = new Date();
-      expires.setDate(expires.getDate() + 32); // 32 dias de margem
-      expiresAt = expires.toISOString();
-    }
-    // lifetime → expiresAt permanece null (nunca expira)
-
     const supabase = createClient(
       Deno.env.get('SUPABASE_URL')!,
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
     );
+
+    // Estorno ou contestação: retira o acesso que este pagamento concedeu.
+    if (payment.status === 'refunded' || payment.status === 'charged_back') {
+      const { error: revokeError } = await supabase
+        .from('profiles')
+        .update({ is_premium: false, premium_expires_at: null, premium_updated_at: new Date().toISOString() })
+        .eq('id', userId)
+        .eq('mp_payment_id', paymentId);
+      if (revokeError) {
+        console.error('Supabase revoke error:', revokeError);
+        return new Response('DB error', { status: 500 });
+      }
+      console.log(`Payment ${paymentId} ${payment.status}: access revoked for ${userId}`);
+      return new Response('ok', { status: 200 });
+    }
+
+    // Só processa pagamentos aprovados
+    if (payment.status !== 'approved') {
+      return new Response('ok', { status: 200 });
+    }
+
+    const expectedAmount = PLAN_AMOUNT[plan];
+    if (expectedAmount === undefined || payment.currency_id !== 'BRL' ||
+        !(Number(payment.transaction_amount) >= expectedAmount)) {
+      logInvalidAttempt('amount_or_plan_mismatch', {
+        paymentId, plan, amount: payment.transaction_amount, currency: payment.currency_id,
+      });
+      return new Response('ok', { status: 200 });
+    }
+
+    const { data: current, error: currentError } = await supabase
+      .from('profiles')
+      .select('is_premium, premium_plan, premium_expires_at')
+      .eq('id', userId)
+      .single();
+    if (currentError) {
+      console.error('Supabase profile read error:', currentError);
+      return new Response('DB error', { status: 500 });
+    }
+
+    // Quem já tem o vitalício e compra o mensal continua vitalício.
+    const keepsLifetime = current?.is_premium && current.premium_plan === 'lifetime';
+    const finalPlan = keepsLifetime ? 'lifetime' : plan;
+    // lifetime → expiresAt null (nunca expira)
+    const expiresAt = finalPlan === 'monthly'
+      ? nextMonthlyExpiry(current?.is_premium ? current.premium_expires_at : null)
+      : null;
 
     // Tenta registrar o pagamento para garantir idempotência (chave única)
     const { error: insertError } = await supabase
@@ -200,10 +249,12 @@ Deno.serve(async (req) => {
       .from('profiles')
       .update({
         is_premium:          true,
-        premium_plan:        plan,
+        premium_plan:        finalPlan,
         premium_expires_at:  expiresAt,
         premium_updated_at:  new Date().toISOString(),
-        mp_payment_id:       paymentId,
+        // O vitalício guarda o pagamento que o concedeu: o estorno de um mensal
+        // comprado depois não pode retirá-lo.
+        ...(keepsLifetime ? {} : { mp_payment_id: paymentId }),
       })
       .eq('id', userId);
 
@@ -217,7 +268,7 @@ Deno.serve(async (req) => {
       return new Response('DB error', { status: 500 });
     }
 
-    console.log(`✅ User ${userId} activated ${plan} (expires: ${expiresAt ?? 'never'})`);
+    console.log(`✅ User ${userId} activated ${finalPlan} (expires: ${expiresAt ?? 'never'})`);
     return new Response('ok', { status: 200 });
 
   } catch (err) {

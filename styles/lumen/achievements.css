@@ -221,3 +221,46 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-achievement-copy { margin: 0; color: var(--nql-text-soft); font-size: .875rem; line-height: 1.4; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-achievement-progress { margin-top: .5rem; padding: 0; border: 0; font-size: .8125rem; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-achievement-catalog-header { margin-top: 1.75rem; }
+
+/* Computador: a frase de abertura em uma linha e menos espaço morto, para o
+   Caminho dos 100 acertos caber inteiro na primeira tela. */
+@media (min-width: 61.26rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-content > #nqdPane-achievements > .nqd-section-header .nqd-section-copy { max-width: none; }
+  #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-achievement-spotlight { padding-block: 1.1rem; margin-top: 1rem; }
+  #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-achievement-spotlight-art { width: min(100%, 8.5rem); }
+  #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-achievement-spotlight-copy h2 { font-size: clamp(1.6rem, 2.6vw, 2.4rem); }
+  #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-trophy-showcase { margin: 1rem 0 1rem; padding: .5rem 0 1rem; }
+  #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-badge-path-header { margin-top: 1rem; }
+  #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-badge-path { margin-top: .9rem; }
+}
+
+/* Detalhe da conquista: a arte ganha moldura e luz da própria conquista
+   (dourada quando é sua, prata quando falta), o estado vira um selo e a
+   entrada tem um único movimento. */
+.nq-ach-detail { --ach: #e7c873; --ach-rgb: 231, 200, 115; position: relative; border-color: rgba(var(--ach-rgb), .42); background: radial-gradient(ellipse at 24% 46%, rgba(var(--ach-rgb), .11), transparent 55%), linear-gradient(135deg, #15232f, #0b141d 70%); }
+.nq-ach-detail.is-locked { --ach: #a9bccb; --ach-rgb: 169, 188, 203; }
+.nq-ach-detail::before { content: ""; position: absolute; inset: 0 0 auto; height: 2px; background: linear-gradient(90deg, transparent, var(--ach), transparent); pointer-events: none; }
+.nq-ach-detail-art { position: relative; box-sizing: border-box; padding: 14px; border: 1px solid rgba(var(--ach-rgb), .55); border-radius: 14px; background: radial-gradient(circle at 50% 45%, rgba(var(--ach-rgb), .2), #070d14 72%); box-shadow: inset 0 0 0 4px #0a121a, inset 0 0 0 5px rgba(var(--ach-rgb), .22), 0 18px 40px #0008, 0 0 44px rgba(var(--ach-rgb), .12); }
+.nq-ach-detail-art img { border-radius: 8px; }
+.nq-ach-detail-state { display: inline-flex; align-items: center; gap: .45rem; padding: 4px 12px; border: 1px solid rgba(var(--ach-rgb), .55); border-radius: 999px; background: rgba(var(--ach-rgb), .1); color: var(--ach); font-size: .78rem; font-weight: 600; letter-spacing: .02em; }
+.nq-ach-detail.is-locked .nq-ach-detail-state { color: #d3dde5; }
+.nq-ach-detail.is-unlocked .nq-ach-detail-state::before { content: "✦"; font-size: .9em; }
+.nq-ach-detail h2 { margin-top: .9rem; font-size: 2rem; }
+.nq-ach-detail #nqAchievementArtworkRequirement { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(var(--ach-rgb), .2); }
+.nq-ach-detail.is-unlocked footer button { border-color: rgba(var(--ach-rgb), .6); background: rgba(var(--ach-rgb), .1); color: #f3e7c6; }
+.nq-ach-detail.is-unlocked footer button:hover { background: rgba(var(--ach-rgb), .18); }
+@media (max-width: 600px) {
+  .nq-ach-detail h2 { font-size: 1.45rem; }
+  .nq-ach-detail-art { padding: 10px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .nq-ach-detail[open] .nq-ach-detail-art { animation: nq-ach-surge .45s cubic-bezier(.2, .8, .3, 1) both; }
+  .nq-ach-detail.is-unlocked[open] .nq-ach-detail-art img { animation: nq-ach-glow 1.4s ease-out .25s both; }
+}
+@keyframes nq-ach-surge { from { opacity: 0; transform: scale(.93); } }
+@keyframes nq-ach-glow {
+  0% { filter: drop-shadow(0 0 0 rgba(var(--ach-rgb), 0)); }
+  40% { filter: drop-shadow(0 0 22px rgba(var(--ach-rgb), .55)); }
+  100% { filter: drop-shadow(0 0 8px rgba(var(--ach-rgb), .22)); }
+}
+.nq-ach-detail.is-unlocked .nq-ach-detail-progress [role="progressbar"] > span { background: var(--ach); }

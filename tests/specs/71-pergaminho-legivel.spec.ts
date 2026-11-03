@@ -19,7 +19,7 @@ for (const largura of [1280, 390]) {
     await page.waitForLoadState('load');
     await page.evaluate(() => document.fonts.ready);
     await page.evaluate(() => (0, eval)('showChestModal(nefroArticles[0], 1, 40)'));
-    const artigo = page.locator('#chestArticle .article-card');
+    const artigo = page.locator('#chestArticle');
     await expect(artigo).toBeVisible();
     // Mede depois da animação de entrada: no meio dela a opacidade ainda sobe.
     await page.waitForFunction(() => document.getAnimations().every(a => a.playState !== 'running' || (a.effect as any)?.getTiming?.().iterations === Infinity));

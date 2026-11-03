@@ -803,16 +803,26 @@
     }
     function _invalidatePremiumCache() { _isPremiumCache = null; }
 
+    // O mensal grava a data de vencimento e nada no banco desliga is_premium depois;
+    // por isso a data também é conferida aqui. Vitalício tem a data vazia.
+    function _premiumAtivo(profile) {
+      if (!profile?.is_premium) return false;
+      return !profile.premium_expires_at || new Date(profile.premium_expires_at) > new Date();
+    }
+    window._premiumAtivo = _premiumAtivo;
+
     async function _loadPremiumFromDB() {
       if (!_supaClient || !authUser) return;
       if (isAdminUser()) return;
       try {
-        const { data: profile } = await _supaClient
+        const { data: profile, error } = await _supaClient
           .from('profiles')
-          .select('is_premium')
+          .select('is_premium, premium_expires_at')
           .eq('id', authUser.id)
           .single();
-        if (profile?.is_premium) {
+        // Falha de rede não é resposta: sem isto, quem pagou perdia o premium guardado.
+        if (error) return;
+        if (_premiumAtivo(profile)) {
           localStorage.setItem(PREMIUM_KEY, '1');
           localStorage.setItem('nefroquest-premium-sig', _generatePremiumSignature(authUser.id));
           localStorage.removeItem(WHITELIST_KEY);
@@ -824,11 +834,12 @@
           localStorage.removeItem('nefroquest-premium-sig');
         }
         // Check whitelist
-        const { data: wl } = await _supaClient
+        const { data: wl, error: wlError } = await _supaClient
           .from('access_whitelist')
           .select('email')
           .eq('email', authUser.email)
           .maybeSingle();
+        if (wlError) { _invalidatePremiumCache(); return; }
         if (wl?.email) {
           localStorage.setItem(WHITELIST_KEY, '1');
           localStorage.setItem('nefroquest-whitelist-sig', _generatePremiumSignature(authUser.email));
@@ -6369,22 +6380,30 @@
       
       const rarities = { 'lendário':'legendary', 'épico':'epic', 'raro':'rare', 'incomum':'uncommon', 'comum':'common' };
       const rarity = rarities[article.raridade] || 'common';
-      modal.querySelector('.chest-content').dataset.rarity = rarity;
-      document.getElementById('chestTitle').textContent = 'Pergaminho encontrado';
-      document.getElementById('chestRarity').textContent = article.raridade ? article.raridade.charAt(0).toUpperCase() + article.raridade.slice(1) : 'Comum';
+      const card = modal.querySelector('.chest-content');
+      card.dataset.rarity = rarity;
+      card.dataset.readerRarity = rarities[article.raridade] ? article.raridade : 'comum';
+      const rarityLabel = article.raridade ? article.raridade.charAt(0).toUpperCase() + article.raridade.slice(1) : 'Comum';
+      document.getElementById('chestSealText').textContent = `${rarityLabel} · Acervo científico`;
+      // Mesma estrutura do resumo de artigo (utils.js, _showResumoModal), com a recompensa do baú.
+      const secao = (chave, titulo, texto) => `<section class="nqreader-section nqreader-${chave}"><h3>${titulo}</h3><p>${escapeHtml(texto)}</p></section>`;
       articleDiv.innerHTML = `
-        <div class="article-card nqscroll-article">
-          <header class="nqscroll-identity">
-            <h3>${escapeHtml(article.titulo)} (${escapeHtml(String(article.ano))})</h3>
-            <p class="nqscroll-authors">${escapeHtml(article.autores)}</p>
-            <p class="nqscroll-journal">${escapeHtml(article.jornal)}</p>
-          </header>
-          <div class="nqscroll-reward"><span><strong>+${escapeHtml(String(knoGain))}</strong> Conhecimento</span><span><strong>+${escapeHtml(String(chestPoints))}</strong> Pontos</span><small>${state.chestsOpened} baús abertos</small></div>
-          <div class="nqscroll-sections">
-            <section><h4>Resumo</h4><p>${escapeHtml(article.resumo)}</p></section>
-            <section><h4>Conclusão principal</h4><p>${escapeHtml(article.conclusao)}</p></section>
-            <section><h4>Curiosidade</h4><p>${escapeHtml(article.curiosidade)}</p></section>
-            <section><h4>Impacto na nefrologia</h4><p>${escapeHtml(article.impacto)}</p></section>
+        <header class="nqreader-heading">
+          <div class="nqreader-emblem" aria-hidden="true">
+            <svg class="nqscroll-seal" viewBox="0 0 64 64" fill="none"><path class="nqreader-seal-ring" d="M32 3 40 8 49 9 54 18 61 25 58 35 58 44 48 49 42 58 32 57 22 58 16 49 6 44 6 35 3 25 10 18 15 9 24 8Z"/><path d="M22 18h20c4 0 4 7 0 7H28m-6-7c-4 0-4 7 0 7h3m-3-7v19c0 4 5 6 8 3m-4-15v12h14c4 0 4 7 0 7H28m12-19v12M30 30h6m-6 5h6"/><path class="nqreader-seal-spark" d="m32 8 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z"/></svg>
+          </div>
+          <p class="nqnarr-chapter" id="chestTitle">Pergaminho encontrado${article.ano ? ' · ' + escapeHtml(String(article.ano)) : ''}</p>
+          <h2 class="nqscroll-identity">${escapeHtml(article.titulo)}</h2>
+          <div class="nqreader-meta"><span id="chestRarity" class="nqreader-rarity nqscroll-rarity">${escapeHtml(rarityLabel)}</span><span class="nqreader-type">Artigo</span></div>
+          <p class="nqreader-reference"><span class="nqscroll-authors">${escapeHtml(article.autores)}</span><br><em class="nqscroll-journal">${escapeHtml(article.jornal)}</em></p>
+          <p class="nqscroll-reward"><span><strong>+${escapeHtml(String(knoGain))}</strong> Conhecimento</span><span><strong>+${escapeHtml(String(chestPoints))}</strong> Pontos</span><small>${state.chestsOpened} baús abertos</small></p>
+        </header>
+        <div class="nqreader-sections nqscroll-sections">
+          ${secao('resumo', 'Resumo', article.resumo)}
+          <div class="nqreader-details">
+            ${secao('conclusao', 'Conclusão principal', article.conclusao)}
+            ${secao('curiosidade', 'Curiosidade', article.curiosidade)}
+            ${secao('impacto', 'Impacto na nefrologia', article.impacto)}
           </div>
         </div>
       `;
