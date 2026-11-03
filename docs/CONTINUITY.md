@@ -2,6 +2,8 @@
 
 ## Estado atual — 03/11/2026
 
+**16.62 publicada:** PR927 integrado por squash, merge `ecab179b0af7bbdc05d6539bc1962628a947b6fc`; CI994 aprovada com 2.376 testes completos, 258 skips previstos e zero falhas, retentativas ou flaky. Pages 41715806628 aprovado. Os 14 arquivos públicos conferidos coincidem com o merge; o navegador confirmou o card lendário dourado.
+
 **Histórico da 16.60:** PR926 integrado, merge `033fc10d010e6c8b60e5a194325830307c1957f4`; CI991 e Pages aprovados, 12 arquivos conferidos contra a main. O proprietário aplicou a migration 020 e publicou `mp-webhook` v14: corpo da RPC, fonte da função e permissões confirmados no Supabase. Compra/estorno reais continuam sem certificação.
 
 **Pedido atual:** registrar e executar os [sete ajustes de 03/11](design/NQ_REQUESTS_2026-11-03.md), começando pela Biblioteca. O proprietário autorizou decidir a ordem. As imagens e os critérios estão no documento; a expansão de TTKG depende do gate editorial.

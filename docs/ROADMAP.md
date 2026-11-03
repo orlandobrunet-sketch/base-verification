@@ -8,6 +8,8 @@ Este documento controla direção, prioridade e critérios de conclusão. Ele n�
 
 ## Estado operacional — 03/11/2026
 
+**Atualização: 16.62 publicada (PR927).** CI994 e Pages aprovados; 14 arquivos públicos idênticos ao merge. Revisão posterior de layout, jogabilidade e transições em andamento. A candidata 16.63 corrige seis achados de foco, reflow e interação na Forja; [relatório](design/NQ_AUDITORIA_LAYOUT_JOGABILIDADE_2026-11-03.md). Alternativas e referências continuam para um segundo momento.
+
 **Marco anterior: 16.60, PR926.** CI991 aprovada: 2.349 testes completos, 253 skips previstos, 130 testes rápidos e 19 cenários de pagamentos. Deploy Pages e 12 arquivos estáticos conferidos. O proprietário aplicou a migration 020 e publicou `mp-webhook` v14; código e permissões confirmados no Supabase. Compra e estorno reais ainda não foram certificados. A consolidação visual, a direção das aberturas e o classificador entraram em 30/10. As pendências ficam em [`CONTINUITY.md`](CONTINUITY.md), que prevalece sobre os status históricos abaixo.
 
 **Rodada solicitada em 03/11:** sete pedidos registrados em [NOV03-01 a NOV03-07](design/NQ_REQUESTS_2026-11-03.md): sigla TTKG, colunas da fase final, faixa de vidas/sequência, recompensa da Forja, alinhamento/moldura da Forja, menu animado do Átrio e divergência de contagem da Biblioteca. Autorizado avançar pela ordem técnica mais adequada; a alteração da questão mantém gate editorial próprio.
