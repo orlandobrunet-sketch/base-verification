@@ -2289,6 +2289,11 @@
     const filter = root.querySelector('#nqDashLibraryFilter')?.value || 'all';
     const discovery = root.querySelector('#nqDashLibraryDiscovery')?.value || 'unlocked';
     const items = [...list.querySelectorAll('[data-library-entry]')];
+    // A aba acompanha o universo escolhido (catálogo, descobertos ou a descobrir),
+    // antes da busca. A prévia administrativa nunca grava descobertas reais.
+    const allCount = root.querySelector('#nqDashLibraryTab-all [data-library-count]');
+    if (allCount) allCount.textContent = String(items.filter(item => discovery === 'all'
+      || (discovery === 'unlocked' ? item.dataset.libraryDiscovered === 'true' : item.dataset.libraryDiscovered !== 'true')).length);
     const title = item => item.dataset.libraryTitle || '';
     const year = item => {
       const parsed = Number.parseInt(item.dataset.libraryYear, 10);

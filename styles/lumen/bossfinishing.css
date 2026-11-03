@@ -15,7 +15,6 @@
  body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #heroImg,#mainApp[data-nq-ui="lumen"] #heroImg[data-nq-poison-v2]{animation:none!important;translate:none!important;scale:none!important}
  #mainApp[data-nq-ui="lumen"] #heroImg[data-nq-poison-v2]{object-fit:contain!important;object-position:center!important;transform:none!important;mask-image:none!important;background:#0b0a12}
  #mainApp[data-nq-ui="lumen"] .portrait-frame:has(#heroImg[data-nq-poison-v2]){align-self:center;aspect-ratio:1;height:auto!important}
- body.boss-battle-mode #mainApp[data-nq-ui="lumen"]{width:min(100%,1336px);padding-inline:28px}
  body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #bossLogSection{max-height:none;overflow:visible}
  body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #bossLogEntries{max-height:170px;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable}
  body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .equip-stun-overlay{grid-row:auto;grid-column:1/-1;position:relative;padding:8px 10px;font-size:.75rem;background:#20172b;color:#e4d8ee;border:1px solid #b9a4d27d;box-shadow:none}
@@ -36,3 +35,6 @@
  }
  #nqBossStatic[data-outcome="defeat"] .nq-static-atmosphere{opacity:.35;background:linear-gradient(0deg,#32113b66,transparent 65%)}
 }}
+@media (min-width:769px) and (max-width:78rem) {
+ body.boss-battle-mode #mainApp[data-nq-ui="lumen"]{padding-inline:.75rem}
+}

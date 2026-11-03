@@ -1,6 +1,14 @@
 # Continuidade do NefroQuest
 
-## Estado atual — 31/10/2026
+## Estado atual — 03/11/2026
+
+**16.60 publicada:** PR926 integrado, merge `033fc10d010e6c8b60e5a194325830307c1957f4`; CI991 e Pages aprovados, 12 arquivos conferidos contra a main. O proprietário aplicou a migration 020 e publicou `mp-webhook` v14: corpo da RPC, fonte da função e permissões confirmados no Supabase. Compra/estorno reais continuam sem certificação.
+
+**Pedido atual:** registrar e executar os [sete ajustes de 03/11](design/NQ_REQUESTS_2026-11-03.md), começando pela Biblioteca. O proprietário autorizou decidir a ordem. As imagens e os critérios estão no documento; a expansão de TTKG depende do gate editorial.
+
+**Candidata 16.61:** seis ajustes técnicos implementados na branch `codex/ajustes-pedidos-1661`; validação/publicação finais pendentes. TTKG permanece na fila, com triagem formal BLOQUEADA e banco intacto. O contador 158/544 misturava descobertas reais e catálogo administrativo; os 544 estudos já estavam montados.
+
+### Contexto da entrega 16.60
 
 **Base de produção conferida antes desta entrega:** 16.58. **Entrega deste PR:** 16.60 (PR926; CI do HEAD final e conferência do deploy obrigatórias), com o lote de acabamento sobre o Dashboard redesenhado como Sala do Herói (16.52), além dos itens P1, dois lotes de P2 da [auditoria de jogo](design/NQ_AUDITORIA_AGENCIA_2026-10-30.md) e a lista de ajustes do dono. Base anterior, 16.52. A consolidação visual (PR906), a direção das aberturas (PR908), a vitrine (PR907), notebooks com toque (PR909), o retrato parado (PR910), o classificador (PR911) e o PR912 entraram em 30/10. O proprietário autorizou agir e publicar sem nova consulta; o gate editorial de `data/topics.js` continua valendo.
 
@@ -9,7 +17,7 @@
 ### Revisão de 02/11
 
 - **Premium mensal não vencia.** O app só lia `is_premium`, e nada no banco o desliga depois dos 32 dias. A 16.59 passou a conferir `premium_expires_at` no app. Uma falha de rede ao ler o perfil também apagava o premium guardado; agora é ignorada.
-- **Webhook `mp-webhook` (no repositório, falta publicar):** renovar o mensal antes do vencimento soma os dias em vez de descartá-los; comprar o mensal não rebaixa quem tem o vitalício; estorno e contestação retiram só o que aquele pagamento concedeu, a partir de `processed_payments` (o mensal devolve 32 dias, o vitalício cai se não restar outro), uma vez por estorno; pagamento abaixo do preço ou fora de BRL não ativa. A revisão do Codex reproduziu aprovação e estorno simultâneos deixando premium ativo. A migration `020_atomic_mp_payment.sql` faz histórico e premium na mesma transação, bloqueia o perfil e guarda estorno antecipado. **Ordem obrigatória do proprietário:** aplicar a migration 020 no SQL Editor e só depois rodar `supabase functions deploy mp-webhook`. Ambas as etapas continuam pendentes em produção.
+- **Webhook `mp-webhook` (publicado na v14 em 03/11):** renovar o mensal antes do vencimento soma os dias em vez de descartá-los; comprar o mensal não rebaixa quem tem o vitalício; estorno e contestação retiram só o que aquele pagamento concedeu, a partir de `processed_payments` (o mensal devolve 32 dias, o vitalício cai se não restar outro), uma vez por estorno; pagamento abaixo do preço ou fora de BRL não ativa. A revisão do Codex reproduziu aprovação e estorno simultâneos deixando premium ativo. A migration `020_atomic_mp_payment.sql` faz histórico e premium na mesma transação, bloqueia o perfil e guarda estorno antecipado. **Ativação concluída pelo proprietário:** migration antes do deploy; ambas conferidas em produção. A RPC só permite execução pelo service role.
 - **Oráculo e diagnóstico** liberam consultas sem limite por `app_metadata.premium`, que o pagamento nunca grava. Quem paga fica com o limite gratuito. O paywall não promete IA ilimitada, então ficou como está até a decisão.
 - **Sentry:** nenhum erro de jogador em 30 dias. **Telas:** nenhuma exceção ao abrir Painel, Forja, Conta, Biblioteca, Modos, Planos, Ranking, Novidades e História, nos dois perfis.
 - **Peso:** 43 artes de equipamento em PNG de cerca de 1 MB (`assets/items/detail`) poderiam ir para WebP. Arquivos sem uso no repositório: `landing/assets/nefromancer-lumen-v3.png`, `assets/images/welcome-bg.png`.

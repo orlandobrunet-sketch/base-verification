@@ -46,6 +46,28 @@ test('admin summary reflows at 320px with enlarged text and preserves keyboard a
   expect(contrast.violations).toEqual([]);
 });
 
+test('collection count follows discoveries and the full admin catalogue without granting discoveries', async ({ page }) => {
+  await page.locator('[data-portal-route="guest"]').click();
+  await page.evaluate(() => { (window as any).isAdminUser = () => true; });
+  await page.locator('[data-atrium-route="library"]').click();
+  const entries = page.locator('[data-library-entry]');
+  const total = await entries.count();
+  const discovered = await page.locator('[data-library-entry][data-library-discovered="true"]').count();
+  const badge = page.locator('#nqDashLibraryTab-all [data-library-count]');
+  const before = await page.evaluate(() => [localStorage.getItem('unlockedArticles'), localStorage.getItem('nq-unlocked-refs')]);
+  await expect(badge).toHaveText(String(total));
+  await expect(page.locator('#nqDashLibraryCollectionCount')).toHaveText(`${total} estudos na prévia administrativa`);
+  await page.locator('#nqDashLibraryDiscovery').selectOption('unlocked');
+  await expect(badge).toHaveText(String(discovered));
+  await page.locator('#nqDashLibraryDiscovery').selectOption('locked');
+  await expect(badge).toHaveText(String(total - discovered));
+  await page.locator('#nqDashLibraryDiscovery').selectOption('all');
+  await page.locator('#nqDashLibrarySearch').fill('zzzz-sem-resultado');
+  await expect(page.locator('#nqDashLibraryCollectionCount')).toHaveText('0 estudos na prévia administrativa nesta busca');
+  await expect(badge).toHaveText(String(total));
+  expect(await page.evaluate(() => [localStorage.getItem('unlockedArticles'), localStorage.getItem('nq-unlocked-refs')])).toEqual(before);
+});
+
 test('stronger rarity strip preserves card and content geometry across rarities', async ({ page }) => {
   await page.locator('[data-portal-route="guest"]').click();
   await page.evaluate(() => { (window as any).isAdminUser = () => true; });
