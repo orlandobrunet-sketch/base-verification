@@ -103,6 +103,91 @@ function nextMonthlyExpiry(currentExpiry: string | null, now = new Date()): stri
   return expires.toISOString();
 }
 
+const REFUND_SUFFIX = ':estorno';
+
+/**
+ * Desfaz um pagamento estornado ou contestado. O mensal devolve os 32 dias que
+ * somou; o vitalício cai só se não restar outro vitalício pago. Um marcador
+ * `<id>:estorno` em processed_payments garante que o estorno conte uma vez.
+ */
+// deno-lint-ignore no-explicit-any
+async function revokePayment(supabase: any, paymentId: string, userId: string, status: string): Promise<Response> {
+  const { data: rows, error: rowsError } = await supabase
+    .from('processed_payments')
+    .select('payment_id, plan')
+    .eq('user_id', userId);
+  if (rowsError) {
+    console.error('Supabase ledger read error:', rowsError);
+    return new Response('DB error', { status: 500 });
+  }
+
+  const ledger: { payment_id: string; plan: string }[] = rows ?? [];
+  const granted = ledger.find(r => r.payment_id === paymentId);
+  if (!granted) {
+    logInvalidAttempt('refund_without_grant', { paymentId, userId, status });
+    return new Response('ok', { status: 200 });
+  }
+
+  const marker = paymentId + REFUND_SUFFIX;
+  const { error: markerError } = await supabase
+    .from('processed_payments')
+    .insert({ payment_id: marker, user_id: userId, plan: 'refund' });
+  if (markerError) {
+    if (markerError.code === '23505') {
+      console.log(`Refund ${paymentId} already processed. Skipping.`);
+      return new Response('ok', { status: 200 });
+    }
+    console.error('Failed to log refund idempotency:', markerError);
+    return new Response('DB error', { status: 500 });
+  }
+
+  const { data: current, error: currentError } = await supabase
+    .from('profiles')
+    .select('is_premium, premium_plan, premium_expires_at')
+    .eq('id', userId)
+    .single();
+  if (currentError) {
+    console.error('Supabase profile read error:', currentError);
+    await supabase.from('processed_payments').delete().eq('payment_id', marker);
+    return new Response('DB error', { status: 500 });
+  }
+
+  const refunded = new Set(ledger.filter(r => r.payment_id.endsWith(REFUND_SUFFIX))
+    .map(r => r.payment_id.slice(0, -REFUND_SUFFIX.length)));
+  refunded.add(paymentId);
+  const otherLifetime = ledger.some(r => r.plan === 'lifetime' && !r.payment_id.endsWith(REFUND_SUFFIX) && !refunded.has(r.payment_id));
+
+  const now = new Date();
+  let update: Record<string, unknown> | null = null;
+  if (current?.is_premium && current.premium_plan === 'lifetime') {
+    // O vitalício só cai quando o estornado é um vitalício e não sobra outro.
+    if (granted.plan === 'lifetime' && !otherLifetime) {
+      update = { is_premium: false, premium_expires_at: null };
+    }
+  } else if (current?.is_premium && granted.plan === 'monthly' && current.premium_expires_at) {
+    const expires = new Date(current.premium_expires_at);
+    expires.setDate(expires.getDate() - MONTHLY_DAYS);
+    update = expires > now
+      ? { premium_expires_at: expires.toISOString() }
+      : { is_premium: false, premium_expires_at: null };
+  }
+
+  if (update) {
+    const { error: revokeError } = await supabase
+      .from('profiles')
+      .update({ ...update, premium_updated_at: now.toISOString() })
+      .eq('id', userId);
+    if (revokeError) {
+      console.error('Supabase revoke error:', revokeError);
+      await supabase.from('processed_payments').delete().eq('payment_id', marker);
+      return new Response('DB error', { status: 500 });
+    }
+  }
+
+  console.log(`Payment ${paymentId} ${status}: ${update ? JSON.stringify(update) : 'nothing to revoke'} for ${userId}`);
+  return new Response('ok', { status: 200 });
+}
+
 Deno.serve(async (req) => {
   // Mercado Pago às vezes envia GET para validar o endpoint
   if (req.method === 'GET') {
@@ -180,19 +265,11 @@ Deno.serve(async (req) => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!,
     );
 
-    // Estorno ou contestação: retira o acesso que este pagamento concedeu.
+    // Estorno ou contestação: retira só o que este pagamento concedeu, a partir
+    // do registro em processed_payments (não da coluna mp_payment_id, que guarda
+    // apenas o último pagamento).
     if (payment.status === 'refunded' || payment.status === 'charged_back') {
-      const { error: revokeError } = await supabase
-        .from('profiles')
-        .update({ is_premium: false, premium_expires_at: null, premium_updated_at: new Date().toISOString() })
-        .eq('id', userId)
-        .eq('mp_payment_id', paymentId);
-      if (revokeError) {
-        console.error('Supabase revoke error:', revokeError);
-        return new Response('DB error', { status: 500 });
-      }
-      console.log(`Payment ${paymentId} ${payment.status}: access revoked for ${userId}`);
-      return new Response('ok', { status: 200 });
+      return await revokePayment(supabase, paymentId, userId, payment.status);
     }
 
     // Só processa pagamentos aprovados
