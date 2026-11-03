@@ -8,7 +8,7 @@ Este documento controla direção, prioridade e critérios de conclusão. Ele n�
 
 ## Estado operacional — 30/10/2026
 
-Publicado: **16.58**. Candidata **16.60** no PR926, ainda dependente da CI e publicação, com o lote de acabamento, o Dashboard redesenhado, os itens P1, dois lotes de P2 da auditoria de jogo e a lista de ajustes do dono; o restante está em `docs/design/NQ_AUDITORIA_AGENCIA_2026-10-30.md`. A consolidação visual, a direção das aberturas e o classificador entraram em 30/10. As pendências ficam em [`CONTINUITY.md`](CONTINUITY.md), que prevalece sobre os status das seções abaixo.
+Base de produção conferida antes desta entrega: **16.58**. Entrega do PR926: **16.60**, com CI do HEAD final e conferência do deploy obrigatórias, com o lote de acabamento, o Dashboard redesenhado, os itens P1, dois lotes de P2 da auditoria de jogo e a lista de ajustes do dono; o restante está em `docs/design/NQ_AUDITORIA_AGENCIA_2026-10-30.md`. A consolidação visual, a direção das aberturas e o classificador entraram em 30/10. As pendências ficam em [`CONTINUITY.md`](CONTINUITY.md), que prevalece sobre os status das seções abaixo.
 
 Saem da fila: W1–W7 (PR900/16.18), três questões clínicas (PR901/16.19), 30 retratos das classes (15.85, antes NQ-04E), 20 retratos da Câmara (publicados em 16.39) e o diagnóstico antigo de MX (canal atual `/contato/`, PR831). A revisão documental das 741 questões está completa no índice A37, o que não equivale a 741 aprovações ou publicações.
 
