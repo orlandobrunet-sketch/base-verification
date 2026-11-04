@@ -20,7 +20,7 @@ function fixture(){
  const path='docs/editorial/review-batches/CHAMBER-FIXTURE.json',report='docs/superpowers/specs/chamber-fixture.md',js=source(),hash=chamberLFDigest(js);
  const cases=Object.fromEntries(CHAMBER_CASES.map(id=>[id,{...axes,references:['common',...(id==='aldric'?['new_card']:[])]}]));
  const questions=new Map([['11111111',{qid:'11111111',q:'Fixture',opts:['A','B','C','D'],ans:0,exp:'Fixture',cat:'fixture',diff:'medium',refs:['common']}]]);
- const allowed=[path,report,CHAMBER_SOURCE,'data/refs.js','version.json','sw.js','index.html'];
+ const allowed=[path,report,CHAMBER_SOURCE,'data/refs.js','version.json','sw.js','index.html','docs/editorial/review-batches/manifest.schema.json'];
  const before={common:card('Existing')},after={...before,new_card:card('New')};
  const ownReview={reviewer:'Technical fixture only',source_lf_sha256:hash,references_lf_sha256:chamberLFDigest(registry(after)),cases};
  const reportText='Technical fixture only\n```nq-chamber-review\n'+JSON.stringify(ownReview)+'\n```\n';
@@ -78,7 +78,7 @@ test('CLI reads the actual committed chamber and clinical report instead of acce
  const version=async(v)=>{await put('version.json',JSON.stringify({version:v}));await put('sw.js',`// NefroQuest Service Worker — v${v}\nconst CACHE = 'nefroquest-v${v}';\n`);await put('index.html',`release: 'nefroquest@${v}'\n`);};
  git(['init']);git(['config','user.email','test@example.com']);git(['config','user.name','Technical fixture']);
  await put('data/topics.js',`const topics = [\n${JSON.stringify([...input.beforeQuestions.values()][0])},\n];\n`);await put('data/refs.js',input.beforeRefsText);await version('16.65');git(['add','.']);git(['commit','-m','fixture base']);const base=git(['rev-parse','HEAD']);
- await put('data/refs.js',input.afterRefsText);await put(CHAMBER_SOURCE,input.chamberSource);await put(input.manifest.chamber.report_path,input.chamberReport);await put(input.manifestPath,JSON.stringify(input.manifest));await version('16.66');git(['add','.']);git(['commit','-m','fixture chamber']);
+ await put('data/refs.js',input.afterRefsText);await put(CHAMBER_SOURCE,input.chamberSource);await put(input.manifest.chamber.report_path,input.chamberReport);await put(input.manifestPath,JSON.stringify(input.manifest));await put('docs/editorial/review-batches/manifest.schema.json',JSON.stringify({$schema:'https://json-schema.org/draft/2020-12/schema',type:'object'}));await version('16.66');git(['add','.']);git(['commit','-m','fixture chamber']);
  const cli=fileURLToPath(new URL('../../scripts/editorial-batch-validator.mjs',import.meta.url));
  const run=()=>spawnSync(process.execPath,[cli,'--base',base,'--head',git(['rev-parse','HEAD']),'--cwd',root],{cwd:root,encoding:'utf8'});
  const accepted=run();assert.equal(accepted.status,0,accepted.stderr||accepted.stdout);assert.match(accepted.stdout,/Editorial batch validation passed/);

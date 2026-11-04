@@ -44,3 +44,10 @@ test('accepts reviewed_unchanged with preserved FSRS', () => {
   input.allowed_files = ['docs/editorial/review-batches/FARM-4A.json'];
   assert.deepEqual(validateManifest(input, 'docs/editorial/review-batches/FARM-4A.json').errors, []);
 });
+
+test('reserved JSON schema is not an editorial batch; additional real manifests remain rejected',()=>{
+ const schema='docs/editorial/review-batches/manifest.schema.json',batch='docs/editorial/review-batches/CHAMBER.json';
+ assert.equal(findChangedManifest([schema,batch]),batch);
+ assert.throws(()=>findChangedManifest([schema]),/found 0/);
+ assert.throws(()=>findChangedManifest([schema,batch,'docs/editorial/review-batches/OTHER.json']),/found 2/);
+});

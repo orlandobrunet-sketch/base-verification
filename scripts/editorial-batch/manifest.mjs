@@ -21,8 +21,10 @@ const REF_POLICIES = new Set(['unchanged', 'declared']);
 const REVIEW_STATES = new Set(['required', 'unavailable']);
 const REQUIRED = ['batch', 'change_type', 'expected_version', 'allowed_files', 'questions', 'expected_question_delta', 'refs_policy', 'external_review'];
 
+export const isEditorialManifestPath = path => MANIFEST_PATTERN.test(path) && path !== 'docs/editorial/review-batches/manifest.schema.json';
+
 export function findChangedManifest(changedPaths) {
-  const matches = changedPaths.filter((path) => MANIFEST_PATTERN.test(path));
+  const matches = changedPaths.filter(isEditorialManifestPath);
   if (matches.length !== 1) {
     throw new Error(`Expected exactly one changed editorial JSON manifest; found ${matches.length}`);
   }
