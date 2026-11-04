@@ -1594,7 +1594,7 @@
           `).join('')}
         </div>
         
-        <div id="studyFeedback" style="display:none;margin-top:20px;"></div>
+        <div id="studyFeedback" tabindex="-1" style="display:none;margin-top:20px;"></div>
       `;
       
       document.getElementById('studyProgress').textContent = studyModeIndex + 1;
@@ -1747,7 +1747,11 @@
         });
       }
 
-      if (recordProgress) playSound(isCorrect ? 'correct' : 'wrong');
+      if (recordProgress) {
+        feedback.focus({ preventScroll: true });
+        feedback.scrollIntoView({ block: 'start' });
+        playSound(isCorrect ? 'correct' : 'wrong');
+      }
     }
     
     let _loadingStudyNext = false;

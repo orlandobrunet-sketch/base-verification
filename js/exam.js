@@ -220,6 +220,7 @@
     function _examTeclado(e) {
       // A prova tem o próprio contexto de teclado; atalhos da jornada não passam.
       e.stopPropagation();
+      if (e.ctrlKey || e.altKey || e.metaKey) return;
       if (e.key === 'Escape' && _examConfirmandoSaida) { e.preventDefault(); _examCancelarSaida(); return; }
       const alvo = e.target;
       if (alvo instanceof Element && alvo.closest('button, a[href], summary, input, textarea')) return;
