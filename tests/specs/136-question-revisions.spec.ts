@@ -1,4 +1,5 @@
 import { characterIntro, confirmCharacterStart } from '../helpers/cinema';
+import { createHash } from 'node:crypto';
 import { test, expect, type Page, type TestInfo } from '@playwright/test';
 
 // Published archive and separate technical fixtures. Product scripts run intact in Chromium.
@@ -315,13 +316,29 @@ test('actual published archive retains sixteen questions and all sixty-four prio
         policy: checked.value?.policy };
     }));
     return { archiveCount: archive.length, referenceCount: Object.keys((0, eval)('refsDB')).length,
+      referenceIds: Object.keys((0, eval)('refsDB')).sort(),
       qids: archive.map((row: any) => row.qid).sort(), rows };
   });
   const priorQids = ['c952567a', '547a3dc2', '051a5d1b', '86949ab7', '7780350a',
     '7c0daeca', '00b4d27e', '04cb2429', 'ca6370dc', '1b8baaac'];
   const addedQids = ['312ab0c7', 'd8fd9889', '9895f375'];
   const referenceOnlyQids = ['1e2668d6', '81740f2d', '940b2835'];
-  expect(report.archiveCount).toBe(16); expect(report.referenceCount).toBe(353);
+  const chamberReferenceIds = [
+    'acid_base_achanti_2023', 'acmt_salicylate_2015', 'aha_acc_pe_2026', 'ats_ohs_2019',
+    'bicaricu2_2025', 'd_lactic_kowlgi_2015', 'drug_induced_acidosis_pham_2015', 'ers_ats_niv_2017',
+    'extrip_salicylates_2015', 'hyperglycemic_crises_consensus_2024', 'metabolic_alkalosis_emmett_2020',
+    'neurocritical_cerebral_edema_2020', 'surviving_sepsis_2026', 'ukka_hyperkalemia_2026',
+  ];
+  const legacyReferenceIds = report.referenceIds.filter((id: string) => !chamberReferenceIds.includes(id));
+  expect(report.archiveCount).toBe(16);
+  expect(chamberReferenceIds).toHaveLength(14);
+  expect(report.referenceCount).toBe(353 + chamberReferenceIds.length);
+  expect(report.referenceIds.filter((id: string) => chamberReferenceIds.includes(id))).toEqual(chamberReferenceIds);
+  expect(legacyReferenceIds).toHaveLength(353);
+  // Frozen ID-set digest from the published353-card registry; no deleted/replaced
+  // legacy ID can be hidden by adding a different card while retaining the count.
+  expect(createHash('sha256').update(JSON.stringify(legacyReferenceIds)).digest('hex'))
+    .toBe('c35ba55bca3cec0ca1c51f2efffaee27ad86e8eaae1fa894030a38035ef99e56');
   expect(report.qids).toEqual([...priorQids, ...addedQids, ...referenceOnlyQids].sort());
   expect(report.rows).toHaveLength(64);
   const priorRows = report.rows.filter((row: any) => priorQids.includes(row.qid));
