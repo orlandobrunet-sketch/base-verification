@@ -369,7 +369,7 @@ body[data-progress-sandbox="boss-preview"] #progressSandboxBanner button:focus-v
   body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .dock-btn { width: 100%; }
 }
 @media (max-width: 768px) {
-  body.boss-battle-mode #mainApp[data-nq-ui="lumen"] { grid-template-columns: minmax(0, 1fr) !important; gap: 16px; padding: 0 12px max(100px, 6rem, calc(var(--nq-mobile-dock-height, 64px) + 24px)); }
+  body.boss-battle-mode #mainApp[data-nq-ui="lumen"] { grid-template-columns: minmax(0, 1fr) !important; gap: 16px; padding: 0 var(--nql-game-mobile-inset, .75rem) max(100px, 6rem, calc(var(--nq-mobile-dock-height, 64px) + 24px)); }
   body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .game-title { min-height: 48px; flex-wrap: wrap; gap: 8px; }
   body.boss-battle-mode #mainApp[data-nq-ui="lumen"] .game-title h1 { font-size: 1.1rem !important; }
   /* O dock já oferece Herói. Áudio usa o controle funcional do cabeçalho;

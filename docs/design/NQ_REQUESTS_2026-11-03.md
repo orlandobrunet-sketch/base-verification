@@ -42,3 +42,7 @@ Biblioteca → Forja → fase final e faixa do herói → Átrio. A expansão da
 ## Complemento de raridade - candidata 16.62
 
 A candidata 16.61 ainda não havia sido publicada. O complemento avança a release para 16.62 para manter versão, SW e assets no mesmo commit, conforme AGENTS.md e o hook. Preserva todas as mudanças da 16.61 no mesmo PR. O manifesto muda somente a release; bindings e conteúdo médico intactos. Validação local: 39 cenários aprovados e 5 skips previstos, sem falhas ou retentativas nas suítes completas de equipamentos e leitor; 325 testes de qualidade aprovados. Os cinco skips são os casos do leitor que fixam suas próprias viewports e não rodam novamente no perfil mobile. O novo lote cobre cinco raridades em ambos os perfis, hover/foco/toque, contraste, retorno ao item inicial e estado do jogador preservado. A CI993 é evidência do HEAD anterior; a nova CI e a publicação ainda precisam concluir.
+
+## Publicação conferida
+
+NOV03-02 a NOV03-08 publicados na 16.62 pelo PR927, merge `ecab179b0af7bbdc05d6539bc1962628a947b6fc`. CI994 aprovada: 2.376 testes completos e 258 skips previstos, zero falhas/retentativas/flaky. Pages aprovado e 14 arquivos públicos idênticos ao merge. NOV03-01 (TTKG) permanece BLOQUEADO pelo gate editorial.

@@ -2,11 +2,13 @@
 
 ## Estado atual — 03/11/2026
 
-**16.60 publicada:** PR926 integrado, merge `033fc10d010e6c8b60e5a194325830307c1957f4`; CI991 e Pages aprovados, 12 arquivos conferidos contra a main. O proprietário aplicou a migration 020 e publicou `mp-webhook` v14: corpo da RPC, fonte da função e permissões confirmados no Supabase. Compra/estorno reais continuam sem certificação.
+**16.62 publicada:** PR927 integrado por squash, merge `ecab179b0af7bbdc05d6539bc1962628a947b6fc`; CI994 aprovada com 2.376 testes completos, 258 skips previstos e zero falhas, retentativas ou flaky. Pages 41715806628 aprovado. Os 14 arquivos públicos conferidos coincidem com o merge; o navegador confirmou o card lendário dourado.
+
+**Histórico da 16.60:** PR926 integrado, merge `033fc10d010e6c8b60e5a194325830307c1957f4`; CI991 e Pages aprovados, 12 arquivos conferidos contra a main. O proprietário aplicou a migration 020 e publicou `mp-webhook` v14: corpo da RPC, fonte da função e permissões confirmados no Supabase. Compra/estorno reais continuam sem certificação.
 
 **Pedido atual:** registrar e executar os [sete ajustes de 03/11](design/NQ_REQUESTS_2026-11-03.md), começando pela Biblioteca. O proprietário autorizou decidir a ordem. As imagens e os critérios estão no documento; a expansão de TTKG depende do gate editorial.
 
-**Candidata 16.62 (PR927):** preserva os seis ajustes técnicos da 16.61 e acrescenta o fundo por raridade no card de inspeção de equipamentos. Branch `codex/ajustes-pedidos-1661`. Validação local: 39 cenários aprovados e 5 skips previstos, sem falhas ou retentativas nas suítes de equipamentos/leitor, além de 325 testes de qualidade. A CI993 aprovou o HEAD anterior (16.61); CI do novo HEAD e publicação pendentes. TTKG continua BLOQUEADO pelo gate editorial; conteúdo médico intacto e 741 bindings do manifesto idênticos. Revisão ampla de layout, jogabilidade e transições somente depois da publicação; alternativas e referências ficam para um segundo momento no roadmap.
+**Revisão seguinte, candidata 16.64:** pente fino iniciado após conferir a publicação da 16.62. Seis achados corrigidos: foco no drawer fechado, nome do perfil cortado, foco no retorno ao Átrio, decisão involuntária na Forja com segundo gesto, reflow do Ranking e margens da fase final mobile. Baterias finais: 179 aprovados e 9 skips previstos, sem falhas/retentativas; 325 testes de qualidade aprovados. Relatório em [Auditoria de layout e jogabilidade](design/NQ_AUDITORIA_LAYOUT_JOGABILIDADE_2026-11-03.md). Nova CI/publicação pendentes; conteúdo médico intacto.
 
 ### Contexto da entrega 16.60
 
