@@ -1,14 +1,20 @@
 # Continuidade do NefroQuest
 
-## Estado atual — 03/11/2026
+## Estado atual - 04/11/2026
 
-**16.62 publicada:** PR927 integrado por squash, merge `ecab179b0af7bbdc05d6539bc1962628a947b6fc`; CI994 aprovada com 2.376 testes completos, 258 skips previstos e zero falhas, retentativas ou flaky. Pages 41715806628 aprovado. Os 14 arquivos públicos conferidos coincidem com o merge; o navegador confirmou o card lendário dourado.
+**16.64 publicada:** PR928 integrado, merge `1099f12fa265a77121480202af18092a2ffcd7ef`. CI997 aprovada: 2.386 testes completos, 258 skips previstos e zero falhas, flaky ou retentativas. Os 14 arquivos públicos conferidos em 04/11 coincidem com o merge.
+
+**Histórico da 16.62:** PR927 integrado por squash, merge `ecab179b0af7bbdc05d6539bc1962628a947b6fc`; CI994 aprovada com 2.376 testes completos, 258 skips previstos e zero falhas, retentativas ou flaky. Pages 41715806628 aprovado. Os 14 arquivos públicos conferidos coincidem com o merge; o navegador confirmou o card lendário dourado.
 
 **Histórico da 16.60:** PR926 integrado, merge `033fc10d010e6c8b60e5a194325830307c1957f4`; CI991 e Pages aprovados, 12 arquivos conferidos contra a main. O proprietário aplicou a migration 020 e publicou `mp-webhook` v14: corpo da RPC, fonte da função e permissões confirmados no Supabase. Compra/estorno reais continuam sem certificação.
 
-**Pedido atual:** registrar e executar os [sete ajustes de 03/11](design/NQ_REQUESTS_2026-11-03.md), começando pela Biblioteca. O proprietário autorizou decidir a ordem. As imagens e os critérios estão no documento; a expansão de TTKG depende do gate editorial.
+**Pedido atual:** continuar o pente fino de layout, jogabilidade e transições após a publicação da 16.64, conforme o retorno do proprietário em 04/11. A rodada complementar cobre Estudo, Simulado, Ritual, Julgamento e Câmara. Conteúdo médico fora do escopo; alternativas e referências ficam para uma segunda etapa.
 
-**Revisão seguinte, candidata 16.64:** pente fino iniciado após conferir a publicação da 16.62. Seis achados corrigidos: foco no drawer fechado, nome do perfil cortado, foco no retorno ao Átrio, decisão involuntária na Forja com segundo gesto, reflow do Ranking e margens da fase final mobile. Baterias finais: 179 aprovados e 9 skips previstos, sem falhas/retentativas; 325 testes de qualidade aprovados. Relatório em [Auditoria de layout e jogabilidade](design/NQ_AUDITORIA_LAYOUT_JOGABILIDADE_2026-11-03.md). Nova CI/publicação pendentes; conteúdo médico intacto.
+**Candidata 16.65, ainda não publicada:** corrige atalhos modificados que respondiam o Simulado, perda de foco ao mostrar a correção no Estudo e colisão do HUD com texto a 200%. Novas regressões passaram nos dois perfis; 113 cenários relacionados passaram, com 29 skips previstos e zero falhas ou retries; 325 testes de qualidade aprovados. A CI do novo HEAD ainda precisa concluir. [Revisão complementar dos modos](design/NQ_AUDITORIA_MODOS_2026-11-04.md).
+
+**Revisão publicada na 16.64:** seis achados de foco, reflow e interação, mais o contraste transitório dos botões da Forja, foram corrigidos e validados antes do merge. [Relatório anterior](design/NQ_AUDITORIA_LAYOUT_JOGABILIDADE_2026-11-03.md).
+
+**Vídeos publicados:** 12 fluxos conferidos na 16.64 (seis apresentações desktop e seis caminhos nativos no celular emulado), mais uma repetição da vitória. Quadros reais, pausa/retomada, sinal digital de áudio e encerramento confirmados. Os filmes permanecem restritos ao desktop pela regra atual. [Evidências e limites](design/NQ_VERIFICACAO_VIDEOS_2026-11-04.md).
 
 ### Contexto da entrega 16.60
 

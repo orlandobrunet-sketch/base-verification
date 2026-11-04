@@ -2514,7 +2514,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final)[data-nq-streak="3"] #ma
    Ficam ancoradas ao retrato; sem âncora (Firefox), vão para o topo do cartão. */
 @media (min-width: 769px) {
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .portrait-frame { anchor-name: --nq-retrato; }
-  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud { position: static; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud { position: static; grid-template-columns: repeat(auto-fit, minmax(min(100%, 4rem), 1fr)); }
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud .tile:is(:nth-child(3), :nth-child(6)) { position: absolute; top: 1.2rem; z-index: 1; flex-direction: row; align-items: baseline; gap: .4rem; max-width: calc(50% - 1.4rem); padding: 0; border: 0; }
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud .tile:nth-child(3) { left: 1.3rem; }
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud .tile:nth-child(6) { right: 1.3rem; }
