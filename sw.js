@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v16.66
-const CACHE = 'nefroquest-v16.66';
+// NefroQuest Service Worker — v16.67
+const CACHE = 'nefroquest-v16.67';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -181,10 +181,10 @@ const STATIC_ASSETS = [
 // chave canônica (sem query), que é a que canonicalAssetKey() consulta.
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
-  '/js/chamber-workspace.js': '16.66',
+  '/js/chamber-workspace.js': '16.67',
   '/styles/lumen/chamber-workspace.css': '16.39',
-  '/js/chamber-art.js': '16.66',
-  '/styles/lumen/chamber-desktop.css': '16.66',
+  '/js/chamber-art.js': '16.67',
+  '/styles/lumen/chamber-desktop.css': '16.67',
   '/js/cinema-poison-portraits.js': '16.43',
   '/js/cinema-movie-art.js': '16.42',
   '/js/cinema-movie-sound.js': '16.42',
@@ -215,7 +215,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/shell.css': '16.18',
   '/styles/lumen/portal.css': '16.55',
   '/styles/lumen/atrium.css': '16.62',
-  '/styles/lumen/game.css': '16.65',
+  '/styles/lumen/game.css': '16.67',
   '/styles/lumen/difficulty.css': '16.06',
   '/styles/lumen/dashboard.css': '16.64',
   '/styles/lumen/charselect.css': '16.60',
@@ -228,13 +228,13 @@ const ASSET_VERSIONS = {
   '/styles/lumen/ranking.css': '16.52',
   '/styles/lumen/achievements.css': '16.60',
   '/styles/lumen/oracle.css': '16.25',
-  '/js/utils.js': '16.66',
+  '/js/utils.js': '16.67',
   '/js/pilot.js': '16.06',
   '/js/character-benefits.js': '16.07',
   '/js/answer-presentation.js': '16.09',
   '/js/audio.js': '16.28',
   '/js/leaderboard.js': '16.47',
-  '/js/study-mode.js': '16.65',
+  '/js/study-mode.js': '16.67',
   '/js/game.js': '16.64',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '15.92',
@@ -243,10 +243,10 @@ const ASSET_VERSIONS = {
   '/js/paywall.js': '16.60',
   '/js/account.js': '16.57',
   '/js/boss.js': '16.48',
-  '/js/exam.js': '16.65',
+  '/js/exam.js': '16.67',
   '/js/admin.js': '15.35',
   '/js/minigame.js': '16.60',
-  '/js/minigame-acidbase.js': '16.66',
+  '/js/minigame-acidbase.js': '16.67',
   '/js/achievements.js': '16.06',
   '/js/changelog.js': '15.94',
   '/js/equipment-preview.js': '16.62',

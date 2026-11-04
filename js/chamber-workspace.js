@@ -172,7 +172,7 @@
     if(refs){const cards=[...refs.querySelectorAll('.ab-ref-card')];if(cards.length){const nav=pager(s,refs,cards,1,'Referência');refs.querySelector('.ab-refs-title').after(nav.nav);cards.forEach(card=>reader(s,card.querySelector('.ab-ref-body'),105));}}
   }
   function mount(overlay){
-    if(!overlay?.isConnected)return;window.NQChamberMotion?.mount(overlay);const active=document.activeElement,hadFocus=overlay.contains(active);reset(overlay);if(!eligible()){if(hadFocus&&active?.isConnected)active.focus({preventScroll:true});return;}
+    if(!overlay?.isConnected)return;window.NQChamberMotion?.mount(overlay);const active=document.activeElement,hadFocus=overlay.contains(active);reset(overlay);if(!eligible()){if(hadFocus){const target=active?.isConnected?active:(overlay.querySelector('.ab-prompt')||overlay.querySelector('.ab-summary-title')||overlay.querySelector('.ab-title'));target?.focus({preventScroll:true});}return;}
     const root=overlay.querySelector('.ab-scroll');if(!root)return;
     const s={overlay,root,owned:[],undo:[],visibility:new Map(),readers:[],observers:[]};states.set(overlay,s);if(!memories.has(overlay))memories.set(overlay,{contextKey:'',contextTab:1});overlay.classList.add('nq-chamber-workspace');
     if(overlay.dataset.abTela==='hub')hub(s);
@@ -181,7 +181,10 @@
     if(hadFocus){const target=active?.isConnected&&visible(active)&&!active.closest('[inert]')?active:root.querySelector('.ab-prompt,.ab-summary-title,.ab-title');target?.focus({preventScroll:true});}
   }
   addEventListener('resize',()=>{clearTimeout(resizeTimer);const overlay=document.getElementById('acidBaseOverlay');if(overlay&&!eligible()){mount(overlay);return;}resizeTimer=setTimeout(()=>{const current=document.getElementById('acidBaseOverlay');if(current){const state=states.get(current);state?fit(state):mount(current);}},100);});
-  const fontObserver = new MutationObserver(()=>{const overlay=document.getElementById('acidBaseOverlay');if(overlay&&!!states.get(overlay)!==eligible())mount(overlay);});
+  function syncFontLayout(){const overlay=document.getElementById('acidBaseOverlay');if(overlay&&!!states.get(overlay)!==eligible())mount(overlay);}
+  const fontObserver = new MutationObserver(syncFontLayout);
+  // A style mutation can precede the computed font-size change during a CSS transition.
+  document.documentElement.addEventListener('transitionend',event=>{if(event.target===document.documentElement&&event.propertyName==='font-size')syncFontLayout();});
   fontObserver.observe(document.documentElement,{attributes:true,attributeFilter:['style','class']});
   window.NQChamberWorkspace=Object.freeze({mount,get inspection(){const overlay=document.getElementById('acidBaseOverlay'),s=states.get(overlay);return{active:!!s,readings:s?s.readers.map(r=>({pages:r.pages,textConserved:r.conserved})):[]};}});
 })();
