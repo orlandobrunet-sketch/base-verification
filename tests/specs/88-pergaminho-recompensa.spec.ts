@@ -1,7 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 import { medirContraste } from '../helpers/contraste';
-test.use({ serviceWorkers:'block',reducedMotion:'reduce' });
+test.use({ serviceWorkers:'block',contextOptions:{reducedMotion:'reduce'} });
 async function abrir(page:Page,index=0){
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
  await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await injectGameState(page);await page.waitForLoadState('load');

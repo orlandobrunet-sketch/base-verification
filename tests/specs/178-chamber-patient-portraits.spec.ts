@@ -2,7 +2,7 @@ import { openChamberCase } from '../helpers/chamber';
 import { test, expect, type Page } from '@playwright/test';
 import { mkdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
-test.use({ serviceWorkers:'block', reducedMotion:'reduce' });
+test.use({ serviceWorkers:'block', contextOptions:{reducedMotion:'reduce'} });
 const source=readFileSync(path.resolve(__dirname,'../../js/minigame-acidbase.js'),'utf8');
 const catalog=source.slice(source.indexOf('const CASES = ['),source.indexOf('// Helper p/'));
 const people=[...catalog.matchAll(/id:'([^']+)'[^\n]*character:'([^']+)'/g)].map(m=>({id:m[1],name:m[2]}));

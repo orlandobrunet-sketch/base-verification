@@ -1,6 +1,6 @@
 import {test,expect,type Page} from '@playwright/test';
 
-test.use({serviceWorkers:'block',reducedMotion:'no-preference'});
+test.use({serviceWorkers:'block',contextOptions:{reducedMotion:'no-preference'}});
 async function open(page:Page){
  await page.evaluate(()=>{document.getElementById('landingScreen')?.classList.add('hidden');document.getElementById('welcomeScreen')?.classList.add('hidden');(window as any).showAcidBaseMinigame();});
  const cinema=page.locator('#nqEntryCinema[open]');if(await cinema.count()){await page.keyboard.press('Escape');await expect(cinema).toHaveCount(0);}

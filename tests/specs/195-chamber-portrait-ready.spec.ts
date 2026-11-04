@@ -1,5 +1,5 @@
 import {test,expect,type Page} from '@playwright/test';
-test.use({serviceWorkers:'block',reducedMotion:'reduce'});
+test.use({serviceWorkers:'block',contextOptions:{reducedMotion:'reduce'}});
 test.beforeEach(async({page})=>{test.skip(!await page.evaluate(()=>matchMedia('(pointer:fine)').matches),'Desktop portrait decoding; touch uses the native layout without portraits.');});
 async function enter(page:Page){
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());

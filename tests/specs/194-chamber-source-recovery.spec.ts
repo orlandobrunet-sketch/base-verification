@@ -1,7 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 import {openChamberCase} from '../helpers/chamber';
 import {chamberCatalog} from '../helpers/chamber-catalog';
-test.use({serviceWorkers:'block',reducedMotion:'reduce'});
+test.use({serviceWorkers:'block',contextOptions:{reducedMotion:'reduce'}});
 async function lastAnswer(page:Page,setup:()=>Promise<void>){
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
  await setup();
