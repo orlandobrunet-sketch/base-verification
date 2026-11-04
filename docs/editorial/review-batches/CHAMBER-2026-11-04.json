@@ -1,0 +1,408 @@
+{
+  "batch": "CHAMBER-2026-11-04",
+  "chamber_only": true,
+  "change_type": "medical_editorial",
+  "expected_version": "16.66",
+  "allowed_files": [
+    ".github/workflows/ci.yml",
+    "data/question-revision-manifest.js",
+    "data/refs.js",
+    "docs/CONTINUITY.md",
+    "docs/ROADMAP.md",
+    "docs/design/NQ_AUDITORIA_MODOS_2026-11-04.md",
+    "docs/design/NQ_VERIFICACAO_VIDEOS_2026-11-04.md",
+    "docs/editorial/review-batches/CHAMBER-2026-11-04.json",
+    "docs/editorial/review-batches/README.md",
+    "docs/editorial/review-batches/manifest.schema.json",
+    "docs/superpowers/specs/2026-11-04-chamber-100-acts-audit.json",
+    "docs/superpowers/specs/2026-11-04-chamber-clinical-consolidation.md",
+    "docs/superpowers/specs/2026-11-04-chamber-clinical-review-part1.md",
+    "docs/superpowers/specs/2026-11-04-chamber-clinical-review-part2.md",
+    "docs/superpowers/specs/2026-11-04-chamber-clinical-review-part3.md",
+    "docs/superpowers/specs/2026-11-04-chamber-clinical-review-part4.md",
+    "docs/superpowers/specs/2026-11-04-chamber-clinical-review-part5.md",
+    "docs/superpowers/specs/2026-11-04-chamber-clinical-review-part6.md",
+    "docs/superpowers/specs/2026-11-04-chamber-clinical-review-part7.md",
+    "docs/superpowers/specs/2026-11-04-chamber-clinical-review-part8.md",
+    "docs/superpowers/specs/2026-11-04-chamber-clinical-review-part9.md",
+    "docs/superpowers/specs/2026-11-04-chamber-design.md",
+    "docs/superpowers/specs/2026-11-04-chamber-lote2-validation.md",
+    "docs/superpowers/specs/2026-11-04-chamber-lote4-validation.md",
+    "docs/superpowers/specs/2026-11-04-chamber-lote5-validation.md",
+    "docs/superpowers/specs/2026-11-04-chamber-source-index.md",
+    "index.html",
+    "jogar/index.html",
+    "js/chamber-art.js",
+    "js/chamber-workspace.js",
+    "js/exam.js",
+    "js/minigame-acidbase.js",
+    "js/study-mode.js",
+    "js/utils.js",
+    "scripts/editorial-batch-validator.mjs",
+    "scripts/editorial-batch/chamber.mjs",
+    "scripts/editorial-batch/manifest.mjs",
+    "scripts/editorial-batch/rules.mjs",
+    "styles/lumen/chamber-desktop.css",
+    "styles/lumen/game.css",
+    "sw.js",
+    "tests/chamber/domains.test.cjs",
+    "tests/chamber/generators.test.cjs",
+    "tests/chamber/sources.test.cjs",
+    "tests/editorial-batch/chamber.test.mjs",
+    "tests/helpers/chamber-catalog.ts",
+    "tests/specs/178-chamber-patient-portraits.spec.ts",
+    "tests/specs/191-navegacao-modos.spec.ts",
+    "tests/specs/192-chamber-motion.spec.ts",
+    "tests/specs/193-chamber-full-flows.spec.ts",
+    "tests/specs/194-chamber-source-recovery.spec.ts",
+    "tests/specs/195-chamber-portrait-ready.spec.ts",
+    "version.json"
+  ],
+  "questions": {},
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "references": {
+    "metabolic_alkalosis_emmett_2020": {
+      "action": "add",
+      "after_sha256": "sha256:45b6584a6264e87d15287d80fe26139aab8e7945081742c67cf209a26083b3d4",
+      "consumers": [
+        "mara",
+        "isolde",
+        "nara",
+        "ivar",
+        "mireth"
+      ]
+    },
+    "ats_ohs_2019": {
+      "action": "add",
+      "after_sha256": "sha256:b73a03747a54498be9e01f142e41e58a6249f4363e20601b9d2ddacf7414b2a7",
+      "consumers": [
+        "ivar"
+      ]
+    },
+    "ukka_hyperkalemia_2026": {
+      "action": "add",
+      "after_sha256": "sha256:6f41098d441a55c6544104a29674bf4437050b4e2738b76f0e6c691e433e6888",
+      "consumers": [
+        "borius"
+      ]
+    },
+    "acmt_salicylate_2015": {
+      "action": "add",
+      "after_sha256": "sha256:30cfc756446a1b8e0e710a040481204fd13d613224f3dd02be914388ee178189",
+      "consumers": [
+        "ophelia"
+      ]
+    },
+    "extrip_salicylates_2015": {
+      "action": "add",
+      "after_sha256": "sha256:b74736609a0afcdd34a311e02291067ed0ff2be6e3d49a9884efd6cb02865ccd",
+      "consumers": [
+        "ophelia"
+      ]
+    },
+    "ers_ats_niv_2017": {
+      "action": "add",
+      "after_sha256": "sha256:ec12e01331eba1d37b418e13a68a2ac895ed969bd709556735ad0b73f857b9ec",
+      "consumers": [
+        "mireth"
+      ]
+    },
+    "surviving_sepsis_2026": {
+      "action": "add",
+      "after_sha256": "sha256:aba39a5d71200ec4f84acc495f107c2e1f1b83988f68f33d4e8fb17457a3907b",
+      "consumers": [
+        "galen"
+      ]
+    },
+    "aha_acc_pe_2026": {
+      "action": "add",
+      "after_sha256": "sha256:a9888d98df8dcec685e94bdb97877f86bc71f01b5692dea74e92ea5e2b3c0fad",
+      "consumers": [
+        "theron"
+      ]
+    },
+    "acid_base_achanti_2023": {
+      "action": "add",
+      "after_sha256": "sha256:87321deb184f4126810576834b1c6f5bc4259ea6596935772cda47615c06ef3b",
+      "consumers": [
+        "aldric",
+        "mara",
+        "theron",
+        "vance",
+        "kael",
+        "vorgath",
+        "selene",
+        "edrin",
+        "liora",
+        "borius",
+        "isolde",
+        "corvin",
+        "ophelia",
+        "helena",
+        "brann",
+        "nara",
+        "galen",
+        "maelis",
+        "ivar",
+        "mireth"
+      ]
+    },
+    "bicaricu2_2025": {
+      "action": "add",
+      "after_sha256": "sha256:b1627d5f8f52c48fc74fec13f888502acd762ab95fcdbbd427bc8d862d47e009",
+      "consumers": [
+        "aldric"
+      ]
+    },
+    "hyperglycemic_crises_consensus_2024": {
+      "action": "add",
+      "after_sha256": "sha256:5df037f34af2ec37f7a3eab3e163426c5983a15d4c614492a9716f068760518b",
+      "consumers": [
+        "selene"
+      ]
+    },
+    "d_lactic_kowlgi_2015": {
+      "action": "add",
+      "after_sha256": "sha256:a4e94284305847ba264be2e39e5fb3acb879ff5e6c10bbd93ee54461d38309c2",
+      "consumers": [
+        "brann"
+      ]
+    },
+    "drug_induced_acidosis_pham_2015": {
+      "action": "add",
+      "after_sha256": "sha256:db78d7ae85c695db2eca13a0feea7f56eddd2223a4234bb77e396db79297ce0a",
+      "consumers": [
+        "brann",
+        "maelis"
+      ]
+    },
+    "neurocritical_cerebral_edema_2020": {
+      "action": "add",
+      "after_sha256": "sha256:a95a3af5b5b7466136ebe7cdd6fef955d7901065e916d127692ac6dfe1fd1dee",
+      "consumers": [
+        "maelis"
+      ]
+    }
+  },
+  "external_review": {
+    "greptile": "required",
+    "fallback_reviewer": null
+  },
+  "chamber": {
+    "source_lf_sha256": "4a2bb8824d548233622210c66c5cef510b8446d112cbc3ebea28d76509951031",
+    "report_path": "docs/superpowers/specs/2026-11-04-chamber-clinical-consolidation.md",
+    "report_lf_sha256": "7c3703324fca6bb65bc1f20063ffaf65cfbc9ed5cb0394b95f3f44465141746b",
+    "cases": {
+      "aldric": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "bicaricu2_2025"
+        ]
+      },
+      "mara": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "metabolic_alkalosis_emmett_2020"
+        ]
+      },
+      "theron": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "aha_acc_pe_2026"
+        ]
+      },
+      "vance": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "berend_normal_gap_2017",
+          "palmer_rta_2021"
+        ]
+      },
+      "kael": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023"
+        ]
+      },
+      "vorgath": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "extrip_ethylene_glycol"
+        ]
+      },
+      "selene": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "hyperglycemic_crises_consensus_2024"
+        ]
+      },
+      "edrin": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "kdigo_ckd_2024",
+          "palmer_rta_2021"
+        ]
+      },
+      "liora": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "palmer_rta_2021"
+        ]
+      },
+      "borius": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "palmer_rta_2021",
+          "kdigo_ckd_2024",
+          "ukka_hyperkalemia_2026"
+        ]
+      },
+      "isolde": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "gitelman_kdigo_2017",
+          "metabolic_alkalosis_emmett_2020"
+        ]
+      },
+      "corvin": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "endocrine_society_primary_aldosteronism_2025"
+        ]
+      },
+      "ophelia": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "acmt_salicylate_2015",
+          "extrip_salicylates_2015"
+        ]
+      },
+      "helena": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "aasld_ascites_sbp_2021"
+        ]
+      },
+      "brann": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "d_lactic_kowlgi_2015",
+          "drug_induced_acidosis_pham_2015"
+        ]
+      },
+      "nara": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "metabolic_alkalosis_emmett_2020"
+        ]
+      },
+      "galen": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "surviving_sepsis_2026"
+        ]
+      },
+      "maelis": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "drug_induced_acidosis_pham_2015",
+          "neurocritical_cerebral_edema_2020"
+        ]
+      },
+      "ivar": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "metabolic_alkalosis_emmett_2020",
+          "ats_ohs_2019"
+        ]
+      },
+      "mireth": {
+        "evidencia": "VERIFICADA",
+        "pendencia": "NENHUMA",
+        "veredito": "aprovada",
+        "publicacao": "LIBERADA",
+        "references": [
+          "acid_base_achanti_2023",
+          "ers_ats_niv_2017",
+          "metabolic_alkalosis_emmett_2020"
+        ]
+      }
+    }
+  }
+}

@@ -122,9 +122,9 @@
           ],
           explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong> (< 7,35). HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio primário é <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg também está baixo (taquipneia), sugerindo compensação respiratória em curso — <em>adequada ou não, será calculado no Ato II</em>.`,
           explainWrong: {
-            'Acidose respiratória': `Numa acidose respiratória primária, PaCO₂ estaria <em>alto</em> e HCO₃⁻ subiria para compensar. Aqui PaCO₂ ${PaCO2} está baixo.`,
-            'Alcalose metabólica': `Alcalose teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} (ácido) e HCO₃⁻ ${HCO3} (baixo).`,
-            'Alcalose respiratória': `Alcalose teria pH > 7,45. Aqui pH ${_c(pH)}.`
+            'Acidose respiratória': `A acidose respiratória decorre de elevação primária da PaCO₂. Aqui a PaCO₂ ${PaCO2} está baixa; relacioná-la ao HCO₃⁻ ${HCO3} e à compensação esperada.`,
+            'Alcalose metabólica': `Alcalose metabólica é um processo de elevação primária do bicarbonato. O HCO₃⁻ ${HCO3} está reduzido neste quadro; o pH isolado não define nem exclui processos associados.`,
+            'Alcalose respiratória': `PaCO₂ baixa também ocorre como compensação de acidose metabólica. Integre HCO₃⁻ ${HCO3}, história e resposta esperada antes de inferir processo respiratório adicional; não use apenas o pH.`,
           }
         },
         {
@@ -170,19 +170,16 @@
         {
           kind: 'mc',
           prompt: `<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?`,
-          grimoire: {
-            title: 'Bicarbonato em acidose metabólica grave — BICAR-ICU',
-            body: 'Jaber S et al. <em>Lancet</em> 2018;392:31-40. Bicarbonato de sódio reduziu mortalidade em 28 dias no subgrupo com <strong>pH ≤ 7,20 + AKI KDIGO 2/3</strong> (acidose mista metabólica grave). Fora desse subgrupo, sem benefício e com riscos (hipernatremia, hipocalcemia, alcalose paradoxal intracelular). Tratar primeiro a causa da acidose.'
-          },
+          grimoire: { title: 'Bicarbonato e limites da evidência — BICARICU-2', body: 'O <strong>BICARICU-2 (JAMA, 2025)</strong> não demonstrou redução da mortalidade em 90 dias com bicarbonato IV em pacientes de UTI com acidemia metabólica grave e lesão renal aguda moderada/grave. O resultado não estabelece indicação automática nem proibição universal. Neste caso, priorize a causa, reavalie a perfusão e investigue lactato e função renal.' },
           options: [
             { label: 'Bolus de bicarbonato de sódio 8,4% IV imediato', correct: false },
             { label: 'Reposição volêmica com cristaloide + investigar causa do AG alto (lactato, função renal)', correct: true },
             { label: 'Intubação e hiperventilação mecânica', correct: false },
             { label: 'Hemodiálise de urgência', correct: false }
           ],
-          explainCorrect: `A causa provável é <strong>acidose láctica por hipoperfusão</strong> (desidratação + esforço). Tratar a causa: ressuscitação volêmica. Pelo <strong>BICAR-ICU (Lancet 2018)</strong>, bicarbonato só tem benefício de mortalidade se <strong>pH ≤ 7,20 + AKI KDIGO 2/3</strong> — aqui pH ${_c(pH)} não atinge o limiar e a função renal ainda precisa ser avaliada. Hemodiálise sem indicação clara no momento.`,
+          explainCorrect: `A hipótese é acidose por hipoperfusão no contexto de desidratação e esforço. Priorize <strong>cristaloide com reavaliação clínica</strong> e investigue lactato e função renal. O pH medido é ${_c(pH)}; esse valor isolado não define a indicação de bicarbonato nem de diálise. O BICARICU-2 não confirmou benefício de mortalidade na população de acidemia grave com LRA moderada/grave.`,
           explainWrong: {
-            'Bolus de bicarbonato de sódio 8,4% IV imediato': `Pelo <strong>BICAR-ICU</strong>, bicarbonato só reduz mortalidade no subgrupo com pH ≤ 7,20 + AKI KDIGO 2/3. Aqui pH ${_c(pH)} ${pH<=7.20?'atinge o limiar de pH, mas falta confirmar AKI 2/3 e tratar a causa primeiro':'não atinge o limiar'}. Tratar a causa (volume) é a prioridade.`,
+            'Bolus de bicarbonato de sódio 8,4% IV imediato': 'Não indicar bolus de rotina apenas pelo pH. Trate a causa e reavalie perfusão, ventilação e função renal. BICARICU-2 não demonstrou redução da mortalidade em sua população; isso não elimina indicações individualizadas.',
             'Intubação e hiperventilação mecânica': 'A compensação respiratória já é adequada (Winter). Intubar sem indicação ventilatória prejudica a compensação espontânea.',
             'Hemodiálise de urgência': 'Sem indicação clássica de HD aguda (sem AEIOU: Acidose refratária, distúrbio Eletrolítico, Intoxicação, sObrecarga, Uremia).'
           }
@@ -222,15 +219,15 @@
           ],
           explainCorrect: `pH ${_c(pH)} → <strong>alcalemia</strong> (> 7,45). HCO₃⁻ ${HCO3} mEq/L (alto) acompanha a alcalemia → distúrbio primário é <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg está elevado (hipoventilação), sugerindo compensação respiratória em curso — <em>adequada ou não, será calculado no Ato II</em>.`,
           explainWrong: {
-            'Alcalose respiratória': `Numa alcalose respiratória primária, PaCO₂ estaria <em>baixo</em> e o HCO₃⁻ cairia para compensar. Aqui PaCO₂ ${PaCO2} está alto e HCO₃⁻ ${HCO3} está alto.`,
-            'Acidose metabólica': `Acidose metabólica teria pH < 7,35 e HCO₃⁻ baixo. Aqui pH ${_c(pH)} (alcalino) e HCO₃⁻ ${HCO3} (alto).`,
-            'Acidose respiratória': `Acidose respiratória teria pH < 7,35 com PaCO₂ alto como causa primária. Aqui o pH é ${_c(pH)} (alcalino).`
+            'Alcalose respiratória': `Este ato pede o processo metabólico sustentado pelo HCO₃⁻ ${HCO3} elevado. Um componente respiratório adicional é avaliado pela PaCO₂ ${PaCO2} em relação à compensação, mesmo se estiver na faixa populacional normal.`,
+            'Acidose metabólica': `Acidose metabólica envolve redução primária do bicarbonato. Aqui o HCO₃⁻ ${HCO3} está elevado; a interpretação de processos associados depende da compensação e do contexto.`,
+            'Acidose respiratória': `PaCO₂ pode aumentar como resposta à alcalose metabólica. Compare a medida ${PaCO2} com a faixa esperada antes de atribuí-la a acidose respiratória primária; pH sozinho não exclui um processo.`,
           }
         },
         {
           kind: 'num',
           prompt: `<strong>Ato II — Compensação esperada.</strong><br>Calcule a PaCO₂ esperada pela compensação respiratória.`,
-          grimoire: { title: 'Compensação respiratória — alcalose metabólica', body: '<code>PaCO₂ esperado = 0,7 × HCO₃⁻ + 21 (±2)</code><br>A hipoventilação compensatória é limitada (raramente PaCO₂ > 55 mmHg) pelo estímulo hipoxêmico.' },
+          grimoire: { title: 'Compensação respiratória — alcalose metabólica', body: '<code>PaCO₂ esperado = 0,7 × HCO₃⁻ + 21 (±5)</code><br>A hipoventilação compensatória é limitada (raramente PaCO₂ > 55 mmHg) pelo estímulo hipoxêmico.' },
           unit: 'mmHg',
           target: compExpected,
           tolerance: 5,
@@ -240,7 +237,7 @@
         {
           kind: 'mc',
           prompt: `<strong>Ato III — Classificação.</strong><br>O <strong>cloreto urinário</strong> volta em <strong>${ClU} mEq/L</strong>. Como você classifica esta alcalose?`,
-          grimoire: { title: 'Cloreto urinário na alcalose metabólica', body: '<code>Cl⁻ urinário &lt; 20</code> → <strong>salina-responsiva</strong> (vômito/SNG, diuréticos prévios, pós-hipercapnia).<br><code>Cl⁻ urinário &gt; 20</code> → <strong>salina-resistente</strong> (hiperaldosteronismo, Bartter/Gitelman). Use o Cl⁻ urinário, não o Na⁺ (o Na⁺ pode estar alto pela bicarbonatúria).' },
+          grimoire: { title: 'Cloreto urinário na alcalose metabólica', body: '<code>Cl⁻ urinário &lt; 20</code> → <strong>salina-responsiva</strong> (vômito/SNG, diuréticos prévios, pós-hipercapnia).<br><code>Cl⁻ urinário &gt; 20</code> → <strong>salina-resistente</strong> (hiperaldosteronismo, Bartter/Gitelman). Interpretar junto ao volume e à história: diurético ainda ativo pode elevar o Cl⁻ urinário apesar de depleção de volume. O Na⁺ urinário pode estar alto pela bicarbonatúria.' },
           options: [
             { label: 'Salina-responsiva (Cl⁻ urinário < 20)', correct: true },
             { label: 'Salina-resistente (Cl⁻ urinário > 20)', correct: false },
@@ -270,7 +267,7 @@
           ],
           grimoire: {
             title: 'O padrão: alcalose metabólica',
-            body: 'HCO₃⁻ sobe por perda de H⁺ ou ganho de base, e só se mantém se o rim não consegue excretar o excesso de HCO₃⁻ (hipovolemia, hipocloremia, hipocalemia, aldosterona). O <strong>Cl⁻ urinário</strong> separa salina-responsiva (&lt; 20) de salina-resistente (&gt; 20).'
+            body: 'HCO₃⁻ sobe por perda de H⁺ ou ganho de base, e só se mantém se o rim não consegue excretar o excesso de HCO₃⁻ (hipovolemia, hipocloremia, hipocalemia, aldosterona). O <strong>Cl⁻ urinário baixo</strong> favorece depleção de cloreto; se estiver alto, integrar volume, pressão e uso de diurético, que pode elevar o cloreto urinário enquanto age.'
           }
         }),
         {
@@ -285,7 +282,7 @@
           ],
           explainCorrect: `Alcalose salina-responsiva com hipocalemia (K ${K}) → <strong>SF 0,9%</strong> restaura volume e repõe Cl⁻, corrigindo a alcalose; <strong>KCl</strong> corrige o potássio (essencial, pois a hipocalemia perpetua a alcalose). Tratar a causa: antiemético/IBP.`,
           explainWrong: {
-            'Acetazolamida IV em bolus': 'Acetazolamida só é indicada quando a sobrecarga de volume impede a reposição com salina. Aqui a paciente está depletada — SF 0,9% é a base.',
+            'Acetazolamida IV em bolus': 'Neste quadro, acetazolamida não substitui a correção de volume e cloreto e pode agravar o déficit de potássio. Há outras indicações selecionadas, mas a paciente descrita está depletada.',
             'Infusão de bicarbonato de sódio IV': 'Bicarbonato pioraria a alcalose já existente.',
             'Restrição hídrica rigorosa': 'A paciente está hipovolêmica por vômitos; restringir volume agrava a contração e perpetua a alcalose.'
           }
@@ -323,11 +320,11 @@
             { label: 'Acidose respiratória', correct: false },
             { label: 'Acidose metabólica', correct: false }
           ],
-          explainCorrect: `pH ${_c(pH)} → <strong>alcalemia</strong> (> 7,45). A PaCO₂ ${PaCO2} mmHg (baixa) acompanha a alcalemia → o processo primário é <strong>respiratório</strong> (hiperventilação). O HCO₃⁻ ${HCO3} levemente reduzido é a resposta renal, não a causa.`,
+          explainCorrect: `pH ${_c(pH)} → <strong>alcalemia</strong> (> 7,45). A PaCO₂ ${PaCO2} mmHg (baixa) acompanha a alcalemia → o processo primário é <strong>respiratório</strong> (hiperventilação). O HCO₃⁻ ${HCO3} levemente reduzido reflete a resposta tampão/compensação aguda, não o processo primário.`,
           explainWrong: {
-            'Alcalose metabólica': `Alcalose metabólica teria HCO₃⁻ alto como causa. Aqui o HCO₃⁻ ${HCO3} está baixo e a PaCO₂ ${PaCO2} baixa explica a alcalemia.`,
-            'Acidose respiratória': `Acidose respiratória teria pH < 7,35 e PaCO₂ alta. Aqui pH ${_c(pH)} e PaCO₂ ${PaCO2} (baixa).`,
-            'Acidose metabólica': `Acidose teria pH < 7,35 e HCO₃⁻ baixo como causa. Aqui o pH é ${_c(pH)} (alcalino).`
+            'Alcalose metabólica': `Este ato identifica o componente respiratório pela PaCO₂ ${PaCO2} baixa. Um processo metabólico adicional depende da comparação do HCO₃⁻ ${HCO3} com a compensação ensinada, e não do pH isolado.`,
+            'Acidose respiratória': `Acidose respiratória decorre de elevação primária da PaCO₂. Aqui a PaCO₂ ${PaCO2} está reduzida, sustentando o componente respiratório alcalótico.`,
+            'Acidose metabólica': `O HCO₃⁻ ${HCO3} deve ser comparado à resposta esperada para o processo respiratório. A queda compensatória pode ocorrer sem acidose metabólica; pH isolado não é critério para excluir processos mistos.`,
           }
         },
         {
@@ -362,7 +359,7 @@
           instruction: 'Os mecanismos serão revelados somente após o julgamento.',
           cards: [
             _makeCard('tep', 'Tromboembolismo pulmonar', 'Dispneia súbita, dor pleurítica, imobilização', 'Hipoxemia, PaCO₂ baixo', true, 'Êmbolo → espaço morto + hipoxemia → quimiorreceptores ↑ ventilação → CO₂ eliminado → alcalose respiratória.', 'Causa grave e tempo-dependente; imobilização + dispneia + hipoxemia é altamente sugestivo.'),
-            _makeCard('pneumonia', 'Pneumonia', 'Febre, tosse, dispneia', 'Hipoxemia, PaCO₂ baixo', true, 'Hipoxemia → quimiorreceptores periféricos ↑ ventilação → PaCO₂ ↓ → alcalose respiratória.', 'Qualquer pneumopatia aguda hipoxêmica gera hiperventilação.'),
+            _makeCard('pneumonia', 'Pneumonia', 'Febre, tosse, dispneia', 'Hipoxemia, PaCO₂ baixo', true, 'Hipoxemia → quimiorreceptores periféricos ↑ ventilação → PaCO₂ ↓ → alcalose respiratória.', 'Uma pneumopatia aguda hipoxêmica pode estimular hiperventilação; o padrão depende do quadro clínico.'),
             _makeCard('sepse_resp', 'Sepse inicial', 'Febre, taquipneia', 'Lactato ainda normal, PaCO₂ baixo', true, 'Citocinas e febre → estímulo direto do centro respiratório (antes de a hipoperfusão gerar lactato) → alcalose respiratória.', 'Fase precoce da sepse; depois pode somar acidose lática.'),
             _makeCard('gestacao', 'Gestação', 'Gestante, dispneia leve crônica', 'PaCO₂ basal baixo, HCO₃⁻ levemente baixo', true, 'Progesterona ↑ sensibilidade do centro respiratório ao CO₂ → volume-minuto ↑ → alcalose respiratória crônica.', 'Alcalose respiratória fisiológica da gravidez, compensada pelo rim.'),
             _makeCard('salicilato_resp', 'Salicilato', 'Zumbido, taquipneia, febre', 'PaCO₂ muito baixo, AG elevado', true, 'Estímulo respiratório central → alcalose respiratória; em paralelo gera acidose com AG alto.', 'O componente respiratório precoce do salicilato é alcalose; reconheça o padrão misto.'),
@@ -383,7 +380,7 @@
             { label: 'Infundir bicarbonato de sódio IV', correct: false },
             { label: 'Sedar para reduzir a frequência respiratória', correct: false }
           ],
-          explainCorrect: `Com imobilização recente + dispneia súbita + hipoxemia (PaO₂ ~${PaO2} mmHg), a hipótese principal é <strong>TEP</strong>. Investigar e ofertar O₂. A alcalose em si raramente exige tratamento direto — corrige-se tratando a causa.`,
+          explainCorrect: `Com imobilização recente + dispneia súbita + hipoxemia descrita no caso, a hipótese principal é <strong>TEP</strong>. Investigar e ofertar O₂. A alcalose em si raramente exige tratamento direto — corrige-se tratando a causa.`,
           explainWrong: {
             'Tranquilizar e liberar como crise de ansiedade': 'Ansiedade é diagnóstico de exclusão; com hipoxemia e fator de risco para TEP, liberar seria perigoso.',
             'Infundir bicarbonato de sódio IV': 'Pioraria a alcalemia já existente.',
@@ -422,11 +419,11 @@
             { label: 'Alcalose metabólica', correct: false },
             { label: 'Alcalose respiratória', correct: false }
           ],
-          explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong> (< 7,35). HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio primário <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg baixa é a compensação respiratória.`,
+          explainCorrect: `O pH medido é ${_c(pH)}. O <strong>HCO₃⁻ ${HCO3} mEq/L está reduzido</strong>, no contexto de perda fecal de bicarbonato: há <strong>acidose metabólica</strong>. A PaCO₂ ${PaCO2} deve ser comparada à compensação esperada. Acidose descreve o processo; o pH, isoladamente, não exclui esse distúrbio.`,
           explainWrong: {
-            'Acidose respiratória': `Teria PaCO₂ alta como causa. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
-            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
-            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
+            'Acidose respiratória': `A acidose respiratória decorre de elevação primária da PaCO₂. Aqui a PaCO₂ ${PaCO2} está baixa; relacioná-la ao HCO₃⁻ ${HCO3} e à compensação esperada.`,
+            'Alcalose metabólica': `Alcalose metabólica é um processo de elevação primária do bicarbonato. O HCO₃⁻ ${HCO3} está reduzido neste quadro; o pH isolado não define nem exclui processos associados.`,
+            'Alcalose respiratória': `PaCO₂ baixa também ocorre como compensação de acidose metabólica. Integre HCO₃⁻ ${HCO3}, história e resposta esperada antes de inferir processo respiratório adicional; não use apenas o pH.`,
           }
         },
         {
@@ -456,14 +453,14 @@
             _makeCard('diarreia', 'Diarreia', 'Perda fecal volumosa', 'HCO₃⁻ baixo, Cl⁻ alto, AG normal, K⁺ baixo', true, 'Fluido intestinal rico em HCO₃⁻ → sua perda baixa o HCO₃⁻ plasmático → Cl⁻ sobe para eletroneutralidade → acidose hiperclorêmica.', 'Causa extrarrenal mais comum de NAGMA; o UAG costuma ser negativo.'),
             _makeCard('atr1', 'ATR tipo 1 (distal)', 'Nefrocalcinose, litíase', 'pH urinário > 5,5, K⁺ baixo, AG normal', true, 'Falha da célula alfa-intercalada em secretar H⁺ no coletor → ácido se acumula → HCO₃⁻ cai, Cl⁻ alto.', 'NAGMA renal com hipocalemia e incapacidade de acidificar a urina.'),
             _makeCard('atr2', 'ATR tipo 2 (proximal)', 'Síndrome de Fanconi', 'Bicarbonatúria, glicosúria, fosfatúria', true, 'O túbulo proximal não reabsorve o HCO₃⁻ filtrado → ele se perde na urina até o plasma atingir um limiar mais baixo.', 'NAGMA proximal; pode vir com glicosúria/fosfatúria (Fanconi).'),
-            _makeCard('atr4', 'ATR tipo 4', 'Diabético, IECA/BRA', 'K⁺ alto, AG normal', true, 'Hipoaldosteronismo → secreção distal de H⁺ ↓ + amoniagênese ↓ → acidose hiperclorêmica com hipercalemia.', 'Única ATR com K alto; comum em diabético com DRC.'),
-            _makeCard('salina', 'Excesso de SF 0,9%', 'Reanimação volumosa com salina', 'Cl⁻ alto, HCO₃⁻ baixo, AG normal', true, 'Grande carga de Cl⁻ → reduz a diferença de íons fortes (SID) → HCO₃⁻ ↓ → acidose hiperclorêmica dilucional.', 'NAGMA iatrogênica; prefira cristaloide balanceado em grandes volumes.'),
+            _makeCard('atr4', 'ATR tipo 4', 'Diabético, IECA/BRA', 'K⁺ alto, AG normal', true, 'Hipoaldosteronismo → secreção distal de H⁺ ↓ + amoniagênese ↓ → acidose hiperclorêmica com hipercalemia.', 'Perfil típico da ATR tipo 4; comum em diabético com DRC.'),
+            _makeCard('salina', 'Excesso de SF 0,9%', 'Reanimação volumosa com salina', 'Cl⁻ alto, HCO₃⁻ baixo, AG normal', true, 'Grande carga de Cl⁻ → reduz a diferença de íons fortes (SID) → HCO₃⁻ ↓ → acidose hiperclorêmica.', 'NAGMA iatrogênica; prefira cristaloide balanceado em grandes volumes.'),
             _makeCard('acetazolamida', 'Acetazolamida', 'Inibidor da anidrase carbônica', 'Bicarbonatúria, AG normal', true, 'Inibe a reabsorção proximal de HCO₃⁻ (efeito tipo ATR-2) → bicarbonatúria → acidose com AG normal.', 'Causa medicamentosa de NAGMA por perda renal de HCO₃⁻.'),
             _makeCard('dka_vance', 'Cetoacidose diabética', 'Hiperglicemia, Kussmaul', 'Cetonas, AG elevado', false, 'Cetogênese → β-hidroxibutirato (ânion não medido) → AG ↑.', 'É armadilha: dá AG ALTO, não acidose hiperclorêmica.'),
             _makeCard('lactato_vance', 'Acidose lática', 'Choque, má perfusão', 'Lactato alto, AG elevado', false, 'Lactato é um ânion não medido → AG ↑.', 'É armadilha: AG alto, não AG normal.'),
             _makeCard('vomitos_vance', 'Vômitos', 'Perda de conteúdo gástrico', 'HCO₃⁻ alto, hipocloremia', false, 'Perda de HCl → H⁺ e Cl⁻ ↓ → alcalose metabólica.', 'É armadilha: gera alcalose, direção oposta a este caso.')
           ],
-          grimoire: { title: 'O padrão: acidose com AG normal (hiperclorêmica)', body: 'O HCO₃⁻ cai e o Cl⁻ sobe; o AG permanece normal. Diferencie a origem: perda <strong>gastrointestinal</strong> de HCO₃⁻ (UAG negativo) vs falha <strong>renal</strong> de excretar H⁺/NH₄⁺ (ATR, acetazolamida — UAG positivo). <code>UAG = (Na⁺ + K⁺) − Cl⁻ urinários</code>.' }
+          grimoire: { title: 'O padrão: acidose com AG normal (hiperclorêmica)', body: 'Diferenciar perda GI de HCO₃⁻, perda renal de bicarbonato (ATR proximal/acetazolamida) e redução da excreção de NH₄⁺. <code>UAG = Na⁺ + K⁺ − Cl⁻ urinários</code>: negativo pode refletir excreção de NH₄Cl preservada, inclusive na ATR proximal. Não classifica sozinho toda causa renal versus GI; bicarbonatúria e outros ânions limitam sua interpretação.' }
         }),
         {
           kind: 'mc',
@@ -516,9 +513,9 @@
           ],
           explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong> (< 7,35). A PaCO₂ ${PaCO2} mmHg (alta) acompanha a acidemia → o processo primário é <strong>respiratório</strong> (hipoventilação). O HCO₃⁻ ${HCO3} pouco elevado é resposta tampão precoce.`,
           explainWrong: {
-            'Acidose metabólica': `Acidose metabólica teria HCO₃⁻ baixo como causa. Aqui o HCO₃⁻ ${HCO3} está normal/alto e a PaCO₂ ${PaCO2} está alta.`,
-            'Alcalose respiratória': `Teria pH > 7,45 e PaCO₂ baixa. Aqui pH ${_c(pH)} e PaCO₂ ${PaCO2} (alta).`,
-            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} (ácido).`
+            'Acidose metabólica': `O HCO₃⁻ ${HCO3} deve ser integrado à compensação. Neste quadro de sedação, PaCO₂ ${PaCO2} elevada indica retenção respiratória de CO₂; não classifique acidose metabólica apenas pelo pH.`,
+            'Alcalose respiratória': `Alcalose respiratória decorre de queda primária da PaCO₂. Aqui a medida ${PaCO2} está elevada no contexto de hipoventilação.`,
+            'Alcalose metabólica': `O bicarbonato pode subir como resposta à hipercapnia. Compare HCO₃⁻ ${HCO3} à compensação esperada; sua elevação isolada não comprova alcalose metabólica.`,
           }
         },
         {
@@ -552,7 +549,7 @@
           prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas que também produzem este padrão (acidose respiratória). Não selecione causas de outro padrão.',
           instruction: 'Os mecanismos serão revelados somente após o julgamento.',
           cards: [
-            _makeCard('opioides', 'Opioides', 'Sonolência, miose, FR baixa', 'PaCO₂ alto', true, 'Deprimem o centro respiratório bulbar → volume-minuto ↓ → CO₂ retido → acidose respiratória.', 'Causa direta e reversível (naloxona) deste caso.'),
+            _makeCard('opioides', 'Opioides', 'Sonolência, miose, FR baixa', 'PaCO₂ alto', true, 'Deprimem o centro respiratório bulbar → volume-minuto ↓ → CO₂ retido → acidose respiratória.', 'Se o agente for opioide, naloxona pode reverter sua ação; suporte de via aérea e ventilação é prioritário.'),
             _makeCard('benzo', 'Benzodiazepínicos / sedativos', 'Rebaixamento, hipoventilação', 'PaCO₂ alto', true, 'Reduzem o drive ventilatório central → hipoventilação alveolar → retenção de CO₂.', 'Sedativos somam-se aos opioides na depressão respiratória.'),
             _makeCard('dpoc_exac', 'DPOC exacerbado com fadiga', 'Dispneia, uso de musculatura acessória', 'PaCO₂ alto, HCO₃⁻ alto (crônico)', true, 'Obstrução ↑ trabalho respiratório + fadiga muscular → ventilação alveolar ↓ → CO₂ ↑.', 'Quando a musculatura fadiga, a PaCO₂ sobe — sinal de gravidade.'),
             _makeCard('oh', 'Obesidade-hipoventilação', 'Obesidade, sonolência diurna', 'PaCO₂ alto, HCO₃⁻ alto', true, 'Carga mecânica torácica + drive reduzido → ventilação ↓ → retenção de CO₂ (sobretudo no sono).', 'Hipoventilação crônica; pode agudizar com sedativos.'),
@@ -582,7 +579,7 @@
           }
         }
       ],
-      summary: `<strong>Acidose respiratória aguda</strong> por hipoventilação induzida por sedação (PaCO₂ ${PaCO2}). HCO₃⁻ ${HCO3} ≈ esperado ${_c(expHCO3)} → aguda isolada. Conduta: restaurar a ventilação (naloxona se opioide); bicarbonato é contraindicado.`
+      summary: `<strong>Acidose respiratória aguda</strong> por hipoventilação induzida por sedação (PaCO₂ ${PaCO2}). HCO₃⁻ ${HCO3} ≈ esperado ${_c(expHCO3)} → aguda isolada. Conduta: restaurar a ventilação (naloxona se opioide); não há indicação de bicarbonato para acidose respiratória isolada.`
     };
   }
 
@@ -621,9 +618,9 @@
           ],
           explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong> grave. HCO₃⁻ ${HCO3} mEq/L (muito baixo) acompanha a acidemia → distúrbio <strong>metabólico</strong>. PaCO₂ ${PaCO2} mmHg baixa é compensação respiratória.`,
           explainWrong: {
-            'Acidose respiratória': `Teria PaCO₂ alta como causa. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
-            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
-            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
+            'Acidose respiratória': `A acidose respiratória decorre de elevação primária da PaCO₂. Aqui a PaCO₂ ${PaCO2} está baixa; relacioná-la ao HCO₃⁻ ${HCO3} e à compensação esperada.`,
+            'Alcalose metabólica': `Alcalose metabólica é um processo de elevação primária do bicarbonato. O HCO₃⁻ ${HCO3} está reduzido neste quadro; o pH isolado não define nem exclui processos associados.`,
+            'Alcalose respiratória': `PaCO₂ baixa também ocorre como compensação de acidose metabólica. Integre HCO₃⁻ ${HCO3}, história e resposta esperada antes de inferir processo respiratório adicional; não use apenas o pH.`,
           }
         },
         {
@@ -655,11 +652,11 @@
             _makeCard('propilenoglicol', 'Propilenoglicol', 'Infusão IV prolongada (ex.: lorazepam)', 'AG alto, gap osmolar, lactato', true, 'Metabolizado a lactato (AG ↑) e, sendo álcool, eleva o gap osmolar enquanto se acumula.', 'Toxicidade hospitalar por infusões prolongadas; AG alto com gap osmolar.'),
             _makeCard('dietilenoglicol', 'Dietilenoglicol', 'Contaminante de xaropes/solventes', 'AG alto, gap osmolar, IRA', true, 'Álcool-desidrogenase → ácidos (AG ↑) e, como álcool, eleva o gap osmolar; causa IRA e neurotoxicidade.', 'Mesma via dos álcoois tóxicos: AG alto + gap osmolar + IRA.'),
             _makeCard('isopropanol', 'Isopropanol (álcool isopropílico)', 'Ebriedade, hálito de acetona', 'Gap osmolar alto, cetose, SEM acidose', false, 'Oxidado a acetona → grande gap osmolar e cetonemia, mas NÃO produz ácidos fixos.', 'É armadilha: gap osmolar SEM acidose com AG alto (gera acetona, não ácido).'),
-            _makeCard('salicilato_v', 'Salicilato', 'Zumbido, taquipneia, febre', 'AG alto, PaCO₂ baixo, gap osmolar normal', false, 'Ácidos orgânicos (AG ↑) + alcalose respiratória, mas é molécula medida → não eleva o gap osmolar.', 'É armadilha: AG alto SEM gap osmolar relevante.'),
-            _makeCard('metformina_v', 'Metformina (acidose lática)', 'IRA, choque', 'Lactato muito alto, AG alto, gap osmolar normal', false, 'Inibe a gliconeogênese e a oxidação mitocondrial → lactato (AG ↑), mas não eleva o gap osmolar.', 'É armadilha: AG alto por lactato, sem gap osmolar.'),
+            _makeCard('salicilato_v', 'Salicilato', 'Zumbido, taquipneia, febre', 'AG alto, PaCO₂ baixo, gap osmolar normal', false, 'Acúmulo de ácidos orgânicos e estímulo respiratório podem produzir acidose AG alto com alcalose respiratória. Nesta carta, o gap osmolar foi informado como normal.', 'Não satisfaz a combinação pedida: nesta carta, o gap osmolar é normal.'),
+            _makeCard('metformina_v', 'Metformina (acidose lática)', 'IRA, choque', 'Lactato muito alto, AG alto, gap osmolar normal', false, 'Prejudica o metabolismo energético e favorece acúmulo de lactato (AG ↑). Nesta carta, o gap osmolar foi informado como normal.', 'Não satisfaz a combinação pedida: lactato alto com gap osmolar normal nesta carta.'),
             _makeCard('vomitos_v', 'Vômitos', 'Perda de conteúdo gástrico', 'HCO₃⁻ alto, hipocloremia', false, 'Perda de HCl → HCO₃⁻ ↑ → alcalose metabólica.', 'É armadilha: alcalose metabólica, padrão oposto.')
           ],
-          grimoire: { title: 'O padrão: AG alto + gap osmolar — separando os álcoois', body: 'Álcoois tóxicos (etileno/metanol/propileno/dietilenoglicol) dão <strong>AG alto + gap osmolar</strong>. <strong>Isopropanol</strong> dá gap osmolar SEM acidose. Salicilato e metformina dão AG alto SEM gap osmolar. O gap osmolar cai à medida que o álcool vira ácido — gap normal não exclui ingestão tardia.' }
+          grimoire: { title: 'O padrão: AG alto + gap osmolar — separando os álcoois', body: 'Álcoois tóxicos (etileno/metanol/propileno/dietilenoglicol) dão <strong>AG alto + gap osmolar</strong>. <strong>Isopropanol</strong> dá gap osmolar SEM acidose. Salicilato e metformina, <strong>nestas cartas</strong>, têm gap osmolar informado como normal. Dosar uma substância em exame específico não a inclui automaticamente na fórmula da osmolaridade calculada. O gap osmolar cai à medida que o álcool vira ácido — gap normal não exclui ingestão tardia.' }
         }),
         {
           kind: 'mc',
@@ -671,7 +668,7 @@
             { label: 'Bicarbonato isolado, sem antídoto', correct: false },
             { label: 'Antiemético e alta', correct: false }
           ],
-          explainCorrect: `AG alto + gap osmolar + IRA = intoxicação por <strong>álcool tóxico</strong> (etilenoglicol). Iniciar <strong>fomepizol</strong> imediatamente para bloquear a formação de metabólitos e indicar <strong>hemodiálise</strong> (acidose grave/lesão renal). Tiamina e piridoxina ajudam a desviar o metabolismo no etilenoglicol.`,
+          explainCorrect: `AG alto e gap osmolar elevado após ingestão suspeita sustentam forte suspeita de álcool tóxico, com etilenoglicol entre as hipóteses. Acionar toxicologia, iniciar bloqueio da álcool-desidrogenase conforme avaliação e investigar exposição, função renal e gravidade. Hemodiálise depende de critérios; dor lombar ou BUN isolado não documentam LRA nem tornam a diálise automática.`,
           explainWrong: {
             'Apenas hidratação e observação': 'A toxina continua sendo convertida em ácidos — atrasar o antídoto permite lesão renal/visual.',
             'Bicarbonato isolado, sem antídoto': 'Bicarbonato é adjuvante; sem bloquear a álcool-desidrogenase a produção de ácido continua.',
@@ -679,7 +676,7 @@
           }
         }
       ],
-      summary: `<strong>Acidose metabólica com AG alto (${AG}) + gap osmolar elevado (${osmGap})</strong> por <strong>etilenoglicol</strong>. A álcool-desidrogenase gera glicolato/oxalato (consome HCO₃⁻, eleva o AG) e causa IRA. Conduta: <strong>fomepizol + hemodiálise</strong> se critérios. Armadilha: isopropanol dá gap osmolar SEM acidose.`
+      summary: `<strong>Acidose metabólica com AG alto (${AG}) e gap osmolar elevado (${osmGap})</strong>: forte suspeita de álcool tóxico, compatível com etilenoglicol no contexto. Bloquear metabolismo tóxico conforme avaliação, investigar exposição e função renal; HD conforme critérios. Isopropanol isolado tipicamente produz cetose/gap osmolar sem este padrão de acidose.`
     };
   }
 
@@ -699,7 +696,7 @@
     _dbg('Selene rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, winterExpected, AG, glic });
 
     return {
-      narrative: `A jovem maga <strong>Selene</strong> chega com poliúria intensa, perda de peso, dor abdominal e respiração profunda e ritmada (Kussmaul). Hálito cetônico. A glicemia capilar marca <strong>${glic} mg/dL</strong>.`,
+      narrative: `A jovem maga <strong>Selene</strong> chega com poliúria intensa, perda de peso, dor abdominal e respiração profunda e ritmada (Kussmaul). Hálito cetônico. O β-hidroxibutirato laboratorial é <strong>6,2 mmol/L</strong>. A glicemia capilar marca <strong>${glic} mg/dL</strong>.`,
       gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
       acts: [
         {
@@ -713,9 +710,9 @@
           ],
           explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong>. HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio <strong>metabólico</strong>. A PaCO₂ ${PaCO2} baixa é a respiração de Kussmaul (compensação), não a causa.`,
           explainWrong: {
-            'Acidose respiratória': `Teria PaCO₂ alta como causa. Aqui a PaCO₂ ${PaCO2} está baixa (Kussmaul compensando).`,
-            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
-            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
+            'Acidose respiratória': `A acidose respiratória decorre de elevação primária da PaCO₂. Aqui a PaCO₂ ${PaCO2} está baixa; relacioná-la ao HCO₃⁻ ${HCO3} e à compensação esperada.`,
+            'Alcalose metabólica': `Alcalose metabólica é um processo de elevação primária do bicarbonato. O HCO₃⁻ ${HCO3} está reduzido neste quadro; o pH isolado não define nem exclui processos associados.`,
+            'Alcalose respiratória': `PaCO₂ baixa também ocorre como compensação de acidose metabólica. Integre HCO₃⁻ ${HCO3}, história e resposta esperada antes de inferir processo respiratório adicional; não use apenas o pH.`,
           }
         },
         {
@@ -756,23 +753,23 @@
         }),
         {
           kind: 'mc',
-          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
-          grimoire: { title: 'Tratamento da cetoacidose diabética', body: 'Pilares: <strong>volume</strong> (SF 0,9%), <strong>insulina regular IV</strong> em infusão e <strong>reposição de potássio</strong>. Regra de segurança: <strong>não iniciar insulina se K⁺ < 3,3 mEq/L</strong> (a insulina joga K⁺ para dentro da célula e pode causar hipocalemia grave) — repor K⁺ antes. Bicarbonato só se pH < 6,9.' },
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a conduta inicial?',
+          grimoire: { title: 'CAD — consenso internacional 2024', body: 'Cristaloide isotônico e insulina, com monitoramento. Se K⁺ < 3,5 mEq/L, repor antes da insulina até K⁺ > 3,5. Reposição posterior guiada por K⁺, diurese e função renal. Bicarbonato não é rotina; considerar se pH < 7,0.' },
           options: [
-            { label: 'SF 0,9% + insulina regular IV + reposição de K⁺ (não iniciar insulina se K⁺ < 3,3)', correct: true },
+            { label: 'Cristaloide isotônico + insulina IV; reposição de K⁺ guiada pelo valor sérico', correct: true },
             { label: 'Insulina subcutânea isolada, sem hidratação', correct: false },
             { label: 'Bolus de bicarbonato 8,4% IV de rotina', correct: false },
             { label: 'Apenas hidratação, sem insulina nem potássio', correct: false }
           ],
-          explainCorrect: `DKA → <strong>volume + insulina IV + K⁺</strong>. O K⁺ sérico (${_c(K)}) costuma mascarar déficit corporal total; monitorar e repor. Bicarbonato fica reservado a pH < 6,9.`,
+          explainCorrect: `Inicie volume e insulina IV. K⁺ ${_c(K)}: ${K < 5 ? 'repor conforme diurese/função renal e monitorar' : 'não repor imediatamente; monitorar e iniciar reposição quando cair abaixo de 5,0'}. O déficit corporal pode existir mesmo com K⁺ sérico alto.`,
           explainWrong: {
-            'Insulina subcutânea isolada, sem hidratação': 'A desidratação é grave na DKA; sem volume a perfusão e a resposta à insulina ficam comprometidas. Via IV em infusão é o padrão.',
-            'Bolus de bicarbonato 8,4% IV de rotina': 'Bicarbonato de rotina não melhora desfecho e pode causar hipocalemia/alcalose tardia; reservado a pH < 6,9.',
-            'Apenas hidratação, sem insulina nem potássio': 'Sem insulina a cetogênese continua; sem repor K⁺ há risco de hipocalemia grave ao iniciar insulina.'
+            'Insulina subcutânea isolada, sem hidratação': 'A proposta omite hidratação e monitoramento necessários.',
+            'Bolus de bicarbonato 8,4% IV de rotina': 'Não é rotina na CAD; considerar em acidemia grave (pH < 7,0).',
+            'Apenas hidratação, sem insulina nem potássio': 'A hidratação isolada não interrompe a cetogênese; K⁺ exige acompanhamento.'
           }
         }
       ],
-      summary: `<strong>Cetoacidose diabética</strong> (acidose metabólica com AG ${AG} alto + hiperglicemia + cetonemia), compensação de Kussmaul adequada (Winter ${_c(winterExpected)}, real ${PaCO2}). Conduta: SF 0,9% + insulina IV + K⁺ (cuidado com K⁺ < 3,3). Bicarbonato só se pH < 6,9.`
+      summary: `<strong>Cetoacidose diabética</strong>: hiperglicemia, cetonemia documentada e acidose. AG ${AG}; Winter ${_c(winterExpected)}, PaCO₂ ${PaCO2}. Tratar com volume, insulina e reposição de K⁺ guiada por monitoramento.`
     };
   }
 
@@ -810,9 +807,9 @@
           ],
           explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong>. HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha a acidemia → distúrbio <strong>metabólico</strong>. PaCO₂ ${PaCO2} baixa é compensação respiratória.`,
           explainWrong: {
-            'Acidose respiratória': `Teria PaCO₂ alta como causa. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
-            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
-            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
+            'Acidose respiratória': `A acidose respiratória decorre de elevação primária da PaCO₂. Aqui a PaCO₂ ${PaCO2} está baixa; relacioná-la ao HCO₃⁻ ${HCO3} e à compensação esperada.`,
+            'Alcalose metabólica': `Alcalose metabólica é um processo de elevação primária do bicarbonato. O HCO₃⁻ ${HCO3} está reduzido neste quadro; o pH isolado não define nem exclui processos associados.`,
+            'Alcalose respiratória': `PaCO₂ baixa também ocorre como compensação de acidose metabólica. Integre HCO₃⁻ ${HCO3}, história e resposta esperada antes de inferir processo respiratório adicional; não use apenas o pH.`,
           }
         },
         {
@@ -827,20 +824,20 @@
         },
         {
           kind: 'num',
-          prompt: `<strong>Ato III — Ânion gap CORRIGIDO.</strong><br>O AG medido = Na⁺ − (Cl⁻ + HCO₃⁻) = <strong>${measAG}</strong> (parece normal). Com albumina baixa (${_c(alb)} g/dL), calcule o <strong>AG corrigido</strong>.`,
+          prompt: `<strong>Ato III — Ânion gap CORRIGIDO.</strong><br>O AG medido = Na⁺ − (Cl⁻ + HCO₃⁻) = <strong>${measAG}</strong> (sem correção pela albumina). Com albumina baixa (${_c(alb)} g/dL), calcule o <strong>AG corrigido</strong>.`,
           grimoire: { title: 'AG corrigido pela albumina', body: '<code>AG = Na⁺ − (Cl⁻ + HCO₃⁻)</code><br><code>AG corrigido = AG + 2,5 × (4 − albumina)</code><br>Cada 1 g/dL de queda da albumina reduz o AG medido em ~2,5 — por isso a hipoalbuminemia <em>mascara</em> um AG alto.' },
           unit: 'mEq/L',
           target: AGcorr,
           tolerance: 2,
-          explainCorrect: `AG corrigido = ${measAG} + 2,5 × (4 − ${_c(alb)}) = <strong>${AGcorr} mEq/L</strong> (alto). O AG medido (${measAG}) parecia normal, mas a <strong>hipoalbuminemia mascarava um AG alto</strong> — típico da retenção de sulfato/fosfato na uremia.`,
+          explainCorrect: `AG corrigido = ${measAG} + 2,5 × (4 − ${_c(alb)}) = <strong>${AGcorr} mEq/L</strong> (alto). A <strong>hipoalbuminemia subestima o AG medido (${measAG})</strong>, e a correção revela uma elevação maior — típico da retenção de sulfato/fosfato na uremia.`,
           explainWrong: `AG corrigido = AG medido + 2,5 × (4 − albumina) = ${measAG} + 2,5 × (4 − ${_c(alb)}) = ${AGcorr}.`
         },
         _buildCardsAct({
           prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas <em>renais</em> que também produzem acidose metabólica. Não selecione causas de outro padrão.',
           instruction: 'Os mecanismos serão revelados somente após o julgamento.',
           cards: [
-            _makeCard('ckd_e', 'DRC avançada (acidose urêmica)', 'Uremia, anemia, fadiga', 'TFG muito baixa, fosfato alto', true, 'A queda da TFG reduz a excreção de ácidos fixos e a amoniagênese → retenção de sulfato/fosfato/ácidos orgânicos → AG ↑ (com componente hiperclorêmico em fases iniciais).', 'É o caso; indica álcali oral e, se grave/refratária, diálise.'),
-            _makeCard('atr4_e', 'ATR tipo 4', 'Diabético, IECA/BRA/espironolactona', 'K⁺ alto, AG normal', true, 'Hipoaldosteronismo → secreção distal de H⁺/K⁺ ↓ + amoniagênese ↓ → acidose hiperclorêmica com hipercalemia.', 'Única ATR com K⁺ alto; muito comum na DRC do diabético.'),
+            _makeCard('ckd_e', 'DRC avançada (acidose urêmica)', 'Uremia, anemia, fadiga', 'TFG muito baixa, fosfato alto', true, 'A queda da TFG reduz a excreção de ácidos fixos e a amoniagênese → retenção de sulfato/fosfato/ácidos orgânicos → AG ↑ (com componente hiperclorêmico em fases iniciais).', 'É o padrão do caso; avaliar persistência e necessidade de álcali individualmente. Acidose grave/refratária pode indicar diálise.'),
+            _makeCard('atr4_e', 'ATR tipo 4', 'Diabético, IECA/BRA/espironolactona', 'K⁺ alto, AG normal', true, 'Hipoaldosteronismo → secreção distal de H⁺/K⁺ ↓ + amoniagênese ↓ → acidose hiperclorêmica com hipercalemia.', 'Perfil típico da ATR tipo 4, frequente no diabético com DRC.'),
             _makeCard('atr1_e', 'ATR tipo 1 (distal)', 'Nefrocalcinose, litíase', 'pH urinário > 5,5, K⁺ baixo, AG normal', true, 'Falha da célula alfa-intercalada em secretar H⁺ no coletor → acidose hiperclorêmica.', 'NAGMA renal com hipocalemia e urina que não acidifica.'),
             _makeCard('atr2_e', 'ATR tipo 2 (proximal)', 'Síndrome de Fanconi', 'Bicarbonatúria, glicosúria, fosfatúria', true, 'O túbulo proximal não reabsorve o HCO₃⁻ filtrado → perda urinária de HCO₃⁻ até um novo limiar mais baixo.', 'NAGMA proximal; associada a mieloma, fármacos e doenças tubulares.'),
             _makeCard('hipoaldo_e', 'Hipoaldosteronismo hiporreninêmico', 'Diabético com DRC', 'K⁺ alto, AG normal', true, 'Renina e aldosterona baixas → menos secreção distal de H⁺/K⁺ → acidose hiperclorêmica hipercalêmica.', 'Mecanismo de fundo da ATR tipo 4 no diabético.'),
@@ -849,27 +846,27 @@
             _makeCard('hiperaldo_e', 'Hiperaldosteronismo primário', 'Hipertensão resistente', 'K⁺ baixo, HCO₃⁻ alto', false, 'Aldosterona ↑ → secreção distal de H⁺/K⁺ ↑ → alcalose metabólica hipocalêmica.', 'É armadilha: alcalose, não acidose.'),
             _makeCard('tep_e', 'Tromboembolismo pulmonar', 'Dispneia súbita', 'PaCO₂ baixo, hipoxemia', false, 'Hiperventilação → CO₂ eliminado → alcalose respiratória.', 'É armadilha: distúrbio respiratório alcalótico, não acidose metabólica.')
           ],
-          grimoire: { title: 'Acidose de origem renal', body: 'O rim acidifica o sangue excretando H⁺ (como NH₄⁺) e regenerando HCO₃⁻. Falhas geram acidose: <strong>queda de TFG</strong> (uremia, AG alto), <strong>ATR</strong> (1 distal, 2 proximal, 4 hipoaldosteronismo — AG normal) e <strong>IRA</strong>. Diferencie das alcaloses (vômito, hiperaldo) e dos distúrbios respiratórios.' }
+          grimoire: { title: 'Acidose de origem renal', body: 'O rim elimina ácido e regenera bicarbonato. Falhas geram acidose: <strong>queda de TFG</strong> (uremia, AG alto), <strong>ATR</strong> (1 distal, 2 proximal, 4 hipoaldosteronismo — AG normal) e <strong>IRA</strong>. Diferencie das alcaloses (vômito, hiperaldo) e dos distúrbios respiratórios.' }
         }),
         {
           kind: 'mc',
-          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
-          grimoire: { title: 'Acidose metabólica da DRC', body: 'Na DRC estável, a recomendação é <strong>repor álcali por via oral</strong> (bicarbonato de sódio) com alvo de HCO₃⁻ ≥ 22 mEq/L — corrigir a acidose crônica retarda o catabolismo muscular/ósseo e a progressão da DRC. Bicarbonato IV em bolus é para acidemia aguda grave. Diálise se acidose grave/refratária ou outros critérios.' },
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a conduta inicial?',
+          grimoire: { title: 'Acidose da DRC — KDIGO 2024', body: 'Avaliar persistência e repercussões da acidose. Considerar tratamento individualizado, por exemplo com HCO₃⁻ < 18 mEq/L no adulto. Monitorar PA, K⁺ e volume, evitando ultrapassar o limite superior normal do bicarbonato. Não há benefício renal universal comprovado.' },
           options: [
-            { label: 'Bicarbonato de sódio ORAL, alvo HCO₃⁻ ≥ 22 (DRC estável); avaliar diálise se grave/refratária', correct: true },
+            { label: 'Individualizar álcali oral após avaliar persistência; monitorar PA/K⁺/volume', correct: true },
             { label: 'Bolus de bicarbonato 8,4% IV imediato', correct: false },
             { label: 'Grande volume de SF 0,9%', correct: false },
-            { label: 'Apenas observar — acidose crônica não precisa de tratamento', correct: false }
+            { label: 'Apenas observar — acidose crônica nunca precisa de tratamento', correct: false }
           ],
-          explainCorrect: `Acidose metabólica crônica da DRC → <strong>álcali oral</strong> (bicarbonato de sódio), alvo HCO₃⁻ ≥ 22. Corrigir a acidose retarda a progressão da DRC e o catabolismo. Diálise se grave/refratária.`,
+          explainCorrect: `HCO₃⁻ ${HCO3}: avaliar persistência, sintomas e necessidade de álcali oral. A decisão é individualizada, com controle da pressão arterial, potássio e volemia. Não prometer nefroproteção nem impor alvo universal. Avaliar diálise se houver indicação clínica, como acidose refratária.`,
           explainWrong: {
-            'Bolus de bicarbonato 8,4% IV imediato': 'Reservado a acidemia aguda grave; na DRC estável a correção é oral e gradual.',
-            'Grande volume de SF 0,9%': 'A carga de Cl⁻ pioraria a acidose (hiperclorêmica) e o paciente com DRC pode não tolerar o volume.',
-            'Apenas observar — acidose crônica não precisa de tratamento': 'A acidose crônica acelera a perda muscular/óssea e a progressão da DRC — deve ser tratada.'
+            'Bolus de bicarbonato 8,4% IV imediato': 'O quadro descrito é crônico; um bolus não substitui avaliação e correção gradual.',
+            'Grande volume de SF 0,9%': 'Pode acrescentar cloreto e sobrecarga de volume.',
+            'Apenas observar — acidose crônica nunca precisa de tratamento': 'A acidose pode exigir intervenção; acompanhamento e decisão individualizada são necessários.'
           }
         }
       ],
-      summary: `<strong>Acidose metabólica da DRC avançada</strong> com <strong>AG corrigido alto (${AGcorr})</strong> mascarado pela hipoalbuminemia (AG medido ${measAG}). Compensação adequada (Winter ${_c(winterExpected)}, real ${PaCO2}). Conduta: álcali oral (alvo HCO₃⁻ ≥ 22); diálise se grave. Lição: corrija o AG pela albumina.`
+      summary: `<strong>Acidose metabólica da DRC</strong>, AG corrigido ${AGcorr} (medido ${measAG}), com compensação esperada. Avaliar persistência e necessidade de álcali oral, monitorando PA, K⁺ e volemia.`
     };
   }
 
@@ -903,9 +900,9 @@
           ],
           explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong>. HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha → distúrbio <strong>metabólico</strong>. Com Cl⁻ ${Cl} elevado e AG normal, é uma acidose <strong>hiperclorêmica</strong> (AG normal).`,
           explainWrong: {
-            'Acidose respiratória': `Teria PaCO₂ alta como causa. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
-            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
-            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
+            'Acidose respiratória': `A acidose respiratória decorre de elevação primária da PaCO₂. Aqui a PaCO₂ ${PaCO2} está baixa; relacioná-la ao HCO₃⁻ ${HCO3} e à compensação esperada.`,
+            'Alcalose metabólica': `Alcalose metabólica é um processo de elevação primária do bicarbonato. O HCO₃⁻ ${HCO3} está reduzido neste quadro; o pH isolado não define nem exclui processos associados.`,
+            'Alcalose respiratória': `PaCO₂ baixa também ocorre como compensação de acidose metabólica. Integre HCO₃⁻ ${HCO3}, história e resposta esperada antes de inferir processo respiratório adicional; não use apenas o pH.`,
           }
         },
         {
@@ -920,36 +917,36 @@
         },
         {
           kind: 'mc',
-          prompt: `<strong>Ato III — pH urinário.</strong><br>Diante de uma acidose metabólica sistêmica, o pH urinário de <strong>${_c(uPH)}</strong> é apropriado?`,
-          grimoire: { title: 'pH urinário na acidose', body: 'Frente a uma acidemia, o rim normal acidifica a urina a <strong>pH < 5,5</strong> (excretando H⁺ como NH₄⁺ e acidez titulável). Um pH urinário <strong>&gt; 5,5</strong> durante acidose indica <strong>falha de acidificação distal</strong> (ATR tipo 1).' },
+          prompt: `<strong>Ato III — Dados urinários.</strong><br>Com pH urinário ${_c(uPH)} e as demais pistas, qual interpretação é mais adequada?`,
+          grimoire: { title: 'Urina: interpretar o conjunto', body: 'O pH urinário isolado não confirma ATR. Integrar excreção de amônio, potássio, história e mimetizadores. Urina alcalina também pode ocorrer em perdas gastrointestinais; neste caso, síndrome seca, nefrocalcinose e hipocalemia favorecem ATR distal.' },
           options: [
-            { label: 'Não — a urina deveria estar ácida (pH < 5,5); a falha de acidificação distal indica ATR tipo 1', correct: true },
+            { label: 'O conjunto sugere ATR distal; o pH urinário isolado não confirma o diagnóstico', correct: true },
             { label: 'Sim — pH urinário alto é a resposta renal normal à acidose', correct: false },
             { label: 'Indica perda gastrointestinal de bicarbonato', correct: false },
             { label: 'Indica acidose respiratória compensada', correct: false }
           ],
-          explainCorrect: `Numa acidose, a urina deveria ficar ácida (pH < 5,5). O pH urinário ${_c(uPH)} (> 5,5) mostra <strong>incapacidade de acidificar</strong> → <strong>ATR tipo 1 (distal)</strong>. A hipocalemia e a nefrocalcinose reforçam o diagnóstico.`,
+          explainCorrect: `O pH urinário ${_c(uPH)} deve ser integrado à síndrome seca, hipocalemia e nefrocalcinose: o conjunto <strong>sugere ATR distal</strong>. Verificar a excreção de amônio e excluir mimetizadores, sem confirmar a causa pelo pH isolado.`,
           explainWrong: {
-            'Sim — pH urinário alto é a resposta renal normal à acidose': 'Ao contrário: na acidose o rim normal abaixa o pH urinário (< 5,5). Urina alcalina aqui é inapropriada.',
-            'Indica perda gastrointestinal de bicarbonato': 'Na perda GI (diarreia) o rim acidifica bem a urina (pH < 5,5, UAG negativo). Aqui a urina NÃO acidifica.',
+            'Sim — pH urinário alto é a resposta renal normal à acidose': 'Não é uma regra universal: interpretar pH e excreção de amônio no contexto.',
+            'Indica perda gastrointestinal de bicarbonato': 'O pH isolado não separa perda gastrointestinal de ATR. As demais pistas do caso favorecem causa renal.',
             'Indica acidose respiratória compensada': 'O distúrbio é metabólico (HCO₃⁻ baixo), não respiratório.'
           }
         },
         _buildCardsAct({
-          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas que também produzem este padrão (acidose hiperclorêmica de origem renal/ATR). Não selecione causas de outro padrão.',
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione causas <strong>renais de acidose hiperclorêmica hipocalêmica</strong>. Não selecione causas extrarrenais nem o padrão de hipercalemia.',
           instruction: 'Os mecanismos serão revelados somente após o julgamento.',
           cards: [
-            _makeCard('atr1_l', 'ATR tipo 1 (distal)', 'Litíase, nefrocalcinose', 'pH urinário > 5,5, K⁺ baixo, AG normal', true, 'Falha da célula alfa-intercalada em secretar H⁺ no coletor → urina não acidifica → acidose hiperclorêmica com hipocalemia.', 'É exatamente este caso; investigar causa (Sjögren, autoimune, fármacos).'),
+            _makeCard('atr1_l', 'ATR tipo 1 (distal)', 'Litíase, nefrocalcinose', 'pH urinário > 5,5, K⁺ baixo, AG normal', true, 'Falha da célula alfa-intercalada em secretar H⁺ no coletor → urina não acidifica → acidose hiperclorêmica com hipocalemia.', 'Compatível com o conjunto do caso; investigar causa (Sjögren, autoimune, fármacos) e confirmar conforme avaliação.'),
             _makeCard('sjogren_l', 'Síndrome de Sjögren', 'Olhos/boca secos, autoimune', 'ATR distal, anti-Ro/La', true, 'A infiltração linfocítica tubulointersticial autoimune lesa a célula alfa-intercalada → ATR tipo 1.', 'Causa autoimune clássica de ATR-1 — combina com a síndrome seca da paciente.'),
             _makeCard('anfo_l', 'Anfotericina B', 'Uso de antifúngico', 'ATR distal, K⁺ baixo', true, 'Forma poros na membrana do túbulo distal → vazamento de H⁺ de volta → defeito de acidificação distal (ATR-1).', 'Causa medicamentosa de ATR tipo 1.'),
             _makeCard('atr2_l', 'ATR tipo 2 (proximal)', 'Síndrome de Fanconi', 'Bicarbonatúria, glicosúria', true, 'O túbulo proximal não reabsorve o HCO₃⁻ filtrado → perda urinária de HCO₃⁻ → acidose hiperclorêmica.', 'Outra ATR; diferencia-se por acidificar a urina quando o HCO₃⁻ plasmático cai abaixo do limiar.'),
-            _makeCard('diarreia_l', 'Diarreia', 'Perda fecal volumosa', 'AG normal, Cl⁻ alto, UAG negativo', true, 'Perde HCO₃⁻ intestinal → acidose hiperclorêmica; o rim acidifica bem (pH urinário < 5,5).', 'Também é NAGMA, mas extrarrenal — a urina acidifica (diferente da ATR-1).'),
+            _makeCard('diarreia_l', 'Diarreia', 'Perda fecal volumosa', 'AG normal, Cl⁻ alto, perda gastrointestinal', false, 'Perda intestinal de bicarbonato pode causar acidose hiperclorêmica.', 'É extrarrenal; não pertence ao recorte renal pedido. O pH urinário isolado não decide essa distinção.'),
             _makeCard('acetazolamida_l', 'Acetazolamida', 'Inibidor da anidrase carbônica', 'Bicarbonatúria, AG normal', true, 'Inibe a reabsorção proximal de HCO₃⁻ (efeito tipo ATR-2) → bicarbonatúria → NAGMA.', 'NAGMA medicamentosa por perda renal de HCO₃⁻.'),
             _makeCard('dka_l', 'Cetoacidose diabética', 'Hiperglicemia, Kussmaul', 'Cetonas, AG alto', false, 'Cetogênese → β-hidroxibutirato (ânion não medido) → AG ↑.', 'É armadilha: dá AG ALTO, não acidose hiperclorêmica.'),
             _makeCard('vomitos_l', 'Vômitos', 'Perda de conteúdo gástrico', 'HCO₃⁻ alto, hipocloremia', false, 'Perda de HCl → HCO₃⁻ ↑ → alcalose metabólica.', 'É armadilha: alcalose, padrão oposto.'),
             _makeCard('atr4_l', 'ATR tipo 4', 'Diabético, IECA', 'K⁺ ALTO, AG normal', false, 'Hipoaldosteronismo → acidose hiperclorêmica com hipercalemia.', 'É armadilha aqui: a ATR-4 cursa com K⁺ ALTO; esta paciente tem K⁺ BAIXO (ATR-1).')
           ],
-          grimoire: { title: 'Acidose hiperclorêmica: o pH urinário separa renal de GI', body: 'Na NAGMA, o pH urinário e o UAG localizam a falha: rim que <strong>acidifica</strong> (pH < 5,5, UAG negativo) → perda GI; rim que <strong>não acidifica</strong> (pH > 5,5, UAG positivo) → ATR. A ATR-1 é hipocalêmica; a ATR-4, hipercalêmica.' }
+          grimoire: { title: 'Acidose hiperclorêmica: dados integrados', body: 'Distinguir perdas renais de extrarrenais integrando história, K⁺ e excreção de amônio. O pH urinário e seus substitutos não são testes isolados infalíveis. ATR1/2 podem ser hipocalêmicas; ATR4 é tipicamente hipercalêmica.' }
         }),
         {
           kind: 'mc',
@@ -965,11 +962,11 @@
           explainWrong: {
             'Bicarbonato de SÓDIO em bolus IV, sem repor potássio': 'Repor só sódio pioraria a hipocalemia (a correção da acidose desloca K⁺ para dentro da célula). Use sal de potássio.',
             'Restrição de potássio na dieta': 'A paciente é HIPOcalêmica — restringir K⁺ é o contrário do necessário.',
-            'Espironolactona': 'Poupador de K⁺ não trata a ATR-1 e é desnecessário (K⁺ já está baixo).'
+            'Espironolactona': 'Não substitui álcali, reposição do déficit de K⁺ e tratamento da causa da ATR distal; requer indicação específica.'
           }
         }
       ],
-      summary: `<strong>ATR tipo 1 (distal)</strong>: acidose hiperclorêmica (AG ${AG} normal) com <strong>hipocalemia</strong> (K⁺ ${_c(K)}) e <strong>pH urinário ${_c(uPH)} > 5,5</strong> (não acidifica). Compensação adequada. Conduta: citrato/bicarbonato de potássio + investigar Sjögren. Lição: pH urinário > 5,5 na acidose = falha distal.`
+      summary: `<strong>O conjunto sugere ATR distal</strong>: acidose hiperclorêmica, K⁺ ${_c(K)}, síndrome seca e nefrocalcinose. Integrar pH urinário ${_c(uPH)} com os demais dados, investigar a causa e corrigir os déficits.`
     };
   }
 
@@ -1002,9 +999,9 @@
           ],
           explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong>. HCO₃⁻ ${HCO3} mEq/L (baixo) → distúrbio <strong>metabólico</strong>. Cl⁻ ${Cl} alto + AG normal → acidose <strong>hiperclorêmica</strong>.`,
           explainWrong: {
-            'Acidose respiratória': `Teria PaCO₂ alta como causa. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
-            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
-            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
+            'Acidose respiratória': `A acidose respiratória decorre de elevação primária da PaCO₂. Aqui a PaCO₂ ${PaCO2} está baixa; relacioná-la ao HCO₃⁻ ${HCO3} e à compensação esperada.`,
+            'Alcalose metabólica': `Alcalose metabólica é um processo de elevação primária do bicarbonato. O HCO₃⁻ ${HCO3} está reduzido neste quadro; o pH isolado não define nem exclui processos associados.`,
+            'Alcalose respiratória': `PaCO₂ baixa também ocorre como compensação de acidose metabólica. Integre HCO₃⁻ ${HCO3}, história e resposta esperada antes de inferir processo respiratório adicional; não use apenas o pH.`,
           }
         },
         {
@@ -1027,10 +1024,10 @@
             { label: 'Perda gastrointestinal de bicarbonato', correct: false },
             { label: 'Hiperaldosteronismo primário', correct: false }
           ],
-          explainCorrect: `Acidose hiperclorêmica com <strong>K⁺ alto</strong> = <strong>ATR tipo 4</strong>: o hipoaldosteronismo (ou resistência) reduz a secreção distal de H⁺ e K⁺. No diabético com DRC usando IECA + espironolactona, vários fatores somam-se.`,
+          explainCorrect: `Neste contexto, acidose hiperclorêmica com <strong>K⁺ alto</strong> sugere <strong>ATR tipo 4</strong>: o hipoaldosteronismo (ou resistência) reduz a secreção distal de H⁺ e K⁺. No diabético com DRC usando IECA + espironolactona, vários fatores somam-se.`,
           explainWrong: {
-            'Falha de acidificação distal — ATR tipo 1': 'A ATR-1 cursa com K⁺ BAIXO. Aqui o K⁺ está alto → ATR-4.',
-            'Perda gastrointestinal de bicarbonato': 'Diarreia dá NAGMA, mas com K⁺ baixo. Aqui o K⁺ está alto.',
+            'Falha de acidificação distal — ATR tipo 1': 'A ATR distal clássica costuma ser hipocalêmica. Neste contexto de diabetes/DRC e fármacos, o conjunto favorece ATR tipo 4; K⁺ isolado não confirma o diagnóstico.',
+            'Perda gastrointestinal de bicarbonato': 'Perda gastrointestinal pode causar NAGMA e costuma reduzir K⁺, mas não foi descrita. O contexto de diabetes/DRC e medicamentos favorece menor excreção renal de K⁺/ácido; interpretar o conjunto.',
             'Hiperaldosteronismo primário': 'Hiperaldosteronismo causa alcalose metabólica com K⁺ baixo — o oposto.'
           }
         },
@@ -1039,8 +1036,8 @@
           instruction: 'Os mecanismos serão revelados somente após o julgamento.',
           cards: [
             _makeCard('dm_b', 'Diabetes (hipoaldo hiporreninêmico)', 'Diabético com DRC', 'K⁺ alto, AG normal', true, 'A nefropatia diabética reduz a renina → aldosterona baixa → menos secreção distal de H⁺/K⁺ → ATR-4.', 'Causa mais comum de ATR-4; combina com o perfil do paciente.'),
-            _makeCard('ieca_b', 'IECA / BRA', 'Uso de enalapril/losartana', 'K⁺ alto, AG normal', true, 'Bloqueiam a formação/ação da angiotensina II → aldosterona ↓ → secreção distal de H⁺/K⁺ ↓.', 'Gatilho medicamentoso frequente; suspender/ajustar é parte da conduta.'),
-            _makeCard('espiro_b', 'Espironolactona / eplerenona', 'Antagonista mineralocorticoide', 'K⁺ alto, AG normal', true, 'Bloqueiam o receptor de aldosterona no coletor → ENaC/secreção de H⁺ e K⁺ ↓ → acidose hipercalêmica.', 'Bloqueio direto da aldosterona; principal suspeito a suspender aqui.'),
+            _makeCard('ieca_b', 'IECA / BRA', 'Uso de enalapril/losartana', 'K⁺ alto, AG normal', true, 'Bloqueiam a formação/ação da angiotensina II → aldosterona ↓ → secreção distal de H⁺/K⁺ ↓.', 'Gatilho medicamentoso frequente; avaliar ajuste/pausa conforme gravidade, preservando benefícios quando o K puder ser controlado.'),
+            _makeCard('espiro_b', 'Espironolactona / eplerenona', 'Antagonista mineralocorticoide', 'K⁺ alto, AG normal', true, 'Bloqueiam o receptor de aldosterona no coletor → ENaC/secreção de H⁺ e K⁺ ↓ → acidose hipercalêmica.', 'Bloqueio direto da aldosterona; gatilho a rever conforme a gravidade e a indicação clínica.'),
             _makeCard('amilorida_b', 'Amilorida / trimetoprim', 'Diurético poupador / antibiótico', 'K⁺ alto, AG normal', true, 'Bloqueiam o canal ENaC no coletor → menos reabsorção de Na⁺ e menos secreção de H⁺/K⁺ → ATR-4 funcional.', 'Trimetoprim (em dose alta) age como amilorida — causa subestimada de hipercalemia/acidose.'),
             _makeCard('heparina_b', 'Heparina', 'Anticoagulação prolongada', 'K⁺ alto, aldosterona baixa', true, 'Inibe a síntese de aldosterona na zona glomerulosa adrenal → hipoaldosteronismo → ATR-4.', 'Causa pouco lembrada de hipercalemia com acidose.'),
             _makeCard('aine_b', 'AINEs', 'Uso crônico de anti-inflamatório', 'K⁺ alto, AG normal', true, 'Inibem prostaglandinas → reduzem a renina → aldosterona ↓ → ATR-4.', 'Fármaco comum que precipita ATR-4, sobretudo em DRC/diabético.'),
@@ -1048,19 +1045,19 @@
             _makeCard('bartter_b', 'Síndrome de Bartter/Gitelman', 'Normotenso, cãibras', 'K⁺ BAIXO, alcalose', false, 'Defeito tubular tipo diurético → ativa RAAS → alcalose hipocalêmica.', 'É armadilha: alcalose com K⁺ baixo, oposto da ATR-4.'),
             _makeCard('dka_b', 'Cetoacidose diabética', 'Hiperglicemia, Kussmaul', 'Cetonas, AG alto', false, 'Cetogênese → β-hidroxibutirato → AG ↑.', 'É armadilha: o diabético pode ter DKA, mas aquela é AG ALTO, não hiperclorêmica.')
           ],
-          grimoire: { title: 'ATR tipo 4 — a acidose hipercalêmica', body: 'Hipoaldosteronismo (diabetes/DRC) ou bloqueio do eixo (IECA/BRA, espironolactona, amilorida, trimetoprim, heparina, AINE) reduzem a secreção distal de H⁺ e K⁺ → acidose hiperclorêmica com K⁺ alto. É a única ATR com hipercalemia.' }
+          grimoire: { title: 'ATR tipo 4 — a acidose hipercalêmica', body: 'Hipoaldosteronismo (diabetes/DRC) ou bloqueio do eixo (IECA/BRA, espironolactona, amilorida, trimetoprim, heparina, AINE) reduzem a secreção distal de H⁺ e K⁺ → acidose hiperclorêmica com K⁺ alto. É o perfil típico da ATR tipo 4; outras causas de hipercalemia e acidose devem ser avaliadas.' }
         }),
         {
           kind: 'mc',
           prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
-          grimoire: { title: 'Tratamento da ATR tipo 4', body: 'Tratar a <strong>hipercalemia</strong> e <strong>suspender/ajustar os gatilhos</strong> (IECA/BRA, espironolactona, AINE, trimetoprim). Dieta pobre em K⁺; diurético de alça/tiazídico ajuda a excretar K⁺; fludrocortisona em casos selecionados de hipoaldosteronismo. Álcali se acidose persistir.' },
+          grimoire: { title: 'Hipercalemia e provável ATR tipo 4', body: 'Priorizar avaliação e tratamento da hipercalemia. UKKA2026: no hospital, ECG urgente com K⁺ ≥ 6,0; monitorização contínua com K⁺ ≥ 6,5, alterações de ECG ou outros sinais de risco. ECG normal não exclui gravidade. Rever medicamentos, volume e função renal; ajustar/pausar conforme o contexto e reavaliar reintrodução após controle. KDIGO2024 evita retirada indiscriminada de IECA/BRA quando o K pode ser controlado. Considerar álcali individualmente se a acidose persistir; ele não substitui manejo da emergência.' },
           options: [
-            { label: 'Suspender espironolactona/IECA, tratar a hipercalemia e reavaliar; álcali se persistir', correct: true },
+            { label: 'Avaliar urgência/ECG e tratar K⁺; rever fármacos e acidose', correct: true },
             { label: 'Repor potássio (KCl)', correct: false },
             { label: 'Iniciar espironolactona em dose maior', correct: false },
             { label: 'Restringir álcali (bicarbonato)', correct: false }
           ],
-          explainCorrect: `ATR-4 com hipercalemia (K⁺ ${_c(K)}) → <strong>suspender os gatilhos</strong> (espironolactona, IECA/BRA), tratar a hipercalemia e reavaliar. Diurético/dieta pobre em K⁺ ajudam; álcali se a acidose persistir.`,
+          explainCorrect: `K⁺ ${_c(K)} mEq/L: ${K >= 6.5 ? 'tratamento emergencial, ECG urgente e monitorização contínua.' : K >= 6 ? 'ECG urgente e tratamento orientado pela condição clínica, ECG e evolução do K⁺.' : 'avaliar prontamente sintomas, medicamentos, função renal e necessidade de tratamento.'} ECG normal não exclui risco. Rever espironolactona/IECA e ajustar ou pausar conforme o quadro, reavaliando indicação e reintrodução após controle. Investigar provável ATR tipo 4; considerar álcali individualizado se persistir acidose.`,
           explainWrong: {
             'Repor potássio (KCl)': 'O paciente está HIPERcalêmico — repor K⁺ poderia ser fatal.',
             'Iniciar espironolactona em dose maior': 'A espironolactona é justamente um gatilho da ATR-4 — aumentar piora a hipercalemia.',
@@ -1068,19 +1065,19 @@
           }
         }
       ],
-      summary: `<strong>ATR tipo 4</strong>: acidose hiperclorêmica (AG ${AG} normal) com <strong>hipercalemia</strong> (K⁺ ${_c(K)}) por hipoaldosteronismo (diabetes + IECA + espironolactona). Conduta: suspender gatilhos, tratar a hipercalemia, álcali se persistir. Lição: NAGMA + K⁺ alto = ATR tipo 4 (única ATR hipercalêmica).`
+      summary: `<strong>Provável ATR tipo 4</strong>: acidose hiperclorêmica (AG ${AG}) com K⁺ ${_c(K)} no contexto de diabetes, DRC e medicamentos que reduzem excreção de K⁺. Priorizar avaliação/ECG e manejo da hipercalemia conforme gravidade; rever fármacos e acidose. Não confundir hipótese contextual com confirmação por K⁺ isolado.`
     };
   }
 
   function _buildIsolde(){
-    // Bartter/Gitelman — alcalose metabólica hipocalêmica NORMOTENSA (salina-resistente)
+    // Bartter/Gitelman — alcalose metabólica hipocalêmica NORMOTENSA, com perda renal de sal
     const HCO3 = _rand(30, 40);
     const Na   = _rand(137, 142);
     const AG   = _rand(9, 12);
     const Cl   = Na - AG - HCO3;                   // baixo (hipocloremia)
     const alb  = _r1(3.8 + Math.random() * 0.4);
     const K    = _r1(2.6 + Math.random() * 0.6);   // hipocalemia (2,6–3,2)
-    const ClU  = _rand(25, 45);                     // cloreto urinário ALTO → salina-resistente
+    const ClU  = _rand(25, 45);                     // cloreto urinário alto → integrar volume e causas de perda renal
     const compExpected = _r1(0.7 * HCO3 + 21);
     const PaCO2 = Math.round(compExpected + (Math.random() * 4 - 2));
     const pH = _ph(HCO3, PaCO2);
@@ -1102,9 +1099,9 @@
           ],
           explainCorrect: `pH ${_c(pH)} → <strong>alcalemia</strong> (> 7,45). HCO₃⁻ ${HCO3} mEq/L (alto) acompanha → distúrbio <strong>metabólico</strong>. A PaCO₂ ${PaCO2} elevada é a hipoventilação compensatória.`,
           explainWrong: {
-            'Alcalose respiratória': `Teria PaCO₂ baixa e HCO₃⁻ baixo. Aqui PaCO₂ ${PaCO2} e HCO₃⁻ ${HCO3} estão altos.`,
-            'Acidose metabólica': `Teria pH < 7,35 e HCO₃⁻ baixo. Aqui pH ${_c(pH)} (alcalino) e HCO₃⁻ ${HCO3} (alto).`,
-            'Acidose respiratória': `Teria pH < 7,35. Aqui pH ${_c(pH)}.`
+            'Alcalose respiratória': `Este ato pede o processo metabólico sustentado pelo HCO₃⁻ ${HCO3} elevado. Um componente respiratório adicional é avaliado pela PaCO₂ ${PaCO2} em relação à compensação, mesmo se estiver na faixa populacional normal.`,
+            'Acidose metabólica': `Acidose metabólica envolve redução primária do bicarbonato. Aqui o HCO₃⁻ ${HCO3} está elevado; a interpretação de processos associados depende da compensação e do contexto.`,
+            'Acidose respiratória': `PaCO₂ pode aumentar como resposta à alcalose metabólica. Compare a medida ${PaCO2} com a faixa esperada antes de atribuí-la a acidose respiratória primária; pH sozinho não exclui um processo.`,
           }
         },
         {
@@ -1120,55 +1117,55 @@
         {
           kind: 'mc',
           prompt: `<strong>Ato III — Classificação.</strong><br>Cloreto urinário = <strong>${ClU} mEq/L</strong>, pressão <strong>normal</strong>. Como classificar esta alcalose?`,
-          grimoire: { title: 'Alcalose: cloreto urinário + pressão', body: '<code>Cl⁻ urinário &lt; 20</code> → salina-responsiva (vômito, diurético remoto). <code>Cl⁻ urinário &gt; 20</code> → <strong>salina-resistente</strong>: aí a <strong>pressão</strong> separa — <em>normotensa</em> (Bartter/Gitelman, diurético em uso) vs <em>hipertensa</em> (hiperaldosteronismo, Liddle).' },
+          grimoire: { title: 'Alcalose: cloreto urinário + pressão', body: 'Cl⁻ urinário alto com pressão normal sugere <strong>perda renal de sal</strong>: tubulopatias ou diurético ativo. O efeito do diurético pode elevar o cloreto urinário mesmo com contração de volume. Interpretar com história, volume e pressão; o valor isolado não demonstra resistência à reposição de sal.' },
           options: [
-            { label: 'Salina-resistente, normotensa → tubulopatia (Bartter/Gitelman) ou diurético', correct: true },
+            { label: 'Perda renal de cloreto com pressão normal; investigar tubulopatia ou diurético', correct: true },
             { label: 'Salina-responsiva (Cl⁻ urinário < 20) por vômitos', correct: false },
             { label: 'Salina-resistente, hipertensa → hiperaldosteronismo', correct: false },
             { label: 'Acidose tubular renal', correct: false }
           ],
-          explainCorrect: `Cl⁻ urinário ${ClU} (> 20) = <strong>salina-resistente</strong>; com pressão <strong>normal</strong> → <strong>Bartter/Gitelman</strong> (ou diurético em uso). O Mg baixo e o Ca urinário baixo apontam <strong>Gitelman</strong>.`,
+          explainCorrect: `Cl⁻ urinário ${ClU} (> 20) com pressão normal sugere <strong>perda renal de sal</strong>. Hipomagnesemia e cálcio urinário baixo favorecem Gitelman; excluir diurético e outros mimetizadores antes da confirmação.`,
           explainWrong: {
-            'Salina-responsiva (Cl⁻ urinário < 20) por vômitos': `Salina-responsiva exige Cl⁻ urinário < 20. Aqui é ${ClU} (> 20).`,
+            'Salina-responsiva (Cl⁻ urinário < 20) por vômitos': `A carta de vômitos descreve Cl⁻ urinário baixo. Aqui ele está alto (${ClU}), com achados que favorecem perda renal de sal.`,
             'Salina-resistente, hipertensa → hiperaldosteronismo': `Hiperaldosteronismo cursa com <em>hipertensão</em>. Esta paciente é normotensa.`,
             'Acidose tubular renal': `ATR causa acidose (HCO₃⁻ baixo); aqui há alcalose (HCO₃⁻ alto).`
           }
         },
         _buildCardsAct({
-          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas de alcalose metabólica <em>salina-resistente NORMOTENSA</em>. Não selecione causas de outro padrão.',
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas que podem produzir alcalose metabólica com <em>perda renal de cloreto e pressão normal</em>, nos contextos descritos nas cartas. Não selecione causas de outro padrão.',
           instruction: 'Os mecanismos serão revelados somente após o julgamento.',
           cards: [
             _makeCard('gitelman_i', 'Síndrome de Gitelman', 'Normotenso, cãibras', 'K⁺ baixo, Mg²⁺ baixo, Ca urinário baixo', true, 'Defeito no cotransportador NCC (tipo tiazida) no túbulo distal → ativa o RAAS → secreção distal de H⁺/K⁺ → alcalose hipocalêmica; cursa com hipomagnesemia.', 'É exatamente este caso (Mg baixo + Ca urinário baixo); normotenso.'),
-            _makeCard('bartter_i', 'Síndrome de Bartter', 'Normotenso, poliúria', 'K⁺ baixo, Ca urinário alto', true, 'Defeito no ramo ascendente (tipo furosemida) → ativa o RAAS → perda renal de H⁺/K⁺ → alcalose; cursa normotenso, com Ca urinário alto.', 'Tubulopatia normotensa; diferencia-se de Gitelman pelo Ca urinário alto e Mg normal.'),
+            _makeCard('bartter_i', 'Síndrome de Bartter', 'Normotenso, poliúria', 'K⁺ baixo, Ca urinário alto', true, 'Defeito no ramo ascendente (tipo furosemida) → ativa o RAAS → perda renal de H⁺/K⁺ → alcalose; cursa normotenso, com Ca urinário alto.', 'Tubulopatia que costuma cursar com pressão normal; cálcio urinário e magnésio ajudam no diferencial, com sobreposição fenotípica.'),
             _makeCard('tiazida_i', 'Diurético tiazídico (em uso)', 'Uso atual de tiazida', 'Cl⁻ urinário alto, K⁺ baixo', true, 'Bloqueia o NCC (mimetiza Gitelman) → maior oferta distal de Na⁺ + RAAS ativo → alcalose hipocalêmica com Cl⁻ urinário alto.', 'Mimetiza Gitelman; por isso sempre excluir uso de diurético (history/triagem urinária).'),
             _makeCard('alca_i', 'Diurético de alça (em uso)', 'Uso atual de furosemida', 'Cl⁻ urinário alto, K⁺ baixo', true, 'Bloqueia o cotransportador NKCC2 (mimetiza Bartter) → RAAS ativo → alcalose hipocalêmica.', 'Mimetiza Bartter; o Cl⁻ urinário fica alto enquanto o diurético age.'),
-            _makeCard('laxante_i', 'Abuso de laxante/diurético oculto', 'História psicossocial', 'Padrão flutuante, Cl⁻ urinário variável', true, 'Uso encoberto de diuréticos ou laxantes reproduz tubulopatia ou perda; o Cl⁻ urinário oscila conforme a dose.', 'Diferencial importante (transtorno alimentar/factício) antes de rotular como genético.'),
+            _makeCard('diuretico_oculto_i', 'Diurético oculto ainda ativo', 'Uso não declarado; investigar medicamentos', 'Cl⁻ urinário alto durante a ação, K⁺ baixo', true, 'A perda renal de NaCl sob diurético ativa mecanismos que mantêm alcalose e perda de K⁺; o cloreto urinário varia com o efeito da dose.', 'Mimetiza tubulopatia; uma história inicial negativa não dispensa investigação dirigida.'),
             _makeCard('hiperaldo_i', 'Hiperaldosteronismo primário', 'HIPERTENSÃO resistente', 'K⁺ baixo, Cl⁻ urinário alto', false, 'Aldosterona ↑ → ENaC ↑ → secreção de H⁺/K⁺ → alcalose; porém cursa com hipertensão.', 'É armadilha: é salina-resistente, mas HIPERTENSO. Esta paciente é normotensa.'),
             _makeCard('liddle_i', 'Síndrome de Liddle', 'HIPERTENSÃO, jovem', 'K⁺ baixo, renina e aldosterona baixas', false, 'ENaC constitutivamente ativo → alcalose hipocalêmica, mas com hipertensão e RAAS suprimido.', 'É armadilha: hipertenso, não normotenso.'),
             _makeCard('vomitos_i', 'Vômitos', 'Perda gástrica', 'Cl⁻ urinário BAIXO (< 20)', false, 'Perda de HCl → alcalose salina-responsiva, com Cl⁻ urinário baixo pela ávida reabsorção renal.', 'É armadilha: alcalose, porém salina-responsiva (Cl⁻ urinário baixo), não a deste caso.'),
             _makeCard('diarreia_i', 'Diarreia', 'Perda fecal volumosa', 'HCO₃⁻ baixo, Cl⁻ alto', false, 'Perda fecal de HCO₃⁻ → acidose hiperclorêmica.', 'É armadilha: causa acidose, não alcalose.')
           ],
-          grimoire: { title: 'Alcalose salina-resistente normotensa', body: 'Cl⁻ urinário > 20 + pressão normal = tubulopatia tipo diurético (Bartter ~ alça; Gitelman ~ tiazida, com Mg baixo/Ca urinário baixo) — ou uso/abuso de diuréticos. Hiperaldosteronismo e Liddle também são salina-resistentes, mas HIPERTENSOS.' }
+          grimoire: { title: 'Perda renal de cloreto com pressão normal', body: 'Investigar Bartter/Gitelman e diuréticos. Hipomagnesemia e hipocalciúria favorecem Gitelman; há sobreposição dos fenótipos. Cloreto alto durante ação de diurético não exclui depleção de volume. Pressão alta favorece estados mineralocorticoides, conforme o contexto.' }
         }),
         {
           kind: 'mc',
           prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
-          grimoire: { title: 'Tratamento de Bartter/Gitelman', body: 'Repor <strong>potássio e magnésio</strong> (a correção do Mg é essencial — sem ela a hipocalemia é refratária). Poupadores de K⁺ (espironolactona/amilorida) e AINE ajudam em casos selecionados. SF 0,9% NÃO corrige (é salina-resistente). Excluir uso/abuso de diuréticos.' },
+          grimoire: { title: 'Tratamento da provável síndrome de Gitelman', body: 'Repor <strong>K⁺ e Mg²⁺</strong>, avaliar volume e ingestão/reposição de sal. Considerar poupador de K⁺ sob monitoramento, com cautela se houver hipovolemia. Excluir diurético e confirmar a causa. Grande volume isolado de SF não substitui a reposição dirigida; não ensinar que NaCl nunca ajuda em uma tubulopatia perdedora de sal.' },
           options: [
             { label: 'Repor K⁺ e Mg²⁺ (corrigir o Mg é essencial); considerar poupador de K⁺; excluir diuréticos', correct: true },
             { label: 'Soro fisiológico 0,9% em grande volume', correct: false },
             { label: 'Iniciar diurético tiazídico', correct: false },
             { label: 'Bicarbonato de sódio IV', correct: false }
           ],
-          explainCorrect: `Alcalose salina-resistente hipocalêmica (K⁺ ${_c(K)}) + hipomagnesemia → <strong>repor K⁺ e Mg²⁺</strong>. Sem corrigir o Mg, a hipocalemia não responde. Poupador de K⁺ ajuda; investigar diuréticos ocultos.`,
+          explainCorrect: `Hipocalemia (K⁺ ${_c(K)}) com hipomagnesemia → <strong>repor K⁺ e Mg²⁺</strong>, avaliar volume e sal, investigar diuréticos e confirmar a causa. Considerar poupador de K⁺ individualmente, pois pode agravar depleção de volume.`,
           explainWrong: {
-            'Soro fisiológico 0,9% em grande volume': 'É salina-resistente — a salina não corrige (diferente da alcalose por vômitos).',
+            'Soro fisiológico 0,9% em grande volume': 'Grande volume indiscriminado não substitui a reposição dirigida de K⁺/Mg²⁺. Corrigir sal e volume conforme avaliação; cloreto urinário alto não demonstra que NaCl nunca ajudará.',
             'Iniciar diurético tiazídico': 'O tiazídico é justamente o que mimetiza/agrava Gitelman — pioraria a alcalose e a hipocalemia.',
             'Bicarbonato de sódio IV': 'Adicionar base piora a alcalose já existente.'
           }
         }
       ],
-      summary: `<strong>Alcalose metabólica salina-resistente NORMOTENSA</strong> (Cl⁻ urinário ${ClU} > 20) com hipocalemia (K⁺ ${_c(K)}) e hipomagnesemia → <strong>Gitelman</strong> (Ca urinário baixo) / Bartter. Conduta: repor K⁺ + Mg²⁺; excluir diuréticos. Lição: Cl⁻ urinário alto + normotenso = tubulopatia.`
+      summary: `<strong>Alcalose metabólica com perda renal de sal e pressão normal</strong>, Cl⁻ urinário ${ClU}, K⁺ ${_c(K)}, hipomagnesemia e hipocalciúria: quadro sugestivo de <strong>Gitelman</strong>. Excluir mimetizadores e confirmar a causa. Repor K⁺/Mg²⁺, avaliar sal e volume; considerar poupador sob monitoramento.`
     };
   }
 
@@ -1188,7 +1185,7 @@
     _dbg('Corvin rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, ClU, compExpected });
 
     return {
-      narrative: `O nobre <strong>Corvin</strong> tem <strong>hipertensão resistente</strong> (a três anti-hipertensivos), fraqueza muscular e cãibras. O potássio está baixo e ele não usa diuréticos.`,
+      narrative: `O nobre <strong>Corvin</strong> tem <strong>hipertensão de difícil controle</strong> (com três anti-hipertensivos), fraqueza muscular e cãibras. O potássio está baixo e ele não usa diuréticos.`,
       gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
       acts: [
         {
@@ -1202,9 +1199,9 @@
           ],
           explainCorrect: `pH ${_c(pH)} → <strong>alcalemia</strong>. HCO₃⁻ ${HCO3} mEq/L (alto) → distúrbio <strong>metabólico</strong>. PaCO₂ ${PaCO2} elevada é a hipoventilação compensatória.`,
           explainWrong: {
-            'Alcalose respiratória': `Teria PaCO₂ e HCO₃⁻ baixos. Aqui ambos estão altos (HCO₃⁻ ${HCO3}, PaCO₂ ${PaCO2}).`,
-            'Acidose metabólica': `Teria pH < 7,35 e HCO₃⁻ baixo. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} alto.`,
-            'Acidose respiratória': `Teria pH < 7,35. Aqui pH ${_c(pH)}.`
+            'Alcalose respiratória': `Este ato pede o processo metabólico sustentado pelo HCO₃⁻ ${HCO3} elevado. Um componente respiratório adicional é avaliado pela PaCO₂ ${PaCO2} em relação à compensação, mesmo se estiver na faixa populacional normal.`,
+            'Acidose metabólica': `Acidose metabólica envolve redução primária do bicarbonato. Aqui o HCO₃⁻ ${HCO3} está elevado; a interpretação de processos associados depende da compensação e do contexto.`,
+            'Acidose respiratória': `PaCO₂ pode aumentar como resposta à alcalose metabólica. Compare a medida ${PaCO2} com a faixa esperada antes de atribuí-la a acidose respiratória primária; pH sozinho não exclui um processo.`,
           }
         },
         {
@@ -1229,13 +1226,13 @@
           ],
           explainCorrect: `Cl⁻ urinário ${ClU} (> 20) + <strong>hipertensão</strong> + K⁺ baixo = <strong>excesso de mineralocorticoide</strong>. O próximo passo é a <strong>relação aldosterona/renina (ARR)</strong> para confirmar hiperaldosteronismo primário.`,
           explainWrong: {
-            'Bartter/Gitelman (tubulopatia normotensa)': 'Bartter/Gitelman são NORMOtensos. Corvin é hipertenso → excesso de mineralocorticoide.',
+            'Bartter/Gitelman (tubulopatia normotensa)': 'Bartter/Gitelman habitualmente cursam com pressão normal/baixa, embora haja variações. Aqui a associação de hipertensão, hipocalemia e alcalose favorece rastrear excesso mineralocorticoide; a pressão isolada não confirma nem exclui toda causa.',
             'Alcalose por vômitos (salina-responsiva)': 'Vômitos dão Cl⁻ urinário baixo (< 20) e não hipertensão. Aqui o Cl⁻ urinário é alto.',
             'Acidose tubular renal tipo 4': 'ATR-4 causa acidose hipercalêmica; aqui há alcalose hipocalêmica.'
           }
         },
         _buildCardsAct({
-          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas de alcalose metabólica com <em>hipertensão</em> (excesso de mineralocorticoide). Não selecione causas de outro padrão.',
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas de alcalose metabólica com <em>hipertensão</em> por efeito mineralocorticoide ou ativação de ENaC. Não selecione causas de outro padrão.',
           instruction: 'Os mecanismos serão revelados somente após o julgamento.',
           cards: [
             _makeCard('aldo1_c', 'Hiperaldosteronismo primário', 'Hipertensão resistente', 'Aldosterona alta, renina BAIXA', true, 'Adenoma/hiperplasia adrenal produz aldosterona autônoma → ENaC ↑ → retenção de Na⁺ (HAS) + secreção de H⁺/K⁺ (alcalose hipocalêmica).', 'Causa mais comum de HAS secundária endócrina; ARR é o rastreio.'),
@@ -1247,27 +1244,27 @@
             _makeCard('vomitos_c', 'Vômitos', 'Perda gástrica', 'Cl⁻ urinário baixo, sem HAS', false, 'Perda de HCl → alcalose salina-responsiva.', 'É armadilha: salina-responsiva (Cl⁻ urinário baixo) e sem hipertensão.'),
             _makeCard('diarreia_c', 'Diarreia', 'Perda fecal volumosa', 'HCO₃⁻ baixo, Cl⁻ alto', false, 'Perda fecal de HCO₃⁻ → acidose hiperclorêmica.', 'É armadilha: acidose, não alcalose.')
           ],
-          grimoire: { title: 'Alcalose hipertensa = excesso de mineralocorticoide', body: 'Use a renina/aldosterona: <strong>renina baixa + aldosterona alta</strong> = hiperaldo primário; <strong>ambas altas</strong> = secundário (renovascular); <strong>ambas baixas</strong> = Liddle, alcaçuz/AME, Cushing. Todas cursam com HAS + alcalose hipocalêmica.' }
+          grimoire: { title: 'Alcalose hipertensa: mecanismos e investigação', body: 'Use a renina/aldosterona: <strong>renina baixa + aldosterona alta</strong> = hiperaldo primário; <strong>ambas altas</strong> = secundário (renovascular); <strong>ambas baixas</strong> = Liddle, alcaçuz/AME, Cushing. Esses perfis orientam hipóteses no contexto de hipertensão e alcalose hipocalêmica; não substituem investigação e interpretação das interferências.' }
         }),
         {
           kind: 'mc',
-          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a conduta de investigação inicial?',
-          grimoire: { title: 'Investigação do hiperaldosteronismo', body: 'Frente a HAS + hipocalemia + alcalose, rastrear com a <strong>relação aldosterona/renina (ARR)</strong>. Se positiva, testes confirmatórios e imagem (TC de adrenais) ± cateterismo de veias adrenais. Tratamento: antagonista mineralocorticoide (espironolactona) ou cirurgia se adenoma unilateral.' },
+          prompt: '<strong>Ato V — Investigação.</strong><br>Qual é a conduta inicial?',
+          grimoire: { title: 'Hiperaldosteronismo — rastreio e confirmação', body: 'Aldosterona, renina e ARR compõem o rastreio. Corrigir hipocalemia e considerar fármacos interferentes. A confirmação por supressão não é universal: depende da probabilidade e do objetivo terapêutico. Imagem e lateralização, quando indicadas, não substituem a avaliação bioquímica.' },
           options: [
-            { label: 'Dosar relação aldosterona/renina (ARR) e corrigir o K⁺; depois confirmar e localizar', correct: true },
+            { label: 'Corrigir K⁺ e rastrear com aldosterona/renina; individualizar confirmação', correct: true },
             { label: 'Iniciar tiazídico para a hipertensão', correct: false },
             { label: 'Repor volume com SF 0,9%', correct: false },
             { label: 'Restringir potássio na dieta', correct: false }
           ],
-          explainCorrect: `HAS resistente + hipocalemia + alcalose → rastrear <strong>ARR (aldosterona/renina)</strong> e corrigir o K⁺. Confirmação e imagem definem hiperaldosteronismo primário (espironolactona ou adrenalectomia).`,
+          explainCorrect: 'O rastreamento investiga a suspeita clínica. A hipocalemia pode reduzir a aldosterona e prejudicar a interpretação. Confirmação selecionada e investigação de lateralização vêm conforme o resultado e o tratamento pretendido.',
           explainWrong: {
-            'Iniciar tiazídico para a hipertensão': 'O tiazídico agrava a hipocalemia e pode mascarar o diagnóstico antes do rastreio.',
-            'Repor volume com SF 0,9%': 'É salina-resistente; salina não corrige e o paciente já retém Na⁺ (HAS).',
-            'Restringir potássio na dieta': 'O paciente é HIPOcalêmico — restringir K⁺ piora o quadro.'
+            'Iniciar tiazídico para a hipertensão': 'Pode agravar a hipocalemia e interferir na investigação.',
+            'Repor volume com SF 0,9%': 'Não é a investigação inicial da alcalose hipertensa descrita.',
+            'Restringir potássio na dieta': 'O paciente está hipocalêmico; a restrição agrava o problema.'
           }
         }
       ],
-      summary: `<strong>Alcalose metabólica salina-resistente HIPERTENSA</strong> (Cl⁻ urinário ${ClU} > 20) com hipocalemia (K⁺ ${_c(K)}) → <strong>excesso de mineralocorticoide</strong> (hiperaldosteronismo). Conduta: relação aldosterona/renina + corrigir K⁺. Lição: alcalose + HAS + K⁺ baixo = rastrear hiperaldo.`
+      summary: `<strong>Alcalose metabólica salina-resistente HIPERTENSA</strong> (Cl⁻ urinário ${ClU} > 20) com hipocalemia (K⁺ ${_c(K)}) → <strong>sugere excesso de mineralocorticoide</strong>; rastrear hiperaldosteronismo. Conduta: relação aldosterona/renina + corrigir K⁺. Lição: alcalose + HAS + K⁺ baixo = rastrear hiperaldo.`
     };
   }
 
@@ -1293,17 +1290,17 @@
       acts: [
         {
           kind: 'mc',
-          prompt: '<strong>Ato I — Componente respiratório.</strong><br>O pH está <strong>alcalêmico</strong> com PaCO₂ muito baixa. Que processo respiratório está presente?',
+          prompt: '<strong>Ato I — Componente respiratório.</strong><br>A PaCO₂ está baixa, abaixo da compensação esperada para a acidose metabólica. Que processo respiratório está associado?',
           options: [
             { label: 'Alcalose respiratória (hiperventilação)', correct: true },
             { label: 'Acidose respiratória', correct: false },
             { label: 'Nenhum — a PaCO₂ baixa é só compensação', correct: false },
             { label: 'Alcalose metabólica', correct: false }
           ],
-          explainCorrect: `pH ${_c(pH)} (> 7,45) + PaCO₂ ${PaCO2} (muito baixa) → <strong>alcalose respiratória</strong> por estímulo direto do centro respiratório (típico do salicilato). Mas o HCO₃⁻ ${HCO3} também está baixo — pode haver um segundo distúrbio. Investiga-se nos próximos atos.`,
+          explainCorrect: `O pH medido é ${_c(pH)}. A PaCO₂ ${PaCO2} está abaixo da compensação esperada para a acidose metabólica, sustentando <strong>alcalose respiratória associada</strong>. Esse processo pode coexistir com pH na faixa de referência; o HCO₃⁻ ${HCO3} e o AG serão integrados nos próximos atos.`,
           explainWrong: {
             'Acidose respiratória': `Acidose respiratória teria PaCO₂ ALTA. Aqui a PaCO₂ ${PaCO2} está baixa.`,
-            'Nenhum — a PaCO₂ baixa é só compensação': `A compensação de uma acidose metabólica não baixaria a PaCO₂ a este ponto nem deixaria o pH alcalino — há alcalose respiratória primária.`,
+            'Nenhum — a PaCO₂ baixa é só compensação': `A PaCO₂ está abaixo da faixa de compensação esperada pelo Winter; isso sustenta alcalose respiratória associada, independentemente de o pH estar dentro ou fora da faixa de referência.`,
             'Alcalose metabólica': `Alcalose metabólica teria HCO₃⁻ ALTO. Aqui o HCO₃⁻ ${HCO3} está baixo.`
           }
         },
@@ -1324,7 +1321,7 @@
           unit: '',
           target: deltaRatio,
           tolerance: 0.3,
-          explainCorrect: `Δratio = (${AG} − 12) / (24 − ${HCO3}) = <strong>${_c(deltaRatio)}</strong> (entre 1 e 2) → o componente metabólico é uma <strong>acidose com AG alto pura</strong>. Somada à alcalose respiratória (Ato II), fecha o padrão clássico do <strong>salicilato</strong>.`,
+          explainCorrect: `Δratio = (${AG} − 12) / (24 − ${HCO3}) = <strong>${_c(deltaRatio)}</strong> (entre 1 e 2) → o resultado é compatível com <strong>acidose com AG alto</strong>, sem componente metabólico adicional demonstrado por esta aproximação. Somada à alcalose respiratória (Ato II), fecha o padrão clássico do <strong>salicilato</strong>.`,
           explainWrong: `Δratio = (AG − 12) / (24 − HCO₃) = (${AG} − 12) / (24 − ${HCO3}) = ${_c(deltaRatio)}.`
         },
         _buildCardsAct({
@@ -1345,9 +1342,9 @@
         {
           kind: 'mc',
           prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial na intoxicação por salicilato?',
-          grimoire: { title: 'Tratamento da intoxicação por salicilato', body: 'Carvão ativado se ingestão recente; <strong>alcalinização urinária</strong> com bicarbonato de sódio (urina alcalina aprisiona o salicilato ionizado e aumenta sua excreção) + repor K⁺; <strong>hemodiálise</strong> se grave (níveis muito altos, alteração neurológica, edema pulmonar, acidemia refratária). NUNCA deprimir a ventilação (intubar/sedar sem necessidade) — a hiperventilação é protetora.' },
+          grimoire: { title: 'Tratamento da intoxicação por salicilato', body: 'Avaliar toxicologia, dosagens seriadas e estado clínico. Alcalinização com bicarbonato e correção monitorada de K⁺; HD conforme gravidade, função renal e resposta. Carvão em casos selecionados, ponderando via aérea e aspiração. A hiperventilação é protetora; se intubação for indispensável, equipe experiente deve preservar ventilação-minuto e evitar acidemia. Hiperventilação isolada não é indicação de intubação.' },
           options: [
-            { label: 'Alcalinização urinária com bicarbonato + repor K⁺; hemodiálise se grave; carvão se recente', correct: true },
+            { label: 'Alcalinização e K⁺ sob monitoramento; avaliar HD e descontaminação conforme o caso', correct: true },
             { label: 'Sedar e reduzir a frequência respiratória do paciente', correct: false },
             { label: 'Restringir bicarbonato (está contraindicado)', correct: false },
             { label: 'Apenas observação clínica', correct: false }
@@ -1360,7 +1357,7 @@
           }
         }
       ],
-      summary: `<strong>Distúrbio MISTO</strong>: alcalose respiratória (PaCO₂ ${PaCO2} ≪ Winter ${_c(winterExpected)}) + acidose metabólica com AG alto (${AG}; delta ratio ${_c(deltaRatio)} = AG alto puro) → <strong>salicilato</strong>. Conduta: alcalinização urinária + K⁺, HD se grave; não deprimir a ventilação.`
+      summary: `<strong>Distúrbio MISTO</strong>: alcalose respiratória (PaCO₂ ${PaCO2} ≪ Winter ${_c(winterExpected)}) + acidose metabólica com AG alto (${AG}; delta ratio ${_c(deltaRatio)} = compatível com AG alto) → <strong>salicilato</strong>. Conduta: alcalinização urinária + K⁺, HD se grave; não deprimir a ventilação.`
     };
   }
 
@@ -1379,7 +1376,7 @@
     _dbg('Helena rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, expHCO3 });
 
     return {
-      narrative: `A sacerdotisa <strong>Helena</strong> tem cirrose com ascite, em uso de <strong>furosemida e espironolactona</strong>. Apresenta confusão leve. A pressão é normal-baixa e o potássio está reduzido.`,
+      narrative: `A sacerdotisa <strong>Helena</strong> tem cirrose com ascite e hiperventilação crônica previamente documentada, em uso de <strong>furosemida e espironolactona</strong>. Apresenta confusão leve. A pressão é normal-baixa e o potássio está reduzido.`,
       gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
       acts: [
         {
@@ -1393,24 +1390,26 @@
           ],
           explainCorrect: `pH ${_c(pH)} (alcalêmico) + PaCO₂ ${PaCO2} (baixa) → <strong>alcalose respiratória</strong>. Na cirrose, mediadores e hiperventilação crônica baixam a PaCO₂. Mas o HCO₃⁻ ${HCO3} está alto — pode haver um segundo distúrbio.`,
           explainWrong: {
-            'Acidose respiratória': `Teria PaCO₂ alta. Aqui a PaCO₂ ${PaCO2} está baixa.`,
-            'Acidose metabólica': `Teria pH < 7,35 e HCO₃⁻ baixo. Aqui pH ${_c(pH)} (alcalino) e HCO₃⁻ ${HCO3} (alto).`,
+            'Acidose respiratória': `Acidose respiratória decorre de elevação primária da PaCO₂. Aqui a PaCO₂ ${PaCO2} está reduzida, sustentando o componente respiratório alcalótico.`,
+            'Acidose metabólica': `O HCO₃⁻ ${HCO3} deve ser comparado à resposta esperada para o processo respiratório. A queda compensatória pode ocorrer sem acidose metabólica; pH isolado não é critério para excluir processos mistos.`,
             'Nenhum distúrbio respiratório': `A PaCO₂ ${PaCO2} está claramente baixa, com pH alcalino → há alcalose respiratória.`
           }
         },
         {
           kind: 'mc',
-          prompt: '<strong>Ato II — Aguda ou crônica?</strong><br>Diante de uma cirrose com hiperventilação de longa data, esta alcalose respiratória é:',
+          prompt: '<strong>Ato II — Duração.</strong><br>Diante da alteração respiratória de longa data descrita, como classificar o <em>componente de base</em>?',
           grimoire: { title: 'Alcalose respiratória: aguda vs crônica', body: '<strong>Aguda:</strong> HCO₃⁻ cai ~2 mEq/L por −10 mmHg de PaCO₂. <strong>Crônica</strong> (dias): cai ~4–5 por −10, pela adaptação renal.' },
           options: [
             { label: 'Crônica (da hepatopatia)', correct: true },
             { label: 'Aguda', correct: false },
-            { label: 'Não é possível dizer', correct: false }
+            { label: 'Não é possível dizer', correct: false },
+            { label: 'Aguda sobre crônica', correct: false }
           ],
           explainCorrect: `A hiperventilação da cirrose é de <strong>longa data → crônica</strong>. Espera-se queda renal do HCO₃⁻ de ~4–5 por −10 mmHg de PaCO₂.`,
           explainWrong: {
             'Aguda': 'Aguda exigiria início recente; a hepatopatia mantém a hiperventilação cronicamente.',
-            'Não é possível dizer': 'A história (cirrose crônica) define como crônica.'
+            'Não é possível dizer': 'A duração de longa data foi informada no enunciado; ela sustenta a classificação do componente basal.',
+            'Aguda sobre crônica': 'Nenhum agravamento agudo foi descrito; a pergunta classifica o componente de base pela duração informada.'
           }
         },
         {
@@ -1424,7 +1423,7 @@
           explainWrong: `24 − 4 × (40 − ${PaCO2})/10 = ${_c(expHCO3)}. Como o HCO₃⁻ medido (${HCO3}) é bem maior, há alcalose metabólica associada.`
         },
         _buildCardsAct({
-          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas compatíveis com este padrão <strong>misto: alcalose respiratória + alcalose metabólica</strong>. Não selecione causas de outro padrão.',
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione causas que contribuam para <strong>um ou ambos os componentes</strong>: alcalose respiratória e alcalose metabólica. Cada carta não precisa produzir sozinha a combinação completa.',
           instruction: 'Os mecanismos serão revelados somente após o julgamento.',
           cards: [
             _makeCard('cirrose_h', 'Cirrose (hiperventilação crônica)', 'Hepatopata, ascite', 'PaCO₂ baixo crônico', true, 'Mediadores não depurados e vasodilatação estimulam a ventilação → alcalose respiratória crônica.', 'Fornece o componente respiratório do caso.'),
@@ -1489,9 +1488,9 @@
           ],
           explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong>. HCO₃⁻ ${HCO3} mEq/L (baixo) acompanha → distúrbio <strong>metabólico</strong>. PaCO₂ ${PaCO2} baixa é compensação.`,
           explainWrong: {
-            'Acidose respiratória': `Teria PaCO₂ alta. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
-            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
-            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
+            'Acidose respiratória': `A acidose respiratória decorre de elevação primária da PaCO₂. Aqui a PaCO₂ ${PaCO2} está baixa; relacioná-la ao HCO₃⁻ ${HCO3} e à compensação esperada.`,
+            'Alcalose metabólica': `Alcalose metabólica é um processo de elevação primária do bicarbonato. O HCO₃⁻ ${HCO3} está reduzido neste quadro; o pH isolado não define nem exclui processos associados.`,
+            'Alcalose respiratória': `PaCO₂ baixa também ocorre como compensação de acidose metabólica. Integre HCO₃⁻ ${HCO3}, história e resposta esperada antes de inferir processo respiratório adicional; não use apenas o pH.`,
           }
         },
         {
@@ -1515,20 +1514,20 @@
           explainWrong: `AG = Na − (Cl + HCO₃) = ${Na} − (${Cl} + ${HCO3}) = ${AG}.`
         },
         _buildCardsAct({
-          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas de acidose com <strong>AG alto e lactato L normal</strong> (ânions não dosados). Não selecione causas de outro padrão.',
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione causas que <em>podem</em> produzir <strong>AG alto com L-lactato normal</strong>, nos contextos descritos nas cartas. Rejeite cartas cujo laboratório contradiga esse recorte.',
           instruction: 'Os mecanismos serão revelados somente após o julgamento.',
           cards: [
             _makeCard('dlactato_b', 'D-lactato (intestino curto)', 'Confusão pós-carboidrato, ressecção intestinal', 'AG alto, lactato L normal', true, 'Carboidrato não absorvido é fermentado por bactérias do cólon a D-lactato; o exame de lactato (L) padrão não o detecta → AG alto "inexplicado".', 'É exatamente este caso; dosa-se D-lactato específico.'),
             _makeCard('oxoprolina_b', '5-oxoprolina (paracetamol)', 'Paracetamol crônico, desnutrida/sepse', 'AG alto, lactato normal', true, 'Paracetamol crônico + glutationa baixa → acúmulo de 5-oxoprolina (piroglutâmico), ânion não dosado → AG ↑.', 'Causa subdiagnosticada de AG alto inexplicado; pesquisar uso de paracetamol.'),
-            _makeCard('propileno_b', 'Propilenoglicol', 'Infusão IV prolongada (ex.: lorazepam)', 'AG alto, gap osmolar', true, 'Solvente metabolizado a L-lactato e D-lactato; em altas doses acumula ânions → AG ↑ (e gap osmolar).', 'Toxicidade hospitalar por infusões; eleva o AG.'),
-            _makeCard('tolueno_b', 'Tolueno (inalação)', 'Abuso de solvente/cola', 'AG variável, hipocalemia', true, 'Metabolizado a hipurato/benzoato (ânions); pode dar AG alto inicial e depois acidose hiperclorêmica quando excretado.', 'Causa toxicológica de AG alto por ânions orgânicos.'),
-            _makeCard('metformina_b', 'Metformina (acidose lática)', 'IRA, choque', 'Lactato L MUITO alto', true, 'Inibe a gliconeogênese/oxidação mitocondrial → acúmulo de L-lactato → AG ↑.', 'Aqui o lactato L estaria ALTO (não normal) — entra como causa de AG alto, mas com lactato dosável.'),
+            _makeCard('propileno_b', 'Propilenoglicol com L-lactato elevado', 'Infusão IV prolongada (ex.: lorazepam)', 'AG alto, gap osmolar e L-lactato alto', false, 'O solvente pode gerar D e L-lactato e elevar os gaps.', 'O laboratório desta carta informa L-lactato alto. Isso a exclui deste recorte, sem afirmar que toda exposição tenha o mesmo perfil.'),
+            _makeCard('tolueno_b', 'Tolueno (inalação)', 'Abuso de solvente/cola', 'AG variável conforme eliminação de hipurato, hipocalemia', true, 'A produção de hipurato pode causar acidose; seu acúmulo ou sua excreção modificam o padrão do AG.', 'Pode haver AG alto por retenção de ânions ou padrão hiperclorêmico. O momento e a função renal importam. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12126404/" target="_blank" rel="noopener noreferrer">Relato clínico de 2025</a>.'),
+            _makeCard('metformina_b', 'Metformina (acidose lática)', 'IRA, choque', 'L-lactato MUITO alto', false, 'A acidose lática associada à metformina envolve acúmulo de L-lactato.', 'Esta carta informa L-lactato alto, que contradiz o recorte de L-lactato normal.'),
             _makeCard('cetoacidose_b', 'Cetoacidose alcoólica', 'Etilismo + jejum', 'Cetose, AG alto', true, 'Jejum + NADH alto → β-hidroxibutirato (ânion não medido pela fita de cetona padrão em parte) → AG ↑.', 'AG alto por cetoácidos; diferencial dos ânions não medidos.'),
             _makeCard('vomitos_b', 'Vômitos', 'Perda gástrica', 'HCO₃⁻ alto, hipocloremia', false, 'Perda de HCl → alcalose metabólica.', 'É armadilha: alcalose, padrão oposto.'),
             _makeCard('diarreia_b', 'Diarreia', 'Perda fecal volumosa', 'AG NORMAL, Cl⁻ alto', false, 'Perda fecal de HCO₃⁻ → acidose hiperclorêmica (AG normal).', 'É armadilha: AG normal, não AG alto.'),
             _makeCard('tep_b', 'Tromboembolismo pulmonar', 'Dispneia súbita', 'PaCO₂ baixo', false, 'Hiperventilação → alcalose respiratória.', 'É armadilha: distúrbio respiratório alcalótico, não acidose metabólica.')
           ],
-          grimoire: { title: 'AG alto com lactato L normal', body: 'Quando o AG está alto mas o lactato L é normal, pense em ânions não dosados: <strong>D-lactato</strong> (intestino curto), <strong>5-oxoprolina</strong> (paracetamol), <strong>propilenoglicol</strong>, <strong>tolueno</strong>, cetoácidos. O lactato comum mede apenas o L-lactato.' }
+          grimoire: { title: 'AG alto com L-lactato normal', body: 'Considerar D-lactato, cetoácidos e outros ânions conforme o contexto. A dosagem habitual de L-lactato não detecta D-lactato. Cartas que informam L-lactato elevado não atendem ao recorte pedido.' }
         }),
         {
           kind: 'mc',
@@ -1579,11 +1578,11 @@
             { label: 'Alcalose respiratória', correct: false },
             { label: 'Acidose metabólica', correct: false }
           ],
-          explainCorrect: `pH ${_c(pH)} → <strong>alcalemia</strong>. Com PaCO₂ ${PaCO2} (normalizada) e HCO₃⁻ ${HCO3} (alto), o que sustenta a alcalemia agora é o <strong>HCO₃⁻ elevado</strong> → alcalose <strong>metabólica</strong>.`,
+          explainCorrect: `pH ${_c(pH)} → <strong>alcalemia</strong>. Com PaCO₂ ${PaCO2} e HCO₃⁻ ${HCO3} (alto), o que sustenta a alcalemia agora é o <strong>HCO₃⁻ elevado</strong> → alcalose <strong>metabólica</strong>.`,
           explainWrong: {
-            'Acidose respiratória': `Apesar do histórico de DPOC, agora a PaCO₂ ${PaCO2} está normal e o pH é alcalino — não há acidose respiratória atual.`,
-            'Alcalose respiratória': `Exigiria PaCO₂ baixa. Aqui a PaCO₂ ${PaCO2} está normal; quem sustenta a alcalemia é o HCO₃⁻ alto.`,
-            'Acidose metabólica': `Teria pH < 7,35 e HCO₃⁻ baixo. Aqui pH ${_c(pH)} (alcalino) e HCO₃⁻ ${HCO3} (alto).`
+            'Acidose respiratória': `PaCO₂ pode aumentar como resposta à alcalose metabólica. Compare a medida ${PaCO2} com a faixa esperada antes de atribuí-la a acidose respiratória primária; pH sozinho não exclui um processo.`,
+            'Alcalose respiratória': `Este ato pede o processo metabólico sustentado pelo HCO₃⁻ ${HCO3} elevado. Um componente respiratório adicional é avaliado pela PaCO₂ ${PaCO2} em relação à compensação, mesmo se estiver na faixa populacional normal.`,
+            'Acidose metabólica': `Acidose metabólica envolve redução primária do bicarbonato. Aqui o HCO₃⁻ ${HCO3} está elevado; a interpretação de processos associados depende da compensação e do contexto.`,
           }
         },
         {
@@ -1593,7 +1592,7 @@
           unit: 'mmHg',
           target: compExpected,
           tolerance: 5,
-          explainCorrect: `PaCO₂ esperada = 0,7 × ${HCO3} + 21 = <strong>${_c(compExpected)} mmHg (±5)</strong>. Como o paciente está em ventilação mecânica, a PaCO₂ depende do ajuste do respirador — não da compensação espontânea.`,
+          explainCorrect: `PaCO₂ esperada = 0,7 × ${HCO3} + 21 = <strong>${_c(compExpected)} mmHg (±5)</strong>. ${PaCO2 < compExpected - 5 ? 'A medida está abaixo da faixa: há alcalose respiratória associada à alcalose metabólica.' : 'A medida está dentro da faixa estimada; esta fórmula não demonstra componente respiratório adicional.'} Na ventilação mecânica, interpretar também os ajustes do ventilador.`,
           explainWrong: `0,7 × ${HCO3} = ${_c(_r1(0.7*HCO3))}; + 21 = ${_c(compExpected)}. Tolerância ±5.`
         },
         {
@@ -1610,14 +1609,14 @@
           explainWrong: {
             'Ganho agudo de base por bicarbonato': 'Não há relato de carga de bicarbonato; o HCO₃⁻ alto é residual da compensação da hipercapnia crônica.',
             'Hiperaldosteronismo primário': 'Não há hipertensão nem o contexto; a história é de DPOC ventilada.',
-            'Compensação renal normal de uma alcalose respiratória': 'A PaCO₂ está normal (não baixa) — não há alcalose respiratória primária; o distúrbio é metabólico.'
+            'Compensação renal normal de uma alcalose respiratória': 'Compensação renal de alcalose respiratória reduziria o HCO₃⁻. Aqui ele permanece alto após correção rápida da hipercapnia; a compensação esperada ajuda a avaliar componente respiratório adicional.'
           }
         },
         _buildCardsAct({
           prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas de alcalose metabólica relevantes no paciente <strong>pulmonar</strong>. Não selecione causas de outro padrão.',
           instruction: 'Os mecanismos serão revelados somente após o julgamento.',
           cards: [
-            _makeCard('poshiper_n', 'Pós-hipercapnia', 'DPOC ventilado rapidamente', 'HCO₃⁻ alto, PaCO₂ normalizada', true, 'O HCO₃⁻ retido na hipercapnia crônica persiste após a queda rápida da PaCO₂ → alcalose metabólica.', 'É exatamente este caso; corrigir a ventilação lentamente.'),
+            _makeCard('poshiper_n', 'Pós-hipercapnia', 'DPOC ventilado rapidamente', 'HCO₃⁻ alto, PaCO₂ normalizada', true, 'O HCO₃⁻ retido na hipercapnia crônica persiste após a queda rápida da PaCO₂ → alcalose metabólica.', 'É o mecanismo metabólico do caso; individualizar ventilação e avaliar pH e trocas gasosas.'),
             _makeCard('diuretico_n', 'Diurético em DPOC (cor pulmonale)', 'Uso de furosemida p/ edema', 'HCO₃⁻ alto, K⁺/Cl⁻ baixos', true, 'Contração de volume + RAAS → alcalose metabólica; comum no DPOC com cor pulmonale tratado com diurético.', 'Soma-se à pós-hipercapnia; reavaliar a dose.'),
             _makeCard('vomitos_n', 'Vômitos / SNG', 'Perda gástrica', 'HCO₃⁻ alto, hipocloremia', true, 'Perda de HCl → alcalose metabólica salina-responsiva.', 'Causa de alcalose metabólica que pode coexistir no paciente internado.'),
             _makeCard('bicarbHD_n', 'Banho rico em bicarbonato (diálise)', 'Dialítico recém-dialisado', 'HCO₃⁻ alto pós-sessão', true, 'A transferência de bicarbonato do dialisato eleva o HCO₃⁻ → alcalose metabólica pós-HD.', 'Relevante em pulmonar dialítico; ajustar o banho.'),
@@ -1631,14 +1630,14 @@
         {
           kind: 'mc',
           prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
-          grimoire: { title: 'Conduta na alcalose pós-hipercapnia', body: 'Ajustar a ventilação para <strong>não derrubar a PaCO₂ abaixo do basal crônico</strong> do paciente (corrigir devagar) e repor <strong>Cl⁻ e K⁺</strong> para o rim excretar o excesso de HCO₃⁻. Acetazolamida em casos selecionados se houver sobrecarga de volume que impeça salina.' },
+          grimoire: { title: 'Conduta na alcalose pós-hipercapnia', body: 'Reavaliar ventilação com pH, oxigenação e mecânica respiratória, evitando hiperventilação excessiva; não impor um basal de PaCO₂ desconhecido como alvo. Corrigir déficits de K⁺/Cl⁻ e volume conforme avaliação. Acetazolamida pode ser considerada em situações selecionadas; investigar outras causas da sonolência.' },
           options: [
             { label: 'Ajustar a ventilação (não hiperventilar) + repor Cl⁻ e K⁺', correct: true },
             { label: 'Aumentar o volume-minuto do ventilador para baixar mais a PaCO₂', correct: false },
             { label: 'Administrar bicarbonato de sódio', correct: false },
             { label: 'Restringir volume e cloreto', correct: false }
           ],
-          explainCorrect: `Pós-hipercapnia → <strong>não hiperventilar</strong> (manter a PaCO₂ perto do basal crônico) e repor <strong>Cl⁻/K⁺</strong> para o rim excretar o HCO₃⁻ excedente. A sonolência pode refletir a alcalemia.`,
+          explainCorrect: `Alcalose pós-hipercapnia → individualizar a ventilação pelo pH e pelas trocas gasosas, evitando hiperventilação excessiva. Corrigir déficits de Cl⁻/K⁺ conforme volume e função renal. A sonolência exige avaliação, sem atribuí-la automaticamente à alcalemia.`,
           explainWrong: {
             'Aumentar o volume-minuto do ventilador para baixar mais a PaCO₂': 'Hiperventilar agrava a alcalemia (PaCO₂ ainda menor com HCO₃⁻ alto).',
             'Administrar bicarbonato de sódio': 'Adicionar base piora a alcalose.',
@@ -1707,7 +1706,7 @@
           explainWrong: `Δratio = (AG − 12)/(24 − HCO₃) = (${AG} − 12)/(24 − ${HCO3}) = ${_c(deltaRatio)}.`
         },
         _buildCardsAct({
-          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas que podem gerar um <strong>triplo distúrbio</strong> (acidose AG alto + alcalose respiratória + alcalose metabólica). Rejeite as que dão um distúrbio isolado.',
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione causas que contribuam para o <strong>componente de AG alto e/ou de alcalose metabólica</strong> deste quadro triplo. Cada carta não precisa produzir sozinha os três componentes.',
           instruction: 'Os mecanismos serão revelados somente após o julgamento.',
           cards: [
             _makeCard('sepse_g', 'Sepse', 'Febre, hipotensão', 'Lactato alto + taquipneia', true, 'Hipoperfusão → lactato (acidose AG alto) + citocinas/febre → hiperventilação (alcalose respiratória).', 'Fornece dois dos três componentes; combina com vômitos para o triplo.'),
@@ -1725,14 +1724,14 @@
         {
           kind: 'mc',
           prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
-          grimoire: { title: 'Conduta no distúrbio triplo (sepse + vômitos)', body: 'Tratar a <strong>causa dominante</strong> (sepse: ressuscitação volêmica, culturas, antibiótico precoce, dosar lactato) e corrigir <strong>K⁺/Cl⁻</strong> dos vômitos. O pH "normal" engana — não dispensa tratar cada componente. Bicarbonato raramente indicado (acidemia não grave).' },
+          grimoire: { title: 'Conduta no distúrbio triplo (sepse + vômitos)', body: 'SSC2026: avaliação rápida de possível sepse/choque, antimicrobianos conforme probabilidade e gravidade, cristaloide com reavaliação da perfusão. Medir lactato; colher culturas sem atrasar terapia no choque. Corrigir déficits de K⁺/Cl⁻ dos vômitos. Não atribuir lactato alto como medido sem dosá-lo; pH preservado não afasta distúrbios graves.' },
           options: [
             { label: 'Tratar a sepse (volume, lactato, culturas, ATB precoce) + repor K⁺/Cl⁻; tratar os vômitos', correct: true },
             { label: 'Como o pH está normal, apenas observar', correct: false },
             { label: 'Bolus de bicarbonato de sódio', correct: false },
             { label: 'Sedar para reduzir a frequência respiratória', correct: false }
           ],
-          explainCorrect: `Triplo distúrbio com sepse → <strong>tratar a sepse</strong> (volume, lactato, culturas, antibiótico precoce) e corrigir <strong>K⁺/Cl⁻</strong> dos vômitos. O pH quase normal é resultado de forças opostas — cada componente precisa de atenção.`,
+          explainCorrect: `Distúrbio triplo no contexto de possível sepse com hipotensão: avaliar rapidamente a causa, ressuscitar com cristaloide e reavaliação da perfusão, medir lactato, colher culturas sem atrasar antibiótico quando indicado e tratar infecção provável. Corrigir déficits de K⁺/Cl⁻ e tratar vômitos. O pH quase normal não exclui gravidade.`,
           explainWrong: {
             'Como o pH está normal, apenas observar': 'Armadilha clássica: o pH normal esconde três distúrbios graves (incluindo sepse). Observar seria perigoso.',
             'Bolus de bicarbonato de sódio': 'A acidemia não é grave (pH ~normal) e há alcalose associada; bicarbonato pioraria.',
@@ -1740,7 +1739,7 @@
           }
         }
       ],
-      summary: `<strong>TRIPLO distúrbio</strong>: acidose metabólica AG alto (${AG}, lactato) + alcalose respiratória (PaCO₂ ${PaCO2} ≪ Winter ${_c(winterExpected)}) + alcalose metabólica (delta ratio ${_c(deltaRatio)} > 2, vômitos). pH ${_c(pH)} enganosamente normal. Conduta: tratar a sepse + repor K⁺/Cl⁻. Lição: pH normal pode esconder 3 distúrbios.`
+      summary: `<strong>TRIPLO distúrbio</strong>: acidose metabólica AG alto (${AG}; investigar lactato) + alcalose respiratória (PaCO₂ ${PaCO2} ≪ Winter ${_c(winterExpected)}) + alcalose metabólica (delta ratio ${_c(deltaRatio)} > 2, vômitos). pH ${_c(pH)} enganosamente normal. Conduta: tratar a sepse + repor K⁺/Cl⁻. Lição: pH normal pode esconder 3 distúrbios.`
     };
   }
 
@@ -1773,9 +1772,9 @@
           ],
           explainCorrect: `pH ${_c(pH)} → <strong>acidemia</strong>. HCO₃⁻ ${HCO3} (baixo) → distúrbio <strong>metabólico</strong>. Cl⁻ ${Cl} alto → acidose <strong>hiperclorêmica</strong> (AG normal).`,
           explainWrong: {
-            'Acidose respiratória': `Teria PaCO₂ alta. Aqui a PaCO₂ ${PaCO2} está baixa (compensando).`,
-            'Alcalose metabólica': `Teria pH > 7,45 e HCO₃⁻ alto. Aqui pH ${_c(pH)} e HCO₃⁻ ${HCO3} (baixo).`,
-            'Alcalose respiratória': `Teria pH > 7,45. Aqui pH ${_c(pH)}.`
+            'Acidose respiratória': `A acidose respiratória decorre de elevação primária da PaCO₂. Aqui a PaCO₂ ${PaCO2} está baixa; relacioná-la ao HCO₃⁻ ${HCO3} e à compensação esperada.`,
+            'Alcalose metabólica': `Alcalose metabólica é um processo de elevação primária do bicarbonato. O HCO₃⁻ ${HCO3} está reduzido neste quadro; o pH isolado não define nem exclui processos associados.`,
+            'Alcalose respiratória': `PaCO₂ baixa também ocorre como compensação de acidose metabólica. Integre HCO₃⁻ ${HCO3}, história e resposta esperada antes de inferir processo respiratório adicional; não use apenas o pH.`,
           }
         },
         {
@@ -1802,37 +1801,37 @@
           prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas <strong>iatrogênicas/exógenas</strong> de acidose hiperclorêmica (AG normal). Não selecione causas de outro padrão.',
           instruction: 'Os mecanismos serão revelados somente após o julgamento.',
           cards: [
-            _makeCard('salina_m', 'Excesso de SF 0,9%', 'Reanimação volumosa com salina', 'Cl⁻ alto, AG normal', true, 'A grande carga de Cl⁻ reduz a diferença de íons fortes (SID) → HCO₃⁻ cai → acidose hiperclorêmica dilucional.', 'É exatamente este caso; prefira cristaloide balanceado em grandes volumes.'),
+            _makeCard('salina_m', 'Excesso de SF 0,9%', 'Reanimação volumosa com salina', 'Cl⁻ alto, AG normal', true, 'A grande carga de Cl⁻ reduz a diferença de íons fortes (SID) → HCO₃⁻ cai → acidose hiperclorêmica.', 'A carga de cloreto pode contribuir. Reavaliar fluidos e tonicidade conforme a indicação neurológica, sem troca universal de solução.'),
             _makeCard('acetazolamida_m', 'Acetazolamida', 'Inibidor da anidrase carbônica', 'Bicarbonatúria, AG normal', true, 'Inibe a reabsorção proximal de HCO₃⁻ (efeito tipo ATR-2) → bicarbonatúria → NAGMA.', 'Segundo gatilho deste caso; rever a indicação/dose.'),
             _makeCard('npt_m', 'Nutrição parenteral rica em cloreto', 'NPT com excesso de Cl⁻/aminoácidos catiônicos', 'Cl⁻ alto, AG normal', true, 'A carga de aminoácidos catiônicos e Cl⁻ gera H⁺/reduz o SID → acidose hiperclorêmica.', 'Iatrogenia nutricional; ajustar a composição (acetato no lugar de cloreto).'),
             _makeCard('derivacao_m', 'Derivação urinária intestinal', 'Ureterosigmoidostomia/conduto', 'Cl⁻ alto, K⁺ baixo', true, 'O intestino reabsorve NH₄⁺ e Cl⁻ da urina e troca HCO₃⁻ por Cl⁻ → acidose hiperclorêmica.', 'Causa clássica de NAGMA em paciente urológico.'),
-            _makeCard('diarreia_m', 'Diarreia hospitalar', 'Perda fecal volumosa', 'HCO₃⁻ baixo, Cl⁻ alto, UAG negativo', true, 'Perda fecal de HCO₃⁻ → acidose hiperclorêmica; o rim acidifica bem (UAG negativo).', 'NAGMA extrarrenal comum no internado.'),
+            _makeCard('diarreia_m', 'Diarreia por medicamento/laxante', 'Uso de laxante ou fármaco causador; perda fecal volumosa', 'HCO₃⁻ baixo, Cl⁻ alto, UAG negativo', true, 'Perda fecal de HCO₃⁻ pode causar acidose hiperclorêmica. UAG negativo pode acompanhar resposta de NH₄Cl preservada, mas exige interpretação contextual.', 'Neste contexto explicitamente medicamentoso, é uma causa iatrogênica/exógena. Estar no hospital, isoladamente, não define a etiologia.'),
             _makeCard('atrmed_m', 'ATR medicamentosa (ex.: tenofovir)', 'Fármaco tubulotóxico', 'Bicarbonatúria, Fanconi', true, 'Lesão tubular proximal por fármaco → perda de HCO₃⁻ (tipo ATR-2).', 'NAGMA medicamentosa por toxicidade tubular.'),
             _makeCard('bicarb_m', 'Bicarbonato em excesso', 'Reposição exagerada de álcali', 'HCO₃⁻ ALTO', false, 'Carga de base → alcalose metabólica.', 'É armadilha: causa alcalose (HCO₃⁻ alto), oposto.'),
             _makeCard('vomitos_m', 'Vômitos', 'Perda gástrica', 'HCO₃⁻ alto, hipocloremia', false, 'Perda de HCl → alcalose metabólica.', 'É armadilha: alcalose, padrão oposto.'),
             _makeCard('dka_m', 'Cetoacidose diabética', 'Hiperglicemia, Kussmaul', 'AG alto, cetonas', false, 'Cetogênese → β-hidroxibutirato → AG ↑.', 'É armadilha: AG ALTO, não acidose hiperclorêmica.')
           ],
-          grimoire: { title: 'NAGMA iatrogênica', body: 'Acidose hiperclorêmica (AG normal) frequentemente é iatrogênica: <strong>SF 0,9% em excesso</strong> (carga de Cl⁻), <strong>acetazolamida</strong>, NPT rica em cloreto, derivação urinária intestinal e ATR medicamentosa. Em grandes volumes, prefira cristaloide balanceado.' }
+          grimoire: { title: 'NAGMA iatrogênica', body: 'Acidose hiperclorêmica (AG normal) frequentemente é iatrogênica: <strong>SF 0,9% em excesso</strong> (carga de Cl⁻), <strong>acetazolamida</strong>, NPT rica em cloreto, derivação urinária intestinal e ATR medicamentosa. Reavaliar a carga de cloreto conforme volume, sódio, cloreto, tonicidade e indicação neurológica; não impor troca universal por solução balanceada.' }
         }),
         {
           kind: 'mc',
-          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
-          grimoire: { title: 'Conduta na NAGMA iatrogênica', body: 'Identificar e <strong>suspender/ajustar o gatilho</strong> (trocar SF 0,9% por <strong>cristaloide balanceado</strong>; rever acetazolamida/NPT). A acidose costuma corrigir ao remover a causa; álcali só se grave/sintomática.' },
+          prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é o próximo passo mais adequado?',
+          grimoire: { title: 'Iatrogenia e indicação neurológica', body: 'Cloreto e acetazolamida podem contribuir para acidose. Reavaliar a necessidade de volume e do fármaco, considerando sua indicação, sódio, cloreto e tonicidade. Não impor troca universal de cristaloide nem suspender automaticamente um tratamento necessário.' },
           options: [
-            { label: 'Suspender/ajustar o gatilho (cristaloide balanceado no lugar de SF; rever acetazolamida)', correct: true },
+            { label: 'Reavaliar volume e acetazolamida considerando a indicação neurológica', correct: true },
             { label: 'Manter SF 0,9% em alto volume', correct: false },
             { label: 'Bolus de bicarbonato como tratamento definitivo', correct: false },
             { label: 'Apenas observar — não há nada a corrigir', correct: false }
           ],
-          explainCorrect: `Acidose hiperclorêmica iatrogênica → <strong>remover a causa</strong>: trocar SF 0,9% por <strong>cristaloide balanceado</strong> e rever acetazolamida/NPT. A acidose corrige ao ajustar a terapia; álcali só se grave.`,
+          explainCorrect: 'Reavalie os possíveis gatilhos com a equipe assistente. A escolha dos fluidos e a acetazolamida dependem também da indicação neurológica, sódio e tonicidade. Corrija a iatrogenia com decisão individualizada; não imponha troca automática por um fluido único.',
           explainWrong: {
-            'Manter SF 0,9% em alto volume': 'A carga de Cl⁻ do SF é justamente o gatilho — manter pioraria a acidose.',
-            'Bolus de bicarbonato como tratamento definitivo': 'Trata o número, não a causa; ajustar a fluidoterapia é o essencial.',
-            'Apenas observar — não há nada a corrigir': 'Há uma causa iatrogênica ativa e corrigível — deve ser ajustada.'
+            'Manter SF 0,9% em alto volume': 'Manter a carga sem reavaliar necessidade e efeitos perpetua um possível gatilho.',
+            'Bolus de bicarbonato como tratamento definitivo': 'Não resolve a indicação nem a causa da iatrogenia.',
+            'Apenas observar — não há nada a corrigir': 'Há possíveis efeitos iatrogênicos a avaliar e monitorar.'
           }
         }
       ],
-      summary: `<strong>Acidose metabólica hiperclorêmica iatrogênica (AG ${AG} normal)</strong> por SF 0,9% em excesso + acetazolamida. Compensação adequada. Conduta: trocar por cristaloide balanceado e rever os gatilhos; álcali só se grave. Lição: NAGMA sem hipoperfusão, pense iatrogenia.`
+      summary: `<strong>Acidose hiperclorêmica iatrogênica</strong>, AG ${AG}. Reavaliar fluidos e acetazolamida respeitando a indicação neurológica e monitorando eletrólitos e estado clínico; evitar uma troca universal de cristaloide.`
     };
   }
 
@@ -1852,7 +1851,7 @@
     _dbg('Ivar rolled:', { pH, PaCO2, HCO3, BE, Na, Cl, K, alb, AG, expHCO3 });
 
     return {
-      narrative: `O gigante <strong>Ivar</strong> tem obesidade importante, sonolência diurna e edema; usa <strong>diurético</strong> para o inchaço. Ronca alto à noite. A gasometria mostra PaCO₂ alta com HCO₃⁻ bastante elevado.`,
+      narrative: `O gigante <strong>Ivar</strong> tem obesidade importante e hipoventilação crônica previamente documentada, com sonolência diurna e edema; usa <strong>diurético</strong> para o inchaço. Ronca alto à noite. A gasometria mostra PaCO₂ alta com HCO₃⁻ bastante elevado.`,
       gas: { pH, PaCO2, HCO3, BE, Na, Cl, K, alb },
       acts: [
         {
@@ -1873,17 +1872,19 @@
         },
         {
           kind: 'mc',
-          prompt: '<strong>Ato II — Aguda ou crônica?</strong><br>Diante de obesidade-hipoventilação de longa data, esta acidose respiratória é:',
+          prompt: '<strong>Ato II — Duração.</strong><br>Diante da alteração respiratória de longa data descrita, como classificar o <em>componente de base</em>?',
           grimoire: { title: 'Acidose respiratória: aguda vs crônica', body: '<strong>Aguda:</strong> HCO₃⁻ sobe ~1 por +10 mmHg de PaCO₂. <strong>Crônica</strong> (dias): sobe ~3,5–4 por +10, pela retenção renal de HCO₃⁻.' },
           options: [
             { label: 'Crônica (obesidade-hipoventilação)', correct: true },
             { label: 'Aguda', correct: false },
-            { label: 'Não é possível dizer', correct: false }
+            { label: 'Não é possível dizer', correct: false },
+            { label: 'Aguda sobre crônica', correct: false }
           ],
           explainCorrect: `A hipoventilação da obesidade é de <strong>longa data → crônica</strong>. Espera-se elevação renal do HCO₃⁻ de ~3,5–4 por +10 mmHg de PaCO₂.`,
           explainWrong: {
             'Aguda': 'Aguda exigiria início recente e HCO₃⁻ pouco elevado (~1 por 10). A história é crônica.',
-            'Não é possível dizer': 'A obesidade-hipoventilação define o caráter crônico.'
+            'Não é possível dizer': 'A duração de longa data foi informada no enunciado; ela sustenta a classificação do componente basal.',
+            'Aguda sobre crônica': 'Nenhum agravamento agudo foi descrito; a pergunta classifica o componente de base pela duração informada.'
           }
         },
         {
@@ -1897,7 +1898,7 @@
           explainWrong: `24 + 3,5 × (${PaCO2} − 40)/10 = ${_c(expHCO3)}. Como o HCO₃⁻ medido (${HCO3}) é bem maior, há alcalose metabólica associada.`
         },
         _buildCardsAct({
-          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione <em>todas</em> as causas compatíveis com este padrão <strong>misto: acidose respiratória crônica + alcalose metabólica</strong>. Não selecione causas de outro padrão.',
+          prompt: '<strong>Ato IV — O Conselho dos Diagnósticos.</strong><br>Selecione causas que contribuam para <strong>um ou ambos os componentes</strong>: acidose respiratória crônica e alcalose metabólica. Cada carta não precisa produzir sozinha a combinação completa.',
           instruction: 'Os mecanismos serão revelados somente após o julgamento.',
           cards: [
             _makeCard('oh_iv', 'Obesidade-hipoventilação', 'Obeso, sonolência diurna, ronco', 'PaCO₂ alto crônico, HCO₃⁻ alto', true, 'A carga mecânica torácica e o drive reduzido baixam a ventilação alveolar → retenção crônica de CO₂ → acidose respiratória crônica.', 'Fornece o componente respiratório crônico do caso.'),
@@ -1914,22 +1915,22 @@
         {
           kind: 'mc',
           prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
-          grimoire: { title: 'Conduta no obeso hipoventilador com dupla alteração', body: 'Tratar a hipoventilação com <strong>VNI</strong> (suporte ventilatório noturno/CPAP-BiPAP) e investigar apneia do sono; <strong>rever o diurético</strong> e repor <strong>K⁺/Cl⁻</strong> (corrige a alcalose metabólica). NÃO dar bicarbonato (piora a alcalose e a hipercapnia). Evitar O₂ em alto fluxo sem suporte ventilatório.' },
+          grimoire: { title: 'Conduta no obeso hipoventilador com dupla alteração', body: 'Investigar apneia e outras causas de hipoventilação; avaliar <strong>pressão positiva nas vias aéreas (PAP)</strong>. A ATS2019 faz recomendação condicional, com certeza muito baixa: CPAP pode ser primeira escolha no estável com AOS grave; VNI depende do contexto, incluindo insuficiência respiratória hospitalar. Rever diurético e corrigir déficits de K⁺/Cl⁻ conforme volume. Oxigênio isolado não trata a hipoventilação.' },
           options: [
-            { label: 'Suporte ventilatório (VNI) + rever diurético + repor K⁺/Cl⁻; investigar apneia', correct: true },
+            { label: 'Avaliar PAP e apneia; rever diurético e corrigir déficits de K⁺/Cl⁻', correct: true },
             { label: 'Administrar bicarbonato de sódio', correct: false },
             { label: 'Aumentar o diurético para tirar o edema', correct: false },
             { label: 'O₂ em alto fluxo isolado, sem suporte ventilatório', correct: false }
           ],
-          explainCorrect: `Obesidade-hipoventilação + alcalose metabólica → <strong>VNI</strong> (tratar a hipoventilação/apneia), <strong>rever o diurético</strong> e repor <strong>K⁺/Cl⁻</strong>. Bicarbonato é contraindicado; O₂ alto isolado pode agravar a hipercapnia.`,
+          explainCorrect: `O conjunto sugere hipoventilação relacionada à obesidade com alcalose metabólica associada: investigar apneia, excluir outras causas e escolher PAP conforme a avaliação. Rever diurético e corrigir déficits de K⁺/Cl⁻ conforme volemia. Não há indicação de bicarbonato para a alcalose; O₂ isolado não corrige a hipoventilação.`,
           explainWrong: {
             'Administrar bicarbonato de sódio': 'Adicionar base piora a alcalose metabólica e a retenção de CO₂.',
             'Aumentar o diurético para tirar o edema': 'O diurético é fonte da alcalose metabólica — aumentar pioraria.',
-            'O₂ em alto fluxo isolado, sem suporte ventilatório': 'Em hipercápnico crônico, O₂ alto sem ventilação pode reduzir o drive e agravar a hipercapnia.'
+            'O₂ em alto fluxo isolado, sem suporte ventilatório': 'Oxigênio isolado não trata a hipoventilação. Avaliar hipoxemia, titular O₂ quando indicado e monitorar CO₂, com tratamento ventilatório conforme o contexto.'
           }
         }
       ],
-      summary: `<strong>Distúrbio MISTO</strong>: acidose respiratória crônica (obesidade-hipoventilação; HCO₃⁻ esperado ${_c(expHCO3)}) + alcalose metabólica (diurético; HCO₃⁻ medido ${HCO3}, bem acima). Conduta: VNI + rever diurético + K⁺/Cl⁻; evitar bicarbonato. Lição: HCO₃⁻ acima do esperado na acidose respiratória crônica = alcalose metabólica associada.`
+      summary: `<strong>Distúrbio MISTO</strong>: acidose respiratória crônica (obesidade-hipoventilação; HCO₃⁻ esperado ${_c(expHCO3)}) + alcalose metabólica (diurético; HCO₃⁻ medido ${HCO3}, bem acima). Conduta: avaliar PAP e apneia, rever diurético e corrigir déficits de K⁺/Cl⁻ conforme volume; evitar bicarbonato. Lição: HCO₃⁻ acima do esperado na acidose respiratória crônica = alcalose metabólica associada.`
     };
   }
 
@@ -1938,7 +1939,7 @@
     // (hipoventilação no DPOC) = MISTO. PaCO₂ acima do esperado para a alcalose.
     const HCO3 = _rand(32, 38);
     const compExpected = _r1(0.7 * HCO3 + 21);             // PaCO₂ esperada p/ alcalose metabólica
-    const PaCO2 = Math.round(compExpected + _rand(4, 10)); // acima → acidose respiratória associada
+    const PaCO2 = Math.round(compExpected + _rand(8, 12)); // acima → acidose respiratória associada
     const Na   = _rand(137, 142);
     const AG   = _rand(9, 12);
     const Cl   = Na - AG - HCO3;
@@ -1961,7 +1962,7 @@
             { label: 'Alcalose respiratória', correct: false },
             { label: 'Acidose respiratória pura', correct: false }
           ],
-          explainCorrect: `HCO₃⁻ ${HCO3} (muito alto) com pH ${_c(pH)} (alcalino/normal) → <strong>alcalose metabólica</strong> (ganho de bicarbonato pós-HD). A PaCO₂ ${PaCO2} elevada precisa ser analisada (compensação ou algo mais).`,
+          explainCorrect: `HCO₃⁻ ${HCO3} (muito alto) com pH medido ${_c(pH)} → <strong>alcalose metabólica</strong> (ganho de bicarbonato pós-HD). A PaCO₂ ${PaCO2} elevada precisa ser analisada (compensação ou algo mais).`,
           explainWrong: {
             'Acidose metabólica': `Teria HCO₃⁻ baixo. Aqui o HCO₃⁻ ${HCO3} está muito alto.`,
             'Alcalose respiratória': `Teria PaCO₂ baixa. Aqui a PaCO₂ ${PaCO2} está alta.`,
@@ -2013,14 +2014,14 @@
         {
           kind: 'mc',
           prompt: '<strong>Ato V — Conduta clínica.</strong><br>Qual é a sua conduta inicial?',
-          grimoire: { title: 'Conduta na alcalose pós-HD com hipoventilação', body: 'Ajustar (reduzir) o <strong>bicarbonato do banho</strong> de diálise, reavaliar volume/K⁺, e <strong>avaliar a ventilação</strong> (a sonolência pode ser hipercapnia/sedação no DPOC) — considerar VNI. Não adicionar base; cuidado com O₂ alto isolado no hipercápnico.' },
+          grimoire: { title: 'Conduta na alcalose pós-HD com hipoventilação', body: 'Reavaliar prescrição dialítica, bicarbonato do banho, volume e K⁺. Investigar sonolência e proteger via aérea. Selecionar suporte ventilatório conforme consciência, ventilação, oxigenação e contraindicações; VNI não é automática por PaCO₂ alta. A recomendação forte ERS/ATS para VNI na exacerbação de DPOC com acidose respiratória aguda não deve ser extrapolada sem avaliação a este quadro com pH preservado por distúrbio misto.' },
           options: [
-            { label: 'Reduzir o bicarbonato do banho de diálise + avaliar a ventilação (VNI se hipoventilação); rever K⁺', correct: true },
+            { label: 'Reavaliar o bicarbonato do banho, a ventilação e o K⁺; escolher suporte conforme o quadro', correct: true },
             { label: 'Aumentar o bicarbonato do banho na próxima sessão', correct: false },
             { label: 'Administrar bicarbonato de sódio IV', correct: false },
             { label: 'Apenas observar — está bem compensada', correct: false }
           ],
-          explainCorrect: `Alcalose pós-HD + acidose respiratória → <strong>reduzir o bicarbonato do dialisato</strong>, <strong>avaliar a ventilação</strong> (VNI se hipoventilar) e rever K⁺. A sonolência pode ser hipercapnia.`,
+          explainCorrect: `O conjunto indica alcalose metabólica e componente respiratório acidótico. Reavaliar bicarbonato do banho, volume e K⁺; investigar sonolência e insuficiência ventilatória, protegendo a via aérea. Escolher suporte conforme estado clínico e contraindicações, sem VNI automática apenas pela PaCO₂ alta.`,
           explainWrong: {
             'Aumentar o bicarbonato do banho na próxima sessão': 'O banho rico em bicarbonato é a causa da alcalose — aumentar pioraria.',
             'Administrar bicarbonato de sódio IV': 'Adicionar base agrava a alcalose metabólica.',
@@ -2088,7 +2089,7 @@
       aoTeclar: e => {
         if (e.key !== 'Escape') return;
         e.preventDefault();
-        if (pagina.dataset.abTela !== 'caso') fechar();
+        if (pagina.dataset.abTela !== 'caso') _abFechar(pagina);
       },
     });
     pagina._abFechar = fechar;
@@ -2096,7 +2097,7 @@
     _bindOverlayEvents(pagina);
     return pagina;
   }
-  function _abFechar(overlay, options){ overlay._abFechar ? overlay._abFechar(options) : overlay.remove(); }
+  function _abFechar(overlay, options){ window.NQChamberMotion?.unmount(); overlay._abFechar ? overlay._abFechar(options) : overlay.remove(); }
   // Cada tela é redesenhada inteira: o foco vai para o título (ou para o
   // campo/próximo passo), senão cai no body a cada ato.
   function _abFocar(card, sel){
@@ -2163,6 +2164,21 @@
             <div class="ab-hub-opening">
             <div class="ab-hub-heading">
             <p class="ab-lead">Vinte pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta ratio, o cloreto e o pH urinário, os distúrbios mistos e triplos e o gap osmolar para restaurar o equilíbrio.</p>
+            <div class="ab-lab" data-ab-lab data-motion="paused">
+              <svg class="ab-lab-art" viewBox="0 0 220 112" fill="none" aria-hidden="true" focusable="false">
+                <ellipse class="ab-lab-halo" cx="110" cy="98" rx="65" ry="7"/>
+                <path class="ab-lab-frame" d="M110 15v80M88 98h44M98 94h24M110 8l5 7-5 7-5-7 5-7Z"/>
+                <g class="ab-lab-beam">
+                  <path class="ab-lab-frame" d="M48 32h124M55 32v18m110-18v18M40 70h30M150 70h30M55 50 40 70q15 17 30 0L55 50Zm110 0-15 20q15 17 30 0l-15-20Z"/>
+                  <path class="ab-lab-liquid ab-lab-liquid--cyan" d="M43 69h24q-12 13-24 0Z"/>
+                  <path class="ab-lab-liquid ab-lab-liquid--gold" d="M153 69h24q-12 13-24 0Z"/>
+                  <circle class="ab-lab-spark" cx="55" cy="58" r="2"/>
+                  <circle class="ab-lab-spark ab-lab-spark--second" cx="165" cy="58" r="2"/>
+                </g>
+                <circle class="ab-lab-pivot" cx="110" cy="32" r="4"/>
+              </svg>
+              <button type="button" class="ab-motion-toggle" data-ab-motion-toggle aria-pressed="false">Pausar animação</button>
+            </div>
             </div>
             <aside class="ab-desktop-only ab-next-case">
               <svg class="ab-balance-seal" viewBox="0 0 120 120" fill="none" aria-hidden="true" focusable="false">
@@ -2606,8 +2622,76 @@
     setTimeout(() => { if (_abCurrent(overlay) && next.isConnected) next.focus(); }, 30);
   }
 
-  function _renderSummary(overlay, kase, sess){
-    if (!_abCurrent(overlay)) return;
+
+  function _appendCaseSources(card, kase) {
+    if (typeof refsDB !== 'object' || !refsDB) {
+      const section = card.querySelector('.ab-refs'); if (!section) return;
+      const item = document.createElement('div'); item.className = 'ab-ref-card';
+      const name = document.createElement('div'); name.className = 'ab-ref-name'; name.textContent = 'Fontes clínicas indisponíveis nesta conexão';
+      const body = document.createElement('div'); body.className = 'ab-ref-body'; body.textContent = 'As notas didáticas abaixo não substituem as fontes. Conecte-se e tente novamente.';
+      const retry = document.createElement('button'); retry.type = 'button'; retry.className = 'ab-btn-secondary';
+      retry.dataset.abSourcesRetry = ''; retry.textContent = 'Tentar carregar fontes novamente';
+      name.setAttribute('role', 'status'); item.append(name, body, retry); section.querySelector('.ab-refs-title').after(item); return;
+    }
+    const ids = ['acid_base_achanti_2023'];
+    if (kase.id === 'aldric') ids.push('bicaricu2_2025');
+    if (kase.id === 'isolde') ids.push('gitelman_kdigo_2017');
+    if (['mara', 'isolde', 'nara', 'ivar'].includes(kase.id)) ids.push('metabolic_alkalosis_emmett_2020');
+    if (kase.id === 'ivar') ids.push('ats_ohs_2019');
+    if (kase.id === 'vorgath') ids.push('extrip_ethylene_glycol');
+    if (kase.id === 'borius') ids.push('palmer_rta_2021', 'kdigo_ckd_2024', 'ukka_hyperkalemia_2026');
+    if (kase.id === 'vance') ids.push('berend_normal_gap_2017', 'palmer_rta_2021');
+    if (kase.id === 'ophelia') ids.push('acmt_salicylate_2015', 'extrip_salicylates_2015');
+    if (kase.id === 'mireth') ids.push('ers_ats_niv_2017', 'metabolic_alkalosis_emmett_2020');
+    if (kase.id === 'galen') ids.push('surviving_sepsis_2026');
+    if (kase.id === 'theron') ids.push('aha_acc_pe_2026');
+    if (kase.id === 'helena') ids.push('aasld_ascites_sbp_2021');
+    if (kase.id === 'selene') ids.push('hyperglycemic_crises_consensus_2024');
+    if (kase.id === 'edrin') ids.push('kdigo_ckd_2024');
+    if (kase.id === 'corvin') ids.push('endocrine_society_primary_aldosteronism_2025');
+    if (kase.id === 'liora' || kase.id === 'edrin') ids.push('palmer_rta_2021');
+    if (kase.id === 'brann') ids.push('d_lactic_kowlgi_2015', 'drug_induced_acidosis_pham_2015');
+    if (kase.id === 'maelis') ids.push('drug_induced_acidosis_pham_2015', 'neurocritical_cerebral_edema_2020');
+    const section = card.querySelector('.ab-refs');
+    if (!section) return;
+    const title = section.querySelector('.ab-refs-title');
+    const fragment = document.createDocumentFragment();
+    ids.forEach(id => {
+      const ref = refsDB[id]; if (!ref || !/^https:\/\//.test(ref.url)) return;
+      const item = document.createElement('div'); item.className = 'ab-ref-card'; item.dataset.abSourceId = id;
+      const name = document.createElement('div'); name.className = 'ab-ref-name';
+      const link = document.createElement('a'); link.href = ref.url; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.textContent = ref.label;
+      name.append(link);
+      const body = document.createElement('div'); body.className = 'ab-ref-body'; body.textContent = ref.resumo + ' ' + ref.conclusao;
+      item.append(name, body); fragment.append(item);
+    });
+    title.after(fragment);
+  }
+
+  async function _renderSummary(overlay, kase, sess){
+    if (sess.loadingSummary) return;
+    // A late response belongs to this view, never to a revisited act or another case.
+    const origin = overlay.querySelector('.ab-body');
+    if (typeof refsDB !== 'object' && typeof window.carregarDadosGrimorio === 'function') {
+      sess.loadingSummary = true;
+      const trigger = overlay.querySelector('[data-ab-sources-retry], .ab-next');
+      const label = trigger?.textContent;
+      if (trigger) { trigger.disabled = true; trigger.textContent = 'Carregando fontes…'; }
+      let deadline;
+      try {
+        await Promise.race([
+          window.carregarDadosGrimorio({ refsOnly: true }),
+          new Promise(resolve => { deadline = setTimeout(resolve, 5000); })
+        ]);
+      } catch {}
+      finally {
+        clearTimeout(deadline);
+        sess.loadingSummary = false;
+        if (trigger?.isConnected) { trigger.disabled = false; trigger.textContent = label; }
+      }
+    }
+
+    if (!_abCurrent(overlay) || !origin?.isConnected) return;
     if (!sess.completionStored) {
       if (!_markCompleted(kase.id, sess.grimoireUses, overlay._abBinding)) {
         if (typeof _toast === 'function') _toast('Não foi possível salvar este caso. Tente concluir novamente.', 'warning');
@@ -2616,19 +2700,19 @@
       sess.completionStored = true;
     }
     overlay.dataset.abTela = 'resumo';
-    try { if (typeof _track === 'function') _track('minigame_acid_base_case_completed', {
+    try { if (!sess.completionTracked && typeof _track === 'function') _track('minigame_acid_base_case_completed', {
       case: kase.id, grimoireUses: sess.grimoireUses, wrongAttempts: sess.wrongAttempts
-    }); } catch {}
+    }); sess.completionTracked = true; } catch {}
     const card = overlay.querySelector('.ab-card');
     const flawless = sess.wrongAttempts === 0;
-    // Referências do caso = fórmulas e trials do Grimório usados nos atos.
+    // Didactic notes remain distinct from traceable clinical sources.
     const refs = (kase.acts || []).filter(a => a.grimoire).map(a => a.grimoire);
     const refsHTML = refs.length ? `
           <div class="ab-refs">
-            <div class="ab-refs-title">📖 Referências do Grimório</div>
+            <div class="ab-refs-title">📖 Fontes e notas do Grimório</div>
             ${refs.map(r => `
               <div class="ab-ref-card">
-                <div class="ab-ref-name">${r.title}</div>
+                <div class="ab-ref-name">Nota didática — ${r.title}</div>
                 <div class="ab-ref-body">${r.body}</div>
               </div>`).join('')}
           </div>` : '';
@@ -2653,6 +2737,9 @@
       </div>`;
     card.querySelector('[data-ab-close]').onclick = () => _abFechar(overlay);
     window.NQChamberArt?.hydrate(card);
+    _appendCaseSources(card, kase);
+    const retry = card.querySelector('[data-ab-sources-retry]');
+    if (retry) retry.onclick = () => { sess.showSourcesOnSummary = true; _renderSummary(overlay, kase, sess); };
     card.querySelector('[data-ab-back]').onclick = () => showAcidBaseMinigame();
     _abFocar(card, '.ab-summary-title');
     card.querySelector('[data-ab-replay]').onclick = () => {
@@ -2660,6 +2747,11 @@
       if (meta) _startCase(overlay, meta);
     };
     window.NQChamberWorkspace?.mount(overlay);
+    if (sess.showSourcesOnSummary) {
+      card.querySelectorAll('.nql-summary-nav [role=tab]')[1]?.click();
+      const firstSource = card.querySelector('[data-ab-source-id] a, [data-ab-sources-retry]');
+      if (firstSource && firstSource.getClientRects().length) firstSource.focus();
+    }
   }
 
   // ── Expor entry point ──────────────────────────────────────────────────

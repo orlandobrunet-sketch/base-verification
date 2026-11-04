@@ -6,6 +6,7 @@ import { parseQuestions } from './editorial-batch/questions.mjs';
 import { parseReferenceIds, referenceConsumers, referenceReviewPaths } from './editorial-batch/references.mjs';
 import { extractVersions } from './editorial-batch/versions.mjs';
 import { validateBatch } from './editorial-batch/rules.mjs';
+import { CHAMBER_SOURCE } from './editorial-batch/chamber.mjs';
 
 function parseArgs(argv) {
   const options = { cwd: process.cwd() };
@@ -61,7 +62,12 @@ function main() {
   if (manifest.reference_only === true) {
     for (const path of referenceReviewPaths(manifest)) referenceReviewReports.set(path, readAtRevision(head, path, cwd));
   }
+  const chamberReview = manifest.chamber_only === true ? {
+    chamberSource: readAtRevision(head, CHAMBER_SOURCE, cwd),
+    chamberReport: readAtRevision(head, manifest.chamber.report_path, cwd),
+  } : {};
   const errors = validateBatch({
+    ...chamberReview,
     manifest, manifestPath, changedPaths: paths,
     beforeQuestions, afterQuestions, beforeReferenceIds, afterReferenceIds,
     beforeConsumers: referenceConsumers(beforeQuestions),

@@ -77,3 +77,11 @@ pareceria revisão sem ser.
 
 A fonte da verdade é o [Handbook §18.4](../NQ_EDITORIAL_HANDBOOK_v1.md). Se ele
 e o código divergirem, o Handbook vence.
+
+## Lotes exclusivos da Câmara
+
+`chamber_only: true` declara adições de referências consumidas pelos 20 pacientes da Câmara, com `questions: {}` e delta zero. Não aprova questões do banco principal, não permite alterar seus bytes e não permite modificar/remover cards compartilhados. Não pode ser combinado com `reference_only`.
+
+O objeto `chamber` declara `source_lf_sha256`, `report_path`, `report_lf_sha256` e `cases` com os quatro eixos editoriais e referências de cada paciente. O relatório clínico próprio contém exatamente um bloco `nq-chamber-review`, com revisor, hashes LF do fonte e da registry inteira, e os mesmos 20 casos/eixos/fontes. A CLI lê o relatório versionado e compara esses valores; não emite aprovação médica. Cada card novo declara `action: add`, `after_sha256` e seus consumidores reais, sem prefixo. O gate lê uma gramática estática restrita do seletor de fontes, sem executar JavaScript do PR; o contrato de testes compara essa leitura às fontes realmente renderizadas. Sintaxe desconhecida, consumidores fictícios, fonte ausente, eixos bloqueados e qualquer versão divergente falham.
+
+Os modos comuns e `reference_only` mantêm suas regras anteriores. Este modo cobre lotes de adição de fontes da Câmara; o acionamento histórico da CLI continua limitado a alterações em `data/topics.js`, `data/refs.js` ou manifesto editorial. Uma futura edição apenas do minigame continua exigindo a revisão clínica indicada no AGENTS.md; o gate não a infere automaticamente.

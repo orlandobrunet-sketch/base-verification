@@ -1,0 +1,13 @@
+# Câmara — ajustes finais de coerência entre cartas, comando e contexto
+
+Revisão prévia pela skill canônica revisar-nefroquest v2, Handbook13/16–19 e AnexoC. A leitura das cartas remanescentes detectou afirmações que não acompanhavam as correções de seus atosV.
+
+Fontes já abertas/conferidas: Berend2017 (DOI10.1159/000479279) para acidose hiperclorêmica e limites de UAG; Pham/Xu/Moe2015 (DOI10.12688/f1000research.7006.1) para causas medicamentosas; Cook2020 (DOI10.1007/s12028-020-00959-7) para contexto neurocrítico; EndocrineSociety2025 para investigação contextual; Palmer2021 para ATR. Nenhuma fonte ou dose nova.
+
+| Recorte | OP / Bloom / Miller / dificuldade | Patch exato e Advogado do Recurso |
+|---|---|---|
+| MaelisIV, cartas/notas | Reconhecer causas iatrogênicas deNAGMA respeitando contexto / Analisar / sabe como / intermediária | Carta de diarreia passa a explicitar causa medicamentosa/laxante, mantendo true no comando iatrogênico. Não chamar toda diarreia hospitalar de iatrogênica por estar no hospital. UAG negativo é indício contextual, não prova infalível. Retirar “dilucional” e preferência universal de balanceado; explicar carga deCl e reavaliação de fluidos conforme volume/Na/Cl/tonicidade e indicação neurológica. Nota passa a concordar com atoV. Sem trocar medicação/solução por inferência. |
+| Corvin narrativa/IV | Reconhecer padrão hipertenso hipocalêmico e mecanismos / Analisar / sabe como / intermediária | Narrativa descreve difícil controle com três agentes, sem rotular resistência estrita na ausência de diurético. ComandoIV passa a “efeito mineralocorticoide ou ativação deENaC”, incluindo Liddle sem afirmar excesso de aldosterona. Nota: perfis de renina/aldosterona orientam hipóteses, não confirmação isolada. Sem alterar seleções ou investigação aprovada. |
+| LioraIV, comentário distal | Integrar hipótese deATRdistal / Compreender / sabe como / intermediária | Trocar “é exatamente este caso” por “compatível com o conjunto; investigar causa/confirmar conforme avaliação”, harmonizando o comentário com o atoIII sem fingir confirmação pelo pH urinário. |
+
+Após patch: evidência VERIFICADA, pendência NENHUMA, confiança alta no recorte; nenhum eliminatório residual; vetor[2,2,2,2,1,1,2,2,2,2]=18/20 para cada linha, limitando nota dos distratores elementares. Versão anterior com comando/gabarito incompatível ou generalização indevida tem score anulado. Veredito **aprovada**, ciclo aprovado, publicação do item LIBERADA pela matriz18.4. Preservar cinco atos, quatro alternativas nosMC e multisseleção nas cartas. Aprovação do pacote final depende da consolidação e testes completos.

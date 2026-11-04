@@ -172,7 +172,7 @@
     if(refs){const cards=[...refs.querySelectorAll('.ab-ref-card')];if(cards.length){const nav=pager(s,refs,cards,1,'Referência');refs.querySelector('.ab-refs-title').after(nav.nav);cards.forEach(card=>reader(s,card.querySelector('.ab-ref-body'),105));}}
   }
   function mount(overlay){
-    if(!overlay?.isConnected)return;const active=document.activeElement,hadFocus=overlay.contains(active);reset(overlay);if(!eligible()){if(hadFocus&&active?.isConnected)active.focus({preventScroll:true});return;}
+    if(!overlay?.isConnected)return;window.NQChamberMotion?.mount(overlay);const active=document.activeElement,hadFocus=overlay.contains(active);reset(overlay);if(!eligible()){if(hadFocus&&active?.isConnected)active.focus({preventScroll:true});return;}
     const root=overlay.querySelector('.ab-scroll');if(!root)return;
     const s={overlay,root,owned:[],undo:[],visibility:new Map(),readers:[],observers:[]};states.set(overlay,s);if(!memories.has(overlay))memories.set(overlay,{contextKey:'',contextTab:1});overlay.classList.add('nq-chamber-workspace');
     if(overlay.dataset.abTela==='hub')hub(s);
