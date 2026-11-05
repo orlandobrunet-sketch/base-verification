@@ -74,7 +74,7 @@ test.describe('Sentry não escuta a máquina de quem desenvolve', () => {
  * quando algo quebra para quem usa. O cenário serve a página local sob um
  * hostname que não é local, para exercitar o mesmo caminho de código.
  */
-test('em host publicado, o carregador entra e o cliente inicializa', async ({ page }, info) => {
+test('em host publicado, o carregador entra e o cliente inicializa', async ({ page, baseURL }, info) => {
   test.skip(info.project.name !== 'chromium', 'Uma execução basta para o contrato.');
   test.setTimeout(120000);
 
@@ -83,7 +83,8 @@ test('em host publicado, o carregador entra e o cliente inicializa', async ({ pa
   let pediuCarregador = false;
   await page.route(`https://${hostPublicado}/**`, async (rota) => {
     const url = new URL(rota.request().url());
-    const alvo = `http://localhost:5500${url.pathname}${url.search}`;
+    expect(baseURL, 'A contraparte publicada precisa usar o servidor configurado para esta execução.').toBeTruthy();
+    const alvo = new URL(url.pathname + url.search, baseURL!).href;
     const resposta = await page.request.get(alvo);
     return rota.fulfill({
       status: resposta.status(),

@@ -1,7 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 import { medirContraste } from '../helpers/contraste';
-test.use({ serviceWorkers:'block',reducedMotion:'reduce' });
+test.use({ serviceWorkers:'block',contextOptions:{reducedMotion:'reduce'} });
 async function abrir(page:Page,index=0){
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
  await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await injectGameState(page);await page.waitForLoadState('load');
@@ -25,7 +25,13 @@ for(const index of [0,2])test('pergaminho preserva todos os textos e recompensas
 for(const width of [320,390])test('pergaminho inteiro a 200% em '+width,async({page})=>{
  await page.setViewportSize({width,height:700});const {card}=await abrir(page);await page.evaluate(()=>document.documentElement.style.fontSize='32px');
  const r=(await card.getByRole('button',{name:'Continuar'}).boundingBox())!;expect(r.x).toBeGreaterThanOrEqual(0);expect(r.x+r.width).toBeLessThanOrEqual(width);expect(r.y+r.height).toBeLessThanOrEqual(700);expect(r.height).toBeGreaterThanOrEqual(48);expect(await card.evaluate(e=>e.scrollWidth<=e.clientWidth)).toBe(true);
- const reading=card.getByRole('region');await reading.focus();await page.keyboard.press('End');await expect.poll(()=>reading.evaluate(e=>e.scrollTop)).toBeGreaterThan(0);expect(await page.evaluate(medirContraste,'#chestModal')).toEqual([]);
+ const reading=card.getByRole('region');await reading.focus();await page.keyboard.press('End');await expect.poll(()=>reading.evaluate(e=>e.scrollTop)).toBeGreaterThan(0);const motion=await page.locator('#chestRarity').evaluate(el=>{
+  const chain=[];for(let node:Element|null=el;node;node=node.parentElement){const s=getComputedStyle(node),r=node.getBoundingClientRect();chain.push({node:node.tagName+'#'+node.id,opacity:s.opacity,animation:s.animationName,duration:s.animationDuration,delay:s.animationDelay,y:r.y,bottom:r.bottom,animations:node.getAnimations().map(a=>({name:a instanceof CSSAnimation?a.animationName:null,state:a.playState,time:a.currentTime}))});}
+  return {reduced:matchMedia('(prefers-reduced-motion: reduce)').matches,chain};
+ });
+ await test.info().attach('scroll-motion-state',{contentType:'application/json',body:JSON.stringify(motion)});
+ expect(motion.reduced,'The declared reduced-motion fixture must actually be active.').toBe(true);
+ expect(await page.evaluate(medirContraste,'#chestModal')).toEqual([]);
  await page.emulateMedia({reducedMotion:'reduce'});expect(new Set(await card.locator('.nqscroll-seal path').evaluateAll(es=>es.map(e=>getComputedStyle(e).animationName)))).toEqual(new Set(['none']));
  if(process.env.NQ_CAPTURE_DIR)await page.screenshot({path:process.env.NQ_CAPTURE_DIR+'/pergaminho-integrado-'+width+'-200.png'});
 });

@@ -1,0 +1,12 @@
+# Câmara — referências específicas de Theron e Helena
+
+Revisão prévia conforme skill canônica revisar-nefroquest v2, Handbook13/16–19 e AnexoC. OP preservado: TheronV prioriza investigar causa grave de hiperventilação hipoxêmica; HelenaV investiga causas de descompensação no cirrótico com ascite, confusão e uso de diurético. BloomAplicar, Miller sabe como, dificuldade intermediária. Não altera gabarito, dose ou recomendação.
+
+## Fontes verificadas
+
+- AHA/ACC/multissociedades2026: [página oficial](https://professional.heart.org/en/science-news/2026-guideline-for-the-evaluation-and-management-of-acute-pulmonary-embolism-in-adults), aberta, atualização19/02/2026; título/autoria e DOI10.1161/CIR.0000000000001415 conferidos no material oficial. Fonte para avaliação e estratificação de risco de TEP, sem inventar dose, confirmação por gasometria ou critério de alta baseado apenas em pH. Novo ID `aha_acc_pe_2026`, inexistente no registro antes da inclusão.
+- Biggins etal. *Diagnosis, Evaluation, and Management of Ascites, Spontaneous Bacterial Peritonitis and Hepatorenal Syndrome: 2021 Practice Guidance by AASLD*. Hepatology2021;74:1014–1048, DOI10.1002/hep.31884. Conferido PDF integral original hospedado pela sociedade de gastroenterologia: https://ptg-e.org.pl/wp-content/uploads/2022/03/4_SBPHRS_AASLD_CPG_Hepatology_2021.pdf, além da identificação oficial AASLD. Reutilizar `aasld_ascites_sbp_2021`; não criar duplicata nem alterar o card compartilhado. É Practice Guidance de consenso, não um ensaio randomizado.
+
+Patch: vincular novo card AHA a Theron e card AASLD existente a Helena, junto à fonte geral de ácido-base. Texto do novo card limita-se a finalidade e avaliação de risco do documento; não adiciona algoritmos ou terapias aos atos. Nenhum dado clínico novo inserido.
+
+Advogado do Recurso: não inferir TEP confirmado apenas por alcalose/hipoxemia nem PBE confirmada por confusão; fontes sustentam investigação, mantendo hipótese no cenário. Sem argumento residual de anulação decorrente da vinculação. Evidência VERIFICADA, pendência NENHUMA, confiança alta; nenhum eliminatório após patch. Score18/20, vetor[2,2,2,2,1,1,2,2,2,2] nos recortes, reconhecendo limitação dos distratores elementares. Veredito **aprovada**, ciclo aprovado, autorização de publicação do item LIBERADA pela matriz18.4. Reavaliar se conteúdo material mudar. Isso não publica nem dispensa os testes finais do conjunto.

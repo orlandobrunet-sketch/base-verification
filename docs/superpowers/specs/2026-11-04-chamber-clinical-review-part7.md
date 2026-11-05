@@ -1,0 +1,22 @@
+# Câmara — revisão clínica, lote7
+
+Revisão formal prévia pelo fluxo canônico revisar-nefroquest v2 (Model/Handbook13–19/AnexoC). A leitura completa dos distratores revelou generalizações propagadas. Aprovação restrita às versões descritas abaixo; números, alvos e gabaritos são preservados.
+
+## Evidência
+
+Achanti/Szerlip2023 (DOI10.2215/CJN.04500422, https://pmc.ncbi.nlm.nih.gov/articles/PMC10101555/) sustenta distinção de processo acidose/alcalose e estado do pH, com compensações e distúrbios mistos. Emmett2020 (DOI10.2215/CJN.16041219, https://pmc.ncbi.nlm.nih.gov/articles/PMC7769018/) sustenta interpretação contextual de cloreto e correção de déficits. Palmer2021 (DOI10.1007/s12325-020-01587-5) e Berend2017 (DOI10.1159/000479279) sustentam o diferencial contextual de ATR. Consenso KDIGO Gitelman2017 já conferido descreve variabilidade fenotípica; pressão alta não é uma exclusão genética absoluta. EndocrineSociety2025 já conferida sustenta rastreio de excesso mineralocorticoide sem chamá-lo confirmação.
+
+EXTRIP etilenoglicol, fonte oficial https://www.extrip-workgroup.org/ethylene-glycol já aberta e conferida: critérios de tratamento extracorpóreo dependem de contexto, metabólitos/níveis, AG com fórmula específica e manifestações graves. Confusão não equivale a coma; dor lombar não documenta LRA; não converter BUN em estágio de LRA sem creatinina/diurese. Manter hipótese e avaliação toxicológica/renal explícitas. Não extrapolar limiares com K para AG sem K.
+
+## Patch delimitado e Advogado do Recurso
+
+| Itens | OP / Bloom / Miller / dificuldade | Versão aprovada e recurso |
+|---|---|---|
+| AtosI de Aldric, Mara, Theron, Vance, Kael, Vorgath, Selene, Edrin, Liora, Borius, Isolde, Corvin, Helena, Brann, Nara e Maelis | Diferenciar processo primário e compensação / Compreender–Aplicar / sabe como / básica–intermediária | Feedback dos distratores descreve direção primária de HCO3/PaCO2 e comparação com resposta esperada, sem ensinar “alcalose exigepH>7,45” ou “acidose exigepH<7,35”. Não usar pH isolado para excluir processo, especialmente porque o próprio jogo ensina distúrbios mistos. Mantém as quatro alternativas e uma melhor no cenário gerado; testes já verificam domínios de compensação. |
+| OpheliaI, distrator compensação | Reconhecer PaCO2 fora de Winter / Analisar / sabe como / avançada | Excluir alegação universal de pH alcalino; comparar a medida ao intervalo de Winter para demonstrar componente respiratório. Sem recurso pela normalidade do pH em parte do domínio. |
+| MaraV, distrator acetazolamida | Escolher correção de volume/Cl/K na paciente depletada / Aplicar / sabe como / intermediária | Não dizer que acetazolamida só pode ser usada com sobrecarga em toda situação. Justificar pelo caso: pode agravar déficit de K/volume e não substitui reposição dos déficits. Melhor resposta inalterada. |
+| CorvinIII/resumo | Reconhecer contexto favorável a excesso mineralocorticoide / Analisar / sabe como / intermediária | Bartter/Gitelman habitualmente têm pressão normal/baixa, mas não excluir por hipertensão isolada. Associação apresentada favorece rastreio mineralocorticoide. Resumo usa “sugere”, não diagnóstico confirmado. Sem alteração do rastreio recomendado. |
+| BoriusIII, feedbacks | Interpretar K junto à história / Analisar / sabe como / intermediária | ATR distal clássica e diarreia tipicamente cursam com Kbaixo, mas K sozinho não confirma/exclui todas as combinações. O contexto DM/DRC/fármacos e ausência de história de perdaGI favorecem a melhor resposta. |
+| VorgathV/resumo | Iniciar abordagem da suspeita de álcool tóxico sem inventar LRA / Aplicar / sabe como / avançada | Retirar afirmação de LRA já presente e indicação automática de HD. Forte suspeita de álcool tóxico, etilenoglicol entre hipóteses; avaliação toxicológica e bloqueio da álcool-desidrogenase, investigação da exposição e função renal. HD conforme critérios. Sem pressupor dose/nível/creatinina ou transformar dor lombar em lesão renal documentada. |
+
+Após o patch exato: para cada linha, evidência VERIFICADA, pendência NENHUMA, confiança alta no recorte, nenhum eliminatório residual; vetor10dimensões [2,2,2,2,1,1,2,2,2,2]=18/20. Limitações dos distratores elementares mantidas explícitas; versões anteriores com falsa regra ou dado inventado têm score anulado. Veredito **aprovada**, ciclo aprovado e publicação do **item** LIBERADA pela matriz18.4. A aprovação de conteúdo não publica nem aprova o pacote inteiro sem consolidação de100atos e bateria final. Qualquer aplicação fora do patch exige nova revisão.

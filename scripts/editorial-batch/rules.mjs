@@ -1,5 +1,6 @@
 import { changedQuestionIds, equalExceptRefs } from './questions.mjs';
 import { validateReferenceOnlyBatch } from './references.mjs';
+import { validateChamberBatch } from './chamber.mjs';
 
 const FORBIDDEN = [
   /(^|\/)\.playwright-mcp\//,
@@ -36,6 +37,20 @@ export function validateBatch(input) {
     beforeReferenceIds, afterReferenceIds, beforeConsumers, afterConsumers,
     beforeRefsText, afterRefsText, beforeVersions, afterVersions,
   } = input;
+
+  let effectiveAfterConsumers = afterConsumers;
+  if (manifest.chamber_only === true) {
+    const chamber = validateChamberBatch(input);
+    errors.push(...chamber.errors);
+    // A failed review/binding check cannot grant an orphan-reference exemption.
+    if (!chamber.errors.length) {
+      effectiveAfterConsumers = new Map([...afterConsumers].map(([id, values]) => [id, new Set(values)]));
+      for (const [id, values] of chamber.consumers) {
+        if (!effectiveAfterConsumers.has(id)) effectiveAfterConsumers.set(id, new Set());
+        for (const consumer of values) effectiveAfterConsumers.get(id).add(consumer);
+      }
+    }
+  }
 
   for (const path of changedPaths) {
     if (FORBIDDEN.some((pattern) => pattern.test(path))) errors.push(diagnostic('FORBIDDEN_ARTIFACT', `Forbidden artifact changed: ${path}`));
@@ -83,7 +98,7 @@ export function validateBatch(input) {
   }
   for (const ref of afterReferenceIds) {
     const hadConsumers = beforeConsumers?.has(ref) && beforeConsumers.get(ref).size > 0;
-    const hasConsumers = afterConsumers.has(ref) && afterConsumers.get(ref).size > 0;
+    const hasConsumers = effectiveAfterConsumers.has(ref) && effectiveAfterConsumers.get(ref).size > 0;
     if (!hasConsumers && (!beforeReferenceIds.has(ref) || hadConsumers)) errors.push(diagnostic('ORPHAN_REFERENCE', `Reference ${ref} has no consumers`));
   }
 

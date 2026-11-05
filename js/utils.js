@@ -989,8 +989,8 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
     // comportamento; só sai do caminho crítico.
     let _promessaGrimorio = null;
     const _cargasGrimorio = new Map();
-    function carregarDadosGrimorio() {
-      if (_promessaGrimorio) return _promessaGrimorio;
+    function carregarDadosGrimorio(options = {}) {
+      if (_promessaGrimorio && !options?.refsOnly) return _promessaGrimorio;
       const um = (src, pronto) => {
         if (pronto()) return Promise.resolve();
         if (_cargasGrimorio.has(src)) return _cargasGrimorio.get(src);
@@ -1011,6 +1011,8 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
         _cargasGrimorio.set(src, tarefa);
         return tarefa;
       };
+      // Consumers needing only bibliography share its existing script promise.
+      if (options?.refsOnly) return um('data/refs.js', () => typeof refsDB === 'object' && refsDB !== null);
       _promessaGrimorio = Promise.all([
         um('data/refs.js', () => typeof refsDB === 'object' && refsDB !== null),
         um('data/articles.js', () => typeof nefroArticles !== 'undefined' && Array.isArray(nefroArticles)),

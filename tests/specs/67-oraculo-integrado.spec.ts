@@ -22,16 +22,18 @@ async function abrirOraculo(page: Page, opcoes: { logado: boolean; largura?: num
     }));
   }
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
-  await injectGameState(page);
+  // Fix identity before loadGame binds the save; switching it afterwards opens
+  // the real visitor/account conflict flow and intentionally tears down the Oracle.
+  await injectGameState(page, {}, { authUser: opcoes.logado
+    ? { id: 't1', email: 't@e.com', app_metadata: {} } : null });
   await page.waitForLoadState('load');
   // O `?.` abaixo calaria a falha se o study-mode.js ainda não tivesse carregado.
   await page.waitForFunction(() => typeof (window as any).openMentorModal === 'function');
-  await page.evaluate(({ logado, questao }) => {
+  await page.evaluate(({ questao }) => {
     const g = window as any;
-    if (logado) g.authUser = { id: 't1', email: 't@e.com', app_metadata: {} };
     g.setMentorQuestion?.(questao);
     g.openMentorModal?.();
-  }, { logado: opcoes.logado, questao: QUESTAO });
+  }, { questao: QUESTAO });
   await expect(page.locator('#mentorPanel')).toBeVisible({ timeout: 15000 });
 }
 

@@ -53,17 +53,60 @@
       const image = figure.querySelector('img');
       const heading = figure.closest('.ab-patient-heading');
       const remove = () => { figure.remove(); heading?.classList.remove('has-portrait'); };
+      let decoding = false;
       const reveal = () => {
-        if (!figure.isConnected) return;
+        if (decoding || !figure.isConnected) return;
         if (!image.naturalWidth || !image.naturalHeight) { remove(); return; }
-        figure.hidden = false;
-        heading?.classList.add('has-portrait');
+        decoding = true;
+        // A successful fetch is not yet a drawable portrait. Keep identity readable
+        // until decoding finishes, including repeated headers between acts.
+        Promise.resolve().then(() => typeof image.decode === 'function' ? image.decode() : undefined).then(() => {
+          if (!figure.isConnected) return;
+          figure.hidden = false;
+          heading?.classList.add('has-portrait');
+        }).catch(remove);
       };
       image.addEventListener('load', reveal, { once: true });
       image.addEventListener('error', remove, { once: true });
       if (image.complete) { image.naturalWidth ? reveal() : remove(); }
     });
   }
+
+
+  // Presentation only: no clinical values, rewards or progress are animated.
+  let motion = null;
+  function unmountMotion() {
+    if (!motion) return;
+    motion.art.dataset.motion = 'paused';
+    motion.abort.abort(); motion.observer.disconnect(); motion = null;
+  }
+  function mountMotion(overlay) {
+    const art = overlay.querySelector('[data-ab-lab]');
+    if (motion?.art === art && art?.isConnected) return;
+    unmountMotion(); if (!art) return;
+    const button = art.querySelector('[data-ab-motion-toggle]');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const abort = new AbortController();
+    let paused = false, visible = false;
+    try { paused = localStorage.getItem('nq-chamber-motion-paused') === 'true'; } catch {}
+    const update = () => {
+      art.dataset.motion = !paused && !reduced.matches && visible && !document.hidden ? 'running' : 'paused';
+      button.disabled = reduced.matches;
+      button.textContent = reduced.matches ? 'Movimento reduzido' : paused ? 'Retomar animação' : 'Pausar animação';
+      button.setAttribute('aria-pressed', String(paused || reduced.matches));
+    };
+    const observer = new IntersectionObserver(entries => { visible = entries[0].isIntersecting; update(); });
+    motion = { art, abort, observer };
+    button.addEventListener('click', () => {
+      paused = !paused;
+      try { localStorage.setItem('nq-chamber-motion-paused', String(paused)); } catch {}
+      update();
+    }, {signal:abort.signal});
+    document.addEventListener('visibilitychange', update, {signal:abort.signal});
+    reduced.addEventListener('change', update, {signal:abort.signal});
+    observer.observe(art); update();
+  }
+  window.NQChamberMotion = Object.freeze({mount:mountMotion,unmount:unmountMotion});
 
   window.NQChamberArt = Object.freeze({ portraits, portraitHTML, hydrate });
 })();

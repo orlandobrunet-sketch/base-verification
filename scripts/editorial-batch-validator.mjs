@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 import { resolve } from 'node:path';
 import { changedPaths, readAtRevision } from './editorial-batch/git-diff.mjs';
-import { findChangedManifest, validateManifest } from './editorial-batch/manifest.mjs';
+import { findChangedManifest, isEditorialManifestPath, validateManifest } from './editorial-batch/manifest.mjs';
 import { parseQuestions } from './editorial-batch/questions.mjs';
 import { parseReferenceIds, referenceConsumers, referenceReviewPaths } from './editorial-batch/references.mjs';
 import { extractVersions } from './editorial-batch/versions.mjs';
 import { validateBatch } from './editorial-batch/rules.mjs';
+import { CHAMBER_SOURCE } from './editorial-batch/chamber.mjs';
 
 function parseArgs(argv) {
   const options = { cwd: process.cwd() };
@@ -32,7 +33,7 @@ function main() {
   const { base, head, cwd } = parseArgs(process.argv.slice(2));
   const paths = changedPaths(base, head, cwd);
   const hasMedicalDataChanges = paths.includes('data/topics.js') || paths.includes('data/refs.js');
-  const hasEditorialManifest = paths.some((path) => /^docs\/editorial\/review-batches\/[^/]+\.json$/.test(path));
+  const hasEditorialManifest = paths.some(isEditorialManifestPath);
   if (!hasMedicalDataChanges && !hasEditorialManifest) {
     console.log('Editorial batch gate not activated: medical data files unchanged.');
     return;
@@ -61,7 +62,12 @@ function main() {
   if (manifest.reference_only === true) {
     for (const path of referenceReviewPaths(manifest)) referenceReviewReports.set(path, readAtRevision(head, path, cwd));
   }
+  const chamberReview = manifest.chamber_only === true ? {
+    chamberSource: readAtRevision(head, CHAMBER_SOURCE, cwd),
+    chamberReport: readAtRevision(head, manifest.chamber.report_path, cwd),
+  } : {};
   const errors = validateBatch({
+    ...chamberReview,
     manifest, manifestPath, changedPaths: paths,
     beforeQuestions, afterQuestions, beforeReferenceIds, afterReferenceIds,
     beforeConsumers: referenceConsumers(beforeQuestions),

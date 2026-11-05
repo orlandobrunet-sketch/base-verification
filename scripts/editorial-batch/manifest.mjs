@@ -1,5 +1,6 @@
 import { validarEixos } from './editorial-axes.mjs';
 import { validateReferenceOnlyManifest } from './references.mjs';
+import { validateChamberManifest } from './chamber.mjs';
 
 const MANIFEST_PATTERN = /^docs\/editorial\/review-batches\/[^/]+\.json$/;
 const ACTIONS = new Set(['rebuild', 'refs_only', 'retire', 'add', 'technical_only', 'reviewed_unchanged']);
@@ -20,8 +21,10 @@ const REF_POLICIES = new Set(['unchanged', 'declared']);
 const REVIEW_STATES = new Set(['required', 'unavailable']);
 const REQUIRED = ['batch', 'change_type', 'expected_version', 'allowed_files', 'questions', 'expected_question_delta', 'refs_policy', 'external_review'];
 
+export const isEditorialManifestPath = path => MANIFEST_PATTERN.test(path) && path !== 'docs/editorial/review-batches/manifest.schema.json';
+
 export function findChangedManifest(changedPaths) {
-  const matches = changedPaths.filter((path) => MANIFEST_PATTERN.test(path));
+  const matches = changedPaths.filter(isEditorialManifestPath);
   if (matches.length !== 1) {
     throw new Error(`Expected exactly one changed editorial JSON manifest; found ${matches.length}`);
   }
@@ -51,7 +54,10 @@ export function validateManifest(value, manifestPath) {
   }
 
   if ('reference_only' in value && typeof value.reference_only !== 'boolean') errors.push(`${manifestPath}: reference_only must be boolean`);
-  if (value.reference_only === true) {
+  if ('chamber_only' in value && typeof value.chamber_only !== 'boolean') errors.push(`${manifestPath}: chamber_only must be boolean`);
+  if (value.chamber_only === true) {
+    errors.push(...validateChamberManifest(value, manifestPath));
+  } else if (value.reference_only === true) {
     errors.push(...validateReferenceOnlyManifest(value, manifestPath));
   } else if (!value.questions || typeof value.questions !== 'object' || Array.isArray(value.questions) || Object.keys(value.questions).length === 0) {
     errors.push(`${manifestPath}: questions must be a non-empty object`);

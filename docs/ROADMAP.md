@@ -1,14 +1,14 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação operacional:** 03/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
+**Última reconciliação operacional:** 04/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
 Este documento controla direção, prioridade e critérios de conclusão. Ele não autoriza execução automática: cada frente precisa ser solicitada explicitamente pelo proprietário do produto.
 
-## Estado operacional — 03/11/2026
+## Estado operacional - 04/11/2026
 
-**Atualização: 16.62 publicada (PR927).** CI994 e Pages aprovados; 14 arquivos públicos idênticos ao merge. Revisão posterior de layout, jogabilidade e transições em andamento. A candidata 16.64 corrige seis achados de foco, reflow e interação na Forja; [relatório](design/NQ_AUDITORIA_LAYOUT_JOGABILIDADE_2026-11-03.md). Alternativas e referências continuam para um segundo momento.
+**Atualização: 16.64 publicada (PR928, merge `1099f12`).** CI997 aprovada: 2.386 testes completos e 258 skips previstos, sem falhas, flaky ou retentativas; 14 arquivos públicos conferidos contra o merge. A candidata 16.65 continua a revisão solicitada em Estudo, Simulado, Ritual, Julgamento e Câmara, com três problemas de teclado, foco e reflow reproduzidos e corrigidos. [Relatório complementar](design/NQ_AUDITORIA_MODOS_2026-11-04.md). Os vídeos publicados foram conferidos em [13 fluxos de reprodução/transição](design/NQ_VERIFICACAO_VIDEOS_2026-11-04.md), com as limitações registradas. Alternativas e referências continuam para um segundo momento.
 
 **Marco anterior: 16.60, PR926.** CI991 aprovada: 2.349 testes completos, 253 skips previstos, 130 testes rápidos e 19 cenários de pagamentos. Deploy Pages e 12 arquivos estáticos conferidos. O proprietário aplicou a migration 020 e publicou `mp-webhook` v14; código e permissões confirmados no Supabase. Compra e estorno reais ainda não foram certificados. A consolidação visual, a direção das aberturas e o classificador entraram em 30/10. As pendências ficam em [`CONTINUITY.md`](CONTINUITY.md), que prevalece sobre os status históricos abaixo.
 

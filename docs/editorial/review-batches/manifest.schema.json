@@ -4,45 +4,340 @@
   "title": "NefroQuest editorial batch manifest",
   "type": "object",
   "additionalProperties": false,
-  "required": ["batch", "change_type", "expected_version", "allowed_files", "questions", "expected_question_delta", "refs_policy", "external_review"],
+  "required": [
+    "batch",
+    "change_type",
+    "expected_version",
+    "allowed_files",
+    "questions",
+    "expected_question_delta",
+    "refs_policy",
+    "external_review"
+  ],
   "properties": {
-    "batch": { "type": "string", "minLength": 1 },
-    "change_type": { "enum": ["medical_editorial", "technical_only"] },
-    "expected_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
-    "allowed_files": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "batch": {
+      "type": "string",
+      "minLength": 1
+    },
+    "change_type": {
+      "enum": [
+        "medical_editorial",
+        "technical_only"
+      ]
+    },
+    "expected_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+$"
+    },
+    "allowed_files": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
     "questions": {
       "type": "object",
-      "minProperties": 1,
-      "propertyNames": { "pattern": "^[a-f0-9]{8}$" },
+      "propertyNames": {
+        "pattern": "^[a-f0-9]{8}$"
+      },
       "additionalProperties": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["action", "preserve_fsrs"],
+        "required": [
+          "action",
+          "preserve_fsrs"
+        ],
         "properties": {
-          "action": { "enum": ["rebuild", "refs_only", "retire", "add", "technical_only"] },
-          "preserve_fsrs": { "type": "boolean" }
+          "action": {
+            "enum": [
+              "rebuild",
+              "refs_only",
+              "retire",
+              "add",
+              "technical_only"
+            ]
+          },
+          "preserve_fsrs": {
+            "type": "boolean"
+          }
         }
       }
     },
-    "expected_question_delta": { "type": "integer" },
-    "refs_policy": { "enum": ["unchanged", "declared"] },
+    "expected_question_delta": {
+      "type": "integer"
+    },
+    "refs_policy": {
+      "enum": [
+        "unchanged",
+        "declared"
+      ]
+    },
     "references": {
       "type": "object",
-      "propertyNames": { "pattern": "^[a-z0-9_]+$" },
-      "additionalProperties": { "enum": ["add", "modify", "remove"] }
+      "propertyNames": {
+        "pattern": "^[a-z0-9_]+$"
+      }
     },
     "external_review": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["greptile", "fallback_reviewer"],
+      "required": [
+        "greptile",
+        "fallback_reviewer"
+      ],
       "properties": {
-        "greptile": { "enum": ["required", "unavailable"] },
-        "fallback_reviewer": { "type": ["string", "null"] }
+        "greptile": {
+          "enum": [
+            "required",
+            "unavailable"
+          ]
+        },
+        "fallback_reviewer": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "chamber_only": {
+      "type": "boolean"
+    },
+    "chamber": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_lf_sha256",
+        "report_path",
+        "report_lf_sha256",
+        "cases"
+      ],
+      "properties": {
+        "source_lf_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "report_path": {
+          "type": "string",
+          "pattern": "^docs/superpowers/specs/[A-Za-z0-9_-]+\\.md$"
+        },
+        "report_lf_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "cases": {
+          "type": "object",
+          "minProperties": 20,
+          "maxProperties": 20,
+          "propertyNames": {
+            "enum": [
+              "aldric",
+              "mara",
+              "theron",
+              "vance",
+              "kael",
+              "vorgath",
+              "selene",
+              "edrin",
+              "liora",
+              "borius",
+              "isolde",
+              "corvin",
+              "ophelia",
+              "helena",
+              "brann",
+              "nara",
+              "galen",
+              "maelis",
+              "ivar",
+              "mireth"
+            ]
+          },
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "evidencia",
+              "pendencia",
+              "veredito",
+              "publicacao",
+              "references"
+            ],
+            "properties": {
+              "evidencia": {
+                "const": "VERIFICADA"
+              },
+              "pendencia": {
+                "const": "NENHUMA"
+              },
+              "veredito": {
+                "enum": [
+                  "aprovada",
+                  "aprovada com pequenos ajustes"
+                ]
+              },
+              "publicacao": {
+                "const": "LIBERADA"
+              },
+              "references": {
+                "type": "array",
+                "minItems": 1,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9_]+$"
+                }
+              }
+            }
+          }
+        }
       }
     }
   },
   "allOf": [
-    { "if": { "properties": { "refs_policy": { "const": "declared" } } }, "then": { "required": ["references"] } },
-    { "if": { "properties": { "external_review": { "properties": { "greptile": { "const": "unavailable" } } } } }, "then": { "properties": { "external_review": { "properties": { "fallback_reviewer": { "type": "string", "minLength": 1 } } } } } }
+    {
+      "if": {
+        "properties": {
+          "refs_policy": {
+            "const": "declared"
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "references"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "external_review": {
+            "properties": {
+              "greptile": {
+                "const": "unavailable"
+              }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "external_review": {
+            "properties": {
+              "fallback_reviewer": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "required": [
+          "chamber_only"
+        ],
+        "properties": {
+          "chamber_only": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "chamber",
+          "references"
+        ],
+        "properties": {
+          "change_type": {
+            "const": "medical_editorial"
+          },
+          "refs_policy": {
+            "const": "declared"
+          },
+          "expected_question_delta": {
+            "const": 0
+          },
+          "questions": {
+            "maxProperties": 0
+          },
+          "references": {
+            "minProperties": 1,
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "action",
+                "after_sha256",
+                "consumers"
+              ],
+              "properties": {
+                "action": {
+                  "const": "add"
+                },
+                "after_sha256": {
+                  "type": "string",
+                  "pattern": "^sha256:[a-f0-9]{64}$"
+                },
+                "consumers": {
+                  "type": "array",
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "items": {
+                    "enum": [
+                      "aldric",
+                      "mara",
+                      "theron",
+                      "vance",
+                      "kael",
+                      "vorgath",
+                      "selene",
+                      "edrin",
+                      "liora",
+                      "borius",
+                      "isolde",
+                      "corvin",
+                      "ophelia",
+                      "helena",
+                      "brann",
+                      "nara",
+                      "galen",
+                      "maelis",
+                      "ivar",
+                      "mireth"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "questions": {
+            "minProperties": 1
+          },
+          "references": {
+            "type": "object",
+            "propertyNames": {
+              "pattern": "^[a-z0-9_]+$"
+            },
+            "additionalProperties": {
+              "enum": [
+                "add",
+                "modify",
+                "remove"
+              ]
+            }
+          }
+        }
+      }
+    }
   ]
 }

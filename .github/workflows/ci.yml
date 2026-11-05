@@ -67,6 +67,9 @@ jobs:
       - name: Answer presentation identity and distribution
         run: node --test tests/answers/*.test.cjs
 
+      - name: Chamber generator consistency
+        run: node --test tests/chamber/*.test.cjs
+
       - name: Editorial batch scope gate
         run: >-
           node scripts/editorial-batch-validator.mjs

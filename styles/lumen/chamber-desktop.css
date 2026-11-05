@@ -271,3 +271,26 @@
   }
   .acid-base-page:not([data-ab-tela="hub"]) .ab-body { padding-top: 0; }
 }
+
+/* One living ornament in the hub; reading surfaces and patient portraits stay still. */
+.acid-base-page .ab-lab { display:none; }
+@media (min-width:961px) and (pointer:fine) {
+  .acid-base-page .ab-lab { display:grid;grid-template-columns:minmax(110px,200px) minmax(0,1fr);align-items:center;gap:12px;max-width:390px;margin-top:16px;border-top:1px solid #91dfe32b;padding-top:8px; }
+  .acid-base-page .ab-lab-art { display:block;width:100%;height:auto;overflow:visible; }
+  .ab-lab-frame { stroke:#d8bf7e;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round; }
+  .ab-lab-halo { fill:#91dfe3;opacity:.08; }
+  .ab-lab-pivot { stroke:#f0d78e;fill:#122530;stroke-width:2; }
+  .ab-lab-liquid--cyan { fill:#91dfe3; }
+  .ab-lab-liquid--gold { fill:#f0d78e; }
+  .ab-lab-spark { fill:#91dfe3; }
+  .ab-lab-spark--second { fill:#f0d78e;animation-delay:-2s!important; }
+  .ab-lab-beam { transform-origin:110px 32px;animation:ab-lab-balance 6s ease-in-out infinite alternate; }
+  .ab-lab-spark { animation:ab-lab-bubble 4s ease-in-out infinite; }
+  .ab-lab-beam,.ab-lab-spark { animation-play-state:paused; }
+  [data-ab-lab][data-motion=running] :is(.ab-lab-beam,.ab-lab-spark) { animation-play-state:running; }
+  .acid-base-page .ab-motion-toggle { min-height:44px;padding:8px 10px;border:1px solid #91dfe34d;border-radius:5px;background:#0c1924;color:#c7d2db;font:400 .95rem/1.4 Philosopher,Georgia,serif;cursor:pointer;letter-spacing:normal; }
+  .acid-base-page .ab-motion-toggle:disabled { opacity:.8;cursor:default; }
+}
+@keyframes ab-lab-balance { from {transform:rotate(-4deg);} to {transform:rotate(4deg);} }
+@keyframes ab-lab-bubble { 0%,100% {transform:translateY(0);opacity:.65;} 50% {transform:translateY(-6px);opacity:1;} }
+@media (prefers-reduced-motion:reduce) { .ab-lab-beam,.ab-lab-spark { animation:none!important; } }
