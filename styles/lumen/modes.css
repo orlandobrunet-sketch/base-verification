@@ -187,3 +187,26 @@
   .nqmodes-dialog, .nqmodes-close, .nqmodes-route { border-color: CanvasText; }
   .nqmodes-overlay :focus-visible { outline-color: Highlight; }
 }
+
+/* Plano do Ponto Fraco: contexto antes de começar a sessão. */
+body:has(#nqWeakPointPlan[open]) { overflow: hidden; }
+dialog.nq-weak-plan { width:min(38rem,calc(100% - 32px)); max-width:none; max-height:calc(100dvh - 32px); margin:auto; padding:0; border:1px solid var(--nql-line-gold); border-radius:var(--nql-radius-dialog,14px); background:var(--nql-surface-solid); color:var(--nql-text); font-family:var(--nql-font-body); box-shadow:var(--nql-shadow-dialog); }
+dialog.nq-weak-plan[open] { display:flex; flex-direction:column; }
+.nq-weak-plan::backdrop { background:rgba(3,5,12,.86); }
+.nq-weak-plan header { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; padding:clamp(16px,3vw,24px); flex-shrink:0; border-bottom:1px solid var(--nql-line); }
+.nq-weak-plan header>div { min-width:0; }
+.nq-weak-plan h2 { margin:0; color:var(--nql-mastery); font:600 clamp(1.6rem,5vw,2.2rem)/1.12 var(--nql-font-display); }
+.nq-weak-plan button { min-height:48px; border:1px solid var(--nql-control-border); border-radius:8px; padding:.65rem 16px; background:var(--nql-surface-raised); color:var(--nql-text); font:600 1rem/1.3 var(--nql-font-body); cursor:pointer; }
+.nq-weak-plan [data-weak-close] { flex:none; width:48px; padding:0; font-size:1.6rem; }
+.nq-weak-plan button:focus-visible,.nq-weak-plan-reading:focus-visible { outline:3px solid var(--nql-lumen); outline-offset:3px; }
+.nq-weak-plan-reading { min-height:0; overflow:auto; overscroll-behavior:contain; padding:16px clamp(16px,3vw,24px); line-height:1.55; }
+.nq-weak-plan-reading>p:first-child { margin:0 0 1.25rem; color:var(--nql-text-soft); }
+.nq-weak-plan h3 { margin:0 0 1rem; font:600 1.15rem/1.4 var(--nql-font-body); }
+.nq-weak-plan ul { list-style:none; margin:0; padding:0; }
+.nq-weak-plan li { display:grid; gap:.25rem; padding:.85rem 0; border-top:1px solid var(--nql-line); overflow-wrap:anywhere; }
+.nq-weak-plan li strong { font-weight:600; }
+.nq-weak-plan li span,.nq-weak-plan-count { color:var(--nql-text-soft); font-size:.9rem; }
+.nq-weak-plan-count { margin:1rem 0 0; }
+.nq-weak-plan footer { display:flex; flex-wrap:wrap; gap:12px; padding:16px clamp(16px,3vw,24px); flex-shrink:0; border-top:1px solid var(--nql-line); }
+.nq-weak-plan footer button { flex:1 1 10rem; }
+.nq-weak-plan [data-weak-start] { background:var(--nql-mastery); color:var(--nql-abyss); border-color:var(--nql-mastery); }

@@ -1,6 +1,55 @@
 // NefroQuest — Study Mode (topic selector, trails, spaced-repetition UI)
 // Loaded before game.js. All functions become global.
 
+    let _weakPointPlan = null;
+    function closeWeakPointPlan(restoreFocus = true) {
+      const plan = _weakPointPlan;
+      if (!plan) return;
+      _weakPointPlan = null;
+      if (restoreFocus) plan.dialog.close();
+      plan.dialog.remove();
+      if (restoreFocus && plan.origin?.isConnected && plan.origin.getClientRects().length && !plan.origin.closest('[inert]')) plan.origin.focus({preventScroll:true});
+    }
+    function showWeakPointPlan(axes, stats, start) {
+      if (_weakPointPlan) { _weakPointPlan.dialog.querySelector('[data-weak-start]').focus(); return; }
+      const binding = _studyCaptureBinding(), origin = document.activeElement;
+      const dialog = document.createElement('dialog');
+      dialog.id = 'nqWeakPointPlan'; dialog.className = 'nq-weak-plan'; dialog.dataset.nqUi = 'lumen';
+      dialog.setAttribute('aria-labelledby','nqWeakPlanTitle'); dialog.setAttribute('aria-describedby','nqWeakPlanDescription');
+      dialog.innerHTML = `<header><div><h2 id="nqWeakPlanTitle">Ponto Fraco</h2></div><button type="button" data-weak-close aria-label="Fechar plano de estudo">×</button></header>
+        <div class="nq-weak-plan-reading" role="region" aria-label="Plano de estudo" tabindex="0"><p id="nqWeakPlanDescription">Nenhum tema com pelo menos 5 respostas está abaixo de 50% de acerto.</p><h3></h3><ul></ul><p class="nq-weak-plan-count"></p></div>
+        <footer><button type="button" data-weak-cancel>Voltar</button><button type="button" data-weak-start>Começar estudo</button></footer>`;
+      dialog.querySelector('h3').textContent = axes.length === 1 ? 'Treine o tema com menor acerto' : `Treine os ${axes.length} temas com menor acerto`;
+      for (const axis of axes) {
+        const data = stats.byCategory[axis.cat], row = document.createElement('li'), name = document.createElement('strong'), detail = document.createElement('span');
+        name.textContent = axis.label;
+        detail.textContent = `${Math.round(data.correct/data.total*100)}% de acerto · ${data.total} ${data.total === 1 ? 'resposta' : 'respostas'}`;
+        row.append(name,detail); dialog.querySelector('ul').append(row);
+      }
+      const cats = new Set(axes.map(axis=>axis.cat)), count = topics.filter(q=>cats.has(q.cat)).length;
+      dialog.querySelector('.nq-weak-plan-count').textContent = `${count} ${count === 1 ? 'questão desse tema' : 'questões desses temas'}, em ordem aleatória. Você pode pausar e retomar o estudo.`;
+      dialog.addEventListener('keydown',event=>{
+        event.stopPropagation();
+        if (event.key !== 'Tab') return;
+        const controls = [...dialog.querySelectorAll('button:not([disabled]),[tabindex="0"]')].filter(node=>node.getClientRects().length);
+        const first = controls[0], last = controls[controls.length-1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      });
+      dialog.addEventListener('cancel',event=>{event.preventDefault();closeWeakPointPlan();});
+      dialog.addEventListener('close',()=>{if(_weakPointPlan?.dialog===dialog)closeWeakPointPlan();});
+      dialog.querySelectorAll('[data-weak-close],[data-weak-cancel]').forEach(button=>button.addEventListener('click',()=>closeWeakPointPlan()));
+      dialog.querySelector('[data-weak-start]').addEventListener('click',event=>{
+        if (_weakPointPlan?.dialog !== dialog) return;
+        event.currentTarget.disabled = true;
+        const current = _studyBindingCurrent(binding);
+        closeWeakPointPlan(false);
+        if (current) start();
+      });
+      _weakPointPlan = {dialog,origin}; document.body.append(dialog); dialog.showModal();
+      dialog.querySelector('[data-weak-start]').focus({preventScroll:true});
+    }
+
     let _studyProgressBinding = null;
     function _studyCaptureBinding() { return window.NQPilot?.captureBinding() || null; }
     function _studyBindingCurrent(binding = _studyProgressBinding) {
@@ -2347,6 +2396,7 @@
     window.showLoginFromDiagnosis = showLoginFromDiagnosis;
 
     window.NQPilot?.onContextChange(() => {
+      closeWeakPointPlan(false);
       resetMentorQuestion();
       _studyDiagnosisControllers.forEach(controller => controller.abort());
       _studyDiagnosisControllers.clear();
