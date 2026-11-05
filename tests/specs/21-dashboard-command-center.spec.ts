@@ -502,9 +502,15 @@ test.describe('Central de Comando do aprendizado', () => {
 
   test('revisão do plano abre somente cards agendados vencidos, sem perguntas inéditas', async ({ page }) => {
     await openCommandCenter(page);
+    const dueId = await page.evaluate(() => {
+      const first = (window as any).questionBank[0];
+      return String(first.id || first.qid);
+    });
     await page.locator('[data-action="_dashStartSRStudy"]').click();
     await expect(page.locator('#studyModePage')).toBeVisible();
-    await expect(page.locator('#studyModePage')).toContainText('1/1');
+    await expect(page.locator('.nq-study-session-progress')).toHaveText('Questão 1 de 1');
+    await expect(page.locator('#studyProgress')).toHaveText('1');
+    expect(await page.evaluate(() => (0, eval)('studyModeQuestions.map(q => String(q.qid || q.id))'))).toEqual([dueId]);
   });
 
   test('oferece navegação por teclado e devolve o foco a um acionador real e visível', async ({ page }) => {
