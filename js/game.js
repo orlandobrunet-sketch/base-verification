@@ -3942,15 +3942,12 @@
         shortcut.className = 'nq-option-shortcut';
         shortcut.textContent = i + 1;
         shortcut.setAttribute('aria-hidden', 'true');
-        const keyGroup = document.createElement('span');
-        keyGroup.className = 'nq-option-keygroup';
-        keyGroup.appendChild(keySpan);
-        keyGroup.appendChild(shortcut);
         const bodySpan = document.createElement('span');
         bodySpan.className = 'opt-body';
         bodySpan.textContent = opt;
-        b.appendChild(keyGroup);
+        b.appendChild(keySpan);
         b.appendChild(bodySpan);
+        b.appendChild(shortcut);
         [['correct', 'Resposta correta'], ['wrong', 'Sua escolha: incorreta']].forEach(([result, label]) => {
           const statusSpan = document.createElement('span');
           statusSpan.className = 'opt-result-label opt-result-label-' + result;
