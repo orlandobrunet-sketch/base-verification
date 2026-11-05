@@ -1579,21 +1579,19 @@
       
       const page = document.createElement('div');
       page.id = 'studyModePage';
+      page.dataset.nqUi = 'lumen';
       page.innerHTML = `
-        <div style="max-width:900px;margin:0 auto;padding:20px;min-height:100%;padding-bottom:100px;">
+        <div class="nq-study-session-shell">
           <header class="nq-study-session-header">
             <button class="btn sec" data-action="exitStudyMode">Pausar e voltar</button>
-            <h1>${sessionLabel === 'reforço' ? 'Sessão de reforço' : 'Estudo e Revisão'}</h1>
-            <div class="nq-study-session-progress"><span id="studyProgress">${studyModeIndex + 1}</span>/${studyModeQuestions.length}</div>
-            <div class="nq-study-session-score"><span><strong id="studyCorrect">${studyModeCorrect}</strong> acertos</span><span><strong id="studyWrong">${studyModeWrong}</strong> erros</span></div>
+            <div class="nq-study-session-identity"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M24 12C18 8 10 8 5 10v27c6-2 13-1 19 3 6-4 13-5 19-3V10c-5-2-13-2-19 2Z"/><path d="M24 12v28M10 16c3-1 6 0 9 1m-9 6c3-1 6 0 9 1m10-7c3-1 6-2 9-1m-9 8c3-1 6-2 9-1"/></svg><h1>${sessionLabel === 'reforço' ? 'Sessão de reforço' : 'Estudo e Revisão'}</h1></div>
+            <div class="nq-study-session-status"><div class="nq-study-session-progress">Questão <strong id="studyProgress">${studyModeIndex + 1}</strong> de ${studyModeQuestions.length}</div>
+            <div class="nq-study-session-score"><span><strong id="studyCorrect">${studyModeCorrect}</strong> acertos</span><span><strong id="studyWrong">${studyModeWrong}</strong> erros</span></div></div>
           </header>
-
-          <!-- Question Area -->
-          <div id="studyQuestionArea" style="background:linear-gradient(180deg,#1a1228,#12192e);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 30px rgba(30,60,120,0.3);">
-            <!-- Questão será renderizada aqui -->
-          </div>
+          <section id="studyQuestionArea" class="nq-study-question-card" aria-label="Questão atual"></section>
         </div>
       `;
+
       _mountStudySurface(page, 'Sessão de estudo', document.activeElement);
       if (!restoringPresentation) _saveStudyState();
       renderStudyQuestion();
@@ -1618,34 +1616,18 @@
         ${revision?.historical ? `<p role="status">Versão histórica (${escapeHtml(revision.release)}). ${_studyAnswers[studyModeIndex] ? 'Avaliação preservada; esta explicação pertence à versão respondida.' : 'Esta questão foi atualizada. Use a versão atual antes de responder.'}</p><button class="btn sec" data-action="viewCurrentStudyRevision">Consultar atualização publicada</button>` : ''}
         ${_studyConsultationOnly ? '<p role="status">Consulta de uma revisão escolhida. Respostas e progresso da sessão salva permanecem intactos.</p>' : ''}
         ${held && !_studyConsultationOnly ? '<button class="btn gold" data-action="useCurrentStudyRevision">Confirmar troca para a versão atual, sem consumir resposta</button>' : ''}
-        <div style="margin-bottom:16px;">
-          <span style="background:rgba(139,92,246,0.2);color:#a78bfa;padding:4px 10px;border-radius:4px;font-size:0.75rem;">
-            ${escapeHtml(q.t || 'Geral')}
-          </span>
-        </div>
-        
-        <h3 style="color:var(--txt);font-size:1.1rem;line-height:1.6;margin-bottom:24px;">
-          ${escapeHtml(q.q)}
-        </h3>
-
-        <div id="studyOptions" style="display:grid;gap:10px;">
+        <div class="nq-study-question-meta"><span class="nq-study-topic">${escapeHtml(q.t || 'Geral')}</span><span>Escolha uma alternativa</span></div>
+        <h2 class="nq-study-question-title">${escapeHtml(q.q)}</h2>
+        <div id="studyOptions">
           ${presentation.o.map((opt, idx) => `
-            <button class="study-option-btn" data-action="answerStudyQuestion" data-arg="${idx}" data-arg-type="number"
-                    data-kbd-hint="${idx + 1}" ${held ? 'disabled' : ''}
-                    style="display:flex; justify-content:space-between; align-items:center; background:linear-gradient(180deg,#1e293b,#0f172a);border:2px solid #334155;border-radius:10px;padding:14px 18px;text-align:left;color:var(--txt);font-size:0.95rem;cursor:pointer;transition:all 0.2s;"
-                    onmouseover="this.style.borderColor='var(--blue)';this.style.background='linear-gradient(180deg,#1e3a5f,#0f172a)'"
-                    onmouseout="this.style.borderColor='#334155';this.style.background='linear-gradient(180deg,#1e293b,#0f172a)'">
-              <span>
-                <span style="color:var(--blue);font-weight:bold;margin-right:8px;">${String.fromCharCode(65 + idx)})</span>
-                ${escapeHtml(opt)}
-              </span>
+            <button class="study-option-btn" data-action="answerStudyQuestion" data-arg="${idx}" data-arg-type="number" data-kbd-hint="${idx + 1}" ${held ? 'disabled' : ''}>
+              <span class="nq-study-option-letter">${String.fromCharCode(65 + idx)})</span> <span class="nq-study-option-text">${escapeHtml(opt)}</span>
             </button>
           `).join('')}
         </div>
-        
-        <div id="studyFeedback" tabindex="-1" style="display:none;margin-top:20px;"></div>
+        <div id="studyFeedback" tabindex="-1" style="display:none;"></div>
       `;
-      
+
       document.getElementById('studyProgress').textContent = studyModeIndex + 1;
       const answer = _studyAnswers[studyModeIndex];
       if (answer) _displayStudyAnswer(answer.chosen, answer.correct, false);
@@ -1717,13 +1699,7 @@
         btn.classList.toggle('is-wrong', idx === selectedIdx && !isCorrect);
         btn.classList.toggle('is-chosen', idx === selectedIdx);
         
-        if (idx === presentation.a) {
-          btn.style.borderColor = '#34d399';
-          btn.style.background = 'rgba(52,211,153,0.15)';
-        } else if (idx === selectedIdx && !isCorrect) {
-          btn.style.borderColor = '#fb7185';
-          btn.style.background = 'rgba(251,113,133,0.15)';
-        }
+
       });
 
       // Feedback visual e tátil
@@ -1767,16 +1743,16 @@
       const feedback = document.getElementById('studyFeedback');
       feedback.style.display = 'block';
       feedback.innerHTML = `
-        <div style="background:${isCorrect ? 'rgba(52,211,153,0.1)' : 'rgba(251,113,133,0.1)'};border:2px solid ${isCorrect ? '#34d399' : '#fb7185'};border-radius:10px;padding:16px;">
-          <div style="color:${isCorrect ? '#34d399' : '#fb7185'};font-weight:bold;margin-bottom:8px;">
+        <section class="nq-study-feedback-card ${isCorrect ? 'is-correct' : 'is-wrong'}">
+          <div class="nq-study-feedback-title">
             ${isCorrect ? '✓ Correto!' : '✗ Incorreto'}
           </div>
-          <div style="color:var(--txt);font-size:0.9rem;line-height:1.5;">
+          <div class="nq-study-feedback-copy">
             ${escapeHtml(presentation.e || 'A resposta correta é a alternativa ' + String.fromCharCode(65 + presentation.a) + '.')}
           </div>
-          ${(q.refs||[]).length ? `<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">${(q.refs||[]).map(k => referenceCards[k] ? `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(referenceCards[k].label)}" target="_blank" rel="noopener" style="color:var(--blue);font-size:0.72rem;text-decoration:none;border:1px solid rgba(96,165,250,0.3);padding:2px 9px;border-radius:12px;white-space:nowrap;">🔗 ${escapeHtml(referenceCards[k].label)}</a>` : '').filter(Boolean).join('')}</div>` : ''}
-        </div>
-        <div style="display:flex;justify-content:center;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap;">
+          ${(q.refs||[]).length ? `<div class="nq-study-feedback-sources">${(q.refs||[]).map(k => referenceCards[k] ? `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(referenceCards[k].label)}" target="_blank" rel="noopener" class="nq-study-source-link">🔗 ${escapeHtml(referenceCards[k].label)}</a>` : '').filter(Boolean).join('')}</div>` : ''}
+        </section>
+        <div class="nq-study-feedback-actions">
           ${mentorBtnInner}
           <button class="btn gold" data-action="nextStudyQuestion" style="margin:0;">
             ${studyModeIndex + 1 < studyModeQuestions.length ? 'Próxima Questão' : 'Ver Resultados'}

@@ -125,7 +125,7 @@ for (const held of ['expired', 'complete'] as const) {
     await expect(page.locator('#studyCorrect')).toHaveText('1');
     await page.locator('[data-action="nextStudyQuestion"]').click();
     await expect(page.locator('#studyProgress')).toHaveText('2');
-    const question = await page.locator('#studyQuestionArea h3').first().innerText();
+    const question = await page.locator('#studyQuestionArea .nq-study-question-title').first().innerText();
     const progressAfterAnswer = (await bytes(page)).progress;
     await page.getByRole('button', { name: 'Pausar e voltar', exact: true }).click();
     await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
@@ -137,7 +137,7 @@ for (const held of ['expired', 'complete'] as const) {
     await notice.getByRole('button', { name: 'Retomar estudo', exact: true }).click();
     await expect(page.locator('#studyProgress')).toHaveText('2');
     await expect(page.locator('#studyCorrect')).toHaveText('1');
-    await expect(page.locator('#studyQuestionArea h3').first()).toHaveText(question);
+    await expect(page.locator('#studyQuestionArea .nq-study-question-title').first()).toHaveText(question);
     expect((await bytes(page)).progress).toEqual(progressAfterAnswer);
     const resumed = JSON.parse((await bytes(page)).study!);
     expect(resumed.presentations[0].answer.correct).toBe(true);

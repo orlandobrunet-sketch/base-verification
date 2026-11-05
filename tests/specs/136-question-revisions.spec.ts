@@ -431,7 +431,7 @@ for (const profile of ['exam', 'study', 'offline'] as const) {
     expect(profile === 'exam' ? saved.questionRevisionOriginalRaw : saved.revisionOriginRaw).toBe(seeded.raw);
     expect((await bytes(page, seeded.key)).progress).toEqual(before.progress);
     await resumeAuxiliary(page, profile, true);
-    await expect(page.locator(profile === 'exam' ? '.nq-exam-enunciado' : profile === 'study' ? '#studyQuestionArea h3' : '.nq-off-question')).toHaveText(seeded.bundle.currentAuthor.q);
+    await expect(page.locator(profile === 'exam' ? '.nq-exam-enunciado' : profile === 'study' ? '#studyQuestionArea .nq-study-question-title' : '.nq-off-question')).toHaveText(seeded.bundle.currentAuthor.q);
     await capture(page, info, `actual-${profile}-current-confirmed`, profile === 'exam' ? '#examOpts button' : profile === 'study' ? '#studyOptions button' : '.nq-off-btn');
   });
 }
@@ -527,7 +527,7 @@ for (const profile of ['exam', 'study', 'offline'] as const) {
     expect(profile === 'exam' ? saved.questionRevisionOriginalRaw : saved.revisionOriginRaw).toBe(seeded.raw);
     expect((await bytes(page, seeded.key)).progress).toEqual(before.progress);
     await resumeAuxiliary(page, profile, true);
-    await expect(page.locator(profile === 'exam' ? '.nq-exam-enunciado' : profile === 'study' ? '#studyQuestionArea h3' : '.nq-off-question')).toHaveText(seeded.bundle.currentAuthor.q);
+    await expect(page.locator(profile === 'exam' ? '.nq-exam-enunciado' : profile === 'study' ? '#studyQuestionArea .nq-study-question-title' : '.nq-off-question')).toHaveText(seeded.bundle.currentAuthor.q);
     await capture(page, info, `${profile}-current-confirmed`, profile === 'exam' ? '#examOpts button' : profile === 'study' ? '#studyOptions button' : '.nq-off-btn');
   });
 }

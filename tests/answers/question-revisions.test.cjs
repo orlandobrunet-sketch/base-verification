@@ -48,7 +48,7 @@ function harness(mode, f) {
   const nodes = new Map(), buttons = Array.from({length: 4}, () => ({style: {}, classList: {add() {}, toggle() {}},
     addEventListener() {}, getBoundingClientRect() { return {left: 0, top: 0, width: 10, height: 10}; }}));
   function node(id = '') {
-    const value = {id, innerHTML: '', textContent: '', style: {}, children: [], classList: {add() {}, remove() {}, toggle() {}},
+    const value = {id, innerHTML: '', textContent: '', style: {}, dataset: {}, children: [], classList: {add() {}, remove() {}, toggle() {}},
       setAttribute() {}, remove() { nodes.delete(this.id); }, appendChild(child) { this.children.push(child); if (child.id) nodes.set(child.id, child); },
       querySelector() { return null; }, querySelectorAll(selector) { return selector.includes('btn') ? buttons : []; }, focus() {}, scrollIntoView() {}};
     if (id) nodes.set(id, value);
