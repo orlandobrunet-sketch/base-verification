@@ -297,36 +297,62 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
       expect(box?.height || 0, `${route} menor que 44px`).toBeGreaterThanOrEqual(44);
     }
 
-    await page.locator('[data-portal-route="email"]').click();
-    await expect(page.locator('#authEmail')).toBeFocused();
-    await page.locator('#tabEntrar').focus();
-    await page.keyboard.press('End');
-    await expect(page.locator('#tabCadastrar')).toBeFocused();
-    await page.keyboard.press('ArrowRight');
-    await expect(page.locator('#tabEntrar')).toBeFocused();
-    await page.keyboard.press('ArrowLeft');
-    await expect(page.locator('#tabCadastrar')).toBeFocused();
-    await page.keyboard.press('Home');
-    await expect(page.locator('#tabEntrar')).toBeFocused();
-
     await page.evaluate(() => {
-      (window as typeof window & { __nqLoginCalls: number; authEmailLogin: () => void }).__nqLoginCalls = 0;
-      (window as typeof window & { __nqLoginCalls: number; authEmailLogin: () => void }).authEmailLogin = () => {
-        (window as typeof window & { __nqLoginCalls: number }).__nqLoginCalls += 1;
-      };
-      (document.getElementById('authLoginBtn') as HTMLButtonElement).disabled = true;
+      const events: { type: string; target: string; active: string; key?: string; time: number }[] = [];
+      (window as any).__nqAuthKeyboardEvidence = events;
+      for (const type of ['focusin', 'focusout', 'keydown']) document.addEventListener(type, event => {
+        if (events.length >= 80) return;
+        const target = event.target as Element | null;
+        events.push({ type, target: target?.id || target?.tagName || '',
+          active: document.activeElement?.id || document.activeElement?.tagName || '',
+          key: event instanceof KeyboardEvent ? event.key : undefined, time: performance.now() });
+      }, true);
     });
-    await page.locator('#authEmail').focus();
-    await page.keyboard.press('Enter');
-    await expect.poll(() => page.evaluate(() => (window as typeof window & { __nqLoginCalls: number }).__nqLoginCalls)).toBe(0);
-    await page.locator('#authLoginBtn').evaluate((button: HTMLButtonElement) => { button.disabled = false; });
+    try {
+      await page.locator('[data-portal-route="email"]').click();
+      await expect(page.locator('#authEmail')).toBeFocused();
+      await page.locator('#tabEntrar').focus();
+      await expect(page.locator('#tabEntrar')).toBeFocused();
+      await page.keyboard.press('End');
+      await expect(page.locator('#tabCadastrar')).toBeFocused();
+      await page.keyboard.press('ArrowRight');
+      await expect(page.locator('#tabEntrar')).toBeFocused();
+      await page.keyboard.press('ArrowLeft');
+      await expect(page.locator('#tabCadastrar')).toBeFocused();
+      await page.keyboard.press('Home');
+      await expect(page.locator('#tabEntrar')).toBeFocused();
 
-    await expect(page.locator('#landingScreen')).toHaveAttribute('inert', '');
-    await page.locator('#authLoginBtn').focus();
-    await page.keyboard.press('Tab');
-    await expect(page.locator('.auth-close-btn[data-action="closeAuthModal"]')).toBeFocused();
-    await page.keyboard.press('Shift+Tab');
-    await expect(page.locator('#authLoginBtn')).toBeFocused();
+      await page.evaluate(() => {
+        (window as typeof window & { __nqLoginCalls: number; authEmailLogin: () => void }).__nqLoginCalls = 0;
+        (window as typeof window & { __nqLoginCalls: number; authEmailLogin: () => void }).authEmailLogin = () => {
+          (window as typeof window & { __nqLoginCalls: number }).__nqLoginCalls += 1;
+        };
+        (document.getElementById('authLoginBtn') as HTMLButtonElement).disabled = true;
+      });
+      await page.locator('#authEmail').focus();
+      await page.keyboard.press('Enter');
+      await expect.poll(() => page.evaluate(() => (window as typeof window & { __nqLoginCalls: number }).__nqLoginCalls)).toBe(0);
+      await page.locator('#authLoginBtn').evaluate((button: HTMLButtonElement) => { button.disabled = false; });
+
+      await expect(page.locator('#landingScreen')).toHaveAttribute('inert', '');
+      await page.locator('#authLoginBtn').focus();
+      await page.keyboard.press('Tab');
+      await expect(page.locator('.auth-close-btn[data-action="closeAuthModal"]')).toBeFocused();
+      await page.keyboard.press('Shift+Tab');
+      await expect(page.locator('#authLoginBtn')).toBeFocused();
+    } finally {
+      const evidence = await page.evaluate(() => ({
+        events: (window as any).__nqAuthKeyboardEvidence,
+        active: document.activeElement?.id || document.activeElement?.tagName,
+        tabs: [...document.querySelectorAll('.auth-tabs button')].map(tab => ({
+          id: tab.id, selected: tab.getAttribute('aria-selected'),
+          visible: !!tab.getClientRects().length, inert: !!tab.closest('[inert]'),
+        })),
+      })).catch(error => ({ captureError: String(error) }));
+      await test.info().attach('auth-keyboard-focus', {
+        body: JSON.stringify(evidence, null, 2), contentType: 'application/json',
+      });
+    }
   });
 
   test('integra recuperação final e estados de segurança ao padrão Lúmen', async ({ page }) => {
