@@ -80,7 +80,7 @@ for (const existing of [false, true]) {
     if (existing) {
       await train(page, 'acido_base');
       await expect(page.locator('#studyOptions button')).toHaveCount(4);
-      priorQuestion = await page.locator('#studyQuestionArea h3').first().innerText();
+      priorQuestion = await page.locator('#studyQuestionArea .nq-study-question-title').first().innerText();
       await page.getByRole('button', { name: 'Pausar e voltar', exact: true }).click();
       await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
     }
@@ -92,7 +92,7 @@ for (const existing of [false, true]) {
       await expect(choice).toContainText('20 questões dos temas escolhidos');
       expect(await snapshot(page)).toEqual(before);
       await choice.getByRole('button', { name: 'Retomar estudo', exact: true }).click();
-      await expect(page.locator('#studyQuestionArea h3').first()).toHaveText(priorQuestion);
+      await expect(page.locator('#studyQuestionArea .nq-study-question-title').first()).toHaveText(priorQuestion);
       expect(await page.evaluate(() => [...new Set((0, eval)('studyModeQuestions').map((q: any) => q.cat))])).toEqual(['acido_base']);
       await page.getByRole('button', { name: 'Pausar e voltar', exact: true }).click();
       await train(page, 'drc');

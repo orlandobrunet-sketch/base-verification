@@ -1,6 +1,55 @@
 // NefroQuest — Study Mode (topic selector, trails, spaced-repetition UI)
 // Loaded before game.js. All functions become global.
 
+    let _weakPointPlan = null;
+    function closeWeakPointPlan(restoreFocus = true) {
+      const plan = _weakPointPlan;
+      if (!plan) return;
+      _weakPointPlan = null;
+      if (restoreFocus) plan.dialog.close();
+      plan.dialog.remove();
+      if (restoreFocus && plan.origin?.isConnected && plan.origin.getClientRects().length && !plan.origin.closest('[inert]')) plan.origin.focus({preventScroll:true});
+    }
+    function showWeakPointPlan(axes, stats, start) {
+      if (_weakPointPlan) { _weakPointPlan.dialog.querySelector('[data-weak-start]').focus(); return; }
+      const binding = _studyCaptureBinding(), origin = document.activeElement;
+      const dialog = document.createElement('dialog');
+      dialog.id = 'nqWeakPointPlan'; dialog.className = 'nq-weak-plan'; dialog.dataset.nqUi = 'lumen';
+      dialog.setAttribute('aria-labelledby','nqWeakPlanTitle'); dialog.setAttribute('aria-describedby','nqWeakPlanDescription');
+      dialog.innerHTML = `<header><div><h2 id="nqWeakPlanTitle">Ponto Fraco</h2></div><button type="button" data-weak-close aria-label="Fechar plano de estudo">×</button></header>
+        <div class="nq-weak-plan-reading" role="region" aria-label="Plano de estudo" tabindex="0"><p id="nqWeakPlanDescription">Nenhum tema com pelo menos 5 respostas está abaixo de 50% de acerto.</p><h3></h3><ul></ul><p class="nq-weak-plan-count"></p></div>
+        <footer><button type="button" data-weak-cancel>Voltar</button><button type="button" data-weak-start>Começar estudo</button></footer>`;
+      dialog.querySelector('h3').textContent = axes.length === 1 ? 'Treine o tema com menor acerto' : `Treine os ${axes.length} temas com menor acerto`;
+      for (const axis of axes) {
+        const data = stats.byCategory[axis.cat], row = document.createElement('li'), name = document.createElement('strong'), detail = document.createElement('span');
+        name.textContent = axis.label;
+        detail.textContent = `${Math.round(data.correct/data.total*100)}% de acerto · ${data.total} ${data.total === 1 ? 'resposta' : 'respostas'}`;
+        row.append(name,detail); dialog.querySelector('ul').append(row);
+      }
+      const cats = new Set(axes.map(axis=>axis.cat)), count = topics.filter(q=>cats.has(q.cat)).length;
+      dialog.querySelector('.nq-weak-plan-count').textContent = `${count} ${count === 1 ? 'questão desse tema' : 'questões desses temas'}, em ordem aleatória. Você pode pausar e retomar o estudo.`;
+      dialog.addEventListener('keydown',event=>{
+        event.stopPropagation();
+        if (event.key !== 'Tab') return;
+        const controls = [...dialog.querySelectorAll('button:not([disabled]),[tabindex="0"]')].filter(node=>node.getClientRects().length);
+        const first = controls[0], last = controls[controls.length-1];
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+      });
+      dialog.addEventListener('cancel',event=>{event.preventDefault();closeWeakPointPlan();});
+      dialog.addEventListener('close',()=>{if(_weakPointPlan?.dialog===dialog)closeWeakPointPlan();});
+      dialog.querySelectorAll('[data-weak-close],[data-weak-cancel]').forEach(button=>button.addEventListener('click',()=>closeWeakPointPlan()));
+      dialog.querySelector('[data-weak-start]').addEventListener('click',event=>{
+        if (_weakPointPlan?.dialog !== dialog) return;
+        event.currentTarget.disabled = true;
+        const current = _studyBindingCurrent(binding);
+        closeWeakPointPlan(false);
+        if (current) start();
+      });
+      _weakPointPlan = {dialog,origin}; document.body.append(dialog); dialog.showModal();
+      dialog.querySelector('[data-weak-start]').focus({preventScroll:true});
+    }
+
     let _studyProgressBinding = null;
     function _studyCaptureBinding() { return window.NQPilot?.captureBinding() || null; }
     function _studyBindingCurrent(binding = _studyProgressBinding) {
@@ -1530,21 +1579,19 @@
       
       const page = document.createElement('div');
       page.id = 'studyModePage';
+      page.dataset.nqUi = 'lumen';
       page.innerHTML = `
-        <div style="max-width:900px;margin:0 auto;padding:20px;min-height:100%;padding-bottom:100px;">
+        <div class="nq-study-session-shell">
           <header class="nq-study-session-header">
             <button class="btn sec" data-action="exitStudyMode">Pausar e voltar</button>
-            <h1>${sessionLabel === 'reforço' ? 'Sessão de reforço' : 'Estudo e Revisão'}</h1>
-            <div class="nq-study-session-progress"><span id="studyProgress">${studyModeIndex + 1}</span>/${studyModeQuestions.length}</div>
-            <div class="nq-study-session-score"><span><strong id="studyCorrect">${studyModeCorrect}</strong> acertos</span><span><strong id="studyWrong">${studyModeWrong}</strong> erros</span></div>
+            <div class="nq-study-session-identity"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M24 12C18 8 10 8 5 10v27c6-2 13-1 19 3 6-4 13-5 19-3V10c-5-2-13-2-19 2Z"/><path d="M24 12v28M10 16c3-1 6 0 9 1m-9 6c3-1 6 0 9 1m10-7c3-1 6-2 9-1m-9 8c3-1 6-2 9-1"/></svg><h1>${sessionLabel === 'reforço' ? 'Sessão de reforço' : 'Estudo e Revisão'}</h1></div>
+            <div class="nq-study-session-status"><div class="nq-study-session-progress">Questão <strong id="studyProgress">${studyModeIndex + 1}</strong> de ${studyModeQuestions.length}</div>
+            <div class="nq-study-session-score"><span><strong id="studyCorrect">${studyModeCorrect}</strong> acertos</span><span><strong id="studyWrong">${studyModeWrong}</strong> erros</span></div></div>
           </header>
-
-          <!-- Question Area -->
-          <div id="studyQuestionArea" style="background:linear-gradient(180deg,#1a1228,#12192e);border:2px solid var(--blue-dark);border-radius:14px;padding:24px;box-shadow:0 0 30px rgba(30,60,120,0.3);">
-            <!-- Questão será renderizada aqui -->
-          </div>
+          <section id="studyQuestionArea" class="nq-study-question-card" aria-label="Questão atual"></section>
         </div>
       `;
+
       _mountStudySurface(page, 'Sessão de estudo', document.activeElement);
       if (!restoringPresentation) _saveStudyState();
       renderStudyQuestion();
@@ -1569,34 +1616,18 @@
         ${revision?.historical ? `<p role="status">Versão histórica (${escapeHtml(revision.release)}). ${_studyAnswers[studyModeIndex] ? 'Avaliação preservada; esta explicação pertence à versão respondida.' : 'Esta questão foi atualizada. Use a versão atual antes de responder.'}</p><button class="btn sec" data-action="viewCurrentStudyRevision">Consultar atualização publicada</button>` : ''}
         ${_studyConsultationOnly ? '<p role="status">Consulta de uma revisão escolhida. Respostas e progresso da sessão salva permanecem intactos.</p>' : ''}
         ${held && !_studyConsultationOnly ? '<button class="btn gold" data-action="useCurrentStudyRevision">Confirmar troca para a versão atual, sem consumir resposta</button>' : ''}
-        <div style="margin-bottom:16px;">
-          <span style="background:rgba(139,92,246,0.2);color:#a78bfa;padding:4px 10px;border-radius:4px;font-size:0.75rem;">
-            ${escapeHtml(q.t || 'Geral')}
-          </span>
-        </div>
-        
-        <h3 style="color:var(--txt);font-size:1.1rem;line-height:1.6;margin-bottom:24px;">
-          ${escapeHtml(q.q)}
-        </h3>
-
-        <div id="studyOptions" style="display:grid;gap:10px;">
+        <div class="nq-study-question-meta"><span class="nq-study-topic">${escapeHtml(q.t || 'Geral')}</span><span>Escolha uma alternativa</span></div>
+        <h2 class="nq-study-question-title">${escapeHtml(q.q)}</h2>
+        <div id="studyOptions">
           ${presentation.o.map((opt, idx) => `
-            <button class="study-option-btn" data-action="answerStudyQuestion" data-arg="${idx}" data-arg-type="number"
-                    data-kbd-hint="${idx + 1}" ${held ? 'disabled' : ''}
-                    style="display:flex; justify-content:space-between; align-items:center; background:linear-gradient(180deg,#1e293b,#0f172a);border:2px solid #334155;border-radius:10px;padding:14px 18px;text-align:left;color:var(--txt);font-size:0.95rem;cursor:pointer;transition:all 0.2s;"
-                    onmouseover="this.style.borderColor='var(--blue)';this.style.background='linear-gradient(180deg,#1e3a5f,#0f172a)'"
-                    onmouseout="this.style.borderColor='#334155';this.style.background='linear-gradient(180deg,#1e293b,#0f172a)'">
-              <span>
-                <span style="color:var(--blue);font-weight:bold;margin-right:8px;">${String.fromCharCode(65 + idx)})</span>
-                ${escapeHtml(opt)}
-              </span>
+            <button class="study-option-btn" data-action="answerStudyQuestion" data-arg="${idx}" data-arg-type="number" data-kbd-hint="${idx + 1}" ${held ? 'disabled' : ''}>
+              <span class="nq-study-option-letter">${String.fromCharCode(65 + idx)})</span> <span class="nq-study-option-text">${escapeHtml(opt)}</span>
             </button>
           `).join('')}
         </div>
-        
-        <div id="studyFeedback" tabindex="-1" style="display:none;margin-top:20px;"></div>
+        <div id="studyFeedback" tabindex="-1" style="display:none;"></div>
       `;
-      
+
       document.getElementById('studyProgress').textContent = studyModeIndex + 1;
       const answer = _studyAnswers[studyModeIndex];
       if (answer) _displayStudyAnswer(answer.chosen, answer.correct, false);
@@ -1668,13 +1699,7 @@
         btn.classList.toggle('is-wrong', idx === selectedIdx && !isCorrect);
         btn.classList.toggle('is-chosen', idx === selectedIdx);
         
-        if (idx === presentation.a) {
-          btn.style.borderColor = '#34d399';
-          btn.style.background = 'rgba(52,211,153,0.15)';
-        } else if (idx === selectedIdx && !isCorrect) {
-          btn.style.borderColor = '#fb7185';
-          btn.style.background = 'rgba(251,113,133,0.15)';
-        }
+
       });
 
       // Feedback visual e tátil
@@ -1718,16 +1743,16 @@
       const feedback = document.getElementById('studyFeedback');
       feedback.style.display = 'block';
       feedback.innerHTML = `
-        <div style="background:${isCorrect ? 'rgba(52,211,153,0.1)' : 'rgba(251,113,133,0.1)'};border:2px solid ${isCorrect ? '#34d399' : '#fb7185'};border-radius:10px;padding:16px;">
-          <div style="color:${isCorrect ? '#34d399' : '#fb7185'};font-weight:bold;margin-bottom:8px;">
+        <section class="nq-study-feedback-card ${isCorrect ? 'is-correct' : 'is-wrong'}">
+          <div class="nq-study-feedback-title">
             ${isCorrect ? '✓ Correto!' : '✗ Incorreto'}
           </div>
-          <div style="color:var(--txt);font-size:0.9rem;line-height:1.5;">
+          <div class="nq-study-feedback-copy">
             ${escapeHtml(presentation.e || 'A resposta correta é a alternativa ' + String.fromCharCode(65 + presentation.a) + '.')}
           </div>
-          ${(q.refs||[]).length ? `<div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px;">${(q.refs||[]).map(k => referenceCards[k] ? `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(referenceCards[k].label)}" target="_blank" rel="noopener" style="color:var(--blue);font-size:0.72rem;text-decoration:none;border:1px solid rgba(96,165,250,0.3);padding:2px 9px;border-radius:12px;white-space:nowrap;">🔗 ${escapeHtml(referenceCards[k].label)}</a>` : '').filter(Boolean).join('')}</div>` : ''}
-        </div>
-        <div style="display:flex;justify-content:center;align-items:center;gap:12px;margin-top:16px;flex-wrap:wrap;">
+          ${(q.refs||[]).length ? `<div class="nq-study-feedback-sources">${(q.refs||[]).map(k => referenceCards[k] ? `<a href="https://scholar.google.com/scholar?q=${encodeURIComponent(referenceCards[k].label)}" target="_blank" rel="noopener" class="nq-study-source-link">🔗 ${escapeHtml(referenceCards[k].label)}</a>` : '').filter(Boolean).join('')}</div>` : ''}
+        </section>
+        <div class="nq-study-feedback-actions">
           ${mentorBtnInner}
           <button class="btn gold" data-action="nextStudyQuestion" style="margin:0;">
             ${studyModeIndex + 1 < studyModeQuestions.length ? 'Próxima Questão' : 'Ver Resultados'}
@@ -2347,6 +2372,7 @@
     window.showLoginFromDiagnosis = showLoginFromDiagnosis;
 
     window.NQPilot?.onContextChange(() => {
+      closeWeakPointPlan(false);
       resetMentorQuestion();
       _studyDiagnosisControllers.forEach(controller => controller.abort());
       _studyDiagnosisControllers.clear();

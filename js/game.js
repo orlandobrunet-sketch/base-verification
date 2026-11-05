@@ -2664,10 +2664,10 @@
           study:topics.map(_studyCanonical), offline:topics.map(q =>
             ({id:q.qid,q:q.q,o:[...q.opts],a:q.ans,e:q.exp || q.e || ''}))}});
     }
-    function _loadTopics() {
+    function _loadTopics(options) {
       // A primeira carta lê refsDB: o download ocioso pode ainda estar em
       // andamento quando a pessoa entra rapidamente na Jornada.
-      const referencesReady = carregarDadosGrimorio();
+      const referencesReady = carregarDadosGrimorio(options?.refsOnly ? {refsOnly:true} : undefined);
       if (questionBank) return referencesReady.then(_initializeQuestionRevisionCatalog);
       if (!_topicsPromise) _topicsPromise = new Promise((resolve, reject) => {
         const s = document.createElement('script');
@@ -7346,34 +7346,65 @@
     })();
   
     // ============ MODO PONTO FRACO ============
-    function startWeakPointStudy() {
+    let _weakPointStudyPending = false;
+    async function startWeakPointStudy() {
+      if (_weakPointStudyPending || document.getElementById('nqWeakPointPlan')) return;
+      _weakPointStudyPending = true;
+      const binding = _studyCaptureBinding();
+      const origin = document.querySelector('#mainApp:not(.hidden),#welcomeScreen:not(.hidden)');
+      const navigation = new AbortController();
+      let loadingToast = null, cancelled = false, timeout;
+      if (!questionBank) {
+        _toast('Preparando as questões do estudo…', 'info', 30000);
+        loadingToast = document.querySelector('.nq-toast');
+      }
+      const stopped = new Promise((_,reject)=>{
+        timeout = setTimeout(()=>reject(new Error('Study loading timeout')),10000);
+        const cancel = ()=>{cancelled=true;reject(new Error('Study navigation changed'));};
+        document.addEventListener('click',cancel,{capture:true,signal:navigation.signal});
+        document.addEventListener('keydown',event=>{if(event.key==='Escape')cancel();},{capture:true,signal:navigation.signal});
+      });
+      try { await Promise.race([_loadTopics({refsOnly:true}),stopped]); }
+      catch (_) {
+        if (!cancelled && _studyBindingCurrent(binding)) _toast('Não foi possível carregar o estudo. Tente novamente.', 'warning');
+        return;
+      } finally {
+        _weakPointStudyPending = false;
+        navigation.abort(); clearTimeout(timeout); loadingToast?.remove();
+      }
+      if (!_studyBindingCurrent(binding)) return;
+      if (origin && (!origin.isConnected || origin.inert || origin.classList.contains('hidden') || !origin.getClientRects().length)) return;
+      if (document.querySelector('#gameModesOverlay.show,.study-mode-popup:not(.hidden),dialog[open]')) return;
       const stats = getDetailedStats();
       const weakAxes = NEFRO_AXES.filter(axis => {
         const d = (stats.byCategory || {})[axis.cat];
         return d && d.total >= 5 && (d.correct / d.total) < 0.5;
       });
       let axesToStudy;
+      const beginStudy = () => {
+        const cats = new Set(axesToStudy.map(a => a.cat));
+        studyModeQuestions = shuffle(topics.filter(q => cats.has(q.cat)));
+        if (!studyModeQuestions.length) { _toast('Nenhuma questão encontrada nas categorias fracas.', 'warning'); return; }
+        _studyProgressBinding = _studyCaptureBinding();
+        _studySelectedAxes = new Set(axesToStudy.map(a => a.id));
+        studyModeIndex = 0; studyModeCorrect = 0; studyModeWrong = 0; studyModeActive = true;
+        document.querySelectorAll('.study-mode-popup,.welcome-screen').forEach(el => el.classList.add('hidden'));
+        showStudyModePage();
+      };
       if (weakAxes.length === 0) {
-        // Fallback: 3 categorias com menor acerto (mesmo que > 50%)
         const ranked = NEFRO_AXES.map(axis => {
           const d = (stats.byCategory || {})[axis.cat];
           return { axis, accuracy: (d && d.total > 0) ? d.correct/d.total : 1, total: d ? d.total : 0 };
         }).filter(x => x.total > 0).sort((a,b) => a.accuracy - b.accuracy).slice(0, 3);
         if (!ranked.length) { _toast('Jogue mais questões para identificar seus pontos fracos!', 'info', 4000); return; }
         axesToStudy = ranked.map(x => x.axis);
-        const labels = axesToStudy.map(a => `• ${a.label}`).join('\n');
-        if (!confirm(`Nenhuma categoria abaixo de 50%.\nEstudo nas 3 com menor acerto:\n${labels}\n\nContinuar?`)) return;
-      } else {
-        axesToStudy = weakAxes;
+        showWeakPointPlan(axesToStudy,stats,beginStudy);
+        return;
       }
-      const cats = new Set(axesToStudy.map(a => a.cat));
-      studyModeQuestions = shuffle(topics.filter(q => cats.has(q.cat)));
-      if (!studyModeQuestions.length) { _toast('Nenhuma questão encontrada nas categorias fracas.', 'warning'); return; }
-      _studySelectedAxes = new Set(axesToStudy.map(a => a.id));
-      studyModeIndex = 0; studyModeCorrect = 0; studyModeWrong = 0; studyModeActive = true;
-      document.querySelectorAll('.study-mode-popup,.welcome-screen').forEach(el => el.classList.add('hidden'));
-      showStudyModePage();
+      axesToStudy = weakAxes;
+      beginStudy();
     }
+
 
     // ============ COMPARTILHAMENTO DE RESULTADO ============
     function _shareResult(tipo, data) {
