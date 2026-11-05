@@ -3937,10 +3937,19 @@
         const keySpan = document.createElement('span');
         keySpan.className = 'opt-key';
         keySpan.textContent = String.fromCharCode(65 + i);
+        b.setAttribute('aria-keyshortcuts', (i + 1) + ' ' + String.fromCharCode(65 + i));
+        const shortcut = document.createElement('kbd');
+        shortcut.className = 'nq-option-shortcut';
+        shortcut.textContent = i + 1;
+        shortcut.setAttribute('aria-hidden', 'true');
+        const keyGroup = document.createElement('span');
+        keyGroup.className = 'nq-option-keygroup';
+        keyGroup.appendChild(keySpan);
+        keyGroup.appendChild(shortcut);
         const bodySpan = document.createElement('span');
         bodySpan.className = 'opt-body';
         bodySpan.textContent = opt;
-        b.appendChild(keySpan);
+        b.appendChild(keyGroup);
         b.appendChild(bodySpan);
         [['correct', 'Resposta correta'], ['wrong', 'Sua escolha: incorreta']].forEach(([result, label]) => {
           const statusSpan = document.createElement('span');
