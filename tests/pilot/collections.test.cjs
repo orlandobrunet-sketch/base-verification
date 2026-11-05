@@ -234,7 +234,9 @@ function pageFixture() {
   const welcome = { classList: classes(['hidden']), inert: true };
   const scrolls = []; let focusCalls = 0;
   f.ctx.scrollY = 42; f.ctx.scrollTo = (...args) => scrolls.push(args);
-  f.ctx.document.activeElement = { isConnected: true, getClientRects: () => [{}], focus() { focusCalls++; } };
+  f.ctx.queueMicrotask = queueMicrotask;
+  f.ctx.document.activeElement = { isConnected: true, getClientRects: () => [{}], closest: () => null,
+    focus() { focusCalls++; f.ctx.document.activeElement = this; } };
   f.ctx.document.querySelectorAll = selector => selector === '#mainApp, #welcomeScreen' ? [main, welcome] : [];
   f.ctx.document.createElement = () => ({ isConnected: false, classList: classes([]),
     setAttribute() {}, addEventListener() {}, contains() { return false; }, remove() { this.isConnected = false; } });
@@ -250,6 +252,48 @@ test('page helper normal close restores original visibility, inert, scroll and f
   assert.equal(main.classList.contains('hidden'), false); assert.equal(main.inert, false);
   assert.equal(welcome.classList.contains('hidden'), true); assert.equal(welcome.inert, true);
   assert.deepEqual(scrolls, [[0, 0], [0, 42]]); assert.equal(focusCalls(), 1);
+});
+
+test('page helper restores focus when the mobile dock reappears after close', async () => {
+  const { f, focusCalls } = pageFixture();
+  const origin = f.ctx.document.activeElement;
+  const { fechar } = f.ctx.nqPaginaPropria('synthetic-dock-page', 'Synthetic');
+  origin.getClientRects = () => [];
+  f.ctx.document.activeElement = f.ctx.document.body;
+  fechar(); assert.equal(focusCalls(), 0);
+  origin.getClientRects = () => [{}];
+  await Promise.resolve();
+  assert.equal(f.ctx.document.activeElement, origin);
+  assert.equal(focusCalls(), 1);
+});
+
+test('deferred page focus never replaces focus claimed by a new control', async () => {
+  const { f, focusCalls } = pageFixture();
+  const origin = f.ctx.document.activeElement;
+  const { fechar } = f.ctx.nqPaginaPropria('synthetic-dock-page', 'Synthetic');
+  origin.getClientRects = () => [];
+  f.ctx.document.activeElement = f.ctx.document.body;
+  fechar();
+  origin.getClientRects = () => [{}];
+  const newControl = { isConnected: true };
+  f.ctx.document.activeElement = newControl;
+  await Promise.resolve();
+  assert.equal(f.ctx.document.activeElement, newControl);
+  assert.equal(focusCalls(), 0);
+});
+
+test('deferred page focus is discarded when the progress domain changes', async () => {
+  const { f, focusCalls } = pageFixture();
+  const origin = f.ctx.document.activeElement;
+  const { fechar } = f.ctx.nqPaginaPropria('synthetic-dock-page', 'Synthetic');
+  origin.getClientRects = () => [];
+  f.ctx.document.activeElement = f.ctx.document.body;
+  fechar();
+  origin.getClientRects = () => [{}];
+  f.activate();
+  await Promise.resolve();
+  assert.equal(f.ctx.document.activeElement, f.ctx.document.body);
+  assert.equal(focusCalls(), 0);
 });
 
 test('page helper close can dispose its page without restoring origin or focus', () => {
