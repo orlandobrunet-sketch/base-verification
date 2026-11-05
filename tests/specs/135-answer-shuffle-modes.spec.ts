@@ -109,6 +109,15 @@ test('estudo salva a escolha original e recarrega a correção sem contar de nov
   expect(await page.evaluate(() => JSON.stringify((0, eval)('topics')))).toBe(sourceBefore);
 });
 
+// Resolve the semantic palette independently from the answer buttons; mobile/contrast themes may vary.
+async function studyThemeColor(page: Page, token: '--nql-danger' | '--nql-success') {
+  return page.locator('#studyModePage').evaluate((surface, token) => {
+    const probe = document.createElement('span');
+    probe.hidden = true; probe.style.color = `var(${token})`; surface.appendChild(probe);
+    const color = getComputedStyle(probe).color; probe.remove(); return color;
+  }, token);
+}
+
 test('estudo mantém o distrator escolhido no reload e os contadores ao pausar', async ({ page }) => {
   await boot(page);
   await page.evaluate(() => (window as any).startFreeStudyMode());
@@ -120,8 +129,15 @@ test('estudo mantém o distrator escolhido no reload e os contadores ao pausar',
   await ready(page);
   await page.evaluate(() => (window as any).resumeSavedStudyMode());
   await expect(page.locator('#studyOptions button').nth(wrong)).toContainText(first.o[wrong]);
-  await expect(page.locator('#studyOptions button').nth(wrong)).toHaveCSS('border-color', 'rgb(251, 113, 133)');
-  await expect(page.locator('#studyOptions button').nth(first.a)).toHaveCSS('border-color', 'rgb(52, 211, 153)');
+  const wrongButton = page.locator('#studyOptions button').nth(wrong);
+  const correctButton = page.locator('#studyOptions button').nth(first.a);
+  await expect(wrongButton).toHaveClass(/is-wrong/);
+  await expect(wrongButton).toHaveClass(/is-chosen/);
+  await expect(wrongButton).toBeDisabled();
+  await expect(correctButton).toHaveClass(/is-correct/);
+  await expect(correctButton).toBeDisabled();
+  await expect(wrongButton).toHaveCSS('border-color', await studyThemeColor(page, '--nql-danger'));
+  await expect(correctButton).toHaveCSS('border-color', await studyThemeColor(page, '--nql-success'));
   expect(await progressBytes(page)).toEqual(progress);
   await page.getByRole('button', { name: 'Pausar e voltar' }).click();
   const paused = await studySave(page);
