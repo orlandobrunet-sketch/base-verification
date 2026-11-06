@@ -185,8 +185,16 @@ if (contraAtual === null || contraBase === null || contraAtual < 0 || contraBase
   process.exit(1);
 }
 
+// O catálogo publicado identifica o release técnico, mesmo sem mudança clínica.
+// Conferir aqui evita descobrir metadado antigo apenas na bateria E2E completa.
+const releaseDoManifesto = ler('data/question-revision-manifest.js').match(/"release":"([^"\n]+)"/)?.[1];
+const manifestoDerivou = releaseDoManifesto !== novaVersao;
+if (manifestoDerivou) {
+  console.log(`\nManifesto de questões no release ${releaseDoManifesto || 'ausente'}; esperado ${novaVersao}.`);
+}
+
 if (apenasChecar) {
-  process.exit(suspeitos.length || mapaDerivou || (precacheMudou.length && versaoParada) ? 1 : 0);
+  process.exit(suspeitos.length || mapaDerivou || manifestoDerivou || (precacheMudou.length && versaoParada) ? 1 : 0);
 }
 
 // `--sync` regera só o mapa, sem tocar em versão: serve para quem mexeu no
@@ -202,6 +210,12 @@ if (args.includes('--sync')) {
 if (!alvo) {
   console.error('\nInforme a nova versão (ex.: node scripts/bump-release.mjs 14.63) ou use --check.');
   process.exit(1);
+}
+
+// O gerador valida os quatro perfis reais antes de escrever o manifesto.
+if (manifestoDerivou) {
+  execFileSync(process.execPath, [resolve(raiz, 'tools/build-question-revision-manifest.cjs'), novaVersao],
+    { cwd: raiz, stdio: 'inherit' });
 }
 
 // 1) version.json

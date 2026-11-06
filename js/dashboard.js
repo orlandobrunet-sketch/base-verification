@@ -1592,35 +1592,45 @@
     const favoriteCount = library.items.filter(item => item.favorite).length;
     const sortedItems = _sortLibraryItems(library.items, 'recent');
     const themes = [...new Set(library.items.flatMap(item => item.themes || []))].filter(Boolean).sort((a, b) => a.localeCompare(b, 'pt-BR'));
-    const rarities = [...new Set(library.items.map(item => item.rarity).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'));
+    const rarities = ['comum', 'raro', 'épico', 'lendário'].filter(rarity => library.items.some(item => item.rarity === rarity));
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-library" role="tabpanel" aria-labelledby="nqdTab-library" data-dash-pane="library" hidden>
-        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Grimório</h1><p class="nqd-section-copy nqd-library-summary">${library.adminView ? `Catálogo completo, com ${library.totalArticles + library.totalRefs} estudos.` : `${totalUnlocked} de ${library.totalArticles + library.totalRefs} estudos descobertos.`}</p></div></div>
+        <header class="nqd-grimoire-header">
+          <div class="nqd-grimoire-intro"><h1 class="nqd-title-lg">Grimório</h1><p class="nqd-grimoire-subtitle">Biblioteca Clínica</p>
+            <p class="nqd-grimoire-rule">Seu acervo cresce durante a jornada: acerte questões para descobrir fontes; baús podem trazer pergaminhos.</p>
+            <p class="nqd-section-copy nqd-library-summary">${library.adminView ? `<span class="nqd-grimoire-preview">Prévia administrativa</span> Catálogo completo, com ${library.totalArticles + library.totalRefs} estudos. Suas descobertas: ${totalUnlocked}.` : `${totalUnlocked} de ${library.totalArticles + library.totalRefs} estudos descobertos.`}</p>
+          </div>
+          <img class="nqd-grimoire-art" src="/assets/achievements/grimorio.webp" width="512" height="512" alt="" aria-hidden="true" decoding="async">
+        </header>
           <div class="nqd-library-tabs" role="tablist" aria-label="Coleções do Grimório">
             <button type="button" role="tab" id="nqDashLibraryTab-all" aria-selected="true" aria-controls="nqDashLibraryCollection" tabindex="0" data-library-collection="all"><span>Todos</span><strong data-library-count>${totalUnlocked}</strong></button>
             <button type="button" role="tab" id="nqDashLibraryTab-favorites" aria-selected="false" aria-controls="nqDashLibraryCollection" tabindex="-1" data-library-collection="favorites"><span>Favoritos</span><strong data-library-count>${favoriteCount}</strong></button>
           </div>
-          <div class="nqd-library-tools">
-            <label class="nqd-search">${_svg('search')}<span class="nqd-sr-only">Buscar no Grimório</span><input id="nqDashLibrarySearch" type="search" placeholder="Buscar título, autor ou ano" autocomplete="off"></label>
-            <label class="nqd-library-discovery"><span>Descoberta</span><select id="nqDashLibraryDiscovery">${library.adminView ? '<option value="all" selected>Catálogo completo (prévia)</option>' : ''}<option value="unlocked"${library.adminView ? '' : ' selected'}>Descobertos</option><option value="locked">A descobrir</option></select></label>
-            <label class="nqd-library-filter"><span>Filtrar</span><select id="nqDashLibraryFilter">
-              <option value="all">Todos</option>
-              <option value="guideline">Diretrizes</option>
-              ${rarities.map(rarity => `<option value="rarity:${_escape(rarity)}">${_escape(_libraryRarityLabel(rarity))}</option>`).join('')}
-              ${themes.map(theme => `<option value="theme:${_escape(theme)}">${_escape(theme)}</option>`).join('')}
-            </select></label>
+          <div class="nqd-library-search-panel">
+            <label class="nqd-library-query"><span>Buscar no Grimório</span><span class="nqd-search">${_svg('search')}<input id="nqDashLibrarySearch" type="search" placeholder="Buscar título, autor, tema ou ano" autocomplete="off"></span></label>
             <label class="nqd-library-sort"><span>Ordenar</span><select id="nqDashLibrarySort">
-              <option value="recent" selected>Publicação mais recente</option>
-              <option value="oldest">Publicação mais antiga</option>
-              <option value="title">Título A–Z</option>
-              <option value="type">Tipo</option>
+              <option value="recent" selected>Publicação mais recente</option><option value="oldest">Publicação mais antiga</option><option value="title">Título A-Z</option><option value="type">Tipo</option>
             </select></label>
           </div>
+          <section class="nqd-library-explore" aria-labelledby="nqDashExploreTitle" data-library-explore>
+            <div class="nqd-library-explore-heading"><h2 id="nqDashExploreTitle">Explorar o acervo</h2><p id="nqDashExploreHint">Explore por tema ou raridade.</p></div>
+            <div class="nqd-library-explore-controls">
+              <label class="nqd-library-discovery"><span>Descoberta</span><select id="nqDashLibraryDiscovery">${library.adminView ? '<option value="all" selected>Catálogo completo (prévia)</option>' : ''}<option value="unlocked"${library.adminView ? '' : ' selected'}>Descobertos</option><option value="locked">A descobrir</option></select></label>
+              <label class="nqd-library-filter"><span>Fontes clínicas</span><select id="nqDashLibraryFilter" aria-describedby="nqDashExploreHint">
+                <option value="all">Todos os temas e tipos</option><optgroup label="Tipo"><option value="guideline">Diretrizes</option></optgroup>
+                <optgroup label="Temas">${themes.map(theme => `<option value="theme:${_escape(theme)}">${_escape(theme)}</option>`).join('')}</optgroup>
+              </select></label>
+              <fieldset class="nqd-library-rarities" aria-describedby="nqDashExploreHint"><legend>Pergaminhos</legend><div>
+                ${rarities.map(rarity => `<button type="button" data-library-rarity-filter="${_escape(rarity)}" aria-pressed="false">${_escape(_libraryRarityLabel(rarity))}</button>`).join('')}
+              </div></fieldset>
+            </div>
+            <div class="nqd-library-filter-state"><span data-library-filter-summary aria-live="polite">Todos os temas e raridades</span><button type="button" data-library-clear-filter hidden>Limpar filtro</button></div>
+          </section>
         <div class="nqd-library-collection" id="nqDashLibraryCollection" role="tabpanel" aria-labelledby="nqDashLibraryTab-all">
           <p class="nqd-library-collection-status" id="nqDashLibraryCollectionCount" aria-live="polite"></p>
           ${!totalUnlocked && !library.adminView ? `<div class="nqd-empty" data-library-empty><strong>Seu Grimório aguarda a primeira descoberta.</strong><p>Uma resposta correta libera as fontes citadas. Baús podem trazer pergaminhos; consulte “A descobrir” para explorar a coleção.</p><button type="button" class="nqd-text-action" data-action="${_dashboardData && _dashboardData.save ? '_dashResumeJourney' : '_dashStartJourney'}"><span>${_dashboardData && _dashboardData.save ? 'Continuar jornada' : 'Começar jornada'}</span>${_svg('arrow')}</button></div>` : ''}
           <div class="nqd-library-list" id="nqDashLibraryList">${_libraryCards(sortedItems)}</div>
-          <div class="nqd-empty nqd-library-no-results" id="nqDashLibraryNoResults" hidden><strong>Nada encontrado nesta coleção.</strong><p>Tente outro termo ou escolha uma coleção diferente.</p></div>
+          <div class="nqd-empty nqd-library-no-results" id="nqDashLibraryNoResults" hidden><strong>Nada encontrado nesta coleção.</strong><p>Tente outro termo, limpe o filtro ou escolha uma coleção diferente.</p></div>
         </div>
         <div class="nqd-library-suggestion" data-library-suggestion></div>
       </section>
@@ -2064,7 +2074,7 @@
       owner: root.dataset.libraryReader,
       collection: root.querySelector('[data-library-collection][aria-selected="true"]')?.dataset.libraryCollection || 'all',
       search: root.querySelector('#nqDashLibrarySearch')?.value || '',
-      filter: root.querySelector('#nqDashLibraryFilter')?.value || 'all',
+      filter: _libraryFilterValue(root),
       discovery: root.querySelector('#nqDashLibraryDiscovery')?.value || 'unlocked',
       sort: root.querySelector('#nqDashLibrarySort')?.value || 'recent',
       expanded: [...root.querySelectorAll('[data-library-item].is-expanded [data-library-key]')].map(el => el.dataset.libraryKey),
@@ -2077,11 +2087,12 @@
     if (!saved || saved.owner !== root.dataset.libraryReader) return;
     const collection = [...root.querySelectorAll('[data-library-collection]')].find(el => el.dataset.libraryCollection === saved.collection);
     _setLibraryCollection(root, collection);
-    for (const [id, value] of [['nqDashLibrarySearch', saved.search], ['nqDashLibrarySort', saved.sort], ['nqDashLibraryFilter', saved.filter], ['nqDashLibraryDiscovery', saved.discovery]]) {
+    for (const [id, value] of [['nqDashLibrarySearch', saved.search], ['nqDashLibrarySort', saved.sort], ['nqDashLibraryDiscovery', saved.discovery]]) {
       const control = root.querySelector('#' + id);
       if (!control) continue;
       if (control.tagName !== 'SELECT' || [...control.options].some(option => option.value === value && !option.hidden)) control.value = value;
     }
+    _selectLibraryFilter(root, saved.filter);
     _applyLibraryView(root);
     const expanded = new Set(saved.expanded);
     root.querySelectorAll('[data-library-key]').forEach(button => {
@@ -2150,7 +2161,29 @@
     }
 
     const libraryFilter = root.querySelector('#nqDashLibraryFilter');
-    if (libraryFilter) libraryFilter.addEventListener('change', () => _applyLibraryView(root));
+    if (libraryFilter) libraryFilter.addEventListener('change', () => {
+      _selectLibraryFilter(root, libraryFilter.value);
+      _applyLibraryView(root);
+    });
+    root.querySelectorAll('[data-library-rarity-filter]').forEach(button => {
+      button.addEventListener('click', () => {
+        const value = 'rarity:' + button.dataset.libraryRarityFilter;
+        _selectLibraryFilter(root, _libraryFilterValue(root) === value ? 'all' : value);
+        _applyLibraryView(root);
+      });
+    });
+    root.querySelector('[data-library-clear-filter]')?.addEventListener('click', () => {
+      _selectLibraryFilter(root, 'all');
+      _applyLibraryView(root);
+      // The clear action disappears; return focus to the neutral visible control.
+      libraryFilter?.focus({ preventScroll: true });
+    });
+    const grimoireArt = root.querySelector('.nqd-grimoire-art');
+    if (grimoireArt) {
+      const hideFailedArt = () => { grimoireArt.hidden = true; };
+      grimoireArt.addEventListener('error', hideFailedArt);
+      if (grimoireArt.complete && !grimoireArt.naturalWidth) hideFailedArt();
+    }
     const libraryDiscovery = root.querySelector('#nqDashLibraryDiscovery');
     if (libraryDiscovery) libraryDiscovery.addEventListener('change', () => _applyLibraryView(root));
 
@@ -2260,6 +2293,25 @@
     _applyLibraryView(root);
   }
 
+  function _libraryFilterValue(root) {
+    return root.dataset.libraryFilter || 'all';
+  }
+
+  function _selectLibraryFilter(root, value) {
+    const select = root.querySelector('#nqDashLibraryFilter');
+    const rarityButtons = [...root.querySelectorAll('[data-library-rarity-filter]')];
+    const sourceOption = [...(select?.options || [])].find(option => option.value === value);
+    const rarityButton = rarityButtons.find(button => 'rarity:' + button.dataset.libraryRarityFilter === value);
+    root.dataset.libraryFilter = sourceOption || rarityButton ? value : 'all';
+    if (select) select.value = sourceOption ? value : 'all';
+    rarityButtons.forEach(button => button.setAttribute('aria-pressed', String(button === rarityButton)));
+    const summary = root.querySelector('[data-library-filter-summary]');
+    if (summary) summary.textContent = rarityButton ? 'Pergaminhos: ' + rarityButton.textContent
+      : sourceOption && value !== 'all' ? 'Fontes clínicas: ' + sourceOption.textContent : 'Todos os temas e raridades';
+    const clear = root.querySelector('[data-library-clear-filter]');
+    if (clear) clear.hidden = _libraryFilterValue(root) === 'all';
+  }
+
   function _syncLibraryTools(root, collection) {
     const search = root.querySelector('#nqDashLibrarySearch');
     if (search) {
@@ -2273,9 +2325,8 @@
       discovery.querySelector('[value="locked"]').textContent = `A descobrir (${entries.length - discovered})`;
       discovery.closest('label').hidden = collection === 'favorites';
     }
-    const filter = root.querySelector('#nqDashLibraryFilter');
-    if (!filter) return;
-    filter.closest('label')?.toggleAttribute('hidden', collection === 'favorites');
+    const explore = root.querySelector('[data-library-explore]');
+    if (explore) explore.hidden = collection === 'favorites';
   }
 
   function _applyLibraryView(root) {
@@ -2286,7 +2337,7 @@
     const collection = activeTab ? activeTab.dataset.libraryCollection : 'all';
     const query = (root.querySelector('#nqDashLibrarySearch')?.value || '').trim().toLocaleLowerCase('pt-BR');
     const sort = root.querySelector('#nqDashLibrarySort')?.value || 'recent';
-    const filter = root.querySelector('#nqDashLibraryFilter')?.value || 'all';
+    const filter = _libraryFilterValue(root);
     const discovery = root.querySelector('#nqDashLibraryDiscovery')?.value || 'unlocked';
     const items = [...list.querySelectorAll('[data-library-entry]')];
     // A aba acompanha o universo escolhido (catálogo, descobertos ou a descobrir),
@@ -2321,7 +2372,7 @@
       const matches = !query || (item.dataset.search || '').includes(query);
       const matchesDiscovery = collection === 'favorites' || discovery === 'all'
         || (discovery === 'unlocked' ? item.dataset.libraryDiscovered === 'true' : item.dataset.libraryDiscovered !== 'true');
-      const matchesFilter = filter === 'all'
+      const matchesFilter = collection === 'favorites' || filter === 'all'
         || (filter === 'guideline' && !!item.querySelector('[data-library-guideline="true"]'))
         || (filter.startsWith('rarity:') && item.dataset.libraryRarity === filter.slice(7))
         || (filter.startsWith('theme:') && (item.dataset.libraryTheme || '').split(' · ').includes(filter.slice(6)));

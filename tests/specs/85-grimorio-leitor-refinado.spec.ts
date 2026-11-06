@@ -45,7 +45,7 @@ test('raridades e fonte longa mantêm comandos acessíveis em 320px e texto a 20
   await page.setViewportSize({ width: 320, height: 700 });
   await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
   for (const rarity of ['comum', 'raro', 'épico', 'lendário']) {
-    await page.locator('#nqDashLibraryFilter').selectOption('rarity:' + rarity);
+    await page.locator('[data-library-rarity-filter="' + rarity + '"]').click();
     const card = page.locator('[data-library-item]:visible').first();
     const read = card.getByRole('button', { name: 'Ler resumo', exact: true });
     const favorite = card.locator('.nqd-favorite');
