@@ -17,7 +17,10 @@ const STATS_PARCIAL = statsBase({
 });
 
 async function abrirCompetencias(page: Page, stats: unknown) {
-  await page.goto('/jogar/');
+  const origin = new URL(test.info().project.use.baseURL as string || process.env.BASE_URL || 'http://localhost:5500').origin;
+  await page.route('**/*', route => route.request().method() === 'GET' && new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+  await page.routeWebSocket('**/*', socket => socket.close());
+  await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => typeof (window as any).openDashboard === 'function');
   await page.evaluate(() => (window as any)._loadTopics?.());
   await page.evaluate(({ save, stats }) => {
@@ -25,7 +28,7 @@ async function abrirCompetencias(page: Page, stats: unknown) {
     localStorage.setItem('nefroquest-detailed-stats', JSON.stringify(stats));
     localStorage.setItem('nefroquest-premium', '1');
   }, { save: SAVE, stats });
-  await page.reload();
+  await page.reload({ waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => typeof (window as any).openDashboard === 'function');
   await page.evaluate(() => (window as any)._loadTopics?.());
   await page.evaluate(() => (window as any).openDashboard());
