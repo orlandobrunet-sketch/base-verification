@@ -38,3 +38,8 @@
 @media (min-width:769px) and (max-width:78rem) {
  body.boss-battle-mode #mainApp[data-nq-ui="lumen"]{padding-inline:.75rem}
 }
+
+/* Quatro alternativas de duas linhas cabem em notebooks baixos sem reduzir a fonte. */
+@media(min-width:769px) and (max-height:800px){
+ body.boss-battle-mode #mainApp[data-nq-ui="lumen"] #options .option{padding-block:10px!important}
+}
