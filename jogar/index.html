@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.72',
+          release: 'nefroquest@16.73',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -141,7 +141,7 @@
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.62">
   <link rel="stylesheet" href="styles/lumen/game.css?v=16.71">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.06">
-  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.64">
+  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.73">
   <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.60">
   <link rel="stylesheet" href="styles/lumen/forge.css?v=16.64">
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
@@ -899,7 +899,7 @@
             <button type="button" class="nql-atrium__route" data-atrium-route="dashboard" data-action="openDashboard"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 4v16h16M8 16v-5m5 5V7m5 9v-7"/></svg></span><span><strong>Painel</strong><small>Sua conduta de aprendizado</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
             <button type="button" class="nql-atrium__route" id="welcomeRitualBtn" data-atrium-route="ritual" data-action="openRitual"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="m16 8-2.5 5.5L8 16l2.5-5.5L16 8Z"/></svg></span><span><strong>Ritual de iniciação</strong><small>Descubra seu nível recomendado</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
             <button type="button" class="nql-atrium__route" data-atrium-route="ranking" data-action="showLeaderboardFromWelcome"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 3h8v5a4 4 0 0 1-8 0V3Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4M12 12v6m-4 3h8m-7-3h6v3"/></svg></span><span><strong>Classificação</strong><small>Compare sua evolução</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
-            <button type="button" class="nql-atrium__route" data-atrium-route="library" data-action="openBibliotecaModal"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span><span><strong>Biblioteca clínica</strong><small>Referências para aprofundar</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
+            <button type="button" class="nql-atrium__route" data-atrium-route="library" data-action="openBibliotecaModal"><span class="nql-atrium__route-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></svg></span><span><strong>Grimório</strong><small>Biblioteca Clínica</small></span><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M14 7l5 5-5 5"/></svg></button>
             <button type="button" id="bossPreviewBtn" class="btn-boss-preview" data-action="startBossPreview" title="Preview do Confronto Final" style="display:none;">Preview: Confronto Final</button>
           </div>
         </aside>
@@ -1880,7 +1880,7 @@
   <script defer src="js/achievements.js?v=16.06"></script>
   <script defer src="js/changelog.js?v=15.94"></script>
   <script defer src="js/equipment-preview.js?v=16.62"></script>
-  <script defer src="js/dashboard.js?v=16.62"></script>
+  <script defer src="js/dashboard.js?v=16.73"></script>
 
   <!-- Single source of truth for profile popup menu items -->
   <template id="profilePopupItems">
