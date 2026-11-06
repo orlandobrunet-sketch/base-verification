@@ -226,12 +226,13 @@
    Caminho dos 100 acertos caber inteiro na primeira tela. */
 @media (min-width: 61.26rem) {
   #nqDashboard[data-nq-ui="lumen"] .nqd-content > #nqdPane-achievements > .nqd-section-header .nqd-section-copy { max-width: none; }
-  #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-achievement-spotlight { padding-block: 1.1rem; margin-top: 1rem; }
+  #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements > .nqd-section-header { margin-bottom: .5rem; }
+  #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-achievement-spotlight { padding-block: .75rem; margin-top: .5rem; }
   #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-achievement-spotlight-art { width: min(100%, 8.5rem); }
   #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-achievement-spotlight-copy h2 { font-size: clamp(1.6rem, 2.6vw, 2.4rem); }
-  #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-trophy-showcase { margin: 1rem 0 1rem; padding: .5rem 0 1rem; }
-  #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-badge-path-header { margin-top: 1rem; }
-  #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-badge-path { margin-top: .9rem; }
+  #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-trophy-showcase { margin: .5rem 0; padding: .4rem 0 .5rem; }
+  #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-badge-path-header { margin-top: .5rem; }
+  #nqDashboard[data-nq-ui="lumen"] #nqdPane-achievements .nqd-badge-path { margin-top: .5rem; }
 }
 
 /* Detalhe da conquista: a arte ganha moldura e luz da própria conquista
@@ -265,3 +266,6 @@
   100% { opacity: .35; }
 }
 .nq-ach-detail.is-unlocked .nq-ach-detail-progress [role="progressbar"] > span { background: var(--ach); }
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-achievement-progress[data-complete="true"],
+.nq-ach-detail-progress[data-complete="true"] { color: #e7c873; }

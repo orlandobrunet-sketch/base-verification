@@ -284,8 +284,10 @@ function _nqAchievementProgressStorage() {
       dialog.dataset.acquired = String(acquired);
       dialog.setAttribute('aria-labelledby', 'nqAchievementArtworkTitle');
       dialog.setAttribute('aria-describedby', 'nqAchievementArtworkRequirement');
-      const value = progress ? Math.max(0, Math.min(Number(progress.value) || 0, Number(progress.target) || 0)) : 0;
-      const target = progress ? Math.max(0, Number(progress.target) || 0) : 0;
+      // Selos em reconquista mantêm seus valores; conclusão exige o marcador explícito.
+      const completed = acquired && progress?.completed === true;
+      const value = completed ? 100 : progress ? Math.max(0, Math.min(Number(progress.value) || 0, Number(progress.target) || 0)) : 0;
+      const target = completed ? 100 : progress ? Math.max(0, Number(progress.target) || 0) : 0;
       dialog.innerHTML = `
         <div class="nq-ach-detail-reading" tabindex="0" role="region" aria-label="Arte e requisito da conquista">
           <div class="nq-ach-detail-art"><img src="${escapeHtml(source)}" alt="" decoding="async" width="512" height="512"></div>
@@ -293,7 +295,7 @@ function _nqAchievementProgressStorage() {
             <p class="nq-ach-detail-state">${escapeHtml(status || 'A conquistar')}</p>
             <h2 id="nqAchievementArtworkTitle">${escapeHtml(name)}</h2>
             <p id="nqAchievementArtworkRequirement">${escapeHtml(description || '')}</p>
-            ${target ? `<div class="nq-ach-detail-progress"><span>${value.toLocaleString('pt-BR')} de ${target.toLocaleString('pt-BR')}</span><div role="progressbar" aria-label="${escapeHtml('Progresso de ' + name)}" aria-valuemin="0" aria-valuemax="${target}" aria-valuenow="${value}"><span style="width:${value / target * 100}%"></span></div></div>` : ''}
+            ${target ? `<div class="nq-ach-detail-progress"${completed ? ' data-complete="true"' : ''}><span>${completed ? 'Requisito cumprido · 100%' : `${value.toLocaleString('pt-BR')} de ${target.toLocaleString('pt-BR')}`}</span><div role="progressbar" aria-label="${escapeHtml((completed ? 'Conclusão de ' : 'Progresso de ') + name)}" aria-valuemin="0" aria-valuemax="${target}" aria-valuenow="${value}"><span style="width:${value / target * 100}%"></span></div></div>` : ''}
           </div>
         </div>
         <footer><button type="button" data-action="closeAchievementArtwork">Voltar à coleção</button></footer>`;
