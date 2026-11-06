@@ -58,7 +58,9 @@ async function coldRoute(page:Page,file:'topics'|'articles',categories=ranked){
  let release!:()=>void,requests=0;const ready=new Promise<void>(resolve=>release=resolve);
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
  await page.route(`**/data/${file}.js`,async route=>{requests++;await ready;await route.continue();});
- await page.goto('/jogar/',{waitUntil:'load'});await page.evaluate(categories=>{localStorage.setItem('nefroquest-detailed-stats',JSON.stringify({schemaVersion:1,byCategory:categories}));document.getElementById('landingScreen')?.classList.add('hidden');document.getElementById('welcomeScreen')?.classList.add('hidden');(window as any).openGameModesPopup();},categories);
+ // Articles are deliberately held: their idle load can start before window.load.
+ // DOMContentLoaded waits for the actual deferred app scripts without waiting for that held request.
+ await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await page.evaluate(categories=>{localStorage.setItem('nefroquest-detailed-stats',JSON.stringify({schemaVersion:1,byCategory:categories}));document.getElementById('landingScreen')?.classList.add('hidden');document.getElementById('welcomeScreen')?.classList.add('hidden');(window as any).openGameModesPopup();},categories);
  await page.locator('#gameModesOverlay [data-mode-route="weak"]').click();return{release,requests:()=>requests};
 }
 for(const route of ['fallback','direct'] as const)test(`pending articles never block the ${route} route`,async({page})=>{

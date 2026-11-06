@@ -980,9 +980,21 @@
       let step = 0, band = 'medium', correctCount = 0, hardCorrect = 0, hardFaced = 0, current = null;
       let currentPresentation = null;
       const letras = ['A', 'B', 'C', 'D', 'E'];
+      const ritualArt = (compact = false) => `
+        <figure class="nql-ritual-art${compact ? ' is-compact' : ''}" aria-hidden="true">
+          <svg class="nql-ritual-art-fallback" viewBox="0 0 80 80"><circle cx="40" cy="40" r="32"/><circle cx="40" cy="40" r="23"/><path d="M40 13v10M40 57v10M13 40h10M57 40h10M40 27l9 13-9 13-9-13z"/></svg>
+          <img src="assets/scenes/ritual-initiation.webp" alt="" width="1122" height="1402" decoding="async">
+        </figure>`;
+      const ritualSteps = (answered = 0, active = -1) => `
+        <div class="nql-ritual-sequence" aria-hidden="true">${Array.from({ length: RITUAL_LEN }, (_, i) => `<span class="${i < answered ? 'is-complete' : i === active ? 'is-current' : ''}">${String(i + 1).padStart(2, '0')}</span>`).join('')}</div>`;
       const desenhar = (html, foco) => {
         if (!currentPage()) return;
         pagina.innerHTML = `<div class="nq-study-content nq-exam-intro">${html}</div>`;
+        pagina.querySelectorAll('.nql-ritual-art img').forEach(image => {
+          const fallback = () => { image.hidden = true; image.closest('figure')?.classList.add('is-unavailable'); };
+          image.addEventListener('error', fallback, { once: true });
+          if (image.complete && !image.naturalWidth) fallback();
+        });
         pagina.querySelector(foco)?.focus({ preventScroll: true });
         window.scrollTo(0, 0);
       };
@@ -990,19 +1002,23 @@
       function showIntro(erro = '') {
         if (!currentPage()) return;
         desenhar(`
-          <div class="nql-ritual-intro">
-            <header class="nql-ritual-heading">
-              <svg class="nql-ritual-emblem" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="33"/><circle cx="40" cy="40" r="24"/><path d="M40 13v10M40 57v10M13 40h10M57 40h10M40 27l9 13-9 13-9-13z"/><circle cx="40" cy="40" r="3"/></svg>
-              <div><p class="nql-ritual-eyebrow">Seu ponto de partida</p><h1 id="ritualTitulo" tabindex="-1">Ritual de Iniciação</h1></div>
-            </header>
-            <p class="nql-ritual-lede">Responda <strong>${RITUAL_LEN} questões</strong> e o Ritual alinha a dificuldade da sua jornada ao seu nível atual: as questões se adaptam às suas respostas.</p>
-            <div class="nql-ritual-sequence" aria-hidden="true">${Array.from({ length: RITUAL_LEN }, (_, i) => `<span>${String(i + 1).padStart(2, '0')}</span>`).join('')}</div>
-            <p class="nql-ritual-note">Não conta para a sua jornada, pontuação ou ranking. É só um diagnóstico, e você pode refazer quando quiser.</p>
-          ${erro ? `<p class="nq-exam-erro" role="alert">${erro}</p>` : ''}
-          <div class="nq-exam-acoes">
-            <button type="button" class="btn gold" id="ritualStart">Começar o Ritual</button>
-            <button type="button" class="btn sec" id="ritualSair">Agora não</button>
-          </div></div>`, erro ? '#ritualStart' : '#ritualTitulo');
+          <div class="nql-ritual-intro nql-ritual-layout">
+            <div class="nql-ritual-copy">
+              <header class="nql-ritual-heading">
+                <p class="nql-ritual-eyebrow">Seu ponto de partida</p>
+                <h1 id="ritualTitulo" tabindex="-1">Ritual de Iniciação</h1>
+              </header>
+              <p class="nql-ritual-lede">Responda <strong>${RITUAL_LEN} questões</strong> e o Ritual alinha a dificuldade da sua jornada ao seu nível atual: as questões se adaptam às suas respostas.</p>
+              ${ritualSteps()}
+              <p class="nql-ritual-note">Não conta para a sua jornada, pontuação ou ranking. É só um diagnóstico, e você pode refazer quando quiser.</p>
+              ${erro ? `<p class="nq-exam-erro" role="alert">${erro}</p>` : ''}
+              <div class="nq-exam-acoes">
+                <button type="button" class="btn gold" id="ritualStart">Começar o Ritual</button>
+                <button type="button" class="btn sec" id="ritualSair">Agora não</button>
+              </div>
+            </div>
+            ${ritualArt()}
+          </div>`, erro ? '#ritualStart' : '#ritualTitulo');
         pagina.querySelector('#ritualStart').addEventListener('click', comecar);
         pagina.querySelector('#ritualSair').addEventListener('click', sair);
       }
@@ -1041,19 +1057,32 @@
         if (band === 'hard') hardFaced++;
         const presentation = currentPresentation;
         desenhar(`
-          <p class="nq-exam-titulo">Ritual de Iniciação</p>
-          <div class="nq-exam-progresso" role="progressbar" aria-label="Progresso do Ritual" aria-valuemin="0" aria-valuemax="${RITUAL_LEN}" aria-valuenow="${step - 1}">
-            <div style="width:${((step - 1) / RITUAL_LEN * 100).toFixed(1)}%"></div>
-          </div>
-          <article class="nq-exam-questao">
-            <h1 id="ritualQuestao" tabindex="-1">Questão ${step} de ${RITUAL_LEN}</h1>
-            <p class="nq-exam-enunciado">${_ritualEsc(current.q || '')}</p>
-            <div id="ritualOpts" class="nq-exam-opcoes">
-              ${presentation.o.map((opt, i) => `<button type="button" class="nq-exam-opcao" data-i="${i}">
-                <span class="nq-exam-letra" aria-hidden="true">${letras[i]}</span><span>${_ritualEsc(opt)}</span></button>`).join('')}
+          <div class="nql-ritual-session">
+            <header class="nql-ritual-session-header">
+              ${ritualArt(true)}
+              <div class="nql-ritual-session-heading">
+                <p class="nql-ritual-eyebrow">Seu ponto de partida</p>
+                <p class="nql-ritual-session-name">Ritual de Iniciação</p>
+              </div>
+              <button type="button" class="btn sec nql-ritual-quit" id="ritualQuit">Sair do Ritual</button>
+            </header>
+            <div class="nql-ritual-route">
+              ${ritualSteps(step - 1, step - 1)}
+              <div class="nq-exam-progresso" role="progressbar" aria-label="Progresso do Ritual" aria-valuemin="0" aria-valuemax="${RITUAL_LEN}" aria-valuenow="${step - 1}">
+                <div style="width:${((step - 1) / RITUAL_LEN * 100).toFixed(1)}%"></div>
+              </div>
             </div>
-            <p id="ritualVeredito" class="nq-exam-veredito" role="status" aria-live="polite"></p>
-          </article>`, '#ritualQuestao');
+            <article class="nq-exam-questao">
+              <h1 id="ritualQuestao" tabindex="-1">Questão ${step} de ${RITUAL_LEN}</h1>
+              <p class="nq-exam-enunciado">${_ritualEsc(current.q || '')}</p>
+              <div id="ritualOpts" class="nq-exam-opcoes">
+                ${presentation.o.map((opt, i) => `<button type="button" class="nq-exam-opcao" data-i="${i}">
+                  <span class="nq-exam-letra" aria-hidden="true">${letras[i]}</span><span>${_ritualEsc(opt)}</span></button>`).join('')}
+              </div>
+              <p id="ritualVeredito" class="nq-exam-veredito" role="status" aria-live="polite"></p>
+            </article>
+          </div>`, '#ritualQuestao');
+        pagina.querySelector('#ritualQuit').addEventListener('click', sair);
         pagina.querySelectorAll('#ritualOpts button').forEach(b =>
           b.addEventListener('click', () => answer(Number(b.dataset.i), presentation), { once: true }));
       }
@@ -1121,16 +1150,21 @@
         const LABEL = { easy: 'Fácil', normal: 'Médio', hard: 'Difícil', hardcore: 'Hardcore' };
         if (typeof playSound === 'function') playSound('levelup');
         desenhar(`
-          <div class="nql-ritual-result">
-          <p class="nql-ritual-eyebrow">Seu ponto de partida</p>
-          <h1 id="ritualTitulo" tabindex="-1">Ritual concluído</h1>
-          <p>Você acertou <strong>${correctCount} de ${step}</strong>.</p>
-          <p>Dificuldade recomendada para sua jornada:</p>
-          <p class="nq-ritual-recomendacao">${LABEL[rec]}</p>
-          <div class="nq-exam-acoes">
-            <button type="button" class="btn gold" id="ritualGo">Iniciar jornada nesse nível</button>
-            <button type="button" class="btn sec" id="ritualSair">Voltar (a recomendação fica salva)</button>
-          </div></div>`, '#ritualTitulo');
+          <div class="nql-ritual-result nql-ritual-layout">
+            <div class="nql-ritual-copy">
+              <p class="nql-ritual-eyebrow">Seu ponto de partida</p>
+              <h1 id="ritualTitulo" tabindex="-1">Ritual concluído</h1>
+              <p>Você acertou <strong>${correctCount} de ${step}</strong>.</p>
+              ${ritualSteps(step)}
+              <p>Dificuldade recomendada para sua jornada:</p>
+              <p class="nq-ritual-recomendacao">${LABEL[rec]}</p>
+              <div class="nq-exam-acoes">
+                <button type="button" class="btn gold" id="ritualGo">Iniciar jornada nesse nível</button>
+                <button type="button" class="btn sec" id="ritualSair">Voltar (a recomendação fica salva)</button>
+              </div>
+            </div>
+            ${ritualArt()}
+          </div>`, '#ritualTitulo');
         pagina.querySelector('#ritualGo').addEventListener('click', () => {
           if (!currentPage()) return;
           sair();

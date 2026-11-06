@@ -75,7 +75,22 @@ function nqPaginaPropria(id, rotulo, { classe = '', aoTeclar = null } = {}) {
     if (options.restoreOrigin !== false && current()) {
       origem.elementos.forEach(({ el, hidden, inert }) => { el.classList.toggle('hidden', hidden); el.inert = inert; });
       window.scrollTo(0, origem.scroll);
-      if (options.restoreFocus !== false && origem.foco?.isConnected && origem.foco.getClientRects().length) origem.foco.focus({ preventScroll: true });
+      if (options.restoreFocus !== false && origem.foco?.isConnected) {
+        const restaurarFoco = () => {
+          if (!origem.foco.isConnected || !origem.foco.getClientRects().length || origem.foco.closest('[hidden], [inert]')) return false;
+          origem.foco.focus({ preventScroll: true });
+          return document.activeElement === origem.foco;
+        };
+        if (!restaurarFoco()) {
+          // The mobile dock returns in its class MutationObserver, after closing.
+          queueMicrotask(() => {
+            if (!current()) return;
+            const ativo = document.activeElement;
+            if (ativo !== document.body && ativo !== document.documentElement) return;
+            restaurarFoco();
+          });
+        }
+      }
     }
   };
   return { pagina, fechar };
