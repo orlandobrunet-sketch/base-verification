@@ -1205,6 +1205,13 @@
     return maps[id] || null;
   }
 
+  function _achievementProgressMarkup(achievement, progress, value, unlocked) {
+    // Aquisição é histórica: não inventar contagens atuais a partir do troféu.
+    if (unlocked) return `<div class="nqd-achievement-progress" data-complete="true"><span>Requisito cumprido · 100%</span>${_meterMarkup(100, 100, 'Conclusão de ' + achievement.name, true)}</div>`;
+    if (!progress || !(progress.target > 0)) return '';
+    return `<div class="nqd-achievement-progress"><span>Progresso: ${_formatNumber(value)} / ${_formatNumber(progress.target)}</span>${_meterMarkup(value, progress.target, 'Progresso de ' + achievement.name, true)}</div>`;
+  }
+
   function _achievementCategory(id) {
     if (['hd_master', 'perfectionist_drc', 'transplant_expert', 'glomerulo_sage', 'accuracy_master'].includes(id)) return 'Prática clínica';
     if (['nephron_guardian', 'century_club'].includes(id)) return 'Consistência';
@@ -1250,7 +1257,7 @@
       source: `assets/achievements/${ACHIEVEMENT_ART[achievement.id]}.webp`,
       status: unlocked ? 'Conquistada · fica com você' : progress && progress.status ? progress.status : progress && progress.value > 0 ? 'Em progresso' : 'A conquistar',
       acquired: unlocked,
-      progress: unlocked ? null : progress,
+      progress: unlocked ? { completed: true, value: 100, target: 100 } : progress,
     });
   }
   window._dashAchievementDetail = _dashAchievementDetail;
@@ -1329,7 +1336,7 @@
             <h3 class="nqd-achievement-title">${_escape(achievement.name)}</h3>
             <small class="nqd-achievement-category">${_escape(_achievementCategory(achievement.id))}</small>
             <p class="nqd-achievement-copy">${_escape(achievement.description)}</p>
-            ${progress && !isUnlocked && progress.target > 0 ? `<div class="nqd-achievement-progress"><span>Progresso: ${_formatNumber(value)} / ${_formatNumber(progress.target)}</span>${_meterMarkup(value, progress.target, `Progresso de ${achievement.name}`, true)}</div>` : ''}
+            ${_achievementProgressMarkup(achievement, progress, value, isUnlocked)}
           </div>
         </article>
       `;

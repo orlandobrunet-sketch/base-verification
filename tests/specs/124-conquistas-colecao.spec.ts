@@ -119,7 +119,9 @@ for (const fixture of ['admin', 'complete', 'registered'] as const) test(`Grimó
   await expect(card).toHaveClass(fixture === 'registered' ? /is-unlocked/ : /is-locked/);
   if (fixture === 'registered') {
     await expect(card.locator('.nqd-state')).toContainText('Conquistada');
-    await expect(card.locator('[role="progressbar"]')).toHaveCount(0);
+    await expect(card.locator('[role="progressbar"]')).toHaveAttribute('aria-valuenow', '100');
+    await expect(card.locator('[role="progressbar"]')).toHaveAttribute('aria-valuemax', '100');
+    await expect(card.locator('.nqd-achievement-progress')).toContainText('Requisito cumprido');
   } else {
     await expect(card.locator('[role="progressbar"]')).toHaveAttribute('aria-valuemax', String(expected.target));
     await expect(card.locator('[role="progressbar"]')).toHaveAttribute('aria-valuenow', String(fixture === 'admin' ? 0 : expected.target));
