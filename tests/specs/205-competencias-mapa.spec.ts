@@ -35,6 +35,13 @@ test('panels separate results from reflection while keeping counts and contrast'
   expect(metrics.gap).toBeGreaterThanOrEqual(20);
   expect(metrics.top).not.toBe(metrics.bottom);
   await expect(pane.locator('.nqd-error-ledger strong')).toHaveText(['7', '4', '2']);
+  await expect(pane.locator('.nqd-error-count')).toHaveCount(3);
+  await expect(pane.locator('.nqd-error-count small')).toHaveText(['registros', 'registros', 'registros']);
+  const separation = await pane.locator('.nqd-error-ledger > div').evaluateAll(rows => rows.map(row => {
+    const label = row.querySelector(':scope > span')!.getBoundingClientRect(), count = row.querySelector('.nqd-error-count')!.getBoundingClientRect();
+    return Math.max(count.top - label.bottom, count.left - label.right);
+  }));
+  expect(separation.every(gap => gap >= 8)).toBe(true);
   await expect(pane.locator('.nqd-error-ledger')).toContainText('Lacuna de conhecimento');
   const audit = await new AxeBuilder({ page }).include('#nqdPane-skills').withRules(['color-contrast']).analyze();
   expect(audit.violations).toEqual([]);

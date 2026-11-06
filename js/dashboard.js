@@ -988,7 +988,7 @@
     }
 
     return `<div class="nqd-error-ledger">${rows.map(([reason, count]) => `
-      <div><span>${_escape(ERROR_REASON_LABELS[reason] || reason)}</span><strong>${_formatNumber(count)}</strong></div>
+      <div><span>${_escape(ERROR_REASON_LABELS[reason] || reason)}</span><span class="nqd-error-count"><strong>${_formatNumber(count)}</strong><small>${_number(count, 0) === 1 ? 'registro' : 'registros'}</small></span></div>
     `).join('')}</div>`;
   }
 
