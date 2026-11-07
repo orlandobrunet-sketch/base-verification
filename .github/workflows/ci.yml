@@ -67,6 +67,9 @@ jobs:
       - name: Answer presentation identity and distribution
         run: node --test tests/answers/*.test.cjs
 
+      - name: XP conservation and earned level progression
+        run: node --test tests/progression/*.test.cjs
+
       - name: Chamber generator consistency
         run: node --test tests/chamber/*.test.cjs
 

@@ -379,15 +379,9 @@
   /**
    * O portão real do nível.
    *
-   * A "próxima forma" é a recompensa visual mais forte da Visão geral — arte
-   * nova do personagem, miniatura já visível ao lado. Mas o nível não destrava
-   * por XP: `levelCapForCorrect` em js/game.js é
-   * `min(10, 1 + floor(acertos / 10))`, e o XP excedente é descartado ao teto.
-   *
-   * Sem esta linha, o jogador via a barra encher, parar em 402/402 e não se
-   * mexer mais — sem explicação. A tela de resumo do próprio jogo já dizia
-   * "N de 10 acertos para o próximo marco"; a Central era menos legível que
-   * ela sobre a única recompensa visual que promete.
+   * XP e acertos são requisitos cumulativos. A projeção compartilhada mostra
+   * apenas XP aplicado à evolução e mantém o restante guardado. Consultar
+   * a próxima forma nunca grava ou consome o saldo do save.
    */
   function _levelGateMarkup(data) {
     const NIVEL_MAXIMO = 10;
@@ -397,13 +391,14 @@
     const acertos = Math.max(0, _number(data.journeyCorrect, 0));
     const exigido = nivel * 10;            // nível N+1 abre em N*10 acertos
     const faltam = Math.max(0, exigido - acertos);
-    const xpCheio = _number(data.xp, 0) >= _number(data.xpToNext, 0);
+    const progress = data.progression || window.NQProgression.view({ level: nivel, xp: data.xp, xpToNext: data.xpToNext, correctTotal: acertos });
 
     return `
       <p class="nqd-level-gate${faltam === 0 ? ' is-ready' : ''}">
-        ${faltam === 0
-          ? `<strong>Nível ${nivel + 1} liberado.</strong> A próxima resposta certa aplica a evolução.`
-          : `<strong>Nível ${nivel + 1} abre em ${_formatNumber(exigido)} acertos</strong> — faltam ${_formatNumber(faltam)}.${xpCheio ? ' A barra de XP já está cheia: o que destrava é acerto, não experiência.' : ''}`}
+        <strong>Nível ${nivel + 1} abre em ${_formatNumber(exigido)} acertos</strong>
+        ${faltam ? `Faltam ${_formatNumber(faltam)} ${faltam === 1 ? 'acerto' : 'acertos'}.` : 'Acertos completos.'}
+        ${progress.missingXp ? ` Faltam ${_formatNumber(progress.missingXp)} XP.` : ''}
+        ${_formatNumber(progress.applied)}/${_formatNumber(progress.xpToNext)} XP aplicado.${progress.reserved ? ` ${_formatNumber(progress.reserved)} XP guardados.` : ''}
       </p>`;
   }
 
@@ -584,13 +579,10 @@
     const weakness = _eligibleWeakness(coreSkills);
     const axisWeakness = _eligibleAxisWeakness(axisStats);
     const strength = _eligibleStrength(coreSkills);
-    const level = save ? Math.max(1, _number(save.level, 1)) : null;
-    const xp = save ? Math.max(0, _number(save.xp, 0)) : 0;
-    const xpToNext = Math.max(1,
-      typeof window.xpForLevel === 'function'
-        ? window.xpForLevel(level || 1)
-        : _number(save && save.xpToNext, 200)
-    );
+    const progression = save ? window.projectSavedProgress(save) : null;
+    const level = progression ? progression.level : null;
+    const xp = progression ? progression.xp : 0;
+    const xpToNext = progression ? progression.xpToNext : window.NQProgression.costForLevel(1);
     const totalQuestions = Math.max(0, _number(stats.totalQuestions, 0));
     const totalCorrect = Math.max(0, _number(stats.totalCorrect, 0));
     const characterId = save && CHARACTER_META[save.character || save.selectedCharacter]
@@ -615,6 +607,7 @@
       level,
       xp,
       xpToNext,
+      progression,
       totalQuestions,
       totalCorrect,
       accuracy: totalQuestions ? Math.round((totalCorrect / totalQuestions) * 100) : null,

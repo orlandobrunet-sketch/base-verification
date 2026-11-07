@@ -94,7 +94,8 @@ for (const scale of [1, 2]) test(`drawer moderno e áudio acessíveis, sem alter
   })), 'texto fora do cartão do HUD').toEqual([]);
   expect(await drawer.locator('.hero').evaluate(el => getComputedStyle(el).display)).toBe('contents');
   expect(await drawer.locator('.nql-loadout-shell').evaluate(el => getComputedStyle(el).display)).toBe('grid');
-  await expect(drawer.locator('.hud .tile:visible')).toHaveCount(6);
+  await expect(drawer.locator('.hud .tile:visible')).toHaveCount(4);
+  await expect(drawer.locator('#guardianVitality')).toBeVisible();
   const close = drawer.getByRole('button', { name: 'Fechar painel do herói' });
   await expect(close).toBeFocused();
   await page.keyboard.press('Shift+Tab');

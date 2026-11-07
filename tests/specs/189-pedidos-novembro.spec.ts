@@ -81,23 +81,24 @@ test('fase final mantém as larguras da jornada, inclusive no reflow', async ({ 
   }
 });
 
-test('vidas e sequência formam uma faixa compacta abaixo do retrato', async ({ page, isMobile }) => {
+test('vidas ficam próximas do nível e Sequência no terceiro campo do rodapé', async ({ page, isMobile }) => {
   test.skip(isMobile, 'faixa do herói no computador');
   await jogo(page);
-  const lives = (await page.locator('.hud .tile').filter({ has: page.locator('#lives') }).boundingBox())!;
+  const lives = (await page.locator('#guardianVitality').boundingBox())!;
   const streak = (await page.locator('.hud .tile').filter({ has: page.locator('#streak') }).boundingBox())!;
-  expect(streak.x - (lives.x + lives.width)).toBeLessThanOrEqual(20);
+  await expect(page.locator('.hud .tile').nth(2)).toContainText('Sequência');
+  expect(streak.y).toBeGreaterThan(lives.y);
   const portrait = (await page.locator('.portrait-frame').boundingBox())!;
   expect(lives.y).toBeGreaterThanOrEqual(portrait.y + portrait.height);
   await expect(page.locator('#streak')).toHaveText('12');
   await expect(page.locator('#lives')).not.toBeEmpty();
   await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
-  const reflow = await page.locator('.hud .tile').filter({ has: page.locator('#lives') }).evaluate(el => {
+  const reflow = await page.locator('#guardianVitality').evaluate(el => {
     const progress = document.querySelector('.nql-hero-progress')!.getBoundingClientRect();
     const r = el.getBoundingClientRect();
     return { fits: el.scrollWidth <= el.clientWidth + 1, separated: r.bottom <= progress.top + 1 };
   });
-  const boxes = await page.locator('.hud .tile').filter({ has: page.locator('#lives') }).evaluate(el => ({
+  const boxes = await page.locator('#guardianVitality').evaluate(el => ({
     lives: el.getBoundingClientRect().toJSON(), progress: document.querySelector('.nql-hero-progress')!.getBoundingClientRect().toJSON(),
     margin: getComputedStyle(document.querySelector('.nql-hero-progress')!).marginTop,
   }));

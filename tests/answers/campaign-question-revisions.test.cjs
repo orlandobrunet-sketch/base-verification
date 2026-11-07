@@ -9,6 +9,7 @@ const ROOT = path.resolve(__dirname, '../..');
 const game = fs.readFileSync(path.join(ROOT, 'js/game.js'), 'utf8');
 const answers = require('../../js/answer-presentation.js');
 const revisions = require('../../js/question-revisions.js');
+const progression = require('../../js/progression.js');
 const builder = require('../../tools/build-question-revision-manifest.cjs');
 const clone = value => JSON.parse(JSON.stringify(value));
 const sourceHash = crypto.createHash('sha256').update(game).digest('hex');
@@ -83,7 +84,7 @@ function harness(f) {
     _track() {}, _toast(message) { notices.push(message); }, _warnStorageFull() {},
     nqProgressStorage: () => storage, renderHUD() {}, updateBossUI() {}, applyBossOptionBadges() {}, refreshWelcomeSave() {},
     _stopLocalJourney() { context.stopCalls++; }, stopCalls: 0, _reloadJourneyCollections() {}, resetGuardianFeedback() {},
-    xpForLevel: level => level * 200, shuffleQueue() { throw Error('Fixture unexpectedly lost its queue'); },
+    NQProgression: progression, xpForLevel: progression.costForLevel, shuffleQueue() { throw Error('Fixture unexpectedly lost its queue'); },
     isCharacterPilot() { return false; }, usesLumenDebrief() { return false; }, flushPendingRating() {}, isAdminUser() { return false; },
     setLumenEvidenceAvailable() {}, _updateSkipButton() {}, _applyEpicLifelines() {},
     renderRefs(keys, cards) { context.renderedRefs = clone(cards); },
@@ -98,8 +99,10 @@ function harness(f) {
     history: context.NQQuestionRevisionHistory, authors: [f.after], sources: {main: [source(f.after)]}, references: f.refs});
   evaluate(section('    let _saveTimer = null;', '    function _savePilotGame()'), 'game.js real revision/save/start helpers');
   evaluate(section('    const state = new Proxy(_stateData, {', '    function isProgressSandbox()'), 'game.js real state Proxy');
+  evaluate(section('    const _LIFE_BONUS_ITEMS =', '    function _equipLifeBonus('), 'game.js real equipment life bonus set');
+  evaluate(fn('_equipLifeBonus'), 'game.js real equipment life bonus');
   for (const name of ['isProgressSandbox', '_currentSaveOwner', '_guestSavePair', '_canonicalSaveRecord', '_isSaveTombstone', '_mirrorLegacySave',
-    '_captureJourneyBinding', '_matchesJourneyBinding', 'saveGame', '_doSaveGame', '_migrateSave', 'restoreGame', '_renderOptions',
+    '_captureJourneyBinding', '_matchesJourneyBinding', 'saveGame', '_doSaveGame', '_migrateSave', 'projectSavedProgress', 'restoreGame', '_renderOptions',
     '_campaignQuestionRevisionRaw', '_renderCampaignQuestionRevisionNotice', 'useCurrentCampaignQuestionRevision', 'renderQuestion', 'answer',
     '_isDetailedStatsRecord', '_maxNumero', '_mergeMapaDeContadores', '_mergeHistoricoDeQuestoes', '_mergeDetailedStats', '_mergeCloudProgress']) evaluate(fn(name), 'game.js ' + name);
   const utils = fs.readFileSync(path.join(ROOT, 'js/utils.js'), 'utf8');
@@ -115,7 +118,7 @@ function harness(f) {
       character: 'nephros', difficulty: 'normal', journeyDomain: 'normal', gameStarted: true, gameOver: false, gameCompleted: false, completedGame: false,
       classBenefits: ledger, journeyAnswerOrdinal: answered ? 2 : 1, currentQuestionId: q.id, answered,
       characterLastAnswer: answered ? {domain: 'normal', journeyId: ledger.journeyId, ...answer, windowAnswers: 2, xp: 1, gold: 0, shield: false, baseXP: 10, baseGold: 5} : null,
-      level: 4, xp: 74, xpToNext: 800, score: 777, lives: 3, maxLives: 4, streak: 2, gold: 311, bonusUses: 1, correctTotal: 7,
+      level: 4, xp: 74, xpToNext: progression.costForLevel(4), score: 777, lives: 3, maxLives: 4, streak: 2, gold: 311, bonusUses: 1, correctTotal: 7,
       queueIds: [q.id], idx: 0, recentIds: ['technical-previous'], equipment: {weapon: {n: 'Technical item', atk: 1}},
       obtainedItems: [{n: 'Technical inventory'}], allItemsCollectedNotified: true, forjaPending: {cost: 120, options: [{n: 'Technical paid choice'}]},
       chestCorrectCount: 3, chestTarget: 5, chestsOpened: 2, legendaryAbilityUsed: {}, extraLifeGiven: false, narrativeShown: 0,

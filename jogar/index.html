@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.83',
+          release: 'nefroquest@16.84',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -139,7 +139,7 @@
   <link rel="stylesheet" href="styles/lumen/shell.css?v=16.18">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=16.55">
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.62">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=16.71">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=16.84">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.06">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.83">
   <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.60">
@@ -147,7 +147,7 @@
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
   <link rel="stylesheet" href="styles/lumen/modes.css?v=16.69">
   <link rel="stylesheet" href="styles/lumen/equipment.css?v=16.62">
-  <link rel="stylesheet" href="styles/lumen/boss.css?v=16.71">
+  <link rel="stylesheet" href="styles/lumen/boss.css?v=16.84">
   <link rel="stylesheet" href="styles/lumen/cinemalayout.css?v=16.43">
   <link rel="stylesheet" href="styles/lumen/cinemaboss.css?v=16.43">
   <link rel="stylesheet" href="styles/lumen/cinemaframe.css?v=16.28">
@@ -993,10 +993,14 @@
               <div id="heroTitle" class="hero-title">O Iniciante das Águas</div>
               <div id="heroName" class="hero-name"></div>
               </div>
+              <div class="nql-guardian-vitality" id="guardianVitality" role="group" aria-label="Vidas restantes">
+                <div class="nql-lives-heading"><span>Vidas</span><strong id="guardianLivesCount">3/3</strong></div>
+                <div id="lives" class="nql-life-track" aria-hidden="true"></div>
+              </div>
               <div class="nql-hero-progress">
               <strong id="guardianLevelLabel" class="nql-progress-level">Nível 1</strong>
-              <div class="xp-bar"><div id="xpFill"></div></div>
-              <small id="xpTxt" class="xp-text"><span class="nql-xp-fraction"><span class="nql-xp-unit">XP </span><span id="guardianXpAmount">0/120</span></span><span id="guardianXpHint" class="nql-xp-hint"></span></small>
+              <div class="xp-bar" id="guardianEvolutionProgress" role="progressbar" aria-label="Evolução para o próximo nível" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="xpFill"></div></div>
+              <small id="xpTxt" class="xp-text"><span class="nql-xp-fraction"><span class="nql-xp-unit">XP aplicado </span><span id="guardianXpAmount">0/200</span></span><span id="guardianXpHint" class="nql-xp-hint"></span><span id="guardianXpReserve" class="nql-xp-reserve" hidden></span></small>
               <!-- sem opacity:0.65 — punha o contador em 3,77:1 num texto de
                    11px que fica na tela a partida inteira. A classe .xp-text
                    já dá a cor discreta, e passa folgado sem a transparência. -->
@@ -1016,10 +1020,8 @@
       <div class="hud">
         <div class="tile"><span>Nível</span><strong id="level">1</strong></div>
         <div class="tile"><span>Pontos</span><strong id="score">0</strong></div>
-        <div class="tile"><span>Vidas</span><strong id="lives">❤❤❤</strong></div>
-        <div class="tile"><span>Recorde</span><strong id="record">0</strong></div>
+        <div class="tile tile-streak"><span>Sequência</span><strong id="streak">0</strong><small id="guardianStreakMultiplier"></small></div>
         <div class="tile"><span>Ouro</span><strong id="gold">0</strong></div>
-        <div class="tile"><span>Sequência</span><strong id="streak">0</strong></div>
       </div>
 
       <div class="story">
@@ -1843,11 +1845,12 @@
   <script defer src="data/question-revision-manifest.js?v=16.25"></script>
   <script defer src="data/question-revision-history.js?v=16.20"></script>
   <script defer src="js/question-revisions.js?v=16.12"></script>
+  <script defer src="js/progression.js?v=16.84"></script>
   <script defer src="js/utils.js?v=16.83"></script>
   <script defer src="js/audio.js?v=16.28"></script>
   <script defer src="js/leaderboard.js?v=16.47"></script>
   <script defer src="js/study-mode.js?v=16.69"></script>
-  <script defer src="js/game.js?v=16.71"></script>
+  <script defer src="js/game.js?v=16.84"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=15.92"></script>
@@ -1880,7 +1883,7 @@
   <script defer src="js/achievements.js?v=16.75"></script>
   <script defer src="js/changelog.js?v=15.94"></script>
   <script defer src="js/equipment-preview.js?v=16.62"></script>
-  <script defer src="js/dashboard.js?v=16.83"></script>
+  <script defer src="js/dashboard.js?v=16.84"></script>
 
   <!-- Single source of truth for profile popup menu items -->
   <template id="profilePopupItems">

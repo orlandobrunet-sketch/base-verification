@@ -11,31 +11,32 @@ async function abrirJogo(page: Page, largura: number, altura: number, estado: Re
   await expect(page.locator('#question')).not.toBeEmpty({ timeout: 20_000 });
 }
 
-test('vidas e sequência ficam logo abaixo do retrato, à vista em 720p', async ({ page }) => {
-  await abrirJogo(page, 1280, 720, { lives: 4, streak: 5 });
+test('vidas ficam abaixo do retrato e Sequência ocupa o rodapé, à vista em720p', async ({ page }) => {
+  await abrirJogo(page, 1280, 720, { lives: 4, maxLives: 5, streak: 5 });
   const vidas = (await page.locator('#lives').boundingBox())!;
   const sequencia = (await page.locator('#streak').boundingBox())!;
   const retrato = (await page.locator('#mainApp .portrait-frame').boundingBox())!;
   const nivel = (await page.locator('#guardianLevelLabel').boundingBox())!;
-  for (const caixa of [vidas, sequencia]) {
+  for (const caixa of [vidas]) {
     expect(caixa.y).toBeGreaterThanOrEqual(retrato.y + retrato.height);
     expect(caixa.y + caixa.height).toBeLessThanOrEqual(nivel.y);
     expect(caixa.y + caixa.height).toBeLessThanOrEqual(720);
   }
   expect(vidas.height).toBeLessThan(32);
-  expect(vidas.x + vidas.width).toBeLessThan(sequencia.x);
-  await expect(page.locator('.hud .tile:visible')).toHaveCount(6);
+  expect(sequencia.y).toBeGreaterThan(nivel.y);
+  await expect(page.locator('.hud .tile:visible')).toHaveCount(4);
+  await expect(page.locator('.hud .tile').nth(2)).toContainText('Sequência');
   await expect(page.locator('#level')).toBeAttached();
 });
 
 test('com letra a 200% as vidas não invadem o nível do herói', async ({ page }) => {
-  await abrirJogo(page, 1280, 720, { lives: 5, streak: 12 });
+  await abrirJogo(page, 1280, 720, { lives: 5, maxLives: 5, streak: 12 });
   await page.addStyleTag({ content: 'html { font-size: 32px !important; }' });
   const vidas = (await page.locator('#lives').boundingBox())!;
   const sequencia = (await page.locator('#streak').boundingBox())!;
   const nivel = (await page.locator('#guardianLevelLabel').boundingBox())!;
   expect(vidas.y + vidas.height).toBeLessThanOrEqual(nivel.y + 1);
-  expect(vidas.x + vidas.width).toBeLessThanOrEqual(sequencia.x + 1);
+  expect(sequencia.y).toBeGreaterThanOrEqual(nivel.y);
 });
 
 test('cronômetro desligado é só um ícone, e os números voltam ao ligar', async ({ page }) => {

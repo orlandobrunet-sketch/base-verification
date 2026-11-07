@@ -178,18 +178,20 @@ test('Hardcore não oferece opt-in nem cria uma reserva do piloto legado', async
   expect(await pilotEnvelope(page)).toBeNull();
 });
 
-test('Nephros: XP no teto não produz crédito fictício nem compensação na resposta seguinte', async ({ page }) => {
+test('Nephros: XP no teto permanece guardado e cada bônus retido é creditado uma vez', async ({ page }) => {
   await startPilot(page, 'nephros');
   await changeState(page, { level: 1, xp: 200, xpToNext: 200, correctTotal: 0 });
   const capped = await answerTechnical(page);
-  expect(capped).toMatchObject({ level: 1, xp: 200 });
-  expect(capped.classBenefits.xpGranted).toBe(0);
-  expect(capped.pilotLastAnswer.xp).toBe(0);
-  await expect(page.locator('#feedback')).not.toContainText('+1 XP do piloto');
+  expect(capped.level).toBe(1);
+  expect(capped.xp).toBe(200 + capped.pilotLastAnswer.baseXP + 1);
+  expect(capped.classBenefits.xpGranted).toBe(1);
+  expect(capped.pilotLastAnswer.xp).toBe(1);
+  expect((await pilotEnvelope(page)).save.xp).toBe(capped.xp);
+  await expect(page.locator('#feedback')).toContainText('+1 XP do piloto');
   await advanceTechnical(page);
   await changeState(page, { correctTotal: 9, xp: 0 });
   const next = await answerTechnical(page);
-  expect(next.classBenefits.xpGranted).toBe(1);
+  expect(next.classBenefits.xpGranted).toBe(2);
   expect(next.pilotLastAnswer.xp).toBe(1);
 });
 
