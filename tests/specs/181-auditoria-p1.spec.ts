@@ -145,7 +145,42 @@ for (const viewport of [{ width: 1366, height: 768 }, NOTEBOOK]) {
     await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
     await injectBossState(page);
     await page.locator('#question').evaluate(el => { el.textContent = 'Pergunta curta?'; });
+    // O sorteio do banco não define a geometria deste teste de apresentação.
+    // Duas linhas por alternativa reproduzem o transbordamento observado na CI.
+    await page.locator('#options .opt-body').evaluateAll(els => els.forEach(el => {
+      el.textContent = 'Alternativa demonstrativa com informações adicionais para validar a leitura e a escolha em uma janela de notebook.';
+    }));
+    const lines = await page.locator('#options .opt-body').evaluateAll(els => els.map(el => el.getBoundingClientRect().height / parseFloat(getComputedStyle(el).lineHeight)));
+    expect(lines.every(count => count >= 1.9 && count <= 2.1)).toBe(true);
     await expect.poll(() => page.locator('#options .option').last().evaluate(el => el.getBoundingClientRect().bottom)).toBeLessThanOrEqual(viewport.height);
+  });
+}
+
+for (const viewport of [NOTEBOOK, CELULAR]) {
+  test(`chefe em ${viewport.width}px: respostas longas continuam completas e acessíveis por Tab`, async ({ page }) => {
+    await page.setViewportSize(viewport);
+    await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
+    await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+    await injectBossState(page);
+    const text = 'Alternativa demonstrativa com informações adicionais para validar a leitura e a escolha em uma janela de notebook. '.repeat(3).trim();
+    await page.locator('#question').evaluate(el => { el.textContent = 'Pergunta de demonstração com respostas longas.'; });
+    const options = page.locator('#options .option');
+    await expect(options).toHaveCount(4);
+    await options.locator('.opt-body').evaluateAll((els, text) => els.forEach(el => { el.textContent = text; }), text);
+    await options.first().focus();
+    for (let index = 1; index < 4; index++) await page.keyboard.press('Tab');
+    const last = options.last(); await expect(last).toBeFocused();
+    await last.scrollIntoViewIfNeeded();
+    const geometry = await last.evaluate(el => {
+      const body = el.querySelector('.opt-body')!, rect = el.getBoundingClientRect(), textRect = body.getBoundingClientRect();
+      return { height: rect.height, textHeight: textRect.height, overflow: body.scrollWidth > body.clientWidth + 1,
+        hit: el.contains(document.elementFromPoint(rect.x + rect.width / 2, rect.y + rect.height / 2)) };
+    });
+    expect(geometry.height).toBeGreaterThanOrEqual(44);
+    expect(geometry.height).toBeGreaterThanOrEqual(geometry.textHeight);
+    expect(geometry.overflow).toBe(false); expect(geometry.hit).toBe(true);
+    await expect(last.locator('.opt-body')).toHaveText(text);
+    expect(await page.locator('#mainApp').evaluate(el => el.scrollWidth <= innerWidth)).toBe(true);
   });
 }
 

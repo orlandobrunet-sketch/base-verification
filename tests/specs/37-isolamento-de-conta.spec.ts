@@ -58,6 +58,11 @@ const CHAVES_DE_APARELHO: Record<string, string> = {
 };
 
 async function abrirApp(page: Page) {
+  // Este contrato usa armazenamento local e SDK simulado, não serviços externos.
+  // CSS remoto de fontes já consumiu sozinho todo o orçamento antes da limpeza.
+  const origin = new URL(test.info().project.use.baseURL as string || process.env.BASE_URL || 'http://localhost:5500').origin;
+  await page.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+  await page.routeWebSocket('**/*', socket => socket.close());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => typeof (window as any).clearLocalProgress === 'function');
 }

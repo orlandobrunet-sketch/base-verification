@@ -988,7 +988,7 @@
     }
 
     return `<div class="nqd-error-ledger">${rows.map(([reason, count]) => `
-      <div><span>${_escape(ERROR_REASON_LABELS[reason] || reason)}</span><strong>${_formatNumber(count)}</strong></div>
+      <div><span>${_escape(ERROR_REASON_LABELS[reason] || reason)}</span><span class="nqd-error-count"><strong>${_formatNumber(count)}</strong><small>${_number(count, 0) === 1 ? 'registro' : 'registros'}</small></span></div>
     `).join('')}</div>`;
   }
 
@@ -1826,6 +1826,18 @@
     canvas.setAttribute('aria-hidden', 'true');
     container.replaceChildren(canvas);
 
+    // Em espaço estreito, o mesmo perfil é apresentado sem reduzir o texto.
+    // A descrição acessível do contêiner já contém estes valores completos.
+    const values = document.createElement('ul');
+    values.className = 'nqd-radar-values';
+    values.setAttribute('aria-hidden', 'true');
+    values.innerHTML = skills.map(skill => {
+      const total = _number(skill.totalAnswered, 0);
+      const measured = total >= 5 && skill.accuracy != null;
+      return `<li data-profile-skill="${_escape(skill.id)}"><span>${_escape(skill.label)}</span><strong>${measured ? Math.round(skill.accuracy) + '%' : 'Sem amostra'}</strong>${measured ? '<small>' + total + ' respostas</small>' : ''}</li>`;
+    }).join('');
+    container.append(values);
+
     const context = canvas.getContext('2d');
     if (!context || !skills.length) return;
     context.scale(ratio, ratio);
@@ -1849,11 +1861,18 @@
     // O desenho inteiro é uma função do progresso (0..1) para poder ser
     // animado: o polígono cresce do centro até o valor real. Sob
     // prefers-reduced-motion, renderiza uma única vez em 1.
+    let renderedProgress = 0;
     const desenhar = progresso => {
+      renderedProgress = progresso;
       context.clearRect(0, 0, size, size);
       _radarFrame(context, { skills, size, center, radius, labelRadius, angleFor, pointFor, medido, fator, progresso, identityColors });
     };
 
+    if (document.fonts && typeof document.fonts.load === 'function') {
+      document.fonts.load('600 18px "Source Sans 3"').then(() => {
+        if (canvas.isConnected) desenhar(renderedProgress);
+      }).catch(() => {});
+    }
     const semMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (semMovimento) {
       desenhar(1);
@@ -1941,7 +1960,7 @@
       const x = center + Math.cos(angle) * labelRadius;
       const y = center + Math.sin(angle) * labelRadius;
       context.fillStyle = identityColors.get(skill.id) || '#b8c6d8';
-      context.font = '600 18px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+      context.font = '600 18px "Source Sans 3", sans-serif';
       context.textAlign = Math.cos(angle) > 0.25 ? 'left' : Math.cos(angle) < -0.25 ? 'right' : 'center';
       context.textBaseline = 'middle';
       const rotulo = medido(skill) ? `${Math.round(skill.accuracy)}%` : '—';

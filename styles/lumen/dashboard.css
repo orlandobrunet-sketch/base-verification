@@ -4302,8 +4302,60 @@
 }
 
 /* Competências */
-#nqDashboard[data-nq-ui="lumen"] .nqd-skill-row { padding: .75rem 0; border-color: var(--nqh-linha); }
-#nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-side { border: 0; background: rgba(var(--nql-abyss-rgb), .45); }
+/* Leitura por área e reflexão têm hierarquia e superfícies distintas. */
+#nqDashboard[data-nq-ui="lumen"] #nqdPane-skills {
+  font-family: 'Source Sans 3', sans-serif;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-list-section {
+  background: linear-gradient(135deg, rgba(63,119,136,.07), transparent 60%), #101a2a;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-row { padding: 1rem .1rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-name {
+  font-family: 'Source Sans 3', sans-serif;
+  font-weight: 600;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-sample { font: 400 .875rem/1.5 'Source Sans 3', sans-serif; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-value { font: 600 1.25rem/1.2 'Source Sans 3', sans-serif; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-side { padding: 1.25rem; background: #0b1522; border: 1px solid #2c4352; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-side h3 { font-size: 1.25rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-side p,
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-mobile-body p { font: 400 .875rem/1.5 'Source Sans 3', sans-serif; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-patterns {
+  margin-top: 1.75rem;
+  padding: clamp(1.25rem, 2.5vw, 1.75rem);
+  border-color: #5b4933;
+  background: linear-gradient(115deg, rgba(155,111,46,.08), transparent 70%), #1b1b22;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-patterns h2 { color: #e8c97d; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-empty { font: 400 1rem/1.6 'Source Sans 3', sans-serif; color: #d2d5dc; }
+@media(max-width:42rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-error-patterns { margin-top: 1.25rem; }
+}
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-row { border-color: var(--nqh-linha); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-ledger { display: grid; font: 400 1rem/1.5 'Source Sans 3', sans-serif; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-ledger > div { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: .75rem 1.25rem; padding: .75rem 0; border-top: 1px solid #4d4140; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-ledger > div > span:first-child { overflow-wrap: anywhere; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-count { display: flex; align-items: baseline; gap: .35rem; flex-wrap: wrap; color: #c9ced8; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-count strong { color: #f0d491; font-size: 1.5rem; line-height: 1.1; font-weight: 600; font-variant-numeric: tabular-nums; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-count small { font-size: .8125rem; }
+@media(max-width:42rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-error-ledger > div { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-side,
+#nqDashboard[data-nq-ui="lumen"] .nqd-skill-radar-mobile-body { container: skill-profile / inline-size; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-radar-values { display: none; list-style: none; margin: 1rem 0 0; padding: 0; }
+@container skill-profile (max-width: 15rem) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-radar canvas { display: none; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-radar-values { display: grid; gap: .9rem; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-radar-values li { min-width: 0; display: grid; gap: .2rem; padding-bottom: .8rem; border-bottom: 1px solid #2c4352; font: 400 1rem/1.4 'Source Sans 3', sans-serif; overflow-wrap: anywhere; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-radar-values span { color: var(--nqd-skill-identity, #d8e4ed); }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-radar-values strong { color: #e4eaf1; font-size: 1.125rem; font-variant-numeric: tabular-nums; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-radar-values small { color: #b8c6d8; font-size: .875rem; }
+}
+
+/* A retomada se distingue das áreas para explorar sem mudar sua prioridade. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-suggestion { background: #201c31; border-color: #655080; }
 
 /* Mapa clínico: áreas em grade, com o detalhe ocupando a linha ao abrir. */
 #nqDashboard[data-nq-ui="lumen"] .nqd-map-route { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr)); gap: .75rem; }
