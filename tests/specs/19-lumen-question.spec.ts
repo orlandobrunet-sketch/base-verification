@@ -30,6 +30,10 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     const brand = page.getByRole('button', { name: 'Voltar ao início do NefroQuest' });
 
     await brand.focus();
+    // Foco programático pode herdar a modalidade de ponteiro. Percorrer por
+    // teclado exercita o :focus-visible que o usuário de teclado recebe.
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Shift+Tab');
     await expect(brand).toBeFocused();
     await expect(brand).not.toHaveCSS('outline-style', 'none');
     await brand.press('Enter');
