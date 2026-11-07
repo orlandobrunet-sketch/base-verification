@@ -4234,7 +4234,7 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail li > span { display: block; color: var(--nql-text-soft); font: 500 .8125rem/1.3 var(--nql-font-body); font-variant-numeric: tabular-nums; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail li.is-done > span,
 #nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail li.is-next > span { color: var(--nqh-ouro); }
-#nqDashboard[data-nq-ui="lumen"] .nqd-stage-next { grid-column: 2; grid-row: 1 / span 3; align-self: start; max-width: 18rem; margin: 0; color: var(--nql-text-soft); font: 400 .9375rem/1.45 var(--nql-font-body); text-align: right; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-next { grid-column: 2; grid-row: 1 / span 3; align-self: start; max-width: none; margin: 0; color: var(--nql-text-soft); font: 400 .9375rem/1.45 var(--nql-font-body); text-align: right; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-stage-next strong { color: var(--nql-parchment); font-weight: 600; }
 
 @media (max-width: 40rem) {
@@ -4243,8 +4243,8 @@
   #nqDashboard[data-nq-ui="lumen"] .nqd-stage-art img { object-position: 50% 16%; }
 }
 
-/* Sem largura para a frase ao lado do nome, ela volta para baixo da trilha. */
-@container (max-width: 44rem) {
+/* A frase usa sua largura natural; sem espaço confortável, fica abaixo da trilha. */
+@container (max-width: 60rem) {
   #nqDashboard[data-nq-ui="lumen"] .nqd-stage-body { grid-template-columns: minmax(0, 1fr); }
   #nqDashboard[data-nq-ui="lumen"] .nqd-stage-next { grid-column: 1; grid-row: auto; max-width: none; margin-top: .35rem; text-align: left; }
 }
@@ -4294,7 +4294,7 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-next-action[data-action-kind="study"] { --nqd-next-surface: #172a36; --nqd-next-border: #426273; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-next-action[data-action-kind="review"] { --nqd-next-surface: #252035; --nqd-next-border: #665579; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-next-action[data-action-kind="gap"] { --nqd-next-surface: #2b211d; --nqd-next-border: #815e48; }
-#nqDashboard[data-nq-ui="lumen"] .nqd-next-action-copy strong { font: 500 1.25rem/1.25 var(--nql-font-display); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-next-action-copy strong { font: 500 1.25rem/1.25 var(--nql-font-display); overflow-wrap: anywhere; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-next-actions-list .nqd-primary-action,
 #nqDashboard[data-nq-ui="lumen"] .nqd-next-actions-list .nqd-text-action { align-self: flex-start; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-metric-label { font: 400 .875rem/1.35 var(--nql-font-body); letter-spacing: 0; text-transform: none; }
