@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.81',
+          release: 'nefroquest@16.82',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -141,7 +141,7 @@
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.62">
   <link rel="stylesheet" href="styles/lumen/game.css?v=16.71">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.06">
-  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.81">
+  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.82">
   <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.60">
   <link rel="stylesheet" href="styles/lumen/forge.css?v=16.64">
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
@@ -1880,7 +1880,7 @@
   <script defer src="js/achievements.js?v=16.75"></script>
   <script defer src="js/changelog.js?v=15.94"></script>
   <script defer src="js/equipment-preview.js?v=16.62"></script>
-  <script defer src="js/dashboard.js?v=16.78"></script>
+  <script defer src="js/dashboard.js?v=16.82"></script>
 
   <!-- Single source of truth for profile popup menu items -->
   <template id="profilePopupItems">
