@@ -4282,14 +4282,18 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 1rem 1.1rem;
-  border: 1px solid var(--nqh-linha);
+  border: 1px solid var(--nqd-next-border, var(--nqh-linha));
   border-radius: 10px;
-  background: var(--nqh-painel);
+  background: var(--nqd-next-surface, var(--nqh-painel));
 }
 #nqDashboard[data-nq-ui="lumen"] .nqd-next-actions-list .nqd-next-action.is-primary {
   border-color: rgba(var(--nqh-ouro-rgb), .55);
-  background: linear-gradient(155deg, rgba(var(--nqh-ouro-rgb), .13), rgba(var(--nql-cortex-rgb), .8));
+  background: var(--nqd-next-surface, linear-gradient(155deg, rgba(var(--nqh-ouro-rgb), .13), rgba(var(--nql-cortex-rgb), .8)));
 }
+/* A finalidade define a superfície; a borda dourada mantém a prioridade. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-next-action[data-action-kind="study"] { --nqd-next-surface: #172a36; --nqd-next-border: #426273; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-next-action[data-action-kind="review"] { --nqd-next-surface: #252035; --nqd-next-border: #665579; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-next-action[data-action-kind="gap"] { --nqd-next-surface: #2b211d; --nqd-next-border: #815e48; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-next-action-copy strong { font: 500 1.25rem/1.25 var(--nql-font-display); }
 #nqDashboard[data-nq-ui="lumen"] .nqd-next-actions-list .nqd-primary-action,
 #nqDashboard[data-nq-ui="lumen"] .nqd-next-actions-list .nqd-text-action { align-self: flex-start; }
