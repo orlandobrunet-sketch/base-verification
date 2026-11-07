@@ -4227,6 +4227,20 @@
 }
 #nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail::before { right: 0; background: rgba(var(--nql-parchment-rgb), .13); }
 #nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail::after { width: var(--acertos); background: linear-gradient(90deg, #8a7339, var(--nqh-ouro)); box-shadow: 0 0 .6rem rgba(var(--nqh-ouro-rgb), .5); }
+/* Dois reflexos finitos percorrem somente o progresso já preenchido. */
+@media (prefers-reduced-motion: no-preference) {
+  #nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail::after {
+    background-image: linear-gradient(105deg, transparent 42%, rgba(255,242,184,.8) 50%, transparent 58%), linear-gradient(90deg, #8a7339, var(--nqh-ouro));
+    background-size: 250% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    background-position: 200% 0, 0 0;
+    animation: nqd-stage-trail-sheen 1.8s ease-in-out 2;
+  }
+}
+@keyframes nqd-stage-trail-sheen {
+  from { background-position: 200% 0, 0 0; }
+  to { background-position: -100% 0, 0 0; }
+}
 #nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail li { position: absolute; top: 0; left: var(--pos); z-index: 1; width: var(--selo); text-align: center; translate: -50% 0; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail img { display: block; width: var(--selo); height: var(--selo); object-fit: contain; filter: grayscale(1) brightness(.5); }
 #nqDashboard[data-nq-ui="lumen"] .nqd-stage-trail li.is-next img { filter: grayscale(.25) brightness(.95); }
