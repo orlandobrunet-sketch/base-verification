@@ -47,14 +47,14 @@ test('visitante mantém bloqueios; visão administrativa não grava descobertas'
   await page.keyboard.press('Escape');
   await page.evaluate(() => { (window as any).isAdminUser = () => true; void (window as any).openBibliotecaModal(); });
   await expect(page.locator('#nqdPane-library')).toBeVisible();
-  await expect(page.locator('.nqd-library-summary')).toContainText('Catálogo completo');
+  await expect(page.locator('.nqd-library-summary')).toContainText('Referências descobertas até o momento: 0/');
   const total = await page.evaluate(() => (0, eval)('nefroArticles.length + Object.keys(refsDB).length'));
   await expect(page.locator('[data-library-item]')).toHaveCount(total);
-  await page.locator('#nqDashLibraryFilter').selectOption('guideline');
+  await expect(page.locator('#nqDashLibraryFilter option[value="guideline"]')).toHaveCount(0);
   const guidelines = await page.evaluate(() => (0, eval)(`Object.values(refsDB).filter(r => r.badge === 'GUIDELINE' || /kdigo/i.test((r.label || '') + ' ' + (r.journal || ''))).length`));
   expect(guidelines).toBeGreaterThan(0);
   // Além das fontes, entram os artigos que o catálogo marca como diretriz.
-  expect(await page.locator('[data-library-item]:visible').count()).toBeGreaterThanOrEqual(guidelines);
+  expect(await page.locator('[data-library-item]:visible [data-library-guideline="true"]').count()).toBeGreaterThanOrEqual(guidelines);
   expect(await page.evaluate(() => [localStorage.getItem('unlockedArticles'), localStorage.getItem('nq-unlocked-refs')])).toEqual(before);
 });
 
@@ -84,7 +84,7 @@ test('retoma busca, filtro, resumo e leitura sem transferir contexto para outra 
   await opener.click();
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
   await page.locator('#nqDashLibrarySearch').fill('kdigo');
-  await page.locator('#nqDashLibraryFilter').selectOption('guideline');
+  await page.locator('#nqDashLibraryFilter').selectOption('theme:DRC');
   await page.locator('#nqDashLibrarySort').selectOption('oldest');
   const first = page.locator('[data-library-item]:visible').first();
   const key = await first.locator('[data-library-key]').getAttribute('data-library-key');
@@ -100,7 +100,7 @@ test('retoma busca, filtro, resumo e leitura sem transferir contexto para outra 
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
   await expect(page.getByRole('tab', { name: 'Todos' })).toHaveAttribute('aria-selected', 'true');
   await expect(page.locator('#nqDashLibrarySearch')).toHaveValue('kdigo');
-  await expect(page.locator('#nqDashLibraryFilter')).toHaveValue('guideline');
+  await expect(page.locator('#nqDashLibraryFilter')).toHaveValue('theme:DRC');
   await expect(page.locator('#nqDashLibrarySort')).toHaveValue('oldest');
   await expect(page.locator('[data-library-item]:visible').first().locator('[data-library-key]')).toHaveAttribute('data-library-key', key!);
   await expect(page.locator('[data-library-item]:visible').first().locator('[data-action="_dashToggleArticle"]')).toHaveAttribute('aria-haspopup', 'dialog');

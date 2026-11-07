@@ -54,7 +54,7 @@ test('raridade substitui tema e é restaurada após leitura e reabertura', async
   await expect(epic).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#nqDashLibraryFilter')).toHaveValue('all');
   await expect(page.locator('[data-library-filter-summary]')).toContainText('Épico');
-  const cards = page.locator('[data-library-entry]:visible');
+  const cards = page.locator('[data-library-item]:visible');
   await expect(cards).toHaveCount(1);
   await expect(cards).toHaveAttribute('data-library-rarity', 'épico');
   await cards.getByRole('button', { name: 'Ler resumo', exact: true }).click();
@@ -73,7 +73,7 @@ test('raridade substitui tema e é restaurada após leitura e reabertura', async
   await page.getByRole('button', { name: 'Limpar filtro', exact: true }).click();
   await expect(page.locator('#nqDashLibrarySearch')).toHaveValue('zzzz-sem-resultado');
   await expect(page.locator('#nqDashLibrarySort')).toHaveValue('oldest');
-  await expect(page.locator('#nqDashLibraryDiscovery')).toHaveValue('unlocked');
+  await expect(page.locator('#nqDashLibraryDiscovery')).toHaveValue('all');
   await expect(epic).toHaveAttribute('aria-pressed', 'false');
   await expect(cards).toHaveCount(0);
 });
@@ -107,6 +107,6 @@ test('controles refluem com texto ampliado, têm contraste e funcionam sem a ilu
   await page.locator('[data-atrium-route="library"]').click();
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
   await expect(art).toBeHidden();
-  await page.locator('#nqDashLibraryFilter').selectOption('guideline');
-  await expect(page.locator('[data-library-filter-summary]')).toHaveText('Fontes clínicas: Diretrizes');
+  await page.locator('#nqDashLibraryFilter').selectOption('theme:DRC');
+  await expect(page.locator('[data-library-filter-summary]')).toHaveText('Tema: DRC');
 });

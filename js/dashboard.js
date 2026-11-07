@@ -1487,7 +1487,7 @@
           kindLabel: 'Pergaminho',
           unlocked: unlockedArticles.has(index),
           discovered: discoveredArticles.has(index),
-          unlockHint: 'Recompensa possível de um baú da jornada.',
+          unlockHint: rarity === 'lendário' ? 'Pergaminho lendário: exclusivo de baús da jornada.' : 'Recompensa possível de um baú da jornada.',
           type: 'Artigo',
           title: article.titulo || 'Artigo',
           source: article.jornal || article.autores || '',
@@ -1604,38 +1604,38 @@
       <section class="nqd-pane nq-dash-pane" id="nqdPane-library" role="tabpanel" aria-labelledby="nqdTab-library" data-dash-pane="library" hidden>
         <header class="nqd-grimoire-header">
           <div class="nqd-grimoire-intro"><h1 class="nqd-title-lg">Grimório</h1><p class="nqd-grimoire-subtitle">Biblioteca Clínica</p>
-            <p class="nqd-grimoire-rule">Seu acervo cresce durante a jornada: acerte questões para descobrir fontes; baús podem trazer pergaminhos.</p>
-            <p class="nqd-section-copy nqd-library-summary">${library.adminView ? `<span class="nqd-grimoire-preview">Prévia administrativa</span> Catálogo completo, com ${library.totalArticles + library.totalRefs} estudos. Suas descobertas: ${totalUnlocked}.` : `${totalUnlocked} de ${library.totalArticles + library.totalRefs} estudos descobertos.`}</p>
+            <p class="nqd-grimoire-rule">Seu acervo cresce durante a jornada: acerte questões ou abra baús para descobrir novos artigos</p>
+            <p class="nqd-section-copy nqd-library-summary">Referências descobertas até o momento: ${totalUnlocked}/${library.totalArticles + library.totalRefs}</p>
           </div>
-          <img class="nqd-grimoire-art" src="/assets/achievements/grimorio.webp" width="512" height="512" alt="" aria-hidden="true" decoding="async">
+          <div class="nqd-grimoire-art-region" aria-hidden="true"><img class="nqd-grimoire-art" src="/assets/achievements/grimorio.webp" width="512" height="512" alt="" aria-hidden="true" decoding="async"></div>
         </header>
           <div class="nqd-library-tabs" role="tablist" aria-label="Coleções do Grimório">
-            <button type="button" role="tab" id="nqDashLibraryTab-all" aria-selected="true" aria-controls="nqDashLibraryCollection" tabindex="0" data-library-collection="all"><span>Todos</span><strong data-library-count>${totalUnlocked}</strong></button>
+            <button type="button" role="tab" id="nqDashLibraryTab-all" aria-selected="true" aria-controls="nqDashLibraryCollection" tabindex="0" data-library-collection="all"><span>Todos</span><strong data-library-count>${library.totalArticles + library.totalRefs}</strong></button>
             <button type="button" role="tab" id="nqDashLibraryTab-favorites" aria-selected="false" aria-controls="nqDashLibraryCollection" tabindex="-1" data-library-collection="favorites"><span>Favoritos</span><strong data-library-count>${favoriteCount}</strong></button>
           </div>
-          <div class="nqd-library-search-panel">
+          <div class="nqd-library-controls"><div class="nqd-library-search-panel">
             <label class="nqd-library-query"><span>Buscar no Grimório</span><span class="nqd-search">${_svg('search')}<input id="nqDashLibrarySearch" type="search" placeholder="Buscar título, autor, tema ou ano" autocomplete="off"></span></label>
             <label class="nqd-library-sort"><span>Ordenar</span><select id="nqDashLibrarySort">
-              <option value="recent" selected>Publicação mais recente</option><option value="oldest">Publicação mais antiga</option><option value="title">Título A-Z</option><option value="type">Tipo</option>
+              <option value="recent" selected>Mais recentes</option><option value="oldest">Mais antigos</option><option value="title">Título A-Z</option><option value="type">Tipo</option>
             </select></label>
           </div>
           <section class="nqd-library-explore" aria-labelledby="nqDashExploreTitle" data-library-explore>
-            <div class="nqd-library-explore-heading"><h2 id="nqDashExploreTitle">Explorar o acervo</h2><p id="nqDashExploreHint">Explore por tema ou raridade.</p></div>
+            <div class="nqd-library-explore-heading"><h2 id="nqDashExploreTitle">Explorar o acervo</h2><p id="nqDashExploreHint">Selecione um tema ou uma raridade; uma escolha substitui a outra.</p></div>
             <div class="nqd-library-explore-controls">
-              <label class="nqd-library-discovery"><span>Descoberta</span><select id="nqDashLibraryDiscovery">${library.adminView ? '<option value="all" selected>Catálogo completo (prévia)</option>' : ''}<option value="unlocked"${library.adminView ? '' : ' selected'}>Descobertos</option><option value="locked">A descobrir</option></select></label>
-              <label class="nqd-library-filter"><span>Fontes clínicas</span><select id="nqDashLibraryFilter" aria-describedby="nqDashExploreHint">
-                <option value="all">Todos os temas e tipos</option><optgroup label="Tipo"><option value="guideline">Diretrizes</option></optgroup>
+              <label class="nqd-library-discovery"><span>Descoberta</span><select id="nqDashLibraryDiscovery"><option value="all" selected>Todos</option><option value="unlocked">Liberados</option><option value="locked">Bloqueados</option></select></label>
+              <label class="nqd-library-filter"><span>Temas</span><select id="nqDashLibraryFilter" aria-describedby="nqDashExploreHint">
+                <option value="all">Todos</option>
                 <optgroup label="Temas">${themes.map(theme => `<option value="theme:${_escape(theme)}">${_escape(theme)}</option>`).join('')}</optgroup>
               </select></label>
-              <fieldset class="nqd-library-rarities" aria-describedby="nqDashExploreHint"><legend>Pergaminhos</legend><div>
+              <fieldset class="nqd-library-rarities" aria-describedby="nqDashExploreHint"><legend>Raridade</legend><div>
                 ${rarities.map(rarity => `<button type="button" data-library-rarity-filter="${_escape(rarity)}" aria-pressed="false">${_escape(_libraryRarityLabel(rarity))}</button>`).join('')}
               </div></fieldset>
             </div>
             <div class="nqd-library-filter-state"><span data-library-filter-summary aria-live="polite">Todos os temas e raridades</span><button type="button" data-library-clear-filter hidden>Limpar filtro</button></div>
-          </section>
+          </section></div>
         <div class="nqd-library-collection" id="nqDashLibraryCollection" role="tabpanel" aria-labelledby="nqDashLibraryTab-all">
           <p class="nqd-library-collection-status" id="nqDashLibraryCollectionCount" aria-live="polite"></p>
-          ${!totalUnlocked && !library.adminView ? `<div class="nqd-empty" data-library-empty><strong>Seu Grimório aguarda a primeira descoberta.</strong><p>Uma resposta correta libera as fontes citadas. Baús podem trazer pergaminhos; consulte “A descobrir” para explorar a coleção.</p><button type="button" class="nqd-text-action" data-action="${_dashboardData && _dashboardData.save ? '_dashResumeJourney' : '_dashStartJourney'}"><span>${_dashboardData && _dashboardData.save ? 'Continuar jornada' : 'Começar jornada'}</span>${_svg('arrow')}</button></div>` : ''}
+          ${!totalUnlocked && !library.adminView ? `<div class="nqd-empty" data-library-empty><strong>Seu Grimório aguarda a primeira descoberta.</strong><p>Uma resposta correta libera as fontes citadas. Baús também podem trazer novos artigos. Os itens bloqueados mostram como descobri-los.</p><button type="button" class="nqd-text-action" data-action="${_dashboardData && _dashboardData.save ? '_dashResumeJourney' : '_dashStartJourney'}"><span>${_dashboardData && _dashboardData.save ? 'Continuar jornada' : 'Começar jornada'}</span>${_svg('arrow')}</button></div>` : ''}
           <div class="nqd-library-list" id="nqDashLibraryList">${_libraryCards(sortedItems)}</div>
           <div class="nqd-empty nqd-library-no-results" id="nqDashLibraryNoResults" hidden><strong>Nada encontrado nesta coleção.</strong><p>Tente outro termo, limpe o filtro ou escolha uma coleção diferente.</p></div>
         </div>
@@ -2101,8 +2101,8 @@
       collection: root.querySelector('[data-library-collection][aria-selected="true"]')?.dataset.libraryCollection || 'all',
       search: root.querySelector('#nqDashLibrarySearch')?.value || '',
       filter: _libraryFilterValue(root),
-      discovery: root.querySelector('#nqDashLibraryDiscovery')?.value || 'unlocked',
       sort: root.querySelector('#nqDashLibrarySort')?.value || 'recent',
+      discovery: root.querySelector('#nqDashLibraryDiscovery')?.value || 'all',
       expanded: [...root.querySelectorAll('[data-library-item].is-expanded [data-library-key]')].map(el => el.dataset.libraryKey),
       scroll: _activeTab === 'library' ? root.querySelector('.nqd-main').scrollTop : (_libraryReadingContext?.scroll || 0),
     };
@@ -2185,6 +2185,7 @@
     if (librarySort) {
       librarySort.addEventListener('change', () => _applyLibraryView(root));
     }
+    root.querySelector('#nqDashLibraryDiscovery')?.addEventListener('change', () => _applyLibraryView(root));
 
     const libraryFilter = root.querySelector('#nqDashLibraryFilter');
     if (libraryFilter) libraryFilter.addEventListener('change', () => {
@@ -2206,12 +2207,10 @@
     });
     const grimoireArt = root.querySelector('.nqd-grimoire-art');
     if (grimoireArt) {
-      const hideFailedArt = () => { grimoireArt.hidden = true; };
+      const hideFailedArt = () => { grimoireArt.hidden = true; grimoireArt.closest('.nqd-grimoire-header').classList.add('has-no-art'); };
       grimoireArt.addEventListener('error', hideFailedArt);
       if (grimoireArt.complete && !grimoireArt.naturalWidth) hideFailedArt();
     }
-    const libraryDiscovery = root.querySelector('#nqDashLibraryDiscovery');
-    if (libraryDiscovery) libraryDiscovery.addEventListener('change', () => _applyLibraryView(root));
 
     const libraryTabs = [...root.querySelectorAll('[data-library-collection]')];
     libraryTabs.forEach((button, index) => {
@@ -2320,7 +2319,7 @@
   }
 
   function _libraryFilterValue(root) {
-    return root.dataset.libraryFilter || 'all';
+    return (root.closest('#nqDashboard') || root).dataset.libraryFilter || 'all';
   }
 
   function _selectLibraryFilter(root, value) {
@@ -2332,8 +2331,8 @@
     if (select) select.value = sourceOption ? value : 'all';
     rarityButtons.forEach(button => button.setAttribute('aria-pressed', String(button === rarityButton)));
     const summary = root.querySelector('[data-library-filter-summary]');
-    if (summary) summary.textContent = rarityButton ? 'Pergaminhos: ' + rarityButton.textContent
-      : sourceOption && value !== 'all' ? 'Fontes clínicas: ' + sourceOption.textContent : 'Todos os temas e raridades';
+    if (summary) summary.textContent = rarityButton ? 'Raridade: ' + rarityButton.textContent
+      : sourceOption && value !== 'all' ? 'Tema: ' + sourceOption.textContent : 'Todos os temas e raridades';
     const clear = root.querySelector('[data-library-clear-filter]');
     if (clear) clear.hidden = _libraryFilterValue(root) === 'all';
   }
@@ -2342,14 +2341,6 @@
     const search = root.querySelector('#nqDashLibrarySearch');
     if (search) {
       search.placeholder = collection === 'favorites' ? 'Buscar nos favoritos' : 'Buscar título, autor, tema ou ano';
-    }
-    const discovery = root.querySelector('#nqDashLibraryDiscovery');
-    if (discovery) {
-      const entries = [...root.querySelectorAll('[data-library-entry]')].filter(entry => collection !== 'favorites' || entry.dataset.libraryFavorite === 'true');
-      const discovered = entries.filter(entry => entry.dataset.libraryDiscovered === 'true').length;
-      discovery.querySelector('[value="unlocked"]').textContent = `Descobertos (${discovered})`;
-      discovery.querySelector('[value="locked"]').textContent = `A descobrir (${entries.length - discovered})`;
-      discovery.closest('label').hidden = collection === 'favorites';
     }
     const explore = root.querySelector('[data-library-explore]');
     if (explore) explore.hidden = collection === 'favorites';
@@ -2364,13 +2355,12 @@
     const query = (root.querySelector('#nqDashLibrarySearch')?.value || '').trim().toLocaleLowerCase('pt-BR');
     const sort = root.querySelector('#nqDashLibrarySort')?.value || 'recent';
     const filter = _libraryFilterValue(root);
-    const discovery = root.querySelector('#nqDashLibraryDiscovery')?.value || 'unlocked';
+    const discovery = root.querySelector('#nqDashLibraryDiscovery')?.value || 'all';
+
     const items = [...list.querySelectorAll('[data-library-entry]')];
-    // A aba acompanha o universo escolhido (catálogo, descobertos ou a descobrir),
-    // antes da busca. A prévia administrativa nunca grava descobertas reais.
+    // Todos conta o catálogo antes da busca; acesso não equivale a descoberta.
     const allCount = root.querySelector('#nqDashLibraryTab-all [data-library-count]');
-    if (allCount) allCount.textContent = String(items.filter(item => discovery === 'all'
-      || (discovery === 'unlocked' ? item.dataset.libraryDiscovered === 'true' : item.dataset.libraryDiscovered !== 'true')).length);
+    if (allCount) allCount.textContent = String(items.length);
     const title = item => item.dataset.libraryTitle || '';
     const year = item => {
       const parsed = Number.parseInt(item.dataset.libraryYear, 10);
@@ -2399,10 +2389,9 @@
       const matchesDiscovery = collection === 'favorites' || discovery === 'all'
         || (discovery === 'unlocked' ? item.dataset.libraryDiscovered === 'true' : item.dataset.libraryDiscovered !== 'true');
       const matchesFilter = collection === 'favorites' || filter === 'all'
-        || (filter === 'guideline' && !!item.querySelector('[data-library-guideline="true"]'))
         || (filter.startsWith('rarity:') && item.dataset.libraryRarity === filter.slice(7))
         || (filter.startsWith('theme:') && (item.dataset.libraryTheme || '').split(' · ').includes(filter.slice(6)));
-      item.hidden = !(inCollection && matchesDiscovery && matches && matchesFilter);
+      item.hidden = !(inCollection && matches && matchesFilter && matchesDiscovery);
       if (!item.hidden) visible += 1;
     });
 
@@ -2410,11 +2399,10 @@
     const status = root.querySelector('#nqDashLibraryCollectionCount');
     if (status) {
       const label = (labels[collection] || ['item', 'itens'])[visible === 1 ? 0 : 1];
-      const view = collection === 'favorites' ? '' : discovery === 'locked' ? ' a descobrir' : discovery === 'all' ? ' na prévia administrativa' : ' descobertos';
-      status.textContent = `${visible} ${label}${view}${query ? ' nesta busca' : ''}`;
+      status.textContent = `${visible} ${label}${query ? ' nesta busca' : ''}`;
     }
     const empty = root.querySelector('[data-library-empty]');
-    if (empty) empty.hidden = !(collection !== 'favorites' && discovery === 'unlocked' && !query && filter === 'all' && visible === 0);
+    if (empty) empty.hidden = !(collection !== 'favorites' && discovery === 'all' && !query && filter === 'all');
     const noResults = root.querySelector('#nqDashLibraryNoResults');
     if (noResults) noResults.hidden = visible > 0 || !!(empty && !empty.hidden);
   }
@@ -2747,6 +2735,8 @@
       _applyLibraryView(pane);
       if (focusWasInside && article && article.hidden) {
         pane.querySelector('[data-library-collection="favorites"]')?.focus({ preventScroll: true });
+      } else if (focusWasInside) {
+        element.focus({ preventScroll: true });
       }
     }
   }

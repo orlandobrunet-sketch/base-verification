@@ -1,6 +1,13 @@
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 
+test.beforeEach(async ({ context, baseURL }) => {
+  const origin = new URL(baseURL!).origin;
+  await context.route('**/*', route => route.request().method() === 'GET'
+    && new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+  await context.routeWebSocket('**/*', socket => socket.close());
+});
+
 /**
  * O Grimório vazio dizia a mesma coisa três vezes.
  *
@@ -92,20 +99,20 @@ test.describe('Grimório vazio', () => {
     expect(catalogue.articles).toBeGreaterThan(0);
     expect(catalogue.sources).toBeGreaterThan(0);
     const summary = painel.locator('.nqd-library-summary');
-    await expect(summary).toHaveText(`0 de ${catalogue.articles + catalogue.sources} estudos descobertos.`);
+    await expect(summary).toHaveText(`Referências descobertas até o momento: 0/${catalogue.articles + catalogue.sources}`);
     await expect(painel.locator('.nqd-library-shelf'), 'estante vazia parecia elemento quebrado').toHaveCount(0);
-    await expect(painel.locator('[data-library-entry]:visible')).toHaveCount(0);
+    await expect(painel.locator('[data-library-item]:visible')).toHaveCount(0);
     await expect(painel.locator('[data-library-empty] button')).toBeVisible();
 
     // O proprietário pediu que o catálogo faltante pudesse ser explorado.
     // Consultar seus títulos/regras não concede a leitura nem altera o save.
-    await painel.locator('#nqDashLibraryDiscovery').selectOption('locked');
+    await expect(painel.locator('#nqDashLibraryDiscovery')).toHaveValue('all');
     const locked = painel.locator('[data-library-entry]:visible');
     await expect(locked).toHaveCount(catalogue.articles + catalogue.sources);
     await expect(locked.first().locator('h3')).toBeVisible();
     await expect(painel.locator('[data-library-entry][data-library-kind="scroll"]:visible').first().locator('.nqd-library-unlock-hint')).toContainText('baú');
     await expect(locked.locator('button, .nqd-library-impact')).toHaveCount(0);
-    await expect(summary).toContainText('0 de ');
+    await expect(summary).toContainText('Referências descobertas até o momento: 0/');
     expect(await page.evaluate(keys => keys.map(key => localStorage.getItem(key)), keys)).toEqual(before);
   });
 
