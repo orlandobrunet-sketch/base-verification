@@ -533,6 +533,7 @@
           .map(slot => [slot, {n:'Vazio',rar:'common',atk:0,def:0,kno:0,luck:0}]))
       });
       if (_forja) {
+        _forjaLiberarDialogo();
         _forja.origem.elementos.forEach(({ el, hidden, inert }) => {
           el.classList.toggle('hidden', hidden); el.inert = inert;
         });
@@ -5767,7 +5768,7 @@
         const vendeAtual = _itemSellVal(atual);
         const vendeNovo = _itemSellVal(novo);
         return `
-          <h2>Você forjou ${escapeHtml(novo.n)}</h2>
+          <h2 id="forjaResultadoTitulo">Você forjou ${escapeHtml(novo.n)}</h2>
           <p>${_forjaVeredito(novo, atual)} Escolha qual fica em ${(slotLabels[slot] || slot).toLowerCase()}. O outro será vendido.</p>
           <p class="nq-forja-pago">${custo} de ouro já usados. Sua escolha está salva, inclusive se você recarregar.</p>
           <div class="nq-forja-duelo">
@@ -5786,7 +5787,7 @@
       if (f.ultimo) {
         const { item, slot, msg, custo, venda } = f.ultimo;
         return `
-          <h2>Forja concluída</h2>
+          <h2 id="forjaResultadoTitulo">Forja concluída</h2>
           <p>${escapeHtml(_forjaTexto(msg))}</p>
           ${_forjaCartaoItem(item, slot, 'Equipado agora', null, 'final')}
           <dl class="nq-forja-recibo">
@@ -5805,11 +5806,13 @@
     function _renderForja() {
       const pagina = document.getElementById('forjaPage');
       if (!pagina || !_forja) return;
+      _forjaLiberarDialogo();
       _forja.pendente = state.forjaPending;
       if (_forja.revelar) _forja.interacaoLiberadaEm = performance.now() + 500;
       const detalhesAbertos = !!pagina.querySelector('.nq-forja-equipamento[open]');
       const opcao = (tipo, titulo, descricao) => {
         const motivo = _forjaBloqueio(tipo);
+        const motivoVisivel = _forja.motivosResultado?.[tipo] ?? ((_forja.pendente || _forja.ultimo) ? '' : motivo);
         const id = `forjaMotivo-${tipo}`;
         const icone = tipo === 'lendario'
           ? '<svg viewBox="0 0 24 24" stroke-width="1.2" focusable="false"><circle cx="12" cy="12" r="10.5"/><path class="nq-forja-opcao-estrela" d="m12 3 2.8 5.7 6.3.9-4.5 4.4 1.1 6.3-5.7-3-5.7 3 1.1-6.3L3.2 9.6l6.3-.9Z"/></svg>'
@@ -5828,32 +5831,38 @@
             </div>
             <p>${descricao}</p>
             <button type="button" class="btn gold" data-action="forjarNaPagina" data-arg="${tipo}"
-              ${motivo ? `disabled aria-describedby="${id}"` : ''}>Forjar ${tipo === 'comum' ? 'item aleatório' : 'item lendário'}</button>
-            ${motivo ? `<p id="${id}" class="nq-forja-motivo">${motivo}</p>` : ''}
+              ${motivo ? 'disabled' : ''} ${motivoVisivel ? `aria-describedby="${id}"` : ''}>Forjar ${tipo === 'comum' ? 'item aleatório' : 'item lendário'}</button>
+            ${motivoVisivel ? `<p id="${id}" class="nq-forja-motivo">${motivoVisivel}</p>` : ''}
           </article>`;
       };
       const saidaBloqueada = !!_forja.pendente;
-      const mostraResultado = saidaBloqueada || !!_forja.ultimo;
-      const resultado = `<section id="forjaResultado" class="nq-forja-resultado${_forja.revelar ? ' nq-forja-recem' : ''}" role="status" aria-live="polite" tabindex="-1">
+      const mostraResultado = saidaBloqueada || !!_forja.ultimo || !!_forja.aviso;
+      const resultado = `<dialog id="forjaResultDialog" class="nq-forja-dialogo" aria-labelledby="forjaResultadoTitulo">
+        ${!saidaBloqueada ? '<button type="button" class="btn sec nq-forja-fechar" data-action="fecharResultadoForja" aria-label="Fechar resultado e voltar à Forja">×</button>' : ''}
+        <section id="forjaResultado" class="nq-forja-resultado${_forja.revelar ? ' nq-forja-recem' : ''}" aria-labelledby="forjaResultadoTitulo" tabindex="-1">
+        ${!saidaBloqueada && !_forja.ultimo ? '<h2 id="forjaResultadoTitulo">A forja não foi concluída</h2>' : ''}
         ${_forja.aviso ? `<p class="nq-forja-aviso" role="alert">${escapeHtml(_forja.aviso)}</p>` : ''}
-        ${_forjaResultadoHtml()}
-      </section>`;
+        ${saidaBloqueada || _forja.ultimo ? _forjaResultadoHtml() : '<button type="button" class="btn sec" data-action="fecharResultadoForja">Voltar e tentar novamente</button>'}
+        </section>
+      </dialog>`;
       pagina.dataset.forgeState = saidaBloqueada ? 'decision' : _forja.ultimo ? 'complete' : 'ready';
       pagina.innerHTML = `
         <div class="nq-study-content nq-forja-shell">
           <header class="nq-forja-cabecalho">
             <button type="button" class="btn sec" data-action="fecharForja" ${saidaBloqueada ? 'disabled aria-describedby="forjaMotivoSaida"' : ''}>← Voltar à jornada</button>
             <p class="nq-forja-ouro"><span>Ouro disponível</span><strong>${state.gold}</strong></p>
-            ${saidaBloqueada ? '<p id="forjaMotivoSaida" class="nq-forja-motivo">Decida o item forjado antes de voltar: o ouro já foi gasto nele.</p>' : ''}
+            ${saidaBloqueada ? '<p id="forjaMotivoSaida" class="nq-forja-motivo sr-only">Decida o item forjado antes de voltar: o ouro já foi gasto nele.</p>' : ''}
           </header>
           <section class="nq-forja-banner" aria-labelledby="forjaTitulo">
             <div class="nq-forja-banner-texto">
               <p class="nq-forja-eyebrow">Oficina de equipamentos</p>
               <h1 id="forjaTitulo">Forja</h1>
-              ${mostraResultado ? '<p class="nq-forja-banner-resumo">Cada escolha dá forma à sua jornada.</p>' : resultado}
+              <div class="nq-forja-resultado"><div class="nq-forja-convite">
+                <h2>Dê forma ao próximo equipamento</h2>
+                <p>Escolha a forja abaixo. Se o espaço estiver ocupado, compare os quatro atributos antes de equipar.</p>
+              </div></div>
             </div>
           </section>
-          ${mostraResultado ? resultado : ''}
           <section class="nq-forja-opcoes" aria-label="Tipos de forja">
             ${opcao('comum', 'Equipamento aleatório', 'Um item para qualquer um dos seis espaços. A raridade depende do seu nível e da sua sorte.')}
             ${opcao('lendario', 'Equipamento lendário', 'Um lendário para arma, armadura ou relíquia. Prioriza inéditos; após esgotá-los, pode repetir um item que não está equipado.')}
@@ -5864,11 +5873,12 @@
               ${FORJA_SLOTS.map(slot => _forjaCartaoItem(state.equipment[slot], slot)).join('')}
             </div>
           </details>
-        </div>`;
+        </div>
+        ${mostraResultado ? resultado : ''}`;
       // O segundo gesto da compra não pode decidir o item que acabou de aparecer.
       const espera = Math.max(0, (_forja.interacaoLiberadaEm || 0) - performance.now());
       const resultadoAtual = pagina.querySelector('#forjaResultado');
-      const acoes = [...resultadoAtual.querySelectorAll('button[data-action]')];
+      const acoes = [...(resultadoAtual?.querySelectorAll('button[data-action]') || [])];
       if (espera > 0 && acoes.length) {
         const sessao = _forja;
         acoes.forEach(botao => { botao.disabled = true; });
@@ -5878,6 +5888,7 @@
           if (document.activeElement === resultadoAtual) _forjaFocarResultado();
         }, espera);
       }
+      if (mostraResultado) _forjaAbrirDialogo();
       // A martelada toca só na renderização que segue a forja.
       _forja.revelar = false;
     }
@@ -5887,7 +5898,39 @@
         ? document.querySelector('#forjaResultado [data-action="decidirForja"]:not(:disabled)') || document.getElementById('forjaResultado')
         : document.getElementById('forjaResultado');
       alvo?.focus({ preventScroll: true });
-      alvo?.scrollIntoView({ block: 'nearest' });
+      // O diálogo rola por dentro: foco também precisa ficar visível após a
+      // proteção breve da compra, especialmente com texto ampliado.
+      if (alvo?.closest('#forjaResultDialog')) alvo.scrollIntoView({ block: 'nearest' });
+    }
+
+    function _forjaLiberarDialogo() {
+      _forja?.dialogRelease?.(false);
+      if (_forja) delete _forja.dialogRelease;
+      const dialogo = document.getElementById('forjaResultDialog');
+      if (dialogo?.open) dialogo.close();
+      const lock = _forja?.scrollLock;
+      if (!lock) return;
+      document.body.style.overflow = lock.overflow;
+      document.body.style.paddingRight = lock.paddingRight;
+      delete _forja.scrollLock;
+    }
+
+    function _forjaAbrirDialogo() {
+      const dialogo = document.getElementById('forjaResultDialog');
+      if (!dialogo || !_forja || dialogo.open) return;
+      const scrollbar = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+      const padding = parseFloat(getComputedStyle(document.body).paddingRight) || 0;
+      _forja.scrollLock = { overflow: document.body.style.overflow, paddingRight: document.body.style.paddingRight };
+      document.body.style.paddingRight = `${padding + scrollbar}px`;
+      document.body.style.overflow = 'hidden';
+      dialogo.addEventListener('cancel', event => {
+        event.preventDefault();
+        if (!state.forjaPending) fecharResultadoForja();
+      });
+      dialogo.showModal();
+      _forja.dialogRelease = manageDialogFocus(dialogo, () => {
+        if (!state.forjaPending) fecharResultadoForja();
+      }, document.activeElement, document.getElementById('forjaResultado'));
     }
 
     function _forjaLendario() {
@@ -5905,6 +5948,7 @@
 
     function forjarNaPagina(tipo) {
       if (!_forja || _forjaBloqueio(tipo)) return;
+      _forja.motivosResultado = Object.fromEntries(['comum', 'lendario'].map(tipo => [tipo, _forjaBloqueio(tipo)]));
       _forja.busy = true;
       _forja.aviso = '';
       try {
@@ -5953,10 +5997,17 @@
 
     function forjarOutroItem() {
       if (!_forja || !_matchesJourneyBinding(_forja.binding) || !_forja.ultimo || state.forjaPending || _forja.busy) return;
+      fecharResultadoForja();
+    }
+
+    function fecharResultadoForja() {
+      if (!_forja || !_matchesJourneyBinding(_forja.binding) || state.forjaPending || _forja.busy) return;
       _forja.ultimo = null;
+      delete _forja.motivosResultado;
       _forja.aviso = '';
       _renderForja();
       const alvo = document.querySelector('#forjaPage [data-action="forjarNaPagina"]:not(:disabled)')
+        || document.querySelector('#forjaPage [data-action="fecharForja"]:not(:disabled)')
         || document.getElementById('forjaResultado');
       alvo?.focus({ preventScroll: true });
       alvo?.scrollIntoView({ block: 'nearest' });
@@ -6021,6 +6072,11 @@
       pagina.setAttribute('aria-labelledby', 'forjaTitulo');
       pagina.addEventListener('keydown', e => {
         e.stopPropagation();
+        if (e.key === 'Escape' && document.getElementById('forjaResultDialog')?.open) {
+          e.preventDefault();
+          if (!state.forjaPending) fecharResultadoForja();
+          return;
+        }
         if (e.key === 'Escape' && !state.forjaPending) { e.preventDefault(); fecharForja(); }
       });
       document.body.appendChild(pagina);
@@ -6035,6 +6091,7 @@
       if (!_forja || !_matchesJourneyBinding(_forja.binding) || state.forjaPending || _forja.busy) return;
       const { origem } = _forja;
       const binding = _forja.binding;
+      _forjaLiberarDialogo();
       _forja = null;
       document.getElementById('forjaPage')?.remove();
       document.body.classList.remove('nq-studying');
@@ -6063,6 +6120,7 @@
     window.forjarNaPagina = forjarNaPagina;
     window.decidirForja = decidirForja;
     window.forjarOutroItem = forjarOutroItem;
+    window.fecharResultadoForja = fecharResultadoForja;
 
 
     function closeBoardModal() {

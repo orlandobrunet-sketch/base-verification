@@ -27,7 +27,9 @@ test('a forja martela antes de mostrar o item, só uma vez', async ({ page }) =>
   await expect(resultado).toHaveClass(/nq-forja-recem/);
   expect(await resultado.locator('.nq-forja-arte').evaluate(e => getComputedStyle(e).animationName)).toBe('nq-forja-golpe');
   await page.getByRole('button', { name: 'Forjar outro item' }).click();
-  await expect(page.locator('#forjaResultado')).not.toHaveClass(/nq-forja-recem/);
+  await expect(page.locator('#forjaResultDialog')).toHaveCount(0);
+  await expect(page.locator('#forjaResultado, .nq-forja-recem')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Forjar item aleatório', exact: true })).toBeEnabled();
 });
 
 test('com movimento reduzido a forja mostra o item sem martelada', async ({ page }) => {
