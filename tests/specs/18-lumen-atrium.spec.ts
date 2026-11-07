@@ -364,15 +364,15 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
   test('distingue XP completo, acertos pendentes e nível máximo no card', async ({ page }) => {
     test.setTimeout(90000);
     for (const scenario of [
-      { level: 1, xp: 200, correctTotal: 9, text: 'XP completo · 1 acerto para evoluir', percent: '100' },
+      { level: 1, xp: 200, correctTotal: 9, text: '1 acerto para evoluir', percent: '90' },
       { level: 1, xp: 100, correctTotal: 10, text: 'Acertos completos · faltam 100 XP', percent: '50' },
-      { level: 1, xp: 200, correctTotal: 10, text: 'Requisitos completos · retome a jornada', percent: '100' },
+      { level: 1, xp: 200, correctTotal: 10, text: 'Evolução conquistada: nível 2. Retome a jornada.', percent: '0', next: 'Nível 3' },
       { level: 10, xp: 0, correctTotal: 90, text: '90 de 100 acertos na jornada', percent: '100' },
     ]) {
       await enterWithSavedJourney(page, scenario);
       await expect(page.locator('#wsSavedMilestone')).toHaveText(scenario.text);
       await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', scenario.percent);
-      await expect(page.locator('#wsSavedNextLevel')).toHaveText(scenario.level === 10 ? 'Domínio máximo' : 'Nível 2');
+      await expect(page.locator('#wsSavedNextLevel')).toHaveText(scenario.level === 10 ? 'Domínio máximo' : scenario.next || 'Nível 2');
     }
   });
 

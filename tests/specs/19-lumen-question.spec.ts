@@ -491,12 +491,14 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     expect(effects, 'retomar e renderizar novamente preservam o progresso sem anunciar ganho').toEqual([]);
   });
 
-  test('com XP cheio, o acerto destaca o requisito reduzido sem inventar ganho na barra', async ({ page }, testInfo) => {
+  test('XP guardado acompanha acertos com avanço real na evolução e animação finita', async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== 'chromium', 'ganhos são observados com o card visível no desktop');
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     await injectGameState(page, { level: 2, xp: 229, correctTotal: 15, gold: 0 }, { replaceSnapshot: true });
-    await expect(page.locator('#guardianXpHint')).toHaveText('Próxima evolução em 5 acertos');
-    expect(await page.locator('#xpFill').evaluate(element => (element as HTMLElement).style.width)).toBe('100%');
+    await expect(page.locator('#guardianXpHint')).toHaveText('Faltam 5 acertos para evoluir');
+    await expect(page.locator('#guardianXpAmount')).toHaveText('114/229');
+    const beforeWidth = await page.locator('#xpFill').evaluate(element => parseFloat((element as HTMLElement).style.width));
+    expect(beforeWidth).toBeLessThan(100);
     await page.evaluate(() => {
       (window as any).__nqGuardianEffects = [];
       const animate = Element.prototype.animate;
@@ -508,13 +510,15 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     });
     const correctIndex = await page.evaluate(() => (window as any).state.current.a as number);
     await page.locator('#options .option').nth(correctIndex).click();
-    await expect(page.locator('#guardianXpHint')).toHaveText('Próxima evolução em 4 acertos');
+    await expect(page.locator('#guardianXpHint')).toHaveText('Faltam 4 acertos para evoluir');
     await expect.poll(() => page.evaluate(() => (window as any).__nqGuardianEffects as string[]))
-      .toContain('nq-guardian-xp-hint');
+      .toContain('nq-guardian-xp-fill');
     const effects = await page.evaluate(() => (window as any).__nqGuardianEffects as string[]);
-    expect(effects).not.toContain('nq-guardian-xp-gain');
-    expect(await page.locator('#xpFill').evaluate(element => (element as HTMLElement).style.width)).toBe('100%');
-    await expect(page.locator('.nql-xp-gain')).toHaveCount(0);
+    expect(effects).toContain('nq-guardian-xp-gain');
+    await expect(page.locator('#guardianXpAmount')).toHaveText('137/229');
+    const afterWidth = await page.locator('#xpFill').evaluate(element => parseFloat((element as HTMLElement).style.width));
+    expect(afterWidth).toBeGreaterThan(beforeWidth); expect(afterWidth).toBeLessThan(100);
+    await expect(page.locator('.nql-xp-gain')).toHaveCount(0, { timeout: 2500 });
   });
 
   test('a Forja preserva o destaque no duplo render sem repetir a recompensa', async ({ page }, testInfo) => {

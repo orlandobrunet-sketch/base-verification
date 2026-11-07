@@ -1,8 +1,9 @@
-// NefroQuest Service Worker — v16.83
-const CACHE = 'nefroquest-v16.83';
+// NefroQuest Service Worker — v16.84
+const CACHE = 'nefroquest-v16.84';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
+  '/js/progression.js',
   '/assets/scenes/ritual-initiation.webp',
   '/js/chamber-workspace.js',
   '/styles/lumen/chamber-workspace.css',
@@ -182,6 +183,7 @@ const STATIC_ASSETS = [
 // chave canônica (sem query), que é a que canonicalAssetKey() consulta.
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
+  '/js/progression.js': '16.84',
   '/js/chamber-workspace.js': '16.67',
   '/styles/lumen/chamber-workspace.css': '16.39',
   '/js/chamber-art.js': '16.67',
@@ -216,7 +218,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/shell.css': '16.18',
   '/styles/lumen/portal.css': '16.55',
   '/styles/lumen/atrium.css': '16.62',
-  '/styles/lumen/game.css': '16.71',
+  '/styles/lumen/game.css': '16.84',
   '/styles/lumen/difficulty.css': '16.06',
   '/styles/lumen/dashboard.css': '16.83',
   '/styles/lumen/charselect.css': '16.60',
@@ -224,7 +226,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/forge.css': '16.64',
   '/styles/lumen/header.css': '15.91',
   '/styles/lumen/equipment.css': '16.62',
-  '/styles/lumen/boss.css': '16.71',
+  '/styles/lumen/boss.css': '16.84',
   '/styles/lumen/ritual.css': '16.72',
   '/styles/lumen/ranking.css': '16.52',
   '/styles/lumen/achievements.css': '16.75',
@@ -236,7 +238,7 @@ const ASSET_VERSIONS = {
   '/js/audio.js': '16.28',
   '/js/leaderboard.js': '16.47',
   '/js/study-mode.js': '16.69',
-  '/js/game.js': '16.71',
+  '/js/game.js': '16.84',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '15.92',
   '/js/portal.js': '16.47',
@@ -251,7 +253,7 @@ const ASSET_VERSIONS = {
   '/js/achievements.js': '16.75',
   '/js/changelog.js': '15.94',
   '/js/equipment-preview.js': '16.62',
-  '/js/dashboard.js': '16.83',
+  '/js/dashboard.js': '16.84',
 };
 // bump-release:asset-versions:fim
 

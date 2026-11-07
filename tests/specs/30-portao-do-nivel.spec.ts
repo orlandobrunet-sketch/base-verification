@@ -72,8 +72,9 @@ test.describe('Portão do nível', () => {
     const original = await abrirPortaoNoAtrio(page, { xp: 480, xpToNext: 480, correctTotal: 52 });
     const milestone = page.locator('#wsSavedMilestone');
     await expect(milestone).toBeVisible();
-    await expect(milestone, 'XP completo não pode esconder os acertos pendentes').toHaveText('XP completo · 8 acertos para evoluir');
-    await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', '100');
+    await expect(milestone, 'XP guardado não pode esconder os acertos pendentes').toHaveText('8 acertos para evoluir');
+    await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', '19');
+    await expect(page.locator('#wsSavedXpText')).toContainText('400 XP guardados');
     await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 7');
     await expectPreviewPreserved(page, original);
   });
@@ -82,11 +83,11 @@ test.describe('Portão do nível', () => {
     const original = await abrirPortaoNoAtrio(page, { xp: 480, correctTotal: 60 });
     const milestone = page.locator('#wsSavedMilestone');
     await expect(milestone).toBeVisible();
-    await expect(milestone).toHaveText('Requisitos completos · retome a jornada');
+    await expect(milestone).toHaveText('Evolução conquistada: nível 7. Retome a jornada.');
     await expect(milestone).not.toContainText(/faltam|acertos para evoluir/);
-    await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 7');
-    // A prévia não consome XP nem promove o nível antes da próxima resposta.
-    await expect(page.locator('#wsSavedLevel')).toHaveText('06');
+    await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 8');
+    // Projection shows the already-earned level without writing to the original save.
+    await expect(page.locator('#wsSavedLevel')).toHaveText('07');
     await expectPreviewPreserved(page, original);
   });
 

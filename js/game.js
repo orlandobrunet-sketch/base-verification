@@ -203,30 +203,33 @@
     }
 
     // ============ SISTEMA DE VIDA EXTRA ============
-    function checkExtraLife() {
+    function announceExtraLife(amount = 1) {
+      if (_pilotAnswerTransaction) {
+        const binding = _captureJourneyBinding();
+        _afterCharacterCommit(() => { if (_matchesJourneyBinding(binding)) showExtraLifeModal(amount); });
+      } else showExtraLifeModal(amount);
+    }
+    function checkExtraLife(announce = true) {
       // Ganha vida extra a cada 5 níveis (5, 10, 15, 20...)
       if (state.level % 5 === 0 && state.lives < effectiveMaxLives() && !state.extraLifeGiven) {
         state.lives++;
         state.extraLifeGiven = true;
-        if (_pilotAnswerTransaction) {
-          const binding = _captureJourneyBinding();
-          _afterCharacterCommit(() => {
-            if (_matchesJourneyBinding(binding)) showExtraLifeModal();
-          });
-        } else showExtraLifeModal();
+        if (announce) announceExtraLife();
+        return 1;
       } else if (state.level % 5 !== 0) {
         state.extraLifeGiven = false;
       }
+      return 0;
     }
     
-    function showExtraLifeModal() {
+    function showExtraLifeModal(amount = 1) {
       const modal = document.createElement('div');
       modal.className = 'nq-overlay extra-life-popup';
       modal.innerHTML = `
         <div class="modal-content nqlife-card">
           <div class="nqlife-reading" role="region" tabindex="0" aria-label="Detalhes da vida extra">
             <p class="nqlife-intro">Vida extra</p>
-            <div class="nqlife-reward"><svg class="nqlife-heart" aria-hidden="true" viewBox="0 0 80 80"><path class="nqlife-fill" d="M40 65 14 41C-3 23 20 7 33 21l7 8 7-8C60 7 83 23 66 41Z"/><path class="nqlife-line" d="M40 65 14 41C-3 23 20 7 33 21l7 8 7-8C60 7 83 23 66 41Z"/></svg><h2>+1 vida</h2></div>
+            <div class="nqlife-reward"><svg class="nqlife-heart" aria-hidden="true" viewBox="0 0 80 80"><path class="nqlife-fill" d="M40 65 14 41C-3 23 20 7 33 21l7 8 7-8C60 7 83 23 66 41Z"/><path class="nqlife-line" d="M40 65 14 41C-3 23 20 7 33 21l7 8 7-8C60 7 83 23 66 41Z"/></svg><h2>+${amount} ${amount === 1 ? 'vida' : 'vidas'}</h2></div>
             <p class="nqlife-celebration">Os Deuses do Néfron reconhecem sua dedicação!</p>
             <p class="nqlife-description">Continue sua jornada com renovada energia e sabedoria.</p>
           </div>
@@ -2118,13 +2121,14 @@
       _normalJourneyStaging = true;
       try {
       resetGuardianFeedback();
+      const restoredProgress = projectSavedProgress(save);
       
       state.character = save.character;
-      state.level = save.level || 1;
-      state.xp = save.xp || 0;
-      state.xpToNext = xpForLevel(save.level || 1); // sempre recalculado pelo nível, ignora valor salvo
+      state.level = restoredProgress.level;
+      state.xp = restoredProgress.xp;
+      state.xpToNext = restoredProgress.xpToNext;
       state.score = save.score || 0;
-      state.lives = (window.NQPilot?.active || save.classBenefits) ? (save.lives ?? 3) : (save.lives || 3);
+      state.lives = restoredProgress.lives;
       state.streak = save.streak || 0;
       state.gold = save.gold || 0;
       state.bonusUses = save.bonusUses || 0;
@@ -2139,7 +2143,7 @@
       state.maxLives = save.maxLives || 3;
       chestCost = Math.min(100 + state.chestsOpened * 15, 250);
       state.legendaryAbilityUsed = save.legendaryAbilityUsed || {};
-      state.extraLifeGiven = save.extraLifeGiven || false;
+      state.extraLifeGiven = restoredProgress.extraLifeGiven;
       state.chestCorrectCount = save.chestCorrectCount || 0;
       state.chestTarget = save.chestTarget || (Math.floor(Math.random() * 3) + 5);
       state.gameCompleted = (window.NQPilot?.active || save.classBenefits) ? !!save.gameCompleted
@@ -2344,14 +2348,15 @@
         if (resumeShell) resumeShell.dataset.character = charData ? save.character : 'nephros';
         const charName = charData ? charData.name : 'Desconhecido';
         const charTitle = charData ? charData.title : 'Jornada em curso';
-        const level = Math.min(10, Math.max(1, Math.floor(Number(save.level) || 1)));
-        const xpToNext = Math.max(1, xpForLevel(level));
-        const xp = Math.min(xpToNext, Math.max(0, Math.floor(Number(save.xp) || 0)));
+        const savedProgress = projectSavedProgress(save);
+        const level = Math.min(10, savedProgress.level);
+        const xpToNext = savedProgress.xpToNext;
+        const xp = savedProgress.applied;
         const score = Math.max(0, Math.floor(Number(save.score) || 0));
-        const lives = Math.max(0, Math.floor(Number(save.lives) || 0));
+        const lives = savedProgress.lives;
         const correctTotal = Math.max(0, Math.floor(Number(save.correctTotal) || 0));
         const isMaxLevel = level >= 10;
-        const progress = isMaxLevel ? 100 : Math.round((xp / xpToNext) * 100);
+        const progress = savedProgress.percent;
         const timeAgo = getTimeAgo(save.timestamp) || '';
         const difficultyLabels = { easy: 'Fácil', normal: 'Médio', hard: 'Difícil', hardcore: 'Hardcore' };
         const difficulty = difficultyLabels[save.difficulty] || difficultyLabels.normal;
@@ -2365,15 +2370,16 @@
         document.getElementById('wsSavedScore').textContent = score.toLocaleString('pt-BR');
         document.getElementById('wsSavedTime').textContent = timeAgo ? `Última atualização ${timeAgo}` : '';
         document.getElementById('wsSavedNextLevel').textContent = isMaxLevel ? 'Domínio máximo' : `Nível ${level + 1}`;
-        document.getElementById('wsSavedXpText').textContent = isMaxLevel ? 'Domínio máximo alcançado' : `${xp} / ${xpToNext} XP`;
-        const missingXp = xpToNext - xp;
-        const missingCorrect = Math.max(0, level * 10 - correctTotal);
+        document.getElementById('wsSavedXpText').textContent = isMaxLevel ? 'Domínio máximo alcançado' : `${xp} / ${xpToNext} XP aplicado${savedProgress.reserved ? `; ${savedProgress.reserved} XP guardados` : ''}`;
+        const missingXp = savedProgress.missingXp;
+        const missingCorrect = savedProgress.missingCorrect;
         document.getElementById('wsSavedMilestone').textContent = isMaxLevel
           ? `${Math.min(100, correctTotal)} de 100 acertos na jornada`
+          : savedProgress.levelsGained > 0 ? `Evolução conquistada: nível ${level}. Retome a jornada.`
           : missingXp > 0 && missingCorrect > 0
             ? `Faltam ${missingXp} XP e ${missingCorrect} ${missingCorrect === 1 ? 'acerto' : 'acertos'}`
             : missingCorrect > 0
-              ? `XP completo · ${missingCorrect} ${missingCorrect === 1 ? 'acerto para evoluir' : 'acertos para evoluir'}`
+              ? `${missingCorrect} ${missingCorrect === 1 ? 'acerto para evoluir' : 'acertos para evoluir'}`
               : missingXp > 0 ? `Acertos completos · faltam ${missingXp} XP` : 'Requisitos completos · retome a jornada';
         const marker = document.getElementById('wsSavedXpMarker');
         if (marker) marker.setAttribute('cx', String(8 + 5.84 * progress));
@@ -2383,7 +2389,7 @@
           progressEl.setAttribute('aria-valuenow', String(progress));
           progressEl.setAttribute('aria-valuetext', isMaxLevel
             ? 'Domínio máximo alcançado'
-            : `${progress}% do XP para o nível ${level + 1}`);
+            : `${progress}% da evolução para o nível ${level + 1}. ${xp} de ${xpToNext} XP aplicado; ${savedProgress.reserved} XP guardados.`);
         }
         _syncWelcomeProgress(resumeShell, progress);
 
@@ -2867,7 +2873,7 @@
     const ui={
       heroImg:$("heroImg"),heroArchetype:$("heroArchetype"),heroClass:$("heroClass"),heroTitle:$("heroTitle"),xpFill:$("xpFill"),xpTxt:$("xpTxt"),
       storyTitle:$("storyTitle"),storyGoal:$("storyGoal"),
-      level:$("level"),score:$("score"),lives:$("lives"),record:$("record"),gold:$("gold"),streak:$("streak"),
+      level:$("level"),score:$("score"),lives:$("lives"),gold:$("gold"),streak:$("streak"),
       equipList:$("equipList"),journal:$("journal"),question:$("question"),options:$("options"),feedback:$("feedback"),refs:$("refs"),
       oraculoBtn:$("oraculoBtn"),nextBtn:$("nextBtn"),newBtn:$("newBtn"),forgeBtn:$("forgeBtn"),bonusBtn:$("bonusBtn"),boardBtn:$("boardBtn"),
       boardModal:$("boardModal"),boardBody:$("boardBody"),closeBoard:$("closeBoard"),
@@ -2947,8 +2953,8 @@
         ], 800);
         return;
       }
-      const before = Math.min(100, previous.xp / previous.limit * 100);
-      const after = Math.min(100, current.xp / current.limit * 100);
+      const before = window.NQProgression.view({ level: previous.level, xp: previous.xp, xpToNext: previous.limit, correctTotal: previous.correct }).fraction * 100;
+      const after = window.NQProgression.view({ level: current.level, xp: current.xp, xpToNext: current.limit, correctTotal: current.correct }).fraction * 100;
       if (current.limit === previous.limit && after > before) {
         animateGuardian(ui.xpFill, 'xp-fill', [{ width: before + '%' }, { width: after + '%' }], 650);
         const gain = document.createElement('span');
@@ -3411,8 +3417,8 @@
     // base (state.maxLives) + bônus do equipamento; usado só na exibição/limite
     // (NÃO no save/load, que guardam a base).
     const _LIFE_BONUS_ITEMS = new Set(['Égide Dialítica']);
-    function _equipLifeBonus() {
-      const eq = state.equipment || {};
+    function _equipLifeBonus(equipment = state.equipment) {
+      const eq = equipment || {};
       let bonus = 0;
       for (const slot in eq) { if (eq[slot] && _LIFE_BONUS_ITEMS.has(eq[slot].n)) bonus++; }
       return bonus;
@@ -3557,18 +3563,24 @@
         loadoutShell.dataset.character = characters[state.character] ? state.character : 'nephros';
       }
       $('guardianLevelLabel').textContent = `Nível ${state.level}`;
-      $('guardianXpAmount').textContent = `${state.xp}/${state.xpToNext}`;
+      const _xpProgress = window.NQProgression.view(state);
+      const _xpNumber = value => Number(value).toLocaleString('pt-BR', { maximumFractionDigits: 1 });
+      document.querySelector('.nql-xp-unit').textContent = _xpProgress.max ? 'XP ' : 'XP aplicado ';
+      $('guardianXpAmount').textContent = _xpProgress.max ? `${_xpNumber(state.xp)} acumulados` : `${_xpNumber(_xpProgress.applied)}/${_xpNumber(_xpProgress.xpToNext)}`;
       ui.storyTitle.textContent=chapter.title;
       ui.storyGoal.textContent=`Objetivo: ${chapter.goal}`;
       const _capituloEl = document.getElementById('questionChapter');
       if (_capituloEl) _capituloEl.textContent = chapter.title;
       ui.level.textContent=state.level; ui.score.textContent=state.score;
       const _ml=effectiveMaxLives();
-      const _livesHtml='<span style="color:#ef4444">❤</span>'.repeat(Math.max(0,state.lives))+'<span style="color:#555">♡</span>'.repeat(Math.max(0,_ml-Math.max(0,state.lives)));
+      const _livesHtml = Array.from({ length: _ml }, (_, index) => `<span class="nql-life${index < Math.max(0, state.lives) ? '' : ' is-empty'}">❤</span>`).join('');
       if(ui.lives.innerHTML!==_livesHtml) ui.lives.innerHTML=_livesHtml;
-      ui.record.textContent=best(); ui.gold.textContent=state.gold;
+      $('guardianLivesCount').textContent = `${Math.max(0, state.lives)}/${_ml}`;
+      $('guardianVitality').setAttribute('aria-label', `Vidas: ${Math.max(0, state.lives)} de ${_ml}`);
+      ui.gold.textContent=state.gold;
       // Streak visual com multiplicador
       const sm = getStreakMultiplier(state.streak);
+      $('guardianStreakMultiplier').textContent = `×${sm.mult}`;
       const streakTile = ui.streak.closest('.tile');
       if(streakTile) {
         streakTile.className = 'tile tile-streak';
@@ -3576,30 +3588,20 @@
       } else {
         ui.streak.textContent = state.streak;
       }
-      ui.xpFill.style.width=`${Math.min(100,(state.xp/state.xpToNext)*100)}%`;
+      ui.xpFill.style.width=`${_xpProgress.fraction * 100}%`;
       const _qDone = state.idx;
       const _qTotal = state.queue.length;
-      /* Barra cheia que não promove precisa dizer por quê.
-       *
-       * O nível tem teto por acertos — um a cada dez (levelCapForCorrect) — e o
-       * XP para de ser consumido quando o teto é atingido: gainXP trava o valor
-       * em xpToNext. A barra então fica em 100% com "XP 200/200" e o nível não
-       * sobe. Sem explicação, isso lê como defeito: a pessoa completa a barra e
-       * nada acontece.
-       *
-       * A Central já dizia "o que destrava é acerto, não experiência". A tela
-       * onde a pessoa realmente joga não dizia nada. Aqui o texto passa a
-       * nomear o que falta, em vez de deixar a barra prometer sozinha. */
-      const _tetoDeNivel = typeof levelCapForProgress === 'function' ? levelCapForProgress() : Infinity;
-      const _travadoPorAcertos = state.level >= _tetoDeNivel
-        && state.xp >= state.xpToNext
-        && state.level < MAX_LEVEL;
-      if (_travadoPorAcertos) {
-        const _faltam = Math.max(1, (state.level * 10) - (state.correctTotal || 0));
-        $('guardianXpHint').textContent = `Próxima evolução em ${_faltam} ${_faltam === 1 ? 'acerto' : 'acertos'}`;
-      } else {
-        $('guardianXpHint').textContent = '';
-      }
+      const _xpRequirements = [];
+      if (_xpProgress.missingCorrect) _xpRequirements.push(`${_xpProgress.missingCorrect} ${_xpProgress.missingCorrect === 1 ? 'acerto' : 'acertos'}`);
+      if (_xpProgress.missingXp) _xpRequirements.push(`${_xpNumber(_xpProgress.missingXp)} XP`);
+      $('guardianXpHint').textContent = _xpProgress.max ? 'Nível máximo alcançado' : _xpRequirements.length ? `Faltam ${_xpRequirements.join(' e ')} para evoluir` : 'Requisitos completos';
+      const _reserve = $('guardianXpReserve');
+      _reserve.hidden = !_xpProgress.reserved || _xpProgress.max;
+      _reserve.textContent = `${_xpNumber(_xpProgress.reserved)} XP guardados`;
+      const _xpBar = $('guardianEvolutionProgress');
+      _xpBar.setAttribute('aria-valuenow', String(_xpProgress.percent));
+      _xpBar.setAttribute('aria-label', _xpProgress.max ? 'Nível máximo' : `Evolução para o nível ${state.level + 1}`);
+      _xpBar.setAttribute('aria-valuetext', _xpProgress.max ? `Nível máximo alcançado. ${_xpNumber(state.xp)} XP acumulados.` : `${$('guardianXpAmount').textContent} XP aplicado. ${$('guardianXpHint').textContent}. ${_reserve.hidden ? '' : _reserve.textContent}`);
       const _qCtr = document.getElementById('questionCounterTxt');
       if (_qCtr) {
         const _proximoSelo = BADGES.find(badge => state.correctTotal < badge.required);
@@ -4388,9 +4390,13 @@
     }
 
     const MAX_LEVEL = 10;
+    function projectSavedProgress(save) {
+      return window.NQProgression.fromSave(save, (Number(save.maxLives) || 3) + _equipLifeBonus(save.equipment || {}));
+    }
+    window.projectSavedProgress = projectSavedProgress;
     function xpForLevel(lv) {
       // xpToNext = 200 * 1.15^(lv-1), garante ~10 questões no nível 1
-      return Math.floor(200 * Math.pow(1.15, lv - 1));
+      return window.NQProgression.costForLevel(lv);
     }
     // Teto de nível conforme o progresso (correctTotal). Garante que o nível
     // máximo (10) só é atingido em 90 acertos — exatamente quando a batalha do
@@ -4399,7 +4405,7 @@
     // O XP continua preenchendo a barra dentro de cada nível, mas não permite
     // ultrapassar o teto do progresso — evita "subir nível fácil demais".
     function levelCapForCorrect(correctTotal) {
-      return Math.min(MAX_LEVEL, 1 + Math.floor((correctTotal || 0) / 10));
+      return window.NQProgression.levelCapForCorrect(correctTotal);
     }
     function levelCapForProgress() {
       return levelCapForCorrect(state.correctTotal || 0);
@@ -4407,11 +4413,15 @@
     window.xpForLevel = xpForLevel;
     window.levelCapForCorrect = levelCapForCorrect;
     function gainXP(x){
-      state.xp+=x; let up=0;
-      const cap = levelCapForProgress();
-      while(state.xp>=state.xpToNext && state.level < cap){
-        state.xp-=state.xpToNext; state.level++; state.xpToNext=xpForLevel(state.level); up++;
-        const level = state.level;
+      const next = window.NQProgression.advance(state, x);
+      const initialLevel = state.level;
+      let extraLives = 0;
+      state.xp = next.xp;
+      for (let level = initialLevel + 1; level <= next.level; level++) {
+        state.level = level;
+        state.xpToNext = xpForLevel(level);
+        state.extraLifeGiven = false;
+        extraLives += checkExtraLife(false);
         const difficulty = state.difficulty;
         const announce = () => {
           if (_guestMode && !_guestHookShown && _guestQuestionCount >= GUEST_FREE_LIMIT) _showGuestHook();
@@ -4420,10 +4430,9 @@
         if (_pilotAnswerTransaction) _afterCharacterCommit(announce);
         else announce();
       }
-      // No teto: trava a barra cheia (não desperdiça XP além do cap; ele será
-      // consumido quando o progresso liberar o próximo nível).
-      if (state.level >= cap && state.xp > state.xpToNext) state.xp = state.xpToNext;
-      return up;
+      state.xpToNext = next.xpToNext;
+      if (extraLives) announceExtraLife(extraLives);
+      return next.levelsGained;
     }
 
     function allItemsMaxed(){
