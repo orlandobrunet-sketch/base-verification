@@ -1487,7 +1487,7 @@
           kindLabel: 'Pergaminho',
           unlocked: unlockedArticles.has(index),
           discovered: discoveredArticles.has(index),
-          unlockHint: 'Recompensa possível de um baú da jornada.',
+          unlockHint: rarity === 'lendário' ? 'Pergaminho lendário: exclusivo de baús da jornada.' : 'Recompensa possível de um baú da jornada.',
           type: 'Artigo',
           title: article.titulo || 'Artigo',
           source: article.jornal || article.autores || '',
@@ -1616,14 +1616,15 @@
           <div class="nqd-library-controls"><div class="nqd-library-search-panel">
             <label class="nqd-library-query"><span>Buscar no Grimório</span><span class="nqd-search">${_svg('search')}<input id="nqDashLibrarySearch" type="search" placeholder="Buscar título, autor, tema ou ano" autocomplete="off"></span></label>
             <label class="nqd-library-sort"><span>Ordenar</span><select id="nqDashLibrarySort">
-              <option value="recent" selected>Publicação mais recente</option><option value="oldest">Publicação mais antiga</option><option value="title">Título A-Z</option><option value="type">Tipo</option>
+              <option value="recent" selected>Mais recentes</option><option value="oldest">Mais antigos</option><option value="title">Título A-Z</option><option value="type">Tipo</option>
             </select></label>
           </div>
           <section class="nqd-library-explore" aria-labelledby="nqDashExploreTitle" data-library-explore>
             <div class="nqd-library-explore-heading"><h2 id="nqDashExploreTitle">Explorar o acervo</h2><p id="nqDashExploreHint">Selecione um tema ou uma raridade; uma escolha substitui a outra.</p></div>
             <div class="nqd-library-explore-controls">
+              <label class="nqd-library-discovery"><span>Descoberta</span><select id="nqDashLibraryDiscovery"><option value="all" selected>Todos</option><option value="unlocked">Liberados</option><option value="locked">Bloqueados</option></select></label>
               <label class="nqd-library-filter"><span>Temas</span><select id="nqDashLibraryFilter" aria-describedby="nqDashExploreHint">
-                <option value="all">Todos os temas</option>
+                <option value="all">Todos</option>
                 <optgroup label="Temas">${themes.map(theme => `<option value="theme:${_escape(theme)}">${_escape(theme)}</option>`).join('')}</optgroup>
               </select></label>
               <fieldset class="nqd-library-rarities" aria-describedby="nqDashExploreHint"><legend>Raridade</legend><div>
@@ -2101,6 +2102,7 @@
       search: root.querySelector('#nqDashLibrarySearch')?.value || '',
       filter: _libraryFilterValue(root),
       sort: root.querySelector('#nqDashLibrarySort')?.value || 'recent',
+      discovery: root.querySelector('#nqDashLibraryDiscovery')?.value || 'all',
       expanded: [...root.querySelectorAll('[data-library-item].is-expanded [data-library-key]')].map(el => el.dataset.libraryKey),
       scroll: _activeTab === 'library' ? root.querySelector('.nqd-main').scrollTop : (_libraryReadingContext?.scroll || 0),
     };
@@ -2111,7 +2113,7 @@
     if (!saved || saved.owner !== root.dataset.libraryReader) return;
     const collection = [...root.querySelectorAll('[data-library-collection]')].find(el => el.dataset.libraryCollection === saved.collection);
     _setLibraryCollection(root, collection);
-    for (const [id, value] of [['nqDashLibrarySearch', saved.search], ['nqDashLibrarySort', saved.sort]]) {
+    for (const [id, value] of [['nqDashLibrarySearch', saved.search], ['nqDashLibrarySort', saved.sort], ['nqDashLibraryDiscovery', saved.discovery]]) {
       const control = root.querySelector('#' + id);
       if (!control) continue;
       if (control.tagName !== 'SELECT' || [...control.options].some(option => option.value === value && !option.hidden)) control.value = value;
@@ -2183,6 +2185,7 @@
     if (librarySort) {
       librarySort.addEventListener('change', () => _applyLibraryView(root));
     }
+    root.querySelector('#nqDashLibraryDiscovery')?.addEventListener('change', () => _applyLibraryView(root));
 
     const libraryFilter = root.querySelector('#nqDashLibraryFilter');
     if (libraryFilter) libraryFilter.addEventListener('change', () => {
@@ -2352,6 +2355,7 @@
     const query = (root.querySelector('#nqDashLibrarySearch')?.value || '').trim().toLocaleLowerCase('pt-BR');
     const sort = root.querySelector('#nqDashLibrarySort')?.value || 'recent';
     const filter = _libraryFilterValue(root);
+    const discovery = root.querySelector('#nqDashLibraryDiscovery')?.value || 'all';
 
     const items = [...list.querySelectorAll('[data-library-entry]')];
     // Todos conta o catálogo antes da busca; acesso não equivale a descoberta.
@@ -2382,10 +2386,12 @@
     items.forEach(item => {
       const inCollection = collection !== 'favorites' || item.dataset.libraryFavorite === 'true';
       const matches = !query || (item.dataset.search || '').includes(query);
+      const matchesDiscovery = collection === 'favorites' || discovery === 'all'
+        || (discovery === 'unlocked' ? item.dataset.libraryDiscovered === 'true' : item.dataset.libraryDiscovered !== 'true');
       const matchesFilter = collection === 'favorites' || filter === 'all'
         || (filter.startsWith('rarity:') && item.dataset.libraryRarity === filter.slice(7))
         || (filter.startsWith('theme:') && (item.dataset.libraryTheme || '').split(' · ').includes(filter.slice(6)));
-      item.hidden = !(inCollection && matches && matchesFilter);
+      item.hidden = !(inCollection && matches && matchesFilter && matchesDiscovery);
       if (!item.hidden) visible += 1;
     });
 
@@ -2396,7 +2402,7 @@
       status.textContent = `${visible} ${label}${query ? ' nesta busca' : ''}`;
     }
     const empty = root.querySelector('[data-library-empty]');
-    if (empty) empty.hidden = !(collection !== 'favorites' && !query && filter === 'all');
+    if (empty) empty.hidden = !(collection !== 'favorites' && discovery === 'all' && !query && filter === 'all');
     const noResults = root.querySelector('#nqDashLibraryNoResults');
     if (noResults) noResults.hidden = visible > 0 || !!(empty && !empty.hidden);
   }

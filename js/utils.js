@@ -818,8 +818,12 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
         ? [...document.querySelectorAll('.ref-resumo-btn[data-action="openRefResumo"]')]
           .find(element => element.dataset.arg === key && element.getClientRects().length)
         : source;
-      const r = (button && _refResumoSources.get(button)) ||
-        (typeof refsDB === 'object' && refsDB && refsDB[key]);
+      // Registered question/history buttons retain their editorial snapshot.
+      // A catalog key alone does not grant discovery or access to a locked source.
+      const registered = button && _refResumoSources.get(button);
+      const catalogueAccess = _getUnlockedRefs().has(key)
+        || (typeof window.isAdminUser === 'function' && window.isAdminUser());
+      const r = registered || (catalogueAccess && typeof refsDB === 'object' && refsDB && refsDB[key]);
       if (!r) return;
       _showResumoModal({
         label:       r.label || '',

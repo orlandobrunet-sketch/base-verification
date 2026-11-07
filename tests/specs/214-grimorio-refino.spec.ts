@@ -30,7 +30,7 @@ test('catálogo inteiro preserva bloqueios e contador pessoal, inclusive no admi
  const entries=page.locator('[data-library-entry]'); const total=await entries.count();
  await expect(page.locator('[data-library-entry]:visible')).toHaveCount(total);
  await expect(page.locator('.nqd-library-summary')).toHaveText('Referências descobertas até o momento: 8/'+total);
- await expect(page.locator('#nqDashLibraryDiscovery')).toHaveCount(0);
+ await expect(page.locator('#nqDashLibraryDiscovery')).toHaveValue('all');
  await expect(page.locator('#nqDashLibraryFilter option[value="guideline"]')).toHaveCount(0);
  expect(await page.locator('.nqd-library-locked-item').count()).toBeGreaterThan(0);
  await expect(page.locator('.nqd-library-locked-item .nqd-favorite')).toHaveCount(0);

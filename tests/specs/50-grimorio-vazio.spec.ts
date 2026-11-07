@@ -106,7 +106,7 @@ test.describe('Grimório vazio', () => {
 
     // O proprietário pediu que o catálogo faltante pudesse ser explorado.
     // Consultar seus títulos/regras não concede a leitura nem altera o save.
-    await expect(painel.locator('#nqDashLibraryDiscovery')).toHaveCount(0);
+    await expect(painel.locator('#nqDashLibraryDiscovery')).toHaveValue('all');
     const locked = painel.locator('[data-library-entry]:visible');
     await expect(locked).toHaveCount(catalogue.articles + catalogue.sources);
     await expect(locked.first().locator('h3')).toBeVisible();

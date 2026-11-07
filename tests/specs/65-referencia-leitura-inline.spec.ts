@@ -11,6 +11,8 @@ test('referência abre em popup, preserva os textos e fecha pelo teclado', async
   const source = await page.evaluate(() => {
     return (0, eval)(`(() => {
       const key = Object.keys(refsDB).find(key => refsDB[key].resumo && refsDB[key].conclusao && refsDB[key].curiosidade);
+      // The later key-only read is legitimate only for an already discovered source.
+      _unlockRefsFromQuestion([key]);
       renderRefs([key]); setLumenEvidenceAvailable(true);
       return { key, ...refsDB[key] };
     })()`);

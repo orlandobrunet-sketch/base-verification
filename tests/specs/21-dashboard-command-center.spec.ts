@@ -932,7 +932,7 @@ test.describe('Central de Comando do aprendizado', () => {
     await page.getByRole('tab', { name: 'Grimório', exact: true }).click();
     const library = page.getByRole('tabpanel', { name: 'Grimório' });
     await expect(library.getByRole('tab', { name: 'Todos' })).toBeVisible();
-    await expect(library.getByRole('option', { name: 'Publicação mais recente' })).toBeAttached();
+    await expect(library.getByRole('option', { name: 'Mais recentes', exact: true })).toBeAttached();
     await expect(library.locator('.nqd-library-item .nqd-state', { hasText: /^Referência$/ })).toHaveCount(0);
     await expect(library.locator('.nqd-library-item').first()).toHaveAttribute('data-library-year', /\d{4}/);
     const catalogue = await page.evaluate(() => ({ articles: (0, eval)('nefroArticles.length'), sources: (0, eval)('Object.keys(refsDB).length') }));

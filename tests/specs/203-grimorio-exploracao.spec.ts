@@ -73,7 +73,7 @@ test('raridade substitui tema e é restaurada após leitura e reabertura', async
   await page.getByRole('button', { name: 'Limpar filtro', exact: true }).click();
   await expect(page.locator('#nqDashLibrarySearch')).toHaveValue('zzzz-sem-resultado');
   await expect(page.locator('#nqDashLibrarySort')).toHaveValue('oldest');
-  await expect(page.locator('#nqDashLibraryDiscovery')).toHaveCount(0);
+  await expect(page.locator('#nqDashLibraryDiscovery')).toHaveValue('all');
   await expect(epic).toHaveAttribute('aria-pressed', 'false');
   await expect(cards).toHaveCount(0);
 });

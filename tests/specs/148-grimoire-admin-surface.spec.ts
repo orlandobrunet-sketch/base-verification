@@ -15,13 +15,13 @@ test('admin surface stays scoped to the local admin preview without granting dis
   await page.locator('[data-atrium-route="library"]').click();
   const summary = page.locator('.nqd-library-summary');
   await expect(summary).toBeVisible();
-  await expect(page.locator('#nqDashLibraryDiscovery option[value="all"]')).toHaveCount(0);
+  await expect(page.locator('#nqDashLibraryDiscovery')).toHaveValue('all');
   await expect(page.locator('[data-library-item]')).toHaveCount(0);
   const before = await page.evaluate(() => [localStorage.getItem('unlockedArticles'), localStorage.getItem('nq-unlocked-refs')]);
   await page.keyboard.press('Escape');
   await page.evaluate(() => { (window as any).isAdminUser = () => true; void (window as any).openBibliotecaModal(); });
   await expect(summary).toContainText('Referências descobertas até o momento: 0/');
-  await expect(page.locator('#nqDashLibraryDiscovery option[value="all"]')).toHaveCount(0);
+  await expect(page.locator('#nqDashLibraryDiscovery')).toHaveValue('all');
   expect(await page.locator('[data-library-item]').count()).toBeGreaterThan(0);
   const contrast = await new AxeBuilder({ page }).include('.nqd-library-summary').withRules(['color-contrast']).analyze();
   expect(contrast.violations).toEqual([]);
@@ -29,7 +29,7 @@ test('admin surface stays scoped to the local admin preview without granting dis
   await page.keyboard.press('Escape');
   await page.evaluate(() => { (window as any).isAdminUser = () => false; void (window as any).openBibliotecaModal(); });
   await expect(summary).toContainText('Referências descobertas até o momento: 0/');
-  await expect(page.locator('#nqDashLibraryDiscovery option[value="all"]')).toHaveCount(0);
+  await expect(page.locator('#nqDashLibraryDiscovery')).toHaveValue('all');
   await expect(page.locator('[data-library-item]')).toHaveCount(0);
 });
 
@@ -57,7 +57,7 @@ test('collection count follows discoveries and the full admin catalogue without 
   const before = await page.evaluate(() => [localStorage.getItem('unlockedArticles'), localStorage.getItem('nq-unlocked-refs')]);
   await expect(badge).toHaveText(String(total));
   await expect(page.locator('#nqDashLibraryCollectionCount')).toHaveText(`${total} estudos`);
-  await expect(page.locator('#nqDashLibraryDiscovery')).toHaveCount(0);
+  await expect(page.locator('#nqDashLibraryDiscovery')).toHaveValue('all');
   await expect(page.locator('.nqd-library-summary')).toContainText('Referências descobertas até o momento: '+discovered+'/');
   await page.locator('#nqDashLibrarySearch').fill('zzzz-sem-resultado');
   await expect(page.locator('#nqDashLibraryCollectionCount')).toHaveText('0 estudos nesta busca');

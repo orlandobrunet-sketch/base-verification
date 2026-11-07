@@ -54,7 +54,7 @@ async function conferirCatalogoRecuperado(page: Page) {
   expect(catalogue.articles).toBeGreaterThan(0);
   expect(catalogue.sources).toBeGreaterThan(0);
   const discovery = pane.locator('#nqDashLibraryDiscovery');
-  await expect(discovery).toHaveCount(0);
+  await expect(discovery).toHaveValue('all');
   await expect(pane.locator('[data-library-item]:visible')).toHaveCount(0);
   const locked = pane.locator('[data-library-entry]:visible');
   await expect(locked).toHaveCount(catalogue.articles + catalogue.sources);

@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v16.82
-const CACHE = 'nefroquest-v16.82';
+// NefroQuest Service Worker — v16.83
+const CACHE = 'nefroquest-v16.83';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -218,7 +218,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/atrium.css': '16.62',
   '/styles/lumen/game.css': '16.71',
   '/styles/lumen/difficulty.css': '16.06',
-  '/styles/lumen/dashboard.css': '16.82',
+  '/styles/lumen/dashboard.css': '16.83',
   '/styles/lumen/charselect.css': '16.60',
   '/styles/lumen/modes.css': '16.69',
   '/styles/lumen/forge.css': '16.64',
@@ -229,7 +229,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/ranking.css': '16.52',
   '/styles/lumen/achievements.css': '16.75',
   '/styles/lumen/oracle.css': '16.25',
-  '/js/utils.js': '16.72',
+  '/js/utils.js': '16.83',
   '/js/pilot.js': '16.06',
   '/js/character-benefits.js': '16.07',
   '/js/answer-presentation.js': '16.09',
@@ -251,7 +251,7 @@ const ASSET_VERSIONS = {
   '/js/achievements.js': '16.75',
   '/js/changelog.js': '15.94',
   '/js/equipment-preview.js': '16.62',
-  '/js/dashboard.js': '16.82',
+  '/js/dashboard.js': '16.83',
 };
 // bump-release:asset-versions:fim
 
