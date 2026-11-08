@@ -76,7 +76,8 @@ test('banner preserves full approved frame and canonical cinema narrative', asyn
   expect(art.size).toBe('auto 100%');
   expect(art.image).toContain('chamber-balance-still.webp');
   expect(art.repeat).toBe('no-repeat');
-  expect(await page.locator('.ab-lead').textContent()).toBe(cases.match(/<p class="ab-lead">([^<]+)<\/p>/)![1]);
+  const canonicalLead = `${expected.length} casos clínicos do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta ratio, o cloreto e o pH urinário, os distúrbios mistos e triplos e o gap osmolar para restaurar o equilíbrio.`;
+  expect(await page.locator('.ab-lead').textContent()).toBe(canonicalLead);
   expect(await page.locator('.ab-scroll').evaluate(el => getComputedStyle(el).overflowY)).toBe('visible');
 });
 

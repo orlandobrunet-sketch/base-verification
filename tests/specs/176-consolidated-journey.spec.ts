@@ -1,5 +1,6 @@
 import{test,expect}from'@playwright/test';import{enterGame}from'../helpers/game';
 import{advanceToFilm}from'../helpers/cinema';
+import{chamberCatalog}from'../helpers/chamber-catalog';
 import path from'node:path';import{mkdirSync}from'node:fs';
 test.use({serviceWorkers:'block',reducedMotion:'no-preference'});
 test('combined normal entry, Chamber, boss, epilogue and continuation',async({page})=>{
@@ -15,9 +16,11 @@ test('combined normal entry, Chamber, boss, epilogue and continuation',async({pa
  await page.keyboard.press('Escape');await expect(cinema).toHaveCount(0);await expect(page.locator('#question')).not.toBeEmpty();
  const origin=page.locator('#forgeBtn:visible');await origin.focus();await page.evaluate(()=>(window as any).showAcidBaseMinigame());await expect(cinema).toBeVisible();await expect(cinema.locator('video')).toHaveJSProperty('muted',true);await page.keyboard.press('Tab');expect(await cinema.evaluate(el=>el.contains(document.activeElement))).toBe(true);await page.keyboard.press('Escape');await expect(cinema).toHaveCount(0);
  const hub=page.locator('#acidBaseOverlay');await expect(hub).toHaveAttribute('data-ab-tela','hub');await expect(page.getByRole('heading',{name:'Alquimista Renal'})).toBeFocused();
- await expect(hub.locator('.ab-next-case')).toBeVisible();await expect(hub.locator('.ab-lead')).toContainText('Vinte pacientes');await page.screenshot({path:path.join(dir,'chamber-hub.png'),fullPage:true});
+ await expect(hub.locator('.ab-next-case')).toBeVisible();await expect(hub.locator('.ab-lead')).toContainText(`${chamberCatalog.length} casos clínicos`);await page.screenshot({path:path.join(dir,'chamber-hub.png'),fullPage:true});
  const progressBefore=await page.evaluate(()=>localStorage.getItem('nq-acidbase-progress'));
- await hub.locator('[data-entry-replay="chamber"]').click();await expect(cinema).toBeVisible();await expect(cinema.locator('video')).toHaveJSProperty('muted',true);await page.keyboard.press('Escape');await expect(cinema).toHaveCount(0);expect(await page.evaluate(()=>localStorage.getItem('nq-acidbase-progress'))).toBe(progressBefore);
+ await expect(hub.locator('[data-entry-replay="chamber"]')).toHaveCount(0);
+ await hub.getByRole('tab',{name:`Casos clínicos (${chamberCatalog.length})`,exact:true}).click();await expect(hub.locator('.ab-case:visible')).toHaveCount(Math.min(4,chamberCatalog.length));
+ await hub.getByRole('tab',{name:'Visão geral',exact:true}).click();await expect(hub.locator('.ab-next-case')).toBeVisible();expect(await page.evaluate(()=>localStorage.getItem('nq-acidbase-progress'))).toBe(progressBefore);
  await hub.locator('[data-ab-next]').click();await page.locator('[data-ab-start-acts]').click();await expect(page.locator('.ab-prompt')).toBeFocused();await page.keyboard.press('Escape');await expect(page.locator('.ab-prompt')).toBeVisible();await page.screenshot({path:path.join(dir,'chamber-act.png'),fullPage:true});
  for(let i=0;i<8&&!await page.locator('.ab-summary-view').count();i++){
   if(await page.locator('#abNumInput:not([disabled])').count()){await page.locator('#abNumInput').fill('10');await page.locator('[data-ab-num-submit]').click();}
