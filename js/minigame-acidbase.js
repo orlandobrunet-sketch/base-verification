@@ -2160,10 +2160,11 @@
             <div class="ab-hub-banner">
             <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
             <h1 class="ab-title">Alquimista Renal</h1>
+            <div class="ab-hub-progress"><span><strong>${completedCount}</strong> de ${CASES.length} casos concluídos</span><progress max="${CASES.length}" value="${completedCount}" aria-label="Casos concluídos"></progress></div>
             </div>
             <div class="ab-hub-opening">
             <div class="ab-hub-heading">
-            <p class="ab-lead">Vinte pacientes do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta ratio, o cloreto e o pH urinário, os distúrbios mistos e triplos e o gap osmolar para restaurar o equilíbrio.</p>
+            <p class="ab-lead">${CASES.length} casos clínicos do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta ratio, o cloreto e o pH urinário, os distúrbios mistos e triplos e o gap osmolar para restaurar o equilíbrio.</p>
             <div class="ab-lab" data-ab-lab data-motion="paused">
               <svg class="ab-lab-art" viewBox="0 0 220 112" fill="none" aria-hidden="true" focusable="false">
                 <ellipse class="ab-lab-halo" cx="110" cy="98" rx="65" ry="7"/>
@@ -2189,8 +2190,7 @@
             </aside>
             </div>
             <div class="ab-desktop-only ab-collection-heading">
-              <h2>Os pacientes do reino</h2>
-              <div class="ab-hub-progress"><span><strong>${completedCount}</strong> de ${CASES.length} casos concluídos</span><progress max="${CASES.length}" value="${completedCount}" aria-label="Casos concluídos"></progress></div>
+              <h2>Casos clínicos do reino</h2>
             </div>
             <div class="ab-grid">${cardsHTML}</div>
             <p class="ab-desktop-only ab-hub-note">Conclua um caso para liberar o próximo. Os casos concluídos podem ser repetidos com novos valores.</p>
@@ -2300,6 +2300,18 @@
           <button type="button" class="ab-btn-primary" data-ab-start-acts>Iniciar Diagnóstico em ${kase.acts.length} Atos →</button>
         </div>
       </div>`;
+    const preview=document.createElement('section');preview.className='ab-intro-preview';
+    preview.setAttribute('aria-labelledby','abIntroRouteTitle');
+    const heading=document.createElement('h2');heading.id='abIntroRouteTitle';heading.textContent='Seu percurso';preview.append(heading);
+    const route=document.createElement('ol');route.className='ab-intro-route';preview.append(route);
+    const labels={mc:'Decisão clínica',num:'Análise numérica',cards:'Conselho de Diagnósticos'};
+    // Describe interaction formats only: later clinical headings may reveal an earlier answer.
+    kase.acts.forEach((act,index)=>{
+      const step=document.createElement('li'),number=document.createElement('span'),label=document.createElement('strong');
+      number.className='ab-intro-step-number';number.setAttribute('aria-hidden','true');number.textContent=String(index+1).padStart(2,'0');
+      label.textContent=labels[act.kind]||'Etapa clínica';step.append(number,label);route.append(step);
+    });
+    card.querySelector('.ab-body--intro').prepend(preview);
     window.NQChamberArt?.hydrate(card);
     card.querySelector('[data-ab-start-acts]').onclick = () => _renderAct(overlay, kase, sess);
     _abFocar(card, '.ab-title');
@@ -2399,7 +2411,7 @@
           <p class="ab-ddx-arquivista">Arquivista: “${_DDX_ARQUIVISTA_PRE}”</p>
           ${act.instruction ? `<div class="ab-ddx-instruction">${act.instruction}</div>` : ''}
           <div class="ab-ddx-table">${cardsHtml}</div>
-          <div class="ab-ddx-counter">Selecionadas: <strong id="abDdxCount">${sel.size}</strong></div>
+          <div class="ab-ddx-counter" role="status" aria-live="polite" aria-atomic="true">Selecionadas: <strong id="abDdxCount">${sel.size}</strong></div>
           <div class="ab-ddx-actions">
             <button type="button" class="ab-btn-secondary ab-ddx-clear" data-ab-cards-clear>Limpar seleção</button>
             <button type="button" class="ab-btn-primary ab-ddx-submit" data-ab-cards-submit>Conferir Conselho</button>

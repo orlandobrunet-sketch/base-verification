@@ -38,7 +38,7 @@ test('reduced motion is static and follows a changed system preference',async({p
 test('hidden overview suspends the balance and an act removes the decoration',async({page})=>{
  test.skip(!await page.evaluate(()=>matchMedia('(pointer:fine)').matches),'Touch keeps native layout.');
  await open(page);const art=page.locator('[data-ab-lab]');await expect(art).toHaveAttribute('data-motion','running');
- await page.getByRole('tab',{name:'20 pacientes',exact:true}).click();await expect(art).toHaveAttribute('data-motion','paused');
+ await page.getByRole('tab',{name:/^Casos clínicos \(\d+\)$/}).click();await expect(art).toHaveAttribute('data-motion','paused');
  await page.getByRole('tab',{name:'Visão geral',exact:true}).click();await expect(art).toHaveAttribute('data-motion','running');
  await page.locator('[data-ab-next]').click();await page.locator('[data-ab-start-acts]').click();
  await expect(art).toHaveCount(0);await expect(page.locator('.ab-prompt')).toBeFocused();

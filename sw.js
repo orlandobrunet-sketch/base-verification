@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v16.90
-const CACHE = 'nefroquest-v16.90';
+// NefroQuest Service Worker — v16.91
+const CACHE = 'nefroquest-v16.91';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -184,8 +184,8 @@ const STATIC_ASSETS = [
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
   '/js/progression.js': '16.84',
-  '/js/chamber-workspace.js': '16.67',
-  '/styles/lumen/chamber-workspace.css': '16.39',
+  '/js/chamber-workspace.js': '16.91',
+  '/styles/lumen/chamber-workspace.css': '16.91',
   '/js/chamber-art.js': '16.67',
   '/styles/lumen/chamber-desktop.css': '16.67',
   '/js/cinema-poison-portraits.js': '16.43',
@@ -199,7 +199,7 @@ const ASSET_VERSIONS = {
   '/js/cinema-boss-art-states.js': '16.39',
   '/js/cinema-boss-static-adapter.js': '16.43',
   '/js/cinema-cinematic-intro.js': '16.46',
-  '/js/cinema-entry-bridge.js': '16.43',
+  '/js/cinema-entry-bridge.js': '16.91',
   '/js/cinema-entry-cinema.js': '16.43',
   '/js/cinema-entry-seen.js': '16.28',
   '/js/cinema-entry-source-config.js': '16.28',
@@ -249,7 +249,7 @@ const ASSET_VERSIONS = {
   '/js/exam.js': '16.67',
   '/js/admin.js': '15.35',
   '/js/minigame.js': '16.86',
-  '/js/minigame-acidbase.js': '16.67',
+  '/js/minigame-acidbase.js': '16.91',
   '/js/achievements.js': '16.75',
   '/js/changelog.js': '15.94',
   '/js/equipment-preview.js': '16.62',
