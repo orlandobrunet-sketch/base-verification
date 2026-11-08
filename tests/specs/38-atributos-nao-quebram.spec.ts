@@ -1,3 +1,4 @@
+import { keepLoadPending, expectLoadPending } from '../helpers/pending-load';
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 
@@ -79,6 +80,16 @@ function conferirAtributos(resultado: ReturnType<typeof MEDIR_ATRIBUTOS>) {
 }
 
 test.describe('Atributos Totais', () => {
+  test('os atributos ficam prontos mesmo com recurso não essencial pendente', async ({ page }) => {
+    await keepLoadPending(page);
+    await abrirJogo(page);
+    const distintivos = page.locator('.equip-total-attributes .stat-badge');
+    await expect(distintivos).toHaveCount(4);
+    await expect(distintivos.locator('.nql-stat-value')).toHaveCount(4);
+    conferirAtributos(await distintivos.evaluateAll(MEDIR_ATRIBUTOS));
+    await expectLoadPending(page);
+  });
+
   test('com os valores reais, nenhum valor quebra nem é espremido', async ({ page }) => {
     await abrirJogo(page);
     const distintivos = page.locator('.equip-total-attributes .stat-badge');

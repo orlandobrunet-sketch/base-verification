@@ -12,6 +12,8 @@ for(const [type,title,button,cost]of [['forge','Forjar Item','Forjar agora',300]
  await expect(page.locator('#forjaResultado')).toContainText('Forja concluída');
  await expect(page.locator('.equip-compare-overlay, .forge-popup')).toHaveCount(0);
  await expect(page.locator('#forjaResultado')).toBeFocused();
+ await page.getByRole('button',{name:'Fechar resultado e voltar à Forja',exact:true}).click();
+ await expect(page.locator('#forjaResultDialog')).toHaveCount(0);
  await page.getByRole('button',{name:'← Voltar à jornada',exact:true}).click();
  await expect(page.locator('.mdock-btn.forge-item:visible')).toBeFocused();
  }

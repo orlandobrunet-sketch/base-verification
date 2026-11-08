@@ -117,7 +117,10 @@ test('decisão sintética preserva resultado e bloqueios, inclusive com texto am
   `));
   const before = await economia(page);
   await expect(page.locator('#forjaResultado')).toHaveCount(1);
-  await expect(page.locator('#forjaResultado')).toHaveAttribute('aria-live', 'polite');
+  const dialog = page.getByRole('dialog', { name: 'Você forjou Equipamento recém-forjado de teste com nome longo' });
+  await expect(dialog).toBeVisible();
+  await expect(dialog).toHaveJSProperty('open', true);
+  await expect(dialog).toHaveAttribute('aria-labelledby', 'forjaResultadoTitulo');
   await expect(page.locator('#forjaResultado [data-arg="substituir"]')).toBeFocused();
   await expect(page.getByRole('button', { name: '← Voltar à jornada', exact: true })).toBeDisabled();
   await expect(page.getByRole('button', { name: 'Forjar item aleatório', exact: true })).toBeDisabled();

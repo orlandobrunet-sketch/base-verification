@@ -1,3 +1,4 @@
+import { keepLoadPending, expectLoadPending } from '../helpers/pending-load';
 import { characterIntro, confirmCharacterStart } from '../helpers/cinema';
 import { test, expect, Page } from '@playwright/test';
 import { openPilotChoice, setupPilotPage } from '../helpers/pilot';
@@ -23,7 +24,7 @@ const SAVE_NOVA_JORNADA = {
 };
 
 async function abrirConquistas(page: Page, historico: Record<string, unknown> | null) {
-  await page.goto('/jogar/');
+  await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => typeof (window as any).openDashboard === 'function');
   await page.evaluate(() => (window as any)._loadTopics?.());
   await page.evaluate(({ save, historico }) => {
@@ -36,7 +37,7 @@ async function abrirConquistas(page: Page, historico: Record<string, unknown> | 
     else localStorage.removeItem('nefroquest-badge-history');
     localStorage.setItem('nefroquest-premium', '1');
   }, { save: SAVE_NOVA_JORNADA, historico });
-  await page.reload();
+  await page.reload({ waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => typeof (window as any).openDashboard === 'function');
   await page.evaluate(() => (window as any)._loadTopics?.());
   await page.evaluate(() => (window as any).openDashboard());
@@ -76,10 +77,18 @@ test.describe('Selos: memória entre jornadas', () => {
     await expect(badge).toHaveAttribute('data-memoria', 'true');
   });
 
+  test('a trilha fica pronta mesmo com recurso não essencial pendente', async ({ page }) => {
+    await keepLoadPending(page);
+    await abrirConquistas(page, { 1: { jornada: 1 } });
+    await expect(page.locator('#nqdPane-achievements .nqd-badge-node')).toHaveCount(5);
+    await expect(page.locator('#nqdPane-achievements .nqd-badge-node[data-memoria="true"]')).toHaveCount(1);
+    await expectLoadPending(page);
+  });
+
   test('histórico corrompido não derruba a trilha', async ({ page }) => {
     const erros: string[] = [];
     page.on('pageerror', e => erros.push(String(e)));
-    await page.goto('/jogar/');
+    await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof (window as any).openDashboard === 'function');
     await page.evaluate(() => (window as any)._loadTopics?.());
     await page.evaluate(save => {
@@ -87,7 +96,7 @@ test.describe('Selos: memória entre jornadas', () => {
       localStorage.setItem('nefroquest-badge-history', '["isto","nao","e","objeto"]');
       localStorage.setItem('nefroquest-premium', '1');
     }, SAVE_NOVA_JORNADA);
-    await page.reload();
+    await page.reload({ waitUntil: 'domcontentloaded' });
     await page.waitForFunction(() => typeof (window as any).openDashboard === 'function');
     await page.evaluate(() => (window as any)._loadTopics?.());
     await page.evaluate(() => (window as any).openDashboard());

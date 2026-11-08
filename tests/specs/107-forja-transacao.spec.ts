@@ -222,6 +222,8 @@ test('falha ao gravar o sorteio reverte ouro, equipamento e histórico', async (
   } finally {
     await restaurarArmazenamento(page);
   }
+  await page.getByRole('button', { name: 'Voltar e tentar novamente', exact: true }).click();
+  await expect(page.locator('#forjaResultDialog')).toHaveCount(0);
   await expect(page.getByRole('button', { name: 'Forjar item aleatório', exact: true })).toBeEnabled();
   await expect(page.getByRole('button', { name: 'Forjar outro item', exact: true })).toHaveCount(0);
   await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
@@ -604,9 +606,11 @@ test('Pixel 7 compra com dois toques, decide e volta preservando o restante da j
   expect(resolved.forjaPending).toBeNull();
   expect(resolved.equipment[paid.forjaPending.slot]).toEqual(paid.forjaPending.novo);
   expect(progressoSemForja(resolved)).toEqual(progressoSemForja(before));
+  await page.getByRole('button', { name: 'Fechar resultado e voltar à Forja', exact: true }).tap();
+  await expect(page.locator('#forjaResultDialog')).toHaveCount(0);
   await page.locator('[data-action="fecharForja"]').tap();
   await expect(page.locator('#mainApp')).toBeVisible();
   await expect(page.locator('.mdock-btn.forge-item:visible')).toBeFocused();
-  expect(await page.evaluate(() => (window as any).__forjaPointerTypes)).toEqual(['touch','touch','touch','touch']);
+  expect(await page.evaluate(() => (window as any).__forjaPointerTypes)).toEqual(['touch','touch','touch','touch','touch']);
   expect((await save(page)).gold).toBe(resolved.gold);
 });

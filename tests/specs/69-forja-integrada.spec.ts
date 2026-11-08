@@ -11,7 +11,7 @@ import { medirContraste } from '../helpers/contraste';
  * lendário) só iam para o diário, atrás da sobreposição.
  *
  * Agora: ouro, as duas forjas com o motivo de cada bloqueio, a decisão de
- * substituição e o resultado no fluxo, e os seis espaços de equipamento.
+ * substituição e o resultado em diálogo próprio, e os seis espaços de equipamento.
  */
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
@@ -64,10 +64,11 @@ test('é página, não sobreposição, e mostra ouro e os seis espaços', async 
   await semPopups(page);
 });
 
-test('espaço vazio: forja, equipa e mostra o resultado na página', async ({ page }) => {
+test('espaço vazio: forja, equipa e mostra o resultado em diálogo', async ({ page }) => {
   await abrirForja(page);
   await page.getByRole('button', { name: 'Forjar item aleatório' }).click();
   const resultado = page.locator('#forjaResultado');
+  await expect(page.locator('#forjaResultDialog')).toHaveJSProperty('open', true);
   await expect(resultado.getByRole('heading', { name: 'Forja concluída' })).toBeVisible();
   await expect(resultado).toBeFocused();
   expect(await ouro(page)).toBe(4700);
@@ -82,9 +83,10 @@ test('espaço vazio: forja, equipa e mostra o resultado na página', async ({ pa
 });
 
 for (const escolha of ['manter', 'substituir'] as const) {
-  test(`espaço ocupado: a comparação acontece na página (${escolha})`, async ({ page }) => {
+  test(`espaço ocupado: a comparação acontece no diálogo da Forja (${escolha})`, async ({ page }) => {
     await abrirForja(page, { ajuste: OCUPAR });
     await page.getByRole('button', { name: 'Forjar item aleatório' }).click();
+    await expect(page.locator('#forjaResultDialog')).toHaveJSProperty('open', true);
 
     const equipar = page.getByRole('button', { name: /^Equipar .+ vira 20 de ouro$/ });
     const manter = page.getByRole('button', { name: /^Manter Item de teste \w+.+ vira \d+ de ouro$/ });

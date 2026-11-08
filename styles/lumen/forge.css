@@ -242,3 +242,22 @@
 @container nqForjaResultado (min-width: 56rem) {
   #forjaPage .nq-forja-duelo .nq-forja-atributos { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
+
+/* Resultado na camada modal: a oficina e suas opções mantêm a geometria. */
+#forjaPage #forjaMotivoSaida { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+#forjaPage .nq-forja-dialogo { position:fixed; inset:0; width:min(62rem, calc(100% - 2rem)); max-width:none; max-height:calc(100svh - 2rem); margin:auto; padding:0; overflow:auto; overscroll-behavior:contain; border:1px solid #9c7947; border-radius:.65rem; background:#0c0d0e; color:var(--nql-text); box-shadow:0 1.5rem 5rem #000a; }
+#forjaPage .nq-forja-dialogo::backdrop { background:#03070de6; }
+#forjaPage .nq-forja-dialogo > .nq-forja-resultado { margin:0; border:0; padding:clamp(1rem, 3vw, 2rem); }
+#forjaPage .nq-forja-dialogo:has(.nq-forja-fechar) h2 { padding-right:3rem; }
+#forjaPage .nq-forja-dialogo .nq-forja-fechar { position:absolute; z-index:1; top:.5rem; right:.5rem; min-width:44px; min-height:44px; padding:.25rem; font-size:1.5rem; line-height:1; background:#16202b; }
+#forjaPage .nq-forja-item[data-rarity] { --forge-item-bg:#1c2530; --forge-item-accent:#cfdae6; background:var(--forge-item-bg); border:1px solid var(--forge-item-accent); border-left-width:3px; border-radius:.6rem; padding:1rem; opacity:1; }
+#forjaPage .nq-forja-item[data-rarity="uncommon"] { --forge-item-bg:#102c23; --forge-item-accent:#99dcb9; }
+#forjaPage .nq-forja-item[data-rarity="rare"] { --forge-item-bg:#11283f; --forge-item-accent:#9ac9ff; }
+#forjaPage .nq-forja-item[data-rarity="epic"] { --forge-item-bg:#271935; --forge-item-accent:#d1a6ff; }
+#forjaPage .nq-forja-item[data-rarity="legendary"] { --forge-item-bg:#352914; --forge-item-accent:#f0cf7c; }
+#forjaPage .nq-forja-item[data-rarity] h3, #forjaPage .nq-forja-item[data-rarity] .nq-forja-rotulo { color:var(--forge-item-accent); }
+#forjaPage .nq-forja-item[data-rarity] .nq-forja-selo { background:var(--forge-item-accent); color:#0a1119; }
+#forjaPage .nq-forja-item:has(.nq-forja-vazio) { border-color:#425563; background:transparent; }
+@media (max-width: 40rem) {
+  #forjaPage .nq-forja-dialogo { width:calc(100% - 1rem); max-height:calc(100svh - 1rem); }
+}
