@@ -3,7 +3,9 @@ import {injectGameState} from '../helpers/game';
 import {medirContraste} from '../helpers/contraste';
 test.use({serviceWorkers:'block',reducedMotion:'reduce'});
 async function open(page:Page,boss:boolean){
- await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
+ const origin=new URL(test.info().project.use.baseURL as string).origin;
+ await page.route('**/*',r=>r.request().method()==='GET'&&new URL(r.request().url()).origin===origin?r.continue():r.abort());
+ await page.routeWebSocket('**/*',s=>s.close());
  await page.goto('/jogar/',{waitUntil:'domcontentloaded'});
  if(boss){await page.waitForFunction(()=>typeof (window as any).startBossPreview==='function');await page.evaluate(async()=>await (window as any).startBossPreview());}
  else await injectGameState(page);
@@ -25,8 +27,9 @@ for(const boss of [false,true]){
  for(const layout of [{width:1159,height:684,font:16},{width:390,height:800,font:16},{width:320,height:740,font:32}])test(`${boss?'final':'main'} hints fit at ${layout.width}/${layout.font}`,async({page})=>{
   await page.setViewportSize(layout);await open(page,boss);await page.evaluate(font=>document.documentElement.style.fontSize=font+'px',layout.font);
   await expect(page.locator('html')).toHaveCSS('font-size',layout.font+'px');
+  await page.locator('#options .opt-body').evaluateAll(nodes=>nodes.forEach((node,index)=>node.textContent=index%2?'Alternativa longa de teste para conferir leitura completa em várias linhas, sem sobreposição com o atalho numérico.':'Texto curto.'));
   const hints=page.locator('#options .nq-option-shortcut');for(const hint of await hints.all())await expect(hint).toBeVisible();
-  const bounds=await hints.evaluateAll(nodes=>nodes.map((node,index)=>{const r=node.getBoundingClientRect(),b=node.closest('button')!.getBoundingClientRect(),previous=index?nodes[index-1].closest('button')!.getBoundingClientRect():null,text=node.closest('button')!.querySelector('.opt-body')!.getBoundingClientRect();return {clearOfPrevious:!previous||r.top>=previous.bottom,insideWidth:r.left>=b.left&&r.right<=b.right,onEdge:Math.abs((r.top+r.bottom)/2-b.top)<=2,separate:r.bottom<=text.top+1,inViewport:r.left>=0&&r.right<=innerWidth};}));expect(bounds.every(b=>b.clearOfPrevious&&b.insideWidth&&b.onEdge&&b.separate&&b.inViewport)).toBe(true);
+  const bounds=await hints.evaluateAll(nodes=>nodes.map((node,index)=>{const r=node.getBoundingClientRect(),b=node.closest('button')!.getBoundingClientRect(),previous=index?nodes[index-1].closest('button')!.getBoundingClientRect():null,text=node.closest('button')!.querySelector('.opt-body')!.getBoundingClientRect();return {clearOfPrevious:!previous||r.top>=previous.bottom,insideWidth:r.left>=b.left&&r.right<=b.right,centered:Math.abs((r.top+r.bottom-b.top-b.bottom)/2)<=2,separate:r.left>=text.right+8,inViewport:r.left>=0&&r.right<=innerWidth};}));expect(bounds.every(b=>b.clearOfPrevious&&b.insideWidth&&b.centered&&b.separate&&b.inViewport)).toBe(true);
   for(const option of await page.locator('#options .option').all())await expect(option).toHaveCSS('overflow','visible');
   const geometry=await page.locator('#options').evaluate(el=>{
    const measure=()=>[...el.querySelectorAll('.option')].map(b=>({height:b.getBoundingClientRect().height,textWidth:b.querySelector('.opt-body')!.getBoundingClientRect().width}));
@@ -34,6 +37,22 @@ for(const boss of [false,true]){
   });expect(geometry.shown).toEqual(geometry.hidden);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);expect(await page.evaluate(medirContraste,'#options .nq-option-shortcut')).toEqual([]);
   await expect(page.locator('html')).toHaveCSS('font-size',layout.font+'px');
+  const last=page.locator('#options .option').last();
+  await last.evaluate(node=>node.scrollIntoView({block:'end'}));
+  await last.evaluate(button=>{
+   const range=document.createRange();range.selectNodeContents(button.querySelector('.opt-body')!);
+   const rects=[...range.getClientRects()],r=rects[rects.length-1],dock=document.getElementById('mobileBottomDock');
+   const dockRect=dock?.getBoundingClientRect(),edge=dockRect&&dockRect.height&&getComputedStyle(dock!).display!=='none'?Math.min(innerHeight,dockRect.top):innerHeight;
+   // Scroll to the actual last line, rather than past the options to the page footer.
+   window.scrollBy(0,r.bottom-edge+12);
+  });
+  const tail=await last.evaluate(button=>{
+   const text=button.querySelector('.opt-body')!,range=document.createRange();range.selectNodeContents(text);
+   const rects=[...range.getClientRects()],r=rects[rects.length-1];
+   const hit=document.elementFromPoint(r.left+Math.min(8,r.width/2),r.top+r.height/2);
+   return {readable:button.contains(hit),text:text.textContent,overflow:text.scrollWidth>text.clientWidth+1};
+  });
+  expect(tail.readable).toBe(true);expect(tail.overflow).toBe(false);expect(tail.text).toContain('sem sobreposição com o atalho numérico.');
   await page.locator('#options .option').first().scrollIntoViewIfNeeded();
   await test.info().attach('keyboard-guides',{body:await page.screenshot(),contentType:'image/png'});
  });
