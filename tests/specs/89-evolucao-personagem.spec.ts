@@ -8,6 +8,9 @@ const personagens={
  glomerulus:{title:'Doutor das Glomerulopatias',image:'assets/classes-cinema/guerreiro_glomerular/nivel_08.webp',lore:'Seus estudos sobre podocitopatas são citados em todo o reino. A ciência renal te deve uma dívida.'}
 };
 async function abrir(page:Page,id:keyof typeof personagens='nephros',level=8){
+ // A emulação de contexto pode não chegar à página; confirme antes de medir contraste.
+ await page.emulateMedia({reducedMotion:'reduce'});
+ expect(await page.evaluate(()=>matchMedia('(prefers-reduced-motion: reduce)').matches)).toBe(true);
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
  await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await injectGameState(page,{character:id});await page.waitForLoadState('load');
  const origin=page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first();await origin.focus();
