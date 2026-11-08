@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.89',
+          release: 'nefroquest@16.90',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -142,7 +142,7 @@
   <link rel="stylesheet" href="styles/lumen/game.css?v=16.87">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.86">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.83">
-  <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.89">
+  <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.90">
   <link rel="stylesheet" href="styles/lumen/forge.css?v=16.85">
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
   <link rel="stylesheet" href="styles/lumen/modes.css?v=16.69">
@@ -1513,7 +1513,7 @@
   <div id="charSelectModal" class="nqc-screen" data-nq-ui="lumen" tabindex="-1" data-presentation="scene" data-preview-character="nephros" role="dialog" aria-modal="true" aria-labelledby="nqcTitle">
     <div class="nqc-shell">
       <button type="button" class="nqc-close" data-action="closeCharSelectModal" aria-label="Fechar escolha de classe">×</button>
-      <header class="nqc-header"><p class="nqc-opening">Uma nova jornada</p><h2 id="nqcTitle">Quem vai enfrentar o Arqui-Nefromante?</h2><p class="nqc-lede">Conheça seus guardiões. A escolha é sua; a jornada começa quando você confirmar.</p></header>
+      <header class="nqc-header"><p class="nqc-opening">Uma nova jornada</p><h2 id="nqcTitle">Quem vai enfrentar o Arqui-Nefromante?</h2><p class="nqc-lede">Escolha seu guardião e conheça sua história. A jornada começa ao confirmar.</p></header>
       <div class="nqc-notice" id="nqcHardcoreNotice" role="note" hidden><strong>No modo Hardcore, os bônus de personagem não se aplicam.</strong><p>Este aviso se refere aos bônus iniciais novos. Os atributos originais da classe permanecem.</p></div>
       <div class="nqc-scene">
         <aside class="nqc-roster"><h3>Escolha sua classe</h3><ul class="nqc-grid" role="radiogroup" aria-label="Classe da jornada">
@@ -1533,7 +1533,7 @@
 
 
 
-            <span class="nqc-choose">Ver perfil</span>
+            <span class="nqc-choose">Selecionar</span>
           </button>
         </li>
         <li role="none">
@@ -1552,7 +1552,7 @@
 
 
 
-            <span class="nqc-choose">Ver perfil</span>
+            <span class="nqc-choose">Selecionar</span>
           </button>
         </li>
         <li role="none">
@@ -1572,15 +1572,15 @@
 
 
 
-            <span class="nqc-choose">Ver perfil</span>
+            <span class="nqc-choose">Selecionar</span>
           </button>
         </li>
       </ul></aside>
         <section id="nqcProfile" class="nqc-profile" aria-labelledby="nqcProfileName">
-          <div class="nqc-profile-art"><div class="nqc-scene-aura" aria-hidden="true"></div><div id="nqcProfileEmblem" aria-hidden="true"></div><img id="nqcProfilePortrait" src="assets/classes-cinema/clerigo_renal/nivel_01.webp" alt="" width="512" height="512" decoding="async"><p class="nqc-evolution"><span class="nqc-path" aria-hidden="true"><i class="is-current"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="nqc-path-label">Arte inicial · 10 estágios de evolução</span></p></div>
           <header class="nqc-profile-heading"><p id="nqcProfileTitle"></p><h3 id="nqcProfileName"></h3></header>
           <p id="nqcProfileStory" class="nqc-profile-story"></p>
           <div class="nqc-profile-benefits"><h4>Atributos da classe</h4><ul id="nqcAttributes" class="nqc-attributes"></ul><div class="nqc-initial"><h4>Bônus inicial</h4><p id="nqcInitialBonus"></p></div></div>
+          <div class="nqc-profile-art"><div class="nqc-scene-aura" aria-hidden="true"></div><div id="nqcProfileEmblem" aria-hidden="true"></div><img id="nqcProfilePortrait" src="assets/classes-cinema/clerigo_renal/nivel_01.webp" alt="" width="512" height="512" decoding="async"><p class="nqc-evolution"><span class="nqc-path" aria-hidden="true"><i class="is-current"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="nqc-path-label">Arte inicial · 10 estágios de evolução</span></p></div>
         </section>
       </div>
       <footer class="nqc-actions"><div><p class="nqc-commit-note">Ao iniciar uma nova jornada, a anterior é substituída.</p><p class="nqc-foot" id="nqcBenefitRules">A classe acompanha a jornada inteira. Os bônus iniciais valem nas primeiras 20 respostas da campanha, incluindo erros, em Fácil, Médio e Difícil. Não se aplicam no Hardcore. Jornadas salvas mantêm suas regras originais.</p></div><div class="nqc-action-buttons"><button type="button" class="nqc-cancel" data-character-cancel data-action="closeCharSelectModal">Cancelar</button><button type="button" class="nqc-primary" data-action="startCharacterPreview" aria-describedby="nqcProfileName nqcInitialBonus">Iniciar Jornada</button></div></footer>
@@ -1845,7 +1845,7 @@
   <script defer src="js/audio.js?v=16.28"></script>
   <script defer src="js/leaderboard.js?v=16.47"></script>
   <script defer src="js/study-mode.js?v=16.69"></script>
-  <script defer src="js/game.js?v=16.89"></script>
+  <script defer src="js/game.js?v=16.90"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=15.92"></script>
@@ -1853,7 +1853,7 @@
   <script defer src="js/atrium.js?v=13.23"></script>
   <script defer src="js/paywall.js?v=16.60"></script>
   <script defer src="js/account.js?v=16.57"></script>
-  <script defer src="js/boss.js?v=16.89"></script>
+  <script defer src="js/boss.js?v=16.90"></script>
   <script defer src="js/cinema-intro-source-config.js?v=16.39"></script>
   <script defer src="js/cinema-equipment-seals.js?v=16.43"></script>
   <script defer src="js/cinema-poison-portraits.js?v=16.43"></script>
