@@ -347,7 +347,7 @@ function startupFixture({pilot = false, failFirstQuestion = false, failFinalSave
     state: {character: 'aquaria', difficulty: 'normal', gameStarted: false, gold: 88},
     authUser: {id: 'fixture-owner'}, questionBank: null,
     characters: {aquaria: {name: 'Fixture', title: 'Fixture'}, nephros: {name: 'Fixture', title: 'Fixture'}},
-    _lastSelectedCharacter: 'aquaria', _guestMode: true, FREE_QUESTIONS_LIMIT: 15,
+    _lastSelectedCharacter: 'aquaria', _characterPreviewEpoch: 0, _guestMode: true, FREE_QUESTIONS_LIMIT: 15,
     isProgressSandbox: () => false, isPremium: () => false,
     localStorage: {getItem: () => null}, getEntitlementQuestionsAnswered: () => 0,
     _toast: message => calls.toast.push(message),
@@ -477,3 +477,17 @@ test('normal startup rejected by its wrapper preserves the old state and keeps w
   assert.equal(f.calls.dismiss, 0); assert.equal(f.calls.mainOpened, 0);
   assert.deepEqual(f.calls.order, []);
 });
+for (const pilot of [false, true]) {
+  test(`${pilot ? 'pilot' : 'normal'} reopened selection cancels old loading even with the same class and difficulty`, async () => {
+    const f = startupFixture({pilot}), pending = f.start();
+    f.context._characterPreviewEpoch++;
+    const before = JSON.stringify(f.context.state), status = f.context.NQPilot.status;
+    f.resolve(); await pending;
+    assert.equal(JSON.stringify(f.context.state), before);
+    assert.equal(f.context.NQPilot.status, status);
+    assert.equal(f.calls.start.length, 0); assert.equal(f.calls.normalStart.length, 0);
+    assert.equal(f.calls.render, 0); assert.equal(f.calls.save, 0);
+    assert.equal(f.calls.dismiss, 0); assert.equal(f.calls.abort, 0);
+    f.runTransitions(); assert.equal(f.calls.mainOpened, 0);
+  });
+}

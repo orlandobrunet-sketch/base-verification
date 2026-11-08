@@ -72,10 +72,18 @@ for (const failure of ['profile', 'auth', 'throw']) {
  * à mesma tela. Fechar preserva o DOM, a conversa e o rascunho; mudar ou
  * invalidar o contexto é que descarta a tela anterior. */
 // injectGameState volta em domcontentloaded; medir estilo exige folhas e fontes prontas.
-async function naQuestao(page: Page) {
-  await injectGameState(page);
+const ORACLE_TEST_USER = { id: '00000000-0000-4000-8000-000000000001', user_metadata: {}, app_metadata: {} };
+async function naQuestao(page: Page, authenticated = false) {
+  // Establish the save owner before continuing. Switching guest -> account
+  // afterwards legitimately opens recovery when a pending autosave runs.
+  await injectGameState(page, {}, authenticated ? { authUser: ORACLE_TEST_USER } : {});
   await page.waitForLoadState('load');
   await page.evaluate(() => document.fonts.ready);
+  if (authenticated) {
+    expect(await page.evaluate(() => JSON.parse(localStorage.getItem('nefroquest-save-v7') || 'null')?.saveOwner)).toBe(ORACLE_TEST_USER.id);
+    await expect(page.locator('#nqSaveRecovery')).toHaveCount(0);
+    expect(await page.locator('#mainApp').evaluate(el => (el as HTMLElement).inert)).toBe(false);
+  }
 }
 
 const ALTERNATIVAS_FICTICIAS = ['Alternativa A', 'Alternativa B', 'Alternativa C', 'Alternativa D'];
@@ -97,9 +105,8 @@ for (const viewport of [{ width: 320, height: 568 }, { width: 390, height: 400 }
         requests++;
         return route.fulfill({ status, json: { reply: 'Resposta fictícia para teste de apresentação.' } });
       });
-      await naQuestao(page);
+      await naQuestao(page, true);
       await page.evaluate(opts => {
-        (0, eval)(`authUser = {id:'00000000-0000-4000-8000-000000000001',user_metadata:{},app_metadata:{}}`);
         (window as any).getAuthToken = async () => null;
         (window as any).setMentorQuestion({ q: 'Contexto fictício de apresentação. '.repeat(18), opts, ans: 0, exp: '' });
         (window as any).openMentorModal();
@@ -211,16 +218,18 @@ for (const invalid of [
   { name: 'com gabarito fora das alternativas', opts: ALTERNATIVAS_FICTICIAS, ans: 4 },
 ]) {
   test(`Oráculo: contexto ${invalid.name} não abre nem envia uma consulta`, async ({ page }) => {
-    await naQuestao(page);
+    await naQuestao(page, true);
     let requests = 0;
     await page.route('**/functions/v1/ai-mentor', route => { requests++; return route.abort(); });
     await page.evaluate(opts => {
-      (0, eval)(`authUser = {id:'00000000-0000-4000-8000-000000000001',user_metadata:{},app_metadata:{}}`);
       (window as any).setMentorQuestion({ q: 'Contexto fictício válido.', opts, ans: 0, exp: '' });
       (window as any).openMentorModal();
     }, ALTERNATIVAS_FICTICIAS);
     await expect(page.locator('#mentorInput')).toBeVisible();
     await page.locator('#mentorInput').fill('Rascunho que não pode sair');
+    // Flush a pending autosave while the Oracle is open: this fixture must
+    // retain its owner instead of entering guest-save recovery.
+    expect(await page.evaluate(() => (window as any)._doSaveGame())).toBe(true);
     await page.evaluate(invalid => {
       (window as any).setMentorQuestion({ q: 'Contexto fictício inválido.', ...invalid });
       (window as any).openMentorModal();

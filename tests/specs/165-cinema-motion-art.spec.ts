@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test';
-import{advanceToFilm}from'../helpers/cinema';
+import{advanceToFilm,characterIntro}from'../helpers/cinema';
 test.use({serviceWorkers:'block',reducedMotion:'no-preference'});
 test('confirmation precedes journey; film moves behind short captions and closes itself once',async({page})=>{
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
  await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>typeof(window as any)._confirmDiff==='function');
  await page.evaluate(()=>(0,eval)('_pendingDiff="normal";_confirmDiff(false)'));
  await page.locator('#charSelectModal [data-arg="nephros"]').click();
- const confirmation=page.locator('#charIntroOverlay');await expect(confirmation).toBeVisible();
+ const confirmation=(await characterIntro(page)).overlay;await expect(confirmation).toBeVisible();
  expect(await page.evaluate(()=>(0,eval)('state.gameStarted'))).toBe(false);
  await expect(page.locator('#nqEntryCinema[open]')).toHaveCount(0);
  await page.evaluate(()=>{(window as any).__entryClosed=[];document.addEventListener('nq-entry-cinema-closed',(e:CustomEvent)=>(window as any).__entryClosed.push(e.detail));});
- await confirmation.locator('[data-action="closeIntroAndStart"]').click();
+ await (await characterIntro(page)).start.click();
  const cinema=page.locator('#nqEntryCinema[open]'),video=cinema.locator('video');await expect(cinema).toBeVisible();await advanceToFilm(cinema);
  await expect.poll(()=>video.evaluate((v:HTMLVideoElement)=>!v.paused&&v.currentTime>.1)).toBe(true);
  await expect(video).toHaveJSProperty('muted',true);

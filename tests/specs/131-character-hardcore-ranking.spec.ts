@@ -195,7 +195,7 @@ test('aviso Hardcore alterna imediatamente sem bloquear cards nem gravar o cance
   const before = await normalBytes(page);
   for (const difficulty of ['hardcore', 'normal', 'hardcore', 'easy', 'hard'] as Difficulty[]) {
     const choice = await openCharacterChoice(page, difficulty);
-    await choice.locator('[data-action="closeCharSelectModal"]').click();
+    await choice.locator('[data-character-cancel][data-action="closeCharSelectModal"]').click();
     await expect(page.locator('#welcomeScreen')).toBeVisible();
     expect(await normalBytes(page)).toEqual(before);
     await expectPilotPreserved(page, legacy.raw);

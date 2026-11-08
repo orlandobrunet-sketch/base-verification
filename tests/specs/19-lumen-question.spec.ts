@@ -9,7 +9,9 @@ async function openVisibleHero(page: Page) {
 }
 
 test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page }, testInfo) => {
+    test.skip(testInfo.tags.includes('@desktop-only') && testInfo.project.name !== 'chromium',
+      'hover e efeitos do card são validados no desktop');
     await page.goto('/jogar/');
     await injectGameState(page);
     await waitForGame(page);
@@ -299,8 +301,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     }
   });
 
-  test('mantém o tooltip de atributos global, visível e estável por hover e foco', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name !== 'chromium', 'hover fino é validado no desktop');
+  test('mantém o tooltip de atributos global, visível e estável por hover e foco', { tag: '@desktop-only' }, async ({ page }) => {
     await page.setViewportSize({ width: 1536, height: 900 });
     await page.evaluate(async () => {
       await document.fonts.ready;
@@ -466,8 +467,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     await expect(page.locator('#nextBtn')).not.toHaveClass(/hidden/);
   });
 
-  test('restaurar e redesenhar o card não simula uma recompensa', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name !== 'chromium', 'ganhos são observados com o card visível no desktop');
+  test('restaurar e redesenhar o card não simula uma recompensa', { tag: '@desktop-only' }, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     // Registra efeitos desde o início para também detectar destaques transitórios
     // que já teriam terminado quando a restauração da jornada acabar.
@@ -491,8 +491,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     expect(effects, 'retomar e renderizar novamente preservam o progresso sem anunciar ganho').toEqual([]);
   });
 
-  test('XP guardado acompanha acertos com avanço real na evolução e animação finita', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name !== 'chromium', 'ganhos são observados com o card visível no desktop');
+  test('XP guardado acompanha acertos com avanço real na evolução e animação finita', { tag: '@desktop-only' }, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     await injectGameState(page, { level: 2, xp: 229, correctTotal: 15, gold: 0 }, { replaceSnapshot: true });
     await expect(page.locator('#guardianXpHint')).toHaveText('Faltam 5 acertos para evoluir');
@@ -521,8 +520,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     await expect(page.locator('.nql-xp-gain')).toHaveCount(0, { timeout: 2500 });
   });
 
-  test('a Forja preserva o destaque no duplo render sem repetir a recompensa', async ({ page }, testInfo) => {
-    test.skip(testInfo.project.name !== 'chromium', 'equipamentos são observados com o card visível no desktop');
+  test('a Forja preserva o destaque no duplo render sem repetir a recompensa', { tag: '@desktop-only' }, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     const result = await page.evaluate(async () => {
       const game = window as any;

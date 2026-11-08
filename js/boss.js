@@ -592,8 +592,97 @@
       glomerulus: '<svg class="nqinicio-emblem nqinicio-emblem--glomerulus" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="39" opacity=".45"/><ellipse cx="50" cy="50" rx="32" ry="16" transform="rotate(-35 50 50)"/><ellipse cx="50" cy="50" rx="32" ry="16" transform="rotate(35 50 50)" opacity=".45"/><path d="m26 34 19 13 24-20M45 47l27 15-38 11"/><g fill="currentColor" stroke="none"><circle cx="26" cy="34" r="2"/><circle cx="69" cy="27" r="2"/><circle cx="72" cy="62" r="2"/><circle cx="34" cy="73" r="2"/></g><path d="m45 42 5 5-5 5-5-5Z"/></svg>'
     };
 
+    let _characterPreviewStarting = false, _characterPreviewEpoch = 0;
+    function previewCharacter(charId) {
+      const modal = document.getElementById('charSelectModal');
+      const character = characters[charId], intro = CHARACTER_INTROS[charId];
+      if (!modal || !character || !intro) return false;
+      modal.dataset.previewCharacter = charId;
+      modal.querySelectorAll('.nqc-card[data-char]').forEach(button => {
+        const selected = button.dataset.char === charId;
+        button.setAttribute('aria-checked', String(selected));
+        button.tabIndex = selected ? 0 : -1;
+      });
+      modal.querySelector('#nqcProfileName').textContent = character.name;
+      modal.querySelector('#nqcProfileTitle').textContent = character.title;
+      modal.querySelector('#nqcProfileStory').textContent = intro.text;
+      const portrait = modal.querySelector('#nqcProfilePortrait');
+      portrait.src = `assets/classes-cinema/${character.folder}/nivel_01.webp`;
+      modal.querySelector('#nqcProfileEmblem').innerHTML = CHARACTER_INTRO_EMBLEMS[charId] || '';
+      const attributes = [
+        ['bonusAtk', 'Ataque', 'Mais dano ao boss'],
+        ['bonusDef', 'Defesa', 'Menos dano do boss'],
+        ['bonusKno', 'Conhecimento', 'Mais XP por acerto'],
+        ['bonusLuck', 'Sorte', 'Chance de recompensas']
+      ];
+      modal.querySelector('#nqcAttributes').innerHTML = attributes.filter(([key]) => character[key] > 0)
+        .map(([key, label, detail]) => `<li><strong>+${character[key]}</strong><span>${label}<small>${detail}</small></span></li>`).join('');
+      const hardcore = (window._pendingDiff || state.difficulty) === 'hardcore';
+      modal.querySelector('#nqcInitialBonus').textContent = hardcore
+        ? 'Os bônus iniciais não se aplicam no Hardcore. Os atributos originais da classe permanecem.'
+        : CHARACTER_INITIAL_BONUS_COPY[charId] + ' A janela conta acertos e erros.';
+      modal.querySelector('#nqcPreviewAnnouncement').textContent = character.name + ' em destaque.';
+      return true;
+    }
+    window.resetCharacterPreview = function () {
+      ++_characterPreviewEpoch;
+      _lastSelectedCharacter = null;
+      const button = document.querySelector('#charSelectModal [data-action="startCharacterPreview"]');
+      button.disabled = _characterPreviewStarting;
+      button.textContent = _characterPreviewStarting ? 'Carregando questões…' : 'Iniciar Jornada';
+      previewCharacter(characters[state.character] ? state.character : 'nephros');
+    };
+    window.cancelCharacterPreview = function () {
+      ++_characterPreviewEpoch;
+      _lastSelectedCharacter = null;
+      window._pendingDiff = null;
+    };
+    window.startCharacterPreview = async function () {
+      const modal = document.getElementById('charSelectModal');
+      const charId = modal?.dataset.previewCharacter;
+      if (_characterPreviewStarting || !modal?.classList.contains('show') || !characters[charId]) return false;
+      _characterPreviewStarting = true;
+      const button = modal.querySelector('[data-action="startCharacterPreview"]');
+      button.disabled = true;
+      button.textContent = 'Carregando questões…';
+      button.setAttribute('aria-busy', 'true');
+      _lastSelectedCharacter = charId;
+      _characterIntroFromWelcome = _charSelectFromWelcome === true;
+      closeCharSelectModal(false);
+      try {
+        // Keep the native writer and its cinema wrapper authoritative.
+        return await window.startGameWithCharacter();
+      } catch (error) {
+        console.error('startGameWithCharacter error:', error);
+        _toast('Erro ao iniciar o jogo. Recarregue a página.', 'error');
+        return false;
+      } finally {
+        // A reopened scene may preview freely, but cannot submit into the old
+        // cinema wrapper's inFlight promise. Release only after it has drained.
+        _characterPreviewStarting = false;
+        button.disabled = false;
+        button.textContent = 'Iniciar Jornada';
+        button.removeAttribute('aria-busy');
+      }
+    };
+    const characterRoster = document.querySelector('#charSelectModal .nqc-grid');
+    characterRoster?.addEventListener('keydown', event => {
+      const buttons = [...characterRoster.querySelectorAll('.nqc-card[data-char]')];
+      const index = buttons.indexOf(event.target.closest('.nqc-card'));
+      if (index < 0) return;
+      const indices = {ArrowDown:(index+1)%buttons.length, ArrowRight:(index+1)%buttons.length,
+        ArrowUp:(index+buttons.length-1)%buttons.length, ArrowLeft:(index+buttons.length-1)%buttons.length,
+        Home:0, End:buttons.length-1};
+      if (!(event.key in indices)) return;
+      event.preventDefault();
+      const next = buttons[indices[event.key]];
+      if (previewCharacter(next.dataset.char)) next.focus({preventScroll:true});
+    });
+
     function selectCharacter(charId) {
       if (!characters[charId]) return false;
+      const selector = document.getElementById('charSelectModal');
+      if (selector?.matches('[data-presentation="scene"].show')) return previewCharacter(charId);
       _lastSelectedCharacter = charId;
       _characterIntroFromWelcome = typeof _charSelectFromWelcome !== 'undefined' && _charSelectFromWelcome === true;
       closeCharSelectModal(false);
@@ -672,6 +761,7 @@
     }
     
     async function startGameWithCharacter() {
+      const selectionEpochAtStart = _characterPreviewEpoch;
       const selectedAtStart = _lastSelectedCharacter;
       const pendingDifficultyAtStart = window._pendingDiff;
       const chosenCharacter = characters[selectedAtStart] ? selectedAtStart
@@ -682,6 +772,7 @@
       const journeyBinding = typeof _captureJourneyBinding === 'function' ? _captureJourneyBinding() : null;
       const pilotBinding = window.NQPilot?.captureBinding?.();
       const startupCurrent = () =>
+        selectionEpochAtStart === _characterPreviewEpoch &&
         selectedAtStart === _lastSelectedCharacter && pendingDifficultyAtStart === window._pendingDiff &&
         startingOwner === (typeof authUser !== 'undefined' ? authUser?.id || null : null) &&
         startingPilot === (window.NQPilot?.active === true) &&

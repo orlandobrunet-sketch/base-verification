@@ -6129,7 +6129,10 @@
     let _charSelectFocus;
     let _charSelectFromWelcome = false;
     function closeCharSelectModal(restoreFocus = true) {
-      if (restoreFocus) cancelPilotGameStart();
+      if (restoreFocus) {
+        cancelPilotGameStart();
+        window.cancelCharacterPreview?.();
+      }
       document.getElementById('charSelectModal').classList.remove('show');
       _charSelectFocus?.(restoreFocus);
       _charSelectFocus = null;
@@ -7842,6 +7845,7 @@
         ...document.querySelectorAll('[data-action="toggleProfilePopup"]')]
         .find(el => el?.getClientRects().length && !el.closest('[hidden], [inert]'));
       modal.classList.add('show');
+      window.resetCharacterPreview?.();
       _charSelectFocus?.(false);
       _charSelectFocus = manageDialogFocus(modal, closeCharSelectModal, returnFocus);
     };

@@ -9,13 +9,14 @@ export async function desktopCinemaEligible(page: Page) {
 export async function characterIntro(page: Page) {
   const normal = await page.evaluate(() => !(window as any).NQPilot?.active &&
     !(typeof (window as any).isProgressSandbox === 'function' && (window as any).isProgressSandbox()));
-  const confirming = await page.locator('#charIntroOverlay').isVisible();
+  const scene = await page.locator('#charSelectModal[data-presentation="scene"].show').isVisible();
+  const confirming = scene || await page.locator('#charIntroOverlay').isVisible();
   const cinematic = !confirming && normal && await desktopCinemaEligible(page);
   return {
     cinematic,
-    overlay: page.locator(cinematic ? '#nqEntryCinema[open]' : '#charIntroOverlay'),
-    start: page.locator(cinematic ? '#nqEntryCinema[open] .nq-entry-cinema__skip' : '#charIntroOverlay [data-action="closeIntroAndStart"]'),
-    cancel: page.locator(cinematic ? '#nqEntryCinema[open] .nq-entry-cinema__close' : '#charIntroOverlay [data-action="cancelCharacterIntro"]'),
+    overlay: page.locator(scene ? '#charSelectModal' : cinematic ? '#nqEntryCinema[open]' : '#charIntroOverlay'),
+    start: page.locator(scene ? '#charSelectModal [data-action="startCharacterPreview"]' : cinematic ? '#nqEntryCinema[open] .nq-entry-cinema__skip' : '#charIntroOverlay [data-action="closeIntroAndStart"]'),
+    cancel: page.locator(scene ? '#charSelectModal [data-character-cancel]' : cinematic ? '#nqEntryCinema[open] .nq-entry-cinema__close' : '#charIntroOverlay [data-action="cancelCharacterIntro"]'),
   };
 }
 
@@ -25,7 +26,7 @@ export async function confirmCharacterStart(page: Page) {
   const normal=await page.evaluate(()=>!(window as any).NQPilot?.active&&
     !(typeof(window as any).isProgressSandbox==='function'&&(window as any).isProgressSandbox()));
   const expectedFilm=normal&&await desktopCinemaEligible(page)&&await page.evaluate(()=>{
-    const w=window as any,id=(0,eval)('_lastSelectedCharacter'),config=w.NQ_ENTRY_CINEMA_CONFIG,
+    const w=window as any,id=document.querySelector('#charSelectModal.show')?.getAttribute('data-preview-character')||(0,eval)('_lastSelectedCharacter'),config=w.NQ_ENTRY_CINEMA_CONFIG,
       entry=config.entries[id];let owner=null;try{owner=(0,eval)('authUser?.id||null');}catch{}
     return !w.NQEntrySeen.has({owner,place:'hero',character:id,
       version:(entry.narrativeVersion||config.heroVersion)+'-story-v1',domain:'normal'});

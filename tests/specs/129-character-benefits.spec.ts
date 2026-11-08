@@ -337,7 +337,7 @@ for (const stage of ['difficulty', 'character', 'intro'] as const) {
       await page.locator('#diffSelectorOverlay [data-action="_closeDifficultySelector"]').click();
     } else {
       await page.locator('#diffConfirmBtn').click();
-      if (stage === 'character') await page.locator('#charSelectModal [data-action="closeCharSelectModal"]').click();
+      if (stage === 'character') await page.locator('#charSelectModal .nqc-close[data-action="closeCharSelectModal"]').click();
       else {
         await page.locator('#charSelectModal [data-action="selectCharacter"][data-arg="aquaria"]').click();
         await (await characterIntro(page)).cancel.click();

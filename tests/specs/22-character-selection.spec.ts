@@ -2,6 +2,13 @@ import { characterIntro, confirmCharacterStart } from '../helpers/cinema';
 import { test, expect, Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+test.use({serviceWorkers:'block'});
+test.beforeEach(async ({context,baseURL}) => {
+  const origin = new URL(baseURL!).origin;
+  await context.route('**/*', route => route.request().method() === 'GET' && new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+  await context.routeWebSocket('**/*', socket => socket.close());
+});
+
 /**
  * Página 6 — Escolha de Classe (Lúmen)
  *
@@ -19,7 +26,7 @@ import AxeBuilder from '@axe-core/playwright';
 
 /** Abre a escolha de classe pelo caminho real: dificuldade confirmada. */
 async function openCharSelect(page: Page) {
-  await page.goto('/jogar/');
+  await page.goto('/jogar/', {waitUntil:'domcontentloaded'});
   await page.waitForFunction(() => typeof (window as any)._confirmDiff === 'function');
   await page.evaluate(() => {
     (window as any)._pendingDiff = 'normal';
@@ -94,7 +101,8 @@ test.describe('Escolha de Classe', () => {
     }));
     await page.locator('#charSelectModal [data-arg="aquaria"]').click();
 
-    await expect(page.locator('#charSelectModal')).not.toBeVisible();
+    await expect(page.locator('#charSelectModal')).toBeVisible();
+    await expect(page.locator('#charSelectModal')).toHaveAttribute('data-preview-character','aquaria');
     await expect((await characterIntro(page)).overlay).toBeVisible();
     await expect((await characterIntro(page)).start).toBeVisible();
     expect(await page.evaluate(() => ({
@@ -171,6 +179,8 @@ test.describe('Escolha de Classe', () => {
     await page.setViewportSize({ width: 1366, height: 768 });
     await openCharSelect(page);
 
+    await expect(page.locator('#charSelectModal .nqc-path-label')).toHaveCount(1);
+    await expect(page.locator('#charSelectModal .nqc-path-label')).toBeVisible();
     const cortados = await page.locator('#charSelectModal .nqc-path-label').evaluateAll((els, altura) =>
       els.filter(e => e.getBoundingClientRect().bottom > (altura as number)).length
     , 768);
