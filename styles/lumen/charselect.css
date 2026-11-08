@@ -113,3 +113,6 @@
 }
 
 #charSelectModal[data-presentation="scene"] .nqc-card:hover:not([aria-checked="true"]) { background:#ffffff08; }
+
+/* The preview controls keep an explicit visual action before final confirmation. */
+#charSelectModal[data-presentation="scene"] .nqc-card .nqc-choose { grid-column:2; grid-row:4; color:var(--nqc-accent); font:500 .8rem/1.3 var(--nql-font-body); text-decoration:underline; text-underline-offset:3px; }
