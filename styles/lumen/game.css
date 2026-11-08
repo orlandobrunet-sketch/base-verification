@@ -2652,13 +2652,16 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 }
 .session-review-popup.modal > .nqreview-card { font-family: var(--nql-font-body, sans-serif); }
 
-/* Keyboard guides sit on the card edge without changing option height or text width.
-   Disabled choices retain result labels and no longer advertise a shortcut. */
+/* Keep keyboard guides centered, with a dedicated text-free gutter in both battles.
+   The gutter remains after answering so hiding a shortcut cannot move the text. */
 .nq-option-shortcut { display: none; }
-#mainApp[data-nq-ui="lumen"] #options .option { overflow: visible; }
+#mainApp[data-nq-ui="lumen"] #options .option {
+  overflow: visible;
+  padding-inline-end: calc(1.15rem + 30px) !important;
+}
 #mainApp[data-nq-ui="lumen"] .option:not(:disabled) .nq-option-shortcut {
   position: absolute;
-  top: -1px;
+  top: 50%;
   right: 12px;
   transform: translateY(-50%);
   display: block;
