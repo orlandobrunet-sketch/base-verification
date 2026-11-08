@@ -683,6 +683,21 @@
       showNewGameConfirm();
     });
 
+    function _difficultyVictoryAchievements(difficulty) {
+      // Prévia somente leitura: a vitória real continua sendo registrada pelo jogo.
+      try {
+        if (typeof isProgressSandbox === 'function' && isProgressSandbox()) return [];
+        const ids = difficulty === 'hardcore'
+          ? ['arqui_nefromante_slayer', 'hardcore_champion'] : ['arqui_nefromante_slayer'];
+        const saved = getUnlockedAchievements();
+        const earned = new Set(Array.isArray(saved) ? saved : []);
+        return ids.map(id => {
+          const achievement = ACHIEVEMENTS_LIST.find(item => item.id === id);
+          return achievement ? { id, name: achievement.name, artwork: getAchievementArtwork(id), earned: earned.has(id) } : null;
+        }).filter(Boolean);
+      } catch (_) { return []; } // Metadados opcionais ainda indisponíveis.
+    }
+
     function showNewGameConfirm(fromWelcome) {
       if (document.getElementById('diffSelectorOverlay')) {
         if (typeof window._closeDifficultySelector === 'function') window._closeDifficultySelector(false);
@@ -835,6 +850,20 @@
                         <strong>${d.adaptation}</strong>
                       </div>
                       <p>${d.desc}</p>
+                      ${(() => {
+                        const achievements = _difficultyVictoryAchievements(k);
+                        if (!achievements.length) return '';
+                        return `<div class="nql-difficulty__victory">
+                          <p class="nql-difficulty__victory-label">Conquistas de vitória</p>
+                          <ul aria-label="Conquistas ao vencer em ${d.name}">${achievements.map(item => `
+                            <li data-victory-achievement="${item.id}">
+                              <img src="${escapeHtml(item.artwork)}" alt="" width="28" height="28" loading="eager" decoding="async">
+                              <span>${escapeHtml(item.name)}${item.earned ? '<small>Já conquistada</small>' : ''}</span>
+                            </li>`).join('')}
+                          </ul>
+                          <p class="nql-difficulty__victory-note">Outras conquistas dependem do seu desempenho e histórico.</p>
+                        </div>`;
+                      })()}
                     </section>`).join('')}
                 </div>
               </aside>

@@ -51,7 +51,7 @@
   /* Coluna explícita: a automática crescia até o maior conteúdo sem quebra e,
    * com texto a 200%, empurrava o conteúdo para fora (e o overflow-x o cortava). */
   grid-template-columns: minmax(0, 1fr);
-  width: min(70rem, 100%);
+  width: min(84rem, 100%);
   max-height: calc(100dvh - clamp(1.5rem, 4vw, 3rem));
   grid-template-rows: minmax(0, 1fr) auto;
   padding: 0;
@@ -72,6 +72,7 @@
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__content {
+  container: nqlDifficultyContent / inline-size;
   min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
@@ -172,7 +173,7 @@
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__body {
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(20rem, .88fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: stretch;
 }
 
@@ -871,6 +872,46 @@
     transition: none;
     transform: none;
   }
+}
+
+/* A largura útil e o tamanho do texto decidem quando cabem duas colunas. */
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__selector { container:nqlDifficultyOptions / inline-size; display:flex; flex-direction:column; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid { flex:initial; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact { border-left:0; border-top:1px solid var(--nql-line); }
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card { grid-template-columns:44px minmax(0,1fr) auto; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__node { width:20px; height:20px; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__node > span { width:6px; height:6px; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid::before,
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid::after,
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__corruption { left:22px; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__option-line > * { min-width:0; max-width:100%; overflow-wrap:anywhere; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__victory { border-top:1px solid var(--nql-line); padding-top:.8rem; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__victory-label { margin:0 0 .55rem; color:var(--nql-mastery); font-size:.8rem; font-weight:600; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__victory ul { display:flex; flex-wrap:wrap; gap:.5rem 1rem; list-style:none; padding:0; margin:0; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__victory li { display:flex; align-items:center; gap:.5rem; min-width:0; max-width:100%; color:var(--nql-text); font-size:.85rem; line-height:1.45; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__victory img { flex:none; width:28px; height:28px; object-fit:contain; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__victory li > span { min-width:0; overflow-wrap:anywhere; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__victory small { display:block; color:var(--nql-text-soft); font-size:.75rem; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__victory-note { margin:.55rem 0 0; color:var(--nql-text-soft); font-size:.75rem; line-height:1.5; }
+@container nqlDifficultyContent (min-width:64rem) {
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__body { grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact { border-top:0; border-left:1px solid var(--nql-line); }
+}
+@container nqlDifficultyOptions (max-width:18rem) {
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card { grid-template-columns:44px minmax(0,1fr); }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__node { grid-column:1; grid-row:1 / span 2; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__option-copy { grid-column:2; grid-row:1; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__lives { grid-column:2; grid-row:2; display:flex; justify-content:flex-start; align-items:baseline; gap:.3rem; min-width:0; text-align:left; }
+}
+/* A lista ganha respiro em janela alta sem empurrar a última opção no laptop. */
+@media (min-height:56rem) {
+  @container nqlDifficultyContent (min-width:64rem) {
+    #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid { flex:1; }
+  }
+}
+@media (max-width:40rem) {
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__footer { padding-block:.5rem; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] :is(.difficulty-cancel,.difficulty-confirm) { padding-block:.45rem; }
 }
 
 @media (forced-colors: active) {
