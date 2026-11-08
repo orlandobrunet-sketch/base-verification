@@ -44,8 +44,9 @@ export async function injectGameState(page: Page, overrides: Record<string, unkn
     },
     replaceSnapshot: options.replaceSnapshot ?? false,
   });
-  await page.reload();
-  await page.waitForLoadState('domcontentloaded');
+  // O jogo fica pronto pelo DOM e pelas condições de enterGame/waitForGame.
+  // Analytics/iframes externos podem continuar pendentes sem bloquear a fixture.
+  await page.reload({ waitUntil: 'domcontentloaded' });
   // A identidade da fixture precisa existir quando loadGame fixa o dono do
   // progresso; trocá-la depois de continuar é uma mudança de conta real.
   if (options.authUser !== undefined) {
