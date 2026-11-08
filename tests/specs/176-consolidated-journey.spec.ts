@@ -9,7 +9,7 @@ test('combined normal entry, Chamber, boss, epilogue and continuation',async({pa
  const dir=path.resolve(__dirname,'../test-results/visual-screens');mkdirSync(dir,{recursive:true});
  await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>typeof(window as any)._confirmDiff==='function');
  await page.evaluate(()=>{document.getElementById('landingScreen')?.classList.add('hidden');return(0,eval)('_pendingDiff="normal";_confirmDiff(false)');});
- await page.locator('#charSelectModal [data-arg="nephros"]').click();await page.locator('#charIntroOverlay [data-action="closeIntroAndStart"]').click();
+ await page.locator('#charSelectModal [data-arg="nephros"]').click();await page.locator('#charSelectModal [data-action="startCharacterPreview"]').click();
  const cinema=page.locator('#nqEntryCinema[open]');await expect(cinema.locator('.nq-movie-prologue')).toBeVisible();await page.screenshot({path:path.join(dir,'character-cards.png')});
  await advanceToFilm(cinema);await expect.poll(()=>cinema.locator('video').evaluate((v:HTMLVideoElement)=>!v.paused&&v.currentTime>.1)).toBe(true);await expect(cinema.locator('video')).toHaveJSProperty('muted',true);
  await page.keyboard.press('Escape');await expect(cinema).toHaveCount(0);await expect(page.locator('#question')).not.toBeEmpty();

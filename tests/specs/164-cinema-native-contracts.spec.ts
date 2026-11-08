@@ -1,5 +1,5 @@
 import { test, expect, type Page } from '@playwright/test';
-import { advanceToFilm, desktopCinemaEligible } from '../helpers/cinema';
+import { advanceToFilm, desktopCinemaEligible, characterIntro } from '../helpers/cinema';
 import { normalBytes, openPilotChoice, pilotState, setupPilotPage } from '../helpers/pilot';
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
@@ -9,9 +9,7 @@ async function choose(page: Page) {
   await page.locator('#diffConfirmBtn').click();
   await page.locator('#charSelectModal [data-action="selectCharacter"][data-arg="glomerulus"]').click();
   // The explicit native confirmation now precedes the cinematic player on every device.
-  const intro = {cinematic:await desktopCinemaEligible(page),overlay:page.locator('#charIntroOverlay'),
-    start:page.locator('#charIntroOverlay [data-action="closeIntroAndStart"]'),
-    cancel:page.locator('#charIntroOverlay [data-action="cancelCharacterIntro"]')};
+  const intro = {...await characterIntro(page),cinematic:await desktopCinemaEligible(page)};
   await expect(intro.overlay).toBeVisible();
   return intro;
 }
@@ -34,7 +32,7 @@ test('escolha provisória cancela sem iniciar nem alterar o save em cada disposi
   const intro = await choose(page);
   expect(await normalBytes(page)).toEqual(before);
   expect(await pilotState(page)).toEqual(state);
-  await expect(page.locator('#charIntroOverlay')).toBeVisible();
+  await expect(intro.overlay).toBeVisible();
   await expect(page.locator('#nqEntryCinema[open]')).toHaveCount(0);
   await intro.cancel.click();
   await expect(intro.overlay).toBeHidden();

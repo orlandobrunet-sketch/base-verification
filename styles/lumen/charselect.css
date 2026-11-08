@@ -1,501 +1,115 @@
-/* ============================================================
-   NefroQuest — Escolha de Classe (Lúmen)
-   Página 6 do sistema. Substitui a moldura `chest-modal` que a
-   seleção emprestava do baú de recompensa.
-
-   Contrato preservado: js/game.js e js/boss.js abrem e fecham a
-   tela com classList add/remove de 'show' em #charSelectModal.
-
-   Cor com função, igual ao dashboard: lúmen = leitura clínica,
-   mastery = recompensa, current = avanço. Nada decorativo.
-   ============================================================ */
-
-#charSelectModal.nqc-screen {
-  /* A tela inteira herdava 'Philosopher' do body (style.css legado) e era a
-     única do app sem uma palavra em Source Sans 3: "Dr. Nephros" saía em
-     Alegreya e o subtítulo logo abaixo em Philosopher — dois serifados
-     diferentes dentro do mesmo cartão. Uma linha devolve os cinco papéis
-     por herança. */
-  font-family: var(--nql-font-body);
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  display: none;
-  overflow-y: auto;
-  padding: clamp(1rem, 4vw, 2.5rem) clamp(.75rem, 3vw, 2rem);
-  background:
-    radial-gradient(120% 80% at 50% 0%, rgba(var(--nql-lumen-rgb), .10), transparent 60%),
-    var(--nql-page, #07090f);
-  -webkit-overflow-scrolling: touch;
+/* The class chooser owns this sheet. Native legacy introduction styles live elsewhere. */
+#charSelectModal.nqc-screen { box-sizing:border-box; font-family:var(--nql-font-body); color:var(--nql-text); position:fixed; inset:0; z-index:9999; display:none; overflow-y:auto; padding:clamp(.75rem,2.2vh,1.5rem) clamp(.75rem,3vw,2rem); -webkit-overflow-scrolling:touch; }
+#charSelectModal.nqc-screen.show { display:block; }
+#charSelectModal *,#charSelectModal *::before,#charSelectModal *::after { box-sizing:border-box; }
+#charSelectModal .nqc-shell { position:relative; margin-inline:auto; min-height:100%; display:flex; flex-direction:column; }
+#charSelectModal .nqc-close { position:absolute; top:0; right:0; width:2.75rem; height:2.75rem; min-width:44px; min-height:44px; display:grid; place-items:center; padding:0; border:1px solid #ffffff24; border-radius:50%; background:#101a29; color:var(--nql-text-soft); font:400 1rem/1 var(--nql-font-body); cursor:pointer; }
+#charSelectModal button:focus-visible { outline:2px solid var(--nql-focus,#7fd8ea); outline-offset:3px; }
+#charSelectModal .nqc-lede { color:var(--nql-text-soft); line-height:1.55; }
+#charSelectModal .nqc-notice { padding:1rem 1.25rem; border:1px solid var(--nql-lumen); border-radius:.6rem; background:#10212a; color:var(--nql-text); font:400 .9rem/1.5 var(--nql-font-body); overflow-wrap:anywhere; }
+#charSelectModal .nqc-notice p { margin:.35rem 0 0; }
+#charSelectModal .nqc-notice[hidden] { display:none; }
+#charSelectModal .nqc-grid { list-style:none; }
+#charSelectModal .nqc-card { width:100%; min-width:0; min-height:44px; font:inherit; color:inherit; cursor:pointer; overflow-wrap:anywhere; }
+#charSelectModal .nqc-card > * { min-width:0; max-width:100%; }
+#charSelectModal .nqc-art { position:relative; display:block; overflow:hidden; background:#101a29; }
+#charSelectModal .nqc-art img { position:static; display:block; }
+#charSelectModal .nqc-name,#charSelectModal .nqc-title { display:block; }
+#charSelectModal .nqc-path { display:grid; grid-template-columns:repeat(10,minmax(0,1fr)); }
+#charSelectModal .nqc-path i { display:block; border-radius:999px; }
+/* Character scene: one provisional choice, one explicit native start. */
+#charSelectModal[data-presentation="scene"] { --nqc-accent:#d8bc77; background:radial-gradient(ellipse at 65% 30%,#16243188,transparent 65%),#07090f; }
+#charSelectModal[data-preview-character="aquaria"] { --nqc-accent:#81d4d4; }
+#charSelectModal[data-preview-character="glomerulus"] { --nqc-accent:#b8a3e5; }
+#charSelectModal[data-presentation="scene"] .nqc-shell { container:nqcScene / inline-size; max-width:88rem; max-height:none; min-width:0; justify-content:flex-start; gap:1.25rem; }
+#charSelectModal[data-presentation="scene"] .nqc-header { max-width:none; text-align:left; padding:0 3.5rem 0 0; margin:0; }
+#charSelectModal[data-presentation="scene"] .nqc-opening { margin:0 0 .35rem; color:var(--nqc-accent); font:500 .95rem/1.4 var(--nql-font-body); }
+#charSelectModal[data-presentation="scene"] .nqc-header h2 { font:600 clamp(1.8rem,3vw,2.6rem)/1.1 var(--nql-font-display); max-width:34ch; margin:0 0 .55rem; }
+#charSelectModal[data-presentation="scene"] .nqc-lede { max-width:70ch; font-size:1rem; margin:0; }
+#charSelectModal[data-presentation="scene"] .nqc-scene { display:grid; grid-template-columns:minmax(15rem,.7fr) minmax(0,2.3fr); gap:clamp(1rem,3vw,2.5rem); min-width:0; align-items:start; }
+#charSelectModal[data-presentation="scene"] .nqc-roster h3 { margin:0 0 .75rem; color:var(--nql-text-soft); font:500 1rem/1.4 var(--nql-font-body); }
+#charSelectModal[data-presentation="scene"] .nqc-grid { display:grid; grid-template-columns:minmax(0,1fr); grid-template-rows:none; grid-auto-rows:auto; flex:initial; gap:.4rem; margin:0; padding:0; }
+#charSelectModal[data-presentation="scene"] .nqc-grid > li { display:block; grid-row:auto; grid-template-rows:none; min-width:0; }
+#charSelectModal[data-presentation="scene"] .nqc-card { grid-row:auto; grid-template-areas:none; grid-template-rows:auto auto auto; justify-items:start; display:grid; grid-template-columns:3.5rem minmax(0,1fr); gap:.3rem .8rem; align-items:center; text-align:left; padding:.85rem .7rem; border:0; border-left:3px solid transparent; border-bottom:1px solid #ffffff18; border-radius:0; background:transparent; }
+#charSelectModal[data-presentation="scene"] .nqc-card[aria-checked="true"] { border-left-color:var(--nqc-accent); background:color-mix(in srgb,var(--nqc-accent) 10%,transparent); }
+#charSelectModal[data-presentation="scene"] .nqc-card .nqc-art { grid-column:1; grid-row:1 / span 3; width:3.5rem; height:4.5rem; aspect-ratio:auto; border-radius:.4rem; }
+#charSelectModal[data-presentation="scene"] .nqc-card .nqc-art img { width:100%; height:100%; object-fit:cover; }
+#charSelectModal[data-presentation="scene"] .nqc-card .nqc-art-glow { display:none; }
+#charSelectModal[data-presentation="scene"] .nqc-card :is(.nqc-name,.nqc-title,.nqc-boons) { grid-area:auto; grid-column:2; margin:0; text-align:left; }
+#charSelectModal[data-presentation="scene"] .nqc-card .nqc-name { grid-row:1; }
+#charSelectModal[data-presentation="scene"] .nqc-card .nqc-title { grid-row:2; }
+#charSelectModal[data-presentation="scene"] .nqc-card .nqc-boons { grid-row:3; }
+#charSelectModal[data-presentation="scene"] .nqc-card .nqc-name { font:600 1.1rem/1.15 var(--nql-font-display); color:var(--nql-text); }
+#charSelectModal[data-presentation="scene"] .nqc-card .nqc-title { font:400 .8rem/1.3 var(--nql-font-body); color:var(--nql-text-soft); }
+#charSelectModal[data-presentation="scene"] .nqc-card .nqc-boons { display:flex; flex-wrap:wrap; gap:.3rem .8rem; padding:0; }
+#charSelectModal[data-presentation="scene"] .nqc-card .nqc-boon { display:inline; margin:0; padding:0; border:0; background:none; font:.75rem/1.3 var(--nql-font-body); color:var(--nql-text-muted); }
+#charSelectModal[data-presentation="scene"] .nqc-card .nqc-boon b { display:inline; font-size:inherit; color:var(--nqc-accent); }
+#charSelectModal[data-presentation="scene"] .nqc-card .nqc-boon small { display:none; }
+#charSelectModal[data-presentation="scene"] .nqc-profile { position:relative; min-width:0; display:grid; grid-template-columns:minmax(12rem,.9fr) minmax(17rem,1.1fr); align-content:start; gap:1rem 1.5rem; }
+#charSelectModal[data-presentation="scene"] .nqc-profile-art { grid-column:1; grid-row:1 / span 3; position:relative; min-width:0; align-self:start; isolation:isolate; text-align:center; }
+#charSelectModal[data-presentation="scene"] #nqcProfilePortrait { position:relative; display:block; width:100%; height:auto; max-height:410px; object-fit:contain; margin:auto; border:0; border-radius:0; mask-image:linear-gradient(#000 75%,transparent); }
+#charSelectModal[data-presentation="scene"] .nqc-scene-aura { position:absolute; z-index:-1; inset:8% 0 15%; border-radius:50%; background:radial-gradient(ellipse,color-mix(in srgb,var(--nqc-accent) 24%,transparent),transparent 68%); animation:nqc-scene-breathe 7s ease-in-out infinite alternate; }
+#charSelectModal[data-presentation="scene"]:not(.show) .nqc-scene-aura { animation-play-state:paused; }
+#charSelectModal[data-presentation="scene"] #nqcProfileEmblem { position:absolute; inset:8% 10%; z-index:-1; opacity:.12; color:var(--nqc-accent); }
+#charSelectModal[data-presentation="scene"] #nqcProfileEmblem svg { width:100%; height:auto; fill:none; stroke:currentColor; stroke-width:1.3; }
+#charSelectModal[data-presentation="scene"] .nqc-evolution { display:grid; gap:.5rem; margin:.3rem 0 0; }
+#charSelectModal[data-presentation="scene"] .nqc-path { margin:0; padding:0; gap:.35rem; }
+#charSelectModal[data-presentation="scene"] .nqc-path i { width:.35rem; height:.35rem; background:#567080; opacity:1; box-shadow:none; }
+#charSelectModal[data-presentation="scene"] .nqc-path i.is-current { background:var(--nqc-accent); }
+#charSelectModal[data-presentation="scene"] .nqc-path-label { color:var(--nql-text-muted); font:.75rem/1.4 var(--nql-font-body); }
+#charSelectModal[data-presentation="scene"] .nqc-profile-heading { grid-column:2; }
+#charSelectModal[data-presentation="scene"] #nqcProfileTitle { margin:0 0 .25rem; color:var(--nqc-accent); font:500 .95rem/1.4 var(--nql-font-body); }
+#charSelectModal[data-presentation="scene"] #nqcProfileName { margin:0; color:#eee6d2; font:600 clamp(1.3rem,2.8vw,2.8rem)/1.15 var(--nql-font-display); overflow-wrap:normal; word-break:normal; }
+#charSelectModal[data-presentation="scene"] .nqc-profile-story { grid-column:2; max-width:62ch; margin:0; color:var(--nql-text-soft); font:400 1rem/1.6 var(--nql-font-body); }
+#charSelectModal[data-presentation="scene"] .nqc-profile-benefits { grid-column:2; min-width:0; }
+#charSelectModal[data-presentation="scene"] .nqc-profile-benefits h4 { margin:0 0 .6rem; color:#eee6d2; font:600 .9rem/1.4 var(--nql-font-body); }
+#charSelectModal[data-presentation="scene"] .nqc-attributes { display:flex; flex-wrap:wrap; gap:.6rem 1.25rem; list-style:none; padding:0; margin:0 0 1rem; }
+#charSelectModal[data-presentation="scene"] .nqc-attributes li { display:flex; gap:.5rem; align-items:center; min-width:0; color:var(--nql-text); font-size:.9rem; }
+#charSelectModal[data-presentation="scene"] .nqc-attributes strong { color:var(--nqc-accent); font:600 1.65rem/1 var(--nql-font-display); }
+#charSelectModal[data-presentation="scene"] .nqc-attributes small { display:block; color:var(--nql-text-muted); font:.75rem/1.4 var(--nql-font-body); }
+#charSelectModal[data-presentation="scene"] .nqc-initial { border-top:1px solid #ffffff18; padding-top:.8rem; }
+#charSelectModal[data-presentation="scene"] .nqc-initial p { margin:0; color:var(--nql-text-soft); font:.9rem/1.55 var(--nql-font-body); }
+#charSelectModal[data-presentation="scene"] .nqc-actions { display:grid; grid-template-columns:minmax(0,1fr) auto; gap:1rem 2rem; align-items:center; padding-top:1rem; border-top:1px solid #ffffff20; }
+#charSelectModal[data-presentation="scene"] .nqc-commit-note { margin:0 0 .4rem; color:var(--nql-text); font:.9rem/1.4 var(--nql-font-body); }
+#charSelectModal[data-presentation="scene"] .nqc-foot { color:var(--nql-text-muted); margin:0; padding:0; max-width:80ch; text-align:left; font:.75rem/1.5 var(--nql-font-body); }
+#charSelectModal[data-presentation="scene"] .nqc-primary { min-height:48px; min-width:12rem; padding:.85rem 1.6rem; border:1px solid #e1c984; border-radius:.4rem; background:#d8bc77; color:#151a20; font:600 1rem/1.4 var(--nql-font-body); cursor:pointer; }
+#charSelectModal[data-presentation="scene"] .nqc-primary:focus-visible { outline:3px solid var(--nql-focus); outline-offset:4px; }
+#charSelectModal[data-presentation="scene"] .nqc-announcement { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+@keyframes nqc-scene-breathe { from {opacity:.45;transform:scale(.96)} to {opacity:.8;transform:scale(1.04)} }
+@container nqcScene (max-width:64rem) {
+ #charSelectModal[data-presentation="scene"] .nqc-scene { grid-template-columns:minmax(0,1fr); }
+ #charSelectModal[data-presentation="scene"] .nqc-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:.5rem; }
+ #charSelectModal[data-presentation="scene"] .nqc-card { grid-template-columns:2.75rem minmax(0,1fr); gap:.3rem .5rem; }
+ #charSelectModal[data-presentation="scene"] .nqc-card .nqc-art { width:2.75rem; height:4rem; }
+}
+@container nqcScene (max-width:46rem) {
+ #charSelectModal[data-presentation="scene"] .nqc-grid { grid-template-columns:minmax(0,1fr); }
+ #charSelectModal[data-presentation="scene"] .nqc-profile { grid-template-columns:minmax(0,1fr); }
+ #charSelectModal[data-presentation="scene"] .nqc-profile-art { grid-column:1; grid-row:auto; max-width:24rem; margin:auto; width:100%; }
+ #charSelectModal[data-presentation="scene"] #nqcProfilePortrait { max-height:300px; }
+ #charSelectModal[data-presentation="scene"] :is(.nqc-profile-heading,.nqc-profile-story,.nqc-profile-benefits) { grid-column:1; }
+ #charSelectModal[data-presentation="scene"] .nqc-actions { grid-template-columns:minmax(0,1fr); }
+ #charSelectModal[data-presentation="scene"] .nqc-primary { min-width:0; width:100%; }
+}
+@media(prefers-reduced-motion:reduce) {
+ #charSelectModal[data-presentation="scene"] * { animation:none!important; transition:none!important; scroll-behavior:auto!important; }
 }
 
-#charSelectModal.nqc-screen.show {
-  display: block;
+#charSelectModal[data-presentation="scene"] .nqc-action-buttons { display:flex; flex-wrap:wrap; gap:.75rem; align-items:center; }
+#charSelectModal[data-presentation="scene"] .nqc-cancel { min-height:48px; padding:.85rem 1.1rem; border:1px solid #ffffff38; border-radius:.4rem; background:transparent; color:var(--nql-text-soft); font:500 1rem/1.4 var(--nql-font-body); cursor:pointer; }
+#charSelectModal[data-presentation="scene"] .nqc-cancel:focus-visible { outline:3px solid var(--nql-focus); outline-offset:4px; }
+@container nqcScene (max-width:46rem) { #charSelectModal[data-presentation="scene"] .nqc-action-buttons { display:grid; grid-template-columns:minmax(0,1fr); } }
+#charSelectModal[data-presentation="scene"] .nqc-evolution { grid-template-columns:minmax(0,1fr); }
+#charSelectModal[data-presentation="scene"] :is(.nqc-path,.nqc-path-label) { grid-area:auto; min-width:0; max-width:100%; }
+#charSelectModal[data-presentation="scene"] .nqc-path-label { text-transform:none; letter-spacing:normal; text-align:center; }
+@container nqcScene (max-width:46rem) {
+ #charSelectModal[data-presentation="scene"] .nqc-header { padding:3.5rem 0 0; }
+ #charSelectModal[data-presentation="scene"] .nqc-header h2 { font-size:clamp(1.3rem,3vw,2.6rem); }
+}
+@container nqcScene (max-width:22rem) {
+ #charSelectModal[data-presentation="scene"] .nqc-card { grid-template-columns:48px minmax(0,1fr); gap:.3rem 12px; }
+ #charSelectModal[data-presentation="scene"] .nqc-card .nqc-art { width:48px; height:64px; }
+ #charSelectModal[data-presentation="scene"] .nqc-card .nqc-name { font-size:1rem; overflow-wrap:normal; word-break:normal; }
 }
 
-#charSelectModal .nqc-shell {
-  position: relative;
-  max-width: 68rem;
-  margin-inline: auto;
-  min-height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: clamp(1.25rem, 3vw, 2rem);
-}
-
-/* ── Fechar ─────────────────────────────────────────────── */
-
-#charSelectModal .nqc-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 2.75rem;
-  height: 2.75rem;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--nql-line, rgba(255, 255, 255, .14));
-  border-radius: 999px;
-  background: var(--nql-surface, rgba(255, 255, 255, .04));
-  color: var(--nql-text-soft, #c8d2e4);
-  font-size: 1rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-#charSelectModal .nqc-close:hover {
-  border-color: var(--nql-line-strong, rgba(255, 255, 255, .28));
-  color: var(--nql-text, #eef3fb);
-}
-
-/* ── Cabeçalho ──────────────────────────────────────────── */
-
-#charSelectModal .nqc-header {
-  text-align: center;
-  max-width: 44rem;
-  margin-inline: auto;
-  padding-inline: 3rem;
-}
-
-#charSelectModal .nqc-notice {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 1rem 1.25rem;
-  border: 1px solid var(--nql-lumen, #6fd3e6);
-  border-radius: .75rem;
-  background: var(--nql-surface, rgba(255, 255, 255, .04));
-  color: var(--nql-text, #eef3fb);
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-}
-#charSelectModal .nqc-notice p {
-  margin: .35rem 0 0;
-  color: var(--nql-text-soft, #c8d2e4);
-}
-#charSelectModal .nqc-notice[hidden] { display: none; }
-
-#charSelectModal .nqc-eyebrow {
-  display: block;
-  font-size: .72rem;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--nql-lumen, #6fd3e6);
-  margin-bottom: .5rem;
-}
-
-#charSelectModal .nqc-header h2 {
-  margin: 0 0 .5rem;
-  font-family: var(--nql-font-display, 'Cinzel', serif);
-  font-size: clamp(1.6rem, 5vw, 2.6rem);
-  line-height: 1.1;
-  color: var(--nql-text, #eef3fb);
-}
-
-#charSelectModal .nqc-lede {
-  margin: 0;
-  font-size: clamp(.88rem, 2.4vw, 1rem);
-  line-height: 1.55;
-  color: var(--nql-text-muted, #94a2ba);
-}
-
-/* ── Grade ──────────────────────────────────────────────── */
-
-#charSelectModal .nqc-grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(.75rem, 2vw, 1.25rem);
-}
-
-#charSelectModal .nqc-grid > li {
-  min-width: 0;
-  display: flex;
-}
-
-/* ── Card ───────────────────────────────────────────────── */
-
-#charSelectModal .nqc-card {
-  min-width: 0;
-  overflow-wrap: anywhere;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .5rem;
-  width: 100%;
-  min-height: 44px;
-  padding: clamp(.85rem, 2vw, 1.35rem);
-  border: 1px solid var(--nql-line, rgba(255, 255, 255, .14));
-  border-radius: 1.15rem;
-  background: var(--nql-surface-raised, rgba(255, 255, 255, .05));
-  color: inherit;
-  font: inherit;
-  text-align: center;
-  cursor: pointer;
-}
-
-#charSelectModal .nqc-card > * {
-  min-width: 0;
-  max-width: 100%;
-}
-
-#charSelectModal .nqc-card:hover,
-#charSelectModal .nqc-card:focus-visible {
-  border-color: rgba(var(--nql-lumen-rgb), .55);
-  background: var(--nql-surface-solid, rgba(255, 255, 255, .08));
-}
-
-#charSelectModal .nqc-card:focus-visible {
-  outline: .125rem solid var(--nql-focus, #7fd8ea);
-  outline-offset: .1875rem;
-}
-
-/* ── Retrato ────────────────────────────────────────────── */
-
-#charSelectModal .nqc-art {
-  position: relative;
-  display: block;
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  border-radius: .9rem;
-  overflow: hidden;
-  background: var(--nql-cortex, #0d1420);
-}
-
-#charSelectModal .nqc-art img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-#charSelectModal .nqc-art-glow {
-  position: absolute;
-  inset: auto 0 0 0;
-  height: 45%;
-  background: linear-gradient(to top, rgba(var(--nql-abyss-rgb, 7, 9, 15), .85), transparent);
-  pointer-events: none;
-}
-
-/* ── Identidade ─────────────────────────────────────────── */
-
-#charSelectModal .nqc-name {
-  display: block;
-  font-family: var(--nql-font-display, 'Cinzel', serif);
-  font-size: clamp(1rem, 2.6vw, 1.2rem);
-  color: var(--nql-text, #eef3fb);
-}
-
-#charSelectModal .nqc-title {
-  display: block;
-  font-size: .8rem;
-  letter-spacing: .04em;
-  color: var(--nql-mastery, #e3b055);
-}
-
-#charSelectModal .nqc-pitch {
-  display: block;
-  font-size: .82rem;
-  color: var(--nql-text-muted, #94a2ba);
-}
-
-/* ── Bônus: dito pelo efeito, não pelo número solto ─────── */
-
-#charSelectModal .nqc-boons {
-  display: flex;
-  flex-direction: column;
-  gap: .35rem;
-  width: 100%;
-  margin-top: .15rem;
-}
-
-#charSelectModal .nqc-boon {
-  display: block;
-  padding: .4rem .55rem;
-  border-radius: .55rem;
-  border: 1px solid rgba(var(--nql-lumen-rgb), .28);
-  background: rgba(var(--nql-lumen-rgb), .08);
-  font-size: .76rem;
-  color: var(--nql-text-soft, #c8d2e4);
-}
-
-#charSelectModal .nqc-boon b {
-  color: var(--nql-lumen, #6fd3e6);
-  margin-right: .25rem;
-}
-
-#charSelectModal .nqc-boon small {
-  display: block;
-  margin-top: .1rem;
-  font-size: .68rem;
-  color: var(--nql-text-muted, #94a2ba);
-}
-
-/* ── Trilha dos 10 estágios ─────────────────────────────── */
-
-#charSelectModal .nqc-path {
-  display: flex;
-  gap: .2rem;
-  width: 100%;
-  margin-top: auto;
-  padding-top: .55rem;
-}
-
-#charSelectModal .nqc-path i {
-  flex: 1;
-  height: .2rem;
-  border-radius: 999px;
-  background: var(--nql-line, rgba(255, 255, 255, .14));
-}
-
-#charSelectModal .nqc-path i:first-child {
-  background: var(--nql-current, #6fd3e6);
-}
-
-#charSelectModal .nqc-path-label {
-  display: block;
-  font-size: .66rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--nql-text-muted, #94a2ba);
-}
-
-/* O card inteiro já era o botão, mas nada dizia isso. */
-#charSelectModal .nqc-choose {
-  display: block;
-  width: 100%;
-  margin-top: .35rem;
-  padding: .55rem .75rem;
-  border-radius: .55rem;
-  background: var(--nql-mastery, #e3b055);
-  color: #0b111c;
-  font-size: .9rem;
-  font-weight: 600;
-  text-align: center;
-}
-
-#charSelectModal .nqc-card:hover .nqc-choose,
-#charSelectModal .nqc-card:focus-visible .nqc-choose {
-  background: #efd99f;
-}
-
-#charSelectModal .nqc-foot {
-  margin: 0;
-  text-align: center;
-  font-size: .78rem;
-  color: var(--nql-text-muted, #94a2ba);
-}
-
-/* ── Desktop de pouca altura (1366×768 é a régua do projeto) ──
-   Com retrato 1:1 o card mede ~790px e a trilha dos dez estágios —
-   justamente o que gera desejo — cai abaixo da dobra. O retrato cede
-   altura primeiro; identidade, bônus e trilha continuam inteiros. */
-
-@media (min-width: 60.0625rem) and (max-height: 54rem) {
-  #charSelectModal.nqc-screen {
-    padding-block: 1rem;
-  }
-
-  #charSelectModal .nqc-shell {
-    gap: 1rem;
-  }
-
-  #charSelectModal .nqc-art {
-    aspect-ratio: 16 / 9;
-  }
-
-  #charSelectModal .nqc-foot {
-    font-size: .72rem;
-  }
-
-  #charSelectModal .nqc-header h2 {
-    font-size: clamp(1.4rem, 3.2vw, 1.9rem);
-  }
-
-  #charSelectModal .nqc-lede {
-    font-size: .84rem;
-  }
-
-  #charSelectModal .nqc-card {
-    padding: .8rem;
-    gap: .35rem;
-  }
-}
-
-/* ── Empilhamento ───────────────────────────────────────── */
-
-@media (max-width: 60rem) {
-  #charSelectModal .nqc-grid {
-    grid-template-columns: minmax(0, 1fr);
-    gap: .75rem;
-  }
-
-  #charSelectModal .nqc-header {
-    padding-inline: 3.25rem;
-  }
-
-  /* Em coluna única o retrato quadrado empurra tudo para fora da
-     dobra; vira uma faixa lateral com a identidade ao lado. */
-  #charSelectModal .nqc-card {
-    display: grid;
-    grid-template-columns: min(5.5rem, 40%) minmax(0, 1fr);
-    grid-template-areas:
-      'art  name'
-      'art  title'
-      'art  pitch'
-      'boons boons'
-      'path path'
-      'plabel plabel'
-      'choose choose';
-    align-items: start;
-    column-gap: .8rem;
-    row-gap: .2rem;
-    text-align: left;
-  }
-
-  #charSelectModal .nqc-art { grid-area: art; align-self: center; }
-  #charSelectModal .nqc-name { grid-area: name; }
-  #charSelectModal .nqc-title { grid-area: title; }
-  #charSelectModal .nqc-pitch { grid-area: pitch; }
-  #charSelectModal .nqc-boons { grid-area: boons; margin-top: .5rem; }
-  #charSelectModal .nqc-path { grid-area: path; margin-top: .5rem; }
-  #charSelectModal .nqc-path-label { grid-area: plabel; }
-  #charSelectModal .nqc-choose { grid-area: choose; margin-top: .5rem; }
-}
-
-/* Reserva uma linha para Fechar antes do texto em telas estreitas. */
-@media (max-width: 40rem) {
-  #charSelectModal .nqc-header {
-    box-sizing: border-box;
-    width: 100%;
-    min-width: 0;
-    padding-inline: 0;
-    padding-block-start: 3.25rem;
-  }
-}
-
-/* ── Movimento reduzido ─────────────────────────────────── */
-
-@media (prefers-reduced-motion: reduce) {
-  #charSelectModal.nqc-screen,
-  #charSelectModal.nqc-screen * {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* ── Computador: a tela inteira cabe na janela ─────────────
-   Os três cards dividem as mesmas linhas (subgrid), então nome, bônus,
-   trilha e "Escolher" ficam alinhados entre si, e o retrato ocupa só a
-   altura que sobra. Se a letra ampliada não couber, a tela ainda rola. */
-
-@media (min-width: 60.0625rem) {
-  #charSelectModal.nqc-screen {
-    padding-block: clamp(.75rem, 2.2vh, 1.5rem);
-  }
-
-  #charSelectModal .nqc-shell {
-    min-height: 100%;
-    max-height: 62rem;
-    justify-content: flex-start;
-    gap: clamp(.75rem, 2vh, 1.25rem);
-  }
-
-  #charSelectModal .nqc-header h2 {
-    font-size: clamp(1.5rem, 4.2vh, 2.3rem);
-  }
-
-  #charSelectModal .nqc-eyebrow {
-    margin-bottom: .3rem;
-  }
-
-  #charSelectModal .nqc-grid {
-    flex: 1 1 0;
-    min-height: 0;
-    grid-template-rows: minmax(7rem, 1fr) repeat(7, auto);
-    column-gap: clamp(.75rem, 1.6vw, 1.25rem);
-    row-gap: 0;
-  }
-
-  #charSelectModal .nqc-grid > li {
-    display: grid;
-    grid-row: span 8;
-    grid-template-rows: subgrid;
-  }
-
-  #charSelectModal .nqc-card {
-    grid-row: 1 / -1;
-    display: grid;
-    grid-template-rows: subgrid;
-    justify-items: center;
-    gap: 0;
-    padding: clamp(.65rem, 1.6vh, 1rem);
-  }
-
-  #charSelectModal .nqc-art {
-    aspect-ratio: auto;
-    height: 100%;
-    min-height: 0;
-    margin-bottom: .6rem;
-  }
-
-  #charSelectModal .nqc-art img {
-    position: absolute;
-    inset: 0;
-    object-position: center 22%;
-  }
-
-  #charSelectModal .nqc-title,
-  #charSelectModal .nqc-pitch {
-    margin-top: .2rem;
-  }
-
-  #charSelectModal .nqc-boons {
-    align-self: start;
-    margin-top: .55rem;
-  }
-
-  #charSelectModal .nqc-path {
-    align-self: end;
-    margin-top: .6rem;
-    padding-top: 0;
-  }
-
-  #charSelectModal .nqc-path-label {
-    margin-top: .35rem;
-  }
-
-  #charSelectModal .nqc-choose {
-    margin-top: .55rem;
-  }
-
-  #charSelectModal .nqc-foot {
-    max-width: 62rem;
-    margin-inline: auto;
-    font-size: .74rem;
-    line-height: 1.45;
-  }
-}
+#charSelectModal[data-presentation="scene"] .nqc-card:hover:not([aria-checked="true"]) { background:#ffffff08; }

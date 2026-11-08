@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.87',
+          release: 'nefroquest@16.88',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -142,7 +142,7 @@
   <link rel="stylesheet" href="styles/lumen/game.css?v=16.87">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.86">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.83">
-  <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.60">
+  <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.88">
   <link rel="stylesheet" href="styles/lumen/forge.css?v=16.85">
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
   <link rel="stylesheet" href="styles/lumen/modes.css?v=16.69">
@@ -1510,86 +1510,78 @@
   </div>
 
   <!-- CHARACTER SELECT MODAL -->
-  <div id="charSelectModal" class="nqc-screen" data-nq-ui="lumen" role="dialog" aria-modal="true" aria-labelledby="nqcTitle">
+  <div id="charSelectModal" class="nqc-screen" data-nq-ui="lumen" tabindex="-1" data-presentation="scene" data-preview-character="nephros" role="dialog" aria-modal="true" aria-labelledby="nqcTitle">
     <div class="nqc-shell">
-      <button type="button" class="nqc-close" data-action="closeCharSelectModal" aria-label="Fechar escolha de classe">✕</button>
-
-      <header class="nqc-header">
-        <span class="nqc-eyebrow">Antes da primeira questão</span>
-        <h2 id="nqcTitle">Escolha sua classe</h2>
-        <p class="nqc-lede">Cada classe altera de verdade a sua jornada — e evolui em dez estágios de arte conforme você acerta.</p>
-      </header>
-
-      <div class="nqc-notice" id="nqcHardcoreNotice" role="note" hidden>
-        <strong>No modo Hardcore, os bônus de personagem não se aplicam.</strong>
-        <p>Este aviso se refere aos bônus iniciais novos. Os atributos originais da classe permanecem.</p>
-      </div>
-
-      <ul class="nqc-grid">
-        <li>
-          <button type="button" class="nqc-card" data-action="selectCharacter" data-arg="nephros" data-char="nephros" aria-describedby="nqcBenefitRules">
+      <button type="button" class="nqc-close" data-action="closeCharSelectModal" aria-label="Fechar escolha de classe">×</button>
+      <header class="nqc-header"><p class="nqc-opening">Uma nova jornada</p><h2 id="nqcTitle">Quem vai enfrentar o Arqui-Nefromante?</h2><p class="nqc-lede">Conheça seus guardiões. A escolha é sua; a jornada começa quando você confirmar.</p></header>
+      <div class="nqc-notice" id="nqcHardcoreNotice" role="note" hidden><strong>No modo Hardcore, os bônus de personagem não se aplicam.</strong><p>Este aviso se refere aos bônus iniciais novos. Os atributos originais da classe permanecem.</p></div>
+      <div class="nqc-scene">
+        <aside class="nqc-roster"><h3>Escolha sua classe</h3><ul class="nqc-grid" role="radiogroup" aria-label="Classe da jornada">
+        <li role="none">
+          <button type="button" class="nqc-card" role="radio" aria-checked="true" tabindex="0" aria-controls="nqcProfile" data-action="selectCharacter" data-arg="nephros" data-char="nephros" aria-describedby="nqcBenefitRules">
             <span class="nqc-art">
               <img src="assets/classes-cinema/clerigo_renal/nivel_01.webp" alt="" width="512" height="512" decoding="async" fetchpriority="high">
               <span class="nqc-art-glow" aria-hidden="true"></span>
             </span>
             <span class="nqc-name">Dr. Nephros</span>
             <span class="nqc-title" data-char-title>Guardião dos Néfrons</span>
-            <span class="nqc-pitch">Equilíbrio e sabedoria.</span>
+
             <span class="nqc-boons">
               <span class="nqc-boon" data-boon="kno"><b>+2</b> Conhecimento<small>mais XP por acerto</small></span>
-              <span class="nqc-boon"><b>+1 XP</b> por acerto<small>Bônus inicial: até 20 XP nas primeiras 20 respostas</small></span>
+
             </span>
-            <span class="nqc-path" aria-hidden="true">
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-            </span>
-            <span class="nqc-path-label">10 estágios de arte</span>
-            <span class="nqc-choose">Escolher</span>
+
+
+
           </button>
         </li>
-        <li>
-          <button type="button" class="nqc-card" data-action="selectCharacter" data-arg="aquaria" data-char="aquaria" aria-describedby="nqcBenefitRules">
+        <li role="none">
+          <button type="button" class="nqc-card" role="radio" aria-checked="false" tabindex="-1" aria-controls="nqcProfile" data-action="selectCharacter" data-arg="aquaria" data-char="aquaria" aria-describedby="nqcBenefitRules">
             <span class="nqc-art">
               <img src="assets/classes-cinema/maga_metabolica/nivel_01.webp" alt="" width="512" height="512" decoding="async" fetchpriority="high">
               <span class="nqc-art-glow" aria-hidden="true"></span>
             </span>
             <span class="nqc-name">Dra. Aquaria</span>
             <span class="nqc-title" data-char-title>Mestra das Águas</span>
-            <span class="nqc-pitch">Cura e regeneração.</span>
+
             <span class="nqc-boons">
               <span class="nqc-boon" data-boon="def"><b>+2</b> Defesa<small>menos dano do boss</small></span>
-              <span class="nqc-boon"><b>1 proteção</b> contra perda de vida<small>Bônus inicial nas primeiras 20 respostas</small></span>
+
             </span>
-            <span class="nqc-path" aria-hidden="true">
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-            </span>
-            <span class="nqc-path-label">10 estágios de arte</span>
-            <span class="nqc-choose">Escolher</span>
+
+
+
           </button>
         </li>
-        <li>
-          <button type="button" class="nqc-card" data-action="selectCharacter" data-arg="glomerulus" data-char="glomerulus" aria-describedby="nqcBenefitRules">
+        <li role="none">
+          <button type="button" class="nqc-card" role="radio" aria-checked="false" tabindex="-1" aria-controls="nqcProfile" data-action="selectCharacter" data-arg="glomerulus" data-char="glomerulus" aria-describedby="nqcBenefitRules">
             <span class="nqc-art">
               <img src="assets/classes-cinema/guerreiro_glomerular/nivel_01.webp" alt="" width="512" height="512" decoding="async" fetchpriority="high">
               <span class="nqc-art-glow" aria-hidden="true"></span>
             </span>
             <span class="nqc-name">Dr. Glomerulus</span>
             <span class="nqc-title" data-char-title>Lâmina dos Glomérulos</span>
-            <span class="nqc-pitch">Força e precisão.</span>
+
             <span class="nqc-boons">
               <span class="nqc-boon" data-boon="atk"><b>+2</b> Ataque<small>mais dano ao boss</small></span>
               <span class="nqc-boon" data-boon="kno"><b>+1</b> Conhecimento<small>mais XP por acerto</small></span>
-              <span class="nqc-boon"><b>+2 ouro</b> por acerto<small>Bônus inicial: até 40 ouro nas primeiras 20 respostas</small></span>
+
             </span>
-            <span class="nqc-path" aria-hidden="true">
-              <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
-            </span>
-            <span class="nqc-path-label">10 estágios de arte</span>
-            <span class="nqc-choose">Escolher</span>
+
+
+
           </button>
         </li>
-      </ul>
-
-      <p class="nqc-foot" id="nqcBenefitRules">A classe acompanha a jornada inteira. Você pode trocar iniciando uma nova. Os bônus iniciais são automáticos nas novas jornadas em Fácil, Médio e Difícil. Valem nas primeiras 20 respostas da campanha, incluindo erros, e não se aplicam no Hardcore. Jornadas salvas mantêm suas regras originais.</p>
+      </ul></aside>
+        <section id="nqcProfile" class="nqc-profile" aria-labelledby="nqcProfileName">
+          <div class="nqc-profile-art"><div class="nqc-scene-aura" aria-hidden="true"></div><div id="nqcProfileEmblem" aria-hidden="true"></div><img id="nqcProfilePortrait" src="assets/classes-cinema/clerigo_renal/nivel_01.webp" alt="" width="512" height="512" decoding="async"><p class="nqc-evolution"><span class="nqc-path" aria-hidden="true"><i class="is-current"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="nqc-path-label">Arte inicial · 10 estágios de evolução</span></p></div>
+          <header class="nqc-profile-heading"><p id="nqcProfileTitle"></p><h3 id="nqcProfileName"></h3></header>
+          <p id="nqcProfileStory" class="nqc-profile-story"></p>
+          <div class="nqc-profile-benefits"><h4>Atributos da classe</h4><ul id="nqcAttributes" class="nqc-attributes"></ul><div class="nqc-initial"><h4>Bônus inicial</h4><p id="nqcInitialBonus"></p></div></div>
+        </section>
+      </div>
+      <footer class="nqc-actions"><div><p class="nqc-commit-note">Ao iniciar uma nova jornada, a anterior é substituída.</p><p class="nqc-foot" id="nqcBenefitRules">A classe acompanha a jornada inteira. Os bônus iniciais valem nas primeiras 20 respostas da campanha, incluindo erros, em Fácil, Médio e Difícil. Não se aplicam no Hardcore. Jornadas salvas mantêm suas regras originais.</p></div><div class="nqc-action-buttons"><button type="button" class="nqc-cancel" data-character-cancel data-action="closeCharSelectModal">Cancelar</button><button type="button" class="nqc-primary" data-action="startCharacterPreview" aria-describedby="nqcProfileName nqcInitialBonus">Iniciar Jornada</button></div></footer>
+      <span id="nqcPreviewAnnouncement" class="nqc-announcement" role="status" aria-live="polite"></span>
     </div>
   </div>
 
@@ -1850,7 +1842,7 @@
   <script defer src="js/audio.js?v=16.28"></script>
   <script defer src="js/leaderboard.js?v=16.47"></script>
   <script defer src="js/study-mode.js?v=16.69"></script>
-  <script defer src="js/game.js?v=16.85"></script>
+  <script defer src="js/game.js?v=16.88"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=15.92"></script>
@@ -1858,7 +1850,7 @@
   <script defer src="js/atrium.js?v=13.23"></script>
   <script defer src="js/paywall.js?v=16.60"></script>
   <script defer src="js/account.js?v=16.57"></script>
-  <script defer src="js/boss.js?v=16.48"></script>
+  <script defer src="js/boss.js?v=16.88"></script>
   <script defer src="js/cinema-intro-source-config.js?v=16.39"></script>
   <script defer src="js/cinema-equipment-seals.js?v=16.43"></script>
   <script defer src="js/cinema-poison-portraits.js?v=16.43"></script>
