@@ -99,6 +99,15 @@ test('Keyboard focus remains visible on all five routes and Enter opens the inli
 test('Header covers both edges at widths equivalent to100,90,80and75percent while content stays aligned',async({page})=>{
  for(const [width,height] of [[1920,1080],[2133,1200],[2400,1350],[2560,1440]]){
   await page.setViewportSize({width,height});
+  // Viewport units can settle after the resize command. Wait for both actual
+  // insets, then retain every original geometry assertion and tolerance below.
+  await expect.poll(()=>page.locator('#welcomeScreen').evaluate((root,width)=>{
+   const main=root.querySelector('.nql-atrium__main')!.getBoundingClientRect();
+   const brand=root.querySelector('.nql-brand')!.getBoundingClientRect();
+   const actions=root.querySelector('.nql-atrium__top-actions')!.getBoundingClientRect();
+   const inset=Math.min(width*.04,80);
+   return Math.abs(brand.left-main.left-inset)<.5&&Math.abs(main.right-actions.right-inset)<.5;
+  },width)).toBe(true);
   const layout=await page.locator('#welcomeScreen').evaluate(root=>{
    const box=(selector:string)=>root.querySelector(selector)!.getBoundingClientRect();
    const header=box('.nql-atrium__topbar'),main=box('.nql-atrium__main'),footer=box('.nql-atrium__footer');
