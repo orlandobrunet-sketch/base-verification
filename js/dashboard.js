@@ -971,18 +971,27 @@
 
   function _errorPatternsMarkup() {
     const data = _readJson('nefroquest-error-reasons', { counts: {} });
-    const rows = Object.entries((data && data.counts) || {})
-      .filter(([, count]) => _number(count, 0) > 0)
-      .sort((left, right) => right[1] - left[1])
-      .slice(0, 3);
+    const counts = data && data.counts;
+    const containerValid = counts && typeof counts === 'object' && !Array.isArray(counts);
+    const parsed = Object.entries(containerValid ? counts : {}).map(([reason, value]) => [reason,
+      typeof value === 'number' || typeof value === 'string' ? _number(value, NaN) : NaN]);
+    const incomplete = (counts != null && !containerValid) || parsed.some(([, count]) => !Number.isSafeInteger(count) || count < 0);
+    const rows = parsed.filter(([, count]) => Number.isSafeInteger(count) && count > 0)
+      .sort((left, right) => right[1] - left[1]);
 
     if (!rows.length) {
-      return '<p class="nqd-error-empty">Você ainda não registrou motivos de erro. Ao marcar o motivo depois de uma resposta, os padrões aparecem aqui.</p>';
+      return `<p class="nqd-error-empty">${incomplete ? 'Os motivos registrados não puderam ser exibidos.' : 'Você ainda não registrou motivos de erro. Ao marcar o motivo depois de uma resposta, os padrões aparecem aqui.'}</p>`;
     }
 
-    return `<div class="nqd-error-ledger">${rows.map(([reason, count]) => `
-      <div><span>${_escape(ERROR_REASON_LABELS[reason] || reason)}</span><span class="nqd-error-count"><strong>${_formatNumber(count)}</strong><small>${_number(count, 0) === 1 ? 'registro' : 'registros'}</small></span></div>
-    `).join('')}</div>`;
+    const total = rows.reduce((sum, [, count]) => sum + BigInt(count), 0n);
+    return `<p class="nqd-error-context"><strong class="nqd-error-total">${total.toLocaleString('pt-BR')}</strong> ${total === 1n ? 'reflexão registrada' : 'reflexões registradas'}. Distribuição entre os motivos que você informou.</p>
+      <div class="nqd-error-ledger" role="list" aria-label="Motivos registrados">${rows.map(([reason, count]) => {
+        const share = count / Number(total) * 100;
+        const label = share > 0 && share < .1 ? 'menos de 0,1%' : share.toLocaleString('pt-BR', { maximumFractionDigits: 1 }) + '%';
+        const reasonLabel = Object.prototype.hasOwnProperty.call(ERROR_REASON_LABELS, reason) ? ERROR_REASON_LABELS[reason] : reason;
+        return `<div role="listitem"><span>${_escape(reasonLabel)}</span><span class="nqd-error-count"><strong>${_formatNumber(count)}</strong><small>${count === 1 ? 'registro' : 'registros'}</small><span class="nqd-error-share">${label}</span><span class="nqd-sr-only"> dos registros</span></span><div class="nqd-error-bar" aria-hidden="true"><span style="width:${share}%"></span></div></div>`;
+      }).join('')}</div>
+      <p class="nqd-error-note">A reflexão é opcional: estes registros não representam todos os seus erros.</p>${incomplete ? '<p class="nqd-error-note">Alguns valores não puderam ser exibidos.</p>' : ''}`;
   }
 
   function _tabSkills(data) {
