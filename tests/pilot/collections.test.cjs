@@ -158,9 +158,19 @@ test('leaving a domain discards cached book resources and pending study state', 
 
 test('a delayed topic load for an old pilot cannot start an exam in a new domain', async () => {
   const f = fixture(['exam.js']); f.activate();
-  let resolve; f.ctx.questionBank = null; f.ctx._loadTopics = () => new Promise(done => { resolve = done; });
+  f.nodes.set('examQuestionCount', { value: '1' });
+  f.nodes.set('examDurationMinutes', { value: '90' });
+  let resolve, loadCalls = 0;
+  f.ctx.questionBank = null;
+  f.ctx._loadTopics = () => { loadCalls++; return new Promise(done => { resolve = done; }); };
   f.run('_examProgressBinding = NQPilot.captureBinding()');
-  const waiting = f.ctx._examComecar(); f.leave(); f.ctx.questionBank = [{id:'synthetic'}]; resolve(); await waiting;
+  const waiting = f.ctx._examComecar();
+  assert.equal(loadCalls, 1, 'the valid setup must enter the delayed loader before leaving the pilot');
+  assert.equal(typeof resolve, 'function');
+  f.leave();
+  f.ctx.questionBank = [{id:'synthetic', q:'Synthetic exam', o:['Correct','Distractor'], a:0, e:'Synthetic explanation'}];
+  resolve(); await waiting;
+  assert.equal(loadCalls, 1);
   assert.equal(f.run('_examState'), null);
   assert.equal(f.normal.size, 0); assert.equal(f.pilot.size, 0);
 });
