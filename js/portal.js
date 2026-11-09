@@ -75,6 +75,7 @@
       .filter(Boolean);
     var wasOpen = false;
     var returnFocus = null;
+    var initialFocusFrame = 0;
 
     function isVisible(element) {
       if (!element || element.hidden || !element.getClientRects().length) return false;
@@ -82,34 +83,62 @@
       return style.display !== 'none' && style.visibility !== 'hidden';
     }
 
+    function isActivePanel(element) {
+      // O controlador de autenticação alterna display. A visibilidade herdada
+      // do diálogo durante a animação não muda qual formulário está ativo.
+      return !!element && !element.hidden && element.style.display !== 'none';
+    }
+
     function syncPanels() {
-      var loginVisible = isVisible(formEntrar);
-      var registerVisible = isVisible(formCadastrar);
-      var forgotVisible = isVisible(formForgot);
+      var loginActive = isActivePanel(formEntrar);
+      var registerActive = isActivePanel(formCadastrar);
+      var forgotActive = isActivePanel(formForgot);
 
       if (tabs) {
-        tabs.classList.toggle('nql-auth-tabs--hidden', forgotVisible);
-        tabs.setAttribute('aria-hidden', String(forgotVisible));
-        tabs.inert = forgotVisible;
+        tabs.classList.toggle('nql-auth-tabs--hidden', forgotActive);
+        tabs.setAttribute('aria-hidden', String(forgotActive));
+        tabs.inert = forgotActive;
       }
 
       if (tabEntrar) {
-        tabEntrar.setAttribute('aria-selected', String(loginVisible));
-        tabEntrar.tabIndex = loginVisible ? 0 : -1;
+        tabEntrar.setAttribute('aria-selected', String(loginActive));
+        tabEntrar.tabIndex = loginActive ? 0 : -1;
       }
       if (tabCadastrar) {
-        tabCadastrar.setAttribute('aria-selected', String(registerVisible));
-        tabCadastrar.tabIndex = registerVisible ? 0 : -1;
+        tabCadastrar.setAttribute('aria-selected', String(registerActive));
+        tabCadastrar.tabIndex = registerActive ? 0 : -1;
       }
-      if (formEntrar) formEntrar.setAttribute('aria-hidden', String(!loginVisible));
-      if (formCadastrar) formCadastrar.setAttribute('aria-hidden', String(!registerVisible));
-      if (formForgot) formForgot.setAttribute('aria-hidden', String(!forgotVisible));
+      if (formEntrar) formEntrar.setAttribute('aria-hidden', String(!loginActive));
+      if (formCadastrar) formCadastrar.setAttribute('aria-hidden', String(!registerActive));
+      if (formForgot) formForgot.setAttribute('aria-hidden', String(!forgotActive));
     }
 
     function firstFieldForCurrentPanel() {
-      if (isVisible(formForgot)) return document.getElementById('authForgotEmail');
-      if (isVisible(formCadastrar)) return document.getElementById('authDisplayName');
+      if (isActivePanel(formForgot)) return document.getElementById('authForgotEmail');
+      if (isActivePanel(formCadastrar)) return document.getElementById('authDisplayName');
       return document.getElementById('authEmail');
+    }
+
+    function focusInitialFieldWhenReady() {
+      window.cancelAnimationFrame(initialFocusFrame);
+      function attempt() {
+        initialFocusFrame = 0;
+        if (!modal.isConnected || !modal.classList.contains('show')) return;
+        if (!isVisible(modal)) {
+          initialFocusFrame = window.requestAnimationFrame(attempt);
+          return;
+        }
+        syncPanels();
+        var active = document.activeElement;
+        if (active !== document.body && active !== document.documentElement && active !== returnFocus) return;
+        var target = firstFieldForCurrentPanel();
+        if (!isVisible(target)) {
+          initialFocusFrame = window.requestAnimationFrame(attempt);
+          return;
+        }
+        target.focus({ preventScroll: true });
+      }
+      initialFocusFrame = window.requestAnimationFrame(attempt);
     }
 
     function syncModal() {
@@ -122,11 +151,10 @@
 
       if (isOpen && !wasOpen) {
         returnFocus = document.activeElement;
-        window.requestAnimationFrame(function () {
-          var target = firstFieldForCurrentPanel();
-          if (target) target.focus({ preventScroll: true });
-        });
+        focusInitialFieldWhenReady();
       } else if (!isOpen && wasOpen) {
+        window.cancelAnimationFrame(initialFocusFrame);
+        initialFocusFrame = 0;
         if (returnFocus && returnFocus.isConnected && typeof returnFocus.focus === 'function') {
           returnFocus.focus({ preventScroll: true });
         }

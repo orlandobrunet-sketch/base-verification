@@ -2699,9 +2699,15 @@
       return Promise.all([_topicsPromise, referencesReady]).then(_initializeQuestionRevisionCatalog);
     }
     window._loadTopics = _loadTopics;
-    // Inicia download no primeiro toque — head start antes do usuário clicar em jogar
-    document.addEventListener('pointerdown', () => _loadTopics().catch(() => {}),
-      { once: true, passive: true });
+    // Aquece a jornada quando há intenção de jogar; acesso e navegação não
+    // precisam construir o banco e seu catálogo de revisões no thread principal.
+    function warmQuestionsForPlay(event) {
+      const trigger = event.target instanceof Element ? event.target.closest('[data-action]') : null;
+      if (!trigger || !['playAsGuest', 'continueGame', 'startNewFromWelcome', 'startCharacterPreview'].includes(trigger.dataset.action)) return;
+      document.removeEventListener('pointerdown', warmQuestionsForPlay);
+      _loadTopics().catch(() => {});
+    }
+    document.addEventListener('pointerdown', warmQuestionsForPlay, { passive: true });
     // ────────────────────────────────────────────────────────────────────────
 
     // Definições de Personagens
