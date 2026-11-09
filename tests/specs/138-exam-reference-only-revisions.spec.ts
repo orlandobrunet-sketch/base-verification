@@ -183,7 +183,8 @@ test('explicit published historical binding preserves the recorded answer and ar
   await page.getByRole('button', {name: 'Retomar prova', exact: true}).click();
   await expect(page.getByRole('heading', {name: 'Questão 1 de 1', exact: true})).toBeVisible();
   await expect(page.locator('[data-question-revision="historical"]')).toContainText('versão ' + fixture.release);
-  await expect(page.locator('.nq-exam-veredito')).toHaveText('Correto.');
+  await expect(page.locator('.nq-exam-veredito,.nq-exam-opcao-certa,.nq-exam-opcao-errada')).toHaveCount(0);
+  await expect(page.locator('#examPage')).not.toContainText(fixture.saved.questions[0].e);
   const state = await page.evaluate(() => {
     const state = (0, eval)('_examState');
     return {questions: state.questions, answers: state.answers, bindings: state.questionRevisionBindings,
@@ -194,6 +195,9 @@ test('explicit published historical binding preserves the recorded answer and ar
   expect(state.bindings).toEqual((fixture.saved as any).questionRevisionBindings);
   expect(state.references).toEqual(fixture.references);
   expect(state.historical).toBe(true);
+  await page.getByRole('button', {name:'Ver resultado',exact:true}).click();
+  await expect(page.locator('#examResultado')).toContainText('100%');
+  await expect(page.locator('.nq-exam-revisao-demais')).toContainText(fixture.saved.questions[0].e);
   await saveIdle(page);
   expect(await storageBytes(page)).toEqual(before);
 });

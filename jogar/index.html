@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.93',
+          release: 'nefroquest@16.94',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -146,6 +146,7 @@
   <link rel="stylesheet" href="styles/lumen/forge.css?v=16.85">
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
   <link rel="stylesheet" href="styles/lumen/modes.css?v=16.69">
+  <link rel="stylesheet" href="styles/lumen/exam.css?v=16.94">
   <link rel="stylesheet" href="styles/lumen/equipment.css?v=16.62">
   <link rel="stylesheet" href="styles/lumen/boss.css?v=16.84">
   <link rel="stylesheet" href="styles/lumen/cinemalayout.css?v=16.43">
@@ -1736,7 +1737,7 @@
         </button>
         <button type="button" class="nqmodes-route" data-mode-route="exam" data-action-seq="closeGameModesPopup,startExamMode">
           <span class="nqmodes-route__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2" width="6" height="4" rx="1"/><path d="m8 13 3 3 5-6"/></svg></span>
-          <span class="nqmodes-route__copy"><strong>Prova Simulada</strong><small>60 questões em 90 minutos</small></span>
+          <span class="nqmodes-route__copy"><strong>Prova Simulada</strong><small>Escolha as questões e o tempo total</small></span>
           <svg class="nqmodes-route__arrow" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
         </button>
         <button type="button" class="nqmodes-route" data-mode-route="rapid" data-action-seq="closeGameModesPopup,showStandaloneMinigame">
@@ -1845,7 +1846,7 @@
   <script defer src="js/audio.js?v=16.28"></script>
   <script defer src="js/leaderboard.js?v=16.47"></script>
   <script defer src="js/study-mode.js?v=16.69"></script>
-  <script defer src="js/game.js?v=16.93"></script>
+  <script defer src="js/game.js?v=16.94"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=15.92"></script>
@@ -1861,7 +1862,7 @@
   <script defer src="js/cinema-cinematic-intro.js?v=16.46"></script>
   <script defer src="js/cinema-boss-art-states.js?v=16.39"></script>
   <script defer src="js/cinema-boss-static-adapter.js?v=16.43"></script>
-  <script defer src="js/exam.js?v=16.67"></script>
+  <script defer src="js/exam.js?v=16.94"></script>
   <script defer src="js/admin.js?v=15.35"></script>
   <script defer src="js/minigame.js?v=16.86"></script>
   <script defer src="js/cinema-intro-bridge.js?v=16.43"></script>
