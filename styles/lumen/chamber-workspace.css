@@ -3,7 +3,7 @@
 .nq-chamber-workspace .nql-reading-page[hidden],
 .nq-chamber-workspace .nql-reader-controls[hidden] { display: none !important; }
 @media (min-width: 961px) and (pointer: fine) {
-  /* One frame for every screen and tab: fills short windows, stops at 760px and centres on tall ones.
+  /* Stable question/result frames fill short windows, stop at 760px and centre on tall ones.
      Readers paginate to this frame; min-height lets the card grow instead of clipping if a page ever overflows. */
   .acid-base-overlay.acid-base-page.nq-chamber-workspace { --nql-frame: min(calc(100dvh - 20px), 760px); padding: max(12px, calc((100dvh - var(--nql-frame)) / 2)) 20px max(8px, calc((100dvh - var(--nql-frame)) / 2 - 4px)); }
   .acid-base-page.nq-chamber-workspace .ab-card { width: min(1160px,100%); min-height: var(--nql-frame); }
@@ -91,3 +91,53 @@
   .nq-chamber-workspace .nql-intro .ab-body--intro { display:flex;justify-content:flex-end;border-top:1px solid #91dfe333;margin-top:18px;padding-top:14px; }
   .nq-chamber-workspace .nql-intro .ab-btn-primary { margin:0; }
 }
+
+/* A route describes interaction formats, never future diagnoses or answers. */
+.acid-base-page .ab-intro-preview { width:100%;margin:0 0 18px;text-align:left; }
+.acid-base-page .ab-intro-preview h2 { margin:0 0 12px;color:#d8bf7e;font:600 1.1rem/1.4 Philosopher,Georgia,serif; }
+.acid-base-page .ab-intro-route { display:grid;grid-template-columns:1fr;gap:8px;list-style:none;margin:0;padding:0; }
+.acid-base-page .ab-intro-route li { display:flex;align-items:baseline;gap:12px;min-width:0;padding:12px 14px;border:1px solid #91dfe333;border-radius:6px;background:#0c192480; }
+.acid-base-page .ab-intro-step-number { flex:0 0 auto;color:#d8bf7e;font:400 .9rem/1.5 Philosopher,Georgia,serif; }
+.acid-base-page .ab-intro-route strong { min-width:0;color:#d7e0e5;font:400 1rem/1.45 Philosopher,Georgia,serif;overflow-wrap:anywhere; }
+.acid-base-page .ab-hub-banner .ab-hub-progress { position:relative;z-index:1;width:min(100%,260px);margin-top:14px;color:#c7d2db;font:400 .95rem/1.5 Philosopher,Georgia,serif;text-align:left; }
+.acid-base-page .ab-hub-progress progress { display:block;width:100%;height:5px;margin-top:8px;border:0;background:#3c4e5a;accent-color:#d8bf7e; }
+.acid-base-page .ab-hub-progress progress::-webkit-progress-bar { background:#3c4e5a; }
+.acid-base-page .ab-hub-progress progress::-webkit-progress-value { background:#d8bf7e; }
+@media(min-width:600px) { .acid-base-page .ab-intro-route { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(min-width:961px) and (pointer:fine) {
+  /* Compact pages follow their content; question/number/summary frames stay stable. */
+  .acid-base-page.nq-chamber-workspace.nq-chamber-natural { padding:12px 20px 24px; }
+  .acid-base-page.nq-chamber-workspace.nq-chamber-natural .ab-card { min-height:0; }
+  .acid-base-page.nq-chamber-workspace[data-ab-tela=hub] .ab-scroll { padding-top:20px; }
+  .nq-chamber-workspace .nql-hub-nav { padding-right:190px;min-height:44px; }
+  .nq-chamber-workspace .ab-hub-banner { min-height:144px;padding:16px 22px; }
+  .nq-chamber-workspace .ab-hub-banner::before { width:256px;height:144px; }
+  .nq-chamber-workspace .ab-hub-banner :is(.ab-title,.ab-ornament) { max-width:calc(100% - 270px); }
+  .nq-chamber-workspace .ab-hub-banner .ab-ornament { margin-bottom:6px; }
+  .nq-chamber-workspace .ab-hub-heading .ab-lab { margin-top:14px;padding-top:12px;gap:12px; }
+  .nq-chamber-workspace .ab-lab-art { width:140px;height:72px; }
+  .nq-chamber-workspace .ab-scroll.nql-intro .ab-body--intro { display:flex;flex-direction:column;align-items:stretch; }
+  .nq-chamber-workspace .nql-intro .ab-body--intro > .ab-btn-primary { align-self:flex-end; }
+  .nq-chamber-workspace .ab-intro-route { grid-template-columns:repeat(5,minmax(0,1fr)); }
+  .nq-chamber-workspace .ab-intro-route li { flex-direction:column;gap:6px; }
+  .acid-base-page.nq-chamber-workspace .ab-scroll.nql-cardflow { display:block; }
+  .acid-base-page.nq-chamber-workspace .nql-cardflow .ab-context { display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:start;gap:20px;border-right:0;border-bottom:1px solid #91dfe333;padding:0 0 18px;margin:0 0 18px; }
+  .nq-chamber-workspace .nql-cardflow .ab-patient-heading { margin-bottom:0; }
+  .acid-base-page.nq-chamber-workspace .nql-cardflow .ab-patient-portrait { flex-basis:72px;width:72px; }
+  .nq-chamber-workspace .nql-case-context { min-width:0;border:1px solid #91dfe333;border-radius:6px;background:#0c192480; }
+  .nq-chamber-workspace .nql-case-context summary { min-height:44px;box-sizing:border-box;padding:12px 16px;cursor:pointer;color:#f0d78e;font:400 1.05rem/1.5 Philosopher,Georgia,serif; }
+  .nq-chamber-workspace .nql-case-context summary:focus-visible { outline:2px solid #91dfe3;outline-offset:3px; }
+  .nq-chamber-workspace .nql-context-hint { display:inline-block;margin-left:12px;color:#c7d2db;font-size:.9rem; }
+  .acid-base-page.nq-chamber-workspace .nql-case-context .ab-narrative { padding:0 16px 12px; }
+  .acid-base-page.nq-chamber-workspace .nql-case-context .ab-gas-grid { margin:0 12px 12px; }
+  .nq-chamber-workspace .nql-cardflow .ab-ddx-table { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:stretch; }
+  .nq-chamber-workspace .nql-cardflow .ab-ddx-card { width:auto;min-width:0;padding:16px 18px; }
+  .nq-chamber-workspace .nql-cardflow .ab-ddx-actions { margin-top:14px; }
+}
+@media(min-width:1440px) and (pointer:fine) {
+  .nq-chamber-workspace .nql-cardflow .ab-ddx-table { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+/* Outcome labels participate in flow so titles remain clear at enlarged text sizes. */
+.acid-base-page .ab-ddx-card { min-width:0;overflow-wrap:anywhere; }
+.acid-base-page .ab-ddx-card.revealed { padding-top:16px; }
+.acid-base-page .ab-ddx-card.revealed .ab-ddx-card-badge { position:static;align-self:flex-start;font-size:.72rem;line-height:1.4; }

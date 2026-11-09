@@ -257,8 +257,6 @@
     }
     if (!normal()) return;
     addButton(document.querySelector('#heroLoreModal .nqnarr-footer'),'hero','Rever introdução');
-    const chamber = document.getElementById('acidBaseOverlay');
-    if (chamber?.dataset.abTela === 'hub') addButton(chamber.querySelector('.ab-hub'),'chamber','Rever introdução');
   }
   function guard() {
     if (active && (!current(active) || !window.NQEntryCinema?.inspection.open)) {

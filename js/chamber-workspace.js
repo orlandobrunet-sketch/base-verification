@@ -26,7 +26,7 @@
     [...s.undo].reverse().forEach(fn => fn());
     s.visibility.forEach((inert, node) => { node.classList.remove('nql-hidden'); node.inert = inert; });
     s.owned.forEach(node => node.remove());
-    overlay.classList.remove('nq-chamber-workspace'); s.root.classList.remove('nql-intro');
+    overlay.classList.remove('nq-chamber-workspace','nq-chamber-natural'); s.root.classList.remove('nql-intro','nql-cardflow');
     states.delete(overlay);
   }
   function fit(s) {
@@ -34,7 +34,7 @@
     s.readers.forEach(r => { if (visible(r.root)) r.reflow(); else r.hide(); });
   }
   function after(s) { requestAnimationFrame(() => fit(s)); }
-  function tabs(s, host, items, initial, label, onSelect) {
+  function tabs(s, host, items, initial, label, onSelect, preserveScroll = false) {
     const nav = make(s, 'div', 'nql-tabs', host); nav.setAttribute('role', 'tablist'); nav.setAttribute('aria-label', label);
     const buttons = items.map((item, i) => {
       const b = make(s, 'button', 'nql-tab', nav); b.type = 'button'; b.textContent = item.label; b.id = 'nql-tab-' + (++serial);
@@ -55,7 +55,7 @@
     function select(index, focus = false) {
       active = index;
       items.forEach((item, i) => { conceal(s, item.node, i !== index); buttons[i].setAttribute('aria-selected', String(i === index)); buttons[i].tabIndex = i === index ? 0 : -1; });
-      if (focus) { buttons[index].focus({preventScroll:true}); window.scrollTo(0,0); }
+      if (focus) { buttons[index].focus({preventScroll:true}); if(preserveScroll)buttons[index].scrollIntoView({block:'nearest',inline:'nearest'});else window.scrollTo(0,0); }
       onSelect?.(index); after(s);
     }
     select(initial);
@@ -131,16 +131,22 @@
     const overview=make(s,'section','nql-hub-overview'),collection=make(s,'section','nql-hub-collection');layout.prepend(overview,collection);
     move(s,banner,overview);move(s,opening,overview);
     const completedNote=opening.querySelector('.ab-next-case p');
-    if(completedNote&&!opening.querySelector('[data-ab-next]')){const original=completedNote.textContent;completedNote.textContent='Todos os casos foram concluídos. Abra a aba “20 pacientes” para jogar novamente com novos valores.';s.undo.push(()=>{completedNote.textContent=original;});}
+    if(completedNote&&!opening.querySelector('[data-ab-next]')){const original=completedNote.textContent;completedNote.textContent='Todos os casos foram concluídos. Abra a aba Casos clínicos para jogar novamente com novos valores.';s.undo.push(()=>{completedNote.textContent=original;});}
     ['.ab-collection-heading','.ab-grid','.ab-hub-note'].forEach(q=>move(s,layout.querySelector(q),collection));
     const bar=make(s,'div','nql-hub-nav');layout.prepend(bar);
-    tabs(s,bar,[{label:'Visão geral',node:overview},{label:'20 pacientes',node:collection}],0,'Câmara do Equilíbrio');
     const cards=[...collection.querySelectorAll('.ab-case')],ready=cards.findIndex(n=>n.classList.contains('ab-case-ready'));
+    tabs(s,bar,[{label:'Visão geral',node:overview},{label:`Casos clínicos (${cards.length})`,node:collection}],0,'Câmara do Equilíbrio');
     const paging=pager(s,collection,cards,4,'Página',Math.floor(Math.max(0,ready)/4));collection.querySelector('.ab-grid').before(paging.nav);
   }
-  function context(s) {
+  function context(s, continuous = false) {
     const context=s.root.querySelector('.ab-context');if(!context)return;
     const story=context.querySelector('.ab-narrative'),gas=context.querySelector('.ab-gas-grid'),heading=context.querySelector('.ab-patient-heading');
+    if(continuous){
+      const details=make(s,'details','nql-case-context',context),summary=make(s,'summary','',details);
+      summary.textContent='Resumo clínico ';
+      const hint=make(s,'span','nql-context-hint',summary);hint.textContent='História e exames';
+      move(s,story,details);move(s,gas,details);return;
+    }
     const bar=make(s,'div','nql-context-tabs');heading.after(bar);
     const key=context.querySelector('.ab-title')?.textContent||'',mem=memories.get(s.overlay);
     const selection=tabs(s,bar,[{label:'História',node:story},{label:'Exames',node:gas}],mem.contextKey===key?mem.contextTab:1,'Informações do paciente',i=>{mem.contextKey=key;mem.contextTab=i;});
@@ -152,17 +158,18 @@
     const native=[...body.children].filter(n=>!s.owned.includes(n)&&!stable.includes(n)&&n!==grim&&n!==grimBtn&&n!==feedback&&n!==next);
     native.forEach(node=>move(s,node,node.matches('.ab-ddx-narrative,.ab-ddx-arquivista,.ab-ddx-instruction,.ab-ddx-judgment')?instructions:question));
     move(s,feedback,comment);stable[stable.length-1].after(tools);body.append(question,instructions,comment);if(grim)move(s,grim,body);if(next)move(s,next,body);
-    const items=[{label:question.querySelector('.ab-ddx-table')?'Cartas':'Questão',node:question}];if(instructions.textContent.trim())items.push({label:'Orientações',node:instructions});if(hasFeedback)items.push({label:'Comentário',node:comment});else conceal(s,comment,true);
+    const continuous=!!question.querySelector('.ab-ddx-table');
+    const items=[{label:continuous?'Cartas':'Questão',node:question}];if(instructions.textContent.trim())items.push({label:'Orientações',node:instructions});if(hasFeedback)items.push({label:'Comentário',node:comment});else conceal(s,comment,true);
     let previous=hasFeedback?items.length-1:0,mode='regular';
-    const control=tabs(s,tools,items,previous,'Conteúdo do ato',i=>{previous=i;if(mode==='grim'&&grim&&!grim.hidden){grim.hidden=true;grimBtn?.setAttribute('aria-expanded','false');}mode='regular';if(grim)conceal(s,grim,true);});
+    const control=tabs(s,tools,items,previous,'Conteúdo do ato',i=>{previous=i;if(mode==='grim'&&grim&&!grim.hidden){grim.hidden=true;grimBtn?.setAttribute('aria-expanded','false');}mode='regular';if(grim)conceal(s,grim,true);},continuous);
     if(!instructions.textContent.trim())conceal(s,instructions,true);
     if(grimBtn)move(s,grimBtn,tools);
     if(grim){conceal(s,grim,true);const observer=new MutationObserver(()=>{if(!grim.hidden){mode='grim';control.suspend();conceal(s,grim,false);after(s);}else if(mode==='grim'){mode='regular';control.select(previous);}});observer.observe(grim,{attributes:true,attributeFilter:['hidden']});s.observers.push(observer);}
     if(hasFeedback){const picked=question.querySelector('.ab-option.wrong')||question.querySelector('.ab-option.correct'),correct=question.querySelector('.ab-option.correct');if(picked&&correct){const summary=make(s,'p','nql-choice-summary',comment);summary.textContent='Sua resposta: '+picked.textContent.trim()+'. Resposta correta: '+correct.textContent.trim()+'.';comment.prepend(summary);}}
-    const cards=[...question.querySelectorAll('.ab-ddx-table > .ab-ddx-card')];
-    if(cards.length){const table=question.querySelector('.ab-ddx-table'),nav=pager(s,question,cards,1,'Carta');table.before(nav.nav);cards.forEach(card=>reader(s,card.querySelector('.ab-ddx-card-pre,.ab-ddx-card-reveal'),100));}
-    reader(s,instructions,90);reader(s,feedback?.querySelector('.ab-feedback-body'),next?90:40);
-    if(grim){const observer=new MutationObserver(()=>{const text=grim.querySelector('.ab-grimoire-body');if(text&&!s.readers.some(r=>r.root===text)){reader(s,text,next?90:40);after(s);}});observer.observe(grim,{childList:true});s.observers.push(observer);}
+    if(!continuous){
+      reader(s,instructions,90);reader(s,feedback?.querySelector('.ab-feedback-body'),next?90:40);
+      if(grim){const observer=new MutationObserver(()=>{const text=grim.querySelector('.ab-grimoire-body');if(text&&!s.readers.some(r=>r.root===text)){reader(s,text,next?90:40);after(s);}});observer.observe(grim,{childList:true});s.observers.push(observer);}
+    }
   }
   function summary(s,body){
     const text=body.querySelector('.ab-summary-text'),stats=body.querySelector('.ab-summary-stats'),refs=body.querySelector('.ab-refs'),actions=body.querySelector('.ab-summary-actions'),overview=make(s,'section','nql-summary-overview'),bar=make(s,'div','nql-summary-nav');
@@ -175,8 +182,8 @@
     if(!overlay?.isConnected)return;window.NQChamberMotion?.mount(overlay);const active=document.activeElement,hadFocus=overlay.contains(active);reset(overlay);if(!eligible()){if(hadFocus){const target=active?.isConnected?active:(overlay.querySelector('.ab-prompt')||overlay.querySelector('.ab-summary-title')||overlay.querySelector('.ab-title'));target?.focus({preventScroll:true});}return;}
     const root=overlay.querySelector('.ab-scroll');if(!root)return;
     const s={overlay,root,owned:[],undo:[],visibility:new Map(),readers:[],observers:[]};states.set(overlay,s);if(!memories.has(overlay))memories.set(overlay,{contextKey:'',contextTab:1});overlay.classList.add('nq-chamber-workspace');
-    if(overlay.dataset.abTela==='hub')hub(s);
-    else{const body=root.querySelector('.ab-body');if(body?.classList.contains('ab-body--intro'))root.classList.add('nql-intro');else{context(s);if(body?.classList.contains('ab-summary-view'))summary(s,body);else if(body)act(s,body);}}
+    if(overlay.dataset.abTela==='hub'){overlay.classList.add('nq-chamber-natural');hub(s);}
+    else{const body=root.querySelector('.ab-body');if(body?.classList.contains('ab-body--intro')){root.classList.add('nql-intro');overlay.classList.add('nq-chamber-natural');}else{const continuous=!!body?.querySelector('.ab-ddx-table');if(continuous){root.classList.add('nql-cardflow');overlay.classList.add('nq-chamber-natural');}context(s,continuous);if(body?.classList.contains('ab-summary-view'))summary(s,body);else if(body)act(s,body);}}
     fit(s);after(s);
     if(hadFocus){const target=active?.isConnected&&visible(active)&&!active.closest('[inert]')?active:root.querySelector('.ab-prompt,.ab-summary-title,.ab-title');target?.focus({preventScroll:true});}
   }
