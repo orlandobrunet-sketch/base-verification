@@ -13,12 +13,13 @@ import { medirContraste } from '../helpers/contraste';
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
 
 const ORIGEM = '#forgeBtn:visible, .mdock-btn.forge-item:visible';
+const conta = { id: 'conta-acessibilidade', email: 'conta@example.test', user_metadata: {} };
 
 async function abrir(page: Page, fn: string, largura = 1280) {
   await page.setViewportSize({ width: largura, height: 844 });
   await page.route('**/*', r => new URL(r.request().url()).hostname === 'localhost' ? r.continue() : r.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
-  await injectGameState(page);
+  await injectGameState(page, {}, fn === 'openAccountModal' ? { authUser: conta } : {});
   await page.waitForLoadState('load');
   await page.locator(ORIGEM).first().focus();
   await page.evaluate(f => (window as any)[f](), fn);
@@ -54,6 +55,9 @@ for (const [fn, nome] of [['openAccountModal', 'Minha Conta'], ['openPlanModal',
       await page.addStyleTag({ content: 'html { font-size: 32px !important; }' });
       const dialogo = page.getByRole('dialog', { name: nome });
       await expect(dialogo).toBeVisible();
+      if (fn === 'openAccountModal') {
+        await expect(dialogo.getByRole('button', { name: 'Excluir minha conta' })).toBeVisible();
+      }
       await dialogo.evaluate(el => el.setAttribute('data-medir', '1'));
       await page.evaluate(() => new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r))));
       await page.waitForFunction(() => document.getAnimations().every(a => a.playState !== 'running' || (a.effect as any)?.getTiming?.().iterations === Infinity));
