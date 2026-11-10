@@ -8,7 +8,6 @@ async function open(page:Page){
 test.beforeEach(async({page})=>{await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());await page.goto('/jogar/',{waitUntil:'load'});});
 
 test('balance can be paused by keyboard and remembers preference without changing progress',async({page})=>{
- test.skip(!await page.evaluate(()=>matchMedia('(pointer:fine)').matches),'Touch keeps native layout.');
  await open(page);const before=await page.evaluate(()=>localStorage.getItem('nq-acidbase-progress'));
  const art=page.locator('[data-ab-lab]'),pause=page.getByRole('button',{name:'Pausar animação',exact:true});
  await expect(art).toHaveAttribute('data-motion','running');
@@ -25,7 +24,6 @@ test('balance can be paused by keyboard and remembers preference without changin
 });
 
 test('reduced motion is static and follows a changed system preference',async({page})=>{
- test.skip(!await page.evaluate(()=>matchMedia('(pointer:fine)').matches),'Touch keeps native layout.');
  await page.emulateMedia({reducedMotion:'reduce'});await open(page);
  const art=page.locator('[data-ab-lab]');await expect(art).toHaveAttribute('data-motion','paused');
  await expect(page.getByRole('button',{name:'Movimento reduzido',exact:true})).toBeDisabled();
@@ -50,8 +48,9 @@ test('large text and narrow screens keep readable content without horizontal ove
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
   await expect(page.locator('.ab-lead')).toBeVisible();
   const desktop=await page.evaluate(()=>matchMedia('(min-width:961px) and (pointer:fine)').matches);
-  const art=page.locator('[data-ab-lab]');if(!desktop)await expect(art).not.toBeVisible();
-  else {await expect(page.locator('[data-ab-next]')).toBeVisible();await expect(page.locator('[data-ab-motion-toggle]')).toBeVisible();}
+  await expect(page.locator('[data-ab-lab]')).toBeVisible();
+  await expect(page.locator('[data-ab-motion-toggle]')).toBeVisible();
+  if(desktop)await expect(page.locator('[data-ab-next]')).toBeVisible();
  }
 });
 
