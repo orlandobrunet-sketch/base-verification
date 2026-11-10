@@ -50,9 +50,17 @@
       if (candidateUser) _explicitSessionOwner = candidateUser.id;
       return true;
     }
+    function _setAuthSessionUser(user) {
+      const ownerChanged = (authUser?.id || null) !== (user?.id || null);
+      authUser = user;
+      if (ownerChanged) window._closeAccountOnOwnerChange?.();
+    }
     Object.defineProperty(window, 'authUser', {
       get() { return authUser; },
-      set(val) { authUser = val; },
+      set(val) {
+        if ((authUser?.id || null) !== (val?.id || null)) ++_authSessionEpoch;
+        _setAuthSessionUser(val);
+      },
       configurable: true
     });
     let _guestMode = false;
@@ -73,7 +81,7 @@
       _supaClient.auth.onAuthStateChange(async (event, session) => {
         const candidateUser = session?.user ?? null;
         if (!_acceptSessionUser(candidateUser, event)) {
-          authUser = null;
+          _setAuthSessionUser(null);
           if (typeof window._stopLocalJourney === 'function') window._stopLocalJourney();
           updateWelcomeUserBadge();
           return;
@@ -85,11 +93,11 @@
           if (typeof window._stopLocalJourney === 'function') window._stopLocalJourney();
         }
         if (event === 'PASSWORD_RECOVERY') {
-          authUser = candidateUser;
+          _setAuthSessionUser(candidateUser);
           showUpdatePasswordModal();
           return;
         }
-        authUser = candidateUser;
+        _setAuthSessionUser(candidateUser);
         if (!authUser) _explicitSessionOwner = null;
         if (authUser) _markExplicitLoginIntent(false);
         if (authUser) {
@@ -117,10 +125,10 @@
       _supaClient.auth.getSession().then(({ data: { session } }) => {
         if (_authSessionEpoch !== initialSessionEpoch) return;
         const candidateUser = session?.user ?? null;
-        if (!_acceptSessionUser(candidateUser)) { authUser = null; updateWelcomeUserBadge(); _consumeLoginIntent(); return; }
+        if (!_acceptSessionUser(candidateUser)) { _setAuthSessionUser(null); updateWelcomeUserBadge(); _consumeLoginIntent(); return; }
         const progressReady = typeof window._prepareProgressOwner !== 'function' ||
           window._prepareProgressOwner(candidateUser?.id || null);
-        authUser = candidateUser;
+        _setAuthSessionUser(candidateUser);
         if (authUser) { _markExplicitLoginIntent(false); _loadPremiumFromDB(); if (progressReady) _loadProgressFromCloud(); }
         else {
           localStorage.removeItem(PREMIUM_KEY);
@@ -139,7 +147,8 @@
     function _authDisplayName() {
       if (!authUser) return null;
       // Apelido tem prioridade — preserva a privacidade no ranking (não expõe o nome real).
-      return authUser.user_metadata?.nickname
+      return window._accountNickname?.(authUser)
+        || authUser.user_metadata?.nickname
         || authUser.user_metadata?.full_name
         || authUser.user_metadata?.name
         || authUser.email?.split('@')[0]
@@ -152,12 +161,12 @@
     // Pede o apelido na PRIMEIRA vez (usuário logado, sem apelido definido).
     function _maybePromptNickname() {
       if (!authUser) return;
-      if (authUser.user_metadata?.nickname) return;
+      if (window._accountNickname?.(authUser) || authUser.user_metadata?.nickname) return;
       try { if (localStorage.getItem(NICK_ASKED_KEY) === '1') return; } catch (e) {}
       setTimeout(() => {
         const ws = document.getElementById('welcomeScreen');
         if (!ws || ws.classList.contains('hidden') || ws.inert || document.getElementById('nqSaveRecovery')) return;
-        if (authUser?.user_metadata?.nickname) return;
+        if (!authUser || window._accountNickname?.(authUser) || authUser.user_metadata?.nickname) return;
         _showNicknameModal(true);
       }, 900);
     }
@@ -165,7 +174,7 @@
 
     function _showNicknameModal(firstTime) {
       document.getElementById('nicknameModal')?.remove();
-      const suggested = (authUser?.user_metadata?.nickname || authUser?.user_metadata?.full_name?.split(' ')[0] || '');
+      const suggested = (window._accountNickname?.(authUser) || authUser?.user_metadata?.nickname || authUser?.user_metadata?.full_name?.split(' ')[0] || '');
       const overlay = document.createElement('div');
       overlay.id = 'nicknameModal';
       overlay.className = 'nq-overlay';
@@ -208,6 +217,7 @@
     async function _saveNickname(nick) {
       if (!nick) return;
       if (authUser) {
+        window._clearAccountNicknameConfirmation?.(authUser.id);
         authUser.user_metadata = authUser.user_metadata || {};
         authUser.user_metadata.nickname = nick;
       }
@@ -585,17 +595,36 @@
       } catch { _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
       finally { btn.disabled = false; btn.textContent = 'Reenviar email'; _cfCaptchaReset(); }
     }
-    async function authLogout() {
-      ++_authSessionEpoch;
+    async function authLogout({ localOnly = false, expectedOwner } = {}) {
+      const client = _supaClient;
+      let signOutSdk = !!client;
+      if (expectedOwner !== undefined) {
+        // Após a exclusão, conferir também a sessão do SDK. O callback de
+        // troca de usuário pode ainda não ter atualizado authUser nesta aba.
+        const { data, error } = await client.auth.getSession();
+        const sdkOwner = data?.session?.user?.id || null;
+        if (error || client !== _supaClient || authUser?.id !== expectedOwner || (sdkOwner && sdkOwner !== expectedOwner)) return false;
+        signOutSdk = !!sdkOwner;
+      }
+      const owner = authUser?.id || null;
+      const logoutEpoch = ++_authSessionEpoch;
       _explicitSessionOwner = null;
       _markExplicitLoginIntent(false);
       // Stop local writes before awaiting the SDK, including visitor sessions
       // where the SDK is unavailable or signOut cannot reach the network.
       if (typeof window.clearLocalProgress === 'function' && window.clearLocalProgress('logout') === false) return false;
-      if (_supaClient) {
-        try { await _supaClient.auth.signOut(); } catch { /* cleanup local state regardless */ }
+      if (signOutSdk) {
+        try {
+          const result = await client.auth.signOut(localOnly ? { scope: 'local' } : undefined);
+          if (expectedOwner !== undefined && result?.error) return false;
+        } catch {
+          if (expectedOwner !== undefined) return false;
+        }
       }
-      authUser = null;
+      // O callback de saída pode limpar authUser enquanto o SDK responde.
+      // Uma sessão aceita nesse intervalo pertence a outra operação.
+      if (authUser && (authUser.id !== owner || _authSessionEpoch !== logoutEpoch)) return false;
+      _setAuthSessionUser(null);
       _guestMode = false;
       _guestHookShown = false;
       localStorage.removeItem('nq_guest_mode');

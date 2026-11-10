@@ -54,3 +54,10 @@ verify_jwt = false
 [functions.mp-webhook]
 verify_jwt = false
 
+# Ambas validam o token do usuário no Supabase Auth antes de acessar dados.
+[functions.delete-account]
+verify_jwt = false
+
+[functions.mp-payment-status]
+verify_jwt = false
+

@@ -789,23 +789,41 @@
 
     // ── Cache de isPremium (evita 2x localStorage por resposta) ──
     let _isPremiumCache = null;
+    let _premiumProfileRevision = 0;
     function isPremium() {
       if (isAdminUser()) return true;
       if (!authUser) return false; // sem conta ativa, localStorage não conta
-      if (_isPremiumCache !== null) return _isPremiumCache;
+      const { id, email } = authUser;
+      const epoch = _authSessionEpoch;
+      if (_isPremiumCache && _isPremiumCache.id === id && _isPremiumCache.email === email && _isPremiumCache.epoch === epoch) {
+        return _isPremiumCache.value;
+      }
 
       const sig = localStorage.getItem('nefroquest-premium-sig');
-      const expectedSig = _generatePremiumSignature(authUser.id);
+      const expectedSig = _generatePremiumSignature(id);
       const hasPremium = localStorage.getItem(PREMIUM_KEY) === '1' && sig === expectedSig;
 
       const wlSig = localStorage.getItem('nefroquest-whitelist-sig');
-      const expectedWlSig = _generatePremiumSignature(authUser.email);
+      const expectedWlSig = _generatePremiumSignature(email);
       const hasWhitelist = localStorage.getItem(WHITELIST_KEY) === '1' && wlSig === expectedWlSig;
 
-      _isPremiumCache = hasPremium || hasWhitelist;
-      return _isPremiumCache;
+      const value = hasPremium || hasWhitelist;
+      _isPremiumCache = { id, email, epoch, value };
+      return value;
     }
     function _invalidatePremiumCache() { _isPremiumCache = null; }
+
+    function _saveVerifiedPremium(id) {
+      if (!id || authUser?.id !== id) return false;
+      // A confirmação do pagamento também invalida leituras de perfil anteriores.
+      ++_premiumProfileRevision;
+      _invalidatePremiumCache();
+      localStorage.setItem('nefroquest-premium-sig', _generatePremiumSignature(id));
+      localStorage.setItem(PREMIUM_KEY, '1');
+      localStorage.removeItem(WHITELIST_KEY);
+      localStorage.removeItem('nefroquest-whitelist-sig');
+      return true;
+    }
 
     // O mensal grava a data de vencimento e nada no banco desliga is_premium depois;
     // por isso a data também é conferida aqui. Vitalício tem a data vazia.
@@ -818,35 +836,38 @@
     async function _loadPremiumFromDB() {
       if (!_supaClient || !authUser) return;
       if (isAdminUser()) return;
+      const client = _supaClient;
+      const { id, email } = authUser;
+      const epoch = _authSessionEpoch;
+      const revision = ++_premiumProfileRevision;
+      const current = () => revision === _premiumProfileRevision && _supaClient === client && _authSessionEpoch === epoch &&
+        authUser && authUser.id === id && authUser.email === email;
       try {
-        const { data: profile, error } = await _supaClient
+        const { data: profile, error } = await client
           .from('profiles')
           .select('is_premium, premium_expires_at')
-          .eq('id', authUser.id)
+          .eq('id', id)
           .single();
         // Falha de rede não é resposta: sem isto, quem pagou perdia o premium guardado.
-        if (error) return;
+        if (error || !current()) return;
         if (_premiumAtivo(profile)) {
-          localStorage.setItem(PREMIUM_KEY, '1');
-          localStorage.setItem('nefroquest-premium-sig', _generatePremiumSignature(authUser.id));
-          localStorage.removeItem(WHITELIST_KEY);
-          localStorage.removeItem('nefroquest-whitelist-sig');
-          _invalidatePremiumCache();
+          _saveVerifiedPremium(id);
           return;
         } else {
           localStorage.removeItem(PREMIUM_KEY);
           localStorage.removeItem('nefroquest-premium-sig');
+          _invalidatePremiumCache();
         }
         // Check whitelist
-        const { data: wl, error: wlError } = await _supaClient
+        const { data: wl, error: wlError } = await client
           .from('access_whitelist')
           .select('email')
-          .eq('email', authUser.email)
+          .eq('email', email)
           .maybeSingle();
-        if (wlError) { _invalidatePremiumCache(); return; }
+        if (wlError || !current()) return;
         if (wl?.email) {
           localStorage.setItem(WHITELIST_KEY, '1');
-          localStorage.setItem('nefroquest-whitelist-sig', _generatePremiumSignature(authUser.email));
+          localStorage.setItem('nefroquest-whitelist-sig', _generatePremiumSignature(email));
         } else {
           localStorage.removeItem(WHITELIST_KEY);
           localStorage.removeItem('nefroquest-whitelist-sig');
@@ -2252,7 +2273,10 @@
     }
 
     // ── IDENTITY CHOOSER ────────────────────────────────────────────────────
-    function _getIdentity() { return localStorage.getItem(IDENTITY_KEY); }
+    function _identityStorageKey(owner = _currentSaveOwner()) {
+      return owner ? IDENTITY_KEY + ':' + owner : IDENTITY_KEY;
+    }
+    function _getIdentity() { return localStorage.getItem(_identityStorageKey()); }
 
     function _showIdentityChooser() {
       if (_getIdentity()) return;
@@ -2284,7 +2308,7 @@
     }
 
     window._pickIdentity = function(v) {
-      localStorage.setItem(IDENTITY_KEY, v);
+      localStorage.setItem(_identityStorageKey(), v);
       const overlay = document.getElementById('identityOverlay');
       if (overlay) {
         overlay.classList.remove('visible');
@@ -7591,12 +7615,13 @@
 
     // Atalhos de teclado para responder (1-4 ou A-D) e avançar (Enter/Space)
     document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey || e.altKey || e.metaKey) return;
       if (document.getElementById('nqDashboard') || document.querySelector('.modal.show, .study-mode-popup, .nqreader-overlay')) return;
       const target = e.target;
       const interactiveTarget = target instanceof Element
         ? target.closest('button, a[href], select, summary, [role="button"]')
         : null;
-      const answerShortcut = !e.ctrlKey && !e.altKey && !e.metaKey && /^[1-4a-d]$/i.test(e.key);
+      const answerShortcut = /^[1-4a-d]$/i.test(e.key);
       const focusedAnswer = interactiveTarget?.matches('#options .option, #studyQuestionArea .study-option-btn');
       if ((interactiveTarget && !(answerShortcut && focusedAnswer)) || (target && (target.tagName === 'INPUT' || target.tagName === 'TEXTAREA' || target.isContentEditable))) {
         return;

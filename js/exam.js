@@ -366,14 +366,17 @@
       }
       if (botao) { botao.disabled = true; botao.textContent = 'Carregando questões…'; }
       for (const input of document.querySelectorAll('.nq-exam-config input')) input.disabled = true;
+      let loadFailed = false;
       try {
         if (!questionBank || _examRequiresRevisions()) await _loadTopics();
-      } catch (e) {
-        if (!_examBindingCurrent(binding)) return;
+      } catch {
+        loadFailed = true;
+      }
+      if (!_examBindingCurrent(binding) || request !== _examRequestToken || document.getElementById('examPage') !== pagina) return;
+      if (loadFailed) {
         _examIntro('Não foi possível carregar as questões. Verifique a conexão e tente de novo.');
         return;
       }
-      if (!_examBindingCurrent(binding) || request !== _examRequestToken || document.getElementById('examPage') !== pagina) return;
       if (count > questionBank.length) {
         _examIntro(`O banco tem ${questionBank.length} questões disponíveis. Escolha uma quantidade de 1 a ${questionBank.length}.`);
         _examFocar('#examQuestionCount');
