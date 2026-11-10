@@ -1,8 +1,11 @@
-const { readFileSync, existsSync } = require('node:fs');
+const { readFileSync } = require('node:fs');
 const { resolve } = require('node:path');
 
 const root = resolve(__dirname, '../..');
-const migration = resolve(root, 'supabase/migrations/020_atomic_mp_payment.sql');
+const paymentMigrations = [
+  '020_atomic_mp_payment.sql',
+  '20261110220241_reconcile_mp_refund_without_profile.sql',
+];
 const user = '00000000-0000-4000-8000-000000000001';
 const url = process.env.NQ_PAYMENTS_DATABASE_URL;
 
@@ -37,7 +40,9 @@ async function database() {
       processed_at timestamptz NOT NULL DEFAULT now()
     );
   `);
-  if (existsSync(migration)) await db.exec(readFileSync(migration, 'utf8'));
+  for (const migration of paymentMigrations) {
+    await db.exec(readFileSync(resolve(root, 'supabase/migrations', migration), 'utf8'));
+  }
   return db;
 }
 

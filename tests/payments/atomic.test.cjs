@@ -84,6 +84,84 @@ test('only the service role can execute the payment function', async () => {
   assert.deepEqual(rows.map(r => [r.rolname, r.allowed]), [['anon', false], ['authenticated', false], ['service_role', true]]);
 });
 
+test('a reversal received without a profile blocks a late approval after profile creation', async () => {
+  await db.query('DELETE FROM public.profiles WHERE id=$1', [user]);
+  assert.equal((await pay(db, '121', 'refunded')).outcome, 'refund_recorded');
+  assert.equal((await pay(db, '121', 'charged_back')).outcome, 'already_refunded');
+  assert.equal((await pay(db, '121')).outcome, 'already_refunded');
+  assert.equal(await profile(db), undefined);
+
+  await db.query('INSERT INTO public.profiles(id) VALUES($1)', [user]);
+  assert.equal((await pay(db, '121')).outcome, 'already_refunded');
+  assert.equal((await profile(db)).is_premium, false);
+  const { rows } = await db.query('SELECT payment_id, user_id, plan FROM public.processed_payments');
+  assert.deepEqual(rows, [{ payment_id: '121:estorno', user_id: user, plan: 'refund' }]);
+});
+
+test('an approval already recorded is idempotent after profile deletion', async () => {
+  await pay(db, '122');
+  await db.query('DELETE FROM public.profiles WHERE id=$1', [user]);
+  assert.equal((await pay(db, '122')).outcome, 'already_processed');
+  assert.equal(await profile(db), undefined);
+  const { rows } = await db.query('SELECT payment_id, user_id, plan FROM public.processed_payments');
+  assert.deepEqual(rows, [{ payment_id: '122', user_id: user, plan: 'monthly' }]);
+});
+
+test('a new approval without a profile still fails and leaves no grant', async () => {
+  await db.query('DELETE FROM public.profiles WHERE id=$1', [user]);
+  await assert.rejects(pay(db, '123'), { code: 'P0002' });
+  assert.equal(await profile(db), undefined);
+  assert.equal((await db.query('SELECT count(*)::int AS n FROM public.processed_payments')).rows[0].n, 0);
+});
+
+test('an existing reversal owned by another account rejects both approval and refund', async () => {
+  const other = '00000000-0000-4000-8000-000000000002';
+  await db.query("INSERT INTO public.processed_payments(payment_id,user_id,plan) VALUES('124:estorno',$1,'refund')", [other]);
+  await assert.rejects(pay(db, '124'), { code: '22023' });
+  await assert.rejects(pay(db, '124', 'refunded'), { code: '22023' });
+  assert.equal((await profile(db)).is_premium, false);
+  const { rows } = await db.query('SELECT payment_id, user_id, plan FROM public.processed_payments');
+  assert.deepEqual(rows, [{ payment_id: '124:estorno', user_id: other, plan: 'refund' }]);
+});
+
+test('approval waits for a reversal started without a profile, even after profile creation', { skip: !url }, async () => {
+  const { Client } = require('pg');
+  await db.query('DELETE FROM public.profiles WHERE id=$1', [user]);
+  const refunding = new Client({ connectionString: url });
+  const approving = new Client({ connectionString: url });
+  await refunding.connect();
+  await approving.connect();
+  let approval;
+  try {
+    await refunding.query('BEGIN');
+    assert.equal((await pay(refunding, '125', 'refunded')).outcome, 'refund_recorded');
+    // A transação do estorno não encontrou linha de perfil para bloquear.
+    await db.query('INSERT INTO public.profiles(id) VALUES($1)', [user]);
+    const pid = (await approving.query('SELECT pg_backend_pid() AS pid')).rows[0].pid;
+    approval = pay(approving, '125');
+    // Mantém a rejeição observada se o cenário falhar antes do await abaixo.
+    approval.catch(() => {});
+    const deadline = Date.now() + 5000;
+    let locked = false;
+    while (!locked && Date.now() < deadline) {
+      const state = (await db.query('SELECT wait_event_type, wait_event FROM pg_stat_activity WHERE pid=$1', [pid])).rows[0];
+      locked = state?.wait_event_type === 'Lock' && state.wait_event === 'advisory';
+      if (!locked) await new Promise(resolve => setTimeout(resolve, 10));
+    }
+    assert.equal(locked, true, 'a aprovação precisa aguardar o estorno do mesmo pagamento');
+    await refunding.query('COMMIT');
+    assert.equal((await approval).outcome, 'already_refunded');
+    assert.equal((await profile(db)).is_premium, false);
+    const { rows } = await db.query('SELECT payment_id, user_id, plan FROM public.processed_payments');
+    assert.deepEqual(rows, [{ payment_id: '125:estorno', user_id: user, plan: 'refund' }]);
+  } finally {
+    await refunding.query('ROLLBACK');
+    await approval?.catch(() => {});
+    await refunding.end();
+    await approving.end();
+  }
+});
+
 test('a refund waits for an uncommitted approval and then revokes it', { skip: !url }, async () => {
   const { Client } = require('pg');
   const approving = new Client({ connectionString: url }), refunding = new Client({ connectionString: url });

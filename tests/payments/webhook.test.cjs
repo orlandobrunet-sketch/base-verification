@@ -55,6 +55,22 @@ test('a signed webhook grants access through the real database transaction', asy
   assert.equal((await profile(db)).is_premium, true);
 });
 
+test('signed reversal after profile deletion preserves one grant and one reversal, and accepts duplicates', async () => {
+  const handler = webhook({ statuses: ['approved', 'refunded', 'charged_back', 'approved'] });
+  assert.equal((await handler(request())).status, 200);
+  await db.query('DELETE FROM public.profiles WHERE id=$1', [user]);
+
+  for (let notification = 0; notification < 3; notification++) {
+    assert.equal((await handler(request())).status, 200);
+  }
+  assert.equal(await profile(db), undefined);
+  const { rows } = await db.query('SELECT payment_id, user_id, plan FROM public.processed_payments ORDER BY payment_id');
+  assert.deepEqual(rows, [
+    { payment_id: '123', user_id: user, plan: 'monthly' },
+    { payment_id: '123:estorno', user_id: user, plan: 'refund' },
+  ]);
+});
+
 test('unsigned notifications and mismatched signed IDs cannot grant access', async () => {
   const handler = webhook();
   assert.equal((await handler(request({ signature: false }))).status, 401);
