@@ -24,7 +24,10 @@ async function contained(page: Page, selector: string, steps = 12) {
 for (const viewport of [{ width: 1280, height: 800 }, { width: 390, height: 844 }, { width: 320, height: 568 }]) {
   test(`Conta: rótulos, desistência e retorno de foco em ${viewport.width}`, async ({ page }) => {
     await page.setViewportSize(viewport);
-    await page.evaluate(() => (window as any).openAccountModal());
+    await page.evaluate(() => {
+      (window as any).authUser = { id: '00000000-0000-4000-8000-000000000001', user_metadata: {} };
+      (window as any).openAccountModal();
+    });
     await expect(page.getByLabel('Modo preferido')).toBeVisible();
     for (const id of ['acctNickname', 'acctName', 'acctEmail', 'acctPhone', 'acctSpec', 'acctCity', 'acctIdentity']) {
       expect(await page.locator('#' + id).evaluate((el: HTMLInputElement) => el.labels?.length)).toBe(1);
@@ -44,23 +47,36 @@ for (const viewport of [{ width: 1280, height: 800 }, { width: 390, height: 844 
 
 for (const failure of ['profile', 'auth', 'throw']) {
   test(`Conta: falha ${failure} mantém preenchimento e permite tentar novamente`, async ({ page }) => {
+    let authFailure = failure === 'auth';
+    await page.route('**/auth/v1/user', route => {
+      const headers = {
+        'Access-Control-Allow-Origin': new URL(page.url()).origin,
+        'Access-Control-Allow-Headers': 'apikey, authorization, content-type',
+        'Access-Control-Allow-Methods': 'PUT, OPTIONS',
+      };
+      return route.request().method() === 'OPTIONS'
+        ? route.fulfill({ status: 204, headers })
+        : route.fulfill({ status: authFailure ? 500 : 200, json: {}, headers });
+    });
     await page.evaluate(failure => {
       (window as any).accountFailure = failure;
       (0, eval)(`authUser = {id:'00000000-0000-4000-8000-000000000001',user_metadata:{},app_metadata:{}};
         _supaClient = {from:()=>({upsert:async()=>{
           if(window.accountFailure==='throw') throw new Error('falha simulada');
           return {error:window.accountFailure==='profile'?{message:'falha simulada'}:null};
-        }}),auth:{updateUser:async()=>({error:window.accountFailure==='auth'?{message:'falha simulada'}:null})}};`);
+        }}),auth:{getSession:async()=>({data:{session:{user:authUser,access_token:'account-test-token'}},error:null})}};`);
       (window as any).openAccountModal();
     }, failure);
     await page.locator('#acctName').fill('Pessoa de teste');
     await page.locator('#acctNickname').fill('Apelido de teste');
+    await page.locator('#acctPhone').fill('12345678');
     await page.locator('[data-action="saveAccountData"]').click();
     await expect(page.locator('#accountSaveStatus')).toContainText('Tente salvar novamente');
     await expect(page.locator('#accountModal')).toBeVisible();
     await expect(page.locator('#acctName')).toHaveValue('Pessoa de teste');
     await expect(page.getByText('Perfil salvo com sucesso!', { exact: true })).toHaveCount(0);
     await page.evaluate(() => { (window as any).accountFailure = ''; });
+    authFailure = false;
     await page.locator('[data-action="saveAccountData"]').click();
     await expect(page.locator('#accountModal')).toBeHidden();
     await expect(page.getByText('Perfil salvo com sucesso!', { exact: true })).toBeVisible();

@@ -238,6 +238,25 @@
 
     // ── Mercado Pago checkout ──
     let _pendingPaymentPlan = null; // plan pendente enquanto user faz login/cadastro
+    const _paymentCheckoutKey = 'nq-payment-checkout';
+    const _paymentReturnKey = 'nq-payment-return';
+    const _paymentRetryDelays = [1500, 3000, 5000];
+    const _validPaymentId = id => typeof id === 'string' && /^\d{1,32}$/.test(id);
+    const _validPreferenceId = id => typeof id === 'string' && /^[a-z0-9-]{1,128}$/i.test(id);
+    const _validPaymentPlan = plan => plan === 'monthly' || plan === 'lifetime';
+    let _paymentReturnState = null;
+
+    function _readPaymentSession(key) {
+      try { return JSON.parse(sessionStorage.getItem(key)); }
+      catch { return null; }
+    }
+
+    function _writePaymentSession(key, value) {
+      try {
+        if (value) sessionStorage.setItem(key, JSON.stringify(value));
+        else sessionStorage.removeItem(key);
+      } catch {}
+    }
 
     function pricingChoose(tier) {
       closePricingModal();
@@ -261,12 +280,20 @@
       if (!_pendingPaymentPlan) return;
       const plan = _pendingPaymentPlan;
       _pendingPaymentPlan = null;
+      const owner = authUser?.id;
+      const epoch = _authSessionEpoch;
       // Pequeno delay para fechar modal de auth antes de redirecionar
-      setTimeout(() => _initPayment(plan), 400);
+      setTimeout(() => {
+        if (owner && authUser?.id === owner && _authSessionEpoch === epoch) _initPayment(plan);
+      }, 400);
     }
 
     async function _initPayment(plan) {
       if (!authUser) { showPricingModal(); return; }
+      const owner = authUser.id;
+      const epoch = _authSessionEpoch;
+      const startedAt = Date.now();
+      const current = () => authUser?.id === owner && _authSessionEpoch === epoch;
 
       // Mostrar loading
       const loadingEl = _showPaymentLoading(plan);
@@ -274,7 +301,7 @@
       try {
         const session = await _supaClient.auth.getSession();
         const token = session.data.session?.access_token;
-        if (!token) throw new Error('Sessão inválida');
+        if (!token || session.data.session.user?.id !== owner || !current()) throw new Error('Sessão inválida');
 
         const res = await fetch(`${SUPA_URL}/functions/v1/create-mp-preference`, {
           method: 'POST',
@@ -292,13 +319,17 @@
         }
 
         loadingEl?.remove();
+        if (!current()) return;
+        _writePaymentSession(_paymentCheckoutKey, _validPreferenceId(data.preference_id)
+          ? { owner, plan, startedAt, preferenceId: data.preference_id }
+          : null);
         _track('checkout_started', { plan });
         // Redirecionar para Mercado Pago
         window.location.href = data.checkout_url;
 
       } catch (err) {
         loadingEl?.remove();
-        _showPaymentError(err.message || 'Erro ao iniciar pagamento. Tente novamente.');
+        if (current()) _showPaymentError(err.message || 'Erro ao iniciar pagamento. Tente novamente.');
       }
     }
 
@@ -324,113 +355,219 @@
       setTimeout(() => el.remove(), 5000);
     }
 
-    // Detecta retorno do Mercado Pago e exibe feedback
-    (function _checkPaymentReturn() {
-      const params = new URLSearchParams(window.location.search);
-      const status = params.get('payment');
-      const plan   = params.get('plan');
-      if (!status) return;
-
-      // Limpar params da URL sem recarregar
-      const clean = window.location.pathname;
-      window.history.replaceState({}, '', clean);
-
-      if (status === 'approved') {
-        _showPaymentSuccess(plan);
-      } else if (status === 'pending') {
-        _showPaymentPending();
+    function _paymentReturnReceipt() {
+      const url = new URL(window.location.href);
+      const hint = url.searchParams.get('payment');
+      if (!hint) {
+        const saved = _readPaymentSession(_paymentReturnKey);
+        return _validPaymentId(saved?.id) ? saved : null;
       }
-      // failed: não mostra nada, usuário já viu a tela do MP
-    })();
+      if (!['approved', 'pending', 'failed'].includes(hint)) return null;
+      const paymentId = url.searchParams.get('payment_id') ?? url.searchParams.get('collection_id');
+      const preferenceId = url.searchParams.get('preference_id');
+      const receipt = {
+        id: hint !== 'failed' && _validPaymentId(paymentId) ? paymentId : null,
+        preferenceId: _validPreferenceId(preferenceId) ? preferenceId : null,
+        failed: hint === 'failed',
+      };
+      // O identificador serve apenas para buscar o registro no servidor.
+      _writePaymentSession(_paymentReturnKey, receipt.id ? receipt : null);
+      for (const key of ['payment', 'plan', 'payment_id', 'collection_id', 'preference_id', 'collection_status',
+        'status', 'external_reference', 'merchant_order_id', 'payment_type', 'site_id', 'processing_mode', 'merchant_account_id']) {
+        url.searchParams.delete(key);
+      }
+      history.replaceState(history.state, '', url.pathname + url.search + url.hash);
+      return receipt;
+    }
 
-    function _showPaymentSuccess(plan) {
-      _track('premium_converted', { plan });
-      const el = document.createElement('div');
-      el.id = 'paymentSuccessOverlay';
-      el.className = 'nq-overlay';
-      el.style.cssText = 'background:rgba(0,0,0,0.96);z-index:10000;';
-      const label = plan === 'lifetime' ? 'Vitalício' : 'Mensal';
-      el.innerHTML = `
-        <div style="text-align:center;max-width:420px;">
-          <div style="font-size:3rem;margin-bottom:16px;color:#ffd700;">${_pwIcone('coroa')}</div>
-          <h2 style="font-family:'Cinzel Decorative',serif;color:#ffd700;font-size:1.6rem;margin-bottom:8px;">Pagamento Confirmado!</h2>
-          <p style="color:#a0c8e0;font-size:0.9rem;line-height:1.6;margin-bottom:24px;">
-            Bem-vindo ao Plano ${label}!<br>
-            Seu acesso a <strong class="nq-text-gold">${questionBank?.length ?? '+'} questões</strong> foi ativado.<br>
-            Aguarde alguns instantes enquanto sincronizamos seu acesso.
-          </p>
-          <button data-remove-id="paymentSuccessOverlay" data-action="_pollPremiumActivation"
-            style="background:linear-gradient(135deg,#b8860b,#ffd700);color:#1a0e00;border:none;padding:14px 32px;border-radius:10px;font-family:'Cinzel',serif;font-size:0.85rem;font-weight:700;letter-spacing:1px;cursor:pointer;">
-            Começar Jornada Premium
-          </button>
+    function _showPaymentStatus(state, title, message, action = '') {
+      state.needsLogin = action === 'login';
+      const overlay = state.overlay;
+      overlay.querySelector('[data-payment-title]').textContent = title;
+      overlay.querySelector('[data-payment-description]').textContent = message;
+      const next = overlay.querySelector('[data-payment-action]');
+      next.hidden = !action;
+      next.textContent = action === 'login' ? 'Entrar para verificar' : 'Verificar novamente';
+      next.onclick = action === 'login' ? () => {
+        state.waitingForLogin = true;
+        _dismissPaymentReturn(state, true);
+        openAuthModal();
+        switchAuthTab('entrar');
+      } : () => _verifyPaymentReturn(state);
+      if (!action && document.activeElement === next) overlay.querySelector('[data-payment-close]').focus();
+    }
+
+    function _cancelPaymentCheck(state) {
+      clearTimeout(state.retry);
+      state.retry = null;
+      state.check?.abort();
+      state.check = null;
+    }
+
+    function _dismissPaymentReturn(state, keepReceipt = false) {
+      _cancelPaymentCheck(state);
+      state.overlay?.remove();
+      state.overlay = null;
+      if (keepReceipt) return;
+      _paymentReturnState = null;
+      state.subscription?.unsubscribe();
+      _writePaymentSession(_paymentReturnKey, null);
+    }
+
+    function _openPaymentReturn(state) {
+      const overlay = document.createElement('div');
+      overlay.id = 'paymentReturnOverlay';
+      overlay.className = 'nq-overlay';
+      overlay.style.cssText = 'background:rgba(0,0,0,0.93);z-index:10000;padding:20px;';
+      overlay.innerHTML = `
+        <div style="text-align:center;width:min(100%,420px);background:#0d1a2e;border:1px solid var(--gold);border-radius:12px;padding:22px;overflow-wrap:anywhere;">
+          <h2 class="nq-section-heading">Retorno do pagamento</h2>
+          <div role="status" aria-live="polite" aria-atomic="true" style="color:#c8d8f0;margin:14px 0;line-height:1.55;">
+            <strong data-payment-title></strong>
+            <p data-payment-description></p>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:8px;">
+            <button type="button" class="btn" data-payment-close aria-label="Fechar retorno do pagamento" style="min-height:44px;">Fechar</button>
+            <button type="button" class="btn gold" data-payment-action hidden style="min-height:44px;">Verificar novamente</button>
+          </div>
         </div>`;
-      document.body.appendChild(el);
-      // Inicia polling automaticamente após 2s
-      setTimeout(_pollPremiumActivation, 2000);
-    }
-
-    function _showPaymentPending() {
-      const el = document.createElement('div');
-      el.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#0d1a2e;border:1px solid rgba(255,200,0,0.4);color:#ffd060;padding:16px 24px;border-radius:10px;font-size:0.85rem;z-index:10001;max-width:360px;text-align:center;line-height:1.5;';
-      el.innerHTML = '<strong>Pagamento em processamento.</strong><br>Assim que aprovado seu acesso será ativado automaticamente.';
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 8000);
-    }
-
-    let _premiumPollCount = 0;
-    let _premiumPolling = false; // evita chains concorrentes
-    async function _pollPremiumActivation() {
-      if (!authUser || !_supaClient) return;
-      if (_premiumPolling) return; // já existe uma chain ativa
-      _premiumPolling = true;
-      _premiumPollCount = 0;
-      try { await _doPremiumPoll(); } catch { _premiumPolling = false; }
-    }
-    async function _doPremiumPoll() {
-      if (!authUser || !_supaClient || _premiumPollCount >= 10) {
-        _premiumPolling = false;
-        const msgEl = document.querySelector('#paymentSuccessOverlay p');
-        if (msgEl) {
-          msgEl.innerHTML = `
-            <span style="color:#f87171;font-weight:bold;">A ativação está demorando mais que o esperado.</span><br>
-            O pagamento foi enviado, mas o status ainda não foi atualizado no servidor.<br>
-            Por favor, recarregue a página em alguns instantes ou entre em contato com o suporte.
-          `;
-        }
-        const btnEl = document.querySelector('#paymentSuccessOverlay button');
-        if (btnEl) {
-          btnEl.textContent = 'Fechar e verificar depois';
-          btnEl.style.background = 'linear-gradient(135deg,#4b5563,#374151)';
-          btnEl.style.color = '#fff';
-        }
+      state.overlay = overlay;
+      document.body.appendChild(overlay);
+      overlay.querySelector('[data-payment-close]').onclick = () => _dismissPaymentReturn(state);
+      nqDialogo(overlay, { painel: overlay.firstElementChild });
+      if (!state.receipt.id) {
+        _showPaymentStatus(state, 'Pagamento não confirmado', state.receipt.failed
+          ? 'O checkout foi encerrado. Consulte Seu Plano para acompanhar seu acesso.'
+          : 'O retorno não trouxe um identificador de pagamento. Consulte Seu Plano ou entre em contato com o suporte.');
         return;
       }
-      _premiumPollCount++;
+      _verifyPaymentReturn(state);
+    }
 
+    function _trackConfirmedPurchase(receipt, result, owner) {
+      const checkout = _readPaymentSession(_paymentCheckoutKey);
+      // Uma consulta a um comprovante antigo ou aberto em outra sessão não é nova conversão.
+      const processedAt = Date.parse(result.processed_at);
+      if (!checkout || !receipt.preferenceId || checkout.preferenceId !== receipt.preferenceId ||
+          checkout.owner !== owner || checkout.plan !== result.plan ||
+          !Number.isFinite(checkout.startedAt) || !(processedAt >= checkout.startedAt - 5000)) return;
+      _writePaymentSession(_paymentCheckoutKey, null);
+      const key = 'nq-payment-converted:' + owner + ':' + receipt.id;
       try {
-        const { data: profile } = await _supaClient
-          .from('profiles')
-          .select('is_premium, premium_expires_at')
-          .eq('id', authUser.id)
-          .single();
-        if (window._premiumAtivo ? window._premiumAtivo(profile) : profile?.is_premium) {
-          localStorage.setItem(PREMIUM_KEY, '1');
-          if (window._generatePremiumSignature) {
-            localStorage.setItem('nefroquest-premium-sig', window._generatePremiumSignature(authUser.id));
-          }
-          _invalidatePremiumCache();
-          document.getElementById('paymentSuccessOverlay')?.remove();
-          updateWelcomeUserBadge();
-          _premiumPolling = false;
+        if (localStorage.getItem(key)) return;
+        localStorage.setItem(key, '1');
+        _track('premium_converted', { plan: result.plan });
+      } catch {}
+    }
+
+    async function _verifyPaymentReturn(state, attempt = 0) {
+      if (!state.overlay?.isConnected || state.check) return;
+      const check = new AbortController();
+      state.check = check;
+      const active = () => state.check === check && state.overlay?.isConnected;
+      const sameAccount = () => authUser?.id === state.owner && _authSessionEpoch === state.epoch;
+      let requestTimeout;
+      _showPaymentStatus(state, 'Verificando pagamento', 'Consultando a situação da compra.');
+      try {
+        const { data, error } = await _supaClient?.auth.getSession() ?? {};
+        if (!active()) return;
+        if (error) throw error;
+        if (!authUser || !data?.session?.access_token || data.session.user?.id !== authUser.id) {
+          _showPaymentStatus(state, 'Entre para verificar', 'Use a mesma conta que iniciou a compra.', 'login');
           return;
         }
-      } catch(e) {
-        _track('error_premium_poll', {msg: String(e)});
+        state.owner = authUser.id;
+        state.epoch = _authSessionEpoch;
+        requestTimeout = setTimeout(() => check.abort(), 10000);
+        const response = await fetch(`${SUPA_URL}/functions/v1/mp-payment-status`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + data.session.access_token, apikey: SUPA_KEY },
+          body: JSON.stringify({ payment_id: state.receipt.id }),
+          signal: check.signal,
+        });
+        if (!active() || !sameAccount()) return;
+        if (response.status === 401) {
+          _showPaymentStatus(state, 'Entre para verificar', 'Renove a sessão da conta que iniciou a compra.', 'login');
+          return;
+        }
+        if (!response.ok) throw new Error('Payment status unavailable');
+        const result = await response.json();
+        if (!active() || !sameAccount()) return;
+        if (result.status === 'pending') {
+          const retry = attempt < _paymentRetryDelays.length;
+          _showPaymentStatus(state, 'Pagamento ainda não confirmado',
+            'A confirmação pode demorar. Verifique novamente ou acompanhe o acesso em Seu Plano.', retry ? '' : 'retry');
+          if (retry) {
+            state.retry = setTimeout(() => {
+              state.retry = null;
+              if (sameAccount()) _verifyPaymentReturn(state, attempt + 1);
+            }, _paymentRetryDelays[attempt]);
+          }
+          return;
+        }
+        if (result.status === 'reversed') {
+          _writePaymentSession(_paymentReturnKey, null);
+          _showPaymentStatus(state, 'Pagamento revertido', 'Esta compra tem um estorno ou contestação registrado.');
+          return;
+        }
+        if (!_validPaymentPlan(result.plan) || !['recorded', 'confirmed'].includes(result.status)) {
+          throw new Error('Invalid payment status');
+        }
+        const plan = result.plan === 'lifetime' ? 'Vitalício' : 'Mensal';
+        if (result.status === 'recorded') {
+          _showPaymentStatus(state, 'Pagamento localizado',
+            `A compra do plano ${plan} consta no histórico. Verifique novamente ou consulte o acesso atual em Seu Plano.`, 'retry');
+          return;
+        }
+        _writePaymentSession(_paymentReturnKey, null);
+        let accessMessage = 'O acesso Premium da conta está ativo.';
+        try {
+          if (!_saveVerifiedPremium(state.owner)) return;
+          updateWelcomeUserBadge();
+        } catch {
+          accessMessage = 'Reabra o jogo para sincronizar seu acesso neste navegador.';
+        }
+        _trackConfirmedPurchase(state.receipt, result, state.owner);
+        _showPaymentStatus(state, 'Pagamento confirmado', `A compra do plano ${plan} foi confirmada. ${accessMessage}`);
+      } catch {
+        if (active() && (!state.owner || sameAccount())) {
+          _showPaymentStatus(state, 'Verificação indisponível', 'Não foi possível consultar a compra agora. Tente novamente.', 'retry');
+        }
+      } finally {
+        clearTimeout(requestTimeout);
+        if (state.check === check) state.check = null;
       }
-      // Backoff exponencial: tentativas 1-3→3s, 4-6→5s, 7-10→8s
-      const delay = _premiumPollCount <= 3 ? 3000 : _premiumPollCount <= 6 ? 5000 : 8000;
-      setTimeout(_doPremiumPoll, delay);
     }
+
+    (function _checkPaymentReturn() {
+      const receipt = _paymentReturnReceipt();
+      if (!receipt) return;
+      const state = { receipt, overlay: null, owner: null, epoch: null, check: null, retry: null, waitingForLogin: false };
+      _paymentReturnState = state;
+      if (receipt.id && _supaClient) {
+        const { data } = _supaClient.auth.onAuthStateChange(() => {
+          // Sai do callback síncrono do Supabase antes de consultar a sessão.
+          setTimeout(() => {
+            if (_paymentReturnState !== state) return;
+            if (state.owner && (state.owner !== authUser?.id || state.epoch !== _authSessionEpoch)) {
+              _cancelPaymentCheck(state);
+              state.owner = null;
+              state.epoch = null;
+              if (state.overlay) _showPaymentStatus(state, 'Sessão alterada', 'Verifique a compra na conta que iniciou o pagamento.', authUser ? 'retry' : 'login');
+            }
+            if (!authUser) return;
+            if (state.waitingForLogin) {
+              state.waitingForLogin = false;
+              _openPaymentReturn(state);
+            } else if (state.needsLogin && state.overlay?.isConnected) {
+              _verifyPaymentReturn(state);
+            }
+          }, 0);
+        });
+        state.subscription = data.subscription;
+      }
+      _openPaymentReturn(state);
+    })();
 
     window.showPaywallModal       = showPaywallModal;
     window.paywallUpgrade         = paywallUpgrade;
@@ -439,5 +576,4 @@
     window.showPricingModal       = showPricingModal;
     window.closePricingModal      = closePricingModal;
     window.pricingChoose          = pricingChoose;
-    window._pollPremiumActivation = _pollPremiumActivation;
 
