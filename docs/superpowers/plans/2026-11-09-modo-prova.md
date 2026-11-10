@@ -9,11 +9,11 @@
 
 ## Global Constraints
 
-- Defaults60questões/90min;minutos1–120;quantidade1..banco disponível. TTL existente2h.
+- Defaults60questões/90min;minutos1-240;quantidade1..banco disponível. Retenção ativa=max(2h,duração); prazo absoluto sem pausas.
 - Sem alteração médica,de vídeos,de nota ou de descarte antecipado.
 - Legados sem duração90min;campos inválidos preservados;retomada de consulta não regrava defaults.
 - Nenhum gabarito,explicação ou revisão atual corrigida no DOM antes do fim.
-- Bump16.94 e busters no mesmo commit dos assets.
+- Bump16.95 e busters no mesmo commit dos assets (ampliação posterior para quatro horas).
 
 ## Review Focus
 

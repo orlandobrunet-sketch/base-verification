@@ -15,7 +15,7 @@
     const EXAM_DURATION_SEC   = 90 * 60; // 90 minutos
     const EXAM_SAVE_KEY = 'nefroquest-exam-state';
     const EXAM_TTL_MS   = 2 * 60 * 60 * 1000; // 2 horas
-    const EXAM_MAX_MINUTES = EXAM_TTL_MS / 60000;
+    const EXAM_MAX_MINUTES = 240; // Até quatro horas, incluindo provas de título.
     let _examDraftConfig = null;
 
     function _examDuration(saved) {
@@ -183,7 +183,8 @@
         const expirada = !completed && elapsed >= durationSec;
         // A janela limita continuar respondendo. Resultado expirado é consulta
         // somente leitura, ainda submetida à validação integral na retomada.
-        if (!expirada && !completed && Date.now() - s.savedAt > EXAM_TTL_MS) {
+        const retentionMs = Math.max(EXAM_TTL_MS, durationSec * 1000);
+        if (!expirada && !completed && Date.now() - s.savedAt > retentionMs) {
           if (_examRequiresRevisions()) return { ...s, preserved: true };
           _examProgressStorage().removeItem(EXAM_SAVE_KEY); _examSavedRaw = null; return null;
         }
@@ -337,7 +338,7 @@
             <aside class="nq-exam-brief" aria-label="Como funciona a prova">
               <h2>Concentre-se nas respostas</h2>
               <p>As alternativas escolhidas ficam registradas. Gabaritos, explicações e revisão dos erros aparecem somente ao final.</p>
-              <p>O relógio começa com a primeira questão carregada. Você pode sair e retomar por até duas horas, mas o tempo continua contando.</p>
+              <p>O relógio começa com a primeira questão carregada. Você pode sair e retomar até o prazo escolhido, mas o tempo continua contando.</p>
             </aside>
           </div>
           ${erro ? `<p class="nq-exam-erro" role="alert">${erro}</p>` : ''}

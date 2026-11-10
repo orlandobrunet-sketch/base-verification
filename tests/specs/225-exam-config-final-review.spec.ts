@@ -42,10 +42,27 @@ test('retomada conserva duração, alternativa e correção apenas no fim',async
  await expect(page.locator('#examResultado')).toBeVisible();await expect(page.locator('.nq-exam-erros')).toContainText(q.e);await expect(page.locator('.nq-exam-erros')).toContainText(q.o[wrong]);
  await expect(page.locator('.nq-exam-revisao-demais')).toContainText(next.e);await expect(page.locator('.nq-exam-opcao-certa')).toHaveCount(2);
 });
-for(const [count,minutes]of [[0,3],[1.5,3],[5,3],[2,0],[2,121]])test(`configuração inválida ${count}/${minutes} não inicia tentativa`,async({page})=>{
+for(const [count,minutes]of [[0,3],[1.5,3],[5,3],[2,0],[2,241]])test(`configuração inválida ${count}/${minutes} não inicia tentativa`,async({page})=>{
  await page.getByLabel('Quantidade de questões',{exact:true}).fill(String(count));await page.getByLabel('Tempo total em minutos',{exact:true}).fill(String(minutes));await page.getByRole('button',{name:'Começar prova',exact:true}).click();
  await expect(page.getByRole('alert')).toBeVisible();expect(await page.evaluate(()=>(0,eval)('_examState'))).toBeNull();expect(await page.evaluate(key=>localStorage.getItem(key),KEY)).toBeNull();await expect(page.locator('#examTimer')).toHaveCount(0);
 });
+for(const minutes of [180,240]){
+ test(`prova longa de${minutes}min retoma após duas horas e conclui preservando respostas`,async({page})=>{
+  await begin(page,2,minutes);const initial=await saved(page);const wrong=(initial.questions[0].a+1)%initial.questions[0].o.length;
+  await page.locator('#examOpts button').nth(wrong).click();await page.getByRole('button',{name:'Sair e continuar depois',exact:true}).click();
+  const raw=await page.evaluate(key=>localStorage.getItem(key),KEY);await page.clock.setFixedTime(new Date(initial.startTime+(minutes-30)*60000));
+  await page.evaluate(()=>(window as any).startExamMode());await expect(page.getByRole('button',{name:'Retomar prova',exact:true})).toBeVisible();await page.getByRole('button',{name:'Retomar prova',exact:true}).click();
+  await noCorrection(page);await expect(page.locator('#examTimer')).toHaveText('30:00 restantes');expect(await page.evaluate(key=>localStorage.getItem(key),KEY)).toBe(raw);
+  const restored=await page.evaluate(()=>(0,eval)('JSON.parse(JSON.stringify(_examState))'));expect(restored.durationSec).toBe(minutes*60);expect(restored.questions).toEqual(initial.questions);expect(restored.answers[0].chosen).toBe(wrong);expect(restored.startTime).toBe(initial.startTime);
+  await page.getByRole('button',{name:'Próxima questão',exact:true}).click();const next=(await saved(page)).questions[1];await page.locator('#examOpts button').nth(next.a).click();await page.getByRole('button',{name:'Ver resultado',exact:true}).click();
+  await expect(page.locator('#examResultado')).toContainText('1 de 2');await expect(page.locator('.nq-study-result-metrics dd').nth(3)).toHaveText(`${minutes-30}m0s`);await expect(page.locator('.nq-exam-erros')).toContainText(initial.questions[0].e);
+ });
+ test(`prova longa de${minutes}min vencida mantém registro e resultado no limite escolhido`,async({page})=>{
+  await begin(page,2,minutes);const initial=await saved(page);await page.locator('#examOpts button').nth(initial.questions[0].a).click();await page.getByRole('button',{name:'Sair e continuar depois',exact:true}).click();const raw=await page.evaluate(key=>localStorage.getItem(key),KEY);
+  await page.clock.setFixedTime(new Date(initial.startTime+minutes*60000));await page.evaluate(()=>(window as any).startExamMode());
+  await expect(page.locator('#examResultado')).toBeVisible();await expect(page.locator('#examResultado')).toContainText(`${minutes} minutos terminou`);await expect(page.locator('#examResultado')).toContainText('1 questão ficou sem resposta');await expect(page.locator('.nq-study-result-metrics dd').nth(3)).toHaveText(`${minutes}m0s`);expect(await page.evaluate(key=>localStorage.getItem(key),KEY)).toBe(raw);expect(await page.evaluate(()=>(0,eval)('_examState.answers[0].correct'))).toBe(true);
+ });
+}
 test('save legado sem configuração mantém90min e não é regravado ao consultar',async({page})=>{
  await begin(page,1,3);await page.evaluate(key=>{(window as any)._examFechar();const s=JSON.parse(localStorage.getItem(key)!);delete s.durationSec;delete s.questionCount;localStorage.setItem(key,JSON.stringify(s));},KEY);
  const raw=await page.evaluate(key=>localStorage.getItem(key),KEY);await page.evaluate(()=>(window as any).startExamMode());await page.getByRole('button',{name:'Retomar prova',exact:true}).click();

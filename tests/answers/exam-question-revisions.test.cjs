@@ -357,6 +357,41 @@ test('legacy bundle with no revision globals retains native expired-save complet
   assert.match(h.page.innerHTML, /Resultado da Prova/); assert.equal(h.map.has(KEY), false); assert.equal(h.events.tracks, 0);
 });
 
+for (const minutes of [180, 240]) {
+  test(`long exam ${minutes}min resumes beyond two hours without rewriting snapshot or grade`, async () => {
+    const f = fixture(), startTime = Date.now() - (minutes - 30) * 60000;
+    const initial = { ...saved(f, { answered: true }), durationSec: minutes * 60, startTime, savedAt: startTime };
+    const h = harness({ f, initial }), raw = h.map.get(KEY);
+    const loaded = h.run('_loadExamState()');
+    assert.notEqual(loaded.preserved, true); assert.equal(loaded.expirada, false);
+    await h.run('_examRetomar()');
+    assert.equal(h.state().durationSec, minutes * 60); assert.equal(h.state().startTime, startTime);
+    assert.deepEqual(h.state().questions, initial.questions); assert.deepEqual(h.state().answers, initial.answers);
+    assert(h.run('_examRestante()') > 0); assert(h.run('_examRestante()') <= 1800);
+    assert.doesNotMatch(h.page.innerHTML, /Earlier explanation|Current explanation/);
+    assert.equal(h.map.get(KEY), raw); assert.equal(h.events.writes, 0); assert.equal(h.events.tracks, 0);
+  });
+  test(`long exam ${minutes}min expiry uses its duration and preserves the old record`, async () => {
+    const f = fixture(), startTime = Date.now() - minutes * 60000 - 1000;
+    const initial = { ...saved(f, { answered: true }), durationSec: minutes * 60, startTime, savedAt: startTime };
+    const h = harness({ f, initial }), raw = h.map.get(KEY);
+    await h.run('_examRetomar()');
+    assert.match(h.page.innerHTML, /Resultado da Prova/);
+    assert(h.page.innerHTML.includes(`${minutes} minutos terminou`));
+    assert(h.page.innerHTML.includes(`<dd>${minutes}m0s</dd>`));
+    assert.deepEqual(h.state().answers, initial.answers); assert.equal(h.map.get(KEY), raw);
+    assert.equal(h.events.writes, 0); assert.equal(h.events.tracks, 0);
+  });
+}
+test('legacy exam without duration still expires at90min beyond two hours without migration writes', async () => {
+  const f = fixture(), startTime = Date.now() - 150 * 60000;
+  const initial = { ...saved(f, { answered: true }), startTime, savedAt: startTime };
+  const h = harness({ f, initial }), raw = h.map.get(KEY); await h.run('_examRetomar()');
+  assert.equal(h.state().durationSec, 5400); assert.match(h.page.innerHTML, /90 minutos terminou/);
+  assert.deepEqual(h.state().answers, initial.answers); assert.equal(h.map.get(KEY), raw);
+  assert.equal(h.events.writes, 0); assert.equal(h.events.tracks, 0);
+});
+
 // A reference-only revision can keep the exact question source while changing
 // its record revision. A fresh exam must select current bindings explicitly;
 // an older unbound save must retain the resolver's ambiguity.
