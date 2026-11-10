@@ -272,25 +272,113 @@
   .acid-base-page:not([data-ab-tela="hub"]) .ab-body { padding-top: 0; }
 }
 
-/* One living ornament in the hub; reading surfaces and patient portraits stay still. */
-.acid-base-page .ab-lab { display:none; }
-@media (min-width:961px) and (pointer:fine) {
-  .acid-base-page .ab-lab { display:grid;grid-template-columns:minmax(110px,200px) minmax(0,1fr);align-items:center;gap:12px;max-width:390px;margin-top:16px;border-top:1px solid #91dfe32b;padding-top:8px; }
-  .acid-base-page .ab-lab-art { display:block;width:100%;height:auto;overflow:visible; }
-  .ab-lab-frame { stroke:#d8bf7e;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round; }
-  .ab-lab-halo { fill:#91dfe3;opacity:.08; }
-  .ab-lab-pivot { stroke:#f0d78e;fill:#122530;stroke-width:2; }
-  .ab-lab-liquid--cyan { fill:#91dfe3; }
-  .ab-lab-liquid--gold { fill:#f0d78e; }
-  .ab-lab-spark { fill:#91dfe3; }
-  .ab-lab-spark--second { fill:#f0d78e;animation-delay:-2s!important; }
-  .ab-lab-beam { transform-origin:110px 32px;animation:ab-lab-balance 6s ease-in-out infinite alternate; }
-  .ab-lab-spark { animation:ab-lab-bubble 4s ease-in-out infinite; }
-  .ab-lab-beam,.ab-lab-spark { animation-play-state:paused; }
-  [data-ab-lab][data-motion=running] :is(.ab-lab-beam,.ab-lab-spark) { animation-play-state:running; }
-  .acid-base-page .ab-motion-toggle { min-height:44px;padding:8px 10px;border:1px solid #91dfe34d;border-radius:5px;background:#0c1924;color:#c7d2db;font:400 .95rem/1.4 Philosopher,Georgia,serif;cursor:pointer;letter-spacing:normal; }
-  .acid-base-page .ab-motion-toggle:disabled { opacity:.8;cursor:default; }
+/* Brass and glass from the chamber scene, with a single moving instrument. */
+.acid-base-page .ab-hub-banner {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template: "label label" "title title" "progress instrument" / minmax(0, 1fr) minmax(0, 110px);
+  align-items: center;
+  gap: 8px 14px;
+  padding: 18px 16px;
+  margin-bottom: 16px;
+  border: 1px solid #d8bf7e66;
+  border-radius: 6px 18px 6px 6px;
+  background: radial-gradient(ellipse at 85% 55%, #193746, #0a1620 75%);
 }
-@keyframes ab-lab-balance { from {transform:rotate(-4deg);} to {transform:rotate(4deg);} }
-@keyframes ab-lab-bubble { 0%,100% {transform:translateY(0);opacity:.65;} 50% {transform:translateY(-6px);opacity:1;} }
-@media (prefers-reduced-motion:reduce) { .ab-lab-beam,.ab-lab-spark { animation:none!important; } }
+.acid-base-page .ab-hub-banner :is(.ab-ornament, .ab-title) {
+  max-width: 100%;
+  width: fit-content;
+  text-align: left;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.acid-base-page .ab-hub-banner .ab-ornament { grid-area: label; letter-spacing: .035em; }
+.acid-base-page .ab-hub-banner .ab-title { grid-area: title; text-shadow: none; }
+.acid-base-page .ab-hub-banner .ab-hub-progress { grid-area: progress; }
+.acid-base-page .ab-lab { grid-area: instrument; min-width: 0; display: grid; justify-items: center; }
+.acid-base-page .ab-lab-art { display: block; width: 100%; max-width: 288px; height: auto; overflow: visible; }
+.ab-lab-dial { stroke: #91dfe3; opacity: .23; }
+.ab-lab-ticks { stroke: #d8bf7e; stroke-dasharray: 1 5; opacity: .55; }
+.ab-lab-frame { stroke: #d8bf7e; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.ab-lab-halo { fill: #91dfe3; opacity: .12; }
+.ab-lab-pivot { stroke: #f0d78e; fill: #122530; stroke-width: 2; }
+.ab-lab-liquid--cyan, .ab-lab-spark { fill: #91dfe3; }
+.ab-lab-liquid--gold, .ab-lab-spark--second { fill: #f0d78e; }
+.acid-base-page .ab-motion-toggle {
+  min-height: 44px;
+  max-width: 100%;
+  padding: 6px 10px;
+  border: 1px solid #91dfe34d;
+  border-radius: 6px;
+  background: #0c1924;
+  color: #d7e0e5;
+  font: 400 .85rem/1.35 Philosopher, Georgia, serif;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+.acid-base-page .ab-motion-toggle:disabled { cursor: default; }
+.acid-base-page .ab-motion-toggle:focus-visible { outline: 2px solid #91dfe3; outline-offset: 3px; }
+
+@media (max-width: 960px), (pointer: coarse) {
+  .acid-base-page[data-ab-tela="hub"] .ab-scroll { padding-top: 54px; }
+}
+@media (min-width: 961px) and (pointer: fine) {
+  .acid-base-page .ab-hub-banner {
+    grid-template: "label instrument" auto "title instrument" auto "progress instrument" auto / minmax(0, 1fr) minmax(230px, 40%);
+    align-content: center;
+    gap: 10px 24px;
+    padding: 12px 28px;
+    min-height: 236px;
+  }
+  .acid-base-page .ab-hub-banner::before {
+    width: 100%;
+    opacity: .38;
+  }
+  .acid-base-page .ab-hub-banner::after {
+    background: linear-gradient(90deg, #0a1620 18%, #0a1620bd 58%, #0a16204d);
+  }
+  .acid-base-page .ab-hub-banner .ab-title { font-size: clamp(2rem, 3.4vw, 3.15rem); }
+  .acid-base-page .ab-motion-toggle { padding-inline: 14px; }
+}
+
+.acid-base-page .ab-dot.current,
+.acid-base-page .ab-summary-title { position: relative; }
+.acid-base-page .ab-summary-title { padding-bottom: 12px; }
+.acid-base-page .ab-summary-title::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 3px;
+  height: 2px;
+  background: linear-gradient(90deg, #d8bf7e, #91dfe3, transparent);
+  transform-origin: left;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ab-lab-beam { transform-origin: 120px 49px; animation: ab-lab-balance 7s ease-in-out infinite alternate; }
+  .ab-lab-ticks { transform-origin: 120px 74px; animation: ab-lab-dial 48s linear infinite; }
+  .ab-lab-spark { animation: ab-lab-bubble 4s ease-in-out infinite; }
+  .ab-lab-spark--second { animation-delay: -2s; }
+  [data-ab-lab] :is(.ab-lab-beam, .ab-lab-ticks, .ab-lab-spark) { animation-play-state: paused; }
+  [data-ab-lab][data-motion="running"] :is(.ab-lab-beam, .ab-lab-ticks, .ab-lab-spark) { animation-play-state: running; }
+  .acid-base-page:not([data-ab-motion-paused]) .ab-dot.current::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border: 1px solid #f0d78e;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: ab-step-signal .46s ease-out both;
+  }
+  .acid-base-page:not([data-ab-motion-paused]) .ab-ddx-card.selected .ab-ddx-card-check {
+    animation: ab-card-mark .24s ease-out both;
+  }
+  .acid-base-page:not([data-ab-motion-paused]) .ab-summary-title::after {
+    animation: ab-result-line .52s ease-out both;
+  }
+}
+@keyframes ab-lab-balance { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }
+@keyframes ab-lab-dial { to { transform: rotate(360deg); } }
+@keyframes ab-lab-bubble { 0%,100% { transform: translateY(0); opacity: .65; } 50% { transform: translateY(-8px); opacity: 1; } }
+@keyframes ab-step-signal { from { transform: scale(.75); opacity: .9; } to { transform: scale(1.9); opacity: 0; } }
+@keyframes ab-card-mark { from { scale: .72; } to { scale: 1; } }
+@keyframes ab-result-line { from { transform: scaleX(.06); } to { transform: scaleX(1); } }

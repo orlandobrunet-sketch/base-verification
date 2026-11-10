@@ -2105,7 +2105,12 @@
     if (!alvo) return;
     if (!alvo.matches('button, input')) alvo.setAttribute('tabindex', '-1');
     alvo.focus({ preventScroll: true });
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    // Em telas estreitas, o contexto pode ocupar a primeira dobra inteira.
+    // O foco do novo ato precisa ficar visível sem depender de rolagem manual.
+    if (alvo.getBoundingClientRect().bottom > window.innerHeight) {
+      alvo.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'instant' });
+    }
   }
 
   // ── UI: Hub (lista de casos) ───────────────────────────────────────────
@@ -2161,25 +2166,28 @@
             <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
             <h1 class="ab-title">Alquimista Renal</h1>
             <div class="ab-hub-progress"><span><strong>${completedCount}</strong> de ${CASES.length} casos concluídos</span><progress max="${CASES.length}" value="${completedCount}" aria-label="Casos concluídos"></progress></div>
+            <div class="ab-lab" data-ab-lab data-motion="paused">
+              <svg class="ab-lab-art" viewBox="0 0 240 156" fill="none" aria-hidden="true" focusable="false">
+                <circle class="ab-lab-dial" cx="120" cy="74" r="69"/>
+                <circle class="ab-lab-ticks" cx="120" cy="74" r="62"/>
+                <path class="ab-lab-dial" d="M28 74h184M120 5v138M71 25l98 98M169 25l-98 98"/>
+                <ellipse class="ab-lab-halo" cx="120" cy="132" rx="59" ry="7"/>
+                <path class="ab-lab-frame" d="M120 35v89M92 130h56M103 125h34M120 17l6 9-6 9-6-9 6-9Z"/>
+                <g class="ab-lab-beam">
+                  <path class="ab-lab-frame" d="M52 49q34 8 68 0t68 0M62 51v19m116-19v19M43 98h38m78 0h38M62 70 43 98q19 20 38 0L62 70Zm116 0-19 28q19 20 38 0l-19-28Z"/>
+                  <path class="ab-lab-liquid ab-lab-liquid--cyan" d="M47 97q8-4 15 0t15 0q-15 18-30 0Z"/>
+                  <path class="ab-lab-liquid ab-lab-liquid--gold" d="M163 97q8-4 15 0t15 0q-15 18-30 0Z"/>
+                  <circle class="ab-lab-spark" cx="62" cy="87" r="2.5"/>
+                  <circle class="ab-lab-spark ab-lab-spark--second" cx="178" cy="87" r="2.5"/>
+                </g>
+                <circle class="ab-lab-pivot" cx="120" cy="49" r="5"/>
+              </svg>
+              <button type="button" class="ab-motion-toggle" data-ab-motion-toggle aria-pressed="false">Pausar animação</button>
+            </div>
             </div>
             <div class="ab-hub-opening">
             <div class="ab-hub-heading">
             <p class="ab-lead">${CASES.length} casos clínicos do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta ratio, o cloreto e o pH urinário, os distúrbios mistos e triplos e o gap osmolar para restaurar o equilíbrio.</p>
-            <div class="ab-lab" data-ab-lab data-motion="paused">
-              <svg class="ab-lab-art" viewBox="0 0 220 112" fill="none" aria-hidden="true" focusable="false">
-                <ellipse class="ab-lab-halo" cx="110" cy="98" rx="65" ry="7"/>
-                <path class="ab-lab-frame" d="M110 15v80M88 98h44M98 94h24M110 8l5 7-5 7-5-7 5-7Z"/>
-                <g class="ab-lab-beam">
-                  <path class="ab-lab-frame" d="M48 32h124M55 32v18m110-18v18M40 70h30M150 70h30M55 50 40 70q15 17 30 0L55 50Zm110 0-15 20q15 17 30 0l-15-20Z"/>
-                  <path class="ab-lab-liquid ab-lab-liquid--cyan" d="M43 69h24q-12 13-24 0Z"/>
-                  <path class="ab-lab-liquid ab-lab-liquid--gold" d="M153 69h24q-12 13-24 0Z"/>
-                  <circle class="ab-lab-spark" cx="55" cy="58" r="2"/>
-                  <circle class="ab-lab-spark ab-lab-spark--second" cx="165" cy="58" r="2"/>
-                </g>
-                <circle class="ab-lab-pivot" cx="110" cy="32" r="4"/>
-              </svg>
-              <button type="button" class="ab-motion-toggle" data-ab-motion-toggle aria-pressed="false">Pausar animação</button>
-            </div>
             </div>
             <aside class="ab-desktop-only ab-next-case">
               <svg class="ab-balance-seal" viewBox="0 0 120 120" fill="none" aria-hidden="true" focusable="false">
@@ -2440,7 +2448,6 @@
 
     card.querySelector('[data-ab-close]').onclick = () => _abFechar(overlay);
     window.NQChamberArt?.hydrate(card);
-    if (!(act.kind === 'num' && !actRes)) _abFocar(card, '.ab-prompt');
     card.querySelectorAll('[data-ab-goto]').forEach(b => {
       b.onclick = () => { sess.actIdx = parseInt(b.getAttribute('data-ab-goto'), 10); _renderAct(overlay, kase, sess); };
     });
@@ -2507,6 +2514,7 @@
       }
     }
     window.NQChamberWorkspace?.mount(overlay);
+    if (!(act.kind === 'num' && !actRes)) _abFocar(card, '.ab-prompt');
   }
 
   // Constrói o feedback (reutilizado na 1ª resposta e ao revisitar pelos dots).

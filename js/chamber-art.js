@@ -83,14 +83,20 @@
   function mountMotion(overlay) {
     const art = overlay.querySelector('[data-ab-lab]');
     if (motion?.art === art && art?.isConnected) return;
+    let paused = overlay.hasAttribute('data-ab-motion-paused');
+    try {
+      const saved = localStorage.getItem('nq-chamber-motion-paused');
+      if (saved !== null) paused = saved === 'true';
+    } catch {}
+    overlay.toggleAttribute('data-ab-motion-paused', paused);
     unmountMotion(); if (!art) return;
     const button = art.querySelector('[data-ab-motion-toggle]');
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const abort = new AbortController();
-    let paused = false, visible = false;
-    try { paused = localStorage.getItem('nq-chamber-motion-paused') === 'true'; } catch {}
+    let visible = false;
     const update = () => {
       art.dataset.motion = !paused && !reduced.matches && visible && !document.hidden ? 'running' : 'paused';
+      overlay.toggleAttribute('data-ab-motion-paused', paused);
       button.disabled = reduced.matches;
       button.textContent = reduced.matches ? 'Movimento reduzido' : paused ? 'Retomar animação' : 'Pausar animação';
       button.setAttribute('aria-pressed', String(paused || reduced.matches));

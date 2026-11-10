@@ -119,7 +119,10 @@ for (const largura of [320, 390]) {
     await abrir(page, largura);
     await page.addStyleTag({ content: 'html { font-size: 32px !important; }' });
     for (const tela of ['hub', 'ato']) {
-      if (tela === 'ato') await entrarNoCaso(page);
+      if (tela === 'ato') {
+        await entrarNoCaso(page);
+        await expect(page.locator('.ab-prompt')).toBeInViewport();
+      }
       const cortes = await page.evaluate(() => {
         const fora: string[] = [];
         const w = document.createTreeWalker(document.getElementById('acidBaseOverlay')!, NodeFilter.SHOW_TEXT);
