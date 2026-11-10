@@ -495,7 +495,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     await injectGameState(page, { level: 2, xp: 229, correctTotal: 15, gold: 0 }, { replaceSnapshot: true });
     await expect(page.locator('#guardianXpHint')).toHaveText('Faltam 5 acertos para evoluir');
-    await expect(page.locator('#guardianXpAmount')).toHaveText('114/229');
+    await expect(page.locator('#guardianXpAmount')).toHaveText('114/229 XP');
     const beforeWidth = await page.locator('#xpFill').evaluate(element => parseFloat((element as HTMLElement).style.width));
     expect(beforeWidth).toBeLessThan(100);
     await page.evaluate(() => {
@@ -514,7 +514,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
       .toContain('nq-guardian-xp-fill');
     const effects = await page.evaluate(() => (window as any).__nqGuardianEffects as string[]);
     expect(effects).toContain('nq-guardian-xp-gain');
-    await expect(page.locator('#guardianXpAmount')).toHaveText('137/229');
+    await expect(page.locator('#guardianXpAmount')).toHaveText('137/229 XP');
     const afterWidth = await page.locator('#xpFill').evaluate(element => parseFloat((element as HTMLElement).style.width));
     expect(afterWidth).toBeGreaterThan(beforeWidth); expect(afterWidth).toBeLessThan(100);
     await expect(page.locator('.nql-xp-gain')).toHaveCount(0, { timeout: 2500 });

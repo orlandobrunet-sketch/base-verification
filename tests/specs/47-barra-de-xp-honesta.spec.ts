@@ -28,6 +28,7 @@ const lerBarra = (page: Page) => page.evaluate(() => {
   g.renderHUD?.();
   return {
     texto: document.getElementById('xpTxt')?.textContent?.trim() || '',
+    fracao: document.getElementById('guardianXpAmount')?.textContent || '',
     largura: (document.getElementById('xpFill') as HTMLElement)?.style.width || '',
     nivel: g.state.level,
     teto: g.levelCapForCorrect(g.state.correctTotal),
@@ -62,7 +63,7 @@ test.describe('Barra de XP', () => {
     expect(barra.largura, 'a barra não deveria estar cheia aqui').not.toBe('100%');
     expect(barra.texto).toContain('7 acertos');
     expect(barra.texto).toContain('190 XP');
-    expect(barra.texto).toMatch(/XP aplicado\s*10\/200/);
+    expect(barra.fracao).toBe('10/200 XP');
   });
 
   test('o numerador nunca passa do denominador', async ({ page }) => {
@@ -70,7 +71,7 @@ test.describe('Barra de XP', () => {
     await page.evaluate(() => (window as any).gainXP?.(9999));
 
     const barra = await lerBarra(page);
-    const [xp, alvo] = (barra.texto.match(/XP aplicado\s*(\d+)\/(\d+)/) || []).slice(1).map(Number);
+    const [xp, alvo] = (barra.fracao.match(/^(\d+)\/(\d+) XP$/) || []).slice(1).map(Number);
     expect(xp, `fração impossível na tela: ${barra.texto}`).toBeLessThanOrEqual(alvo);
     expect(barra.saldo).toBe(9999);
   });

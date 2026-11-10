@@ -78,7 +78,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.97',
+          release: 'nefroquest@16.98',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -139,7 +139,7 @@
   <link rel="stylesheet" href="styles/lumen/shell.css?v=16.18">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=16.93">
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.62">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=16.87">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=16.98">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.86">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.92">
   <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.90">
@@ -1001,7 +1001,7 @@
               <div class="nql-hero-progress">
               <strong id="guardianLevelLabel" class="nql-progress-level">Nível 1</strong>
               <div class="xp-bar" id="guardianEvolutionProgress" role="progressbar" aria-label="Evolução para o próximo nível" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="xpFill"></div></div>
-              <small id="xpTxt" class="xp-text"><span class="nql-xp-fraction"><span class="nql-xp-unit">XP aplicado </span><span id="guardianXpAmount">0/200</span></span><span id="guardianXpHint" class="nql-xp-hint"></span><span id="guardianXpReserve" class="nql-xp-reserve" hidden></span></small>
+              <small id="xpTxt" class="xp-text"><span id="guardianXpAmount" class="nql-xp-fraction">0/200 XP</span><span id="guardianXpHint" class="nql-xp-hint"></span></small>
               <!-- sem opacity:0.65 — punha o contador em 3,77:1 num texto de
                    11px que fica na tela a partida inteira. A classe .xp-text
                    já dá a cor discreta, e passa folgado sem a transparência. -->
@@ -1846,7 +1846,7 @@
   <script defer src="js/audio.js?v=16.28"></script>
   <script defer src="js/leaderboard.js?v=16.47"></script>
   <script defer src="js/study-mode.js?v=16.69"></script>
-  <script defer src="js/game.js?v=16.97"></script>
+  <script defer src="js/game.js?v=16.98"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=16.97"></script>
