@@ -399,10 +399,16 @@ test('actual campaign pending archive requires confirmation, preserves original 
 for (const profile of ['exam', 'study', 'offline'] as const) {
   test(`actual ${profile} archive keeps the old answer and explanation through consultation and reload without writes`, async ({ page }, info) => {
     const seeded = await seedAuxiliary(page, profile, true, true), before = await bytes(page, seeded.key);
-    const feedback = profile === 'exam' ? '#examCorrecao' : profile === 'study' ? '#studyFeedback' : '.nq-off-feedback';
+    const feedback = profile === 'exam' ? '#examResultado .nq-exam-erros' : profile === 'study' ? '#studyFeedback' : '.nq-off-feedback';
+    if (profile === 'exam') {
+      await expect(page.locator('#examPage')).not.toContainText(seeded.bundle.oldAuthor.exp);
+      await expect(page.locator('#examPage')).not.toContainText(seeded.bundle.currentAuthor.exp);
+      await expect(page.locator('[data-question-revision="historical"] details')).toHaveCount(0);
+      await page.getByRole('button', {name:'Ver resultado',exact:true}).click();
+    }
     await expect(page.locator(feedback)).toContainText(seeded.bundle.oldAuthor.exp);
     if (profile === 'exam') {
-      await expect(page.locator('.nq-exam-veredito')).toContainText('Incorreto');
+      await expect(page.locator('#examResultado .nq-exam-opcao-errada')).toHaveCount(1);
       await page.locator('[data-question-revision="historical"] summary').click();
       await expect(page.locator('[data-question-revision="historical"] details')).toContainText(seeded.bundle.currentAuthor.exp);
     } else if (profile === 'study') {
@@ -494,8 +500,12 @@ for (const profile of ['exam', 'study', 'offline'] as const) {
     const seeded = await seedAuxiliary(page, profile, true), before = await bytes(page, seeded.key);
     const source = seeded.bundle.oldQuestions[profile];
     if (profile === 'exam') {
-      await expect(page.locator('.nq-exam-veredito')).toContainText('Incorreto');
-      await expect(page.locator('#examCorrecao')).toContainText(source.e);
+      await expect(page.locator('#examPage')).not.toContainText(source.e);
+      await expect(page.locator('#examPage')).not.toContainText(seeded.bundle.currentAuthor.exp);
+      await expect(page.locator('[data-question-revision="historical"] details')).toHaveCount(0);
+      await page.getByRole('button', {name:'Ver resultado',exact:true}).click();
+      await expect(page.locator('#examResultado .nq-exam-opcao-errada')).toHaveCount(1);
+      await expect(page.locator('#examResultado .nq-exam-erros')).toContainText(source.e);
       await page.locator('[data-question-revision="historical"] summary').click();
       await expect(page.locator('[data-question-revision="historical"] details')).toContainText(seeded.bundle.currentAuthor.exp);
     } else if (profile === 'study') {
@@ -509,7 +519,7 @@ for (const profile of ['exam', 'study', 'offline'] as const) {
       await expect(page.locator('#nqOffCurrentRevision')).toContainText(seeded.bundle.currentAuthor.exp);
       await expect(page.locator('#nqOffCorrectCount')).toHaveText('7');
     }
-    await capture(page, info, `${profile}-history`, profile === 'exam' ? '#examCorrecao' : profile === 'study' ? '#studyFeedback' : '.nq-off-feedback');
+    await capture(page, info, `${profile}-history`, profile === 'exam' ? '#examResultado .nq-exam-erros' : profile === 'study' ? '#studyFeedback' : '.nq-off-feedback');
     expect(await bytes(page, seeded.key)).toEqual(before); await assertZeroStorageWrites(page);
     await resumeAuxiliary(page, profile, true); expect(await bytes(page, seeded.key)).toEqual(before);
     await assertZeroStorageWrites(page);
@@ -571,8 +581,8 @@ for (const completed of ['expired', 'all answered']) test(`exam ${completed} his
   }, { bundle, completed });
   const before = await bytes(page, EXAM); await watchReadOnlyStorage(page, EXAM);
   await page.evaluate(() => (window as any).startExamMode());
-  if (completed === 'all answered') await page.getByRole('button', { name: 'Retomar prova', exact: true }).click();
   await expect(page.locator('#examResultado')).toBeVisible();
+  await expect(page.locator('#examTimer')).toHaveCount(0);
   await expect(page.locator('#examResultado')).toContainText('100%');
   expect((await bytes(page, EXAM)).raw).toBe(raw); expect(await bytes(page, EXAM)).toEqual(before);
   await capture(page, info, `exam-${completed.replace(' ', '-')}-readonly-result`, '#examResultado');

@@ -7,14 +7,22 @@
 // tempo esgotado fora do app apagava a prova sem aviso, e a correção de cada
 // alternativa era só cor.
 //
-// Agora é uma página: a jornada fica escondida e inerte, a prova tem o próprio
-// teclado, início e retomada são escolhas na página, a correção diz em texto
-// qual era a certa e qual foi a sua, e o resultado conta as não respondidas.
+// A prova tem página e teclado próprios, configuração de quantidade/tempo e
+// retomada preservada. Respostas ficam neutras durante a tentativa; correções,
+// explicações e atualizações históricas aparecem somente no resultado final.
 
     const EXAM_QUESTION_COUNT = 60;
     const EXAM_DURATION_SEC   = 90 * 60; // 90 minutos
     const EXAM_SAVE_KEY = 'nefroquest-exam-state';
     const EXAM_TTL_MS   = 2 * 60 * 60 * 1000; // 2 horas
+    const EXAM_MAX_MINUTES = 240; // Até quatro horas, incluindo provas de título.
+    let _examDraftConfig = null;
+
+    function _examDuration(saved) {
+      if (saved?.durationSec === undefined) return EXAM_DURATION_SEC;
+      const duration = saved.durationSec;
+      return Number.isInteger(duration) && duration >= 60 && duration <= EXAM_MAX_MINUTES * 60 && duration % 60 === 0 ? duration : null;
+    }
 
     let _examState = null; // {questions, idx, answers, startTime, timerInterval, tempoEsgotado}
     let _examOrigem = null;
@@ -51,6 +59,8 @@
         if (!saved || !Array.isArray(saved.questions) || !saved.questions.length || !Array.isArray(saved.answers) ||
             !Number.isInteger(saved.idx) || saved.idx < 0 || saved.idx > saved.questions.length ||
             !Number.isFinite(saved.startTime) || saved.startTime <= 0) return null;
+        const durationSec = _examDuration(saved);
+        if (durationSec === null || (saved.questionCount !== undefined && saved.questionCount !== saved.questions.length)) return null;
         const bindings = saved.questionRevisionBindings;
         if (bindings !== undefined && (!Array.isArray(bindings) || bindings.length !== saved.questions.length)) return null;
         const revisionViews = saved.questions.map((q, i) => _examQuestionRevision(q, bindings?.[i]));
@@ -78,7 +88,7 @@
             original.binding.recordRevision !== revisionViews[origin.index].binding.recordRevision));
         })) return null;
         if (saved.questionRevisionOriginalRaw !== undefined && typeof saved.questionRevisionOriginalRaw !== 'string') return null;
-        return { questions, revisionViews, questionRevisionBindings: revisionViews.map(view => view.binding),
+        return { questions, durationSec, questionCount: questions.length, revisionViews, questionRevisionBindings: revisionViews.map(view => view.binding),
           questionRevisionOrigins: origins, ...(saved.questionRevisionOriginalRaw !== undefined
             ? { questionRevisionOriginalRaw: saved.questionRevisionOriginalRaw } : {}) };
       } catch (_) { return null; }
@@ -98,14 +108,14 @@
         <button type="button" class="btn sec" data-action="_examDescartarSalva">Descartar e começar outra</button></div></div>`;
       _examFocar('#examTitulo');
     }
-    function _examRevisionHtml(view, answered) {
+    function _examRevisionHtml(view, answered, review = false) {
       if (!view?.historical) return '';
       const current = _examRevisionCatalog()?.current(view.binding.qid, 'exam');
       const updated = current?.source;
       return `<aside class="nq-exam-aviso" data-question-revision="historical">
-        <p>${answered ? `Avaliação registrada na versão ${escapeHtml(view.release)}. Sua resposta e sua nota permanecem as registradas.`
+        <p>${answered ? (review ? `Avaliação registrada na versão ${escapeHtml(view.release)}. Sua resposta e sua nota permanecem as registradas.` : `Resposta registrada na versão ${escapeHtml(view.release)}. A correção ficará disponível ao final da prova.`)
           : 'Esta questão mudou desde a versão salva. Confirme a versão atual antes de responder.'}</p>
-        ${answered && updated ? `<details><summary>Conteúdo atual, separado da avaliação registrada</summary>
+        ${review && answered && updated ? `<details><summary>Conteúdo atual, separado da avaliação registrada</summary>
           <p>${escapeHtml(updated.q)}</p><ol>${updated.o.map((text, index) => `<li>${escapeHtml(text)}${index === updated.a ? ' <strong>Resposta correta atual</strong>' : ''}</li>`).join('')}</ol>
           <p>${escapeHtml(updated.e || '')}</p></details>` : ''}
         ${!answered ? '<button type="button" class="btn gold" data-action="_examUseCurrentRevision">Usar versão atual desta questão</button>' : ''}</aside>`;
@@ -126,7 +136,7 @@
         storage = _examProgressStorage();
         if (storage.getItem(EXAM_SAVE_KEY) !== priorRaw || !_examBindingCurrent()) return false;
         const { questions, idx, answers, startTime } = _examState;
-        const payload = { questions, idx, answers, startTime, savedAt: Date.now() };
+        const payload = { questions, idx, answers, startTime, durationSec: checked.durationSec, questionCount: checked.questionCount, savedAt: Date.now() };
         if (_examRequiresRevisions()) {
           payload.questionRevisionBindings = checked.questionRevisionBindings;
           payload.questionRevisionOrigins = checked.questionRevisionOrigins;
@@ -166,12 +176,19 @@
         const s = JSON.parse(raw);
         if (!Number.isFinite(s?.startTime) || s.startTime <= 0 || !Number.isFinite(s.savedAt) || !Array.isArray(s.questions) || !s.questions.length || !Array.isArray(s.answers) ||
             !Number.isInteger(s.idx) || s.idx < 0 || s.idx > s.questions.length) return _examRequiresRevisions() ? { preserved: true } : null;
-        if (Date.now() - s.savedAt > EXAM_TTL_MS) {
+        const durationSec = _examDuration(s);
+        if (durationSec === null || (s.questionCount !== undefined && s.questionCount !== s.questions.length)) return { preserved: true };
+        const elapsed = Math.floor((Date.now() - s.startTime) / 1000);
+        const completed = s.idx === s.questions.length && s.answers.length === s.questions.length && s.answers.every(answer => answer?.answered === true);
+        const expirada = !completed && elapsed >= durationSec;
+        // A janela limita continuar respondendo. Resultado expirado é consulta
+        // somente leitura, ainda submetida à validação integral na retomada.
+        const retentionMs = Math.max(EXAM_TTL_MS, durationSec * 1000);
+        if (!expirada && !completed && Date.now() - s.savedAt > retentionMs) {
           if (_examRequiresRevisions()) return { ...s, preserved: true };
           _examProgressStorage().removeItem(EXAM_SAVE_KEY); _examSavedRaw = null; return null;
         }
-        const elapsed = Math.floor((Date.now() - s.startTime) / 1000);
-        return { ...s, expirada: elapsed >= EXAM_DURATION_SEC };
+        return { ...s, durationSec, expirada, completed };
       } catch(e) { return _examRequiresRevisions() && _examSavedRaw ? { preserved: true } : null; }
     }
 
@@ -186,7 +203,7 @@
       } catch(e) { return false; }
     }
 
-    const _examRestante = () => Math.max(0, EXAM_DURATION_SEC - Math.floor((Date.now() - _examState.startTime) / 1000));
+    const _examRestante = () => Math.max(0, _examDuration(_examState) - Math.max(0, Math.floor((Date.now() - _examState.startTime) / 1000)));
     const _examRelogio = seg => `${Math.floor(seg / 60)}:${String(seg % 60).padStart(2, '0')}`;
 
     // ── Superfície ────────────────────────────────────────────────────────
@@ -246,6 +263,7 @@
       _examRequestToken++;
       _examRevisionBlocked = false;
       _examConfirmandoSaida = false;
+      _examDraftConfig = null;
       document.getElementById('examPage')?.remove();
       document.body.classList.remove('nq-studying');
       document.getElementById('mobileStatusBar')?.classList.remove('active');
@@ -276,17 +294,17 @@
 
       const saved = _loadExamState();
       if (saved?.preserved) { _examRevisionHold('Não foi possível retomar esta prova com segurança. O registro salvo foi preservado.'); return; }
-      if (saved?.expirada) {
+      if (saved?.expirada || saved?.completed) {
         _examRetomar();
         return;
       }
       if (saved) {
         const respondidas = saved.answers.filter(a => a?.answered).length;
-        const restante = EXAM_DURATION_SEC - Math.floor((Date.now() - saved.startTime) / 1000);
+        const restante = saved.durationSec - Math.max(0, Math.floor((Date.now() - saved.startTime) / 1000));
         pagina.innerHTML = `
           <div class="nq-study-content nq-exam-intro">
             <h1 id="examTitulo" tabindex="-1">Prova em andamento</h1>
-            <p>Você respondeu ${respondidas} de ${saved.questions.length} questões e restam ${Math.floor(restante / 60)} minutos. O relógio continuou contando enquanto você esteve fora.</p>
+            <p>Você respondeu ${respondidas} de ${saved.questions.length} questões. Tempo total: ${saved.durationSec / 60} minutos; restam ${Math.ceil(restante / 60)} minutos. O relógio continuou contando enquanto você esteve fora.</p>
             <div class="nq-exam-acoes">
               <button type="button" class="btn gold" data-action="_examRetomar">Retomar prova</button>
               <button type="button" class="btn sec" data-action="_examDescartarSalva">Descartar e começar outra</button>
@@ -302,11 +320,27 @@
     function _examIntro(erro = '') {
       _examRevisionBlocked = false;
       const pagina = _examPagina();
+      const available = typeof questionBank !== 'undefined' && Array.isArray(questionBank) ? questionBank.length : null;
+      const config = _examDraftConfig || { count: available ? Math.min(EXAM_QUESTION_COUNT, available) : EXAM_QUESTION_COUNT, minutes: EXAM_DURATION_SEC / 60 };
       pagina.innerHTML = `
         <div class="nq-study-content nq-exam-intro">
           <h1 id="examTitulo" tabindex="-1">Prova simulada</h1>
-          <p>${EXAM_QUESTION_COUNT} questões sorteadas do banco, ${EXAM_DURATION_SEC / 60} minutos. Depois de cada resposta, você vê a correção e a explicação.</p>
-          <p>O relógio começa quando você clicar em "Começar prova" e continua contando se você sair. Uma prova interrompida pode ser retomada por até duas horas.</p>
+          <p>Prepare sua prova. Escolha quantas questões quer responder e o tempo total para este desafio.</p>
+          <div class="nq-exam-setup">
+            <fieldset class="nq-exam-config"><legend>Sua prova</legend>
+              <label for="examQuestionCount">Quantidade de questões</label>
+              <input id="examQuestionCount" type="number" inputmode="numeric" min="1" step="1" ${available ? `max="${available}"` : ''} value="${escapeHtml(String(config.count))}" aria-describedby="examCountHint">
+              <p id="examCountHint">${available ? `${available} questões disponíveis no banco.` : 'Questões sorteadas do banco disponível.'}</p>
+              <label for="examDurationMinutes">Tempo total em minutos</label>
+              <input id="examDurationMinutes" type="number" inputmode="numeric" min="1" max="${EXAM_MAX_MINUTES}" step="1" value="${escapeHtml(String(config.minutes))}" aria-describedby="examTimeHint">
+              <p id="examTimeHint">De 1 a ${EXAM_MAX_MINUTES} minutos. O tempo não pausa ao sair.</p>
+            </fieldset>
+            <aside class="nq-exam-brief" aria-label="Como funciona a prova">
+              <h2>Concentre-se nas respostas</h2>
+              <p>As alternativas escolhidas ficam registradas. Gabaritos, explicações e revisão dos erros aparecem somente ao final.</p>
+              <p>O relógio começa com a primeira questão carregada. Você pode sair e retomar até o prazo escolhido, mas o tempo continua contando.</p>
+            </aside>
+          </div>
           ${erro ? `<p class="nq-exam-erro" role="alert">${erro}</p>` : ''}
           <div class="nq-exam-acoes">
             <button type="button" class="btn gold" data-action="_examComecar">Começar prova</button>
@@ -318,10 +352,20 @@
 
     async function _examComecar() {
       const binding = _examProgressBinding;
-      const request = ++_examRequestToken;
       const pagina = document.getElementById('examPage');
       const botao = document.querySelector('[data-action="_examComecar"]');
+      if (botao?.disabled) return;
+      const request = ++_examRequestToken;
+      const count = Number(document.getElementById('examQuestionCount')?.value);
+      const minutes = Number(document.getElementById('examDurationMinutes')?.value);
+      _examDraftConfig = { count, minutes };
+      if (!Number.isInteger(count) || count < 1 || !Number.isInteger(minutes) || minutes < 1 || minutes > EXAM_MAX_MINUTES) {
+        _examIntro(`Escolha uma quantidade inteira de questões e um tempo inteiro de 1 a ${EXAM_MAX_MINUTES} minutos.`);
+        _examFocar(!Number.isInteger(count) || count < 1 ? '#examQuestionCount' : '#examDurationMinutes');
+        return;
+      }
       if (botao) { botao.disabled = true; botao.textContent = 'Carregando questões…'; }
+      for (const input of document.querySelectorAll('.nq-exam-config input')) input.disabled = true;
       try {
         if (!questionBank || _examRequiresRevisions()) await _loadTopics();
       } catch (e) {
@@ -330,13 +374,20 @@
         return;
       }
       if (!_examBindingCurrent(binding) || request !== _examRequestToken || document.getElementById('examPage') !== pagina) return;
+      if (count > questionBank.length) {
+        _examIntro(`O banco tem ${questionBank.length} questões disponíveis. Escolha uma quantidade de 1 a ${questionBank.length}.`);
+        _examFocar('#examQuestionCount');
+        return;
+      }
       const prior = _examState;
       _examState = {
-        questions: shuffle([...questionBank]).slice(0, EXAM_QUESTION_COUNT)
+        questions: shuffle([...questionBank]).slice(0, count)
           .map(q => window.NQAnswers ? window.NQAnswers.present(q) : { ...q, o: [...q.o] }),
         idx: 0,
         answers: [],   // {qId, correct, cat, chosen, answered}
         startTime: Date.now(),
+        durationSec: minutes * 60,
+        questionCount: count,
         timerInterval: null
       };
       if (_examState.questions.some(q => !q)) {
@@ -388,14 +439,17 @@
       if (_examState?.timerInterval) clearInterval(_examState.timerInterval);
       _examRevisionBlocked = false;
       _examState = { ...checked, idx: saved.idx, answers: saved.answers, startTime: saved.startTime, timerInterval: null,
+        completedAt: saved.completed ? saved.savedAt : undefined,
         readOnlyResult: _examRequiresRevisions() };
       if (saved.expirada) { _examEsgotarTempo(); return; }
+      if (saved.completed) { showExamResults(); return; }
       _examIniciarRelogio();
       showExamQuestion();
     }
 
     function _examUseCurrentRevision() {
       if (!_examBindingCurrent() || _examRevisionBlocked || !_examNeedsCurrentRevision()) return;
+      if (_examRestante() <= 0) { _examEsgotarTempo(); return; }
       const prior = _examState, idx = prior.idx;
       const current = _examRevisionCatalog()?.current(prior.questions[idx].id, 'exam');
       const question = current?.source && window.NQAnswers?.present(current.source);
@@ -465,6 +519,7 @@
       const pendingRevision = _examNeedsCurrentRevision();
       const revision = _examState.revisionViews?.[idx];
       const restante = _examRestante();
+      if (restante <= 0) { _examEsgotarTempo(); return; }
       const letras = ['A', 'B', 'C', 'D', 'E'];
 
       pagina.innerHTML = `
@@ -481,14 +536,12 @@
             ${_examRevisionHtml(revision, resposta?.answered === true)}
             <p class="nq-exam-enunciado">${escapeHtml(q.q)}</p>
             ${pendingRevision ? '' : resposta ? `
-            <ol id="examOpts" class="nq-exam-opcoes" aria-label="Alternativas corrigidas">
+            <ol id="examOpts" class="nq-exam-opcoes" aria-label="Alternativas registradas">
               ${q.o.map((opt, i) => {
-                let marca = '', estado = '';
-                if (i === q.a) { estado = 'certa'; marca = i === resposta.chosen ? 'Sua resposta — correta' : 'Resposta correta'; }
-                else if (i === resposta.chosen) { estado = 'errada'; marca = 'Sua resposta'; }
-                return `<li class="nq-exam-opcao${estado ? ' nq-exam-opcao-' + estado : ' nq-exam-opcao-neutra'}">
+                const selected = i === resposta.chosen;
+                return `<li class="nq-exam-opcao ${selected ? 'nq-exam-opcao-selecionada' : 'nq-exam-opcao-neutra'}">
                   <span class="nq-exam-letra" aria-hidden="true">${letras[i]}</span>
-                  <span>${escapeHtml(opt)}${marca ? `<strong class="nq-exam-marca">${marca}</strong>` : ''}</span>
+                  <span>${escapeHtml(opt)}${selected ? '<strong class="nq-exam-marca">Sua resposta</strong>' : ''}</span>
                 </li>`;
               }).join('')}
             </ol>` : `
@@ -500,9 +553,8 @@
             </div>`}
             <div id="examCorrecao" role="status" aria-live="polite" tabindex="-1">
               ${resposta ? `
-                <div class="nq-exam-correcao ${resposta.correct ? 'nq-exam-acertou' : 'nq-exam-errou'}">
-                  <p class="nq-exam-veredito">${resposta.correct ? 'Correto.' : `Incorreto. A resposta certa é a ${letras[q.a]}.`}</p>
-                  <p>${escapeHtml(q.e)}</p>
+                <div class="nq-exam-registro">
+                  <p>Resposta registrada. A correção estará disponível ao final da prova.</p>
                 </div>
                 <button type="button" class="btn gold" data-action="_examNext">${idx + 1 < questions.length ? 'Próxima questão' : 'Ver resultado'}</button>` : ''}
             </div>
@@ -530,6 +582,7 @@
 
     function _examAnswer(chosen) {
       if (!_examBindingCurrent() || !_examState || _examRevisionBlocked || _examState.answers[_examState.idx] || _examNeedsCurrentRevision()) return;
+      if (_examRestante() <= 0) { _examEsgotarTempo(); return; }
       const prior = _examState;
       const { questions, idx } = prior;
       const q = questions[idx];
@@ -554,8 +607,13 @@
 
     function _examNext() {
       if (!_examBindingCurrent() || !_examState || _examRevisionBlocked || _examState.idx >= _examState.questions.length || _examNeedsCurrentRevision()) return;
+      if (_examRestante() <= 0) { _examEsgotarTempo(); return; }
       const prior = _examState;
       _examState = { ...prior, idx: prior.idx + 1 };
+      // Consultar a última resposta já registrada não regrava nem apaga a tentativa retomada.
+      if (prior.readOnlyResult && _examState.idx >= prior.questions.length && prior.answers.length === prior.questions.length && prior.answers.every(answer => answer?.answered)) {
+        showExamResults(); return;
+      }
       if (!_saveExamState()) {
         _examState = prior;
         _examRevisionHold('Não foi possível salvar o avanço da prova.'); return;
@@ -591,11 +649,15 @@
     // ── Resultado ─────────────────────────────────────────────────────────
     function showExamResults() {
       if (!_examState || !_examBindingCurrent() || _examRevisionBlocked) return;
+      if (_examState.idx < _examState.questions.length && !_examState.tempoEsgotado && _examRestante() > 0) return;
       if (_examState.timerInterval) clearInterval(_examState.timerInterval);
       if (!_examState.readOnlyResult) _clearExamState();
       const pagina = document.getElementById('examPage') || _examPagina();
       const { questions, answers, startTime, tempoEsgotado } = _examState;
-      const elapsed = Math.min(EXAM_DURATION_SEC, Math.floor((Date.now() - startTime) / 1000));
+      const durationSec = _examDuration(_examState);
+      const completedAt = _examState.completedAt ?? Date.now();
+      _examState.completedAt = completedAt;
+      const elapsed = Math.max(0, Math.min(durationSec, Math.floor((completedAt - startTime) / 1000)));
       const totalAnswered = answers.filter(a => a?.answered).length;
       const totalCorrect  = answers.filter(a => a?.correct).length;
       const pct = totalAnswered > 0 ? Math.round(totalCorrect / totalAnswered * 100) : 0;
@@ -628,14 +690,22 @@
       const letras = ['A','B','C','D','E'];
       const historicalViews = _examState.revisionViews?.filter((view, i) => view.historical && answers[i]?.answered) || [];
       const erros = questions.map((q, i) => ({q, ans: answers[i]})).filter(({ans}) => ans && ans.answered && !ans.correct);
+      const demais = questions.map((q, i) => ({q, ans: answers[i]})).filter(({ans}) => !ans?.answered || ans.correct);
+      const reviewQuestion = ({q, ans}) => `
+        <article>
+          <p>${escapeHtml(q.q)}</p>
+          ${!ans?.answered ? '<p class="nq-exam-nota">Questão não respondida.</p>' : ''}
+          <ul>${(q.o || []).map((o, i) => `<li class="${i === q.a ? 'nq-exam-opcao-certa' : i === ans?.chosen ? 'nq-exam-opcao-errada' : ''}">${letras[i]}. ${escapeHtml(o)}${i === q.a ? ' <strong>— resposta correta</strong>' : i === ans?.chosen ? ' <strong>— sua resposta</strong>' : ''}</li>`).join('')}</ul>
+          <p class="nq-exam-explicacao">${escapeHtml(q.e || '')}</p>
+        </article>`;
       const mensagem = totalAnswered === 0 ? 'Nenhuma questão foi respondida.'
         : pct>=70?'Excelente! Aprovado com distinção.':pct>=60?'Aprovado! Continue estudando para aperfeiçoar.':pct>=40?'Abaixo da média. Revise as categorias com menor acerto.':'Resultado insuficiente. Use o Modo de Estudo para reforçar.';
 
       pagina.innerHTML = `
         <div class="nq-study-content" id="examResultado">
           <h1 id="examResultadoTitulo" tabindex="-1">Resultado da Prova</h1>
-          ${historicalViews.map(view => _examRevisionHtml(view, true)).join('')}
-          ${tempoEsgotado ? `<p class="nq-exam-aviso">O tempo de ${EXAM_DURATION_SEC / 60} minutos terminou. ${semResposta} ${semResposta === 1 ? 'questão ficou' : 'questões ficaram'} sem resposta.</p>` : ''}
+          ${historicalViews.map(view => _examRevisionHtml(view, true, true)).join('')}
+          ${tempoEsgotado ? `<p class="nq-exam-aviso">O tempo de ${durationSec / 60} minutos terminou. ${semResposta} ${semResposta === 1 ? 'questão ficou' : 'questões ficaram'} sem resposta.</p>` : ''}
           <dl class="nq-study-result-metrics">
             <div><dt>Acerto nas respondidas</dt><dd>${pct}%</dd></div>
             <div><dt>Corretas</dt><dd>${totalCorrect} de ${totalAnswered}</dd></div>
@@ -647,13 +717,9 @@
           ${!totalAnswered ? '' : erros.length ? `
             <details class="nq-exam-erros">
               <summary>Revisar erros (${erros.length})</summary>
-              ${erros.map(({q, ans}) => `
-                <article>
-                  <p>${escapeHtml(q.q)}</p>
-                  <ul>${(q.o || []).map((o, i) => `<li class="${i === q.a ? 'nq-exam-opcao-certa' : i === ans.chosen ? 'nq-exam-opcao-errada' : ''}">${letras[i]}. ${escapeHtml(o)}${i === q.a ? ' <strong>— resposta correta</strong>' : i === ans.chosen ? ' <strong>— sua resposta</strong>' : ''}</li>`).join('')}</ul>
-                  <p class="nq-exam-explicacao">${escapeHtml(q.e || '')}</p>
-                </article>`).join('')}
+              ${erros.map(reviewQuestion).join('')}
             </details>` : '<p class="nq-exam-mensagem">Nenhum erro entre as respondidas.</p>'}
+          ${demais.length ? `<details class="nq-exam-revisao-demais"><summary>Conferir demais questões (${demais.length})</summary>${demais.map(reviewQuestion).join('')}</details>` : ''}
           <div class="nq-exam-acoes">
             <button type="button" class="btn sec" data-action="_shareExamResult" data-args='[${pct},${totalCorrect},${totalAnswered}]'>Compartilhar</button>
             <button type="button" class="btn gold" data-action="_finishExam">Voltar ao menu</button>

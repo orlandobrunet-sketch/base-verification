@@ -3587,7 +3587,9 @@
       ui.gold.textContent=state.gold;
       // Streak visual com multiplicador
       const sm = getStreakMultiplier(state.streak);
-      $('guardianStreakMultiplier').textContent = `×${sm.mult}`;
+      const streakMultiplier = $('guardianStreakMultiplier');
+      streakMultiplier.hidden = sm.mult <= 1;
+      streakMultiplier.textContent = sm.mult > 1 ? `×${sm.mult.toLocaleString('pt-BR')}` : '';
       const streakTile = ui.streak.closest('.tile');
       if(streakTile) {
         streakTile.className = 'tile tile-streak';

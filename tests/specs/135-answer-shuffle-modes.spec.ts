@@ -184,7 +184,8 @@ test('simulado liga teclado, reload e revisão de erros à mesma alternativa ori
   await ready(page);
   await page.evaluate(() => (window as any).startExamMode());
   await page.getByRole('button', { name: 'Retomar prova' }).click();
-  await expect(page.locator('.nq-exam-veredito')).toHaveText('Correto.');
+  await expect(page.locator('.nq-exam-veredito,.nq-exam-opcao-certa,.nq-exam-opcao-errada')).toHaveCount(0);
+  await expect(page.locator('#examOpts .nq-exam-opcao-selecionada')).toContainText(first.o[first.a]);
   expect(await page.evaluate(() => JSON.stringify((0, eval)('_examState.questions')))).toBe(questionsBeforeReload);
   expect(await page.evaluate(() => (0, eval)('_examState.answers[0]'))).toEqual(answerBeforeReload);
   expect(await progressBytes(page)).toEqual(progress);
@@ -192,7 +193,8 @@ test('simulado liga teclado, reload e revisão de erros à mesma alternativa ori
   saved = await examSave(page);
   const wrongQuestion = saved.questions[1], wrong = (wrongQuestion.a + 1) % 4;
   await page.locator('#examOpts button').nth(wrong).click();
-  await expect(page.locator('#examOpts .nq-exam-opcao-errada')).toContainText(wrongQuestion.o[wrong]);
+  await expect(page.locator('#examOpts .nq-exam-opcao-selecionada')).toContainText(wrongQuestion.o[wrong]);
+  await expect(page.locator('.nq-exam-opcao-certa,.nq-exam-opcao-errada')).toHaveCount(0);
   expect((await examSave(page)).answers[1].authoredChoice).toBe(wrongQuestion._answerPresentation.order[wrong]);
   for (let i = 2; i < TOPICS.length; i++) {
     await page.getByRole('button', { name: 'Próxima questão' }).click();
@@ -218,8 +220,9 @@ test('prova antiga preserva snapshot próprio, escolha errada e ordem sem reinte
     (window as any).startExamMode();
   }, { questions: oldQuestions, answer: oldAnswer });
   await page.getByRole('button', { name: 'Retomar prova' }).click();
-  await expect(page.locator('.nq-exam-veredito')).toHaveText('Incorreto. A resposta certa é a C.');
-  await expect(page.locator('#examOpts .nq-exam-opcao-errada')).toContainText('Antiga zero');
+  await expect(page.locator('.nq-exam-veredito,.nq-exam-opcao-certa,.nq-exam-opcao-errada')).toHaveCount(0);
+  await expect(page.locator('#examCorrecao')).not.toContainText(oldQuestions[0].e);
+  await expect(page.locator('#examOpts .nq-exam-opcao-selecionada')).toContainText('Antiga zero');
   await page.getByRole('button', { name: 'Sair e continuar depois' }).click();
   const saved = await examSave(page);
   expect(saved.questions).toEqual(oldQuestions);

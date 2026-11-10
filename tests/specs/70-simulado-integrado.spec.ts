@@ -72,25 +72,31 @@ test('o teclado da prova não responde a questão escondida da jornada', async (
   expect(await page.evaluate(() => (0, eval)('_examState.answers[0].chosen'))).toBe(1);
 });
 
-test('a correção diz em texto qual era a certa e qual foi a sua', async ({ page }) => {
-  await entrar(page);
-  await comecar(page);
-  const certa = await gabarito(page);
-  const errada = (certa + 1) % 4;
-  const letras = ['A', 'B', 'C', 'D'];
+test('a correção final diz qual era a certa e qual foi a sua sem revelar durante a prova', async ({ page }) => {
+  await entrar(page);await abrirSimulado(page);
+  await page.getByLabel('Quantidade de questões',{exact:true}).fill('2');
+  await page.getByRole('button',{name:'Começar prova',exact:true}).click();
+  const first=await page.evaluate(()=>(0,eval)('_examState.questions[0]'));
+  const errada=(first.a+1)%4;
   await page.locator('#examOpts button').nth(errada).click();
   await expect(page.locator('#examCorrecao')).toBeFocused();
-  await expect(page.locator('.nq-exam-veredito')).toHaveText(`Incorreto. A resposta certa é a ${letras[certa]}.`);
+  await expect(page.locator('.nq-exam-veredito,.nq-exam-opcao-certa,.nq-exam-opcao-errada')).toHaveCount(0);
+  await expect(page.locator('#examCorrecao')).not.toContainText(first.e);
   await expect(page.locator('#examOpts li').nth(errada).locator('.nq-exam-marca')).toHaveText('Sua resposta');
-  await expect(page.locator('#examOpts li').nth(certa).locator('.nq-exam-marca')).toHaveText('Resposta correta');
-  // Corrigida, a alternativa deixa de ser botão: não há o que acionar.
   await expect(page.locator('#examOpts button')).toHaveCount(0);
-
-  await page.getByRole('button', { name: 'Próxima questão' }).click();
-  await expect(page.getByRole('heading', { name: 'Questão 2 de 60' })).toBeFocused();
-  await page.locator('#examOpts button').nth(await gabarito(page)).click();
-  await expect(page.locator('.nq-exam-veredito')).toHaveText('Correto.');
-  await expect(page.locator('.nq-exam-opcao-certa .nq-exam-marca')).toHaveText('Sua resposta — correta');
+  await page.getByRole('button',{name:'Próxima questão',exact:true}).click();
+  await expect(page.getByRole('heading',{name:'Questão 2 de 2',exact:true})).toBeFocused();
+  const second=await page.evaluate(()=>(0,eval)('_examState.questions[1]'));
+  await page.locator('#examOpts button').nth(second.a).click();
+  await expect(page.locator('.nq-exam-veredito,.nq-exam-opcao-certa,.nq-exam-opcao-errada')).toHaveCount(0);
+  await page.getByRole('button',{name:'Ver resultado',exact:true}).click();
+  await page.locator('.nq-exam-erros summary').click();
+  await expect(page.locator('.nq-exam-erros .nq-exam-opcao-errada')).toContainText(first.o[errada]);
+  await expect(page.locator('.nq-exam-erros .nq-exam-opcao-certa')).toContainText(first.o[first.a]);
+  await expect(page.locator('.nq-exam-erros')).toContainText(first.e);
+  await page.locator('.nq-exam-revisao-demais summary').click();
+  await expect(page.locator('.nq-exam-revisao-demais .nq-exam-opcao-certa')).toContainText(second.o[second.a]);
+  await expect(page.locator('.nq-exam-revisao-demais')).toContainText(second.e);
 });
 
 test('encerrar pede confirmação na página; cancelar volta à prova', async ({ page }) => {
@@ -189,7 +195,7 @@ for (const largura of [320, 390]) {
     const auditoria = await page.evaluate(auditarVisual, '#examPage');
     expect(auditoria.medidos.geometria).toBeGreaterThan(0);
     expect(auditoria.falhas, JSON.stringify(auditoria.falhas, null, 1)).toEqual([]);
-    for (const sel of ['#examTimer', '.nq-exam-titulo', '.nq-exam-enunciado', '.nq-exam-marca', '.nq-exam-veredito', '.nq-exam-correcao p', '.nq-exam-nota', '.nq-exam-opcao-neutra', '.nq-exam-opcao-certa', '.nq-exam-opcao-errada']) {
+    for (const sel of ['#examTimer', '.nq-exam-titulo', '.nq-exam-enunciado', '.nq-exam-marca', '.nq-exam-registro p', '.nq-exam-opcao-selecionada', '.nq-exam-nota', '.nq-exam-opcao-neutra']) {
       expect(await page.evaluate(medirContraste, `#examPage ${sel}`), sel).toEqual([]);
     }
   });

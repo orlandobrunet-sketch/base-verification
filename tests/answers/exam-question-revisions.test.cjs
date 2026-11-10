@@ -43,7 +43,7 @@ function saved(f, { answered = false, bindings = true } = {}) {
     authoredChoice: answers.originalIndex(q, chosen), optionId: answers.optionId(q, chosen), cat: 'technical' }] : [],
     ...(bindings ? { questionRevisionBindings: [clone(f.binding)] } : {}), startTime: Date.now() - 1000, savedAt: Date.now() };
 }
-function harness({ f = fixture(), initial = saved(f), legacy = false, failure = null, load = null } = {}) {
+function harness({ f = fixture(), initial = saved(f), legacy = false, failure = null, load = null, count = 1 } = {}) {
   const map = new Map(initial === null ? [] : [[KEY, JSON.stringify(initial)]]);
   const events = { writes: 0, tracks: 0, loads: 0 };
   const scope = { epoch: 1, owner: 'technical-owner' };
@@ -55,7 +55,11 @@ function harness({ f = fixture(), initial = saved(f), legacy = false, failure = 
   const context = vm.createContext({ console: { error() {} }, localStorage: storage,
     window: { NQAnswers: answers, ...(legacy ? {} : { NQ_REQUIRES_QUESTION_REVISIONS: true, NQQuestionRevisions: revisions,
       NQQuestionRevisionManifest: f.manifest, NQQuestionRevisionHistory: f.history, questionRevisionCatalog: f.catalog }) },
-    document: { getElementById(id) { return id === 'examPage' ? page : id === 'examResultado' && page.innerHTML.includes('id="examResultado"') ? {} : null; },
+    document: { getElementById(id) {
+      if (id === 'examQuestionCount') return { value: String(count) };
+      if (id === 'examDurationMinutes') return { value: '90' };
+      return id === 'examPage' ? page : id === 'examResultado' && page.innerHTML.includes('id="examResultado"') ? {} : null;
+    },
       querySelector() { return null; }, querySelectorAll() { return []; }, removeEventListener() {}, body: { classList: { remove() {} } } },
     _captureJourneyBinding: () => ({ ...scope }), _matchesJourneyBinding: binding => binding.epoch === scope.epoch && binding.owner === scope.owner,
     _loadTopics: async () => { events.loads++; if (load) await load(scope); }, questionBank: [clone(currentSource)],
@@ -75,9 +79,19 @@ test('historical answered exam resumes exact shuffled snapshot and grade with ze
   assert.equal(h.map.get(KEY), raw); assert.equal(h.events.writes, 0); assert.equal(h.events.tracks, 0);
   assert.match(h.page.innerHTML, /data-question-revision="historical"/);
   assert.match(h.page.innerHTML, /versão technical-earlier/);
-  assert.match(h.page.innerHTML, /Earlier explanation/); assert.match(h.page.innerHTML, /Current explanation/);
+  assert.doesNotMatch(h.page.innerHTML, /Earlier explanation|Current explanation|nq-exam-veredito|nq-exam-opcao-certa/);
   h.run('_examAnswer(0)'); assert.equal(h.events.tracks, 0);
+  h.run('_examNext()');
+  assert.match(h.page.innerHTML, /id="examResultado"/);
+  assert.match(h.page.innerHTML, /Earlier explanation/); assert.match(h.page.innerHTML, /Current explanation/);
+  assert.match(h.page.innerHTML, /Conteúdo atual, separado da avaliação registrada/);
+  assert.deepEqual(h.state().questions, initial.questions);
+  assert.deepEqual(h.state().answers, initial.answers);
+  assert.equal(h.map.get(KEY), raw); assert.equal(h.events.writes, 0); assert.equal(h.events.tracks, 0);
   await h.run('_examRetomar()'); assert.equal(h.map.get(KEY), raw); assert.equal(h.events.tracks, 0);
+  assert.doesNotMatch(h.page.innerHTML, /Earlier explanation|Current explanation|nq-exam-veredito|nq-exam-opcao-certa/);
+  assert.deepEqual(h.state().questions, initial.questions); assert.deepEqual(h.state().answers, initial.answers);
+  assert.equal(h.events.writes, 0);
 });
 
 test('pending material exam blocks answer/advance until explicit update and preserves original raw/counters', async () => {
@@ -220,7 +234,9 @@ test('blocked write does not let expiry callback reclassify or delete original e
 
 test('fresh exam persists profile-specific bindings before its first answer', async () => {
   const h = harness({ initial: null }); await h.run('_examComecar()');
+  assert.equal(h.events.loads, 1);
   const stored = JSON.parse(h.map.get(KEY));
+  assert.equal(stored.questionCount, 1); assert.equal(stored.durationSec, 5400);
   assert.equal(stored.questionRevisionBindings[0].profile, 'exam');
   assert.equal(stored.questionRevisionBindings[0].qid, stored.questions[0].id);
   assert.equal(h.events.tracks, 0); assert.equal(h.state().questions[0].q, currentSource.q);
@@ -240,9 +256,13 @@ test('new binding profile cannot be reused for exam from campaign', async () => 
 
 test('answered historical result reports stored grade without regrading against current key', async () => {
   const f = fixture(), initial = saved(f, { answered: true }), h = harness({ f, initial });
+  const raw = h.map.get(KEY);
   await h.run('_examRetomar()'); h.run('showExamResults()');
+  assert.doesNotMatch(h.page.innerHTML, /id="examResultado"|Earlier explanation|Current explanation/);
+  h.run('_examNext()');
   assert.match(h.page.innerHTML, /<dd>100%<\/dd>/); assert.match(h.page.innerHTML, /Current explanation/);
   assert.equal(h.events.tracks, 0); assert.deepEqual(h.state().answers, initial.answers);
+  assert.deepEqual(h.state().questions, initial.questions); assert.equal(h.map.get(KEY), raw); assert.equal(h.events.writes, 0);
 });
 
 
@@ -294,6 +314,7 @@ test('current answer readback exception restores original durable answer state b
 test('fresh exam with failed candidate readback removes its candidate when no earlier save existed', async () => {
   const h = harness({ initial: null }); failOneCandidateReadback(h);
   await h.run('_examComecar()'); assert.equal(h.state(), null); assert.equal(h.map.has(KEY), false); assert.equal(h.events.tracks, 0);
+  assert.equal(h.events.loads, 1); assert.equal(h.events.writes, 1);
 });
 
 test('interleaving writer during failed candidate readback is preserved without compensating over it', async () => {
@@ -336,6 +357,41 @@ test('legacy bundle with no revision globals retains native expired-save complet
   assert.match(h.page.innerHTML, /Resultado da Prova/); assert.equal(h.map.has(KEY), false); assert.equal(h.events.tracks, 0);
 });
 
+for (const minutes of [180, 240]) {
+  test(`long exam ${minutes}min resumes beyond two hours without rewriting snapshot or grade`, async () => {
+    const f = fixture(), startTime = Date.now() - (minutes - 30) * 60000;
+    const initial = { ...saved(f, { answered: true }), durationSec: minutes * 60, startTime, savedAt: startTime };
+    const h = harness({ f, initial }), raw = h.map.get(KEY);
+    const loaded = h.run('_loadExamState()');
+    assert.notEqual(loaded.preserved, true); assert.equal(loaded.expirada, false);
+    await h.run('_examRetomar()');
+    assert.equal(h.state().durationSec, minutes * 60); assert.equal(h.state().startTime, startTime);
+    assert.deepEqual(h.state().questions, initial.questions); assert.deepEqual(h.state().answers, initial.answers);
+    assert(h.run('_examRestante()') > 0); assert(h.run('_examRestante()') <= 1800);
+    assert.doesNotMatch(h.page.innerHTML, /Earlier explanation|Current explanation/);
+    assert.equal(h.map.get(KEY), raw); assert.equal(h.events.writes, 0); assert.equal(h.events.tracks, 0);
+  });
+  test(`long exam ${minutes}min expiry uses its duration and preserves the old record`, async () => {
+    const f = fixture(), startTime = Date.now() - minutes * 60000 - 1000;
+    const initial = { ...saved(f, { answered: true }), durationSec: minutes * 60, startTime, savedAt: startTime };
+    const h = harness({ f, initial }), raw = h.map.get(KEY);
+    await h.run('_examRetomar()');
+    assert.match(h.page.innerHTML, /Resultado da Prova/);
+    assert(h.page.innerHTML.includes(`${minutes} minutos terminou`));
+    assert(h.page.innerHTML.includes(`<dd>${minutes}m0s</dd>`));
+    assert.deepEqual(h.state().answers, initial.answers); assert.equal(h.map.get(KEY), raw);
+    assert.equal(h.events.writes, 0); assert.equal(h.events.tracks, 0);
+  });
+}
+test('legacy exam without duration still expires at90min beyond two hours without migration writes', async () => {
+  const f = fixture(), startTime = Date.now() - 150 * 60000;
+  const initial = { ...saved(f, { answered: true }), startTime, savedAt: startTime };
+  const h = harness({ f, initial }), raw = h.map.get(KEY); await h.run('_examRetomar()');
+  assert.equal(h.state().durationSec, 5400); assert.match(h.page.innerHTML, /90 minutos terminou/);
+  assert.deepEqual(h.state().answers, initial.answers); assert.equal(h.map.get(KEY), raw);
+  assert.equal(h.events.writes, 0); assert.equal(h.events.tracks, 0);
+});
+
 // A reference-only revision can keep the exact question source while changing
 // its record revision. A fresh exam must select current bindings explicitly;
 // an older unbound save must retain the resolver's ambiguity.
@@ -368,7 +424,7 @@ function referenceOnlyFixture(qid) {
   return { ...bundle, question, binding: archived.binding, archived, current };
 }
 function publishedFreshHarness(qid, fault) {
-  const f = referenceOnlyFixture(qid), h = harness({ f, initial: null });
+  const f = referenceOnlyFixture(qid), h = harness({ f, initial: null, count: 60 });
   h.context.questionBank = clone(f.sources.exam);
   let timers = 0;
   h.context.setInterval = () => ++timers;
@@ -394,6 +450,7 @@ for (const qid of REFERENCE_ONLY_QIDS) {
   test('published reference-only ' + qid + ': fresh exam binds all 60 current questions and resumes exact save', async () => {
     const h = publishedFreshHarness(qid);
     await h.run('_examComecar()');
+    assert.equal(h.events.loads, 1);
     const state = h.state();
     assert(state, 'fresh exam must start instead of preserving an ambiguous new draw');
     assert.match(h.page.innerHTML, /Quest\u00e3o 1 de 60/);
@@ -445,6 +502,7 @@ for (const fault of ['missing-catalog', 'missing-current', 'incompatible-source'
   test('fresh published exam fails closed for ' + fault + ' without storage writes, credit or timer', async () => {
     const h = publishedFreshHarness(REFERENCE_ONLY_QIDS[0], fault), before = [...h.map.entries()];
     await h.run('_examComecar()');
+    assert.equal(h.events.loads, 1);
     assert.equal(h.state(), null); assert.match(h.page.innerHTML, /Prova preservada/);
     assert.deepEqual([...h.map.entries()], before);
     assert.equal(h.events.writes, 0); assert.equal(h.events.tracks, 0); assert.equal(h.timers(), 0);
