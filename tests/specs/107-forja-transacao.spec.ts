@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
+import { installCloudBackendRecorder } from '../helpers/pilot';
 
 
 test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
@@ -514,23 +515,33 @@ test('nuvem v6 mais recente não perde escolha paga v7 e reenvia o save protegid
   });
   await page.evaluate(() => (window as any).continueGame());
   await expect(page.locator('#mainApp')).toBeVisible();
+  await installCloudBackendRecorder(page);
+  await page.evaluate(async () => {
+    const target = window as any;
+    const initial = JSON.parse(localStorage.getItem('nefroquest-save-v7')!);
+    target.__pilotCloudProfiles['forja-owner-A'] = {
+      game_progress: { save: initial }, game_progress_version: 0,
+    };
+    await (0, eval)('_loadProgressFromCloud({forSync:true})');
+  });
   await page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first().click();
   await page.getByRole('button', { name: 'Forjar item aleatório', exact: true }).click();
   const paid = await save(page);
   const paidRaw = await rawSave(page);
   const uploads = await page.evaluate(async paid => {
-    const uploads: any[] = [];
     const { forjaPending, saveOwner, saveRevision, ...legacy } = paid;
-    (window as any).__nqUploads = uploads;
-    (0, eval)(`_supaClient = { from: name => ({ update: payload => ({ eq: async (key, owner) => { window.__nqUploads.push({name, payload, key, owner}); } }) }) }`);
+    (window as any).__pilotBackendWrites = [];
+    (window as any).__pilotBackendCloudFilters = [];
+    // This legacy observation arrived late. The versioned server row is still
+    // the acknowledged pre-forge snapshot and is read again before uploading.
     (window as any)._mergeCloudProgress({ save: { ...legacy, schemaVersion: 6, timestamp: Date.now() + 10000 } });
     await (0, eval)('_syncProgressToCloud()');
-    return uploads;
+    return { writes: (window as any).__pilotBackendWrites, filters: (window as any).__pilotBackendCloudFilters };
   }, paid);
   expect(await rawSave(page)).toBe(paidRaw);
-  expect(uploads).toHaveLength(1);
-  expect(uploads[0].owner).toBe('forja-owner-A');
-  expect(uploads[0].payload.game_progress.save).toEqual(paid);
+  expect(uploads.writes).toHaveLength(1);
+  expect(uploads.filters).toEqual([{ id: 'forja-owner-A', game_progress_version: 0 }]);
+  expect(uploads.writes[0].payload.game_progress.save).toEqual(paid);
   expect((await estado(page)).forjaPending).toEqual(paid.forjaPending);
 });
 
@@ -546,14 +557,35 @@ test('query de nuvem iniciada antes da compra não substitui a Forja paga por sa
   });
   await page.evaluate(() => (window as any).continueGame());
   await expect(page.locator('#mainApp')).toBeVisible();
+  await installCloudBackendRecorder(page);
+  await page.evaluate(async () => {
+    const target = window as any;
+    const initial = JSON.parse(localStorage.getItem('nefroquest-save-v7')!);
+    target.__lateCloudRemote = {
+      stats: { bestScore: 4242 }, achievements: ['remote-monotonic'], save: initial,
+    };
+    target.__pilotCloudProfiles['forja-owner-A'] = {
+      game_progress: target.__lateCloudRemote, game_progress_version: 0,
+    };
+    await (0, eval)('_loadProgressFromCloud({forSync:true})');
+  });
   await page.clock.install();
   await page.evaluate(() => {
-    (window as any).__lateCloudUploads = [];
-    (0, eval)(`_supaClient = {from: () => ({
-      select: () => ({eq: () => ({single: () => new Promise(resolve => {window.__lateCloudResolve = resolve;})})}),
-      update: payload => ({eq: async () => {window.__lateCloudUploads.push(payload);}})
-    })}`);
-    (window as any).__lateCloudLoad = (0, eval)('_loadProgressFromCloud()');
+    const target = window as any;
+    target.__pilotBackendWrites = [];
+    const from = target.__pilotBackend.from.bind(target.__pilotBackend);
+    let holdNextRead = true;
+    target.__pilotBackend.from = (table: string) => {
+      const query = from(table);
+      const single = query.single.bind(query);
+      query.single = () => {
+        if (!holdNextRead) return single();
+        holdNextRead = false;
+        return new Promise(resolve => { target.__lateCloudResolve = resolve; });
+      };
+      return query;
+    };
+    target.__lateCloudLoad = (0, eval)('_loadProgressFromCloud()');
   });
   await page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first().click();
   await page.getByRole('button',{name:'Forjar item aleatório',exact:true}).click();
@@ -561,19 +593,18 @@ test('query de nuvem iniciada antes da compra não substitui a Forja paga por sa
   const paidRaw = await rawSave(page);
   expect(paid.gold).toBe(4700);
   expect(paid.forjaPending).not.toBeNull();
-  await page.evaluate(async paid => {
-    (window as any).__lateCloudResolve({data:{game_progress:{stats:{bestScore:4242},achievements:['remote-monotonic'],save:{
-      ...paid,gold:999,forjaPending:null,saveRevision:'remote-after-query',timestamp:Date.now()+100000
-    }}}});
-    await (window as any).__lateCloudLoad;
-  }, paid);
+  await page.evaluate(async () => {
+    const target = window as any;
+    target.__lateCloudResolve({data:{game_progress:target.__lateCloudRemote,game_progress_version:0},error:null});
+    await target.__lateCloudLoad;
+  });
   await page.clock.fastForward(2200);
   expect(await rawSave(page)).toBe(paidRaw);
   expect((await estado(page)).gold).toBe(4700);
   expect((await estado(page)).forjaPending).toEqual(paid.forjaPending);
   expect((await estado(page)).gameStarted).toBe(true);
   await expect(page.locator('#forjaPage')).toBeVisible();
-  const uploads = await page.evaluate(() => (window as any).__lateCloudUploads);
+  const uploads = await page.evaluate(() => (window as any).__pilotBackendWrites.map((write: any) => write.payload));
   expect(uploads).toHaveLength(1);
   expect(uploads[0].game_progress.save).toEqual(paid);
   expect(uploads[0].game_progress.stats.bestScore).toBe(4242);

@@ -383,3 +383,45 @@ export async function installBackendRecorder(page: Page) {
     await route.fulfill({ status: 200, contentType: 'application/json', body: '[]' });
   });
 }
+
+export async function installCloudBackendRecorder(page: Page) {
+  await installBackendRecorder(page);
+  await page.evaluate(() => {
+    const target = window as any;
+    const originalFrom = target.__pilotBackend.from.bind(target.__pilotBackend);
+    target.__pilotCloudProfiles = {};
+    target.__pilotBackendCloudFilters = [];
+    target.__pilotBackend.from = (table: string) => {
+      if (table !== 'profiles') return originalFrom(table);
+      const filters: Record<string, unknown> = {};
+      let columns = '';
+      let payload: any = null;
+      const finish = async () => {
+        const owner = String(filters.id || '');
+        const profile = target.__pilotCloudProfiles[owner] ||
+          { game_progress: null, game_progress_version: 0 };
+        if (payload) {
+          target.__pilotBackendWrites.push({ table, payload });
+          target.__pilotBackendCloudFilters.push({ ...filters });
+          if (filters.game_progress_version !== profile.game_progress_version) return { data: null, error: null };
+          if (payload.game_progress_version !== profile.game_progress_version + 1) {
+            return { data: null, error: { code: '40001', message: 'Stale progress fixture' } };
+          }
+          target.__pilotCloudProfiles[owner] = JSON.parse(JSON.stringify(payload));
+          return { data: JSON.parse(JSON.stringify(payload)), error: null };
+        }
+        target.__pilotBackendReads.push(table);
+        return { data: columns.includes('game_progress')
+          ? JSON.parse(JSON.stringify(profile)) : { is_premium: false }, error: null };
+      };
+      const query: any = {
+        select: (value: string) => { columns = value; return query; },
+        update: (value: unknown) => { payload = value; return query; },
+        eq: (key: string, value: unknown) => { filters[key] = value; return query; },
+        single: finish, maybeSingle: finish,
+        then: (resolve: any, reject: any) => finish().then(resolve, reject),
+      };
+      return query;
+    };
+  });
+}

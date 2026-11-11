@@ -32,6 +32,7 @@
     let _authSessionEpoch = 0;
     let _explicitLoginIntent = false;
     let _explicitSessionOwner = null;
+    let _explicitLogoutMarker = null;
     function _markExplicitLoginIntent(value) {
       _explicitLoginIntent = value;
       try {
@@ -44,7 +45,15 @@
       catch (e) { return _explicitLoginIntent; }
     }
     function _acceptSessionUser(candidateUser, event = '') {
-      if (candidateUser && (event === 'PASSWORD_RECOVERY' || _hasExplicitLoginIntent())) _explicitSessionOwner = candidateUser.id;
+      if (candidateUser && (event === 'PASSWORD_RECOVERY' || _hasExplicitLoginIntent())) {
+        _explicitSessionOwner = candidateUser.id;
+        try {
+          const raw = localStorage.getItem(CANONICAL_SAVE_KEY);
+          const marker = JSON.parse(raw || 'null');
+          _explicitLogoutMarker = marker?.save === null && marker.resetReason === 'logout' && marker.saveOwner === candidateUser.id
+            ? { owner: candidateUser.id, raw } : null;
+        } catch { _explicitLogoutMarker = null; }
+      }
       if (candidateUser && typeof window._signedOutSaveNeedsLogin === 'function' &&
           window._signedOutSaveNeedsLogin(candidateUser.id) && _explicitSessionOwner !== candidateUser.id) return false;
       if (candidateUser) _explicitSessionOwner = candidateUser.id;
@@ -53,8 +62,43 @@
     function _setAuthSessionUser(user) {
       const ownerChanged = (authUser?.id || null) !== (user?.id || null);
       authUser = user;
+      if (!user) _explicitLogoutMarker = null;
       if (ownerChanged) window._closeAccountOnOwnerChange?.();
+      if (ownerChanged) window._resetCloudSync?.();
     }
+    function _showSignedOutPortal() {
+      document.getElementById('welcomeScreen')?.classList.add('hidden');
+      document.getElementById('mainApp')?.classList.add('hidden');
+      document.getElementById('landingScreen')?.classList.remove('hidden');
+    }
+    window._retireAuthFromSharedLogout = function (owner, raw) {
+      let marker;
+      try {
+        marker = JSON.parse(raw || 'null');
+        if (localStorage.getItem(CANONICAL_SAVE_KEY) !== raw) return false;
+      } catch { return false; }
+      if (!owner || authUser?.id !== owner || marker?.save !== null ||
+          marker.resetReason !== 'logout' || marker.saveOwner !== owner) return false;
+      // Explicit login may be awaiting its cloud read when an older storage
+      // event arrives. That exact marker was already accepted by this login.
+      if (_explicitLogoutMarker?.owner === owner && _explicitLogoutMarker.raw === raw) return false;
+      ++_authSessionEpoch;
+      _explicitSessionOwner = null;
+      _markExplicitLoginIntent(false);
+      _setAuthSessionUser(null);
+      // The other tab owns shared-storage cleanup. Only retire this tab's
+      // accepted session and live controls; a newer owner's data must survive.
+      window._stopLocalJourney?.();
+      _guestMode = false;
+      _guestHookShown = false;
+      _invalidatePremiumCache();
+      _invalidateStatsCache();
+      closeAuthModal();
+      updateWelcomeUserBadge();
+      _showSignedOutPortal();
+      _finishAuthStartup();
+      return true;
+    };
     Object.defineProperty(window, 'authUser', {
       get() { return authUser; },
       set(val) {
@@ -67,23 +111,45 @@
     let _guestHookShown = false;
     let _guestQuestionCount = 0;
     const GUEST_FREE_LIMIT = 15;
+    let _authSessionHandler = null;
+    let _paymentResumeWaitingForReady = false;
+
+    function _finishAuthStartup() {
+      clearTimeout(window.__nqAuthStartupTimer);
+      document.documentElement.classList.remove('nq-auth-pending');
+    }
+    function _resumePaymentAfterLogin() {
+      if (typeof window._resumePendingPayment === 'function') {
+        window._resumePendingPayment();
+        return;
+      }
+      if (_paymentResumeWaitingForReady) return;
+      _paymentResumeWaitingForReady = true;
+      document.addEventListener('DOMContentLoaded', () => {
+        _paymentResumeWaitingForReady = false;
+        if (authUser && typeof window._resumePendingPayment === 'function') window._resumePendingPayment();
+      }, { once: true });
+    }
 
     (function initSupaAuth() {
       try { _guestMode = localStorage.getItem('nq_guest_mode') === '1'; }
       catch { _guestMode = false; }
       if (typeof supabase === 'undefined') {
         _track('error_supabase_missing');
+        _finishAuthStartup();
         _consumeLoginIntent();
         return;
       }
       _supaClient = supabase.createClient(SUPA_URL, SUPA_KEY);
 
-      _supaClient.auth.onAuthStateChange(async (event, session) => {
+      _authSessionHandler = (event, session) => {
         const candidateUser = session?.user ?? null;
         if (!_acceptSessionUser(candidateUser, event)) {
           _setAuthSessionUser(null);
           if (typeof window._stopLocalJourney === 'function') window._stopLocalJourney();
           updateWelcomeUserBadge();
+          if (!_guestMode) _showSignedOutPortal();
+          _finishAuthStartup();
           return;
         }
         const progressReady = typeof window._prepareProgressOwner !== 'function' ||
@@ -94,6 +160,7 @@
         }
         if (event === 'PASSWORD_RECOVERY') {
           _setAuthSessionUser(candidateUser);
+          _finishAuthStartup();
           showUpdatePasswordModal();
           return;
         }
@@ -109,8 +176,6 @@
           _loadPremiumFromDB();
           if (progressReady) _loadProgressFromCloud();
           checkFirstTimeOnboarding();
-          // Se havia plano pendente (usuário clicou em pagar antes de fazer login)
-          _resumePendingPayment();
         } else {
           localStorage.removeItem(PREMIUM_KEY);
           localStorage.removeItem(WHITELIST_KEY);
@@ -119,13 +184,18 @@
           _invalidatePremiumCache();
         }
         updateWelcomeUserBadge();
-      });
+        if (!authUser && !_guestMode) _showSignedOutPortal();
+        _finishAuthStartup();
+        // O módulo de pagamentos pode ainda estar na fila de scripts defer.
+        if (authUser) _resumePaymentAfterLogin();
+      };
+      _supaClient.auth.onAuthStateChange(_authSessionHandler);
 
       const initialSessionEpoch = _authSessionEpoch;
       _supaClient.auth.getSession().then(({ data: { session } }) => {
         if (_authSessionEpoch !== initialSessionEpoch) return;
         const candidateUser = session?.user ?? null;
-        if (!_acceptSessionUser(candidateUser)) { _setAuthSessionUser(null); updateWelcomeUserBadge(); _consumeLoginIntent(); return; }
+        if (!_acceptSessionUser(candidateUser)) { _setAuthSessionUser(null); updateWelcomeUserBadge(); if (!_guestMode) _showSignedOutPortal(); _finishAuthStartup(); _consumeLoginIntent(); return; }
         const progressReady = typeof window._prepareProgressOwner !== 'function' ||
           window._prepareProgressOwner(candidateUser?.id || null);
         _setAuthSessionUser(candidateUser);
@@ -137,9 +207,11 @@
           _invalidatePremiumCache();
         }
         updateWelcomeUserBadge();
+        _finishAuthStartup();
         _consumeLoginIntent();
       }).catch(() => {
         updateWelcomeUserBadge();
+        _finishAuthStartup();
         _consumeLoginIntent();
       });
     })();
@@ -270,7 +342,14 @@
       _setAuthMsg('', '');
     }
     function closeAuthModal() {
-      document.getElementById('authModal').classList.remove('show');
+      const modal = document.getElementById('authModal');
+      modal.classList.remove('show');
+      if (authUser) queueMicrotask(() => {
+        const welcome = document.getElementById('welcomeScreen');
+        if (!modal.classList.contains('show') && welcome && !welcome.classList.contains('hidden')) {
+          document.getElementById('atriumMain')?.focus({ preventScroll: true });
+        }
+      });
     }
     let _windowJustFocused = false;
     window.addEventListener('focus', () => { _windowJustFocused = true; setTimeout(() => { _windowJustFocused = false; }, 300); });
@@ -499,7 +578,7 @@
       const captchaToken = _cfCaptchaToken();
       try {
         _markExplicitLoginIntent(true);
-        const { error } = await _supaClient.auth.signInWithPassword({
+        const { data, error } = await _supaClient.auth.signInWithPassword({
           email, password,
           ...(captchaToken ? { options: { captchaToken } } : {})
         });
@@ -512,7 +591,16 @@
               : 'Não foi possível entrar agora. Tente novamente.';
           _setAuthMsg(msg, 'error');
           _markAuthInvalid(['authEmail', 'authPassword']);
-        } else { closeAuthModal(); }
+        } else {
+          const acceptedSession = data?.session || (data?.user ? { user: data.user } : null);
+          if (acceptedSession?.user && authUser?.id !== acceptedSession.user.id && _authSessionHandler) {
+            _authSessionHandler('SIGNED_IN', acceptedSession);
+          }
+          // Reveal the destination in the same task that closes the form,
+          // even when the SDK's event notification arrives after its response.
+          if (authUser) { updateWelcomeUserBadge(); closeAuthModal(); }
+          else _setAuthMsg('Confirmando seu acesso…', 'success');
+        }
       } catch { _markExplicitLoginIntent(false); _setAuthMsg('Erro de conexão. Tente novamente.', 'error'); }
       finally { btn.disabled = false; btn.textContent = 'Entrar no NefroQuest'; _cfCaptchaReset(); }
     }
@@ -596,6 +684,10 @@
       finally { btn.disabled = false; btn.textContent = 'Reenviar email'; _cfCaptchaReset(); }
     }
     async function authLogout({ localOnly = false, expectedOwner } = {}) {
+      if (window._authLogoutPending) return false;
+      window._authLogoutPending = true;
+      try {
+      window._resetCloudSync?.();
       const client = _supaClient;
       let signOutSdk = !!client;
       if (expectedOwner !== undefined) {
@@ -609,6 +701,7 @@
       const owner = authUser?.id || null;
       const logoutEpoch = ++_authSessionEpoch;
       _explicitSessionOwner = null;
+      _explicitLogoutMarker = null;
       _markExplicitLoginIntent(false);
       // Stop local writes before awaiting the SDK, including visitor sessions
       // where the SDK is unavailable or signOut cannot reach the network.
@@ -637,6 +730,9 @@
       document.getElementById('welcomeScreen')?.classList.add('hidden');
       document.getElementById('landingScreen')?.classList.remove('hidden');
       document.getElementById('mainApp')?.classList.add('hidden');
+      } finally {
+        window._authLogoutPending = false;
+      }
     }
 
     function playAsGuest() {

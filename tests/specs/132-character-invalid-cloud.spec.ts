@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import {
-  answerTechnical, attachPilotFailureDiagnostics, installBackendRecorder,
+  answerTechnical, attachPilotFailureDiagnostics, installCloudBackendRecorder,
   PILOT_KEY, seedLegacyPilot, setupPilotPage, startNormalCharacter,
 } from '../helpers/pilot';
 
@@ -13,19 +13,7 @@ test.beforeEach(async ({ page }) => setupPilotPage(page));
 test.afterEach(async ({ page }, testInfo) => attachPilotFailureDiagnostics(page, testInfo));
 
 async function installCloudRecorder(page: Page) {
-  await installBackendRecorder(page);
-  await page.evaluate(() => {
-    const target = window as any;
-    const client = target.__pilotBackend;
-    const from = client.from.bind(client);
-    client.from = (table: string) => {
-      const chain = from(table);
-      return { ...chain, update: (payload: unknown) => {
-        target.__pilotBackendWrites.push({ table, payload });
-        return chain;
-      } };
-    };
-  });
+  await installCloudBackendRecorder(page);
 }
 
 for (const answered of [false, true]) {
@@ -65,7 +53,7 @@ for (const answered of [false, true]) {
     } else expect(valid.save.characterLastAnswer).toBeNull();
     expect(valid.writes).toHaveLength(1);
     expect(valid.writes[0]).toEqual({ table: 'profiles',
-      payload: { game_progress: expect.objectContaining({ save: valid.save }) } });
+      payload: { game_progress: expect.objectContaining({ save: valid.save }), game_progress_version: 1 } });
 
     const invalid = await page.evaluate(async ({ key, mirror, pilot, owner }) => {
       const target = window as any;

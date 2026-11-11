@@ -1549,3 +1549,11 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes .nqmodes-route { grid-template-columns: 28px minmax(0,1fr); gap: .5rem; }
   #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__modes .nqmodes-route__arrow { display: none; }
 }
+
+#welcomeScreen .wsaved-top { flex-wrap: wrap; }
+#cloudSyncStatus { flex-basis: 100%; text-align: right; }
+#cloudProgressConflict { z-index: 10002; padding: 1rem; }
+.cloud-conflict-card { width: min(100%, 34rem); max-height: calc(100dvh - 2rem); overflow: auto; overflow-wrap: anywhere; }
+.cloud-conflict-summary { margin: 1rem 0; padding: .75rem; border: 1px solid var(--blue-dark); border-radius: .5rem; }
+.cloud-conflict-card .modal-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.cloud-conflict-card button { min-height: 44px; white-space: normal; flex: 1 1 12rem; }

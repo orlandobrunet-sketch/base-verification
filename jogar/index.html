@@ -2,6 +2,23 @@
 <html lang="pt-BR">
 <head>
  <meta charset="UTF-8">
+  <script>
+    // Decide before the first paint: a returning session must not visit the Portal on its way to the Atrium.
+    (function () {
+      var query = new URLSearchParams(location.search);
+      var callback = query.has('code') || query.has('token_hash') || query.has('error') ||
+        /(?:^#|&)(?:access_token|refresh_token|error)=/.test(location.hash);
+      var returning = false;
+      try { returning = !!localStorage.getItem('sb-wviutasgroltjuyxpevc-auth-token'); } catch (e) {}
+      if (!callback && !returning) return;
+      document.documentElement.classList.add('nq-auth-pending');
+      window.__nqAuthStartupTimer = setTimeout(function () {
+        document.documentElement.classList.remove('nq-auth-pending');
+        var status = document.getElementById('portalRouteStatus');
+        if (status) status.textContent = 'A conexão está demorando. Você pode tentar entrar novamente.';
+      }, 12000);
+    })();
+  </script>
   <base href="/">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
@@ -78,7 +95,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.98',
+          release: 'nefroquest@16.99',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -133,12 +150,16 @@
     /* Evita o flash do conteúdo do app (vidas/ouro/streak no canto) antes do
        style.css aplicar .hidden. O CSS externo re-exibe quando o JS remove .hidden. */
     .hidden { display: none !important; }
+    .nq-auth-pending #landingScreen,
+    .nq-auth-pending #welcomeScreen { visibility: hidden !important; }
+    #authStartup { display: none; }
+    .nq-auth-pending #authStartup { display: grid !important; position: fixed; inset: 0; z-index: 1001; background: #0a0e1a; place-content: center; text-align: center; color: #e9e5d2; }
   </style>
   <link rel="stylesheet" href="style.css?v=16.69">
   <link rel="stylesheet" href="styles/lumen/tokens.css?v=15.77">
   <link rel="stylesheet" href="styles/lumen/shell.css?v=16.18">
-  <link rel="stylesheet" href="styles/lumen/portal.css?v=16.93">
-  <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.62">
+  <link rel="stylesheet" href="styles/lumen/portal.css?v=16.99">
+  <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.99">
   <link rel="stylesheet" href="styles/lumen/game.css?v=16.98">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.86">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.92">
@@ -314,6 +335,11 @@
   </div>
 
   <!-- LANDING / LOGIN SCREEN -->
+  <div id="authStartup" class="nql-auth-startup" data-nq-ui="lumen" role="status" aria-live="polite" aria-atomic="true">
+    <span class="nql-auth-startup__mark" aria-hidden="true"></span>
+    <strong>NefroQuest</strong>
+    <span>Preparando sua jornada…</span>
+  </div>
   <div id="landingScreen" data-nq-ui="lumen" data-lumen-state="reasoning">
     <section class="nql-portal" aria-labelledby="portalTitle">
       <a class="nql-skip-link" href="/jogar/#portalMain">Ir para o acesso</a>
@@ -819,6 +845,7 @@
               <div class="wsaved-top">
                 <span class="wsaved-label"><i aria-hidden="true"></i> Jornada ativa</span>
                 <span class="wsaved-time-lbl" id="wsSavedTime"></span>
+                <span class="wsaved-time-lbl" id="cloudSyncStatus" role="status" hidden></span>
               </div>
               <div class="wsaved-bottom">
                 <div class="wsaved-identity">
@@ -1846,10 +1873,10 @@
   <script defer src="js/audio.js?v=16.28"></script>
   <script defer src="js/leaderboard.js?v=16.47"></script>
   <script defer src="js/study-mode.js?v=16.69"></script>
-  <script defer src="js/game.js?v=16.98"></script>
+  <script defer src="js/game.js?v=16.99"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
-  <script defer src="js/auth.js?v=16.97"></script>
+  <script defer src="js/auth.js?v=16.99"></script>
   <script defer src="js/portal.js?v=16.93"></script>
   <script defer src="js/atrium.js?v=13.23"></script>
   <script defer src="js/paywall.js?v=16.97"></script>
