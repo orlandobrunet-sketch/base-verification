@@ -254,6 +254,7 @@ test.describe('Página 1 — Portal de Acesso Lúmen', () => {
   });
 
   test('explica quando o serviço de autenticação não carrega', async ({ page }) => {
+    await page.route('**/assets/vendor/supabase-js-2.106.2/supabase.js*', route => route.abort());
     await page.addInitScript(() => {
       Object.defineProperty(window, 'supabase', {
         configurable: false,

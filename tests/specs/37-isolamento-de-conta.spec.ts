@@ -1,6 +1,9 @@
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 
+// The SDK double must not be replaced by the worker's cached official script on reload.
+test.use({ serviceWorkers: 'block' });
+
 /**
  * NQ-01, primeiro item: nenhuma conta herda dados de outra no mesmo aparelho.
  *
@@ -61,7 +64,11 @@ async function abrirApp(page: Page) {
   // Este contrato usa armazenamento local e SDK simulado, não serviços externos.
   // CSS remoto de fontes já consumiu sozinho todo o orçamento antes da limpeza.
   const origin = new URL(test.info().project.use.baseURL as string || process.env.BASE_URL || 'http://localhost:5500').origin;
-  await page.route('**/*', route => new URL(route.request().url()).origin === origin ? route.continue() : route.abort());
+  await page.route('**/*', route => {
+    const url = new URL(route.request().url());
+    if (url.pathname === '/assets/vendor/supabase-js-2.106.2/supabase.js') return route.abort();
+    return url.origin === origin ? route.continue() : route.abort();
+  });
   await page.routeWebSocket('**/*', socket => socket.close());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => typeof (window as any).clearLocalProgress === 'function');

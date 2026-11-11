@@ -240,7 +240,7 @@
       if (e.ctrlKey || e.altKey || e.metaKey) return;
       if (e.key === 'Escape' && _examConfirmandoSaida) { e.preventDefault(); _examCancelarSaida(); return; }
       const alvo = e.target;
-      if (alvo instanceof Element && alvo.closest('button, a[href], summary, input, textarea')) return;
+      if (alvo instanceof Element && (alvo.closest('button, a[href], summary, input, textarea, select, [role="button"]') || alvo.isContentEditable)) return;
       if (!_examState || _examConfirmandoSaida || document.getElementById('examResultado')) return;
       const indice = { A: 0, B: 1, C: 2, D: 3, 1: 0, 2: 1, 3: 2, 4: 3 }[e.key.toUpperCase()];
       if (indice === undefined || _examState.answers[_examState.idx]) return;
@@ -283,14 +283,21 @@
     }
 
     function _examFocar(seletor) {
-      document.querySelector(seletor)?.focus({ preventScroll: true });
+      const alvo = document.querySelector(seletor);
+      if (!alvo) return;
+      alvo.focus({ preventScroll: true });
+      const area = alvo.getBoundingClientRect();
+      if (area.top < 16 || area.bottom > window.innerHeight - 16) {
+        alvo.style.scrollMarginBlock = '16px';
+        alvo.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'instant' });
+      }
     }
 
     // ── Início e retomada ─────────────────────────────────────────────────
     async function startExamMode() {
       if (!_examBindingCurrent()) _examFechar(false);
       const pagina = _examPagina();
-      if (_examState && !_examRevisionBlocked) { _examIniciarRelogio(); showExamQuestion(); return; }
+      if (_examState && !_examRevisionBlocked) { _examIniciarRelogio(); showExamQuestion(); _examFocar('#examQuestaoTitulo'); return; }
 
       const saved = _loadExamState();
       if (saved?.preserved) { _examRevisionHold('Não foi possível retomar esta prova com segurança. O registro salvo foi preservado.'); return; }
@@ -416,6 +423,7 @@
       if (!_saveExamState()) { _examState = prior; _examRevisionHold('Não foi possível confirmar o salvamento da prova. Confira o registro salvo antes de continuar.'); return; }
       _examIniciarRelogio();
       showExamQuestion();
+      _examFocar('#examQuestaoTitulo');
     }
 
     async function _examRetomar() {
@@ -448,6 +456,7 @@
       if (saved.completed) { showExamResults(); return; }
       _examIniciarRelogio();
       showExamQuestion();
+      _examFocar('#examQuestaoTitulo');
     }
 
     function _examUseCurrentRevision() {

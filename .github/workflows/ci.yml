@@ -327,6 +327,7 @@ jobs:
         if: always()
         # A coleta de diagnósticos não altera o resultado bloqueante dos testes.
         continue-on-error: true
+        timeout-minutes: 3
         uses: actions/upload-artifact@v4
         with:
           name: playwright-smoke-evidence
@@ -423,6 +424,7 @@ jobs:
         if: always()
         # A coleta de diagnósticos não altera o resultado bloqueante dos testes.
         continue-on-error: true
+        timeout-minutes: 3
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report-${{ matrix.shard }}

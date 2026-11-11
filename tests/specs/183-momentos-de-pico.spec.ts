@@ -126,5 +126,5 @@ test('a tecla V responde e a escolha aparece no botão grande', async ({ page })
   await page.keyboard.press('v');
   await expect(page.locator('#mgFeedback')).toBeVisible();
   await expect(page.locator('#mgTrue')).toBeDisabled();
-  await expect(page.locator('#mgProxima')).toBeFocused();
+  await expect(page.locator('#mgFeedback')).toBeFocused();
 });

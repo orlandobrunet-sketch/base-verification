@@ -2382,7 +2382,10 @@
       }
       return title(a).localeCompare(title(b), 'pt-BR', { sensitivity: 'base' });
     };
-    items.sort(compare).forEach(item => list.appendChild(item));
+    const orderedItems = [...items].sort(compare);
+    if (orderedItems.some((item, index) => item !== items[index])) {
+      orderedItems.forEach(item => list.appendChild(item));
+    }
 
     let visible = 0;
     items.forEach(item => {

@@ -103,6 +103,7 @@ async function openDevice(browser: Browser, baseURL: string, backend: SharedProf
   });
   await context.route('**/*', route => {
     const request = route.request();
+    if (new URL(request.url()).pathname === '/assets/vendor/supabase-js-2.106.2/supabase.js') return route.abort();
     if (['image', 'media', 'font'].includes(request.resourceType())) return route.abort();
     return new URL(request.url()).origin === new URL(baseURL).origin && request.method() === 'GET'
       ? route.continue() : route.abort();

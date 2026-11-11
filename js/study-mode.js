@@ -735,8 +735,11 @@
       if (returnFocus && returnFocus.isConnected && returnFocus.getClientRects().length && !returnFocus.closest('[hidden], [inert]')) {
         return returnFocus;
       }
-      return [...document.querySelectorAll('[data-action="openDashboard"], [data-action="showTopicSelector"]')]
-        .find(element => element.getClientRects().length && !element.closest('[hidden], [inert]')) || null;
+      const route = [...document.querySelectorAll('[data-action="openDashboard"], [data-action="showTopicSelector"]')]
+        .find(element => element.getClientRects().length && !element.closest('[hidden], [inert]'));
+      if (route) return route;
+      const main = document.getElementById('mainApp');
+      return main?.getClientRects().length && !main.inert ? main : null;
     }
 
     let _studySurfaceOrigin = null;
@@ -805,7 +808,7 @@
       window.scrollTo(0, 0);
       const binding = _studyProgressBinding;
       window.requestAnimationFrame(() => {
-        if (_studyBindingCurrent(binding) && surface.isConnected) {
+        if (_studyBindingCurrent(binding) && surface.isConnected && !surface.contains(document.activeElement)) {
           const target = surface.querySelector('[data-study-resume-choice] button') || surface.querySelector('button, [tabindex="0"]');
           target?.focus({ preventScroll: true });
         }

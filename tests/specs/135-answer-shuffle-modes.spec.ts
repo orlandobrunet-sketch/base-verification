@@ -248,6 +248,7 @@ test('Ritual corrige pela opção original e mantém o diagnóstico de oito resp
     await page.locator('#ritualOpts button').nth(chosen).click();
     await expect(page.locator('#ritualVeredito')).toHaveText(step === 1 ? `Incorreto. A resposta certa é a ${'ABCD'[displayed.correct]}.` : 'Correto.');
     await expect(page.locator('#ritualOpts button').nth(chosen)).toBeDisabled();
+    await page.getByRole('button', { name: step === 8 ? 'Ver resultado' : 'Próxima questão', exact: true }).click();
   }
   await expect(page.getByRole('heading', { name: 'Ritual concluído' })).toBeVisible();
   await expect(page.locator('#ritualPage')).toContainText('Você acertou 7 de 8');

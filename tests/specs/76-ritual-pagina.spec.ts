@@ -65,6 +65,7 @@ test('a mesma questão não conta duas vezes pelo teclado', async ({ page }) => 
   const botoes = page.locator('#ritualOpts button');
   await botoes.nth(0).click();
   await expect(botoes.nth(1)).toBeDisabled();
+  await expect(page.locator('#ritualVeredito')).toBeFocused();
   await botoes.nth(1).focus().catch(() => {});
   await page.keyboard.press('Enter');
   await expect(page.getByRole('heading', { name: 'Questão 2 de 8' })).toBeVisible({ timeout: 5000 });
@@ -102,6 +103,7 @@ test('concluir grava a recomendação; Escape e "Agora não" devolvem a jornada'
   for (let i = 1; i <= 8; i++) {
     await expect(page.getByRole('heading', { name: `Questão ${i} de 8` })).toBeVisible({ timeout: 5000 });
     await page.locator('#ritualOpts button').nth(await gabarito(page)).click();
+    await page.getByRole('button', { name: i === 8 ? 'Ver resultado' : 'Próxima questão', exact: true }).click();
   }
   await expect(page.getByRole('heading', { name: 'Ritual concluído' })).toBeFocused({ timeout: 5000 });
   await expect(page.locator('#ritualPage')).toContainText('Você acertou 8 de 8');

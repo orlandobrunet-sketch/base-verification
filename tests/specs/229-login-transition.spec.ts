@@ -10,6 +10,7 @@ async function controlledAuth(page: Page, stored = false, holdPaywall = false, m
   const paywallReady = new Promise<void>(resolve => { releasePaywall = resolve; });
   await page.route('**/*', async route => {
     const request = route.request();
+    if (new URL(request.url()).pathname === '/assets/vendor/supabase-js-2.106.2/supabase.js') return route.abort();
     if (holdPaywall && new URL(request.url()).pathname === '/js/paywall.js') await paywallReady;
     if (['image', 'media', 'font'].includes(request.resourceType())) return route.abort();
     return ['localhost', '127.0.0.1'].includes(new URL(request.url()).hostname)

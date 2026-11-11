@@ -80,7 +80,7 @@ test('a explicação fica até o jogador avançar, e a correção diz em texto',
   await expect(page.locator('#mgFeedback')).toContainText(`Incorreto. A afirmação é ${certa ? 'verdadeira' : 'falsa'}.`);
   await expect(page.locator(certa ? '#mgTrue' : '#mgFalse').locator('.nq-exam-marca')).toHaveText('Resposta correta');
   await expect(page.locator(certa ? '#mgFalse' : '#mgTrue').locator('.nq-exam-marca')).toHaveText('Sua escolha');
-  await expect(page.locator('#mgProxima')).toBeFocused();
+  await expect(page.locator('#mgFeedback')).toBeFocused();
   await page.waitForTimeout(2500);
   await expect(page.getByRole('heading', { name: 'Afirmação 1 de 10' }), 'a explicação sumiu sozinha').toBeVisible();
   await page.keyboard.press('Enter');
