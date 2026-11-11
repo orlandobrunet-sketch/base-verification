@@ -155,6 +155,9 @@
       let resultsShown = false;
       let concluir = null; // definido no resultado: entrega o prêmio e fecha
       const TIME_PER_Q = 12;
+      let deadline = 0;
+      let monotonicDeadline = 0;
+      let remainingMs = 0;
 
       const { pagina, fechar } = nqPaginaPropria('rapidQuizPage', 'Julgamento Rápido', {
         classe: 'nq-exam nq-julgamento',
@@ -170,10 +173,14 @@
       const sair = (options = {}) => {
         if (timerInterval) clearInterval(timerInterval);
         timerInterval = null;
+        document.removeEventListener('visibilitychange', atualizarRelogio);
+        window.removeEventListener('pageshow', atualizarRelogio);
         _minigameClosers.delete(sair);
         fechar(options);
       };
       _minigameClosers.add(sair);
+      document.addEventListener('visibilitychange', atualizarRelogio);
+      window.addEventListener('pageshow', atualizarRelogio);
       const current = () => pagina.isConnected && _minigameBindingCurrent(binding);
       const desenhar = (html, foco) => {
         if (!current()) return;
@@ -186,7 +193,9 @@
         if (!current()) return;
         if (currentIdx >= pool.length) { showResults(); return; }
         const q = pool[currentIdx];
-        let timeLeft = TIME_PER_Q;
+        deadline = Date.now() + TIME_PER_Q * 1000;
+        monotonicDeadline = performance.now() + TIME_PER_Q * 1000;
+        remainingMs = TIME_PER_Q * 1000;
         _answered = false;
         if (timerInterval) clearInterval(timerInterval);
 
@@ -212,27 +221,44 @@
         pagina.querySelector('#mgFalse').addEventListener('click', () => responder(false));
         pagina.querySelector('#mgSair').addEventListener('click', sair);
 
-        timerInterval = setInterval(() => {
-          if (!current()) { sair({restoreFocus:false, restoreOrigin:false}); return; }
-          timeLeft -= 0.1;
-          const fill = document.getElementById('mgTimerFill');
-          if (fill) fill.style.width = Math.max(0, (timeLeft / TIME_PER_Q * 100)) + '%';
-          const relogio = document.getElementById('mgRelogio');
-          if (relogio) {
-            relogio.textContent = Math.max(0, Math.ceil(timeLeft)) + ' s';
-            relogio.classList.toggle('nq-exam-urgente', timeLeft <= 3);
-          }
-          if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            responder(null);
-          }
-        }, 100);
+        timerInterval = setInterval(atualizarRelogio, 100);
+      }
+
+      function tempoRestante() {
+        // Date.now conta suspensão do dispositivo; o relógio monotônico impede
+        // que um ajuste regressivo do relógio civil conceda tempo extra.
+        remainingMs = Math.max(0, Math.min(remainingMs, deadline - Date.now(),
+          monotonicDeadline - performance.now()));
+        return remainingMs;
+      }
+
+      function atualizarRelogio() {
+        if (!current()) { sair({restoreFocus:false, restoreOrigin:false}); return; }
+        if (_answered || resultsShown) return;
+        const timeLeft = tempoRestante() / 1000;
+        desenharRelogio(timeLeft);
+        if (timeLeft <= 0) responder(null);
+      }
+
+      function desenharRelogio(timeLeft) {
+        const fill = document.getElementById('mgTimerFill');
+        if (fill) fill.style.width = (timeLeft / TIME_PER_Q * 100) + '%';
+        const relogio = document.getElementById('mgRelogio');
+        if (relogio) {
+          relogio.textContent = Math.ceil(timeLeft) + ' s';
+          relogio.classList.toggle('nq-exam-urgente', timeLeft <= 3);
+        }
       }
 
       function responder(userAns) {
         if (_answered || !current()) return; // previne double-click / double-fire por timer
+        if (tempoRestante() <= 0) {
+          userAns = null;
+          desenharRelogio(0);
+        }
         _answered = true;
         if (timerInterval) clearInterval(timerInterval);
+        timerInterval = null;
         const q = pool[currentIdx];
         const isCorrect = userAns === q.ans;
 

@@ -105,6 +105,34 @@ test('tempo esgotado diz a resposta e para o cronômetro', async ({ page }) => {
   await expect(page.getByRole('heading', { name: 'Afirmação 1 de 10' })).toBeVisible();
 });
 
+for (const retorno of ['visibilitychange', 'pageshow', 'resposta tardia']) {
+  test(`prazo real expira sem ticks: ${retorno}`, async ({ page }) => {
+    await abrir(page, { relogio: true });
+    const agora = await page.evaluate(() => Date.now());
+    // Avança apenas o relógio civil: nenhum callback do intervalo é executado.
+    await page.clock.setFixedTime(agora + 13_000);
+    await page.evaluate(retorno => {
+      if (retorno === 'resposta tardia') document.getElementById('mgTrue')!.click();
+      else if (retorno === 'pageshow') window.dispatchEvent(new Event('pageshow'));
+      else document.dispatchEvent(new Event('visibilitychange'));
+      window.dispatchEvent(new Event('pageshow'));
+      document.dispatchEvent(new Event('visibilitychange'));
+    }, retorno);
+    await expect(page.locator('#mgFeedback')).toContainText('Tempo esgotado.');
+    await expect(page.locator('#mgRelogio')).toHaveText('0 s');
+    expect(await page.locator('#mgTimerFill').evaluate((el: HTMLElement) => el.style.width)).toBe('0%');
+    await expect(page.locator('#mgTrue')).toBeDisabled();
+    await expect(page.locator('#mgFalse')).toBeDisabled();
+    await expect(page.locator('.nq-exam-marca')).toHaveCount(1);
+    await expect(page.locator('#mgProxima')).toHaveCount(1);
+    await page.clock.runFor(5000);
+    await expect(page.getByRole('heading', { name: 'Afirmação 1 de 10' })).toBeVisible();
+    await page.locator('#mgProxima').click();
+    await expect(page.getByRole('heading', { name: 'Afirmação 2 de 10' })).toBeFocused();
+    await expect(page.locator('#mgRelogio')).toHaveText('12 s');
+  });
+}
+
 test('sair devolve a jornada e o foco', async ({ page }) => {
   await abrir(page);
   await page.getByRole('button', { name: 'Sair' }).click();
