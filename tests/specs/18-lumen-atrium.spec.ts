@@ -271,9 +271,9 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     }));
     expect(painted).toEqual({ beforeEnd: true, afterEnd: false });
     await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 6');
-    await expect(page.locator('#wsSavedXpText')).toHaveText('250 / 349 XP aplicado');
+    await expect(page.locator('#wsSavedXpText')).toHaveText('250/349 XP');
     await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', '71');
-    await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuetext', '71% da evolução para o nível 6. 250 de 349 XP aplicado; 0 XP guardados.');
+    await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuetext', '71% da evolução para o nível 6. 250/349 XP.');
     await expect(page.locator('#wsSavedAvatar')).toBeVisible();
     await expect.poll(() => page.locator('#wsSavedAvatar').evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
     const resumeButton = page.getByRole('button', { name: /Retomar jornada/ });
@@ -362,7 +362,7 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     // Um nível legado acima do cap atual é preservado, sem pintar XP reservado.
     await updateSavedJourney(page, { correctTotal: 7 });
     await expect(page.locator('#wsSavedLevel')).toHaveText('05');
-    await expect(page.locator('#wsSavedXpText')).toHaveText('0 / 349 XP aplicado; 250 XP guardados');
+    await expect(page.locator('#wsSavedXpText')).toHaveText('0/349 XP');
     await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', '0');
     await expect(page.locator('#wsSavedXpMarker')).toHaveAttribute('cx', '8');
   });
@@ -370,15 +370,18 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
   test('distingue XP completo, acertos pendentes e nível máximo no card', async ({ page }) => {
     test.setTimeout(90000);
     for (const scenario of [
-      { level: 1, xp: 200, correctTotal: 9, text: '1 acerto para evoluir', percent: '90' },
-      { level: 1, xp: 100, correctTotal: 10, text: 'Acertos completos · faltam 100 XP', percent: '50' },
-      { level: 1, xp: 200, correctTotal: 10, text: 'Evolução conquistada: nível 2. Retome a jornada.', percent: '0', next: 'Nível 3' },
-      { level: 10, xp: 0, correctTotal: 90, text: '90 de 100 acertos na jornada', percent: '100' },
+      { level: 1, xp: 177, correctTotal: 5, label: '100/200 XP', text: 'Faltam 23 XP e 5 acertos', percent: '50' },
+      { level: 1, xp: 200, correctTotal: 9, label: '180/200 XP', text: '1 acerto para evoluir', percent: '90' },
+      { level: 1, xp: 100, correctTotal: 10, label: '100/200 XP', text: 'Acertos completos · faltam 100 XP', percent: '50' },
+      { level: 1, xp: 200, correctTotal: 10, label: '0/229 XP', text: 'Evolução conquistada: nível 2. Retome a jornada.', percent: '0', next: 'Nível 3' },
+      { level: 10, xp: 0, correctTotal: 90, label: 'Domínio máximo alcançado', text: '90 de 100 acertos na jornada', percent: '100' },
     ]) {
-      await enterWithSavedJourney(page, scenario);
-      await expect(page.locator('#wsSavedMilestone')).toHaveText(scenario.text);
-      await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', scenario.percent);
-      await expect(page.locator('#wsSavedNextLevel')).toHaveText(scenario.level === 10 ? 'Domínio máximo' : scenario.next || 'Nível 2');
+      const { label, text, percent, next, ...save } = scenario;
+      await enterWithSavedJourney(page, save);
+      await expect(page.locator('#wsSavedXpText')).toHaveText(label);
+      await expect(page.locator('#wsSavedMilestone')).toHaveText(text);
+      await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', percent);
+      await expect(page.locator('#wsSavedNextLevel')).toHaveText(save.level === 10 ? 'Domínio máximo' : next || 'Nível 2');
     }
   });
 
@@ -443,7 +446,7 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     // XP guardado sem avanço aplicado não deve anunciar uma evolução visual.
     await updateSavedJourney(page, { correctTotal: 4, xp: 400 });
     await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', '0');
-    await expect(page.locator('#wsSavedXpText')).toHaveText('0 / 349 XP aplicado; 400 XP guardados');
+    await expect(page.locator('#wsSavedXpText')).toHaveText('0/349 XP');
     await page.waitForTimeout(100);
     await expect(shell).not.toHaveClass(/is-rewarding/);
     await expect(pulse).toHaveCSS('animation-name', 'none');

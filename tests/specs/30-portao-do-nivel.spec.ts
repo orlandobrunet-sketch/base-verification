@@ -74,7 +74,7 @@ test.describe('Portão do nível', () => {
     await expect(milestone).toBeVisible();
     await expect(milestone, 'XP guardado não pode esconder os acertos pendentes').toHaveText('8 acertos para evoluir');
     await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', '19');
-    await expect(page.locator('#wsSavedXpText')).toContainText('400 XP guardados');
+    await expect(page.locator('#wsSavedXpText')).toHaveText('80/402 XP');
     await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 7');
     await expectPreviewPreserved(page, original);
   });

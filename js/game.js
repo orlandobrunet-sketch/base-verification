@@ -2381,6 +2381,7 @@
         const lives = savedProgress.lives;
         const correctTotal = Math.max(0, Math.floor(Number(save.correctTotal) || 0));
         const isMaxLevel = level >= 10;
+        const xpLabel = isMaxLevel ? 'Domínio máximo alcançado' : `${xp}/${xpToNext} XP`;
         const progress = savedProgress.percent;
         const timeAgo = getTimeAgo(save.timestamp) || '';
         const difficultyLabels = { easy: 'Fácil', normal: 'Médio', hard: 'Difícil', hardcore: 'Hardcore' };
@@ -2395,7 +2396,7 @@
         document.getElementById('wsSavedScore').textContent = score.toLocaleString('pt-BR');
         document.getElementById('wsSavedTime').textContent = timeAgo ? `Última atualização ${timeAgo}` : '';
         document.getElementById('wsSavedNextLevel').textContent = isMaxLevel ? 'Domínio máximo' : `Nível ${level + 1}`;
-        document.getElementById('wsSavedXpText').textContent = isMaxLevel ? 'Domínio máximo alcançado' : `${xp} / ${xpToNext} XP aplicado${savedProgress.reserved ? `; ${savedProgress.reserved} XP guardados` : ''}`;
+        document.getElementById('wsSavedXpText').textContent = xpLabel;
         const missingXp = savedProgress.missingXp;
         const missingCorrect = savedProgress.missingCorrect;
         document.getElementById('wsSavedMilestone').textContent = isMaxLevel
@@ -2413,8 +2414,8 @@
         if (progressEl) {
           progressEl.setAttribute('aria-valuenow', String(progress));
           progressEl.setAttribute('aria-valuetext', isMaxLevel
-            ? 'Domínio máximo alcançado'
-            : `${progress}% da evolução para o nível ${level + 1}. ${xp} de ${xpToNext} XP aplicado; ${savedProgress.reserved} XP guardados.`);
+            ? xpLabel
+            : `${progress}% da evolução para o nível ${level + 1}. ${xpLabel}.`);
         }
         _syncWelcomeProgress(resumeShell, progress);
 
@@ -3596,8 +3597,10 @@
       $('guardianLevelLabel').textContent = `Nível ${state.level}`;
       const _xpProgress = window.NQProgression.view(state);
       const _xpNumber = value => Number(value).toLocaleString('pt-BR', { maximumFractionDigits: 1 });
-      document.querySelector('.nql-xp-unit').textContent = _xpProgress.max ? 'XP ' : 'XP aplicado ';
-      $('guardianXpAmount').textContent = _xpProgress.max ? `${_xpNumber(state.xp)} acumulados` : `${_xpNumber(_xpProgress.applied)}/${_xpNumber(_xpProgress.xpToNext)}`;
+      const _xpLabel = _xpProgress.max
+        ? `${_xpNumber(state.xp)} XP acumulados`
+        : `${_xpNumber(_xpProgress.applied)}/${_xpNumber(_xpProgress.xpToNext)} XP`;
+      $('guardianXpAmount').textContent = _xpLabel;
       ui.storyTitle.textContent=chapter.title;
       ui.storyGoal.textContent=`Objetivo: ${chapter.goal}`;
       const _capituloEl = document.getElementById('questionChapter');
@@ -3627,14 +3630,12 @@
       const _xpRequirements = [];
       if (_xpProgress.missingCorrect) _xpRequirements.push(`${_xpProgress.missingCorrect} ${_xpProgress.missingCorrect === 1 ? 'acerto' : 'acertos'}`);
       if (_xpProgress.missingXp) _xpRequirements.push(`${_xpNumber(_xpProgress.missingXp)} XP`);
-      $('guardianXpHint').textContent = _xpProgress.max ? 'Nível máximo alcançado' : _xpRequirements.length ? `Faltam ${_xpRequirements.join(' e ')} para evoluir` : 'Requisitos completos';
-      const _reserve = $('guardianXpReserve');
-      _reserve.hidden = !_xpProgress.reserved || _xpProgress.max;
-      _reserve.textContent = `${_xpNumber(_xpProgress.reserved)} XP guardados`;
+      const _xpHint = _xpProgress.max ? 'Nível máximo alcançado' : _xpRequirements.length ? `Faltam ${_xpRequirements.join(' e ')} para evoluir` : 'Requisitos completos';
+      $('guardianXpHint').textContent = _xpHint;
       const _xpBar = $('guardianEvolutionProgress');
       _xpBar.setAttribute('aria-valuenow', String(_xpProgress.percent));
       _xpBar.setAttribute('aria-label', _xpProgress.max ? 'Nível máximo' : `Evolução para o nível ${state.level + 1}`);
-      _xpBar.setAttribute('aria-valuetext', _xpProgress.max ? `Nível máximo alcançado. ${_xpNumber(state.xp)} XP acumulados.` : `${$('guardianXpAmount').textContent} XP aplicado. ${$('guardianXpHint').textContent}. ${_reserve.hidden ? '' : _reserve.textContent}`);
+      _xpBar.setAttribute('aria-valuetext', _xpProgress.max ? `${_xpHint}. ${_xpLabel}.` : `${_xpLabel}. ${_xpHint}.`);
       const _qCtr = document.getElementById('questionCounterTxt');
       if (_qCtr) {
         const _proximoSelo = BADGES.find(badge => state.correctTotal < badge.required);
