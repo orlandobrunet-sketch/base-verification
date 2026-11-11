@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import {
-  advanceTechnical, answerTechnical, attachPilotFailureDiagnostics, installBackendRecorder,
+  advanceTechnical, answerTechnical, attachPilotFailureDiagnostics, installCloudBackendRecorder,
   PILOT_KEY, seedLegacyPilot, setupPilotPage, startNormalCharacter,
 } from '../helpers/pilot';
 
@@ -13,19 +13,7 @@ test.beforeEach(async ({ page }) => setupPilotPage(page));
 test.afterEach(async ({ page }, testInfo) => attachPilotFailureDiagnostics(page, testInfo));
 
 async function installCloudRecorder(page: Page) {
-  await installBackendRecorder(page);
-  await page.evaluate(() => {
-    const target = window as any;
-    const client = target.__pilotBackend;
-    const from = client.from.bind(client);
-    client.from = (table: string) => {
-      const chain = from(table);
-      return { ...chain, update: (payload: unknown) => {
-        target.__pilotBackendWrites.push({ table, payload });
-        return chain;
-      } };
-    };
-  });
+  await installCloudBackendRecorder(page);
 }
 
 async function snapshot(page: Page) {

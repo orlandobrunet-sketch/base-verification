@@ -1,10 +1,16 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação operacional:** 04/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
+**Última reconciliação operacional:** 11/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
 Este documento controla direção, prioridade e critérios de conclusão. Ele não autoriza execução automática: cada frente precisa ser solicitada explicitamente pelo proprietário do produto.
+
+## Estado operacional - 11/11/2026
+
+**Publicado:** 16.98 (PR953), após Câmara 16.96 (PR950), correções prioritárias de conta, pagamento, teclado e Prova em 16.97 (PR951), e reconciliação de estorno após exclusão da conta (PR952). Evidências e limites estão no [checkpoint de continuidade](CONTINUITY.md).
+
+**ATIVO e autorizado pelo proprietário:** sincronização entre computador e celular e transição do login, na candidata 16.99. Testes locais em andamento; ainda sem publicação desta candidata. Na sequência: prazo do Julgamento Rápido; foco e reflow dos modos; concorrência e posições do Ranking; desempenho do Portal/Grimório; pergaminhos AKIKI/PRESERVE; correção intermitente no Estudo. Conteúdo médico e revisão editorial ficam para outro momento. Os status abaixo são históricos e não substituem este checkpoint.
 
 ## Estado operacional - 04/11/2026
 

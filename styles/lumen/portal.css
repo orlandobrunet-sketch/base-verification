@@ -3,6 +3,26 @@
  * O Portal usa a Fundação Lúmen sem herdar a geometria da landing legada.
  */
 
+.nql-auth-startup {
+  gap: .75rem;
+  padding: 1.5rem;
+  font-family: var(--nql-font-body);
+  background: radial-gradient(ellipse at center, rgba(105, 189, 231, .09), transparent 65%), var(--nql-page) !important;
+}
+.nql-auth-startup strong { font-family: var(--nql-font-display); font-size: clamp(1.7rem, 5vw, 2.4rem); color: var(--nql-text); }
+.nql-auth-startup > span:last-child { color: var(--nql-text-muted); }
+.nql-auth-startup__mark {
+  width: 2rem;
+  height: 2rem;
+  margin: 0 auto .5rem;
+  border: 1px solid rgba(105, 189, 231, .3);
+  border-top-color: var(--nql-gold, #e7ca7e);
+  border-radius: 50%;
+  animation: nql-auth-current 1.5s linear infinite;
+}
+@keyframes nql-auth-current { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .nql-auth-startup__mark { animation: none; } }
+
 #landingScreen[data-nq-ui="lumen"] {
   position: fixed;
   inset: 0;

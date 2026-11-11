@@ -213,7 +213,7 @@ test('resposta de nuvem atrasada após logout não recria save nem histórico', 
   const result = await page.evaluate(async () => {
     (window as any).clearLocalProgress();
     (0, eval)("authUser = {id:'owner-B'}");
-    (window as any).__cloudResolve({data:{game_progress:{
+    (window as any).__cloudResolve({data:{game_progress_version:0,game_progress:{
       stats:{bestScore:9999}, achievements:['owner-A-badge'],
       save:{schemaVersion:6,character:'glomerulus',gold:5000,timestamp:Date.now()+10000}
     }}});
@@ -233,7 +233,7 @@ test('resposta de nuvem atrasada após logout não recria save nem histórico', 
 async function abrirComSDKMock(page: Page, initialUser: any = null) {
   await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
   await page.addInitScript(initialUser => {
-    const fixture: any = (window as any).__sdkFixture = {initialUser, callback:null, profiles:{}, uploads:[], reads:[], signOutCalls:0, nextUser:null};
+    const fixture: any = (window as any).__sdkFixture = {initialUser, callback:null, profiles:{}, versions:{}, uploads:[], reads:[], signOutCalls:0, nextUser:null};
     const client = {
       auth: {
         onAuthStateChange: (callback: any) => { fixture.callback = callback; return {data:{subscription:{unsubscribe(){}}}}; },
@@ -245,18 +245,42 @@ async function abrirComSDKMock(page: Page, initialUser: any = null) {
         },
         signInWithPassword: async () => { await fixture.callback('SIGNED_IN', {user:fixture.nextUser}); return {error:null}; },
       },
-      from: (table: string) => ({
-        select: (columns: string) => ({eq: (_key: string, owner: string) => ({
-          single: async () => {
-            fixture.reads.push({table,columns,owner});
-            if (columns === 'game_progress' && fixture.profileError) return {data:null,error:{message:'Mock profile error'}};
-            if (columns === 'game_progress' && fixture.profileMissing) return {data:null,error:null};
-            return {data:columns==='game_progress' ? {game_progress:fixture.profiles[owner] || null} : {is_premium:false},error:null};
-          },
-          maybeSingle: async () => ({data:null}),
-        })}),
-        update: (payload: any) => ({eq: async (_key: string, owner: string) => {fixture.uploads.push({owner,payload}); return {error:null};}}),
-      }),
+      from: (table: string) => {
+        const filters: Record<string, any> = {};
+        let columns = '';
+        let payload: any = null;
+        const finish = async () => {
+          const owner = filters.id;
+          const version = fixture.versions[owner] || 0;
+          if (payload) {
+            fixture.uploads.push({owner,payload});
+            if (filters.game_progress_version !== undefined && filters.game_progress_version !== version) {
+              return {data:null,error:null};
+            }
+            if (payload.game_progress && payload.game_progress_version !== version + 1) {
+              return {data:null,error:{code:'40001',message:'Stale progress fixture'}};
+            }
+            if (Object.prototype.hasOwnProperty.call(payload, 'game_progress')) {
+              fixture.profiles[owner] = JSON.parse(JSON.stringify(payload.game_progress));
+              fixture.versions[owner] = payload.game_progress_version;
+            }
+            return {data:{game_progress_version:fixture.versions[owner]},error:null};
+          }
+          fixture.reads.push({table,columns,owner});
+          if (columns.includes('game_progress') && fixture.profileError) return {data:null,error:{message:'Mock profile error'}};
+          if (columns.includes('game_progress') && fixture.profileMissing) return {data:null,error:null};
+          return {data:columns.includes('game_progress')
+            ? {game_progress:fixture.profiles[owner] || null,game_progress_version:version} : {is_premium:false},error:null};
+        };
+        const query: any = {
+          select: (value: string) => {columns=value;return query;},
+          update: (value: unknown) => {payload=value;return query;},
+          eq: (key: string, value: unknown) => {filters[key]=value;return query;},
+          single: finish, maybeSingle: finish,
+          then: (resolve: any, reject: any) => finish().then(resolve,reject),
+        };
+        return query;
+      },
     };
     (window as any).supabase = {createClient: () => client};
   }, initialUser);
@@ -387,7 +411,7 @@ test('logout com falha do SDK não restaura sessão inicial sem novo login expl�
     await (window as any).__sdkFixture.callback('INITIAL_SESSION',{user});
   }, USER_A);
   expect(await page.evaluate(() => (window as any).authUser)).toBeNull();
-  expect(await page.evaluate(() => (window as any).__sdkFixture.reads.filter((x:any)=>x.columns==='game_progress'))).toEqual([]);
+  expect(await page.evaluate(() => (window as any).__sdkFixture.reads.filter((x:any)=>x.columns.includes('game_progress')))).toEqual([]);
   await page.evaluate(user => {
     (window as any).__sdkFixture.nextUser = user;
     (window as any).__sdkFixture.profiles[user.id] = {save:{schemaVersion:6,character:'glomerulus',gold:123,lives:3,timestamp:Date.now()+10000}};
@@ -421,12 +445,20 @@ test('nova jornada do mesmo dono bloqueia nuvem antiga sem enviar save null de v
 test('signOut pendente não envia tombstone ou histórico vazio e novo login restaura a própria conta', async ({ page }) => {
   await abrirComSDKMock(page);
   await page.clock.install();
-  await page.evaluate(user => {
+  const checkpoint = await page.evaluate(async user => {
     (window as any).authUser = user;
-    localStorage.setItem('nefroquest-save-v7',JSON.stringify({schemaVersion:7,saveOwner:user.id,character:'glomerulus',gold:4700,lives:3}));
-    (window as any).__sdkFixture.holdSignOut = true;
+    const save = {schemaVersion:7,saveOwner:user.id,character:'glomerulus',gold:123,lives:3};
+    localStorage.setItem('nefroquest-save-v7',JSON.stringify(save));
+    const fixture = (window as any).__sdkFixture;
+    fixture.profiles[user.id] = {save};
+    const loaded = await (0, eval)('_loadProgressFromCloud({forSync:true})');
+    const checkpoint = JSON.parse(localStorage.getItem('nefroquest-cloud:' + user.id) || 'null');
+    fixture.holdSignOut = true;
     (window as any).__logoutPending = (window as any).authLogout();
+    return {loaded,checkpoint};
   }, USER_A);
+  expect(checkpoint.loaded).toBe(true);
+  expect(checkpoint.checkpoint.version).toBe(0);
   await page.evaluate(async () => {
     await (0, eval)('_syncProgressToCloud()');
     (0, eval)('_scheduleCloudSync()');
@@ -442,13 +474,18 @@ test('signOut pendente não envia tombstone ou histórico vazio e novo login res
   });
   await page.evaluate(user => {
     (window as any).__sdkFixture.nextUser = user;
-    (window as any).__sdkFixture.profiles[user.id] = {save:{schemaVersion:6,character:'glomerulus',gold:123,lives:3,timestamp:Date.now()+10000}};
     (document.getElementById('authEmail') as HTMLInputElement).value = user.email;
     (document.getElementById('authPassword') as HTMLInputElement).value = 'mock-only-password';
   }, USER_A);
   await page.evaluate(() => (window as any).authEmailLogin());
   await page.waitForFunction(() => JSON.parse(localStorage.getItem('nefroquest-save-v7') || 'null')?.character === 'glomerulus');
   expect(await page.evaluate(() => JSON.parse(localStorage.getItem('nefroquest-save-v7')!).gold)).toBe(123);
+  await page.clock.fastForward(12000);
+  const uploads = await page.evaluate(() => (window as any).__sdkFixture.uploads);
+  for (const upload of uploads) {
+    expect(upload.owner).toBe('owner-A');
+    expect(upload.payload.game_progress.save).toMatchObject({saveOwner:'owner-A',character:'glomerulus',gold:123});
+  }
 });
 
 test('login com nuvem vazia permite estudo sem jornada e mantém sessão no reload', async ({ page }) => {
@@ -542,8 +579,9 @@ test('visitante com Forja paga só passa à conta após escolha explícita, sem 
   await page.clock.fastForward(12000);
   expect(await page.evaluate(() => localStorage.getItem('nefroquest-save-v7'))).toBe(fixture.raw);
   expect(await page.evaluate(() => (window as any).__sdkFixture.uploads)).toEqual([]);
-  expect(await page.evaluate(() => (window as any).__sdkFixture.reads.filter((r:any)=>r.columns==='game_progress'))).toEqual([]);
+  expect(await page.evaluate(() => (window as any).__sdkFixture.reads.filter((r:any)=>r.columns.includes('game_progress')))).toEqual([]);
   await page.getByRole('button',{name:'Usar jornada deste aparelho nesta conta',exact:true}).click();
+  await page.waitForFunction(() => (0, eval)('state.gameStarted && state.forjaPending?.id === "guest-paid-choice"'));
   // Continue's focus/Forja handoff uses a 520ms timer.
   await page.clock.fastForward(800);
   await expect(page.locator('#forjaPage')).toBeVisible();
@@ -552,5 +590,5 @@ test('visitante com Forja paga só passa à conta após escolha explícita, sem 
   expect(adopted.gold).toBe(fixture.paid.gold);
   expect(adopted.forjaPending).toEqual(fixture.paid.forjaPending);
   expect(adopted.equipment).toEqual(fixture.paid.equipment);
-  expect(await page.evaluate(() => (window as any).__sdkFixture.reads.filter((r:any)=>r.columns==='game_progress'))).toEqual([]);
+  expect(await page.evaluate(() => (window as any).__sdkFixture.reads.filter((r:any)=>r.columns.includes('game_progress')))).toEqual([]);
 });

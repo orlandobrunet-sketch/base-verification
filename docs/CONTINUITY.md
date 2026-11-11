@@ -1,5 +1,15 @@
 # Continuidade do NefroQuest
 
+## Estado atual - 11/11/2026
+
+**16.98 publicada:** PR953, merge `9439796e3f082a43e414ac0d51c796629f204213`. XP simplificado nas perguntas e no Átrio. CI: 2.865 testes completos e 265 skips previstos, sem falhas finais ou flaky; arquivos públicos conferidos contra o merge. As publicações anteriores incluem a Câmara 16.96 (PR950), conta, confirmação de pagamento, Ctrl+A e retomada da Prova em 16.97 (PR951), além da reconciliação de estorno após exclusão da conta (PR952, migration e permissões conferidas no servidor).
+
+**Frente em execução:** candidata 16.99 na branch `codex/sincronizacao-1699`. Sincronização com revisão por conta, gravação condicional, conferência ao retornar à aba e escolha explícita quando duas jornadas divergem. A correção do retorno visual do login integra esta candidata. Implementação e testes locais em andamento; migration e frontend ainda não publicados. O proprietário autorizou seguir a ordem técnica proposta. Conteúdo médico permanece fora desta rodada.
+
+**Próximas prioridades:** prazo real do Julgamento Rápido; foco e reflow na Prova, Ritual, Julgamento e Offline; requisições e posições do Ranking; desempenho do Portal e Grimório; rolagem dos pergaminhos AKIKI/PRESERVE; intermitência da correção no modo Estudo. Depois, acabamento discreto de animações e transições. Vídeos opcionais e projetos futuros continuam sujeitos às decisões registradas.
+
+**Limites da validação:** os cenários com dois aparelhos usam sessões de navegador isoladas e celular emulado. Compra/estorno reais, envio pelo contato, leitor de tela e passagem entre dois aparelhos físicos ainda exigem validação específica. Os marcos abaixo conservam o histórico de suas datas.
+
 ## Estado atual - 04/11/2026
 
 **16.64 publicada:** PR928 integrado, merge `1099f12fa265a77121480202af18092a2ffcd7ef`. CI997 aprovada: 2.386 testes completos, 258 skips previstos e zero falhas, flaky ou retentativas. Os 14 arquivos públicos conferidos em 04/11 coincidem com o merge.

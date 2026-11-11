@@ -461,6 +461,7 @@
       return record === null || (record && Object.prototype.hasOwnProperty.call(record, 'save') && record.save === null);
     }
     function _canSyncLocalProgress(owner) {
+      if (window._authLogoutPending) return false;
       const raw = localStorage.getItem(CANONICAL_SAVE_KEY);
       if (raw === null) return true; // stats/study may exist without a journey
       const record = _canonicalSaveRecord();
@@ -499,6 +500,7 @@
 
     function _stopLocalJourney() {
       ++_progressEpoch;
+      window._resetCloudSync?.();
       window.resetMentorQuestion?.();
       _currentQuestionRevision = null; _currentQuestionRevisionOriginRaw = null;
       window.NQPilot?.rollback();
@@ -652,6 +654,12 @@
 
     window.addEventListener('storage', event => {
       if (event.storageArea !== localStorage) return;
+      if (event.key === CANONICAL_SAVE_KEY && event.newValue &&
+          localStorage.getItem(CANONICAL_SAVE_KEY) === event.newValue) {
+        const shared = _canonicalSaveRecord();
+        if (shared?.save === null && shared.resetReason === 'logout' &&
+            window._retireAuthFromSharedLogout?.(shared.saveOwner, event.newValue)) return;
+      }
       if (window.NQPilot?.active) return; // The pilot guards its own revision and lease.
       if ((event.key === CANONICAL_SAVE_KEY || event.key === null) &&
           state.gameStarted && localStorage.getItem(CANONICAL_SAVE_KEY) !== _saveBaseline) {
@@ -1057,6 +1065,7 @@
       _normalJourneyStaging = true;
       let committed = false;
       ++_progressEpoch;
+      window._resetCloudSync?.();
       const epoch = _progressEpoch;
       clearTimeout(_autoSaveTimer); clearTimeout(_saveTimer);
       _autoSaveTimer = _saveTimer = null;
@@ -1088,6 +1097,7 @@
           _stopLocalJourney(); _reloadJourneyCollections(); refreshWelcomeSave();
         } else {
           ++_progressEpoch;
+          window._resetCloudSync?.();
           Object.assign(_stateData, snapshot);
           _recentIds = derived.recent; _masteredSet = derived.mastered; unlockedArticles = derived.articles;
           _sessionWrongAnswers = derived.errors; _minigameTriggerCount = derived.minigames;
@@ -1593,6 +1603,7 @@
       clearTimeout(_autoSaveTimer); clearTimeout(_saveTimer); clearTimeout(_cloudSyncTimer); clearTimeout(_cloudLoadSyncTimer);
       _autoSaveTimer = _saveTimer = _cloudSyncTimer = _cloudLoadSyncTimer = null;
       ++_progressEpoch;
+      window._resetCloudSync?.();
       try { _writeSaveTombstone('journey'); } catch (e) {
         _warnStorageFull(); return false;
       }
@@ -1711,6 +1722,203 @@
 
     // ============ CLOUD SYNC (progresso na nuvem para usuários logados) ============
     let _cloudSyncTimer = null;
+    let _cloudReadFlight = null;
+    let _cloudWriteFlight = null;
+    let _cloudConflict = null;
+    let _cloudConflictFocus = null;
+
+    function _cloudBinding() {
+      return { owner: authUser?.id, authEpoch: _authSessionEpoch, progressEpoch: _progressEpoch, client: _supaClient };
+    }
+    function _cloudBindingCurrent(binding) {
+      return !window._authLogoutPending && binding.owner && authUser?.id === binding.owner && _authSessionEpoch === binding.authEpoch &&
+        _progressEpoch === binding.progressEpoch && _supaClient === binding.client && !isCharacterPilot();
+    }
+    function _cloudStatus(text) {
+      const status = document.getElementById('cloudSyncStatus');
+      if (!status) return;
+      status.hidden = !authUser;
+      status.textContent = authUser ? text : '';
+    }
+    function _cloudJourneyFingerprint(save) {
+      if (!save?.character) return null;
+      const snapshot = _migrateSave(JSON.parse(JSON.stringify(save)));
+      delete snapshot.timestamp;
+      delete snapshot.saveRevision;
+      delete snapshot.saveOwner;
+      return window.NQQuestionRevisions.digest(snapshot);
+    }
+    function _cloudFingerprint(progress) {
+      const snapshot = { ...progress, save: _cloudJourneyFingerprint(progress.save) };
+      delete snapshot.updatedAt;
+      return window.NQQuestionRevisions.digest(snapshot);
+    }
+    function _cloudCheckpoint(owner) {
+      try {
+        const checkpoint = JSON.parse(localStorage.getItem('nefroquest-cloud:' + owner) || 'null');
+        return Number.isSafeInteger(checkpoint?.version) && checkpoint.version >= 0 ? checkpoint : null;
+      } catch { return null; }
+    }
+    function _rememberCloudProgress(owner, remote) {
+      localStorage.setItem('nefroquest-cloud:' + owner, JSON.stringify({ version: remote.version,
+        journey: _cloudJourneyFingerprint(remote.progress.save), payload: _cloudFingerprint(remote.progress) }));
+    }
+    async function _readCloudProgress(binding) {
+      const { data, error } = await binding.client.from('profiles')
+        .select('game_progress,game_progress_version').eq('id', binding.owner).single();
+      if (error || !data || !Number.isSafeInteger(data.game_progress_version) || data.game_progress_version < 0) {
+        throw new Error('Não foi possível conferir o progresso da conta');
+      }
+      if (data.game_progress !== null && (typeof data.game_progress !== 'object' || Array.isArray(data.game_progress))) {
+        throw new Error('Progresso remoto inválido');
+      }
+      const progress = data.game_progress || {};
+      if (progress.save != null && (typeof progress.save !== 'object' || Array.isArray(progress.save) ||
+          !Object.prototype.hasOwnProperty.call(characters, progress.save.character))) {
+        throw new Error('Jornada remota inválida');
+      }
+      return { version: data.game_progress_version, progress: { ...progress, save: progress.save ?? null } };
+    }
+    function _reconcileCloudProgress(binding, remote, preferLocal = false) {
+      if (!_cloudBindingCurrent(binding)) return false;
+      if ((_saveTimer || _autoSaveTimer) && state.gameStarted) {
+        clearTimeout(_saveTimer); clearTimeout(_autoSaveTimer);
+        _saveTimer = _autoSaveTimer = null;
+        if (!_doSaveGame()) return false;
+      }
+      const local = _buildCloudProgress();
+      const localJourney = _cloudJourneyFingerprint(local.save);
+      const remoteJourney = _cloudJourneyFingerprint(remote.progress.save);
+      const checkpoint = _cloudCheckpoint(binding.owner);
+      const marker = _canonicalSaveRecord();
+      const explicitReset = _isSaveTombstone(marker) && ['reset', 'journey'].includes(marker?.resetReason);
+      if (checkpoint && remote.version < checkpoint.version) throw new Error('Leitura de progresso desatualizada');
+      const sameRemote = checkpoint && remote.version === checkpoint.version && remoteJourney === checkpoint.journey;
+      const localUnchanged = checkpoint && localJourney === checkpoint.journey && !explicitReset;
+      const differentJourneys = localJourney !== remoteJourney;
+      const keepLocal = preferLocal || !differentJourneys ||
+        (sameRemote && (localJourney !== null || explicitReset)) ||
+        (remoteJourney === null && (checkpoint ? checkpoint.journey === null : remote.version === 0));
+      const needsChoice = differentJourneys && !keepLocal && !localUnchanged && (localJourney !== null || explicitReset);
+      if (needsChoice) {
+        _cloudConflict = { binding, remote, localRaw: localStorage.getItem(CANONICAL_SAVE_KEY) };
+        _cloudStatus('Escolha a jornada para sincronizar');
+        _showCloudProgressConflict();
+        return false;
+      }
+      if (!_mergeCloudProgress(remote.progress, { keepSave: keepLocal, replaceSave: !keepLocal })) {
+        _cloudStatus('Sincronização pausada para conferir a jornada');
+        return false;
+      }
+      // Importing a complete remote journey retires the old live game binding.
+      binding.progressEpoch = _progressEpoch;
+      if (!_cloudBindingCurrent(binding)) return false;
+      _rememberCloudProgress(binding.owner, remote);
+      if (!preferLocal) {
+        _cloudConflict = null;
+        _closeCloudProgressConflict(false);
+      }
+      _refreshWelcomeStats();
+      return true;
+    }
+    function _closeCloudProgressConflict(restoreFocus = true) {
+      _cloudConflictFocus?.(restoreFocus);
+      _cloudConflictFocus = null;
+      document.getElementById('cloudProgressConflict')?.remove();
+    }
+    function _showCloudProgressConflict() {
+      const conflict = _cloudConflict;
+      if (!conflict || !_cloudBindingCurrent(conflict.binding)) return;
+      _closeCloudProgressConflict(false);
+      const dialog = document.createElement('div');
+      dialog.id = 'cloudProgressConflict';
+      dialog.className = 'nq-overlay';
+      dialog.dataset.nqUi = 'lumen';
+      dialog.setAttribute('role', 'dialog');
+      dialog.setAttribute('aria-modal', 'true');
+      dialog.setAttribute('aria-labelledby', 'cloudConflictTitle');
+      dialog.innerHTML = `<div class="modal-content cloud-conflict-card">
+        <h2 id="cloudConflictTitle">Sincronização da jornada</h2>
+        <p>A jornada avançou em dois aparelhos. Escolha qual deseja continuar.</p>
+        <div class="cloud-conflict-summary" data-cloud-summary="local"></div>
+        <div class="cloud-conflict-summary" data-cloud-summary="remote"></div>
+        <p role="status"></p>
+        <div class="modal-actions">
+          <button type="button" class="btn sec" data-cloud-choice="remote">Usar jornada da nuvem</button>
+          <button type="button" class="btn" data-cloud-choice="local">Usar jornada deste aparelho</button>
+        </div></div>`;
+      const summary = save => save?.character
+        ? `${characters[save.character]?.name || 'Jornada salva'} · nível ${save.level} · ${save.correctTotal || 0} acertos · ${save.xp || 0} XP`
+        : 'Sem jornada em andamento';
+      dialog.querySelector('[data-cloud-summary="local"]').textContent = 'Neste aparelho. ' + summary(_buildCloudProgress().save);
+      dialog.querySelector('[data-cloud-summary="remote"]').textContent = 'Na nuvem. ' + summary(conflict.remote.progress.save);
+      for (const button of dialog.querySelectorAll('[data-cloud-choice]')) {
+        button.onclick = () => _resolveCloudProgressConflict(conflict, button.dataset.cloudChoice === 'local', dialog);
+      }
+      document.body.appendChild(dialog);
+      _cloudConflictFocus = manageDialogFocus(dialog, _closeCloudProgressConflict);
+    }
+    async function _resolveCloudProgressConflict(conflict, preferLocal, dialog) {
+      if (_cloudConflict !== conflict || !_cloudBindingCurrent(conflict.binding)) {
+        if (dialog.isConnected) _closeCloudProgressConflict(false);
+        return;
+      }
+      const buttons = [...dialog.querySelectorAll('button')];
+      if (buttons.some(button => button.disabled)) return;
+      buttons.forEach(button => { button.disabled = true; });
+      const status = dialog.querySelector('[role="status"]');
+      try {
+        if (preferLocal && !_canSyncLocalProgress(conflict.binding.owner)) {
+          status.textContent = 'A jornada deste aparelho precisa ser conferida antes de sincronizar.';
+          return;
+        }
+        const remote = await _readCloudProgress(conflict.binding);
+        if (!_cloudBindingCurrent(conflict.binding)) return;
+        if (remote.version !== conflict.remote.version || localStorage.getItem(CANONICAL_SAVE_KEY) !== conflict.localRaw) {
+          _closeCloudProgressConflict(false);
+          _reconcileCloudProgress(conflict.binding, remote);
+          return;
+        }
+        const selected = preferLocal
+          ? _reconcileCloudProgress(conflict.binding, remote, true)
+          : _mergeCloudProgress(remote.progress, { replaceSave: true });
+        conflict.binding.progressEpoch = _progressEpoch;
+        if (!selected || !_cloudBindingCurrent(conflict.binding)) return;
+        if (preferLocal) {
+          const result = await _commitCloudProgress(conflict.binding, remote.version, _buildCloudProgress());
+          if (result === 'conflict') {
+            _cloudConflict = null;
+            _closeCloudProgressConflict(false);
+            await _loadProgressFromCloud();
+            return;
+          }
+          if (result !== 'saved') return;
+        } else {
+          _rememberCloudProgress(conflict.binding.owner, remote);
+          _cloudStatus('Salvo na nuvem');
+          _scheduleCloudSync();
+        }
+        _cloudConflict = null;
+        _closeCloudProgressConflict(preferLocal);
+        _refreshWelcomeStats();
+        if (!preferLocal) {
+          const resume = document.getElementById('welcomeContinueBtn');
+          (resume?.getClientRects().length ? resume : document.getElementById('atriumMain'))?.focus();
+        }
+      } catch {
+        if (_cloudBindingCurrent(conflict.binding)) {
+          status.textContent = 'Não foi possível confirmar a sincronização. Tente novamente.';
+          _cloudStatus('Salvo neste aparelho · sincronização pendente');
+        }
+      } finally {
+        if (dialog.isConnected) buttons.forEach(button => { button.disabled = false; });
+      }
+    }
+    window._resetCloudSync = function () {
+      _cloudConflict = null;
+      _closeCloudProgressConflict(false);
+      _cloudStatus('Sincronização pendente');
+    };
 
     function _scheduleCloudSync() {
       if (isCharacterPilot()) return;
@@ -1720,6 +1928,7 @@
       if (!authUser || !_supaClient) return;
       if (!_canSyncLocalProgress(authUser.id)) return;
       if (_cloudSyncTimer) clearTimeout(_cloudSyncTimer);
+      _cloudStatus('Salvo neste aparelho · sincronização pendente');
       _cloudSyncTimer = setTimeout(_syncProgressToCloud, 10000);
     }
 
@@ -1756,6 +1965,46 @@
       };
     }
 
+    async function _commitCloudProgress(binding, version, progress) {
+      if (!_cloudBindingCurrent(binding) || !_canSyncLocalProgress(binding.owner)) return 'obsolete';
+      if (progress.save?.classBenefits && !_normalCharacterSaveValid(progress.save, binding.owner)) {
+        throw new Error('Jornada local inválida');
+      }
+      const { data, error } = await binding.client.from('profiles')
+        .update({ game_progress: progress, game_progress_version: version + 1 })
+        .eq('id', binding.owner).eq('game_progress_version', version)
+        .select('game_progress_version').maybeSingle();
+      if (!_cloudBindingCurrent(binding)) return 'obsolete';
+      if (error?.code === '40001' || (!error && !data)) return 'conflict';
+      if (error || data.game_progress_version !== version + 1) throw new Error('Gravação do progresso não confirmada');
+      _rememberCloudProgress(binding.owner, { version: data.game_progress_version, progress });
+      _cloudStatus('Salvo na nuvem');
+      if (_cloudFingerprint(_buildCloudProgress()) !== _cloudFingerprint(progress)) _scheduleCloudSync();
+      return 'saved';
+    }
+    async function _pushCloudProgress(flightBinding) {
+      const owner = authUser?.id;
+      const authEpoch = _authSessionEpoch;
+      for (let attempt = 0; attempt < 2; attempt++) {
+        if (!await _loadProgressFromCloud({ forSync: true })) return false;
+        const binding = _cloudBinding();
+        if (binding.owner !== owner || binding.authEpoch !== authEpoch || !_cloudBindingCurrent(binding)) return false;
+        flightBinding.progressEpoch = binding.progressEpoch;
+        if (!_canSyncLocalProgress(owner) || _characterCloudConflict?.owner === owner) return false;
+        const checkpoint = _cloudCheckpoint(owner);
+        const progress = _buildCloudProgress();
+        if (!checkpoint) throw new Error('Revisão do progresso indisponível');
+        if (_cloudFingerprint(progress) === checkpoint.payload) {
+          _cloudStatus('Salvo na nuvem');
+          return true;
+        }
+        _cloudStatus('Salvando na nuvem…');
+        const result = await _commitCloudProgress(binding, checkpoint.version, progress);
+        if (result !== 'conflict') return result === 'saved';
+      }
+      _cloudStatus('Sincronização pendente · tente novamente');
+      return false;
+    }
     async function _syncProgressToCloud() {
       clearTimeout(_cloudSyncTimer);
       _cloudSyncTimer = null;
@@ -1763,12 +2012,25 @@
       if (_normalJourneyStaging || _pilotAnswerTransaction?.normal || _characterCloudConflict?.owner === _currentSaveOwner()) return;
       if (!authUser || !_supaClient || _saveCleanupBlocked) return;
       if (!_canSyncLocalProgress(authUser.id)) return;
+      if ((_saveTimer || _autoSaveTimer) && state.gameStarted) {
+        clearTimeout(_saveTimer); clearTimeout(_autoSaveTimer);
+        _saveTimer = _autoSaveTimer = null;
+        if (!_doSaveGame()) return false;
+      }
+      const binding = _cloudBinding();
+      if (_cloudWriteFlight && _cloudBindingCurrent(_cloudWriteFlight.binding)) return _cloudWriteFlight.promise;
+      const flight = { binding, promise: null };
+      _cloudWriteFlight = flight;
+      flight.promise = _pushCloudProgress(binding);
       try {
-        await _supaClient
-          .from('profiles')
-          .update({ game_progress: _buildCloudProgress() })
-          .eq('id', authUser.id);
-      } catch(e) { _track('error_cloud_sync', { msg: String(e) }); }
+        return await flight.promise;
+      } catch(e) {
+        if (_cloudBindingCurrent(binding)) _cloudStatus('Salvo neste aparelho · sincronização pendente');
+        _track('error_cloud_sync', { msg: String(e) });
+        return false;
+      } finally {
+        if (_cloudWriteFlight === flight) _cloudWriteFlight = null;
+      }
     }
 
     /* Fusão de estatísticas detalhadas entre dois aparelhos.
@@ -1856,15 +2118,26 @@
     }
     window._mergeDetailedStats = _mergeDetailedStats;
 
-    function _mergeCloudProgress(cloud) {
-      if (isCharacterPilot()) return;
-      if (!cloud || typeof cloud !== 'object' || _saveCleanupBlocked) return;
+    function _mergeCloudProgress(cloud, { keepSave = false, replaceSave = false } = {}) {
+      if (isCharacterPilot()) return false;
+      if (!cloud || typeof cloud !== 'object' || _saveCleanupBlocked) return false;
       const canonicalRecord = _canonicalSaveRecord();
-      if (canonicalRecord?.character && canonicalRecord.saveOwner !== _currentSaveOwner()) return;
+      if (canonicalRecord?.character && canonicalRecord.saveOwner !== _currentSaveOwner()) return false;
+      let persisted = true;
 
       // Verify every question revision before importing any part of this payload.
       // A rejected journey must not leave its counters/rewards mixed into local data.
       if (cloud.save?.character) {
+        const invalidOwner = Object.prototype.hasOwnProperty.call(cloud.save, 'saveOwner') &&
+          cloud.save.saveOwner !== _currentSaveOwner();
+        const invalidDomain = cloud.save.journeyDomain === 'pilot' ||
+          (cloud.save.classBenefits && !_normalCharacterSaveValid(cloud.save, _currentSaveOwner()));
+        if (invalidOwner || invalidDomain) {
+          _characterCloudConflict = {owner:_currentSaveOwner(), journeyId:canonicalRecord?.classBenefits?.journeyId || null};
+          clearTimeout(_cloudSyncTimer); _cloudSyncTimer = null;
+          _toast('A jornada da nuvem precisa ser conferida. A sincronização foi pausada.', 'warning', 7000);
+          return false;
+        }
         const presentation = _readQuestionSaveExtras(cloud.save);
         const requiresCatalog = _requiresQuestionRevisionCatalog();
         const verifier = requiresCatalog ? _questionRevisionVerifier() : null;
@@ -1874,7 +2147,7 @@
           _characterCloudConflict = {owner:_currentSaveOwner(), journeyId:canonicalRecord?.classBenefits?.journeyId || null};
           clearTimeout(_cloudSyncTimer); _cloudSyncTimer = null;
           _toast('A versão das perguntas desta jornada precisa ser conferida. Os dados locais foram preservados e a importação foi pausada.', 'warning', 7000);
-          return;
+          return false;
         }
       }
 
@@ -1887,7 +2160,7 @@
           bestScore:              Math.max(local.bestScore || 0,              cloud.stats.bestScore || 0),
           questionsAnsweredAllTime: Math.max(local.questionsAnsweredAllTime || 0, cloud.stats.questionsAnsweredAllTime || 0)
         };
-        try { localStorage.setItem(STATS_KEY, JSON.stringify(merged)); } catch(e) { console.error('[NQ] saveStats failed', e); }
+        try { localStorage.setItem(STATS_KEY, JSON.stringify(merged)); } catch(e) { persisted = false; console.error('[NQ] saveStats failed', e); }
         _invalidateStatsCache();
       }
 
@@ -1897,7 +2170,7 @@
         let local = [];
         try { local = JSON.parse(localStorage.getItem(key) || '[]'); } catch(e) {}
         const merged = [...new Set([...local, ...cloud])];
-        try { localStorage.setItem(key, JSON.stringify(merged)); } catch(e) { console.error('[NQ] _mergeArray write failed', e); }
+        try { localStorage.setItem(key, JSON.stringify(merged)); } catch(e) { persisted = false; console.error('[NQ] _mergeArray write failed', e); }
       };
       _mergeArray('nefroquest-achievements', cloud.achievements);
       _mergeArray(MASTERED_KEY,              cloud.mastered);
@@ -1905,8 +2178,10 @@
       _mergeArray('nq-unlocked-refs',        cloud.unlockedRefs);
 
       // Flags booleanas: OR (true prevalece)
-      if (cloud.arquiDefeated)     localStorage.setItem('nefroquest-arqui-defeated', '1');
-      if (cloud.hardcoreCompleted) localStorage.setItem('nefroquest-hardcore-completed', '1');
+      try {
+        if (cloud.arquiDefeated) localStorage.setItem('nefroquest-arqui-defeated', '1');
+        if (cloud.hardcoreCompleted) localStorage.setItem('nefroquest-hardcore-completed', '1');
+      } catch (e) { persisted = false; }
 
       // Stats detalhadas: fusão campo a campo, monotônica.
       //
@@ -1918,11 +2193,11 @@
         let local = {};
         try { local = JSON.parse(localStorage.getItem('nefroquest-detailed-stats') || '{}'); } catch(e) {}
         const fundido = _mergeDetailedStats(local, cloud.detailedStats);
-        try { localStorage.setItem('nefroquest-detailed-stats', JSON.stringify(fundido)); } catch(e) { console.error('[NQ] saveDetailedStats (cloud merge) failed', e); }
+        try { localStorage.setItem('nefroquest-detailed-stats', JSON.stringify(fundido)); } catch(e) { persisted = false; console.error('[NQ] saveDetailedStats (cloud merge) failed', e); }
       }
 
       // Save em andamento: um cliente antigo não pode apagar a decisão paga.
-      if (cloud.save && typeof cloud.save === 'object' && cloud.save.character) {
+      if (!keepSave && cloud.save && typeof cloud.save === 'object' && cloud.save.character) {
         const owner = _currentSaveOwner();
         const canonical = localStorage.getItem(CANONICAL_SAVE_KEY);
         let local = null;
@@ -1948,18 +2223,18 @@
           (!localBenefits.shieldSpent || remoteBenefits.shieldSpent) &&
           localBenefits.creditedEvents.every((event, index) => remoteBenefits.creditedEvents[index] === event));
         const benefitConflict = cloud.save.journeyDomain === 'pilot' || !remoteBenefitsValid ||
-          !remotePresentationValid || wouldLosePresentation ||
-          (!!localBenefits && !sameHistory);
+          !remotePresentationValid || (!replaceSave && (wouldLosePresentation || (!!localBenefits && !sameHistory)));
         if (correctOwner && remoteOwnerMatches && benefitConflict) {
           // Keep complete snapshots together. An old client or a diverging
           // journey must not reset the bonus window or replace its resources.
           _characterCloudConflict = {owner, journeyId:localBenefits?.journeyId || null};
           clearTimeout(_cloudSyncTimer); _cloudSyncTimer = null;
           _toast('Há versões diferentes da jornada neste dispositivo e na nuvem. O save local foi preservado; a sincronização da jornada foi pausada.', 'warning', 7000);
-        } else if (correctOwner && wouldLosePaidChoice) {
+          return false;
+        } else if (correctOwner && wouldLosePaidChoice && !replaceSave) {
           _scheduleCloudSync();
-        } else if ((!tombstone || restoreAfterLogout || restoreEmpty) && correctOwner && remoteOwnerMatches &&
-                   (cloud.save.timestamp || 0) > (local?.timestamp || 0)) {
+        } else if ((!tombstone || restoreAfterLogout || restoreEmpty || replaceSave) && correctOwner && remoteOwnerMatches &&
+                   (replaceSave || (cloud.save.timestamp || 0) > (local?.timestamp || 0))) {
           const imported = _migrateSave(JSON.parse(JSON.stringify(cloud.save)));
           imported.saveOwner = owner;
           imported.saveRevision = crypto.randomUUID();
@@ -1969,8 +2244,13 @@
             if (state.gameStarted) _stopLocalJourney();
             _saveBaseline = raw; _saveOwner = owner;
             _mirrorLegacySave(raw);
-          } catch(e) { console.error('[NQ] saveSave (cloud merge) failed', e); }
+          } catch(e) { console.error('[NQ] saveSave (cloud merge) failed', e); return false; }
         }
+      } else if (!keepSave && replaceSave && cloud.save === null && canonicalRecord?.character) {
+        try {
+          _writeSaveTombstone('empty');
+          _stopLocalJourney();
+        } catch (e) { _warnStorageFull(); return false; }
       }
 
       // Progresso do minijogo de ácido-base/câmara de equilíbrio
@@ -1992,7 +2272,7 @@
           completed: mergedCompleted,
           grimoireUses: mergedUses
         };
-        try { localStorage.setItem('nq-acidbase-progress', JSON.stringify(mergedAB)); } catch(e) { console.error('[NQ] saveAcidBase (cloud merge) failed', e); }
+        try { localStorage.setItem('nq-acidbase-progress', JSON.stringify(mergedAB)); } catch(e) { persisted = false; console.error('[NQ] saveAcidBase (cloud merge) failed', e); }
       }
 
       // Dados de repetição espaçada (Spaced Repetition)
@@ -2011,65 +2291,52 @@
             mergedSR[qid] = cCard;
           }
         });
-        try { localStorage.setItem('nefroquest-sr-data', JSON.stringify(mergedSR)); } catch(e) { console.error('[NQ] saveSRData (cloud merge) failed', e); }
+        try { localStorage.setItem('nefroquest-sr-data', JSON.stringify(mergedSR)); } catch(e) { persisted = false; console.error('[NQ] saveSRData (cloud merge) failed', e); }
       }
+      return persisted;
     }
     window._mergeCloudProgress = _mergeCloudProgress;
 
-    async function _loadProgressFromCloud() {
-      if (isCharacterPilot()) return;
-      if (!authUser || !_supaClient || _saveCleanupBlocked) return;
-      const owner = authUser.id;
-      const epoch = _progressEpoch;
-      const canonicalAtRequest = localStorage.getItem(CANONICAL_SAVE_KEY);
+    async function _loadProgressFromCloud({ forSync = false } = {}) {
+      if (window._authLogoutPending || isCharacterPilot() || !authUser || !_supaClient || _saveCleanupBlocked ||
+          _normalJourneyStaging || _pilotAnswerTransaction?.normal) return false;
+      const binding = _cloudBinding();
       const before = _canonicalSaveRecord();
-      if (before?.character && before.saveOwner !== owner) {
+      if (before?.character && before.saveOwner !== binding.owner) {
         if (before.saveOwner === null) _showGuestSaveRecovery(localStorage.getItem(CANONICAL_SAVE_KEY));
-        return;
+        return false;
       }
-      if (before?.save === null && before.resetReason === 'reset' && before.saveOwner === owner) return;
+      if (_cloudReadFlight && _cloudBindingCurrent(_cloudReadFlight.binding)) return _cloudReadFlight.promise;
+      const flight = { binding, promise: null };
+      _cloudReadFlight = flight;
+      _cloudStatus('Conferindo progresso…');
+      flight.promise = (async () => {
+        const remote = await _readCloudProgress(binding);
+        if (!_cloudBindingCurrent(binding) || !_reconcileCloudProgress(binding, remote)) return false;
+        const after = _canonicalSaveRecord();
+        if (after?.save === null && after.resetReason === 'logout' && !remote.progress.save?.character) {
+          _writeSaveTombstone('empty', binding.owner);
+        }
+        if (!forSync) {
+          clearTimeout(_cloudLoadSyncTimer);
+          _cloudLoadSyncTimer = setTimeout(() => {
+            _cloudLoadSyncTimer = null;
+            if (_cloudBindingCurrent(binding)) _syncProgressToCloud().catch(() => {});
+          }, 2000);
+        }
+        _cloudStatus(_cloudFingerprint(_buildCloudProgress()) === _cloudCheckpoint(binding.owner)?.payload
+          ? 'Salvo na nuvem' : 'Salvo neste aparelho · sincronização pendente');
+        return true;
+      })();
       try {
-        const { data: profile, error } = await _supaClient
-          .from('profiles')
-          .select('game_progress')
-          .eq('id', owner)
-          .single();
-        if (error || !profile || typeof profile !== 'object') return;
-        if (authUser?.id !== owner || _progressEpoch !== epoch || isCharacterPilot()) return;
-        let progress = profile?.game_progress;
-        if (localStorage.getItem(CANONICAL_SAVE_KEY) !== canonicalAtRequest) {
-          const current = _canonicalSaveRecord();
-          // Keep a same-owner transaction made during the query, while still
-          // merging the remote monotonic history. Reset/logout/invalid data
-          // invalidates the whole response, including its follow-up upload.
-          if (!current?.character || current.saveOwner !== owner || _isSaveTombstone(current)) return;
-          progress = {...progress};
-          delete progress.save;
-        }
-        _mergeCloudProgress(progress);
-        _refreshWelcomeStats(); // atualiza DOM após dados da nuvem chegarem (evita race condition)
-        let after = _canonicalSaveRecord();
-        if (after?.save === null && after.resetReason === 'logout' && !progress?.save?.character) {
-          // A successful, owner-bound read confirmed there is no remote
-          // journey. Retire logout protection so study stats can sync without
-          // requiring a new game or a second login on the next reload.
-          try { _writeSaveTombstone('empty', owner); after = _canonicalSaveRecord(); }
-          catch (error) { _warnStorageFull(); return; }
-        }
-        // A reset/journey tombstone intentionally refused the remote save.
-        // Do not erase that remote journey with a follow-up save:null upload.
-        if (_isSaveTombstone(after) && profile?.game_progress?.save?.character) return;
-        
-        // Se após o merge local houver dados combinados mais recentes, agenda upload de volta
-        clearTimeout(_cloudLoadSyncTimer);
-        const mergedEpoch = _progressEpoch;
-        _cloudLoadSyncTimer = setTimeout(() => {
-          _cloudLoadSyncTimer = null;
-          if (authUser?.id === owner && _progressEpoch === mergedEpoch && !isCharacterPilot() && typeof _syncProgressToCloud === 'function') {
-            _syncProgressToCloud().catch(() => {});
-          }
-        }, 2000);
-      } catch(e) { _track('error_cloud_load', { msg: String(e) }); }
+        return await flight.promise;
+      } catch(e) {
+        if (_cloudBindingCurrent(binding)) _cloudStatus('Salvo neste aparelho · sincronização pendente');
+        _track('error_cloud_load', { msg: String(e) });
+        return false;
+      } finally {
+        if (_cloudReadFlight === flight) _cloudReadFlight = null;
+      }
     }
 
     // Atualiza o bloco de estatísticas da welcome screen com dados atuais do localStorage.
@@ -7801,11 +8068,13 @@
     window.addEventListener('pageshow', function(e) {
       const ws = document.getElementById('welcomeScreen');
       if (ws && !ws.classList.contains('hidden')) refreshWelcomeSave();
+      if (authUser) _loadProgressFromCloud().catch(() => {});
     });
     document.addEventListener('visibilitychange', function() {
       if (!document.hidden) {
         const ws = document.getElementById('welcomeScreen');
         if (ws && !ws.classList.contains('hidden')) refreshWelcomeSave();
+        if (authUser) _loadProgressFromCloud().catch(() => {});
       } else {
         // Quando entra em background, força sincronização imediata
         flushPendingRating();
@@ -7813,6 +8082,9 @@
           _syncProgressToCloud().catch(() => {});
         }
       }
+    });
+    window.addEventListener('online', () => {
+      if (authUser) _syncProgressToCloud().catch(() => {});
     });
 
     // Garante o envio da avaliação pendente ao fechar/descarregar a página.

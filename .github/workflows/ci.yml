@@ -325,6 +325,8 @@ jobs:
 
       - name: Upload smoke test evidence
         if: always()
+        # A coleta de diagnósticos não altera o resultado bloqueante dos testes.
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: playwright-smoke-evidence
@@ -419,6 +421,8 @@ jobs:
 
       - name: Upload test report
         if: always()
+        # A coleta de diagnósticos não altera o resultado bloqueante dos testes.
+        continue-on-error: true
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report-${{ matrix.shard }}

@@ -35,7 +35,7 @@ test('evolução ocupa a tela e compara com a arte anterior', async ({ page }) =
   await expect(page.locator('.nqevo-antes figcaption')).toHaveText('Antes');
 
   await expect.poll(async () => (await page.locator('.nqevo-art').boundingBox())!.height).toBeGreaterThan(300);
-  const continuar = (await page.getByRole('button', { name: 'Continuar' }).boundingBox())!;
+  const continuar = (await page.locator('.evolution-popup').getByRole('button', { name: 'Continuar', exact: true }).boundingBox())!;
   expect(continuar.y + continuar.height).toBeLessThanOrEqual(720);
 });
 
@@ -55,7 +55,7 @@ for (const largura of [320, 390]) {
     // Antes e depois lado a lado, com a arte nova inteira antes do botão.
     const antes = (await page.locator('.nqevo-antes').boundingBox())!;
     const arte = (await page.locator('.nqevo-art').boundingBox())!;
-    const continuar = (await page.getByRole('button', { name: 'Continuar' }).boundingBox())!;
+    const continuar = (await page.locator('.evolution-popup').getByRole('button', { name: 'Continuar', exact: true }).boundingBox())!;
     expect(arte.x).toBeGreaterThanOrEqual(antes.x + antes.width);
     expect(arte.width).toBeGreaterThan(antes.width);
     expect(arte.y + arte.height).toBeLessThanOrEqual(continuar.y);
