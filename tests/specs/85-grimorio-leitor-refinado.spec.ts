@@ -9,6 +9,7 @@ async function openLibrary(page: Page) {
   await page.evaluate(() => { (window as any).isAdminUser = () => true; });
   await page.locator('[data-atrium-route="library"]').click();
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
+  await page.locator('[data-library-filter-toggle]').click();
 }
 test('leitura segue o favorito pelo teclado e mantém texto e foco ao fechar', async ({ page }) => {
   await openLibrary(page);

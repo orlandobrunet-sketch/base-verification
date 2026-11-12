@@ -83,6 +83,7 @@ test('retoma busca, filtro, resumo e leitura sem transferir contexto para outra 
   const opener = page.locator('[data-atrium-route="library"]');
   await opener.click();
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
+  await page.locator('[data-library-filter-toggle]').click();
   await page.locator('#nqDashLibrarySearch').fill('kdigo');
   await page.locator('#nqDashLibraryFilter').selectOption('theme:DRC');
   await page.locator('#nqDashLibrarySort').selectOption('oldest');

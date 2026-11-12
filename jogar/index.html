@@ -95,7 +95,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@17.02',
+          release: 'nefroquest@17.03',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -162,7 +162,7 @@
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.99">
   <link rel="stylesheet" href="styles/lumen/game.css?v=17.01">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.86">
-  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.92">
+  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=17.03">
   <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.90">
   <link rel="stylesheet" href="styles/lumen/forge.css?v=16.85">
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
@@ -181,8 +181,8 @@
   <link rel="stylesheet" href="styles/lumen/ranking.css?v=16.52">
   <link rel="stylesheet" href="styles/lumen/achievements.css?v=16.75">
   <link rel="stylesheet" href="styles/lumen/oracle.css?v=16.25">
-  <link rel="stylesheet" href="styles/lumen/chamber-desktop.css?v=16.96">
-  <link rel="stylesheet" href="styles/lumen/chamber-workspace.css?v=16.96">
+  <link rel="stylesheet" href="styles/lumen/chamber-desktop.css?v=17.03">
+  <link rel="stylesheet" href="styles/lumen/chamber-workspace.css?v=17.03">
   <script>
     // Version beacon - one policy for every public label; technical release remains monotonic.
     (function() {
@@ -1874,7 +1874,7 @@
   <script defer src="js/game.js?v=17.02"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
-  <script defer src="js/auth.js?v=16.99"></script>
+  <script defer src="js/auth.js?v=17.03"></script>
   <script defer src="js/portal.js?v=16.93"></script>
   <script defer src="js/atrium.js?v=13.23"></script>
   <script defer src="js/paywall.js?v=16.97"></script>
@@ -1894,9 +1894,9 @@
   <script defer src="js/cinema-victory-source-config.js?v=16.28"></script>
   <script defer src="js/cinema-victory-epilogue.js?v=16.43"></script>
   <script defer src="js/cinema-victory-bridge.js?v=16.43"></script>
-  <script defer src="js/chamber-art.js?v=16.96"></script>
-  <script defer src="js/chamber-workspace.js?v=16.91"></script>
-  <script defer src="js/minigame-acidbase.js?v=16.96"></script>
+  <script defer src="js/chamber-art.js?v=17.03"></script>
+  <script defer src="js/chamber-workspace.js?v=17.03"></script>
+  <script defer src="js/minigame-acidbase.js?v=17.03"></script>
   <script defer src="js/cinema-entry-source-config.js?v=16.28"></script>
   <script defer src="js/cinema-entry-seen.js?v=16.28"></script>
   <script defer src="js/cinema-entry-cinema.js?v=16.43"></script>
@@ -1904,7 +1904,7 @@
   <script defer src="js/achievements.js?v=16.75"></script>
   <script defer src="js/changelog.js?v=15.94"></script>
   <script defer src="js/equipment-preview.js?v=16.62"></script>
-  <script defer src="js/dashboard.js?v=17.01"></script>
+  <script defer src="js/dashboard.js?v=17.03"></script>
 
   <!-- Single source of truth for profile popup menu items -->
   <template id="profilePopupItems">
@@ -1917,6 +1917,7 @@
       <p class="profile-popup-group-title" aria-hidden="true">Preferências</p>
       <button type="button" class="profile-popup-item" data-action="toggleStudyReminders" data-stop-propagation="1">Lembretes</button>
       <button type="button" class="profile-popup-item" data-action="toggleReadingMode" data-stop-propagation="1" aria-pressed="false">Modo Leitura</button>
+      <button type="button" class="profile-popup-item" data-action="toggleChamberMotion" data-stop-propagation="1" aria-pressed="true">Animações da Câmara</button>
     </div>
     <div class="profile-popup-group profile-popup-admin-group" role="group" aria-label="Administração" hidden>
       <p class="profile-popup-group-title" aria-hidden="true">Administração</p>

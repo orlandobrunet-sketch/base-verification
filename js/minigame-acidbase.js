@@ -2061,6 +2061,17 @@
   ];
   // Helper p/ telas internas que ainda referenciam o "chapter" antigo.
   function _chapterOf(meta){ return `${meta.caso} — ${meta.title}`; }
+  function _abHeaderHTML(){
+    return `<div class="ab-header-actions"><button type="button" class="ab-preferences" data-action="toggleProfilePopup" data-arg="chamberPreferences" aria-label="Preferências" aria-controls="mobileProfilePopup" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m10 3-1 3-3 1-2 3 2 3 1 3 3 1 2 3 3-2 3-1 1-3 2-3-2-3-3-1-1-3Z"/><circle cx="12" cy="12" r="3"/></svg></button><button type="button" class="ab-close" data-ab-close aria-label="Sair da Câmara">✕</button></div>`;
+  }
+  function _abRenderCard(card, html, caseId){
+    const previous = card.querySelector('[data-ab-case-scene]');
+    const keep = previous?.dataset.abCaseScene === caseId ? previous : null;
+    if (keep) keep.remove();
+    card.innerHTML = html;
+    if (keep) card.querySelector('[data-ab-case-scene]')?.replaceWith(keep);
+    window.NQChamberArt?.hydrateScenes(card);
+  }
 
   // Um caso é jogável se: tem build() E (é o primeiro OU o anterior já foi
   // concluído OU o usuário for admin). Casos sem build() ficam sempre bloqueados ("Em breve").
@@ -2097,7 +2108,7 @@
     _bindOverlayEvents(pagina);
     return pagina;
   }
-  function _abFechar(overlay, options){ window.NQChamberMotion?.unmount(); overlay._abFechar ? overlay._abFechar(options) : overlay.remove(); }
+  function _abFechar(overlay, options){ window.closeProfilePopup?.(); window.NQChamberMotion?.unmount(); overlay._abFechar ? overlay._abFechar(options) : overlay.remove(); }
   // Cada tela é redesenhada inteira: o foco vai para o título (ou para o
   // campo/próximo passo), senão cai no body a cada ato.
   function _abFocar(card, sel){
@@ -2156,34 +2167,20 @@
 
     const overlay = _abPagina();
     overlay.dataset.abTela = 'hub';
+    delete overlay.dataset.abCaseId;
     overlay.innerHTML = `
       <div class="ab-card">
-        <button type="button" class="ab-close" data-ab-close aria-label="Sair da Câmara">✕</button>
+        ${_abHeaderHTML()}
         <div class="ab-scroll">
           <div class="ab-hub">
             <div class="ab-hub-layout">
             <div class="ab-hub-banner">
+            <div class="ab-hub-copy">
             <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
             <h1 class="ab-title">Alquimista Renal</h1>
             <div class="ab-hub-progress"><span><strong>${completedCount}</strong> de ${CASES.length} casos concluídos</span><progress max="${CASES.length}" value="${completedCount}" aria-label="Casos concluídos"></progress></div>
-            <div class="ab-lab" data-ab-lab data-motion="paused">
-              <svg class="ab-lab-art" viewBox="0 0 240 156" fill="none" aria-hidden="true" focusable="false">
-                <circle class="ab-lab-dial" cx="120" cy="74" r="69"/>
-                <circle class="ab-lab-ticks" cx="120" cy="74" r="62"/>
-                <path class="ab-lab-dial" d="M28 74h184M120 5v138M71 25l98 98M169 25l-98 98"/>
-                <ellipse class="ab-lab-halo" cx="120" cy="132" rx="59" ry="7"/>
-                <path class="ab-lab-frame" d="M120 35v89M92 130h56M103 125h34M120 17l6 9-6 9-6-9 6-9Z"/>
-                <g class="ab-lab-beam">
-                  <path class="ab-lab-frame" d="M52 49q34 8 68 0t68 0M62 51v19m116-19v19M43 98h38m78 0h38M62 70 43 98q19 20 38 0L62 70Zm116 0-19 28q19 20 38 0l-19-28Z"/>
-                  <path class="ab-lab-liquid ab-lab-liquid--cyan" d="M47 97q8-4 15 0t15 0q-15 18-30 0Z"/>
-                  <path class="ab-lab-liquid ab-lab-liquid--gold" d="M163 97q8-4 15 0t15 0q-15 18-30 0Z"/>
-                  <circle class="ab-lab-spark" cx="62" cy="87" r="2.5"/>
-                  <circle class="ab-lab-spark ab-lab-spark--second" cx="178" cy="87" r="2.5"/>
-                </g>
-                <circle class="ab-lab-pivot" cx="120" cy="49" r="5"/>
-              </svg>
-              <button type="button" class="ab-motion-toggle" data-ab-motion-toggle aria-pressed="false">Pausar animação</button>
             </div>
+            ${window.NQChamberArt?.sceneHTML() || ''}
             </div>
             <div class="ab-hub-opening">
             <div class="ab-hub-heading">
@@ -2207,6 +2204,7 @@
         </div>
       </div>`;
     _abFocar(overlay, '.ab-title');
+    window.NQChamberArt?.hydrateScenes(overlay);
     window.NQChamberWorkspace?.mount(overlay);
   }
 
@@ -2268,6 +2266,7 @@
     try { if (typeof _track === 'function') _track('minigame_acid_base_case_started', { case: kase.id }); } catch {}
     const sess = { actIdx: 0, grimoireUses: 0, wrongAttempts: 0 };
     overlay.dataset.abTela = 'caso';
+    overlay.dataset.abCaseId = meta.id;
     _renderIntro(overlay, kase, sess);
   }
 
@@ -2276,6 +2275,7 @@
     const g = kase.gas;
     return `
       <div class="ab-context">
+        ${window.NQChamberArt?.sceneHTML(kase.id) || ''}
         <div class="ab-patient-heading">
         ${window.NQChamberArt?.portraitHTML(kase.id) || ''}
         <div class="ab-patient-identity">
@@ -2300,14 +2300,14 @@
   function _renderIntro(overlay, kase, sess){
     if (!_abCurrent(overlay)) return;
     const card = overlay.querySelector('.ab-card');
-    card.innerHTML = `
-      <button type="button" class="ab-close" data-ab-close aria-label="Sair da Câmara">✕</button>
+    _abRenderCard(card, `
+      ${_abHeaderHTML()}
       <div class="ab-scroll">
         ${_contextHeaderHTML(kase)}
         <div class="ab-body ab-body--intro">
           <button type="button" class="ab-btn-primary" data-ab-start-acts>Iniciar Diagnóstico em ${kase.acts.length} Atos →</button>
         </div>
-      </div>`;
+      </div>`, kase.id);
     const preview=document.createElement('section');preview.className='ab-intro-preview';
     preview.setAttribute('aria-labelledby','abIntroRouteTitle');
     const heading=document.createElement('h2');heading.id='abIntroRouteTitle';heading.textContent='Seu percurso';preview.append(heading);
@@ -2431,8 +2431,8 @@
       ? `<button type="button" class="ab-grimoire-btn" data-ab-grimoire aria-expanded="false" aria-controls="abGrimoirePanel">📖 Consultar Grimório</button>`
       : '';
 
-    card.innerHTML = `
-      <button type="button" class="ab-close" data-ab-close aria-label="Sair da Câmara">✕</button>
+    _abRenderCard(card, `
+      ${_abHeaderHTML()}
       <div class="ab-scroll">
         ${_contextHeaderHTML(kase)}
         <div class="ab-body">
@@ -2444,7 +2444,7 @@
           ${bodyHTML}
           <div class="ab-feedback" id="abFeedback" hidden></div>
         </div>
-      </div>`;
+      </div>`, kase.id);
 
     card.querySelector('[data-ab-close]').onclick = () => _abFechar(overlay);
     window.NQChamberArt?.hydrate(card);
@@ -2725,6 +2725,10 @@
     }); sess.completionTracked = true; } catch {}
     const card = overlay.querySelector('.ab-card');
     const flawless = sess.wrongAttempts === 0;
+    const nextCase = CASES[CASES.findIndex(meta => meta.id === kase.id) + 1];
+    const completed = new Set(_loadProgress(overlay._abBinding).completed || []);
+    const canContinue = !!nextCase && completed.has(kase.id) && _isPlayable(nextCase, completed);
+    const allCompleted = CASES.every(meta => completed.has(meta.id));
     // Didactic notes remain distinct from traceable clinical sources.
     const refs = (kase.acts || []).filter(a => a.grimoire).map(a => a.grimoire);
     const refsHTML = refs.length ? `
@@ -2736,8 +2740,8 @@
                 <div class="ab-ref-body">${r.body}</div>
               </div>`).join('')}
           </div>` : '';
-    card.innerHTML = `
-      <button type="button" class="ab-close" data-ab-close aria-label="Sair da Câmara">✕</button>
+    _abRenderCard(card, `
+      ${_abHeaderHTML()}
       <div class="ab-scroll">
         ${_contextHeaderHTML(kase)}
         <div class="ab-body ab-summary-view">
@@ -2750,17 +2754,29 @@
           </div>
           ${refsHTML}
           <div class="ab-summary-actions">
-            <button type="button" class="ab-btn-secondary" data-ab-back>← Voltar à Câmara</button>
-            <button type="button" class="ab-btn-primary" data-ab-replay>↻ Jogar novamente (novos valores)</button>
+            ${canContinue ? `<button type="button" class="ab-btn-primary ab-continue-case" data-ab-continue-case="${nextCase.id}">Próximo caso — ${nextCase.character}</button>` : ''}
+            <button type="button" class="${canContinue ? 'ab-btn-secondary' : 'ab-btn-primary'}" data-ab-back>${allCompleted ? 'Ver percurso concluído' : '← Voltar à Câmara'}</button>
+            <button type="button" class="ab-btn-secondary" data-ab-replay>↻ Jogar novamente (novos valores)</button>
           </div>
         </div>
-      </div>`;
+      </div>`, kase.id);
     card.querySelector('[data-ab-close]').onclick = () => _abFechar(overlay);
     window.NQChamberArt?.hydrate(card);
     _appendCaseSources(card, kase);
     const retry = card.querySelector('[data-ab-sources-retry]');
     if (retry) retry.onclick = () => { sess.showSourcesOnSummary = true; _renderSummary(overlay, kase, sess); };
     card.querySelector('[data-ab-back]').onclick = () => showAcidBaseMinigame();
+    const continueButton = card.querySelector('[data-ab-continue-case]');
+    if (continueButton) continueButton.onclick = () => {
+      if (!_abCurrent(overlay) || !sess.completionStored || !continueButton.isConnected || continueButton.disabled) return;
+      const progress = new Set(_loadProgress(overlay._abBinding).completed || []);
+      if (!progress.has(kase.id) || !_isPlayable(nextCase, progress)) {
+        if (typeof _toast === 'function') _toast('Confira os casos concluídos antes de continuar o percurso.', 'warning');
+        return;
+      }
+      continueButton.disabled = true;
+      _startCase(overlay, nextCase);
+    };
     _abFocar(card, '.ab-summary-title');
     card.querySelector('[data-ab-replay]').onclick = () => {
       const meta = CASES.find(c => c.id === kase.id);

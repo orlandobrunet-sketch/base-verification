@@ -5,20 +5,21 @@ async function open(page:Page){
  await page.evaluate(()=>{document.getElementById('landingScreen')?.classList.add('hidden');document.getElementById('welcomeScreen')?.classList.add('hidden');(window as any).showAcidBaseMinigame();});
  const cinema=page.locator('#nqEntryCinema[open]');if(await cinema.count()){await page.keyboard.press('Escape');await expect(cinema).toHaveCount(0);}
 }
-test.beforeEach(async({page})=>{await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());await page.goto('/jogar/',{waitUntil:'load'});});
+test.beforeEach(async({page})=>{await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());await page.goto('/jogar/',{waitUntil:'load'});await page.locator('[data-portal-route="guest"]').click();});
+async function preferences(page:Page){await page.getByRole('button',{name:'Preferências',exact:true}).click();return page.locator('#mobileProfilePopup.open').getByRole('button',{name:'Animações da Câmara',exact:true});}
 
 test('balance can be paused by keyboard and remembers preference without changing progress',async({page})=>{
  await open(page);const before=await page.evaluate(()=>localStorage.getItem('nq-acidbase-progress'));
- const art=page.locator('[data-ab-lab]'),pause=page.getByRole('button',{name:'Pausar animação',exact:true});
+ const art=page.locator('[data-ab-lab]'),pause=await preferences(page);
  await expect(art).toHaveAttribute('data-motion','running');
  await expect.poll(()=>art.evaluate(el=>el.getAnimations({subtree:true}).filter(a=>a.playState==='running').length)).toBeGreaterThan(0);
  await pause.focus();await page.keyboard.press('Space');
- await expect(page.getByRole('button',{name:'Retomar animação',exact:true})).toBeFocused();
+ await expect(pause).toBeFocused();await expect(pause).toHaveAttribute('aria-pressed','false');
  await expect(art).toHaveAttribute('data-motion','paused');
  expect(await art.evaluate(el=>el.getAnimations({subtree:true}).every(a=>a.playState==='paused'))).toBe(true);
- await page.locator('[data-ab-close]').click();await open(page);
+ await page.keyboard.press('Escape');await page.locator('[data-ab-close]').click();await open(page);
  await expect(page.locator('[data-ab-lab]')).toHaveAttribute('data-motion','paused');
- await page.getByRole('button',{name:'Retomar animação',exact:true}).click();
+ await (await preferences(page)).click();
  await expect(page.locator('[data-ab-lab]')).toHaveAttribute('data-motion','running');
  expect(await page.evaluate(()=>localStorage.getItem('nq-acidbase-progress'))).toBe(before);
 });
@@ -26,20 +27,20 @@ test('balance can be paused by keyboard and remembers preference without changin
 test('reduced motion is static and follows a changed system preference',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});await open(page);
  const art=page.locator('[data-ab-lab]');await expect(art).toHaveAttribute('data-motion','paused');
- await expect(page.getByRole('button',{name:'Movimento reduzido',exact:true})).toBeDisabled();
+ await expect(await preferences(page)).toBeDisabled();
  expect(await art.evaluate(el=>el.getAnimations({subtree:true}).length)).toBe(0);
  await page.emulateMedia({reducedMotion:'no-preference'});
- await expect(page.getByRole('button',{name:'Pausar animação',exact:true})).toBeEnabled();
+ await expect(page.getByRole('button',{name:'Animações da Câmara',exact:true})).toBeEnabled();
  await expect(art).toHaveAttribute('data-motion','running');
 });
 
-test('hidden overview suspends the balance and an act removes the decoration',async({page})=>{
+test('hidden overview suspends the scene and an act keeps the patient setting',async({page})=>{
  test.skip(!await page.evaluate(()=>matchMedia('(pointer:fine)').matches),'Touch keeps native layout.');
  await open(page);const art=page.locator('[data-ab-lab]');await expect(art).toHaveAttribute('data-motion','running');
  await page.getByRole('tab',{name:/^Casos clínicos \(\d+\)$/}).click();await expect(art).toHaveAttribute('data-motion','paused');
  await page.getByRole('tab',{name:'Visão geral',exact:true}).click();await expect(art).toHaveAttribute('data-motion','running');
  await page.locator('[data-ab-next]').click();await page.locator('[data-ab-start-acts]').click();
- await expect(art).toHaveCount(0);await expect(page.locator('.ab-prompt')).toBeFocused();
+ await expect(page.locator('[data-ab-case-scene="aldric"]')).toBeVisible();await expect(page.locator('.ab-prompt')).toBeFocused();
 });
 
 test('large text and narrow screens keep readable content without horizontal overflow',async({page})=>{
@@ -49,7 +50,7 @@ test('large text and narrow screens keep readable content without horizontal ove
   await expect(page.locator('.ab-lead')).toBeVisible();
   const desktop=await page.evaluate(()=>matchMedia('(min-width:961px) and (pointer:fine)').matches);
   await expect(page.locator('[data-ab-lab]')).toBeVisible();
-  await expect(page.locator('[data-ab-motion-toggle]')).toBeVisible();
+  await expect(page.getByRole('button',{name:'Preferências',exact:true})).toBeVisible();
   if(desktop)await expect(page.locator('[data-ab-next]')).toBeVisible();
  }
 });

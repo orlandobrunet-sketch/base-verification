@@ -22,6 +22,7 @@ test.beforeEach(async ({ context, baseURL, page }) => {
   });
   await page.locator('[data-atrium-route="library"]').click();
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
+  await page.locator('[data-library-filter-toggle]').click();
 });
 
 
@@ -70,6 +71,7 @@ test('estrela conserva Todos, filtros, busca e ordem; favoritos persistem sem co
  await page.getByRole('tab',{name:'Todos'}).click();expect(await ids()).toEqual(before);
  await expect(page.locator('[data-library-item]:visible .nqd-favorite')).toHaveAttribute('aria-pressed','false');
  await page.locator('#nqDashLibrarySearch').fill('');
+ await page.locator('[data-library-filter-toggle][aria-expanded="false"]').click();
  const theme=await page.locator('[data-library-item][data-library-kind="source"]').evaluateAll(es=>es.map(e=>e.getAttribute('data-library-theme')).find(Boolean)!.split(' · ')[0]);
  expect(theme).toBeTruthy();await page.locator('#nqDashLibraryFilter').selectOption('theme:'+theme);
  const themed=await ids(); const themedStar=page.locator('[data-library-item]:visible .nqd-favorite').first();

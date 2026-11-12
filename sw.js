@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v17.02
-const CACHE = 'nefroquest-v17.02';
+// NefroQuest Service Worker — v17.03
+const CACHE = 'nefroquest-v17.03';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -186,10 +186,10 @@ const STATIC_ASSETS = [
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
   '/js/progression.js': '16.84',
-  '/js/chamber-workspace.js': '16.91',
-  '/styles/lumen/chamber-workspace.css': '16.96',
-  '/js/chamber-art.js': '16.96',
-  '/styles/lumen/chamber-desktop.css': '16.96',
+  '/js/chamber-workspace.js': '17.03',
+  '/styles/lumen/chamber-workspace.css': '17.03',
+  '/js/chamber-art.js': '17.03',
+  '/styles/lumen/chamber-desktop.css': '17.03',
   '/js/cinema-poison-portraits.js': '16.43',
   '/js/cinema-movie-art.js': '16.42',
   '/js/cinema-movie-sound.js': '16.42',
@@ -222,7 +222,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/atrium.css': '16.99',
   '/styles/lumen/game.css': '17.01',
   '/styles/lumen/difficulty.css': '16.86',
-  '/styles/lumen/dashboard.css': '16.92',
+  '/styles/lumen/dashboard.css': '17.03',
   '/styles/lumen/charselect.css': '16.90',
   '/styles/lumen/modes.css': '16.69',
   '/styles/lumen/exam.css': '17.01',
@@ -243,7 +243,7 @@ const ASSET_VERSIONS = {
   '/js/study-mode.js': '17.02',
   '/js/game.js': '17.02',
   '/js/notifications.js': '11.90',
-  '/js/auth.js': '16.99',
+  '/js/auth.js': '17.03',
   '/js/portal.js': '16.93',
   '/js/atrium.js': '13.23',
   '/js/paywall.js': '16.97',
@@ -252,11 +252,11 @@ const ASSET_VERSIONS = {
   '/js/exam.js': '17.01',
   '/js/admin.js': '15.35',
   '/js/minigame.js': '17.01',
-  '/js/minigame-acidbase.js': '16.96',
+  '/js/minigame-acidbase.js': '17.03',
   '/js/achievements.js': '16.75',
   '/js/changelog.js': '15.94',
   '/js/equipment-preview.js': '16.62',
-  '/js/dashboard.js': '17.01',
+  '/js/dashboard.js': '17.03',
 };
 // bump-release:asset-versions:fim
 

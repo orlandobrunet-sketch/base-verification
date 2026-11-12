@@ -110,6 +110,7 @@ test('oferece o inventário faltante sem resumo bloqueado nem novas descobertas'
   await expect(library.locator('#nqDashLibraryFilter option[value="guideline"]')).toHaveCount(0);
   // Além das fontes, entram os artigos que o catálogo marca como diretriz.
   expect(await library.locator('[data-library-entry]:visible').count()).toBeGreaterThanOrEqual(meta.guidelines);
+  await page.locator('[data-library-filter-toggle]').click();
   await library.locator('#nqDashLibraryFilter').selectOption('all');
   if (meta.unlinkedTitle) {
     await library.locator('#nqDashLibrarySearch').fill(meta.unlinkedTitle);
@@ -131,6 +132,7 @@ test('mantém acesso administrativo separado das descobertas pessoais e conserva
   const library = page.locator('#nqdPane-library');
   await expect(library.locator('.nqd-library-summary')).toContainText('Referências descobertas até o momento: 4/');
   await expect(library.locator('[data-library-item]:visible')).toHaveCount(meta.articles + meta.refs);
+  await page.locator('[data-library-filter-toggle]').click();
   await library.locator('#nqDashLibraryFilter').selectOption('theme:DRC');
   const filtered = await library.locator('[data-library-item]:visible').count();
   await page.keyboard.press('Escape');
