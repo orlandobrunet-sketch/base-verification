@@ -1,7 +1,7 @@
 import {test,expect} from '@playwright/test';
 import {injectGameState} from '../helpers/game';
 
-test.use({serviceWorkers:'block',reducedMotion:'reduce'});
+test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'reduce' }});
 const classes={nephros:'clerigo_renal',aquaria:'maga_metabolica',glomerulus:'guerreiro_glomerular'};
 for(const [id,folder] of Object.entries(classes)) test('retratos cinematográficos carregam nos dez níveis de '+id,async({page})=>{
   await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());

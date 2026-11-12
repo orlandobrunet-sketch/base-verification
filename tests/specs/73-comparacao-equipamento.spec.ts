@@ -3,7 +3,7 @@ import { injectGameState } from '../helpers/game';
 import { medirContraste } from '../helpers/contraste';
 
 /** Comparação de equipamento: leitura, decisão, foco e venda fora da Forja. */
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 const ATUAL = { n: 'Orbe da Cistatina', rar: 'epic', atk: 2, def: 2, kno: 6, luck: 2 };
 const NOVO = { n: 'Amuleto do Rim Imortal', rar: 'legendary', atk: 4, def: 4, kno: 9, luck: 5 };

@@ -5,7 +5,7 @@ import path from 'node:path';
 const approved = JSON.parse(readFileSync(path.resolve(__dirname,
   '../../docs/editorial/reviews/2026-10-21/gitelman-whole-card-candidate-A1.json'), 'utf8')).wholeCard;
 const referenceId = 'gitelman_kdigo_2017';
-test.use({serviceWorkers: 'block', reducedMotion: 'reduce'});
+test.use({serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' }});
 
 test('Gitelman full card opens the reviewed text in the clinical library', async ({page, context}) => {
   await context.routeWebSocket('**/*', socket => socket.close());

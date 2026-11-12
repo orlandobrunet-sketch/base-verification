@@ -3,11 +3,15 @@ import { medirContraste } from '../helpers/contraste';
 import { auditarVisual } from '../helpers/auditoria-visual';
 import { injectGameState } from '../helpers/game';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 test.beforeEach(async ({ page }) => {
   // Nenhuma conta, mensagem ou telemetria sai deste teste.
-  await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost'
-    ? route.continue() : route.abort());
+  // As contas são fictícias; a sessão real do SDK não pode substituir seus mocks.
+  await page.route('**/*', route => {
+    const url = new URL(route.request().url());
+    if (url.pathname === '/assets/vendor/supabase-js-2.106.2/supabase.js') return route.abort();
+    return url.hostname === 'localhost' ? route.continue() : route.abort();
+  });
   await page.goto('/jogar/');
   await page.locator('[data-portal-route="guest"]').click();
 });

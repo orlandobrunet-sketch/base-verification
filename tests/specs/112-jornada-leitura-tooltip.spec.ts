@@ -1,7 +1,7 @@
 import { test, expect, type Locator, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 const BADGES = '.equip-total-attributes .stat-badge';
 const TIP = 'body > .stat-tip-floating';
@@ -561,10 +561,20 @@ test('preview de equipamento e dica de atributo se excluem por hover', async ({ 
 
 test('a redução padrão preserva o modo de leitura e a ampliação do usuário', async ({ page }) => {
   await openGame(page, 1100);
-  const sizes = () => page.evaluate(() => ({
-    question: parseFloat(getComputedStyle(document.getElementById('question')!).fontSize),
-    option: parseFloat(getComputedStyle(document.querySelector('#options .opt-body')!).fontSize),
-  }));
+  const sizes = () => page.evaluate(async () => {
+    const question = document.getElementById('question')!;
+    const option = document.querySelector('#options .opt-body')!;
+    // Reduced motion still has a real .01ms CSS transition. Flush the new
+    // styles and await its natural end before comparing the final font sizes.
+    for (const element of [question, option]) getComputedStyle(element).fontSize;
+    await Promise.all([question, option].flatMap(element => element.getAnimations())
+      .filter(animation => animation instanceof CSSTransition)
+      .map(animation => animation.finished));
+    return {
+      question: parseFloat(getComputedStyle(question).fontSize),
+      option: parseFloat(getComputedStyle(option).fontSize),
+    };
+  });
   for (const width of [320, 1100]) {
     await page.setViewportSize({ width, height: 844 });
     await fontScale(page, 100);

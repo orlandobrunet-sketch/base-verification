@@ -1,7 +1,7 @@
 import {test, expect, type Page} from '@playwright/test';
 import {saveBase} from '../helpers/fixtures';
 
-test.use({serviceWorkers: 'block', reducedMotion: 'reduce'});
+test.use({serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' }});
 test.beforeEach(async ({context}) => {
   await context.route('**/*', route => ['localhost', '127.0.0.1'].includes(new URL(route.request().url()).hostname)
     && route.request().method() === 'GET' ? route.continue() : route.abort());

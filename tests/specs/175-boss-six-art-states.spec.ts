@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {injectGameState,enterGame} from '../helpers/game';
-test.use({serviceWorkers:'block',reducedMotion:'reduce'});
+test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'reduce' }});
 test('wrong answer, replay and reload preserve fifth artwork and rewards',async({page})=>{
  test.skip(!await page.evaluate(()=>matchMedia('(min-width:769px) and (hover:hover) and (pointer:fine)').matches&&!matchMedia('(any-pointer:coarse)').matches),'Desktop artwork only');
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());

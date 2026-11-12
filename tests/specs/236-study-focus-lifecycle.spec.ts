@@ -10,7 +10,7 @@ const authors = Array.from({ length: 3 }, (_, index) => ({
   ans: index, exp: 'Explicação técnica para conferir o fluxo de foco.',
 }));
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 async function prepare(page: Page, openStudyHub = true) {
   await page.route('**/*', route => {

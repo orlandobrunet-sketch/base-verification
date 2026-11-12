@@ -2,7 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 import { medirContraste } from '../helpers/contraste';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce', deviceScaleFactor: 2, hasTouch: true });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' }, deviceScaleFactor: 2, hasTouch: true });
 const PREVIEW = '#nqEquipmentPreview';
 const HELMET = '#equipList .slot-diablo[data-slot="helmet"]';
 // w-srcset corrige naturalWidth pela densidade selecionada. Medimos os pixels

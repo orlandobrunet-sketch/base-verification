@@ -3,7 +3,7 @@ import { injectGameState } from '../helpers/game';
 import { installCloudBackendRecorder } from '../helpers/pilot';
 
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 const SLOTS = ['helmet', 'glove', 'armor', 'weapon', 'relic', 'boot'];
 const VAZIOS = Object.fromEntries(SLOTS.map(slot => [slot, { n: 'Vazio', rar: 'common', atk: 0, def: 0, kno: 0, luck: 0 }]));
@@ -13,6 +13,7 @@ const VENDA: Record<string, number> = { common: 20, uncommon: 40, rare: 80, epic
 async function abrir(page: Page, gold = 5000, ocupado = true) {
   await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+  await page.locator('[data-portal-route="guest"]').click();
   await injectGameState(page, {
     schemaVersion: 6,
     gold,

@@ -2,7 +2,7 @@ import{test,expect}from'@playwright/test';import{enterGame}from'../helpers/game'
 import{advanceToFilm}from'../helpers/cinema';
 import{chamberCatalog}from'../helpers/chamber-catalog';
 import path from'node:path';import{mkdirSync}from'node:fs';
-test.use({serviceWorkers:'block',reducedMotion:'no-preference'});
+test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'no-preference' }});
 test('combined normal entry, Chamber, boss, epilogue and continuation',async({page})=>{
  test.setTimeout(100000);test.skip(!await page.evaluate(()=>matchMedia('(min-width:961px) and (pointer:fine)').matches),'Consolidated desktop composition');
  await page.setViewportSize({width:1280,height:800});const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));

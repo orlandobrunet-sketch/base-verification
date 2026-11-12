@@ -1,7 +1,7 @@
 import { confirmCharacterStart } from '../helpers/cinema';
 import { test, expect, type Locator, type Page } from '@playwright/test';
 import { medirContraste } from '../helpers/contraste';
-test.use({serviceWorkers:'block',reducedMotion:'reduce'});
+test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'reduce' }});
 async function abrir(page:Page,id='glomerulus'){
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
  await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(()=>typeof (window as any)._confirmDiff==='function');

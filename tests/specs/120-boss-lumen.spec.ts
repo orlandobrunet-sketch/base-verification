@@ -1,7 +1,7 @@
 import { bossPresentation } from '../helpers/cinema';
 import { test, expect, type Page } from '@playwright/test';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 async function abrir(page: Page) {
   await page.route('**/*', route => {

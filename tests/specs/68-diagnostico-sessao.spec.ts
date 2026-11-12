@@ -13,7 +13,7 @@ import { medirContraste } from '../helpers/contraste';
  * novo.
  */
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 type Resposta = { status: number; corpo?: unknown } | 'rede';
 

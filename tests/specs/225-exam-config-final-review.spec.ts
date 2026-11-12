@@ -4,7 +4,7 @@ import {medirContraste} from '../helpers/contraste';
 import {injectGameState} from '../helpers/game';
 const authors=Array.from({length:4},(_,i)=>({qid:'exam-config-'+i,t:'Configuração técnica',q:'Questão técnica '+i,opts:['Texto A '+i,'Texto B '+i,'Texto C '+i,'Texto D '+i],ans:i,exp:'Explicação reservada '+i,cat:'geral',diff:'medium',refs:[]}));
 const KEY='nefroquest-exam-state';
-test.use({serviceWorkers:'block',reducedMotion:'reduce'});
+test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'reduce' }});
 test.beforeEach(async({page},info)=>{
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
  await routeTechnicalQuestionBank(page,authors);await page.goto('/jogar/',{waitUntil:'domcontentloaded'});

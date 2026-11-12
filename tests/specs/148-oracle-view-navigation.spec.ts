@@ -1,7 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 const errors = new WeakMap<Page, string[]>();
 test.beforeEach(async ({ page, context, baseURL }, info) => {
   const origin = new URL(baseURL!).origin;

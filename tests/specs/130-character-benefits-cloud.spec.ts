@@ -8,7 +8,7 @@ const SAVE_KEY = 'nefroquest-save-v7';
 const OWNER_A = 'character-cloud-fixture-a';
 const OWNER_B = 'character-cloud-fixture-b';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 test.beforeEach(async ({ page }) => setupPilotPage(page));
 test.afterEach(async ({ page }, testInfo) => attachPilotFailureDiagnostics(page, testInfo));
 

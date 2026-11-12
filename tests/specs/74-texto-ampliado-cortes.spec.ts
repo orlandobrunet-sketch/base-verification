@@ -10,7 +10,7 @@ import { test, expect, type Page } from '@playwright/test';
  * de 320, e título, subtítulo e o cartão da jornada ficavam cortados. O mesmo
  * `20rem` estava na tela de dificuldade e no body do Lúmen.
  */
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 /**
  * Trechos de TEXTO com parte fora da largura da tela, fora de região rolável.

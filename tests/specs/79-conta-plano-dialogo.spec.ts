@@ -10,7 +10,7 @@ import { medirContraste } from '../helpers/contraste';
  *   o abriu, o Tab caminhava pela jornada e o Escape não fechava;
  * - o ✕ da Conta e do Plano media 28x28, e campos e botões 37–43px de altura.
  */
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 const ORIGEM = '#forgeBtn:visible, .mdock-btn.forge-item:visible';
 const conta = { id: 'conta-acessibilidade', email: 'conta@example.test', user_metadata: {} };

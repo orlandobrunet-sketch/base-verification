@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import{advanceToFilm}from'../helpers/cinema';
-test.use({serviceWorkers:'block',reducedMotion:'no-preference'});
+test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'no-preference' }});
 test('each film keeps pause, mute and skip reachable after consecutive replays',async({page})=>{
  await page.goto('/cinema-preview.html',{waitUntil:'domcontentloaded'});
  for(const key of ['nephros','aquaria','glomerulus','chamber','battle','victory']){

@@ -12,7 +12,7 @@ import { medirContraste } from '../helpers/contraste';
  * - a explicação sumia em 1 segundo, sem tempo de leitura;
  * - ao errar, a resposta certa era indicada só por um brilho verde.
  */
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 async function abrir(page: Page, { standalone = true, largura = 1280, relogio = false, qid = '' } = {}) {
   await page.setViewportSize({ width: largura, height: 800 });

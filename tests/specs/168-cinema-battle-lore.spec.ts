@@ -1,5 +1,5 @@
 import{test,expect}from'@playwright/test';import{injectBossState}from'../helpers/game';
-test.use({serviceWorkers:'block',reducedMotion:'no-preference'});
+test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'no-preference' }});
 async function boss(page){await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await injectBossState(page);await page.locator('#nqStaticIntro').waitFor({state:'visible'});}
 test('real battle uses camera04 and battle captions, not the chamber copy',async({page})=>{
  await boss(page);await page.locator('#nqStaticIntro').click();const d=page.locator('#nqEntryCinema[open]');await expect(d).toBeVisible();await expect(d).toHaveAttribute('data-movie-key','battle');

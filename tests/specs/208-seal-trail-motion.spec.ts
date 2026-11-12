@@ -1,7 +1,7 @@
 import { test, expect, type Page, type BrowserContext } from '@playwright/test';
 import { openVisualDashboard, visualProgress } from '../helpers/dashboard-visual-fixture';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 async function openTrail(page: Page, context: BrowserContext, baseURL: string, correct: number) {
   await openVisualDashboard(page, context, baseURL);
   await page.evaluate(correct => {
@@ -56,8 +56,24 @@ test('motion does not move badges or overflow at 320px with 200 percent text', a
   await page.setViewportSize({ width: 320, height: 1000 });
   const trail = await openTrail(page, context, baseURL!, 18);
   await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
   const before = await visualProgress(page), positions = await trail.locator('li').evaluateAll(items => items.map(el => el.getBoundingClientRect().toJSON()));
   await page.emulateMedia({ reducedMotion: 'no-preference' });
+  const motion = await trail.evaluate(async el => {
+    const entrances: Animation[] = [];
+    for (let parent = el.parentElement; parent; parent = parent.parentElement) {
+      entrances.push(...parent.getAnimations().filter(animation => animation instanceof CSSAnimation && animation.animationName === 'nqd-reveal'));
+    }
+    // A mudança de preferência inicia também a entrada do painel ancestral.
+    // Ela termina naturalmente; o reflexo da trilha continua em execução.
+    await Promise.all(entrances.map(animation => animation.finished));
+    return {
+      normal: matchMedia('(prefers-reduced-motion: no-preference)').matches,
+      sheenRunning: el.getAnimations({ subtree: true }).some(animation => animation instanceof CSSAnimation && animation.animationName === 'nqd-stage-trail-sheen' && animation.playState === 'running'),
+    };
+  });
+  expect(motion.normal).toBe(true);
+  expect(motion.sheenRunning).toBe(true);
   expect(await page.locator('.nqd-main').evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
   expect(await trail.locator('li').evaluateAll(items => items.map(el => el.getBoundingClientRect().toJSON()))).toEqual(positions);
   expect(await visualProgress(page)).toEqual(before);

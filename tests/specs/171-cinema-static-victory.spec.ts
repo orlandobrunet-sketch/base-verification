@@ -1,4 +1,4 @@
-import{test,expect}from'@playwright/test';test.use({serviceWorkers:'block',reducedMotion:'no-preference'});
+import{test,expect}from'@playwright/test';test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'no-preference' }});
 test('film and portrait epilogue pauses, replays without music duplication and finishes once',async({page})=>{
  await page.goto('/cinema-preview.html');await page.locator('[data-preview="victory"]').click();const d=page.locator('#nqVictoryCinema[open]');
  await expect(d.locator('video')).toHaveCount(1);await expect(d.locator('img.nq-victory-epilogue__image')).toHaveCount(1);await expect(d.locator('audio')).toHaveCount(1);

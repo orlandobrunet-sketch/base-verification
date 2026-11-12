@@ -2,7 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import { openChamberCase } from '../helpers/chamber';
 import { chamberCatalog } from '../helpers/chamber-catalog';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 async function open(page: Page, id = 'aldric') {
   await page.route('**/*', route => route.request().method() === 'GET' && new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());

@@ -12,7 +12,7 @@ import { medirContraste } from '../helpers/contraste';
  *
  * O Paywall continua sem fechar: é a barreira depois das questões gratuitas.
  */
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 const ORIGEM = '#forgeBtn:visible, .mdock-btn.forge-item:visible';
 

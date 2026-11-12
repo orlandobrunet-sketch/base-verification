@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'no-preference' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'no-preference' } });
 
 async function open(page: Page) {
   await page.route('**/*', route => route.request().method() === 'GET' && new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());

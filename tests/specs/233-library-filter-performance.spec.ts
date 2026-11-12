@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 test('buscar no catálogo preserva os cartões e só a mudança de ordem os reposiciona', async ({ page, context, baseURL }) => {
   const origin = new URL(baseURL!).origin;

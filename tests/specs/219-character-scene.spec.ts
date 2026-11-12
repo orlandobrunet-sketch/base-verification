@@ -1,5 +1,5 @@
 import {test,expect,type Page} from '@playwright/test';
-test.use({serviceWorkers:'block',reducedMotion:'reduce'});
+test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'reduce' }});
 test.beforeEach(async({context,baseURL})=>{const origin=new URL(baseURL!).origin;await context.route('**/*',r=>r.request().method()==='GET'&&new URL(r.request().url()).origin===origin?r.continue():r.abort());await context.routeWebSocket('**/*',s=>s.close());});
 async function open(page:Page,mode='normal'){
  await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await page.locator('[data-portal-route="guest"]').click();

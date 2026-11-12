@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { openVisualDashboard, visualProgress } from '../helpers/dashboard-visual-fixture';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 for (const correct of [18, 19, 39, 59, 79, 99, 100]) test(`next seal preserves full text and layout at ${correct} correct answers`, async ({ page, context, baseURL }) => {
   await openVisualDashboard(page, context, baseURL!);

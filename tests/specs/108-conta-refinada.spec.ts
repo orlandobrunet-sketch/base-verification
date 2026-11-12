@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {injectGameState} from '../helpers/game';
-test.use({serviceWorkers:'block',reducedMotion:'reduce'});
+test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'reduce' }});
 test('conta preserva preferências, cancelamento e fechamento da confirmação',async({page})=>{
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
  const owner={id:'00000000-0000-4000-8000-000000000001',user_metadata:{},app_metadata:{}};

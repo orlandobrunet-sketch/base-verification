@@ -3,7 +3,7 @@ import { injectGameState } from '../helpers/game';
 import { routeTechnicalQuestionBank } from '../helpers/technical-question-bank';
 import { writeFileSync } from 'node:fs';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 const authors = Array.from({ length: 8 }, (_, index) => ({
   qid: 'weak-return-technical-' + index, cat: index % 2 ? 'lra' : 'drc',

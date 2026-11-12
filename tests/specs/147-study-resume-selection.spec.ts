@@ -3,7 +3,7 @@ import { injectGameState } from '../helpers/game';
 
 const KEYS = ['nefroquest-save', 'nefroquest-save-v7', 'nefroquest-detailed-stats',
   'nefroquest-stats', 'nefroquest-sr-data', 'nefroquest-comp-stats', 'unlockedArticles'];
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 test.beforeEach(async ({ page, context, baseURL }, info) => {
   const origin = new URL(baseURL!).origin;
   await context.route('**/*', route => route.request().method() === 'GET'

@@ -13,7 +13,7 @@ import { medirContraste } from '../helpers/contraste';
  *   "Você acertou 0 de 8 — Fácil" e gravava `easy` como recomendação;
  * - correção só pela cor da borda.
  */
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 async function abrir(page: Page, opcoes: { largura?: number; bloquearBanco?: boolean } = {}) {
   await page.setViewportSize({ width: opcoes.largura ?? 1280, height: 800 });

@@ -6,7 +6,7 @@ import {
   pilotState, resumePilot, seedLegacyPilot, setupPilotPage, startPilot,
 } from '../helpers/pilot';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 test.beforeEach(async ({ page }) => setupPilotPage(page, true));
 test.afterEach(async ({ page }, testInfo) => attachPilotFailureDiagnostics(page, testInfo));
 
