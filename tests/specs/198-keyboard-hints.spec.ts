@@ -1,7 +1,7 @@
 import {test,expect,type Page} from '@playwright/test';
 import {injectGameState} from '../helpers/game';
 import {medirContraste} from '../helpers/contraste';
-test.use({serviceWorkers:'block',reducedMotion:'reduce'});
+test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'reduce' }});
 async function open(page:Page,boss:boolean){
  const origin=new URL(test.info().project.use.baseURL as string).origin;
  await page.route('**/*',r=>r.request().method()==='GET'&&new URL(r.request().url()).origin===origin?r.continue():r.abort());

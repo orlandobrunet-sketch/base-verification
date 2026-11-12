@@ -1,4 +1,4 @@
-import{test,expect,type Page}from'@playwright/test';test.use({serviceWorkers:'block',reducedMotion:'no-preference'});
+import{test,expect,type Page}from'@playwright/test';test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'no-preference' }});
 import{confirmCharacterStart}from'../helpers/cinema';
 import{medirContraste}from'../helpers/contraste';
 async function setup(page:Page){

@@ -3,7 +3,7 @@ import { test, expect, type Page } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 const source = readFileSync(resolve(__dirname, '../../js/chamber-art.js'), 'utf8');
 const cases = readFileSync(resolve(__dirname, '../../js/minigame-acidbase.js'), 'utf8');
 const catalog = cases.slice(cases.indexOf('const CASES = ['), cases.indexOf('// Helper p/'));

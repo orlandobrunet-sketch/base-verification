@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { saveBase } from '../helpers/fixtures';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 test.beforeEach(async ({ context, baseURL, page }) => {
   const origin = new URL(baseURL!).origin;
   await context.route('**/*', route => route.request().method() === 'GET'

@@ -7,7 +7,7 @@ const progressKeys = ['nefroquest-save', 'nefroquest-save-v7', 'nefroquest-stats
   'nefroquest-mastered', 'nefroquest-mastered-ids', 'unlockedArticles', 'nq-unlocked-refs'];
 const errors = new WeakMap<Page, string[]>();
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 test.beforeEach(async ({ page, context, baseURL }, info) => {
   const origin = new URL(baseURL!).origin;
   const runtimeErrors: string[] = []; errors.set(page, runtimeErrors);

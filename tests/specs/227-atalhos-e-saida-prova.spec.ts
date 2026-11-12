@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 import { routeTechnicalQuestionBank } from '../helpers/technical-question-bank';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 const bank = Array.from({ length: 12 }, (_, index) => ({
   qid: 'atalhos-tecnicos-' + index,

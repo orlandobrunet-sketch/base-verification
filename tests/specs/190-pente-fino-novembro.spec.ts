@@ -1,6 +1,6 @@
 import {test,expect} from '@playwright/test';
 import {injectGameState} from '../helpers/game';
-test.use({serviceWorkers:'block',reducedMotion:'reduce'});
+test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'reduce' }});
 test.beforeEach(async({page,context})=>{
  await context.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'&&r.request().method()==='GET'?r.continue():r.abort());
  await context.routeWebSocket('**/*',s=>s.close());

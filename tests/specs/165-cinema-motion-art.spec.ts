@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import{advanceToFilm,characterIntro}from'../helpers/cinema';
-test.use({serviceWorkers:'block',reducedMotion:'no-preference'});
+test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'no-preference' }});
 test('confirmation precedes journey; film moves behind short captions and closes itself once',async({page})=>{
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
  await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await page.waitForFunction(()=>typeof(window as any)._confirmDiff==='function');

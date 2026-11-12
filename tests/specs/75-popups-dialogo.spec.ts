@@ -13,7 +13,7 @@ import { medirContraste } from '../helpers/contraste';
  * Ainda: quatro textos abaixo de 4,5:1, alvos de 20–36px e o título da
  * evolução cortado a 200%.
  */
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 /* Cada cenário fixa a própria viewport (390px) e o próprio texto (normal ou
  * 200%): no projeto mobile ele se repetiria idêntico. A duplicata somava

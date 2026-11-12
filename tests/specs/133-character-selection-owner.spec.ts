@@ -12,7 +12,7 @@ const stages = [
   { name: 'cards abertos', intro: false, reason: 'logout' },
 ] as const;
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 test.beforeEach(async ({ page }) => setupPilotPage(page));
 test.afterEach(async ({ page }, testInfo) => attachPilotFailureDiagnostics(page, testInfo));
 

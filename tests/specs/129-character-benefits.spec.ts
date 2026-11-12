@@ -16,7 +16,7 @@ const creditText = {
   aquaria: 'Proteção de Aquaria usada: nenhuma vida perdida.',
 };
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 test.beforeEach(async ({ page }) => setupPilotPage(page, true));
 test.afterEach(async ({ page }, testInfo) => attachPilotFailureDiagnostics(page, testInfo));
 

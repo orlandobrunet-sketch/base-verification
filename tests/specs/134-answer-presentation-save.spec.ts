@@ -13,7 +13,7 @@ const topics = Array.from({ length: 120 }, (_, n) => ({
 }));
 technicalQuestionBundle(topics);
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 test.beforeEach(async ({ page }) => {
   await page.route('**/*', route => ['localhost', '127.0.0.1'].includes(new URL(route.request().url()).hostname)
     ? route.continue() : route.abort());

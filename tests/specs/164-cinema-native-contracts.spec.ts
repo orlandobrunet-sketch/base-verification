@@ -2,7 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import { advanceToFilm, desktopCinemaEligible, characterIntro } from '../helpers/cinema';
 import { normalBytes, openPilotChoice, pilotState, setupPilotPage } from '../helpers/pilot';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 async function choose(page: Page) {
   await openPilotChoice(page, 'normal');

@@ -1,7 +1,7 @@
 import { test, expect, type Page, type BrowserContext } from '@playwright/test';
 import { openVisualDashboard, visualProgress } from '../helpers/dashboard-visual-fixture';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 async function openTrail(page: Page, context: BrowserContext, baseURL: string, correct: number) {
   await openVisualDashboard(page, context, baseURL);
   await page.evaluate(correct => {

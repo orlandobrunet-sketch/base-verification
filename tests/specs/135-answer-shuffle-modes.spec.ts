@@ -28,7 +28,7 @@ const OLD_EXAM_HISTORY = OLD_EXAM_AUTHORS.map(author => ({
 }));
 technicalQuestionBundle(TOPICS, {}, OLD_EXAM_HISTORY);
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 async function ready(page: Page) {
   await page.waitForFunction(() => !!(window as any).NQAnswers && typeof (window as any).startFreeStudyMode === 'function');

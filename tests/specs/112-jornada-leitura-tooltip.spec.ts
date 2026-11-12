@@ -1,7 +1,7 @@
 import { test, expect, type Locator, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 const BADGES = '.equip-total-attributes .stat-badge';
 const TIP = 'body > .stat-tip-floating';

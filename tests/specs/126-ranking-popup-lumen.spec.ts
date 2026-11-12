@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 const records = Array.from({ length: 24 }, (_, i) => ({
   player_name: i === 14 ? 'Ana da coleção' : `Explorador ${String(i + 1).padStart(2, '0')}`,

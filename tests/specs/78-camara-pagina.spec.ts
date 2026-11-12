@@ -12,7 +12,7 @@ import { medirContraste } from '../helpers/contraste';
  * envoltório de diálogo da 15.28 ligou o Escape ao ✕ — um Escape no Ato I
  * descartava o caso inteiro.
  */
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 const ORIGEM = '#forgeBtn:visible, .mdock-btn.forge-item:visible';
 

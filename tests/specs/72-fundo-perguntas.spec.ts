@@ -18,7 +18,7 @@ import { injectGameState } from '../helpers/game';
  * continuam cobertos pelo spec19 e pela auditoria visual independente.
  * Boss e Confronto Final têm fundos próprios.
  */
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 test('o fundo da tela de perguntas fica em segundo plano', async ({ page }, testInfo) => {
   await page.route('**/*', r => new URL(r.request().url()).hostname === 'localhost' ? r.continue() : r.abort());

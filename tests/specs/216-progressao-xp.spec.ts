@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import { injectGameState, enterGame } from '../helpers/game';
 import { setupPilotPage, startNormalCharacter, changeState, pilotState, normalBytes, answerTechnical, resumeNormalCharacter } from '../helpers/pilot';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 test.beforeEach(async ({ context, baseURL, page }) => {
   const origin = new URL(baseURL!).origin;
   await context.route('**/*', route => route.request().method() === 'GET' && new URL(route.request().url()).origin === origin ? route.continue() : route.abort());

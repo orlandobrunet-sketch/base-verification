@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 test.beforeEach(async ({ page }) => {
   // As jornadas abaixo são fixtures locais; nenhum request pode alcançar
   // serviços de produção, mesmo se BASE_URL for configurada por engano.

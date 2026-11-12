@@ -9,7 +9,7 @@ const progressKeys = ['nefroquest-stats', 'nefroquest-detailed-stats', 'nefroque
   'nefroquest-mastered', 'nefroquest-mastered-ids', 'unlockedArticles', 'nq-unlocked-refs'];
 const runtimeErrors = new WeakMap<Page, string[]>();
 const blockedRequests = new WeakMap<Page, { method: string; origin: string; path: string }[]>();
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce', deviceScaleFactor: 1 });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' }, deviceScaleFactor: 1 });
 test.setTimeout(90000);
 test.beforeEach(async ({ page, context }, info) => {
   await page.setViewportSize(info.project.name === 'mobile' ? { width: 390, height: 844 } : { width: 1280, height: 800 });

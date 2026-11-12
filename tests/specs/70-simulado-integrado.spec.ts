@@ -16,7 +16,7 @@ import { auditarVisual } from '../helpers/auditoria-visual';
  *   funcionava.
  */
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 async function entrar(page: Page, largura = 1280) {
   await page.setViewportSize({ width: largura, height: largura < 500 ? 700 : 800 });

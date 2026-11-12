@@ -2,7 +2,7 @@ import {test,expect,type Page} from '@playwright/test';
 import {injectGameState} from '../helpers/game';
 import {medirContraste} from '../helpers/contraste';
 import {routeTechnicalQuestionBank,technicalQuestionBundle} from '../helpers/technical-question-bank';
-test.use({serviceWorkers:'block',reducedMotion:'reduce'});
+test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'reduce' }});
 
 const reviewRecords = [
  {q:'Questão de teste: preserve <texto>, acentos e pontuação.',o:['Alternativa A com texto longo de teste. '.repeat(9),'Alternativa B com texto longo de teste. '.repeat(7),'Alternativa C com texto longo de teste. '.repeat(8),'Alternativa D com texto longo de teste. '.repeat(6)],a:2,chosen:0,e:'Explicação de teste, sem alteração do texto original.\n\n' + 'Detalhe preservado para exercitar a leitura completa. '.repeat(18)},

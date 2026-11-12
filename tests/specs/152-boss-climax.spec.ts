@@ -7,7 +7,7 @@ import path from 'node:path';
 import { saveBase } from '../helpers/fixtures';
 import { medirContraste } from '../helpers/contraste';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 test.beforeEach(async ({ context, baseURL }, info) => {
   const origin = new URL(baseURL!).origin;
   await context.route('**/*', route => {

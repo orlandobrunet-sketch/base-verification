@@ -2,7 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 import { medirContraste } from '../helpers/contraste';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 async function abrir(page: Page, largura = 390, grande = false, altura = 844) {
   await page.setViewportSize({ width: largura, height: altura });

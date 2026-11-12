@@ -1,7 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 import { medirContraste } from '../helpers/contraste';
-test.use({serviceWorkers:'block',reducedMotion:'reduce'});
+test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'reduce' }});
 const personagens={
  nephros:{title:'Mestre das Glomerulopatias',image:'assets/classes-cinema/clerigo_renal/nivel_08.webp',lore:'As Catacumbas das Glomerulopatias se abrem. Você decifra biopsias como um arquélogo do rim.'},
  aquaria:{title:'Mestra das Glomerulopatias',image:'assets/classes-cinema/maga_metabolica/nivel_08.webp',lore:'As águas profundas da síndrome nefrótica revelam seus segredos. Você é a guaraniã da barreira de filtração.'},

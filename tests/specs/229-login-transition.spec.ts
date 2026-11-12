@@ -3,7 +3,7 @@ import { test, expect, type Page } from '@playwright/test';
 const OWNER = '00000000-0000-4000-8000-000000002290';
 const session = { user: { id: OWNER, email: 'transition@example.test', user_metadata: { nickname: 'Teste' }, app_metadata: {} } };
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 async function controlledAuth(page: Page, stored = false, holdPaywall = false, missingSDK = false) {
   let releasePaywall = () => {};

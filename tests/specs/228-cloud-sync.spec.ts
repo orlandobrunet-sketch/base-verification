@@ -9,7 +9,7 @@ const bank = Array.from({ length: 12 }, (_, index) => ({
   opts: ['Um', 'Dois', 'Três', 'Quatro'], ans: index % 4, exp: 'Marcador de teste.',
 }));
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 type Progress = Record<string, any>;
 type Query = {

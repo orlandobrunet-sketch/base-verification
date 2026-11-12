@@ -3,7 +3,7 @@ import { medirContraste } from '../helpers/contraste';
 import { auditarVisual } from '../helpers/auditoria-visual';
 import { injectGameState } from '../helpers/game';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 test.beforeEach(async ({ page }) => {
   // Nenhuma conta, mensagem ou telemetria sai deste teste.
   await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost'

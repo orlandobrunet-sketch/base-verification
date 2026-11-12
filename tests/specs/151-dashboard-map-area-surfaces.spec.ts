@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { openVisualDashboard, visualProgress } from '../helpers/dashboard-visual-fixture';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 test.beforeEach(async ({ page, context, baseURL }) => {
   await openVisualDashboard(page, context, baseURL!);
   await page.locator('#nqdTab-mapa').click();

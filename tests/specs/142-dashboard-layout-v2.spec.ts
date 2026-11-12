@@ -1,7 +1,7 @@
 import {test, expect, type Page} from '@playwright/test';
 import {saveBase} from '../helpers/fixtures';
 
-test.use({serviceWorkers: 'block', reducedMotion: 'reduce'});
+test.use({serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' }});
 test.beforeEach(async ({context, baseURL}) => {
   const origin = new URL(baseURL!).origin;
   await context.route('**/*', route => route.request().method() === 'GET'

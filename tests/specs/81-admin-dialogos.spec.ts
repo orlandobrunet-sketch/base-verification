@@ -14,7 +14,7 @@ import { medirContraste } from '../helpers/contraste';
  * O administrador é simulado no navegador do teste (isAdminUser), sem
  * credencial: as telas só são desenhadas, nenhuma ação administrativa roda.
  */
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 const ORIGEM = '#forgeBtn:visible, .mdock-btn.forge-item:visible';
 const TELAS = [

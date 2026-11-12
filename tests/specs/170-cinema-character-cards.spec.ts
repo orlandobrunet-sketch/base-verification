@@ -1,4 +1,4 @@
-import{test,expect}from'@playwright/test';test.use({serviceWorkers:'block',reducedMotion:'no-preference'});
+import{test,expect}from'@playwright/test';test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'no-preference' }});
 import{advanceToFilm}from'../helpers/cinema';
 const cards={nephros:['Os néfrons do reino estão virando pedra.','Cada acerto seu salva um.'],aquaria:['Onde outros veem números, você vê correntes.','O Arqui-Nefromante envenenou as águas do reino.'],glomerulus:['A guerra acontece no nível celular.','O Arqui-Nefromante semeia imunocomplexos pelo reino.']};
 for(const[key,copy]of Object.entries(cards))test('dark cards stay readable, pause and lead into moving film: '+key,async({page})=>{

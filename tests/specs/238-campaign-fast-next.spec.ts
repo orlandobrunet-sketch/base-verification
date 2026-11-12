@@ -8,7 +8,7 @@ const authors = Array.from({ length: 3 }, (_, index) => ({
   ans: index, exp: 'Explicação técnica para conferir o avanço da jornada.',
 }));
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 async function snapshot(page: Page) {
   return page.evaluate(() => (0, eval)(`({

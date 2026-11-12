@@ -17,7 +17,7 @@ const layouts = [
   { width: 1280, height: 720, font: 16 },
   { width: 320, height: 740, font: 32 },
 ];
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 async function progress(page: Page) {
   return page.evaluate(() => ({

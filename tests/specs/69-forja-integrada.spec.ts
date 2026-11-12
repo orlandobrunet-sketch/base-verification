@@ -14,7 +14,7 @@ import { medirContraste } from '../helpers/contraste';
  * substituição e o resultado em diálogo próprio, e os seis espaços de equipamento.
  */
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 const OCUPADO = (n: string, v: number) => ({ n, rar: 'common', atk: v, def: v, kno: v, luck: v });
 const TODOS_OCUPADOS = Object.fromEntries(

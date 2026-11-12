@@ -7,7 +7,7 @@ import { routeTechnicalQuestionBank } from '../helpers/technical-question-bank';
 const sdkPath = '/assets/vendor/supabase-js-2.106.2/supabase.js';
 const sdkIntegrity = 'sha384-m/8UHFJHeU6nrCKP2hBnAseuvAKUmLF+8e5bWos5CJL023vuxX7kiVL5t8yjsJhV';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 test('o SDK oficial local inicializa e libera o visitante com o CDN externo bloqueado', async ({ page, context, baseURL }) => {
   const origin = new URL(baseURL!).origin;

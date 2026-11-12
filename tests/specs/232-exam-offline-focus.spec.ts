@@ -8,7 +8,7 @@ const authors = Array.from({ length: 3 }, (_, index) => ({
   ans: index, exp: 'Explicação técnica para conferir a correção. '.repeat(12),
 }));
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 async function prepare(page: Page, offline = false) {
   await page.route('**/*', route => {

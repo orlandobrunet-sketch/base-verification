@@ -1,6 +1,6 @@
 import{test,expect}from'@playwright/test';
 import{advanceToFilm}from'../helpers/cinema';
-test.use({serviceWorkers:'block',reducedMotion:'no-preference'});
+test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'no-preference' }});
 for(const key of ['nephros'])test('skip freezes the picture while original sound fades: '+key,async({page})=>{
  await page.goto('/cinema-preview.html',{waitUntil:'domcontentloaded'});await page.locator('[data-preview="'+key+'"]').click();const d=page.locator('dialog[open]'),v=d.locator('video');if(['nephros','aquaria','glomerulus'].includes(key))await advanceToFilm(d);await expect.poll(()=>v.evaluate((v:HTMLVideoElement)=>!v.paused&&v.currentTime>.2)).toBe(true);
  await d.getByRole('button',{name:'Ativar som',exact:true}).click();await expect.poll(()=>page.evaluate(()=>(window as any).NQNativeCinemaAudio.inspection.owners)).toBe(1);

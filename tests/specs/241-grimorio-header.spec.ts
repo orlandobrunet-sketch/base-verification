@@ -1,7 +1,7 @@
 import { test, expect, type Page } from '@playwright/test';
 
 // Layout contract shared by direct access and the library tab.
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 test.beforeEach(async ({ context, baseURL, page, isMobile }) => {
   await page.setViewportSize(isMobile ? { width: 390, height: 844 } : { width: 1440, height: 900 });

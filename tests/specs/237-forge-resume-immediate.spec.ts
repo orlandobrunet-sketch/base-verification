@@ -2,7 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 import { routeTechnicalQuestionBank } from '../helpers/technical-question-bank';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 const slots = ['helmet', 'glove', 'armor', 'weapon', 'relic', 'boot'];
 const equipment = Object.fromEntries(slots.map(slot => [slot,

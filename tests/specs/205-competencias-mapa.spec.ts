@@ -2,7 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { saveBase } from '../helpers/fixtures';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 const progress = (page: Page) => page.evaluate(() => ['nefroquest-save', 'nefroquest-detailed-stats', 'nefroquest-comp-stats', 'nefroquest-error-reasons'].map(k => localStorage.getItem(k)));
 async function openSkills(page: Page, count = 3) {
   const origin = new URL(test.info().project.use.baseURL as string || process.env.BASE_URL || 'http://localhost:5500').origin;

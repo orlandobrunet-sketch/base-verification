@@ -8,7 +8,7 @@ import { medirContraste } from '../helpers/contraste';
  * artigo herdavam o preto padrão do navegador — preto sobre azul-escuro,
  * praticamente ilegível (relatado pelo proprietário com print).
  */
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 for (const largura of [1280, 390]) {
   test(`o texto do artigo no pergaminho é legível em ${largura}px`, async ({ page }) => {

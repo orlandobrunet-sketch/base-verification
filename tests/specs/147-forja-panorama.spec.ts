@@ -3,7 +3,7 @@ import { injectGameState } from '../helpers/game';
 import { medirContraste } from '../helpers/contraste';
 
 // Apresentação apenas: fixtures descartáveis, sem clicar em forjar/equipar/vender.
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 async function abrir(page: Page, width: number, gold = 5000) {
   await page.setViewportSize({ width, height: width < 500 ? 844 : 900 });

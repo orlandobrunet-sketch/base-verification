@@ -1,4 +1,4 @@
-import{test,expect}from'@playwright/test';test.use({serviceWorkers:'block',reducedMotion:'no-preference'});
+import{test,expect}from'@playwright/test';test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'no-preference' }});
 for(const key of ['battle'])test('designated music is the only opt-in output: '+key,async({page})=>{
  await page.goto('/cinema-preview.html',{waitUntil:'domcontentloaded'});await page.locator('[data-preview="'+key+'"]').click();const d=page.locator('dialog[open]'),v=d.locator('video'),music=d.locator('audio[data-nq-movie-music]');await expect.poll(()=>v.evaluate((v:HTMLVideoElement)=>!v.paused&&v.currentTime>.1)).toBe(true);
  await expect(music).toHaveCount(1);await expect(v).toHaveJSProperty('muted',true);await expect(music).toHaveJSProperty('paused',true);

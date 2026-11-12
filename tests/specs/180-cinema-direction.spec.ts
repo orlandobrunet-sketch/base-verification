@@ -2,7 +2,7 @@ import { test, expect, type Page } from '@playwright/test';
 import { injectBossState } from '../helpers/game';
 import { advanceToFilm } from '../helpers/cinema';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'no-preference' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'no-preference' } });
 
 async function preview(page: Page, key: string) {
   await page.route('**/*', r => new URL(r.request().url()).hostname === 'localhost' ? r.continue() : r.abort());

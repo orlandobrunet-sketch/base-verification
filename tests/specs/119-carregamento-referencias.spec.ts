@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 for (const bancoPronto of [false, true]) {
   test(bancoPronto

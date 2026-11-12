@@ -1,7 +1,7 @@
 import { test, expect, type Page, type Route } from '@playwright/test';
 import { routeTechnicalQuestionBank } from '../helpers/technical-question-bank';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 const names = ['Ágata ouro', 'Bruno prata', 'Cora bronze', 'Davi quarto', 'Ana quinta'];
 const records = names.map((player_name, index) => ({

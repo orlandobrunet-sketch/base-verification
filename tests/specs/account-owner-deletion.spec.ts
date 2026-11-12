@@ -5,7 +5,7 @@ const userB = { id: '00000000-0000-4000-8000-000000000002', email: 'b@example.te
 const key = (id: string) => 'nefroquest-account:' + id;
 const token = 'local-test-token';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 test.beforeEach(async ({ page }) => {
   await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost'

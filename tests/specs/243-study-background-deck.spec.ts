@@ -15,8 +15,9 @@ const authors = Array.from({ length: 3 }, (_, index) => ({
   exp: 'Explicação exclusivamente técnica para verificar a correção focada e visível após um timer da campanha.',
 }));
 const lastId = authors[authors.length - 1].qid;
+type Motion = 'reduce' | 'no-preference';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block' });
 
 async function campaign(page: Page) {
   return page.evaluate(() => (0, eval)(`JSON.parse(JSON.stringify({
@@ -26,7 +27,7 @@ async function campaign(page: Page) {
   }))`));
 }
 
-async function prepareLastCard(page: Page, baseURL: string) {
+async function prepareLastCard(page: Page, baseURL: string, motion: Motion) {
   const origin = new URL(baseURL).origin;
   expect(['localhost', '127.0.0.1']).toContain(new URL(baseURL).hostname);
   await page.route('**/*', route => {
@@ -43,6 +44,8 @@ async function prepareLastCard(page: Page, baseURL: string) {
     schemaVersion: 6, queueIds: authors.map(q => q.qid), idx: authors.length - 1,
     recentIds: [], gold: 0, streak: 0, lives: 10, correctTotal: 10, narrativeShown: 1,
   }, { replaceSnapshot: true });
+  expect(await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches))
+    .toBe(motion === 'reduce');
   expect((await campaign(page)).current).toBe(lastId);
   expect((await campaign(page)).index).toBe(authors.length);
   await page.setViewportSize({ width: 320, height: 740 });
@@ -97,56 +100,80 @@ async function enterAndAnswerStudy(page: Page) {
   expect(await page.evaluate(() => window.scrollY)).toBeGreaterThan(740);
 }
 
-test.afterEach(async ({ page }, info) => {
-  if (page.isClosed()) return;
-  const observation = await page.evaluate(() => ({
-    separateFrom191: true,
-    scenario: 'campaign deck exhausted, then Study answered before finishDeck1800',
-    timeline: (window as any).__finishDeckTimeline,
-    campaign: (0, eval)('({id:state.current?.id,index:state.idx,answered:state.answered})'),
-    active: document.activeElement?.id,
-    scrollY: window.scrollY, viewportHeight: innerHeight,
-    feedback: document.getElementById('studyFeedback')?.getBoundingClientRect().toJSON(),
-    mainHidden: document.getElementById('mainApp')?.classList.contains('hidden'),
-  }));
-  await info.attach('finish-deck-evidence', {
-    body: JSON.stringify(observation, null, 2), contentType: 'application/json',
+for (const motion of ['reduce', 'no-preference'] as const) {
+  test.describe(`movimento ${motion}`, () => {
+    test.use({ contextOptions: { reducedMotion: motion } });
+
+    test.afterEach(async ({ page }, info) => {
+      if (page.isClosed()) return;
+      const observation = await page.evaluate(requestedMotion => ({
+        requestedMotion,
+        effectiveReducedMotion: matchMedia('(prefers-reduced-motion: reduce)').matches,
+        separateFrom191: true,
+        scenario: 'campaign deck exhausted, then Study answered before finishDeck1800',
+        timeline: (window as any).__finishDeckTimeline,
+        campaign: (0, eval)('({id:state.current?.id,index:state.idx,answered:state.answered})'),
+        active: document.activeElement?.id,
+        scrollY: window.scrollY, viewportHeight: innerHeight,
+        feedback: document.getElementById('studyFeedback')?.getBoundingClientRect().toJSON(),
+        mainHidden: document.getElementById('mainApp')?.classList.contains('hidden'),
+      }), motion);
+      await info.attach('finish-deck-evidence', {
+        body: JSON.stringify(observation, null, 2), contentType: 'application/json',
+      });
+    });
+
+    test('fim do baralho não tira da janela a correção focada do Estudo', async ({ page, baseURL }) => {
+      await prepareLastCard(page, baseURL!, motion);
+      await exhaustDeck(page);
+      await enterAndAnswerStudy(page);
+      if (motion === 'reduce') await page.clock.runFor(1799);
+      expect((await campaign(page)).index).toBe(0); // Callback is still pending.
+      await expect(page.locator('#studyFeedback')).toBeFocused();
+      await expect(page.locator('#studyFeedback')).toBeInViewport();
+      if (motion === 'reduce') {
+        await page.clock.runFor(2); // Cross exactly the actual finishDeck1800 boundary.
+      } else {
+        // Timers and native smooth scrolling must advance together in real time.
+        await page.clock.resume();
+        await expect.poll(async () => (await campaign(page)).index).toBe(1);
+      }
+      expect((await campaign(page)).index).toBe(1); // Callback really rendered a card.
+      await expect(page.locator('#mainApp')).toBeHidden();
+      await expect(page.locator('#studyFeedback')).toBeFocused();
+      await expect(page.locator('#studyFeedback')).toBeInViewport();
+    });
+
+    test('retornar do Estudo preserva a nova carta da campanha e permite responder', async ({ page, baseURL }) => {
+      await prepareLastCard(page, baseURL!, motion);
+      await exhaustDeck(page);
+      await enterAndAnswerStudy(page);
+      if (motion === 'reduce') {
+        await page.clock.runFor(1801);
+      } else {
+        expect((await campaign(page)).index).toBe(0);
+        await page.clock.resume();
+        await expect.poll(async () => (await campaign(page)).index).toBe(1);
+      }
+      const newCard = await campaign(page);
+      expect(newCard.index).toBe(1);
+      expect(newCard.current).not.toBe(lastId);
+      expect(newCard.answered).toBe(false);
+      await page.getByRole('button', { name: 'Pausar e voltar', exact: true })
+        .evaluate((button: HTMLButtonElement) => button.click());
+      await expect(page.locator('#studyModePage')).toHaveCount(0);
+      await expect(page.locator('#mainApp')).toBeVisible();
+      expect(await campaign(page)).toEqual(newCard);
+      expect(await page.locator('#question').textContent()).toBe(await page.evaluate(() => (0, eval)('state.current.q')));
+      if (motion === 'reduce') {
+        await page.clock.runFor(2500);
+      } else {
+        await expect.poll(() => page.evaluate(() => (0, eval)('_loadingNextQuestion'))).toBe(false);
+      }
+      expect(await campaign(page)).toEqual(newCard);
+      const wrong = await page.evaluate(() => (0, eval)('(state.current.a + 1) % 4'));
+      await page.locator('#options .option').nth(wrong).evaluate((button: HTMLButtonElement) => button.click());
+      expect((await campaign(page)).answered).toBe(true);
+    });
   });
-});
-
-test('fim do baralho não tira da janela a correção focada do Estudo', async ({ page, baseURL }) => {
-  await prepareLastCard(page, baseURL!);
-  await exhaustDeck(page);
-  await enterAndAnswerStudy(page);
-  await page.clock.runFor(1799);
-  expect((await campaign(page)).index).toBe(0); // Callback is still pending.
-  await expect(page.locator('#studyFeedback')).toBeFocused();
-  await expect(page.locator('#studyFeedback')).toBeInViewport();
-  await page.clock.runFor(2); // Cross exactly the actual finishDeck1800 boundary.
-  expect((await campaign(page)).index).toBe(1); // Callback really rendered a card.
-  await expect(page.locator('#mainApp')).toBeHidden();
-  await expect(page.locator('#studyFeedback')).toBeFocused();
-  await expect(page.locator('#studyFeedback')).toBeInViewport();
-});
-
-test('retornar do Estudo preserva a nova carta da campanha e permite responder', async ({ page, baseURL }) => {
-  await prepareLastCard(page, baseURL!);
-  await exhaustDeck(page);
-  await enterAndAnswerStudy(page);
-  await page.clock.runFor(1801);
-  const newCard = await campaign(page);
-  expect(newCard.index).toBe(1);
-  expect(newCard.current).not.toBe(lastId);
-  expect(newCard.answered).toBe(false);
-  await page.getByRole('button', { name: 'Pausar e voltar', exact: true })
-    .evaluate((button: HTMLButtonElement) => button.click());
-  await expect(page.locator('#studyModePage')).toHaveCount(0);
-  await expect(page.locator('#mainApp')).toBeVisible();
-  expect(await campaign(page)).toEqual(newCard);
-  expect(await page.locator('#question').textContent()).toBe(await page.evaluate(() => (0, eval)('state.current.q')));
-  await page.clock.runFor(2500);
-  expect(await campaign(page)).toEqual(newCard);
-  const wrong = await page.evaluate(() => (0, eval)('(state.current.a + 1) % 4'));
-  await page.locator('#options .option').nth(wrong).evaluate((button: HTMLButtonElement) => button.click());
-  expect((await campaign(page)).answered).toBe(true);
-});
+}

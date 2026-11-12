@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 for (const width of [1100, 390, 320]) test('ouro mantém custos, foco e leitura em ' + width, async ({ page }) => {
   await page.setViewportSize({ width, height: 700 });
   await page.route('**/*', r => new URL(r.request().url()).hostname === 'localhost' ? r.continue() : r.abort());

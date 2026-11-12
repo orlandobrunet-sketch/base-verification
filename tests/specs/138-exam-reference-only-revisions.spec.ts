@@ -8,7 +8,7 @@ type Fault = 'missing-catalog' | 'missing-current' | 'incompatible-source';
 const errors = new WeakMap<Page, string[]>();
 const progressKeys = [EXAM, 'nefroquest-save-v7', 'nefroquest-stats', 'nefroquest-detailed-stats',
   'nefroquest-sr-data', 'nefroquest-mastered', 'nefroquest-mastered-ids', 'unlockedArticles', 'nq-unlocked-refs'];
-test.use({serviceWorkers: 'block', reducedMotion: 'reduce'});
+test.use({serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' }});
 
 test.beforeEach(async ({page, context, baseURL}) => {
   const origin = new URL(baseURL || 'http://localhost:5500').origin;

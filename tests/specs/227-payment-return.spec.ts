@@ -1,6 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 
-test.use({ serviceWorkers: 'block', reducedMotion: 'reduce' });
+test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
 const ownerA = '650effbc-f929-4553-9da7-13f89b35ad2d';
 const ownerB = '8bb4d91b-4255-4687-b54f-f04ed5a1c3aa';
