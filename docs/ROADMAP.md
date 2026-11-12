@@ -8,6 +8,12 @@ Este documento controla direção, prioridade e critérios de conclusão. Ele n�
 
 ## Estado operacional - 11/11/2026
 
+**Publicado: 17.01 (PR955).** Correções de navegação, minigames, Ranking, Grimório, baús e carregamento local do SDK. CI1056 e Pages aprovados, 15 arquivos públicos conferidos. O checkpoint abaixo de 16.99 permanece como histórico da ativação da sincronização.
+
+**Em correção prioritária: 17.02.** Retorno do Ponto Fraco pelo Átrio com jornada em memória deixava apenas o fundo visível; causa reproduzida e regressões de retorno/cancelamento em preparação. Padronizar a entrada de visitante nos testes 05/21/69/226 integra a mesma rodada técnica.
+
+**Etapa visual seguinte, autorizada pelo proprietário:** sintetizar cabeçalho e navegação do Grimório para dar espaço aos artigos; transformar a Câmara numa experiência contínua entre casos, com cenas narrativas e sem o botão de pausa ocupando a cena. Preservar o conteúdo médico e as mecânicas. [Continuidade](CONTINUITY.md) registra evidências e limites.
+
 **Publicado:** 16.99 (PR954), sincronização com revisão por conta e transição do login. Migration e frontend ativados, Pages e nove arquivos públicos conferidos contra o merge `4699e87`. A 16.98 (PR953) simplificou o XP; Câmara 16.96 (PR950), conta, pagamento, teclado e Prova 16.97 (PR951), e reconciliação de estorno após exclusão da conta (PR952) também estão publicadas. Evidências e limites estão no [checkpoint de continuidade](CONTINUITY.md).
 
 **Escopo da entrega 17.01 — [PR955](https://github.com/orlandobrunet-sketch/base-verification/pull/955):** prazo do Julgamento Rápido, inclusive com ajuste regressivo do relógio, foco e reflow dos modos, concorrência e posições do Ranking, desempenho do Portal/Grimório, pergaminhos AKIKI/PRESERVE e navegação da jornada/Forja. Consultar no PR os resultados finais e o estado da integração/publicação.

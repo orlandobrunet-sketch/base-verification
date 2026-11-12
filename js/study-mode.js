@@ -43,7 +43,7 @@
         if (_weakPointPlan?.dialog !== dialog) return;
         event.currentTarget.disabled = true;
         const current = _studyBindingCurrent(binding);
-        closeWeakPointPlan(false);
+        closeWeakPointPlan(current);
         if (current) start();
       });
       _weakPointPlan = {dialog,origin}; document.body.append(dialog); dialog.showModal();

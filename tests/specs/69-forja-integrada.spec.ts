@@ -29,6 +29,7 @@ async function abrirForja(page: Page, opcoes: { gold?: number; ajuste?: string; 
   await page.setViewportSize({ width: largura, height: largura < 500 ? 700 : 800 });
   await page.route('**/*', r => new URL(r.request().url()).hostname === 'localhost' ? r.continue() : r.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+  await page.locator('[data-portal-route="guest"]').click();
   await injectGameState(page, { gold: opcoes.gold ?? 5000 });
   await page.waitForLoadState('load');
   await page.evaluate(() => document.fonts.ready);

@@ -7776,7 +7776,6 @@
         _studyProgressBinding = _studyCaptureBinding();
         _studySelectedAxes = new Set(axesToStudy.map(a => a.id));
         studyModeIndex = 0; studyModeCorrect = 0; studyModeWrong = 0; studyModeActive = true;
-        document.querySelectorAll('.study-mode-popup,.welcome-screen').forEach(el => el.classList.add('hidden'));
         showStudyModePage();
       };
       if (weakAxes.length === 0) {
