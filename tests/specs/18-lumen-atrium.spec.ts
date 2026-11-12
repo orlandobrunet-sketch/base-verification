@@ -273,7 +273,7 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 6');
     await expect(page.locator('#wsSavedXpText')).toHaveText('250/349 XP');
     await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', '71');
-    await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuetext', '71% da evolução para o nível 6. 250/349 XP.');
+    await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuetext', '71% da evolução para o nível 6 (XP e acertos). 250/349 XP.');
     await expect(page.locator('#wsSavedAvatar')).toBeVisible();
     await expect.poll(() => page.locator('#wsSavedAvatar').evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
     const resumeButton = page.getByRole('button', { name: /Retomar jornada/ });
@@ -370,8 +370,9 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
   test('distingue XP completo, acertos pendentes e nível máximo no card', async ({ page }) => {
     test.setTimeout(90000);
     for (const scenario of [
-      { level: 1, xp: 177, correctTotal: 5, label: '100/200 XP', text: 'Faltam 23 XP e 5 acertos', percent: '50' },
-      { level: 1, xp: 200, correctTotal: 9, label: '180/200 XP', text: '1 acerto para evoluir', percent: '90' },
+      { level: 1, xp: 31, correctTotal: 1, label: '31/200 XP', text: 'Faltam 169 XP e 9 acertos', percent: '10' },
+      { level: 1, xp: 177, correctTotal: 5, label: '177/200 XP', text: 'Faltam 23 XP e 5 acertos', percent: '50' },
+      { level: 1, xp: 200, correctTotal: 9, label: '200/200 XP', text: '1 acerto para evoluir', percent: '90' },
       { level: 1, xp: 100, correctTotal: 10, label: '100/200 XP', text: 'Acertos completos · faltam 100 XP', percent: '50' },
       { level: 1, xp: 200, correctTotal: 10, label: '0/229 XP', text: 'Evolução conquistada: nível 2. Retome a jornada.', percent: '0', next: 'Nível 3' },
       { level: 10, xp: 0, correctTotal: 90, label: 'Domínio máximo alcançado', text: '90 de 100 acertos na jornada', percent: '100' },

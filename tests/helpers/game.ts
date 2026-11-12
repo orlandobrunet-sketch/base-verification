@@ -57,19 +57,21 @@ export async function injectGameState(page: Page, overrides: Record<string, unkn
 
 /**
  * Entra no jogo a partir do save no localStorage (após um load/reload).
- * Dispensa a landing screen (que senão fica sobreposta interceptando cliques),
- * dispara continueGame() — que carrega o banco de questões e renderiza a
- * primeira pergunta — e espera a tela de jogo. Reutilizável por testes que
- * recarregam a página (o app não auto-resume a partir do save).
+ * Fixtures sem usuário entram pelo mesmo modo visitante do Portal. Esconder
+ * só o DOM disputa com INITIAL_SESSION, que pode reabrir o Portal depois.
+ * Fixtures autenticadas preservam a identidade estabelecida antes de loadGame.
  */
 export async function enterGame(page: Page) {
+  await page.waitForFunction(() => typeof (window as any).continueGame === 'function' &&
+    typeof (window as any).playAsGuest === 'function', null, { timeout: 15_000 });
   await page.evaluate(() => {
-    document.getElementById('landingScreen')?.classList.add('hidden');
+    if (!(window as any).authUser) (window as any).playAsGuest();
+    else document.getElementById('landingScreen')?.classList.add('hidden');
     document.getElementById('welcomeScreen')?.classList.add('hidden');
   });
-  await page.waitForFunction(() => typeof (window as any).continueGame === 'function', null, { timeout: 15_000 });
   await page.evaluate(() => (window as any).continueGame());
   await waitForGame(page);
+  await expect(page.locator('#landingScreen')).toBeHidden();
 }
 
 /**

@@ -495,8 +495,8 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
   test('XP guardado acompanha acertos com avanço real na evolução e animação finita', { tag: '@desktop-only' }, async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'no-preference' });
     await injectGameState(page, { level: 2, xp: 229, correctTotal: 15, gold: 0 }, { replaceSnapshot: true });
-    await expect(page.locator('#guardianXpHint')).toHaveText('Faltam 5 acertos para evoluir');
-    await expect(page.locator('#guardianXpAmount')).toHaveText('114/229 XP');
+    await expect(page.locator('#guardianXpHint')).toHaveText('Evolução por XP + acertos · Faltam 5 acertos para evoluir');
+    await expect(page.locator('#guardianXpAmount')).toHaveText('229/229 XP');
     const beforeWidth = await page.locator('#xpFill').evaluate(element => parseFloat((element as HTMLElement).style.width));
     expect(beforeWidth).toBeLessThan(100);
     await page.evaluate(() => {
@@ -510,12 +510,14 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     });
     const correctIndex = await page.evaluate(() => (window as any).state.current.a as number);
     await page.locator('#options .option').nth(correctIndex).click();
-    await expect(page.locator('#guardianXpHint')).toHaveText('Faltam 4 acertos para evoluir');
+    await expect(page.locator('#guardianXpHint')).toHaveText('Evolução por XP + acertos · Faltam 4 acertos para evoluir');
     await expect.poll(() => page.evaluate(() => (window as any).__nqGuardianEffects as string[]))
       .toContain('nq-guardian-xp-fill');
     const effects = await page.evaluate(() => (window as any).__nqGuardianEffects as string[]);
     expect(effects).toContain('nq-guardian-xp-gain');
-    await expect(page.locator('#guardianXpAmount')).toHaveText('137/229 XP');
+    const retainedXp = await page.evaluate(() => (window as any).state.xp as number);
+    expect(retainedXp).toBeGreaterThan(229);
+    await expect(page.locator('#guardianXpAmount')).toHaveText(`${retainedXp.toLocaleString('pt-BR', { maximumFractionDigits: 1 })}/229 XP`);
     const afterWidth = await page.locator('#xpFill').evaluate(element => parseFloat((element as HTMLElement).style.width));
     expect(afterWidth).toBeGreaterThan(beforeWidth); expect(afterWidth).toBeLessThan(100);
     await expect(page.locator('.nql-xp-gain')).toHaveCount(0, { timeout: 2500 });

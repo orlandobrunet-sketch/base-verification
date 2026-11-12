@@ -257,8 +257,8 @@ test('um save local sem checkpoint pede escolha quando a nuvem já foi esvaziada
 test('voltar ao app aberto atualiza o cartão com o avanço do outro aparelho', async ({ browser, baseURL, isMobile }) => {
   await withDevices(browser, baseURL!, isMobile, async (a, b) => {
     for (const [event, xp, correctTotal, label] of [
-      ['pageshow', 177, 5, '100/200 XP'],
-      ['visibilitychange', 199, 7, '140/200 XP'],
+      ['pageshow', 177, 5, '177/200 XP'],
+      ['visibilitychange', 199, 7, '199/200 XP'],
     ] as const) {
       await replaceLocal(a, journey({ saveRevision: event, timestamp: CLOCK + xp * 1000, xp, correctTotal }));
       await sync(a);

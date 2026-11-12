@@ -66,13 +66,16 @@ test.describe('Barra de XP', () => {
     expect(barra.fracao).toBe('10/200 XP');
   });
 
-  test('o numerador nunca passa do denominador', async ({ page }) => {
+  test('saldo acima do limiar continua visível sem prometer evolução liberada', async ({ page }) => {
     await abrirCom(page, { level: 1, xp: 0, correctTotal: 3 });
     await page.evaluate(() => (window as any).gainXP?.(9999));
 
     const barra = await lerBarra(page);
-    const [xp, alvo] = (barra.fracao.match(/^(\d+)\/(\d+) XP$/) || []).slice(1).map(Number);
-    expect(xp, `fração impossível na tela: ${barra.texto}`).toBeLessThanOrEqual(alvo);
+    expect(barra.fracao).toBe('9.999/200 XP');
+    expect(barra.largura).toBe('30%');
+    expect(barra.nivel).toBe(1);
+    expect(barra.texto).toContain('Evolução por XP + acertos');
+    expect(barra.texto).toContain('7 acertos para evoluir');
     expect(barra.saldo).toBe(9999);
   });
 

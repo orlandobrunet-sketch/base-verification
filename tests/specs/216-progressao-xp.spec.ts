@@ -15,10 +15,24 @@ test('L1 com sete acertos aplica70% do limiar, sem prometer nível com barra che
   await page.waitForFunction(() => !(0, eval)('_loadingNextQuestion'));
   await page.evaluate(() => (window as any).renderHUD());
   await test.info().attach('progress-before-assertion', { body: await page.screenshot(), contentType: 'image/png' });
-  await expect(page.locator('#guardianXpAmount')).toHaveText('140/200 XP');
+  await expect(page.locator('#guardianXpAmount')).toHaveText('200/200 XP');
   expect(await page.locator('#xpFill').evaluate(e => (e as HTMLElement).style.width)).toBe('70%');
   await expect(page.locator('#guardianXpHint')).toContainText('3 acertos');
   expect(await page.evaluate(() => (0, eval)('state.xp'))).toBe(200);
+});
+
+test('saldo real de XP e evolução conjunta não se confundem nem alteram o estado', async ({ page }) => {
+  await injectGameState(page, { level: 1, xp: 31, correctTotal: 1, streak: 0 });
+  await page.waitForFunction(() => !(0, eval)('_loadingNextQuestion'));
+  const before = await page.evaluate(() => (0, eval)('JSON.stringify({xp:state.xp,level:state.level,correctTotal:state.correctTotal,score:state.score,gold:state.gold,lives:state.lives})'));
+  await page.evaluate(() => { (window as any).renderHUD(); (window as any).renderHUD(); });
+  await expect(page.locator('#guardianXpAmount')).toHaveText('31/200 XP');
+  await expect(page.locator('#guardianXpHint')).toHaveText('Evolução por XP + acertos · Faltam 9 acertos e 169 XP para evoluir');
+  await expect(page.locator('#guardianEvolutionProgress')).toHaveAttribute('aria-valuenow', '10');
+  await expect(page.locator('#guardianEvolutionProgress')).toHaveAttribute('aria-valuetext',
+    '10% da evolução (XP e acertos). 31/200 XP. Faltam 9 acertos e 169 XP para evoluir.');
+  expect(await page.locator('#xpFill').evaluate(e => (e as HTMLElement).style.width)).toBe('10%');
+  expect(await page.evaluate(() => (0, eval)('JSON.stringify({xp:state.xp,level:state.level,correctTotal:state.correctTotal,score:state.score,gold:state.gold,lives:state.lives})'))).toBe(before);
 });
 
 test('XP excedente permanece guardado quando o teto por acertos impede evolução', async ({ page }) => {
@@ -27,11 +41,11 @@ test('XP excedente permanece guardado quando o teto por acertos impede evoluçã
   await page.evaluate(() => { (window as any).gainXP(50); (window as any).renderHUD(); });
   const result = await page.evaluate(() => (0, eval)('({level:state.level,xp:state.xp,correct:state.correctTotal})'));
   expect(result).toEqual({ level: 1, xp: 177, correct: 5 });
-  await expect(page.locator('#guardianXpAmount')).toHaveText('100/200 XP');
-  await expect(page.locator('#guardianXpHint')).toHaveText('Faltam 5 acertos e 23 XP para evoluir');
+  await expect(page.locator('#guardianXpAmount')).toHaveText('177/200 XP');
+  await expect(page.locator('#guardianXpHint')).toHaveText('Evolução por XP + acertos · Faltam 5 acertos e 23 XP para evoluir');
   await expect(page.locator('#xpTxt')).not.toContainText(/aplicado|guardados/i);
   await expect(page.locator('#guardianEvolutionProgress')).toHaveAttribute(
-    'aria-valuetext', '100/200 XP. Faltam 5 acertos e 23 XP para evoluir.');
+    'aria-valuetext', '50% da evolução (XP e acertos). 177/200 XP. Faltam 5 acertos e 23 XP para evoluir.');
 });
 
 for (const [level, correctTotal] of [[1, 9], [2, 19], [9, 89]]) {
@@ -145,6 +159,21 @@ test('painel do personagem continua alcançável no celular com texto200% e foco
   await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
   await expect(page.locator('#guardianVitality')).toHaveAccessibleName('Vidas: 1 de 5');
   await expect(page.locator('#guardianEvolutionProgress')).toHaveAttribute('aria-valuenow', '70');
+  // A única legenda ocupa sua própria linha, mesmo com texto a 200%.
+  await expect(panel.locator('.nql-hero-progress .nql-xp-hint')).toHaveCount(1);
+  const geometry = await panel.locator('.nql-hero-progress').evaluate(el => {
+    const box = (selector: string) => {
+      const r = el.querySelector(selector)!.getBoundingClientRect();
+      return { top: r.top, bottom: r.bottom, left: r.left, right: r.right, height: r.height };
+    };
+    const parent = el.getBoundingClientRect();
+    return { hint: box('#guardianXpHint'), bar: box('#guardianEvolutionProgress'), level: box('#guardianLevelLabel'), xp: box('#guardianXpAmount'), left: parent.left, right: parent.right };
+  });
+  expect(geometry.hint.height).toBeGreaterThan(0);
+  expect(geometry.hint.top).toBeGreaterThanOrEqual(geometry.bar.bottom - 1);
+  expect(geometry.hint.top).toBeGreaterThanOrEqual(Math.max(geometry.level.bottom, geometry.xp.bottom) - 1);
+  expect(geometry.hint.left).toBeGreaterThanOrEqual(geometry.left - 1);
+  expect(geometry.hint.right).toBeLessThanOrEqual(geometry.right + 1);
   await expect(panel.locator('.hud .tile:visible')).toHaveCount(4);
   await expect(panel.locator('.hud .tile').nth(2)).toContainText('Sequência');
   await panel.locator('#streak').scrollIntoViewIfNeeded();
@@ -221,7 +250,7 @@ test('save mais novo da nuvem conserva o XP guardado, progresso e conquistas ant
   await page.waitForFunction(() => JSON.parse(localStorage.getItem('nefroquest-save-v7') || 'null')?.xp === 777);
   await enterGame(page);
   expect(await page.evaluate(() => (0, eval)('({level:state.level,xp:state.xp,correct:state.correctTotal,gold:state.gold,score:state.score})'))).toEqual({ level: 1, xp: 777, correct: 7, gold: 347, score: 925 });
-  await expect(page.locator('#guardianXpAmount')).toHaveText('140/200 XP');
+  await expect(page.locator('#guardianXpAmount')).toHaveText('777/200 XP');
   await expect(page.locator('#xpTxt')).not.toContainText(/guardados/i);
   expect(await page.evaluate(() => JSON.parse(localStorage.getItem('nefroquest-achievements') || '[]'))).toEqual(expect.arrayContaining(['arqui_nefromante_slayer', 'grimoire_master']));
 });
