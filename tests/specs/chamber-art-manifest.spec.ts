@@ -70,12 +70,13 @@ test('banner preserves full approved frame and canonical cinema narrative', asyn
     return { width: img.naturalWidth, height: img.naturalHeight };
   });
   expect(frame).toEqual({ width: 1280, height: 720 });
-  const art = await page.locator('.ab-hub-banner').evaluate(el => {
-    const s = getComputedStyle(el, '::before'); return { size: s.backgroundSize, image: s.backgroundImage, repeat: s.backgroundRepeat };
+  await page.locator('.ab-hub-banner .ab-lab-art').evaluate((image: HTMLImageElement) => image.decode());
+  const art = await page.locator('.ab-hub-banner .ab-lab-art').evaluate((el: HTMLImageElement) => {
+    const s = getComputedStyle(el); return { fit: s.objectFit, image: el.src, width: el.naturalWidth, height: el.naturalHeight };
   });
-  expect(art.size).toBe('auto 100%');
+  expect(art.fit).toBe('contain');
   expect(art.image).toContain('chamber-balance-still.webp');
-  expect(art.repeat).toBe('no-repeat');
+  expect([art.width, art.height]).toEqual([1280,720]);
   const canonicalLead = `${expected.length} casos clínicos do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta ratio, o cloreto e o pH urinário, os distúrbios mistos e triplos e o gap osmolar para restaurar o equilíbrio.`;
   expect(await page.locator('.ab-lead').textContent()).toBe(canonicalLead);
   expect(await page.locator('.ab-scroll').evaluate(el => getComputedStyle(el).overflowY)).toBe('visible');

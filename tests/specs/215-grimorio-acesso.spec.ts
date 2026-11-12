@@ -18,6 +18,7 @@ test.beforeEach(async ({ context, baseURL, page }) => {
 const openLibrary = async (page: Page) => {
   await page.evaluate(() => (window as any).openDashboard({ tab: 'library' }));
   await expect(page.locator('#nqdPane-library')).toBeVisible();
+  await page.locator('[data-library-filter-toggle][aria-expanded="false"]').click();
 };
 const visibleEntries = (page: Page) => page.locator('[data-library-entry]:visible');
 const ledger = (page: Page) => page.evaluate(() => Object.fromEntries(

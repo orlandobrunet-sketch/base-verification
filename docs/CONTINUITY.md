@@ -1,6 +1,14 @@
 # Continuidade do NefroQuest
 
-## Estado atual - 11/11/2026
+## Estado atual - 12/11/2026
+
+**17.02 publicada:** [PR956](https://github.com/orlandobrunet-sketch/base-verification/pull/956), merge `576ba2b13bbb8ddf5a03c483dc552f7539a6f40b`, Pages `43147293190` aprovado e sete arquivos públicos idênticos ao merge. O retorno do Ponto Fraco pelo Átrio foi reproduzido com as duas telas principais ocultas; a captura da origem e o foco foram corrigidos. Os 12 cenários de retorno/cancelamento passaram também no site publicado, sem retries ou tentativas de escrita externa, em sessões de teste isoladas. CI1057: 3.004 aprovações diretas, cinco após repetição, 265 skips previstos e nenhuma falha final; lógica 424, PostgreSQL 43, smoke 130, oito testes Deno e nove funções no typecheck aprovados. A corrida das preparações legadas de testes continua registrada; não confundir essas repetições com prova de defeito novo do produto.
+
+**Entrega visual 17.03 autorizada e em validação:** Grimório compacto, com filtros secundários expansíveis e primeiro artigo cerca de 423 px mais alto no desktop e 597 px no celular medido; Câmara com vinte cenas narrativas, cenário preservado entre atos, avanço direto ao próximo caso elegível após conclusão salva e animação controlada em Preferências, fora da cena. [Direção e limites](design/NQ_GRIMORIO_CAMARA_1703.md), [prompts e hashes das artes](design/NQ_CENAS_CAMARA_1703.json). Os resultados finais e o estado da publicação devem ser conferidos no PR da entrega. Conteúdo médico e vinte retratos existentes permanecem intactos.
+
+Os checkpoints abaixo preservam o histórico anterior à correção publicada e à etapa visual.
+
+## Histórico - 11/11/2026
 
 **17.01 publicada:** PR955, merge `b949b1d53af969059449530c8f65fba2cf530b27`, Pages `43132075206` aprovado e 15 arquivos públicos idênticos ao merge. CI1056: 2.993 aprovações diretas, quatro após repetição, 265 skips previstos e nenhuma falha final; lógica 424, PostgreSQL 43, smoke 130 e Deno 8 aprovados. Percurso público em desktop e celular emulado aprovado. As quatro repetições envolveram preparações sem entrada explícita como visitante (05/21/69/226); há prova causal separada para 21/69.
 

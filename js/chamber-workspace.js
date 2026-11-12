@@ -175,7 +175,7 @@
     const text=body.querySelector('.ab-summary-text'),stats=body.querySelector('.ab-summary-stats'),refs=body.querySelector('.ab-refs'),actions=body.querySelector('.ab-summary-actions'),overview=make(s,'section','nql-summary-overview'),bar=make(s,'div','nql-summary-nav');
     move(s,text,overview);move(s,stats,overview);body.querySelector('.ab-summary-title').after(bar);body.append(overview);if(refs)move(s,refs,body);move(s,actions,body);
     const items=[{label:'Conclusão',node:overview}];if(refs)items.push({label:'Referências',node:refs});tabs(s,bar,items,0,'Resultado do caso');
-    reader(s,text,160);
+    reader(s,text,210);
     if(refs){const cards=[...refs.querySelectorAll('.ab-ref-card')];if(cards.length){const nav=pager(s,refs,cards,1,'Referência');refs.querySelector('.ab-refs-title').after(nav.nav);cards.forEach(card=>reader(s,card.querySelector('.ab-ref-body'),105));}}
   }
   function mount(overlay){

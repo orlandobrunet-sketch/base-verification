@@ -1,12 +1,20 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação operacional:** 11/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
+**Última reconciliação operacional:** 12/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
 Este documento controla direção, prioridade e critérios de conclusão. Ele não autoriza execução automática: cada frente precisa ser solicitada explicitamente pelo proprietário do produto.
 
-## Estado operacional - 11/11/2026
+## Estado operacional - 12/11/2026
+
+**Publicado: 17.02 (PR956).** Travamento ao voltar do Ponto Fraco corrigido; captura de tela e foco de origem preservados. CI1057 e Pages aprovados, sete arquivos públicos conferidos e 12 cenários de retorno/cancelamento aprovados no site publicado.
+
+**Entrega visual 17.03, explicitamente autorizada:** cabeçalho sintético do Grimório, artigos mais próximos do topo, filtros secundários recolhidos; Câmara com vinte cenas narrativas, navegação contínua para o próximo caso e Preferências fora da pintura. [Direção](design/NQ_GRIMORIO_CAMARA_1703.md). Validar e conferir o PR final antes da publicação. Conteúdo médico permanece fora desta rodada.
+
+**Pendências mantidas:** intermitência de visibilidade da correção no Estudo, testes entre aparelhos físicos e serviços reais, preparação comum das suítes legadas e um teste temporal de debounce. Há diagnósticos separados, sem atribuir a esses registros uma causa de produto não comprovada. Os demais marcos abaixo são históricos.
+
+## Histórico - 11/11/2026
 
 **Publicado: 17.01 (PR955).** Correções de navegação, minigames, Ranking, Grimório, baús e carregamento local do SDK. CI1056 e Pages aprovados, 15 arquivos públicos conferidos. O checkpoint abaixo de 16.99 permanece como histórico da ativação da sincronização.
 

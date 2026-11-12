@@ -929,10 +929,21 @@
     const _profilePopupIds = {
       game: 'gameProfilePopup', welcome: 'welcomeProfilePopup',
       landing: 'landingProfilePopup', mobile: 'mobileProfilePopup',
-      mobileTop: 'mobileTopProfilePopup'
+      mobileTop: 'mobileTopProfilePopup', chamberPreferences: 'mobileProfilePopup'
     };
     let _profileDisclosure = null;
     let _profilePopupObserver = null;
+    function _restoreProfilePopupScope(popup) {
+      const previous = popup._profileScopeHeader;
+      if (previous) {
+        const title = popup.querySelector('.profile-popup-email > strong');
+        const email = popup.querySelector('.profile-popup-email > span');
+        if (title) title.textContent = previous.title;
+        if (email) email.hidden = previous.emailHidden;
+        popup._profileScopeHeader = null;
+      }
+      delete popup.dataset.profileScope;
+    }
     function _syncProfilePopupPermissions() {
       const showAdmin = !!authUser && typeof isAdminUser === 'function' && isAdminUser();
       document.querySelectorAll('.admin-item').forEach(el => el.classList.toggle('visible', showAdmin));
@@ -946,7 +957,9 @@
         trigger.setAttribute('aria-expanded', popup?.classList.contains('open') ? 'true' : 'false');
       });
       document.querySelectorAll('.profile-popup').forEach(popup => {
-        popup.setAttribute('aria-hidden', popup.classList.contains('open') ? 'false' : 'true');
+        const open = popup.classList.contains('open');
+        popup.setAttribute('aria-hidden', open ? 'false' : 'true');
+        if (!open) _restoreProfilePopupScope(popup);
       });
       document.querySelectorAll('.profile-popup [data-action="toggleReadingMode"]').forEach(button => {
         button.setAttribute('aria-pressed', document.body.classList.contains('reading-mode') ? 'true' : 'false');
@@ -968,6 +981,14 @@
       const wasOpen = popup.classList.contains('open');
       closeProfilePopup(); if (wasOpen) return;
       _syncProfilePopupPermissions();
+      if (ctx === 'chamberPreferences') {
+        const title = popup.querySelector('.profile-popup-email > strong');
+        const email = popup.querySelector('.profile-popup-email > span');
+        popup._profileScopeHeader = { title: title?.textContent || 'Conta', emailHidden: !!email?.hidden };
+        popup.dataset.profileScope = 'preferences';
+        if (title) title.textContent = 'Preferências';
+        if (email) email.hidden = true;
+      }
       const trigger = [...document.querySelectorAll('[data-action="toggleProfilePopup"]')]
         .find(el => (_profilePopupIds[el.dataset.arg] || 'welcomeProfilePopup') === popup.id &&
           el.getClientRects().length && !el.closest('[hidden], [inert]')) || null;
