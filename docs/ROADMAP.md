@@ -10,7 +10,9 @@ Este documento controla direção, prioridade e critérios de conclusão. Ele n�
 
 **Publicado: 17.02 (PR956).** Travamento ao voltar do Ponto Fraco corrigido; captura de tela e foco de origem preservados. CI1057 e Pages aprovados, sete arquivos públicos conferidos e 12 cenários de retorno/cancelamento aprovados no site publicado.
 
-**Entrega visual 17.03, explicitamente autorizada:** cabeçalho sintético do Grimório, artigos mais próximos do topo, filtros secundários recolhidos; Câmara com vinte cenas narrativas, navegação contínua para o próximo caso e Preferências fora da pintura. [Direção](design/NQ_GRIMORIO_CAMARA_1703.md). Validar e conferir o PR final antes da publicação. Conteúdo médico permanece fora desta rodada.
+**Publicado: 17.03 (PR957).** Grimório compacto e Câmara com vinte cenas narrativas, navegação contínua entre casos e animação em Preferências. CI1059 e Pages aprovados; 33 arquivos públicos idênticos ao merge e quatro percursos no site aprovados (desktop/celular emulado). Conteúdo médico preservado. [Direção](design/NQ_GRIMORIO_CAMARA_1703.md).
+
+**Entrega 17.04 em validação, autorizada ao seguir o pente fino:** impedir que a atualização atrasada do fim do baralho role a janela enquanto o Estudo está aberto, preservando a carta preparada e o retorno à jornada. [Causa e limites](design/NQ_STUDY_SCROLL_1704.md). O percurso reproduzido é distinto da intermitência histórica da primeira resposta; consultar o PR para validação e publicação finais.
 
 **Pendências mantidas:** intermitência de visibilidade da correção no Estudo, testes entre aparelhos físicos e serviços reais, preparação comum das suítes legadas e um teste temporal de debounce. Há diagnósticos separados, sem atribuir a esses registros uma causa de produto não comprovada. Os demais marcos abaixo são históricos.
 
