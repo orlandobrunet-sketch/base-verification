@@ -1,5 +1,6 @@
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
+import { installGameSaveObserver, waitForPendingGameSave } from '../helpers/game-persistence';
 
 test.use({ serviceWorkers: 'block' });
 
@@ -15,9 +16,13 @@ function acquiredArtIsVivid(images: Element[]) {
 }
 
 async function openCollection(page: Page, correctTotal = 32, earned: 'none' | 'some' | 'all' = 'some', remembered: boolean | null = true) {
+  // A retomada agenda um autosave legítimo. Aguarde sua execução antes de
+  // medir se a coleção preserva os JSONs completos, sem cancelar a gravação.
+  await installGameSaveObserver(page);
   await page.route('**/*', route => ['localhost', '127.0.0.1'].includes(new URL(route.request().url()).hostname) ? route.continue() : route.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
   await injectGameState(page, { correctTotal });
+  await waitForPendingGameSave(page);
   await page.evaluate(({ earned, remembered }) => {
     const ids = earned === 'all' ? (0, eval)('ACHIEVEMENTS_LIST').map((item: any) => item.id)
       : earned === 'none' ? [] : ['century_club', 'arqui_nefromante_slayer', 'speed_demon'];

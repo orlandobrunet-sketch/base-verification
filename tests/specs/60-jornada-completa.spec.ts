@@ -1,6 +1,9 @@
 import { characterIntro, confirmCharacterStart } from '../helpers/cinema';
 import { test, expect, type Page } from '@playwright/test';
 
+// This journey deliberately uses a null-session SDK double, including after reload.
+test.use({ serviceWorkers: 'block' });
+
 /**
  * A jornada principal, ponta a ponta, como o NQ-03 pede:
  *
@@ -23,6 +26,7 @@ const PASSOS = {
 // simulada. A suíte não depende do CDN do SDK nem consulta serviços externos.
 test.beforeEach(async ({ page }) => {
   await page.route('**/*', route => {
+    if (new URL(route.request().url()).pathname === '/assets/vendor/supabase-js-2.106.2/supabase.js') return route.abort();
     const host = new URL(route.request().url()).hostname;
     return ['localhost', '127.0.0.1'].includes(host) ? route.continue() : route.abort();
   });
@@ -61,6 +65,11 @@ function coletarErros(page: Page) {
   const nosso = (url: string) => !url || url.includes('localhost') || url.includes('127.0.0.1');
   page.on('console', (m) => {
     if (m.type() !== 'error') return;
+    // This fixture supplies its SDK double before load and deliberately aborts
+    // only this official local script. Other local resource failures still fail.
+    const url = m.location().url || '';
+    if (m.text() === 'Failed to load resource: net::ERR_FAILED' && url &&
+        new URL(url, page.url()).pathname === '/assets/vendor/supabase-js-2.106.2/supabase.js') return;
     if (!nosso(m.location().url || '')) return;
     erros.push(m.text());
   });

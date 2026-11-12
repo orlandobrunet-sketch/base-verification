@@ -106,7 +106,7 @@ function environment({ kind = 'legacy', owner = null, removalFails = false, tomb
     _normalJourneyStaging: false,
     _sessionWrongAnswers: [], _pilotAnswerTransaction: null,
     _continueGameCleanup: null,
-    _autoSaveTimer: 'auto', _saveTimer: 'save', _cloudSyncTimer: 'cloud', _cloudLoadSyncTimer: 'cloud-load',
+    _autoSaveTimer: 'auto', _saveTimer: 'save', _cloudSyncTimer: 'cloud', _cloudLoadSyncTimer: 'cloud-load', _questionRenderUnlockTimer: null,
     SAVE_KEY: LEGACY, CANONICAL_SAVE_KEY: CANONICAL, SAVE_SCHEMA_VERSION: 7,
     crypto: { randomUUID: () => `test-revision-${++revision}` },
     clearTimeout: timer => cancelledTimers.push(timer),

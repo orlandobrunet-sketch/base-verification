@@ -52,6 +52,7 @@ async function fixture(page: Page, {
   }, { owner, existingPremium, checkout });
   await page.route('**/*', async route => {
     const url = new URL(route.request().url());
+    if (url.pathname === '/assets/vendor/supabase-js-2.106.2/supabase.js') return route.abort();
     if (['localhost', '127.0.0.1'].includes(url.hostname)) return route.continue();
     if (simulateCheckout && url.pathname === '/functions/v1/create-mp-preference') {
       expect(route.request().postDataJSON()).toEqual({ plan: 'monthly' });

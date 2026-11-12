@@ -11,6 +11,7 @@ async function open(page:Page, blockArt=false) {
     return url.hostname==='localhost' ? route.continue() : route.abort();
   });
   await page.goto('/jogar/', {waitUntil:'domcontentloaded'});
+  await page.locator('[data-portal-route="guest"]').click();
   await injectGameState(page);
   await page.waitForLoadState('load');
   await page.evaluate(()=>{
@@ -76,6 +77,7 @@ for(const layout of [{width:1280,height:800,font:16},{width:390,height:800,font:
     await page.locator('#ritualOpts button').first().click();
     await expect(page.locator('#ritualVeredito')).toContainText(/Correto|Incorreto/);
     for(const button of await page.locator('#ritualOpts button').all()) await expect(button).toBeDisabled();
+    await page.getByRole('button',{name:'Próxima questão',exact:true}).click();
     await expect(page.getByRole('heading',{name:'Questão 2 de 8',exact:true})).toBeFocused();
     await expect(page.getByRole('progressbar',{name:'Progresso do Ritual'})).toHaveAttribute('aria-valuenow','1');
     await expect(page.locator('.nql-ritual-route .is-complete')).toHaveCount(1);
@@ -95,7 +97,7 @@ test('visible exit restores the journey and discards no persisted progress',asyn
   await expect(page.locator('#ritualOpts button').first()).toBeDisabled();
   await page.getByRole('button',{name:'Sair do Ritual',exact:true}).click();
   await expect(page.locator('#ritualPage')).toHaveCount(0);
-  await page.waitForTimeout(1100); // The original pending 900ms transition must not recreate the closed page or save a result.
+  await page.waitForTimeout(1100); // Leaving a verdict must not recreate the page or save an unfinished result.
   await expect(page.locator('#ritualPage')).toHaveCount(0);
   await expect(page.locator('#mainApp')).toBeVisible();
   expect(await page.locator('#mainApp').evaluate((el:HTMLElement)=>el.inert)).toBe(false);
@@ -160,6 +162,7 @@ for(const layout of [{width:1280,height:800,font:16},{width:320,height:740,font:
     for(let step=1;step<=8;step++){
       await expect(page.getByRole('heading',{name:`Questão ${step} de 8`,exact:true})).toBeVisible();
       await page.locator('#ritualOpts button').nth(await correctIndex(page)).click();
+      await page.getByRole('button',{name:step===8?'Ver resultado':'Próxima questão',exact:true}).click();
     }
     await expect(page.getByRole('heading',{name:'Ritual concluído',exact:true})).toBeFocused();
     await expect(page.locator('.nql-ritual-result')).toContainText('Você acertou 8 de 8');

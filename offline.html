@@ -38,7 +38,8 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
-      padding-bottom: 40px;
+      padding: 0 0 40px;
+      min-width: 0;
     }
 
     .nq-off-header {
@@ -107,6 +108,11 @@
       line-height: 1.6;
       color: #fff;
     }
+    #nqOffQuestionTitle { font: 600 1rem/1.5 'Philosopher', sans-serif; color: var(--txt-dim, #b7c2cc); }
+    #nqOffQuestionTitle, #nqOffFeedbackArea { scroll-margin-block: 16px; }
+    #nqOffQuestionTitle:focus-visible, #nqOffFeedbackArea:focus-visible { outline: 2px solid #91dfe3; outline-offset: 4px; }
+    .nq-off-btn > span:first-child { min-width: 0; overflow-wrap: anywhere; }
+    .nq-off-btn > span:last-child { flex: 0 0 auto; }
 
     .nq-off-options {
       display: flex;
@@ -220,12 +226,10 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
 </head>
 <body>
 
-  <div class="nq-off-container">
+  <main class="nq-off-container" aria-labelledby="nqOffTitle">
     <!-- Header -->
     <div class="nq-off-header">
-      <div class="nq-off-title">
-        <span>📡</span> Estudo Offline
-      </div>
+      <h1 class="nq-off-title" id="nqOffTitle"><span aria-hidden="true">📡</span> Estudo Offline</h1>
       <div style="font-size:0.75rem; color:#ffd700; font-weight:bold; letter-spacing:0.5px;" id="nqOffCounters">
         Acertos: <span id="nqOffCorrectCount">0</span>
       </div>
@@ -245,7 +249,7 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
         Carregando banco de dados de questões offline...
       </div>
     </div>
-  </div>
+  </main>
 
   <!-- Banco de dados de questões (topics) em cache -->
   <script>window.NQ_REQUIRES_QUESTION_REVISIONS = true;</script>
@@ -510,7 +514,8 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
         ${offlineConsultationOnly ? '<p role="status">Consulta de uma revisão escolhida. Respostas e progresso da sessão salva permanecem intactos.</p>' : ''}
         ${held && !offlineConsultationOnly ? '<button class="btn-next" onclick="useCurrentOfflineRevision()">Confirmar troca para a versão atual, sem consumir resposta</button>' : ''}
         <div class="nq-off-topic">${escapeHtml(q.cat || 'Geral')}</div>
-        <div class="nq-off-question">${escapeHtml(q.q)}</div>
+        <h2 id="nqOffQuestionTitle" tabindex="-1">Questão ${currentIndex + 1}</h2>
+        <p class="nq-off-question">${escapeHtml(q.q)}</p>
         <div class="nq-off-options" id="nqOffOptions">
           ${currentPresentation.o.map((opt, idx) => `
             <button class="nq-off-btn" data-idx="${idx}" ${held ? 'disabled' : ''}>
@@ -519,7 +524,7 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
             </button>
           `).join('')}
         </div>
-        <div id="nqOffFeedbackArea" style="display:none; flex-direction:column; gap:16px;"></div>
+        <div id="nqOffFeedbackArea" role="status" aria-live="polite" tabindex="-1" style="display:none; flex-direction:column; gap:16px;"></div>
       `;
 
       // Adicionar listeners nos botões
@@ -566,6 +571,7 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
           const feedback = document.getElementById('nqOffFeedbackArea');
           feedback.style.display = 'flex';
           feedback.innerHTML = '<p class="nq-off-feedback" role="alert">Não foi possível salvar esta resposta. Recarregue para continuar.</p>';
+          focusOfflineTarget('#nqOffFeedbackArea');
           return;
         }
         correctVal.textContent = correctCount;
@@ -602,12 +608,24 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
         </div>
         <button class="btn-next" onclick="nextQuestion()">Próxima Questão</button>
       `;
+      if (recordProgress) focusOfflineTarget('#nqOffFeedbackArea');
+    }
+
+    function focusOfflineTarget(selector) {
+      const target = document.querySelector(selector);
+      if (!target) return;
+      target.focus({ preventScroll: true });
+      const bounds = target.getBoundingClientRect();
+      if (bounds.top < 16 || bounds.bottom > window.innerHeight - 16) {
+        target.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'instant' });
+      }
     }
 
     function nextQuestion() {
       if (offlineConsultationOnly || !offlineAnswer) return;
       currentIndex++;
       renderQuestion();
+      focusOfflineTarget('#nqOffQuestionTitle');
     }
 
     function showFloatingText(text, isCorrect, x, y) {
@@ -686,6 +704,9 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
 
     // Atalhos de teclado (1-4 / A-D e Enter/Espaço)
     document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey || e.altKey || e.metaKey) return;
+      const target = e.target;
+      if (target instanceof Element && (target.closest('button, a[href], input, textarea, select, summary, [role="button"]') || target.isContentEditable)) return;
       const activeEl = document.activeElement;
       if (activeEl && (activeEl.tagName === 'INPUT' || activeEl.tagName === 'TEXTAREA' || activeEl.isContentEditable)) {
         return; // Ignorar quando digitando

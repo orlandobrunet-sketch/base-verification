@@ -81,7 +81,6 @@
         } catch(e2) {
           if (typeof _reportError === 'function') _reportError(e2, { action: 'boardFetch_parseCache' });
         }
-        _toast('Erro ao carregar o ranking. Verifique sua conexão.', 'error');
         /* Antes: `return []`.
          *
          * Lista vazia é indistinguível de ranking realmente vazio, e quem
@@ -264,8 +263,7 @@
       } catch (e) {
         if (typeof _reportError === 'function') _reportError(e, { action: 'profileFetch' });
         if (_profileCache) return _profileCache;
-        _toast('Erro ao carregar o ranking de perfil. Verifique sua conexão.', 'error');
-        return [];
+        throw e instanceof Error ? e : new Error(String(e));
       }
     }
     // Exposto para o dashboard reaproveitar o ranking de Perfil Global.
@@ -310,6 +308,22 @@
 
     let _lastBoardFetch = 0;
     let _boardFullData = [];
+    let _boardDataMode = null;
+    let _boardRequestId = 0;
+    let _boardSearchTimer = null;
+
+    function _boardViewVisible() {
+      const root = document.getElementById('boardModal');
+      return !!root?.isConnected && !root.classList.contains('hidden');
+    }
+
+    function _invalidateBoardView() {
+      ++_boardRequestId;
+      _boardDataMode = null;
+      _lastBoardFetch = 0;
+      clearTimeout(_boardSearchTimer);
+      _boardSearchTimer = null;
+    }
 
     // Modo do quadro: 'record' (recorde por partida) | 'global' (perfil acumulado)
     let _boardMode = 'record';
@@ -339,6 +353,7 @@
     }
 
     function _renderCurrentRows(query) {
+      if (!_boardViewVisible() || _boardDataMode !== _boardMode) return;
       if (_boardMode === 'global') _renderProfileRows(_boardFullData, query);
       else _renderBoardRows(_boardFullData, query);
     }
@@ -364,8 +379,8 @@
         return;
       }
       const myId = (typeof authUser !== 'undefined' && authUser) ? authUser.id : null;
-      filtered.forEach(({ r, globalIdx }, filteredIdx) => {
-        const i = q ? filteredIdx : globalIdx;
+      filtered.forEach(({ r, globalIdx }) => {
+        const i = globalIdx;
         const rc = i < 3 ? rankClass[i] : 'rn';
         const rl = i < 3 ? rankLabel[i] : (i + 1);
         const avatar = _CHAR_AVATARS[r.character_name] || 'assets/classes-cinema/clerigo_renal/nivel_01.webp';
@@ -437,8 +452,8 @@
         ui.boardBody.appendChild(trEmpty);
         return;
       }
-      filtered.forEach(({ r, globalIdx }, filteredIdx) => {
-        const i = q ? filteredIdx : globalIdx; // quando busca ativa, rank é da posição filtrada
+      filtered.forEach(({ r, globalIdx }) => {
+        const i = globalIdx;
         const rc = i < 3 ? rankClass[i] : 'rn';
         const rl = i < 3 ? rankLabel[i] : (i + 1);
         const avatar = charAvatars[r.character_name] || 'assets/classes-cinema/clerigo_renal/nivel_01.webp';
@@ -516,6 +531,12 @@
       const now = Date.now();
       if (!forceRefresh && now - _lastBoardFetch < 5000) return;
       _lastBoardFetch = now;
+      const requestId = ++_boardRequestId;
+      const requestedMode = _boardMode;
+      const current = () => requestId === _boardRequestId && requestedMode === _boardMode && _boardViewVisible();
+      clearTimeout(_boardSearchTimer);
+      _boardSearchTimer = null;
+      _boardDataMode = null;
       const loading = document.getElementById('boardLoading');
       const updateEl = document.getElementById('boardLastUpdate');
       const searchEl = document.getElementById('boardSearch');
@@ -527,13 +548,14 @@
        * a mensagem errada que existia antes. */
       let data;
       try {
-        data = (_boardMode === 'global') ? await _doProfileFetch() : await boardFetch(forceRefresh);
+        data = (requestedMode === 'global') ? await _doProfileFetch() : await boardFetch(forceRefresh);
       } catch (erro) {
+        if (!current()) return;
         if (loading) loading.classList.add('hidden');
         ui.boardBody.innerHTML = '';
         const linha = document.createElement('tr');
         const celula = document.createElement('td');
-        celula.colSpan = (_boardMode === 'global') ? 6 : 7;
+        celula.colSpan = (requestedMode === 'global') ? 5 : 7;
         celula.className = 'board-empty';
         celula.appendChild(document.createTextNode('Não foi possível carregar o ranking.'));
         celula.appendChild(document.createElement('br'));
@@ -543,15 +565,17 @@
         if (updateEl) updateEl.textContent = '';
         return;
       }
+      if (!current()) return;
       if (loading) loading.classList.add('hidden');
       _boardFullData = data.slice(0, 50);
+      _boardDataMode = requestedMode;
       if (_boardFullData.length === 0) {
         ui.boardBody.innerHTML = '';
         const trEmpty = document.createElement('tr');
         const tdEmpty = document.createElement('td');
-        tdEmpty.colSpan = (_boardMode === 'global') ? 6 : 7;
+        tdEmpty.colSpan = (requestedMode === 'global') ? 5 : 7;
         tdEmpty.className = 'board-empty';
-        if (_boardMode === 'global') {
+        if (requestedMode === 'global') {
           tdEmpty.appendChild(document.createTextNode('Ninguém montou um perfil ainda.'));
           tdEmpty.appendChild(document.createElement('br'));
           tdEmpty.appendChild(document.createTextNode('Jogue para acumular acertos e aparecer aqui!'));
@@ -569,16 +593,21 @@
 
       if (searchEl && !searchEl.dataset.wired) {
         searchEl.dataset.wired = '1';
-        let _searchTimer;
         searchEl.addEventListener('input', () => {
-          clearTimeout(_searchTimer);
-          _searchTimer = setTimeout(() => _renderCurrentRows(searchEl.value), 200);
+          clearTimeout(_boardSearchTimer);
+          const requestId = _boardRequestId;
+          const requestedMode = _boardMode;
+          _boardSearchTimer = setTimeout(() => {
+            _boardSearchTimer = null;
+            if (requestId === _boardRequestId && requestedMode === _boardMode) _renderCurrentRows(searchEl.value);
+          }, 200);
         });
       }
       const myPosBtn = document.getElementById('boardMyPos');
       if (myPosBtn && !myPosBtn.dataset.wired) {
         myPosBtn.dataset.wired = '1';
         myPosBtn.addEventListener('click', () => {
+          if (!_boardViewVisible() || _boardDataMode !== _boardMode) return;
           if (searchEl) { searchEl.value = ''; _renderCurrentRows(''); }
           const myRow = ui.boardBody.querySelector('tr.rank-me');
           if (myRow) myRow.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -595,9 +624,12 @@
   const init = () => {
     const root = document.getElementById('boardModal');
     const panel = root?.querySelector('.board-modal');
-    if (!root || !panel || typeof nqDialogo !== 'function') return;
+    if (!root || !panel) return;
     const visible = el => el.isConnected && !el.classList.contains('hidden');
-    const sync = () => { if (visible(root)) nqDialogo(root, { painel: panel, visivel: visible }); };
+    const sync = () => {
+      if (!visible(root)) _invalidateBoardView();
+      else if (typeof nqDialogo === 'function') nqDialogo(root, { painel: panel, visivel: visible });
+    };
     new MutationObserver(sync).observe(root, { attributes: true, attributeFilter: ['class'] });
     sync();
   };

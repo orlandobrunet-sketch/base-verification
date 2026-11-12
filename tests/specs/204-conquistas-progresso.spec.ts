@@ -1,15 +1,18 @@
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { injectGameState } from '../helpers/game';
+import { installGameSaveObserver, waitForPendingGameSave } from '../helpers/game-persistence';
 
 test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 const keys = ['nefroquest-save', 'nefroquest-save-v7', 'nefroquest-detailed-stats', 'nefroquest-achievements', 'nefroquest-badge-history', 'nq-unlocked-refs', 'unlockedArticles'];
 const snapshot = (page: Page) => page.evaluate(keys => keys.map(key => localStorage.getItem(key)), keys);
 
 async function openCollection(page: Page, earned: 'some' | 'none' | 'all' = 'some') {
+  await installGameSaveObserver(page);
   await page.route('**/*', route => ['localhost', '127.0.0.1'].includes(new URL(route.request().url()).hostname) ? route.continue() : route.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
   await injectGameState(page, { correctTotal: 18 });
+  await waitForPendingGameSave(page);
   await page.evaluate(earned => {
     const list = (0, eval)('ACHIEVEMENTS_LIST');
     localStorage.setItem('nefroquest-achievements', JSON.stringify(earned === 'all' ? list.map((a: any) => a.id) : earned === 'none' ? [] : ['hd_master', 'arqui_nefromante_slayer', 'accuracy_master']));

@@ -70,7 +70,7 @@ function harness(f) {
     _stateData: {}, _saveBaseline: undefined, _saveOwner: undefined, _legacySaveBaseline: undefined,
     _guestRecoveryAccepted: null, _saveCleanupBlocked: false, _progressEpoch: 0, _autoSaveTimer: null,
     _progressSandboxMode: null, _jornadaJaContabilizada: false, _recentIds: [], _sessionWrongAnswers: [],
-    _pilotRestoredQuestion: false, _loadingNextQuestion: false, _nextQuestionOrigin: null,
+    _pilotRestoredQuestion: false, _loadingNextQuestion: false, _questionRenderUnlockTimer: null, _nextQuestionOrigin: null,
     _masteredSet: new Set(['technical-mastered']), unlockedArticles: ['technical-unlock'], _minigameTriggerCount: 3,
     _boardPushedThisSession: true, chestCost: 120, _goldMilestoneShown: true, _cloudSyncTimer: null,
     _questionStartTime: 0, questionBank: [source(f.after)], HISTORY_SIZE: 30,

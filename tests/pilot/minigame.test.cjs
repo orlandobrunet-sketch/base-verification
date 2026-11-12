@@ -27,6 +27,17 @@ function fixture({pilot = false, loadTopics = async () => {}} = {}) {
   const storage = values => ({getItem: key => values.get(key) ?? null,
     setItem: (key, value) => values.set(key, String(value)), removeItem: key => values.delete(key)});
   const ordinaryStorage = storage(normal), assistedStorage = storage(assisted);
+  const events = () => {
+    const listeners = new Map();
+    return {
+      addEventListener(type, fn) {
+        if (!listeners.has(type)) listeners.set(type, new Set());
+        listeners.get(type).add(fn);
+      },
+      removeEventListener(type, fn) { listeners.get(type)?.delete(fn); },
+      dispatchEvent(event) { for (const fn of listeners.get(event.type) || []) fn(event); },
+    };
+  };
 
   class Node {
     constructor(id = '', parent = null) {
@@ -71,12 +82,14 @@ function fixture({pilot = false, loadTopics = async () => {}} = {}) {
       if (nodes.get(this.id) === this) nodes.delete(this.id);
       if (this.parent) this.parent.children = this.parent.children.filter(node => node !== this);
     }
-    focus() {}
-    getBoundingClientRect() { return {left: 0, top: 0, width: 1, height: 1}; }
+    focus() { ctx.document.activeElement = this; }
+    scrollIntoView() {}
+    getBoundingClientRect() { return {left: 0, top: 0, bottom: 1, width: 1, height: 1}; }
   }
   const ctx = {
+    ...events(), innerHeight: 800,
     console, localStorage: ordinaryStorage, state: {gold: 0, xp: 0, correctTotal: 25, level: 1},
-    document: {getElementById: id => nodes.get(id) || null,
+    document: {...events(), hidden: false, getElementById: id => nodes.get(id) || null,
       createElement: () => new Node(), body: {appendChild: node => {if (node.id) nodes.set(node.id, node);}}},
     setTimeout: (fn, delay) => {const id = ++timerId; timeouts.set(id, {fn, delay}); return id;},
     clearTimeout: id => timeouts.delete(id),
@@ -132,7 +145,7 @@ function fixture({pilot = false, loadTopics = async () => {}} = {}) {
   const finishRitual = async () => {
     await node('ritualStart').listeners[0].fn();
     for (let i = 0; i < 8; i++) {
-      node('ritualPage').querySelectorAll('#ritualOpts button')[0].click(); runDelay(900);
+      node('ritualPage').querySelectorAll('#ritualOpts button')[0].click(); node('ritualNext').click();
     }
   };
   return {ctx, normal, assisted, nodes, timeouts, intervals, closed, calls, node, runDelay,
@@ -239,15 +252,33 @@ test('ritual topic load completed after leaving cannot reopen or save to the nex
   assert.equal(f.calls.sr.length, 0); assert.equal(f.assisted.size, 0);
 });
 
-test('ritual answer timer and cached option are harmless after context changes', async () => {
+test('ritual cached continuation and option are harmless after context changes', async () => {
   const f = fixture({pilot: true}); await f.ctx.openRitual();
   await f.node('ritualStart').listeners[0].fn();
   const oldAnswer = f.node('ritualPage').querySelectorAll('#ritualOpts button')[0].listeners[0].fn;
-  oldAnswer(); const queued = [...f.timeouts.values()].find(task => task.delay === 900).fn;
+  oldAnswer(); const queued = f.node('ritualNext').listeners[0].fn;
   f.change(false); queued(); oldAnswer();
   assert.equal(f.timeouts.size, 0); assert.equal(f.calls.sr.length, 0);
   assert.equal(f.assisted.size, 0); assert.equal(f.nodes.has('ritualPage'), false);
   assert.equal(f.closed[0].options.restoreFocus, false);
+});
+
+test('normal journey retirement closes Ritual without restoring the old origin or accepting stale actions', async () => {
+  const f = fixture(), before = JSON.stringify([...f.normal]);
+  await f.ctx.openRitual();
+  await f.node('ritualStart').listeners[0].fn();
+  const oldAnswer = f.node('ritualPage').querySelectorAll('#ritualOpts button')[0].listeners[0].fn;
+  oldAnswer();
+  const oldNext = f.node('ritualNext').listeners[0].fn;
+  f.advanceNormalJourney();
+  f.ctx._retireMinigameContext();
+  oldNext(); oldAnswer();
+  assert.equal(f.nodes.has('ritualPage'), false);
+  assert.equal(f.calls.sr.length, 0);
+  assert.equal(JSON.stringify([...f.normal]), before);
+  assert.equal(f.assisted.size, 0);
+  assert.equal(f.closed[0].options.restoreFocus, false);
+  assert.equal(f.closed[0].options.restoreOrigin, false);
 });
 
 for (const effect of [

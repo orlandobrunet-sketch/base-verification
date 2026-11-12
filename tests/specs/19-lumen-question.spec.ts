@@ -13,6 +13,7 @@ test.describe('Câmara de Conduta — tela de perguntas Lúmen', () => {
     test.skip(testInfo.tags.includes('@desktop-only') && testInfo.project.name !== 'chromium',
       'hover e efeitos do card são validados no desktop');
     await page.goto('/jogar/');
+    await page.locator('[data-portal-route="guest"]').click();
     await injectGameState(page);
     await waitForGame(page);
   });

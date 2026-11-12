@@ -32,13 +32,24 @@
       _minigameTimers.add(timer);
       return timer;
     }
-    window.NQPilot?.onContextChange(() => {
+    function _minigameFocar(alvo, reiniciarRolagem = false) {
+      if (!alvo) return;
+      alvo.focus({ preventScroll: true });
+      if (reiniciarRolagem) window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      const caixa = alvo.getBoundingClientRect();
+      if (caixa.top < 0 || caixa.bottom > window.innerHeight) {
+        alvo.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'instant' });
+      }
+    }
+    function _retireMinigameContext() {
       _minigameTimers.forEach(timer => clearTimeout(timer));
       _minigameTimers.clear();
       [..._minigameClosers].forEach(close => close({restoreFocus:false, restoreOrigin:false}));
       _minigameTriggerCount = 0;
       _shownMinigameIds.clear();
-    });
+    }
+    window._retireMinigameContext = _retireMinigameContext;
+    window.NQPilot?.onContextChange(_retireMinigameContext);
 
     function maybeTriggerMinigame(atCorrectTotal) {
       if (!MINIGAME_TRIGGER_AT.includes(atCorrectTotal)) return;
@@ -151,6 +162,7 @@
       let currentIdx = 0;
       let correctCount = 0;
       let timerInterval = null;
+      let questionDeadline = 0;
       let _answered = false;
       let resultsShown = false;
       let concluir = null; // definido no resultado: entrega o prêmio e fecha
@@ -161,7 +173,13 @@
         aoTeclar: e => {
           if (!_minigameBindingCurrent(binding)) return;
           if (e.key === 'Escape') { e.preventDefault(); return concluir ? concluir() : sair(); }
-          if (_answered || concluir || e.ctrlKey || e.metaKey || e.altKey) return;
+          if (e.ctrlKey || e.metaKey || e.altKey) return;
+          if (_answered || concluir) {
+            if (!concluir && e.key === 'Enter' && e.target === pagina.querySelector('#mgFeedback')) {
+              e.preventDefault(); pagina.querySelector('#mgProxima')?.click();
+            }
+            return;
+          }
           const key = (e.key || '').toUpperCase();
           if (['V', '1', 'T', 'C'].includes(key)) { e.preventDefault(); responder(true); }
           else if (['F', '2', 'E'].includes(key)) { e.preventDefault(); responder(false); }
@@ -170,6 +188,8 @@
       const sair = (options = {}) => {
         if (timerInterval) clearInterval(timerInterval);
         timerInterval = null;
+        document.removeEventListener('visibilitychange', conferirRetorno);
+        window.removeEventListener('pageshow', atualizarRelogio);
         _minigameClosers.delete(sair);
         fechar(options);
       };
@@ -178,15 +198,31 @@
       const desenhar = (html, foco) => {
         if (!current()) return;
         pagina.innerHTML = `<div class="nq-study-content nq-exam-intro">${html}</div>`;
-        pagina.querySelector(foco)?.focus({ preventScroll: true });
-        window.scrollTo(0, 0);
+        _minigameFocar(pagina.querySelector(foco), true);
       };
+
+      function atualizarRelogio() {
+        if (!current()) { sair({restoreFocus:false, restoreOrigin:false}); return; }
+        if (_answered) return;
+        const restante = Math.max(0, Math.min(TIME_PER_Q * 1000, questionDeadline - Date.now()));
+        const fill = pagina.querySelector('#mgTimerFill');
+        if (fill) fill.style.width = (restante / (TIME_PER_Q * 1000) * 100) + '%';
+        const relogio = pagina.querySelector('#mgRelogio');
+        if (relogio) {
+          relogio.textContent = Math.ceil(restante / 1000) + ' s';
+          relogio.classList.toggle('nq-exam-urgente', restante <= 3000);
+        }
+        if (restante <= 0) responder(null);
+      }
+      function conferirRetorno() { if (!document.hidden) atualizarRelogio(); }
+      document.addEventListener('visibilitychange', conferirRetorno);
+      window.addEventListener('pageshow', atualizarRelogio);
 
       function _renderMinigameQuestion() {
         if (!current()) return;
         if (currentIdx >= pool.length) { showResults(); return; }
         const q = pool[currentIdx];
-        let timeLeft = TIME_PER_Q;
+        questionDeadline = Date.now() + TIME_PER_Q * 1000;
         _answered = false;
         if (timerInterval) clearInterval(timerInterval);
 
@@ -203,7 +239,7 @@
               <button type="button" class="nq-exam-opcao" id="mgTrue"><span class="nq-exam-letra" aria-hidden="true">V</span><span>Verdadeiro</span></button>
               <button type="button" class="nq-exam-opcao" id="mgFalse"><span class="nq-exam-letra" aria-hidden="true">F</span><span>Falso</span></button>
             </div>
-            <div id="mgFeedback" class="nq-exam-correcao" role="status" aria-live="polite" hidden></div>
+            <div id="mgFeedback" class="nq-exam-correcao" role="status" aria-live="polite" tabindex="-1" hidden></div>
             <div class="nq-exam-acoes">
               <button type="button" class="btn sec" id="mgSair">${standalone ? 'Sair' : 'Sair do desafio (sem recompensa)'}</button>
             </div>
@@ -212,27 +248,22 @@
         pagina.querySelector('#mgFalse').addEventListener('click', () => responder(false));
         pagina.querySelector('#mgSair').addEventListener('click', sair);
 
-        timerInterval = setInterval(() => {
-          if (!current()) { sair({restoreFocus:false, restoreOrigin:false}); return; }
-          timeLeft -= 0.1;
-          const fill = document.getElementById('mgTimerFill');
-          if (fill) fill.style.width = Math.max(0, (timeLeft / TIME_PER_Q * 100)) + '%';
-          const relogio = document.getElementById('mgRelogio');
-          if (relogio) {
-            relogio.textContent = Math.max(0, Math.ceil(timeLeft)) + ' s';
-            relogio.classList.toggle('nq-exam-urgente', timeLeft <= 3);
-          }
-          if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            responder(null);
-          }
-        }, 100);
+        timerInterval = setInterval(atualizarRelogio, 100);
       }
 
       function responder(userAns) {
         if (_answered || !current()) return; // previne double-click / double-fire por timer
+        // O prazo vale também antes do próximo tick ou ao voltar de uma aba suspensa.
+        if (Date.now() >= questionDeadline) userAns = null;
         _answered = true;
         if (timerInterval) clearInterval(timerInterval);
+        timerInterval = null;
+        if (userAns === null) {
+          pagina.querySelector('#mgTimerFill').style.width = '0%';
+          const relogio = pagina.querySelector('#mgRelogio');
+          relogio.textContent = '0 s';
+          relogio.classList.add('nq-exam-urgente');
+        }
         const q = pool[currentIdx];
         const isCorrect = userAns === q.ans;
 
@@ -278,7 +309,7 @@
           `<button type="button" class="btn gold" id="mgProxima">${ultimo ? 'Ver resultado' : 'Próxima afirmação'}</button>`);
         const proxima = pagina.querySelector('#mgProxima');
         proxima.addEventListener('click', _renderMinigameQuestion, { once: true });
-        proxima.focus({ preventScroll: true });
+        _minigameFocar(fb);
       }
 
       function _getItemReward(score) {
@@ -672,7 +703,15 @@
       else { ui.question.textContent=''; ui.options.innerHTML=''; ui.feedback.textContent=''; ui.feedback.className='feedback'; ui.refs.innerHTML=''; ui.nextBtn.classList.add('hidden'); }
     }
 
-    ui.nextBtn.addEventListener('click',() => renderQuestion());
+    ui.nextBtn.addEventListener('click',() => {
+      const mainApp = document.getElementById('mainApp');
+      if (!state.answered || !mainApp || mainApp.classList.contains('hidden') || mainApp.inert) return;
+      // An accepted answer can advance immediately; a stale click cannot skip.
+      clearTimeout(_questionRenderUnlockTimer);
+      _questionRenderUnlockTimer = null;
+      _loadingNextQuestion = false;
+      renderQuestion();
+    });
     // Event delegation para opções — 1 listener reutilizado em vez de 4 por pergunta
     ui.options.addEventListener('click', (e) => {
       const btn = e.target.closest('button.option');
@@ -996,7 +1035,12 @@
       if (typeof playSound === 'function') playSound('click');
       const { pagina, fechar } = nqPaginaPropria('ritualPage', 'Ritual de Iniciação', {
         classe: 'nq-exam nq-ritual',
-        aoTeclar: e => { if (e.key === 'Escape') { e.preventDefault(); sair(); } },
+        aoTeclar: e => {
+          if (e.key === 'Escape') { e.preventDefault(); sair(); }
+          else if (!e.ctrlKey && !e.metaKey && !e.altKey && e.key === 'Enter' && e.target === pagina.querySelector('#ritualVeredito')) {
+            e.preventDefault(); pagina.querySelector('#ritualNext')?.click();
+          }
+        },
       });
       pagina.dataset.nqUi = 'lumen';
       const currentPage = () => pagina.isConnected && _minigameBindingCurrent(binding);
@@ -1024,8 +1068,7 @@
           image.addEventListener('error', fallback, { once: true });
           if (image.complete && !image.naturalWidth) fallback();
         });
-        pagina.querySelector(foco)?.focus({ preventScroll: true });
-        window.scrollTo(0, 0);
+        _minigameFocar(pagina.querySelector(foco), true);
       };
 
       function showIntro(erro = '') {
@@ -1108,7 +1151,7 @@
                 ${presentation.o.map((opt, i) => `<button type="button" class="nq-exam-opcao" data-i="${i}">
                   <span class="nq-exam-letra" aria-hidden="true">${letras[i]}</span><span>${_ritualEsc(opt)}</span></button>`).join('')}
               </div>
-              <p id="ritualVeredito" class="nq-exam-veredito" role="status" aria-live="polite"></p>
+              <p id="ritualVeredito" class="nq-exam-veredito" role="status" aria-live="polite" tabindex="-1"></p>
             </article>
           </div>`, '#ritualQuestao');
         pagina.querySelector('#ritualQuit').addEventListener('click', sair);
@@ -1148,7 +1191,10 @@
           if (typeof playSound === 'function') playSound('wrong');
           band = (band === 'hard') ? 'medium' : 'easy';
         }
-        _minigameDelay(binding, () => { if (currentPage()) nextQuestion(); }, 900);
+        const veredito = pagina.querySelector('#ritualVeredito');
+        veredito.insertAdjacentHTML('afterend', `<div class="nq-exam-acoes"><button type="button" class="btn gold" id="ritualNext">${step >= RITUAL_LEN ? 'Ver resultado' : 'Próxima questão'}</button></div>`);
+        pagina.querySelector('#ritualNext').addEventListener('click', nextQuestion, { once: true });
+        _minigameFocar(veredito);
       }
 
       function recommend() {
