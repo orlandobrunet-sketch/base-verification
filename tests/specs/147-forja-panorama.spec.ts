@@ -14,6 +14,7 @@ async function abrir(page: Page, width: number, gold = 5000) {
       ? route.continue() : route.abort();
   });
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+  await page.locator('[data-portal-route="guest"]').click();
   await injectGameState(page, { gold, character: 'nephros' });
   await page.evaluate(() => document.fonts.ready);
   const origin = page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first();

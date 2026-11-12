@@ -327,6 +327,7 @@ jobs:
         if: always()
         # A coleta de diagnósticos não altera o resultado bloqueante dos testes.
         continue-on-error: true
+        timeout-minutes: 3
         uses: actions/upload-artifact@v4
         with:
           name: playwright-smoke-evidence
@@ -340,7 +341,9 @@ jobs:
     name: Full E2E Tests (Playwright)
     # ubuntu-latest virou 26.04 em out/2026 e o Playwright 1.60 não instala Chromium nele.
     runs-on: ubuntu-24.04
-    needs: smoke-e2e
+    # Os runners são isolados; smoke e bateria completa podem rodar juntos
+    # após os gates, e ambos continuam obrigatórios para a validação.
+    needs: quality
     # A suíte cresceu de 21 para 24 specs (charselect, auditoria, taxonomia) e
     # passou a estourar os 20min, terminando por timeout — um job que não
     # completa deixa de pegar regressão.
@@ -353,14 +356,16 @@ jobs:
     # spec novo vire uma investigação de infraestrutura.
     timeout-minutes: 60
 
-    # Seis shards preservam toda a suíte, um worker e os limites por caso/job.
+    # Doze shards preservam toda a suíte, um worker e os limites por caso/job.
     # Na CI988 a shard 1/4 passou 639 de 656 testes e atingiu 60min antes de
     # concluir. Dividir o trabalho evita truncar a bateria sem afrouxar testes.
+    # A CI1054 voltou a exigir mais de meia hora por grupo; distribuir a mesma
+    # bateria em mais runners reduz a espera de cada validação do produto.
     # fail-fast desligado: uma shard reprovando não esconde as demais.
     strategy:
       fail-fast: false
       matrix:
-        shard: [1, 2, 3, 4, 5, 6]
+        shard: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 
     # `continue-on-error: true` era a SEGUNDA válvula de escape deste job, e ela
     # sobreviveu à remoção do `|| echo`: mesmo com o passo reprovando, o job
@@ -415,7 +420,7 @@ jobs:
       # Um portão que nunca reprova não é portão; é relatório que ninguém lê.
       - name: Run Playwright tests
         working-directory: tests
-        run: npx playwright test --shard=${{ matrix.shard }}/6 --timeout=20000
+        run: npx playwright test --shard=${{ matrix.shard }}/12 --timeout=20000
         env:
           BASE_URL: http://localhost:5500
 
@@ -423,6 +428,7 @@ jobs:
         if: always()
         # A coleta de diagnósticos não altera o resultado bloqueante dos testes.
         continue-on-error: true
+        timeout-minutes: 3
         uses: actions/upload-artifact@v4
         with:
           name: playwright-report-${{ matrix.shard }}

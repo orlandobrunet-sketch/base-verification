@@ -28,8 +28,13 @@ const REGISTROS = [
 ];
 
 async function entrar(page: Page, comRede: boolean) {
+  await page.route('**/*', route => {
+    const request = route.request();
+    return ['GET', 'HEAD'].includes(request.method()) && new URL(request.url()).hostname === 'localhost'
+      ? route.continue() : route.abort();
+  });
   await page.route('**/rest/v1/leaderboard**', (rota) =>
-    comRede
+    !['GET', 'HEAD'].includes(rota.request().method()) ? rota.abort() : comRede
       ? rota.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(REGISTROS) })
       : rota.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
@@ -83,8 +88,8 @@ test.describe('Ranking: falhar não é estar vazio', () => {
      * bloco, a exceção deixaria o spinner girando, pior que a mensagem
      * errada. */
     await entrar(page, false);
-    await page.evaluate(() => (window as any).openBoardModal?.() ?? (window as any).renderBoard?.(true));
-    await page.waitForTimeout(3000);
+    await page.evaluate(() => (window as any).showLeaderboardFromWelcome());
+    await expect(page.locator('#boardModal')).toBeVisible();
 
     const corpo = page.locator('#boardBody');
     if (!(await corpo.count())) test.skip(true, 'modal legado não disponível nesta build');

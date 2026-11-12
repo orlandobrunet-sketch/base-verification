@@ -95,7 +95,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@16.99',
+          release: 'nefroquest@17.01',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -160,14 +160,14 @@
   <link rel="stylesheet" href="styles/lumen/shell.css?v=16.18">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=16.99">
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.99">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=16.98">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=17.01">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.86">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=16.92">
   <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.90">
   <link rel="stylesheet" href="styles/lumen/forge.css?v=16.85">
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
   <link rel="stylesheet" href="styles/lumen/modes.css?v=16.69">
-  <link rel="stylesheet" href="styles/lumen/exam.css?v=16.95">
+  <link rel="stylesheet" href="styles/lumen/exam.css?v=17.01">
   <link rel="stylesheet" href="styles/lumen/equipment.css?v=16.62">
   <link rel="stylesheet" href="styles/lumen/boss.css?v=16.84">
   <link rel="stylesheet" href="styles/lumen/cinemalayout.css?v=16.43">
@@ -1850,13 +1850,11 @@
        após DOMContentLoaded. Reduz bloqueio sequencial. O inline _VAPID_PUBLIC_KEY
        executa imediatamente (sem defer) e fica disponível antes do notifications.js
        deferido executar. -->
-  <!-- Supabase pinado em 2.106.2 + SRI sha384 — para atualizar:
-       1. mudar versão na URL
-       2. rodar:  curl -sL "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@VERSAO/dist/umd/supabase.js" | openssl dgst -sha384 -binary | openssl base64 -A
-       3. substituir o integrity= com o novo hash
-       NOTA: não usar .min.js (minificado dinamicamente por jsdelivr — SRI quebra). -->
+  <!-- SDK oficial Supabase 2.106.2, autohospedado com os mesmos bytes/SRI.
+       Proveniência, licença e hashes: assets/vendor/supabase-js-2.106.2/README.md.
+       Atualizações exigem nova versão, verificação dos bytes e novo SRI. -->
   <script defer crossorigin="anonymous"
-          src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.106.2/dist/umd/supabase.js"
+          src="assets/vendor/supabase-js-2.106.2/supabase.js"
           integrity="sha384-m/8UHFJHeU6nrCKP2hBnAseuvAKUmLF+8e5bWos5CJL023vuxX7kiVL5t8yjsJhV"></script>
   <script defer src="data/rapid-quiz.js"></script>
   <script defer src="data/competencies.js"></script>
@@ -1871,9 +1869,9 @@
   <script defer src="js/progression.js?v=16.84"></script>
   <script defer src="js/utils.js?v=16.83"></script>
   <script defer src="js/audio.js?v=16.28"></script>
-  <script defer src="js/leaderboard.js?v=16.47"></script>
-  <script defer src="js/study-mode.js?v=16.69"></script>
-  <script defer src="js/game.js?v=16.99"></script>
+  <script defer src="js/leaderboard.js?v=17.01"></script>
+  <script defer src="js/study-mode.js?v=17.01"></script>
+  <script defer src="js/game.js?v=17.01"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=16.99"></script>
@@ -1889,9 +1887,9 @@
   <script defer src="js/cinema-cinematic-intro.js?v=16.46"></script>
   <script defer src="js/cinema-boss-art-states.js?v=16.39"></script>
   <script defer src="js/cinema-boss-static-adapter.js?v=16.43"></script>
-  <script defer src="js/exam.js?v=16.97"></script>
+  <script defer src="js/exam.js?v=17.01"></script>
   <script defer src="js/admin.js?v=15.35"></script>
-  <script defer src="js/minigame.js?v=16.86"></script>
+  <script defer src="js/minigame.js?v=17.01"></script>
   <script defer src="js/cinema-intro-bridge.js?v=16.43"></script>
   <script defer src="js/cinema-victory-source-config.js?v=16.28"></script>
   <script defer src="js/cinema-victory-epilogue.js?v=16.43"></script>
@@ -1906,7 +1904,7 @@
   <script defer src="js/achievements.js?v=16.75"></script>
   <script defer src="js/changelog.js?v=15.94"></script>
   <script defer src="js/equipment-preview.js?v=16.62"></script>
-  <script defer src="js/dashboard.js?v=16.92"></script>
+  <script defer src="js/dashboard.js?v=17.01"></script>
 
   <!-- Single source of truth for profile popup menu items -->
   <template id="profilePopupItems">

@@ -500,12 +500,15 @@
 
     function _stopLocalJourney() {
       ++_progressEpoch;
+      window._retireMinigameContext?.();
       window._resetCloudSync?.();
       window.resetMentorQuestion?.();
       _currentQuestionRevision = null; _currentQuestionRevisionOriginRaw = null;
       window.NQPilot?.rollback();
       _pilotAnswerTransaction = null;
       _nextQuestionOrigin = null;
+      clearTimeout(_questionRenderUnlockTimer);
+      _questionRenderUnlockTimer = null;
       _loadingNextQuestion = false;
       _continueGameCleanup?.(true);
       _continueGamePending = false;
@@ -1065,6 +1068,7 @@
       _normalJourneyStaging = true;
       let committed = false;
       ++_progressEpoch;
+      window._retireMinigameContext?.();
       window._resetCloudSync?.();
       const epoch = _progressEpoch;
       clearTimeout(_autoSaveTimer); clearTimeout(_saveTimer);
@@ -1097,6 +1101,7 @@
           _stopLocalJourney(); _reloadJourneyCollections(); refreshWelcomeSave();
         } else {
           ++_progressEpoch;
+          window._retireMinigameContext?.();
           window._resetCloudSync?.();
           Object.assign(_stateData, snapshot);
           _recentIds = derived.recent; _masteredSet = derived.mastered; unlockedArticles = derived.articles;
@@ -1603,6 +1608,7 @@
       clearTimeout(_autoSaveTimer); clearTimeout(_saveTimer); clearTimeout(_cloudSyncTimer); clearTimeout(_cloudLoadSyncTimer);
       _autoSaveTimer = _saveTimer = _cloudSyncTimer = _cloudLoadSyncTimer = null;
       ++_progressEpoch;
+      window._retireMinigameContext?.();
       window._resetCloudSync?.();
       try { _writeSaveTombstone('journey'); } catch (e) {
         _warnStorageFull(); return false;
@@ -2713,16 +2719,17 @@
     function dismissWelcome() {
       _track('game_started', { difficulty: state.difficulty || 'normal', character: state.selectedCharacter });
       const ws = document.getElementById('welcomeScreen');
-      ws.style.opacity = '0';
-      ws.style.transition = 'opacity 0.5s';
-      // Esconder welcome screen após 500ms (transição visual)
-      const welcomeBinding = _captureJourneyBinding();
-      setTimeout(() => {
-        if (!_matchesJourneyBinding(welcomeBinding)) return;
-        ws.classList.add('hidden');
-        document.getElementById('mainApp').classList.remove('hidden');
-        document.getElementById('actionDock').classList.remove('hidden');
-      }, 500);
+      const mainApp = document.getElementById('mainApp');
+      // Complete the route now; a delayed reveal can replace a mode opened next.
+      ws.style.opacity = '';
+      ws.style.transition = '';
+      ws.classList.add('hidden');
+      mainApp.inert = false;
+      mainApp.classList.remove('hidden');
+      document.getElementById('actionDock').classList.remove('hidden');
+      if (!window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches) {
+        mainApp.animate?.([{ opacity: 0 }, { opacity: 1 }], { duration: 180, easing: 'ease-out' });
+      }
       // Para welcome music imediatamente (cancela qualquer play() pendente via _wmStopRequested)
       // e inicia bg music no contexto de gesto do usuário (sem delay de callback)
       stopWelcomeMusic(false);
@@ -2831,18 +2838,12 @@
         updateBossUI();
         applyBossOptionBadges();
         playSound('click');
-        window.setTimeout(() => {
-          if (!_matchesJourneyBinding(resumeBinding)) return;
-          if (state.forjaPending) {
-            showForjaModal();
-            _forjaFocarResultado();
-            return;
-          }
-          const mainApp = document.getElementById('mainApp');
-          if (mainApp && !mainApp.classList.contains('hidden')) {
-            mainApp.focus({ preventScroll: true });
-          }
-        }, 520);
+        if (state.forjaPending) {
+          showForjaModal();
+          _forjaFocarResultado();
+        } else {
+          document.getElementById('mainApp').focus({ preventScroll: true });
+        }
       } catch (error) {
         console.error('continueGame: falha inesperada', error);
         announceError('Não foi possível retomar a jornada. Tente novamente.');
@@ -4322,6 +4323,7 @@
     }
 
     let _loadingNextQuestion = false;
+    let _questionRenderUnlockTimer = null;
     /* A explicação nasce no fim da tela, e só o celular rolava até ela. Respeita
      * movimento reduzido e deixa a escolha de rolar de lado com o Oráculo aberto. */
     function _revealFeedback() {
@@ -4475,9 +4477,13 @@
 
     function renderQuestion(){
       if (_loadingNextQuestion) return;
+      clearTimeout(_questionRenderUnlockTimer);
       _loadingNextQuestion = true;
       const questionBinding = _captureJourneyBinding();
-      setTimeout(() => { if (_matchesJourneyBinding(questionBinding)) _loadingNextQuestion = false; }, 400);
+      _questionRenderUnlockTimer = setTimeout(() => {
+        _questionRenderUnlockTimer = null;
+        if (_matchesJourneyBinding(questionBinding)) _loadingNextQuestion = false;
+      }, 400);
 
       // A consulta pertence à questão respondida, nunca à próxima carta.
       window.resetMentorQuestion?.();
@@ -7604,7 +7610,13 @@
           // Swipe esquerda → próxima questão
           var btn = document.getElementById('nextBtn');
           if (btn && !btn.classList.contains('hidden')) {
-            setTimeout(function() { btn.click(); }, 150);
+            var swipeQuestion = state.current;
+            var swipeBinding = _captureJourneyBinding();
+            setTimeout(function() {
+              if (!_matchesJourneyBinding(swipeBinding) || state.current !== swipeQuestion ||
+                  !state.gameStarted || !state.answered || btn.classList.contains('hidden')) return;
+              btn.click();
+            }, 150);
           }
         } else {
           // Swipe direita → abrir herói

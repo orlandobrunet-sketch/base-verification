@@ -19,6 +19,7 @@ async function abrir(page: Page, { standalone = true, largura = 1280, relogio = 
   if (relogio) await page.clock.install();
   await page.route('**/*', r => new URL(r.request().url()).hostname === 'localhost' ? r.continue() : r.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+  await page.locator('[data-portal-route="guest"]').click();
   await injectGameState(page);
   await page.waitForLoadState('load');
   await page.locator('#forgeBtn:visible, .mdock-btn.forge-item:visible').first().focus();
@@ -80,7 +81,7 @@ test('a explicação fica até o jogador avançar, e a correção diz em texto',
   await expect(page.locator('#mgFeedback')).toContainText(`Incorreto. A afirmação é ${certa ? 'verdadeira' : 'falsa'}.`);
   await expect(page.locator(certa ? '#mgTrue' : '#mgFalse').locator('.nq-exam-marca')).toHaveText('Resposta correta');
   await expect(page.locator(certa ? '#mgFalse' : '#mgTrue').locator('.nq-exam-marca')).toHaveText('Sua escolha');
-  await expect(page.locator('#mgProxima')).toBeFocused();
+  await expect(page.locator('#mgFeedback')).toBeFocused();
   await page.waitForTimeout(2500);
   await expect(page.getByRole('heading', { name: 'Afirmação 1 de 10' }), 'a explicação sumiu sozinha').toBeVisible();
   await page.keyboard.press('Enter');
@@ -158,3 +159,18 @@ for (const largura of [320, 390]) {
     expect(falhas, JSON.stringify(falhas.map((f: any) => `${f.texto} ${f.razao}`))).toEqual([]);
   });
 }
+
+
+test('ajuste regressivo do relógio civil não aumenta o prazo nem aceita resposta tardia', async ({ page }) => {
+  await abrir(page, { relogio: true });
+  await page.clock.runFor(5000);
+  await expect(page.locator('#mgRelogio')).toHaveText('7 s');
+  const agora = await page.evaluate(() => Date.now());
+  await page.clock.setSystemTime(agora - 60_000);
+  await page.clock.runFor(1000);
+  await expect(page.locator('#mgRelogio')).toHaveText('6 s');
+  await page.clock.runFor(6000);
+  await expect(page.locator('#mgFeedback')).toContainText('Tempo esgotado.');
+  await expect(page.locator('#mgTrue')).toBeDisabled();
+  await expect(page.locator('#mgFalse')).toBeDisabled();
+});

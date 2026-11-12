@@ -35,6 +35,8 @@
 #examPage .btn { min-height: 48px; }
 #examPage :is(button, input, summary):focus-visible { outline: 2px solid #91dfe3; outline-offset: 4px; }
 #examPage .nq-study-result-metrics { margin-block: 24px; }
+#examPage .nq-exam-erros :is(article, ul, li) { min-width: 0; }
+#examPage .nq-exam-erros :is(p, li) { overflow-wrap: anywhere; }
 #examPage .nq-exam-revisao-demais { margin-top: 24px; border-top: 1px solid #607480; padding-top: 16px; }
 #examPage .nq-exam-revisao-demais summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; color: var(--txt); font-weight: 700; }
 #examPage .nq-exam-revisao-demais article { padding: 16px 0; border-bottom: 1px solid #607480; }

@@ -2603,6 +2603,22 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 #chestModal .nqreader-card h2.nqscroll-identity { background: none; -webkit-text-fill-color: currentColor; text-shadow: none; }
 #chestModal .nqscroll-dialog:not([data-rarity=epic], [data-rarity=legendary]) .nqreader-meta .nqscroll-rarity { box-shadow: none; }
 
+/* Pergaminhos no desktop: texto completo, com fonte e entrelinha preservadas. */
+@media (min-width: 900px) {
+  #chestModal .nqscroll-dialog.nqreader-card { width: min(100%, 1160px); max-width: 1160px; }
+  #chestModal .nqreader-card[data-reader-layout="compact"] .nqreader-details { display: grid; }
+  #chestModal .nqreader-card .nqnarr-reading { padding: 18px 24px 10px; }
+  #chestModal .nqreader-heading { grid-template-columns: 54px minmax(0, 1fr) auto; gap: 4px 12px; }
+  #chestModal .nqreader-heading .nqreader-emblem { width: 54px; height: 60px; }
+  #chestModal .nqreader-heading .nqscroll-reward { margin-top: 0; }
+  #chestModal .nqreader-reference { display: flex; flex-wrap: wrap; gap: 0 8px; }
+  #chestModal .nqreader-reference br { display: none; }
+  #chestModal .nqreader-sections { margin-top: 16px; }
+  #chestModal .nqreader-section { padding: 16px 18px; }
+  #chestModal .nqreader-card .nqnarr-footer { padding: 8px 24px 10px; }
+  #chestModal .nqreader-card .close-chest { margin: 0; }
+}
+
 /* Erros da Jornada no padrão do resumo de artigo: emblema, cartões escuros,
    alternativas com marcador redondo e selos de estado. Rosa marca o erro,
    verde a resposta certa, dourado a explicação. */

@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
 
 test.describe('Landing: evidências, ícones e transição do método', () => {
   test.beforeEach(async ({ page, context, baseURL }) => {
@@ -66,6 +67,9 @@ test.describe('Landing: evidências, ícones e transição do método', () => {
   });
 
   test('faz uma transição contínua com respiro para o título e preserva o carrossel', async ({ page }) => {
+    const accessibility = await new AxeBuilder({ page }).include('#diretrizes').withRules(['aria-allowed-role']).analyze();
+    expect(accessibility.violations.map(item => ({ rule: item.id, targets: item.nodes.map(node => node.target) }))).toEqual([]);
+    await expect(page.locator('[data-guideline-track]').getByRole('listitem')).toHaveCount(16);
     // Medir a superfície após a apresentação, e não o translateY da entrada.
     await page.locator('.guideline-flow').scrollIntoViewIfNeeded();
     await expect(page.locator('.guideline-flow')).toHaveCSS('transform', 'none');
@@ -90,6 +94,10 @@ test.describe('Landing: evidências, ícones e transição do método', () => {
     await expect(control).toBeFocused();
     await control.press('ArrowRight');
     await expect(page.locator('[data-guideline-cover]').nth(1)).toBeFocused();
+    await page.keyboard.press('End');
+    await expect(page.locator('[data-guideline-cover]').last()).toBeFocused();
+    await page.keyboard.press('Home');
+    await expect(control).toBeFocused();
     await expect(page.locator('[data-guideline-active]')).not.toHaveText('');
     await page.setViewportSize({ width: 320, height: 700 });
     await page.evaluate(() => { document.documentElement.style.fontSize = '200%'; });

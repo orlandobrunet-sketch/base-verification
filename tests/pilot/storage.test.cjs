@@ -93,7 +93,7 @@ function installContinueEngine(f, {loadTopics = async () => {}, restore = true} 
     focus() { this.focused++; }};
   const data = {gameStarted: false, gameOver: false, character: 'nephros', level: 1};
   Object.assign(ctx, {state: data, _stateData: data, _progressEpoch: 0,
-    _forja: null, _autoSaveTimer: null, _saveTimer: null, _cloudSyncTimer: null, _cloudLoadSyncTimer: null,
+    _forja: null, _autoSaveTimer: null, _saveTimer: null, _cloudSyncTimer: null, _cloudLoadSyncTimer: null, _questionRenderUnlockTimer: null,
     pendingScore: null, _pendingRating: null, questionBank: [],
     isCharacterPilot: () => f.pilot.active, _currentSaveOwner: () => ctx.authUser?.id || null,
     document: {getElementById: id => id === 'welcomeContinueBtn' ? button : null,

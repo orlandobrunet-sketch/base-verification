@@ -6,6 +6,7 @@ test.use({ serviceWorkers: 'block', contextOptions:{reducedMotion:'reduce'} });
 async function entrar(page: Page, modo: 'exam' | 'study') {
   await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+  await page.locator('[data-portal-route="guest"]').click();
   await injectGameState(page);
   await page.waitForLoadState('load');
   await page.evaluate(() => document.fonts.ready);
@@ -63,6 +64,7 @@ for (const entrada of ['clique', 'teclado'] as const) {
 test('legendas e valores do HUD cabem em suas colunas com fonte normal e ampliada', async ({ page }) => {
   await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+  await page.locator('[data-portal-route="guest"]').click();
   await injectGameState(page);
   await page.waitForLoadState('load');
   await page.evaluate(() => document.fonts.ready);
