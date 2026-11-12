@@ -208,7 +208,10 @@ test('baú no décimo estágio mantém a vitória como endpoint sem gravar progr
 
 for (const withChest of [false, true]) test(`evolução do último acerto aguarda filme e resultados ${withChest ? 'com' : 'sem'} baú, sem repetir recompensa`, async ({ page }, info) => {
   test.setTimeout(45000);
+  // Estes contratos exigem filme; movimento reduzido usa o retrato estático.
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
   await abrir(page, 1440);
+  expect(await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches)).toBe(false);
   const saved = await storage(page);
   await page.evaluate(withChest => {
     const w = window as any;

@@ -13,6 +13,7 @@ const VENDA: Record<string, number> = { common: 20, uncommon: 40, rare: 80, epic
 async function abrir(page: Page, gold = 5000, ocupado = true) {
   await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+  await page.locator('[data-portal-route="guest"]').click();
   await injectGameState(page, {
     schemaVersion: 6,
     gold,

@@ -43,6 +43,8 @@ test('escolha provisória cancela sem iniciar nem alterar o save em cada disposi
 });
 
 test('filme real inicia mudo; opt-in, pausa, mute e fechamento controlam o gate sem alterar preferências', async ({ page }, info) => {
+  // Este contrato exige reprodução automática; movimento reduzido pede ação manual.
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
   await page.addInitScript(() => {
     localStorage.setItem('nefroquest-sound', 'on');
     localStorage.setItem('nefroquest-music', 'on');
@@ -51,6 +53,7 @@ test('filme real inicia mudo; opt-in, pausa, mute e fechamento controlam o gate 
     localStorage.setItem('nefroquest-audio-preferences-version', '15.91');
   });
   await setupPilotPage(page);
+  expect(await page.evaluate(() => matchMedia('(prefers-reduced-motion: reduce)').matches)).toBe(false);
   const preferences = (await audio(page)).preferences;
   const confirmation = await choose(page);
   await confirmation.start.click();

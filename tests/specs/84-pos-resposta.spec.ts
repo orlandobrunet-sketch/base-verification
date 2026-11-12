@@ -6,6 +6,7 @@ test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } 
 test.beforeEach(async ({ page }) => {
   await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
   await page.goto('/jogar/');
+  await page.locator('[data-portal-route="guest"]').click();
   await injectGameState(page, { gold: 0, streak: 0 });
 });
 async function respond(page: Page, correct: boolean) {

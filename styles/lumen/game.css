@@ -2020,6 +2020,14 @@ body > .stat-tip-floating[data-nq-ui="lumen"] strong + br {
   display: none;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  body > .stat-tip-floating[data-nq-ui="lumen"] {
+    /* Positioning reads the constrained height synchronously. The global
+     * .01ms rule must not animate max-height between those measurements. */
+    transition-property: none;
+  }
+}
+
 @media (max-width: 768px) {
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .panel.right {
     padding: .5rem .9rem 1.25rem;
