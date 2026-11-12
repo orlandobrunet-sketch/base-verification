@@ -4557,8 +4557,13 @@
         ui.dockNextBtn?.classList.remove('disabled');
       }
       _renderCampaignQuestionRevisionNotice(wasAnswered);
-      // A explicação deixa a página rolada; a próxima pergunta começa do topo.
-      if (!wasAnswered && window.scrollY > 0) window.scrollTo({ top: 0, behavior: 'instant' });
+      // Só a jornada visível pode reposicionar a janela. O fim do baralho
+      // também prepara a próxima carta enquanto outro modo está aberto.
+      const campaignSurface = document.getElementById('mainApp');
+      if (!wasAnswered && window.scrollY > 0 && campaignSurface && !campaignSurface.hidden &&
+          !campaignSurface.inert && !campaignSurface.classList.contains('hidden')) {
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
       if (!isProgressSandbox() && (isCharacterPilot() || !!state.classBenefits || !!q._answerPresentation) &&
           !_normalJourneyStaging && !restoringPilot && !wasAnswered && !_doSaveGame()) {
         _stopLocalJourney(); _reloadJourneyCollections(); refreshWelcomeSave();
