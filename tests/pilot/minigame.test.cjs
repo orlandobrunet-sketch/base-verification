@@ -22,7 +22,8 @@ function fixture({pilot = false, loadTopics = async () => {}} = {}) {
     ['nefroquest-ritual-done', 'normal-history'], ['nefroquest-sr-data', '{"legacy":1}']
   ]);
   const assisted = new Map(), nodes = new Map(), timeouts = new Map(), intervals = new Map();
-  const subscribers = new Set(), closed = [], calls = {xp: [], items: [], sr: [], saved: 0, stun: 0, recovery: 0};
+  const subscribers = new Set(), closed = [], calls = {xp: [], items: [], sr: [], saved: 0, stun: 0, recovery: 0, answers: []};
+  let wallNow = 100000, monotonicNow = 0;
   let generation = 1, epoch = 1, owner = 'fixture-user', timerId = 0;
   const storage = values => ({getItem: key => values.get(key) ?? null,
     setItem: (key, value) => values.set(key, String(value)), removeItem: key => values.delete(key)});
@@ -35,6 +36,7 @@ function fixture({pilot = false, loadTopics = async () => {}} = {}) {
         listeners.get(type).add(fn);
       },
       removeEventListener(type, fn) { listeners.get(type)?.delete(fn); },
+      listenerCount() { return [...listeners.values()].reduce((n, set) => n + set.size, 0); },
       dispatchEvent(event) { for (const fn of listeners.get(event.type) || []) fn(event); },
     };
   };
@@ -88,6 +90,9 @@ function fixture({pilot = false, loadTopics = async () => {}} = {}) {
   }
   const ctx = {
     ...events(), innerHeight: 800,
+    Date: class extends Date { static now() { return wallNow; } },
+    performance: {now: () => monotonicNow},
+    nqRecordAnswer: (qid, correct) => calls.answers.push({qid, correct}),
     console, localStorage: ordinaryStorage, state: {gold: 0, xp: 0, correctTotal: 25, level: 1},
     document: {...events(), hidden: false, getElementById: id => nodes.get(id) || null,
       createElement: () => new Node(), body: {appendChild: node => {if (node.id) nodes.set(node.id, node);}}},
@@ -149,7 +154,70 @@ function fixture({pilot = false, loadTopics = async () => {}} = {}) {
     }
   };
   return {ctx, normal, assisted, nodes, timeouts, intervals, closed, calls, node, runDelay,
+    elapse: (wall, monotonic = wall) => {wallNow += wall; monotonicNow += monotonic;},
+    tick: () => [...intervals.values()].forEach(fn => fn()),
     change, finishRapid, finishRitual, advanceNormalJourney: () => {epoch++;}};
+}
+
+for (const event of ['visibilitychange', 'pageshow']) {
+  test(`rapid quiz expires once on ${event} after suspension without ticks`, () => {
+    const f = fixture(); f.ctx.showRapidQuizMinigame();
+    const queuedTick = [...f.intervals.values()][0];
+    f.elapse(13000, 0); // device asleep: monotonic clock need not advance
+    (event === 'pageshow' ? f.ctx : f.ctx.document).dispatchEvent({type: event});
+    queuedTick(); f.ctx.document.dispatchEvent({type: 'visibilitychange'}); f.ctx.dispatchEvent({type: 'pageshow'});
+    assert.match(f.node('mgFeedback').innerHTML, /Tempo esgotado/);
+    assert.deepEqual(f.calls.answers.map(a => a.correct), [false]);
+    assert.equal(f.intervals.size, 0);
+    f.elapse(30000); f.tick();
+    assert.match(f.node('rapidQuizPage').innerHTML, /Afirmação 1 de 10/);
+    f.node('mgProxima').click();
+    f.elapse(11999); f.node('mgTrue').click();
+    assert.deepEqual(f.calls.answers.map(a => a.correct), [false, true]);
+  });
+}
+
+for (const elapsed of [12000, 13000]) {
+  test(`rapid quiz rejects answer at ${elapsed}ms before the next timer tick`, () => {
+    const f = fixture(); f.ctx.showRapidQuizMinigame();
+    const staleAnswer = f.node('mgTrue').listeners[0].fn;
+    f.elapse(elapsed, 0); staleAnswer(); staleAnswer();
+    assert.equal(f.node('mgRelogio').textContent, '0 s');
+    assert.equal(f.node('mgTimerFill').style.width, '0%');
+    assert.match(f.node('mgFeedback').innerHTML, /Tempo esgotado/);
+    assert.deepEqual(f.calls.answers.map(a => a.correct), [false]);
+  });
+}
+
+test('rapid quiz never increases remaining time after the wall clock moves backwards', () => {
+  const f = fixture(); f.ctx.showRapidQuizMinigame();
+  f.elapse(5000); f.tick(); assert.equal(f.node('mgRelogio').textContent, '7 s');
+  f.elapse(-10000, 1000); f.tick(); assert.equal(f.node('mgRelogio').textContent, '6 s');
+  f.elapse(0, 6000); f.node('mgTrue').click();
+  assert.match(f.node('mgFeedback').innerHTML, /Tempo esgotado/);
+});
+
+test('rapid quiz keeps the lowest balance when wall time advances then regresses', () => {
+  const f = fixture(); f.ctx.showRapidQuizMinigame();
+  f.elapse(9000, 1000); f.tick(); assert.equal(f.node('mgRelogio').textContent, '3 s');
+  f.elapse(-8000, 1000); f.tick(); assert.equal(f.node('mgRelogio').textContent, '3 s');
+  f.elapse(0, 10000); f.tick();
+  assert.match(f.node('mgFeedback').innerHTML, /Tempo esgotado/);
+});
+
+for (const exit of ['exit', 'account', 'journey']) {
+  test(`rapid quiz removes resume listeners on ${exit} and queued callbacks cannot answer`, () => {
+    const f = fixture(); f.ctx.showRapidQuizMinigame();
+    const queuedTick = [...f.intervals.values()][0];
+    if (exit === 'exit') f.node('mgSair').click();
+    else if (exit === 'account') f.change(false, 'other-owner');
+    else {f.advanceNormalJourney(); f.ctx.dispatchEvent({type: 'pageshow'});}
+    f.elapse(13000); queuedTick();
+    f.ctx.document.dispatchEvent({type: 'visibilitychange'}); f.ctx.dispatchEvent({type: 'pageshow'});
+    assert.equal(f.ctx.document.listenerCount(), 0); assert.equal(f.ctx.listenerCount(), 0);
+    assert.equal(f.intervals.size, 0); assert.equal(f.calls.answers.length, 0);
+    assert.equal(f.ctx.state.gold, 0);
+  });
 }
 
 test('delayed pilot invitation is cancelled and queued replay cannot open in normal context', () => {

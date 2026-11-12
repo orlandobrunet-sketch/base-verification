@@ -1,18 +1,18 @@
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { injectGameState } from '../helpers/game';
-import { installGameSaveObserver, waitForPendingGameSave } from '../helpers/game-persistence';
+import { drainJourneyAutosave, watchReadOnlyStorage } from '../helpers/read-only-storage';
 
 test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
+test.beforeEach(async ({ page }) => { await page.clock.install(); });
+
 const keys = ['nefroquest-save', 'nefroquest-save-v7', 'nefroquest-detailed-stats', 'nefroquest-achievements', 'nefroquest-badge-history', 'nq-unlocked-refs', 'unlockedArticles'];
-const snapshot = (page: Page) => page.evaluate(keys => keys.map(key => localStorage.getItem(key)), keys);
 
 async function openCollection(page: Page, earned: 'some' | 'none' | 'all' = 'some') {
-  await installGameSaveObserver(page);
   await page.route('**/*', route => ['localhost', '127.0.0.1'].includes(new URL(route.request().url()).hostname) ? route.continue() : route.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
   await injectGameState(page, { correctTotal: 18 });
-  await waitForPendingGameSave(page);
+  await drainJourneyAutosave(page);
   await page.evaluate(earned => {
     const list = (0, eval)('ACHIEVEMENTS_LIST');
     localStorage.setItem('nefroquest-achievements', JSON.stringify(earned === 'all' ? list.map((a: any) => a.id) : earned === 'none' ? [] : ['hd_master', 'arqui_nefromante_slayer', 'accuracy_master']));
@@ -25,7 +25,7 @@ async function openCollection(page: Page, earned: 'some' | 'none' | 'all' = 'som
 }
 
 test('aquisição registrada conserva barra completa sem inventar contadores e mantém popup e storage coerentes', async ({ page }) => {
-  const pane = await openCollection(page), before = await snapshot(page);
+  const pane = await openCollection(page), assertStorageUnchanged = await watchReadOnlyStorage(page, keys);
   for (const id of ['hd_master', 'arqui_nefromante_slayer', 'accuracy_master']) {
     const card = pane.locator(`[data-achievement-id="${id}"]`);
     await expect(card).toHaveAttribute('data-achievement-status', 'unlocked');
@@ -45,11 +45,11 @@ test('aquisição registrada conserva barra completa sem inventar contadores e m
   await expect(page.locator('.nq-ach-detail[open] [role="progressbar"]')).toHaveAttribute('aria-valuenow', '18');
   await expect(page.locator('.nq-ach-detail[open] [role="progressbar"]')).toHaveAttribute('aria-valuemax', '20');
   await page.keyboard.press('Escape');
-  expect(await snapshot(page)).toEqual(before);
+  await assertStorageUnchanged();
 });
 
 test('progresso parcial e meta completa sem aquisição mantêm valores reais e não concedem conquistas', async ({ page }) => {
-  const pane = await openCollection(page, 'none'), before = await snapshot(page);
+  const pane = await openCollection(page, 'none'), assertStorageUnchanged = await watchReadOnlyStorage(page, keys);
   await expect(pane.locator('[data-achievement-id="hd_master"] [role="progressbar"]')).toHaveAttribute('aria-valuenow', '35');
   await expect(pane.locator('[data-achievement-id="hd_master"] [role="progressbar"]')).toHaveAttribute('aria-valuemax', '50');
   const century = pane.locator('[data-achievement-id="century_club"]');
@@ -57,7 +57,7 @@ test('progresso parcial e meta completa sem aquisição mantêm valores reais e 
   await expect(century).toHaveClass(/is-locked/);
   await expect(century.locator('.nqd-achievement-progress')).not.toContainText('Requisito cumprido');
   await expect(pane.locator('[data-achievement-id="arqui_nefromante_slayer"] [role="progressbar"]')).toHaveCount(0);
-  expect(await snapshot(page)).toEqual(before);
+  await assertStorageUnchanged();
 });
 
 test('todas as conquistas completas exibem medidor legível e contraste adequado', async ({ page }) => {
@@ -83,7 +83,7 @@ test('trilha com vitrine máxima deixa os cinco quadros inteiros na janela deskt
 
 for (const cfg of [{ width: 390, font: 16 }, { width: 320, font: 32 }]) test(`trilha e barras refluem em ${cfg.width}px com fonte ${cfg.font}px e preservam Tab natural`, async ({ page }) => {
   await page.setViewportSize({ width: cfg.width, height: 844 });
-  const pane = await openCollection(page, 'all'), before = await snapshot(page);
+  const pane = await openCollection(page, 'all'), assertStorageUnchanged = await watchReadOnlyStorage(page, keys);
   await page.evaluate(font => { document.documentElement.style.fontSize = font + 'px'; }, cfg.font);
   const path = pane.locator('.nqd-badge-path');
   expect(await path.evaluate(el => el.scrollWidth <= el.clientWidth + 1 && el.scrollHeight <= el.clientHeight + 1)).toBe(true);
@@ -97,5 +97,5 @@ for (const cfg of [{ width: 390, font: 16 }, { width: 320, font: 32 }]) test(`tr
     await page.keyboard.press('Escape'); await expect(button).toBeFocused();
   }
   expect(await pane.locator('.nqd-achievement-progress').evaluateAll(els => els.every(el => el.scrollWidth <= el.clientWidth + 1))).toBe(true);
-  expect(await snapshot(page)).toEqual(before);
+  await assertStorageUnchanged();
 });

@@ -1,8 +1,10 @@
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
-import { installGameSaveObserver, waitForPendingGameSave } from '../helpers/game-persistence';
+import { drainJourneyAutosave, watchReadOnlyStorage } from '../helpers/read-only-storage';
 
 test.use({ serviceWorkers: 'block' });
+
+test.beforeEach(async ({ page }) => { await page.clock.install(); });
 
 const preservedKeys = ['nefroquest-save', 'nefroquest-save-v7', 'nefroquest-detailed-stats', 'nefroquest-achievements', 'nefroquest-badge-history', 'nq-unlocked-refs', 'unlockedArticles'];
 
@@ -16,13 +18,10 @@ function acquiredArtIsVivid(images: Element[]) {
 }
 
 async function openCollection(page: Page, correctTotal = 32, earned: 'none' | 'some' | 'all' = 'some', remembered: boolean | null = true) {
-  // A retomada agenda um autosave legítimo. Aguarde sua execução antes de
-  // medir se a coleção preserva os JSONs completos, sem cancelar a gravação.
-  await installGameSaveObserver(page);
   await page.route('**/*', route => ['localhost', '127.0.0.1'].includes(new URL(route.request().url()).hostname) ? route.continue() : route.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
   await injectGameState(page, { correctTotal });
-  await waitForPendingGameSave(page);
+  await drainJourneyAutosave(page);
   await page.evaluate(({ earned, remembered }) => {
     const ids = earned === 'all' ? (0, eval)('ACHIEVEMENTS_LIST').map((item: any) => item.id)
       : earned === 'none' ? [] : ['century_club', 'arqui_nefromante_slayer', 'speed_demon'];
@@ -56,13 +55,13 @@ test('coleção começa completa, reconhece posses e mostra progresso real sem c
   }
   expect(await pane.locator('.nqd-achievement.is-unlocked img').evaluateAll(images => images.every(img => getComputedStyle(img).filter === 'none'))).toBe(true);
   expect(await pane.locator('.nqd-achievement.is-locked img').evaluateAll(images => images.every(img => getComputedStyle(img).filter.includes('grayscale(1)')))).toBe(true);
-  const before = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys);
+  const assertStorageUnchanged = await watchReadOnlyStorage(page, preservedKeys);
   await pane.getByRole('button', { name: 'Conquistadas', exact: true }).click();
   await expect(pane.locator('.nqd-achievement:visible')).toHaveCount(2);
   await expect(pane.locator('#nqdAchievementFilterStatus')).toHaveText('2 conquistas exibidas.');
   await pane.getByRole('button', { name: 'Todas', exact: true }).click();
   await expect(pane.locator('.nqd-achievement:visible')).toHaveCount(12);
-  expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
+  await assertStorageUnchanged();
 });
 
 test('galeria alinha os cards de cada linha e mantém os requisitos inteiros em desktop e mobile', async ({ page }, info) => {
@@ -119,7 +118,7 @@ for (const fixture of ['admin', 'complete', 'registered'] as const) test(`Grimó
   }, fixture);
   const pane = page.getByRole('tabpanel', { name: 'Conquistas', exact: true });
   const card = pane.locator('[data-achievement-id="grimoire_master"]');
-  const before = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys);
+  const assertStorageUnchanged = await watchReadOnlyStorage(page, preservedKeys);
   expect(expected.condition).toBe(fixture !== 'admin');
   await expect(card).toHaveClass(fixture === 'registered' ? /is-unlocked/ : /is-locked/);
   if (fixture === 'registered') {
@@ -139,13 +138,13 @@ for (const fixture of ['admin', 'complete', 'registered'] as const) test(`Grimó
   await expect(detail).toHaveAttribute('data-acquired', String(fixture === 'registered'));
   if (fixture !== 'registered') await expect(detail).toContainText(fixture === 'admin' ? 'não registra desbloqueios do perfil' : 'conquista ainda não registrada');
   await page.keyboard.press('Escape'); await expect(art).toBeFocused();
-  expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
+  await assertStorageUnchanged();
 });
 
 test('arte ampliada isola a jornada, aceita teclado e retorna à mesma conquista sem mudar o save', async ({ page }) => {
   const pane = await openCollection(page);
   const art = pane.getByRole('button', { name: 'Campeão da Nefrologia — ampliar arte e requisito', exact: true });
-  const before = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys);
+  const assertStorageUnchanged = await watchReadOnlyStorage(page, preservedKeys);
   await art.focus();
   await page.keyboard.press('Enter');
   const detail = page.getByRole('dialog', { name: 'Campeão da Nefrologia' });
@@ -160,7 +159,7 @@ test('arte ampliada isola a jornada, aceita teclado e retorna à mesma conquista
   await page.keyboard.press('Escape');
   await expect(detail).toHaveCount(0);
   await expect(art).toBeFocused();
-  expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
+  await assertStorageUnchanged();
 
   const badge = pane.getByRole('button', { name: 'Sábio do Microscópio — 40 acertos — ampliar arte e requisito', exact: true });
   await badge.click();
@@ -172,6 +171,7 @@ test('arte ampliada isola a jornada, aceita teclado e retorna à mesma conquista
   expect(await badgeDetail.locator('img').evaluate(img => getComputedStyle(img).filter)).toBe('none');
   await badgeDetail.getByRole('button', { name: 'Voltar à coleção' }).click();
   await expect(badge).toBeFocused();
+  await assertStorageUnchanged();
 });
 
 test('falha de carga do banco não apresenta o Grimório como objetivo completo', async ({ page }) => {
@@ -188,7 +188,7 @@ test('falha de carga do banco não apresenta o Grimório como objetivo completo'
     localStorage.setItem('unlockedArticles', JSON.stringify((0, eval)('nefroArticles').map((_: any, index: number) => index)));
     localStorage.setItem('nefroquest-achievements', '[]');
   });
-  const before = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys);
+  const assertStorageUnchanged = await watchReadOnlyStorage(page, preservedKeys);
   await page.evaluate(() => (window as any).openDashboard({ tab: 'achievements' }));
   await expect(page.locator('#nqDashboard[data-dashboard-state="ready"]')).toBeVisible();
   const card = page.locator('[data-achievement-id="grimoire_master"]');
@@ -204,7 +204,7 @@ test('falha de carga do banco não apresenta o Grimório como objetivo completo'
   await expect(detail).toContainText('Não foi possível carregar o acervo');
   await expect(detail.locator('[role="progressbar"]')).toHaveCount(0);
   await page.keyboard.press('Escape');
-  expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
+  await assertStorageUnchanged();
 });
 
 test('logout fecha detalhe e libera o fundo sem devolver foco à jornada encerrada', async ({ page }) => {
@@ -264,7 +264,7 @@ for (const earned of ['none', 'all'] as const) test(`aquisição real e filtros 
     await page.keyboard.press('Escape');
     await expect(art).toBeFocused();
   }
-  const before = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys);
+  const assertStorageUnchanged = await watchReadOnlyStorage(page, preservedKeys);
   await pane.getByRole('button', { name: 'Conquistadas', exact: true }).focus();
   await page.keyboard.press('Enter');
   await expect(pane.locator('.nqd-achievement:visible')).toHaveCount(count);
@@ -272,7 +272,7 @@ for (const earned of ['none', 'all'] as const) test(`aquisição real e filtros 
   await expect(pane.locator('#nqdAchievementFilterStatus')).toHaveText(`${count} conquistas exibidas.`);
   await pane.getByRole('button', { name: 'Todas', exact: true }).click();
   await expect(pane.locator('.nqd-achievement:visible')).toHaveCount(12);
-  expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
+  await assertStorageUnchanged();
 });
 
 test('próximo selo não obtido fica cinza e posse histórica continua colorida', async ({ page }) => {
@@ -297,7 +297,7 @@ test('histórico nulo preserva o próximo selo cinza sem modificar progresso ou 
   expect(await spotlight.locator('img').evaluate(img => getComputedStyle(img).filter)).toContain('grayscale(1)');
   await expect(pane.locator('.nqd-badge-node[data-acquired="true"]')).toHaveCount(1);
   await expect(pane.locator('.nqd-badge-node[data-memoria="true"]')).toHaveCount(0);
-  const before = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys);
+  const assertStorageUnchanged = await watchReadOnlyStorage(page, preservedKeys);
   const art = spotlight.locator('.nqd-achievement-spotlight-art');
   await art.click();
   const detail = page.getByRole('dialog', { name: 'Sábio do Microscópio' });
@@ -307,15 +307,14 @@ test('histórico nulo preserva o próximo selo cinza sem modificar progresso ou 
   await expect(detail.locator('[role="progressbar"]')).toHaveAttribute('aria-valuemax', '40');
   await page.keyboard.press('Escape');
   await expect(art).toBeFocused();
-  expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
+  await assertStorageUnchanged();
 });
 
 test('celebrações reais usam artes próprias, não se sobrepõem e preservam foco e progresso', async ({ page }) => {
   const pane = await openCollection(page);
   const origin = pane.getByRole('button', { name: 'Todas', exact: true });
   await origin.focus();
-  const before = await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys);
-  await page.clock.install();
+  const assertStorageUnchanged = await watchReadOnlyStorage(page, preservedKeys);
   await page.evaluate(() => {
     for (const id of ['century_club', 'arqui_nefromante_slayer']) {
       const achievement = (0, eval)('ACHIEVEMENTS_LIST').find((item: any) => item.id === id);
@@ -332,7 +331,7 @@ test('celebrações reais usam artes próprias, não se sobrepõem e preservam f
   await expect(origin).toBeFocused();
   await page.clock.fastForward(5400);
   await expect(messages).toHaveCount(0);
-  expect(await page.evaluate(keys => Object.fromEntries(keys.map(key => [key, localStorage.getItem(key)])), preservedKeys)).toEqual(before);
+  await assertStorageUnchanged();
 });
 
 for (const width of [320, 390, 1100]) test(`coleção e detalhes contidos em ${width} com texto a 200%`, async ({ page }, info) => {

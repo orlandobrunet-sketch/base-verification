@@ -10,7 +10,7 @@ Este documento controla direção, prioridade e critérios de conclusão. Ele n�
 
 **Publicado:** 16.99 (PR954), sincronização com revisão por conta e transição do login. Migration e frontend ativados, Pages e nove arquivos públicos conferidos contra o merge `4699e87`. A 16.98 (PR953) simplificou o XP; Câmara 16.96 (PR950), conta, pagamento, teclado e Prova 16.97 (PR951), e reconciliação de estorno após exclusão da conta (PR952) também estão publicadas. Evidências e limites estão no [checkpoint de continuidade](CONTINUITY.md).
 
-**Escopo da entrega 17.00 — [PR955](https://github.com/orlandobrunet-sketch/base-verification/pull/955):** prazo do Julgamento Rápido, foco e reflow dos modos, concorrência e posições do Ranking, desempenho do Portal/Grimório, pergaminhos AKIKI/PRESERVE e navegação da jornada/Forja. Consultar no PR os resultados finais e o estado da integração/publicação.
+**Escopo da entrega 17.01 — [PR955](https://github.com/orlandobrunet-sketch/base-verification/pull/955):** prazo do Julgamento Rápido, inclusive com ajuste regressivo do relógio, foco e reflow dos modos, concorrência e posições do Ranking, desempenho do Portal/Grimório, pergaminhos AKIKI/PRESERVE e navegação da jornada/Forja. Consultar no PR os resultados finais e o estado da integração/publicação.
 
 **Pendências:** a correção intermitente no Estudo continua sem causa comprovada, apesar de oito repetições finais e 30 sessões adicionais aprovadas; validação entre aparelhos físicos e serviços reais conforme o checkpoint de continuidade; decisão sobre vídeos e projetos futuros. Conteúdo médico e revisão editorial ficam para outro momento. Os status abaixo são históricos e não substituem este checkpoint.
 

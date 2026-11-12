@@ -35,8 +35,10 @@ test('nenhuma correção aparece após responder, inclusive no DOM fechado',asyn
 test('retomada conserva duração, alternativa e correção apenas no fim',async({page})=>{
  await begin(page);let s=await saved(page);const q=s.questions[0],wrong=(q.a+1)%4;await page.locator('#examOpts button').nth(wrong).click();s=await saved(page);
  const raw=await page.evaluate(key=>localStorage.getItem(key),KEY);await page.reload({waitUntil:'domcontentloaded'});
- await expect(page.locator('#welcomeScreen')).toBeVisible();expect(await page.evaluate(()=>localStorage.getItem('nq_guest_mode'))).toBe('1');
- await page.evaluate(()=>(window as any).startExamMode());
+ // O visitante já está persistido: o reload restaura o Átrio, não o Portal.
+ await expect(page.locator('#welcomeScreen')).toBeVisible();await expect(page.locator('#landingScreen')).toBeHidden();
+ expect(await page.evaluate(()=>localStorage.getItem('nq_guest_mode'))).toBe('1');
+ await page.locator('[data-atrium-route="modes"]').click();await page.locator('[data-mode-route="exam"]:visible').click();
  await expect(page.locator('#examPage')).toContainText('3 minutos');await page.getByRole('button',{name:'Retomar prova',exact:true}).click();await noCorrection(page);
  expect(await page.evaluate(key=>localStorage.getItem(key),KEY)).toBe(raw);expect((await saved(page)).startTime).toBe(s.startTime);
  await expect(page.locator('#examOpts .nq-exam-marca')).toHaveText(['Sua resposta']);await page.getByRole('button',{name:'Próxima questão',exact:true}).click();
