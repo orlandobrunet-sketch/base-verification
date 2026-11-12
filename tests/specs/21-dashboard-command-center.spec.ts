@@ -664,6 +664,7 @@ test.describe('Central de Comando do aprendizado', () => {
   test('Enter no acionador real abre a Central sem avançar uma campanha já respondida', async ({ page }) => {
     test.setTimeout(60_000);
     await gotoGame(page);
+    await page.locator('[data-portal-route="guest"]').click();
     await injectGameState(page);
     const wrongIndex = await page.evaluate(() => ((Number((window as any).state?.current?.a) || 0) + 1) % 4);
     await page.locator('#options .option').nth(wrongIndex).click();
