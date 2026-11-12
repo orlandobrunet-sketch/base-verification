@@ -2649,12 +2649,12 @@
         const savedProgress = projectSavedProgress(save);
         const level = Math.min(10, savedProgress.level);
         const xpToNext = savedProgress.xpToNext;
-        const xp = savedProgress.xp;
+        const xp = savedProgress.applied;
         const score = Math.max(0, Math.floor(Number(save.score) || 0));
         const lives = savedProgress.lives;
         const correctTotal = Math.max(0, Math.floor(Number(save.correctTotal) || 0));
         const isMaxLevel = level >= 10;
-        const xpLabel = isMaxLevel ? 'Domínio máximo alcançado' : `${xp}/${xpToNext} XP`;
+        const xpLabel = isMaxLevel ? 'Domínio máximo alcançado' : `Evolução: ${xp}/${xpToNext} XP`;
         const progress = savedProgress.percent;
         const timeAgo = getTimeAgo(save.timestamp) || '';
         const difficultyLabels = { easy: 'Fácil', normal: 'Médio', hard: 'Difícil', hardcore: 'Hardcore' };
@@ -2672,7 +2672,7 @@
         document.getElementById('wsSavedXpText').textContent = xpLabel;
         const missingXp = savedProgress.missingXp;
         const missingCorrect = savedProgress.missingCorrect;
-        document.getElementById('wsSavedMilestone').textContent = isMaxLevel
+        const savedMilestone = isMaxLevel
           ? `${Math.min(100, correctTotal)} de 100 acertos na jornada`
           : savedProgress.levelsGained > 0 ? `Evolução conquistada: nível ${level}. Retome a jornada.`
           : missingXp > 0 && missingCorrect > 0
@@ -2680,6 +2680,7 @@
             : missingCorrect > 0
               ? `${missingCorrect} ${missingCorrect === 1 ? 'acerto para evoluir' : 'acertos para evoluir'}`
               : missingXp > 0 ? `Acertos completos · faltam ${missingXp} XP` : 'Requisitos completos · retome a jornada';
+        document.getElementById('wsSavedMilestone').textContent = isMaxLevel ? savedMilestone : `Saldo de XP: ${savedProgress.xp} · ${savedMilestone}`;
         const marker = document.getElementById('wsSavedXpMarker');
         if (marker) marker.setAttribute('cx', String(8 + 5.84 * progress));
 
@@ -2688,7 +2689,7 @@
           progressEl.setAttribute('aria-valuenow', String(progress));
           progressEl.setAttribute('aria-valuetext', isMaxLevel
             ? xpLabel
-            : `${progress}% da evolução para o nível ${level + 1} (XP e acertos). ${xpLabel}.`);
+            : `${progress}% da evolução para o nível ${level + 1} (XP e acertos). ${xpLabel}. Saldo de XP: ${savedProgress.xp}. ${savedMilestone}.`);
         }
         _syncWelcomeProgress(resumeShell, progress);
 
@@ -3867,7 +3868,7 @@
       const _xpNumber = value => Number(value).toLocaleString('pt-BR', { maximumFractionDigits: 1 });
       const _xpLabel = _xpProgress.max
         ? `${_xpNumber(state.xp)} XP acumulados`
-        : `${_xpNumber(_xpProgress.xp)}/${_xpNumber(_xpProgress.xpToNext)} XP`;
+        : `Evolução: ${_xpNumber(_xpProgress.applied)}/${_xpNumber(_xpProgress.xpToNext)} XP`;
       $('guardianXpAmount').textContent = _xpLabel;
       ui.storyTitle.textContent=chapter.title;
       ui.storyGoal.textContent=`Objetivo: ${chapter.goal}`;
@@ -3899,11 +3900,12 @@
       if (_xpProgress.missingCorrect) _xpRequirements.push(`${_xpProgress.missingCorrect} ${_xpProgress.missingCorrect === 1 ? 'acerto' : 'acertos'}`);
       if (_xpProgress.missingXp) _xpRequirements.push(`${_xpNumber(_xpProgress.missingXp)} XP`);
       const _xpHint = _xpProgress.max ? 'Nível máximo alcançado' : _xpRequirements.length ? `Faltam ${_xpRequirements.join(' e ')} para evoluir` : 'Requisitos completos';
-      $('guardianXpHint').textContent = _xpProgress.max ? _xpHint : `Evolução por XP + acertos · ${_xpHint}`;
+      const _xpBalanceHint = _xpProgress.max ? _xpHint : `Saldo de XP: ${_xpNumber(_xpProgress.xp)} · ${_xpHint}`;
+      $('guardianXpHint').textContent = _xpBalanceHint;
       const _xpBar = $('guardianEvolutionProgress');
       _xpBar.setAttribute('aria-valuenow', String(_xpProgress.percent));
       _xpBar.setAttribute('aria-label', _xpProgress.max ? 'Nível máximo' : `Evolução para o nível ${state.level + 1}`);
-      _xpBar.setAttribute('aria-valuetext', _xpProgress.max ? `${_xpHint}. ${_xpLabel}.` : `${_xpProgress.percent}% da evolução (XP e acertos). ${_xpLabel}. ${_xpHint}.`);
+      _xpBar.setAttribute('aria-valuetext', _xpProgress.max ? `${_xpHint}. ${_xpLabel}.` : `${_xpProgress.percent}% da evolução (XP e acertos). ${_xpLabel}. ${_xpBalanceHint}.`);
       const _qCtr = document.getElementById('questionCounterTxt');
       if (_qCtr) {
         const _proximoSelo = BADGES.find(badge => state.correctTotal < badge.required);

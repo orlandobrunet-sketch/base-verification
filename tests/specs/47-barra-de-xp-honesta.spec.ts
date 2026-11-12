@@ -63,18 +63,18 @@ test.describe('Barra de XP', () => {
     expect(barra.largura, 'a barra não deveria estar cheia aqui').not.toBe('100%');
     expect(barra.texto).toContain('7 acertos');
     expect(barra.texto).toContain('190 XP');
-    expect(barra.fracao).toBe('10/200 XP');
+    expect(barra.fracao).toBe('Evolução: 10/200 XP');
   });
 
-  test('saldo acima do limiar continua visível sem prometer evolução liberada', async ({ page }) => {
+  test('evolução acompanha a barra e saldo excedente fica explícito', async ({ page }) => {
     await abrirCom(page, { level: 1, xp: 0, correctTotal: 3 });
     await page.evaluate(() => (window as any).gainXP?.(9999));
 
     const barra = await lerBarra(page);
-    expect(barra.fracao).toBe('9.999/200 XP');
+    expect(barra.fracao).toBe('Evolução: 60/200 XP');
     expect(barra.largura).toBe('30%');
     expect(barra.nivel).toBe(1);
-    expect(barra.texto).toContain('Evolução por XP + acertos');
+    expect(barra.texto).toContain('Saldo de XP: 9.999');
     expect(barra.texto).toContain('7 acertos para evoluir');
     expect(barra.saldo).toBe(9999);
   });

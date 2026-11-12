@@ -72,9 +72,9 @@ test.describe('Portão do nível', () => {
     const original = await abrirPortaoNoAtrio(page, { xp: 480, xpToNext: 480, correctTotal: 52 });
     const milestone = page.locator('#wsSavedMilestone');
     await expect(milestone).toBeVisible();
-    await expect(milestone, 'XP guardado não pode esconder os acertos pendentes').toHaveText('8 acertos para evoluir');
+    await expect(milestone, 'XP guardado não pode esconder os acertos pendentes').toHaveText('Saldo de XP: 480 · 8 acertos para evoluir');
     await expect(page.locator('#wsSavedProgress')).toHaveAttribute('aria-valuenow', '19');
-    await expect(page.locator('#wsSavedXpText')).toHaveText('80/402 XP');
+    await expect(page.locator('#wsSavedXpText')).toHaveText('Evolução: 80/402 XP');
     await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 7');
     await expectPreviewPreserved(page, original);
   });
@@ -83,7 +83,7 @@ test.describe('Portão do nível', () => {
     const original = await abrirPortaoNoAtrio(page, { xp: 480, correctTotal: 60 });
     const milestone = page.locator('#wsSavedMilestone');
     await expect(milestone).toBeVisible();
-    await expect(milestone).toHaveText('Evolução conquistada: nível 7. Retome a jornada.');
+    await expect(milestone).toHaveText('Saldo de XP: 78 · Evolução conquistada: nível 7. Retome a jornada.');
     await expect(milestone).not.toContainText(/faltam|acertos para evoluir/);
     await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 8');
     // Projection shows the already-earned level without writing to the original save.
@@ -113,7 +113,7 @@ test.describe('Portão do nível', () => {
     expect(missingXp).toBeGreaterThan(0);
     const milestone = page.locator('#wsSavedMilestone');
     await expect(milestone).toBeVisible();
-    await expect(milestone).toHaveText(`Acertos completos · faltam ${missingXp} XP`);
+    await expect(milestone).toHaveText(`Saldo de XP: 210 · Acertos completos · faltam ${missingXp} XP`);
     await expect(milestone).not.toContainText('acertos para evoluir');
     await expect(page.locator('#wsSavedNextLevel')).toHaveText('Nível 7');
     await expect(page.locator('#wsSavedLevel')).toHaveText('06');
