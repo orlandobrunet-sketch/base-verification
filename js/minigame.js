@@ -163,6 +163,8 @@
       let correctCount = 0;
       let timerInterval = null;
       let questionDeadline = 0;
+      let monotonicDeadline = 0;
+      let remainingMs = 0;
       let _answered = false;
       let resultsShown = false;
       let concluir = null; // definido no resultado: entrega o prêmio e fecha
@@ -201,10 +203,18 @@
         _minigameFocar(pagina.querySelector(foco), true);
       };
 
+      function tempoRestante() {
+        // O relógio civil conta suspensão; o monotônico impede que um ajuste
+        // regressivo conceda tempo extra. O menor saldo nunca volta a crescer.
+        remainingMs = Math.max(0, Math.min(remainingMs,
+          questionDeadline - Date.now(), monotonicDeadline - performance.now()));
+        return remainingMs;
+      }
+
       function atualizarRelogio() {
         if (!current()) { sair({restoreFocus:false, restoreOrigin:false}); return; }
         if (_answered) return;
-        const restante = Math.max(0, Math.min(TIME_PER_Q * 1000, questionDeadline - Date.now()));
+        const restante = tempoRestante();
         const fill = pagina.querySelector('#mgTimerFill');
         if (fill) fill.style.width = (restante / (TIME_PER_Q * 1000) * 100) + '%';
         const relogio = pagina.querySelector('#mgRelogio');
@@ -223,6 +233,8 @@
         if (currentIdx >= pool.length) { showResults(); return; }
         const q = pool[currentIdx];
         questionDeadline = Date.now() + TIME_PER_Q * 1000;
+        monotonicDeadline = performance.now() + TIME_PER_Q * 1000;
+        remainingMs = TIME_PER_Q * 1000;
         _answered = false;
         if (timerInterval) clearInterval(timerInterval);
 
@@ -254,7 +266,7 @@
       function responder(userAns) {
         if (_answered || !current()) return; // previne double-click / double-fire por timer
         // O prazo vale também antes do próximo tick ou ao voltar de uma aba suspensa.
-        if (Date.now() >= questionDeadline) userAns = null;
+        if (tempoRestante() <= 0) userAns = null;
         _answered = true;
         if (timerInterval) clearInterval(timerInterval);
         timerInterval = null;
