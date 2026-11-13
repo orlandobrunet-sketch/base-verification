@@ -1799,8 +1799,12 @@
       const binding = _studyProgressBinding;
       setTimeout(() => { if (_studyBindingCurrent(binding)) _loadingStudyNext = false; }, 400);
 
-      studyModeIndex++;
-      _saveStudyState();
+      const nextIndex = studyModeIndex + 1;
+      if (!_studyConsultationOnly && !_saveStudyState(nextIndex)) {
+        _toast('Não foi possível salvar o avanço. Tente novamente ou recarregue para conferir o estudo salvo.', 'warning');
+        return;
+      }
+      studyModeIndex = nextIndex;
       renderStudyQuestion();
       const area = document.getElementById('studyQuestionArea');
       area?.setAttribute('tabindex', '-1');

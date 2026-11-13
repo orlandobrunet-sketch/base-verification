@@ -34,6 +34,18 @@
     const status = document.getElementById('atriumRouteStatus');
     const routeList = screen.querySelector('.nql-atrium__route-list');
 
+    // Reserve the tallest help message without moving routes on hover or focus.
+    const statusRow = status?.parentElement;
+    if (statusRow) {
+      for (const copy of new Set([DEFAULT_STATUS, ...Object.values(ROUTE_COPY)])) {
+        const measure = document.createElement('p');
+        measure.className = 'nql-atrium__route-measure';
+        measure.setAttribute('aria-hidden', 'true');
+        measure.dataset.routeCopy = copy;
+        statusRow.appendChild(measure);
+      }
+    }
+
     let currentRoute = null;
 
     function isRendered(element) {
