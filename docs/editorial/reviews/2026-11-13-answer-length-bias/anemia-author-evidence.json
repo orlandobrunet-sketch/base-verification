@@ -1,0 +1,920 @@
+{
+  "schema": 1,
+  "batch": "anemia-answer-length-A2",
+  "createdAt": "2026-11-13T12:35:53.610Z",
+  "candidateFileSha256": "113b110fd7d436b1a958101fedf88a05626a50d84f6af57832400aa9de8d0d01",
+  "scope": "Verificação de autoria; não é autorização final de publicação.",
+  "sources": {
+    "KDIGO2026": {
+      "kind": "Diretriz oficial vigente",
+      "title": "KDIGO 2026 Clinical Practice Guideline for the Management of Anemia in Chronic Kidney Disease",
+      "organization": "KDIGO",
+      "year": 2026,
+      "journal": "Kidney International 109 (Suppl 1S), S1–S99",
+      "url": "https://kdigo.org/wp-content/uploads/2026/01/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+      "landing": "https://kdigo.org/guidelines/anemia-in-ckd/",
+      "access": "PDF oficial completo consultado em memória por urllib + pypdf; 99 páginas, numeração PDF igual a S1–S99. Web open recusou tamanho de 10,8 MB; landing 403. Nenhum PDF persistido.",
+      "pdfSha256": "08829c8b41d6964ab849a973dadfa69cd778e45e8550c5f2b8a7765302039a14",
+      "retrievedDate": "2026-11-13",
+      "limitations": "Fonte completa é síntese normativa; diferenciar recomendações graduadas de pontos de prática e resultados de ensaios."
+    },
+    "PIVOTAL_PRIMARY": {
+      "kind": "RCT original, resumo primário",
+      "title": "Intravenous Iron in Patients Undergoing Maintenance Hemodialysis",
+      "authors": "Macdougall IC et al.; PIVOTAL Investigators",
+      "year": 2019,
+      "journal": "N Engl J Med 380:447–458",
+      "doi": "10.1056/NEJMoa1810742",
+      "pmid": "30365356",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1810742",
+      "abstract": "https://pubmed.ncbi.nlm.nih.gov/30365356/",
+      "retrieval": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:30365356%20OR%20EXT_ID:31340089&format=xml&resultType=core",
+      "access": "Resumo dos autores lido integralmente na API Europe PMC. NEJM 403; PubMed web retornou página vazia. Não usar editorial como prova.",
+      "limitations": "Resumo suficiente para protocolo, composto primário e infecção citados no candidato. Transfusões foram removidas da nova explicação para não depender de resultado secundário não descrito nesse resumo."
+    },
+    "ROX_PRIMARY": {
+      "kind": "RCT original, resumo primário",
+      "title": "Roxadustat for Anemia in Patients with Kidney Disease Not Receiving Dialysis",
+      "authors": "Chen N et al.",
+      "year": 2019,
+      "journal": "N Engl J Med 381:1001–1010",
+      "doi": "10.1056/NEJMoa1813599",
+      "pmid": "31340089",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1813599",
+      "abstract": "https://pubmed.ncbi.nlm.nih.gov/31340089/",
+      "retrieval": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:30365356%20OR%20EXT_ID:31340089&format=xml&resultType=core",
+      "access": "Resumo primário integral consultado por Europe PMC; NEJM/PubMed direto não acessível.",
+      "limitations": "Pequeno, curto, China; desfecho hematológico. Não suporta superioridade em hiporresponsividade ao AEE nem segurança cardiovascular superior."
+    },
+    "MEDLINEPLUS_RBC": {
+      "kind": "Referência laboratorial institucional, suporte a conhecimento básico",
+      "title": "RBC indices",
+      "url": "https://medlineplus.gov/ency/article/003648.htm",
+      "reviewDate": "2026-02-27",
+      "access": "Página aberta integralmente; Normal Results e What Abnormal Results Mean conferidos.",
+      "limitations": "Não é estudo primário nem diretriz terapêutica. Usado somente para interpretar os índices eritrocitários dados, sem propor intervalo universal; nenhum limiar de tratamento deriva desta fonte."
+    }
+  },
+  "claims": {
+    "INITIAL_WORKUP": {
+      "source": "KDIGO2026",
+      "location": "S19, Figure 6; S20, PP1.2.2",
+      "claim": "Hemograma, reticulócitos, ferritina e TSAT na investigação inicial; ampliar avaliação etiológica conforme achados e contexto."
+    },
+    "ANEMIA_DEFINITION": {
+      "source": "KDIGO2026",
+      "location": "S19, Figure 6",
+      "claim": "Em homem adulto, Hb abaixo de 13 g/dL caracteriza anemia."
+    },
+    "CORRECT_CAUSES": {
+      "source": "KDIGO2026",
+      "location": "S23, PP3.1.2; Figure 8",
+      "claim": "Abordar causas corrigíveis, incluindo deficiência de ferro, antes de AEE ou HIF-PHI."
+    },
+    "IRON_NON_HD": {
+      "source": "KDIGO2026",
+      "location": "S20, Recommendation 2.3 (2D)",
+      "claim": "Não HD/DP: ferritina <100 ng/mL e TSAT <40%, OU ferritina >=100 e <300 ng/mL e TSAT <25%, como critérios para iniciar ferro; não equivalem a proibição de individualização fora deles."
+    },
+    "IRON_HD": {
+      "source": "KDIGO2026",
+      "location": "S20, Recommendations 2.1 (2D) e 2.2 (2D)",
+      "claim": "HD: iniciar ferro se ferritina <=500 ng/mL e TSAT <=30%; ao iniciar, via IV é sugerida em vez da oral."
+    },
+    "IRON_ROUTE": {
+      "source": "KDIGO2026",
+      "location": "S20, Recommendation 2.4 (2D)",
+      "claim": "Fora de HD, escolher oral ou IV segundo preferências, grau de anemia/deficiência, eficácia, tolerabilidade, disponibilidade e custo."
+    },
+    "ORAL_TO_IV": {
+      "source": "KDIGO2026",
+      "location": "S21, PP2.7",
+      "claim": "Considerar mudar ferro oral para IV após efeito insuficiente com esquema oral adequado por 1–3 meses ou má tolerância; candidato não usa esse número."
+    },
+    "IRON_INDICES": {
+      "source": "KDIGO2026",
+      "location": "S31–33, fisiopatologia/figuras 2–4; S20, Recommendation 2.3",
+      "claim": "Inflamação/hepcidina restringem disponibilidade de ferro; ferritina alta com TSAT baixa sugere eritropoiese restrita por ferro e não mede isoladamente os estoques. Ferritina é reagente de fase aguda."
+    },
+    "MORPHOLOGY": {
+      "source": "MEDLINEPLUS_RBC",
+      "location": "Normal Results / What Abnormal Results Mean, linhas web 67–83",
+      "claim": "VCM 84 fL está dentro do exemplo de referência apresentado; MCV normal é normocitose e MCH/HCM normal é normocromia. Faixas dependem do laboratório; candidato não ensina um intervalo universal."
+    },
+    "CKD_PHYSIOLOGY": {
+      "source": "KDIGO2026",
+      "location": "S30–32, anemia pathophysiology/figuras 2–3",
+      "claim": "Deficiência relativa de EPO é mecanismo central endócrino; a anemia da DRC é multifatorial, incluindo inflamação, restrição de ferro, perdas e sobrevida eritrocitária reduzida."
+    },
+    "ESA_HYPORESPONSE": {
+      "source": "KDIGO2026",
+      "location": "S23, Figure 8; S27, PP3.7.1",
+      "claim": "Identificar e tratar causas da resposta inadequada ao AEE antes de escalar ou trocar empiricamente; avaliar perdas, ferro, inflamação, diálise, adesão e causas concorrentes conforme o caso."
+    },
+    "ESA_NON_HD": {
+      "source": "KDIGO2026",
+      "location": "S24, Recommendation 3.2.2",
+      "claim": "Início de AEE fora da diálise é individualizado por sintomas, benefícios potenciais e riscos de AEE/transfusão; Hb abaixo de 10 isolada não basta."
+    },
+    "ESA_DIALYSIS": {
+      "source": "KDIGO2026",
+      "location": "S24, Recommendation 3.2.1 (2D)",
+      "claim": "Em HD ou DP, considerar início quando Hb <=9–10 g/dL, individualizando o limiar após abordar causas corrigíveis."
+    },
+    "ESA_TARGET": {
+      "source": "KDIGO2026",
+      "location": "S24, Recommendation 3.3.1 (1D) e PP3.3.1",
+      "claim": "Em adultos tratados com AEE, meta de Hb abaixo de 11,5 g/dL; alvo individual não é obrigatoriamente um intervalo único. Metas mais altas se associam a riscos cardiovasculares, trombóticos e hipertensão."
+    },
+    "FIRST_LINE": {
+      "source": "KDIGO2026",
+      "location": "S23, Recommendation 3.1.1 (2D); discussão S50–51",
+      "claim": "Após causas corrigíveis, sugestão de AEE em vez de HIF-PHI como primeira linha; evidência de certeza muito baixa, com decisão compartilhada."
+    },
+    "GRADE_DEFINITIONS": {
+      "source": "KDIGO2026",
+      "location": "S8, nomenclatura/gradation; S13",
+      "claim": "1 forte, 2 condicional/sugestão; A alta, B moderada, C baixa, D muito baixa certeza; PP não é recomendação graduada."
+    },
+    "NO_COMBINATION": {
+      "source": "KDIGO2026",
+      "location": "S25, PP3.5.1",
+      "claim": "Não usar AEE e HIF-PHI em combinação, inclusive em hiporresponsividade ao AEE."
+    },
+    "HIF_MECHANISM": {
+      "source": "KDIGO2026",
+      "location": "S31, Figure 2; S32, Figure 3",
+      "claim": "Inibição de HIF-prolil-hidroxilase estabiliza HIF, com regulação da EPO endógena e homeostase do ferro; não é agonismo direto do receptor de EPO."
+    },
+    "HIF_ORAL": {
+      "source": "ROX_PRIMARY",
+      "location": "Abstract Background/Methods",
+      "claim": "Roxadustat é HIF-PHI por via oral; RCT investigou administração oral três vezes por semana (candidatos não propõem posologia específica)."
+    },
+    "HIF_HYPORESPONSE": {
+      "source": "KDIGO2026",
+      "location": "S27, PP3.7.2–3.7.4; S51 e S61, discussão de hiporresponsividade",
+      "claim": "Pode-se considerar teste selecionado após discutir riscos e benefícios; benefícios e segurança na hiporresponsividade não estabelecidos. Não demonstrada superioridade em ensaios randomizados; não prometer resposta preservada por inflamação."
+    },
+    "HIF_DOSING": {
+      "source": "KDIGO2026",
+      "location": "S26, PP3.5.3–3.5.5; S27, PP3.7.3",
+      "claim": "Partir da dose recomendada para o fármaco e titular na menor dose necessária para melhorar sintomas ou evitar transfusão, sem exceder dose máxima."
+    },
+    "HIF_MONITORING": {
+      "source": "KDIGO2026",
+      "location": "S26, PP3.6.1; S27, PP3.7.4",
+      "claim": "Continuar monitorização de Hb e resposta; 2–4 semanas após início/ajuste e depois a cada 4 semanas. Suspender por ausência da resposta desejada após 3–4 meses; candidatos não usam esses números."
+    },
+    "TRANSFUSION_CLINICAL": {
+      "source": "KDIGO2026",
+      "location": "S28, PP4.1–4.5; S67",
+      "claim": "Considerar sintomas/sinais atribuíveis à anemia, riscos e contexto; não usar Hb arbitrária isoladamente nem proibir transfusão clinicamente necessária pela existência de ferro/AEE."
+    },
+    "TRANSFUSION_THRESHOLDS": {
+      "source": "KDIGO2026",
+      "location": "S67, discussão de estratégias restritivas",
+      "claim": "Guias razoáveis da evidência da população geral: Hb<7 em adulto hospitalizado estável; <7,5 em cirurgia cardíaca; <8 em ortopedia/doença CV clinicamente significativa. Não são regras isoladas nem ensaios específicos suficientes para toda DRC."
+    },
+    "TRANSPLANT_ALLOSENSITIZATION": {
+      "source": "KDIGO2026",
+      "location": "S28, PP4.2; S65–66, sensibilização e leucorredução",
+      "claim": "Evitar transfusão quando possível em elegíveis para transplante para reduzir alossensibilização anti-HLA; leucorredução não elimina o risco. Não atribuir a barreira HLA exclusivamente aos contaminantes leucocitários."
+    },
+    "PIVOTAL_PROTOCOL": {
+      "source": "PIVOTAL_PRIMARY",
+      "location": "Abstract Methods",
+      "claim": "2141 randomizados; proativo sacarato IV 400 mg/mês, reter se ferritina>700 ou TSAT>=40%; reativo 0–400 mg/mês disparado por ferritina<200 ou TSAT<20%."
+    },
+    "PIVOTAL_PRIMARY": {
+      "source": "PIVOTAL_PRIMARY",
+      "location": "Abstract Methods/Results",
+      "claim": "Composto de morte, IM/AVC não fatais ou hospitalização por IC: HR0,85 (IC95%0,73–1,00), P<0,001 não inferioridade; P0,04 superioridade. AEE menor; taxa de infecção igual. Não demonstrar redução de cada componente isolado."
+    },
+    "ROX_PHASE3": {
+      "source": "ROX_PRIMARY",
+      "location": "Abstract Background/Methods/Results",
+      "claim": "154 pacientes China não diálise; roxadustat versus placebo, 8 semanas cegas e 18 abertas; mudança Hb +1,9±1,2 versus -0,4±0,8 g/dL, P<0,001; redução de hepcidina. Não é ensaio de superioridade em hiporresponsividade inflamatória nem prova de segurança CV superior."
+    }
+  },
+  "perQuestion": [
+    {
+      "qid": "32661acb",
+      "originalHash": "e6bef1a6dc3c1a8b82ab9f5ecb68715e8611dbfccdbcd2581fe622c57a0a7cb5",
+      "candidateHash": "e4897d68afd430b57f18aaf2d9d431af78ae1bac2ba881025f37cefee1625dd5",
+      "claims": [
+        {
+          "id": "HIF_MECHANISM",
+          "source": "KDIGO2026",
+          "location": "S31, Figure 2; S32, Figure 3",
+          "claim": "Inibição de HIF-prolil-hidroxilase estabiliza HIF, com regulação da EPO endógena e homeostase do ferro; não é agonismo direto do receptor de EPO."
+        },
+        {
+          "id": "ROX_PHASE3",
+          "source": "ROX_PRIMARY",
+          "location": "Abstract Background/Methods/Results",
+          "claim": "154 pacientes China não diálise; roxadustat versus placebo, 8 semanas cegas e 18 abertas; mudança Hb +1,9±1,2 versus -0,4±0,8 g/dL, P<0,001; redução de hepcidina. Não é ensaio de superioridade em hiporresponsividade inflamatória nem prova de segurança CV superior."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "roxadustat_trial",
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "5a44592b98636010e1cea78e1ca85d3ac109cf2d3a1f348e9de985a2f587d75c",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "061c9bcb",
+      "originalHash": "a7be2ae7bfe1d765bf38df821ebdcfa4deea421ee01840a4a9fc57b04af25d19",
+      "candidateHash": "a83596dc05dc28561699468b9275828a47be8daea10a67183ef58a63c25df195",
+      "claims": [
+        {
+          "id": "INITIAL_WORKUP",
+          "source": "KDIGO2026",
+          "location": "S19, Figure 6; S20, PP1.2.2",
+          "claim": "Hemograma, reticulócitos, ferritina e TSAT na investigação inicial; ampliar avaliação etiológica conforme achados e contexto."
+        },
+        {
+          "id": "CORRECT_CAUSES",
+          "source": "KDIGO2026",
+          "location": "S23, PP3.1.2; Figure 8",
+          "claim": "Abordar causas corrigíveis, incluindo deficiência de ferro, antes de AEE ou HIF-PHI."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [
+        "RETIDO por possível alteração de identidade pedagógica; não aplicar com qid herdado."
+      ],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "a83596dc05dc28561699468b9275828a47be8daea10a67183ef58a63c25df195",
+      "implementationDisposition": "HOLD"
+    },
+    {
+      "qid": "a3b199d4",
+      "originalHash": "7ba47e83a3fcdafc759aa9001adfe3a8c32092b78c8e455390233fe3004da486",
+      "candidateHash": "f5b4d2239b232a6c86dfb5a55beee212c81e1c4990d8fd524935d7c3b48ff53f",
+      "claims": [
+        {
+          "id": "ESA_HYPORESPONSE",
+          "source": "KDIGO2026",
+          "location": "S23, Figure 8; S27, PP3.7.1",
+          "claim": "Identificar e tratar causas da resposta inadequada ao AEE antes de escalar ou trocar empiricamente; avaliar perdas, ferro, inflamação, diálise, adesão e causas concorrentes conforme o caso."
+        },
+        {
+          "id": "IRON_INDICES",
+          "source": "KDIGO2026",
+          "location": "S31–33, fisiopatologia/figuras 2–4; S20, Recommendation 2.3",
+          "claim": "Inflamação/hepcidina restringem disponibilidade de ferro; ferritina alta com TSAT baixa sugere eritropoiese restrita por ferro e não mede isoladamente os estoques. Ferritina é reagente de fase aguda."
+        },
+        {
+          "id": "HIF_HYPORESPONSE",
+          "source": "KDIGO2026",
+          "location": "S27, PP3.7.2–3.7.4; S51 e S61, discussão de hiporresponsividade",
+          "claim": "Pode-se considerar teste selecionado após discutir riscos e benefícios; benefícios e segurança na hiporresponsividade não estabelecidos. Não demonstrada superioridade em ensaios randomizados; não prometer resposta preservada por inflamação."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "b388c64862ba69269f37379e7f6a17bfacbcf1c8d9c4dbe0bcfd4140711d2e69",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "c7e8cc9a",
+      "originalHash": "44fcb79246eb967798bd56ea8d70a0fa5f6606dda2b0ddd59c8d7cd1f78db467",
+      "candidateHash": "54b053f938d8f1c9c6da999511296a7004831972ecdeeb4df7cb6d31e851b701",
+      "claims": [
+        {
+          "id": "IRON_INDICES",
+          "source": "KDIGO2026",
+          "location": "S31–33, fisiopatologia/figuras 2–4; S20, Recommendation 2.3",
+          "claim": "Inflamação/hepcidina restringem disponibilidade de ferro; ferritina alta com TSAT baixa sugere eritropoiese restrita por ferro e não mede isoladamente os estoques. Ferritina é reagente de fase aguda."
+        },
+        {
+          "id": "IRON_NON_HD",
+          "source": "KDIGO2026",
+          "location": "S20, Recommendation 2.3 (2D)",
+          "claim": "Não HD/DP: ferritina <100 ng/mL e TSAT <40%, OU ferritina >=100 e <300 ng/mL e TSAT <25%, como critérios para iniciar ferro; não equivalem a proibição de individualização fora deles."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "076c1a7186d44d98a7ea4f3882129bee648fea78ecdcefb294916e67d3757126",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "3c54eaa0",
+      "originalHash": "0bdc817be0dd65516e997d3a4e89320775b0ed2278f60732af3eacb3059de4b9",
+      "candidateHash": "848b482f1d312fc1713cf4fb812c591d98f2074c777950270720382f904025cb",
+      "claims": [
+        {
+          "id": "HIF_ORAL",
+          "source": "ROX_PRIMARY",
+          "location": "Abstract Background/Methods",
+          "claim": "Roxadustat é HIF-PHI por via oral; RCT investigou administração oral três vezes por semana (candidatos não propõem posologia específica)."
+        },
+        {
+          "id": "HIF_HYPORESPONSE",
+          "source": "KDIGO2026",
+          "location": "S27, PP3.7.2–3.7.4; S51 e S61, discussão de hiporresponsividade",
+          "claim": "Pode-se considerar teste selecionado após discutir riscos e benefícios; benefícios e segurança na hiporresponsividade não estabelecidos. Não demonstrada superioridade em ensaios randomizados; não prometer resposta preservada por inflamação."
+        },
+        {
+          "id": "HIF_MONITORING",
+          "source": "KDIGO2026",
+          "location": "S26, PP3.6.1; S27, PP3.7.4",
+          "claim": "Continuar monitorização de Hb e resposta; 2–4 semanas após início/ajuste e depois a cada 4 semanas. Suspender por ausência da resposta desejada após 3–4 meses; candidatos não usam esses números."
+        },
+        {
+          "id": "ROX_PHASE3",
+          "source": "ROX_PRIMARY",
+          "location": "Abstract Background/Methods/Results",
+          "claim": "154 pacientes China não diálise; roxadustat versus placebo, 8 semanas cegas e 18 abertas; mudança Hb +1,9±1,2 versus -0,4±0,8 g/dL, P<0,001; redução de hepcidina. Não é ensaio de superioridade em hiporresponsividade inflamatória nem prova de segurança CV superior."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026",
+        "roxadustat_trial"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "dc3316ac6e4363ead462e0d6f70fa8748da0f22376728e0ca4416f1a0ca8a504",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "4c4445f5",
+      "originalHash": "a847e79732312a5a04a2edc17d1c5af8303393f46b3361156372f02175386b03",
+      "candidateHash": "86769d245abe89d98e535cef73661681f48355117b967a27fd55d42704bfa0c0",
+      "claims": [
+        {
+          "id": "MORPHOLOGY",
+          "source": "MEDLINEPLUS_RBC",
+          "location": "Normal Results / What Abnormal Results Mean, linhas web 67–83",
+          "claim": "VCM 84 fL está dentro do exemplo de referência apresentado; MCV normal é normocitose e MCH/HCM normal é normocromia. Faixas dependem do laboratório; candidato não ensina um intervalo universal."
+        },
+        {
+          "id": "IRON_INDICES",
+          "source": "KDIGO2026",
+          "location": "S31–33, fisiopatologia/figuras 2–4; S20, Recommendation 2.3",
+          "claim": "Inflamação/hepcidina restringem disponibilidade de ferro; ferritina alta com TSAT baixa sugere eritropoiese restrita por ferro e não mede isoladamente os estoques. Ferritina é reagente de fase aguda."
+        },
+        {
+          "id": "IRON_NON_HD",
+          "source": "KDIGO2026",
+          "location": "S20, Recommendation 2.3 (2D)",
+          "claim": "Não HD/DP: ferritina <100 ng/mL e TSAT <40%, OU ferritina >=100 e <300 ng/mL e TSAT <25%, como critérios para iniciar ferro; não equivalem a proibição de individualização fora deles."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "86769d245abe89d98e535cef73661681f48355117b967a27fd55d42704bfa0c0",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "a97509f5",
+      "originalHash": "4f4d9207f1edb1bb9cc8f43aa050dfb976a6e6299d6ecf794551f4b9c5e03ac2",
+      "candidateHash": "60e0c203e6bd9357f3e638d0a558e3485fb669236338258344f42e4d577c6067",
+      "claims": [
+        {
+          "id": "PIVOTAL_PROTOCOL",
+          "source": "PIVOTAL_PRIMARY",
+          "location": "Abstract Methods",
+          "claim": "2141 randomizados; proativo sacarato IV 400 mg/mês, reter se ferritina>700 ou TSAT>=40%; reativo 0–400 mg/mês disparado por ferritina<200 ou TSAT<20%."
+        },
+        {
+          "id": "PIVOTAL_PRIMARY",
+          "source": "PIVOTAL_PRIMARY",
+          "location": "Abstract Methods/Results",
+          "claim": "Composto de morte, IM/AVC não fatais ou hospitalização por IC: HR0,85 (IC95%0,73–1,00), P<0,001 não inferioridade; P0,04 superioridade. AEE menor; taxa de infecção igual. Não demonstrar redução de cada componente isolado."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "pivotal_trial",
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "57cbf5cbe237aa9c57e99b6852bc7166d1065290380b86fd1986f1d33b73798e",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "78823c61",
+      "originalHash": "759185e354d9ad3fb87018c5996b705b2141026a78ac83fb7113f564ae0f6de5",
+      "candidateHash": "31ca7989734d5bbecda4e51d97197101cab0c2d6675c6fcbeaca635e8a3dfdd4",
+      "claims": [
+        {
+          "id": "IRON_NON_HD",
+          "source": "KDIGO2026",
+          "location": "S20, Recommendation 2.3 (2D)",
+          "claim": "Não HD/DP: ferritina <100 ng/mL e TSAT <40%, OU ferritina >=100 e <300 ng/mL e TSAT <25%, como critérios para iniciar ferro; não equivalem a proibição de individualização fora deles."
+        },
+        {
+          "id": "IRON_ROUTE",
+          "source": "KDIGO2026",
+          "location": "S20, Recommendation 2.4 (2D)",
+          "claim": "Fora de HD, escolher oral ou IV segundo preferências, grau de anemia/deficiência, eficácia, tolerabilidade, disponibilidade e custo."
+        },
+        {
+          "id": "ESA_NON_HD",
+          "source": "KDIGO2026",
+          "location": "S24, Recommendation 3.2.2",
+          "claim": "Início de AEE fora da diálise é individualizado por sintomas, benefícios potenciais e riscos de AEE/transfusão; Hb abaixo de 10 isolada não basta."
+        },
+        {
+          "id": "TRANSFUSION_CLINICAL",
+          "source": "KDIGO2026",
+          "location": "S28, PP4.1–4.5; S67",
+          "claim": "Considerar sintomas/sinais atribuíveis à anemia, riscos e contexto; não usar Hb arbitrária isoladamente nem proibir transfusão clinicamente necessária pela existência de ferro/AEE."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "31ca7989734d5bbecda4e51d97197101cab0c2d6675c6fcbeaca635e8a3dfdd4",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "911fdbb4",
+      "originalHash": "5f0a43204fe27ef4b9d4a65403505f41e875fd8529ebc7a9a18f7dd63981d142",
+      "candidateHash": "63382ee15874517c4cd5ebdbeb72af0d324cfb4678d7d658a75346bf3d2dd111",
+      "claims": [
+        {
+          "id": "ANEMIA_DEFINITION",
+          "source": "KDIGO2026",
+          "location": "S19, Figure 6",
+          "claim": "Em homem adulto, Hb abaixo de 13 g/dL caracteriza anemia."
+        },
+        {
+          "id": "IRON_NON_HD",
+          "source": "KDIGO2026",
+          "location": "S20, Recommendation 2.3 (2D)",
+          "claim": "Não HD/DP: ferritina <100 ng/mL e TSAT <40%, OU ferritina >=100 e <300 ng/mL e TSAT <25%, como critérios para iniciar ferro; não equivalem a proibição de individualização fora deles."
+        },
+        {
+          "id": "IRON_ROUTE",
+          "source": "KDIGO2026",
+          "location": "S20, Recommendation 2.4 (2D)",
+          "claim": "Fora de HD, escolher oral ou IV segundo preferências, grau de anemia/deficiência, eficácia, tolerabilidade, disponibilidade e custo."
+        },
+        {
+          "id": "CORRECT_CAUSES",
+          "source": "KDIGO2026",
+          "location": "S23, PP3.1.2; Figure 8",
+          "claim": "Abordar causas corrigíveis, incluindo deficiência de ferro, antes de AEE ou HIF-PHI."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "63382ee15874517c4cd5ebdbeb72af0d324cfb4678d7d658a75346bf3d2dd111",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "29338dc5",
+      "originalHash": "67d087245a6ae6c3c33d387af0cce273c933732edfc28b76dfd5809ffb80d3c0",
+      "candidateHash": "eeaabe290fe4bec423dddd81af44c63a591788a5312974eed33366306e0ffdd6",
+      "claims": [
+        {
+          "id": "CKD_PHYSIOLOGY",
+          "source": "KDIGO2026",
+          "location": "S30–32, anemia pathophysiology/figuras 2–3",
+          "claim": "Deficiência relativa de EPO é mecanismo central endócrino; a anemia da DRC é multifatorial, incluindo inflamação, restrição de ferro, perdas e sobrevida eritrocitária reduzida."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "a0aad23dffb2861f2d709df5cdcb4defe09b9b99c80175761aca6c94a61c5b88",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "83ae1c0b",
+      "originalHash": "1074e75cbd410dac6b0a7f5b4cedefe236f67ed2e5af882cf5aafc4d304a254e",
+      "candidateHash": "dd564a9b86f41df82b0109525da0613e9881aee5443a662cb44a0cbc2a37be49",
+      "claims": [
+        {
+          "id": "ESA_HYPORESPONSE",
+          "source": "KDIGO2026",
+          "location": "S23, Figure 8; S27, PP3.7.1",
+          "claim": "Identificar e tratar causas da resposta inadequada ao AEE antes de escalar ou trocar empiricamente; avaliar perdas, ferro, inflamação, diálise, adesão e causas concorrentes conforme o caso."
+        },
+        {
+          "id": "IRON_INDICES",
+          "source": "KDIGO2026",
+          "location": "S31–33, fisiopatologia/figuras 2–4; S20, Recommendation 2.3",
+          "claim": "Inflamação/hepcidina restringem disponibilidade de ferro; ferritina alta com TSAT baixa sugere eritropoiese restrita por ferro e não mede isoladamente os estoques. Ferritina é reagente de fase aguda."
+        },
+        {
+          "id": "HIF_HYPORESPONSE",
+          "source": "KDIGO2026",
+          "location": "S27, PP3.7.2–3.7.4; S51 e S61, discussão de hiporresponsividade",
+          "claim": "Pode-se considerar teste selecionado após discutir riscos e benefícios; benefícios e segurança na hiporresponsividade não estabelecidos. Não demonstrada superioridade em ensaios randomizados; não prometer resposta preservada por inflamação."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "d4e79c03441969dd3321030f88c22b4447145ce41c469bea177053c6715f3cd4",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "81e1082b",
+      "originalHash": "b41b0a0e7157a91777f29c3cb023abf06e6feddf2e1ad2fcf2ad6a197e837243",
+      "candidateHash": "8b6b8f3d5b3ac4a535ee219bfb5c492c607b6f52ed3df69975f0d57472dccdd7",
+      "claims": [
+        {
+          "id": "IRON_HD",
+          "source": "KDIGO2026",
+          "location": "S20, Recommendations 2.1 (2D) e 2.2 (2D)",
+          "claim": "HD: iniciar ferro se ferritina <=500 ng/mL e TSAT <=30%; ao iniciar, via IV é sugerida em vez da oral."
+        },
+        {
+          "id": "ESA_DIALYSIS",
+          "source": "KDIGO2026",
+          "location": "S24, Recommendation 3.2.1 (2D)",
+          "claim": "Em HD ou DP, considerar início quando Hb <=9–10 g/dL, individualizando o limiar após abordar causas corrigíveis."
+        },
+        {
+          "id": "CORRECT_CAUSES",
+          "source": "KDIGO2026",
+          "location": "S23, PP3.1.2; Figure 8",
+          "claim": "Abordar causas corrigíveis, incluindo deficiência de ferro, antes de AEE ou HIF-PHI."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026",
+        "brenner_rector"
+      ],
+      "pending": [
+        "Card brenner_rector não conferido em texto integral; dados decisivos do candidato cobertos pela KDIGO."
+      ],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "fb3e93c730cad1a009d038c7fefa228e0aa869e97e4c1a6a4a1cb66d14edc053",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "5b9730b8",
+      "originalHash": "3714e7012ad2a8bd2dd2cb418f437ae39ef49e495931f65e8b8bdbe4ca0cb2ce",
+      "candidateHash": "4dade96de87e52c459f21cf9511841edd0c3911d784fddee2a9bf8413c7c70ea",
+      "claims": [
+        {
+          "id": "FIRST_LINE",
+          "source": "KDIGO2026",
+          "location": "S23, Recommendation 3.1.1 (2D); discussão S50–51",
+          "claim": "Após causas corrigíveis, sugestão de AEE em vez de HIF-PHI como primeira linha; evidência de certeza muito baixa, com decisão compartilhada."
+        },
+        {
+          "id": "NO_COMBINATION",
+          "source": "KDIGO2026",
+          "location": "S25, PP3.5.1",
+          "claim": "Não usar AEE e HIF-PHI em combinação, inclusive em hiporresponsividade ao AEE."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "e4ad580cf34459e054eac22a74f300d83ee79ff58486c19b41eb5dc30a916e6c",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "eacfb643",
+      "originalHash": "385418406cf89171b9656e8c06333f009764f7bcc4851e1817b7657fd0210498",
+      "candidateHash": "b519270f29e5408e5e45512a1279801f574427daa66434839152e209f6b30b29",
+      "claims": [
+        {
+          "id": "ESA_DIALYSIS",
+          "source": "KDIGO2026",
+          "location": "S24, Recommendation 3.2.1 (2D)",
+          "claim": "Em HD ou DP, considerar início quando Hb <=9–10 g/dL, individualizando o limiar após abordar causas corrigíveis."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "9be92031a1c9ae310f2edaaae7bfe7e76791f038f549c62add76def0ce3a265a",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "6f1598c5",
+      "originalHash": "31b58b219733f2a4ab7fd40b8d4fc23223a5ea950906b98aba14256661c309fe",
+      "candidateHash": "922b17f6c4b3b9a17eee4c39c81d3ce457436c9527da3e905661324db7478298",
+      "claims": [
+        {
+          "id": "ESA_TARGET",
+          "source": "KDIGO2026",
+          "location": "S24, Recommendation 3.3.1 (1D) e PP3.3.1",
+          "claim": "Em adultos tratados com AEE, meta de Hb abaixo de 11,5 g/dL; alvo individual não é obrigatoriamente um intervalo único. Metas mais altas se associam a riscos cardiovasculares, trombóticos e hipertensão."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "922b17f6c4b3b9a17eee4c39c81d3ce457436c9527da3e905661324db7478298",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "5cf5b826",
+      "originalHash": "378c2eeb712db06e4a46613b431b948858227845a3cd5255789d0d5c1c9a1a6a",
+      "candidateHash": "3837b121fb43b67ea85ea0d1dc192e4b4bcfd5a813edef13f78e35e30dc6817e",
+      "claims": [
+        {
+          "id": "CORRECT_CAUSES",
+          "source": "KDIGO2026",
+          "location": "S23, PP3.1.2; Figure 8",
+          "claim": "Abordar causas corrigíveis, incluindo deficiência de ferro, antes de AEE ou HIF-PHI."
+        },
+        {
+          "id": "NO_COMBINATION",
+          "source": "KDIGO2026",
+          "location": "S25, PP3.5.1",
+          "claim": "Não usar AEE e HIF-PHI em combinação, inclusive em hiporresponsividade ao AEE."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "3837b121fb43b67ea85ea0d1dc192e4b4bcfd5a813edef13f78e35e30dc6817e",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "f44b5edc",
+      "originalHash": "d55e1d12f650d8325147e08f1e6ff70cecb069d0bf8480907d391de144323e73",
+      "candidateHash": "989ed1f10e9deacbbbf841bae9b55c5c5a544a6f0a38fb586419df954ad4720b",
+      "claims": [
+        {
+          "id": "NO_COMBINATION",
+          "source": "KDIGO2026",
+          "location": "S25, PP3.5.1",
+          "claim": "Não usar AEE e HIF-PHI em combinação, inclusive em hiporresponsividade ao AEE."
+        },
+        {
+          "id": "HIF_HYPORESPONSE",
+          "source": "KDIGO2026",
+          "location": "S27, PP3.7.2–3.7.4; S51 e S61, discussão de hiporresponsividade",
+          "claim": "Pode-se considerar teste selecionado após discutir riscos e benefícios; benefícios e segurança na hiporresponsividade não estabelecidos. Não demonstrada superioridade em ensaios randomizados; não prometer resposta preservada por inflamação."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "dc2c70978814ef7acb70ba600893430968e97a536131d50d206901ec8b3dc6a5",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "12121893",
+      "originalHash": "07b77fd86a02c3db13ce32598e188b2847c9d0cf76f26185ae73017c2df1450a",
+      "candidateHash": "c06a8cb72055aacdd06482ed850594eac9b5a163e7a96c77264fd2d46657c906",
+      "claims": [
+        {
+          "id": "TRANSFUSION_CLINICAL",
+          "source": "KDIGO2026",
+          "location": "S28, PP4.1–4.5; S67",
+          "claim": "Considerar sintomas/sinais atribuíveis à anemia, riscos e contexto; não usar Hb arbitrária isoladamente nem proibir transfusão clinicamente necessária pela existência de ferro/AEE."
+        },
+        {
+          "id": "TRANSFUSION_THRESHOLDS",
+          "source": "KDIGO2026",
+          "location": "S67, discussão de estratégias restritivas",
+          "claim": "Guias razoáveis da evidência da população geral: Hb<7 em adulto hospitalizado estável; <7,5 em cirurgia cardíaca; <8 em ortopedia/doença CV clinicamente significativa. Não são regras isoladas nem ensaios específicos suficientes para toda DRC."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "c06a8cb72055aacdd06482ed850594eac9b5a163e7a96c77264fd2d46657c906",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "1ba5a94d",
+      "originalHash": "3bb0bb9183bcbc5b48e477b5757286d20e913ba2d397be252184dbe97102524f",
+      "candidateHash": "281f107b8cf628ec68d6af7946f430b622c8ef44c99f4ab964e93ca0e6046ed3",
+      "claims": [
+        {
+          "id": "IRON_ROUTE",
+          "source": "KDIGO2026",
+          "location": "S20, Recommendation 2.4 (2D)",
+          "claim": "Fora de HD, escolher oral ou IV segundo preferências, grau de anemia/deficiência, eficácia, tolerabilidade, disponibilidade e custo."
+        },
+        {
+          "id": "ORAL_TO_IV",
+          "source": "KDIGO2026",
+          "location": "S21, PP2.7",
+          "claim": "Considerar mudar ferro oral para IV após efeito insuficiente com esquema oral adequado por 1–3 meses ou má tolerância; candidato não usa esse número."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "5e724041d13dcec4d2870ea6de0b0c10f1ffc0125cd94de306d02a771739b3d5",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "43834a55",
+      "originalHash": "57b6dc967c2908893a3bfc924ccad4f51e4daa54045549fd9093ebccfec6f52f",
+      "candidateHash": "5e3c62163c89afa5f1c870d55475ccf0e15876e699cedd3b60e0bb19cf4b62da",
+      "claims": [
+        {
+          "id": "HIF_DOSING",
+          "source": "KDIGO2026",
+          "location": "S26, PP3.5.3–3.5.5; S27, PP3.7.3",
+          "claim": "Partir da dose recomendada para o fármaco e titular na menor dose necessária para melhorar sintomas ou evitar transfusão, sem exceder dose máxima."
+        },
+        {
+          "id": "HIF_MONITORING",
+          "source": "KDIGO2026",
+          "location": "S26, PP3.6.1; S27, PP3.7.4",
+          "claim": "Continuar monitorização de Hb e resposta; 2–4 semanas após início/ajuste e depois a cada 4 semanas. Suspender por ausência da resposta desejada após 3–4 meses; candidatos não usam esses números."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "0ed94a738c6b327607e4ad7404a7b6968cac2e5812e8697d5895ea7a6f04f97e",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "5d9455ca",
+      "originalHash": "50e7bdc0fa35a9f4758ff6dd723ce15d130cb6cdb08d90b703a27f84f1a941fd",
+      "candidateHash": "e7f566f64481e74dcf1f2e30bc5e664a88eb3ab68d72a471e313294e5876c533",
+      "claims": [
+        {
+          "id": "TRANSPLANT_ALLOSENSITIZATION",
+          "source": "KDIGO2026",
+          "location": "S28, PP4.2; S65–66, sensibilização e leucorredução",
+          "claim": "Evitar transfusão quando possível em elegíveis para transplante para reduzir alossensibilização anti-HLA; leucorredução não elimina o risco. Não atribuir a barreira HLA exclusivamente aos contaminantes leucocitários."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "6415db653de9263b9cb50d1fd93b96a68e354e141f2afa18a9e1d902965ff29e",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "74186985",
+      "originalHash": "a9da040e097c98e5ebb8ef1071c92ad9c70557dd35bbceeb7f4ccf53a524581d",
+      "candidateHash": "ea279590f4608f4abe46ddc59588e63dbd94c8856659232970a10df5764d0e98",
+      "claims": [
+        {
+          "id": "TRANSFUSION_THRESHOLDS",
+          "source": "KDIGO2026",
+          "location": "S67, discussão de estratégias restritivas",
+          "claim": "Guias razoáveis da evidência da população geral: Hb<7 em adulto hospitalizado estável; <7,5 em cirurgia cardíaca; <8 em ortopedia/doença CV clinicamente significativa. Não são regras isoladas nem ensaios específicos suficientes para toda DRC."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "458aa62bfbded051b8135ab2715ab4b20ffc1cec2902e75544cd666aeffda34c",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "1e6a4479",
+      "originalHash": "76ed2050d7a3e91b338cf85d03fc0ea88286b3f7bf996c479a2f1eb229280c61",
+      "candidateHash": "515b88b1e0e51c3335e1d0b8831e08435d4cf88df62dd5088ce0f7a70d5289f2",
+      "claims": [
+        {
+          "id": "FIRST_LINE",
+          "source": "KDIGO2026",
+          "location": "S23, Recommendation 3.1.1 (2D); discussão S50–51",
+          "claim": "Após causas corrigíveis, sugestão de AEE em vez de HIF-PHI como primeira linha; evidência de certeza muito baixa, com decisão compartilhada."
+        },
+        {
+          "id": "GRADE_DEFINITIONS",
+          "source": "KDIGO2026",
+          "location": "S8, nomenclatura/gradation; S13",
+          "claim": "1 forte, 2 condicional/sugestão; A alta, B moderada, C baixa, D muito baixa certeza; PP não é recomendação graduada."
+        }
+      ],
+      "referenceIdsPreserved": [
+        "kdigo_anemia_2026"
+      ],
+      "pending": [
+        "Eliminatório editorial de trivia; nenhuma liberação de publicação."
+      ],
+      "finalPublication": "BLOQUEADA",
+      "previousCandidateHash": "515b88b1e0e51c3335e1d0b8831e08435d4cf88df62dd5088ce0f7a70d5289f2",
+      "implementationDisposition": "HOLD"
+    }
+  ],
+  "existingReferenceCards": {
+    "kdigo_anemia_2026": {
+      "label": "KDIGO Anemia in CKD 2026",
+      "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+      "journal": "Kidney International",
+      "ano": 2026,
+      "tipo": "Diretriz Internacional",
+      "badge": "GUIDELINE",
+      "badgeColor": "#6366f1",
+      "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+      "icon": "📋",
+      "resumo": "Diretriz KDIGO 2026 para anemia na DRC. Recomenda avaliar hemograma, reticulócitos, ferritina e saturação de transferrina e investigar causas reversíveis antes de iniciar ou escalar AEE. Reconhece que ferritina e saturação têm limitações e distingue deficiência sistêmica de ferro de eritropoiese restrita por ferro. Em adultos tratados com AEE, recomenda não manter hemoglobina acima de 11,5 g/dL; decisão de iniciar AEE e transfundir deve ser individualizada por sintomas, riscos, comorbidades e contexto de transplante.",
+      "conclusao": "O tratamento seguro da anemia renal começa por definir a causa e a disponibilidade de ferro; AEE, ferro, HIF-PHI e transfusão não devem ser usados para perseguir um número isolado de hemoglobina.",
+      "curiosidade": "A diretriz substituiu o termo “deficiência funcional de ferro” por “eritropoiese restrita por ferro”, destacando que o ferro pode estar armazenado, mas indisponível à medula por ação da hepcidina e da inflamação."
+    },
+    "pivotal_trial": {
+      "label": "Macdougall IC et al. — PIVOTAL (NEJM 2019)",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1810742",
+      "journal": "N Engl J Med. 2019;380(5):447-458",
+      "ano": 2019,
+      "tipo": "Ensaio Clínico RCT",
+      "badge": "RCT",
+      "badgeColor": "#10b981",
+      "impacto": "Ferro IV proativo (400 mg/mês com limites de segurança) versus estratégia reativa em hemodiálise",
+      "icon": "🔬",
+      "resumo": "ECR multicêntrico (PIVOTAL, n=2.141), em pacientes incidentes em hemodiálise de manutenção, comparando ferro IV proativo em alta dose — sacarato de ferro 400 mg/mês, enquanto ferritina ≤700 µg/L e TSAT <40% — vs estratégia reativa em baixa dose, administrada apenas se ferritina <200 µg/L ou TSAT <20%. O desfecho primário composto — morte, IM não fatal, AVC não fatal ou hospitalização por insuficiência cardíaca — foi menor com estratégia proativa: HR 0,85 (IC 95% 0,73–1,00; P=0,04). Também houve menor necessidade de AEE e transfusões.",
+      "conclusao": "PIVOTAL mostrou que, em hemodiálise, reposição proativa de ferro IV dentro de limites de segurança definidos é eficaz e não aumenta eventos adversos maiores, reduzindo dose de AEE e transfusões.",
+      "curiosidade": "O estudo não autoriza ferro irrestrito: o protocolo suspendia ferro quando ferritina ultrapassava 700 µg/L ou TSAT chegava a 40%. A mensagem correta é reposição proativa monitorizada, não liberalidade sem limite."
+    },
+    "roxadustat_trial": {
+      "label": "Roxadustat em DRC não dialítica (NEJM 2019)",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1813599",
+      "journal": "N Engl J Med 2019;381:1001-1010",
+      "ano": 2019,
+      "tipo": "Ensaio clínico randomizado",
+      "badge": "RCT",
+      "badgeColor": "#10b981",
+      "impacto": "HIF-PHI oral elevou Hb e reduziu hepcidina em DRC não dialítica",
+      "icon": "🔬",
+      "resumo": "Ensaio fase 3, duplo-cego, realizado na China, randomizou 154 pacientes com DRC não dialítica e Hb 7,0–10,0 g/dL para roxadustat ou placebo por 8 semanas, seguido de fase aberta. O desfecho primário foi a mudança média de hemoglobina nas semanas 7–9. O roxadustat aumentou a Hb em 1,9±1,2 g/dL versus queda de 0,4±0,8 g/dL com placebo (P<0,001) e reduziu hepcidina, compatível com maior disponibilidade de ferro.",
+      "conclusao": "Roxadustat demonstrou mecanismo e eficácia hematológica em DRC não dialítica, mas não elimina a necessidade de seleção clínica cuidadosa e vigilância de segurança da classe HIF-PHI.",
+      "curiosidade": "Durante a fase randomizada, ferro parenteral foi retido; mesmo assim, o grupo roxadustat manteve ferro sérico relativamente estável enquanto elevava hemoglobina."
+    },
+    "brenner_rector": {
+      "label": "Brenner & Rector's The Kidney",
+      "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+      "journal": "Elsevier (Textbook)",
+      "ano": 2024,
+      "tipo": "Livro-texto de referência",
+      "badge": "TEXTBOOK",
+      "badgeColor": "#64748b",
+      "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+      "icon": "📚",
+      "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+      "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+      "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+    }
+  },
+  "referenceAudit": [
+    {
+      "id": "kdigo_anemia_2026",
+      "issue": "Card usa “não manter hemoglobina acima de 11,5”, o que pode incluir 11,5; a recomendação é meta abaixo de 11,5. Correção futura exige gate e revisão dos consumidores.",
+      "appChangePerformed": false
+    },
+    {
+      "id": "brenner_rector",
+      "issue": "Card herdado diz ano 2024 e URL com ISBN 9780323532655. Resultados do editor apontam 11ª edição e destaque Doody 2024, não confirmam edição 2024. Link antigo indisponível e shop do editor 404 nesta sessão; não afirmar conferência do texto ou corrigir ano por inferência.",
+      "severity": "NÃO DECISIVA para a nova resposta 81e1082b, sustentada integralmente pela KDIGO; pendência bibliográfica real do card compartilhado.",
+      "appChangePerformed": false
+    }
+  ],
+  "checks": {
+    "fullCoverage23": true,
+    "allCandidateClaimsMapped": true,
+    "appFilesWritten": false,
+    "refsChanged": false,
+    "finalIndependentReviewOutstanding": true
+  },
+  "previousCandidateFileSha256": "6e834ddce1b91b85d51c34ff2d89c9767d470e2f5826be9e9879244188ce2304",
+  "candidateFile": "anemia-candidates-A2.json"
+}

@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "role": "AUTOR",
+  "status": "DRAFT_BLOCKED",
+  "publication": "BLOQUEADA",
+  "reason": "Proposta externa aguarda revisão formal independente do card integral e compatibilidade com todos os consumidores; não aplicar.",
+  "cardId": "rave_study",
+  "originalCardHash": "8a7a0594d0d03f8855dd11f27524c9b04ce2e928ae27388e271480b11a46d00b",
+  "candidateCardHash": "e861f65f088c34f6016832ab37de64216c64494870c14cb68a70603cef068769",
+  "originalCard": {
+    "label": "Jones RB et al. — RAVE Trial (NEJM 2010)",
+    "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa0909905",
+    "journal": "N Engl J Med 2010;363(3):221-230",
+    "ano": 2010,
+    "tipo": "Ensaio Clínico RCT",
+    "badge": "RCT",
+    "badgeColor": "#10b981",
+    "impacto": "Rituximabe não inferior à ciclofosfamida para indução na vasculite ANCA grave e superior na recidiva",
+    "icon": "🔬",
+    "resumo": "ECR duplo-cego de não inferioridade multicêntrico (RAVE, n = 197), comparando rituximabe (375 mg/m² 1x/semana por 4 semanas) versus ciclofosfamida oral clássica (2 mg/kg/dia para indução, seguida de azatioprina) em pacientes com vasculite ANCA grave (Granulomatose com Poliangiite ou Poliangiite Microscópica). Desfecho primário: remissão completa sem corticoide aos 6 meses. Resultados: Rituximabe foi não inferior à ciclofosfamida (64% vs 53%; P < 0,001 para não inferioridade) e mostrou-se estatisticamente superior em pacientes com doença recidivante prévia (67% vs 42%).",
+    "conclusao": "O RAVE consolidou o rituximabe como uma alternativa segura e eficaz de indução de primeira linha em substituição à ciclofosfamida, minimizando a toxicidade gonadal cumulativa clássica deste agente alquilante.",
+    "curiosidade": "O rituximabe foi inicialmente aprovado para linfoma de células B em 1997. Seu uso na vasculite ANCA baseia-se na depeleção de células B produtoras de autoanticorpos (PR3 e MPO), bloqueando a cascata inflamatória."
+  },
+  "candidateCard": {
+    "label": "Stone JH et al. — RAVE Trial (NEJM 2010)",
+    "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa0909905",
+    "journal": "N Engl J Med 2010;363(3):221-232",
+    "ano": 2010,
+    "tipo": "Ensaio Clínico RCT",
+    "badge": "RCT",
+    "badgeColor": "#10b981",
+    "impacto": "Rituximabe não inferior à ciclofosfamida para indução na vasculite ANCA grave e superior na recidiva",
+    "icon": "🔬",
+    "resumo": "ECR duplo-cego de não inferioridade multicêntrico (RAVE, n = 197), comparando rituximabe (375 mg/m² uma vez por semana por quatro semanas) com ciclofosfamida oral (2 mg/kg/dia, ajustada à função renal, seguida de azatioprina após remissão); ambos os grupos receberam glicocorticoide. O desfecho primário foi remissão completa sem prednisona aos seis meses. Rituximabe foi não inferior à ciclofosfamida (64% vs 53%; P < 0,001 para não inferioridade). No subgrupo predefinido com doença recidivante, atingiram o desfecho 67% vs 42%.",
+    "conclusao": "O RAVE sustenta rituximabe com glicocorticoide como alternativa à ciclofosfamida com glicocorticoide para indução de remissão na população estudada, com benefício observado no subgrupo recidivante. Não houve diferença significativa global nas taxas de eventos adversos em seis meses; o ensaio não demonstrou redução da toxicidade gonadal cumulativa.",
+    "curiosidade": "O estudo excluiu creatinina acima de 4 mg/dL e hemorragia alveolar que exigia suporte ventilatório. A comparação entre os regimes permanece incerta nesses grupos; a ausência de diferença global de eventos adversos em seis meses tampouco resolve todos os riscos cumulativos tardios."
+  },
+  "changedFields": [
+    "label",
+    "journal",
+    "resumo",
+    "conclusao",
+    "curiosidade"
+  ],
+  "scopeRationale": "Corrige identidade bibliográfica e fidelidade ao ensaio, preservando ID, URL, estudo, desenho e resultados. Esclarece GC em ambos os braços, remove inferência de redução gonadal não demonstrada e explicita exclusões relevantes ao único consumidor.",
+  "sources": [
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3137658/",
+      "access": "Manuscrito primário integral aberto",
+      "locators": "Cabeçalho bibliográfico; Methods/Treatments; Results/Efficacy e Adverse Events; Discussion/limitations. DOI10.1056/NEJMoa0909905."
+    },
+    {
+      "url": "https://scholars.duke.edu/publication/727436",
+      "access": "Registro institucional de coautores e resumo primário abertos",
+      "locators": "Stone JH;221/232;N197,desfecho6meses64/53%,subgrupo67/42%;sem diferença de eventos adversos."
+    }
+  ],
+  "claimAudit": [
+    {
+      "fields": [
+        "label",
+        "journal"
+      ],
+      "finding": "Metadados primários mostram Stone JH, não Jones RB, e221–232, não221–230."
+    },
+    {
+      "fields": [
+        "resumo"
+      ],
+      "finding": "Métodos confirmam375mg/m² semanal×4,2mg/kg/diaCYCajustada,AZAapósremissão,GCemambos;resultadosconfirmamN197,6meses64/53%,NIp<0,001,subgrupopredefinidorecidiva67/42%. Não transforma subgrupo em superioridade para todos."
+    },
+    {
+      "fields": [
+        "conclusao"
+      ],
+      "finding": "Resultados e discussão não mostram redução global de eventos adversos. A própria discussão observa que6meses podem ser curtos para detectar infertilidade, de modo que minimizar gonadotoxicidade não deve ser atribuído como achado deste ensaio."
+    },
+    {
+      "fields": [
+        "curiosidade"
+      ],
+      "finding": "Discussão excluiSCr>4,0mg/dLesuporteventilatório;comparaçãoincerta nessesgrupos. Remove relato histórico1997não pertinente e simplificação causal de células B produtoras de anticorpos como prova de mecanismo clínico."
+    }
+  ],
+  "consumerCount": 1,
+  "consumers": [
+    {
+      "qid": "89af997c",
+      "title": "Vasculite ANCA Renal Grave — Indução com Função Muito Reduzida",
+      "currentHash": "77247ee52792a5ad51904be3cd99bf3d5b9d30de91a67c104d40395df3b14d23",
+      "currentQuestion": {
+        "t": "Vasculite ANCA Renal Grave — Indução com Função Muito Reduzida",
+        "qid": "89af997c",
+        "q": "Paciente com glomerulonefrite pauci-imune associada a PR3-ANCA apresenta creatinina de 4,8 mg/dL em rápida elevação, sem hemorragia alveolar. Qual estrutura de indução é mais alinhada à KDIGO 2024?",
+        "refs": [
+          "kdigo_anca_2024",
+          "rituxvas_study",
+          "rave_study",
+          "pexivas_trial"
+        ],
+        "opts": [
+          "Glicocorticoide em regime reduzido associado a ciclofosfamida, ou combinação de rituximabe com pulsos de ciclofosfamida; considerar troca plasmática separadamente pelo risco renal",
+          "Rituximabe isolado, sem glicocorticoide nem ciclofosfamida, porque PR3-ANCA torna a disfunção renal irrelevante",
+          "Micofenolato isolado, pois tem eficácia equivalente na glomerulonefrite grave com creatinina acima de 4 mg/dL",
+          "Troca plasmática como tratamento exclusivo, substituindo a indução imunossupressora"
+        ],
+        "ans": 0,
+        "exp": "Na vasculite associada ao ANCA de início recente, a indução combina glicocorticoide com rituximabe ou ciclofosfamida. Quando a creatinina está acima de 4 mg/dL ou a filtração cai rapidamente, porém, os dados para rituximabe associado apenas a glicocorticoide são limitados: o RAVE excluiu esse grau de disfunção renal. A KDIGO 2024 orienta considerar ciclofosfamida com glicocorticoide ou rituximabe combinado a pulsos de ciclofosfamida. O regime reduzido de glicocorticoide é preferível por menor toxicidade. Troca plasmática é uma decisão adicional em risco renal extremo, necessidade de diálise, creatinina rapidamente crescente ou hemorragia alveolar com hipoxemia; não substitui a imunossupressão.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "plannedHash": "36a3db783e599e4464ed2eb0d508572dea08e5eed6169895d6412b665d74494b",
+      "plannedQuestion": {
+        "t": "Vasculite ANCA Renal Grave — Indução com Função Muito Reduzida",
+        "qid": "89af997c",
+        "q": "Paciente com glomerulonefrite pauci-imune e anticorpos anticitoplasma de neutrófilos (ANCA) contra proteinase 3 (PR3) apresenta creatinina de 4,8 mg/dL em rápida elevação, sem hemorragia alveolar. Qual estrutura de indução é mais alinhada à KDIGO 2024?",
+        "refs": [
+          "kdigo_anca_2024",
+          "rituxvas_study",
+          "rave_study",
+          "pexivas_trial"
+        ],
+        "opts": [
+          "Glicocorticoide com ciclofosfamida; considerar rituximabe combinado a pulsos de ciclofosfamida",
+          "Glicocorticoide com rituximabe, preferido pela equivalência comprovada no RAVE nessa faixa de creatinina",
+          "Glicocorticoide com micofenolato, pela equivalência demonstrada na doença renal muito grave",
+          "Glicocorticoide com azatioprina, por ser o tratamento de indução mais seguro nessa apresentação"
+        ],
+        "ans": 0,
+        "exp": "Na vasculite associada ao ANCA de início recente, a indução combina glicocorticoide com rituximabe ou ciclofosfamida. Quando a creatinina está acima de 4 mg/dL ou a filtração cai rapidamente, porém, os dados para rituximabe associado apenas a glicocorticoide são limitados: o RAVE excluiu esse grau de disfunção renal. A KDIGO 2024 orienta considerar ciclofosfamida com glicocorticoide ou rituximabe combinado a pulsos de ciclofosfamida. O regime reduzido de glicocorticoide é preferível por menor toxicidade. Troca plasmática é uma decisão adicional em risco renal extremo, necessidade de diálise, creatinina rapidamente crescente ou hemorragia alveolar com hipoxemia; não substitui a imunossupressão.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "questionPublication": "BLOQUEADA; eventual gate de card não libera questão"
+    }
+  ],
+  "noQuestionGateGranted": true,
+  "noAppEdits": true
+}

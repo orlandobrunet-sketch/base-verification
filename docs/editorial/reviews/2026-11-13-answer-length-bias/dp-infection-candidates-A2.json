@@ -1,0 +1,368 @@
+{
+  "schema": 1,
+  "status": "DRAFT_BLOCKED",
+  "role": "AUTOR",
+  "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+  "questions": [
+    {
+      "qid": "68b630ba",
+      "publication": "BLOQUEADA",
+      "reason": "Autoria externa aguarda revisão independente e gate da versão exata; não aplicar.",
+      "originalHash": "c58565a4a7064f11a0c494f85771190d6eeb50c049b75bc38c0bbeacdca88edb",
+      "candidateHash": "c59416982de39c1deb07b66e4a1d284ce7a4803661f57f627df8eeb5fe92fa52",
+      "changes": [
+        "opts",
+        "exp"
+      ],
+      "candidate": {
+        "t": "Peritonite em DP — Critérios Diagnósticos",
+        "qid": "68b630ba",
+        "q": "Paciente em diálise peritoneal apresenta dor abdominal e efluente turvo. Após permanência intraperitoneal de 3 horas, o efluente tem 140 leucócitos/µL, com 70% de polimorfonucleares; a cultura ainda está pendente. Qual é a interpretação correta?",
+        "refs": [
+          "ispd_peritonitis_guideline"
+        ],
+        "opts": [
+          "Os critérios de peritonite estão preenchidos, mesmo com cultura pendente",
+          "O diagnóstico depende de cultura positiva, apesar dos achados clínicos e celulares",
+          "O diagnóstico exige pelo menos 250 neutrófilos por microlitro no efluente",
+          "A permanência acima de duas horas permite desconsiderar o diferencial celular"
+        ],
+        "ans": 0,
+        "exp": "A International Society for Peritoneal Dialysis (ISPD) recomenda diagnosticar peritonite em DP quando pelo menos dois de três critérios estão presentes: quadro clínico compatível, como dor abdominal ou efluente turvo; leucócitos no efluente acima de 100/µL após permanência de pelo menos 2 horas, com mais de 50% de polimorfonucleares; ou cultura positiva. Este caso cumpre os dois primeiros critérios, portanto cultura pendente ou posteriormente negativa não exclui o diagnóstico. O critério celular não é um limiar isolado de 250 neutrófilos/µL, e o tempo de permanência não dispensa o diferencial. Em trocas rápidas de diálise automatizada, o percentual de polimorfonucleares pode ser particularmente informativo mesmo quando a contagem absoluta ainda é menor.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "lengths": [
+        72,
+        82,
+        73,
+        77
+      ],
+      "wordLengths": [
+        10,
+        12,
+        11,
+        11
+      ],
+      "correctRank": 4,
+      "ratio": 0.8780487804878049,
+      "correctUniqueLongest": false,
+      "identity": {
+        "sameOP": true,
+        "preserveQid": true,
+        "answerIndexPreserved": true,
+        "historyResetProposed": false
+      },
+      "identityNotes": null
+    },
+    {
+      "qid": "28b53ff8",
+      "publication": "BLOQUEADA",
+      "reason": "Autoria externa aguarda revisão independente e gate da versão exata; não aplicar.",
+      "originalHash": "a510e01af819058aeb4dbb779e5caf47346be54556d6031a9ed485fc9905e069",
+      "candidateHash": "11695fa21488111ae3dafe9e4bad232abd741cb086d7edc09b2a5251c240a360",
+      "changes": [
+        "q",
+        "opts",
+        "exp",
+        "diff"
+      ],
+      "candidate": {
+        "t": "Peritonite por S. aureus — Avaliação do Cateter",
+        "qid": "28b53ff8",
+        "q": "Paciente em diálise peritoneal apresenta peritonite, secreção purulenta no óstio e dor ao longo do túnel do cateter. As culturas do efluente e da secreção do óstio isolam Staphylococcus aureus. Qual estratégia é mais adequada?",
+        "refs": [
+          "ispd_peritonitis_guideline",
+          "ispd_catheter_infection_2023"
+        ],
+        "opts": [
+          "Antibiótico ativo por três semanas e retirada do cateter para controle do foco infeccioso",
+          "Antibiótico ativo por duas semanas, sem avaliar o trajeto se o efluente clarear",
+          "Antibiótico ativo por três semanas, mantendo o cateter se houver melhora inicial do efluente",
+          "Troca simultânea do cateter durante a peritonite ativa, retomando as trocas na mesma sessão"
+        ],
+        "ans": 0,
+        "exp": "A International Society for Peritoneal Dialysis (ISPD) sugere antibiótico efetivo por três semanas para peritonite por S. aureus, ajustado à sensibilidade. Na presença de infecção concomitante de óstio ou túnel pelo mesmo organismo, a atualização de 2023 sugere retirar o cateter para controle do foco. O trajeto deve ser examinado e o ultrassom pode ajudar a identificar extensão. Não se deve tratar apenas a secreção superficial nem ignorar o cateter quando o efluente clareia. A retirada e reinserção simultâneas não devem ser tentadas durante peritonite ainda não resolvida; a possibilidade de reinserção é reavaliada após o controle da infecção. Isso não equivale a retirar todo cateter em um episódio isolado de S. aureus sem infecção concomitante do trajeto.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "lengths": [
+        89,
+        79,
+        92,
+        91
+      ],
+      "wordLengths": [
+        14,
+        13,
+        14,
+        14
+      ],
+      "correctRank": 3,
+      "ratio": 0.967391304347826,
+      "correctUniqueLongest": false,
+      "identity": {
+        "sameOP": true,
+        "preserveQid": true,
+        "answerIndexPreserved": true,
+        "historyResetProposed": false
+      },
+      "identityNotes": "A confirmação do mesmo S.aureus no óstio torna explícita a conexão com a fonte relacionada ao cateter já testada no original; OP continua tratamento/controle de foco. Revisão independente deve confirmar continuidade da identidade."
+    },
+    {
+      "qid": "547a3dc2",
+      "publication": "BLOQUEADA",
+      "reason": "Item mantido integralmente; comprimento natural e sem indicação de alteração. Não há novo gate de item nesta autoria.",
+      "originalHash": "3c4c30c026ea0355672c73d04702f90c3d63f2b0dc1a8207b11680e101276169",
+      "candidateHash": "3c4c30c026ea0355672c73d04702f90c3d63f2b0dc1a8207b11680e101276169",
+      "changes": [],
+      "candidate": {
+        "t": "Peritonite em DP — Cobertura Empírica",
+        "qid": "547a3dc2",
+        "q": "Adulto em diálise peritoneal (DP) tem suspeita de peritonite e já teve amostras do efluente colhidas. Está estável, sem sepse sistêmica ou alergia a betalactâmicos. O perfil local permite cefazolina e ceftazidima, e a via intraperitoneal está disponível sem atraso. Qual esquema e via são preferidos pela International Society for Peritoneal Dialysis (ISPD), na diretriz de 2022, para iniciar o tratamento?",
+        "refs": [
+          "ispd_peritonitis_guideline"
+        ],
+        "opts": [
+          "Cefazolina e ceftazidima, por via intraperitoneal.",
+          "Vancomicina isolada, por via intraperitoneal.",
+          "Ceftazidima e gentamicina, por via intraperitoneal.",
+          "Cefazolina e ceftazidima, por via intravenosa."
+        ],
+        "ans": 0,
+        "exp": "Cefazolina mais ceftazidima por via intraperitoneal é um esquema empírico apropriado no cenário informado: cobre gram-positivos e gram-negativos segundo o perfil local. A ISPD recomenda ambas as coberturas (1C) e prefere via intraperitoneal quando compatível e estável, salvo sepse sistêmica (1B). Vancomicina isolada não fornece a cobertura gram-negativa; ceftazidima com gentamicina reúne duas opções de cobertura gram-negativa, sem o agente recomendado para cobertura gram-positiva. Via sistêmica pode iniciar o tratamento se houver atraso para acesso intraperitoneal, mas essa limitação foi excluída no caso. O esquema deve ser ajustado às culturas. Cefepime em monoterapia é outra alternativa aceita pela ISPD (2B); não se deve concluir que toda monoterapia seja inadequada.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "lengths": [
+        50,
+        45,
+        51,
+        46
+      ],
+      "wordLengths": [
+        6,
+        5,
+        6,
+        6
+      ],
+      "correctRank": 2,
+      "ratio": 0.9803921568627451,
+      "correctUniqueLongest": false,
+      "identity": {
+        "sameOP": true,
+        "preserveQid": true,
+        "answerIndexPreserved": true,
+        "historyResetProposed": false
+      },
+      "identityNotes": null
+    },
+    {
+      "qid": "a221d304",
+      "publication": "BLOQUEADA",
+      "reason": "Autoria externa aguarda revisão independente e gate da versão exata; não aplicar.",
+      "originalHash": "5b4eb0390f843c2dc0a1f621a1f25f5e1f6508f1ff41a08552fe6fc527f0e822",
+      "candidateHash": "5ae55df14fb45fc8e361561ea04c9364613aebf86c7fa7314c85f63c0173d028",
+      "changes": [
+        "opts",
+        "exp"
+      ],
+      "candidate": {
+        "t": "Peritonite em DP — Sequência Inicial",
+        "qid": "a221d304",
+        "q": "Paciente em diálise peritoneal apresenta dor abdominal, febre e efluente turvo. Qual sequência inicial é mais apropriada?",
+        "refs": [
+          "ispd_peritonitis_guideline"
+        ],
+        "opts": [
+          "Colher o efluente e iniciar antibiótico empírico, sem aguardar a cultura",
+          "Colher o efluente e aguardar o antibiograma antes de iniciar antibiótico",
+          "Iniciar antibiótico e deixar a coleta do efluente apenas para falha terapêutica",
+          "Remover o cateter antes da coleta e iniciar antibiótico após o procedimento"
+        ],
+        "ans": 0,
+        "exp": "Efluente turvo deve ser tratado como peritonite até exclusão razoável. A prioridade é colher amostra adequada do efluente para contagem e diferencial celular, Gram e cultura antes do antibiótico e iniciar o tratamento empírico o mais cedo possível. A cobertura inicial deve incluir gram-positivos e gram-negativos segundo o perfil local. A coleta não implica aguardar identificação ou antibiograma para tratar; deixá-la apenas para falha terapêutica reduz a oportunidade de identificar o agente antes da exposição antimicrobiana. Retirada do cateter tem indicações específicas e não é etapa inicial obrigatória em todo primeiro episódio.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "lengths": [
+        72,
+        72,
+        79,
+        75
+      ],
+      "wordLengths": [
+        11,
+        11,
+        12,
+        12
+      ],
+      "correctRank": 3,
+      "ratio": 0.9113924050632911,
+      "correctUniqueLongest": false,
+      "identity": {
+        "sameOP": true,
+        "preserveQid": true,
+        "answerIndexPreserved": true,
+        "historyResetProposed": false
+      },
+      "identityNotes": null
+    },
+    {
+      "qid": "31138710",
+      "publication": "BLOQUEADA",
+      "reason": "Autoria externa aguarda revisão independente e gate da versão exata; não aplicar.",
+      "originalHash": "db49f6fd0d5e1aeacccac1412b1d7dbd18eaa6a89ea02b5535929c073d3e5e05",
+      "candidateHash": "8574c26b9f83e3a6d8b8fd5afd0ec57814b9c2f6aac0eedc8282b7d61c6051d5",
+      "changes": [
+        "t",
+        "opts",
+        "exp"
+      ],
+      "candidate": {
+        "t": "Infecção do Óstio em DP — Tratamento de S. aureus Sensível",
+        "qid": "31138710",
+        "q": "Mulher de 72 anos em diálise peritoneal apresenta secreção purulenta no óstio do cateter. Cultura do swab: Staphylococcus aureus sensível à oxacilina. Não há dor abdominal, efluente turvo, febre persistente nem sinais de infecção de túnel. Qual conduta é mais adequada?",
+        "opts": [
+          "Cefalexina oral e reavaliação clínica precoce, ajustando a duração à resposta",
+          "Cefazolina intraperitoneal, reservando terapia oral para a falha do tratamento",
+          "Retirar o cateter de início, sem testar tratamento oral para a infecção isolada do óstio",
+          "Rifampicina oral em monoterapia, por sua ação contra biofilme do cateter"
+        ],
+        "ans": 0,
+        "exp": "O quadro é infecção isolada do óstio por Staphylococcus aureus sensível à oxacilina, sem peritonite ou infecção de túnel. A International Society for Peritoneal Dialysis (ISPD), em 2023, orienta tratamento oral antiestafilocócico, como cefalexina, com revisão clínica em cerca de uma semana e duração ajustada à resposta, cultura e sensibilidade. O curso pode ser reduzido para 7–10 dias quando a resolução é confirmada precocemente; não há obrigação de três semanas em todo S. aureus de óstio. Via intraperitoneal não substitui essa abordagem para infecção superficial isolada. Retirada do cateter é reservada a extensão, refratariedade ou situações específicas, e rifampicina não deve ser usada sozinha. Durante o curso antibacteriano, deve-se associar profilaxia antifúngica conforme protocolo e contraindicações, para reduzir o risco de peritonite fúngica.",
+        "diff": "medium",
+        "cat": "infeccao",
+        "refs": [
+          "ispd_catheter_infection_2023"
+        ]
+      },
+      "lengths": [
+        77,
+        78,
+        88,
+        72
+      ],
+      "wordLengths": [
+        11,
+        10,
+        15,
+        11
+      ],
+      "correctRank": 3,
+      "ratio": 0.875,
+      "correctUniqueLongest": false,
+      "identity": {
+        "sameOP": true,
+        "preserveQid": true,
+        "answerIndexPreserved": true,
+        "historyResetProposed": false
+      },
+      "identityNotes": "Título corrigido para o OP já existente; não é caso de ITU."
+    },
+    {
+      "qid": "11279207",
+      "publication": "BLOQUEADA",
+      "reason": "Autoria externa aguarda revisão independente e gate da versão exata; não aplicar.",
+      "originalHash": "1fa871f3c61b279b30ef61aec224d64887ba2b5e0e9da71400e85c5715afef2c",
+      "candidateHash": "ed7d4157652016355051b53e6c0afdd64fe38f73033af66612da43e3a9a71d44",
+      "changes": [
+        "opts",
+        "exp"
+      ],
+      "candidate": {
+        "t": "Peritonite em DP — Cultura Negativa",
+        "qid": "11279207",
+        "q": "Paciente preenche critérios de peritonite em diálise peritoneal e iniciou antibióticos empíricos após coleta adequada. Em 72 horas, as culturas permanecem negativas, mas dor, turvação e contagem celular melhoraram claramente. Qual conduta segue a ISPD 2022?",
+        "refs": [
+          "ispd_peritonitis_guideline"
+        ],
+        "opts": [
+          "Continuar o esquema inicial efetivo, completando duas semanas de tratamento",
+          "Suspender os antibióticos, pois culturas negativas após três dias excluem infecção",
+          "Retirar o cateter por cultura negativa, mesmo com melhora clínica e celular",
+          "Prolongar o esquema inicial para três semanas, independentemente da evolução"
+        ],
+        "ans": 0,
+        "exp": "Na peritonite com cultura negativa que melhora prontamente com antibióticos, a International Society for Peritoneal Dialysis (ISPD) considera provável etiologia bacteriana, frequentemente gram-positiva, e orienta continuar a terapia inicial, limitando o total a duas semanas. Cultura negativa não exclui infecção e pode decorrer de antibiótico recente, coleta/processamento subótimos ou microrganismos de difícil crescimento. Se o efluente permanece sem crescimento após três dias, deve-se repetir contagem e diferencial e solicitar culturas especiais para organismos incomuns, como micobactérias, Nocardia e fungos filamentosos, sobretudo diante de resposta inadequada. A ausência de crescimento, isoladamente, não exige retirada imediata do cateter nem prolongamento automático para três semanas.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "lengths": [
+        75,
+        82,
+        75,
+        76
+      ],
+      "wordLengths": [
+        10,
+        11,
+        12,
+        10
+      ],
+      "correctRank": 3,
+      "ratio": 0.9146341463414634,
+      "correctUniqueLongest": false,
+      "identity": {
+        "sameOP": true,
+        "preserveQid": true,
+        "answerIndexPreserved": true,
+        "historyResetProposed": false
+      },
+      "identityNotes": null
+    },
+    {
+      "qid": "4792eca5",
+      "publication": "BLOQUEADA",
+      "reason": "Autoria externa aguarda revisão independente e gate da versão exata; não aplicar.",
+      "originalHash": "39548f2571315f7a68313b7866c422b0bc1d0852b28fe9a51bbb8d49c2b3b390",
+      "candidateHash": "b9d5d63d80a1b172a52667033a6c0894988aa865c36fc79ea3e0662ce95124e5",
+      "changes": [
+        "t",
+        "q",
+        "opts",
+        "exp"
+      ],
+      "candidate": {
+        "t": "Peritonite em DP — Gram e Cobertura Empírica",
+        "qid": "4792eca5",
+        "q": "Paciente em diálise peritoneal (DP) há três anos apresenta dor abdominal e efluente turvo. O efluente tem 550 leucócitos/µL, com 85% de neutrófilos, e o Gram mostra cocos gram-positivos em cachos. As culturas foram coletadas. Enquanto aguarda os resultados, qual cobertura deve iniciar?",
+        "refs": [
+          "ispd_peritonitis_guideline"
+        ],
+        "opts": [
+          "Vancomicina isolada, pois o Gram dispensa cobertura inicial para gram-negativos",
+          "Cobertura empírica para gram-positivos e gram-negativos, sem aguardar as culturas",
+          "Cefazolina isolada, pois cocos em cachos demonstram sensibilidade à meticilina",
+          "Cobertura dirigida apenas após espécie e antibiograma, evitando tratamento empírico"
+        ],
+        "ans": 1,
+        "exp": "A cobertura empírica da peritonite em DP deve incluir gram-positivos e gram-negativos e começar prontamente após a coleta das amostras. O Gram com cocos em cachos orienta atenção a estafilococos, mas não informa a suscetibilidade à meticilina nem permite excluir outros agentes antes da cultura. Vancomicina ou cefazolina isoladas não fornecem a cobertura gram-negativa empírica recomendada. A escolha dos agentes deve respeitar o perfil local, com ajuste após identificação e sensibilidade. A via intraperitoneal é preferida quando viável, com compatibilidade/estabilidade dos fármacos e sem sepse sistêmica; se houver atraso para essa via, não se deve adiar o tratamento sistêmico inicial.",
+        "diff": "medium",
+        "cat": "infeccao"
+      },
+      "lengths": [
+        79,
+        81,
+        78,
+        83
+      ],
+      "wordLengths": [
+        11,
+        12,
+        10,
+        10
+      ],
+      "correctRank": 2,
+      "ratio": 0.9759036144578314,
+      "correctUniqueLongest": false,
+      "identity": {
+        "sameOP": true,
+        "preserveQid": true,
+        "answerIndexPreserved": true,
+        "historyResetProposed": false
+      },
+      "identityNotes": "Preserva início empírico e explicita a particularidade do Gram preliminar: foco em cobertura antes da identificação. O OP de sequência/coleta permanece em a221d304."
+    }
+  ]
+}

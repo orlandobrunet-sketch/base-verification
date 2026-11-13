@@ -1,0 +1,3082 @@
+{
+  "schema": 1,
+  "reviewer": "/root/medical_answer_bias (independente deautoriaanemia_authoring)",
+  "reviewDate": "2026-11-13",
+  "version": "A4",
+  "authority": "Revisãoformal pela skill local revisar-nefroquest; usuário autorizou explicitamente correção médica criteriosa de pistas.",
+  "norms": {
+    ".claude/skills/revisar-nefroquest/SKILL.md": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef",
+    ".claude/skills/revisar-nefroquest/references/output-contract.md": "4a20348ac71a07836b4611d574496d97960b27a2bbfdcf1f1ed318396f0edcb8",
+    ".claude/skills/revisar-nefroquest/references/verification-protocol.md": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df",
+    "docs/editorial/annex-c-nefrologia.md": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+  },
+  "candidateFile": "mbd-candidates-A4.json",
+  "candidateFileHash": "ab258bef68c02a36ee18b40e3a4a2ec5a3fc9487e683ee78ed393bc2a05db77f",
+  "independentClassificationFrozenBeforeCandidates": "mbd-independent-classification.json",
+  "requiredCardGate": "mbd-card-independent-gates-A4.json",
+  "counts": {
+    "reviewed": 24,
+    "approved": 22,
+    "blocked": 2
+  },
+  "derivation": "Aprovação+VERIFICADA/NENHUMA,semeliminatório/recurso decisivo→LIBERADA. Doisfundir com duplicidade decisiva→BLOQUEADA. Todosobjetos materiais finais reavaliados; não herdar gatesA1–A3.",
+  "metrics": {
+    "original": {
+      "n": 22,
+      "uniqueLongest": 17,
+      "tiedLongest": 1,
+      "uniqueShortest": 1,
+      "longestHeuristic": 0.7954545454545454
+    },
+    "final": {
+      "n": 22,
+      "uniqueLongest": 3,
+      "tiedLongest": 0,
+      "uniqueShortest": 5,
+      "longestHeuristic": 0.13636363636363635
+    },
+    "method": "CaracteresUnicode/whitespacenormalizado;semremoverdesigualdades. Comprimento só triagem, sem imposição artificial."
+  },
+  "sources": {
+    "MBD2017": {
+      "title": "KDIGO2017 Clinical Practice Guideline Update for CKD–MBD",
+      "kind": "Diretriz internacional atual da suíte MBD",
+      "journal": "Kidney Int Suppl.2017;7:1–59",
+      "doi": "10.1016/j.kisu.2017.04.001",
+      "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2017-CKD-MBD-Guideline.pdf",
+      "pdfSha256": "9de805834e3d6f009c11af84192e696c5b3b09dc9d1b13d141801f7c421969c9",
+      "access": "PDF oficial completo disponível; recomendações3.1–4.2 e racional dos capítulos3.2/4.1/4.2 lidos. Web e urllib+pypdf em memória,60páginas. Upload2026 não equivale a guideline2026."
+    },
+    "MBD2009": {
+      "title": "KDIGO2009 CKD–MBD document-base",
+      "kind": "Diretriz-base histórica com fundamentos ainda aplicáveis",
+      "url": "https://kdigo.org/wp-content/uploads/2017/02/KDIGO-2009-CKD-MBD-Guideline-English.pdf",
+      "doi": "10.1038/ki.2009.188",
+      "pdfSha256": "dc01e8db299796d291593d1c588248bb6526d258916b1b9def471559924a9c4a",
+      "access": "PDF oficial140páginas em memória; S34(histologia),S45(VSMC),S52/tabela19(quelantes), fundamentos e quadro comparativo2017 consultados.",
+      "limitations": "Não transplantar recomendações terapêuticas antigas para o presente; usar somente fundamentos não substituídos e os pontos de ajuste no contexto da atualização2017."
+    },
+    "KDIGO2025_REPORT": {
+      "title": "Chronic kidney disease-mineral and bone disorder: conclusions from a KDIGO Controversies Conference",
+      "kind": "Relatório de conferência; não é nova diretriz",
+      "url": "https://kdigo.org/wp-content/uploads/2025/02/KDIGO-2025-CKD-MBD-Controversies-Conference-Report_Final.pdf",
+      "journal": "Kidney Int.2025;107:405–423",
+      "doi": "10.1016/j.kint.2024.11.013",
+      "access": "Resumo, conclusões e seções sobre hiperparatireoidismo pós-transplante e risco ósseo/calcemia lidos.",
+      "verified": "Recomendações2017 continuam em geral consistentes; após um ano de transplante a estratégia ótima não é estabelecida; considerar características individuais."
+    },
+    "GOHIL2019": {
+      "title": "FGF23 and Associated Disorders of Phosphate Wasting",
+      "authors": "Gohil A, Imel EA",
+      "journal": "Pediatr Endocrinol Rev.2019;17:17–34",
+      "pmid": "31599133",
+      "doi": "10.17458/per.vol17.2019.gi.fgf23anddisordersphosphate",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7040960/",
+      "kind": "Revisão narrativa",
+      "access": "Texto integral lido por seções, da Introdução à Conclusão; webPMC funcionou, EuropePMCfullTextXML500 não foi usado como evidência.",
+      "limits": "Usada para fisiologia NaPi/PTH/FGF23/vitaminaD; não usar tratamento de raquitismo do artigo como algoritmo terapêutico de DRC."
+    },
+    "CRIC2011": {
+      "title": "Fibroblast growth factor23 is elevated before parathyroid hormone and phosphate in chronic kidney disease",
+      "authors": "Isakova T et al.",
+      "pmid": "21389978",
+      "doi": "10.1038/ki.2011.47",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3134393/",
+      "kind": "Análise transversal basal da coorteCRIC,3879participantes",
+      "access": "Resumo primário integral em PubMed e EuropePMC.",
+      "limits": "Não demonstra sequência temporal individual nem causalidade única; card proposto RETIDO por compatibilidade de taxonomia neste lote. Nenhum candidato novo referencia esse ID."
+    },
+    "SHIMADA2004": {
+      "title": "FGF-23 is a potent regulator of vitaminD metabolism and phosphate homeostasis",
+      "pmid": "15040831",
+      "doi": "10.1359/JBMR.0301264",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15040831/",
+      "kind": "Experimento animal",
+      "access": "Resumo primário integral via EuropePMC.",
+      "limits": "Prova mecanística, sem inferir benefício clínico de intervenção emFGF23 naDRC."
+    },
+    "PFISTER1998": {
+      "title": "Parathyroid hormone leads to the lysosomal degradation of the renal typeII Na/Pi cotransporter",
+      "pmid": "9465116",
+      "doi": "10.1073/pnas.95.4.1909",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC19212/",
+      "kind": "Experimento em células renais de opossum",
+      "access": "Resumo primário integral via EuropePMC; PMC direto retornouCAPTCHA."
+    },
+    "PFISTER1999": {
+      "title": "cAMP-dependent and-independent downregulation of typeII Na-Pi cotransporters byPTH",
+      "pmid": "10330054",
+      "doi": "10.1152/ajprenal.1999.276.5.f720",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10330054/",
+      "kind": "Experimento de transporte/sinalização em células renais",
+      "access": "Resumo primário integral via EuropePMC."
+    },
+    "RHEE2011": {
+      "title": "Parathyroid hormone receptor signaling in osteocytes increases the expression of fibroblast growth factor-23 in vitro and in vivo",
+      "pmid": "21726676",
+      "doi": "10.1016/j.bone.2011.06.025",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3167030/",
+      "kind": "Experimentos celulares/murinos",
+      "access": "Resumo primário integral e textoPMC consultados.",
+      "limits": "Refuta negação universal dePTH→FGF23; não estabelece resposta humana uniforme em qualquer contexto."
+    },
+    "JONO2000": {
+      "title": "Phosphate regulation of vascular smooth muscle cell calcification",
+      "pmid": "11009570",
+      "doi": "10.1161/01.res.87.7.e10",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11009570/",
+      "kind": "Experimento em células musculares lisas aórticas humanas",
+      "access": "Resumo primário integral via EuropePMC.",
+      "limits": "Demonstra indução de marcadores osteogênicos/mineralização em cultura; não prova desfecho clínico ou benefício de terapia."
+    },
+    "BLOCK2012": {
+      "title": "Effects of phosphate binders in moderateCKD",
+      "pmid": "22822075",
+      "doi": "10.1681/ASN.2012030223",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3402292/",
+      "kind": "RCT piloto",
+      "access": "Texto primário completo aberto; Abstract/Methods/Results/Discussion e resumo primário por EuropePMC.",
+      "details": "148pessoas,TFGe20–45; primário fósforo sérico3/6/9meses. FGF23 não reduziu no grupo ativo agrupado. Calcificação porTC em subamostra, pior comativo, sobretudo acetatoCa; não ensaio de mortalidade."
+    },
+    "DCOR2007": {
+      "title": "Effects of sevelamer and calcium-based phosphate binders on mortality in hemodialysis patients",
+      "authors": "Suki WN et al.",
+      "journal": "Kidney Int.2007;72:1130–1137",
+      "pmid": "17728707",
+      "doi": "10.1038/sj.ki.5002466",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17728707/",
+      "kind": "RCT aberto de mortalidade",
+      "access": "Resumo primário integral via PubMed/EuropePMC; contexto também no KDIGO2009.",
+      "limits": "Não atribuir dados de calcificação de outro ensaio aoDCOR; sinal em idosos foi mortalidade geral, sem prova cardiovascular."
+    },
+    "EVOLVE2012": {
+      "title": "Effect of cinacalcet on cardiovascular disease in patients undergoing dialysis",
+      "pmid": "23121374",
+      "doi": "10.1056/NEJMoa1205624",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1205624",
+      "kind": "RCT",
+      "access": "Resumo primário integral via EuropePMC.",
+      "details": "3883pessoas emHD; composto morte/IM/angina instável/IC/evento vascular periférico:HR0,93(IC95%0,85–1,02),P0,11 na análise primária não ajustada por intenção de tratar. Mais hipocalcemia/efeitosGI comcinacalcete."
+    },
+    "ETEL2017": {
+      "title": "Effect of Etelcalcetide vs Cinacalcet on Serum Parathyroid Hormone in Patients Receiving Hemodialysis With Secondary Hyperparathyroidism",
+      "pmid": "28097356",
+      "doi": "10.1001/jama.2016.19468",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28097356/",
+      "kind": "RCT duplo-cego,double-dummy",
+      "access": "Resumo primário integral via EuropePMC.",
+      "details": "683pessoas,26semanas. QuedaPTH>30% em68,2% versus57,7%; não inferioridade e critérios secundários de superioridade. ReduçãoCa68,9% versus59,8%; não prova mortalidade/fratura."
+    },
+    "CRUZADO2016": {
+      "title": "A Randomized Study Comparing Parathyroidectomy with Cinacalcet for Treating Hypercalcemia in Kidney Allograft Recipients with Hyperparathyroidism",
+      "pmid": "26647424",
+      "doi": "10.1681/ASN.2015060622",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4978046/",
+      "kind": "RCT aberto,multicêntrico,n30",
+      "access": "Resumo primário integral via EuropePMC; PMCdireto comCAPTCHA, sem alegar texto integral.",
+      "details": "Transplante>=6meses,TFGe>30,hipercalcemia+PTHalto. Primário normocalcemia12meses:15/15cirurgia versus10/15cinacalcete,P0,04. Hipocalcemia após cirurgia; não inferir fratura/mortalidade/enxerto a longo prazo."
+    }
+  },
+  "independentSourceVerification": {
+    "MBD2017": {
+      "url": "https://kdigo.org/wp-content/uploads/2017/02/2017-KDIGO-CKD-MBD-GL-Update.pdf",
+      "access": "PDFoficial60p aberto; recomendações3.2.2–3.2.3,4.1.1–4.1.6,4.2.1–4.2.5e discussão foram lidas independentemente. Nenhuma diretriz2026foi inventada por dataupload."
+    },
+    "MBD2009": {
+      "url": "https://kdigo.org/wp-content/uploads/2017/02/KDIGO-2009-CKD-MBD-Guideline-English.pdf",
+      "access": "PDFoficialintegral aberto;S34histologia/TMV,S45célulasvasculares e fundamentos consultados; não importar terapias antigas contra2017."
+    },
+    "KDIGO2025_REPORT": {
+      "url": "https://kdigo.org/wp-content/uploads/2025/02/KDIGO-2025-CKD-MBD-Controversies-Conference-Report_Final.pdf",
+      "access": "Relatório oficial integral19p aberto, distinção conferência/diretriz e manutenção geral das recomendações2017verificadas; pós-transplante após1ano requer individualização."
+    },
+    "GOHIL2019": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7040960/",
+      "access": "Texto integral aberto noPMC; seçõesFGF23/PTH/NaPi/vitaminaD lidas, sem alegar ensaio clínico de benefício naDRC."
+    },
+    "MECHANISM_ABSTRACTS": {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:15040831%20OR%20EXT_ID:9465116%20OR%20EXT_ID:10330054%20OR%20EXT_ID:21726676%20OR%20EXT_ID:21389978&format=xml&resultType=core",
+      "sha256": "873a493ee7cb7ef0274874acf6b08c932ec8a677bf553124ecc2263a0a23e20b",
+      "access": "Cinco resumos primários completos lidos independentemente; modelos animais/celulares e análise transversal mantêm limites de causalidade/aplicação humana."
+    },
+    "JONO": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11009570/",
+      "doi": "10.1161/01.res.87.7.e10",
+      "responseSha256": "27c8c60ce40ec0515284809b893bcaf61559df2d6aed94e01a7dde50adc7ae38",
+      "access": "Resumo primário completo viaEuropePMC lido; células aórticas humanas in vitro, marcadores osteogênicos e mineralização, sem inferência de desfecho clínico."
+    },
+    "BLOCK2012": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3402292/",
+      "access": "Artigo primário integral aberto e lidoMethods/Results/Discussion:148,9meses,primáriofósforo,CTsubamostra,FGF23agrupado,22%urinário e direção de calcificação conferidos."
+    },
+    "RCT_ABSTRACTS": {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:17728707%20OR%20EXT_ID:23121374%20OR%20EXT_ID:28097356&format=xml&resultType=core",
+      "sha256": "3f98d0771783d34ccce228e019f98dd22893022efb8d0cf3aa9cc8800ece840b",
+      "access": "Três resumos primários integraisDCOR/EVOLVE/etelcalcetida lidos independentemente; não se alega fulltextNEJM/JAMA não aberto."
+    },
+    "EVOLVE_DOSE": {
+      "url": "https://clinicaltrials.gov/api/v2/studies/NCT00345839",
+      "sha256": "9eb86a0b0942ed0e5c648f8ad050b2f7d33fa1d64a0e6e45e22417018b09a632",
+      "access": "Registro primário público lido; titulação30/60/90/120/180mgQD, máximo180confirmado."
+    },
+    "CRUZADO": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4978046/",
+      "doi": "10.1681/ASN.2015060622",
+      "responseSha256": "16e975bd8ddaba0c8e40cf62f09202164ff17faeea3fa2e7b5b335ffde3e0578",
+      "access": "Resumo primário completoPMID26647424lido viaEuropePMC:30,≥6meses,eGFR>30,12mesesnormocalcemia15/15vs10/15P.04,colo/fosfato/hipocalcemia. PMCdireto não abriu; não declarar fulltext. Nenhum candidato depende de detalhe ausente do resumo."
+    }
+  },
+  "claimMap": {
+    "FGF23_EARLY": {
+      "sources": [
+        "CRIC2011",
+        "MBD2017"
+      ],
+      "location": "CRIC Abstract; MBD2017 capítulo4.1, racional sobre normalidade do fósforo eFGF23 emDRC pré-diálise",
+      "claim": "FGF23 pode estar elevado com fósforo ainda normal; contribuição adaptativa não equivale a sequência temporal obrigatória em cada pessoa nem a indicação de rastreio/intervenção."
+    },
+    "FGF23_NAPI": {
+      "sources": [
+        "GOHIL2019",
+        "SHIMADA2004"
+      ],
+      "location": "Gohil: FGF23Regulationof1,25(OH)2D,PhosphorusandPTH",
+      "claim": "FGF23 reduz NaPi-IIa/IIc apicais, reduzindo reabsorção proximal e aumentando fosfatúria. Shimada mostrou diretamenteNaPi-IIa em modelos animais."
+    },
+    "FGF23_VITD": {
+      "sources": [
+        "GOHIL2019",
+        "SHIMADA2004",
+        "MBD2017"
+      ],
+      "location": "Gohil: seção de regulação; MBD2017 capítulo4.2 rationale",
+      "claim": "FGF23 reduz CYP27B1/1α-hidroxilase e elevaCYP24A1/24-hidroxilase, reduzindo calcitriol. Não se transforma esse mecanismo em benefício de bloquearFGF23."
+    },
+    "BONE_MARKERS": {
+      "sources": [
+        "MBD2017"
+      ],
+      "location": "Recomendações3.2.3(2B),3.2.2; rationale capítulo3.2",
+      "claim": "Valores marcadamente baixos/altos dePTH ou fosfatasealcalinaóssea ajudam a prever turnover, mas não definem individualmente o tipo histológico."
+    },
+    "BONE_BIOPSY": {
+      "sources": [
+        "MBD2017"
+      ],
+      "location": "3.2.2(NG),rationale capítulo3.2",
+      "claim": "Considerar biópsia se o tipo deosteodistrofia mudar decisões terapêuticas; histologia é padrão classificatório."
+    },
+    "BINDER_PROPERTIES": {
+      "sources": [
+        "MBD2009",
+        "MBD2017"
+      ],
+      "location": "MBD2009 Table19,PDFindex61/S52; MBD2017 capítulo4.1",
+      "claim": "Sevelamer-HCl/carbonato não contêm cálcio/metal e não são absorvidos; quelantes cálcicos acrescentam carga de cálcio. Tabela primária do documento-base conferida por pypdf, não inferida de ensaio de mortalidade."
+    },
+    "RESTRICT_CALCIUM": {
+      "sources": [
+        "MBD2017"
+      ],
+      "location": "4.1.6(2B);3.3.2",
+      "claim": "Restringir dose de quelantes cálcicos em adultos tratados para reduzir fósforo; calcificação conhecida reforça risco. Não prescrever carga de cálcio apenas por PTH isolado."
+    },
+    "AVOID_HYPERCALCEMIA": {
+      "sources": [
+        "MBD2017"
+      ],
+      "location": "4.1.3(2C)",
+      "claim": "Evitar hipercalcemia em adultos comDRC; não generalizar o mesmo enunciado para crianças sem faixa etária."
+    },
+    "PTH_NAPI": {
+      "sources": [
+        "GOHIL2019",
+        "PFISTER1998",
+        "PFISTER1999"
+      ],
+      "location": "Gohil:NaPi-IIa/IIc também regulados porPTH; resumos primários dePfister",
+      "claim": "PTH reduz reabsorção proximal de fosfato por retirada/degradação de cotransportadoresNaPi; não por aumento de secreção tubular."
+    },
+    "PTH_VITD": {
+      "sources": [
+        "MBD2009",
+        "GOHIL2019"
+      ],
+      "location": "Fundamentos de vitaminaD/metabolismo mineral",
+      "claim": "PTH participa do estímulo à ativação renal de vitaminaD; não confundir essa ação com o mecanismo direto de fosfatúria."
+    },
+    "SHPT_DRIVERS": {
+      "sources": [
+        "MBD2017",
+        "MBD2009",
+        "GOHIL2019"
+      ],
+      "location": "MBD2017 capítulo4.2 rationale,PDFindex33; MBD2009 Introduction",
+      "claim": "Retenção de fosfato, menor calcitriol, deficiência nutricional de vitaminaD e tendência àhipocalcemia favorecemHPTsecundário. O perfil não é universal nem a hiperfosfatemia obrigatoriamente o primeiro evento."
+    },
+    "ALUMINUM_SAFETY": {
+      "sources": [
+        "MBD2017"
+      ],
+      "location": "4.1.7(1C)",
+      "claim": "Evitar uso prolongado de quelantes comalumínio e contaminação do dialisato; a composição diferencia alumínio de sevelamer."
+    },
+    "SERIAL_TRENDS": {
+      "sources": [
+        "MBD2017"
+      ],
+      "location": "3.1.4(1C),4.1.1(NG)",
+      "claim": "Basear decisões em tendências e avaliação conjunta deCa/P/PTH, não em um número isolado."
+    },
+    "PHOSPHATE_LOWERING": {
+      "sources": [
+        "MBD2017"
+      ],
+      "location": "4.1.2(2C),4.1.5(NG),4.1.8(2D)",
+      "claim": "Reduzir fósforo elevado em direção àfaixa normal quando persistente/progressivo; considerar dieta/fontes e outras estratégias. Não iniciar quelante automaticamente porFGF23 elevado comfósforo normal."
+    },
+    "VASCULAR_RISK": {
+      "sources": [
+        "MBD2017"
+      ],
+      "location": "3.3.2(2A)",
+      "claim": "Calcificação vascular/valvar conhecida indica riscoCVelevado e deve informar manejo mineral."
+    },
+    "PARATHYROIDECTOMY": {
+      "sources": [
+        "MBD2017"
+      ],
+      "location": "4.2.5(2B)",
+      "claim": "Considerar paratireoidectomia emHPTgrave que falha ao tratamento médico/farmacológico; sem limiar isolado universal dePTH."
+    },
+    "NON_HD_PTH": {
+      "sources": [
+        "MBD2017"
+      ],
+      "location": "4.2.1(2C)",
+      "claim": "EmG3a–G5sem diálise, PTH ótimo desconhecido; avaliar tendência e fatores modificáveis(Palto,hipocalcemia,ingestãoP,deficiênciaD)."
+    },
+    "ACTIVE_VITD_NON_HD": {
+      "sources": [
+        "MBD2017"
+      ],
+      "location": "4.2.2(2C); ressalvaG4–G5NG",
+      "claim": "Não usar calcitriol/análogos rotineiramente em adultos não dialíticos; reservar paraHPTgrave eprogressivo emG4–G5, após avaliação causal e riscos."
+    },
+    "REDUCE_PTH_SUPPRESSION": {
+      "sources": [
+        "MBD2017",
+        "MBD2009"
+      ],
+      "location": "MBD2017 quadro comparativo4.2.4,PDFindex20–21; orientação-base2009",
+      "claim": "PTH abaixo de2×LSN com provável supressão excessiva exige rever/reduzir fármacos redutores dePTH; não usar a faixaG5Dcomo meta da população geral nem fora da diálise.",
+      "note": "Os bullets deajuste estão no texto-base2009 e no quadro comparativo2017; não atribuir graduação nova2017que não foi emitida."
+    },
+    "VASCULAR_OSTEOGENESIS": {
+      "sources": [
+        "MBD2009",
+        "JONO2000"
+      ],
+      "location": "MBD2009 S45/PDFindex54; resumo experimentalJono",
+      "claim": "Transformação osteogênica deVSMC participa da calcificação; não é apenas precipitação passiva. Não inferir benefício clínico de modificar um marcador."
+    },
+    "OSTEOMALACIA": {
+      "sources": [
+        "MBD2009",
+        "MBD2017"
+      ],
+      "location": "MBD2009 S34/PDFindex43,TMV; MBD2017 rationale biópsia",
+      "claim": "Osteoide aumentado com atraso de mineralização caracteriza defeito compatível comosteomalácia; não define etiologia poralumínio semavaliação apropriada. Doençaadinâmica não temesse padrão demineralização."
+    },
+    "PTH_TREATMENT_G5D": {
+      "sources": [
+        "MBD2017"
+      ],
+      "location": "4.2.4(2B) e rationale",
+      "claim": "Calcimiméticos,calcitriol,análogos ou combinação são opçõesG5D; nenhuma primeira linha única é imposta, eCa/P informam escolha."
+    },
+    "REDUCE_ACTIVE_VITD": {
+      "sources": [
+        "MBD2017",
+        "MBD2009"
+      ],
+      "location": "Rationale4.2.4/quadro comparativo e pontosdeajuste2009",
+      "claim": "Hipercalcemia/hiperfosfatemia durante vitaminaDativa pede redução/suspensão e revisão da estratégia, não escalada automática.",
+      "note": "Não apresentar os bullets2009de ajuste comoum novo grau de recomendação2017."
+    },
+    "EVOLVE_PRIMARY": {
+      "sources": [
+        "EVOLVE2012"
+      ],
+      "location": "AbstractMethods/Results/Conclusion",
+      "claim": "Análise primária não ajustada porintenção de tratar neutra:HR0,93(IC95%0,85–1,02),P0,11. Não prometer redução demortalidade; link corretoNEJMoa1205624."
+    },
+    "ETELCALCETIDE_RCT": {
+      "sources": [
+        "ETEL2017"
+      ],
+      "location": "AbstractDesign/Mainoutcomes/Results/Conclusions",
+      "claim": "Não inferioridade primária e superioridade secundária bioquímica; maisquedaCa e ausência deprova emdesfechos clínicos. Não dizer que a viaIV elimina efeitosGI."
+    },
+    "POST_TX_PERSISTENT_HPT": {
+      "sources": [
+        "CRUZADO2016",
+        "KDIGO2025_REPORT"
+      ],
+      "location": "CruzadoAbstract; KDIGO2025 TargetingPTH",
+      "claim": "HPTautônomo podepersistir apóstransplante comhipercalcemia. Avaliar cirurgia quando persistente/refratário; abordagemótima além de1ano nãoestabelecida, sem ordem automática.",
+      "note": "KDIGO2017isolada é insuficiente para essa decisão8anos pós-transplante; nova referênciaRCTproposta devepassar gate."
+    },
+    "POST_OP_HYPOCALCEMIA": {
+      "sources": [
+        "CRUZADO2016",
+        "KDIGO2025_REPORT"
+      ],
+      "location": "AbstractAdverseevents; relatório2025 discussão perioperatória",
+      "claim": "Hipocalcemia é risco relevante apósparatireoidectomia e requer planejamento; Ca11,4nãoé rotulado automaticamente como emergência."
+    },
+    "VITD_DEFICIENCY": {
+      "sources": [
+        "MBD2017"
+      ],
+      "location": "3.1.3(2C),4.2.1",
+      "claim": "Avaliar/corrigir deficiência de25(OH)Dcom estratégias aplicáveis àpopulação geral, interpretando o contexto. Em730a deficiência é declarada no cenário;12ng/mLnãoé ensinado comocorte universal."
+    },
+    "PTH_FGF23_REGULATION": {
+      "sources": [
+        "GOHIL2019",
+        "RHEE2011"
+      ],
+      "location": "GohilRegulationofFGF23; RheeAbstract/Discussion",
+      "claim": "PTH podeestimularFGF23 emmodelos experimentais; resultados humanos variam. Não conservar negação universal de regulaçãoPTH–FGF23."
+    },
+    "VITD_ACTIVATION": {
+      "sources": [
+        "GOHIL2019",
+        "MBD2009"
+      ],
+      "location": "GohilFGF23/VitD; KDIGO2009 capítulo3.1 vitaminaD",
+      "claim": "1α-hidroxilase renal converte calcidiol emcalcitriol; perda de massa renal e regulação hormonal contribuem para menor ativação naDRC."
+    }
+  },
+  "duplicateAdjudications": [
+    {
+      "qids": [
+        "9c43ab07",
+        "73069894"
+      ],
+      "decision": "Variação útil",
+      "reason": "Competência/tema próximos, mas decisão sobreDativarotina versus corrigir causas laboratoriais já documentadas antes da intensificação;contexto muda caminho/decisão."
+    },
+    {
+      "qids": [
+        "21e9cefb",
+        "9482bda7"
+      ],
+      "decision": "Retenção21e9porquatrodimensões",
+      "reason": "Mesma cadeiafisiopatológica interpretativa emG4comCa/Palterados; variação numérica/expressão desfecho não cria caminho útil."
+    },
+    {
+      "qids": [
+        "22189222",
+        "1366b930"
+      ],
+      "decision": "Retenção221porquatrodimensões",
+      "reason": "Mesmo conceito e caminhoFGF23-calcitriol-PTHantes de hiperfosfatemia;setas e vinheta não criam novo raciocínio."
+    }
+  ],
+  "items": [
+    {
+      "qid": "efba1640",
+      "originalHash": "13d2727d48f1b7d22c2e70a2efd0c5387f929378741c9f443e8ea29511235a76",
+      "candidateHash": "d81a309452c0f91b2e710cc016d50cdfeba894ff8215e026f1b0613342fb5dee",
+      "candidate": {
+        "t": "DRC-MBD — FGF23 Precoce",
+        "qid": "efba1640",
+        "q": "Na doença renal crônica (DRC), qual alteração hormonal costuma participar precocemente da manutenção do fósforo sérico normal, antes da hiperfosfatemia franca?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "gohil_imel_fgf23_phosphate_2019"
+        ],
+        "opts": [
+          "Elevação da eritropoietina",
+          "Elevação da calcitonina",
+          "Elevação do calcitriol",
+          "Elevação do fator de crescimento de fibroblastos 23 (FGF23)"
+        ],
+        "ans": 3,
+        "exp": "O fator de crescimento de fibroblastos 23 (FGF23) participa da adaptação inicial à menor capacidade de excretar fosfato, aumentando sua excreção pelos néfrons remanescentes e reduzindo calcitriol. Estudos da coorte CRIC encontraram FGF23 elevado em categorias de função renal nas quais fósforo e paratormônio (PTH) ainda podiam ser normais; isso não demonstra uma ordem temporal obrigatória em cada pessoa. Elevação de calcitriol, calcitonina ou eritropoietina não explica essa adaptação fosfatúrica. O achado não constitui indicação de dosar FGF23 rotineiramente ou iniciar quelante com fósforo normal.",
+        "diff": "easy",
+        "cat": "eletrólitos"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "efba1640",
+        "op": "Identificar a elevação precoce de FGF23 como componente adaptativo que ajuda a manter fósforo sérico normal na DRC.",
+        "competency": "mecanismo",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "justification": "Identifica diretamente um hormônio e sua resposta adaptativa.",
+        "diff": "easy",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "Elevação precoce deFGF23é componente adaptativo antes da hiperfosfatemia, sem transformar associação transversalCRICem ordem temporal individual. A sigla está expandida, mesmo quando o nome do hormônio torna a correta naturalmente maior.",
+      "problems": [],
+      "adversary": "Não se afirma que todo paciente seguirá sequência rígida nem que fósforo normal exige quelante. Eritropoietina/calcitonina/calcitriol não representam essa adaptação fosfatúrica. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Confundir resposta à anemia com controle de fosfato.",
+        "Atribuir a adaptação fosfatúrica principalmente à calcitonina.",
+        "Inverter a alteração do calcitriol."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;19/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "FGF23_EARLY",
+        "FGF23_NAPI",
+        "FGF23_VITD"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "gohil_imel_fgf23_phosphate_2019",
+          "referenceHash": "d875c9444358d38f0306e96ff027c54f7335de1651c744c20f243d6a0ac21ef1",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": null
+        }
+      ],
+      "referenceRationale": "Substituir RCT de quelantes fora do OP por análise CRIC sobre elevação precoce e revisão fisiológica aberta.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            51,
+            59,
+            55,
+            65
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.1016949152542372,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            26,
+            23,
+            22,
+            59
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 2.269230769230769,
+          "heuristic": 1
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "b5f6baf9",
+      "originalHash": "3ab4d7a0fa707bcd92508324c28ed3647db49018be95ea2639f4f0fc58bd8c0c",
+      "candidateHash": "0241dfb1e4959b1b82a8e6782ed318e95688108fb90fc19d40b2baa7be27a524",
+      "candidate": {
+        "t": "DMO-DRC — Suspeita de Baixo Turnover Ósseo",
+        "qid": "b5f6baf9",
+        "q": "Pessoa em hemodiálise apresenta, em medidas seriadas, paratormônio (PTH) intacto abaixo de duas vezes o limite superior do ensaio e fosfatase alcalina óssea baixa. Qual interpretação integra melhor esses achados?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Sugerem baixo turnover, sem definir sozinhos o tipo histológico de osteodistrofia",
+          "Definem doença adinâmica e dispensam biópsia em qualquer decisão terapêutica",
+          "Indicam osteomalácia, sendo o atraso de mineralização comprovado pelos marcadores",
+          "Indicam alto turnover, pois o intervalo de PTH da população geral não se aplica à diálise"
+        ],
+        "ans": 0,
+        "exp": "O conjunto de PTH persistentemente baixo e fosfatase alcalina óssea baixa sugere baixo turnover, mas não define sozinho a histologia. A KDIGO admite usar valores marcadamente altos ou baixos desses marcadores para estimar remodelação óssea e considerar biópsia quando conhecer o tipo de osteodistrofia modificar a conduta. Baixo turnover não equivale automaticamente a osteomalácia, que envolve defeito de mineralização, nem elimina a utilidade de biópsia em casos selecionados. A faixa de PTH da diálise deve ser considerada, mas não transforma marcadores baixos em alto turnover.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "b5f6baf9",
+        "op": "Usar PTH e fosfatase alcalina óssea para suspeitar baixo turnover sem inferir histologia definitiva.",
+        "competency": "interpretação",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Integra tendências de dois marcadores e limites diagnósticos.",
+        "diff": "medium",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "PTH e fosfatase alcalina óssea persistentemente baixos sugerem baixo turnover, sem confirmar doença adinâmica/osteomalácia.",
+      "problems": [],
+      "adversary": "Valores extremos sugerem remodelação, mas não fecham histologia; biópsia é considerada quando modifica conduta. Não transformar a faixa dialítica em alto turnover por exclusão. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Converter probabilidade bioquímica em diagnóstico histológico definitivo.",
+        "Confundir baixa remodelação com defeito de mineralização comprovado.",
+        "Usar o contexto dialítico para inverter o significado dos marcadores."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "BONE_MARKERS",
+        "BONE_BIOPSY"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "referenceRationale": "Referências adequadas existentes preservadas; cada afirmação decisiva está mapeada à fonte e ao contexto no arquivo de evidências.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            159,
+            103,
+            115,
+            84
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.382608695652174,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            81,
+            76,
+            81,
+            89
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 2,
+          "ratio": 0.9101123595505618,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "67035e0e",
+      "originalHash": "260fa56f52858050aee1fcdc1150d0ebf507c544be90582bea097da688055063",
+      "candidateHash": "e5c26f21b33f751415819d05558040cdf68851f486c9884bc39b2342f9f0529e",
+      "candidate": {
+        "t": "Quelantes de Fosfato — Sevelamer vs Quelantes com Cálcio",
+        "qid": "67035e0e",
+        "q": "Em pessoa em hemodiálise com hiperfosfatemia e tendência à hipercalcemia, qual é a principal vantagem de escolher sevelamer em vez de carbonato ou acetato de cálcio para controlar o fósforo?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "kdigo_ckd_mbd_2009"
+        ],
+        "opts": [
+          "Liga fosfato no intestino sem acrescentar cálcio ao tratamento",
+          "Liga fosfato no intestino e estimula a produção renal de calcitriol",
+          "Aumenta a excreção renal de fosfato ao ativar receptores de paratormônio (PTH)",
+          "Reduz o PTH diretamente e aumenta a incorporação de cálcio ao osso"
+        ],
+        "ans": 0,
+        "exp": "O sevelamer é um quelante intestinal de fosfato que não contém cálcio. Assim, ao contrário dos quelantes cálcicos, não acrescenta carga de cálcio, uma vantagem quando há tendência à hipercalcemia. A KDIGO sugere evitar hipercalcemia e restringir a dose de quelantes cálcicos em adultos que necessitam reduzir fósforo. Sevelamer não atua como agonista de PTH, estimulante de calcitriol ou supressor direto das paratireoides. A escolha não implica promessa de menor mortalidade nem ausência de efeitos gastrointestinais.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "67035e0e",
+        "op": "Relacionar o caráter não cálcico do sevelamer à redução da carga de cálcio em pessoa com risco de hipercalcemia.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Aplica propriedades do quelante ao risco bioquímico do paciente.",
+        "diff": "medium",
+        "reconciliation": "Comando final preserva seleção do quelante por risco de hipercalcemia; Aplicar/medium coerente ao cego, não simples pergunta de classe."
+      },
+      "justification": "Mantém seleção do quelante pelo risco de hipercalcemia: sevelamer liga fósforo no intestino sem acrescentar cálcio. O comandoA3preserva aplicação ao paciente e diffmedium.",
+      "problems": [],
+      "adversary": "Benefício de propriedade não equivale a redução comprovada de mortalidadeDCOR. Não estimula calcitriol/PTHnem atua por excreção renal. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Acrescentar ação hormonal inexistente ao quelante intestinal.",
+        "Confundir quelante intestinal com ação fosfatúrica do PTH.",
+        "Confundir quelante com terapia que reduz PTH diretamente."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 1,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;19/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "BINDER_PROPERTIES",
+        "RESTRICT_CALCIUM",
+        "AVOID_HYPERCALCEMIA"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "kdigo_ckd_mbd_2009",
+          "referenceHash": "f8420ccc518cf2ae2d7a5eae626589c5ea76dc7e5c81d7f40de6fcc18c1e9e2f",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": null
+        }
+      ],
+      "referenceRationale": "Substituir DCOR, ensaio de mortalidade, por fonte da propriedade farmacológica (tabela de quelantes do documento-base KDIGO), mantendo a diretriz clínica atual.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            74,
+            49,
+            74,
+            48
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": true,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1,
+          "heuristic": 0.5
+        },
+        "final": {
+          "lengths": [
+            62,
+            67,
+            78,
+            66
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.7948717948717948,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "38c82254",
+      "originalHash": "c38ad4ca37ba7c2cf9bb4257c1ccc5f1e54c108b11df9598e7c77569a8a50ce2",
+      "candidateHash": "3e2e5d809e918178e5ed5f93df8e52806f8b5c1cec65e70f2002db4f03207a77",
+      "candidate": {
+        "t": "PTH no Túbulo Proximal — Fosfatúria",
+        "qid": "38c82254",
+        "q": "Além de estimular a ativação renal da vitamina D, como o paratormônio (PTH) modifica os cotransportadores sódio-fosfato (NaPi) no túbulo proximal para promover fosfatúria?",
+        "refs": [
+          "gohil_imel_fgf23_phosphate_2019",
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Aumenta a reabsorção de fosfato ao inserir cotransportadores NaPi apicais",
+          "Reduz a reabsorção de fosfato ao retirar cotransportadores NaPi apicais",
+          "Aumenta a excreção de fosfato por estimular sua secreção tubular proximal",
+          "Reduz a excreção de fosfato por limitar sua filtração glomerular"
+        ],
+        "ans": 1,
+        "exp": "O PTH reduz o número de cotransportadores sódio-fosfato (NaPi) na membrana apical das células proximais e, com isso, diminui a reabsorção de fosfato e aumenta a fosfatúria. O efeito foi demonstrado em estudos de transporte e retirada/degradação desses transportadores. Não depende de aumentar secreção tubular ou reduzir filtração glomerular. A inserção de mais transportadores teria o efeito oposto. O estímulo da ativação da vitamina D é outra ação do PTH e não explica diretamente a redução da reabsorção de fosfato.",
+        "diff": "easy",
+        "cat": "eletrólitos"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "38c82254",
+        "op": "Explicar a fosfatúria induzida por PTH pela redução de cotransportadores NaPi no túbulo proximal.",
+        "competency": "mecanismo",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "justification": "Reconhecimento de mecanismo tubular único sem decisão complexa.",
+        "diff": "easy",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "PTH reduz transportadoresNaPiapicais e reabsorção proximal, aumentando fosfatúria. Foi usada referência fisiológica adequada, em vez de exigir que a diretriz detalhe transporte experimental.",
+      "problems": [],
+      "adversary": "Inserir mais transportadores produz efeito oposto; secreção de fosfato ou menor filtração não explica o mecanismo. Experimentos celulares são evidência de mecanismo, não benefício clínico. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Inverter a direção da regulação dos cotransportadores NaPi.",
+        "Confundir menor reabsorção com secreção tubular de fosfato.",
+        "Confundir ação tubular proximal com redução de filtração glomerular."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "PTH_NAPI",
+        "PTH_VITD"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "gohil_imel_fgf23_phosphate_2019",
+          "referenceHash": "d875c9444358d38f0306e96ff027c54f7335de1651c744c20f243d6a0ac21ef1",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": null
+        },
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "referenceRationale": "Usar revisão fisiológica integral e primários de transporte verificados; não tratar Brenner inacessível ou KDIGO2017 como prova específica de NaPi.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            56,
+            80,
+            70,
+            77
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.0389610389610389,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            73,
+            71,
+            73,
+            64
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.9726027397260274,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "1366b930",
+      "originalHash": "8ed6cc39dd58f8ac5cf8865249f7fae9fbf40f5bc7fc1c0877802a2dad6fda09",
+      "candidateHash": "0446505b28b21552a487ef95d4d935cb0b33fccfbb8be298e81dd22d856bc937",
+      "candidate": {
+        "t": "DRC-MBD — Hiperparatireoidismo Secundário Inicial",
+        "qid": "1366b930",
+        "q": "Pessoa com doença renal crônica (DRC) G4 apresenta paratormônio (PTH) elevado, calcitriol baixo e fósforo ainda no limite superior da normalidade. Que relação envolvendo o fator de crescimento de fibroblastos 23 (FGF23) é compatível com esse estágio?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "gohil_imel_fgf23_phosphate_2019"
+        ],
+        "opts": [
+          "Elevação de FGF23 e redução de calcitriol podem favorecer a elevação do PTH",
+          "Elevação de FGF23 e aumento de calcitriol explicam a elevação persistente do PTH",
+          "PTH elevado exige que a hiperfosfatemia franca já esteja presente",
+          "FGF23 elevado reduz a fosfatúria para preservar o fósforo circulante"
+        ],
+        "ans": 0,
+        "exp": "A elevação de FGF23 pode ocorrer enquanto o fósforo sérico ainda está normal e contribuir para a queda do calcitriol. A menor vitamina D ativa reduz absorção intestinal de cálcio e remove a inibição da secreção de PTH, favorecendo hiperparatireoidismo secundário. Portanto, não é necessário esperar hiperfosfatemia franca para encontrar PTH elevado. FGF23 aumenta a fosfatúria enquanto existe capacidade renal de resposta. Essa é uma rede de regulação, não uma sequência obrigatória ou uma causa única em todas as pessoas.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "1366b930",
+        "op": "Integrar FGF23, calcitriol e PTH para explicar hiperparatireoidismo secundário antes da hiperfosfatemia franca.",
+        "competency": "interpretação",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Integra hormônios e contexto bioquímico, sem terapêutica individual difícil.",
+        "diff": "medium",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "FGF23 elevado e calcitriol baixo contribuem paraPTHalto antes de hiperfosfatemia franca, com regulação em rede.",
+      "problems": [],
+      "adversary": "Apenas retenção/hiperfosfatemia não é condição obrigatória paraPTHalto. Não se impõe sequência causal universal nem FGF23retendo fosfato. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Inverter o efeito de FGF23 sobre calcitriol.",
+        "Exigir hiperfosfatemia franca para reconhecer adaptação hormonal.",
+        "Inverter o efeito fosfatúrico de FGF23."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "FGF23_EARLY",
+        "FGF23_VITD",
+        "SHPT_DRIVERS"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "gohil_imel_fgf23_phosphate_2019",
+          "referenceHash": "d875c9444358d38f0306e96ff027c54f7335de1651c744c20f243d6a0ac21ef1",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": null
+        }
+      ],
+      "referenceRationale": "Referências específicas da adaptação hormonal e mecanismo substituem RCT de quelantes fora do OP.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            121,
+            82,
+            60,
+            85
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.423529411764706,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            75,
+            80,
+            65,
+            68
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 2,
+          "ratio": 0.9375,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "0f739fb4",
+      "originalHash": "99c73e1b0b3920a2201f5a92cd176138bef3489d315f5388ef939c865db7c47d",
+      "candidateHash": "dc7b33b16c7c6a411526828603ab619f924db6fdcec6758ec98198d3c01b05c0",
+      "candidate": {
+        "qid": "0f739fb4",
+        "q": "Na doença renal crônica (DRC) avançada, antes de tratamento do distúrbio mineral e ósseo, qual perfil laboratorial de cálcio, fósforo e paratormônio (PTH) é compatível com hiperparatireoidismo secundário associado à retenção de fosfato e à queda de calcitriol?",
+        "opts": [
+          "Cálcio alto, fósforo alto e PTH alto",
+          "Cálcio baixo, fósforo baixo e PTH baixo",
+          "Cálcio alto, fósforo baixo e PTH baixo",
+          "Cálcio baixo, fósforo alto e PTH alto"
+        ],
+        "ans": 3,
+        "exp": "Na DRC avançada, retenção de fosfato e menor produção de calcitriol podem produzir hiperfosfatemia, tendência à hipocalcemia e elevação de PTH. Esse perfil é clássico, mas não universal; cálcio e fósforo podem variar com estágio, dieta e tratamentos, e o PTH deve ser interpretado em contexto. A formulação não descreve o primeiro evento da DRC: elevações hormonais, especialmente do fator de crescimento de fibroblastos 23 (FGF23), podem surgir antes da hiperfosfatemia franca. Cálcio alto com PTH elevado requer outra análise, como efeito terapêutico ou autonomia, e não deve ser presumido como o perfil secundário inicial.",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "kdigo_ckd_mbd_2009"
+        ],
+        "cat": "drc",
+        "diff": "easy",
+        "t": "Distúrbio Mineral Ósseo na DRC"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "0f739fb4",
+        "op": "Reconhecer o perfil bioquímico clássico do hiperparatireoidismo secundário na DRC avançada sem ensiná-lo como primeiro evento da doença.",
+        "competency": "interpretação",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "justification": "Padrão clássico, mas termo inicial deve ser delimitado para evitar cronologia falsa.",
+        "diff": "easy",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "O padrão clássico deDRCavançada não tratada é distinguido de cronologia inicial: fósforo alto, tendência a cálcio baixo ePTHalto.",
+      "problems": [],
+      "adversary": "Cálcio pode variar; correta é perfil compatível, não regra universal. Não se ensina hiperfosfatemia como primeiro evento nem hipercalcemia como adaptação inicial típica. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Confundir o perfil clássico secundário não tratado com hipercalcemia.",
+        "Inverter fósforo e resposta de PTH.",
+        "Interpretar perfil com supressão de PTH como hiperparatireoidismo secundário."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;19/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "SHPT_DRIVERS",
+        "FGF23_EARLY"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "kdigo_ckd_mbd_2009",
+          "referenceHash": "f8420ccc518cf2ae2d7a5eae626589c5ea76dc7e5c81d7f40de6fcc18c1e9e2f",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": null
+        }
+      ],
+      "referenceRationale": "Substituir referências gerais/EVOLVE, fora do OP fisiológico, pelo documento-base MBD associado à atualização clínica.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            43,
+            46,
+            45,
+            44
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.9565217391304348,
+          "heuristic": 0
+        },
+        "final": {
+          "lengths": [
+            36,
+            39,
+            38,
+            37
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.9487179487179487,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "d4b2aa68",
+      "originalHash": "1a2abf194c1fecbf4e1e5b556ff0c416438f16bb52121d927dbf3621a37586bf",
+      "candidateHash": "32799021efab6a51aa33020123b47c05a4d1b5f5f8cf08e3af598667f92b7a51",
+      "candidate": {
+        "qid": "d4b2aa68",
+        "q": "Qual das seguintes opções de quelante de fósforo utilizado em pacientes com Doença Renal Crônica (DRC) é caracterizada por ser uma resina isenta de cálcio e alumínio?",
+        "opts": [
+          "Sevelamer.",
+          "Hidróxido de alumínio.",
+          "Carbonato de cálcio.",
+          "Acetato de cálcio."
+        ],
+        "ans": 0,
+        "exp": "O sevelamer é um quelante de fósforo não calcêmico e livre de alumínio, atuando como uma resina de ligação intestinal do fosfato; por isso é a opção correta. O hidróxido de alumínio contém alumínio e, embora seja quelante, seu uso é limitado pelo risco de toxicidade por alumínio. Já o carbonato de cálcio e o acetato de cálcio são quelantes à base de cálcio, portanto não atendem ao critério de serem isentos de cálcio.",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "kdigo_ckd_mbd_2009"
+        ],
+        "cat": "drc",
+        "diff": "easy",
+        "t": "Quelantes de Fósforo na DRC — Comparação"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "d4b2aa68",
+        "op": "Identificar sevelamer como quelante intestinal sem cálcio nem alumínio.",
+        "competency": "conduta",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "justification": "Reconhecimento de propriedade com impacto de segurança na escolha.",
+        "diff": "easy",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "Sevelamer é resina sem cálcio/alumínio; as alternativas já tinham comprimento natural e não foram infladas. A alteração material é referência apropriada/documentobase.",
+      "problems": [],
+      "adversary": "Não se promete ausência de sintomasGIou menor mortalidade; alumínio e quelantes cálcicos são diferenciados pela composição. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Selecionar quelante com alumínio apesar do critério de composição.",
+        "Selecionar quelante cálcico apesar do critério de composição.",
+        "Selecionar quelante cálcico apesar do critério de composição."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;19/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "BINDER_PROPERTIES",
+        "ALUMINUM_SAFETY"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "kdigo_ckd_mbd_2009",
+          "referenceHash": "f8420ccc518cf2ae2d7a5eae626589c5ea76dc7e5c81d7f40de6fcc18c1e9e2f",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": null
+        }
+      ],
+      "referenceRationale": "Tabela de quelantes do documento-base KDIGO sustenta composição; o RCT Block trata efeitos de uma estratégia, não constitui a fonte principal da identidade química.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            10,
+            22,
+            20,
+            18
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.45454545454545453,
+          "heuristic": 0
+        },
+        "final": {
+          "lengths": [
+            10,
+            22,
+            20,
+            18
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.45454545454545453,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "2beb178a",
+      "originalHash": "abeb93792821d4923384a11faa8dc70be6ce0fa7e2fccae16517b03746ff22ae",
+      "candidateHash": "8cb3714bf68147f5bdf304b177490ffd7c82bd19dd361a8272f2fafea0530606",
+      "candidate": {
+        "t": "DMO-DRC — Hiperfosfatemia com Calcificação Vascular",
+        "qid": "2beb178a",
+        "q": "Pessoa com doença renal crônica (DRC) G4 apresenta fósforo persistentemente em torno de 6,8 mg/dL, paratormônio (PTH) moderadamente elevado e calcificação vascular extensa. Se for necessário quelante de fosfato, qual estratégia integra melhor o controle do fósforo e o risco vascular?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Priorizar calcitriol para reduzir PTH antes de tratar a hiperfosfatemia",
+          "Priorizar bisfosfonato para remover cálcio da parede arterial",
+          "Priorizar quelante cálcico para reduzir fósforo e estimular mineralização óssea",
+          "Priorizar quelante não cálcico para reduzir fósforo sem aumentar a carga de cálcio"
+        ],
+        "ans": 3,
+        "exp": "O objetivo é reduzir o fósforo persistentemente elevado em direção à faixa normal, considerando cálcio, fósforo e PTH em série. A calcificação vascular conhecida coloca a pessoa em alto risco cardiovascular e reforça a necessidade de restringir a carga de cálcio; quando um quelante é necessário, isso favorece uma opção não cálcica. A escolha integra dieta, fontes de fosfato, disponibilidade e resposta. Calcitriol não substitui o tratamento da hiperfosfatemia e pode agravá-la; bisfosfonato não é tratamento estabelecido para remover calcificação vascular. Também não se deve aumentar a carga de cálcio apenas para perseguir mineralização óssea.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "2beb178a",
+        "op": "Escolher uma estratégia para hiperfosfatemia persistente que reduza a carga de cálcio diante de calcificação vascular.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Integra hiperfosfatemia e risco por carga cálcica para escolher terapia.",
+        "diff": "medium",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "Hiperfosfatemia persistente e calcificação vascular favorecem restrição de carga cálcica, com quelante não cálcico se necessário.",
+      "problems": [],
+      "adversary": "Não se garante regressão vascular/sobrevida. Calcitriol não substitui controle do fósforo e bisfosfonato não é remoção estabelecida da calcificação. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Priorizar supressão de PTH sem abordar hiperfosfatemia.",
+        "Extrapolar ação antiabsortiva óssea para reversão da calcificação vascular.",
+        "Ignorar o risco da carga de cálcio em pessoa com calcificação."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 1,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;19/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "SERIAL_TRENDS",
+        "PHOSPHATE_LOWERING",
+        "RESTRICT_CALCIUM",
+        "VASCULAR_RISK"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "referenceRationale": "Referências adequadas existentes preservadas; cada afirmação decisiva está mapeada à fonte e ao contexto no arquivo de evidências.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            96,
+            90,
+            122,
+            128
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.0491803278688525,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            71,
+            61,
+            79,
+            82
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.0379746835443038,
+          "heuristic": 1
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "3dfa2ab5",
+      "originalHash": "7b39bd3665aa0b05af4af0f567cc4e19e93c059dbdde6854fdc5336c5aae590f",
+      "candidateHash": "ecd57590406aea60b98adc00c1db460a7a0153e22c63ad34854eb1260503aaa1",
+      "candidate": {
+        "t": "DMO-DRC — Hiperparatireoidismo Grave Refratário",
+        "qid": "3dfa2ab5",
+        "q": "Pessoa em hemodiálise mantém hiperparatireoidismo secundário grave, dor óssea progressiva e sinais de osteíte fibrosa, apesar de tratamento clínico e farmacológico otimizado para cálcio, fósforo e paratormônio (PTH). Qual é a estratégia de escalada mais apropriada?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Encaminhar para avaliação de paratireoidectomia",
+          "Manter o mesmo esquema e acompanhar sem nova intervenção",
+          "Adiar cirurgia até surgir hipercalcemia persistente",
+          "Priorizar tratamento antiabsortivo ósseo sem reavaliar as paratireoides"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO sugere paratireoidectomia no hiperparatireoidismo grave que não responde ao tratamento médico ou farmacológico. O caso reúne refratariedade e complicação óssea progressiva; não se trata de indicar cirurgia por um valor isolado de PTH. A avaliação deve confirmar adequação e adesão ao tratamento, riscos cirúrgicos e planejamento pós-operatório. A avaliação cirúrgica não exige esperar hipercalcemia. Manter um esquema já ineficaz ou tratar só a repercussão óssea com antiabsortivo não aborda a origem do quadro. Não é necessário rotular toda doença dialítica refratária como hiperparatireoidismo terciário para considerar cirurgia.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "3dfa2ab5",
+        "op": "Considerar paratireoidectomia em hiperparatireoidismo secundário grave com falha clínica/farmacológica e repercussão óssea.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Reconhece etapa terapêutica após falha explicitamente documentada.",
+        "diff": "medium",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "Doença grave refratária com complicação óssea progressiva justifica avaliação de paratireoidectomia, não indicação porPTHisolado.",
+      "problems": [],
+      "adversary": "A cirurgia não exige esperar hipercalcemia. Manter esquema ineficaz ou apenas antiabsortivo não aborda a origem; a explicação final rebate exatamente os distratores atuais. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Persistir sem escalada apesar de falha terapêutica e complicação progressiva.",
+        "Criar exigência de hipercalcemia para avaliar cirurgia no hiperparatireoidismo grave refratário.",
+        "Tratar apenas repercussão óssea sem abordar fonte hormonal."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "PARATHYROIDECTOMY"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "referenceRationale": "Referências adequadas existentes preservadas; cada afirmação decisiva está mapeada à fonte e ao contexto no arquivo de evidências.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            89,
+            100,
+            96,
+            78
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.89,
+          "heuristic": 0
+        },
+        "final": {
+          "lengths": [
+            47,
+            56,
+            51,
+            71
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.6619718309859155,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "9c43ab07",
+      "originalHash": "4b9daac686cdd65490887719bca50e5d80740cb34d5059eead396e13e2d2102e",
+      "candidateHash": "d19741e55c15bcddd60f1603a06b3bcfee48e2131ae44205c6943a93e7d2a02a",
+      "candidate": {
+        "t": "DMO-DRC — Vitamina D Ativa em DRC Não Dialítica",
+        "qid": "9c43ab07",
+        "q": "Pessoa com doença renal crônica (DRC) G4 não dialítica apresenta paratormônio (PTH) moderadamente elevado e cálcio no limite superior da normalidade. Qual decisão inicial sobre vitamina D ativa é mais apropriada?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Iniciar calcitriol, usando PTH acima da referência como indicação",
+          "Iniciar análogo ativo, usando cálcio alto-normal para preferir essa opção",
+          "Não usar vitamina D ativa de rotina; investigar a elevação do PTH",
+          "Iniciar cinacalcete, para reduzir PTH sem aumentar a carga de cálcio"
+        ],
+        "ans": 2,
+        "exp": "A elevação moderada do PTH na DRC não dialítica não indica, por si, calcitriol ou análogo ativo. A KDIGO recomenda avaliar tendência e fatores modificáveis; o nível ótimo de PTH nesse grupo é desconhecido. Vitamina D ativa não deve ser usada rotineiramente em adultos G3a–G5 não dialíticos, podendo ser reservada a G4–G5 com hiperparatireoidismo grave e progressivo. Cálcio alto-normal reforça cautela com hipercalcemia e não torna um análogo ativo isento desse risco. Cinacalcete não é a resposta inicial usual a uma elevação moderada de PTH fora da diálise.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "9c43ab07",
+        "op": "Evitar vitamina D ativa rotineira diante de PTH apenas moderadamente elevado e risco de hipercalcemia na DRC não dialítica.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Distingue adaptação moderada de indicação de supressão farmacológica.",
+        "diff": "medium",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "PTHmoderado e cálcio alto-normal fora da diálise não indicam vitaminaDativa rotineira; investigar tendência e causas.",
+      "problems": [],
+      "adversary": "Não há estágio isolado que imponha calcitriol; reservarG4–G5grave/progressivo. Cinacalcete não é primeira escolha usual nesse quadro. Distingue-se de730pela decisão sobre uso rotineiro, não pela correção de causas já documentadas. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Tratar elevação moderada isolada de PTH como indicação de calcitriol.",
+        "Supor segurança suficiente de análogo ativo com cálcio alto-normal.",
+        "Escolher calcimimético antes de avaliar a necessidade e causas de elevação moderada de PTH."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "NON_HD_PTH",
+        "ACTIVE_VITD_NON_HD",
+        "AVOID_HYPERCALCEMIA"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "referenceRationale": "Referências adequadas existentes preservadas; cada afirmação decisiva está mapeada à fonte e ao contexto no arquivo de evidências.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            93,
+            109,
+            222,
+            99
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 2.036697247706422,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            65,
+            73,
+            65,
+            68
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.8904109589041096,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "9482bda7",
+      "originalHash": "7151a416f58bf5aad2d0c8d6ec65ba342b6946bbd14027a12a35c3407af99391",
+      "candidateHash": "a1ca28dd010e839571e0415911b3f6755bc4e62b900abfb9234d8978c244c1b2",
+      "candidate": {
+        "t": "DMO-DRC — estímulos do hiperparatireoidismo secundário",
+        "qid": "9482bda7",
+        "q": "Pessoa com doença renal crônica (DRC) G4 apresenta cálcio 8,4 mg/dL, fósforo 5,9 mg/dL, paratormônio (PTH) 780 pg/mL e fosfatase alcalina elevada. Qual combinação de alterações da DRC melhor explica a elevação do PTH?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Deficiência de calcitonina e maior perda urinária de cálcio",
+          "Retenção de fosfato e menor calcitriol, com tendência à hipocalcemia",
+          "Supressão de fator de crescimento de fibroblastos 23 (FGF23) e maior absorção intestinal de cálcio",
+          "Excesso de calcitriol e maior reabsorção tubular de fosfato"
+        ],
+        "ans": 1,
+        "exp": "Retenção de fosfato e menor disponibilidade de calcitriol favorecem hiperparatireoidismo secundário na DRC avançada. A queda de calcitriol reduz absorção intestinal de cálcio e remove um freio sobre secreção de PTH; a tendência à hipocalcemia também estimula a paratireoide. FGF23 em geral se eleva, em vez de ser suprimido, e contribui para a queda de calcitriol. Deficiência de calcitonina e perda urinária de cálcio não são a explicação central do conjunto. Fosfatase alcalina elevada pode acompanhar alta remodelação, mas não define sozinha a histologia óssea.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "9482bda7",
+        "op": "Integrar cálcio, fósforo, PTH e contexto de DRC avançada para explicar hiperparatireoidismo secundário.",
+        "competency": "interpretação",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Integra padrão laboratorial à fisiopatologia doPTH.",
+        "diff": "medium",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "Retenção de fosfato e menor calcitriol explicam estímulo aoPTHnaDRCG4, com tendência à hipocalcemia.",
+      "problems": [],
+      "adversary": "Não define histologia pela fosfatase;FGF23tende a elevar, não suprimir. Calcitriol excessivo não explicaria esse estímulo secundário. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Atribuir o quadro ao eixo calcitonina/perda urinária de cálcio.",
+        "Inverter a alteração de FGF23 e de absorção de cálcio.",
+        "Atribuir hiperparatireoidismo secundário a excesso de calcitriol."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "SHPT_DRIVERS",
+        "BONE_MARKERS"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "referenceRationale": "Referências adequadas existentes preservadas; cada afirmação decisiva está mapeada à fonte e ao contexto no arquivo de evidências.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            67,
+            73,
+            72,
+            59
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.0138888888888888,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            59,
+            68,
+            98,
+            59
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 2,
+          "ratio": 0.6938775510204082,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "e77d2078",
+      "originalHash": "c4bdd5a8052a0e951c07daba64bf50a97d59262c5247cdc6b2b8cbf90655d8ed",
+      "candidateHash": "2d1d09d7bbde78dc6aeb3af3c2b4687d99f9f5b07ddceb7f2c32ec031780643b",
+      "candidate": {
+        "t": "DMO-DRC — PTH Persistentemente Baixo em Hemodiálise",
+        "qid": "e77d2078",
+        "q": "Pessoa em hemodiálise usa acetato de cálcio e calcitriol. Apresenta hipercalcemia recorrente, calcificação vascular, paratormônio (PTH) persistentemente abaixo de duas vezes o limite superior do ensaio e fosfatase alcalina óssea baixa. Qual ajuste integra melhor esses achados?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Reduzir carga de cálcio e supressão do PTH, acompanhando os parâmetros em série",
+          "Trocar o quelante cálcico e aumentar calcitriol para estimular a mineralização",
+          "Manter o quelante cálcico e trocar calcitriol por calcimimético para controlar PTH",
+          "Aumentar cálcio no dialisato e manter os fármacos para corrigir o baixo turnover"
+        ],
+        "ans": 0,
+        "exp": "O conjunto sugere carga excessiva de cálcio e supressão excessiva do turnover, sem constituir diagnóstico histológico definitivo. Deve-se reavaliar e reduzir o aporte de cálcio e os fármacos supressores de PTH, monitorando cálcio, fósforo e PTH em série. A KDIGO recomenda evitar hipercalcemia e restringir quelantes cálcicos; PTH excessivamente baixo também exige rever terapias redutoras de PTH. Aumentar calcitriol, acrescentar calcimimético ou aumentar cálcio no dialisato pode aprofundar o problema. A estratégia é individualizada, e não uma ordem de interromper todo tratamento mineral sem acompanhamento.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "e77d2078",
+        "op": "Reconhecer sobrecarga de cálcio e supressão excessiva de PTH/turnover para ajustar quelante e vitamina D ativa em hemodiálise.",
+        "competency": "conduta",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Integra tratamento atual, hipercalcemia e tendência hormonal para reverter o excesso.",
+        "diff": "medium",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "Hipercalcemia, carga cálcica e supressão hormonal excessiva sugerem rever cálcio e redutoresPTHem conjunto, sem fechar histologia.",
+      "problems": [],
+      "adversary": "Aumentar calcitriol/cálcio ou acrescentar calcimimético pode aprofundar o quadro. A correta pede reavaliação e acompanhamento, não suspender indiscriminadamente todo tratamento. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Corrigir carga de cálcio, mas intensificar a supressão de PTH com calcitriol.",
+        "Substituir um supressor de PTH por outro apesar de PTH baixo.",
+        "Aumentar carga de cálcio em hipercalcemia e provável baixo turnover."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "SERIAL_TRENDS",
+        "RESTRICT_CALCIUM",
+        "AVOID_HYPERCALCEMIA",
+        "REDUCE_PTH_SUPPRESSION",
+        "BONE_MARKERS"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "referenceRationale": "Referências adequadas existentes preservadas; cada afirmação decisiva está mapeada à fonte e ao contexto no arquivo de evidências.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            112,
+            85,
+            86,
+            90
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.2444444444444445,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            79,
+            78,
+            82,
+            80
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.9634146341463414,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "8ba55c24",
+      "originalHash": "64257ec83a05a39b80d83413514b5d1df45b2e557b9f9719f8d6f76a7be99a9e",
+      "candidateHash": "fe95b2a66dbb5860a5009f702971beed46b8d73ee5f5bab40db875ff7a8e516f",
+      "candidate": {
+        "t": "DMO-DRC — FGF23 e fosfatúria",
+        "qid": "8ba55c24",
+        "q": "O fator de crescimento de fibroblastos 23 (FGF23) participa da adaptação à retenção de fosfato na doença renal crônica (DRC). Qual efeito sobre os cotransportadores sódio-fosfato (NaPi-IIa/IIc) no túbulo proximal explica sua ação fosfatúrica?",
+        "refs": [
+          "gohil_imel_fgf23_phosphate_2019",
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Aumenta NaPi-IIa/IIc apicais, elevando a reabsorção de fosfato",
+          "Reduz NaPi-IIa/IIc apicais, diminuindo a reabsorção de fosfato",
+          "Eleva a secreção proximal de fosfato sem alterar sua reabsorção",
+          "Eleva a excreção de fosfato por aumentar sua filtração glomerular"
+        ],
+        "ans": 1,
+        "exp": "FGF23 reduz a expressão apical dos cotransportadores sódio-fosfato NaPi-IIa/IIc, diminuindo a reabsorção proximal e aumentando a excreção urinária de fosfato. O mecanismo é sustentado por trabalhos experimentais e sintetizado na revisão fisiológica, sem demonstrar benefício clínico de intervir no FGF23 na DRC. Aumentar NaPi teria o efeito oposto. A fosfatúria não depende de aumentar secreção tubular ou aumentar a filtração glomerular. Em paralelo, FGF23 reduz calcitriol; esse é outro componente da regulação do fosfato.",
+        "diff": "easy",
+        "cat": "drc"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "8ba55c24",
+        "op": "Explicar a fosfatúria induzida por FGF23 pela redução dos cotransportadores NaPi no túbulo proximal.",
+        "competency": "mecanismo",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "justification": "Mecanismo tubular único, sem conflito clínico.",
+        "diff": "easy",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "FGF23reduzNaPi-IIa/IIcapicais e reabsorção proximal. Prova experimental foi contrastada à revisão fisiológica.",
+      "problems": [],
+      "adversary": "Não se infere benefício clínico de manipularFGF23; aumentar transporte apical, secreção tubular ou filtração não é o mecanismo fosfatúrico pedido. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Inverter a regulação de NaPi por FGF23.",
+        "Confundir redução de reabsorção com secreção tubular de fosfato.",
+        "Confundir fluxo filtrado com excreção e ação tubular."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "FGF23_NAPI"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "gohil_imel_fgf23_phosphate_2019",
+          "referenceHash": "d875c9444358d38f0306e96ff027c54f7335de1651c744c20f243d6a0ac21ef1",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": null
+        },
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "referenceRationale": "Substituir RCT de quelantes por revisão fisiológica com NaPi-IIa/IIc, conferida contra experimentos primários; KDIGO sustenta apenas o contexto clínico.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            52,
+            59,
+            52,
+            39
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.1346153846153846,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            62,
+            62,
+            63,
+            65
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.9538461538461539,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "c9da6fdf",
+      "originalHash": "d24e07bbd99bcc0e14c0439a1fc6e2ba49020536fee6a9530dd25a8fd28cfd45",
+      "candidateHash": "17d2d29bb3c726bbbe31746f1bec1879b06dc4a7ed181ab64b899f68732da508",
+      "candidate": {
+        "t": "DMO-DRC — calcificação vascular",
+        "qid": "c9da6fdf",
+        "q": "Na doença renal crônica com distúrbio mineral e ósseo, qual processo celular participa diretamente da mineralização da parede arterial?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "kdigo_ckd_mbd_2009"
+        ],
+        "opts": [
+          "Transdiferenciação osteogênica de células musculares lisas vasculares",
+          "Ativação de osteoclastos pela elevação sustentada do paratormônio (PTH)",
+          "Redução da síntese tubular de calcitriol pela perda de néfrons",
+          "Proliferação de células paratireoidianas por estímulo crônico"
+        ],
+        "ans": 0,
+        "exp": "A mudança das células musculares lisas vasculares para um fenótipo osteogênico participa da calcificação arterial. O documento-base KDIGO e experimentos com células humanas descrevem essa transformação, favorecida por fatores como fosfato elevado e perda de inibidores de calcificação. Portanto, o processo não é apenas precipitação passiva. Ativação de osteoclastos, queda de calcitriol e proliferação paratireoidiana são processos relacionados ao distúrbio mineral, mas não correspondem ao mecanismo celular direto da mineralização da parede arterial. Isso não prova que reverter um marcador de calcificação reduza mortalidade.",
+        "diff": "easy",
+        "cat": "drc"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "c9da6fdf",
+        "op": "Identificar a transformação osteogênica de células musculares lisas como mecanismo ativo de calcificação vascular na DRC.",
+        "competency": "mecanismo",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "justification": "Recupera mecanismo celular; não é avançada apenas pela terminologia.",
+        "diff": "easy",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "Diferenciação osteogênica de células musculares lisas participa da calcificação arterial; mecanismo não é apenas precipitação passiva.",
+      "problems": [],
+      "adversary": "PTH/osteoclastos, calcitriol renal e hiperplasia paratireoidiana pertencem ao distúrbio, mas não são o processo celular direto da parede arterial. Experimento humano em cultura não prova mortalidade. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Confundir remodelação óssea mediada por PTH com mineralização arterial.",
+        "Confundir mecanismo renal de calcitriol com o processo celular vascular.",
+        "Confundir hiperplasia paratireoidiana com transformação de células vasculares."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "VASCULAR_OSTEOGENESIS"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "kdigo_ckd_mbd_2009",
+          "referenceHash": "f8420ccc518cf2ae2d7a5eae626589c5ea76dc7e5c81d7f40de6fcc18c1e9e2f",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": null
+        }
+      ],
+      "referenceRationale": "O mecanismo específico consta no documento-base KDIGO2009, S45, com contraprova experimental Jono2000. Não alegar que a atualização2017 o demonstrou experimentalmente.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            69,
+            39,
+            43,
+            36
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.6046511627906976,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            69,
+            71,
+            62,
+            61
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 2,
+          "ratio": 0.971830985915493,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "21e9cefb",
+      "originalHash": "08de68e55fe85b0fee8c3b3d14c66557502d9e4bac394d1f26d988510a7412c0",
+      "candidateHash": "08de68e55fe85b0fee8c3b3d14c66557502d9e4bac394d1f26d988510a7412c0",
+      "candidate": {
+        "t": "DMO-DRC — hipocalcemia e hiperfosfatemia",
+        "qid": "21e9cefb",
+        "q": "Paciente com DRC G4 apresenta fósforo 7,2 mg/dL, cálcio 7,8 mg/dL e PTH elevado. Qual combinação explica melhor a tendência à hipocalcemia nesse contexto?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Retenção de fosfato e menor produção de calcitriol",
+          "Aumento da absorção intestinal de cálcio por excesso de calcitriol",
+          "Redução da ligação entre cálcio e fosfato",
+          "Aumento da excreção urinária de cálcio como mecanismo principal"
+        ],
+        "ans": 0,
+        "exp": "Na DRC, a retenção de fosfato reduz o cálcio ionizado por complexação cálcio-fosfato e participa do estímulo ao PTH. Além disso, FGF23 elevado e menor massa renal reduzem calcitriol, diminuindo a absorção intestinal de cálcio. Essa combinação explica melhor a hipocalcemia e o hiperparatireoidismo secundário. As demais alternativas invertem a fisiologia ou atribuem o quadro a mecanismo urinário que não é o principal na DRC avançada.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "verdict": "fundir",
+      "legacy": "RETIRAR após decisão editorial posterior",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "DECISIVA",
+      "publication": "BLOQUEADA",
+      "classification": {
+        "qid": "21e9cefb",
+        "op": "Explicar hipocalcemia naDRCpela retenção de fosfato e menor calcitriol",
+        "competency": "interpretação",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Relaciona quadro bioquímico à redução da disponibilidade de cálcio."
+      },
+      "score": null,
+      "scoreDisposition": "Anulado por eliminatório de duplicidade; não pontuar como aprovado.",
+      "eliminators": [
+        "Duplicidade em competência, conceito correto, caminho de raciocínio e contexto."
+      ],
+      "adversary": "Mesma cadeia retenção/menorcalcitriol/hipocalcemia da9482; número e desfecho verbal não criam raciocínio distinto.",
+      "implementation": "Não escrever, excluir, fundir ou mudar dificuldade agora. Original permanece intacto, com destinação formal futura. Gate de card não libera item.",
+      "sharedCardCompatibility": "Sem consumo de card materialmente alterado neste lote."
+    },
+    {
+      "qid": "ffee06f0",
+      "originalHash": "8d475944798a1131b7e1d709a6218d4468f86ab7545d6b5546f341666502f2d9",
+      "candidateHash": "548e28c46a37164656df1cb9b79e3fb4675802d7dd7a231547efdb2d51110a26",
+      "candidate": {
+        "t": "DMO-DRC — FGF23 e calcitriol",
+        "qid": "ffee06f0",
+        "q": "Na doença renal crônica, o fator de crescimento de fibroblastos 23 (FGF23) contribui para reduzir o calcitriol. Qual efeito renal sobre seu metabolismo explica essa redução?",
+        "refs": [
+          "gohil_imel_fgf23_phosphate_2019",
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Inibição da 1α-hidroxilase, reduzindo a ativação da vitamina D",
+          "Estímulo da 1α-hidroxilase, aumentando a ativação da vitamina D",
+          "Inibição da 24-hidroxilase, reduzindo a inativação da vitamina D",
+          "Estímulo da 25-hidroxilação hepática, aumentando o calcidiol"
+        ],
+        "ans": 0,
+        "exp": "FGF23 suprime CYP27B1, que codifica a 1α-hidroxilase renal, reduzindo a conversão de calcidiol em calcitriol. Também aumenta a expressão de CYP24A1/24-hidroxilase, favorecendo inativação. Estimular 1α-hidroxilase ou inibir 24-hidroxilase tenderia a aumentar, não reduzir, vitamina D ativa. A 25-hidroxilação hepática é outra etapa e não corresponde ao efeito renal perguntado. Essa fisiologia não implica indicação de bloquear FGF23 ou prescrever calcitriol rotineiramente na doença renal crônica (DRC) não dialítica.",
+        "diff": "easy",
+        "cat": "drc"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "ffee06f0",
+        "op": "Relacionar FGF23 à menor ativação renal de vitamina D por inibição da 1α-hidroxilase.",
+        "competency": "mecanismo",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "justification": "Recupera inibição enzimática específica com relevância fisiopatológica.",
+        "diff": "easy",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "FGF23suprimeCYP27B1/1αeestimulaCYP24A1/24, reduzindo calcitriol.",
+      "problems": [],
+      "adversary": "Ativar1αouinibir24teria direção oposta. A hidroxilação hepática é outra etapa. Esse mecanismo não cria indicação rotineira de calcitriol ou bloqueioFGF23. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Inverter a regulação da enzima ativadora.",
+        "Inverter a regulação da enzima inativadora.",
+        "Confundir a etapa hepática de formação de calcidiol com ativação renal."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;19/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "FGF23_VITD"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "gohil_imel_fgf23_phosphate_2019",
+          "referenceHash": "d875c9444358d38f0306e96ff027c54f7335de1651c744c20f243d6a0ac21ef1",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": null
+        },
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "referenceRationale": "Revisão fisiológica aberta com CYP27B1/CYP24A1, conferida contra Shimada2004, substitui RCT de quelantes fora do OP.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            36,
+            35,
+            46,
+            48
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.75,
+          "heuristic": 0
+        },
+        "final": {
+          "lengths": [
+            62,
+            63,
+            64,
+            60
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.96875,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "2f2cdd55",
+      "originalHash": "3bf8ef7469da3b62007644f6a5ec2ecb465c1467d760e794b11627bbb72827a9",
+      "candidateHash": "10309746954b22f68f2f7f378709e3314f1b947db929474bf4cc7b81940befad",
+      "candidate": {
+        "t": "DMO-DRC — Osteomalácia na Biópsia Óssea",
+        "qid": "2f2cdd55",
+        "q": "Pessoa em hemodiálise apresenta dor óssea e fratura por fragilidade. Histomorfometria com marcação por tetraciclina mostra grande volume de osteoide e atraso acentuado de mineralização. Qual interpretação integra o padrão e seu limite etiológico?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "kdigo_ckd_mbd_2009"
+        ],
+        "opts": [
+          "Osteomalácia por defeito de mineralização, com etiologia ainda a investigar",
+          "Doença adinâmica por baixo turnover, sem defeito de mineralização relevante",
+          "Osteíte fibrosa por alto turnover, confirmando excesso isolado de paratormônio (PTH)",
+          "Osteomalácia por alumínio, com etiologia definida apenas pela histomorfometria"
+        ],
+        "ans": 0,
+        "exp": "O acúmulo de osteoide com atraso acentuado de mineralização é compatível com osteomalácia. A histologia descreve o defeito, mas não determina sozinha sua causa: devem-se investigar vitamina D, disponibilidade de fosfato e exposição a alumínio conforme o contexto, usando métodos específicos quando necessários. Doença adinâmica tem formação muito baixa sem esse padrão de osteoide não mineralizado; osteíte fibrosa corresponde a alto turnover. A causa por alumínio não pode ser presumida sem avaliação apropriada.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "2f2cdd55",
+        "op": "Distinguir osteomalácia histológica de baixo turnover adinâmico e evitar inferir sua etiologia apenas pelo padrão de mineralização.",
+        "competency": "diagnóstico",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Classifica padrão e separa diagnóstico histológico de causa.",
+        "diff": "medium",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "Osteoide aumentado e atraso de mineralização sustentam osteomalácia, com causa ainda a investigar.",
+      "problems": [],
+      "adversary": "Não atribuir alumínio por histologia geral; doença adinâmica e alto turnover têm padrões distintos. Ausência de dados de causa é reconhecida, não preenchida por suposição. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Confundir defeito de mineralização com doença adinâmica.",
+        "Confundir defeito de mineralização com alto turnover por PTH.",
+        "Atribuir etiologia por alumínio sem evidência específica."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "OSTEOMALACIA",
+        "BONE_BIOPSY"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "kdigo_ckd_mbd_2009",
+          "referenceHash": "f8420ccc518cf2ae2d7a5eae626589c5ea76dc7e5c81d7f40de6fcc18c1e9e2f",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": null
+        }
+      ],
+      "referenceRationale": "Documento-base KDIGO2009 sustenta histomorfometria específica e tipos de osteodistrofia; substitui livro não acessível como fonte decisiva.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            175,
+            118,
+            109,
+            125
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.4,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            75,
+            75,
+            84,
+            78
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.8928571428571429,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "666e748d",
+      "originalHash": "8ca3437ab509c1e8770152eed2653c37f97467c14e9cb082dca5bad275b31fb3",
+      "candidateHash": "4c612cb089832e6f52c6567ef5f78e04a2aef4e9d55a2a88ff9be10afc70560c",
+      "candidate": {
+        "t": "DMO-DRC — Calcimimético no Hiperparatireoidismo Secundário",
+        "qid": "666e748d",
+        "q": "Pessoa em hemodiálise mantém paratormônio (PTH) persistentemente elevado, hipercalcemia e hiperfosfatemia, apesar de dieta, diálise e quelantes ajustados. Usa calcitriol, ainda não recebeu calcimimético e não tem indicação cirúrgica urgente. Qual estratégia integra melhor a necessidade de reduzir PTH e o perfil de cálcio e fósforo?",
+        "refs": [
+          "evolve_trial",
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Considerar calcimimético e reduzir ou suspender calcitriol conforme a resposta",
+          "Aumentar calcitriol para normalizar PTH antes de corrigir cálcio e fósforo",
+          "Manter calcitriol e substituir o quelante por um composto à base de cálcio",
+          "Indicar paratireoidectomia antes de avaliar a resposta a outro tratamento farmacológico"
+        ],
+        "ans": 0,
+        "exp": "Em doença renal crônica (DRC) G5D que necessita redução de PTH, calcimimético, calcitriol e análogos são opções, e a escolha deve considerar cálcio e fósforo. Com hipercalcemia e hiperfosfatemia durante calcitriol, considerar calcimimético e reduzir ou suspender vitamina D ativa é coerente com a diretriz, com monitorização para hipocalcemia e resposta do PTH. Aumentar vitamina D ativa ou carga de cálcio pode agravar o perfil. Cirurgia é opção no hiperparatireoidismo grave refratário ao tratamento médico/farmacológico, não uma etapa automática antes de testar uma alternativa ainda não usada. O EVOLVE teve análise primária não ajustada neutra: não se promete redução de mortalidade.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "666e748d",
+        "op": "Escolher redução de PTH em hemodiálise integrando hipercalcemia/hiperfosfatemia e necessidade de rever calcitriol.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Integra três marcadores e tratamento atual; não testa redução de mortalidade.",
+        "diff": "medium",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "PTHalto com hipercalcemia/hiperfosfatemia durante calcitriol favorece considerar calcimimético e reduzir/suspenderDativa conforme resposta, monitorando hipocalcemia.",
+      "problems": [],
+      "adversary": "Não é ordem de normalizarPTHnem cirurgia automática antes de alternativa ainda não tentada. EVOLVEprimário não ajustado neutro não prova menor mortalidade. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Priorizar normalização de PTH sobre segurança de cálcio e fósforo.",
+        "Acrescentar cálcio diante de hipercalcemia.",
+        "Antecipar cirurgia sem avaliar alternativa farmacológica no contexto informado."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "PTH_TREATMENT_G5D",
+        "REDUCE_ACTIVE_VITD",
+        "PARATHYROIDECTOMY",
+        "EVOLVE_PRIMARY"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "evolve_trial",
+          "referenceHash": "dc3da1fd6a67fbd206f82d2b6ba63fcd70142910ea3cff9022b1d86eee88b458",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": "e82214dea1d9de241b3bab61f5db8c8e0cb498e53eec5cb783c44484a7bf10f8"
+        },
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "referenceRationale": "Referências adequadas existentes preservadas; cada afirmação decisiva está mapeada à fonte e ao contexto no arquivo de evidências.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            126,
+            83,
+            81,
+            69
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.5180722891566265,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            78,
+            74,
+            74,
+            87
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 2,
+          "ratio": 0.896551724137931,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "c44f053b",
+      "originalHash": "39f08e00f248c780de05e557ef4a41675ed54fca34747cf6e392d4d8454b2d92",
+      "candidateHash": "2e27f77c4d8bd267c479bdea7600a68c46f3b51a79aa1c1fe24087c3fd34c4b7",
+      "candidate": {
+        "t": "Etelcalcetida versus Cinacalcete — Desfecho Bioquímico",
+        "qid": "c44f053b",
+        "q": "Um ensaio de 26 semanas comparou etelcalcetida intravenosa com cinacalcete oral em 683 pessoas em hemodiálise e hiperparatireoidismo secundário, avaliando a redução do paratormônio (PTH). Qual interpretação dos resultados e de seus limites é sustentada?",
+        "refs": [
+          "block_etelcalcetide_cinacalcet_2017",
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Maior redução do PTH com etelcalcetida, mais queda do cálcio e benefício clínico ainda não demonstrado",
+          "Redução semelhante do PTH com etelcalcetida, menos queda do cálcio e melhor tolerância digestiva",
+          "Menor redução do PTH com etelcalcetida, compensada por menos hipocalcemia e menos sintomas digestivos",
+          "Maior redução do PTH com etelcalcetida e vantagem comprovada em mortalidade e fraturas"
+        ],
+        "ans": 0,
+        "exp": "Etelcalcetida cumpriu o critério primário de não inferioridade e os critérios secundários de superioridade bioquímica: redução de PTH superior a 30% ocorreu em 68,2% versus 57,7% com cinacalcete. Queda do cálcio foi mais frequente, e a via intravenosa não eliminou náusea ou vômito. O ensaio avaliou principalmente PTH durante 26 semanas, sem demonstrar superioridade em mortalidade, eventos cardiovasculares ou fraturas. A administração observada durante hemodiálise pode ser prática, mas não comprova adesão total fora da unidade nem transforma melhora bioquímica em benefício clínico demonstrado.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "c44f053b",
+        "op": "Interpretar não inferioridade/superioridade bioquímica da etelcalcetida distinguindo segurança e ausência de prova em desfechos clínicos.",
+        "competency": "interpretação",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Distingue surrogates, segurança e desfechos não avaliados.",
+        "diff": "medium",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "Etelcalcetida cumpriu não inferioridade e superioridade bioquímica secundária, com mais queda de cálcio; não há prova de vantagem em mortalidade/fraturas.",
+      "problems": [],
+      "adversary": "ViaIVnão eliminou náusea/vômito nem monitorização.68,2/57,7% são quedaPTH>30%, não redução relativa doPTHou eventos clínicos. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Confundir a direção da diferença bioquímica e supor melhor tolerabilidade da via intravenosa.",
+        "Trocar eficácia por uma vantagem de segurança não demonstrada.",
+        "Extrapolar redução de PTH para mortalidade e fraturas comprovadas."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "ETELCALCETIDE_RCT"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "block_etelcalcetide_cinacalcet_2017",
+          "referenceHash": "5e4fac02fc49da8deb0c411b3bb247653543441e9fa9dac6af61a2da848b044b",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "referenceRationale": "Referências adequadas existentes preservadas; cada afirmação decisiva está mapeada à fonte e ao contexto no arquivo de evidências.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            197,
+            90,
+            78,
+            70
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 2.188888888888889,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            102,
+            96,
+            101,
+            86
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.00990099009901,
+          "heuristic": 1
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "22189222",
+      "originalHash": "948e5431d9e49064fb4efe623512d2fa3dcdc44b955b9a65929ae29ea8ae89b4",
+      "candidateHash": "948e5431d9e49064fb4efe623512d2fa3dcdc44b955b9a65929ae29ea8ae89b4",
+      "candidate": {
+        "t": "DMO-DRC — sequência FGF23-calcitriol-PTH",
+        "qid": "22189222",
+        "q": "Na progressão da DRC, qual sequência resume melhor a adaptação inicial do metabolismo mineral antes da hiperfosfatemia franca?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "phosphate_binders_ckd"
+        ],
+        "opts": [
+          "Retenção de fosfato por menor massa nefrônica → ↑FGF23 → ↓calcitriol → ↑PTH",
+          "↑PTH isolado → ↑calcitriol → hipercalcemia → queda do FGF23",
+          "Hipocalcemia primária → queda do PTH → ↑calcitriol → hiperfosfatemia",
+          "↑calcitriol → maior absorção intestinal de cálcio e fósforo → queda do FGF23"
+        ],
+        "ans": 0,
+        "exp": "Com a perda de néfrons, a excreção de fosfato fica progressivamente mais dependente de respostas hormonais. O FGF23 aumenta cedo para promover fosfatúria e reduzir calcitriol; a queda do calcitriol diminui a absorção intestinal de cálcio e contribui para elevação progressiva do PTH. A hiperfosfatemia manifesta tende a aparecer mais tarde, quando a compensação não basta. As demais sequências invertem a relação entre FGF23, calcitriol e PTH.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "verdict": "fundir",
+      "legacy": "RETIRAR após decisão editorial posterior",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "DECISIVA",
+      "publication": "BLOQUEADA",
+      "classification": {
+        "qid": "22189222",
+        "op": "Ordenar sequência adaptativaFGF23-calcitriol-PTHantes da hiperfosfatemia",
+        "competency": "mecanismo",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "justification": "Sequência fisiopatológica direta sem decisão clínica individual."
+      },
+      "score": null,
+      "scoreDisposition": "Anulado por eliminatório de duplicidade; não pontuar como aprovado.",
+      "eliminators": [
+        "Duplicidade em competência, conceito correto, caminho de raciocínio e contexto."
+      ],
+      "adversary": "Mesmo encadeamentoFGF23/calcitriol/PTHde1366, com contexto antes de hiperfosfatemia; sequência por setas não cria variação útil.",
+      "implementation": "Não escrever, excluir, fundir ou mudar dificuldade agora. Original permanece intacto, com destinação formal futura. Gate de card não libera item.",
+      "sharedCardCompatibility": "Blockcorrigido não contradiz fisiologia ou segurança do original; o ensaio continua referência secundária fora doOP, mas KDIGO2017integral sustenta a rede adaptativa. Não é necessário ao gabarito que o card antigo alegue menorcalcificação/FGF23. Pode corrigircard com histórico separado, sem reescrever ou aprovar esta duplicata."
+    },
+    {
+      "qid": "891b3e02",
+      "originalHash": "049f28cffec7f7f282bbb22a87c23a72f81e4483ca1ec15768c0f0489190790b",
+      "candidateHash": "f6a4801ff01fa5410077cbd279b18aad7b8a1cae2f7ea4a58479680cad1b9f8c",
+      "candidate": {
+        "t": "Pós-transplante — Hiperparatireoidismo Terciário",
+        "qid": "891b3e02",
+        "q": "Pessoa com história de hiperparatireoidismo importante na diálise recebeu transplante renal há 8 anos. Mantém paratormônio (PTH) 820 pg/mL, cálcio 11,4 mg/dL e dor óssea apesar de manejo clínico adequado. Qual hipótese e conduta devem ser consideradas?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "cruzado_post_tx_parathyroidectomy_2016"
+        ],
+        "opts": [
+          "Hiperparatireoidismo terciário persistente; avaliar paratireoidectomia pela refratariedade",
+          "Hiperparatireoidismo secundário adaptativo; aguardar regressão espontânea sem reavaliação",
+          "Excesso de vitamina D; limitar a conduta à retirada de suplementos como explicação suficiente",
+          "Hipercalcemia hipocalciúrica familiar; priorizar essa hipótese por ocorrer após transplante"
+        ],
+        "ans": 0,
+        "exp": "PTH muito elevado associado a hipercalcemia persistente anos após transplante, com história de hiperparatireoidismo na doença renal crônica (DRC), sugere secreção paratireoidiana autônoma persistente, chamada hiperparatireoidismo terciário. Dor óssea e falha do manejo clínico justificam avaliação especializada de paratireoidectomia, considerando função do enxerto, fósforo, fármacos, resposta prévia e riscos. Cálcio 11,4 mg/dL não deve ser rotulado automaticamente como hipercalcemia grave ou emergência. A decisão cirúrgica não decorre de um limiar isolado de PTH. Excesso de vitamina D costuma suprimir PTH, e hipocalciúria familiar não é consequência automática de transplante. O planejamento deve considerar risco de hipocalcemia pós-operatória.",
+        "diff": "hard",
+        "cat": "genetica"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "891b3e02",
+        "op": "Reconhecer hiperparatireoidismo autônomo persistente após transplante e considerar avaliação cirúrgica quando refratário e sintomático.",
+        "competency": "conduta",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "hard",
+        "justification": "Integra tempo pós-transplante, hipercalcemia e falha clínica; não basta chamar qualquer valor alto de grave.",
+        "diff": "hard",
+        "reconciliation": "Originalcego foi médio; versãofinal explicita história dialítica, autonomia anos pós-transplante e refratariedade com riscos cirúrgicos. A integração na população especial justifica avançada pela âncoraC.2, nunca por comprimento."
+      },
+      "justification": "PTHmuito elevado e hipercalcemia persistente anos após transplante com doença prévia/refratariedade sustentam autonomia e avaliação cirúrgica individual.",
+      "problems": [],
+      "adversary": "11,4não foi chamado de hipercalcemia grave/emergência. Graftfunction/fármacos/resposta/riscos são considerados. RCTpequeno sustenta avaliação, sem extrapolar fratura/mortalidade/enxerto. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Tratar persistência sintomática por anos como adaptação que dispensa reavaliação.",
+        "Atribuir hipercalcemia com PTH muito elevado apenas a excesso de vitamina D.",
+        "Vincular um diagnóstico familiar ao transplante sem dados que o sustentem."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "POST_TX_PERSISTENT_HPT",
+        "PARATHYROIDECTOMY",
+        "POST_OP_HYPOCALCEMIA"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "cruzado_post_tx_parathyroidectomy_2016",
+          "referenceHash": "5d22424a1134fc023f813b7622d57ffab100b4a627a79790e668a6ff72cae5b8",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": null
+        }
+      ],
+      "referenceRationale": "A atualização MBD2017 tem poucos dados além de12meses de transplante. Vincular ensaio específico de hiperparatireoidismo persistente pós-transplante; relatórioKDIGO2025 confirma discussão atual sem transformá-la em ordem cirúrgica automática.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            149,
+            95,
+            62,
+            83
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.568421052631579,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            90,
+            89,
+            93,
+            91
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.967741935483871,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "73069894",
+      "originalHash": "c745d89425dd7b2672db17eb13694120cd6754c956a195d61c62aea5a79528d3",
+      "candidateHash": "3f07f4e9debe541b08dab299c168226d16f04539716e619db18f8fbf1bc6fa0b",
+      "candidate": {
+        "t": "DRC G4 — hiperparatireoidismo secundário e fatores modificáveis",
+        "qid": "73069894",
+        "q": "Pessoa com doença renal crônica (DRC) G4 não dialítica tem paratormônio (PTH) progressivamente elevado, fósforo 5,8 mg/dL, cálcio normal e 25-hidroxivitamina D de 12 ng/mL. Deficiência de vitamina D e fatores relacionados ao fósforo ainda não foram corrigidos sistematicamente. Qual é a prioridade antes de escalar o tratamento do PTH?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Corrigir os fatores modificáveis documentados e reavaliar o PTH em série",
+          "Indicar cirurgia usando a elevação progressiva de PTH como critério suficiente",
+          "Adicionar quelante cálcico usando o cálcio normal como garantia de segurança",
+          "Iniciar calcitriol priorizando a redução de PTH antes de abordar o fósforo"
+        ],
+        "ans": 0,
+        "exp": "A prioridade é corrigir os fatores modificáveis já demonstrados, incluindo deficiência de vitamina D nutricional e hiperfosfatemia, e rever ingestão de fosfato, adesão e tratamento. O PTH deve ser acompanhado em tendência, junto de cálcio e fósforo. Na DRC não dialítica, uma elevação progressiva não impõe cirurgia nem normalização imediata com calcitriol. Vitamina D ativa pode ser considerada em G4–G5 com hiperparatireoidismo grave e progressivo, após avaliação causal; cálcio normal isolado também não garante segurança de uma carga cálcica maior.",
+        "diff": "medium",
+        "cat": "nefrologia_geral"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "73069894",
+        "op": "Priorizar correção de deficiência de vitamina D e hiperfosfatemia documentadas antes de escalar terapia de PTH na DRC não dialítica.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Aplica pré-requisito terapêutico a achados explícitos e ainda não corrigidos.",
+        "diff": "medium",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "Causas documentadas ainda não corrigidas exigem tratar deficiência nutricionalD/fósforo e reavaliar tendência antes de escalar supressãoPTH.",
+      "problems": [],
+      "adversary": "Não impõe calcitriol, cirurgia ou carga cálcica peloPTHou cálcio normal. Difere de9cpelos modificáveis explícitos e prioridade de correção antes da intensificação. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Usar a tendência de PTH como indicação cirúrgica sem refratariedade.",
+        "Tratar cálcio normal como garantia contra efeitos da carga de cálcio.",
+        "Suprimir PTH antes de corrigir fatores tratáveis que o estimulam."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "NON_HD_PTH",
+        "ACTIVE_VITD_NON_HD",
+        "VITD_DEFICIENCY",
+        "SERIAL_TRENDS"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "referenceRationale": "Referências adequadas existentes preservadas; cada afirmação decisiva está mapeada à fonte e ao contexto no arquivo de evidências.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            140,
+            102,
+            91,
+            107
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.308411214953271,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            72,
+            78,
+            76,
+            74
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.9230769230769231,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "50d30738",
+      "originalHash": "c1808a15c7c8e81bf66f508023f03b45a77729982575eaac6d7375e03fcf071a",
+      "candidateHash": "2e753cf30b5827ec075947ef52a950d7f71d97e6480212bdac83a344f3726c73",
+      "candidate": {
+        "t": "FGF-23 e Metabolismo Mineral na DRC",
+        "qid": "50d30738",
+        "q": "Pessoa com doença renal crônica (DRC) G3 apresenta fator de crescimento de fibroblastos 23 (FGF23) elevado, calcitriol baixo e fósforo ainda normal. Qual ação adaptativa do FGF23 ajuda a explicar a ausência de hiperfosfatemia franca?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "gohil_imel_fgf23_phosphate_2019"
+        ],
+        "opts": [
+          "Aumentar reabsorção tubular de cálcio e elevar o calcitriol",
+          "Aumentar a excreção de fosfato pelos néfrons remanescentes",
+          "Reduzir a síntese de calcitriol e aumentar a absorção intestinal de fosfato",
+          "Elevar cotransportadores sódio-fosfato (NaPi) e aumentar a reabsorção de fosfato"
+        ],
+        "ans": 1,
+        "exp": "FGF23 favorece a excreção renal de fosfato pelos néfrons remanescentes, ajudando a manter o fósforo sérico normal apesar da menor capacidade renal global de excreção. Também reduz calcitriol, diminuindo a absorção intestinal de fosfato. Não se deve concluir que paratormônio (PTH) nunca regule FGF23: há evidência experimental de estímulo, e os resultados humanos dependem do contexto e tempo de exposição. O caso pergunta o efeito adaptativo sobre o balanço de fosfato, não uma causa única da elevação de FGF23. Fósforo normal não implica ausência de distúrbio hormonal e não cria indicação automática de quelante.",
+        "diff": "easy",
+        "cat": "drc"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "50d30738",
+        "op": "Explicar a manutenção de fósforo sérico normal na DRC pela ação fosfatúrica adaptativa do FGF23.",
+        "competency": "mecanismo",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "justification": "Reconhece função compensatória precoce, mas afirmação sobrePTHexige contraprova.",
+        "diff": "easy",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "Preserva conceito de compensação fosfatúrica deFGF23antes da hiperfosfatemia; remove negação universalPTH→FGF23cientificamente inadequada e ambígua.",
+      "problems": [],
+      "adversary": "O comando pede ação adaptativa que explica fósforo normal, mesmo conceito correto original. Não muda para causa única ou teste de uma hipótese terapêutica. ExperimentalPTH→FGFnão foi extrapolado para resposta humana universal. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Atribuir ao FGF23 aumento de calcitriol e ação primária de retenção de cálcio.",
+        "Associar menor calcitriol a maior absorção intestinal de fosfato.",
+        "Inverter o efeito de FGF23 sobre NaPi e reabsorção de fosfato."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "FGF23_NAPI",
+        "FGF23_VITD",
+        "PTH_FGF23_REGULATION",
+        "FGF23_EARLY"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "gohil_imel_fgf23_phosphate_2019",
+          "referenceHash": "d875c9444358d38f0306e96ff027c54f7335de1651c744c20f243d6a0ac21ef1",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": null
+        }
+      ],
+      "referenceRationale": "Revisão fisiológica específica substitui guideline geral de DRC; experimentos e CRIC ficam no mapa com desenhos/limites explícitos.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            53,
+            97,
+            61,
+            53
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.5901639344262295,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            59,
+            58,
+            75,
+            80
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.725,
+          "heuristic": 0
+        }
+      },
+      "identity": "Mesmo conceito correto original: compensaçãofosfatúricaporFGF23mantémfósforonormal. O enunciado foi desambiguado sem mudar para causa molecular exclusiva, e a negação universalPTH→FGFfoi removida da explicação. PreservaOP/competência/qid/ans.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    },
+    {
+      "qid": "0792a38e",
+      "originalHash": "565a33d63b50946a96cb6a23741e9f09f449d9485f92e362eba15f8cac30c136",
+      "candidateHash": "2afcc572969214a1d608d9fa0c85b6b546db304e57f6b1db68c7bb8764086c0b",
+      "candidate": {
+        "t": "Vitamina D e Rim",
+        "qid": "0792a38e",
+        "q": "Pessoa com doença renal crônica (DRC) G4 apresenta calcitriol baixo, paratormônio (PTH) 320 pg/mL e cálcio 8,2 mg/dL. Qual alteração renal participa diretamente da redução da vitamina D ativa?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "gohil_imel_fgf23_phosphate_2019"
+        ],
+        "opts": [
+          "Menor absorção intestinal da vitamina D ingerida na dieta",
+          "Menor atividade renal da 1α-hidroxilase que ativa o calcidiol",
+          "Menor 25-hidroxilação hepática responsável por produzir calcidiol",
+          "Menor expressão de receptores de vitamina D nas paratireoides"
+        ],
+        "ans": 1,
+        "exp": "A menor atividade da 1α-hidroxilase renal reduz a conversão de calcidiol em calcitriol. Na DRC, perda de massa renal funcional e regulação hormonal, incluindo fator de crescimento de fibroblastos 23 (FGF23) elevado, contribuem para essa limitação. Absorção intestinal de vitamina D, 25-hidroxilação hepática e expressão de receptores paratireoidianos são etapas ou processos distintos, não a reação renal de ativação perguntada. A queda de calcitriol pode favorecer hiperparatireoidismo secundário; isso não significa que toda pessoa com DRC G4 deva receber vitamina D ativa rotineiramente.",
+        "diff": "easy",
+        "cat": "drc"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "0792a38e",
+        "op": "Relacionar menor atividade renal de1α-hidroxilase à redução de calcitriol na DRC.",
+        "competency": "mecanismo",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "justification": "Reconhecimento da etapa renal de ativação da vitaminaD.",
+        "diff": "easy",
+        "reconciliation": "Classificação própria anterior aos candidatos e comando final foram reconciliados; sem elevação artificial por jargão ou extensão."
+      },
+      "justification": "Menor atividade renal1αlimita conversão de calcidiol em calcitriol; perda de massa e regulaçãoFGF23podem contribuir.",
+      "problems": [],
+      "adversary": "Absorção dietética,25-hidroxilação hepática e receptores paratireoidianos são processos diferentes. Não vira prescrição rotineira deDativa para todaDRCG4. Nenhum argumento plausível de anulação decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Confundir absorção intestinal com ativação renal da vitamina D.",
+        "Confundir a formação hepática de calcidiol com produção renal de calcitriol.",
+        "Confundir resistência/resposta paratireoidiana com síntese renal de vitamina D ativa."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Evidênciaverificada;sempendência;semeliminatório;recursosemargumentodecisivo;20/20→aprovada→LIBERADA.",
+      "verifiedClaims": [
+        "VITD_ACTIVATION",
+        "FGF23_VITD",
+        "ACTIVE_VITD_NON_HD"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_ckd_mbd_2017",
+          "referenceHash": "2b403aa25548c6a3ae7e7db9de59ff2e88925f9de0a5875b0578c63bcebcd1cd",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "gohil_imel_fgf23_phosphate_2019",
+          "referenceHash": "d875c9444358d38f0306e96ff027c54f7335de1651c744c20f243d6a0ac21ef1",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": null
+        }
+      ],
+      "referenceRationale": "Revisão fisiológica sustenta a enzima específica; diretriz MBD limita a implicação terapêutica, em vez de guideline geral de DRC sem foco no mecanismo.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            58,
+            97,
+            49,
+            59
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.6440677966101696,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            57,
+            61,
+            65,
+            61
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 2,
+          "ratio": 0.9384615384615385,
+          "heuristic": 0
+        }
+      },
+      "identity": "MesmoOP,competência e conceito correto reconhecível; qid,ans,catpreservados. Referências inadequadas foram substituídas por suporte adequado com justificativa e gate.",
+      "implementation": "Aplicar somenteA4exata e seis cards finais liberados. Não herdar gate após mudança material; preservarqid/FSRSe registros históricos."
+    }
+  ],
+  "scopeLimits": [
+    "Semcriação/remoção/fusãoautomática dosdoisretidos.",
+    "Seiscardstêmgateintegralpróprio;Isakovanãoaplicável.",
+    "Não é correção global741nemcalibraçãoempírica; não foi teste deUI."
+  ]
+}

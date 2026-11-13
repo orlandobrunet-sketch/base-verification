@@ -1,0 +1,321 @@
+{
+  "schema": 1,
+  "unitType": "shared_reference_card",
+  "cardId": "kdigo_anemia_2026",
+  "version": "C2",
+  "reviewer": "/root/medical_answer_bias/adpkd_independent_review",
+  "reviewDate": "2026-11-13",
+  "candidateFile": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\medical-answer-bias-analysis\\anemia-kdigo-card-candidate-C2.json",
+  "candidateFileHash": "aea80f4814b0e6be156502c4e27720b83a6fd1c32f329f68a276af232801fd9f",
+  "originalHash": "abf6ac5c382678150bc96c0686e03769e1021cf346fa9b3e61e4c7f519e56843",
+  "candidateHash": "46b3b968371f99d4c9a37afe931f0a3245b7b30fbfe12fcde20e7a55810bcd29",
+  "hashMethod": "SHA256(JSON.stringify(card)) preservando ordem dos campos do autor",
+  "verdict": "aprovada",
+  "confidence": "alta",
+  "evidence": "VERIFICADA",
+  "pending": "NENHUMA",
+  "publication": "LIBERADA",
+  "derivation": "Veredito de aprovação+evidênciaVERIFICADA/pendênciaNENHUMA,sem pendência decisiva ou contradição criada no inventário completo de consumidores.",
+  "source": {
+    "url": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+    "title": "KDIGO2026Clinical Practice Guideline for the Management of Anemia inCKD",
+    "publication": "Kidney International2026;109(Suppl1S):S1–S99",
+    "doi": "10.1016/j.kint.2025.06.006",
+    "opened": true,
+    "fullTextAvailable": true,
+    "accessLimit": "Página de apresentação retornou403; PDF oficial integral aberto e conferido. Nenhuma afirmação dependente dessa página permaneceu sem fonte."
+  },
+  "verifiedClaims": [
+    {
+      "claim": "Avaliação inicial inclui hemograma,reticulócitos,ferritina eTSAT.",
+      "location": "Practice Point1.1.1;Figura6;PDF páginas18–19 e34–35",
+      "verified": true
+    },
+    {
+      "claim": "Abordar causas corrigíveis,incluindo ferro,antes de iniciar AEE; investigar causas de hiporresponsividade antes de escalar.",
+      "location": "Practice Points3.1.2 e3.7.1;Figura8;PDF páginas23,27 e49",
+      "verified": true
+    },
+    {
+      "claim": "Ferritina eTSAT têm limitações; deficiência sistêmica de ferro é distinta de eritropoiese restrita por ferro.",
+      "location": "Capítulo1.2;Figuras3–4;PDF páginas32–34",
+      "verified": true
+    },
+    {
+      "claim": "Em adultos com anemia eDRC tratados comAEE,a meta deHb é estritamente abaixo de11,5g/dL.",
+      "location": "Recomendação3.3.1 ePractice Point3.3.1;PDF página24 e54",
+      "verified": true
+    },
+    {
+      "claim": "A decisão de iniciar AEE é individualizada; transfusão considera sintomas,riscos e contexto de transplante.",
+      "location": "Recomendação3.2.2;Practice Points4.1,4.2 e4.4;PDF páginas24 e28",
+      "verified": true
+    },
+    {
+      "claim": "Eritropoiese restrita por ferro substitui a nomenclatura deficiência funcional e se associa a sequestro por hepcidina/inflamação.",
+      "location": "Capítulo1.2 eFigura4;PDF páginas32–34",
+      "verified": true
+    }
+  ],
+  "adversary": "Testei se não acima equivale a abaixo, se a meta de manutenção pode ser confundida com limiar de início, se abaixo impõe uma meta individual única ou suspensão automática, e se valores em distratores viram afirmações corretas. C2 descreve a META, mantém individualização e corrige a relação estrita da recomendação. Não foi encontrada contradição nova nos23consumidores correntes/planejados.",
+  "eliminators": [],
+  "editorialScore": "NQ Editorial Score não aplicável ao card bibliográfico sem enunciado,alternativas ou distratores; não foi fabricado score20/20 de questão. A validade integral do card foi conferida por afirmação e por impacto compartilhado.",
+  "scope": {
+    "cardApprovedOnly": true,
+    "questionsNewlyApproved": [],
+    "consumersChecked": 23,
+    "plannedModifiedQuestions": 21,
+    "heldQuestionsUnchanged": [
+      "061c9bcb",
+      "1e6a4479"
+    ],
+    "holdRelease": false
+  },
+  "candidate": {
+    "label": "KDIGO Anemia in CKD 2026",
+    "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+    "journal": "Kidney International",
+    "ano": 2026,
+    "tipo": "Diretriz Internacional",
+    "badge": "GUIDELINE",
+    "badgeColor": "#6366f1",
+    "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+    "icon": "📋",
+    "resumo": "Diretriz KDIGO 2026 para anemia na DRC. Recomenda avaliar hemograma, reticulócitos, ferritina e saturação de transferrina e investigar causas reversíveis antes de iniciar ou escalar AEE. Reconhece que ferritina e saturação têm limitações e distingue deficiência sistêmica de ferro de eritropoiese restrita por ferro. Em adultos tratados com AEE, recomenda manter a meta de hemoglobina abaixo de 11,5 g/dL; decisão de iniciar AEE e transfundir deve ser individualizada por sintomas, riscos, comorbidades e contexto de transplante.",
+    "conclusao": "O tratamento seguro da anemia renal começa por definir a causa e a disponibilidade de ferro; AEE, ferro, HIF-PHI e transfusão não devem ser usados para perseguir um número isolado de hemoglobina.",
+    "curiosidade": "A diretriz substituiu o termo “deficiência funcional de ferro” por “eritropoiese restrita por ferro”, destacando que o ferro pode estar armazenado, mas indisponível à medula por ação da hepcidina e da inflamação."
+  },
+  "consumers": [
+    {
+      "qid": "32661acb",
+      "currentQuestionHash": "e6bef1a6dc3c1a8b82ab9f5ecb68715e8611dbfccdbcd2581fe622c57a0a7cb5",
+      "plannedQuestionHash": "e4897d68afd430b57f18aaf2d9d431af78ae1bac2ba881025f37cefee1625dd5",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "061c9bcb",
+      "currentQuestionHash": "a7be2ae7bfe1d765bf38df821ebdcfa4deea421ee01840a4a9fc57b04af25d19",
+      "plannedQuestionHash": "a7be2ae7bfe1d765bf38df821ebdcfa4deea421ee01840a4a9fc57b04af25d19",
+      "editorialHoldPreserved": true,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "Permanece retido e idêntico; o card não concede autorização para reescrever ou publicar nova versão desse item."
+    },
+    {
+      "qid": "a3b199d4",
+      "currentQuestionHash": "7ba47e83a3fcdafc759aa9001adfe3a8c32092b78c8e455390233fe3004da486",
+      "plannedQuestionHash": "f5b4d2239b232a6c86dfb5a55beee212c81e1c4990d8fd524935d7c3b48ff53f",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "c7e8cc9a",
+      "currentQuestionHash": "44fcb79246eb967798bd56ea8d70a0fa5f6606dda2b0ddd59c8d7cd1f78db467",
+      "plannedQuestionHash": "54b053f938d8f1c9c6da999511296a7004831972ecdeeb4df7cb6d31e851b701",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "3c54eaa0",
+      "currentQuestionHash": "0bdc817be0dd65516e997d3a4e89320775b0ed2278f60732af3eacb3059de4b9",
+      "plannedQuestionHash": "848b482f1d312fc1713cf4fb812c591d98f2074c777950270720382f904025cb",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "4c4445f5",
+      "currentQuestionHash": "a847e79732312a5a04a2edc17d1c5af8303393f46b3361156372f02175386b03",
+      "plannedQuestionHash": "86769d245abe89d98e535cef73661681f48355117b967a27fd55d42704bfa0c0",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "a97509f5",
+      "currentQuestionHash": "4f4d9207f1edb1bb9cc8f43aa050dfb976a6e6299d6ecf794551f4b9c5e03ac2",
+      "plannedQuestionHash": "60e0c203e6bd9357f3e638d0a558e3485fb669236338258344f42e4d577c6067",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "78823c61",
+      "currentQuestionHash": "759185e354d9ad3fb87018c5996b705b2141026a78ac83fb7113f564ae0f6de5",
+      "plannedQuestionHash": "31ca7989734d5bbecda4e51d97197101cab0c2d6675c6fcbeaca635e8a3dfdd4",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "911fdbb4",
+      "currentQuestionHash": "5f0a43204fe27ef4b9d4a65403505f41e875fd8529ebc7a9a18f7dd63981d142",
+      "plannedQuestionHash": "63382ee15874517c4cd5ebdbeb72af0d324cfb4678d7d658a75346bf3d2dd111",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "29338dc5",
+      "currentQuestionHash": "67d087245a6ae6c3c33d387af0cce273c933732edfc28b76dfd5809ffb80d3c0",
+      "plannedQuestionHash": "eeaabe290fe4bec423dddd81af44c63a591788a5312974eed33366306e0ffdd6",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "83ae1c0b",
+      "currentQuestionHash": "1074e75cbd410dac6b0a7f5b4cedefe236f67ed2e5af882cf5aafc4d304a254e",
+      "plannedQuestionHash": "dd564a9b86f41df82b0109525da0613e9881aee5443a662cb44a0cbc2a37be49",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "81e1082b",
+      "currentQuestionHash": "b41b0a0e7157a91777f29c3cb023abf06e6feddf2e1ad2fcf2ad6a197e837243",
+      "plannedQuestionHash": "8b6b8f3d5b3ac4a535ee219bfb5c492c607b6f52ed3df69975f0d57472dccdd7",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "5b9730b8",
+      "currentQuestionHash": "3714e7012ad2a8bd2dd2cb418f437ae39ef49e495931f65e8b8bdbe4ca0cb2ce",
+      "plannedQuestionHash": "4dade96de87e52c459f21cf9511841edd0c3911d784fddee2a9bf8413c7c70ea",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "eacfb643",
+      "currentQuestionHash": "385418406cf89171b9656e8c06333f009764f7bcc4851e1817b7657fd0210498",
+      "plannedQuestionHash": "b519270f29e5408e5e45512a1279801f574427daa66434839152e209f6b30b29",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "Limiar de início de AEE e limite superior de manutenção permanecem conceitos diferentes; a correção do card não os confunde."
+    },
+    {
+      "qid": "6f1598c5",
+      "currentQuestionHash": "31b58b219733f2a4ab7fd40b8d4fc23223a5ea950906b98aba14256661c309fe",
+      "plannedQuestionHash": "922b17f6c4b3b9a17eee4c39c81d3ce457436c9527da3e905661324db7478298",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "A correção harmoniza o card com o gabarito que já dizia abaixo de11,5. A versão planejada também distingue limite superior de meta individual;10–11pode ser uma meta individual válida."
+    },
+    {
+      "qid": "5cf5b826",
+      "currentQuestionHash": "378c2eeb712db06e4a46613b431b948858227845a3cd5255789d0d5c1c9a1a6a",
+      "plannedQuestionHash": "3837b121fb43b67ea85ea0d1dc192e4b4bcfd5a813edef13f78e35e30dc6817e",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "f44b5edc",
+      "currentQuestionHash": "d55e1d12f650d8325147e08f1e6ff70cecb069d0bf8480907d391de144323e73",
+      "plannedQuestionHash": "989ed1f10e9deacbbbf841bae9b55c5c5a544a6f0a38fb586419df954ad4720b",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "12121893",
+      "currentQuestionHash": "07b77fd86a02c3db13ce32598e188b2847c9d0cf76f26185ae73017c2df1450a",
+      "plannedQuestionHash": "c06a8cb72055aacdd06482ed850594eac9b5a163e7a96c77264fd2d46657c906",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "1ba5a94d",
+      "currentQuestionHash": "3bb0bb9183bcbc5b48e477b5757286d20e913ba2d397be252184dbe97102524f",
+      "plannedQuestionHash": "281f107b8cf628ec68d6af7946f430b622c8ef44c99f4ab964e93ca0e6046ed3",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "43834a55",
+      "currentQuestionHash": "57b6dc967c2908893a3bfc924ccad4f51e4daa54045549fd9093ebccfec6f52f",
+      "plannedQuestionHash": "5e3c62163c89afa5f1c870d55475ccf0e15876e699cedd3b60e0bb19cf4b62da",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "5d9455ca",
+      "currentQuestionHash": "50e7bdc0fa35a9f4758ff6dd723ce15d130cb6cdb08d90b703a27f84f1a941fd",
+      "plannedQuestionHash": "e7f566f64481e74dcf1f2e30bc5e664a88eb3ab68d72a471e313294e5876c533",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "74186985",
+      "currentQuestionHash": "a9da040e097c98e5ebb8ef1071c92ad9c70557dd35bbceeb7f4ccf53a524581d",
+      "plannedQuestionHash": "ea279590f4608f4abe46ddc59588e63dbd94c8856659232970a10df5764d0e98",
+      "editorialHoldPreserved": false,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "O gabarito não exige meta de manutenção igual ou superior a11,5g/dL; o restante do conteúdo não foi reavaliado integralmente neste gate."
+    },
+    {
+      "qid": "1e6a4479",
+      "currentQuestionHash": "76ed2050d7a3e91b338cf85d03fc0ea88286b3f7bf996c479a2f1eb229280c61",
+      "plannedQuestionHash": "76ed2050d7a3e91b338cf85d03fc0ea88286b3f7bf996c479a2f1eb229280c61",
+      "editorialHoldPreserved": true,
+      "compatibility": "Nenhuma contradição nova criada pela correção da meta de Hb do card.",
+      "reviewScope": "Compatibilidade com esta alteração compartilhada; não é liberação editorial da questão.",
+      "questionPublicationAuthorization": "NÃO EMITIDA NESTE GATE",
+      "note": "Permanece retido e idêntico; o card não concede autorização para reescrever ou publicar nova versão desse item."
+    }
+  ],
+  "implementation": "Substituir apenas o card de hash original pelo card C2 exato. PreservarID/URL/ano/tipo e todos os demais campos. Não alterar ou liberar os2itens retidos por causa deste gate; não substituir aprovações dos21candidatos por esta revisão de compatibilidade."
+}

@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "reviewer": "/root",
+  "reviewDate": "2026-11-13",
+  "version": "R1-root",
+  "proposalFile": "reference-retirement-overlay-R1.json",
+  "proposalSha256": "1099f72ab480f066289f37c62b5fd3332fa2ff16a8701ce1b0fcbc757fbec6b2",
+  "baseCommit": "2607f215be39a08fc618aa4af384b2d5e9cdee7a",
+  "scope": "Destinação de duas entradas de referência sem consumidores depois das 107 revisões exatas. Não reavalia resultados clínicos nem concede publicação a questão ou card; autoriza somente retirar essas entradas do catálogo corrente e conservar as fontes publicadas anteriores no histórico.",
+  "norms": ["Handbook §13", "Handbook §18.4", "Handbook §18.5", "Handbook §19", "revisar-nefroquest v2 — disciplina de implementação"],
+  "independentCounterproof": "Inventário calculado diretamente dos objetos do commit publicado 2607 e do snapshot107, sem aceitar a contagem da proposta. DCOR tinha apenas67035e0e e FIDELITY apenas3d8fc3fe; ambos ficam sem vínculo. As duas questões finais mantêm quatro alternativas, gabarito e identidade e possuem outras referências existentes, liberadas nos seus gates exatos. Nenhum outro card perde o último consumidor. A guarda oficial ORPHAN_REFERENCE impediria a integração. Não se criou vínculo para satisfazê-la.",
+  "adversary": "A retirada não apaga um estudo da literatura, não invalida uma questão salva e não muda o conjunto das 107 versões aprovadas. O risco é perder a referência antiga em provas e revisões; por isso a aplicação depende do arquivamento integral das fontes publicadas17.09 e dos bindings de ambos os consumidores nos quatro perfis. A versão corrigida de DCOR permanece no pacote editorial documental, sem vitrine corrente. Voltar a usar estes cards no futuro exige decisão e revisão formais.",
+  "entries": [
+    {"id": "dcor_trial", "operation": "remove_current_reference_card", "decisionPayloadHash": "42b8f229567790ea639452181d8fbe8bb1d5ad5e288285670c083ce7376bc196", "verdict": "aposentar", "evidence": "VERIFICADA", "pending": "NENHUMA", "publication": "BLOQUEADA", "retirementAuthorization": "APROVADA", "archiveConsumer": "67035e0e", "nqEditorialScore": null},
+    {"id": "finerenone_2025", "operation": "remove_current_reference_card", "decisionPayloadHash": "6be89e62334b8d1ca9e024a8e8f61b4765bf76c0d3adf81f1cc2bab546a6c29f", "verdict": "aposentar", "evidence": "VERIFICADA", "pending": "NENHUMA", "publication": "BLOQUEADA", "retirementAuthorization": "APROVADA", "archiveConsumer": "3d8fc3fe", "nqEditorialScore": null}
+  ],
+  "publicationDerivation": "BLOQUEADA: aposentar não é veredito de aprovação. A autorização operacional de retirada é distinta da publicação clínica e não altera os gates imutáveis das questões.",
+  "implementationConditions": ["Remover apenas os dois IDs correntes com os hashes conferidos na proposta", "Não alterar data/topics.js em relação ao snapshot107", "Arquivar os dois cards exatamente como publicados17.09, vinculados aos consumidores anteriores", "Resolver os oito perfis históricos com os mesmos textos, respostas, cards e política update-required", "Preservar qid, FSRS e avaliações históricas", "Não contar os cards como questões aprovadas nem usar NQ Editorial Score de questão para card"]
+}

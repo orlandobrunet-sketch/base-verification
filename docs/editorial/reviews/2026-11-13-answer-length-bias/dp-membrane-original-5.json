@@ -1,0 +1,186 @@
+{
+  "schema": 1,
+  "status": "FROZEN_ORIGINAL",
+  "rows": [
+    {
+      "qid": "8fee305a",
+      "index": 25,
+      "title": "PET — Transporte Peritoneal Rápido",
+      "originalHash": "e04a5cf01bb6da9cf0241fd84729ae7c57d6f7e2b7b3036cb15ca5a370624d0a",
+      "sourceQuestion": {
+        "t": "PET — Transporte Peritoneal Rápido",
+        "qid": "8fee305a",
+        "q": "O PET de 4 horas de um paciente em diálise peritoneal mostra taxa rápida de transferência de pequenos solutos, e a ultrafiltração piora nas permanências longas com glicose. Qual ajuste é mais coerente com esse perfil?",
+        "refs": [
+          "ispd_membrane_dysfunction_2021"
+        ],
+        "opts": [
+          "Individualizar a prescrição com permanências mais curtas, frequentemente por DP automatizada, e considerar icodextrina na permanência longa",
+          "Alongar todas as permanências com glicose para preservar o gradiente osmótico por mais tempo",
+          "Trocar obrigatoriamente para hemodiálise apenas pelo resultado do PET, mesmo sem problema clínico de volume",
+          "Reduzir o número de trocas, pois transporte rápido implica remoção insuficiente de pequenos solutos"
+        ],
+        "ans": 0,
+        "exp": "Na taxa rápida de transferência peritoneal de solutos, a glicose difunde-se mais cedo para a circulação e o gradiente osmótico das permanências longas se dissipa, podendo reduzir a ultrafiltração. Permanências mais curtas, muitas vezes viabilizadas por DP automatizada, e icodextrina na permanência longa podem mitigar esse problema. O PET orienta uma prescrição individualizada; seu resultado isolado não determina troca obrigatória de modalidade. Transporte rápido favorece a difusão de pequenos solutos, mas pode comprometer o balanço hídrico em permanências prolongadas.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "queue": {
+        "qid": "8fee305a",
+        "title": "PET — Transporte Peritoneal Rápido",
+        "family": "Diálise peritoneal",
+        "status": "NA_FILA",
+        "uniqueLongest": true,
+        "ratio": 1.2990654205607477,
+        "priority": false,
+        "refs": [
+          "ispd_membrane_dysfunction_2021"
+        ]
+      }
+    },
+    {
+      "qid": "cfa20f08",
+      "index": 319,
+      "title": "DP — Rastreio de Ultrafiltração Insuficiente",
+      "originalHash": "e128c21643f736560728b8da28d2407a2313934f878bed4011adbc84e63b1f7c",
+      "sourceQuestion": {
+        "qid": "cfa20f08",
+        "q": "Paciente em diálise peritoneal apresenta edema e ultrafiltração insuficiente. Em PET de 4 horas com glicose a 3,86%/dextrose a 4,25%, a ultrafiltração líquida é 300 mL. Como interpretar inicialmente esse resultado?",
+        "opts": [
+          "O valor funciona como rastreio de baixa capacidade de ultrafiltração; devem-se confirmar medidas e investigar transporte rápido, disfunção intrínseca, problema mecânico, vazamento e absorção aumentada",
+          "O resultado exclui disfunção da membrana porque qualquer ultrafiltração positiva acima de 250 mL é normal",
+          "O resultado confirma encapsulamento peritoneal esclerosante e dispensa imagem ou avaliação clínica",
+          "O valor demonstra exclusivamente falha de aquaporina e torna desnecessária a avaliação do transporte de solutos"
+        ],
+        "ans": 0,
+        "exp": "A ISPD recomenda suspeitar de capacidade insuficiente de ultrafiltração quando a ultrafiltração líquida no PET de 4 horas é menor que 400 mL com glicose a 3,86%/dextrose a 4,25% — ou menor que 100 mL com 2,27%/2,5% — e/ou quando a ultrafiltração diária não mantém o estado volêmico. O limiar é um teste de rastreio, sujeito a erro, e não identifica sozinho o mecanismo. É preciso verificar drenagem e volume, excluir disfunção do cateter ou vazamento e integrar taxa de transporte de solutos e avaliação do transporte de água livre.",
+        "cat": "dialise",
+        "diff": "hard",
+        "refs": [
+          "ispd_membrane_dysfunction_2021"
+        ],
+        "t": "DP — Rastreio de Ultrafiltração Insuficiente"
+      },
+      "queue": {
+        "qid": "cfa20f08",
+        "title": "DP — Rastreio de Ultrafiltração Insuficiente",
+        "family": "Diálise peritoneal",
+        "status": "NA_FILA",
+        "uniqueLongest": true,
+        "ratio": 1.8018018018018018,
+        "priority": true,
+        "refs": [
+          "ispd_membrane_dysfunction_2021"
+        ]
+      }
+    },
+    {
+      "qid": "5d9f1a59",
+      "index": 348,
+      "title": "DP — Disfunção Intrínseca da Membrana",
+      "originalHash": "388a6d5d53fbedf487bb179e18839dcfd1f99c6a6f49c2be36368a3d6882d895",
+      "sourceQuestion": {
+        "t": "DP — Disfunção Intrínseca da Membrana",
+        "qid": "5d9f1a59",
+        "q": "Paciente anúrico em diálise peritoneal tem sobrecarga volêmica e baixa ultrafiltração no PET com glicose a 3,86%. A queda do sódio do dialisato em 1 hora é de apenas 3 mmol/L. Qual interpretação orienta melhor a conduta?",
+        "refs": [
+          "ispd_membrane_dysfunction_2021"
+        ],
+        "opts": [
+          "A queda de sódio ≤5 mmol/L sugere redução do transporte de água livre e baixa condutância osmótica à glicose; deve-se discutir risco de manter DP e possível transição de modalidade de forma compartilhada",
+          "O achado confirma apenas transporte rápido de solutos e será necessariamente corrigido por permanências mais curtas",
+          "A queda pequena de sódio indica transporte de água livre preservado e exclui lesão intrínseca da membrana",
+          "O resultado diagnostica EPS, mesmo sem sintomas intestinais ou achados radiológicos"
+        ],
+        "ans": 0,
+        "exp": "No PET com glicose a 3,86%/dextrose a 4,25%, queda do sódio do dialisato de 5 mmol/L ou menos em 1 hora indica redução do transporte de água livre, compatível com baixa condutância osmótica à glicose. Quando adquirida após anos em DP, essa disfunção pode refletir alterações estruturais e geralmente responde mal a simples aumento da exposição à glicose. Em pessoa anúrica com controle volêmico inadequado, devem-se discutir os riscos de continuar a técnica e eventual transição para hemodiálise, respeitando circunstâncias e objetivos. O teste não diagnostica EPS isoladamente.",
+        "diff": "hard",
+        "cat": "dialise"
+      },
+      "queue": {
+        "qid": "5d9f1a59",
+        "title": "DP — Disfunção Intrínseca da Membrana",
+        "family": "Diálise peritoneal",
+        "status": "NA_FILA",
+        "uniqueLongest": true,
+        "ratio": 1.7652173913043478,
+        "priority": true,
+        "refs": [
+          "ispd_membrane_dysfunction_2021"
+        ]
+      }
+    },
+    {
+      "qid": "985e2d99",
+      "index": 483,
+      "title": "DP de Longa Duração — Transporte Rápido e Ultrafiltração",
+      "originalHash": "602b8e31e51cee4f9b2ed7fad2848db341184acaf84bb7a02f162f6e4b25f312",
+      "sourceQuestion": {
+        "t": "DP de Longa Duração — Transporte Rápido e Ultrafiltração",
+        "qid": "985e2d99",
+        "q": "Paciente em diálise peritoneal há oito anos passa a apresentar transporte rápido de solutos e perda de ultrafiltração em permanências longas. Qual mecanismo e avaliação são mais coerentes?",
+        "refs": [
+          "ispd_membrane_dysfunction_2021"
+        ],
+        "opts": [
+          "Neoangiogênese e remodelamento/fibrose aumentam a área vascular e dissipam mais cedo o gradiente de glicose; PET, ultrafiltração medida e transporte de água livre ajudam a definir o mecanismo",
+          "Fibrose exclusiva do cateter aumenta a depuração de creatinina pela membrana",
+          "Colonização bacteriana assintomática é a causa obrigatória de todo transporte rápido",
+          "Calcificação peritoneal isolada confirma encapsulamento peritoneal esclerosante sem imagem ou clínica"
+        ],
+        "ans": 0,
+        "exp": "Exposição prolongada a glicose, produtos de degradação e episódios inflamatórios pode promover neoangiogênese e fibrose. Maior área capilar acelera o transporte de solutos e a absorção de glicose, dissipando o gradiente osmótico durante permanências longas e reduzindo ultrafiltração. O mecanismo não deve ser presumido apenas pelo tempo em DP: PET quantifica transporte, a ultrafiltração líquida rastreia capacidade e a queda precoce do sódio avalia transporte de água livre. Problema mecânico, vazamento e absorção aumentada também precisam ser excluídos.",
+        "diff": "hard",
+        "cat": "dialise"
+      },
+      "queue": {
+        "qid": "985e2d99",
+        "title": "DP de Longa Duração — Transporte Rápido e Ultrafiltração",
+        "family": "Diálise peritoneal",
+        "status": "NA_FILA",
+        "uniqueLongest": true,
+        "ratio": 1.891089108910891,
+        "priority": true,
+        "refs": [
+          "ispd_membrane_dysfunction_2021"
+        ]
+      }
+    },
+    {
+      "qid": "57aacceb",
+      "index": 486,
+      "title": "PET — Transporte Peritoneal Lento",
+      "originalHash": "4625acaa00b623ef7f15e0ecc19a820a0136c9858922219746ec53818b40805f",
+      "sourceQuestion": {
+        "t": "PET — Transporte Peritoneal Lento",
+        "qid": "57aacceb",
+        "q": "O PET de 4 horas mostra taxa lenta de transferência de pequenos solutos, com ultrafiltração preservada. Qual princípio deve orientar a prescrição?",
+        "refs": [
+          "ispd_membrane_dysfunction_2021"
+        ],
+        "opts": [
+          "Permanências mais longas podem favorecer o equilíbrio de pequenos solutos, mas modalidade, volumes e tempos devem ser individualizados conforme depuração, volume, função residual e objetivos",
+          "Todo transportador lento deve usar obrigatoriamente DP manual, independentemente de estilo de vida ou adequação",
+          "Permanências muito curtas são sempre preferíveis, porque o transporte lento aumenta a difusão inicial de solutos",
+          "O PET isoladamente determina transferência imediata para hemodiálise"
+        ],
+        "ans": 0,
+        "exp": "Uma taxa lenta de transferência peritoneal significa que pequenos solutos levam mais tempo para se aproximar do equilíbrio entre sangue e dialisato. Permanências mais longas podem melhorar a depuração e a preservação do gradiente de glicose costuma favorecer ultrafiltração, mas não existe modalidade universalmente obrigatória. A prescrição deve integrar sintomas, remoção de solutos e água, função renal residual, preferências e carga terapêutica. O PET orienta a individualização; não substitui avaliação clínica nem determina sozinho a modalidade.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "queue": {
+        "qid": "57aacceb",
+        "title": "PET — Transporte Peritoneal Lento",
+        "family": "Diálise peritoneal",
+        "status": "NA_FILA",
+        "uniqueLongest": true,
+        "ratio": 1.6964285714285714,
+        "priority": true,
+        "refs": [
+          "ispd_membrane_dysfunction_2021"
+        ]
+      }
+    }
+  ]
+}

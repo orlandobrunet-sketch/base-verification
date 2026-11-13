@@ -1,0 +1,1595 @@
+{
+  "schema": 1,
+  "reviewer": "/root/medical_answer_bias (independente de autoriaadpkd_independent_review)",
+  "reviewDate": "2026-11-13",
+  "version": "A2",
+  "candidateFile": "anca-candidates-A2.json",
+  "candidateFileHash": "32a31020010367f512adc6a41c468e8ad1189e62483cf76a088fc01ebc5db89f",
+  "independentClassificationFrozenBeforeCandidates": "anca-independent-classification-A2.json",
+  "norms": {
+    ".claude/skills/revisar-nefroquest/SKILL.md": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef",
+    ".claude/skills/revisar-nefroquest/references/output-contract.md": "4a20348ac71a07836b4611d574496d97960b27a2bbfdcf1f1ed318396f0edcb8",
+    ".claude/skills/revisar-nefroquest/references/verification-protocol.md": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df",
+    "docs/editorial/annex-c-nefrologia.md": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+  },
+  "authority": "Revisão formal pela skill local revisar-nefroquest; autorização médica explícita do usuário existe.",
+  "derivation": "LIBERADA deriva de aprovação e VERIFICADA/NENHUMAouPARCIALMENTEVERIFICADA/NÃODECISIVA, nenhum eliminatório/recurso decisivo. Todos13objetos finais foram avaliados;12mudanças e1inalterado.",
+  "counts": {
+    "reviewed": 13,
+    "approved": 13,
+    "changed": 12,
+    "unchanged": 1,
+    "blocked": 0
+  },
+  "requiredSharedCard": {
+    "file": "rave-card-candidate-C1.json",
+    "gate": "rave-card-independent-gate-C1.json",
+    "candidateHash": "e861f65f088c34f6016832ab37de64216c64494870c14cb68a70603cef068769"
+  },
+  "sources": [
+    {
+      "id": "KDIGO-ANCA-2024",
+      "existingRef": "kdigo_anca_2024",
+      "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2024-ANCA-Vasculitis-Guideline-Update.pdf",
+      "access": "PDF oficial integral aberto, 47 páginas. Não confundir recomendações históricas de avacopan com evidência válida após a retratação de 2026.",
+      "locators": [
+        "Diagnóstico, seção 9.1, S90–S91 (PDF páginas 21–22): pauci-imune, necrose/crescentes, testes MPO/PR3, ANCA negativo e Figura 1/PP9.1.1 sobre biópsia sem atraso da imunossupressão.",
+        "Rec9.3.1.1: glicocorticoide com rituximabe ou ciclofosfamida para indução. Corpo S96–S97 (PDF páginas 27–28): RITUXVAS combinado, profilaxia Pneumocystis, IgG basal e semestral e PP9.3.1.2 para creatinina >4 mg/dL.",
+        "S94 (PDF página 25): descrição de antagonismo do receptor de C5a. Usado somente como farmacologia, sem importar a recomendação histórica de eficácia de avacopan.",
+        "PP9.3.1.9/9.3.1.10, S99–S100 (PDF páginas 30–31): considerar troca plasmática em creatinina >3,4 mg/dL, diálise/elevação rápida, hemorragia alveolar com hipoxemia; acrescentar na sobreposição anti-MBG.",
+        "Seção 9.3.2 e Figura 14: rituximabe ou azatioprina com baixa dose de glicocorticoide; escolha individual. Esquema MAINRITSAN de 500 mg ×2, meses 6/12/18."
+      ]
+    },
+    {
+      "id": "RITUXVAS-2010",
+      "existingRef": "rituxvas_study",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa0909169",
+      "secondaryPrimaryRecord": "https://pubmed.ncbi.nlm.nih.gov/20647198/",
+      "access": "Acesso direto à editora negado e página direta PubMed retornou somente rodapé. Trechos completos de Methods/Results/Conclusions do artigo primário foram recuperados pela indexação da própria editora/PubMed. Não declarar leitura integral do artigo. O esquema combinado e o limite de atribuição são corroborados pelo PDF integral KDIGO 2024.",
+      "verifiedDetailsFromIndexedPrimary": "44 participantes, randomização 3:1; rituximabe 375 mg/m² semanal ×4 com dois pulsos de ciclofosfamida e GC; controle ciclofosfamida IV por 3–6 meses seguida de azatioprina e GC. Remissão sustentada em 12 meses 76% vs82%, sem superioridade e sem redução de eventos adversos graves precoces.",
+      "decisiveCorroboration": "KDIGO-ANCA-2024, S96–S97, descrição do RITUXVAS e PP9.3.1.2."
+    },
+    {
+      "id": "PEXIVAS-2020",
+      "existingRef": "pexivas_trial",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32053298/",
+      "doi": "10.1056/NEJMoa1803537",
+      "access": "Resumo primário PubMed aberto. Não declarar leitura integral NEJM.",
+      "locators": [
+        "Abstract Methods/Results: 704 participantes; sete trocas em14dias; composto morte/falência renal HR0,86, IC95%0,65–1,13; GC reduzido não inferior e menos infecções graves."
+      ]
+    },
+    {
+      "id": "MAINRITSAN-2014",
+      "existingRef": "mainritsan_trial",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25372085/",
+      "doi": "10.1056/NEJMoa1404231",
+      "access": "Resumo primário PubMed aberto. Não declarar leitura integral NEJM.",
+      "locators": [
+        "Abstract Methods/Results: 115 participantes após indução CYC/GC; RTX500mg dias0/14 e meses6/12/18, AZA até mês22. Recidiva maior no mês28:3/57(5%) vs17/58(29%). Comparação de esquema fixo, não de doses guiadas apenas por ANCA."
+      ]
+    },
+    {
+      "id": "RAVE-2010",
+      "existingRef": "rave_study",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3137658/",
+      "authorRecord": "https://scholars.duke.edu/publication/727436",
+      "doi": "10.1056/NEJMoa0909905",
+      "access": "Manuscrito primário integral aberto no PMC; registro institucional de coautores Duke aberto.",
+      "locators": [
+        "Cabeçalho: Stone JH como primeiro autor; N Engl J Med2010;363(3):221–232.",
+        "Methods/Treatments: RTX375mg/m² semanal ×4 ou CYC2mg/kg/dia ajustada à função renal; ambos com o mesmo regime de GC. Indução6meses.",
+        "Results e Discussion:64% vs53% remissão sem prednisona em6meses, não inferioridade; subgrupo recidivante67% vs42%; sem diferença significativa global de eventos adversos.",
+        "Discussion/limitations: excluídos creatinina >4,0mg/dL e hemorragia alveolar com necessidade de suporte ventilatório. Comparação permanece incerta nesses grupos;6meses insuficientes para alguns efeitos cumulativos."
+      ],
+      "sharedCardIssue": "O card atual erra autor e paginação e atribui minimização de toxicidade gonadal ao resultado do RAVE sem demonstrá-la no ensaio de6meses. Proposta de card separada, sem alteração no app."
+    },
+    {
+      "id": "EULAR-2022-update",
+      "existingRef": "eular_aav_2022",
+      "url": "https://opinvisindi.is/bitstreams/eeca1efb-a428-4f38-a857-754169e589b4/download",
+      "doi": "10.1136/ard-2022-223764",
+      "access": "PDF primário integral no repositório institucional de coautor; publicação final Ann Rheum Dis2024;83(1):30–47.",
+      "locators": [
+        "Recomendação2 e diagnóstico: imunoensaios específicos de PR3/MPO preferidos, sorologia isolada insuficiente; padrão perinuclear não substitui o fenótipo. Diagnóstico reconhece associação de MPA/MPO com doença pulmonar intersticial."
+      ],
+      "temporalLimit": "Não usar as seções históricas de avacopan como comprovação atual de eficácia."
+    },
+    {
+      "id": "EGPA-guideline-2023",
+      "existingRef": "egpa_guideline_2023",
+      "url": "https://siaaic.org/wp-content/uploads/2023/05/Evidence-based-guideline-EGPA_NRR_090523.pdf",
+      "doi": "10.1038/s41584-023-00958-w",
+      "access": "PDF primário integral disponibilizado por sociedade médica; Nat Rev Rheumatol2023;19:378–393.",
+      "locators": [
+        "Statements1–4, especialmente Statement4/PDF páginas6–7: ANCA30–40%, MPO predominante; associações fenotípicas com sobreposição; ANCA negativo não exclui; testes antígeno-específicos mais informativos que p-ANCA isolado."
+      ]
+    },
+    {
+      "id": "KDIGO-IgAN-2025",
+      "existingRef": "kdigo_igan_igav_2025",
+      "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+      "access": "PDF oficial integral aberto,71páginas.",
+      "locators": [
+        "PP1.5.3, S26/S50 (PDF páginas26/50): perda≥50%TFGe em≤3meses depois de excluir causas reversíveis/outros diagnósticos; biópsia; CYC+GC sistêmico, profilaxias; crescentes sem queda funcional não definem RPGN e evidência RTX insuficiente."
+      ]
+    },
+    {
+      "id": "FDA-NOOH-April2026",
+      "existingRef": "fda_tavneos_nooh_2026",
+      "url": "https://www.fda.gov/media/192160/download",
+      "agencyNotice": "https://www.fda.gov/drugs/drug-alerts-and-statements/cder-proposes-withdraw-approval-tavneos",
+      "federalRegister": "https://www.federalregister.gov/documents/2026/04/30/2026-08455/chemocentryx-inc-proposal-to-withdraw-approval-of-new-drug-application-for-tavneos-avacopan-capsule",
+      "access": "Carta oficial integral de24páginas e aviso regulatório federal abertos. Carta/nota CDER27/04/2026; publicação Federal Register30/04/2026.",
+      "locators": [
+        "Readjudicação pós-fechamento e pós-descegamento de nove participantes, não divulgada; dados comprometidos não estabelecem eficácia; informações materiais inexatas. Proposta de retirar aprovação nos EUA e oportunidade de audiência, não decisão final mundial."
+      ],
+      "safetyAdditionalPrimary": "https://www.fda.gov/media/191708/download"
+    },
+    {
+      "id": "NEJM-retraction-2026",
+      "existingRef": "advocate_retraction_2026",
+      "url": "https://doi.org/10.1056/NEJMe2608684",
+      "access": "Texto direto NEJM403. Existência/data da retratação corroboradas em comunicação primária oficial Health Canada aberta; motivos detalhados conferidos no documento integral FDA e nos trechos indexados da nota NEJM. Não declarar nota NEJM integralmente aberta.",
+      "corroboration": "https://recalls-rappels.canada.ca/en/alert-recall/tavneos-avacopan-and-health-canada-s-review-data-integrity-concerns",
+      "locators": [
+        "Health Canada, Background Information: retratação pelo NEJM em29/06/2026 por integridade dos dados do ADVOCATE."
+      ]
+    },
+    {
+      "id": "Avacopan-mechanism-primary",
+      "existingRefSupport": "kdigo_anca_2024 descreve receptor de C5a; acréscimo proposto em ae0f4fef, sem substituir as duas refs existentes",
+      "url": "https://www.tga.gov.au/resources/auspmd/tavneos",
+      "label": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c93cbc0b-29a3-46a5-9c85-41815ea5cf4a",
+      "access": "Página primária regulatória TGA e bula submetida pelo fabricante no DailyMed, revisão maio2026, abertas integralmente.",
+      "locators": [
+        "TGA/How this medicine works: antagonista seletivo do receptor humano C5aR1/CD88; não inibe diretamente formação de C5b-9. DailyMed12.1/12.2: antagonista C5aR, bloqueio de ativação/migração neutrofílica; significado farmacodinâmico clínico não estabelecido. Uso somente para farmacologia, não para validar resultados do ensaio retratado ou status regulatório atual."
+      ]
+    },
+    {
+      "id": "EMA-final-August2026-context",
+      "url": "https://www.ema.europa.eu/en/medicines/human/referrals/tavneos",
+      "access": "Página primária regulatória integral aberta.",
+      "locators": [
+        "Decisão final vinculante da Comissão Europeia em04/08/2026. Confirma por que a proposta histórica da FDA não pode ser apresentada como status mundial atual."
+      ],
+      "inCandidate": "Não inserida alegação sobre a decisão europeia no item; serve de checagem contra extrapolação e não demanda novo card no pacote."
+    },
+    {
+      "id": "KDIGO-response-September2026-access-limit",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42710838/",
+      "doi": "10.1016/j.kint.2026.08.012",
+      "access": "Registro primário PubMed aberto: editorial de Rovin/Jayne/Sanders/Tesar/Floege publicado online08/09/2026, sem resumo. Texto integral da editora/Kidney International/ScienceDirect negado. Registro institucional Ohio State confirma identidade, sem disponibilizar o texto.",
+      "inCandidate": "Não se atribui conclusão a este editorial não lido. A validade do ADVOCATE não depende de supor a posição do editorial: fonte FDA íntegra e retratação corroborada permanecem o fundamento. Revisor deve registrar o limite de acesso e não supor leitura."
+    }
+  ],
+  "independentSourceVerification": {
+    "KDIGO": {
+      "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2024-ANCA-Vasculitis-Guideline-Update.pdf",
+      "access": "PDF oficial integral aberto; diagnósticoS90–S91, indução e segurançaS95–S98, trocaS99–S100 e manutençãoS100+ foram lidos independentemente. Recomendações históricas avacopan não foram usadas como eficácia atual."
+    },
+    "PRIMARY_RCT_ABSTRACTS": {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:20647198%20OR%20EXT_ID:32053298%20OR%20EXT_ID:25372085&format=xml&resultType=core",
+      "sha256": "21e82a4b32af0350036df210942ea745bd71a82ca81d01e50f9df90cd2bc174b",
+      "access": "Três resumos primários completos lidos independentemente: Methods/Results/Conclusions, esquemas e números. Não equivale a abrir integrais NEJM."
+    },
+    "RAVE": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/3137658/",
+      "doi": "10.1056/NEJMoa0909905",
+      "access": "Alias público abriu manuscrito primário integral621linhas após URLprefixado desafiar acesso e XML500. Métodos265–268, resultados e discussão482–490 lidos. Stone,221–232;GCemambos;CYCajustada;exclusões e limitação infertilidade confirmadas."
+    },
+    "FDA": {
+      "url": "https://www.fda.gov/media/192160/download",
+      "access": "Documento primário integral24p aberto;27/04/2026, proposta/EUA,9sujeitosreadjudicadospóslock/descegamento, informações materiais inexatas e falta de evidência substancial. Não é decisão final mundial."
+    },
+    "CANADA": {
+      "url": "https://recalls-rappels.canada.ca/en/alert-recall/tavneos-avacopan-and-health-canada-s-review-data-integrity-concerns",
+      "access": "Comunicação primária de07/07/2026 aberta; Background confirma retrataçãoNEJM29/06/2026 por integridade. TextoNEJMdireto403; não alegada leitura integral da nota."
+    },
+    "EGPA": {
+      "url": "https://siaaic.org/wp-content/uploads/2023/05/Evidence-based-guideline-EGPA_NRR_090523.pdf",
+      "access": "PDF primário integral16p aberto; Statement4p6–7 e associações fenotípicas lidos."
+    },
+    "EULAR": {
+      "url": "https://opinvisindi.is/bitstreams/eeca1efb-a428-4f38-a857-754169e589b4/download",
+      "access": "PDF primário de coautor integral27p aberto; recomendação2, diagnóstico, associaçãoMPA/intersticial e sorologia lidos. Não importar recomendação avacopan histórica."
+    },
+    "IgAN": {
+      "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+      "access": "PDF oficial integral71p aberto;PP1.5.3S26/S50, queda≥50%em≤3meses, exclusões, biópsia, CYC+GC/profilaxias e RTXinsuficiente lidos."
+    }
+  },
+  "sourceLimits": [
+    "NEJMnota403;HealthCanadaeFDAconferem fatos decisivos. Curiosidade acadêmica herdada não certificada integralmente.",
+    "Não foi atribuída conclusão ao editorialKDIGOset2026sem texto aberto.",
+    "Não é revisão integral das741questões nem calibração empírica."
+  ],
+  "metrics": {
+    "allOriginal": {
+      "n": 13,
+      "uniqueLongest": 12,
+      "tiedLongest": 0,
+      "uniqueShortest": 0,
+      "longestHeuristic": 0.9230769230769231
+    },
+    "allFinal": {
+      "n": 13,
+      "uniqueLongest": 4,
+      "tiedLongest": 0,
+      "uniqueShortest": 4,
+      "longestHeuristic": 0.3076923076923077
+    },
+    "changedOriginal": {
+      "n": 12,
+      "uniqueLongest": 12,
+      "tiedLongest": 0,
+      "uniqueShortest": 0,
+      "longestHeuristic": 1
+    },
+    "changedFinal": {
+      "n": 12,
+      "uniqueLongest": 4,
+      "tiedLongest": 0,
+      "uniqueShortest": 4,
+      "longestHeuristic": 0.3333333333333333
+    },
+    "method": "CaracteresUnicode/whitespacenormalizado;desigualdadespreservadas. Sem meta de tamanho."
+  },
+  "items": [
+    {
+      "qid": "1fd6a5cf",
+      "originalHash": "6418e6a8c873c6b5fb336d64c7b6d146f21ebde0d899b3304c211a897e8e1c8d",
+      "candidateHash": "f675f316f604dec11e13211988005e4851e3db751cef1a7359efb99484c3e2b5",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "1fd6a5cf",
+        "op": "Interpretar o efeito de um regime combinado no RITUXVAS sem atribuir eficácia a rituximabe isolado",
+        "competency": "interpretação",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Distingue intervenção combinada e atribuição causal, sem decisão individual de alto risco.",
+        "diff": "medium",
+        "reconciliation": "Original classificado cegamente antes da versão proposta; A2 final mantém OP/competência/conceito e difficulty coerente. Concisão não é dificuldade."
+      },
+      "justification": "O contraste é atribuição causal de regime combinado, não dose decorada. O braço experimental inclui CYC e GC, de modo que não testa RTX isolado.",
+      "problems": [],
+      "adversary": "Testei se semelhança de remissão provaria equivalência formal ou segurança superior: não. O texto diz semelhante e não demonstra superioridade, sem confundir teste de diferença com equivalência. Nenhum argumento plausível de recurso decisivo remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "Os resultados demonstram eficácia de rituximabe sem ciclofosfamida na doença renal grave",
+        "Os resultados demonstram superioridade do regime com rituximabe para remissão sustentada",
+        "Os resultados comprovam menos eventos adversos graves precoces com o regime de rituximabe"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMAválidos;semeliminatório;semrecurso;score19/20;aprovação→LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSourceIds": [
+        "RITUXVAS-2010",
+        "KDIGO-ANCA-2024"
+      ],
+      "lengths": {
+        "original": {
+          "lengths": [
+            181,
+            103,
+            88,
+            69
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.7572815533980584,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            86,
+            88,
+            88,
+            89
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.9662921348314607,
+          "heuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "RITUXVAS — Indução na Vasculite ANCA Renal Grave",
+        "qid": "1fd6a5cf",
+        "q": "Na vasculite associada a anticorpos anticitoplasma de neutrófilos (ANCA), qual interpretação do RITUXVAS respeita o desenho do ensaio?",
+        "refs": [
+          "rituxvas_study",
+          "kdigo_anca_2024"
+        ],
+        "opts": [
+          "Os resultados correspondem a rituximabe com ciclofosfamida, e não a rituximabe isolado",
+          "Os resultados demonstram eficácia de rituximabe sem ciclofosfamida na doença renal grave",
+          "Os resultados demonstram superioridade do regime com rituximabe para remissão sustentada",
+          "Os resultados comprovam menos eventos adversos graves precoces com o regime de rituximabe"
+        ],
+        "ans": 0,
+        "exp": "O RITUXVAS incluiu 44 pacientes com vasculite ANCA recém-diagnosticada e envolvimento renal, muitos com disfunção grave. O braço experimental recebeu rituximabe 375 mg/m² semanal por quatro semanas, dois pulsos intravenosos de ciclofosfamida e glicocorticoide; o controle recebeu ciclofosfamida intravenosa seguida de azatioprina e glicocorticoide. Remissão sustentada em 12 meses foi semelhante, mas o estudo não mostrou superioridade nem economia clara de eventos adversos e não permite atribuir o resultado a rituximabe sem a ciclofosfamida concomitante.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "identity": "Mesmo OP, competência e conceito correto reconhecível. qid,ans,cat preservados; ae0 acrescenta referência adequada ao mecanismo, sem trocar conceito. Nenhum reinício FSRS ou votos.",
+      "implementation": "Aplicar apenas objeto A2 exato. Mudança material posterior invalida gate.89depende do cardRAVEC1 liberado."
+    },
+    {
+      "qid": "91355bed",
+      "originalHash": "1ad7603e734955932cc6e5221663e973208d262aa71cb0166225a91432e4fe78",
+      "candidateHash": "4ab68e1b1ffa45699542522defbd062617cc8994832d822f9da68365720bbee8",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "PARCIALMENTE VERIFICADA",
+      "pending": "NÃO DECISIVA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "91355bed",
+        "op": "Interpretar retratação por problemas de integridade como perda da confiabilidade dos resultados sem inferir ineficácia universal ou conduta individual abrupta",
+        "competency": "interpretação",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Distingue ausência de evidência confiável de evidência universal de ausência; princípio aplicável à segurança terapêutica, sem cálculo ou decisão individual complexa.",
+        "diff": "medium",
+        "reconciliation": "Original classificado cegamente antes da versão proposta; A2 final mantém OP/competência/conceito e difficulty coerente. Concisão não é dificuldade."
+      },
+      "justification": "Retratação e manipulação pós-descegamento retiram confiabilidade, sem concluir ineficácia universal ou dar ordem individual de interromper. FDA é proposta histórica EUA explicitamente datada.",
+      "problems": [
+        {
+          "severity": "MENOR",
+          "text": "Nota NEJM integral não acessível. Conteúdo decisivo retratação/data/integridade conferido independentemente em HealthCanada e documentoFDA íntegro; detalhe biográfico herdado nos cards sobre solicitação pelos autores não é pressuposto, gabarito ou segurança desta questão. Não alegar validação integral dos cards históricos."
+        }
+      ],
+      "adversary": "Testei preservar só não inferioridade: não restaura integridade. Mecanismo plausível também não valida dados. O caso não pede inferir status mundial atual. Nenhum argumento plausível de recurso decisivo remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "Preservar a conclusão de não inferioridade, descartando apenas a análise de superioridade",
+        "Concluir ineficácia em qualquer paciente, independentemente de novas evidências",
+        "Validar o ensaio pela coerência entre o mecanismo farmacológico e a doença"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 1,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "PARCIALMENTE VERIFICADA+NÃO DECISIVAválidos;semeliminatório;semrecurso;score19/20;aprovação→LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSourceIds": [
+        "FDA-NOOH-April2026",
+        "NEJM-retraction-2026"
+      ],
+      "lengths": {
+        "original": {
+          "lengths": [
+            168,
+            87,
+            96,
+            71
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.75,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            98,
+            89,
+            79,
+            74
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.101123595505618,
+          "heuristic": 1
+        }
+      },
+      "candidate": {
+        "t": "ADVOCATE — Retratação e Validade da Evidência",
+        "qid": "91355bed",
+        "q": "O artigo ADVOCATE foi retratado em junho de 2026 após problemas de integridade dos desfechos. Como seus resultados de eficácia devem ser usados no ensino?",
+        "refs": [
+          "advocate_study",
+          "advocate_retraction_2026",
+          "fda_tavneos_nooh_2026"
+        ],
+        "opts": [
+          "Não usar os resultados publicados como comprovação confiável de não inferioridade ou superioridade",
+          "Preservar a conclusão de não inferioridade, descartando apenas a análise de superioridade",
+          "Concluir ineficácia em qualquer paciente, independentemente de novas evidências",
+          "Validar o ensaio pela coerência entre o mecanismo farmacológico e a doença"
+        ],
+        "ans": 0,
+        "exp": "O artigo ADVOCATE foi retratado pelo NEJM em 29 de junho de 2026. A investigação identificou readjudicação dos desfechos primários de nove participantes após fechamento e descegamento do banco, sem divulgação no artigo. Esses resultados não devem ser ensinados como comprovação confiável de não inferioridade ou superioridade; omitir uma das análises não restaura a integridade do ensaio. Isso tampouco demonstra ineficácia universal, e plausibilidade farmacológica não valida dados comprometidos. Em 27 de abril de 2026, a FDA propôs retirar a aprovação nos Estados Unidos por considerar a eficácia não demonstrada e apontar informações materiais inexatas no dossiê. Essa notificação histórica é uma proposta referente aos Estados Unidos, não uma decisão final nem um resumo da situação em outras jurisdições.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "identity": "Mesmo OP, competência e conceito correto reconhecível. qid,ans,cat preservados; ae0 acrescenta referência adequada ao mecanismo, sem trocar conceito. Nenhum reinício FSRS ou votos.",
+      "implementation": "Aplicar apenas objeto A2 exato. Mudança material posterior invalida gate.89depende do cardRAVEC1 liberado."
+    },
+    {
+      "qid": "4efef2a5",
+      "originalHash": "f392e14e3aad9ae3313c30ed0767f7e4c67e11230498b08a268c2e7dad50674b",
+      "candidateHash": "d8754b5c1666a29b56678d107f72a528c2f9e321f13f68960c51934985a88c43",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "4efef2a5",
+        "op": "Conciliar resultado global do PEXIVAS e seleção individual de troca plasmática em risco extremo",
+        "competency": "conduta",
+        "bloom": "Avaliar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "hard",
+        "justification": "Integra evidência global, heterogeneidade de risco e benefício versus infecção.",
+        "diff": "hard",
+        "reconciliation": "Original classificado cegamente antes da versão proposta; A2 final mantém OP/competência/conceito e difficulty coerente. Concisão não é dificuldade."
+      },
+      "justification": "Resultado global e decisão individual de alto risco são separados. Critérios KDIGO2024 corrigidos incluem Cr>3,4, diálise/elevação rápida e DAH com hipoxemia. Anti-MBG exige acrescentar troca.",
+      "problems": [],
+      "adversary": "Resultado global não autoriza alegar benefício nulo em cada dialítico, nem PLEX em toda hemorragia ou por título ANCA. Troca continua adicional à imunossupressão. Nenhum argumento plausível de recurso decisivo remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "Excluir a troca de qualquer paciente em diálise, pois o resultado global demonstra ausência de benefício",
+        "Usar a troca rotineiramente em toda hemorragia alveolar, independentemente de hipoxemia",
+        "Definir a indicação da troca pelo título de ANCA, que identifica quem terá benefício"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMAválidos;semeliminatório;semrecurso;score20/20;aprovação→LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSourceIds": [
+        "PEXIVAS-2020",
+        "KDIGO-ANCA-2024"
+      ],
+      "lengths": {
+        "original": {
+          "lengths": [
+            185,
+            78,
+            93,
+            68
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.989247311827957,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            92,
+            104,
+            87,
+            84
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 2,
+          "ratio": 0.8846153846153846,
+          "heuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "PEXIVAS — Troca Plasmática sem Regra Absoluta",
+        "qid": "4efef2a5",
+        "q": "Como conciliar o resultado global do PEXIVAS com a orientação KDIGO 2024 sobre troca plasmática na vasculite associada a anticorpos anticitoplasma de neutrófilos (ANCA)?",
+        "refs": [
+          "pexivas_trial",
+          "kdigo_anca_2024"
+        ],
+        "opts": [
+          "Considerar a troca em situações selecionadas de alto risco, ponderando benefício e infecções",
+          "Excluir a troca de qualquer paciente em diálise, pois o resultado global demonstra ausência de benefício",
+          "Usar a troca rotineiramente em toda hemorragia alveolar, independentemente de hipoxemia",
+          "Definir a indicação da troca pelo título de ANCA, que identifica quem terá benefício"
+        ],
+        "ans": 0,
+        "exp": "No PEXIVAS, sete trocas plasmáticas não reduziram significativamente o composto de morte ou falência renal no conjunto de 704 pacientes com vasculite associada ao ANCA grave. O resultado não sustenta uso rotineiro, mas também não demonstra benefício nulo em todo paciente sob diálise ou de risco extremo. A KDIGO 2024 permite considerar troca quando a creatinina é maior que 3,4 mg/dL, há necessidade de diálise ou elevação rápida da creatinina, ou há hemorragia alveolar difusa com hipoxemia. Na sobreposição com doença por anticorpos antimembrana basal glomerular (anti-MBG), orienta acrescentar a troca. A decisão pondera possível benefício renal contra infecções; a troca é adicional à indução imunossupressora, e o título de ANCA não seleciona sozinho quem terá benefício.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "identity": "Mesmo OP, competência e conceito correto reconhecível. qid,ans,cat preservados; ae0 acrescenta referência adequada ao mecanismo, sem trocar conceito. Nenhum reinício FSRS ou votos.",
+      "implementation": "Aplicar apenas objeto A2 exato. Mudança material posterior invalida gate.89depende do cardRAVEC1 liberado."
+    },
+    {
+      "qid": "04cb2429",
+      "originalHash": "3c03b5ee8bf3fbe513892cff3ac3fe9c31b6d56a7592f5b566f886157b4c29a7",
+      "candidateHash": "3c03b5ee8bf3fbe513892cff3ac3fe9c31b6d56a7592f5b566f886157b4c29a7",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "04cb2429",
+        "op": "Integrar sorologia ANCA ao fenótipo suspeito de EGPA sem usá-la para confirmar ou excluir isoladamente",
+        "competency": "diagnóstico",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Interpreta limitação de biomarcador no contexto sindrômico, sem requerer serotipo obrigatório.",
+        "diff": "medium",
+        "reconciliation": "Original classificado cegamente antes da versão proposta; A2 final mantém OP/competência/conceito e difficulty coerente. Concisão não é dificuldade."
+      },
+      "justification": "Objeto original mantido: sorologia apoia fenótipo, não confirma nem exclui isoladamente EGPA.30–40% e predomínio MPO conferidos.",
+      "problems": [],
+      "adversary": "ANCA negativo não é argumento de exclusão; padrão p-ANCA isolado é menos específico. Sobreposição fenotípica é preservada. Nenhum argumento plausível de recurso decisivo remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "MPO-ANCA estabelece EGPA por sua especificidade, mesmo sem asma, eosinofilia ou lesão de órgãos.",
+        "ANCA negativo favorece excluir EGPA, mesmo diante de asma, eosinofilia e neuropatia multifocal.",
+        "p-ANCA positivo permite substituir o teste específico de MPO/PR3 na avaliação da suspeita de EGPA."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMAválidos;semeliminatório;semrecurso;score20/20;aprovação→LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSourceIds": [
+        "EGPA-guideline-2023"
+      ],
+      "lengths": {
+        "original": {
+          "lengths": [
+            95,
+            96,
+            95,
+            98
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.9693877551020408,
+          "heuristic": 0
+        },
+        "final": {
+          "lengths": [
+            95,
+            96,
+            95,
+            98
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.9693877551020408,
+          "heuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "EGPA — MPO-ANCA não é Obrigatório",
+        "qid": "04cb2429",
+        "q": "Como interpretar o ANCA na suspeita de granulomatose eosinofílica com poliangeíte (EGPA)?",
+        "refs": [
+          "egpa_guideline_2023"
+        ],
+        "opts": [
+          "MPO-ANCA apoia um fenótipo compatível; ANCA negativo permite manter a suspeita clínica de EGPA.",
+          "MPO-ANCA estabelece EGPA por sua especificidade, mesmo sem asma, eosinofilia ou lesão de órgãos.",
+          "ANCA negativo favorece excluir EGPA, mesmo diante de asma, eosinofilia e neuropatia multifocal.",
+          "p-ANCA positivo permite substituir o teste específico de MPO/PR3 na avaliação da suspeita de EGPA."
+        ],
+        "ans": 0,
+        "exp": "MPO-ANCA pode apoiar EGPA no contexto compatível, mas ANCA negativo não exclui a doença. A diretriz de 2023 informa positividade em 30-40%, com predomínio de MPO entre as pessoas positivas. O diagnóstico integra asma, eosinofilia, manifestações de órgãos e exclusão de outras doenças eosinofílicas ou vasculíticas. GN, neuropatia e púrpura são mais frequentes no grupo ANCA positivo; cardiomiopatia e determinadas manifestações eosinofílicas são mais frequentes no negativo, com sobreposição importante. Um padrão p-ANCA isolado tem menor especificidade que MPO-ANCA e não confirma EGPA; a investigação usa testes específicos para MPO/PR 3 e avaliação clínica. A sorologia não deve apagar o fenótipo nem determinar sozinha o tratamento.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "identity": "Mesmo OP, competência e conceito correto reconhecível. qid,ans,cat preservados; ae0 acrescenta referência adequada ao mecanismo, sem trocar conceito. Nenhum reinício FSRS ou votos.",
+      "implementation": "Não reescrever: objeto integralmente igual já adequado; registra revisão formal."
+    },
+    {
+      "qid": "ddfb3df6",
+      "originalHash": "e271a5ff6db290e18d56095e41e6da1b3841d51a87076b6ece36589be7d1355b",
+      "candidateHash": "a976ef24d1d6326dc180cbe24410d4c400160bfada0cf00b5c952adbbca88cd9",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "ddfb3df6",
+        "op": "Reconhecer o significado histológico de pauci-imune sem inferir ausência de inflamação ou ANCA obrigatório",
+        "competency": "interpretação",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "justification": "Define diretamente o padrão de imunofluorescência e seus limites.",
+        "diff": "easy",
+        "reconciliation": "Original classificado cegamente antes da versão proposta; A2 final mantém OP/competência/conceito e difficulty coerente. Concisão não é dificuldade."
+      },
+      "justification": "Define depósitos na IF, sem fornecer a resposta no enunciado nem confundir pauci-imune com inflamação escassa, cicatriz ou título sérico.",
+      "problems": [],
+      "adversary": "A necrose e os crescentes do caso são compatíveis com pouco depósito. Linear corresponde a outro padrão, e ANCA negativo não exclui GN pauci-imune. Nenhum argumento plausível de recurso decisivo remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "Predomínio de lesões cicatriciais, com escassa inflamação glomerular ativa",
+        "Baixos títulos de autoanticorpos circulantes, proporcionais à intensidade da lesão renal",
+        "Deposição linear de imunoglobulinas ao longo da membrana basal glomerular"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMAválidos;semeliminatório;semrecurso;score20/20;aprovação→LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSourceIds": [
+        "KDIGO-ANCA-2024",
+        "EULAR-2022-update"
+      ],
+      "lengths": {
+        "original": {
+          "lengths": [
+            160,
+            67,
+            59,
+            60
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 2.388059701492537,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            72,
+            74,
+            88,
+            73
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.8181818181818182,
+          "heuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "GN Pauci-imune — O que a Imunofluorescência Diz",
+        "qid": "ddfb3df6",
+        "q": "Biópsia renal mostra glomerulonefrite necrosante com crescentes, classificada como pauci-imune. A que se refere essa classificação?",
+        "refs": [
+          "kdigo_anca_2024",
+          "eular_aav_2022"
+        ],
+        "opts": [
+          "Escassa deposição de imunoglobulinas e complemento na imunofluorescência",
+          "Predomínio de lesões cicatriciais, com escassa inflamação glomerular ativa",
+          "Baixos títulos de autoanticorpos circulantes, proporcionais à intensidade da lesão renal",
+          "Deposição linear de imunoglobulinas ao longo da membrana basal glomerular"
+        ],
+        "ans": 0,
+        "exp": "Pauci-imune descreve o padrão da imunofluorescência: ausência ou pequena quantidade de imunoglobulinas e complemento. Não descreve a quantidade de autoanticorpos no sangue nem implica pouca inflamação ou lesões apenas cicatriciais; necrose e crescentes podem ser extensos. O padrão linear sugere doença por anticorpos antimembrana basal glomerular (anti-MBG), enquanto depósitos granulares favorecem complexos imunes. Na apresentação adequada, o padrão pauci-imune sustenta vasculite associada a anticorpos anticitoplasma de neutrófilos (ANCA), integrando testes para proteinase 3 (PR3), mieloperoxidase (MPO) e fenótipo clínico. ANCA negativo não exclui essa possibilidade.",
+        "diff": "easy",
+        "cat": "glomerular"
+      },
+      "identity": "Mesmo OP, competência e conceito correto reconhecível. qid,ans,cat preservados; ae0 acrescenta referência adequada ao mecanismo, sem trocar conceito. Nenhum reinício FSRS ou votos.",
+      "implementation": "Aplicar apenas objeto A2 exato. Mudança material posterior invalida gate.89depende do cardRAVEC1 liberado."
+    },
+    {
+      "qid": "60efeb87",
+      "originalHash": "e20e1ac4ccb9ff488cd44e3b4948c4eaab74f67518a59cc40b021fcf67ec3d7d",
+      "candidateHash": "8f6cd4ed5e30f74b207cf27d621690c4fa4715c04958276254642e7ad9c5359a",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "60efeb87",
+        "op": "Interpretar resultado do MAINRITSAN e selecionar opções válidas de manutenção da vasculite ANCA",
+        "competency": "conduta",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Relaciona ensaio e aplicabilidade clínica, sem dado individual de conflito complexo.",
+        "diff": "medium",
+        "reconciliation": "Original classificado cegamente antes da versão proposta; A2 final mantém OP/competência/conceito e difficulty coerente. Concisão não é dificuldade."
+      },
+      "justification": "Esquema fixo MAINRITSAN e suas recidivas maiores são diferenciados de doses só por ANCA. AZA permanece alternativa válida na diretriz.",
+      "problems": [],
+      "adversary": "A preferência de RTX em muitos pacientes não torna AZA inválida; a pergunta não obriga uma escolha individual sem dados de infecção/IgG/acesso. Nenhum argumento plausível de recurso decisivo remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "Rituximabe e azatioprina foram equivalentes para prevenir recidiva maior ao fim de 28 meses",
+        "Azatioprina reduziu mais recidivas maiores, favorecendo sua preferência na doença recorrente",
+        "Doses de rituximabe guiadas apenas pelo ANCA preveniram mais recidivas que azatioprina"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMAválidos;semeliminatório;semrecurso;score19/20;aprovação→LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSourceIds": [
+        "MAINRITSAN-2014",
+        "KDIGO-ANCA-2024"
+      ],
+      "lengths": {
+        "original": {
+          "lengths": [
+            153,
+            83,
+            66,
+            82
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.8433734939759037,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            94,
+            91,
+            92,
+            86
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.0217391304347827,
+          "heuristic": 1
+        }
+      },
+      "candidate": {
+        "t": "MAINRITSAN — Manutenção após Indução",
+        "qid": "60efeb87",
+        "q": "Qual conclusão sobre manutenção da vasculite associada a anticorpos anticitoplasma de neutrófilos (ANCA) é sustentada pelo MAINRITSAN e pela KDIGO 2024?",
+        "refs": [
+          "mainritsan_trial",
+          "kdigo_anca_2024"
+        ],
+        "opts": [
+          "Rituximabe em esquema fixo reduziu recidivas maiores; azatioprina continua opção de manutenção",
+          "Rituximabe e azatioprina foram equivalentes para prevenir recidiva maior ao fim de 28 meses",
+          "Azatioprina reduziu mais recidivas maiores, favorecendo sua preferência na doença recorrente",
+          "Doses de rituximabe guiadas apenas pelo ANCA preveniram mais recidivas que azatioprina"
+        ],
+        "ans": 0,
+        "exp": "Após indução com ciclofosfamida e glicocorticoide, o MAINRITSAN comparou rituximabe 500 mg nos dias 0 e 14 e meses 6, 12 e 18 com azatioprina até o mês 22. Recidiva maior no mês 28 ocorreu em 5% versus 29%. O resultado favorece rituximabe para muitos pacientes com alto risco de recaída, mas não torna azatioprina inválida: a KDIGO recomenda rituximabe ou azatioprina com baixa dose de glicocorticoide, individualizando subtipo de ANCA, recaídas, imunoglobulinas, infecção, fertilidade, acesso e preferência.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "identity": "Mesmo OP, competência e conceito correto reconhecível. qid,ans,cat preservados; ae0 acrescenta referência adequada ao mecanismo, sem trocar conceito. Nenhum reinício FSRS ou votos.",
+      "implementation": "Aplicar apenas objeto A2 exato. Mudança material posterior invalida gate.89depende do cardRAVEC1 liberado."
+    },
+    {
+      "qid": "2a595b23",
+      "originalHash": "d300a601a53ba526c17ce170c5ed7211fba074e42995fd765d88c7c7f1ed9f0d",
+      "candidateHash": "92bc16ef305a25b7a6f8d25f9cff901f9206c5135396089a38d82c33fa3abdb4",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "2a595b23",
+        "op": "Identificar IgAN rapidamente progressiva pelo declínio temporal da TFGe e oferecer indução apropriada",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "hard",
+        "justification": "Integra declínio expressivo, tempo, exclusão de mimetizadores e lesão ativa com urgência terapêutica.",
+        "diff": "hard",
+        "reconciliation": "Original classificado cegamente antes da versão proposta; A2 final mantém OP/competência/conceito e difficulty coerente. Concisão não é dificuldade."
+      },
+      "justification": "Queda55% em10semanas, exclusões e lesão ativa sustentam IgAN rapidamente progressiva; CYC+GC e profilaxias são adequados.",
+      "problems": [],
+      "adversary": "Não se indica CYC por qualquer crescente isolado. RTX não tem superioridade estabelecida; terapias habituais de nefroproteção não substituem indução nessa variante. Nenhum argumento plausível de recurso decisivo remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "Induzir remissão com rituximabe e glicocorticoide, pela superioridade estabelecida",
+        "Usar budesonida de liberação direcionada para substituir a indução sistêmica",
+        "Manter apenas nefroproteção e aguardar estabilização para decidir imunossupressão"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMAválidos;semeliminatório;semrecurso;score20/20;aprovação→LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSourceIds": [
+        "KDIGO-IgAN-2025",
+        "KDIGO-ANCA-2024"
+      ],
+      "lengths": {
+        "original": {
+          "lengths": [
+            128,
+            86,
+            66,
+            82
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.4883720930232558,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            63,
+            82,
+            76,
+            81
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.7682926829268293,
+          "heuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "IgAN Rapidamente Progressiva — Definição e Indução",
+        "qid": "2a595b23",
+        "q": "Pessoa com nefropatia por IgA (IgAN) perde 55% da taxa de filtração glomerular estimada (TFGe) em dez semanas. Causas reversíveis, vasculite associada a anticorpos anticitoplasma de neutrófilos e doença por anticorpos antimembrana basal glomerular foram excluídas. A biópsia mostra necrose e muitos crescentes. Qual conduta é mais alinhada à KDIGO 2025?",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "kdigo_anca_2024"
+        ],
+        "opts": [
+          "Induzir remissão com ciclofosfamida e glicocorticoide sistêmico",
+          "Induzir remissão com rituximabe e glicocorticoide, pela superioridade estabelecida",
+          "Usar budesonida de liberação direcionada para substituir a indução sistêmica",
+          "Manter apenas nefroproteção e aguardar estabilização para decidir imunossupressão"
+        ],
+        "ans": 0,
+        "exp": "IgAN rapidamente progressiva é definida por queda de pelo menos 50% da TFGe em até três meses, após excluir causas reversíveis e outros diagnósticos de glomerulonefrite rapidamente progressiva. A biópsia é essencial e costuma mostrar hipercelularidade, necrose e muitos crescentes. A KDIGO orienta oferecer ciclofosfamida com glicocorticoide sistêmico, em estrutura semelhante à indução da vasculite ANCA, acompanhada de profilaxias. Crescentes sem elevação concomitante da creatinina não definem essa variante, e a evidência para rituximabe é insuficiente.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "identity": "Mesmo OP, competência e conceito correto reconhecível. qid,ans,cat preservados; ae0 acrescenta referência adequada ao mecanismo, sem trocar conceito. Nenhum reinício FSRS ou votos.",
+      "implementation": "Aplicar apenas objeto A2 exato. Mudança material posterior invalida gate.89depende do cardRAVEC1 liberado."
+    },
+    {
+      "qid": "cc9dc9d0",
+      "originalHash": "886fb8b8f3ef4388e5ab64b6b0643530920b65af0b360bbfc8809b9e4c38e212",
+      "candidateHash": "1a4b77499f68a3956829eb2d99497564a7fd5396e12e9e0896d32d72a91fd5c2",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "cc9dc9d0",
+        "op": "Integrar fenótipo pulmão-rim e MPO-ANCA para reconhecer poliangeíte microscópica sem exclusividade sorológica",
+        "competency": "diagnóstico",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Integra fenótipo e sorologia típicos, sem depender de exceção rara ou forte incerteza.",
+        "diff": "medium",
+        "reconciliation": "Original classificado cegamente antes da versão proposta; A2 final mantém OP/competência/conceito e difficulty coerente. Concisão não é dificuldade."
+      },
+      "justification": "MPO com GN pauci-imune e doença intersticial favorece MPA, sem declarar sorologia exclusiva. Imunoensaios específicos e fenótipo permanecem centrais.",
+      "problems": [],
+      "adversary": "A ausência de granulomas não exclui AAV; MPO não confirma GPA e padrão p-ANCA não supera teste específico. A correta diz favorece, não confirma isoladamente. Nenhum argumento plausível de recurso decisivo remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "Confirma granulomatose com poliangeíte pelo MPO-ANCA, apesar do padrão não granulomatoso",
+        "Afasta vasculite associada ao ANCA, já que faltam as lesões granulomatosas típicas",
+        "Define o subtipo pela imunofluorescência perinuclear, dispensando integrar o fenótipo"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMAválidos;semeliminatório;semrecurso;score20/20;aprovação→LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSourceIds": [
+        "EULAR-2022-update",
+        "KDIGO-ANCA-2024"
+      ],
+      "lengths": {
+        "original": {
+          "lengths": [
+            128,
+            76,
+            49,
+            106
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.2075471698113207,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            96,
+            88,
+            82,
+            85
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.0909090909090908,
+          "heuristic": 1
+        }
+      },
+      "candidate": {
+        "qid": "cc9dc9d0",
+        "q": "Pessoa com síndrome pulmão-rim tem anticorpos anticitoplasma de neutrófilos (ANCA) contra mieloperoxidase (MPO), glomerulonefrite pauci-imune e doença pulmonar intersticial, sem nódulos granulomatosos ou doença destrutiva de vias aéreas. Qual interpretação é mais adequada?",
+        "opts": [
+          "Favorece poliangeíte microscópica pela integração entre sorotipo, órgãos acometidos e histologia",
+          "Confirma granulomatose com poliangeíte pelo MPO-ANCA, apesar do padrão não granulomatoso",
+          "Afasta vasculite associada ao ANCA, já que faltam as lesões granulomatosas típicas",
+          "Define o subtipo pela imunofluorescência perinuclear, dispensando integrar o fenótipo"
+        ],
+        "ans": 0,
+        "exp": "MPO-ANCA é frequente na poliangeíte microscópica, enquanto anticorpos contra proteinase 3 (PR3) e manifestações granulomatosas de vias aéreas são mais comuns na granulomatose com poliangeíte. Porém, há sobreposição de sorotipos e fenótipos; o diagnóstico não deve ser feito pelo anticorpo isolado. A associação entre MPO-ANCA, glomerulonefrite pauci-imune e doença pulmonar intersticial favorece poliangeíte microscópica nessa apresentação. Imunoensaios específicos para MPO e PR3 são preferidos ao padrão perinuclear (p-ANCA) ou citoplasmático (c-ANCA) na imunofluorescência indireta. A combinação de órgãos acometidos, imagem, histologia e exclusão de mimetizadores define a interpretação clínica.",
+        "refs": [
+          "eular_aav_2022",
+          "kdigo_anca_2024"
+        ],
+        "cat": "glomerular",
+        "diff": "medium",
+        "t": "PAM — Serótipo e Fenótipo"
+      },
+      "identity": "Mesmo OP, competência e conceito correto reconhecível. qid,ans,cat preservados; ae0 acrescenta referência adequada ao mecanismo, sem trocar conceito. Nenhum reinício FSRS ou votos.",
+      "implementation": "Aplicar apenas objeto A2 exato. Mudança material posterior invalida gate.89depende do cardRAVEC1 liberado."
+    },
+    {
+      "qid": "e5b44fbe",
+      "originalHash": "ccbd46a5c3df7acfd71428d934f8160051e53e17ac113df7dc60c787ca67a28c",
+      "candidateHash": "6e5411d6667dc8c318d6b9032548537d552215a52c4745029a777a24048c62db",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "e5b44fbe",
+        "op": "Selecionar indução combinada na vasculite ANCA ameaçadora de órgãos e separar indicação de troca plasmática",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Reconhece estrutura padrão da indução; enunciado não exige escolher agente por função renal detalhada.",
+        "diff": "medium",
+        "reconciliation": "Original classificado cegamente antes da versão proposta; A2 final mantém OP/competência/conceito e difficulty coerente. Concisão não é dificuldade."
+      },
+      "justification": "A estrutura pedida é indução imediata GC+RTX/CYC na ameaça a órgãos, individualizando agente e separando PLEX adicional.",
+      "problems": [],
+      "adversary": "A pergunta não fornece creatinina para impor um agente; correta admite ambos. MMF/AZA ou PLEX com adiamento dos agentes não substituem a indução padrão na síndrome grave. Nenhum argumento plausível de recurso decisivo remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "Glicocorticoide com micofenolato, como primeira escolha para essa doença renal grave",
+        "Glicocorticoide com azatioprina, como primeiro esquema de indução da síndrome pulmão-rim",
+        "Glicocorticoide com troca plasmática, adiando rituximabe ou ciclofosfamida até a resposta"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMAválidos;semeliminatório;semrecurso;score20/20;aprovação→LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSourceIds": [
+        "KDIGO-ANCA-2024",
+        "PEXIVAS-2020",
+        "RITUXVAS-2010"
+      ],
+      "lengths": {
+        "original": {
+          "lengths": [
+            177,
+            77,
+            88,
+            76
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 2.0113636363636362,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            71,
+            84,
+            88,
+            89
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.797752808988764,
+          "heuristic": 0
+        }
+      },
+      "candidate": {
+        "qid": "e5b44fbe",
+        "q": "Paciente com vasculite associada a anticorpos anticitoplasma de neutrófilos (ANCA) contra proteinase 3 (PR3) apresenta glomerulonefrite rapidamente progressiva e hemorragia alveolar. Qual estrutura de indução é mais adequada?",
+        "opts": [
+          "Glicocorticoide com rituximabe ou ciclofosfamida, iniciados prontamente",
+          "Glicocorticoide com micofenolato, como primeira escolha para essa doença renal grave",
+          "Glicocorticoide com azatioprina, como primeiro esquema de indução da síndrome pulmão-rim",
+          "Glicocorticoide com troca plasmática, adiando rituximabe ou ciclofosfamida até a resposta"
+        ],
+        "ans": 0,
+        "exp": "Doença ameaçadora de órgão requer indução imediata com glicocorticoide associado a rituximabe ou ciclofosfamida; a escolha considera função renal, recaída, PR3 ou MPO, idade, fertilidade, infecção, acesso e experiência. Rituximabe é particularmente atraente em doença recidivante e PR3, enquanto ciclofosfamida ou combinação podem ser considerados em apresentações renais muito graves. Troca plasmática não é automática pelo ANCA: é decisão adicional em risco renal extremo, hemorragia alveolar com hipoxemia ou sobreposição anti-MBG.",
+        "cat": "glomerular",
+        "diff": "medium",
+        "refs": [
+          "kdigo_anca_2024",
+          "pexivas_trial",
+          "rituxvas_study"
+        ],
+        "t": "Vasculite ANCA Grave — Estrutura da Indução"
+      },
+      "identity": "Mesmo OP, competência e conceito correto reconhecível. qid,ans,cat preservados; ae0 acrescenta referência adequada ao mecanismo, sem trocar conceito. Nenhum reinício FSRS ou votos.",
+      "implementation": "Aplicar apenas objeto A2 exato. Mudança material posterior invalida gate.89depende do cardRAVEC1 liberado."
+    },
+    {
+      "qid": "89af997c",
+      "originalHash": "77247ee52792a5ad51904be3cd99bf3d5b9d30de91a67c104d40395df3b14d23",
+      "candidateHash": "36a3db783e599e4464ed2eb0d508572dea08e5eed6169895d6412b665d74494b",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "89af997c",
+        "op": "Selecionar indução na vasculite ANCA com função renal gravemente comprometida respeitando limites dos ensaios",
+        "competency": "conduta",
+        "bloom": "Avaliar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "hard",
+        "justification": "Creatinina maior que4e rápida queda modificam a interpretação dos dados e a escolha do regime.",
+        "diff": "hard",
+        "reconciliation": "Original classificado cegamente antes da versão proposta; A2 final mantém OP/competência/conceito e difficulty coerente. Concisão não é dificuldade."
+      },
+      "justification": "Cr4,8 com rápida elevação exige respeitar limites RAVE: RTX+GC isolados não têm equivalência demonstrada nessa faixa. CYC+GC ou RTX/CYC são coerentes ao PP9.3.1.2.",
+      "problems": [],
+      "adversary": "A opção com RTX alega preferência pela equivalência comprovada RAVE, não apenas possibilidade individual; é falsa pela exclusão>4. Não se afirma contraindicação absoluta de RTX. Nenhum argumento plausível de recurso decisivo remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "Glicocorticoide com rituximabe, preferido pela equivalência comprovada no RAVE nessa faixa de creatinina",
+        "Glicocorticoide com micofenolato, pela equivalência demonstrada na doença renal muito grave",
+        "Glicocorticoide com azatioprina, por ser o tratamento de indução mais seguro nessa apresentação"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMAválidos;semeliminatório;semrecurso;score20/20;aprovação→LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSourceIds": [
+        "KDIGO-ANCA-2024",
+        "RITUXVAS-2010",
+        "RAVE-2010",
+        "PEXIVAS-2020"
+      ],
+      "lengths": {
+        "original": {
+          "lengths": [
+            179,
+            111,
+            109,
+            83
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.6126126126126126,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            94,
+            104,
+            91,
+            95
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.9038461538461539,
+          "heuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Vasculite ANCA Renal Grave — Indução com Função Muito Reduzida",
+        "qid": "89af997c",
+        "q": "Paciente com glomerulonefrite pauci-imune e anticorpos anticitoplasma de neutrófilos (ANCA) contra proteinase 3 (PR3) apresenta creatinina de 4,8 mg/dL em rápida elevação, sem hemorragia alveolar. Qual estrutura de indução é mais alinhada à KDIGO 2024?",
+        "refs": [
+          "kdigo_anca_2024",
+          "rituxvas_study",
+          "rave_study",
+          "pexivas_trial"
+        ],
+        "opts": [
+          "Glicocorticoide com ciclofosfamida; considerar rituximabe combinado a pulsos de ciclofosfamida",
+          "Glicocorticoide com rituximabe, preferido pela equivalência comprovada no RAVE nessa faixa de creatinina",
+          "Glicocorticoide com micofenolato, pela equivalência demonstrada na doença renal muito grave",
+          "Glicocorticoide com azatioprina, por ser o tratamento de indução mais seguro nessa apresentação"
+        ],
+        "ans": 0,
+        "exp": "Na vasculite associada ao ANCA de início recente, a indução combina glicocorticoide com rituximabe ou ciclofosfamida. Quando a creatinina está acima de 4 mg/dL ou a filtração cai rapidamente, porém, os dados para rituximabe associado apenas a glicocorticoide são limitados: o RAVE excluiu esse grau de disfunção renal. A KDIGO 2024 orienta considerar ciclofosfamida com glicocorticoide ou rituximabe combinado a pulsos de ciclofosfamida. O regime reduzido de glicocorticoide é preferível por menor toxicidade. Troca plasmática é uma decisão adicional em risco renal extremo, necessidade de diálise, creatinina rapidamente crescente ou hemorragia alveolar com hipoxemia; não substitui a imunossupressão.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "identity": "Mesmo OP, competência e conceito correto reconhecível. qid,ans,cat preservados; ae0 acrescenta referência adequada ao mecanismo, sem trocar conceito. Nenhum reinício FSRS ou votos.",
+      "implementation": "Aplicar apenas objeto A2 exato. Mudança material posterior invalida gate.89depende do cardRAVEC1 liberado."
+    },
+    {
+      "qid": "ebd066db",
+      "originalHash": "e3dda9e6a57cb3150d1c7804d9fcf1e0684f974e16e7e7f173aeff96ccc0d917",
+      "candidateHash": "c26e22dbac004850a88b42a5e01471d8ab3dd8d4500ceb4fe76ccc02c7065472",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "ebd066db",
+        "op": "Obter biópsia sem retardar indução na apresentação compatível com vasculite ANCA de deterioração rápida",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Integra urgência, sorologia e baixa suspeita de mimetizadores para ordenar condutas.",
+        "diff": "medium",
+        "reconciliation": "Original classificado cegamente antes da versão proposta; A2 final mantém OP/competência/conceito e difficulty coerente. Concisão não é dificuldade."
+      },
+      "justification": "Perda rápida, sedimento, PR3 e baixa suspeita de mimetizadores permitem tratar prontamente sem esperar laudo, mas obter biópsia assim que possível.",
+      "problems": [],
+      "adversary": "Nem todo ANCA positivo dispensa biópsia. Aqui o contexto restringe a recomendação de urgência; títulos não substituem histologia nem distinguem com segurança cicatriz. Nenhum argumento plausível de recurso decisivo remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "Aguardar o laudo histológico antes de iniciar tratamento, mesmo com rápida perda renal",
+        "Iniciar tratamento e reservar biópsia apenas para quem permanecer dependente de diálise",
+        "Usar títulos seriados de ANCA no lugar da biópsia para distinguir atividade de cronicidade"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMAválidos;semeliminatório;semrecurso;score20/20;aprovação→LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSourceIds": [
+        "KDIGO-ANCA-2024"
+      ],
+      "lengths": {
+        "original": {
+          "lengths": [
+            156,
+            89,
+            119,
+            104
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.3109243697478992,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            88,
+            86,
+            87,
+            90
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 2,
+          "ratio": 0.9777777777777777,
+          "heuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Vasculite ANCA Renal — Papel e Momento da Biópsia",
+        "qid": "ebd066db",
+        "q": "Paciente apresenta perda rápida da função renal, sedimento glomerular e anticorpos anticitoplasma de neutrófilos (ANCA) contra proteinase 3 (PR3), com baixa suspeita de infecção ou vasculite secundária. Qual é a melhor estratégia para a biópsia renal?",
+        "refs": [
+          "kdigo_anca_2024"
+        ],
+        "opts": [
+          "Tratar prontamente e obter a biópsia assim que viável, sem aguardar o laudo para iniciar",
+          "Aguardar o laudo histológico antes de iniciar tratamento, mesmo com rápida perda renal",
+          "Iniciar tratamento e reservar biópsia apenas para quem permanecer dependente de diálise",
+          "Usar títulos seriados de ANCA no lugar da biópsia para distinguir atividade de cronicidade"
+        ],
+        "ans": 0,
+        "exp": "A biópsia renal continua sendo o padrão de referência para confirmar a glomerulonefrite necrosante pauci-imune, excluir diagnósticos concorrentes e estimar prognóstico pela proporção de glomérulos normais, crescentes e esclerose, além da lesão tubulointersticial. Entretanto, na apresentação compatível com vasculite de pequenos vasos, MPO- ou PR3-ANCA positivo, baixa suspeita de causa secundária e deterioração rápida, esperar o procedimento ou o laudo não deve atrasar a imunossupressão. O ANCA isolado não define toda a atividade nem substitui a histologia; a biópsia deve ser obtida logo após o início quando factível.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "identity": "Mesmo OP, competência e conceito correto reconhecível. qid,ans,cat preservados; ae0 acrescenta referência adequada ao mecanismo, sem trocar conceito. Nenhum reinício FSRS ou votos.",
+      "implementation": "Aplicar apenas objeto A2 exato. Mudança material posterior invalida gate.89depende do cardRAVEC1 liberado."
+    },
+    {
+      "qid": "91cfbe6c",
+      "originalHash": "0584a9e4cea6f517c93777b9623461f02b6a6a2f9ea3dfb0fdede19fa9eced23",
+      "candidateHash": "02603398fb8d53a8f79cebb5fa0f13d22e752a5a9aceca196a32734f53ad36d5",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "91cfbe6c",
+        "op": "Prevenir Pneumocystis e monitorar imunoglobulinaG durante indução com rituximabe",
+        "competency": "conduta",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "justification": "Recupera medidas padronizadas de segurança com consequência clínica.",
+        "diff": "easy",
+        "reconciliation": "Original classificado cegamente antes da versão proposta; A2 final mantém OP/competência/conceito e difficulty coerente. Concisão não é dificuldade."
+      },
+      "justification": "Profilaxia primária Pneumocystis e IgG basal/periódica são medidas padronizadas; duração não decorre de ANCA negativo ou pneumonia prévia.",
+      "problems": [],
+      "adversary": "Hemograma tem utilidade, mas não substitui IgG. Alternativa adequada é admitida para intolerância ao TMP-SMX. A explicação A2 rebate os distratores finais, não opções antigas. Nenhum argumento plausível de recurso decisivo remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "Profilaxia para Pneumocystis até negativar o ANCA e monitorização da imunoglobulina G",
+        "Profilaxia para Pneumocystis apenas após pneumonia prévia e monitorização da imunoglobulina G",
+        "Profilaxia para Pneumocystis e monitorização só pelo hemograma, sem dosar imunoglobulina G"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMAválidos;semeliminatório;semrecurso;score19/20;aprovação→LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSourceIds": [
+        "KDIGO-ANCA-2024"
+      ],
+      "lengths": {
+        "original": {
+          "lengths": [
+            146,
+            112,
+            102,
+            101
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.3035714285714286,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            111,
+            85,
+            93,
+            90
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.1935483870967742,
+          "heuristic": 1
+        }
+      },
+      "candidate": {
+        "t": "Vasculite ANCA — Profilaxia e Monitorização na Indução",
+        "qid": "91cfbe6c",
+        "q": "Paciente iniciará rituximabe e glicocorticoide para indução de vasculite associada a anticorpos anticitoplasma de neutrófilos (ANCA). Qual conjunto de medidas de segurança é mais adequado?",
+        "refs": [
+          "kdigo_anca_2024"
+        ],
+        "opts": [
+          "Profilaxia para Pneumocystis com sulfametoxazol-trimetoprima ou alternativa e monitorização da imunoglobulina G",
+          "Profilaxia para Pneumocystis até negativar o ANCA e monitorização da imunoglobulina G",
+          "Profilaxia para Pneumocystis apenas após pneumonia prévia e monitorização da imunoglobulina G",
+          "Profilaxia para Pneumocystis e monitorização só pelo hemograma, sem dosar imunoglobulina G"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO 2024 orienta sulfametoxazol-trimetoprima em baixa dose, ou uma alternativa adequada, para profilaxia de pneumonia por Pneumocystis durante todo o curso de ciclofosfamida ou por seis meses após a indução com rituximabe; uso mais prolongado pode ser considerado se houver doses repetidas, doença pulmonar estrutural ou imunossupressão persistente. Em quem recebe rituximabe, a imunoglobulina G deve ser medida antes do tratamento e periodicamente, porque hipogamaglobulinemia aumenta a vulnerabilidade a infecções. A profilaxia primária não deve aguardar pneumonia prévia nem ter sua duração definida apenas pela negativação do ANCA. O hemograma monitora outras toxicidades, mas não substitui a dosagem de imunoglobulina G.",
+        "diff": "easy",
+        "cat": "glomerular"
+      },
+      "identity": "Mesmo OP, competência e conceito correto reconhecível. qid,ans,cat preservados; ae0 acrescenta referência adequada ao mecanismo, sem trocar conceito. Nenhum reinício FSRS ou votos.",
+      "implementation": "Aplicar apenas objeto A2 exato. Mudança material posterior invalida gate.89depende do cardRAVEC1 liberado."
+    },
+    {
+      "qid": "ae0f4fef",
+      "originalHash": "4a4bb78359eb1bc4de06e51e0f104ab3c99bd4eb7e4e5426499bea223b6f5912",
+      "candidateHash": "ea01fbc555b5d5a53808b8a39160774129e696b9122527e2e91d3135c2050a9e",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "PARCIALMENTE VERIFICADA",
+      "pending": "NÃO DECISIVA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "ae0f4fef",
+        "op": "Separar mecanismo farmacológico plausível do avacopan e validade da evidência clínica após retratação",
+        "competency": "interpretação",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Integra mecanismo e hierarquia da evidência sem tomar plausibilidade como eficácia; não exige decisão clínica avançada.",
+        "diff": "medium",
+        "reconciliation": "Original classificado cegamente antes da versão proposta; A2 final mantém OP/competência/conceito e difficulty coerente. Concisão não é dificuldade."
+      },
+      "justification": "C5aR1/CD88 é o alvo, não C3/C5 direto; mecanismo não comprova eficácia em artigo retratado. Fonte KDIGO acrescentada apenas para mecanismo histórico, não eficácia pós2026.",
+      "problems": [
+        {
+          "severity": "MENOR",
+          "text": "Nota NEJM integral não acessível. Conteúdo decisivo retratação/data/integridade conferido independentemente em HealthCanada e documentoFDA íntegro; detalhe biográfico herdado nos cards sobre solicitação pelos autores não é pressuposto, gabarito ou segurança desta questão. Não alegar validação integral dos cards históricos."
+        }
+      ],
+      "adversary": "Testei se mecanismo permitiria reter a não inferioridade: não. Retratação também não demonstra resposta nula universal. Status regulatório é notificação histórica EUA datada, não regra global. Nenhum argumento plausível de recurso decisivo remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "É antagonista do receptor de C5a; esse mecanismo preserva a validade da análise de não inferioridade",
+        "É inibidor direto de C5; a retratação demonstra ausência de resposta em qualquer paciente",
+        "É inibidor de C3; a eficácia permanece comprovada quando associado a rituximabe"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 1,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "PARCIALMENTE VERIFICADA+NÃO DECISIVAválidos;semeliminatório;semrecurso;score19/20;aprovação→LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSourceIds": [
+        "Avacopan-mechanism-primary",
+        "KDIGO-ANCA-2024",
+        "FDA-NOOH-April2026",
+        "NEJM-retraction-2026"
+      ],
+      "lengths": {
+        "original": {
+          "lengths": [
+            149,
+            60,
+            72,
+            61
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 2.0694444444444446,
+          "heuristic": 1
+        },
+        "final": {
+          "lengths": [
+            94,
+            100,
+            89,
+            79
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 2,
+          "ratio": 0.94,
+          "heuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Avacopan — Mecanismo versus Evidência Clínica",
+        "qid": "ae0f4fef",
+        "q": "Qual afirmação separa corretamente o mecanismo do avacopan da situação de sua evidência clínica em 2026?",
+        "opts": [
+          "É antagonista do receptor de C5a; esse mecanismo não comprova a eficácia do ADVOCATE retratado",
+          "É antagonista do receptor de C5a; esse mecanismo preserva a validade da análise de não inferioridade",
+          "É inibidor direto de C5; a retratação demonstra ausência de resposta em qualquer paciente",
+          "É inibidor de C3; a eficácia permanece comprovada quando associado a rituximabe"
+        ],
+        "ans": 0,
+        "exp": "Avacopan antagoniza o receptor de C5a do tipo 1 (C5aR1/CD88), reduzindo ativação e migração de neutrófilos mediadas por C5a; não é inibidor direto de C5 nem de C3. Essa descrição farmacológica é distinta da demonstração de benefício clínico. O artigo ADVOCATE foi retratado por problemas de integridade dos desfechos, e seu resultado não se torna confiável por haver um mecanismo plausível. A FDA propôs retirar a aprovação nos Estados Unidos em 27 de abril de 2026, considerando a eficácia não demonstrada e informações materiais inexatas no dossiê, além de preocupações de segurança. Essa notificação é uma proposta histórica específica dos Estados Unidos; não deve ser extrapolada como situação regulatória mundial atual. A diretriz KDIGO 2024 descreve o antagonismo do receptor de C5a, mas suas recomendações de eficácia para avacopan antecedem a retratação e não a corrigem.",
+        "diff": "medium",
+        "cat": "glomerular",
+        "refs": [
+          "advocate_retraction_2026",
+          "fda_tavneos_nooh_2026",
+          "kdigo_anca_2024"
+        ]
+      },
+      "identity": "Mesmo OP, competência e conceito correto reconhecível. qid,ans,cat preservados; ae0 acrescenta referência adequada ao mecanismo, sem trocar conceito. Nenhum reinício FSRS ou votos.",
+      "implementation": "Aplicar apenas objeto A2 exato. Mudança material posterior invalida gate.89depende do cardRAVEC1 liberado."
+    }
+  ]
+}

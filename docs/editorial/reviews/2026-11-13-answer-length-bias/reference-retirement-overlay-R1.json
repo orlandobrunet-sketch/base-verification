@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "version": "R1",
+  "author": "/root/medical_answer_bias",
+  "date": "2026-11-13",
+  "status": "PROPOSTA PARA CONTRAPROVA INDEPENDENTE DO ROOT",
+  "scope": "Overlay separado do snapshot107 imutável; apenas duas aposentadorias de cards correntes sem consumidores. Nenhuma escrita no app pela autoria.",
+  "snapshot107TopicsHash": "d20e41cec246b3a24c31ac8ee614a81860e76fdea545a933a1f06a109a5ef3e8",
+  "snapshot107RefsHash": "d7710ed0e0a73b9acb3866dd940fbd651696b9018e064f0392267f9609844cad",
+  "basis": {
+    "handbook13": "Manter1–4referências necessárias e que sustentem o gabarito; remover fora de tema.",
+    "handbook18": "NQ Editorial Score é rubrica da questão, não do card.",
+    "handbook18_4": "Veredito aposentar não deriva Publicação LIBERADA para conteúdo corrente.",
+    "contract": "Nenhuma referência órfã e nenhuma alteração clínica silenciosa."
+  },
+  "entries": [
+    {
+      "id": "dcor_trial",
+      "unitType": "reference_card",
+      "operation": "remove_current_reference_card",
+      "beforeCard": {
+        "label": "Suki WN et al. — DCOR (Kidney Int 2007)",
+        "url": "https://doi.org/10.1038/sj.ki.5002466",
+        "journal": "Kidney Int. 2007;72(9):1130–1137",
+        "ano": 2007,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Sevelamer não demonstrou menor mortalidade geral que quelantes cálcicos no DCOR",
+        "icon": "🔬",
+        "resumo": "Ensaio multicêntrico, randomizado e aberto com 2103 pessoas em hemodiálise, comparando sevelamer a quelantes à base de cálcio. Avaliou mortalidade geral e por causas específicas; não encontrou diferença estatisticamente significativa na população total. Houve interação com idade e sinal favorável de mortalidade geral em pessoas acima de 65 anos, sem comprovação de menor mortalidade cardiovascular nesse subgrupo. Apenas 1068 participantes completaram o estudo. Esses achados de subgrupo não substituem o resultado principal neutro.",
+        "conclusao": "O DCOR não comprovou superioridade de sobrevida geral do sevelamer. Resultados de outros estudos sobre calcificação ou hipercalcemia não devem ser apresentados como desfechos demonstrados pelo DCOR.",
+        "curiosidade": "O ensaio foi desenhado para mortalidade; a descrição de menor progressão de calcificação coronariana não pertence aos resultados principais deste estudo."
+      },
+      "beforeCardHash": "1302b89b030b51fe7031180355810bf23f6b4539764b48184ae01467786cbb64",
+      "originalBaseCard": {
+        "label": "Chertow GM et al. — DCOR Trial (Kidney Int 2006)",
+        "url": "https://www.kidney-international.org/article/S0085-2538(15)52524-5/fulltext",
+        "journal": "Kidney Int 2006;69(8):1489-1496",
+        "ano": 2006,
+        "tipo": "Ensaio Clínico RCT",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Sevelamer vs quelantes à base de cálcio: sem diferença em mortalidade mas menor hipercalcemia e calcificação vascular",
+        "icon": "🔬",
+        "resumo": "ECR aberto multicêntrico (DCOR, n = 2.103), comparando o quelante de fósforo não cálcico cloridrato de sevelamer versus quelantes à base de cálcio (acetato ou carbonato de cálcio) em pacientes prevalentes em hemodiálise. O desfecho primário de mortalidade por todas as causas após 3 anos não apresentou diferença estatística significativa (HR 0,93; P = 0,40). No entanto, na análise pré-especificada de subgrupos, pacientes com mais de 65 anos ou que completaram > 2 anos de estudo apresentaram menor mortalidade cardiovascular no grupo sevelamer. O sevelamer causou significativamente menos episódios de hipercalcemia e menor progressão de calcificação vascular coronária.",
+        "conclusao": "O DCOR não mostrou superioridade geral na sobrevida primária, mas confirmou que quelantes não cálcicos reduzem o risco de hipercalcemia iatrogênica e a sobrecarga de cálcio no tecido vascular, fundamentando o manejo moderno do DBM-DRC.",
+        "curiosidade": "O excesso de cálcio derivado dos quelantes orais clássicos precipita-se na túnica média das artérias (arteriosclerose de Mönckeberg) e ativa células musculares lisas vasculares a transdiferenciarem-se em osteoblastos, um mecanismo ativo de calcificação biológica."
+      },
+      "originalBaseCardHash": "c5b640cd24f8c10c3ed19e854e48c42a81ca0455f6fb3101ba34ecbfaf68f604",
+      "originalBaseConsumers": [
+        {
+          "qid": "67035e0e",
+          "hash": "260fa56f52858050aee1fcdc1150d0ebf507c544be90582bea097da688055063",
+          "question": {
+            "t": "Quelantes de Fosfato — Sevelamer vs Quelantes com Cálcio",
+            "qid": "67035e0e",
+            "q": "Em paciente em hemodiálise com hiperfosfatemia e tendência à hipercalcemia, qual é a principal vantagem de usar sevelamer em vez de carbonato/acetato de cálcio?",
+            "refs": [
+              "kdigo_ckd_mbd_2017",
+              "dcor_trial"
+            ],
+            "opts": [
+              "Reduzir a carga de cálcio e o risco de hipercalcemia associada ao quelante",
+              "Ser invariavelmente mais barato e mais disponível",
+              "Reduzir fósforo por mecanismo hormonal sistêmico independente do intestino",
+              "Eliminar completamente efeitos gastrointestinais"
+            ],
+            "ans": 0,
+            "exp": "Sevelamer é um quelante de fosfato não cálcico; por isso controla absorção intestinal de fósforo sem acrescentar carga de cálcio. Em pacientes em diálise com risco de hipercalcemia ou calcificação vascular, essa é a vantagem prática sobre quelantes à base de cálcio. Ele não é escolhido por ser sempre mais barato, não atua por mecanismo hormonal sistêmico e ainda pode causar efeitos gastrointestinais.",
+            "diff": "medium",
+            "cat": "eletrólitos"
+          }
+        }
+      ],
+      "currentConsumers": [],
+      "plannedConsumers": [],
+      "lastConsumerFinal": {
+        "qid": "67035e0e",
+        "hash": "e5c26f21b33f751415819d05558040cdf68851f486c9884bc39b2342f9f0529e",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "kdigo_ckd_mbd_2009"
+        ]
+      },
+      "editorialDecision": "aposentar",
+      "scope": "Aposentar apenas a entrada do acervo corrente. Não excluir a fonte da literatura nem apagar seu registro histórico. Não emitir aprovação clínica nova ou aplicar alteração de questão.",
+      "reason": "O único consumidor67035e0e avalia a vantagem de um quelante sem cálcio em pessoa com tendência à hipercalcemia. O ensaio de mortalidade DCOR não é necessário para esse OP; a versão aprovada usa os documentos KDIGO de mecanismo e recomendação. Religar o DCOR somente para manter a vitrine criaria referência dispensável/inadequada. A correção integral do card foi revisada, porém sua publicação corrente ficou sem consumidor.",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "BLOQUEADA",
+      "publicationDerivation": "O veredito aposentar não é aprovação; a entrada não pode ser republicada como corrente. A autorização operacional de aposentadoria é distinta do campo Publicação do conteúdo.",
+      "nqEditorialScore": null,
+      "nqEditorialScoreApplicability": "NÃO APLICÁVEL: trata-se de destinação de card, sem enunciado/alternativas/gabarito. Não usar uma nota de card para aprovar questão.",
+      "implementation": {
+        "deleteOnlyId": "dcor_trial",
+        "archiveOriginalBaseCard": true,
+        "archiveOriginalBaseConsumers": true,
+        "preserveCorrectedReviewedCardIfExists": true,
+        "preserveQuestionFinal": true,
+        "preserveQidAndFsrs": true,
+        "newConsumerProhibited": true
+      },
+      "adversary": "Sem consumidor corrente, remover o card não deixa questão sem fonte nem altera gabarito. O histórico deve continuar resolvendo a versão anterior da referência. A operação não afirma invalidade do estudo científico nem elimina alternativa de futura revisão/criação formal.",
+      "decisionPayloadHash": "42b8f229567790ea639452181d8fbe8bb1d5ad5e288285670c083ce7376bc196"
+    },
+    {
+      "id": "finerenone_2025",
+      "unitType": "reference_card",
+      "operation": "remove_current_reference_card",
+      "beforeCard": {
+        "label": "Finerenona — FIDELIO-DKD + FIGARO-DKD (FIDELITY)",
+        "url": "https://academic.oup.com/eurheartj/article/43/6/474/6433230",
+        "journal": "Eur Heart J 2022;43(6):474-484",
+        "ano": 2022,
+        "tipo": "Análise Pooled RCT",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Finerenona ↓23% desfecho renal e ↓14% eventos cardiovasculares maiores em DRC diabética — análise combinada FIDELITY (>13.000 pacientes)",
+        "icon": "💊",
+        "resumo": "Análise combinada pré-especificada em larga escala (FIDELITY, n = 13.026 pacientes com DRC albuminúrica e diabetes mellitus tipo 2), unificando as coortes individuais dos ensaios clínicos pivotais de fase III FIDELIO-DKD e FIGARO-DKD. Avaliou a eficácia e segurança da finerenona (10 mg ou 20 mg uma vez ao dia) versus placebo, adicionados à terapia máxima tolerada com IECA ou BRA. O desfecho renal primário composto incluiu queda sustentada de TFGe ≥57% ou DRCT, e o desfecho cardiovascular foi um composto de morte CV, IAM não fatal, AVC não fatal ou hospitalização por IC. Resultados: A finerenona reduziu significativamente o risco do composto renal em 23% (HR 0,77; IC 95% 0,67–0,88; P < 0,001) e o risco de eventos cardiovasculares maiores (MACE) em 14% (HR 0,86; IC 95% 0,78–0,95; P = 0,0018). O risco de interrupção do tratamento por hipercalemia permaneceu muito baixo (1,7% no grupo ativo vs 0,6% no placebo).",
+        "conclusao": "A análise combinada do FIDELITY consolida a finerenona como pilar inequívoco de proteção dupla — renal e cardiovascular — em pacientes com nefropatia diabética proteinúrica ao longo de um amplo espectro de gravidade no Reino.",
+        "curiosidade": "O desfecho renal principal mediu a queda de TFGe ≥57% por equivaler matematicamente ao dobro do nível de creatinina sérica basal, um marcador de declínio funcional renal crônico aceito por órgãos reguladores globais como preditor confiável de falência renal estabelecida."
+      },
+      "beforeCardHash": "38b2457971f4c52597d15cf32c08adc2f3689a54d7d538589deb229a3cee715c",
+      "originalBaseCard": {
+        "label": "Finerenona — FIDELIO-DKD + FIGARO-DKD (FIDELITY)",
+        "url": "https://academic.oup.com/eurheartj/article/43/6/474/6433230",
+        "journal": "Eur Heart J 2022;43(6):474-484",
+        "ano": 2022,
+        "tipo": "Análise Pooled RCT",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Finerenona ↓23% desfecho renal e ↓14% eventos cardiovasculares maiores em DRC diabética — análise combinada FIDELITY (>13.000 pacientes)",
+        "icon": "💊",
+        "resumo": "Análise combinada pré-especificada em larga escala (FIDELITY, n = 13.026 pacientes com DRC albuminúrica e diabetes mellitus tipo 2), unificando as coortes individuais dos ensaios clínicos pivotais de fase III FIDELIO-DKD e FIGARO-DKD. Avaliou a eficácia e segurança da finerenona (10 mg ou 20 mg uma vez ao dia) versus placebo, adicionados à terapia máxima tolerada com IECA ou BRA. O desfecho renal primário composto incluiu queda sustentada de TFGe ≥57% ou DRCT, e o desfecho cardiovascular foi um composto de morte CV, IAM não fatal, AVC não fatal ou hospitalização por IC. Resultados: A finerenona reduziu significativamente o risco do composto renal em 23% (HR 0,77; IC 95% 0,67–0,88; P < 0,001) e o risco de eventos cardiovasculares maiores (MACE) em 14% (HR 0,86; IC 95% 0,78–0,95; P = 0,0018). O risco de interrupção do tratamento por hipercalemia permaneceu muito baixo (1,7% no grupo ativo vs 0,6% no placebo).",
+        "conclusao": "A análise combinada do FIDELITY consolida a finerenona como pilar inequívoco de proteção dupla — renal e cardiovascular — em pacientes com nefropatia diabética proteinúrica ao longo de um amplo espectro de gravidade no Reino.",
+        "curiosidade": "O desfecho renal principal mediu a queda de TFGe ≥57% por equivaler matematicamente ao dobro do nível de creatinina sérica basal, um marcador de declínio funcional renal crônico aceito por órgãos reguladores globais como preditor confiável de falência renal estabelecida."
+      },
+      "originalBaseCardHash": "38b2457971f4c52597d15cf32c08adc2f3689a54d7d538589deb229a3cee715c",
+      "originalBaseConsumers": [
+        {
+          "qid": "3d8fc3fe",
+          "hash": "dfd72c7ae02eb288daa5df10532764841b1fc1045cedb1b01447a9c88572e588",
+          "question": {
+            "t": "Finerenona — Classe e Indicação na DRC Diabética",
+            "qid": "3d8fc3fe",
+            "q": "Paciente com diabetes tipo 2, DRC albuminúrica persistente apesar de IECA/BRA em dose tolerada, TFGe 38 mL/min/1,73m² e potássio 4,5 mEq/L recebe finerenona. Qual é a classe farmacológica da finerenona?",
+            "refs": [
+              "fidelio_dkd",
+              "finerenone_2025",
+              "kdigo_diabetes_in_ckd_guideline"
+            ],
+            "opts": [
+              "Antagonista não esteroidal seletivo do receptor mineralocorticoide",
+              "Inibidor direto da renina",
+              "Antagonista esteroidal do receptor mineralocorticoide, como espironolactona",
+              "Diurético de alça poupador de potássio"
+            ],
+            "ans": 0,
+            "exp": "A finerenona é um antagonista não esteroidal seletivo do receptor mineralocorticoide. Em DRC associada ao diabetes tipo 2, seu uso foi estudado sobre bloqueio otimizado do SRAA, com seleção por potássio e necessidade de monitorização de hipercalemia. A distinção em relação à espironolactona é estrutural e de perfil de receptor; não autoriza tratar a finerenona como isenta de hipercalemia. FIDELIO-DKD, FIGARO-DKD/FIDELITY e diretrizes de diabetes na DRC sustentam o papel cardiorrenal da classe nessa população.",
+            "diff": "medium",
+            "cat": "nefropatia_diabetica"
+          }
+        }
+      ],
+      "currentConsumers": [],
+      "plannedConsumers": [],
+      "lastConsumerFinal": {
+        "qid": "3d8fc3fe",
+        "hash": "c82f282207bd93083276c549e90a7b029f81bdc1796c6e098b36bc4bf1557bdd",
+        "refs": [
+          "finerenone_label_dailymed"
+        ]
+      },
+      "editorialDecision": "aposentar",
+      "scope": "Aposentar apenas a entrada do acervo corrente. Não excluir a fonte da literatura nem apagar seu registro histórico. Não emitir aprovação clínica nova ou aplicar alteração de questão.",
+      "reason": "O único consumidor3d8fc3fe mede a classe farmacológica da finerenona. A versão aprovada usa a bula primária, fonte direta para mecanismo e classe. FIDELITY é análise combinada de desfechos e não é necessária para esse OP. Não se cria questão nova ou vínculo artificial para reter o card.",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "BLOQUEADA",
+      "publicationDerivation": "O veredito aposentar não é aprovação; a entrada não pode ser republicada como corrente. A autorização operacional de aposentadoria é distinta do campo Publicação do conteúdo.",
+      "nqEditorialScore": null,
+      "nqEditorialScoreApplicability": "NÃO APLICÁVEL: trata-se de destinação de card, sem enunciado/alternativas/gabarito. Não usar uma nota de card para aprovar questão.",
+      "implementation": {
+        "deleteOnlyId": "finerenone_2025",
+        "archiveOriginalBaseCard": true,
+        "archiveOriginalBaseConsumers": true,
+        "preserveCorrectedReviewedCardIfExists": false,
+        "preserveQuestionFinal": true,
+        "preserveQidAndFsrs": true,
+        "newConsumerProhibited": true
+      },
+      "adversary": "Sem consumidor corrente, remover o card não deixa questão sem fonte nem altera gabarito. O histórico deve continuar resolvendo a versão anterior da referência. A operação não afirma invalidade do estudo científico nem elimina alternativa de futura revisão/criação formal.",
+      "decisionPayloadHash": "6be89e62334b8d1ca9e024a8e8f61b4765bf76c0d3adf81f1cc2bab546a6c29f"
+    }
+  ],
+  "reviewRequirement": "Root deve conferir hashes/inventários, emitir decisão operacional de aposentadoria e aplicar somente as exclusões. Esta proposta não altera os pacotes/gates clínicos das107 questões."
+}

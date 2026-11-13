@@ -1,0 +1,269 @@
+{
+  "schema": 1,
+  "role": "AUTOR; levantamento de evidências, sem veredito ou autorização de publicação",
+  "date": "2026-11-13",
+  "candidateFile": "anca-candidates-A2.json",
+  "candidateFileSHA256": "32a31020010367f512adc6a41c468e8ad1189e62483cf76a088fc01ebc5db89f",
+  "sources": [
+    {
+      "id": "KDIGO-ANCA-2024",
+      "existingRef": "kdigo_anca_2024",
+      "url": "https://kdigo.org/wp-content/uploads/2024/05/KDIGO-2024-ANCA-Vasculitis-Guideline-Update.pdf",
+      "access": "PDF oficial integral aberto, 47 páginas. Não confundir recomendações históricas de avacopan com evidência válida após a retratação de 2026.",
+      "locators": [
+        "Diagnóstico, seção 9.1, S90–S91 (PDF páginas 21–22): pauci-imune, necrose/crescentes, testes MPO/PR3, ANCA negativo e Figura 1/PP9.1.1 sobre biópsia sem atraso da imunossupressão.",
+        "Rec9.3.1.1: glicocorticoide com rituximabe ou ciclofosfamida para indução. Corpo S96–S97 (PDF páginas 27–28): RITUXVAS combinado, profilaxia Pneumocystis, IgG basal e semestral e PP9.3.1.2 para creatinina >4 mg/dL.",
+        "S94 (PDF página 25): descrição de antagonismo do receptor de C5a. Usado somente como farmacologia, sem importar a recomendação histórica de eficácia de avacopan.",
+        "PP9.3.1.9/9.3.1.10, S99–S100 (PDF páginas 30–31): considerar troca plasmática em creatinina >3,4 mg/dL, diálise/elevação rápida, hemorragia alveolar com hipoxemia; acrescentar na sobreposição anti-MBG.",
+        "Seção 9.3.2 e Figura 14: rituximabe ou azatioprina com baixa dose de glicocorticoide; escolha individual. Esquema MAINRITSAN de 500 mg ×2, meses 6/12/18."
+      ]
+    },
+    {
+      "id": "RITUXVAS-2010",
+      "existingRef": "rituxvas_study",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa0909169",
+      "secondaryPrimaryRecord": "https://pubmed.ncbi.nlm.nih.gov/20647198/",
+      "access": "Acesso direto à editora negado e página direta PubMed retornou somente rodapé. Trechos completos de Methods/Results/Conclusions do artigo primário foram recuperados pela indexação da própria editora/PubMed. Não declarar leitura integral do artigo. O esquema combinado e o limite de atribuição são corroborados pelo PDF integral KDIGO 2024.",
+      "verifiedDetailsFromIndexedPrimary": "44 participantes, randomização 3:1; rituximabe 375 mg/m² semanal ×4 com dois pulsos de ciclofosfamida e GC; controle ciclofosfamida IV por 3–6 meses seguida de azatioprina e GC. Remissão sustentada em 12 meses 76% vs82%, sem superioridade e sem redução de eventos adversos graves precoces.",
+      "decisiveCorroboration": "KDIGO-ANCA-2024, S96–S97, descrição do RITUXVAS e PP9.3.1.2."
+    },
+    {
+      "id": "PEXIVAS-2020",
+      "existingRef": "pexivas_trial",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/32053298/",
+      "doi": "10.1056/NEJMoa1803537",
+      "access": "Resumo primário PubMed aberto. Não declarar leitura integral NEJM.",
+      "locators": [
+        "Abstract Methods/Results: 704 participantes; sete trocas em14dias; composto morte/falência renal HR0,86, IC95%0,65–1,13; GC reduzido não inferior e menos infecções graves."
+      ]
+    },
+    {
+      "id": "MAINRITSAN-2014",
+      "existingRef": "mainritsan_trial",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/25372085/",
+      "doi": "10.1056/NEJMoa1404231",
+      "access": "Resumo primário PubMed aberto. Não declarar leitura integral NEJM.",
+      "locators": [
+        "Abstract Methods/Results: 115 participantes após indução CYC/GC; RTX500mg dias0/14 e meses6/12/18, AZA até mês22. Recidiva maior no mês28:3/57(5%) vs17/58(29%). Comparação de esquema fixo, não de doses guiadas apenas por ANCA."
+      ]
+    },
+    {
+      "id": "RAVE-2010",
+      "existingRef": "rave_study",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3137658/",
+      "authorRecord": "https://scholars.duke.edu/publication/727436",
+      "doi": "10.1056/NEJMoa0909905",
+      "access": "Manuscrito primário integral aberto no PMC; registro institucional de coautores Duke aberto.",
+      "locators": [
+        "Cabeçalho: Stone JH como primeiro autor; N Engl J Med2010;363(3):221–232.",
+        "Methods/Treatments: RTX375mg/m² semanal ×4 ou CYC2mg/kg/dia ajustada à função renal; ambos com o mesmo regime de GC. Indução6meses.",
+        "Results e Discussion:64% vs53% remissão sem prednisona em6meses, não inferioridade; subgrupo recidivante67% vs42%; sem diferença significativa global de eventos adversos.",
+        "Discussion/limitations: excluídos creatinina >4,0mg/dL e hemorragia alveolar com necessidade de suporte ventilatório. Comparação permanece incerta nesses grupos;6meses insuficientes para alguns efeitos cumulativos."
+      ],
+      "sharedCardIssue": "O card atual erra autor e paginação e atribui minimização de toxicidade gonadal ao resultado do RAVE sem demonstrá-la no ensaio de6meses. Proposta de card separada, sem alteração no app."
+    },
+    {
+      "id": "EULAR-2022-update",
+      "existingRef": "eular_aav_2022",
+      "url": "https://opinvisindi.is/bitstreams/eeca1efb-a428-4f38-a857-754169e589b4/download",
+      "doi": "10.1136/ard-2022-223764",
+      "access": "PDF primário integral no repositório institucional de coautor; publicação final Ann Rheum Dis2024;83(1):30–47.",
+      "locators": [
+        "Recomendação2 e diagnóstico: imunoensaios específicos de PR3/MPO preferidos, sorologia isolada insuficiente; padrão perinuclear não substitui o fenótipo. Diagnóstico reconhece associação de MPA/MPO com doença pulmonar intersticial."
+      ],
+      "temporalLimit": "Não usar as seções históricas de avacopan como comprovação atual de eficácia."
+    },
+    {
+      "id": "EGPA-guideline-2023",
+      "existingRef": "egpa_guideline_2023",
+      "url": "https://siaaic.org/wp-content/uploads/2023/05/Evidence-based-guideline-EGPA_NRR_090523.pdf",
+      "doi": "10.1038/s41584-023-00958-w",
+      "access": "PDF primário integral disponibilizado por sociedade médica; Nat Rev Rheumatol2023;19:378–393.",
+      "locators": [
+        "Statements1–4, especialmente Statement4/PDF páginas6–7: ANCA30–40%, MPO predominante; associações fenotípicas com sobreposição; ANCA negativo não exclui; testes antígeno-específicos mais informativos que p-ANCA isolado."
+      ]
+    },
+    {
+      "id": "KDIGO-IgAN-2025",
+      "existingRef": "kdigo_igan_igav_2025",
+      "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+      "access": "PDF oficial integral aberto,71páginas.",
+      "locators": [
+        "PP1.5.3, S26/S50 (PDF páginas26/50): perda≥50%TFGe em≤3meses depois de excluir causas reversíveis/outros diagnósticos; biópsia; CYC+GC sistêmico, profilaxias; crescentes sem queda funcional não definem RPGN e evidência RTX insuficiente."
+      ]
+    },
+    {
+      "id": "FDA-NOOH-April2026",
+      "existingRef": "fda_tavneos_nooh_2026",
+      "url": "https://www.fda.gov/media/192160/download",
+      "agencyNotice": "https://www.fda.gov/drugs/drug-alerts-and-statements/cder-proposes-withdraw-approval-tavneos",
+      "federalRegister": "https://www.federalregister.gov/documents/2026/04/30/2026-08455/chemocentryx-inc-proposal-to-withdraw-approval-of-new-drug-application-for-tavneos-avacopan-capsule",
+      "access": "Carta oficial integral de24páginas e aviso regulatório federal abertos. Carta/nota CDER27/04/2026; publicação Federal Register30/04/2026.",
+      "locators": [
+        "Readjudicação pós-fechamento e pós-descegamento de nove participantes, não divulgada; dados comprometidos não estabelecem eficácia; informações materiais inexatas. Proposta de retirar aprovação nos EUA e oportunidade de audiência, não decisão final mundial."
+      ],
+      "safetyAdditionalPrimary": "https://www.fda.gov/media/191708/download"
+    },
+    {
+      "id": "NEJM-retraction-2026",
+      "existingRef": "advocate_retraction_2026",
+      "url": "https://doi.org/10.1056/NEJMe2608684",
+      "access": "Texto direto NEJM403. Existência/data da retratação corroboradas em comunicação primária oficial Health Canada aberta; motivos detalhados conferidos no documento integral FDA e nos trechos indexados da nota NEJM. Não declarar nota NEJM integralmente aberta.",
+      "corroboration": "https://recalls-rappels.canada.ca/en/alert-recall/tavneos-avacopan-and-health-canada-s-review-data-integrity-concerns",
+      "locators": [
+        "Health Canada, Background Information: retratação pelo NEJM em29/06/2026 por integridade dos dados do ADVOCATE."
+      ]
+    },
+    {
+      "id": "Avacopan-mechanism-primary",
+      "existingRefSupport": "kdigo_anca_2024 descreve receptor de C5a; acréscimo proposto em ae0f4fef, sem substituir as duas refs existentes",
+      "url": "https://www.tga.gov.au/resources/auspmd/tavneos",
+      "label": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c93cbc0b-29a3-46a5-9c85-41815ea5cf4a",
+      "access": "Página primária regulatória TGA e bula submetida pelo fabricante no DailyMed, revisão maio2026, abertas integralmente.",
+      "locators": [
+        "TGA/How this medicine works: antagonista seletivo do receptor humano C5aR1/CD88; não inibe diretamente formação de C5b-9. DailyMed12.1/12.2: antagonista C5aR, bloqueio de ativação/migração neutrofílica; significado farmacodinâmico clínico não estabelecido. Uso somente para farmacologia, não para validar resultados do ensaio retratado ou status regulatório atual."
+      ]
+    },
+    {
+      "id": "EMA-final-August2026-context",
+      "url": "https://www.ema.europa.eu/en/medicines/human/referrals/tavneos",
+      "access": "Página primária regulatória integral aberta.",
+      "locators": [
+        "Decisão final vinculante da Comissão Europeia em04/08/2026. Confirma por que a proposta histórica da FDA não pode ser apresentada como status mundial atual."
+      ],
+      "inCandidate": "Não inserida alegação sobre a decisão europeia no item; serve de checagem contra extrapolação e não demanda novo card no pacote."
+    },
+    {
+      "id": "KDIGO-response-September2026-access-limit",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/42710838/",
+      "doi": "10.1016/j.kint.2026.08.012",
+      "access": "Registro primário PubMed aberto: editorial de Rovin/Jayne/Sanders/Tesar/Floege publicado online08/09/2026, sem resumo. Texto integral da editora/Kidney International/ScienceDirect negado. Registro institucional Ohio State confirma identidade, sem disponibilizar o texto.",
+      "inCandidate": "Não se atribui conclusão a este editorial não lido. A validade do ADVOCATE não depende de supor a posição do editorial: fonte FDA íntegra e retratação corroborada permanecem o fundamento. Revisor deve registrar o limite de acesso e não supor leitura."
+    }
+  ],
+  "itemClaims": [
+    {
+      "qid": "1fd6a5cf",
+      "sources": [
+        "RITUXVAS-2010",
+        "KDIGO-ANCA-2024"
+      ],
+      "decisive": "O braço RTX contém dois pulsos de CYC e GC; não isola RTX nem demonstra superioridade ou menos eventos graves precoces.",
+      "numericAudit": "N44,375mg/m² semanal×4,2pulsos,12meses: primário indexado; esquema/limite causal corroborados em PDF KDIGO."
+    },
+    {
+      "qid": "91355bed",
+      "sources": [
+        "FDA-NOOH-April2026",
+        "NEJM-retraction-2026",
+        "EMA-final-August2026-context"
+      ],
+      "decisive": "Retratação e problemas de integridade impedem ensinar os resultados como comprovação confiável; não equivalem a ineficácia universal. FDA datada/EUA.",
+      "numericAudit": "9participantes;29/06/2026;27/04/2026: documentos primários mapeados acima."
+    },
+    {
+      "qid": "4efef2a5",
+      "sources": [
+        "PEXIVAS-2020",
+        "KDIGO-ANCA-2024"
+      ],
+      "decisive": "Resultado global não seleciona contraindicação absoluta em diálise nem indicação por título; KDIGO seleciona riscos e diferencia adicionar troca na sobreposição anti-MBG.",
+      "numericAudit": "704,7trocas,3,4mg/dL conferidos nas fontes respectivas."
+    },
+    {
+      "qid": "04cb2429",
+      "sources": [
+        "EGPA-guideline-2023"
+      ],
+      "decisive": "MPO apoia o fenótipo; ANCA negativo não exclui. Item mantido integralmente.",
+      "numericAudit": "30–40% na explicação original confirmado."
+    },
+    {
+      "qid": "ddfb3df6",
+      "sources": [
+        "KDIGO-ANCA-2024",
+        "EULAR-2022-update"
+      ],
+      "decisive": "Pauci-imune descreve depósitos, não gravidade, cicatriz, autoanticorpos séricos ou depósito linear.",
+      "numericAudit": "Sem dose/número decisivo."
+    },
+    {
+      "qid": "60efeb87",
+      "sources": [
+        "MAINRITSAN-2014",
+        "KDIGO-ANCA-2024"
+      ],
+      "decisive": "Esquema fixo RTX reduziu recidiva maior vsAZA; ambas continuam opções de manutenção. Não foi esquema apenas guiado por ANCA.",
+      "numericAudit": "500mg,dias0/14,meses6/12/18,AZAaté22,28meses,5%/29% conferidos no resumo primário."
+    },
+    {
+      "qid": "2a595b23",
+      "sources": [
+        "KDIGO-IgAN-2025",
+        "KDIGO-ANCA-2024"
+      ],
+      "decisive": "Queda55%em10semanas+exclusões+biópsia define forma rapidamente progressiva; oferecer CYC+GC/profilaxias, não extrapolar terapias de IgAN habitual.",
+      "numericAudit": "Limiar≥50%em≤3meses conferido.55%/10semanas são dados do caso, não estatística citada."
+    },
+    {
+      "qid": "cc9dc9d0",
+      "sources": [
+        "EULAR-2022-update",
+        "KDIGO-ANCA-2024"
+      ],
+      "decisive": "Integração MPO/renal/intersticial favorece MPA sem exclusividade sorológica; preferir testes antígeno-específicos.",
+      "numericAudit": "Sem dose/número decisivo."
+    },
+    {
+      "qid": "e5b44fbe",
+      "sources": [
+        "KDIGO-ANCA-2024",
+        "PEXIVAS-2020",
+        "RITUXVAS-2010"
+      ],
+      "decisive": "Indução imediata GC+RTX/CYC; MMF/AZA não substituem essa estrutura na doença grave; troca adicional selecionada.",
+      "numericAudit": "Sem novo número ou dose."
+    },
+    {
+      "qid": "89af997c",
+      "sources": [
+        "KDIGO-ANCA-2024",
+        "RITUXVAS-2010",
+        "RAVE-2010",
+        "PEXIVAS-2020"
+      ],
+      "decisive": "Creatinina4,8 excede população RAVE; não afirmar equivalência demonstrada de RTX/GC nessa faixa. CYC/GC ou combinação RTX/CYC são alinhados ao PP9.3.1.2.",
+      "numericAudit": "4mg/dL é limite de exclusão conferido no manuscrito RAVE e KDIGO.4,8 é dado do caso."
+    },
+    {
+      "qid": "ebd066db",
+      "sources": [
+        "KDIGO-ANCA-2024"
+      ],
+      "decisive": "Biópsia importante, mas apresentação compatível+PR3positivo+baixa suspeita secundária+deterioração rápida não deve esperar procedimento/laudo para tratar.",
+      "numericAudit": "Sem dose/número decisivo."
+    },
+    {
+      "qid": "91cfbe6c",
+      "sources": [
+        "KDIGO-ANCA-2024"
+      ],
+      "decisive": "Profilaxia Pneumocystis com TMP-SMXoualternativa, IgG basal/periódica; negativação ANCA e pneumonia prévia não são os gatilhos adequados de profilaxia primária.",
+      "numericAudit": "Explicação preserva6meses após indução RTX e extensão selecionada, fonte S96. Sem dose exata nova."
+    },
+    {
+      "qid": "ae0f4fef",
+      "sources": [
+        "Avacopan-mechanism-primary",
+        "KDIGO-ANCA-2024",
+        "FDA-NOOH-April2026",
+        "NEJM-retraction-2026",
+        "EMA-final-August2026-context"
+      ],
+      "decisive": "Antagonismo de receptor C5aR1 não equivale a inibição direta C5/C3 e não restaura validade de eficácia de ensaio retratado.",
+      "numericAudit": "R1/CD88 nomenclatura verificada em TGA;27/04/2026 referente à propostaFDA/EUA."
+    }
+  ],
+  "notPublicationGates": true,
+  "amendment": "A2 altera cinco diff e atualiza a última frase de91cfbe6c para os distratores finais. O fundamento KDIGO permanece o mesmo; nenhum número/dose novo."
+}

@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "reviewer": "/root/medical_answer_bias",
+  "scope": "Contraprova local independente da aplicação e do diff de integração; não substitui nem reemite gates clínicos.",
+  "baseCommit": "2607f215be39a08fc618aa4af384b2d5e9cdee7a",
+  "reviewedAt": "2026-11-13T14:05:21.345Z",
+  "result": "APROVADO PARA PROSSEGUIR COM VALIDAÇÃO/CI",
+  "findings": [],
+  "checked": {
+    "questionsExactSnapshot": 107,
+    "heldAndReviewedUnchangedPreserved": 9,
+    "referenceChanges": 11,
+    "referenceUpdates": 6,
+    "referenceAdds": 3,
+    "referenceRetirements": 2,
+    "archivedPublishedRecords": 110,
+    "oldHistoryRecordsPreserved": 16,
+    "historicalProfiles": 440,
+    "currentProfiles": 2964,
+    "ambiguousProfilesNotGuessed": 13,
+    "version": "17.10",
+    "declaredFiles": 103
+  },
+  "sourceHashes": {
+    "data/topics.js": "d20e41cec246b3a24c31ac8ee614a81860e76fdea545a933a1f06a109a5ef3e8",
+    "data/refs.js": "2868f3beb09d25a5939fd1c2c935d4a8329039eebdcd81ff4f844cf542a16eae",
+    "data/question-revision-history.js": "54f5688075947fd3b4cd9fb967c4ac154f5603ff0530787bc884c7ed0a64f6a4",
+    "data/question-revision-manifest.js": "e965b3599f2941ccc9c6cea58f9ee8c40762f8503f4e1e3d64426e7a6fded240",
+    "docs/editorial/review-batches/ANSWER-LENGTH-2026-11-13-01.json": "6c153e8ecd241f626bde4cc98e83d56e27c43c38e38e8f1c220fc85568adcaf1",
+    "tests/answers/answer-length-history.test.cjs": "62e4bfa47d033ec2c187657dab9238f3917b12e2f55711d76c3337ce5a16a64a",
+    "tests/specs/255-medical-revision-history.spec.ts": "4d14f4408d623eff48bfcb2aa52c0448582ce16bc0236c9546d4582c391f3954",
+    "sw.js": "1aa93e372290348d3eb0676da45a68ae9e9b7f24f1283e2b5030cb49073918ed",
+    "version.json": "2c91fb3496ea1561a8fb0d928842d06e60169b09232c5043bfb932975d3cf0c7",
+    "index.html": "3e501b0f101044a3335991f3d941df2e49c1a6b241e3eb6cfdb2b03364ef8819",
+    "jogar/index.html": "898d526c9b265ffa5f7e0458372f3ae681db537797657dd53ec1dd635d8d14e0"
+  },
+  "manualReview": [
+    "Testes novos usam objetos históricos17.09 reais, preservam respostas e cards, impedem aceitar conteúdo pendente sem confirmação e não adivinham card-only legado sem binding.",
+    "Nenhum JS de motor/UI foi alterado; HTML/SW somente metadados de versão.",
+    "Documentação mantém viés global aberto e distingue medições de pista de desempenho humano.",
+    "NQ Editorial Score dos6cardsMBD corrigido por adendo N/A; aposentadoria tem autorização operacional separada da publicaçãoBLOQUEADA."
+  ],
+  "limits": "Não executei UI/CI nesta contraprova; root acompanha a bateria. Resultado vale para os hashes registrados, sem publicação por este revisor. Sem Greptile por recusa automática registrada."
+}
