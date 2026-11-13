@@ -1,0 +1,443 @@
+{
+  "schema": 1,
+  "batch": "DP-final-five-A2",
+  "reviewer": "/root/medical_answer_bias independente de autoria adpkd_independent_review",
+  "reviewDate": "2026-11-13",
+  "norms": {
+    ".claude/skills/revisar-nefroquest/SKILL.md": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef",
+    ".claude/skills/revisar-nefroquest/references/output-contract.md": "4a20348ac71a07836b4611d574496d97960b27a2bbfdcf1f1ed318396f0edcb8",
+    ".claude/skills/revisar-nefroquest/references/verification-protocol.md": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df",
+    "docs/editorial/annex-c-nefrologia.md": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+  },
+  "candidateFile": "dp-final-candidates-A2.json",
+  "candidateFileHash": "290d98e2d629850a8ed1e4cbbaa5a0870cb704058642b7ce5b114358c27f16ea",
+  "requiredCardGate": "aki-pd-card-independent-gate-C2.json",
+  "blindClassificationFile": "dp-final-independent-classification-A1.json",
+  "blindClassificationSha256": "1bb58a8241922ad0c9e04f45537988d3dabbd2a83c5d6c3530ee1b4d73ea9152",
+  "counts": {
+    "approved": 5,
+    "materialChanges": 5,
+    "verifiedNone": 4,
+    "partialNonDecisive": 1,
+    "held": 0
+  },
+  "independentSourceVerification": {
+    "AKI2020": {
+      "url": "https://journals.sagepub.com/doi/10.1177/0896860820970834",
+      "access": "Texto primário integral1459linhas aberto;Guidelines1/2/4.1–4.4,Rationale/Table5 lidos. Modalidade em diferentes cenários,escolha/acesso individual,monitorização/ciclos,glicose/volume. §4.1cita1Cde sobrevida equivalente,masRationale descreve estudo125subpotente com sinal favorável àDP e necessidade de replicação;nãoinferirequivalência formal universal. CardC2não repete resultado conflitante,nemdeclara redução universal paraKt/V2,2. §4.1mantém3,5comodiálise diária/críticos e admite doses menores segundo contexto;índice/casosdafonte conferidos."
+    },
+    "ACCESS2019": {
+      "url": "https://journals.sagepub.com/doi/10.3747/pdi.2018.00232",
+      "access": "Texto integral2577linhas aberto;HerniaRepair,PeritonealLeakage/Latepericatheterleaks,BreakIn lidos. Reparo e baixo volume/decúbito/abdome seco podem manterDPsemHDinterina,semgarantiauniversal;hérnia sintomática exigeavaliaçãocirúrgica,encarceramento/estrangulamentourgentes."
+    },
+    "EOS2023": {
+      "url": "https://link.springer.com/article/10.1186/s12882-022-03027-8",
+      "doi": "10.1186/s12882-022-03027-8",
+      "access": "Texto integral351linhas aberto;Discussion/presentation/definição/limitações lidos.>100eosinófilos/µLou>10%nãoeritrócitos,inícioprecoce,hipersensibilidadeproposta,infecçãopodecoexistir.320×60%=192eosinófilos/µL,acima dosdoiscritérios. Semimportaresquemasdedroga do caso."
+    },
+    "PERITONITIS2022": {
+      "url": "https://journals.sagepub.com/doi/10.1177/08968608221080586",
+      "access": "Fonte primária já conferida na frenteDPinfecção;efluenteturvo exige coleta/investigaçãomicrobiológica e eosinofilia nãoexcluiinfecção. Não usar culturaisoladanegativacomoexclusão."
+    },
+    "MEMBRANE2021": {
+      "url": "https://journals.sagepub.com/doi/10.1177/0896860820982218",
+      "access": "Texto integral1841linhas aberto;Howmembraneworks/Theoreticalmodels,PSTR,watertransport e conclusãoterminológicalidos novamente paraesteOP. Pequenosporosmediamdifusãopassiva e fluxoáguaacoplado,gradienteconcentração,glicose/icodextrinaUF e convecçãotambémcontribuem;semtransporteativodefinidor. Livrosredundantes removidosdaq,semalegarfulltext/nemreconstruircards."
+    },
+    "NEUMANN2018": {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=29042081&retmode=xml",
+      "doi": "10.1016/j.kint.2017.07.022",
+      "responseSha256": "33ddd684f35f2bc9718401d8a9e3a44bf472167c39d55fef6b51f8e6348188ec",
+      "access": "Resumo primário completoefetchlido;coorteCORETHpropensity,96HD/101DP,271baseline/1ano,testesobjetivosvsautorrelatodiferem,maisexclusõesHD. Não alegar fulltext403;limites de comparabilidade/generalização explícitos."
+    },
+    "NIKNAFS2025": {
+      "url": "https://www.journalrip.com/Inpress/jrip-38662.pdf",
+      "doi": "10.34172/jrip.2025.38662",
+      "access": "PDFprimáriointegral5p/519linhas aberto;Methods,Results eDiscussion/limitationslidos. Transversal200/100cada,MMSE,associaçãofavorávelDP;seleçãobasaleconfusãonãopermitemcausalidade.Cuidadoemambasmodalidades."
+    },
+    "MALIK2026": {
+      "url": "https://link.springer.com/article/10.1007/s10157-025-02798-2",
+      "doi": "10.1007/s10157-025-02798-2",
+      "access": "Texto integral463linhas aberto;Methods,Results,heterogeneidade eLimitationslidos. Buscaaté01/2025,semRCTidentificado,estudosobservacionais,demênciaheterogeneidade94%,nãoextrapolarcausalidade. Fonte diz26emresumo/inícioResultados e27emparágrafoseguinte;nenhum total/efeito numérico conflitante é cobrado ou repetido na candidata."
+    }
+  },
+  "duplicateAudit": "CincoOPs distintos por decisão de modalidadeLRA,reparohernia,diagnósticoeosinófilos,princípiotransporte,interpretação causal. Nenhumdeles duplicamembranefailure/infecçãopreviamentegatedsobmesmocontextoeconceito.",
+  "referenceEconomy": "faacusa1fonte específicaaberta emvezde2livrosredundantes.Nenhumcarddelivrofoialteradooualegadocomoaberto;Brenner/Daugirdaspermanecemcom170/2outrosconsumidoresconformeauditoriaautoral.",
+  "items": [
+    {
+      "qid": "f4de7965",
+      "unitType": "question",
+      "originalHash": "0656ad2ef3b50c0add62563fe5f436d587da87969751b1f33aa6ec2f868fff82",
+      "candidateHash": "5f7e1a0d35126d45d4df26781ca86895c0da1ffe90c507974b20595fa304281f",
+      "candidate": {
+        "t": "Diálise Peritoneal na LRA — Modalidade Selecionada",
+        "qid": "f4de7965",
+        "q": "Sobre o uso de diálise peritoneal em adultos com lesão renal aguda hospitalar, qual afirmação é mais adequada?",
+        "refs": [
+          "ispd_aki_pd_2020"
+        ],
+        "opts": [
+          "É uma opção com seleção clínica, acesso adequado, prescrição e monitorização individualizadas",
+          "A oligúria contraindica a modalidade por impossibilitar depuração suficiente de pequenos solutos",
+          "Na sepse, deve ser preferida à terapia contínua por oferecer benefício comprovado de sobrevida",
+          "A prescrição deve repetir os volumes usados nos ensaios para assegurar a mesma eficácia clínica"
+        ],
+        "ans": 0,
+        "exp": "A International Society for Peritoneal Dialysis (ISPD) considera a diálise peritoneal (DP) modalidade adequada para lesão renal aguda em diferentes cenários. A escolha depende do contexto, e a prescrição deve ser ajustada à necessidade de corrigir alterações metabólicas e sobrecarga de volume, com acesso, equipe e monitorização apropriados. A oligúria, isoladamente, não demonstra que a DP será insuficiente. A diretriz cita evidência de baixa certeza de sobrevida semelhante entre um protocolo tidal automatizado e hemodiafiltração venovenosa contínua; isso não comprova superioridade na sepse nem equivalência entre todas as prescrições. Volume, duração dos ciclos e concentração de glicose devem acompanhar a evolução clínica. Cirurgia abdominal recente, defeitos da parede e necessidades urgentes de depuração exigem avaliação individual, sem extrapolar os resultados de um protocolo a qualquer paciente.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "classification": {
+        "qid": "f4de7965",
+        "op": "Reconhecer diálise peritoneal como modalidade selecionada na lesão renal aguda, respeitando elegibilidade, prescrição, recursos e limites de comparação com terapia contínua.",
+        "competency": "conduta",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "medium",
+        "justification": "Relaciona indicação e limites da evidência, sem prescrição individual de urgência ou escolha entre contextos de alta complexidade.",
+        "warnings": [
+          "Não transformar um protocolo de comparação em superioridade/ equivalência universal nem dose fixa para todos.",
+          "Verificar contraindicações abdominais, população adulta e monitorização na fonteISPDprimária."
+        ],
+        "finalDifficulty": "medium"
+      },
+      "verdict": "aprovada",
+      "legacy": "REESCREVER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "publicationDerivation": "Handbook18.4:VERIFICADA/NENHUMA+aprovada→LIBERADA;semeliminatório/recurso.",
+      "pendingExplanation": null,
+      "score": 19,
+      "dimensionScores": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "eliminators": [],
+      "plausibleAppealRemaining": false,
+      "justification": "DP é opção selecionada naLRA,comacesso/prescrição/monitorização;doses e modalidade não se generalizam deumprotocolo.",
+      "adversary": "A frase sobre sobrevida semelhante é atribuição explícita à declaração§4.1da diretriz,comlimitessubsequentes;Rationale eTable5possuem tensão que o relatório registra. Nenhuma alternativa depende de equivalênciaformal ou preferênciauniversalna sepse. Oligúria isolada não é contraindicação.",
+      "sourceLocators": "AKI2020Summary1/Guidelines2e4/Rationale/Table5",
+      "referenceBindings": [
+        {
+          "refId": "ispd_aki_pd_2020",
+          "referenceHash": "22467ba8b9f32e9ac3d85971dc02eb963eac9846b322ce5f3d7adbfec44932d1"
+        }
+      ],
+      "identityReview": "MesmoOP,competência,conceito correto eraciocínioreconhecível;preservarqid/FSRSconformeHandbook18.5. Fontes,distratoreseredaçãoatualizadossemnovacompetência.",
+      "implementation": "AplicarsomenteA2exata;C2doISPD-AKInecessitaseugateintegral separado. Arquivarversõesanterioresdecadaconsumidor,semalterarmotor,votosouestadoFSRS."
+    },
+    {
+      "qid": "23635484",
+      "unitType": "question",
+      "originalHash": "6d3955da74f9f064afbe1b55c6103d732b1b4e0b411748e6286c139d05617e8d",
+      "candidateHash": "daa4abf664c21888dc73ef0c778b6b4cecc5843fab27fb6babe83a55ea77251d",
+      "candidate": {
+        "t": "DP — Hérnia da Parede Abdominal",
+        "qid": "23635484",
+        "q": "Paciente em diálise peritoneal apresenta hérnia umbilical sintomática, redutível e sem sinais de estrangulamento. Qual estratégia é mais adequada?",
+        "refs": [
+          "ispd_pd_access_2019"
+        ],
+        "opts": [
+          "Planejar o reparo e individualizar a pausa e o reinício da diálise peritoneal",
+          "Adiar o reparo até haver encarceramento, mantendo o esquema dialítico habitual",
+          "Planejar o reparo e manter o volume habitual nas trocas desde o pós-operatório imediato",
+          "Transferir definitivamente para hemodiálise antes de encaminhar para reparo"
+        ],
+        "ans": 0,
+        "exp": "Hérnias são complicações relacionadas ao aumento da pressão intraperitoneal e requerem avaliação cirúrgica, sobretudo quando sintomáticas. A presença de hérnia não implica abandono definitivo da DP. Em muitos casos é possível evitar hemodiálise temporária, ajustando o período perioperatório conforme função renal residual e urgência; quando a DP precisa ser mantida ou reiniciada cedo, trocas de baixo volume em decúbito, frequentemente automatizadas e sem permanência diurna, reduzem pressão sobre o reparo. Encarceramento ou estrangulamento exige abordagem urgente.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "classification": {
+        "qid": "23635484",
+        "op": "Planejar avaliação e reparo de hérnia sintomática não complicada, individualizando a continuidade/retomada daDPcom baixo volume e decúbito.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "A ausência explícita de estrangulamento permite distinguir reparo planejado de urgência e técnica inviável.",
+        "warnings": [
+          "Não garantir continuidade em todos ou impor abandono definitivo; confirmar cuidados perioperatórios na diretriz de acesso."
+        ],
+        "finalDifficulty": "medium"
+      },
+      "verdict": "aprovada",
+      "legacy": "REESCREVER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "publicationDerivation": "Handbook18.4:VERIFICADA/NENHUMA+aprovada→LIBERADA;semeliminatório/recurso.",
+      "pendingExplanation": null,
+      "score": 19,
+      "dimensionScores": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "eliminators": [],
+      "plausibleAppealRemaining": false,
+      "justification": "Hérnia sintomática e redutível requer reparo planejado e estratégia individual paraDP,semHDpermanente automática.",
+      "adversary": "Não há estrangulamento informado;urgência nãoépresumida. A opção não garantecontinuidadeem todos. Baixovolume/decúbito reduzpressão sobre reparo;volumeshabituaisimediatos nãoéopadrãoseguro.",
+      "sourceLocators": "ACCESS2019HerniaRepair/PeritonealLeakage/Latepericatheterleaks",
+      "referenceBindings": [
+        {
+          "refId": "ispd_pd_access_2019",
+          "referenceHash": "50411e392e3843a6c7e3b89e0b0e0a920cb6a2fe9ef7c76dc83ecdbdb3c4b191"
+        }
+      ],
+      "identityReview": "MesmoOP,competência,conceito correto eraciocínioreconhecível;preservarqid/FSRSconformeHandbook18.5. Fontes,distratoreseredaçãoatualizadossemnovacompetência.",
+      "implementation": "AplicarsomenteA2exata;C2doISPD-AKInecessitaseugateintegral separado. Arquivarversõesanterioresdecadaconsumidor,semalterarmotor,votosouestadoFSRS."
+    },
+    {
+      "qid": "5eb00a6e",
+      "unitType": "question",
+      "originalHash": "51ef79ce1b665933a7c80671346e5fc079cb8eb481978c77d4f568467935d266",
+      "candidateHash": "b64b65be9a4edfae62e0c549fc68a2239f8ad025cde2b919ae5c335ad51619f3",
+      "candidate": {
+        "t": "DP — Efluente Eosinofílico",
+        "qid": "5eb00a6e",
+        "q": "Duas semanas após iniciar diálise peritoneal, paciente apresenta efluente turvo, desconforto mínimo, cultura negativa e 320 leucócitos/µL, dos quais 60% são eosinófilos. Qual hipótese merece destaque após coleta adequada e exclusão de infecção?",
+        "refs": [
+          "ispd_peritonitis_guideline",
+          "eosinophilic_peritonitis_review_2023"
+        ],
+        "opts": [
+          "Peritonite eosinofílica",
+          "Peritonite bacteriana de cultura negativa",
+          "Peritonite fúngica",
+          "Hemoperitônio"
+        ],
+        "ans": 0,
+        "exp": "Eosinófilos acima de 10% das células do efluente ou contagem absoluta acima de 100/µL sustentam efluente eosinofílico; o quadro ocorre com frequência nas primeiras semanas após cateter ou início da DP e pode refletir hipersensibilidade a materiais, solução, fármacos ou ar. Dor discreta, cultura negativa e predomínio de eosinófilos favorecem peritonite eosinofílica. Ainda assim, efluente turvo deve receber coleta e avaliação microbiológica adequadas, pois infecção é mais comum e eosinofilia não a exclui automaticamente.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "classification": {
+        "qid": "5eb00a6e",
+        "op": "Reconhecer peritonite/efluente eosinofílico no início daDPapós investigação adequada, sem excluir infecção por eosinofilia isolada.",
+        "competency": "diagnóstico",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Integra tempo, predomínio celular, sintomas e investigação microbiológica em apresentação típica.",
+        "warnings": [
+          "Conferir definição relativa/absoluta e natureza da fonte; não usar cultura negativa precoce como exclusão suficiente de infecção.",
+          "Os dados320e60%já superam limiar absoluto100/µL; não trocar denominadores."
+        ],
+        "finalDifficulty": "medium"
+      },
+      "verdict": "aprovada",
+      "legacy": "REESCREVER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "publicationDerivation": "Handbook18.4:VERIFICADA/NENHUMA+aprovada→LIBERADA;semeliminatório/recurso.",
+      "pendingExplanation": null,
+      "score": 18,
+      "dimensionScores": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 1,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "eliminators": [],
+      "plausibleAppealRemaining": false,
+      "justification": "Predomínioeosinofílico,inícioprecoce epoucossintomas apoiam hipótese,apósinvestigaçãoadequada.",
+      "adversary": "Enunciado não diz que uma cultura negativa é suficiente;exige exclusão de infecção apóscoleta. Eosinofilia podecoexistircominfecção;explicaçãoensina este limite. Hemoperitônio nãoexplica predomínioeosinofílico.",
+      "sourceLocators": "EOS2023Discussion/limitations;PERITONITIS2022initialpresentation",
+      "referenceBindings": [
+        {
+          "refId": "ispd_peritonitis_guideline",
+          "referenceHash": "5e20480a5aa473f955b5028a13df0776d266b0f2adf0003a32894b65ee5ae064"
+        },
+        {
+          "refId": "eosinophilic_peritonitis_review_2023",
+          "referenceHash": "165d63ad23ca4a8b083d32440756a8c21385cfff9a8e4a898cfd8692cc9770bc"
+        }
+      ],
+      "identityReview": "MesmoOP,competência,conceito correto eraciocínioreconhecível;preservarqid/FSRSconformeHandbook18.5. Fontes,distratoreseredaçãoatualizadossemnovacompetência.",
+      "implementation": "AplicarsomenteA2exata;C2doISPD-AKInecessitaseugateintegral separado. Arquivarversõesanterioresdecadaconsumidor,semalterarmotor,votosouestadoFSRS."
+    },
+    {
+      "qid": "faac594e",
+      "unitType": "question",
+      "originalHash": "9f6c9523cd8b77d8c2637371fcd59addee81f8734df9979511c1bc0f1a67f0e8",
+      "candidateHash": "936009c086bcc312c51853202ebe7e61381fcaa33fecab03d70d1d057fba06ec",
+      "candidate": {
+        "t": "Diálise Peritoneal — Difusão e Ultrafiltração",
+        "qid": "faac594e",
+        "q": "Na diálise peritoneal, qual mecanismo remove principalmente ureia e outros pequenos solutos do sangue para o dialisato?",
+        "refs": [
+          "ispd_membrane_dysfunction_2021"
+        ],
+        "opts": [
+          "Difusão passiva conforme o gradiente de concentração dos solutos",
+          "Transporte convectivo dos solutos acompanhando a ultrafiltração de água",
+          "Transporte ativo dos solutos por bombas da membrana peritoneal",
+          "Osmose, que desloca pequenos solutos para equilibrar os compartimentos"
+        ],
+        "ans": 0,
+        "exp": "Na diálise peritoneal (DP), pequenos solutos como a ureia atravessam a barreira peritoneal principalmente por difusão passiva, conforme seu gradiente de concentração, em geral do sangue capilar para o dialisato. O transporte convectivo acompanha o fluxo de água e também pode contribuir para remover solutos, mas não é o principal mecanismo pedido. Osmose descreve o movimento de água em resposta ao gradiente osmótico, que sustenta a ultrafiltração com agentes como glicose ou icodextrina; não é o nome da difusão da ureia. A troca dialítica de pequenos solutos não depende de bombas de transporte ativo. A função renal residual complementa a depuração total, sem constituir o mecanismo de transferência peritoneal.",
+        "diff": "easy",
+        "cat": "dialise"
+      },
+      "classification": {
+        "qid": "faac594e",
+        "op": "Distinguir difusão de pequenos solutos naDPda ultrafiltração osmótica e da contribuição residual renal.",
+        "competency": "mecanismo",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "justification": "Princípio físico direto com relevância para prescrição, sem interpretação de teste ou decisão complexa.",
+        "warnings": [
+          "Trocar distratores absurdos por confusões reais de transporte, sem elevar artificialmente oOP.",
+          "Livros não abertos não podem ser prova; usar fonte primária/diretriz de fisiologia conferida e indicar limite de acesso."
+        ],
+        "finalDifficulty": "easy"
+      },
+      "verdict": "aprovada",
+      "legacy": "REESCREVER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "publicationDerivation": "Handbook18.4:VERIFICADA/NENHUMA+aprovada→LIBERADA;semeliminatório/recurso.",
+      "pendingExplanation": null,
+      "score": 19,
+      "dimensionScores": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "eliminators": [],
+      "plausibleAppealRemaining": false,
+      "justification": "Difusão passiva é principal transferência de ureia/pequenos solutos;convecção e osmose têm papéis diferentes.",
+      "adversary": "Não se afirma que convecção seja inexistente;perguntaoprincipal. Osmose émovimentodeágua,nãonomedotransportedauréia. TransporteativoéconfusãobásicadentrodoOP,semfisiologiadrogaabsurda. Fonteespecífica conferida substitui livrosredundantes.",
+      "sourceLocators": "MEMBRANE2021Howmembraneworks/PSTR/watertransport/Terminology",
+      "referenceBindings": [
+        {
+          "refId": "ispd_membrane_dysfunction_2021",
+          "referenceHash": "88384bbb2d43905b6e7a649e19aa20fb490ef34579e3251cc20eba692994718e"
+        }
+      ],
+      "identityReview": "MesmoOP,competência,conceito correto eraciocínioreconhecível;preservarqid/FSRSconformeHandbook18.5. Fontes,distratoreseredaçãoatualizadossemnovacompetência.",
+      "implementation": "AplicarsomenteA2exata;C2doISPD-AKInecessitaseugateintegral separado. Arquivarversõesanterioresdecadaconsumidor,semalterarmotor,votosouestadoFSRS."
+    },
+    {
+      "qid": "4decf9f9",
+      "unitType": "question",
+      "originalHash": "441802736db28d7d94be2097af2499165dbd37f3d7d0ea13fccbe3fd8aceba35",
+      "candidateHash": "e6b21995e1701ba736124a38ece9d92066b4902884f6903a4244083c20d6973e",
+      "candidate": {
+        "t": "Cognição — Diálise Peritoneal versus Hemodiálise",
+        "qid": "4decf9f9",
+        "q": "Pessoa com falência renal pergunta se escolher diálise peritoneal, em vez de hemodiálise, protegerá sua cognição. Qual resposta melhor representa a evidência atual?",
+        "refs": [
+          "neumann_2018",
+          "niknafs_2025",
+          "malik_meta_2025"
+        ],
+        "opts": [
+          "Há associação favorável à diálise peritoneal, sem comprovar proteção causal pela modalidade",
+          "O pareamento das coortes elimina o viés de seleção e confirma proteção pela diálise peritoneal",
+          "A depuração mais rápida da hemodiálise demonstra maior proteção cognitiva nessa modalidade",
+          "A heterogeneidade dos estudos permite dispensar a cognição na escolha e no seguimento clínico"
+        ],
+        "ans": 0,
+        "exp": "Coortes e metanálises observacionais associam diálise peritoneal a melhor desempenho cognitivo e menor incidência de demência. Porém, os grupos podem diferir em cognição basal, idade, autonomia e comorbidades; pareamento por variáveis medidas não elimina todo viés de seleção ou confundimento. A metanálise citada não identificou ensaios randomizados comparando modalidades para esses desfechos, e encontrou heterogeneidade importante, sobretudo para demência. Assim, associação não equivale a proteção causal comprovada, nem a rapidez de depuração demonstra superioridade cognitiva da hemodiálise. A incerteza tampouco torna a cognição irrelevante. Comprometimento cognitivo exige atenção nas duas modalidades, e a decisão deve integrar preferências, capacidade de autocuidado ou assistência e risco clínico.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "classification": {
+        "qid": "4decf9f9",
+        "op": "Interpretar associação observacional entre modalidade dialítica e cognição sem prometer proteção causal daDPnem ignorar seleção e heterogeneidade.",
+        "competency": "interpretação",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "medium",
+        "justification": "Distingue associação e causalidade para comunicação de escolha; não realiza análise estatística avançada.",
+        "warnings": [
+          "Verificar desenho e resultados de cada estudo/metanálise e a existência de nova evidência aleatorizada até a data da revisão.",
+          "Não confundir demência incidente com desempenho cognitivo em instrumento ou comparar sem considerar cognição basal."
+        ],
+        "finalDifficulty": "medium"
+      },
+      "verdict": "aprovada",
+      "legacy": "REESCREVER",
+      "confidence": "moderada-alta",
+      "evidence": "PARCIALMENTE VERIFICADA",
+      "pending": "NÃO DECISIVA",
+      "publication": "LIBERADA",
+      "publicationDerivation": "Handbook18.4:PARCIALMENTEVERIFICADA/NÃODECISIVA+aprovada→LIBERADA;todasafirmaçõesdecisivasconferidas.",
+      "pendingExplanation": "CardMalikconserva26estudosconformeoresumo,masfonteinternamentecontradizcom27;nenhumtotaléusadonoitem. CardNeumannusaexpressãoviésdeatritoparamaisexclusões;resumoprimárionãoesclareceperdalongitudinal. Novoitemlimitaaconclusãoaseleção/confundimentoeassociação,comtodososdadosdecisivosconferidos;metadatasecundária nãoalteragabarito,segurançaourecursoplausível.Registrarpendênciabibliográfica,semrecontarestudosemprova.",
+      "score": 18,
+      "dimensionScores": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 1,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "eliminators": [],
+      "plausibleAppealRemaining": false,
+      "justification": "Dadosobservacionais associamDPamelhorcognição/menordemência,semcomprovarneuroproteçãocausalpelamodalidade.",
+      "adversary": "Pareamentonãocontrolaconfundidoresnãomedidos. NenhumRCTfoiencontradopelarevisãocitada,nãosealegabuscaexaustiva atéhoje. Heterogeneidade nãotornaocuidadoirrelevante. Maisexclusões noestudoneumann não provam efeito causal.",
+      "sourceLocators": "NEUMANN2018abstract;NIKNAFS2025Methods/Discussion;MALIK2026Results/Limitations",
+      "referenceBindings": [
+        {
+          "refId": "neumann_2018",
+          "referenceHash": "ba19227dc8b32d2c994086f4002c492c774a628bea068afd67eaaf95361ae0f6"
+        },
+        {
+          "refId": "niknafs_2025",
+          "referenceHash": "9994eee45657086bb940d60222ea124960780a8e1bb3fe355e629cb3af8ecf63"
+        },
+        {
+          "refId": "malik_meta_2025",
+          "referenceHash": "42a3026f47d433f430768e60708aa9c25e19d676f5a5a3065cb79324165106e4"
+        }
+      ],
+      "identityReview": "MesmoOP,competência,conceito correto eraciocínioreconhecível;preservarqid/FSRSconformeHandbook18.5. Fontes,distratoreseredaçãoatualizadossemnovacompetência.",
+      "implementation": "AplicarsomenteA2exata;C2doISPD-AKInecessitaseugateintegral separado. Arquivarversõesanterioresdecadaconsumidor,semalterarmotor,votosouestadoFSRS."
+    }
+  ]
+}

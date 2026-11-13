@@ -1,0 +1,574 @@
+{
+  "schema": 1,
+  "reviewer": "/root/medical_answer_bias (independente de autoriaadpkd_independent_review)",
+  "reviewDate": "2026-11-13",
+  "norms": {
+    ".claude/skills/revisar-nefroquest/SKILL.md": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef",
+    ".claude/skills/revisar-nefroquest/references/output-contract.md": "4a20348ac71a07836b4611d574496d97960b27a2bbfdcf1f1ed318396f0edcb8",
+    ".claude/skills/revisar-nefroquest/references/verification-protocol.md": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df",
+    "docs/editorial/annex-c-nefrologia.md": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+  },
+  "version": "A2",
+  "candidateFile": "dp-goals-candidates-A2.json",
+  "candidateFileHash": "1ac0755ff9745cc6b58332d4081719c9cd06fd3d40c9751516f86cc4a5bc6862",
+  "authority": "Revisãoformal pela skill local revisar-nefroquest e autorização médica explícita do usuário.",
+  "independentClassificationFrozenBeforeCandidates": "dp-goals-independent-classification-A1.json",
+  "counts": {
+    "reviewed": 4,
+    "approved": 4,
+    "materiallyChanged": 4,
+    "blocked": 0
+  },
+  "derivation": "Aprovação,VERIFICADA/NENHUMA,semeliminatório/recurso decisivo→LIBERADA.",
+  "sources": {
+    "schema": 1,
+    "role": "AUTOR; evidências e limites, sem gate de publicação",
+    "date": "2026-11-13",
+    "candidateFile": "dp-goals-candidates-A1.json",
+    "candidateFileSHA256": "3ccb53b91cb6fe9bc52dbab84b440baaf609516341730c54a1301cf7e9c63a8e",
+    "originalFile": "dp-goals-original-4.json",
+    "originalFileSHA256": "35d007bc356461f40b73f2000b9e7365dcf0139d8141a2c40b854abaebd4ef94",
+    "sources": [
+      {
+        "id": "ISPD-goal-directed-2020",
+        "existingRef": "ispd_goal_directed_pd_2020",
+        "url": "https://journals.sagepub.com/doi/10.1177/0896860819895364",
+        "doi": "10.1177/0896860819895364",
+        "metadata": "Brown EA et al. Perit Dial Int2020;40(3):244–253.",
+        "access": "Artigo primário integral HTML da editora aberto,793linhas.",
+        "locators": [
+          "Key recommendations1/2/3/4: objetivos, participação, recursos, apoio de familiares/cuidadores e avaliação multidimensional.",
+          "3.4Small solute clearance,a–d: medidas quantitativas, limites do corte, sintomas e ausência de necessidade de mudança apenas por alvo arbitrário quando sintomas/nutrição/volume controlados.",
+          "Tabela2: Critique of previous targets/Estimation ofV; evidência muito baixa de morbidade comKt/V<1,7 e ausência de vantagem de sobrevida em visar rotineiramente>1,70.",
+          "Tabela2/Other factors beyond urea clearance: sintomas apesar deKt/V>1,7, investigação dialítica/não dialítica e possível teste de aumento de dose."
+        ]
+      },
+      {
+        "id": "ISPD-assisted-2024",
+        "existingRef": "ispd_assisted_pd_2024",
+        "url": "https://journals.sagepub.com/doi/10.1177/08968608241246447",
+        "doi": "10.1177/08968608241246447",
+        "metadata": "Oliver MJ et al. Perit Dial Int2024;44(3):160–170.",
+        "access": "Artigo primário integral HTML da editora aberto,1309linhas.",
+        "locators": [
+          "Justification/Table1 e Recommendations: barreiras visuais/motoras/cognitivas; avaliação interdisciplinar e carga do cuidador.",
+          "Models of assistedPD/Tabelas3/4: preparo de cicladora, conexões, trocas manuais e tarefas que podem exigir ajuda.",
+          "Training and communication/Quality control: treinamento, comunicação, monitorização de peritonite e complicações."
+        ],
+        "scopeLimit": "O documento reconhece o valor das várias formas de assistência, mas seu foco formal são modelos financiados pelo sistema de saúde. O candidato não generaliza resultados desses programas para qualquer arranjo informal, não promete desfecho e também se apoia no documento2020 sobre participação familiar/recursos."
+      },
+      {
+        "id": "ISPD-assisted-correction-2024",
+        "url": "https://journals.sagepub.com/doi/10.1177/08968608241262001",
+        "access": "Correção primária integral aberta.",
+        "finding": "Corrige o nome de Talerngsak Kanjanabuch; não altera recomendação clínica."
+      },
+      {
+        "id": "ISPD-metabolic-2015",
+        "existingRef": "ispd_cardio_metabolic_2015",
+        "url": "https://ispd.org/wp-content/uploads/wang-et-al-2015-ispd-cardiovascular-and-metabolic-guidelines-in-adult-peritoneal-dialysis-patient-_-part-1.pdf",
+        "doi": "10.3747/pdi.2014.00279",
+        "metadata": "Wang AYM et al. Perit Dial Int2015;35(4):379–387.",
+        "access": "PDF primário integral de9páginas no site oficial ISPD, aberto a partir do catálogo. PMC4520720 apresentou challenge; não se depende desse acesso.",
+        "locators": [
+          "Guideline2.2/Volume control, página382: icodextrina e dificuldade de manter euvolemia por baixa ultrafiltração.",
+          "Guideline2.3.3, página383/PDF5: absorção de glicose, efeitos metabólicos e considerar icodextrina uma vez ao dia na troca longa em diabetes,2C.",
+          "Guideline2.6.3, página384/PDF6: reduzir exposição de glicose sem desconsiderar o controle volêmico, sódio e diurese residual."
+        ],
+        "temporalLimit": "Não importa para os candidatos metas antigas deHbA1c,pressão ou outros temas do guia. Atualidade metabólica corroborada pela recomendação nutricional2026."
+      },
+      {
+        "id": "ISRNM-ISPD-nutrition-2026",
+        "url": "https://journals.sagepub.com/doi/10.1177/08968608261458140",
+        "doi": "10.1177/08968608261458140",
+        "metadata": "Wang AYM et al. Publicado online25/09/2026;Perit Dial Int46(5).",
+        "access": "Artigo primário integral HTML da editora aberto,5758linhas; não foram extraídas novas fórmulas/doses para os candidatos.",
+        "locators": [
+          "Introduction/Topic1: absorção de glicose e distúrbios nutricionais.",
+          "Topic4/Educate individuals on adopting a healthy diet: peso,triglicerídeos,diabetes e carga de carboidratos/glicose.",
+          "Obesity/bodycomposition/Rationale: ganho de peso pode refletir líquido/gordura/músculo e não deve ser atribuído exclusivamente à glicose."
+        ],
+        "use": "Conferência de atualidade e ressalva de causalidade. Não se criou card nem se alterou o OP do item4c7566cf para intervenção nutricional."
+      },
+      {
+        "id": "Extraneal-label-June2025",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d5b85158-b0d6-4855-9d07-8d1b3ad9ab71",
+        "access": "Bula primária submetida pelo fabricante no DailyMed, atualização30/06/2025, aberta integralmente,900linhas.",
+        "locators": [
+          "1/2.1: uma troca diária na permanência longa; não substituir todas as trocas.",
+          "5.1: interferência por maltose emGDH-PQQ/GDOealgunsGDH-FAD, falsa elevação e risco de insulina excessiva; necessário método compatível."
+        ],
+        "use": "Auditoria da curiosidade de segurança do card metabólico existente, ausente do guia2015; fonte primária complementar rastreada, sem alegar que a curiosidade seja texto do guia2015 e sem recomendar dispositivo específico."
+      },
+      {
+        "id": "ISPD-current-catalogue",
+        "url": "https://ispd.org/guidelines/",
+        "access": "Página oficial integral aberta; documentos2020/2024/2015 ainda listados e nova recomendação nutricional2026 identificada."
+      }
+    ],
+    "items": [
+      {
+        "qid": "5d6677ab",
+        "sources": [
+          "ISPD-goal-directed-2020"
+        ],
+        "locator": "3.4/Table2/Other factors beyond urea clearance",
+        "numericAudit": "1,8é dado original do caso.1,7é referência de investigação/certeza da evidência, não selo de adequação.2,2é distrator de alvo obrigatório e não recomendação.",
+        "decisiveScope": "Investigar sintomas apesar doKt/V; possível teste de dose não substitui investigação e ausência de benefício de sobrevida rotineiro não proíbe ajuste por indicação clínica.",
+        "identity": "Mesmo OP; detalhes de avaliação movidos da correta longa para explicação."
+      },
+      {
+        "qid": "b1b484d1",
+        "sources": [
+          "ISPD-goal-directed-2020"
+        ],
+        "locator": "3.4b/d,Table2/Critique of targets/Estimation ofV",
+        "numericAudit": "1,6é dado original; associação<1,7de certeza muito baixa; não estabelece obrigação de atingir2,2. Anúria é dado relevante, não prova isolada de falha de modalidade.",
+        "decisiveScope": "Integrar medidas e avaliação multidimensional; não certificar adequação só por sintomas nem falha só pelo número. A condição de nutrição/volume controlados é explicitamente condicional, não presumida pelo caso.",
+        "identity": "Mesmo OP e perfil clínico, contrastando com o caso sintomático acima do corte."
+      },
+      {
+        "qid": "1b4ebca6",
+        "sources": [
+          "ISPD-assisted-2024",
+          "ISPD-assisted-correction-2024",
+          "ISPD-goal-directed-2020"
+        ],
+        "locator": "AssistedPD/Table1,Tables3/4,Recommendations/Training;Goal-directed/Keyrecommendations1/2",
+        "numericAudit": "Sem nova dose,número ou grau de recomendação.",
+        "decisiveScope": "Avaliar ajuda treinada para as tarefas não executáveis com segurança e individualizar modalidade; cicladora não demonstra autonomia para conexões.",
+        "identity": "Retira dica explícita do comando, preservando preferência domiciliar e limitações. Não transforma pergunta clínica em comparação de sistemas de financiamento."
+      },
+      {
+        "qid": "4c7566cf",
+        "sources": [
+          "ISPD-metabolic-2015",
+          "ISPD-goal-directed-2020",
+          "ISRNM-ISPD-nutrition-2026",
+          "Extraneal-label-June2025"
+        ],
+        "locator": "Metabolic2.2/2.3.3/2.6.3;Nutrition2026/obesity/metaboliceducation;Label1/2.1",
+        "numericAudit": "Uma vez ao dia para permanência longa é recomendação2015/label. Não há nova concentração, dose ou alvo glicêmico. A opção de todas as trocas é inadequada.",
+        "decisiveScope": "Absorção sistêmica pode contribuir; revisar carga preservando euvolemia e investigar outras causas de ganho de peso. Não se afirma causalidade única nem suspensão obrigatória da modalidade.",
+        "identity": "Mesmo princípio de absorção e ajuste de prescrição, sem trocar o OP por tratamento de obesidade."
+      }
+    ],
+    "cardAudit": {
+      "changed": false,
+      "ids": [
+        "ispd_goal_directed_pd_2020",
+        "ispd_assisted_pd_2024",
+        "ispd_cardio_metabolic_2015"
+      ],
+      "integralRead": true,
+      "findings": "Metadados e afirmações decisivas conferidos. Curiosidade do card metabólico verificada em fonte primária de bula, não falsamente atribuída ao corpo do guia2015. A posição2024tem escopo formal de modelos financiados, reconhecendo valor de outras assistências; o item não promete resultados universais."
+    },
+    "duplicateReview": {
+      "pair": [
+        "5d6677ab",
+        "b1b484d1"
+      ],
+      "usefulContrast": "Sintomas apesar deKt/V1,8 versus ausência de sintomas comKt/V1,6e anúria. Evita tanto falsa certificação quanto falha automática, com variação clínica relevante; revisor independente deve confirmar pelo teste de4dimensões."
+    },
+    "notPublicationGates": true
+  },
+  "independentVerification": {
+    "goal2020": {
+      "url": "https://journals.sagepub.com/doi/10.1177/0896860819895364",
+      "access": "HTMLprimáriointegral793linhasaberto;Keyrecommendations,3.4a–d eTable2lidos;1,7/ausência de vantagem de sobrevida,certeza muito baixa e sintomas apesar doKt/Vverificados."
+    },
+    "assisted2024": {
+      "url": "https://journals.sagepub.com/doi/10.1177/08968608241246447",
+      "access": "HTMLprimáriointegral1309linhasaberto;escopo formalfinanciado,Table1barreiras,Table4tarefas/conexões e recomendações lidos. Não generaliza resultados dos programas a toda família."
+    },
+    "metabolic2015": {
+      "url": "https://ispd.org/wp-content/uploads/wang-et-al-2015-ispd-cardiovascular-and-metabolic-guidelines-in-adult-peritoneal-dialysis-patient-_-part-1.pdf",
+      "access": "PDFprimáriooficial9p aberto;§2.2/2.3.3/2.6.3,absorção eicodextrina1vez/dia,controlevolêmico lidos. Não importa metas antigas deHbA1c/pressão."
+    },
+    "nutrition2026": {
+      "url": "https://journals.sagepub.com/doi/10.1177/08968608261458140",
+      "access": "HTMLprimáriointegral5758linhasaberto;Topic4eObesity/weightgainlidos. Peso pode refletirfluido/gordura/músculo;contribuição da glicose não universal."
+    },
+    "label": {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d5b85158-b0d6-4855-9d07-8d1b3ad9ab71",
+      "access": "DailyMedintegral900linhasaberto;§1/2.1single-daily-longdwell e§5.1falsaelevaçãoGDH-PQQ/GDO/algunsGDH-FADconfirmados. Não prescreve dispositivo específico."
+    }
+  },
+  "duplicateAudit": "5d6677ab e b1b484d1 são variação útil: sintomas apesar de valor acima versus anúria e valor abaixo sem sintomas. O contexto muda o erro clínico a evitar, não apenas números cosméticos.",
+  "existingCards": [
+    {
+      "refId": "ispd_assisted_pd_2024",
+      "referenceHash": "9052c1e4996f5d8a9c34c0a9cc613e479263bad32ee46803b0e7ec4556a1e6ac",
+      "card": {
+        "label": "ISPD — Assisted Peritoneal Dialysis Position Paper 2024",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/38712887/",
+        "journal": "Peritoneal Dialysis International 2024;44(3):160-170",
+        "ano": 2024,
+        "tipo": "Posicionamento ISPD",
+        "badge": "POSITION",
+        "badgeColor": "#f59e0b",
+        "impacto": "Referência internacional para ampliar acesso seguro à DP domiciliar quando existem barreiras ao autocuidado",
+        "icon": "🤝",
+        "resumo": "A posição da ISPD descreve a DP assistida por familiares, cuidadores ou profissionais como estratégia para superar barreiras físicas, cognitivas e sociais ao autocuidado. Baixa acuidade visual, destreza reduzida, fraqueza, fragilidade, mobilidade limitada e declínio cognitivo são exemplos. O programa deve avaliar necessidades, treinar assistentes, manter comunicação robusta e monitorar infecções, complicações do cateter e transferência para hemodiálise.",
+        "conclusao": "Limitação visual ou motora não é contraindicação automática à DP; assistência e modalidade devem ser individualizadas conforme segurança, preferências, suporte disponível, recursos e impacto do regime na vida da pessoa.",
+        "curiosidade": "A assistência pode sustentar tanto DP manual quanto automatizada: a cicladora reduz algumas tarefas, mas não elimina conexões, programação, higiene e resposta a alarmes."
+      },
+      "disposition": "Mantido, afirmações pertinentes e curiosidade de segurança conferidas; nenhum card alterado."
+    },
+    {
+      "refId": "ispd_goal_directed_pd_2020",
+      "referenceHash": "67eb586388e774a6eb9fb20cc2c1c18887ff261b5b976e38503da523de94749d",
+      "card": {
+        "label": "ISPD — High-Quality Goal-Directed PD 2020",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/32063219/",
+        "journal": "Peritoneal Dialysis International 2020;40(3):244-253",
+        "ano": 2020,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Marco da prescrição de DP centrada na pessoa, além de um alvo isolado de depuração de ureia",
+        "icon": "🎯",
+        "resumo": "A recomendação orienta prescrição compartilhada e individualizada segundo sintomas, estado volêmico, função renal residual, parâmetros bioquímicos e nutricionais, qualidade de vida, objetivos e carga terapêutica. Kt/V não deve ser usado como certificação isolada de adequação. Em pacientes sintomáticos apesar de Kt/V semanal acima de 1,7, devem-se procurar causas dialíticas e não dialíticas; um teste de aumento da dose pode ser considerado.",
+        "conclusao": "Não há vantagem de sobrevida demonstrada em perseguir rotineiramente Kt/V semanal acima de 1,7–1,8; a qualidade da DP é uma avaliação clínica multidimensional e orientada por objetivos.",
+        "curiosidade": "A diretriz recomenda trabalhar com uma faixa aceitável de Kt/V, reconhecendo a incerteza na estimativa do volume de distribuição da ureia, em vez de transformar um único ponto de corte em resposta binária."
+      },
+      "disposition": "Mantido, afirmações pertinentes e curiosidade de segurança conferidas; nenhum card alterado."
+    },
+    {
+      "refId": "ispd_cardio_metabolic_2015",
+      "referenceHash": "ad254ca4eaa60cc0ae349d797b86ef7a28806ec748cc992499c5daeede75757f",
+      "card": {
+        "label": "ISPD — Cardiovascular and Metabolic Guideline Part I 2015",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/26228782/",
+        "journal": "Peritoneal Dialysis International 2015;35(4):379-387",
+        "ano": 2015,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Recomendações para volume, função renal residual, glicemia e outros fatores metabólicos em adultos em DP",
+        "icon": "🫀",
+        "resumo": "A glicose das soluções de DP é parcialmente absorvida e pode contribuir para hiperglicemia, hiperinsulinemia, dislipidemia e ganho de peso. A diretriz recomenda monitorar controle glicêmico em pessoas com diabetes e considerar icodextrina uma vez ao dia na permanência longa para melhor controle glicêmico, além de seu papel no manejo de ultrafiltração insuficiente. A prescrição deve equilibrar euvolemia, função renal residual e exposição a glicose.",
+        "conclusao": "Alterações metabólicas durante DP exigem avaliação e tratamento, revisão da necessidade de soluções hipertônicas e estratégias poupadoras de glicose quando clinicamente apropriadas.",
+        "curiosidade": "Metabólitos da icodextrina podem produzir leitura falsamente elevada em alguns glicosímetros baseados em glucose-desidrogenase; métodos compatíveis devem ser usados para evitar insulina excessiva e hipoglicemia."
+      },
+      "disposition": "Mantido, afirmações pertinentes e curiosidade de segurança conferidas; nenhum card alterado."
+    }
+  ],
+  "items": [
+    {
+      "qid": "1b4ebca6",
+      "originalHash": "03dd18543a0afe94602ec887ef77bac4e8db2279deecf15fdd9fdff27a22d00a",
+      "candidateHash": "cc92f122c4ba112ba7ceea9d767a97be11f9a413d57109e2c270edfcc22014c8",
+      "candidate": {
+        "qid": "1b4ebca6",
+        "q": "Pessoa candidata à diálise peritoneal (DP) deseja tratamento domiciliar, mas retinopatia e neuropatia limitam visão e destreza para conexões seguras. Qual estratégia melhor preserva essa escolha com segurança?",
+        "opts": [
+          "Avaliar assistência treinada para as tarefas da DP e individualizar a modalidade",
+          "Escolher DP automatizada autônoma, pois a cicladora faz as conexões sem ajuda",
+          "Escolher DP manual autônoma, pois exige menos destreza mesmo com limitação visual",
+          "Indicar hemodiálise sem avaliar assistência, pois visão e destreza limitadas impedem DP"
+        ],
+        "ans": 0,
+        "exp": "Barreiras visuais ou motoras podem impedir autocuidado seguro, mas não tornam a DP automaticamente inviável. É preciso identificar quais tarefas exigem ajuda e avaliar assistência treinada, disponibilidade, preferências e carga para o cuidador. A posição da International Society for Peritoneal Dialysis (ISPD) de 2024 recomenda avaliar barreiras ao autocuidado, treinar assistentes e manter comunicação e monitorização de qualidade. A escolha entre modalidade manual e automatizada continua individual. A cicladora pode reduzir algumas tarefas, mas ainda requer preparação, conexões e acompanhamento; não se deve presumir autonomia sem avaliar a capacidade para essas etapas. A prescrição orientada por objetivos também incorpora recursos locais, estilo de vida e participação da família ou do cuidador.",
+        "cat": "dialise",
+        "diff": "medium",
+        "refs": [
+          "ispd_assisted_pd_2024",
+          "ispd_goal_directed_pd_2020"
+        ],
+        "t": "Diálise Peritoneal Assistida — Barreiras ao Autocuidado"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "1b4ebca6",
+        "op": "Preservar escolha por diálise peritoneal ao avaliar assistência para barreiras de visão e destreza, individualizando modalidade.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Aplica suporte assistido às barreiras funcionais explícitas; não há contraindicação absoluta nem indicação universal da cicladora.",
+        "warnings": [
+          "Cicladora não elimina todas as conexões e tarefas; considerar segurança, suporte local e preferência sem prometer benefício universal de sobrevida."
+        ],
+        "diff": "medium",
+        "reconciliation": "Classificação independente anterior ao candidato; A2em b1reconcilia dificuldade com oOPsem comprimento. Comandos e conceitos corretos originais preservados."
+      },
+      "justification": "Assistência treinada pode superar barreiras visuais/motoras; a cicladora não substitui avaliação de tarefas, conexões e segurança.",
+      "adversary": "Não se promete autonomia por modalidade nem benefício universal de sobrevida. O posicionamento2024tem foco formal em programas financiados; reconhece outras assistências e o documento2020tambémapoiafamília/recursos. Sem argumento plausível de recurso decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "Escolher DP automatizada autônoma, pois a cicladora faz as conexões sem ajuda",
+        "Escolher DP manual autônoma, pois exige menos destreza mesmo com limitação visual",
+        "Indicar hemodiálise sem avaliar assistência, pois visão e destreza limitadas impedem DP"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 1,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "decisionTree": "VERIFICADA+NENHUMA;semeliminatório/recurso decisivo;19/20;aprovada→LIBERADA.",
+      "sourceLocators": "Assisted2024Table1/Table4/Recommendations eGoal2020Keyrecommendations1–2",
+      "referenceBindings": [
+        {
+          "refId": "ispd_assisted_pd_2024",
+          "referenceHash": "9052c1e4996f5d8a9c34c0a9cc613e479263bad32ee46803b0e7ec4556a1e6ac"
+        },
+        {
+          "refId": "ispd_goal_directed_pd_2020",
+          "referenceHash": "67eb586388e774a6eb9fb20cc2c1c18887ff261b5b976e38503da523de94749d"
+        }
+      ],
+      "identity": "MesmoOP/competência/conceito correto; qid,ans,refs,cat eFSRSpreservados. Não se criou decisão terapêutica nova.",
+      "implementation": "Aplicar somenteA2exata; cards existentes mantidos. Nenhum gateA1foiherdado. Preservar avaliações históricas."
+    },
+    {
+      "qid": "5d6677ab",
+      "originalHash": "6301147e5c468a42aa4a4d196f5a9a828a8abf4976529b0cc8525c5a6c84852e",
+      "candidateHash": "75d5c90f3de82705df18140c1a0da0ea16c0ea4991e0924549cdbbb034ac1cb1",
+      "candidate": {
+        "t": "DP — Adequação Orientada por Objetivos",
+        "qid": "5d6677ab",
+        "q": "Paciente em diálise peritoneal mantém fadiga, anorexia e dificuldade de concentração apesar de Kt/V semanal de ureia de 1,8. Está euvolêmico e a coleta foi tecnicamente adequada. Qual é o próximo passo mais alinhado às recomendações atuais?",
+        "refs": [
+          "ispd_goal_directed_pd_2020"
+        ],
+        "opts": [
+          "Investigar causas dos sintomas e reavaliar a prescrição segundo os achados e os objetivos",
+          "Manter a prescrição sem investigar os sintomas, pois o Kt/V já certifica adequação",
+          "Aumentar a dose até Kt/V acima de 2,2, dispensando a busca de outras causas dos sintomas",
+          "Transferir para hemodiálise com base nos sintomas, sem revisar fatores não dialíticos"
+        ],
+        "ans": 0,
+        "exp": "Kt/V mede remoção de ureia; não certifica isoladamente bem-estar ou qualidade da diálise peritoneal (DP). A International Society for Peritoneal Dialysis (ISPD) orienta avaliar sintomas, volume, função renal residual, nutrição, bioquímica, qualidade de vida, preferências e carga do tratamento. Em sintomas persistentes apesar de Kt/V acima de 1,7, devem-se investigar causas dialíticas e não dialíticas. Um teste de aumento da dose pode ser considerado conforme os achados, mas não é substituto dessa avaliação nem exige perseguir 2,2. Não há vantagem de sobrevida demonstrada em buscar rotineiramente um Kt/V semanal acima de 1,7; isso não impede ajustar a prescrição quando há indicação clínica.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "5d6677ab",
+        "op": "Investigar sintomas persistentes e individualizar prescrição/objetivos apesar deKt/Vacima da referência usual.",
+        "competency": "conduta",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Relaciona medida de depuração com sintomas e avaliação clínica multidimensional padronizada; não exige prescrição numérica ou diagnóstico causal difícil.",
+        "warnings": [
+          "Não elevar automaticamente a dose nem atribuir adequação apenas a1,8; verificar fonte para possibilidade de teste de aumento e limites de benefício em sobrevida.",
+          "Conferir variação útil com b1b484d1: sintomas apesar de valor acima versus anúria assintomática com valor abaixo modificam a decisão exigida."
+        ],
+        "diff": "medium",
+        "reconciliation": "Classificação independente anterior ao candidato; A2em b1reconcilia dificuldade com oOPsem comprimento. Comandos e conceitos corretos originais preservados."
+      },
+      "justification": "Sintomas apesar deKt/V1,8exigem buscar causas dialíticas e não dialíticas e rever prescrição conformeachados, não certificação pelo número.",
+      "adversary": "Não há alvo>2,2obrigatório. A ausência de vantagem de sobrevida ao visar rotineiramente>1,7não impede teste de aumento da dose por indicação clínica. A correta não negligencia sintomas. Sem argumento plausível de recurso decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "Manter a prescrição sem investigar os sintomas, pois o Kt/V já certifica adequação",
+        "Aumentar a dose até Kt/V acima de 2,2, dispensando a busca de outras causas dos sintomas",
+        "Transferir para hemodiálise com base nos sintomas, sem revisar fatores não dialíticos"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 1,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "decisionTree": "VERIFICADA+NENHUMA;semeliminatório/recurso decisivo;19/20;aprovada→LIBERADA.",
+      "sourceLocators": "Goal2020§3.4eTable2/Otherfactorsbeyondureaclearance",
+      "referenceBindings": [
+        {
+          "refId": "ispd_goal_directed_pd_2020",
+          "referenceHash": "67eb586388e774a6eb9fb20cc2c1c18887ff261b5b976e38503da523de94749d"
+        }
+      ],
+      "identity": "MesmoOP/competência/conceito correto; qid,ans,refs,cat eFSRSpreservados. Não se criou decisão terapêutica nova.",
+      "implementation": "Aplicar somenteA2exata; cards existentes mantidos. Nenhum gateA1foiherdado. Preservar avaliações históricas."
+    },
+    {
+      "qid": "b1b484d1",
+      "originalHash": "6107d7c99a763268c52275d16040116c178a2510e4b5fa743c9bcecd49538b2a",
+      "candidateHash": "e39c3962d1460886cd934d553da5735c537e60c352f985c0f00277fe197863af",
+      "candidate": {
+        "t": "Diálise Peritoneal — Kt/V em Prescrição Orientada por Objetivos",
+        "qid": "b1b484d1",
+        "q": "Paciente anúrico em diálise peritoneal está euvolêmico e sem sintomas urêmicos, mas uma coleta tecnicamente adequada mostra Kt/V semanal de ureia de 1,6. Qual interpretação é mais alinhada à prescrição orientada por objetivos?",
+        "refs": [
+          "ispd_goal_directed_pd_2020"
+        ],
+        "opts": [
+          "Integrar clínica e bioquímica para decidir ajustes, sem declarar falha pelo Kt/V isolado",
+          "Transferir para hemodiálise porque o Kt/V é inferior a 1,7, apesar da boa evolução clínica",
+          "Manter sem avaliar nutrição ou bioquímica, pois a ausência de sintomas garante diálise suficiente",
+          "Aumentar a dose até Kt/V acima de 2,2, mesmo sem avaliar o impacto sobre a vida do paciente"
+        ],
+        "ans": 0,
+        "exp": "A International Society for Peritoneal Dialysis (ISPD) reconhece evidência de certeza muito baixa de associação entre Kt/V semanal abaixo de 1,7 e maior morbidade, mas desencoraja um corte isolado como certificação de adequação ou falha. O resultado deve ser interpretado com sintomas, volume, nutrição, parâmetros bioquímicos, função renal residual, preferências e carga terapêutica, reconhecendo também a incerteza da estimativa do volume de distribuição da ureia. Neste caso, a anúria é relevante, mas não transforma 1,6 em indicação automática de hemodiálise. Pode-se ajustar a dose se a avaliação clínica indicar; se sintomas, nutrição e volume estiverem controlados, a prescrição não precisa ser modificada apenas para atingir um alvo arbitrário. A ausência de sintomas, sozinha, tampouco dispensa as outras avaliações.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "b1b484d1",
+        "op": "InterpretarKt/Vabaixo da referência na pessoa anúrica assintomática, integrando risco, medidas clínicas e decisão compartilhada sem modalidade automática.",
+        "competency": "interpretação",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Integra limiar e contexto explícito, com regra geral de individualização; não basta o número para determinar falha ou prescrição avançada.",
+        "warnings": [
+          "Conferir certeza da evidência paraKt/V<1,7e população sem função residual; não prometer segurança do valor1,6nem benefício de alvo>2,2.",
+          "Confirmar coleta/medidas não equivale a ignorar resultado abaixo da referência."
+        ],
+        "diff": "medium",
+        "reconciliation": "Classificação independente anterior ao candidato; A2em b1reconcilia dificuldade com oOPsem comprimento. Comandos e conceitos corretos originais preservados."
+      },
+      "justification": "Anúria eKt/V1,6exigem integração clínica/bioquímica e compartilhada, sem falha automática ou garantia de adequação pela ausência de sintomas.",
+      "adversary": "O caso não informa nutrição/bioquímica normais; a explicação é condicional e pede avaliá-las. Evidência de morbidade<1,7é muito baixa, sem dever de transferir ou alcançar2,2. A2reconciliaAnalisar/medium e retira sigla não definida do comando. Sem argumento plausível de recurso decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "Transferir para hemodiálise porque o Kt/V é inferior a 1,7, apesar da boa evolução clínica",
+        "Manter sem avaliar nutrição ou bioquímica, pois a ausência de sintomas garante diálise suficiente",
+        "Aumentar a dose até Kt/V acima de 2,2, mesmo sem avaliar o impacto sobre a vida do paciente"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 1,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "decisionTree": "VERIFICADA+NENHUMA;semeliminatório/recurso decisivo;19/20;aprovada→LIBERADA.",
+      "sourceLocators": "Goal2020§3.4b/d eTable2/Critiqueoftargets/EstimationofV",
+      "referenceBindings": [
+        {
+          "refId": "ispd_goal_directed_pd_2020",
+          "referenceHash": "67eb586388e774a6eb9fb20cc2c1c18887ff261b5b976e38503da523de94749d"
+        }
+      ],
+      "identity": "MesmoOP/competência/conceito correto; qid,ans,refs,cat eFSRSpreservados. Não se criou decisão terapêutica nova.",
+      "implementation": "Aplicar somenteA2exata; cards existentes mantidos. Nenhum gateA1foiherdado. Preservar avaliações históricas."
+    },
+    {
+      "qid": "4c7566cf",
+      "originalHash": "b24f38b7b3707e8b84af0be57ba43d3eeb26391f6d23d1fa73821089ed7e4ef8",
+      "candidateHash": "21255fbda854e64ab028dead15023e79cd328c108b3b1c6c76e0aae64e2cc21e",
+      "candidate": {
+        "t": "DP — Exposição Sistêmica à Glicose",
+        "qid": "4c7566cf",
+        "q": "Após intensificação de bolsas hipertônicas de glicose para controle de volume, paciente em diálise peritoneal apresenta piora de glicemia, triglicerídeos e ganho de peso. Qual princípio explica e orienta esse cenário?",
+        "refs": [
+          "ispd_cardio_metabolic_2015",
+          "ispd_goal_directed_pd_2020"
+        ],
+        "opts": [
+          "Há absorção sistêmica; revisar a carga de glicose sem comprometer o controle de volume",
+          "Não há absorção sistêmica; manter as bolsas e atribuir as alterações apenas à alimentação",
+          "Há absorção sistêmica; substituir todas as trocas por icodextrina para reduzir a carga",
+          "Não há relevância clínica da absorção; manter as bolsas sem avaliar o perfil metabólico"
+        ],
+        "ans": 0,
+        "exp": "Parte da glicose do dialisato é absorvida e pode contribuir para hiperglicemia, hiperinsulinemia, dislipidemia e ganho de gordura. Isso não demonstra que todo ganho de peso seja causado pela glicose: devem-se avaliar também volume, alimentação e composição corporal. O distúrbio metabólico deve ser tratado enquanto se revisam sódio, diurese residual e necessidade de bolsas hipertônicas, preservando o controle volêmico. A International Society for Peritoneal Dialysis (ISPD) orienta considerar icodextrina uma vez ao dia na permanência longa quando indicada, inclusive para dificuldades de ultrafiltração e, em pessoas com diabetes, para reduzir a carga de glicose. Não se devem substituir todas as trocas por icodextrina nem abandonar a avaliação metabólica.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "4c7566cf",
+        "op": "Relacionar absorção sistêmica de glicose do dialisato a alterações metabólicas e reavaliar exposição excessiva sem perder controle volêmico.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Aplica mecanismo e alternativas de prescrição a um quadro típico, com avaliação metabólica e volêmica.",
+        "warnings": [
+          "Icodextrina é opção da permanência longa conforme indicação, não substituição indiscriminada de todas bolsas; conferir recomendações e frequência.",
+          "Não atribuir toda alteração metabólica àDPsem investigação e não retirar terapia automaticamente."
+        ],
+        "diff": "medium",
+        "reconciliation": "Classificação independente anterior ao candidato; A2em b1reconcilia dificuldade com oOPsem comprimento. Comandos e conceitos corretos originais preservados."
+      },
+      "justification": "A absorção sistêmica da glicose pode contribuir para alterações metabólicas; revisar exposição sem comprometer euvolemia e investigar outras causas é o princípio.",
+      "adversary": "Não se afirma que todo peso ganho seja gordura por glicose. Icodextrina é uma troca diária longa conformeindicação, não todas as trocas. Nutrição2026confirmaavaliaçãoindividual;bulaconfirmafrequência e risco dosglicosímetros. Sem argumento plausível de recurso decisivo restante.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Gabarito único",
+        "Não há absorção sistêmica; manter as bolsas e atribuir as alterações apenas à alimentação",
+        "Há absorção sistêmica; substituir todas as trocas por icodextrina para reduzir a carga",
+        "Não há relevância clínica da absorção; manter as bolsas sem avaliar o perfil metabólico"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 1,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "decisionTree": "VERIFICADA+NENHUMA;semeliminatório/recurso decisivo;19/20;aprovada→LIBERADA.",
+      "sourceLocators": "Metabolic2015§2.2/2.3.3/2.6.3;Nutrition2026Topic4/Obesity;Extraneal§1/2.1/5.1",
+      "referenceBindings": [
+        {
+          "refId": "ispd_cardio_metabolic_2015",
+          "referenceHash": "ad254ca4eaa60cc0ae349d797b86ef7a28806ec748cc992499c5daeede75757f"
+        },
+        {
+          "refId": "ispd_goal_directed_pd_2020",
+          "referenceHash": "67eb586388e774a6eb9fb20cc2c1c18887ff261b5b976e38503da523de94749d"
+        }
+      ],
+      "identity": "MesmoOP/competência/conceito correto; qid,ans,refs,cat eFSRSpreservados. Não se criou decisão terapêutica nova.",
+      "implementation": "Aplicar somenteA2exata; cards existentes mantidos. Nenhum gateA1foiherdado. Preservar avaliações históricas."
+    }
+  ]
+}

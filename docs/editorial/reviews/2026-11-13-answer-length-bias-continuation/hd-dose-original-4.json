@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "status": "FROZEN_ORIGINAL",
+  "scope": "Hemodiálise: dose entregue, frequência de sessões, fluxo de dialisato e membrana de alto fluxo; sem os grupos acesso, hipotensão e CONVINCE já congelados.",
+  "sourceFileSHA256": "e61de87662d6de391caa4e7293b065b37f854ca085c129aa8ff2780757935144",
+  "rows": [
+    {
+      "qid": "f77abde0",
+      "index": 460,
+      "originalHash": "25704fc199ae924888555e1ce98698c1d14d3a7077e990871ec09391ab035bff",
+      "sourceQuestion": {
+        "t": "Hemodiálise — Investigação de Dose Entregue Baixa",
+        "qid": "f77abde0",
+        "q": "Paciente em hemodiálise três vezes por semana apresenta, em duas avaliações, spKt/V entregue de 0,95 e URR de 58%, apesar de prescrição estável. Qual é o próximo passo mais apropriado?",
+        "refs": [
+          "kdigo_dialise",
+          "ktv_daugirdas1993"
+        ],
+        "opts": [
+          "Confirmar técnica e momento das coletas e revisar tempo efetivo, fluxos, interrupções, acesso e possível recirculação antes de ajustar a prescrição de forma dirigida",
+          "Aumentar imediatamente para quatro sessões semanais sem investigar por que a dose prescrita não foi entregue",
+          "Trocar apenas para membrana de alto fluxo, pois isso corrige qualquer causa de Kt/V baixo",
+          "Aceitar o resultado, porque URR de 58% supera o mínimo recomendado para hemodiálise trissemanal"
+        ],
+        "ans": 0,
+        "exp": "Na hemodiálise três vezes por semana, a KDOQI recomenda spKt/V alvo de 1,4 por sessão e mínimo entregue de 1,2. Resultados repetidamente baixos exigem primeiro confirmar a medida e distinguir prescrição insuficiente de falha na entrega: coleta inadequada, sessão encurtada, fluxo sanguíneo ou de dialisato reduzido, acesso disfuncional e recirculação são causas frequentes. Depois dessa investigação, tempo, frequência, fluxos, membrana ou acesso podem ser corrigidos conforme o mecanismo identificado.",
+        "diff": "hard",
+        "cat": "dialise"
+      }
+    },
+    {
+      "qid": "994ee93c",
+      "index": 479,
+      "originalHash": "380826da62015eb52bdda06de91b1dbb11a911b8e60b3e3ef240b017886dd41f",
+      "sourceQuestion": {
+        "t": "FHN Daily — Benefício e Custo da Hemodiálise Frequente",
+        "qid": "994ee93c",
+        "q": "No FHN Daily Trial, qual balanço descreve melhor a hemodiálise em centro seis vezes por semana comparada a três vezes por semana durante 12 meses?",
+        "refs": [
+          "fhn_daily_2010"
+        ],
+        "opts": [
+          "Melhorou os compostos coprimários ligados à massa ventricular esquerda e saúde física, mas aumentou intervenções relacionadas ao acesso e não provou redução isolada de mortalidade",
+          "Reduziu mortalidade isolada de forma conclusiva e diminuiu intervenções no acesso vascular",
+          "Não alterou massa ventricular, pressão, fósforo nem qualidade de vida",
+          "Piorou os dois desfechos coprimários porque sessões mais frequentes aumentaram a instabilidade hemodinâmica"
+        ],
+        "ans": 0,
+        "exp": "O FHN Daily randomizou 245 pacientes para hemodiálise seis ou três vezes por semana. A estratégia frequente melhorou os dois desfechos coprimários compostos — morte ou mudança da massa ventricular esquerda e morte ou mudança do componente físico de qualidade de vida — além de pressão e fósforo. O seguimento de 12 meses e o número de eventos não estabeleceram benefício de mortalidade isolada. Houve mais intervenções relacionadas ao acesso, um custo clínico importante da maior frequência de canulação.",
+        "diff": "hard",
+        "cat": "dialise"
+      }
+    },
+    {
+      "qid": "fe3a5b91",
+      "index": 480,
+      "originalHash": "cc1673d8d588a7cd3cb0d53023ac1e99dbdf66f1488d0c7902dc69b8abdb2067",
+      "sourceQuestion": {
+        "t": "Fluxo de Dialisato — Ganho de Adequação e Custo Hídrico",
+        "qid": "fe3a5b91",
+        "q": "Paciente em hemodiálise convencional já atinge a meta de dose entregue com Qd de 500 mL/min. Como interpretar a elevação rotineira do Qd para 800 mL/min?",
+        "refs": [
+          "dialysate_flow_meta_2024"
+        ],
+        "opts": [
+          "Pode aumentar discretamente spKt/V e URR, mas faltam benefícios demonstrados em desfechos clínicos e o maior consumo de água deve entrar na decisão",
+          "Reduz comprovadamente mortalidade e sintomas, devendo ser aplicada a todos os pacientes",
+          "Não modifica nenhuma métrica de depuração ureica e por isso nunca deve ser usada",
+          "Substitui a necessidade de conferir tempo entregue, fluxo sanguíneo, acesso e recirculação"
+        ],
+        "ans": 0,
+        "exp": "Metanálise de estudos pequenos encontrou, ao elevar Qd de 500 para 800 mL/min, aumento médio modesto do spKt/V em 0,08 e da URR em 3,38 pontos. Não havia evidência adequada sobre sintomas, função, qualidade de vida ou mortalidade, e o risco de viés era relevante. Em quatro horas, o fluxo maior usa cerca de 72 litros adicionais de dialisato. Assim, Qd deve ser individualizado pela dose entregue e pelo conjunto da prescrição; não é uma meta universal nem corrige tempo encurtado, acesso disfuncional ou recirculação.",
+        "diff": "medium",
+        "cat": "dialise"
+      }
+    },
+    {
+      "qid": "bd45bf21",
+      "index": 466,
+      "originalHash": "b4ceb0b86e24fadda336a833660c017b06bc996ecd2030d0ba724a989c9ce859",
+      "sourceQuestion": {
+        "t": "Membrana High-Flux — Depuração e MPO",
+        "qid": "bd45bf21",
+        "q": "Ao comparar membranas high-flux e low-flux na hemodiálise, qual afirmação combina corretamente a propriedade técnica com o resultado do estudo MPO?",
+        "refs": [
+          "mpo_high_flux_2009"
+        ],
+        "opts": [
+          "High-flux aumenta a depuração de moléculas médias, como beta-2 microglobulina, mas não reduziu significativamente a mortalidade na população total do MPO",
+          "Low-flux depura mais beta-2 microglobulina e reduziu a mortalidade global no MPO",
+          "High-flux foi superior para mortalidade em todos os pacientes, tornando desnecessária a análise de dose entregue",
+          "As duas membranas têm permeabilidade equivalente para moléculas médias; diferem apenas na área de superfície"
+        ],
+        "ans": 0,
+        "exp": "A maior permeabilidade das membranas high-flux permite maior depuração de moléculas médias, incluindo beta-2 microglobulina. No MPO, porém, a comparação randomizada não mostrou redução estatisticamente significativa da mortalidade no conjunto dos pacientes incidentes. Houve sinal favorável no estrato pré-especificado com albumina de até 4 g/dL e análises secundárias em diabetes, mas esses achados não devem ser transformados em benefício universal de sobrevida. Propriedade de depuração e desfecho clínico são eixos distintos.",
+        "diff": "medium",
+        "cat": "dialise"
+      }
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "schema": 1,
+  "role": "AUTOR; evidência e contratos, sem veredito ou autorização de publicação",
+  "date": "2026-11-13",
+  "originalFile": "hd-volume-original-5.json",
+  "originalFileSHA256": "5137b57fa76034b7d6d1bd805c6bbdc100a8ba0910422e5e0df3b50f17de2083",
+  "candidateFile": "hd-volume-candidates-A2.json",
+  "candidateFileSHA256": "f5aa35766c39b6bedfeaa6a8f31a7c1ec666c8c4e030e41df363c62ca969194b",
+  "sources": [
+    {
+      "id": "KDIGO-BP-volume-2020",
+      "existingRef": "kdigo_bp_volume_dialysis_2020",
+      "url": "https://kdigo.org/wp-content/uploads/2017/05/KDIGO-BP-Volume-in-Dialysis-FINAL.pdf",
+      "doi": "10.1016/j.kint.2020.01.046",
+      "metadata": "Flythe JE et al. Kidney Int.2020;97(5):861–876. Relatório de conferência de controvérsias, não diretriz clínica com recomendações graduadas.",
+      "access": "PDF oficial integral aberto,16 páginas; recomendações, justificativas, tabelas e limitações relevantes lidas.",
+      "locators": [
+        "p865/PDF4: prioridade de otimizar estado cardiovascular, minimizar taxa de ultrafiltração e reavaliar peso-alvo antes de fármacos; dados limitados para midodrina",
+        "p865–866/PDF4–5: Target weight e Intradialytic hypotension and the HD prescription; volume intravascular e compensação cardiovascular; tempo/volume determinam taxa de ultrafiltração; nenhum corte universal",
+        "Figura2 e Tabela4,p866–867/PDF5–6: insuficiência cardíaca e disfunção autonômica como fatores distintos; maior tempo/frequência, menor ganho interdialítico e medidas adjuvantes",
+        "p866/PDF5 e Tabela5,p868/PDF7: sódio mais baixo pode reduzir ganho de peso/pressão mas aumenta sintomas e hipotensão; evitar carga, concentração ideal e gradiente permanecem incertos; prescrito pode diferir do entregue",
+        "p869–870/PDF8–9: Temperature biofeedback e tolerância ao resfriamento; MyTEMP ainda era estudo em andamento na publicação2020"
+      ],
+      "decisiveClaims": "Retirada rápida pode superar reenchimento e compensação. Volume extracelular alto não impede queda de volume circulante durante ultrafiltração. A prescrição deve integrar peso-alvo, sintomas, cardiopatia, tempo, frequência e ganho interdialítico. Não há taxa ou concentração de sódio universal. Dialisato mais frio é adjuvante possível; não substitui revisão volêmica.",
+      "numericAudit": "Os números originais70kg/4kg, fração de ejeção30%, sódio134/140mEq/L e70kg/3,5kg/4h foram preservados.130mEq/L é distrator de queda abrupta, não recomendação. Não se usa13mL/kg/h como linha universal. O caso236 permitiria estimativa nominal de12,5mL/kg/h se todo ganho fosse removido; isso não define segurança individual nem é cálculo exigido.",
+      "limits": "Nenhum resultado cardiovascular foi inferido apenas de associação observacional ou melhora de pressão. Não se tratam ensaios ainda pendentes em2020 como pendentes hoje: o resultado posterior de MyTEMP foi conferido separadamente. Nenhum alvo de pressão, dose de midodrina ou benefício de mortalidade foi acrescentado."
+    },
+    {
+      "id": "UKKA-BP-2025",
+      "url": "https://link.springer.com/article/10.1186/s12882-025-04451-2",
+      "doi": "10.1186/s12882-025-04451-2",
+      "metadata": "Doulton T et al. BMC Nephrol.2025;26:532. Publicado26/09/2025.",
+      "access": "Texto integral primário da diretriz aberto,1248 linhas.",
+      "locators": [
+        "Recommendations14–15: considerar horas estendidas em hipotensão durante esquema convencional e temperatura mais baixa em pacientes propensos; ambas sugestões2A",
+        "Dialysis and dialysate: resultados divergentes do resfriamento, limites de seleção e dissociação entre hipotensão e eventos maiores",
+        "Dialysis and dialysate/sodium: conflito entre redução de pressão/ganho e risco de hipotensão; perfil de sódio não recomendado rotineiramente por evidência insuficiente/carga de sódio"
+      ],
+      "decisiveClaims": "Mantém razoável testar resfriamento em pessoas propensas, sem promessa de eficácia universal ou proteção cardiovascular. Estender tempo pode ajudar; composição e volume precisam de individualização.",
+      "limits": "Não se transformam sugestões em obrigação nem se importam os alvos de pressão da diretriz para casos que não perguntam alvo. MyTEMP não incluiu apenas pacientes com hipotensão refratária; ausência de benefício de política universal não prova ausência de efeito em toda pessoa selecionada."
+    },
+    {
+      "id": "MyTEMP-2022",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/36343653/",
+      "doi": "10.1016/S0140-6736(22)01805-0",
+      "metadata": "MyTEMP writing committee. Lancet.2022;400(10364):1693–1703.",
+      "access": "Página PubMed aberta e resumo primário completo lido. Não se declara texto integral da publicação aberto.",
+      "locators": [
+        "Abstract/Methods: randomização por centro e política de resfriamento individual",
+        "Abstract/Findings e Interpretation: eventos cardiovasculares e queda pressórica sem diferença significativa"
+      ],
+      "numericAudit": "Resumo:84 centros/15413 pacientes; HR ajustado1,00 e diferença média de queda sistólica−0,5mmHg, sem significância. Nenhum desses números ou protocolo térmico foi introduzido no item ou card.",
+      "limits": "Usado para impedir promessa de benefício cardiovascular por resfriamento universal. Não sustenta concluir que o adjuvante nunca ajuda pessoas com hipotensão sintomática recorrente. A recomendação clínica atual para selecionados foi conferida na UKKA2025 integral."
+    },
+    {
+      "id": "NKF-KDOQI-CVD-IDH",
+      "url": "https://kidneyfoundation.cachefly.net/professionals/KDOQI/guidelines_cvd/intradialytic.htm",
+      "metadata": "KDOQI Clinical Practice Guidelines for Cardiovascular Disease in Dialysis Patients, seção Intradialytic Hypotension,2005.",
+      "access": "Seção oficial integral aberta,102 linhas.",
+      "locators": [
+        "Risk subgroups: disfunção sistólica, doença pericárdica e neuropatia autonômica como categorias distintas",
+        "Dialysate temperature modeling: aumento de temperatura central e estabilidade hemodinâmica"
+      ],
+      "limits": "Fonte histórica de fisiologia, não referência exclusiva de conduta atual. Não se importam definição antiga de hipotensão, doses de midodrina, metas de pressão ou valores térmicos como padrão universal."
+    },
+    {
+      "id": "Timofte-2021-IDH-mechanisms",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7851674/",
+      "doi": "10.3892/etm.2021.9713",
+      "metadata": "Timofte D et al. Exp Ther Med.2021;21(3):282. Revisão clínica de autoria publicada.",
+      "access": "Texto integral aberto,736 linhas; seção3 e tabela etiológica conferidas. Não é ensaio nem diretriz.",
+      "locators": [
+        "Section3/TableII: arritmias e tamponamento entre causas cardíacas, separados de vasoconstrição defeituosa",
+        "Section3, apósTableII: ultrafiltração reduz retorno venoso/débito e a cardiopatia limita compensação",
+        "Arrhythmias/Clinical presentation: taquiarritmia pode provocar instabilidade"
+      ],
+      "decisiveClaims": "Apoia a plausibilidade clínica dos diferenciais de mecanismo e a distinção entre limitação cardíaca e autonômica. A causalidade particular de cada diferencial não é atribuída ao caso sem evidência.",
+      "limits": "A revisão contém frase que chama10mL/kg/h de taxa ótima e associa13a risco; esses números NÃO foram importados, pois o consenso KDIGO ressalta ausência de corte universal. Não se importaram doses ou protocolos antigos da revisão."
+    }
+  ],
+  "items": [
+    {
+      "qid": "f7fd9e8a",
+      "sources": [
+        "KDIGO-BP-volume-2020",
+        "NKF-KDOQI-CVD-IDH",
+        "Timofte-2021-IDH-mechanisms"
+      ],
+      "contract": "A retirada intensa em pouco tempo sustenta desequilíbrio entre ultrafiltração, reenchimento e compensação. As outras alternativas são mecanismos capazes de causar hipotensão em outros contextos, mas o enunciado não fornece achados específicos de calor, taquiarritmia ou tamponamento. O comando pede o mais provável, não afirma que outras causas sejam impossíveis.",
+      "identity": "Mesmo enunciado e OP de mecanismo. Não se adiciona caso novo para transformar o item em diagnóstico avançado."
+    },
+    {
+      "qid": "f3ab76f3",
+      "sources": [
+        "KDIGO-BP-volume-2020",
+        "NKF-KDOQI-CVD-IDH",
+        "Timofte-2021-IDH-mechanisms"
+      ],
+      "contract": "A reserva reduzida pede avaliação integrada; fração de ejeção baixa não prova neuropatia, hipotensão não prova sobrecarga que exija mais ultrafiltração, e fração baixa isolada não define terapia contínua definitiva.",
+      "identity": "Mesmo perfil e próximo passo. Explicação corrige a atribuição indevida de falha de vasoconstrição à disfunção sistólica sem alterar o gabarito ou o objetivo."
+    },
+    {
+      "qid": "e3246f2c",
+      "sources": [
+        "KDIGO-BP-volume-2020",
+        "UKKA-BP-2025"
+      ],
+      "contract": "Reduzir gradiente com monitorização é coerente com sede, ganho e hipertensão. Elevar sódio para corrigir134pode agravar carga/sede; queda abrupta a130maximiza risco sem individualizar; água restrita isoladamente não aborda carga da sessão.",
+      "identity": "Mesmo OP e dados. Não se transforma134mEq/L em alvo automático do banho nem se promete benefício de mortalidade."
+    },
+    {
+      "qid": "4b27ea54",
+      "sources": [
+        "KDIGO-BP-volume-2020",
+        "UKKA-BP-2025",
+        "MyTEMP-2022"
+      ],
+      "contract": "Redução individual de temperatura é adjuvante razoável em propensos. Aquecer para vasodilatar vai na direção oposta; sódio alto rotineiro tem custo volêmico; reduzir cálcio pode piorar estabilidade. Não se promete ganho cardiovascular.",
+      "identity": "Mesmo estágio após otimização. O item já não tinha correta única mais longa; não foi reescrito para satisfazer quota de comprimento."
+    },
+    {
+      "qid": "236ed8f1",
+      "sources": [
+        "KDIGO-BP-volume-2020",
+        "UKKA-BP-2025"
+      ],
+      "contract": "Priorizar reavaliação e redução do estresse de ultrafiltração; acelerar retirada, elevar sódio para manter todo volume no mesmo tempo ou adicionar midodrina sem rever prescrição não atende ao problema central.",
+      "identity": "Mesmo enunciado, dados e gabarito. O adjuvante térmico é mantido na explicação, sem acumular esse segundo objetivo na alternativa de prioridade inicial."
+    }
+  ],
+  "duplicateAssessmentAuthorOnly": {
+    "dimensions": [
+      "Objetivo pedagógico",
+      "Operação cognitiva",
+      "Perfil/etapa clínica",
+      "Decisão ou mecanismo solicitado"
+    ],
+    "f7_vs_236": "Mesmo estresse volêmico de base e operação aplicada, mas f7 pergunta explicação do episódio e236prioridade preventiva após estabilização; alvo e decisão são distintos. A validade incremental não pode ser presumida só por alterar números.",
+    "f3_vs_236": "f3acrescenta persistência apesar de menor taxa e disfunção sistólica, exigindo reconhecer reserva cardíaca e não concluir neuropatia;236prioriza prescrição volêmica inicial. Próximo passo é integrado nos dois, então a contribuição clínica do perfil deve ser avaliada criticamente pelo revisor.",
+    "4b_vs_236": "4bparte de medidas centrais já revistas e pergunta um adjuvante do dialisato;236pergunta a prioridade inicial da prevenção. Etapa, objetivo e decisão mudam.",
+    "e324": "Problema de balanço de sódio com sede/hipertensão, não hipotensão como sintoma de apresentação.",
+    "notFinalVerdict": true
+  },
+  "cardAudit": {
+    "id": "kdigo_bp_volume_dialysis_2020",
+    "readInFullInApp": true,
+    "changed": false,
+    "inventory": "Todos os cinco consumidores atuais são os originais congelados neste grupo.",
+    "findings": "Metadados, natureza de conferência, contribuintes hemodinâmicos, peso-alvo, redução de estresse de ultrafiltração, ausência de corte universal e adjuvante térmico foram conferidos no PDF oficial. A formulação condicional de tolerância não contradiz o ensaio posterior nem a sugestão UKKA2025 para pessoas propensas. Não se atribui ao relatório2020 resultado do MyTEMP2022.",
+    "separateErrataNotice": "Este grupo não usa KDOQI2019ouIDSA2009como fonte de conduta. Seus limites de errata permanecem registrados em hd-access-author-sources-A1.json; esta entrega não os fecha nem herda validação inexistente."
+  },
+  "notPublicationGates": true,
+  "version": "A2",
+  "deltaFromA1": [
+    {
+      "qid": "f3ab76f3",
+      "previousHash": "d07d45a6efe3000a9958349342cbdaeb8646be965d7f54676f29f43c74338734",
+      "candidateHash": "72ce217c1d15f2fdf49e8fdee7f852cc2b02839f74d1f9d20402499ac0500a09",
+      "fields": [
+        "opts",
+        "exp"
+      ],
+      "optionIndices": [
+        1,
+        3
+      ]
+    }
+  ],
+  "exactA2Contract": {
+    "qid": "f3ab76f3",
+    "candidateHash": "72ce217c1d15f2fdf49e8fdee7f852cc2b02839f74d1f9d20402499ac0500a09",
+    "OP": "Reconhecer baixa reserva cardíaca no cenário de hipotensão recorrente e priorizar revisão integrada da cardiopatia, volume e prescrição.",
+    "A": "Integra os fatores determinantes, sem atribuir à fração de ejeção um diagnóstico autonômico.",
+    "B": "Mantém a inferência falsa de fração de ejeção baixa para neuropatia autonômica, mas retira a pista gratuita de midodrina isolada.",
+    "C": "Hipotensão não demonstra sobrecarga nem indica automaticamente aumentar a retirada.",
+    "D": "Troca a modalidade contínua crônica clinicamente remota por erro real de manejo: usar salina recorrentemente para sustentar a meta de retirada. Salina pode ser apropriada no resgate agudo; o problema é substituir a revisão preventiva por essa estratégia repetida.",
+    "sources": [
+      "KDIGO 2020: manejo não farmacológico/volume e redução da taxa têm prioridade; tabela 4 de medidas para reduzir taxa e prevenir hipotensão.",
+      "UKKA 2025: tempo de tratamento e individualização para hipotensão propensa; medidas adjuvantes não substituem revisão da prescrição."
+    ],
+    "noNewDoseOrThreshold": true
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "applied": true,
+  "group": "IgANgeneralA2",
+  "baseCommit": "e36b5f3e5383d82489da001d54851ec7c8e6a083",
+  "questionGate": "igan-treatment-general-independent-gates-A2.json",
+  "cardGate": "igan-moeller-card-independent-gate-A1.json",
+  "retirementGate": "igan-kdigo2021-retirement-independent-gate-A1.json",
+  "gateHashes": {
+    "igan-treatment-general-independent-gates-A2.json": "dd2e32c2d96764a6f5c64712e3ad454ccfc226f66fb8d9f39e42415cd0ae8f57",
+    "igan-moeller-card-independent-gate-A1.json": "2b95823e0325c1f0326455b27f6250eb1bbb9e1d2fecf05aec95cf0385cc3800",
+    "igan-kdigo2021-retirement-independent-gate-A1.json": "b0e06a73fa0d9e9da3d160551dd1ab73274be08f8e86493314fd59c1812c2db0"
+  },
+  "topicsBefore": "559af6bb645ef91ac063e920a32197b62ccf6ab367fb896f175d7eea2b3c9fbe",
+  "topicsAfter": "42f90bffd4c79b927cd67a041dbbdbac92e2b05d0a75a1fb264108150c2d409b",
+  "refsBefore": "dc0ff51514e24b4f073d342146a6075048845c476586b11246198e2e4b18296b",
+  "refsAfter": "a3fba5ff8c0e5fb5e3f9a0c113db66efb93b56065c327bfdfbd3ad3e4ad7473f",
+  "items": [
+    {
+      "qid": "9961a406",
+      "originalHash": "9adb7ebffd5edb7efefe772732be48c37004918c175fc2a28f8f7ffab1112091",
+      "candidateHash": "1eb55243d25845e7f31f28a90cd43ed078d2ea761949ad4c24b7cfb28f3c5740",
+      "beforeDifficulty": "medium",
+      "afterDifficulty": "easy"
+    },
+    {
+      "qid": "ddb4938a",
+      "originalHash": "56883ce1dfe5bd7693a33db724129ec72a282503f87d9d47d4abc28fae82fb88",
+      "candidateHash": "b80b754892c12767aa3b8077bf0ac92cf9cc13279996cb8f8e0e5967353211fa",
+      "beforeDifficulty": "hard",
+      "afterDifficulty": "easy"
+    },
+    {
+      "qid": "b7a93d7a",
+      "originalHash": "b66e7f2d734abd24fa3f78b1f7091c73fdb3657a666fde400f11f240aef907e3",
+      "candidateHash": "5da47e4f6b5a12c443f404e0f7caf5e0e39aaf8359493b4127e1bcd57d60caf9",
+      "beforeDifficulty": "hard",
+      "afterDifficulty": "medium"
+    },
+    {
+      "qid": "c1089f2e",
+      "originalHash": "5ae127af7d2254563f943fd9ea40d0a0b36a9d9116e19a78b5033ad6285eeaed",
+      "candidateHash": "fd101c9431d18979917fbfb07e2d8441390effbfc60a5c0c36f6263be617a046",
+      "beforeDifficulty": "medium",
+      "afterDifficulty": "easy"
+    }
+  ],
+  "heldUnchanged": [
+    {
+      "qid": "5530b59c",
+      "hash": "e80317068d6f3eb684e4c03f7d3aafe2b293915e3c23c5aa077399c7947de18c"
+    }
+  ],
+  "sharedCard": {
+    "id": "moeller_plosone_2014",
+    "originalHash": "7fac8579d18e73957dd803436fd2705c79a73c2a430cfd75044b6feec79e9d58",
+    "candidateHash": "5355da0a46d1be6bac540bdfd6207184ef862ab775baa1f2929e5bc8304dc34f",
+    "currentConsumers": [
+      {
+        "qid": "5530b59c",
+        "hash": "e80317068d6f3eb684e4c03f7d3aafe2b293915e3c23c5aa077399c7947de18c",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "acg_celiac_2023",
+          "moeller_plosone_2014"
+        ]
+      }
+    ]
+  },
+  "retiredCard": {
+    "id": "kdigo_igan_2021",
+    "originalHash": "8774ec46f2a76bd5353f5c123628f03e99fae40b1eefb36105a7349034454ae9",
+    "operation": "retire_current_catalogue_only",
+    "oldConsumer": [
+      {
+        "qid": "ddb4938a",
+        "hash": "56883ce1dfe5bd7693a33db724129ec72a282503f87d9d47d4abc28fae82fb88"
+      }
+    ]
+  },
+  "publicationBlockedUntilHistoryIntegration": true,
+  "historyRequirement": "Na integração arquivar os4objetosanteriores e553card-only comMoelleranterior,além doKDIGO2021exato publicado vinculado aoddbnosquatroperfis;preservarqid/FSRS/avaliações. Autoria não está servindo oappnemgerando catálogo."
+}

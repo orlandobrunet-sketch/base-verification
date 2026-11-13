@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "scope": "Correção estritamente técnica de um CR duplicado na remoção do card aposentado; nenhum objeto clínico modificado.",
+  "cause": "Regex começava emLF de uma linhaCRLF e preservavaCRprecedente, duplicando-o ao unir próximoCRLF. Git detectava o caractereCRsolto e deixava de normalizar finaisdelinha, produzindo diff de arquivo inteiro.",
+  "refsBefore": "eb8a64e314cf25e977ec1a0a88679ce6b8f9ccd190f464e97ca9c8794ab7c6bd",
+  "refsAfter": "0cecad48dcc20cf13a6975684220f2b5cfd2ef3dcca9dd8482a265484eb12d6a",
+  "logicalObjectHashBefore": "2b378da09aafd8eaf806cdf81e2ecbda2d22c1f35d7c945ac0a2803ea02f6314",
+  "logicalObjectHashAfter": "2b378da09aafd8eaf806cdf81e2ecbda2d22c1f35d7c945ac0a2803ea02f6314",
+  "clinicalChange": false,
+  "materialGatesRemainBoundToSameExactObjects": true,
+  "history": "Application reports anteriores mantidos imutáveis; este adendo registra transição de bytes, não reemite aprovação."
+}

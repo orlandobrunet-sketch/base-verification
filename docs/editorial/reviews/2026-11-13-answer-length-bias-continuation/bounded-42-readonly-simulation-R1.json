@@ -1,0 +1,25 @@
+{
+  "schema": 1,
+  "kind": "READ_ONLY_INTEGRATION_SIMULATION",
+  "noAppWrite": true,
+  "base": "Frozen snapshot107 plus previously approved retirement R1",
+  "manifestVerified": 131,
+  "questionOperations": 42,
+  "referenceOperations": 12,
+  "questionArrayMatchesAuthorship": true,
+  "effectiveReferenceObjectsMatchAuthorship": true,
+  "retiredStaleCardsAbsent": true,
+  "overlaySHA256": "6f2d1ad06d3223b87bd6976296f5099e5bdf968604068cd647f88c5c64534bbd",
+  "inventorySHA256": "fdb8d02a20cd9f94238bbb5dd78d78785a2297dbd5ee67b5ef50a3aff0bdca50",
+  "questionArrayHash": "9ed79b6f567ca112b5d27312dfcd61c7fe47624005f33e0384276a776f53e111",
+  "effectiveReferenceObjectHash": "472e685106e98103d8eb43cca47f9b9bd52200b2afdc4d91d5f0cee4fde0fc51",
+  "checks": {
+    "topicsNodeSyntax": "PASS",
+    "refsNodeSyntax": "PASS",
+    "gitDiffCheckData": "PASS"
+  },
+  "limitations": [
+    "Simulation does not create published history, current catalog, version bump or test UI/CI.",
+    "Object key order of refs is immaterial; each reference object is compared by canonical JSON hash."
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "schema": 1,
+  "kind": "EXTERNAL_INTEGRATOR_OPERATIONAL_COUNTERPROOF",
+  "reviewer": "/root/medical_answer_bias/adpkd_independent_review",
+  "baseCommit": "e63cbb85fc20fd926f29e28c8132eb7bbaafba14",
+  "baseRelease": "17.11",
+  "release": "17.12",
+  "observedCleanBranch": "codex/answer-length-continuation-1712",
+  "scriptFile": "integrate-bounded42.cjs",
+  "scriptSHA256": "be09a57630b2e5bfa31b44129c751cef15f4e93f1d8ee5fc0aaa3381bf9bc4c8",
+  "previousTechnicalReview": {
+    "file": "bounded42-integration-independent-review-adpkd-462d8315af1a-17.12-R1.json",
+    "sha256": "ca4dece42ecfe2fa854413d235f72145aee04683883672b1590ba882b13016b2",
+    "scriptIdentical": true
+  },
+  "reproducedDefaultDryRun": true,
+  "proofFile": "e63cbb85fc20-17.12-conditional-proof.json",
+  "proofFileSHA256": "b263e47510767b22630eb803d30015b4b9ac462d791987510833518a7cfbb6f1",
+  "conditionsFile": "e63cbb85fc20-17.12-conditional-retirement-conditions.json",
+  "conditionsFileSHA256": "7cf0e9a7d5f87e63941890a3c4a9c6edd4e4f6232772de4fb43bb13c05bf23cc",
+  "conditionsProofHash": "e491866eb05f10f5d4cb1bc9c502a15bb18a2470d0336dc9885dfe21915e466b",
+  "conditionsProof": {
+    "baseCommit": "e63cbb85fc20fd926f29e28c8132eb7bbaafba14",
+    "baseRelease": "17.11",
+    "targetRelease": "17.12",
+    "sourceConditionalGate": {
+      "file": "docs/editorial/reviews/2026-11-13-answer-length-bias-continuation/igan-kdigo2021-retirement-independent-gate-A1.json",
+      "sha256": "b0e06a73fa0d9e9da3d160551dd1ab73274be08f8e86493314fd59c1812c2db0"
+    },
+    "retiredCardId": "kdigo_igan_2021",
+    "retiredCardHash": "8774ec46f2a76bd5353f5c123628f03e99fae40b1eefb36105a7349034454ae9",
+    "migratedQuestion": {
+      "qid": "ddb4938a",
+      "candidateHash": "b80b754892c12767aa3b8077bf0ac92cf9cc13279996cb8f8e0e5967353211fa",
+      "publication": "LIBERADA"
+    },
+    "conditions": {
+      "ddbExactApproved": true,
+      "zeroCurrentConsumers": true,
+      "historicalCardAndConsumerBoundInAllFourProfiles": true,
+      "corrected2021CardNotPublished": true,
+      "noQuestionOrFSRSOrEvaluationDeleted": true
+    },
+    "outputDataSHA256": {
+      "data/topics.js": "0a6da5cd78f5c48f1e3828755ed63a726e7a5e44fba3107a8f4b8b90777c140d",
+      "data/refs.js": "5fcec88275c0a61019c8a3f608cd4b80ae6ca347f0b2aa31d749c044c1a681e5",
+      "data/question-revision-history.js": "323825a6cd8f3641d842785ce80dd5b9efce38f08aa76f291d1cbfe5d67e54f1",
+      "data/question-revision-manifest.js": "2d829c837955241e37a3bdcda071ea1c1e2b0b4365a71100c32e0d6872882330"
+    },
+    "archivedQids": [
+      "66b811c3",
+      "d81defbb",
+      "ce79d609",
+      "9fd2cfdb",
+      "cb6c4aae",
+      "9961a406",
+      "0e1a838d",
+      "3e0788ac",
+      "f7107bc3",
+      "795d4589",
+      "ddb4938a",
+      "5530b59c",
+      "3a01ea4b",
+      "b7a93d7a",
+      "5e5b8558",
+      "1b4ebca6",
+      "fe70507d",
+      "5d6677ab",
+      "26804856",
+      "f7fd9e8a",
+      "b1b484d1",
+      "f3ab76f3",
+      "d314fb0a",
+      "ee80e444",
+      "0c1d09c3",
+      "9fadb7da",
+      "f4de7965",
+      "e3246f2c",
+      "68091841",
+      "4b27ea54",
+      "69177b72",
+      "23635484",
+      "4c7566cf",
+      "5eb00a6e",
+      "12328a3e",
+      "ea37c153",
+      "02814d6c",
+      "236ed8f1",
+      "faac594e",
+      "c1089f2e",
+      "18784ef8",
+      "4decf9f9",
+      "ff676013"
+    ],
+    "historicalBindingsVerified": 172
+  },
+  "checks": {
+    "sealedCore136": true,
+    "exact42Changes": true,
+    "referenceOperations": {
+      "update": 7,
+      "add": 4,
+      "remove": 1
+    },
+    "history126Preserved": true,
+    "new43ArchiveRelease": "17.11",
+    "newBindings172": true,
+    "oldBindings504": true,
+    "prior107ObjectsUnchanged": true,
+    "other699ObjectsUnchanged": true,
+    "old13AndTotal25AmbiguitiesPreserved": true,
+    "new4CardOnlyAmbiguitiesPreserved": true,
+    "currentSources2964Verified": true,
+    "noUnknownOrOrphanReference": true,
+    "sourceConditionalGateByteIdentical": true
+  },
+  "plannedDataFiles": {
+    "data/topics.js": {
+      "sha256": "0a6da5cd78f5c48f1e3828755ed63a726e7a5e44fba3107a8f4b8b90777c140d",
+      "bytes": 975004
+    },
+    "data/refs.js": {
+      "sha256": "5fcec88275c0a61019c8a3f608cd4b80ae6ca347f0b2aa31d749c044c1a681e5",
+      "bytes": 509771
+    },
+    "data/question-revision-history.js": {
+      "sha256": "323825a6cd8f3641d842785ce80dd5b9efce38f08aa76f291d1cbfe5d67e54f1",
+      "bytes": 1663648
+    },
+    "data/question-revision-manifest.js": {
+      "sha256": "2d829c837955241e37a3bdcda071ea1c1e2b0b4365a71100c32e0d6872882330",
+      "bytes": 535847
+    }
+  },
+  "passed": true,
+  "findings": [],
+  "noApplyOrBrowserExecuted": true,
+  "noRepositoryOrPackageWrites": true,
+  "limits": [
+    "Approval is bound exclusively to this exact simulated base/release/conditionsProof and planned output hashes. No real application or publication is claimed.",
+    "Root must finish and verify the public17.11UI/Pages step before applying or publishing17.12. This counterproof does not verify Pages or the publicUI.",
+    "Root still must apply the four canonical version fields, preserve final scoped documents, run tests/official Git-range validation/diff review/CI.",
+    "No medical gate changed and no clinical analysis was reopened. The previous462doperational approval is not reused."
+  ]
+}

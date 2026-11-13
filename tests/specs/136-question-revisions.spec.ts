@@ -296,7 +296,7 @@ test('actual full 741 catalog loads all four current runtime profiles from the p
   await info.attach('actual-741-catalog', { contentType: 'application/json', body: JSON.stringify(report) });
 });
 
-test('actual published archive retains sixteen original questions and sixty-four bindings alongside the 17.09 additions', async ({ page }, info) => {
+test('actual published archive retains the frozen sixteen and 17.09 records alongside the 17.11 continuation', async ({ page }, info) => {
   const report = await page.evaluate(() => {
     const w = window as any, api = w.NQQuestionRevisions, archive = w.NQQuestionRevisionHistory;
     const rows = archive.flatMap((row: any) => ['main', 'exam', 'study', 'offline'].map(profile => {
@@ -313,11 +313,14 @@ test('actual published archive retains sixteen original questions and sixty-four
         bindingExact: api.digest(checked.value?.binding) === api.digest(binding),
         currentSeparate: current.binding.recordRevision !== binding.recordRevision,
         legacyStatus: w.questionRevisionCatalog.inspectLegacy(row.qid, { profile }).status,
+        unboundStatus: w.questionRevisionCatalog.inspect(question, { profile }).status,
         policy: checked.value?.policy };
     }));
     const originals = archive.filter((row: any) => ['16.09', '16.13', '16.19'].includes(row.release));
     const additions = archive.filter((row: any) => row.release === '17.09');
+    const continuation = archive.filter((row: any) => row.release === '17.11');
     return { archiveCount: archive.length, originalCount: originals.length, additionCount: additions.length,
+      continuationCount: continuation.length, continuationQids: continuation.map((row: any) => row.qid).sort(),
       originalDigest: api.digest(originals), additionDigest: api.digest(additions),
       originalQids: originals.map((row: any) => row.qid).sort(),
       referenceCount: Object.keys((0, eval)('refsDB')).length,
@@ -336,28 +339,49 @@ test('actual published archive retains sixteen original questions and sixty-four
   ];
   const newReferenceIds = ['cruzado_post_tx_parathyroidectomy_2016', 'gohil_imel_fgf23_phosphate_2019', 'kdigo_ckd_mbd_2009'];
   const retiredReferenceIds = ['dcor_trial', 'finerenone_2025'];
-  const legacyReferenceIds = report.referenceIds.filter((id: string) => !chamberReferenceIds.includes(id));
-  expect(report.archiveCount).toBe(126);
+  const continuationReferenceIds = [
+    'barbour_igan_prediction_2019', 'eudial_hdf_2025', 'rodrigues_haas_reich_igan_2017', 'vallon_sglt2_renoprotection_2022',
+  ];
+  const continuationRetiredReferenceIds = ['kdigo_igan_2021'];
+  const continuationRewrittenQids = [
+    '02814d6c', '0c1d09c3', '0e1a838d', '12328a3e', '18784ef8', '1b4ebca6',
+    '23635484', '236ed8f1', '26804856', '3a01ea4b', '3e0788ac', '4b27ea54',
+    '4c7566cf', '4decf9f9', '5d6677ab', '5e5b8558', '5eb00a6e', '66b811c3',
+    '68091841', '69177b72', '795d4589', '9961a406', '9fadb7da', '9fd2cfdb',
+    'b1b484d1', 'b7a93d7a', 'c1089f2e', 'cb6c4aae', 'ce79d609', 'd314fb0a',
+    'd81defbb', 'ddb4938a', 'e3246f2c', 'ea37c153', 'ee80e444', 'f3ab76f3',
+    'f4de7965', 'f7107bc3', 'f7fd9e8a', 'faac594e', 'fe70507d', 'ff676013',
+  ];
+  const legacyReferenceIds = report.referenceIds.filter((id: string) =>
+    !chamberReferenceIds.includes(id) && !continuationReferenceIds.includes(id));
+  expect(report.archiveCount).toBe(169);
   expect(report.originalCount).toBe(16);
   expect(report.additionCount).toBe(110);
+  expect(report.continuationCount).toBe(43);
+  expect(continuationRewrittenQids).toHaveLength(42);
+  expect(report.continuationQids).toEqual([...continuationRewrittenQids, '5530b59c'].sort());
   // Freeze every original object, including its source, author, cards and metadata.
   // The added archive is separately fixed to the reviewed 17.10 integration.
   expect(report.originalDigest).toBe('sha256:7b0d9861291f6661a26546e4cea67492d4ef648f797e9757f08caf2642059f3e');
   expect(report.additionDigest).toBe('sha256:64a0ffb3ff1571071826a052c4953e465a263d52d446297f1f725f6ceb0ea705');
   expect(chamberReferenceIds).toHaveLength(14);
-  expect(report.referenceCount).toBe(354 + chamberReferenceIds.length);
+  expect(continuationReferenceIds).toHaveLength(4);
+  expect(report.referenceCount).toBe(354 + chamberReferenceIds.length + 4 - 1);
+  expect(report.referenceIds.filter((id: string) => continuationReferenceIds.includes(id))).toEqual(continuationReferenceIds);
+  expect(report.referenceIds.filter((id: string) => continuationRetiredReferenceIds.includes(id))).toEqual([]);
   expect(report.referenceIds.filter((id: string) => chamberReferenceIds.includes(id))).toEqual(chamberReferenceIds);
-  expect(legacyReferenceIds).toHaveLength(354);
+  expect(legacyReferenceIds).toHaveLength(353);
   expect(legacyReferenceIds.filter((id: string) => newReferenceIds.includes(id))).toEqual(newReferenceIds);
   expect(legacyReferenceIds.filter((id: string) => retiredReferenceIds.includes(id))).toEqual([]);
-  const publishedLegacyIds = [...legacyReferenceIds.filter((id: string) => !newReferenceIds.includes(id)), ...retiredReferenceIds].sort();
+  const publishedLegacyIds = [...legacyReferenceIds.filter((id: string) => !newReferenceIds.includes(id)),
+    ...retiredReferenceIds, ...continuationRetiredReferenceIds].sort();
   // Frozen ID-set digest from the published353-card registry; no deleted/replaced
   // legacy ID can be hidden by adding a different card while retaining the count.
   expect(publishedLegacyIds).toHaveLength(353);
   expect(createHash('sha256').update(JSON.stringify(publishedLegacyIds)).digest('hex'))
     .toBe('c35ba55bca3cec0ca1c51f2efffaee27ad86e8eaae1fa894030a38035ef99e56');
   expect(report.originalQids).toEqual([...priorQids, ...addedQids, ...referenceOnlyQids].sort());
-  expect(report.rows).toHaveLength(504);
+  expect(report.rows).toHaveLength(676);
   const originalRows = report.rows.filter((row: any) => ['16.09', '16.13', '16.19'].includes(row.release));
   expect(originalRows).toHaveLength(64);
   const newRows = report.rows.filter((row: any) => row.release === '17.09');
@@ -365,6 +389,14 @@ test('actual published archive retains sixteen original questions and sixty-four
   for (const row of newRows) expect(row).toMatchObject({ status: 'known', historical: true, release: '17.09',
     sourceExact: true, authorExact: true, cardsExact: true, bindingExact: true, currentSeparate: true,
     policy: { material: true, pending: 'update-required', answered: 'historical' } });
+  const continuationRows = report.rows.filter((row: any) => row.release === '17.11');
+  expect(continuationRows).toHaveLength(172);
+  for (const row of continuationRows) expect(row).toMatchObject({ status: 'known', historical: true, release: '17.11',
+    sourceExact: true, authorExact: true, cardsExact: true, bindingExact: true, currentSeparate: true,
+    policy: { material: true, pending: 'update-required', answered: 'historical' } });
+  const cardOnlyRows = continuationRows.filter((row: any) => row.qid === '5530b59c');
+  expect(cardOnlyRows).toHaveLength(4);
+  for (const row of cardOnlyRows) expect(row.unboundStatus).toBe('ambiguous');
   const priorRows = originalRows.filter((row: any) => priorQids.includes(row.qid));
   const addedRows = originalRows.filter((row: any) => addedQids.includes(row.qid));
   const referenceOnlyRows = originalRows.filter((row: any) => referenceOnlyQids.includes(row.qid));
@@ -379,7 +411,7 @@ test('actual published archive retains sixteen original questions and sixty-four
   for (const row of referenceOnlyRows) expect(row).toMatchObject({ status: 'known', historical: true, release: '16.19',
     sourceExact: true, authorExact: true, cardsExact: true, bindingExact: true, currentSeparate: true,
     legacyStatus: 'ambiguous', policy: { material: true, pending: 'update-required', answered: 'historical' } });
-  await info.attach('actual-original-16-and-added-110-archive-bindings', { contentType: 'application/json', body: JSON.stringify(report) });
+  await info.attach('actual-original-16-added-110-and-continuation-43-archive-bindings', { contentType: 'application/json', body: JSON.stringify(report) });
 });
 
 test('actual campaign archive preserves old answer, explanation, changed card and wrong-answer review without writes', async ({ page }, info) => {

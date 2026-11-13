@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "unitType": "reference_retirement",
+  "version": "A1",
+  "reviewer": "/root/medical_answer_bias independente da autoria anemia_authoring",
+  "reviewDate": "2026-11-13",
+  "norms": {
+    ".claude/skills/revisar-nefroquest/SKILL.md": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef",
+    ".claude/skills/revisar-nefroquest/references/output-contract.md": "4a20348ac71a07836b4611d574496d97960b27a2bbfdcf1f1ed318396f0edcb8",
+    ".claude/skills/revisar-nefroquest/references/verification-protocol.md": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df",
+    "docs/editorial/annex-c-nefrologia.md": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+  },
+  "proposalFile": "igan-kdigo2021-retirement-proposal-A1.json",
+  "proposalSha256": "5dcc85d039c16f834078de4c62ef341ed5461f96bca554f26dddcb8a1212a7ac",
+  "id": "kdigo_igan_2021",
+  "originalHash": "8774ec46f2a76bd5353f5c123628f03e99fae40b1eefb36105a7349034454ae9",
+  "originalCard": {
+    "label": "KDIGO IgAN — Capítulo da Diretriz GN 2021",
+    "url": "https://kdigo.org/guidelines/iga-nephropathy/",
+    "journal": "Kidney International",
+    "ano": 2021,
+    "tipo": "Diretriz Internacional",
+    "badge": "GUIDELINE",
+    "badgeColor": "#6366f1",
+    "impacto": "Manejo da nefropatia por IgA: suporte otimizado (IECA/BRA), imunossupressão selecionada e critérios de progressão renal",
+    "icon": "📋",
+    "resumo": "Capítulo dedicado à nefropatia por IgA (IgAN) na diretriz KDIGO de Doenças Glomerulares de 2021. Estabelece como base absoluta do manejo a terapia de suporte otimizada por ≥ 3 meses: controle de PA (alvo < 120 mmHg sistólica), bloqueio de SRAA em dose máxima tolerada e restrição de sódio. Para pacientes com proteinúria persistente > 1 g/dia apesar do suporte otimizado, orienta avaliar risco de progressão (usando a ferramenta de previsão IIgANN) e discutir corticoterapia se a TFGe for ≥ 30, alertando para os riscos infecciosos graves identificados no TESTING.",
+    "conclusao": "A diretriz IgAN 2021 colocou o suporte conservador otimizado de 3 meses como pré-requisito indispensável antes de qualquer consideração de imunossupressão, que deve ser reservada para alto risco progressivo e discutida individualmente.",
+    "curiosidade": "A ferramenta de predição International IgAN Prediction Tool (IIgANN) integra variáveis clínicas tradicionais (TFGe, proteinúria, PA basal) com o score histopatológico MEST-C da classificação de Oxford (Hipercelularidade Mesangial, Endovascular, Esclerose Segmentar, Atrofia Tubular e Crescentes) para calcular o risco de declínio de 50% da TFGe em 5 anos."
+  },
+  "verdict": "aposentar",
+  "evidence": "VERIFICADA",
+  "pending": "NENHUMA",
+  "publication": "BLOQUEADA",
+  "publicationDerivation": "Aposentarnãoéaprovação;conteúdonãopoderepublicarcomocardcorrente. Autorizaçãodeoperaçãoderetiradaéseparada.",
+  "retirementAuthorization": "APROVADA_CONDICIONADA",
+  "conditions": [
+    "Aplicarddb4938aA2exataapósgateLIBERADA.",
+    "Recalcularinventárioeconferirzero consumidoresantesderetirarapenasesteID.",
+    "Arquivarcard17.10anterioreconsumidorddbnosquatroperfishistóricos;resoluçãohistóricanãopodedepender doacervocorrente.",
+    "Manterversãocorrigida2021apenasnodocumentoautoral,semaprovaçãoclínicacorrenteimplícita.",
+    "Nenhumqid/estadoFSRS/avaliaçãoéapagado."
+  ],
+  "currentConsumers": [
+    {
+      "qid": "ddb4938a",
+      "hash": "56883ce1dfe5bd7693a33db724129ec72a282503f87d9d47d4abc28fae82fb88"
+    }
+  ],
+  "plannedConsumers": [],
+  "afterMigrationQuestion": {
+    "qid": "ddb4938a",
+    "candidateHash": "b80b754892c12767aa3b8077bf0ac92cf9cc13279996cb8f8e0e5967353211fa",
+    "refs": [
+      "kdigo_igan_igav_2025"
+    ]
+  },
+  "reason": "Oúnicoconsumidorémigradoàdiretrizespecífica2025suficienteparaOP;retercard2021redundantedeixariaentradaórfã.Religaçãoparaguardéproibida.Nãoéexclusãodaliteraturacientífica.",
+  "nqEditorialScore": null,
+  "adversary": "Riscoderompersalvamentoshistóricoséendereçado peloarquivamento/resoluçãoespecíficaantes depublicar;naautoriaaplicarremoveapószeroconsumidorescomhistóricoexigidonointegração.",
+  "implementationScope": "Retirar somente entradarefsDBkdigo_igan_2021.Nãomudaroutrarefoudado;todaaçãodepublicaçãoaguardaintegrador e histórico."
+}

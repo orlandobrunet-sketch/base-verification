@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "reviewer": "/root/medical_answer_bias independente de autoria adpkd_independent_review",
+  "reviewDate": "2026-11-13",
+  "norms": {
+    ".claude/skills/revisar-nefroquest/SKILL.md": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef",
+    ".claude/skills/revisar-nefroquest/references/output-contract.md": "4a20348ac71a07836b4611d574496d97960b27a2bbfdcf1f1ed318396f0edcb8",
+    ".claude/skills/revisar-nefroquest/references/verification-protocol.md": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df",
+    "docs/editorial/annex-c-nefrologia.md": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+  },
+  "candidateFile": "dp-eps-candidates-A2.json",
+  "candidateFileHash": "8be4c4874b5b5cd950e8bcbc2fada9a12ecec3255e888a1c86256bf88882485b",
+  "blindClassificationFile": "dp-eps-independent-classification-A1.json",
+  "blindClassificationSha256": "196c72fc1474a07df054bd60f850ece3825b7e2659c81bcfa460c98124dd0a97",
+  "counts": {
+    "approved": 2,
+    "materialChanges": 2,
+    "held": 0
+  },
+  "independentSourceVerification": {
+    "ISPD2017": {
+      "url": "https://journals.sagepub.com/doi/10.3747/pdi.2017.00018",
+      "doi": "10.3747/pdi.2017.00018",
+      "access": "Artigo primário integral1494linhas aberto;Epidemiology,Diagnosis,Screening,Guidelines eConclusionlidos independentemente. Duração consistente,outrosfatores imprecisos;CTsintomática/encapsulamento,semrastreio confiável,ocorrênciaapós interrupção/tx e ausência deprazouniversalconferidos. Não importar mortalidade/tamoxifeno/doses."
+    }
+  },
+  "existingCard": {
+    "id": "eps_dp",
+    "hash": "12558fd1b9ac43a28a2eec0883f9b3257b17f01b9013e9e8c532894dfe754988",
+    "card": {
+      "label": "ISPD — Length of Time on PD and EPS Position Paper 2017",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28676507/",
+      "journal": "Peritoneal Dialysis International 2017;37(4):362-374",
+      "ano": 2017,
+      "tipo": "Posicionamento ISPD",
+      "badge": "POSITION",
+      "badgeColor": "#f59e0b",
+      "impacto": "Posicionamento sobre duração da DP, risco, reconhecimento e decisões compartilhadas no encapsulamento peritoneal esclerosante",
+      "icon": "⚠️",
+      "resumo": "A atualização da ISPD reconhece a duração crescente da diálise peritoneal como o fator de risco mais consistente para encapsulamento peritoneal esclerosante (EPS), sem estabelecer um prazo universal para interromper a técnica. Peritonite frequente, grave ou prolongada, maior exposição à glicose, transporte rápido e perda de ultrafiltração também podem elevar a preocupação. O diagnóstico combina manifestações funcionais de obstrução intestinal com achados estruturais, especialmente na tomografia.",
+      "conclusao": "Não se deve transferir todo paciente para hemodiálise em um número fixo de anos nem rastrear assintomáticos por imagem como garantia; continuidade, investigação e transição exigem avaliação individual e decisão compartilhada.",
+      "curiosidade": "A EPS pode surgir ou tornar-se clinicamente evidente depois da interrupção da DP, inclusive após transplante, o que ajuda a explicar por que a simples troca eletiva em uma data fixa não elimina o risco."
+    },
+    "disposition": "Sem alteração;afirmações clínicas pertinentes e curiosidade conferidas integralmente com fonteprimária. O badge legadoPOSITIONnãofoi tratado como novo card nem normalizado sem autorização."
+  },
+  "duplicateAudit": "Risco/decisão compartilhada em assintomático versus reconhecimento diagnóstico em sintomático:sãoOPs,raciocínios e contextos distintos,embora doença comum.",
+  "items": [
+    {
+      "qid": "3e0788ac",
+      "unitType": "question",
+      "originalHash": "e19c979066716ad690f970d430e1f54825fb73eb9e381c15e95a3770eee80939",
+      "candidateHash": "6055331e855aff804296ddda58beb8be62a9a49bb4c0fb7fe577191a45b43f36",
+      "candidate": {
+        "t": "Encapsulamento Peritoneal Esclerosante — Risco",
+        "qid": "3e0788ac",
+        "q": "Paciente está clinicamente bem após 7 anos em diálise peritoneal (DP) e pergunta se o tempo de técnica, por si só, exige troca eletiva para hemodiálise para prevenir encapsulamento peritoneal esclerosante (EPS). Qual resposta é mais adequada?",
+        "refs": [
+          "eps_dp"
+        ],
+        "opts": [
+          "Reavaliar riscos e objetivos, sem impor troca de modalidade apenas pelo tempo de DP",
+          "Indicar hemodiálise agora por já ter ultrapassado o limite fixo de cinco anos de DP",
+          "Manter DP sem reavaliar membrana ou sintomas, pois o tempo não modifica o risco",
+          "Garantir continuidade segura da DP se a tomografia anual permanecer normal"
+        ],
+        "ans": 0,
+        "exp": "A duração crescente da diálise peritoneal é o fator de risco mais consistentemente associado ao encapsulamento peritoneal esclerosante (EPS). Outras associações, como peritonite e alterações de transporte, têm dados mais limitados ou inconsistentes e não permitem prever individualmente quem desenvolverá a doença. A posição da International Society for Peritoneal Dialysis (ISPD) não estabelece prazo universal para interromper a DP. A decisão integra funcionamento da técnica, sintomas, riscos de continuar ou mudar de modalidade e objetivos da pessoa. Tomografia normal em assintomáticos não garante proteção futura; a EPS pode surgir ou progredir mesmo depois de interromper DP, inclusive após transplante. Por isso, uma data fixa de transferência não elimina o risco.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "classification": {
+        "qid": "3e0788ac",
+        "op": "Discutir risco de encapsulamento peritoneal conforme duração e dados clínicos, sem prazo universal para trocar modalidade nem rastreio que garanta ausência de risco.",
+        "competency": "conduta",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Integra fator de risco consistente e limite de prevenção com decisão compartilhada; não calcula risco individual nem define abordagem terapêutica de complicação estabelecida.",
+        "warnings": [
+          "Conferir se7anos ou5anos são apenas dados/alternativa do caso, não limiar validado.",
+          "Não prometer queTCnormalelimine risco nem imporhemodiáliseapenas pela duração."
+        ],
+        "finalDifficulty": "medium"
+      },
+      "verdict": "aprovada",
+      "legacy": "REESCREVER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "publicationDerivation": "Handbook18.4:VERIFICADA/NENHUMA+aprovada,semeliminatório/recurso→LIBERADA.",
+      "score": 19,
+      "dimensionScores": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "scoreRationale": "Há forma paralela residual, mas nenhuma pista de comprimento obrigatória.",
+      "eliminators": [],
+      "plausibleAppealRemaining": false,
+      "justification": "Tempo prolongado aumenta risco, mas não define transferência profilática universal nemCTcapaz de garantir ausência futura.",
+      "adversary": "Sete anos é dado do caso, cinco é limite falso do distrator;não foram promovidos a limiares reais. A correta exige reavaliação compartilhada, não ignorar risco. InterromperDPnãoeliminaEPS.",
+      "sourceLocators": "ISPD2017Epidemiology(tempo/outrosfatores);ScreeningforEPS;Guidelines4–8;Conclusionindividualização.",
+      "referenceBindings": [
+        {
+          "refId": "eps_dp",
+          "referenceHash": "12558fd1b9ac43a28a2eec0883f9b3257b17f01b9013e9e8c532894dfe754988"
+        }
+      ],
+      "identityReview": "MantidosOP,competência,conceito correto e raciocínio central;preservarqid/FSRS conformeHandbook18.5. Ajustes de redação/dificuldade e siglaDPnão criam novoitem.",
+      "implementation": "Aplicar somente objetoA2exato;arquivarversão anterior e referência publicada do consumidor. Nenhumcardfoialterado."
+    },
+    {
+      "qid": "fe70507d",
+      "unitType": "question",
+      "originalHash": "b133181debaef66a62dc7c4045a6c8ceea9bc53e7a9aaa059e41bc9e7be1b06c",
+      "candidateHash": "b458ba2bfba965fd74e2f125f69db7d60787dd4880070ecf06342f09f816f833",
+      "candidate": {
+        "qid": "fe70507d",
+        "q": "Paciente com longa exposição à diálise peritoneal (DP) apresenta perda de peso, náuseas e episódios recorrentes de suboclusão. A tomografia mostra espessamento e calcificação peritoneal, loculações e alças intestinais agrupadas em encapsulamento. Qual interpretação é correta?",
+        "opts": [
+          "O conjunto clínico e tomográfico sustenta encapsulamento peritoneal esclerosante",
+          "O tempo de DP basta para o diagnóstico; sintomas e tomografia são apenas complementares",
+          "São alterações inespecíficas da DP prolongada, sem relação com os episódios de obstrução",
+          "A ausência de massa abdominal palpável afasta a doença, mesmo com esses achados"
+        ],
+        "ans": 0,
+        "exp": "O diagnóstico de encapsulamento peritoneal esclerosante combina manifestações de obstrução intestinal com alterações estruturais, especialmente o encapsulamento de alças. A tomografia é a técnica radiológica de escolha, mas espessamento ou calcificação isolados podem ocorrer em DP prolongada sem essa síndrome. Neste caso, suboclusões recorrentes, perda de peso e alças agrupadas em encapsulamento fornecem a associação clínica e estrutural que sustenta o diagnóstico. Massa palpável não é requisito obrigatório. Tempo em DP não basta para diagnosticar, e imagem isolada não prevê de modo confiável a doença futura em assintomáticos.",
+        "cat": "dialise",
+        "diff": "medium",
+        "refs": [
+          "eps_dp"
+        ],
+        "t": "Encapsulamento Peritoneal Esclerosante — Diagnóstico"
+      },
+      "classification": {
+        "qid": "fe70507d",
+        "op": "Integrar manifestações de obstrução intestinal e tomografia com alterações peritoneais para reconhecer encapsulamento peritoneal esclerosante.",
+        "competency": "diagnóstico",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "justification": "Reconhece combinação clínica e radiológica característica; o quadro é específico, mas o raciocínio solicitado não é avançado apenas por ser doença rara.",
+        "warnings": [
+          "Tomografia em contexto sintomático não equivale a rastreio válido de assintomáticos.",
+          "Não excluir pela ausência de massa nem atribuir diagnóstico pela calcificação isolada."
+        ],
+        "finalDifficulty": "medium"
+      },
+      "verdict": "aprovada",
+      "legacy": "REESCREVER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "publicationDerivation": "Handbook18.4:VERIFICADA/NENHUMA+aprovada,semeliminatório/recurso→LIBERADA.",
+      "score": 18,
+      "dimensionScores": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 1,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "scoreRationale": "Distrator de ausência de massa é menos forte que os erros de TC isolada e tempo emDP; é manifestação clínica citada na fonte e um erro de exclusão, sem opção farmacológica absurda.",
+      "eliminators": [],
+      "plausibleAppealRemaining": false,
+      "justification": "Sintomas obstrutivos recorrentes combinados ao encapsulamento de alças sustentam o diagnóstico; espessamento/calcificação isolados não bastam.",
+      "adversary": "A TCéinterpretable junto à síndrome clínica e encapsulamento. Massa palpável não é requisito;calficação/tempoisolados nãosãodiagnóstico. Nenhummimetizador com os dados fornecidos torna outra opção defensável.",
+      "sourceLocators": "ISPD2017DiagnosisofEPS/Clinicalfeatures/RadiologicalDiagnosis;ScreeningforEPS.",
+      "referenceBindings": [
+        {
+          "refId": "eps_dp",
+          "referenceHash": "12558fd1b9ac43a28a2eec0883f9b3257b17f01b9013e9e8c532894dfe754988"
+        }
+      ],
+      "identityReview": "MantidosOP,competência,conceito correto e raciocínio central;preservarqid/FSRS conformeHandbook18.5. Ajustes de redação/dificuldade e siglaDPnão criam novoitem.",
+      "implementation": "Aplicar somente objetoA2exato;arquivarversão anterior e referência publicada do consumidor. Nenhumcardfoialterado."
+    }
+  ]
+}

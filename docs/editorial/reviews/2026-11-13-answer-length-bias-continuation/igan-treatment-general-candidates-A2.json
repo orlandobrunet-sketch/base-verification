@@ -1,0 +1,799 @@
+{
+  "schema": 1,
+  "batch": "IgAN-treatment-general-A2",
+  "createdAt": "2026-11-13T14:20:13.094Z",
+  "originalFile": "igan-treatment-general-original.json",
+  "originalFileSha256": "64bc0bc1d917e8a841675805be9e06262953aa31ea177eb51939f7d58857657a",
+  "original26FileSha256": "6bdc18e799b0d90384537330d4146597b586210d813486f1a07c1d9d6afef640",
+  "stage": "BLOQUEADA; autoria externa sem aplicação",
+  "hashMethod": "SHA256(JSON.stringify(question)) UTF-8",
+  "lengthMethod": "NFC; espaços normalizados; pontos de código; palavras por espaços; não remover desigualdades",
+  "proposedReferenceFiles": [
+    {
+      "file": "igan-treatment-general-card-proposals-A1.json",
+      "sha256": "f85ce25fffd4497e40b4afd25fa8edc24c6e94d5dee8709ee523528e8751046f"
+    }
+  ],
+  "aggregate": {
+    "before": {
+      "n": 5,
+      "uniqueLongestChars": 5,
+      "tiedLongestChars": 0,
+      "uniqueShortestChars": 0,
+      "uniqueLongestWords": 5,
+      "tiedLongestWords": 0,
+      "uniqueShortestWords": 0
+    },
+    "after": {
+      "n": 5,
+      "uniqueLongestChars": 0,
+      "tiedLongestChars": 1,
+      "uniqueShortestChars": 2,
+      "uniqueLongestWords": 1,
+      "tiedLongestWords": 2,
+      "uniqueShortestWords": 0
+    }
+  },
+  "questions": [
+    {
+      "qid": "9961a406",
+      "originalHash": "9adb7ebffd5edb7efefe772732be48c37004918c175fc2a28f8f7ffab1112091",
+      "candidate": {
+        "t": "IgAN — Papel do Óleo de Peixe",
+        "qid": "9961a406",
+        "q": "Pessoa com nefropatia por imunoglobulina A (IgA) pergunta se deve acrescentar óleo de peixe para prevenir perda de função renal. Qual orientação é mais alinhada à KDIGO 2025?",
+        "opts": [
+          "Não indicar de rotina; manter terapias com benefício demonstrado para o perfil clínico",
+          "Indicar de rotina; o efeito nefroprotetor é consistente nos ensaios clínicos",
+          "Usar como alternativa ao bloqueio do sistema renina-angiotensina quando houver proteinúria",
+          "Reservar como terapia renal eficaz para quem apresenta hematúria sinfaringítica recorrente"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO não recomenda óleo de peixe como terapia rotineira para nefropatia por IgA: os estudos não mostraram benefício consistente para sustentar seu uso rotineiro. Ele não deve substituir nefroproteção ou tratamento dirigido à doença quando indicado. Se a pessoa ainda desejar usá-lo, a diretriz orienta discutir dose e formulação dos ensaios que relataram eficácia, sem transformar essa conversa em recomendação universal. Hematúria sinfaringítica ou proteinúria não identificam um grupo em que a eficácia renal do suplemento esteja automaticamente comprovada.",
+        "diff": "easy",
+        "cat": "glomerular",
+        "refs": [
+          "kdigo_igan_igav_2025"
+        ]
+      },
+      "status": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW",
+      "authorAssessment": {
+        "qid": "9961a406",
+        "originalHash": "9adb7ebffd5edb7efefe772732be48c37004918c175fc2a28f8f7ffab1112091",
+        "op": "Orientar sobre óleo de peixe sem substituir terapias com evidência.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "easy",
+        "storedDifficulty": "medium",
+        "subgroup": "Manejo geral e intervenções não rotineiras",
+        "queuePriority": true,
+        "lengthRatio": 2.1839080459770117,
+        "status": "NA_FILA",
+        "classificationRationale": "Aplica/integra dados ou interpreta limites de evidência, sem depender de raridade de fármaco para definir dificuldade.",
+        "potentialIssues": [],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Planejamento de tratamento e distinção entre indicação clínica e extrapolação na nefropatia por IgA",
+        "finalDifficultyProposed": "easy",
+        "distractorErrors": [
+          null,
+          "Transformar benefício inconsistente em indicação rotineira de nefroproteção.",
+          "Substituir tratamento com evidência por suplemento sem demonstração consistente de equivalência.",
+          "Usar o fenótipo sinfaringítico como teste validado de resposta ao suplemento."
+        ],
+        "advocate": "Confirmar uma melhor resposta e a preservação do OP; não confundir ausência de indicação rotineira com contraindicação absoluta, nem omissão de dieta na diretriz com prova de ineficácia universal.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 2
+        },
+        "provisionalScore": 19,
+        "identity": "Preservados OP, conceito discriminante, raciocínio central e qid, com verificação independente ainda necessária.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA"
+      },
+      "extraNotes": [],
+      "candidateHash": "1eb55243d25845e7f31f28a90cd43ed078d2ea761949ad4c24b7cfb28f3c5740",
+      "changedFields": [
+        "q",
+        "opts",
+        "exp",
+        "diff"
+      ],
+      "claimIds": [
+        "FISH_OIL"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "metrics": {
+        "before": {
+          "chars": [
+            190,
+            80,
+            78,
+            87
+          ],
+          "words": {
+            "correct": 28,
+            "maxDistractor": 13,
+            "ratioVsMaxDistractor": 2.1538461538461537,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 190,
+            "maxDistractor": 87,
+            "ratioVsMaxDistractor": 2.1839080459770117,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        },
+        "after": {
+          "chars": [
+            86,
+            76,
+            90,
+            90
+          ],
+          "words": {
+            "correct": 13,
+            "maxDistractor": 11,
+            "ratioVsMaxDistractor": 1.1818181818181819,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 86,
+            "maxDistractor": 90,
+            "ratioVsMaxDistractor": 0.9555555555555556,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 3
+          }
+        }
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "publication": "BLOQUEADA",
+        "problem": "Correta original concentra justificativas e qualificadores que não estão nos distratores; alternativas precisam representar erros clínicos úteis, sem enchimento."
+      }
+    },
+    {
+      "qid": "ddb4938a",
+      "originalHash": "56883ce1dfe5bd7693a33db724129ec72a282503f87d9d47d4abc28fae82fb88",
+      "candidate": {
+        "t": "IgAN — Limite Populacional da Tonsilectomia",
+        "qid": "ddb4938a",
+        "q": "Adulto não japonês com nefropatia por imunoglobulina A (IgA) pergunta sobre tonsilectomia para melhorar o prognóstico renal, sem outra indicação otorrinolaringológica. Qual orientação é mais adequada?",
+        "refs": [
+          "kdigo_igan_igav_2025"
+        ],
+        "opts": [
+          "Não indicar a cirurgia para a doença renal nessa população, mantendo a nefroproteção",
+          "Indicar a cirurgia se houver hematúria sinfaringítica, aplicando os resultados japoneses",
+          "Indicar a cirurgia com pulsos de corticoide como etapa anterior à nefroproteção otimizada",
+          "Adiar a cirurgia até a IgA sérica aumentar, usando o marcador para selecionar respondedores"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO 2025 orienta não realizar tonsilectomia como tratamento da nefropatia por IgA em pessoas não japonesas. Os sinais de benefício renal provêm sobretudo de estudos japoneses, em grande parte retrospectivos; a estratégia faz parte das recomendações do Japão, mas isso não permite extrapolação universal. IgA sérica elevada não é um teste validado para selecionar respondedores à cirurgia. Essa orientação renal não impede tonsilectomia por indicação otorrinolaringológica independente. A decisão também não deve deslocar a nefroproteção apropriada.",
+        "diff": "easy",
+        "cat": "glomerular"
+      },
+      "status": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW",
+      "authorAssessment": {
+        "qid": "ddb4938a",
+        "originalHash": "56883ce1dfe5bd7693a33db724129ec72a282503f87d9d47d4abc28fae82fb88",
+        "op": "Evitar extrapolar tonsilectomia como tratamento renal a pessoas não japonesas.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "easy",
+        "storedDifficulty": "hard",
+        "subgroup": "Manejo geral e intervenções não rotineiras",
+        "queuePriority": false,
+        "lengthRatio": 1.4150943396226414,
+        "status": "NA_FILA",
+        "classificationRationale": "Aplica/integra dados ou interpreta limites de evidência, sem depender de raridade de fármaco para definir dificuldade.",
+        "potentialIssues": [],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Planejamento de tratamento e distinção entre indicação clínica e extrapolação na nefropatia por IgA",
+        "finalDifficultyProposed": "easy",
+        "distractorErrors": [
+          null,
+          "Extrapolar experiência populacional japonesa para indicação renal em outra população.",
+          "Antepor intervenção sem indicação renal nessa população à nefroproteção apropriada.",
+          "Tratar IgA sérica como biomarcador validado de seleção cirúrgica."
+        ],
+        "advocate": "Confirmar uma melhor resposta e a preservação do OP; não confundir ausência de indicação rotineira com contraindicação absoluta, nem omissão de dieta na diretriz com prova de ineficácia universal.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 2
+        },
+        "provisionalScore": 19,
+        "identity": "Preservados OP, conceito discriminante, raciocínio central e qid, com verificação independente ainda necessária.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA"
+      },
+      "extraNotes": [
+        "A referência histórica2021foi retirada do item porque o limite populacional está sustentado diretamente peloPP1.4.3.5de2025. O reparo integral do card antigo tem inventário/gate próprios; não se herda liberação pela retirada do vínculo."
+      ],
+      "candidateHash": "b80b754892c12767aa3b8077bf0ac92cf9cc13279996cb8f8e0e5967353211fa",
+      "changedFields": [
+        "q",
+        "refs",
+        "opts",
+        "exp",
+        "diff"
+      ],
+      "claimIds": [
+        "TONSILLECTOMY",
+        "IGA_RESPONSE_MARKER"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "metrics": {
+        "before": {
+          "chars": [
+            150,
+            105,
+            94,
+            106
+          ],
+          "words": {
+            "correct": 22,
+            "maxDistractor": 15,
+            "ratioVsMaxDistractor": 1.4666666666666666,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 150,
+            "maxDistractor": 106,
+            "ratioVsMaxDistractor": 1.4150943396226414,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        },
+        "after": {
+          "chars": [
+            84,
+            88,
+            89,
+            91
+          ],
+          "words": {
+            "correct": 13,
+            "maxDistractor": 14,
+            "ratioVsMaxDistractor": 0.9285714285714286,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 2
+          },
+          "characters": {
+            "correct": 84,
+            "maxDistractor": 91,
+            "ratioVsMaxDistractor": 0.9230769230769231,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": true,
+            "correctRankDescending": 4
+          }
+        }
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "publication": "BLOQUEADA",
+        "problem": "Correta original concentra justificativas e qualificadores que não estão nos distratores; alternativas precisam representar erros clínicos úteis, sem enchimento."
+      }
+    },
+    {
+      "qid": "5530b59c",
+      "originalHash": "e80317068d6f3eb684e4c03f7d3aafe2b293915e3c23c5aa077399c7947de18c",
+      "candidate": {
+        "t": "IgAN e Dieta sem Glúten — Indicação Correta",
+        "qid": "5530b59c",
+        "q": "Pessoa com nefropatia por imunoglobulina A (IgA) primária, sem sintomas ou diagnóstico de doença celíaca, pergunta se deve excluir glúten para proteger os rins. Qual resposta é mais adequada?",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "acg_celiac_2023",
+          "moeller_plosone_2014"
+        ],
+        "opts": [
+          "Não retirar glúten de rotina como terapia renal na ausência de uma indicação clínica específica",
+          "Retirar glúten por seis meses para testar resposta renal, mesmo sem suspeita de doença celíaca",
+          "Retirar glúten quando a proteinúria ultrapassar 0,5 g/d, substituindo a nefroproteção medicamentosa",
+          "Retirar glúten se houver hematúria microscópica, pois ela identifica sensibilidade ao glúten"
+        ],
+        "ans": 0,
+        "exp": "Não há evidência clínica suficiente para prescrever retirada rotineira de glúten como nefroproteção na nefropatia por IgA primária sem doença celíaca. A dieta é tratamento da doença celíaca confirmada e pode ter outra indicação gastrointestinal específica; isso é distinto de atribuir benefício renal universal à restrição. Estudos sorológicos, modelos mecanísticos e hipóteses genéticas não demonstram, por si sós, eficácia de uma intervenção dietética sobre a progressão renal. Hematúria ou um limiar de proteinúria não diagnosticam sensibilidade ao glúten. Se houver suspeita de doença celíaca, a investigação deve ser planejada antes de iniciar a restrição, pois os testes dependem da exposição ao glúten.",
+        "diff": "easy",
+        "cat": "glomerular"
+      },
+      "status": "BLOQUEADA",
+      "implementationDisposition": "HOLD_EVIDENCE_ADJUDICATION",
+      "authorAssessment": {
+        "qid": "5530b59c",
+        "originalHash": "e80317068d6f3eb684e4c03f7d3aafe2b293915e3c23c5aa077399c7947de18c",
+        "op": "Distinguir indicação de dieta sem glúten por doença celíaca de uso renal rotineiro sem diagnóstico.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "easy",
+        "storedDifficulty": "medium",
+        "subgroup": "Manejo geral e intervenções não rotineiras",
+        "queuePriority": true,
+        "lengthRatio": 1.5483870967741935,
+        "status": "NA_FILA",
+        "classificationRationale": "Aplica/integra dados ou interpreta limites de evidência, sem depender de raridade de fármaco para definir dificuldade.",
+        "potentialIssues": [],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Planejamento de tratamento e distinção entre indicação clínica e extrapolação na nefropatia por IgA",
+        "finalDifficultyProposed": "easy",
+        "distractorErrors": [
+          null,
+          "Prescrever teste dietético empírico como terapia renal sem indicação clínica específica.",
+          "Substituir nefroproteção por dieta usando limiar de risco renal como indicação gastrointestinal.",
+          "Usar hematúria como marcador de sensibilidade alimentar."
+        ],
+        "advocate": "Confirmar uma melhor resposta e a preservação do OP; não confundir ausência de indicação rotineira com contraindicação absoluta, nem omissão de dieta na diretriz com prova de ineficácia universal.",
+        "eliminatoriesDetectedInCandidate": [
+          "Pendência decisiva de suficiência da verificação da conclusão clínica, até contraprova independente."
+        ],
+        "provisionalDimensionScores": null,
+        "provisionalScore": null,
+        "identity": "Preservados OP, conceito discriminante, raciocínio central e qid, com verificação independente ainda necessária.",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "scoreAnnulledReason": "A suficiência da síntese clínica de não uso rotineiro e dos vínculos deve ser adjudicada independentemente. Fontes individuais não são prova de eficácia/ineficácia de terapia renal universal."
+      },
+      "extraNotes": [
+        "Não atribuir àKDIGOuma recomendação textual sobre glúten: a busca integral não encontrou esse termo. A inferência clínica distingue a ausência de terapia renal padrão, evidência exploratória e a indicação gastrointestinal confirmada.",
+        "Moeller é caso-controle, não teste de dieta; novo hash do card requer gate integral. Coppo1990série sem controle e a análise genética2025foram conferidos como contraprovas, sem promover seus achados a recomendação universal."
+      ],
+      "candidateHash": "812cc4fd3d344cd94780de974953e6b3f3c1289ad7ce032b68745d2c16191aa0",
+      "changedFields": [
+        "q",
+        "opts",
+        "exp",
+        "diff"
+      ],
+      "claimIds": [
+        "GLUTEN_DIET",
+        "CELIAC_DIET",
+        "GLUTEN_TESTING"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "acg_celiac_2023",
+          "referenceHash": "b6f96b60ba486eeb4e587ef2112b600d4b7894673807e4f6af173ff2d391bc53",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "moeller_plosone_2014",
+          "referenceHash": "5355da0a46d1be6bac540bdfd6207184ef862ab775baa1f2929e5bc8304dc34f",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": "7fac8579d18e73957dd803436fd2705c79a73c2a430cfd75044b6feec79e9d58"
+        }
+      ],
+      "metrics": {
+        "before": {
+          "chars": [
+            144,
+            93,
+            70,
+            85
+          ],
+          "words": {
+            "correct": 20,
+            "maxDistractor": 13,
+            "ratioVsMaxDistractor": 1.5384615384615385,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 144,
+            "maxDistractor": 93,
+            "ratioVsMaxDistractor": 1.5483870967741935,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        },
+        "after": {
+          "chars": [
+            95,
+            94,
+            99,
+            92
+          ],
+          "words": {
+            "correct": 15,
+            "maxDistractor": 15,
+            "ratioVsMaxDistractor": 1,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": true,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 95,
+            "maxDistractor": 99,
+            "ratioVsMaxDistractor": 0.9595959595959596,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 2
+          }
+        }
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "publication": "BLOQUEADA",
+        "problem": "Correta original concentra justificativas e qualificadores que não estão nos distratores; alternativas precisam representar erros clínicos úteis, sem enchimento."
+      }
+    },
+    {
+      "qid": "b7a93d7a",
+      "originalHash": "b66e7f2d734abd24fa3f78b1f7091c73fdb3657a666fde400f11f240aef907e3",
+      "candidate": {
+        "t": "IgAN em Risco — Tratamento em Camadas",
+        "qid": "b7a93d7a",
+        "q": "Adulto com nefropatia por imunoglobulina A (IgA) primária confirmada por biópsia mantém proteinúria de 0,8 g/d e queda lenta da taxa de filtração glomerular estimada (TFGe). Qual plano melhor representa a KDIGO 2025?",
+        "refs": [
+          "kdigo_igan_igav_2025"
+        ],
+        "opts": [
+          "Combinar nefroproteção e avaliação de terapia dirigida à doença, conforme risco e segurança",
+          "Priorizar nefroproteção isolada e adiar a avaliação de terapia dirigida até proteinúria nefrótica",
+          "Usar o limiar de 0,5 g/d de proteinúria como critério suficiente para iniciar glicocorticoide sistêmico",
+          "Escolher terapia dirigida como estratégia suficiente para controlar também as respostas à perda de néfrons"
+        ],
+        "ans": 0,
+        "exp": "Proteinúria persistente a partir de 0,5 g/d identifica risco de progressão na nefropatia por IgA. A KDIGO propõe abordar simultaneamente os mecanismos específicos da doença e as respostas à perda de néfrons. O plano inclui medidas de estilo de vida, controle pressórico e hemodinâmico e avaliação de terapias dirigidas à formação de imunocomplexos ou à lesão glomerular, conforme risco, segurança, acesso e decisão compartilhada. Não se deve aguardar proteinúria nefrótica para avaliar tratamento adicional, nem transformar 0,5 g/d em prescrição universal de imunossupressão. Terapia dirigida também não substitui o cuidado das consequências da perda de néfrons.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "status": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW",
+      "authorAssessment": {
+        "qid": "b7a93d7a",
+        "originalHash": "b66e7f2d734abd24fa3f78b1f7091c73fdb3657a666fde400f11f240aef907e3",
+        "op": "Planejar eixos simultâneos de nefroproteção e terapia dirigida ao mecanismo da IgAN conforme risco.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "storedDifficulty": "hard",
+        "subgroup": "Manejo geral e intervenções não rotineiras",
+        "queuePriority": true,
+        "lengthRatio": 2.6785714285714284,
+        "status": "NA_FILA",
+        "classificationRationale": "Aplica/integra dados ou interpreta limites de evidência, sem depender de raridade de fármaco para definir dificuldade.",
+        "potentialIssues": [],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Planejamento de tratamento e distinção entre indicação clínica e extrapolação na nefropatia por IgA",
+        "finalDifficultyProposed": "medium",
+        "distractorErrors": [
+          null,
+          "Adiar a avaliação de terapia dirigida até proteinúria nefrótica.",
+          "Converter limiar de risco em critério suficiente para selecionar glicocorticoide sistêmico.",
+          "Presumir que terapia dirigida cobre também as respostas à perda de néfrons."
+        ],
+        "advocate": "Confirmar uma melhor resposta e a preservação do OP; não confundir ausência de indicação rotineira com contraindicação absoluta, nem omissão de dieta na diretriz com prova de ineficácia universal.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 2
+        },
+        "provisionalScore": 19,
+        "identity": "Preservados OP, conceito discriminante, raciocínio central e qid, com verificação independente ainda necessária.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA"
+      },
+      "extraNotes": [],
+      "candidateHash": "5da47e4f6b5a12c443f404e0f7caf5e0e39aaf8359493b4127e1bcd57d60caf9",
+      "changedFields": [
+        "q",
+        "opts",
+        "exp",
+        "diff"
+      ],
+      "claimIds": [
+        "DUAL_AXES",
+        "RISK_THRESHOLD"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "metrics": {
+        "before": {
+          "chars": [
+            225,
+            68,
+            82,
+            84
+          ],
+          "words": {
+            "correct": 36,
+            "maxDistractor": 13,
+            "ratioVsMaxDistractor": 2.769230769230769,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 225,
+            "maxDistractor": 84,
+            "ratioVsMaxDistractor": 2.6785714285714284,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        },
+        "after": {
+          "chars": [
+            91,
+            97,
+            103,
+            106
+          ],
+          "characters": {
+            "correct": 91,
+            "maxDistractor": 106,
+            "ratioVsMaxDistractor": 0.8584905660377359,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": true,
+            "correctRankDescending": 4
+          },
+          "words": {
+            "correct": 13,
+            "maxDistractor": 15,
+            "ratioVsMaxDistractor": 0.8666666666666667,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 3
+          }
+        }
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "publication": "BLOQUEADA",
+        "problem": "Correta original concentra justificativas e qualificadores que não estão nos distratores; alternativas precisam representar erros clínicos úteis, sem enchimento."
+      }
+    },
+    {
+      "qid": "c1089f2e",
+      "originalHash": "5ae127af7d2254563f943fd9ea40d0a0b36a9d9116e19a78b5033ad6285eeaed",
+      "candidate": {
+        "t": "IgAN — Meta de Proteinúria KDIGO 2025",
+        "qid": "c1089f2e",
+        "q": "Qual meta de proteinúria deve orientar o tratamento da nefropatia por imunoglobulina A (IgA) em risco de progressão segundo a KDIGO 2025?",
+        "opts": [
+          "Abaixo de 0,5 g/d e, idealmente, abaixo de 0,3 g/d",
+          "Abaixo de 1,0 g/d e, idealmente, abaixo de 0,8 g/d",
+          "Abaixo de 2,0 g/d e, idealmente, abaixo de 1,5 g/d",
+          "Abaixo de 0,3 g/d e, idealmente, abaixo de 0,1 g/d"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO orienta manter a excreção de proteína abaixo de 0,5 g/d e, idealmente, abaixo de 0,3 g/d. O objetivo é reduzir o risco e aproximar a perda de função renal da faixa fisiológica. A meta não é uma ordem de intensificar imunossupressão até alcançar qualquer valor e não garante risco zero: cicatriz extensa pode limitar a redução possível. Proteinúria baixa não dispensa acompanhar a trajetória da função renal. O alvo de menos de 1 g/d corresponde ao enquadramento da diretriz de 2021, atualizado em 2025.",
+        "diff": "easy",
+        "cat": "glomerular",
+        "refs": [
+          "kdigo_igan_igav_2025"
+        ]
+      },
+      "status": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW",
+      "authorAssessment": {
+        "qid": "c1089f2e",
+        "originalHash": "5ae127af7d2254563f943fd9ea40d0a0b36a9d9116e19a78b5033ad6285eeaed",
+        "op": "Reconhecer meta de proteinúria abaixo de0,5g/d, idealmente0,3g/d, sem intensificação imune automática.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "storedDifficulty": "medium",
+        "subgroup": "Manejo geral e intervenções não rotineiras",
+        "queuePriority": true,
+        "lengthRatio": 1.5352112676056338,
+        "status": "NA_FILA",
+        "classificationRationale": "O comando recupera uma meta clínica acionável da diretriz, sem simular aplicação individual ou cálculo. Proposta básica; não criar novoOPpara aparentar complexidade.",
+        "potentialIssues": [],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Planejamento de tratamento e distinção entre indicação clínica e extrapolação na nefropatia por IgA",
+        "finalDifficultyProposed": "easy",
+        "distractorErrors": [
+          null,
+          "Manter o alvo antigo de menos de1g/d como se fosse a orientação atual.",
+          "Aceitar alvo excessivamente permissivo diante do risco de progressão.",
+          "Confundir a meta ideal atual com uma faixa ainda mais baixa não estabelecida pela diretriz."
+        ],
+        "advocate": "Confirmar uma melhor resposta e a preservação do OP; não confundir ausência de indicação rotineira com contraindicação absoluta, nem omissão de dieta na diretriz com prova de ineficácia universal.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 1
+        },
+        "provisionalScore": 18,
+        "identity": "Preservados OP, conceito discriminante, raciocínio central e qid, com verificação independente ainda necessária.",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA"
+      },
+      "extraNotes": [
+        "Alerta de item direto sobre limiar clínico. Sua utilidade é distinguir alvo atual de risco do alvo antigo, não avaliar integração clínica. A contraprova pode retê-lo se considerar trivia; não trocar seu OP sob o mesmoqidpara elevar Bloom.",
+        "Opções numéricas são paralelas pelo tipo de decisão, sem palavras adicionais para igualar comprimento. Qualificadores de segurança permanecem na explicação."
+      ],
+      "candidateHash": "fd101c9431d18979917fbfb07e2d8441390effbfc60a5c0c36f6263be617a046",
+      "changedFields": [
+        "q",
+        "opts",
+        "exp",
+        "diff"
+      ],
+      "claimIds": [
+        "PROTEINURIA_TARGET",
+        "HISTORIC_2021_TARGET"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "metrics": {
+        "before": {
+          "chars": [
+            109,
+            71,
+            60,
+            70
+          ],
+          "words": {
+            "correct": 18,
+            "maxDistractor": 11,
+            "ratioVsMaxDistractor": 1.6363636363636365,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 109,
+            "maxDistractor": 71,
+            "ratioVsMaxDistractor": 1.5352112676056338,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        },
+        "after": {
+          "chars": [
+            50,
+            50,
+            50,
+            50
+          ],
+          "words": {
+            "correct": 10,
+            "maxDistractor": 10,
+            "ratioVsMaxDistractor": 1,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": true,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 50,
+            "maxDistractor": 50,
+            "ratioVsMaxDistractor": 1,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": true,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        }
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "publication": "BLOQUEADA",
+        "problem": "Correta original concentra justificativas e qualificadores que não estão nos distratores; alternativas precisam representar erros clínicos úteis, sem enchimento."
+      }
+    }
+  ],
+  "noAppWrites": true,
+  "materialReferenceActions": [
+    {
+      "refId": "kdigo_igan_2021",
+      "action": "RETIRE_CURRENT_LIBRARY",
+      "proposalFile": "igan-kdigo2021-retirement-proposal-A1.json",
+      "proposalFileSha256": "5dcc85d039c16f834078de4c62ef341ed5461f96bca554f26dddcb8a1212a7ac",
+      "historicalRepair": "DOCUMENTAL_ONLY"
+    },
+    {
+      "refId": "moeller_plosone_2014",
+      "action": "FULL_CARD_REPAIR_PENDING_INDEPENDENT_GATE",
+      "file": "igan-treatment-general-card-proposals-A1.json",
+      "candidateHash": "5355da0a46d1be6bac540bdfd6207184ef862ab775baa1f2929e5bc8304dc34f"
+    }
+  ]
+}

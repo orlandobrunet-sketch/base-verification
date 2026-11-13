@@ -1,0 +1,131 @@
+{
+  "schema": 1,
+  "unitType": "reference_card_gate",
+  "version": "A1",
+  "reviewer": "/root/medical_answer_bias independente da autoria anemia_authoring",
+  "reviewDate": "2026-11-13",
+  "norms": {
+    ".claude/skills/revisar-nefroquest/SKILL.md": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef",
+    ".claude/skills/revisar-nefroquest/references/output-contract.md": "4a20348ac71a07836b4611d574496d97960b27a2bbfdcf1f1ed318396f0edcb8",
+    ".claude/skills/revisar-nefroquest/references/verification-protocol.md": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df",
+    "docs/editorial/annex-c-nefrologia.md": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+  },
+  "candidateFile": "igan-glucocorticoids-card-proposals-A1.json",
+  "candidateFileHash": "3a1d5410b480109e2448f5e6df69dd05048e5d93c1b828b71b37883b6abca293",
+  "independentSourceVerification": {
+    "KDIGO2025": {
+      "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+      "doi": "10.1016/j.kint.2025.04.004",
+      "access": "PDF oficial integral aberto; Recomendações1.4.3.1–2, PP1.4.3.1–3 e S41–S43 lidos. Nefecon9meses; risco/monitorização glicêmica na prediabetes e investigação de infecção latente; quatro casos de diabetes em prediabéticos no NefIgArd. Se Nefecon indisponível: sugestão2B de esquema sistêmico reduzido + profilaxia. Dose0,4mg/kg/dia,max32mg por2meses,desmame4mg/mês,total6–9meses;risco não é eliminado. Não transportar crianças para adultos ou afirmar ausência de estudos de manutenção em2026."
+    },
+    "TESTING2022": {
+      "url": "https://jamanetwork.com/journals/jama/fullarticle/2792252",
+      "doi": "10.1001/jama.2022.5368",
+      "pmid": "35579642",
+      "access": "Artigo primário integral930linhas aberto e lido em Methods/Intervention/Outcomes/Results/Table2/AdverseEvents.503,TFGe20–120 inicial/30–120 reduzido,proteinúria≥1g/d,suporte≥3meses;composto40% sustentada/falência/morte renal,HR0,53IC0,39–0,72P<0,001,seguimentomédio4,2a;EAgraves10,9vs2,8. Coortes de dose sequenciais,cadaqualvsplacebocontemporâneo,não equivalência/superioridade randomizada direta. Dose reduzida eprofilaxia12semanas confirmadas;benefício não prova segurança universal."
+    },
+    "NEFIGARD2023": {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=37591292&retmode=xml",
+      "doi": "10.1016/S0140-6736(23)01554-4",
+      "responseSha256": "de4f892712301742eb019363b6e53cea66dc6a3c883303152a30ac984a2a9943",
+      "access": "Resumo primário completo lido independentemente por efetch.364adultos,TFGe35–90,PCR≥0,8g/g ou≥1g/d,bloqueioRASotimizado;16mg/dia9meses+15semestudo,primáriomédiaponderadaTFGe2a,diferença5,05IC3,24–7,38P<0,0001. Edema17vs4,hipertensão12vs3,acne11vs1;semóbitosrelacionados. Não alegar fulltext Lancet aberto. Os quatro casos de diabetes são confirmados na diretriz integral, não atribuídos ao resumo que não os contém."
+    }
+  },
+  "nqEditorialScoreApplicability": "NÃO APLICÁVEL à rubrica de questão; conferência integral do card, desenho, números, limites e inventário.",
+  "cards": [
+    {
+      "id": "testing_study",
+      "unitType": "reference_card",
+      "candidate": {
+        "label": "Lv et al. — TESTING: metilprednisolona na nefropatia por IgA (2022)",
+        "url": "https://jamanetwork.com/journals/jama/fullarticle/2792252",
+        "journal": "JAMA. 2022;327(19):1888–1898",
+        "ano": 2022,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Metilprednisolona reduziu o composto renal primário, com maior incidência de eventos adversos graves",
+        "icon": "🔬",
+        "resumo": "Ensaio multicêntrico, duplo-cego, com 503 participantes com nefropatia por imunoglobulina A (IgA) primária, proteinúria ≥1 g/d e suporte otimizado. A taxa de filtração glomerular estimada (TFGe) elegível era 20–120 mL/min/1,73 m² no protocolo inicial e 30–120 no reduzido. Metilprednisolona versus placebo reduziu o composto de queda sustentada de 40% da TFGe, falência renal ou morte por doença renal: razão de riscos (HR) 0,53, intervalo de confiança de 95% 0,39–0,72; P<0,001, em seguimento médio de 4,2 anos. Eventos adversos graves ocorreram em 10,9% versus 2,8%, sobretudo com dose plena. Após excesso de infecções, houve redução de dose e acréscimo de profilaxia; houve benefício do esquema reduzido contra seu placebo contemporâneo, sem demonstrar equivalência randomizada direta entre as duas doses.",
+        "conclusao": "O benefício renal exige ponderação da toxicidade e seleção individual. Dose menor e profilaxia mitigaram o risco, sem eliminá-lo; não autorizam corticoide automático para toda pessoa com proteinúria.",
+        "curiosidade": "A fase reduzida usou 0,4 mg/kg/dia, máximo 32 mg/dia, e profilaxia contra Pneumocystis jirovecii. As coortes de dose plena e reduzida foram recrutadas em períodos diferentes."
+      },
+      "candidateHash": "ece9f584e9a94eaeb21271a34f1b56dea300b20b847ed8405c408354f96d558d",
+      "originalHash": "9d029d20900715ac9e677581d494acf058ff69f8546bbf1d027e79ab25995657",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "publicationDerivation": "VERIFICADA/NENHUMA + aprovada derivaLIBERADA;não libera questão automaticamente.",
+      "nqEditorialScore": null,
+      "currentConsumers": [
+        {
+          "qid": "d81defbb",
+          "hash": "c375779e5b4d883252586388304b0541bdb406a90bafc9741fd21b8d68ae2c88"
+        }
+      ],
+      "plannedConsumers": [
+        {
+          "qid": "d81defbb",
+          "candidateHash": "6cf4876f99e62446840103405c21be571e2818b84c7e6549564fb228f851b3ac"
+        }
+      ],
+      "eliminators": [],
+      "wholeCardReview": "Card integral confere população/dose/endpoint/HR/EA; distingue comparação randomizada com placebo de comparação entre coortes sequenciais.",
+      "historyRequirement": "Arquivar card anterior e todos consumidores atuais nos quatro perfis. Objetos de assets/artigos_nefro.json inventariados como legado sem carregamento runtime; não reescritos nem aprovados silenciosamente."
+    },
+    {
+      "id": "nefigard_trial",
+      "unitType": "reference_card",
+      "candidate": {
+        "label": "Lafayette et al. — NefIgArd: resultados de 2 anos (2023)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37591292/",
+        "journal": "Lancet. 2023;402(10405):859–870",
+        "ano": 2023,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Budesonida de liberação direcionada reduziu proteinúria e perda de função renal na população estudada",
+        "icon": "🔬",
+        "resumo": "Ensaio fase 3, randomizado e duplo-cego com 364 adultos com nefropatia por imunoglobulina A (IgA) primária, taxa de filtração glomerular estimada (TFGe) de 35–90 mL/min/1,73 m² e proteinúria persistente apesar de bloqueio otimizado do sistema renina-angiotensina. A inclusão exigia relação proteína/creatinina urinária ≥0,8 g/g ou proteinúria ≥1 g/24 h. Comparou Nefecon 16 mg/dia com placebo por 9 meses, seguidos de 15 meses sem o medicamento do estudo. O desfecho primário foi a média ponderada da TFGe ao longo de 2 anos: diferença de 5,05 mL/min/1,73 m², intervalo de confiança de 95% 3,24–7,38; P<0,0001, favorável ao Nefecon. Edema periférico, hipertensão e acne foram mais frequentes com Nefecon; a liberação direcionada não exclui efeitos sistêmicos de glicocorticoide.",
+        "conclusao": "Um curso de 9 meses melhorou os resultados médios frente a placebo durante o acompanhamento. Isso não equivale a cura, resposta garantida em cada pessoa ou indicação de substituir a nefroproteção de base.",
+        "curiosidade": "Benefício médio entre grupos pode persistir enquanto a proteinúria aumenta ou a função renal cai após a suspensão. O curso estudado e a reavaliação posterior não devem ser confundidos com garantia de efeito permanente."
+      },
+      "candidateHash": "19cf1bd6b620b4615c3424862c387cbd850d46704f4b7ce7a119da357b68f361",
+      "originalHash": "1278ec121cee8c1537b0a4c935094581a03c70f1d4c6c3c3a64cd959af1ed419",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "publicationDerivation": "VERIFICADA/NENHUMA + aprovada derivaLIBERADA;não libera questão automaticamente.",
+      "nqEditorialScore": null,
+      "currentConsumers": [
+        {
+          "qid": "f7107bc3",
+          "hash": "eceb69dc1bd50fb8264a1222d869de0958fdb1c5c17b5268cf35dc3c4d72ac28"
+        },
+        {
+          "qid": "ff676013",
+          "hash": "f5ab989fb0ad775d0d7f43932b0df5ab880af2143077dfe22dc15234d78ed56c"
+        }
+      ],
+      "plannedConsumers": [
+        {
+          "qid": "f7107bc3",
+          "candidateHash": "105d139d8ac719fe074fd8c4f8d29faa8439315e7b6f2d9eef758b4b23bcd977"
+        },
+        {
+          "qid": "ff676013",
+          "candidateHash": "d372fa666964f3662973f3966c393c7e4b94b1233b3af10dcb930d948be2c3d6"
+        }
+      ],
+      "eliminators": [],
+      "wholeCardReview": "Card integral corrige DOI e endpoint de2anos; não mistura diferença média ponderada5,05com slope ou dado de parteA. Segurança/exposição e resposta média não significam efeito permanente.",
+      "historyRequirement": "Arquivar card anterior e todos consumidores atuais nos quatro perfis. Objetos de assets/artigos_nefro.json inventariados como legado sem carregamento runtime; não reescritos nem aprovados silenciosamente."
+    }
+  ]
+}

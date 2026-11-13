@@ -1,0 +1,1742 @@
+{
+  "schema": 1,
+  "role": "REVISOR_INDEPENDENTE",
+  "reviewer": "anemia_authoring",
+  "reviewedAt": "2026-11-13T15:30:23.983Z",
+  "candidateFile": "hd-volume-candidates-A2.json",
+  "candidateFileHash": "f5aa35766c39b6bedfeaa6a8f31a7c1ec666c8c4e030e41df363c62ca969194b",
+  "classificationFile": "hd-independent-original-classification-anemia-A1.json",
+  "classificationFileHash": "968dba6b85e1eb33a07a08d6a32fd5d99d69ed8a64e14a5eddab0cb5b2fb835e",
+  "blindingLimits": "Conheço escopoHDvolume5/CONVINCE3 e que há proposta de cardEuDial. Não li candidatos nem classificações/score do autor. Vi títulos, comandos, gabaritos, explicações,refs e diff/queue dos originais no segundo acesso porque o schema usa sourceQuestion; não sou cego ao gabarito nem ao diff legado. Dificuldade intrínseca foi julgada pela operação exigida e não pelo valor legado.",
+  "requiredCardGate": {
+    "file": "hd-independent-card-gates-anemia-A1.json",
+    "fileHash": "e582d3a75c5ef73e7cae4d7f8d82f0b0eb9e7da7daa46b9d043470a4a2988ebc",
+    "items": [
+      {
+        "id": "kdigo_bp_volume_dialysis_2020",
+        "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247",
+        "candidateFile": "hd-volume-card-candidate-C2.json",
+        "candidateFileHash": "32ee843242b1c022db4187229709f6c7546269db5670792c9504b4d26fcd49a1"
+      }
+    ]
+  },
+  "items": [
+    {
+      "qid": "f7fd9e8a",
+      "candidate": {
+        "t": "Hipotensão Intradialítica — Mecanismo Hemodinâmico",
+        "qid": "f7fd9e8a",
+        "q": "Paciente de 70 kg chega à hemodiálise com 4 kg acima do peso-alvo e todo o volume é programado para remoção em uma sessão curta. Na segunda metade da sessão, apresenta queda sintomática da pressão arterial. Qual mecanismo é mais provável?",
+        "refs": [
+          "kdigo_bp_volume_dialysis_2020"
+        ],
+        "opts": [
+          "Ultrafiltração mais rápida que o reenchimento vascular e a compensação cardiovascular",
+          "Redução da resistência vascular provocada por acúmulo de calor durante a sessão",
+          "Redução do débito cardíaco por uma taquiarritmia desencadeada durante a sessão",
+          "Obstrução ao enchimento ventricular por tamponamento pericárdico de origem urêmica"
+        ],
+        "ans": 0,
+        "exp": "O grande volume programado para retirada em uma sessão curta favorece ultrafiltração incompatível com o reenchimento intravascular e com a resposta cardiovascular compensatória, reduzindo o volume circulante efetivo. Esse é o mecanismo mais sustentado pelos dados do caso. Acúmulo de calor, arritmias e tamponamento podem causar hipotensão em outros contextos, mas não há dados específicos que os favoreçam aqui. Grande ganho interdialítico, peso-alvo inadequado e baixa reserva cardíaca ou autonômica estreitam a tolerância à retirada de líquido. A prevenção integra reavaliação de volume e peso-alvo, redução da taxa de ultrafiltração por maior tempo ou frequência quando necessário e redução do ganho interdialítico. Um único limite de ultrafiltração não é seguro para todas as pessoas e sessões.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "original": {
+        "t": "Hipotensão Intradialítica — Mecanismo Hemodinâmico",
+        "qid": "f7fd9e8a",
+        "q": "Paciente de 70 kg chega à hemodiálise com 4 kg acima do peso-alvo e todo o volume é programado para remoção em uma sessão curta. Na segunda metade da sessão, apresenta queda sintomática da pressão arterial. Qual mecanismo é mais provável?",
+        "refs": [
+          "kdigo_bp_volume_dialysis_2020"
+        ],
+        "opts": [
+          "A taxa de ultrafiltração supera o reenchimento vascular e a resposta cardiovascular compensatória, reduzindo o volume circulante efetivo",
+          "A remoção de ureia aumenta diretamente a volemia e causa vasodilatação obrigatória",
+          "A hipercalemia pré-diálise impede qualquer vasoconstrição periférica durante a sessão",
+          "O sódio do dialisato provoca perda sanguínea aguda para o circuito extracorpóreo"
+        ],
+        "ans": 0,
+        "exp": "A hipotensão intradialítica ocorre quando a retirada de líquido não pode ser acompanhada pelo reenchimento do compartimento intravascular e pelas respostas cardiovasculares compensatórias. Grande ganho interdialítico, sessão curta, peso-alvo inadequado e baixa reserva cardíaca ou autonômica estreitam essa margem. A prevenção exige reavaliar volemia e peso-alvo, reduzir a taxa de ultrafiltração com maior tempo ou frequência quando necessário e diminuir o ganho interdialítico; não existe um único limite de ultrafiltração seguro para todos os pacientes.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "originalHash": "31bec09b5b8a0fa6cb4bbfa196e2cef7fb9b52cea0bbcf7e499dc31cda5a7db2",
+      "candidateHash": "f64d0ae0eac3d9d0f53857de8e2b4d492a0a5eb8bf8b26904d1d8f03411e7363",
+      "verdict": "aprovada",
+      "legacyEquivalent": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "op": "Explicar hipotensão por retirada de volume que supera reenchimento e compensação cardiovascular.",
+      "competency": "Interpretar mecanismos hemodinâmicos de complicação da hemodiálise",
+      "bloom": "Aplicar",
+      "miller": "Sabe como",
+      "intrinsicDifficulty": "medium",
+      "originalIndependentClassification": {
+        "qid": "f7fd9e8a",
+        "originalHash": "31bec09b5b8a0fa6cb4bbfa196e2cef7fb9b52cea0bbcf7e499dc31cda5a7db2",
+        "op": "Explicar hipotensão por retirada de volume que supera reenchimento e compensação cardiovascular.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "rationale": "Integra ganho de peso, sessão curta e hipotensão durante retirada; não é recordar limite isolado."
+      },
+      "classificationRationale": "Integra ganho de peso, sessão curta e hipotensão durante retirada; não é recordar limite isolado.",
+      "justification": "Ganho de 4 kg, sessão curta e hipotensão na retirada sustentam incompatibilidade entre ultrafiltração, reenchimento e compensação; o item não cobra um limiar isolado.",
+      "problems": "Nenhum problema substantivo identificado na versão exata. Limitações de discriminação anotadas na rubrica quando existentes não requerem alteração adicional.",
+      "optionAudit": [
+        "A: mecanismo mais sustentado pelos dados explícitos.",
+        "B: acúmulo de calor pode causar hipotensão, mas o caso aponta grande volume em pouco tempo, sem dado térmico.",
+        "C: taquiarritmia é causa real, porém não é documentada no cenário.",
+        "D: tamponamento é causa real, porém sem dado que o favoreça frente ao estresse de retirada."
+      ],
+      "advocate": {
+        "result": "Nenhum argumento plausível de anulação.",
+        "attemptedChallenge": "Testada a possibilidade de calor/arritmia/tamponamento: são mecanismos possíveis em outros casos, não alternativas igualmente prováveis neste. O comando pede mecanismo mais provável, não exclusão diagnóstica absoluta."
+      },
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "Mais de uma resposta defensável",
+          "triggered": false
+        },
+        {
+          "number": 2,
+          "criterion": "Referência não sustenta o gabarito",
+          "triggered": false
+        },
+        {
+          "number": 3,
+          "criterion": "Deriva de OP",
+          "triggered": false
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura premiada",
+          "triggered": false
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia sem consequência clínica",
+          "triggered": false
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contradiz o gabarito",
+          "triggered": false
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo local não informado",
+          "triggered": false
+        },
+        {
+          "number": 10,
+          "criterion": "Desatualização relevante",
+          "triggered": false
+        }
+      ],
+      "NQScore": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "value": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "value": 2
+          },
+          {
+            "dimension": "Qualidade do enunciado",
+            "value": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "value": 2
+          },
+          {
+            "dimension": "Distratores",
+            "value": 2
+          },
+          {
+            "dimension": "Explicação",
+            "value": 2
+          },
+          {
+            "dimension": "Referências",
+            "value": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "value": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "value": 2
+          }
+        ],
+        "total": 20,
+        "band": "Excelente",
+        "rationale": "Alinhamento, unidade de resposta, explicação, fontes e consequência clínica plenos na rubrica."
+      },
+      "validity": {
+        "content": "Fontes decisivas abertas e dados/conclusão coerentes com a população e a intervenção.",
+        "construct": "Operação realmente exigida classificada acima; não promove dificuldade por extensão ou jargão.",
+        "response": "Quatro opções examinadas isoladamente; o discriminante é o conceito clínico do OP.",
+        "consequential": "Explicação rebate erros perigosos sem premiá-los; não estabelece limiar universal ou benefício fora da população."
+      },
+      "identity": {
+        "preserveQid": true,
+        "preserveFSRS": true,
+        "reason": "OP, competência, conceito correto e raciocínio reconhecível preservados; sem reset automático por reescrita. Dificuldade foi reavaliada formalmente.",
+        "historicalVersionRequired": true
+      },
+      "duplication": {
+        "canonicalDimensions": [
+          "decisão",
+          "estrutura de dados",
+          "perfil-alvo",
+          "língua"
+        ],
+        "relatedPairAudit": [
+          {
+            "pairs": [
+              "f7fd9e8a",
+              "236ed8f1"
+            ],
+            "sameTargetProfile": true,
+            "sameLanguage": true,
+            "sameDecision": false,
+            "sameCaseDataStructure": false,
+            "conclusion": "Variação útil: explicar mecanismo em grande retirada/sessão curta versus escolher prioridade preventiva após estabilização em sessão de quatro horas."
+          }
+        ],
+        "result": "Nenhuma duplicata nas quatro dimensões simultaneamente identificada."
+      },
+      "claims": [
+        {
+          "claim": "Incompatibilidade entre taxa de retirada, reenchimento e compensação; prevenção individualizada sem limiar único.",
+          "sources": [
+            "KDIGO2020"
+          ]
+        },
+        {
+          "claim": "Os três mecanismos diferenciais são reais e distintos.",
+          "sources": [
+            "KDOQI2005",
+            "Timofte2021"
+          ]
+        }
+      ],
+      "referenceBindings": [
+        {
+          "id": "kdigo_bp_volume_dialysis_2020",
+          "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247",
+          "candidate": {
+            "label": "KDIGO — Blood Pressure and Volume Management in Dialysis (2020)",
+            "url": "https://kdigo.org/wp-content/uploads/2017/05/KDIGO-BP-Volume-in-Dialysis-FINAL.pdf",
+            "journal": "Kidney International 2020;97(5):861-876",
+            "ano": 2020,
+            "tipo": "Relatório de Consenso",
+            "badge": "CONSENSUS",
+            "badgeColor": "#6366f1",
+            "impacto": "Manejo individualizado de pressão, volume e hipotensão intradialítica",
+            "icon": "📋",
+            "resumo": "Relatório da conferência de controvérsias Kidney Disease: Improving Global Outcomes (KDIGO) sobre pressão arterial e volume em diálise. Identifica como principais determinantes da hipotensão intradialítica o volume intravascular insuficiente para sustentar a taxa de ultrafiltração desejada e respostas cardiovasculares compensatórias inadequadas. Recomenda reavaliar peso-alvo e estado volêmico, considerar sintomas e comorbidades e reduzir a taxa de ultrafiltração por maior duração ou frequência das sessões e menor ganho de peso interdialítico. Dialisato mais frio pode melhorar a tolerância hemodinâmica.",
+            "conclusao": "A prevenção da hipotensão intradialítica começa pela prescrição volêmica individualizada; nenhum limiar único de ultrafiltração é apropriado para todos os pacientes e em todas as sessões.",
+            "curiosidade": "O relatório distingue peso-alvo de peso seco estimado: em doença aguda ou sintomas intensos pode ser necessário aceitar temporariamente um peso-alvo um pouco maior, equilibrando hipoperfusão imediata e sobrecarga crônica."
+          },
+          "changedOrNewCard": true,
+          "requiredCardGate": {
+            "file": "hd-independent-card-gates-anemia-A1.json",
+            "fileHash": "e582d3a75c5ef73e7cae4d7f8d82f0b0eb9e7da7daa46b9d043470a4a2988ebc",
+            "id": "kdigo_bp_volume_dialysis_2020",
+            "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247"
+          },
+          "verification": "Objeto integral aprovado no gate independente de card acima."
+        }
+      ],
+      "requiredCardGate": [
+        {
+          "file": "hd-independent-card-gates-anemia-A1.json",
+          "fileHash": "e582d3a75c5ef73e7cae4d7f8d82f0b0eb9e7da7daa46b9d043470a4a2988ebc",
+          "id": "kdigo_bp_volume_dialysis_2020",
+          "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247"
+        }
+      ],
+      "decisionTree": [
+        "0: VERIFICADA/NENHUMA — combinação válida, sem teto por evidência.",
+        "1: nenhum eliminatório, deriva ou duplicata nas quatro dimensões.",
+        "2: recurso sem argumento plausível de anulação.",
+        "3: score 20/20 → aprovada."
+      ],
+      "lifecycle": "publicado",
+      "lifecycleNote": "Estado editorial resultante da árvore; não afirma deploy/aplicação já executado.",
+      "publicationDerivation": "Handbook 18.4 Regra 7: evidência VERIFICADA, pendência NENHUMA e veredito aprovada → LIBERADA somente para este hash.",
+      "suggestedPatch": {
+        "action": "Aplicar exclusivamente o objeto candidate exato aprovado, junto com o(s) card(s) exato(s) vinculados.",
+        "preserve": [
+          "qid",
+          "refs IDs adequados",
+          "estado FSRS",
+          "versão histórica das avaliações"
+        ],
+        "noAppWriteByReviewer": true
+      },
+      "lengthAudit": {
+        "before": {
+          "characters": {
+            "values": [
+              136,
+              82,
+              85,
+              80
+            ],
+            "correct": 136,
+            "greatestDistractor": 85,
+            "uniquelyLongest": true,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          },
+          "words": {
+            "values": [
+              18,
+              12,
+              10,
+              12
+            ],
+            "correct": 18,
+            "greatestDistractor": 12,
+            "uniquelyLongest": true,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          }
+        },
+        "after": {
+          "characters": {
+            "values": [
+              85,
+              79,
+              78,
+              82
+            ],
+            "correct": 85,
+            "greatestDistractor": 82,
+            "uniquelyLongest": true,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          },
+          "words": {
+            "values": [
+              11,
+              12,
+              11,
+              10
+            ],
+            "correct": 11,
+            "greatestDistractor": 12,
+            "uniquelyLongest": false,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          }
+        },
+        "method": "NFC, espaços normalizados, codepoints Unicode e palavras por espaço; não remove desigualdades < ou >; comprimento não determina aprovação."
+      },
+      "verificationPending": []
+    },
+    {
+      "qid": "f3ab76f3",
+      "candidate": {
+        "t": "Hipotensão Intradialítica — Reserva Cardíaca Reduzida",
+        "qid": "f3ab76f3",
+        "q": "Paciente em hemodiálise apresenta hipotensão intradialítica recorrente mesmo após redução da taxa de ultrafiltração. O ecocardiograma mostra fração de ejeção de 30%, sem derrame pericárdico. Qual interpretação e próximo passo são mais apropriados?",
+        "refs": [
+          "kdigo_bp_volume_dialysis_2020"
+        ],
+        "opts": [
+          "A baixa reserva cardíaca pede revisão integrada de cardiopatia, volume e prescrição",
+          "A fração de ejeção baixa identifica neuropatia autonômica e indica midodrina",
+          "A hipotensão indica sobrecarga de volume e favorece intensificar a ultrafiltração",
+          "A hipotensão recorrente favorece bolus de salina em cada sessão para manter a meta de ultrafiltração"
+        ],
+        "ans": 0,
+        "exp": "A disfunção sistólica pode limitar a manutenção do débito cardíaco quando a ultrafiltração reduz o retorno venoso, favorecendo hipotensão mesmo após diminuir a taxa de retirada de líquido. Ela não demonstra, por si só, neuropatia autonômica ou incapacidade de vasoconstrição. É necessário integrar avaliação da cardiopatia, medicamentos, estado volêmico, peso-alvo e prescrição de diálise, ajustando duração ou frequência conforme a tolerância e a necessidade de remoção. Hipotensão durante a sessão pode coexistir com sobrecarga extracelular; não autoriza concluir que aumentar a ultrafiltração resolverá o quadro. Dialisato mais frio ou midodrina podem ser considerados em pessoas selecionadas, mas não substituem essa revisão. Salina pode ser necessária no resgate de um episódio agudo, mas programar bolus recorrentes para sustentar a mesma meta de ultrafiltração não substitui reavaliar a prescrição e o balanço volêmico.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "original": {
+        "t": "Hipotensão Intradialítica — Reserva Cardíaca Reduzida",
+        "qid": "f3ab76f3",
+        "q": "Paciente em hemodiálise apresenta hipotensão intradialítica recorrente mesmo após redução da taxa de ultrafiltração. O ecocardiograma mostra fração de ejeção de 30%, sem derrame pericárdico. Qual interpretação e próximo passo são mais apropriados?",
+        "refs": [
+          "kdigo_bp_volume_dialysis_2020"
+        ],
+        "opts": [
+          "A reserva cardíaca reduzida pode limitar a resposta ao estresse circulatório; é necessário reavaliar coração, volemia, peso-alvo, tempo e frequência da diálise de forma integrada",
+          "A fração de ejeção baixa prova neuropatia autonômica; midodrina deve ser a única medida preventiva",
+          "A hipotensão demonstra excesso de volume; a taxa de ultrafiltração deve ser aumentada até desaparecer o edema",
+          "O quadro exige terapia renal substitutiva contínua permanente, independentemente da estabilidade entre as sessões"
+        ],
+        "ans": 0,
+        "exp": "Disfunção sistólica reduz a capacidade de aumentar débito cardíaco e resistência vascular durante a retirada de volume, favorecendo hipotensão mesmo com taxa de ultrafiltração aparentemente moderada. A conduta é integrada: confirmar peso-alvo e estado volêmico, revisar cardiopatia e medicamentos, prolongar ou aumentar a frequência das sessões quando necessário e considerar medidas adjuvantes conforme o mecanismo. Midodrina ou dialisato mais frio podem ajudar em pacientes selecionados, mas não substituem a correção da prescrição e da doença cardiovascular subjacente; terapia contínua não é solução crônica automática.",
+        "diff": "hard",
+        "cat": "dialise"
+      },
+      "originalHash": "57b43d3230e64bf87d0697cfa986be69b0affb4e5d05668cb0fc6766bf161382",
+      "candidateHash": "72ce217c1d15f2fdf49e8fdee7f852cc2b02839f74d1f9d20402499ac0500a09",
+      "verdict": "aprovada",
+      "legacyEquivalent": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "op": "Integrar reserva cardíaca reduzida à persistência de hipotensão e à revisão de prescrição/volemia.",
+      "competency": "Integrar cardiopatia e prescrição na prevenção de hipotensão intradialítica",
+      "bloom": "Aplicar",
+      "miller": "Sabe como",
+      "intrinsicDifficulty": "medium",
+      "originalIndependentClassification": {
+        "qid": "f3ab76f3",
+        "originalHash": "57b43d3230e64bf87d0697cfa986be69b0affb4e5d05668cb0fc6766bf161382",
+        "op": "Integrar reserva cardíaca reduzida à persistência de hipotensão e à revisão de prescrição/volemia.",
+        "bloom": "Avaliar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "hard",
+        "rationale": "Persistência apesar de menorUF e fração de ejeção30% exigem ponderar fatores cardíacos e prescrição sem medida única."
+      },
+      "classificationRationale": "No julgamento dos originais classifiquei Avaliar/hard. Reavaliando a operação exigida pelo comando e pelas opções finais, não há escolha entre condutas próximas com risco/tempo individualizados: é aplicação de revisão integrada padronizada com 2–3 dados. Aplicar/medium é a âncora C.2 mais fiel. Não derivei isso de comprimento ou do rótulo do autor.",
+      "justification": "Fração de ejeção reduzida limita reserva de débito; persistência após menor taxa exige revisão integrada, não atribuição automática à neuropatia ou manutenção de retirada por bolus.",
+      "problems": "Nenhum problema substantivo identificado na versão exata. Limitações de discriminação anotadas na rubrica quando existentes não requerem alteração adicional.",
+      "optionAudit": [
+        "A: interpretação e plano integrados respondem às duas partes do comando.",
+        "B: fração de ejeção baixa não diagnostica neuropatia autonômica; midodrina não se segue desse achado isolado.",
+        "C: hipotensão pode coexistir com sobrecarga, mas não a demonstra nem torna maior taxa a resposta.",
+        "D: salina pode resgatar episódio agudo; bolus programado para preservar meta não substitui revisão da prescrição."
+      ],
+      "advocate": {
+        "result": "Nenhum argumento plausível de anulação.",
+        "attemptedChallenge": "Testei se midodrina ou salina seriam segunda resposta: ambas podem ter lugar em circunstâncias selecionadas, porém os vínculos e a finalidade formulados nas opções são inadequados. A alternativa correta não promete euvolemia nem suspende remoção necessária."
+      },
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "Mais de uma resposta defensável",
+          "triggered": false
+        },
+        {
+          "number": 2,
+          "criterion": "Referência não sustenta o gabarito",
+          "triggered": false
+        },
+        {
+          "number": 3,
+          "criterion": "Deriva de OP",
+          "triggered": false
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura premiada",
+          "triggered": false
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia sem consequência clínica",
+          "triggered": false
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contradiz o gabarito",
+          "triggered": false
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo local não informado",
+          "triggered": false
+        },
+        {
+          "number": 10,
+          "criterion": "Desatualização relevante",
+          "triggered": false
+        }
+      ],
+      "NQScore": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "value": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "value": 2
+          },
+          {
+            "dimension": "Qualidade do enunciado",
+            "value": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "value": 2
+          },
+          {
+            "dimension": "Distratores",
+            "value": 1
+          },
+          {
+            "dimension": "Explicação",
+            "value": 2
+          },
+          {
+            "dimension": "Referências",
+            "value": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "value": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "value": 2
+          }
+        ],
+        "total": 19,
+        "band": "Excelente",
+        "rationale": "Distratores plausíveis, mas a inferência fração de ejeção→neuropatia é relativamente fácil de excluir; nenhum é mecanismo inventado."
+      },
+      "validity": {
+        "content": "Fontes decisivas abertas e dados/conclusão coerentes com a população e a intervenção.",
+        "construct": "Operação realmente exigida classificada acima; não promove dificuldade por extensão ou jargão.",
+        "response": "Quatro opções examinadas isoladamente; o discriminante é o conceito clínico do OP.",
+        "consequential": "Explicação rebate erros perigosos sem premiá-los; não estabelece limiar universal ou benefício fora da população."
+      },
+      "identity": {
+        "preserveQid": true,
+        "preserveFSRS": true,
+        "reason": "OP, competência, conceito correto e raciocínio reconhecível preservados; sem reset automático por reescrita. Dificuldade foi reavaliada formalmente.",
+        "historicalVersionRequired": true
+      },
+      "duplication": {
+        "canonicalDimensions": [
+          "decisão",
+          "estrutura de dados",
+          "perfil-alvo",
+          "língua"
+        ],
+        "relatedPairAudit": [
+          {
+            "pairs": [
+              "f3ab76f3",
+              "236ed8f1"
+            ],
+            "sameTargetProfile": true,
+            "sameLanguage": true,
+            "sameDecision": false,
+            "sameCaseDataStructure": false,
+            "conclusion": "Variação útil: integrar disfunção sistólica apesar de redução de taxa versus prevenção volêmica inicial sem cardiopatia específica."
+          }
+        ],
+        "result": "Nenhuma duplicata nas quatro dimensões simultaneamente identificada."
+      },
+      "claims": [
+        {
+          "claim": "Disfunção sistólica e autonômica são distintas; baixo retorno venoso pode exceder reserva de débito.",
+          "sources": [
+            "KDIGO2020",
+            "Timofte2021",
+            "KDOQI2005"
+          ]
+        },
+        {
+          "claim": "Prioridade de revisão cardiovascular, volêmica e da prescrição; adjuvantes não substituem avaliação.",
+          "sources": [
+            "KDIGO2020"
+          ]
+        }
+      ],
+      "referenceBindings": [
+        {
+          "id": "kdigo_bp_volume_dialysis_2020",
+          "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247",
+          "candidate": {
+            "label": "KDIGO — Blood Pressure and Volume Management in Dialysis (2020)",
+            "url": "https://kdigo.org/wp-content/uploads/2017/05/KDIGO-BP-Volume-in-Dialysis-FINAL.pdf",
+            "journal": "Kidney International 2020;97(5):861-876",
+            "ano": 2020,
+            "tipo": "Relatório de Consenso",
+            "badge": "CONSENSUS",
+            "badgeColor": "#6366f1",
+            "impacto": "Manejo individualizado de pressão, volume e hipotensão intradialítica",
+            "icon": "📋",
+            "resumo": "Relatório da conferência de controvérsias Kidney Disease: Improving Global Outcomes (KDIGO) sobre pressão arterial e volume em diálise. Identifica como principais determinantes da hipotensão intradialítica o volume intravascular insuficiente para sustentar a taxa de ultrafiltração desejada e respostas cardiovasculares compensatórias inadequadas. Recomenda reavaliar peso-alvo e estado volêmico, considerar sintomas e comorbidades e reduzir a taxa de ultrafiltração por maior duração ou frequência das sessões e menor ganho de peso interdialítico. Dialisato mais frio pode melhorar a tolerância hemodinâmica.",
+            "conclusao": "A prevenção da hipotensão intradialítica começa pela prescrição volêmica individualizada; nenhum limiar único de ultrafiltração é apropriado para todos os pacientes e em todas as sessões.",
+            "curiosidade": "O relatório distingue peso-alvo de peso seco estimado: em doença aguda ou sintomas intensos pode ser necessário aceitar temporariamente um peso-alvo um pouco maior, equilibrando hipoperfusão imediata e sobrecarga crônica."
+          },
+          "changedOrNewCard": true,
+          "requiredCardGate": {
+            "file": "hd-independent-card-gates-anemia-A1.json",
+            "fileHash": "e582d3a75c5ef73e7cae4d7f8d82f0b0eb9e7da7daa46b9d043470a4a2988ebc",
+            "id": "kdigo_bp_volume_dialysis_2020",
+            "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247"
+          },
+          "verification": "Objeto integral aprovado no gate independente de card acima."
+        }
+      ],
+      "requiredCardGate": [
+        {
+          "file": "hd-independent-card-gates-anemia-A1.json",
+          "fileHash": "e582d3a75c5ef73e7cae4d7f8d82f0b0eb9e7da7daa46b9d043470a4a2988ebc",
+          "id": "kdigo_bp_volume_dialysis_2020",
+          "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247"
+        }
+      ],
+      "decisionTree": [
+        "0: VERIFICADA/NENHUMA — combinação válida, sem teto por evidência.",
+        "1: nenhum eliminatório, deriva ou duplicata nas quatro dimensões.",
+        "2: recurso sem argumento plausível de anulação.",
+        "3: score 19/20 → aprovada."
+      ],
+      "lifecycle": "publicado",
+      "lifecycleNote": "Estado editorial resultante da árvore; não afirma deploy/aplicação já executado.",
+      "publicationDerivation": "Handbook 18.4 Regra 7: evidência VERIFICADA, pendência NENHUMA e veredito aprovada → LIBERADA somente para este hash.",
+      "suggestedPatch": {
+        "action": "Aplicar exclusivamente o objeto candidate exato aprovado, junto com o(s) card(s) exato(s) vinculados.",
+        "preserve": [
+          "qid",
+          "refs IDs adequados",
+          "estado FSRS",
+          "versão histórica das avaliações"
+        ],
+        "noAppWriteByReviewer": true
+      },
+      "lengthAudit": {
+        "before": {
+          "characters": {
+            "values": [
+              178,
+              98,
+              109,
+              113
+            ],
+            "correct": 178,
+            "greatestDistractor": 113,
+            "uniquelyLongest": true,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          },
+          "words": {
+            "values": [
+              25,
+              15,
+              17,
+              14
+            ],
+            "correct": 25,
+            "greatestDistractor": 17,
+            "uniquelyLongest": true,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          }
+        },
+        "after": {
+          "characters": {
+            "values": [
+              83,
+              76,
+              81,
+              100
+            ],
+            "correct": 83,
+            "greatestDistractor": 100,
+            "uniquelyLongest": false,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          },
+          "words": {
+            "values": [
+              12,
+              11,
+              11,
+              16
+            ],
+            "correct": 12,
+            "greatestDistractor": 16,
+            "uniquelyLongest": false,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          }
+        },
+        "method": "NFC, espaços normalizados, codepoints Unicode e palavras por espaço; não remove desigualdades < ou >; comprimento não determina aprovação."
+      },
+      "verificationPending": []
+    },
+    {
+      "qid": "e3246f2c",
+      "candidate": {
+        "t": "Sódio do Dialisato — Individualização e Balanço",
+        "qid": "e3246f2c",
+        "q": "Paciente em hemodiálise tem sódio pré-diálise repetidamente em 134 mEq/L, usa dialisato com sódio de 140 mEq/L e apresenta sede intensa, hipertensão e grande ganho interdialítico. Após revisar ingestão e volume, qual ajuste é mais coerente?",
+        "refs": [
+          "kdigo_bp_volume_dialysis_2020"
+        ],
+        "opts": [
+          "Reduzir o gradiente de sódio gradualmente, avaliando pressão, sintomas e ganho de peso",
+          "Elevar o sódio do dialisato, buscando corrigir o sódio plasmático e reduzir a sede",
+          "Reduzir abruptamente para 130 mEq/L para maximizar a remoção difusiva de sódio",
+          "Manter o sódio do dialisato e concentrar o ajuste na restrição hídrica mais rigorosa"
+        ],
+        "ans": 0,
+        "exp": "Um gradiente positivo entre sódio do dialisato e do plasma pode favorecer ganho difusivo de sódio, sede e maior ganho de peso interdialítico. O relatório da conferência Kidney Disease: Improving Global Outcomes (KDIGO) orienta evitar carga de sódio e individualizar a prescrição dentro do manejo de pressão e volume. Neste perfil, reduzir o gradiente é uma estratégia coerente, acompanhando sintomas, pressão e balanço volêmico. A concentração ideal não é universal: reduzir excessivamente ou de forma abrupta pode aumentar câimbras e hipotensão. Elevar o sódio para corrigir um valor plasmático discretamente baixo pode agravar a carga e a sede; restringir apenas água também não aborda essa fonte de sódio. O ajuste deve considerar ainda que sódio prescrito e efetivamente entregue podem diferir.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "original": {
+        "t": "Sódio do Dialisato — Individualização e Balanço",
+        "qid": "e3246f2c",
+        "q": "Paciente em hemodiálise tem sódio pré-diálise repetidamente em 134 mEq/L, usa dialisato com sódio de 140 mEq/L e apresenta sede intensa, hipertensão e grande ganho interdialítico. Após revisar ingestão e volume, qual ajuste é mais coerente?",
+        "refs": [
+          "kdigo_bp_volume_dialysis_2020"
+        ],
+        "opts": [
+          "Reduzir de forma individualizada o gradiente entre sódio do dialisato e do plasma, monitorando sintomas e hipotensão",
+          "Elevar rotineiramente o sódio do dialisato para 145 mEq/L para reduzir sede",
+          "Fixar o dialisato em 130 mEq/L para todos, independentemente do sódio plasmático e da tolerância",
+          "Manter 140 mEq/L obrigatoriamente, pois o gradiente de sódio não influencia balanço hídrico"
+        ],
+        "ans": 0,
+        "exp": "Quando o sódio do dialisato supera de modo persistente o sódio plasmático, pode haver ganho difusivo de sódio, com estímulo de sede e maior ganho de peso interdialítico. A KDIGO recomenda evitar carga de sódio e individualizar a prescrição dentro do manejo de pressão e volume. Reduzir o gradiente pode ajudar, mas sódio excessivamente baixo pode aumentar câimbras, sintomas e hipotensão; por isso não existe concentração universal e o ajuste exige acompanhamento da tolerância, da pressão e do balanço volêmico.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "originalHash": "0bf25f65fc4a419ace4cb725cb1a38f9c8bd20a1ac1e11e3ec2a1eef0c83eed8",
+      "candidateHash": "75f543d9f0ebad55a41fc8b01817861d9cda361c596984b718ef134df2ba7686",
+      "verdict": "aprovada",
+      "legacyEquivalent": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "op": "Individualizar gradiente de sódio no dialisato diante de sede, hipertensão e ganho interdialítico.",
+      "competency": "Individualizar composição do dialisato conforme balanço e tolerabilidade",
+      "bloom": "Aplicar",
+      "miller": "Sabe como",
+      "intrinsicDifficulty": "medium",
+      "originalIndependentClassification": {
+        "qid": "e3246f2c",
+        "originalHash": "0bf25f65fc4a419ace4cb725cb1a38f9c8bd20a1ac1e11e3ec2a1eef0c83eed8",
+        "op": "Individualizar gradiente de sódio no dialisato diante de sede, hipertensão e ganho interdialítico.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "rationale": "Relaciona gradiente134/140 e sintomas de carga de sódio com tolerância ao ajuste."
+      },
+      "classificationRationale": "Relaciona gradiente134/140 e sintomas de carga de sódio com tolerância ao ajuste.",
+      "justification": "Sódio plasmático 134 frente a banho 140 com sede/hipertensão/ganho após revisão de ingestão favorece reduzir gradiente acompanhado, sem eleger concentração universal.",
+      "problems": "Nenhum problema substantivo identificado na versão exata. Limitações de discriminação anotadas na rubrica quando existentes não requerem alteração adicional.",
+      "optionAudit": [
+        "A: estratégia de ajuste e monitorização compatível com o perfil.",
+        "B: elevar sódio tende a aumentar carga/sede, mesmo se elevar o sódio plasmático.",
+        "C: redução abrupta a 130 não respeita tolerância e pode agravar sintomas.",
+        "D: restrição de água não trata a carga de sódio identificada após revisão de ingestão/volume."
+      ],
+      "advocate": {
+        "result": "Nenhum argumento plausível de anulação.",
+        "attemptedChallenge": "Restrição hídrica pode ser componente do cuidado; não é a melhor resposta ao ajuste do gradiente explicitamente identificado. A correta é proposta individualizada, não uma regra de fixar todo banho abaixo do sódio plasmático."
+      },
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "Mais de uma resposta defensável",
+          "triggered": false
+        },
+        {
+          "number": 2,
+          "criterion": "Referência não sustenta o gabarito",
+          "triggered": false
+        },
+        {
+          "number": 3,
+          "criterion": "Deriva de OP",
+          "triggered": false
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura premiada",
+          "triggered": false
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia sem consequência clínica",
+          "triggered": false
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contradiz o gabarito",
+          "triggered": false
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo local não informado",
+          "triggered": false
+        },
+        {
+          "number": 10,
+          "criterion": "Desatualização relevante",
+          "triggered": false
+        }
+      ],
+      "NQScore": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "value": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "value": 2
+          },
+          {
+            "dimension": "Qualidade do enunciado",
+            "value": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "value": 2
+          },
+          {
+            "dimension": "Distratores",
+            "value": 2
+          },
+          {
+            "dimension": "Explicação",
+            "value": 2
+          },
+          {
+            "dimension": "Referências",
+            "value": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "value": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "value": 2
+          }
+        ],
+        "total": 20,
+        "band": "Excelente",
+        "rationale": "Alinhamento, unidade de resposta, explicação, fontes e consequência clínica plenos na rubrica."
+      },
+      "validity": {
+        "content": "Fontes decisivas abertas e dados/conclusão coerentes com a população e a intervenção.",
+        "construct": "Operação realmente exigida classificada acima; não promove dificuldade por extensão ou jargão.",
+        "response": "Quatro opções examinadas isoladamente; o discriminante é o conceito clínico do OP.",
+        "consequential": "Explicação rebate erros perigosos sem premiá-los; não estabelece limiar universal ou benefício fora da população."
+      },
+      "identity": {
+        "preserveQid": true,
+        "preserveFSRS": true,
+        "reason": "OP, competência, conceito correto e raciocínio reconhecível preservados; sem reset automático por reescrita. Dificuldade foi reavaliada formalmente.",
+        "historicalVersionRequired": true
+      },
+      "duplication": {
+        "canonicalDimensions": [
+          "decisão",
+          "estrutura de dados",
+          "perfil-alvo",
+          "língua"
+        ],
+        "relatedPairAudit": [
+          {
+            "pairs": [
+              "e3246f2c",
+              "4b27ea54"
+            ],
+            "sameTargetProfile": true,
+            "sameLanguage": true,
+            "sameDecision": false,
+            "sameCaseDataStructure": false,
+            "conclusion": "Variação útil: gradiente de sódio/carga crônica versus resfriamento em propenso a hipotensão após otimização."
+          }
+        ],
+        "result": "Nenhuma duplicata nas quatro dimensões simultaneamente identificada."
+      },
+      "claims": [
+        {
+          "claim": "Gradiente positivo pode carregar sódio; reduzir excesso deve respeitar hipotensão/câimbras e sódio efetivamente entregue.",
+          "sources": [
+            "KDIGO2020",
+            "UKKA2025"
+          ]
+        }
+      ],
+      "referenceBindings": [
+        {
+          "id": "kdigo_bp_volume_dialysis_2020",
+          "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247",
+          "candidate": {
+            "label": "KDIGO — Blood Pressure and Volume Management in Dialysis (2020)",
+            "url": "https://kdigo.org/wp-content/uploads/2017/05/KDIGO-BP-Volume-in-Dialysis-FINAL.pdf",
+            "journal": "Kidney International 2020;97(5):861-876",
+            "ano": 2020,
+            "tipo": "Relatório de Consenso",
+            "badge": "CONSENSUS",
+            "badgeColor": "#6366f1",
+            "impacto": "Manejo individualizado de pressão, volume e hipotensão intradialítica",
+            "icon": "📋",
+            "resumo": "Relatório da conferência de controvérsias Kidney Disease: Improving Global Outcomes (KDIGO) sobre pressão arterial e volume em diálise. Identifica como principais determinantes da hipotensão intradialítica o volume intravascular insuficiente para sustentar a taxa de ultrafiltração desejada e respostas cardiovasculares compensatórias inadequadas. Recomenda reavaliar peso-alvo e estado volêmico, considerar sintomas e comorbidades e reduzir a taxa de ultrafiltração por maior duração ou frequência das sessões e menor ganho de peso interdialítico. Dialisato mais frio pode melhorar a tolerância hemodinâmica.",
+            "conclusao": "A prevenção da hipotensão intradialítica começa pela prescrição volêmica individualizada; nenhum limiar único de ultrafiltração é apropriado para todos os pacientes e em todas as sessões.",
+            "curiosidade": "O relatório distingue peso-alvo de peso seco estimado: em doença aguda ou sintomas intensos pode ser necessário aceitar temporariamente um peso-alvo um pouco maior, equilibrando hipoperfusão imediata e sobrecarga crônica."
+          },
+          "changedOrNewCard": true,
+          "requiredCardGate": {
+            "file": "hd-independent-card-gates-anemia-A1.json",
+            "fileHash": "e582d3a75c5ef73e7cae4d7f8d82f0b0eb9e7da7daa46b9d043470a4a2988ebc",
+            "id": "kdigo_bp_volume_dialysis_2020",
+            "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247"
+          },
+          "verification": "Objeto integral aprovado no gate independente de card acima."
+        }
+      ],
+      "requiredCardGate": [
+        {
+          "file": "hd-independent-card-gates-anemia-A1.json",
+          "fileHash": "e582d3a75c5ef73e7cae4d7f8d82f0b0eb9e7da7daa46b9d043470a4a2988ebc",
+          "id": "kdigo_bp_volume_dialysis_2020",
+          "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247"
+        }
+      ],
+      "decisionTree": [
+        "0: VERIFICADA/NENHUMA — combinação válida, sem teto por evidência.",
+        "1: nenhum eliminatório, deriva ou duplicata nas quatro dimensões.",
+        "2: recurso sem argumento plausível de anulação.",
+        "3: score 20/20 → aprovada."
+      ],
+      "lifecycle": "publicado",
+      "lifecycleNote": "Estado editorial resultante da árvore; não afirma deploy/aplicação já executado.",
+      "publicationDerivation": "Handbook 18.4 Regra 7: evidência VERIFICADA, pendência NENHUMA e veredito aprovada → LIBERADA somente para este hash.",
+      "suggestedPatch": {
+        "action": "Aplicar exclusivamente o objeto candidate exato aprovado, junto com o(s) card(s) exato(s) vinculados.",
+        "preserve": [
+          "qid",
+          "refs IDs adequados",
+          "estado FSRS",
+          "versão histórica das avaliações"
+        ],
+        "noAppWriteByReviewer": true
+      },
+      "lengthAudit": {
+        "before": {
+          "characters": {
+            "values": [
+              116,
+              75,
+              96,
+              91
+            ],
+            "correct": 116,
+            "greatestDistractor": 96,
+            "uniquelyLongest": true,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          },
+          "words": {
+            "values": [
+              17,
+              12,
+              15,
+              13
+            ],
+            "correct": 17,
+            "greatestDistractor": 15,
+            "uniquelyLongest": true,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          }
+        },
+        "after": {
+          "characters": {
+            "values": [
+              86,
+              82,
+              78,
+              84
+            ],
+            "correct": 86,
+            "greatestDistractor": 84,
+            "uniquelyLongest": true,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          },
+          "words": {
+            "values": [
+              13,
+              14,
+              12,
+              14
+            ],
+            "correct": 13,
+            "greatestDistractor": 14,
+            "uniquelyLongest": false,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          }
+        },
+        "method": "NFC, espaços normalizados, codepoints Unicode e palavras por espaço; não remove desigualdades < ou >; comprimento não determina aprovação."
+      },
+      "verificationPending": []
+    },
+    {
+      "qid": "4b27ea54",
+      "candidate": {
+        "t": "Hipotensão Intradialítica — Resfriamento do Dialisato",
+        "qid": "4b27ea54",
+        "q": "Paciente continua apresentando hipotensão intradialítica sintomática após revisão do peso-alvo, redução da taxa de ultrafiltração e prolongamento da sessão. Qual ajuste do dialisato é um adjuvante razoável?",
+        "refs": [
+          "kdigo_bp_volume_dialysis_2020"
+        ],
+        "opts": [
+          "Testar redução individualizada da temperatura, acompanhando sintomas e conforto",
+          "Elevar a temperatura para aumentar a vasodilatação e melhorar a tolerância à retirada",
+          "Usar sódio alto rotineiramente, aceitando maior sede e ganho de peso entre as sessões",
+          "Manter a temperatura e reduzir o cálcio do dialisato para melhorar a pressão"
+        ],
+        "ans": 0,
+        "exp": "Em pessoas propensas a hipotensão intradialítica, pode-se testar dialisato mais frio como adjuvante após reavaliar peso-alvo, volume, taxa de ultrafiltração e duração. O benefício e a tolerância variam; frio, tremores ou desconforto podem limitar o uso, e não existe temperatura única para todos. Evitar aquecimento durante a sessão pode favorecer estabilidade hemodinâmica; aquecer para causar vasodilatação não trata esse mecanismo. Sódio alto pode melhorar a pressão em uma sessão, mas aumenta o risco de carga de sódio, sede e ganho interdialítico, exigindo seleção cuidadosa. Cálcio do dialisato excessivamente baixo pode piorar a estabilidade, em vez de corrigir a hipotensão. Resfriamento não substitui manejo volêmico nem deve ser apresentado como garantia de benefício cardiovascular.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "original": {
+        "t": "Hipotensão Intradialítica — Resfriamento do Dialisato",
+        "qid": "4b27ea54",
+        "q": "Paciente continua apresentando hipotensão intradialítica sintomática após revisão do peso-alvo, redução da taxa de ultrafiltração e prolongamento da sessão. Qual ajuste do dialisato é um adjuvante razoável?",
+        "refs": [
+          "kdigo_bp_volume_dialysis_2020"
+        ],
+        "opts": [
+          "Usar dialisato mais frio de forma individualizada, monitorando tremores, desconforto e tolerância",
+          "Elevar rotineiramente a temperatura para 38°C para aumentar a vasodilatação cutânea",
+          "Aumentar sempre o sódio do dialisato, sem considerar sede, ganho interdialítico ou pressão fora da diálise",
+          "Manter 37°C obrigatoriamente, pois a temperatura do dialisato não influencia a estabilidade hemodinâmica"
+        ],
+        "ans": 0,
+        "exp": "Reduzir a temperatura do dialisato pode melhorar a estabilidade hemodinâmica e é um adjuvante razoável após corrigir fatores volêmicos e a taxa de ultrafiltração. A prescrição deve ser individualizada porque frio, tremores e desconforto podem limitar a tolerância, e a evidência não define uma temperatura universal para todos. Elevar sistematicamente o sódio pode aumentar sede, ganho de peso e hipertensão; resfriamento não substitui a reavaliação do peso-alvo, do volume e da duração da sessão.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "originalHash": "05b90a2e08860d747ed84586010ff0938f482b5b54674617b589883a87dc9f22",
+      "candidateHash": "b24c8213db5811789c708807463cbc6f6d7e454c2fb799e4c6ad77d9195c3788",
+      "verdict": "aprovada",
+      "legacyEquivalent": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "op": "Selecionar resfriamento individualizado como adjuvante após corrigir fatores de hipotensão.",
+      "competency": "Selecionar adjuvante após otimização volêmica da hemodiálise",
+      "bloom": "Aplicar",
+      "miller": "Sabe como",
+      "intrinsicDifficulty": "medium",
+      "originalIndependentClassification": {
+        "qid": "4b27ea54",
+        "originalHash": "05b90a2e08860d747ed84586010ff0938f482b5b54674617b589883a87dc9f22",
+        "op": "Selecionar resfriamento individualizado como adjuvante após corrigir fatores de hipotensão.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "rationale": "Aplica medida adjuvante padronizada após revisão de volume/UF/tempo; não testa temperatura universal."
+      },
+      "classificationRationale": "Aplica medida adjuvante padronizada após revisão de volume/UF/tempo; não testa temperatura universal.",
+      "justification": "O comando delimita adjuvante do dialisato após otimização de volume, taxa e tempo; resfriamento individualizado é razoável para pessoa propensa, com tolerância variável.",
+      "problems": "Nenhum problema substantivo identificado na versão exata. Limitações de discriminação anotadas na rubrica quando existentes não requerem alteração adicional.",
+      "optionAudit": [
+        "A: tentativa individualizada de resfriamento, acompanhando tolerância.",
+        "B: vasodilatação por aquecimento não melhora esse mecanismo de hipotensão.",
+        "C: sódio alto pode melhorar pressão aguda, mas uso rotineiro com custo de carga não é a estratégia selecionada.",
+        "D: cálcio excessivamente baixo pode reduzir estabilidade, em vez de corrigir hipotensão."
+      ],
+      "advocate": {
+        "result": "Nenhum argumento plausível de anulação.",
+        "attemptedChallenge": "O MyTEMP não demonstrou benefício de uma política geral de resfriamento; o item não faz essa promessa e restringe-se a adjuvante testável em pessoa propensa. Sódio alto é possível em situações selecionadas; a alternativa descreve adoção rotineira apesar da carga, não uma segunda conduta individualizada equivalente."
+      },
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "Mais de uma resposta defensável",
+          "triggered": false
+        },
+        {
+          "number": 2,
+          "criterion": "Referência não sustenta o gabarito",
+          "triggered": false
+        },
+        {
+          "number": 3,
+          "criterion": "Deriva de OP",
+          "triggered": false
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura premiada",
+          "triggered": false
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia sem consequência clínica",
+          "triggered": false
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contradiz o gabarito",
+          "triggered": false
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo local não informado",
+          "triggered": false
+        },
+        {
+          "number": 10,
+          "criterion": "Desatualização relevante",
+          "triggered": false
+        }
+      ],
+      "NQScore": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "value": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "value": 2
+          },
+          {
+            "dimension": "Qualidade do enunciado",
+            "value": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "value": 1
+          },
+          {
+            "dimension": "Distratores",
+            "value": 2
+          },
+          {
+            "dimension": "Explicação",
+            "value": 2
+          },
+          {
+            "dimension": "Referências",
+            "value": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "value": 1
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "value": 2
+          }
+        ],
+        "total": 18,
+        "band": "Excelente",
+        "rationale": "A opção sobre sódio declara um custo clínico e usa rotineiramente. Isso facilita a exclusão, mas o qualificativo é discriminante real: remover a seleção de contexto tornaria a opção parcialmente defensável. Não é necessário inflar ou ocultar o custo para equilibrar comprimento."
+      },
+      "validity": {
+        "content": "Fontes decisivas abertas e dados/conclusão coerentes com a população e a intervenção.",
+        "construct": "Operação realmente exigida classificada acima; não promove dificuldade por extensão ou jargão.",
+        "response": "Quatro opções examinadas isoladamente; o discriminante é o conceito clínico do OP.",
+        "consequential": "Explicação rebate erros perigosos sem premiá-los; não estabelece limiar universal ou benefício fora da população."
+      },
+      "identity": {
+        "preserveQid": true,
+        "preserveFSRS": true,
+        "reason": "OP, competência, conceito correto e raciocínio reconhecível preservados; sem reset automático por reescrita. Dificuldade foi reavaliada formalmente.",
+        "historicalVersionRequired": true
+      },
+      "duplication": {
+        "canonicalDimensions": [
+          "decisão",
+          "estrutura de dados",
+          "perfil-alvo",
+          "língua"
+        ],
+        "relatedPairAudit": [
+          {
+            "pairs": [
+              "4b27ea54",
+              "236ed8f1"
+            ],
+            "sameTargetProfile": true,
+            "sameLanguage": true,
+            "sameDecision": false,
+            "sameCaseDataStructure": false,
+            "conclusion": "Variação útil: adjuvante do dialisato após otimização documentada versus prioridade de otimizar prescrição após resgate."
+          },
+          {
+            "pairs": [
+              "e3246f2c",
+              "4b27ea54"
+            ],
+            "sameTargetProfile": true,
+            "sameLanguage": true,
+            "sameDecision": false,
+            "sameCaseDataStructure": false,
+            "conclusion": "Variação útil: gradiente de sódio/carga crônica versus resfriamento em propenso a hipotensão após otimização."
+          }
+        ],
+        "result": "Nenhuma duplicata nas quatro dimensões simultaneamente identificada."
+      },
+      "claims": [
+        {
+          "claim": "Resfriamento pode ajudar tolerância em propensos, com desconforto e sem temperatura universal.",
+          "sources": [
+            "KDIGO2020",
+            "UKKA2025"
+          ]
+        },
+        {
+          "claim": "Não prometer benefício cardiovascular universal ou efeito uniforme de resfriamento.",
+          "sources": [
+            "MyTEMP2022",
+            "UKKA2025"
+          ]
+        },
+        {
+          "claim": "Efeitos opostos de aquecimento/cálcio baixo e custo de sódio alto.",
+          "sources": [
+            "KDIGO2020",
+            "KDOQI2005"
+          ]
+        }
+      ],
+      "referenceBindings": [
+        {
+          "id": "kdigo_bp_volume_dialysis_2020",
+          "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247",
+          "candidate": {
+            "label": "KDIGO — Blood Pressure and Volume Management in Dialysis (2020)",
+            "url": "https://kdigo.org/wp-content/uploads/2017/05/KDIGO-BP-Volume-in-Dialysis-FINAL.pdf",
+            "journal": "Kidney International 2020;97(5):861-876",
+            "ano": 2020,
+            "tipo": "Relatório de Consenso",
+            "badge": "CONSENSUS",
+            "badgeColor": "#6366f1",
+            "impacto": "Manejo individualizado de pressão, volume e hipotensão intradialítica",
+            "icon": "📋",
+            "resumo": "Relatório da conferência de controvérsias Kidney Disease: Improving Global Outcomes (KDIGO) sobre pressão arterial e volume em diálise. Identifica como principais determinantes da hipotensão intradialítica o volume intravascular insuficiente para sustentar a taxa de ultrafiltração desejada e respostas cardiovasculares compensatórias inadequadas. Recomenda reavaliar peso-alvo e estado volêmico, considerar sintomas e comorbidades e reduzir a taxa de ultrafiltração por maior duração ou frequência das sessões e menor ganho de peso interdialítico. Dialisato mais frio pode melhorar a tolerância hemodinâmica.",
+            "conclusao": "A prevenção da hipotensão intradialítica começa pela prescrição volêmica individualizada; nenhum limiar único de ultrafiltração é apropriado para todos os pacientes e em todas as sessões.",
+            "curiosidade": "O relatório distingue peso-alvo de peso seco estimado: em doença aguda ou sintomas intensos pode ser necessário aceitar temporariamente um peso-alvo um pouco maior, equilibrando hipoperfusão imediata e sobrecarga crônica."
+          },
+          "changedOrNewCard": true,
+          "requiredCardGate": {
+            "file": "hd-independent-card-gates-anemia-A1.json",
+            "fileHash": "e582d3a75c5ef73e7cae4d7f8d82f0b0eb9e7da7daa46b9d043470a4a2988ebc",
+            "id": "kdigo_bp_volume_dialysis_2020",
+            "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247"
+          },
+          "verification": "Objeto integral aprovado no gate independente de card acima."
+        }
+      ],
+      "requiredCardGate": [
+        {
+          "file": "hd-independent-card-gates-anemia-A1.json",
+          "fileHash": "e582d3a75c5ef73e7cae4d7f8d82f0b0eb9e7da7daa46b9d043470a4a2988ebc",
+          "id": "kdigo_bp_volume_dialysis_2020",
+          "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247"
+        }
+      ],
+      "decisionTree": [
+        "0: VERIFICADA/NENHUMA — combinação válida, sem teto por evidência.",
+        "1: nenhum eliminatório, deriva ou duplicata nas quatro dimensões.",
+        "2: recurso sem argumento plausível de anulação.",
+        "3: score 18/20 → aprovada."
+      ],
+      "lifecycle": "publicado",
+      "lifecycleNote": "Estado editorial resultante da árvore; não afirma deploy/aplicação já executado.",
+      "publicationDerivation": "Handbook 18.4 Regra 7: evidência VERIFICADA, pendência NENHUMA e veredito aprovada → LIBERADA somente para este hash.",
+      "suggestedPatch": {
+        "action": "Aplicar exclusivamente o objeto candidate exato aprovado, junto com o(s) card(s) exato(s) vinculados.",
+        "preserve": [
+          "qid",
+          "refs IDs adequados",
+          "estado FSRS",
+          "versão histórica das avaliações"
+        ],
+        "noAppWriteByReviewer": true
+      },
+      "lengthAudit": {
+        "before": {
+          "characters": {
+            "values": [
+              97,
+              83,
+              106,
+              104
+            ],
+            "correct": 97,
+            "greatestDistractor": 106,
+            "uniquelyLongest": false,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          },
+          "words": {
+            "values": [
+              12,
+              11,
+              16,
+              13
+            ],
+            "correct": 12,
+            "greatestDistractor": 16,
+            "uniquelyLongest": false,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          }
+        },
+        "after": {
+          "characters": {
+            "values": [
+              79,
+              85,
+              85,
+              76
+            ],
+            "correct": 79,
+            "greatestDistractor": 85,
+            "uniquelyLongest": false,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          },
+          "words": {
+            "values": [
+              9,
+              13,
+              14,
+              13
+            ],
+            "correct": 9,
+            "greatestDistractor": 14,
+            "uniquelyLongest": false,
+            "tiedForLongest": false,
+            "uniquelyShortest": true
+          }
+        },
+        "method": "NFC, espaços normalizados, codepoints Unicode e palavras por espaço; não remove desigualdades < ou >; comprimento não determina aprovação."
+      },
+      "verificationPending": []
+    },
+    {
+      "qid": "236ed8f1",
+      "candidate": {
+        "t": "Hipotensão Intradialítica Recorrente — Ajuste da Prescrição",
+        "qid": "236ed8f1",
+        "q": "Paciente de 70 kg em hemodiálise por quatro horas ganha 3,5 kg entre as sessões e apresenta quedas sintomáticas recorrentes da pressão durante a ultrafiltração. Após estabilizar o episódio agudo, qual ajuste preventivo deve ser priorizado?",
+        "refs": [
+          "kdigo_bp_volume_dialysis_2020"
+        ],
+        "opts": [
+          "Aumentar a taxa de ultrafiltração para alcançar o peso-alvo antes que ocorra nova queda de pressão",
+          "Reavaliar volume e peso-alvo e reduzir a taxa de ultrafiltração, ampliando o tempo se necessário",
+          "Elevar o sódio do dialisato para tolerar a retirada de todo o ganho interdialítico no mesmo tempo",
+          "Adicionar midodrina para manter o volume a remover e a duração das sessões como estão"
+        ],
+        "ans": 1,
+        "exp": "A hipotensão intradialítica resulta frequentemente de retirada de volume incompatível com o reenchimento vascular e com a reserva cardiovascular. A prioridade é revisar o peso-alvo e o estado volêmico e reduzir a taxa de ultrafiltração, aumentando o tempo ou a frequência quando necessário e controlando sódio e ganho de peso interdialítico. Não há um único limite de ultrafiltração apropriado para todos os pacientes; a prescrição deve integrar sintomas, hemodinâmica e comorbidades. Dialisato mais frio pode melhorar tolerância. Sódio alto e fármacos como midodrina exigem seleção individual e não corrigem uma prescrição volêmica inadequada.",
+        "diff": "medium",
+        "cat": "nefrologia_geral"
+      },
+      "original": {
+        "t": "Hipotensão Intradialítica Recorrente — Ajuste da Prescrição",
+        "qid": "236ed8f1",
+        "q": "Paciente de 70 kg em hemodiálise por quatro horas ganha 3,5 kg entre as sessões e apresenta quedas sintomáticas recorrentes da pressão durante a ultrafiltração. Após estabilizar o episódio agudo, qual ajuste preventivo deve ser priorizado?",
+        "refs": [
+          "kdigo_bp_volume_dialysis_2020"
+        ],
+        "opts": [
+          "Aumentar a ultrafiltração para alcançar o peso-alvo mais cedo e encurtar o período de sintomas",
+          "Reavaliar peso-alvo e estado volêmico, reduzir a taxa de ultrafiltração com sessões mais longas ou adicionais e diminuir o ganho interdialítico; banho mais frio pode ser adjuvante",
+          "Elevar rotineiramente o sódio do dialisato, sem considerar sede, ganho interdialítico ou pressão fora da diálise",
+          "Prescrever midodrina como primeira e única medida, mantendo inalterados tempo de sessão, peso-alvo e volume a remover"
+        ],
+        "ans": 1,
+        "exp": "A hipotensão intradialítica resulta frequentemente de retirada de volume incompatível com o reenchimento vascular e com a reserva cardiovascular. A prioridade é revisar o peso-alvo e o estado volêmico e reduzir a taxa de ultrafiltração, aumentando o tempo ou a frequência quando necessário e controlando sódio e ganho de peso interdialítico. Não há um único limite de ultrafiltração apropriado para todos os pacientes; a prescrição deve integrar sintomas, hemodinâmica e comorbidades. Dialisato mais frio pode melhorar tolerância. Sódio alto e fármacos como midodrina exigem seleção individual e não corrigem uma prescrição volêmica inadequada.",
+        "diff": "hard",
+        "cat": "nefrologia_geral"
+      },
+      "originalHash": "639ecb748408cc4bcb91123dca6a05aba071b4789d9deadc47aca5c5cb52881f",
+      "candidateHash": "32949767e7291f3d3e9d775124721ebbf287cbfa179de775940c29cb02c86560",
+      "verdict": "aprovada",
+      "legacyEquivalent": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "op": "Priorizar revisão de peso-alvo/volemia e redução de taxa deUF na prevenção de hipotensão recorrente.",
+      "competency": "Priorizar prevenção volêmica após estabilização de hipotensão na hemodiálise",
+      "bloom": "Aplicar",
+      "miller": "Sabe como",
+      "intrinsicDifficulty": "medium",
+      "originalIndependentClassification": {
+        "qid": "236ed8f1",
+        "originalHash": "639ecb748408cc4bcb91123dca6a05aba071b4789d9deadc47aca5c5cb52881f",
+        "op": "Priorizar revisão de peso-alvo/volemia e redução de taxa deUF na prevenção de hipotensão recorrente.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "rationale": "Caso estabilizado sem cardiopatia específica/dados concorrentes; integra tempo, ganho interdialítico e prescrição."
+      },
+      "classificationRationale": "Caso estabilizado sem cardiopatia específica/dados concorrentes; integra tempo, ganho interdialítico e prescrição.",
+      "justification": "O episódio já está estabilizado; ganho de 3,5 kg em quatro horas e recorrência pedem revisão de peso/volume e taxa, com mais tempo conforme necessário, antes de preservar prescrição por adjuvantes.",
+      "problems": "Nenhum problema substantivo identificado na versão exata. Limitações de discriminação anotadas na rubrica quando existentes não requerem alteração adicional.",
+      "optionAudit": [
+        "A: aumentar taxa concentra o estresse que se pretende prevenir.",
+        "B: revisão volêmica e redução de taxa respondem à prioridade preventiva.",
+        "C: usar sódio para manter retirada no mesmo tempo não corrige prescrição inadequada e aumenta carga.",
+        "D: midodrina pode ser adjuvante, não justificativa para manter volume/tempo sem revisão."
+      ],
+      "advocate": {
+        "result": "Nenhum argumento plausível de anulação.",
+        "attemptedChallenge": "Não se infere um corte de taxa a partir de 70 kg/3,5 kg/4 h, nem se exige parar retirada por sobrecarga. Midodrina e sódio têm usos contextuais, mas as opções os usam para preservar o plano sem revisão; o comando pergunta a prioridade preventiva após o resgate."
+      },
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "Mais de uma resposta defensável",
+          "triggered": false
+        },
+        {
+          "number": 2,
+          "criterion": "Referência não sustenta o gabarito",
+          "triggered": false
+        },
+        {
+          "number": 3,
+          "criterion": "Deriva de OP",
+          "triggered": false
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura premiada",
+          "triggered": false
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia sem consequência clínica",
+          "triggered": false
+        },
+        {
+          "number": 7,
+          "criterion": "Explicação contradiz o gabarito",
+          "triggered": false
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false
+        },
+        {
+          "number": 9,
+          "criterion": "Protocolo local não informado",
+          "triggered": false
+        },
+        {
+          "number": 10,
+          "criterion": "Desatualização relevante",
+          "triggered": false
+        }
+      ],
+      "NQScore": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "value": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "value": 2
+          },
+          {
+            "dimension": "Qualidade do enunciado",
+            "value": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "value": 2
+          },
+          {
+            "dimension": "Distratores",
+            "value": 2
+          },
+          {
+            "dimension": "Explicação",
+            "value": 2
+          },
+          {
+            "dimension": "Referências",
+            "value": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "value": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "value": 2
+          }
+        ],
+        "total": 20,
+        "band": "Excelente",
+        "rationale": "Alinhamento, unidade de resposta, explicação, fontes e consequência clínica plenos na rubrica."
+      },
+      "validity": {
+        "content": "Fontes decisivas abertas e dados/conclusão coerentes com a população e a intervenção.",
+        "construct": "Operação realmente exigida classificada acima; não promove dificuldade por extensão ou jargão.",
+        "response": "Quatro opções examinadas isoladamente; o discriminante é o conceito clínico do OP.",
+        "consequential": "Explicação rebate erros perigosos sem premiá-los; não estabelece limiar universal ou benefício fora da população."
+      },
+      "identity": {
+        "preserveQid": true,
+        "preserveFSRS": true,
+        "reason": "OP, competência, conceito correto e raciocínio reconhecível preservados; sem reset automático por reescrita. Dificuldade foi reavaliada formalmente.",
+        "historicalVersionRequired": true
+      },
+      "duplication": {
+        "canonicalDimensions": [
+          "decisão",
+          "estrutura de dados",
+          "perfil-alvo",
+          "língua"
+        ],
+        "relatedPairAudit": [
+          {
+            "pairs": [
+              "f7fd9e8a",
+              "236ed8f1"
+            ],
+            "sameTargetProfile": true,
+            "sameLanguage": true,
+            "sameDecision": false,
+            "sameCaseDataStructure": false,
+            "conclusion": "Variação útil: explicar mecanismo em grande retirada/sessão curta versus escolher prioridade preventiva após estabilização em sessão de quatro horas."
+          },
+          {
+            "pairs": [
+              "f3ab76f3",
+              "236ed8f1"
+            ],
+            "sameTargetProfile": true,
+            "sameLanguage": true,
+            "sameDecision": false,
+            "sameCaseDataStructure": false,
+            "conclusion": "Variação útil: integrar disfunção sistólica apesar de redução de taxa versus prevenção volêmica inicial sem cardiopatia específica."
+          },
+          {
+            "pairs": [
+              "4b27ea54",
+              "236ed8f1"
+            ],
+            "sameTargetProfile": true,
+            "sameLanguage": true,
+            "sameDecision": false,
+            "sameCaseDataStructure": false,
+            "conclusion": "Variação útil: adjuvante do dialisato após otimização documentada versus prioridade de otimizar prescrição após resgate."
+          }
+        ],
+        "result": "Nenhuma duplicata nas quatro dimensões simultaneamente identificada."
+      },
+      "claims": [
+        {
+          "claim": "Revisão de volume/peso-alvo e minimização individualizada de taxa antecedem medidas medicamentosas; maior duração/frequência pode ser necessária.",
+          "sources": [
+            "KDIGO2020",
+            "UKKA2025"
+          ]
+        }
+      ],
+      "referenceBindings": [
+        {
+          "id": "kdigo_bp_volume_dialysis_2020",
+          "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247",
+          "candidate": {
+            "label": "KDIGO — Blood Pressure and Volume Management in Dialysis (2020)",
+            "url": "https://kdigo.org/wp-content/uploads/2017/05/KDIGO-BP-Volume-in-Dialysis-FINAL.pdf",
+            "journal": "Kidney International 2020;97(5):861-876",
+            "ano": 2020,
+            "tipo": "Relatório de Consenso",
+            "badge": "CONSENSUS",
+            "badgeColor": "#6366f1",
+            "impacto": "Manejo individualizado de pressão, volume e hipotensão intradialítica",
+            "icon": "📋",
+            "resumo": "Relatório da conferência de controvérsias Kidney Disease: Improving Global Outcomes (KDIGO) sobre pressão arterial e volume em diálise. Identifica como principais determinantes da hipotensão intradialítica o volume intravascular insuficiente para sustentar a taxa de ultrafiltração desejada e respostas cardiovasculares compensatórias inadequadas. Recomenda reavaliar peso-alvo e estado volêmico, considerar sintomas e comorbidades e reduzir a taxa de ultrafiltração por maior duração ou frequência das sessões e menor ganho de peso interdialítico. Dialisato mais frio pode melhorar a tolerância hemodinâmica.",
+            "conclusao": "A prevenção da hipotensão intradialítica começa pela prescrição volêmica individualizada; nenhum limiar único de ultrafiltração é apropriado para todos os pacientes e em todas as sessões.",
+            "curiosidade": "O relatório distingue peso-alvo de peso seco estimado: em doença aguda ou sintomas intensos pode ser necessário aceitar temporariamente um peso-alvo um pouco maior, equilibrando hipoperfusão imediata e sobrecarga crônica."
+          },
+          "changedOrNewCard": true,
+          "requiredCardGate": {
+            "file": "hd-independent-card-gates-anemia-A1.json",
+            "fileHash": "e582d3a75c5ef73e7cae4d7f8d82f0b0eb9e7da7daa46b9d043470a4a2988ebc",
+            "id": "kdigo_bp_volume_dialysis_2020",
+            "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247"
+          },
+          "verification": "Objeto integral aprovado no gate independente de card acima."
+        }
+      ],
+      "requiredCardGate": [
+        {
+          "file": "hd-independent-card-gates-anemia-A1.json",
+          "fileHash": "e582d3a75c5ef73e7cae4d7f8d82f0b0eb9e7da7daa46b9d043470a4a2988ebc",
+          "id": "kdigo_bp_volume_dialysis_2020",
+          "candidateHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247"
+        }
+      ],
+      "decisionTree": [
+        "0: VERIFICADA/NENHUMA — combinação válida, sem teto por evidência.",
+        "1: nenhum eliminatório, deriva ou duplicata nas quatro dimensões.",
+        "2: recurso sem argumento plausível de anulação.",
+        "3: score 20/20 → aprovada."
+      ],
+      "lifecycle": "publicado",
+      "lifecycleNote": "Estado editorial resultante da árvore; não afirma deploy/aplicação já executado.",
+      "publicationDerivation": "Handbook 18.4 Regra 7: evidência VERIFICADA, pendência NENHUMA e veredito aprovada → LIBERADA somente para este hash.",
+      "suggestedPatch": {
+        "action": "Aplicar exclusivamente o objeto candidate exato aprovado, junto com o(s) card(s) exato(s) vinculados.",
+        "preserve": [
+          "qid",
+          "refs IDs adequados",
+          "estado FSRS",
+          "versão histórica das avaliações"
+        ],
+        "noAppWriteByReviewer": true
+      },
+      "lengthAudit": {
+        "before": {
+          "characters": {
+            "values": [
+              94,
+              179,
+              112,
+              117
+            ],
+            "correct": 179,
+            "greatestDistractor": 117,
+            "uniquelyLongest": true,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          },
+          "words": {
+            "values": [
+              15,
+              27,
+              16,
+              17
+            ],
+            "correct": 27,
+            "greatestDistractor": 17,
+            "uniquelyLongest": true,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          }
+        },
+        "after": {
+          "characters": {
+            "values": [
+              98,
+              96,
+              97,
+              85
+            ],
+            "correct": 96,
+            "greatestDistractor": 98,
+            "uniquelyLongest": false,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          },
+          "words": {
+            "values": [
+              16,
+              15,
+              17,
+              15
+            ],
+            "correct": 15,
+            "greatestDistractor": 17,
+            "uniquelyLongest": false,
+            "tiedForLongest": false,
+            "uniquelyShortest": false
+          }
+        },
+        "method": "NFC, espaços normalizados, codepoints Unicode e palavras por espaço; não remove desigualdades < ou >; comprimento não determina aprovação."
+      },
+      "verificationPending": []
+    }
+  ],
+  "noAppWrites": true,
+  "noPublicationPerformed": true
+}

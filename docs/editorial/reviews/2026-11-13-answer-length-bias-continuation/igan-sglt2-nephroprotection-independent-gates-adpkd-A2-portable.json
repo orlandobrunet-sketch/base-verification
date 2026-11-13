@@ -1,0 +1,1036 @@
+{
+  "schema": 1,
+  "reviewer": "/root/medical_answer_bias/adpkd_independent_review",
+  "reviewDate": "2026-11-13",
+  "version": "A1",
+  "candidateFile": "igan-sglt2-nephroprotection-candidates-A1.json",
+  "candidateFileHash": "40a367d58df4bf30c09f7f2fec0e8aa81a69179f63adfa119e1aa38f4b9867d3",
+  "cardFile": "igan-sglt2-nephroprotection-card-proposals-A1.json",
+  "cardFileHash": "3fc78778936f872ed093d47ac0d354f44baed3353cb18f303f6e3bc48e5e8017",
+  "classificationFrozenBeforeCandidates": "igan-sglt2-nephroprotection-independent-classification-adpkd.json",
+  "classificationHash": "6d467d5e6b9fbd1be49ccc93982ef740139943c02d9aff3d1231d0471aabab6f",
+  "norms": {
+    ".claude/skills/revisar-nefroquest/SKILL.md": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef",
+    ".claude/skills/revisar-nefroquest/references/output-contract.md": "4a20348ac71a07836b4611d574496d97960b27a2bbfdcf1f1ed318396f0edcb8",
+    ".claude/skills/revisar-nefroquest/references/verification-protocol.md": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df",
+    "docs/editorial/annex-c-nefrologia.md": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+  },
+  "authority": "Revisão independente formal pela skill local revisar-nefroquest e normas canônicas, após autorização explícita do usuário; sem appwrite.",
+  "sources": [
+    {
+      "id": "DAPA2021",
+      "doi": "10.1016/j.kint.2021.03.033",
+      "pmid": "33878338",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33878338/",
+      "opened": "https://discovery.ucl.ac.uk/id/eprint/10127323/1/1-s2.0-S0085253821003963-main.pdf",
+      "access": "PDF integral de prova de autor em repositório UCL aberto e seções decisivas lidas diretamente; não apresentado como versão final publicada. Dados essenciais e metadados corroborados pelo resumo primário publicado indexado. Repositório Groningen abriu capa de versão publicada, não texto OCR; não se alega leitura de seu corpo.",
+      "localizers": "Abstract; Methods/Outcomes/Statistical analysis pp2–3; Results/Table1/Figures; Discussion/Limitations p7 da prova.",
+      "checked": "Composto primário inclui morte renal/CV; secundário exclui CV. População, dose 10mg/dia, n270, biópsia254, 6/137/20/133, HR0,29/IC0,12–0,73/P0,005, 2,1 anos, TFGe43,8, RAC900 e redução26%; apenas26eventos limita precisão."
+    },
+    {
+      "id": "EMPA2024",
+      "doi": "10.1016/S2213-8587(23)00322-4",
+      "pmid": "38061372",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7618536/",
+      "access": "Texto primário integral PMC aberto; Methods, Statistical analyses, Results/Table1/Table2 e Discussion/Research in Context confrontados.",
+      "localizers": "Methods linhas85–104; Table1 linhas113–178; Table2 linhas181–214; Research in Context331–335.",
+      "checked": "Desenho e dose10mg/dia, mediana2anos, n6609, glomerulares1669, IgAN817; split glomerular post hoc; 384/3304 versus504/3305 HR0,71/IC0,62–0,81/pheterog0,62; principal com morteCV HR0,72; slope e validade externa."
+    },
+    {
+      "id": "VALLON2022",
+      "doi": "10.1016/j.hfc.2022.03.005",
+      "pmid": "36216484",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9558099/",
+      "opened": "https://escholarship.org/content/qt4pp2m1g1/qt4pp2m1g1_noSplash_f39bc09deb6d39bc1be8b95796be77d5.pdf?t=s2goha",
+      "access": "PMC e efetch não abriram aqui; PDF integral de manuscrito autoral em repositório da Universidade da Califórnia abriu. Corpo relevante e Perspectives lidos; metadados finais confirmados no PubMed indexado e no cabeçalho.",
+      "localizers": "Páginas autorais3–4: transporte proximal/TGF, respostas pré/pós-glomerulares e resposta bifásica; Perspectives p7: incerteza de mecanismos e necessidade de pesquisa.",
+      "checked": "Gênero REVIEW; fisiologia integra humanos e experimentos, sem afirmar mecanismo único na IgAN nem RCT de eficácia animal; curiosidade sem nome de fármaco evita lapso textual ipragliflozina/ertugliflozina."
+    },
+    {
+      "id": "THOMSON2012",
+      "doi": "10.1152/ajpregu.00357.2011",
+      "pmid": "21940401",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3349378/",
+      "access": "Artigo experimental primário integral aberto; resumo e métodos de micropunção, cloreto distal e GFR lidos. Modelo ratos diabéticos, não ensaio humano IgAN.",
+      "localizers": "Abstract e Methods/Micropuncture. A contraprova não importa magnitude numérica ao item ou ao card.",
+      "checked": "Apoio primário da cadeia transporte proximal→NaCl distal→TGF; publicação2021PMC8174804 não abriu, e não é necessária para nenhuma afirmação decisiva adicional da versão final."
+    },
+    {
+      "id": "KDIGO2025",
+      "doi": "10.1016/j.kint.2025.04.004",
+      "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+      "access": "PDF oficial integral71p aberto; recomendações/practicepoints pertinentes e racional diretamente conferidos. Catálogo oficial indexado mantém a diretriz2025; comentários2026 identificados têm foco em complement/B-cell, não revogam estas perguntas datadas ou a adição nefroprotetora aqui cobrada.",
+      "localizers": "Rec1.4.4.1/1.4.4.3, PP1.4.4.4, S46/S48–S49; objetivos S35–S36/Fig3.",
+      "checked": "RAS máximo tolerado; SGLT2 em risco (2B); grupos mais velhos/DRC avançada versus jovens TFGe>60; não substituir terapia dirigida à doença."
+    },
+    {
+      "id": "KDIGO2024",
+      "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+      "access": "PDF oficial199p aberto; Rec3.6.4 e prática RAS/SGLT2 pertinentes lidas.",
+      "localizers": "Rec3.6.4, S158/S213: evitar combinação IECA/BRA/inibidor direto da renina (1B).",
+      "checked": "Sustenta a exclusão do distrator duplo RAS em028; não é uma extrapolação informal de risco."
+    }
+  ],
+  "counts": {
+    "questions": 5,
+    "approved": 5,
+    "blocked": 0,
+    "proposedCards": 3,
+    "approvedCards": 3
+  },
+  "items": [
+    {
+      "qid": "9fd2cfdb",
+      "candidateHash": "c2e3316316567ee0321cf12fdcf8ab9a4a7ebc9170b9113f10a5db0680673d0d",
+      "originalHash": "cac134169e14123f684ee77973d454e5d939ad92812c84a70ab6fff1662af8c7",
+      "verdict": "aprovada",
+      "legacyEquivalent": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "derivation": "Handbook18.4: VERIFICADA+NENHUMA, veredito aprovada, nenhum eliminatório ou recurso plausível remanescente.",
+      "OP": "Interpretar benefício e limites do subgrupo IgAN do DAPA-CKD.",
+      "competency": "Nefroproteção porSGLT2 e interpretação de evidência emIgAN",
+      "bloom": "Analisar",
+      "miller": "Sabe como",
+      "intrinsicDifficulty": "medium",
+      "classificationReconciliation": "O enunciado final fornece estimativa e intervalo para interpretar benefício com precisão limitada, preservando o OP original de interpretação. Evolução de Compreender nos originais para Analisar na versão final é realinhamento explícito, não mudança de competência ou conceito correto. O composto contém morte cardiovascular; não é chamado de resultado exclusivamente renal.",
+      "justification": "O enunciado final fornece estimativa e intervalo para interpretar benefício com precisão limitada, preservando o OP original de interpretação. Evolução de Compreender nos originais para Analisar na versão final é realinhamento explícito, não mudança de competência ou conceito correto. O composto contém morte cardiovascular; não é chamado de resultado exclusivamente renal.",
+      "problems": "Nenhum problema substantivo identificado.",
+      "advocate": "Testei se intervalo que exclui 1 torna precisão ilimitada: não, largura e apenas 26 eventos limitam magnitude. B inventa biomarcador como desfecho; C extrapola uniformidade; D descarta indevidamente análise pré-especificada. Nenhuma alternativa adicional é defensável.",
+      "eliminatories": [],
+      "eliminatoryAudit": {
+        "1": false,
+        "2": false,
+        "3": false,
+        "4": false,
+        "5": false,
+        "6": false,
+        "7": false,
+        "8": false,
+        "9": false,
+        "10": false
+      },
+      "score": {
+        "dimensions": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 1,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 2,
+          "Valor pedagógico": 2
+        },
+        "total": 19,
+        "band": "Excelente"
+      },
+      "decisionTree": "0 evidência permite; 1 sem eliminatório; 2 sem recurso remanescente; 3 score18–20 → aprovada. Ciclo apto a publicado após integração controlada, não publicação já realizada.",
+      "lifecycle": "publicado",
+      "patchInstruction": "Aplicar somente o objeto candidate exato abaixo e os cards aprovados vinculados. Qualquer alteração material exige novo gate.",
+      "candidate": {
+        "t": "DAPA-CKD na IgAN — Benefício e Cautela",
+        "qid": "9fd2cfdb",
+        "q": "Na análise pré-especificada do DAPA-CKD, 270 participantes com nefropatia por imunoglobulina A (IgA) tiveram 6 eventos do composto primário com dapagliflozina e 20 com placebo: razão de riscos 0,29, com intervalo de confiança de 95% de 0,12–0,73. Qual interpretação é mais adequada?",
+        "refs": [
+          "dapa_ckd_igan_2021",
+          "kdigo_igan_igav_2025"
+        ],
+        "opts": [
+          "Há sinal de nefroproteção, com precisão limitada pelo número de eventos do subgrupo",
+          "A estimativa identifica ação imune específica, pois a produção patogênica de IgA foi o desfecho",
+          "O intervalo confirma benefício de igual magnitude em qualquer estágio de função renal",
+          "Por ser análise de subgrupo, o resultado não contribui para decisões de nefroproteção"
+        ],
+        "ans": 0,
+        "exp": "A análise apoia nefroproteção, com incerteza sobre a magnitude exata do efeito pelo número limitado de eventos. O composto primário incluía queda sustentada ≥50% da taxa de filtração glomerular estimada (TFGe), falência renal ou morte renal/cardiovascular; não era produção de IgA nem hematúria. Houve 26 eventos entre 270 participantes, em mediana de 2,1 anos. A TFGe média era 43,8 mL/min/1,73 m², e 94% tinham confirmação por biópsia. Ser pré-especificada aumenta a relevância dessa análise, mas não a transforma em ensaio autônomo com poder próprio para toda população de IgA. Nem a estimativa pontual nem o intervalo provam efeito idêntico em todos os estágios ou mecanismo imune direto.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "claimsChecked": [
+        "DAPA: população e n, 6/137 versus 20/133, HR 0,29/IC 0,12–0,73; P=0,005 no card.",
+        "Composto ≥50% sustentado da TFGe, falência renal ou morte renal/CV; secundário renal exclui CV.",
+        "Mediana 2,1 anos, TFGe média 43,8, 254/270=94% biópsia; limitação explícita no artigo."
+      ],
+      "sources": [
+        "DAPA2021",
+        "KDIGO2025"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "dapa_ckd_igan_2021",
+          "referenceHash": "8ed92f5b7a5dd5be41536aadc8cc11a1cc74ae8c1df8995dcaa6a61b77eb4ecb",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": "6617ac3efc650b3d80c4abce3b5ac07d089c87ce05a5dd58ac575daa0ac9c239"
+        },
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "identity": {
+        "sameOP": true,
+        "sameCompetency": true,
+        "sameCorrectConcept": true,
+        "qidPreserved": true,
+        "answerIndexPreserved": true,
+        "FSRSReset": false
+      },
+      "verificationPending": [],
+      "requiredCardGate": [
+        {
+          "file": "igan-sglt2-nephroprotection-independent-card-gates-adpkd-A2-portable.json",
+          "fileSHA256": "2c892d4734db28dd9e95282e5e0d3e7234b1ab31e6fb4a569b8d432d4bb82747",
+          "id": "dapa_ckd_igan_2021",
+          "candidateHash": "8ed92f5b7a5dd5be41536aadc8cc11a1cc74ae8c1df8995dcaa6a61b77eb4ecb",
+          "publication": "LIBERADA"
+        }
+      ]
+    },
+    {
+      "qid": "0e1a838d",
+      "candidateHash": "99043095ed211278bdefc7a8b058b620a574bce9c39f74bd5e90804ed424636a",
+      "originalHash": "8a962c5d6ae5262123ebb05d33502eaad9f5657a8fe8ea82a62e765efbdd31d7",
+      "verdict": "aprovada",
+      "legacyEquivalent": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "derivation": "Handbook18.4: VERIFICADA+NENHUMA, veredito aprovada, nenhum eliminatório ou recurso plausível remanescente.",
+      "OP": "Explicar queda inicial de TFGe e antiproteinúria com iSGLT2 pelo feedback tubuloglomerular.",
+      "competency": "Nefroproteção porSGLT2 e interpretação de evidência emIgAN",
+      "bloom": "Compreender",
+      "miller": "Sabe",
+      "intrinsicDifficulty": "medium",
+      "classificationReconciliation": "Mantém explicação fisiológica do padrão temporal, com sequência de transporte e pressão, e não prova de mecanismo imune. Ressalva que nenhuma etapa foi medida neste paciente nem todo benefício se resume ao feedback.",
+      "justification": "Mantém explicação fisiológica do padrão temporal, com sequência de transporte e pressão, e não prova de mecanismo imune. Ressalva que nenhuma etapa foi medida neste paciente nem todo benefício se resume ao feedback.",
+      "problems": "Nenhum problema substantivo identificado.",
+      "advocate": "Testei se a queda de filtração poderia ser lesão estrutural e se o benefício dependeria só de constrição aferente. O comando já declara pequena queda reversível e pede sequência mais compatível; a explicação não premia ignorar lesão e admite mecanismos múltiplos. B e C invertem oferta/reabsorção; D aumenta pressão e atribui proteção ao sentido oposto. Nenhum recurso plausível remanescente.",
+      "eliminatories": [],
+      "eliminatoryAudit": {
+        "1": false,
+        "2": false,
+        "3": false,
+        "4": false,
+        "5": false,
+        "6": false,
+        "7": false,
+        "8": false,
+        "9": false,
+        "10": false
+      },
+      "score": {
+        "dimensions": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 2,
+          "Valor pedagógico": 2
+        },
+        "total": 20,
+        "band": "Excelente"
+      },
+      "decisionTree": "0 evidência permite; 1 sem eliminatório; 2 sem recurso remanescente; 3 score18–20 → aprovada. Ciclo apto a publicado após integração controlada, não publicação já realizada.",
+      "lifecycle": "publicado",
+      "patchInstruction": "Aplicar somente o objeto candidate exato abaixo e os cards aprovados vinculados. Qualquer alteração material exige novo gate.",
+      "candidate": {
+        "t": "iSGLT2 na IgAN — Mecanismo Hemodinâmico",
+        "qid": "0e1a838d",
+        "q": "Pessoa com nefropatia por imunoglobulina A (IgA) apresenta pequena queda inicial reversível da taxa de filtração glomerular estimada (TFGe) após dapagliflozina, seguida de menor albuminúria. Qual sequência hemodinâmica é mais compatível com esse padrão?",
+        "refs": [
+          "vallon_sglt2_renoprotection_2022",
+          "kdigo_igan_2025"
+        ],
+        "opts": [
+          "Menor reabsorção proximal, maior oferta de cloreto de sódio à mácula densa e menor pressão intraglomerular",
+          "Menor oferta de cloreto de sódio à mácula densa, dilatação aferente e redução da pressão intraglomerular",
+          "Maior reabsorção proximal de sódio, ativação do feedback tubuloglomerular e redução da albuminúria",
+          "Vasoconstrição eferente predominante, aumento da pressão intraglomerular e redução da albuminúria"
+        ],
+        "ans": 0,
+        "exp": "A menor reabsorção proximal de sódio e glicose aumenta a entrega de cloreto de sódio à mácula densa. O feedback tubuloglomerular participa da redução da pressão intraglomerular, um modelo hemodinâmico compatível com a queda inicial reversível da filtração e parte do efeito antiproteinúrico. Menor entrega distal ou maior reabsorção proximal inverteriam a sequência; aumentar a pressão por constrição eferente não explica o efeito protetor proposto. A revisão fisiológica integra achados experimentais e respostas humanas, sem demonstrar que cada etapa foi medida diretamente neste paciente ou que esse seja o único mecanismo de nefroproteção. O padrão não comprova depleção imune específica da IgA nem dano estrutural irreversível.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "claimsChecked": [
+        "Menor transporte proximal aumenta NaCl na mácula densa e participa da redução da pressão intraglomerular.",
+        "Resposta inicial funcional reversível e mecanismos adicionais, sem transpor prova animal para eficácia humana específica da IgAN.",
+        "Fonte narrativa fisiológica, não RCT direto de cada elo; dados experimentais confrontados em primário de 2012."
+      ],
+      "sources": [
+        "VALLON2022",
+        "THOMSON2012",
+        "KDIGO2025"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "vallon_sglt2_renoprotection_2022",
+          "referenceHash": "3a4751434a22fbdab423848144199acaef9ac3eb8fa2aae89540a5fa03b340d1",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": null
+        },
+        {
+          "refId": "kdigo_igan_2025",
+          "referenceHash": "872e57eace5b1f630a804792d77812a68f00ba6c2c78df7ab064d6ed96f68cb4",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "identity": {
+        "sameOP": true,
+        "sameCompetency": true,
+        "sameCorrectConcept": true,
+        "qidPreserved": true,
+        "answerIndexPreserved": true,
+        "FSRSReset": false
+      },
+      "verificationPending": [],
+      "requiredCardGate": [
+        {
+          "file": "igan-sglt2-nephroprotection-independent-card-gates-adpkd-A2-portable.json",
+          "fileSHA256": "2c892d4734db28dd9e95282e5e0d3e7234b1ab31e6fb4a569b8d432d4bb82747",
+          "id": "vallon_sglt2_renoprotection_2022",
+          "candidateHash": "3a4751434a22fbdab423848144199acaef9ac3eb8fa2aae89540a5fa03b340d1",
+          "publication": "LIBERADA"
+        }
+      ]
+    },
+    {
+      "qid": "3a01ea4b",
+      "candidateHash": "b0f3bc7e3946ca23fd08787476b944a963396175e39757509629b99e75b062f1",
+      "originalHash": "e7050fe6f08e3b8ea197450deb55c7cff46b3232fa0ee48c9af857927b9d0e81",
+      "verdict": "aprovada",
+      "legacyEquivalent": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "derivation": "Handbook18.4: VERIFICADA+NENHUMA, veredito aprovada, nenhum eliminatório ou recurso plausível remanescente.",
+      "OP": "Interpretar análise etiológica do EMPA-KIDNEY sem tratá-la como RCT autônomo de IgAN.",
+      "competency": "Nefroproteção porSGLT2 e interpretação de evidência emIgAN",
+      "bloom": "Analisar",
+      "miller": "Sabe como",
+      "intrinsicDifficulty": "medium",
+      "classificationReconciliation": "Separa ensaio amplo, análise etiológica, subdivisão glomerular post hoc e alcance do efeito. Não confunde HR 0,71 de progressão com HR 0,72 do composto com morte CV; não declara efeitos iguais pela ausência de heterogeneidade.",
+      "justification": "Separa ensaio amplo, análise etiológica, subdivisão glomerular post hoc e alcance do efeito. Não confunde HR 0,71 de progressão com HR 0,72 do composto com morte CV; não declara efeitos iguais pela ausência de heterogeneidade.",
+      "problems": "Nenhum problema substantivo identificado.",
+      "advocate": "Testei se chamar o recorte IgA de exploratório conflita com categorias pré-especificadas: Methods distingue expressamente categorias amplas e split post hoc. Nenhuma base para benefício exclusivo, poder de ensaio próprio ou desaparecimento de depósitos. Nenhum recurso plausível remanescente.",
+      "eliminatories": [],
+      "eliminatoryAudit": {
+        "1": false,
+        "2": false,
+        "3": false,
+        "4": false,
+        "5": false,
+        "6": false,
+        "7": false,
+        "8": false,
+        "9": false,
+        "10": false
+      },
+      "score": {
+        "dimensions": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 1,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 2,
+          "Valor pedagógico": 2
+        },
+        "total": 19,
+        "band": "Excelente"
+      },
+      "decisionTree": "0 evidência permite; 1 sem eliminatório; 2 sem recurso remanescente; 3 score18–20 → aprovada. Ciclo apto a publicado após integração controlada, não publicação já realizada.",
+      "lifecycle": "publicado",
+      "patchInstruction": "Aplicar somente o objeto candidate exato abaixo e os cards aprovados vinculados. Qualquer alteração material exige novo gate.",
+      "candidate": {
+        "t": "EMPA-KIDNEY — IgAN na Análise Etiológica",
+        "qid": "3a01ea4b",
+        "q": "O EMPA-KIDNEY incluiu 817 pessoas com nefropatia por imunoglobulina A (IgA) entre 1669 com doença glomerular. Ao interpretar a análise por etiologia, qual conclusão respeita o desenho do estudo?",
+        "refs": [
+          "empa_kidney_primary_disease_2024",
+          "kdigo_igan_igav_2025"
+        ],
+        "opts": [
+          "Os resultados apoiam nefroproteção; o recorte de IgA é exploratório dentro de um ensaio amplo",
+          "Os resultados estabelecem benefício exclusivo da IgA, superior ao das outras etiologias",
+          "Os resultados equivalem aos de um ensaio próprio de IgA, com poder definido para esse diagnóstico",
+          "Os resultados demonstram remoção dos depósitos de IgA, explicando o efeito sobre a função renal"
+        ],
+        "ans": 0,
+        "exp": "Os dados apoiam nefroproteção, sem transformar o recorte de IgA em ensaio autônomo. O estudo randomizou 6609 pessoas com doença renal crônica (DRC); as categorias etiológicas amplas eram pré-especificadas, enquanto a subdivisão glomerular em IgA e outros subtipos foi feita post hoc. Na coorte total, a razão de riscos de progressão renal foi 0,71, com intervalo de confiança de 95% de 0,62–0,81; esse valor não é estimativa exclusiva dos 817 participantes com IgA. Os efeitos relativos por etiologia foram amplamente consistentes, inclusive nas análises da velocidade de perda de filtração. Isso não demonstra superioridade específica da IgA, igualdade exata dos efeitos, poder de um ensaio próprio ou remoção de depósitos glomerulares.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "claimsChecked": [
+        "6609 randomizados; 1669 glomerulares; 817 IgAN.",
+        "Categorias principais pré-especificadas; subdivisão glomerular post hoc.",
+        "Progressão renal 384/3304 versus 504/3305, HR 0,71 IC0,62–0,81; p de heterogeneidade 0,62.",
+        "Composto original com morteCV HR0,72; slope crônico favorável sem prova de igualdade exata."
+      ],
+      "sources": [
+        "EMPA2024",
+        "KDIGO2025"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "empa_kidney_primary_disease_2024",
+          "referenceHash": "b46a2000ee1d8c3a1800ec60a34344344e815fb7d66d6c8506e6b05e61f650d7",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": "ff386bd3592aa7f71367b64ff20133bbf11991ca70d2b11039e33e0ef4f9dd55"
+        },
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "identity": {
+        "sameOP": true,
+        "sameCompetency": true,
+        "sameCorrectConcept": true,
+        "qidPreserved": true,
+        "answerIndexPreserved": true,
+        "FSRSReset": false
+      },
+      "verificationPending": [],
+      "requiredCardGate": [
+        {
+          "file": "igan-sglt2-nephroprotection-independent-card-gates-adpkd-A2-portable.json",
+          "fileSHA256": "2c892d4734db28dd9e95282e5e0d3e7234b1ab31e6fb4a569b8d432d4bb82747",
+          "id": "empa_kidney_primary_disease_2024",
+          "candidateHash": "b46a2000ee1d8c3a1800ec60a34344344e815fb7d66d6c8506e6b05e61f650d7",
+          "publication": "LIBERADA"
+        }
+      ]
+    },
+    {
+      "qid": "02814d6c",
+      "candidateHash": "39fff44620a46afea09f657dac8c7c8046d75175c39de3de6b6a3d478fd1ab94",
+      "originalHash": "b0414567ca32c1a6f7149f50744fc1ce6f6600ae0ce6cac46f6138a521ae593d",
+      "verdict": "aprovada",
+      "legacyEquivalent": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "derivation": "Handbook18.4: VERIFICADA+NENHUMA, veredito aprovada, nenhum eliminatório ou recurso plausível remanescente.",
+      "OP": "Associar iSGLT2 ao suporte tolerado na IgAN proteinúrica com risco e reavaliar terapia dirigida.",
+      "competency": "Nefroproteção porSGLT2 e interpretação de evidência emIgAN",
+      "bloom": "Aplicar",
+      "miller": "Sabe como",
+      "intrinsicDifficulty": "medium",
+      "classificationReconciliation": "Aplica nefroproteção adicional ao caso de risco residual com IECA tolerado, sem hipovolemia/contraindicação. Não substitui tratamento específico nem faz a indicação de ciclofosfamida por proteinúria.",
+      "justification": "Aplica nefroproteção adicional ao caso de risco residual com IECA tolerado, sem hipovolemia/contraindicação. Não substitui tratamento específico nem faz a indicação de ciclofosfamida por proteinúria.",
+      "problems": "Nenhum problema substantivo identificado.",
+      "advocate": "Testei se outra terapia dirigida à IgAN torna a pergunta ambígua. O comando pede uma medida nefroprotetora adicional e as opções são adição de SGLT2, duplo RAS, retirada imotivada de IECA ou espera indevida. Não há outra terapia específica defensável listada. Nenhum recurso plausível.",
+      "eliminatories": [],
+      "eliminatoryAudit": {
+        "1": false,
+        "2": false,
+        "3": false,
+        "4": false,
+        "5": false,
+        "6": false,
+        "7": false,
+        "8": false,
+        "9": false,
+        "10": false
+      },
+      "score": {
+        "dimensions": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 2,
+          "Valor pedagógico": 2
+        },
+        "total": 20,
+        "band": "Excelente"
+      },
+      "decisionTree": "0 evidência permite; 1 sem eliminatório; 2 sem recurso remanescente; 3 score18–20 → aprovada. Ciclo apto a publicado após integração controlada, não publicação já realizada.",
+      "lifecycle": "publicado",
+      "patchInstruction": "Aplicar somente o objeto candidate exato abaixo e os cards aprovados vinculados. Qualquer alteração material exige novo gate.",
+      "candidate": {
+        "t": "Nefropatia por IgA — iSGLT2 após suporte otimizado",
+        "qid": "02814d6c",
+        "q": "Homem de 42 anos com nefropatia por imunoglobulina A (IgA) confirmada por biópsia mantém proteinúria de 1,8 g/dia e taxa de filtração glomerular estimada (TFGe) de 55 mL/min/1,73 m² após controle pressórico e uso de inibidor da enzima conversora de angiotensina (IECA) na dose máxima tolerada. Sem hipovolemia nem contraindicação medicamentosa, qual medida nefroprotetora adicional é mais apropriada?",
+        "refs": [
+          "kdigo_igan_2025",
+          "dapa_ckd_igan_2021",
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Associar dapagliflozina, mantendo o IECA e o acompanhamento renal",
+          "Associar um bloqueador do receptor de angiotensina, mantendo o IECA",
+          "Trocar o IECA por dapagliflozina, retirando o tratamento que estava tolerado",
+          "Adiar terapia adicional até a filtração cair abaixo de 30 mL/min/1,73 m²"
+        ],
+        "ans": 0,
+        "exp": "A melhor opção é acrescentar dapagliflozina à nefroproteção tolerada. A KDIGO 2025 sugere um inibidor do cotransportador sódio-glicose 2 (SGLT2) para pessoas com nefropatia por IgA em risco de perda progressiva de função; o cenário tem proteinúria persistente importante e TFGe dentro das populações com evidência. Isso não exige retirar um IECA tolerado nem esperar que a filtração caia abaixo de 30. Associar IECA a bloqueador do receptor de angiotensina não é a estratégia de nefroproteção recomendada. É necessário reavaliar função renal, proteinúria e tratamento dirigido à doença; o inibidor de SGLT2 atua sobre respostas à perda de néfrons e não substitui essa avaliação.",
+        "diff": "medium",
+        "cat": "nefrologia_geral"
+      },
+      "claimsChecked": [
+        "KDIGO2025 Rec1.4.4.1 IECA ou BRA máximo tolerado; Rec1.4.4.3 SGLT2 em risco (2B).",
+        "TFGe55 e proteinúria1,8 no cenário permitem adição; sem necessidade de esperar TFGe<30.",
+        "KDIGO2024 Rec3.6.4 evitar combinações IECA/BRA/inibidor direto da renina (1B)."
+      ],
+      "sources": [
+        "KDIGO2025",
+        "KDIGO2024",
+        "DAPA2021"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_2025",
+          "referenceHash": "872e57eace5b1f630a804792d77812a68f00ba6c2c78df7ab064d6ed96f68cb4",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "dapa_ckd_igan_2021",
+          "referenceHash": "8ed92f5b7a5dd5be41536aadc8cc11a1cc74ae8c1df8995dcaa6a61b77eb4ecb",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": "6617ac3efc650b3d80c4abce3b5ac07d089c87ce05a5dd58ac575daa0ac9c239"
+        },
+        {
+          "refId": "kdigo_ckd",
+          "referenceHash": "3ce5a188f86abdbef8d6f9ba8cf78ce5fc6e70cdb26cc28c5613cf3ebc86a31d",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "identity": {
+        "sameOP": true,
+        "sameCompetency": true,
+        "sameCorrectConcept": true,
+        "qidPreserved": true,
+        "answerIndexPreserved": true,
+        "FSRSReset": false
+      },
+      "verificationPending": [],
+      "requiredCardGate": [
+        {
+          "file": "igan-sglt2-nephroprotection-independent-card-gates-adpkd-A2-portable.json",
+          "fileSHA256": "2c892d4734db28dd9e95282e5e0d3e7234b1ab31e6fb4a569b8d432d4bb82747",
+          "id": "dapa_ckd_igan_2021",
+          "candidateHash": "8ed92f5b7a5dd5be41536aadc8cc11a1cc74ae8c1df8995dcaa6a61b77eb4ecb",
+          "publication": "LIBERADA"
+        }
+      ]
+    },
+    {
+      "qid": "18784ef8",
+      "candidateHash": "fa2557b3d718d0b2e80c633f085a7805cbb753a47bef782a784807b6997a3b0d",
+      "originalHash": "e96a5135a2362257b951c86ee6b90b76e89f941d6b0a231c3c7404985acf55ef",
+      "verdict": "aprovada",
+      "legacyEquivalent": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "derivation": "Handbook18.4: VERIFICADA+NENHUMA, veredito aprovada, nenhum eliminatório ou recurso plausível remanescente.",
+      "OP": "Reconhecer limite de extrapolação de iSGLT2 para jovens com TFGe preservada.",
+      "competency": "Nefroproteção porSGLT2 e interpretação de evidência emIgAN",
+      "bloom": "Lembrar",
+      "miller": "Sabe",
+      "intrinsicDifficulty": "easy",
+      "classificationReconciliation": "Reconhece o perfil específico de validade externa destacado pela diretriz, sem chamar recordação literal de hard. O alerta tem consequência clínica: incerteza não equivale a proibição nem substitui avaliação de risco.",
+      "justification": "Reconhece o perfil específico de validade externa destacado pela diretriz, sem chamar recordação literal de hard. O alerta tem consequência clínica: incerteza não equivale a proibição nem substitui avaliação de risco.",
+      "problems": "Nenhum problema substantivo identificado.",
+      "advocate": "Testei se pessoas sem diabetes ou em RAS com filtração baixa eram igualmente o grupo pouco representado: constituíram parcela importante dos ensaios; a diretriz destaca jovens com TFGe>60. O termo incerteza não é contraindicação. Nenhum recurso plausível.",
+      "eliminatories": [],
+      "eliminatoryAudit": {
+        "1": false,
+        "2": false,
+        "3": false,
+        "4": false,
+        "5": false,
+        "6": false,
+        "7": false,
+        "8": false,
+        "9": false,
+        "10": false
+      },
+      "score": {
+        "dimensions": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 2,
+          "Valor pedagógico": 2
+        },
+        "total": 20,
+        "band": "Excelente"
+      },
+      "decisionTree": "0 evidência permite; 1 sem eliminatório; 2 sem recurso remanescente; 3 score18–20 → aprovada. Ciclo apto a publicado após integração controlada, não publicação já realizada.",
+      "lifecycle": "publicado",
+      "patchInstruction": "Aplicar somente o objeto candidate exato abaixo e os cards aprovados vinculados. Qualquer alteração material exige novo gate.",
+      "candidate": {
+        "t": "iSGLT2 na IgAN — Limite de Extrapolação",
+        "qid": "18784ef8",
+        "q": "A KDIGO 2025 destaca incerteza sobre o benefício dos inibidores do cotransportador sódio-glicose 2 (SGLT2) em um perfil de pessoas com nefropatia por imunoglobulina A (IgA). Qual perfil corresponde ao grupo pouco representado nos grandes ensaios de doença renal crônica?",
+        "opts": [
+          "Pessoas jovens, com filtração glomerular estimada acima de 60 mL/min/1,73 m²",
+          "Pessoas sem diabetes, com albuminúria e filtração entre 25 e 45 mL/min/1,73 m²",
+          "Pessoas mais velhas, com albuminúria e filtração abaixo de 45 mL/min/1,73 m²",
+          "Pessoas em bloqueio renina-angiotensina, com filtração entre 20 e 45 mL/min/1,73 m²"
+        ],
+        "ans": 0,
+        "exp": "A incerteza específica é maior em jovens com filtração relativamente preservada, acima de 60 mL/min/1,73 m². Os grupos com IgA nos grandes ensaios de doença renal crônica eram, em geral, mais velhos e tinham função renal mais comprometida que os participantes de ensaios específicos da doença. A ausência de diabetes não anula nefroproteção, e bloqueio renina-angiotensina indicado/tolerado fazia parte do cuidado em muitos participantes. Esse limite de validade externa não é contraindicação universal em jovens: a decisão depende do risco e de outras indicações, sem usar o SGLT2 como substituto automático de tratamento dirigido à IgA.",
+        "diff": "easy",
+        "cat": "glomerular",
+        "refs": [
+          "kdigo_igan_2025"
+        ]
+      },
+      "claimsChecked": [
+        "KDIGO2025 PP1.4.4.4 e texto S48–S49: jovens/TFGe>60 relativamente preservada, comparação com ensaios próprios de IgAN.",
+        "Diabetes ausente não anula benefício e RAS indicado/tolerado era suporte em muitos participantes."
+      ],
+      "sources": [
+        "KDIGO2025"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_2025",
+          "referenceHash": "872e57eace5b1f630a804792d77812a68f00ba6c2c78df7ab064d6ed96f68cb4",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "identity": {
+        "sameOP": true,
+        "sameCompetency": true,
+        "sameCorrectConcept": true,
+        "qidPreserved": true,
+        "answerIndexPreserved": true,
+        "FSRSReset": false
+      },
+      "verificationPending": [],
+      "requiredCardGate": []
+    }
+  ],
+  "cardReviews": [
+    {
+      "refId": "dapa_ckd_igan_2021",
+      "candidateHash": "8ed92f5b7a5dd5be41536aadc8cc11a1cc74ae8c1df8995dcaa6a61b77eb4ecb",
+      "originalHash": "6617ac3efc650b3d80c4abce3b5ac07d089c87ce05a5dd58ac575daa0ac9c239",
+      "candidateCard": {
+        "label": "Wheeler et al. — DAPA-CKD na nefropatia por IgA (2021)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33878338/",
+        "journal": "Kidney Int. 2021;100(1):215–224",
+        "ano": 2021,
+        "tipo": "Análise pré-especificada de ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Dapagliflozina reduziu o composto renal/CV no subgrupo de IgA, com poucos eventos",
+        "icon": "🔬",
+        "resumo": "Subgrupo pré-especificado do DAPA-CKD com 270 participantes com nefropatia por imunoglobulina A (IgA), 254 confirmados por biópsia. Taxa de filtração glomerular estimada (TFGe) média de 43,8 mL/min/1,73 m² e relação albumina/creatinina urinária mediana de 900 mg/g. Dapagliflozina 10 mg/dia versus placebo, além do suporte. O composto primário incluía queda sustentada ≥50% da TFGe, falência renal ou morte renal/cardiovascular: 6/137 versus 20/133 eventos em mediana de 2,1 anos; razão de riscos (HR) 0,29, intervalo de confiança de 95% 0,12–0,73; P=0,005. A relação albumina/creatinina caiu 26% frente a placebo.",
+        "conclusao": "O resultado apoia nefroproteção na população estudada, com precisão limitada por apenas 26 eventos. Não prova mecanismo imune específico, benefício exclusivo da IgA ou efeito idêntico em toda população.",
+        "curiosidade": "O composto renal secundário excluía morte cardiovascular; não deve ser confundido com o composto primário descrito acima."
+      },
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "derivation": "Gate integral de card, sem NQ Editorial Score de questão. Identidade bibliográfica, desenho, taxonomia, campos científicos e compatibilidade dos consumidores conferidos; sem pendência decisiva.",
+      "NQEditorialScore": null,
+      "scoreReason": "Não se aplica score de questão ao card.",
+      "taxonomicCheck": "Badge/cor/ícone correspondem ao gênero real; análises secundárias de RCT não se tornam ensaios autônomos, e Vallon é REVIEW.",
+      "claimsAudit": "Todos os campos do objeto: título/metadados, n/população/dose, composto completo com morteCV, números/CI/P, redução de RAC e ressalva de26eventos verificados.",
+      "consumerInventory": {
+        "currentQuestions": [
+          {
+            "qid": "9fd2cfdb",
+            "t": "DAPA-CKD na IgAN — Benefício e Cautela",
+            "originalHash": "cac134169e14123f684ee77973d454e5d939ad92812c84a70ab6fff1662af8c7",
+            "refs": [
+              "dapa_ckd_igan_2021",
+              "kdigo_igan_igav_2025"
+            ],
+            "original": {
+              "t": "DAPA-CKD na IgAN — Benefício e Cautela",
+              "qid": "9fd2cfdb",
+              "q": "Na análise pré-especificada do DAPA-CKD em 270 participantes com nefropatia por IgA, qual interpretação é mais correta?",
+              "refs": [
+                "dapa_ckd_igan_2021",
+                "kdigo_igan_igav_2025"
+              ],
+              "opts": [
+                "O desfecho composto ocorreu em 6 participantes com dapagliflozina e 20 com placebo (HR 0,29), mas foram apenas 26 eventos em uma população com DRC estabelecida; o resultado apoia nefroproteção sem provar efeito idêntico em toda IgAN",
+                "A redução relativa de 71% prova que a dapagliflozina modifica diretamente a produção de IgA1 galactose-deficiente",
+                "O estudo avaliou hematúria como desfecho primário e demonstrou sua remissão com dapagliflozina",
+                "O subgrupo incluiu apenas adultos jovens com TFGe acima de 90 mL/min/1,73 m²"
+              ],
+              "ans": 0,
+              "exp": "No subgrupo pré-especificado, 254 dos 270 participantes (94%) tinham confirmação histológica; a TFGe média era 43,8 mL/min/1,73 m², a idade média 51 anos e a UACR mediana 900 mg/g. Em 2,1 anos, o composto renal ocorreu em 6 de 137 versus 20 de 133 participantes, HR 0,29 (IC 95% 0,12–0,73), e a UACR caiu 26% em relação ao placebo. O resultado sustenta nefroproteção na IgAN proteinúrica com DRC estabelecida, mas deriva de apenas 26 eventos e não demonstra mecanismo imunológico específico nem autoriza extrapolação automática para jovens com TFGe preservada.",
+              "diff": "hard",
+              "cat": "glomerular"
+            }
+          }
+        ],
+        "proposedConsumers": [
+          "9fd2cfdb",
+          "02814d6c"
+        ],
+        "legacyObjects": [],
+        "literalOccurrenceFiles": [
+          "data/topics.js",
+          "data/refs.js",
+          "docs/editorial/reviews/2026-10-12/group-b-output-003.json",
+          "docs/editorial/reviews/2026-10-12/group-c-output-007-A3.json",
+          "docs/editorial/reviews/2026-10-12/independent-b009-A4-final-binding-addendum-A2.json",
+          "docs/editorial/reviews/2026-10-12/independent-b009-A3.json",
+          "docs/editorial/reviews/2026-10-12/independent-c007-A3.json",
+          "docs/editorial/reviews/2026-10-12/independent-initial-b003-A2.json",
+          "docs/editorial/reviews/2026-10-12/independent-initial-b003-A1.json",
+          "docs/editorial/review-batches/FARM-18I.json",
+          "data/question-revision-manifest.js"
+        ],
+        "sharedDynamicReaders": [
+          "js/game.js",
+          "js/study-mode.js",
+          "js/utils.js",
+          "js/dashboard.js",
+          "js/achievements.js",
+          "js/minigame-acidbase.js"
+        ]
+      },
+      "consumerCompatibility": [
+        {
+          "qid": "9fd2cfdb",
+          "candidateHash": "c2e3316316567ee0321cf12fdcf8ab9a4a7ebc9170b9113f10a5db0680673d0d",
+          "compatible": true
+        },
+        {
+          "qid": "02814d6c",
+          "candidateHash": "39fff44620a46afea09f657dac8c7c8046d75175c39de3de6b6a3d478fd1ab94",
+          "compatible": true
+        }
+      ],
+      "implementation": "Preservar ID e snapshots históricos. Atualizar apenas o card integral exato ou inserir novo ID Vallon antes dos vínculos de questão; nenhuma reescrita retroativa."
+    },
+    {
+      "refId": "empa_kidney_primary_disease_2024",
+      "candidateHash": "b46a2000ee1d8c3a1800ec60a34344344e815fb7d66d6c8506e6b05e61f650d7",
+      "originalHash": "ff386bd3592aa7f71367b64ff20133bbf11991ca70d2b11039e33e0ef4f9dd55",
+      "candidateCard": {
+        "label": "EMPA-KIDNEY — efeito por doença renal primária (2024)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7618536/",
+        "journal": "Lancet Diabetes Endocrinol. 2024;12(1):51–60",
+        "ano": 2024,
+        "tipo": "Análise secundária de ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Empagliflozina preservou função renal em várias etiologias; IgA foi recorte exploratório",
+        "icon": "🔬",
+        "resumo": "Análise secundária do EMPA-KIDNEY, com 6609 participantes com doença renal crônica (DRC), empagliflozina 10 mg/dia versus placebo e mediana de 2 anos. As categorias etiológicas amplas eram pré-especificadas; o grupo glomerular de 1669 participantes foi subdividido post hoc, incluindo 817 com nefropatia por imunoglobulina A (IgA). Na coorte total, o componente de progressão renal ocorreu em 384/3304 versus 504/3305: razão de riscos (HR) 0,71, intervalo de confiança de 95% 0,62–0,81. Não houve evidência de heterogeneidade por categoria etiológica (P=0,62). A inclinação crônica da taxa de filtração glomerular estimada (TFGe) também foi favorável, com efeitos relativos amplamente consistentes entre causas.",
+        "conclusao": "Sustenta nefroproteção em várias causas de DRC. O recorte de IgA não equivale a um ensaio independente, dimensionado para comprovar benefício exclusivo dessa doença; ausência de heterogeneidade não demonstra efeitos exatamente iguais.",
+        "curiosidade": "O HR 0,71 acima é de progressão renal. O composto principal do ensaio, que também incluía morte cardiovascular, teve HR 0,72."
+      },
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "derivation": "Gate integral de card, sem NQ Editorial Score de questão. Identidade bibliográfica, desenho, taxonomia, campos científicos e compatibilidade dos consumidores conferidos; sem pendência decisiva.",
+      "NQEditorialScore": null,
+      "scoreReason": "Não se aplica score de questão ao card.",
+      "taxonomicCheck": "Badge/cor/ícone correspondem ao gênero real; análises secundárias de RCT não se tornam ensaios autônomos, e Vallon é REVIEW.",
+      "claimsAudit": "Todos os campos: n/dose/tempo, distinção pré-especificado/posthoc, HR0,71progressão versus0,72composto, p0,62/slope, inferência sem equivalência ou exclusividade.",
+      "consumerInventory": {
+        "currentQuestions": [
+          {
+            "qid": "3a01ea4b",
+            "t": "EMPA-KIDNEY — IgAN na Análise Etiológica",
+            "originalHash": "e7050fe6f08e3b8ea197450deb55c7cff46b3232fa0ee48c9af857927b9d0e81",
+            "refs": [
+              "empa_kidney_primary_disease_2024",
+              "kdigo_igan_igav_2025"
+            ],
+            "original": {
+              "t": "EMPA-KIDNEY — IgAN na Análise Etiológica",
+              "qid": "3a01ea4b",
+              "q": "Como deve ser interpretada a evidência do EMPA-KIDNEY para pessoas com nefropatia por IgA?",
+              "refs": [
+                "empa_kidney_primary_disease_2024",
+                "kdigo_igan_igav_2025"
+              ],
+              "opts": [
+                "Havia 817 participantes com IgAN entre 1.669 com doença glomerular, e o efeito sobre progressão e slope foi amplamente consistente entre etiologias; porém, trata-se de análise secundária, não de ensaio independente desenhado apenas para IgAN",
+                "A redução relativa de 29% foi demonstrada exclusivamente nos 817 participantes com IgAN e não se aplica às demais etiologias",
+                "Pessoas com glomerulopatias foram excluídas da randomização para impedir interferência da imunossupressão",
+                "Biópsias renais mensais confirmaram desaparecimento dos depósitos de IgA com empagliflozina"
+              ],
+              "ans": 0,
+              "exp": "No EMPA-KIDNEY, 1.669 dos 6.609 participantes tinham doença glomerular e 817 foram classificados como IgAN. A empagliflozina reduziu o risco de progressão renal na coorte analisada (HR 0,71), e não houve heterogeneidade importante do efeito relativo entre categorias etiológicas ou subtipos glomerulares; análises de slope deram maior precisão. Isso apoia nefroproteção em diferentes causas de DRC, mas a análise por etiologia é secundária e não equivale a um ensaio autônomo, dimensionado para provar benefício exclusivo na IgAN.",
+              "diff": "hard",
+              "cat": "glomerular"
+            }
+          }
+        ],
+        "proposedConsumers": [
+          "3a01ea4b"
+        ],
+        "legacyObjects": [],
+        "literalOccurrenceFiles": [
+          "data/topics.js",
+          "data/refs.js",
+          "docs/editorial/reviews/2026-10-12/group-b-output-009-A3.json",
+          "docs/editorial/reviews/2026-10-12/group-b-output-009.json",
+          "docs/editorial/reviews/2026-10-12/group-b-output-009-A4.json",
+          "docs/editorial/reviews/2026-10-12/independent-b009-A4-final-binding-addendum-A2.json",
+          "docs/editorial/reviews/2026-10-12/independent-b009-A3.json",
+          "docs/editorial/review-batches/FARM-18I.json",
+          "data/question-revision-manifest.js"
+        ],
+        "sharedDynamicReaders": [
+          "js/game.js",
+          "js/study-mode.js",
+          "js/utils.js",
+          "js/dashboard.js",
+          "js/achievements.js",
+          "js/minigame-acidbase.js"
+        ]
+      },
+      "consumerCompatibility": [
+        {
+          "qid": "3a01ea4b",
+          "candidateHash": "b0f3bc7e3946ca23fd08787476b944a963396175e39757509629b99e75b062f1",
+          "compatible": true
+        }
+      ],
+      "implementation": "Preservar ID e snapshots históricos. Atualizar apenas o card integral exato ou inserir novo ID Vallon antes dos vínculos de questão; nenhuma reescrita retroativa."
+    },
+    {
+      "refId": "vallon_sglt2_renoprotection_2022",
+      "candidateHash": "3a4751434a22fbdab423848144199acaef9ac3eb8fa2aae89540a5fa03b340d1",
+      "originalHash": null,
+      "candidateCard": {
+        "label": "Vallon — mecanismos renoprotetores dos inibidores de SGLT2 (2022)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9558099/",
+        "journal": "Heart Fail Clin. 2022;18(4):539–549",
+        "ano": 2022,
+        "tipo": "Revisão fisiológica narrativa",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Relaciona transporte proximal, feedback tubuloglomerular e pressão intraglomerular",
+        "icon": "🔬",
+        "resumo": "Revisão narrativa dos mecanismos de nefroproteção dos inibidores do cotransportador sódio-glicose 2 (SGLT2), integrando estudos experimentais e humanos. Menor reabsorção proximal aumenta a entrega de cloreto de sódio à mácula densa; o feedback tubuloglomerular contribui para reduzir a pressão intraglomerular. O padrão clínico pode incluir queda inicial reversível da taxa de filtração glomerular (TFG), seguida de preservação de função em longo prazo. A síntese fisiológica foi necessária porque ensaios de desfechos não medem diretamente cada etapa desse mecanismo.",
+        "conclusao": "Explica uma resposta hemodinâmica compatível com a nefroproteção, sem supor dano estrutural a partir de toda queda inicial de filtração. Não prova que o mesmo mecanismo explique isoladamente o benefício em cada pessoa com nefropatia por IgA.",
+        "curiosidade": "Experimentos por micropunção sustentam a participação do feedback e de respostas pré e pós-glomerulares. Muitos mecanismos continuam em investigação; dados animais não são ensaios clínicos de eficácia na IgA."
+      },
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "derivation": "Gate integral de card, sem NQ Editorial Score de questão. Identidade bibliográfica, desenho, taxonomia, campos científicos e compatibilidade dos consumidores conferidos; sem pendência decisiva.",
+      "NQEditorialScore": null,
+      "scoreReason": "Não se aplica score de questão ao card.",
+      "taxonomicCheck": "Badge/cor/ícone correspondem ao gênero real; análises secundárias de RCT não se tornam ensaios autônomos, e Vallon é REVIEW.",
+      "claimsAudit": "Todos os campos: autoria/periódico/ano/desenho, transporte proximal/TGF/pressão, resposta inicial e limites humanos/experimentais, mecanismos múltiplos; sem generalizar modelo animal para eficácia na IgAN.",
+      "consumerInventory": {
+        "currentQuestions": [],
+        "proposedConsumers": [
+          "0e1a838d"
+        ],
+        "legacyObjects": [],
+        "literalOccurrenceFiles": [],
+        "sharedDynamicReaders": [
+          "js/game.js",
+          "js/study-mode.js",
+          "js/utils.js",
+          "js/dashboard.js",
+          "js/achievements.js",
+          "js/minigame-acidbase.js"
+        ]
+      },
+      "consumerCompatibility": [
+        {
+          "qid": "0e1a838d",
+          "candidateHash": "99043095ed211278bdefc7a8b058b620a574bce9c39f74bd5e90804ed424636a",
+          "compatible": true
+        }
+      ],
+      "implementation": "Preservar ID e snapshots históricos. Atualizar apenas o card integral exato ou inserir novo ID Vallon antes dos vínculos de questão; nenhuma reescrita retroativa."
+    }
+  ],
+  "duplicationFourDimensions": [
+    {
+      "qids": [
+        "9fd2cfdb",
+        "0e1a838d"
+      ],
+      "sameProfile": true,
+      "sameLanguage": true,
+      "sameDecision": false,
+      "sameDecisiveDataStructure": false,
+      "verdict": "Variação legítima: competências de precisão de efeito, mecanismo, desenho de subgrupo, conduta e validade externa são decisões ou estruturas de dados distintas.",
+      "formalTest": "Quatro dimensões: decisão + estrutura de dados + perfil-alvo + língua. Não há coincidência simultânea das quatro."
+    },
+    {
+      "qids": [
+        "9fd2cfdb",
+        "3a01ea4b"
+      ],
+      "sameProfile": true,
+      "sameLanguage": true,
+      "sameDecision": false,
+      "sameDecisiveDataStructure": false,
+      "verdict": "Variação legítima: competências de precisão de efeito, mecanismo, desenho de subgrupo, conduta e validade externa são decisões ou estruturas de dados distintas.",
+      "formalTest": "Quatro dimensões: decisão + estrutura de dados + perfil-alvo + língua. Não há coincidência simultânea das quatro."
+    },
+    {
+      "qids": [
+        "9fd2cfdb",
+        "02814d6c"
+      ],
+      "sameProfile": true,
+      "sameLanguage": true,
+      "sameDecision": false,
+      "sameDecisiveDataStructure": false,
+      "verdict": "Variação legítima: competências de precisão de efeito, mecanismo, desenho de subgrupo, conduta e validade externa são decisões ou estruturas de dados distintas.",
+      "formalTest": "Quatro dimensões: decisão + estrutura de dados + perfil-alvo + língua. Não há coincidência simultânea das quatro."
+    },
+    {
+      "qids": [
+        "9fd2cfdb",
+        "18784ef8"
+      ],
+      "sameProfile": true,
+      "sameLanguage": true,
+      "sameDecision": false,
+      "sameDecisiveDataStructure": false,
+      "verdict": "Variação legítima: competências de precisão de efeito, mecanismo, desenho de subgrupo, conduta e validade externa são decisões ou estruturas de dados distintas.",
+      "formalTest": "Quatro dimensões: decisão + estrutura de dados + perfil-alvo + língua. Não há coincidência simultânea das quatro."
+    },
+    {
+      "qids": [
+        "0e1a838d",
+        "3a01ea4b"
+      ],
+      "sameProfile": true,
+      "sameLanguage": true,
+      "sameDecision": false,
+      "sameDecisiveDataStructure": false,
+      "verdict": "Variação legítima: competências de precisão de efeito, mecanismo, desenho de subgrupo, conduta e validade externa são decisões ou estruturas de dados distintas.",
+      "formalTest": "Quatro dimensões: decisão + estrutura de dados + perfil-alvo + língua. Não há coincidência simultânea das quatro."
+    },
+    {
+      "qids": [
+        "0e1a838d",
+        "02814d6c"
+      ],
+      "sameProfile": true,
+      "sameLanguage": true,
+      "sameDecision": false,
+      "sameDecisiveDataStructure": false,
+      "verdict": "Variação legítima: competências de precisão de efeito, mecanismo, desenho de subgrupo, conduta e validade externa são decisões ou estruturas de dados distintas.",
+      "formalTest": "Quatro dimensões: decisão + estrutura de dados + perfil-alvo + língua. Não há coincidência simultânea das quatro."
+    },
+    {
+      "qids": [
+        "0e1a838d",
+        "18784ef8"
+      ],
+      "sameProfile": true,
+      "sameLanguage": true,
+      "sameDecision": false,
+      "sameDecisiveDataStructure": false,
+      "verdict": "Variação legítima: competências de precisão de efeito, mecanismo, desenho de subgrupo, conduta e validade externa são decisões ou estruturas de dados distintas.",
+      "formalTest": "Quatro dimensões: decisão + estrutura de dados + perfil-alvo + língua. Não há coincidência simultânea das quatro."
+    },
+    {
+      "qids": [
+        "3a01ea4b",
+        "02814d6c"
+      ],
+      "sameProfile": true,
+      "sameLanguage": true,
+      "sameDecision": false,
+      "sameDecisiveDataStructure": false,
+      "verdict": "Variação legítima: competências de precisão de efeito, mecanismo, desenho de subgrupo, conduta e validade externa são decisões ou estruturas de dados distintas.",
+      "formalTest": "Quatro dimensões: decisão + estrutura de dados + perfil-alvo + língua. Não há coincidência simultânea das quatro."
+    },
+    {
+      "qids": [
+        "3a01ea4b",
+        "18784ef8"
+      ],
+      "sameProfile": true,
+      "sameLanguage": true,
+      "sameDecision": false,
+      "sameDecisiveDataStructure": false,
+      "verdict": "Variação legítima: competências de precisão de efeito, mecanismo, desenho de subgrupo, conduta e validade externa são decisões ou estruturas de dados distintas.",
+      "formalTest": "Quatro dimensões: decisão + estrutura de dados + perfil-alvo + língua. Não há coincidência simultânea das quatro."
+    },
+    {
+      "qids": [
+        "02814d6c",
+        "18784ef8"
+      ],
+      "sameProfile": true,
+      "sameLanguage": true,
+      "sameDecision": false,
+      "sameDecisiveDataStructure": false,
+      "verdict": "Variação legítima: competências de precisão de efeito, mecanismo, desenho de subgrupo, conduta e validade externa são decisões ou estruturas de dados distintas.",
+      "formalTest": "Quatro dimensões: decisão + estrutura de dados + perfil-alvo + língua. Não há coincidência simultânea das quatro."
+    }
+  ],
+  "noAppWrites": true,
+  "noNewGroups": true,
+  "requiredCardGate": {
+    "file": "igan-sglt2-nephroprotection-independent-card-gates-adpkd-A2-portable.json",
+    "fileSHA256": "2c892d4734db28dd9e95282e5e0d3e7234b1ab31e6fb4a569b8d432d4bb82747",
+    "cards": [
+      {
+        "id": "dapa_ckd_igan_2021",
+        "candidateHash": "8ed92f5b7a5dd5be41536aadc8cc11a1cc74ae8c1df8995dcaa6a61b77eb4ecb",
+        "publication": "LIBERADA"
+      },
+      {
+        "id": "empa_kidney_primary_disease_2024",
+        "candidateHash": "b46a2000ee1d8c3a1800ec60a34344344e815fb7d66d6c8506e6b05e61f650d7",
+        "publication": "LIBERADA"
+      },
+      {
+        "id": "vallon_sglt2_renoprotection_2022",
+        "candidateHash": "3a4751434a22fbdab423848144199acaef9ac3eb8fa2aae89540a5fa03b340d1",
+        "publication": "LIBERADA"
+      }
+    ]
+  },
+  "portableExport": {
+    "sourceReviewFile": "igan-sglt2-nephroprotection-independent-gates-adpkd-A1.json",
+    "sourceReviewFileHash": "b9de8db5af1473f05dac946fb1181d634ad9d157a42cc948df4f4a9cbb9730e5",
+    "note": "Exportação técnica A2 com caminhos por basename e vínculo ao card gate portátil A2. Mesmos objetos, juízos clínicos, eixos, scores, fontes e hashes de objetos da revisão A1.",
+    "exportVersion": "A2-portable",
+    "clinicalVersion": "A1"
+  }
+}

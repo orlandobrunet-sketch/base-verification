@@ -1,0 +1,1026 @@
+{
+  "schema": 1,
+  "batch": "IgAN-diagnosis-pathology-prognosis-A3",
+  "createdAt": "2026-11-13T13:50:43.210Z",
+  "originalFile": "igan-original.json",
+  "originalFileSha256": "6bdc18e799b0d90384537330d4146597b586210d813486f1a07c1d9d6afef640",
+  "classificationFile": "igan-author-classification-26.json",
+  "classificationFileSha256": "11f0341475299bfebe1086d2d09210d324fcbbace286f6e833ee9059fd2f8adf",
+  "sourceTopicsHash": "baacc4ff6d549c3d7bcb02be8640694f33087af8440060643fdb3d83e0b1f6ce",
+  "hashMethod": "SHA256(JSON.stringify(question)) UTF-8 preservando ordem de campos",
+  "lengthMethod": "NFC; espaços normalizados; pontos de códigoUnicode; palavras separadas por espaço; não remover < >",
+  "state": "BLOQUEADA; autoria externa sem aplicação",
+  "firstSubgroupQids": [
+    "ce79d609",
+    "795d4589",
+    "5e5b8558",
+    "26804856",
+    "12328a3e",
+    "ea37c153"
+  ],
+  "remainingQueueQids": [
+    "d81defbb",
+    "9fd2cfdb",
+    "9961a406",
+    "c18e6af7",
+    "0e1a838d",
+    "f7107bc3",
+    "ddb4938a",
+    "5530b59c",
+    "3a01ea4b",
+    "b7a93d7a",
+    "17c980fc",
+    "02814d6c",
+    "c1089f2e",
+    "18784ef8",
+    "aa732568",
+    "9fea5862",
+    "03397c91",
+    "9dd26bf4",
+    "856f45a6",
+    "ff676013"
+  ],
+  "excludedQids": [
+    "2a595b23"
+  ],
+  "proposedReferenceFiles": [
+    {
+      "file": "igan-reference-proposals-A3.json",
+      "sha256": "a4da7f66c9b168f1eea9bf371a746d423712e4ab90cd84fe239a4fcbb9816da3"
+    }
+  ],
+  "aggregate": {
+    "before": {
+      "n": 6,
+      "uniqueLongestChars": 6,
+      "tiedLongestChars": 0,
+      "uniqueShortestChars": 0,
+      "uniqueLongestWords": 6,
+      "tiedLongestWords": 0,
+      "uniqueShortestWords": 0
+    },
+    "after": {
+      "n": 6,
+      "uniqueLongestChars": 1,
+      "tiedLongestChars": 0,
+      "uniqueShortestChars": 2,
+      "uniqueLongestWords": 0,
+      "tiedLongestWords": 0,
+      "uniqueShortestWords": 1
+    }
+  },
+  "questions": [
+    {
+      "qid": "ce79d609",
+      "originalHash": "cb69780349ebbf5c52ba4e14acf194d6d7a72a8a59b30431007d7dbc44ffdfcb",
+      "candidate": {
+        "t": "IgAN — Oxford MEST-C sem Prescrição Automática",
+        "qid": "ce79d609",
+        "q": "Na nefropatia por imunoglobulina A (IgA), a classificação de Oxford registra hipercelularidade mesangial (M), hipercelularidade endocapilar (E), esclerose segmentar (S), atrofia tubular/fibrose intersticial (T) e crescentes (C). Um laudo informa M1 E0 S1 T2 C0. Como esse resultado deve ser usado?",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "rodrigues_haas_reich_igan_2017"
+        ],
+        "opts": [
+          "Acrescenta informação prognóstica aos dados clínicos, sem escolher sozinho a terapia",
+          "Seleciona a imunossupressão a partir de M1 e S1, sem depender da evolução clínica",
+          "Estabelece baixo risco a partir de C0, mesmo com atrofia e fibrose cortical extensas",
+          "Demonstra ausência de atividade a partir de E0, mesmo se houver proteinúria persistente"
+        ],
+        "ans": 0,
+        "exp": "O escore de Oxford acrescenta informação prognóstica à avaliação clínica. T2 corresponde a atrofia tubular/fibrose intersticial em mais de 50% do córtex e sinaliza dano crônico extenso. Esse dado deve ser integrado à taxa de filtração glomerular estimada (TFGe), proteinúria, pressão e trajetória clínica. E0 informa ausência de hipercelularidade endocapilar na amostra, sem excluir toda atividade da doença. C0 não anula o risco ligado à cronicidade. M1 e S1 também não selecionam, por si sós, imunossupressão ou um fármaco específico: essa inferência não foi validada por ensaios prospectivos de tratamento baseado no escore.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "status": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW",
+      "authorAssessment": {
+        "qid": "ce79d609",
+        "originalHash": "cb69780349ebbf5c52ba4e14acf194d6d7a72a8a59b30431007d7dbc44ffdfcb",
+        "op": "Interpretar MEST-C como parte da estratificação prognóstica sem selecionar terapia automaticamente.",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "storedDifficulty": "hard",
+        "subgroup": "Diagnóstico, patologia e prognóstico",
+        "queuePriority": true,
+        "lengthRatio": 1.7777777777777777,
+        "status": "FIRST_SUBGROUP_AUTHORING",
+        "classificationRationale": "Aplica/integra dados ou interpreta limites de evidência, sem depender de raridade de fármaco para definir dificuldade.",
+        "potentialIssues": [
+          "Adjudicar sobreposição com12328a3e: prognóstico/limite de prescrição versus classificação do componenteT."
+        ],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Diagnóstico, patologia e estratificação de risco na nefropatia por IgA",
+        "finalDifficultyProposed": "medium",
+        "identity": "Preservados conceito discriminante, competência, raciocínio central, qid e gabarito-conceito; confirmação independente do Handbook §18.5 ainda necessária.",
+        "distractorErrors": [
+          null,
+          "Transformar associações histológicas em teste de resposta terapêutica.",
+          "Anular risco de lesão crônica pela ausência de crescentes.",
+          "Interpretar ausência de hipercelularidade endocapilar como ausência de toda atividade."
+        ],
+        "advocate": "M1/S1 não são teste de resposta; E0 não exclui toda atividade, C0 não neutraliza T2. Conferir variação útil versus123: aqui o discriminante é uso prognóstico e limite terapêutico de laudo completo, não apenas atribuir códigoT.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 2
+        },
+        "provisionalScore": 19
+      },
+      "extraNotes": [],
+      "candidateHash": "9455e6e16e8bde218f6b1cb2c0f49d20880c3d423e2d80c102b5818eeee962a0",
+      "changedFields": [
+        "q",
+        "refs",
+        "opts",
+        "exp",
+        "diff"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "rodrigues_haas_reich_igan_2017",
+          "referenceHash": "00163f00b6450e568835e35b346eb60191c6dca4a14157026ec61835f0256376",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE"
+        }
+      ],
+      "metrics": {
+        "before": {
+          "chars": [
+            160,
+            81,
+            77,
+            90
+          ],
+          "words": {
+            "correct": 23,
+            "maxDistractor": 12,
+            "ratioVsMaxDistractor": 1.9166666666666667,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 160,
+            "maxDistractor": 90,
+            "ratioVsMaxDistractor": 1.7777777777777777,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        },
+        "after": {
+          "chars": [
+            84,
+            81,
+            84,
+            87
+          ],
+          "words": {
+            "correct": 11,
+            "maxDistractor": 14,
+            "ratioVsMaxDistractor": 0.7857142857142857,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": true,
+            "correctRankDescending": 4
+          },
+          "characters": {
+            "correct": 84,
+            "maxDistractor": 87,
+            "ratioVsMaxDistractor": 0.9655172413793104,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 2
+          }
+        }
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "publication": "BLOQUEADA",
+        "problem": "A correta concentra extensão, qualificação ou justificativa que as demais não têm; revisar forma e plausibilidade sem remover condições decisivas."
+      },
+      "duplicateAudit": {
+        "otherQid": "12328a3e",
+        "sameCompetency": true,
+        "opDistinction": "Uso prognóstico e limite de terapia do laudo completo versus classificação do percentual de lesão T.",
+        "conceptDistinction": "Integração e limite inferencial do escore versus faixa T1 e compartimento histológico.",
+        "reasoningDistinction": "Interpretar M/E/S/T/C e excluir prognóstico ou prescrição automáticos versus aplicar 35% à faixa 26–50%.",
+        "errorDistinction": "Prognóstico zero ou terapia automática versus troca de faixa ou componente.",
+        "authorDisposition": "Variação útil proposta, sujeita à adjudicação independente; se equivalentes nas quatro dimensões, reter o redundante sem inventar novo OP."
+      },
+      "claimIds": [
+        "MEST_PROGNOSIS",
+        "T_EXTENT",
+        "MEST_NO_AUTO_THERAPY"
+      ],
+      "priorCandidateHash": "9455e6e16e8bde218f6b1cb2c0f49d20880c3d423e2d80c102b5818eeee962a0"
+    },
+    {
+      "qid": "795d4589",
+      "originalHash": "5d2b0720f8600289b8d73c479bc3154e4812fd948ecd63d5215237918155d7d5",
+      "candidate": {
+        "t": "IgAN Prediction Tool — Prognóstico, não Resposta Terapêutica",
+        "qid": "795d4589",
+        "q": "Em adulto com nefropatia por imunoglobulina A (IgA) primária confirmada por biópsia, qual é a principal finalidade do International IgAN Prediction Tool?",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "barbour_igan_prediction_2019"
+        ],
+        "opts": [
+          "Estimar o risco de progressão renal combinando dados clínicos e histológicos",
+          "Estimar a resposta à imunossupressão a partir das lesões inflamatórias na biópsia",
+          "Estabelecer o diagnóstico da doença combinando IgA sérica, hematúria e proteinúria",
+          "Determinar o intervalo definitivo de seguimento a partir do risco calculado na biópsia"
+        ],
+        "ans": 0,
+        "exp": "A ferramenta estima risco de queda de 50% da taxa de filtração glomerular estimada (TFGe) ou falência renal e auxilia a discussão do prognóstico. Nos modelos originais na biópsia, entram dados clínicos e os componentes de hipercelularidade mesangial, hipercelularidade endocapilar, esclerose segmentar e atrofia tubular/fibrose intersticial (MEST). Crescentes são registrados no laudo atualizado de Oxford, mas não compõem esses modelos originais. A diretriz reúne versões da ferramenta para momentos definidos na biópsia ou após ela. O cálculo não diagnostica a doença, não define um seguimento imutável e não foi validado para prever resposta ou selecionar uma terapia específica.",
+        "diff": "easy",
+        "cat": "glomerular"
+      },
+      "status": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW",
+      "authorAssessment": {
+        "qid": "795d4589",
+        "originalHash": "5d2b0720f8600289b8d73c479bc3154e4812fd948ecd63d5215237918155d7d5",
+        "op": "Usar IgAN Prediction Tool para prognóstico sem prever resposta a tratamento específico.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "storedDifficulty": "hard",
+        "subgroup": "Diagnóstico, patologia e prognóstico",
+        "queuePriority": true,
+        "lengthRatio": 2.0125,
+        "status": "FIRST_SUBGROUP_AUTHORING",
+        "classificationRationale": "Recupera ou explica um conceito, mecanismo ou limite; a redação longa e o nome de uma terapia não justificam hard.",
+        "potentialIssues": [],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Diagnóstico, patologia e estratificação de risco na nefropatia por IgA",
+        "finalDifficultyProposed": "easy",
+        "identity": "Preservados conceito discriminante, competência, raciocínio central, qid e gabarito-conceito; confirmação independente do Handbook §18.5 ainda necessária.",
+        "distractorErrors": [
+          null,
+          "Confundir prognóstico com predição de resposta a uma terapia.",
+          "Substituir diagnóstico histológico por dados clínico-séricos.",
+          "Tratar risco basal como regra definitiva de acompanhamento."
+        ],
+        "advocate": "Risco prognóstico pode informar discussão terapêutica, mas não é predição de resposta a imunossupressão. A opção A não promete seleção de fármaco. Conferidos endpoint e MEST no primário; divergência da narrativa KDIGO registrada.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 2
+        },
+        "provisionalScore": 19
+      },
+      "extraNotes": [
+        "A narrativa KDIGO 2025 S33 cita MEST-C, mas a Figura 1 lista MEST. O primário Barbour 2019 confirma MEST sem C nos modelos originais. A divergência foi registrada no mapa, sem ocultar o texto da diretriz.",
+        "Foi retirado o horizonte genérico de sete anos para não confundir a validação original com versões posteriores reunidas na diretriz; endpoint e OP foram preservados."
+      ],
+      "candidateHash": "d02917c1509c4564603250eb8d005e86ed8e2dc204597812eeae604afb034e57",
+      "changedFields": [
+        "q",
+        "refs",
+        "opts",
+        "exp",
+        "diff"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "barbour_igan_prediction_2019",
+          "referenceHash": "ccd87a4d44940d2715bc8158d92d560d0fee9e97b47691f1ce2380d048fb30a7",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE"
+        }
+      ],
+      "metrics": {
+        "before": {
+          "chars": [
+            161,
+            64,
+            70,
+            80
+          ],
+          "words": {
+            "correct": 26,
+            "maxDistractor": 11,
+            "ratioVsMaxDistractor": 2.3636363636363638,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 161,
+            "maxDistractor": 80,
+            "ratioVsMaxDistractor": 2.0125,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        },
+        "after": {
+          "chars": [
+            76,
+            81,
+            82,
+            86
+          ],
+          "words": {
+            "correct": 11,
+            "maxDistractor": 13,
+            "ratioVsMaxDistractor": 0.8461538461538461,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 3
+          },
+          "characters": {
+            "correct": 76,
+            "maxDistractor": 86,
+            "ratioVsMaxDistractor": 0.8837209302325582,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": true,
+            "correctRankDescending": 4
+          }
+        }
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "publication": "BLOQUEADA",
+        "problem": "A correta concentra extensão, qualificação ou justificativa que as demais não têm; revisar forma e plausibilidade sem remover condições decisivas."
+      },
+      "claimIds": [
+        "PRED_MODEL",
+        "PRED_LIMIT"
+      ],
+      "priorCandidateHash": "1a1bc380b5c4fd86b586b1c435e5de7b94c256a48c3479d8a87e8cf2a653f206"
+    },
+    {
+      "qid": "5e5b8558",
+      "originalHash": "2c9ac7475d900cf788faa10dc9e11ff74fe09fe56a801844644871accfbfcdec",
+      "candidate": {
+        "qid": "5e5b8558",
+        "q": "Adulto jovem apresenta hematúria macroscópica recorrente durante ou até dois dias após infecções de vias aéreas, com proteinúria persistente de 0,7 g/d entre os episódios. A imunoglobulina A (IgA) sérica é normal. Qual interpretação e próximo passo são mais apropriados?",
+        "opts": [
+          "Suspeitar de nefropatia por IgA e considerar biópsia renal na investigação da proteinúria",
+          "Suspeitar de glomerulonefrite pós-infecciosa e usar a curta latência para dispensar biópsia",
+          "Suspeitar de doença da membrana basal fina e atribuir a proteinúria à hematúria recorrente",
+          "Suspeitar de nefropatia por IgA e usar a dosagem sérica normal para encerrar a investigação"
+        ],
+        "ans": 0,
+        "exp": "Hematúria visível junto ou logo após uma infecção de mucosa é uma apresentação sugestiva de nefropatia por IgA, chamada sinfaringítica. O padrão não basta para confirmar a doença, e IgA sérica normal não a exclui: não existe biomarcador sérico ou urinário validado para substituir o diagnóstico por biópsia. A KDIGO orienta considerar biópsia em adulto com possibilidade dessa doença e proteinúria de pelo menos 0,5 g/d, se não houver contraindicação, além de investigar causas secundárias. Recorrência e curta latência também não comprovam doença da membrana basal fina ou glomerulonefrite pós-infecciosa nem justificam ignorar proteinúria persistente.",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "rodrigues_haas_reich_igan_2017"
+        ],
+        "cat": "glomerular",
+        "diff": "medium",
+        "t": "IgAN — Hematúria Sinfaringítica e Confirmação"
+      },
+      "status": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW",
+      "authorAssessment": {
+        "qid": "5e5b8558",
+        "originalHash": "2c9ac7475d900cf788faa10dc9e11ff74fe09fe56a801844644871accfbfcdec",
+        "op": "Reconhecer apresentação sinfaringítica sugestiva de IgAN sem substituir confirmação histológica e avaliação de risco.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "storedDifficulty": "medium",
+        "subgroup": "Diagnóstico, patologia e prognóstico",
+        "queuePriority": true,
+        "lengthRatio": 1.922077922077922,
+        "status": "FIRST_SUBGROUP_AUTHORING",
+        "classificationRationale": "Aplica/integra dados ou interpreta limites de evidência, sem depender de raridade de fármaco para definir dificuldade.",
+        "potentialIssues": [],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Diagnóstico, patologia e estratificação de risco na nefropatia por IgA",
+        "finalDifficultyProposed": "medium",
+        "identity": "Preservados conceito discriminante, competência, raciocínio central, qid e gabarito-conceito; confirmação independente do Handbook §18.5 ainda necessária.",
+        "distractorErrors": [
+          null,
+          "Usar a latência curta como prova de diagnóstico pós-infeccioso e dispensar avaliação histológica.",
+          "Presumir etiologia pela recorrência e desconsiderar proteinúria persistente.",
+          "Usar marcador sérico não validado para excluir a doença."
+        ],
+        "advocate": "O fenótipo sinfaringítico não confirma a doença; proteinúria persistente torna a investigação relevante. Dosagem sérica normal não exclui a hipótese. Considerar biópsia respeita contraindicações, sem impor procedimento automático.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 2
+        },
+        "provisionalScore": 19
+      },
+      "extraNotes": [
+        "IgA sérica normal foi acrescentada ao caso para explicitar o uso incorreto do marcador que já constava como distrator original. O OP continua reconhecer o padrão sinfaringítico sem substituir confirmação histológica; a identidade precisa de contraprova.",
+        "Não foi alegada leitura do Brenner. A referência foi substituída por revisão aberta específica de apresentação e fisiopatologia, junto da diretriz atual."
+      ],
+      "candidateHash": "07789df21e4f1c63d614daf7cee1767ccb4755ae4f3d6d2d907b31b543366c50",
+      "changedFields": [
+        "q",
+        "opts",
+        "exp",
+        "refs"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "rodrigues_haas_reich_igan_2017",
+          "referenceHash": "00163f00b6450e568835e35b346eb60191c6dca4a14157026ec61835f0256376",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE"
+        }
+      ],
+      "metrics": {
+        "before": {
+          "chars": [
+            148,
+            77,
+            63,
+            60
+          ],
+          "words": {
+            "correct": 19,
+            "maxDistractor": 11,
+            "ratioVsMaxDistractor": 1.7272727272727273,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 148,
+            "maxDistractor": 77,
+            "ratioVsMaxDistractor": 1.922077922077922,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        },
+        "after": {
+          "chars": [
+            89,
+            91,
+            90,
+            91
+          ],
+          "words": {
+            "correct": 13,
+            "maxDistractor": 15,
+            "ratioVsMaxDistractor": 0.8666666666666667,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 3
+          },
+          "characters": {
+            "correct": 89,
+            "maxDistractor": 91,
+            "ratioVsMaxDistractor": 0.978021978021978,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": true,
+            "correctRankDescending": 4
+          }
+        }
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "publication": "BLOQUEADA",
+        "problem": "A correta concentra extensão, qualificação ou justificativa que as demais não têm; revisar forma e plausibilidade sem remover condições decisivas."
+      },
+      "claimIds": [
+        "SYNPHARYNGITIC",
+        "DIAG_BIOPSY",
+        "IGA_SEROLOGY",
+        "IGA_SECONDARY"
+      ],
+      "priorCandidateHash": "07789df21e4f1c63d614daf7cee1767ccb4755ae4f3d6d2d907b31b543366c50"
+    },
+    {
+      "qid": "26804856",
+      "originalHash": "1ccce85c48a91c66b1f7595bcca91c045e59e08b8b593b21ab7fd15bc6793b04",
+      "candidate": {
+        "t": "IgAN — Interpretação da Imunofluorescência",
+        "qid": "26804856",
+        "q": "Adulto com hematúria glomerular e proteinúria é submetido a biópsia renal. A imunofluorescência mostra depósitos mesangiais predominantes de imunoglobulina A (IgA), acompanhados do componente C3 do complemento, e a microscopia óptica demonstra proliferação mesangial. Qual é a interpretação mais adequada?",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "rodrigues_haas_reich_igan_2017"
+        ],
+        "opts": [
+          "Nefropatia por IgA primária, definida pelo predomínio mesangial sem depender de investigação clínica",
+          "Padrão compatível com nefropatia por IgA, com etiologia a definir pela correlação clinicopatológica",
+          "Glomerulopatia C3, definida pela presença de C3 mesmo quando a IgA é o depósito predominante",
+          "Nefropatia membranosa, definida por depósitos granulares que devem ocupar o espaço subepitelial"
+        ],
+        "ans": 1,
+        "exp": "Depósitos glomerulares de IgA predominantes ou codominantes, em geral mesangiais, são o padrão característico da nefropatia por IgA. C3 pode acompanhar esses depósitos e não transforma o caso, isoladamente, em glomerulopatia C3. A interpretação reúne microscopia óptica, imunofluorescência, microscopia eletrônica e dados clínicos. Ainda é necessário avaliar causas secundárias e diagnósticos próximos, como vasculite por IgA, cirrose, infecções virais, doença inflamatória intestinal e glomerulonefrite relacionada à infecção com IgA dominante. Depósito granular não é sinônimo de localização subepitelial nem define nefropatia membranosa.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "status": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW",
+      "authorAssessment": {
+        "qid": "26804856",
+        "originalHash": "1ccce85c48a91c66b1f7595bcca91c045e59e08b8b593b21ab7fd15bc6793b04",
+        "op": "Interpretar depósitos mesangiais IgA predominantes com C3 sem concluir etiologia primária automaticamente.",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "storedDifficulty": "medium",
+        "subgroup": "Diagnóstico, patologia e prognóstico",
+        "queuePriority": false,
+        "lengthRatio": 1.2589285714285714,
+        "status": "FIRST_SUBGROUP_AUTHORING",
+        "classificationRationale": "Aplica/integra dados ou interpreta limites de evidência, sem depender de raridade de fármaco para definir dificuldade.",
+        "potentialIssues": [],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Diagnóstico, patologia e estratificação de risco na nefropatia por IgA",
+        "finalDifficultyProposed": "medium",
+        "identity": "Preservados conceito discriminante, competência, raciocínio central, qid e gabarito-conceito; confirmação independente do Handbook §18.5 ainda necessária.",
+        "distractorErrors": [
+          "Presumir etiologia primária pelo padrão de depósito, sem pesquisar causas secundárias.",
+          null,
+          "Confundir presença de C3 com predomínio diagnóstico de C3.",
+          "Confundir textura granular com localização subepitelial e etiologia membranosa."
+        ],
+        "advocate": "IgA predominante com C3 pode ser doença primária ou secundária; não foi fornecido dado que dispense a correlação clínica. Presença de C3 não equivale a predomínio de C3. Não impor microscopia eletrônica como único método diagnóstico.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 2
+        },
+        "provisionalScore": 19
+      },
+      "extraNotes": [],
+      "candidateHash": "add6b7d47d807adb7fc11b65f4027838a169a5e5e6216b9788caf83cb397797d",
+      "changedFields": [
+        "q",
+        "refs",
+        "opts",
+        "exp"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "rodrigues_haas_reich_igan_2017",
+          "referenceHash": "00163f00b6450e568835e35b346eb60191c6dca4a14157026ec61835f0256376",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE"
+        }
+      ],
+      "metrics": {
+        "before": {
+          "chars": [
+            112,
+            141,
+            87,
+            103
+          ],
+          "words": {
+            "correct": 22,
+            "maxDistractor": 16,
+            "ratioVsMaxDistractor": 1.375,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 141,
+            "maxDistractor": 112,
+            "ratioVsMaxDistractor": 1.2589285714285714,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        },
+        "after": {
+          "chars": [
+            100,
+            99,
+            92,
+            95
+          ],
+          "words": {
+            "correct": 13,
+            "maxDistractor": 15,
+            "ratioVsMaxDistractor": 0.8666666666666667,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 2
+          },
+          "characters": {
+            "correct": 99,
+            "maxDistractor": 100,
+            "ratioVsMaxDistractor": 0.99,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 2
+          }
+        }
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "publication": "BLOQUEADA",
+        "problem": "A correta concentra extensão, qualificação ou justificativa que as demais não têm; revisar forma e plausibilidade sem remover condições decisivas."
+      },
+      "claimIds": [
+        "IGA_IF",
+        "IGA_SECONDARY"
+      ],
+      "priorCandidateHash": "add6b7d47d807adb7fc11b65f4027838a169a5e5e6216b9788caf83cb397797d"
+    },
+    {
+      "qid": "12328a3e",
+      "originalHash": "88bc8cc717729dd6951d4558e9242d9e6bdd231851a60ec31e4815fc91444111",
+      "candidate": {
+        "t": "IgAN — Lesão T na Classificação MEST-C",
+        "qid": "12328a3e",
+        "q": "Na biópsia de um adulto com nefropatia por imunoglobulina A (IgA), atrofia tubular e fibrose intersticial ocupam aproximadamente 35% da área cortical. Como esse achado deve ser registrado e interpretado na classificação de Oxford?",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "rodrigues_haas_reich_igan_2017"
+        ],
+        "opts": [
+          "T1: comprometimento de 26–50% do córtex, indicando dano tubulointersticial crônico",
+          "T2: comprometimento acima de 25% do córtex, indicando a maior faixa de extensão",
+          "M1: lesão mesangial quantificada pelo percentual de atrofia e fibrose cortical",
+          "C1: crescente fibrocelular quantificada pela extensão da fibrose intersticial"
+        ],
+        "ans": 0,
+        "exp": "A lesão de atrofia tubular/fibrose intersticial é registrada pelo componente T da classificação de Oxford. Envolvimento de 26–50% do córtex corresponde a T1; acima de 50%, a T2. Assim, 35% é T1 e expressa dano crônico com valor prognóstico. M refere-se a hipercelularidade mesangial, e C a crescentes celulares ou fibrocelulares; nenhum deles é medido pela extensão de fibrose intersticial. A histologia deve ser integrada à função renal, proteinúria, pressão e evolução clínica, sem converter uma lesão isolada em prescrição automática.",
+        "diff": "easy",
+        "cat": "glomerular"
+      },
+      "status": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW",
+      "authorAssessment": {
+        "qid": "12328a3e",
+        "originalHash": "88bc8cc717729dd6951d4558e9242d9e6bdd231851a60ec31e4815fc91444111",
+        "op": "Classificar 35% de fibrose/atrofia como T1 e interpretar como dano crônico prognóstico.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "easy",
+        "storedDifficulty": "medium",
+        "subgroup": "Diagnóstico, patologia e prognóstico",
+        "queuePriority": false,
+        "lengthRatio": 1.3440860215053763,
+        "status": "FIRST_SUBGROUP_AUTHORING",
+        "classificationRationale": "Classifica uma medida única no intervalo histológico correspondente e distingue compartimentos. O número é um limiar de classificação aplicado, sem integração clínica concorrente; proposta easy, sujeita à adjudicação independente.",
+        "potentialIssues": [
+          "Adjudicar sobreposição comce79d609 sem trocar OP por conveniência."
+        ],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Diagnóstico, patologia e estratificação de risco na nefropatia por IgA",
+        "finalDifficultyProposed": "easy",
+        "identity": "Preservados conceito discriminante, competência, raciocínio central, qid e gabarito-conceito; confirmação independente do Handbook §18.5 ainda necessária.",
+        "distractorErrors": [
+          null,
+          "Deslocar o limite de T2 para 25%, classificando 35% como a maior faixa.",
+          "Confundir componente mesangial com extensão tubulointersticial.",
+          "Equiparar fibrose intersticial a crescente fibrocelular."
+        ],
+        "advocate": "35% está longe dos limites de corte e corresponde a T1. O discriminante é classificar extensão e compartimento, sem transformar a classificação em terapia. Adjudicar variação útil versus ce79d609.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 2
+        },
+        "provisionalScore": 19
+      },
+      "extraNotes": [],
+      "candidateHash": "b400e064283ba1079bbe1c0759076165c90158b83aba656dfa09a43df4941031",
+      "changedFields": [
+        "q",
+        "refs",
+        "opts",
+        "exp",
+        "diff"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "rodrigues_haas_reich_igan_2017",
+          "referenceHash": "00163f00b6450e568835e35b346eb60191c6dca4a14157026ec61835f0256376",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE"
+        }
+      ],
+      "metrics": {
+        "before": {
+          "chars": [
+            125,
+            92,
+            78,
+            93
+          ],
+          "words": {
+            "correct": 20,
+            "maxDistractor": 14,
+            "ratioVsMaxDistractor": 1.4285714285714286,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 125,
+            "maxDistractor": 93,
+            "ratioVsMaxDistractor": 1.3440860215053763,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        },
+        "after": {
+          "chars": [
+            82,
+            79,
+            78,
+            77
+          ],
+          "words": {
+            "correct": 10,
+            "maxDistractor": 13,
+            "ratioVsMaxDistractor": 0.7692307692307693,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 3
+          },
+          "characters": {
+            "correct": 82,
+            "maxDistractor": 79,
+            "ratioVsMaxDistractor": 1.0379746835443038,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        }
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "publication": "BLOQUEADA",
+        "problem": "A correta concentra extensão, qualificação ou justificativa que as demais não têm; revisar forma e plausibilidade sem remover condições decisivas."
+      },
+      "duplicateAudit": {
+        "otherQid": "ce79d609",
+        "sameCompetency": true,
+        "opDistinction": "Uso prognóstico e limite de terapia do laudo completo versus classificação do percentual de lesão T.",
+        "conceptDistinction": "Integração e limite inferencial do escore versus faixa T1 e compartimento histológico.",
+        "reasoningDistinction": "Interpretar M/E/S/T/C e excluir prognóstico ou prescrição automáticos versus aplicar 35% à faixa 26–50%.",
+        "errorDistinction": "Prognóstico zero ou terapia automática versus troca de faixa ou componente.",
+        "authorDisposition": "Variação útil proposta, sujeita à adjudicação independente; se equivalentes nas quatro dimensões, reter o redundante sem inventar novo OP."
+      },
+      "claimIds": [
+        "T_EXTENT",
+        "MEST_PROGNOSIS",
+        "MEST_NO_AUTO_THERAPY"
+      ],
+      "priorCandidateHash": "b400e064283ba1079bbe1c0759076165c90158b83aba656dfa09a43df4941031"
+    },
+    {
+      "qid": "ea37c153",
+      "originalHash": "a5e252630c39635c2156830f410289e690b44acee6f659a2817a73095b253f61",
+      "candidate": {
+        "t": "IgAN — Hipótese Patogênica dos Quatro Hits",
+        "qid": "ea37c153",
+        "q": "Qual sequência descreve o modelo dos quatro eventos (“hits”) na nefropatia por imunoglobulina A (IgA), envolvendo sua subclasse 1 (IgA1)?",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "rodrigues_haas_reich_igan_2017"
+        ],
+        "opts": [
+          "Produção de IgA1 deficiente em galactose → autoanticorpos → imunocomplexos → depósito e lesão mesangial",
+          "Produção de IgA1 deficiente em galactose → autoanticorpos → imunocomplexos → depósito e lesão subepitelial",
+          "Produção de IgA1 deficiente em galactose → depósito mesangial direto → lesão renal → autoanticorpos",
+          "Produção de IgA1 com excesso de galactose → autoanticorpos → imunocomplexos → depósito e lesão mesangial"
+        ],
+        "ans": 0,
+        "exp": "O modelo propõe IgA da subclasse 1 (IgA1) com glicanos deficientes em galactose, seguida por autoanticorpos que reconhecem essa alteração, formação de imunocomplexos circulantes e acúmulo mesangial com ativação celular e lesão glomerular. A alteração da IgA1 isoladamente não explica toda a doença clínica. O modelo não começa por excesso de galactose nem atribui a lesão apenas ao depósito direto de IgA1 antes dos autoanticorpos. A localização característica dos complexos é mesangial, e não subepitelial. Trata-se de um modelo patogênico, sem tornar a dosagem dessas moléculas um substituto validado da biópsia.",
+        "diff": "easy",
+        "cat": "glomerular"
+      },
+      "status": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW",
+      "authorAssessment": {
+        "qid": "ea37c153",
+        "originalHash": "a5e252630c39635c2156830f410289e690b44acee6f659a2817a73095b253f61",
+        "op": "Reconhecer a sequência do modelo de quatro hits da IgAN.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "storedDifficulty": "medium",
+        "subgroup": "Diagnóstico, patologia e prognóstico",
+        "queuePriority": false,
+        "lengthRatio": 1.3628318584070795,
+        "status": "FIRST_SUBGROUP_AUTHORING",
+        "classificationRationale": "Recupera ou explica um conceito, mecanismo ou limite; a redação longa e o nome de uma terapia não justificam hard.",
+        "potentialIssues": [
+          "Explicação original menciona IgA3, ausente dos distratores; remover discussão fantasma se houver patch."
+        ],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Diagnóstico, patologia e estratificação de risco na nefropatia por IgA",
+        "finalDifficultyProposed": "easy",
+        "identity": "Preservados conceito discriminante, competência, raciocínio central, qid e gabarito-conceito; confirmação independente do Handbook §18.5 ainda necessária.",
+        "distractorErrors": [
+          null,
+          "Trocar localização mesangial por subepitelial.",
+          "Reduzir o modelo a lesão por depósito direto e inverter a posição dos autoanticorpos.",
+          "Inverter a alteração de glicosilação: excesso em vez de deficiência de galactose."
+        ],
+        "advocate": "Pergunta o modelo de quatro eventos, sem apresentar uma sequência universal demonstrada em cada paciente. IgA1 alterada isolada não explica a doença; o ensaio mecanístico não valida teste clínico diagnóstico.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 2
+        },
+        "provisionalScore": 19
+      },
+      "extraNotes": [
+        "Foram removidos distratores etiologicamente distantes e a discussão de IgA3 que não correspondia às opções. Os erros finais testam localização, necessidade dos autoanticorpos e direção da alteração de glicosilação.",
+        "O quarto evento inclui depósito e lesão, explicitado em A/B/D. Em C, o erro é colocar depósito direto e lesão antes de autoanticorpos."
+      ],
+      "candidateHash": "37cc8c5109d8d3b325dc64c2dab07debd7d5f3cc515b69aa7fbc9513ba562c02",
+      "changedFields": [
+        "q",
+        "refs",
+        "opts",
+        "exp",
+        "diff"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "rodrigues_haas_reich_igan_2017",
+          "referenceHash": "00163f00b6450e568835e35b346eb60191c6dca4a14157026ec61835f0256376",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE"
+        }
+      ],
+      "metrics": {
+        "before": {
+          "chars": [
+            154,
+            112,
+            105,
+            113
+          ],
+          "words": {
+            "correct": 21,
+            "maxDistractor": 17,
+            "ratioVsMaxDistractor": 1.2352941176470589,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 154,
+            "maxDistractor": 113,
+            "ratioVsMaxDistractor": 1.3628318584070795,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        },
+        "after": {
+          "chars": [
+            103,
+            106,
+            99,
+            104
+          ],
+          "words": {
+            "correct": 15,
+            "maxDistractor": 16,
+            "ratioVsMaxDistractor": 0.9375,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 2
+          },
+          "characters": {
+            "correct": 103,
+            "maxDistractor": 106,
+            "ratioVsMaxDistractor": 0.9716981132075472,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 3
+          }
+        }
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "publication": "BLOQUEADA",
+        "problem": "A correta concentra extensão, qualificação ou justificativa que as demais não têm; revisar forma e plausibilidade sem remover condições decisivas."
+      },
+      "claimIds": [
+        "FOUR_HITS",
+        "IGA_SEROLOGY"
+      ],
+      "priorCandidateHash": "37cc8c5109d8d3b325dc64c2dab07debd7d5f3cc515b69aa7fbc9513ba562c02"
+    }
+  ],
+  "noAppWrites": true,
+  "priorCandidateFile": "igan-candidates-A2.json",
+  "priorCandidateFileSha256": "7a6a4eed0593e87601ce534b9f3c9b4bcd055f7a41b979231277944e5d03148a",
+  "changeFromA1": "Objetos clínicos dos seis candidatos byte-idênticos à A1; apenas binding do novo hash técnico do card Rodrigues e versionamento dos artefatos.",
+  "changeFromA2": "Somente o enunciado795d4589explicita população primária; cardBarbourdelimita primária/idiopática. Nenhuma opção,gabarito,explicação,OPou classificação foi alterada. A2preservada."
+}

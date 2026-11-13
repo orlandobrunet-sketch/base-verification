@@ -1,0 +1,450 @@
+{
+  "schema": 1,
+  "version": "A2-root",
+  "reviewer": "/root",
+  "reviewDate": "2026-11-13",
+  "authority": "Revisão formal por revisar-nefroquest v2; fonte normativa canônica e contrato de lote. Este arquivo registra juízo clínico independente, não aprovação por script.",
+  "norms": [
+    {
+      "file": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "file": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "file": "docs/editorial/annex-c-nefrologia.md",
+      "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    },
+    {
+      "file": ".claude/skills/revisar-nefroquest/SKILL.md",
+      "sha256": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef"
+    }
+  ],
+  "originalFile": "hd-access-original-5.json",
+  "originalFileSha256": "40c6484b3ac97ccd24393ff97e90556875d86ad462743d7d227fc8ce39c580ce",
+  "candidateFile": "hd-access-candidates-A2.json",
+  "candidateFileHash": "3b92c42261c465fb6246af239ee3d744f2fcf82faecd555d1da5c49f8d03bd99",
+  "independentClassificationFile": "hd-access-independent-classification-root.json",
+  "independentClassificationSha256": "acdb4491018373cdd7f30ba82a16f617071dde6a75f5ea917f5204e02393bfb4",
+  "evidenceFile": "hd-access-independent-evidence-root.json",
+  "evidenceFileSha256": "30009cb24eba5bf4d80d5d55135bba8797dee1ed4e1936aa28daaffc6d73eb77",
+  "priorVersion": {
+    "file": "hd-access-candidates-A1.json",
+    "sha256": "ba05f54ff8c07a888bc361365174b967544438f68e1b6456458f1a94618c9baa",
+    "publication": "BLOQUEADA",
+    "reason": "Pistas negativas nos distratores, rótulo680incompatível com classificações cegas e faixa de duração sem delimitar nativa/prótese. SomenteA2foi liberada."
+  },
+  "counts": {
+    "reviewed": 5,
+    "approved": 5,
+    "changed": 5,
+    "verified": 3,
+    "partiallyVerifiedNonDecisive": 2
+  },
+  "referenceScope": {
+    "changed": false,
+    "newCards": [],
+    "existing": [
+      {
+        "id": "lok_kdoqi_2020",
+        "hash": "056f436a88ee77defbf789047cb234bbe3d98e97837dd5f0d0bc1c3001dac16c"
+      },
+      {
+        "id": "idsa_crbsi_2009",
+        "hash": "3ce1fffdbda7de9a128b073e473f2f7ce3b6d62fa3dd7da545f1352461ecacb6"
+      },
+      {
+        "id": "esc_endocarditis_2023",
+        "hash": "5b44e319278b72309897cafa6e463701c57ee42fc39f51eff8f9bd934b9d9668"
+      }
+    ],
+    "note": "Nenhum card novo ou alterado. Metadado ARCHIVED daIDSA foi confirmado literalmente; fontes atuais e erratumKDOQI foram efetivamente lidos. Limitação da primeira correçãoIDSA é explícita e não decisiva."
+  },
+  "duplicateAssessment": "Contraprova nos741itens: busca por alteplase,bainha de fibrina,isquemia relacionada ao acesso,citrato4% e bacteremiaS.aureus localizou apenas estes cinco. Competência/conceito/caminho/contexto diferem: disfunção,perfusão distal,bacteremia sem foco profundo demonstrado,endocardite com foco e mecanismo do lock. Não são cinco paráfrases do mesmo OP.",
+  "derivation": "Somente a combinação VERIFICADA/NENHUMA ou PARCIALMENTE VERIFICADA/NÃO DECISIVA, com veredito de aprovação e sem pendência decisiva, deriva LIBERADA. Não se usa tamanho como critério de publicação.",
+  "items": [
+    {
+      "qid": "d314fb0a",
+      "originalHash": "11bb0968766e91365af3f9310e552098d0d7d20cfd960f66ee4974476fb2dde2",
+      "candidateHash": "46145e346c784561cf4d14ff7f49e2f9c25ece8f27724889d206d6221acf95bf",
+      "candidate": {
+        "t": "Hemodiálise — Disfunção do Cateter Tunelizado",
+        "qid": "d314fb0a",
+        "q": "Paciente em hemodiálise por cateter venoso central tunelizado apresentava fluxo sanguíneo adequado, mas agora não alcança o fluxo prescrito. Reposicionamento, lavagem com solução salina e inversão temporária dos lúmens não restauraram a função. Não há sinais de infecção. Qual é a próxima conduta mais apropriada?",
+        "refs": [
+          "lok_kdoqi_2020"
+        ],
+        "opts": [
+          "Instilar alteplase em cada lúmen do cateter para recuperar o fluxo",
+          "Iniciar anticoagulação sistêmica para tratar a provável obstrução",
+          "Trocar o cateter tunelizado por um cateter temporário em outro sítio",
+          "Reduzir permanentemente o fluxo prescrito para manter o cateter atual"
+        ],
+        "ans": 0,
+        "exp": "Após falha das manobras conservadoras, a Kidney Disease Outcomes Quality Initiative (KDOQI) recomenda trombolítico intraluminal para disfunção do cateter atribuível a trombose. Quando se usa alteplase, a diretriz sugere 2 mg em cada lúmen em preferência a 1 mg, por permanência (dwell) ou instilação fracionada (push), conforme protocolo. Não se trata de trombólise sistêmica. Se a função não for restaurada, devem-se investigar causas mecânicas, posição da ponta e bainha de fibrina, considerando intervenção ou troca. Anticoagulação sistêmica plena e mudança imediata para outro sítio não são a próxima etapa de rotina neste cenário; aceitar fluxo permanentemente inadequado também não resolve a disfunção.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "verdict": "aprovada",
+      "legacy": "REESCREVER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "d314fb0a",
+        "originalHash": "11bb0968766e91365af3f9310e552098d0d7d20cfd960f66ee4974476fb2dde2",
+        "op": "Escolher a próxima intervenção para disfunção de cateter tunelizado de hemodiálise após falha de manobras conservadoras, sem sinais de infecção.",
+        "competence": "manejo de acesso vascular",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "reason": "O comando pede uma decisão sequencial contextualizada; reconhecer alteplase isoladamente não basta, mas não há comparação multietapas de estratégias intervencionistas.",
+        "checks": "Verificar KDOQI atual, indicação intraluminal, dose por lúmen e alternativas mecânicas. Não transformar dose absoluta em administração sistêmica."
+      },
+      "classificationReconciliation": "OP, competência, dados decisivos e conceito correto preservados. Rótulo final coincide com classificação cega root;680mantém hard e691passa a easy pelo mecanismo único, sem alteração do motor adaptativo.",
+      "justification": "A falha de manobras conservadoras no cateter antes funcional sustenta a próxima intervenção intraluminal, sem presumir trombólise sistêmica. Dose e método estão delimitados na explicação. O distrator de aceitar fluxo permanentemente menor é menos exigente, mas representa acomodar a disfunção; não gera segunda melhor resposta.",
+      "adversary": "Considerei posicionamento, fibrina e troca mecânica. O início após função adequada, sem sinal infeccioso e com manobras já tentadas sustenta trombolítico como próxima etapa; a questão não afirma que toda disfunção é trombo nem impõe volume sistêmico. Sem argumento plausível de anulação.",
+      "plausibleAppealRemaining": false,
+      "eliminators": [],
+      "clinicalErrors": [],
+      "namedDistractorErrors": [
+        "Usar anticoagulação sistêmica para problema intraluminal",
+        "Mudar de sítio antes de tratamento local",
+        "Aceitar disfunção permanentemente sem corrigir a causa"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 1,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "Passo0: fatos decisivos conferidos; eventual pendência documental é NÃO DECISIVA. Sem eliminatório, anulação plausível, deriva de OP ou duplicidade. Score18–20 => aprovada;§18.4 deriva LIBERADA para esta versão exata.",
+      "nonDecisiveIssue": null,
+      "verifiedSourceIds": [
+        "KDOQI-VA-2019",
+        "UKKA-VA-2025"
+      ],
+      "identity": "Mesma identidade pedagógica reconhecível, qid e conceito correto. Não foi criado caso novo nem se trocou o raciocínio central para resolver comprimento.",
+      "preserveQid": true,
+      "preserveFSRS": true,
+      "implementation": "Aplicar somente este objeto A2 de hash exato. Preservar avaliações/respostas anteriores com suas versões e cards; nenhuma aprovação acompanha mudança material posterior."
+    },
+    {
+      "qid": "ee80e444",
+      "originalHash": "654a8025f797bcd1daf3c6af86500d0032c5eff5cd5c1920d3638a79ec0cfb24",
+      "candidateHash": "bee838fc152bee9881e7fff647d3f481caa57bf4665ab07e1e639a25f1b624d0",
+      "candidate": {
+        "t": "Hemodiálise — Isquemia da Mão Relacionada ao Acesso",
+        "qid": "ee80e444",
+        "q": "Pessoa em hemodiálise com fístula arteriovenosa apresenta mão ipsilateral fria, dor durante as sessões, redução do pulso digital e pressão digital diminuída. O fluxo do acesso é elevado. Qual é a conduta mais apropriada?",
+        "refs": [
+          "lok_kdoqi_2020"
+        ],
+        "opts": [
+          "Ajustar a temperatura do dialisato e reduzir a ultrafiltração nas sessões",
+          "Indicar ligadura da fístula como tratamento inicial da isquemia",
+          "Encaminhar para avaliação vascular urgente e correção conforme o mecanismo",
+          "Iniciar anticoagulação sistêmica para tratar trombose arterial distal"
+        ],
+        "ans": 2,
+        "exp": "A associação de mão fria, dor nas sessões e redução da perfusão digital é compatível com isquemia relacionada ao acesso arteriovenoso. O fluxo alto não a exclui: pode contribuir para o desvio de sangue da circulação distal. A Kidney Disease Outcomes Quality Initiative (KDOQI) orienta encaminhamento urgente a profissional com experiência em acesso vascular; a necessidade e a urgência da intervenção dependem da gravidade. A avaliação deve procurar alto fluxo, estenose de influxo e anatomia relevante. Redução de fluxo pode ser apropriada quando esse é o mecanismo; outras técnicas de correção ou revascularização podem preservar o acesso. Ligadura é uma opção para situações graves ou sem alternativa adequada, e não um passo automático antes dessa avaliação. O quadro não demonstra embolia como causa para anticoagular empiricamente.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "verdict": "aprovada",
+      "legacy": "REESCREVER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "ee80e444",
+        "originalHash": "654a8025f797bcd1daf3c6af86500d0032c5eff5cd5c1920d3638a79ec0cfb24",
+        "op": "Reconhecer isquemia relacionada ao acesso arteriovenoso sintomático de alto fluxo e encaminhar para avaliação vascular e correção individualizada.",
+        "competence": "reconhecimento de complicação e prioridade de manejo do acesso",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "reason": "Exige integrar sintomas e perfusão digital para encaminhamento apropriado, sem anatomia suficiente para eleger uma operação específica.",
+        "checks": "Distinguir sintoma apenas dialítico de ameaça ao membro; não impor ligadura ou técnica específica universalmente. Evitar distratores obviamente absurdos."
+      },
+      "classificationReconciliation": "OP, competência, dados decisivos e conceito correto preservados. Rótulo final coincide com classificação cega root;680mantém hard e691passa a easy pelo mecanismo único, sem alteração do motor adaptativo.",
+      "justification": "A2 substitui as pistas de imprudência por condutas reconhecíveis. Dor dialítica e perfusão digital reduzida com acesso de alto fluxo exigem avaliação vascular; o caso não fornece anatomia ou ameaça ao membro para eleger ligadura inicial. Ajustar a sessão isoladamente não resolve a investigação do mecanismo.",
+      "adversary": "Testei tratamento conservador de steal leve e ligadura na ameaça ao membro. Os dados não descrevem apenas mão fria assintomática nem dor de repouso/necrose; encaminhar urgentemente não equivale a operar imediatamente. Anticoagular pressupõe trombose arterial não demonstrada. Uma melhor resposta.",
+      "plausibleAppealRemaining": false,
+      "eliminators": [],
+      "clinicalErrors": [],
+      "namedDistractorErrors": [
+        "Atribuir toda isquemia à tolerância dialítica",
+        "Ligar acesso antes de individualizar a correção",
+        "Tratar suposta trombose arterial sem evidência"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Passo0: fatos decisivos conferidos; eventual pendência documental é NÃO DECISIVA. Sem eliminatório, anulação plausível, deriva de OP ou duplicidade. Score18–20 => aprovada;§18.4 deriva LIBERADA para esta versão exata.",
+      "nonDecisiveIssue": null,
+      "verifiedSourceIds": [
+        "KDOQI-VA-2019",
+        "UKKA-VA-2025"
+      ],
+      "identity": "Mesma identidade pedagógica reconhecível, qid e conceito correto. Não foi criado caso novo nem se trocou o raciocínio central para resolver comprimento.",
+      "preserveQid": true,
+      "preserveFSRS": true,
+      "implementation": "Aplicar somente este objeto A2 de hash exato. Preservar avaliações/respostas anteriores com suas versões e cards; nenhuma aprovação acompanha mudança material posterior."
+    },
+    {
+      "qid": "9fadb7da",
+      "originalHash": "33cfcda53d3cd15226c2c122db173ad9924ef60b9cf58be08e0fc8811c7ed3ce",
+      "candidateHash": "d8c348173abab454e230dc8bfa9411b808a7f075be7447d2c1fafd41f432b2b8",
+      "candidate": {
+        "t": "Hemodiálise — Bacteremia por Staphylococcus aureus e Cateter",
+        "qid": "9fadb7da",
+        "q": "Paciente em hemodiálise por cateter tunelizado apresenta febre e hemoculturas positivas para Staphylococcus aureus. O ecocardiograma transesofágico inicial não mostra endocardite. Qual estratégia é mais apropriada?",
+        "refs": [
+          "idsa_crbsi_2009",
+          "lok_kdoqi_2020"
+        ],
+        "opts": [
+          "Tratar com antibiótico e lock, preservando o cateter após ecocardiograma inicial negativo",
+          "Tratar por via sistêmica, remover o cateter e definir a duração com culturas de controle e avaliação de focos",
+          "Trocar o cateter por fio-guia e administrar antibiótico sistêmico por curso prolongado",
+          "Remover o cateter e adotar um curso de 14 dias pelo ecocardiograma inicial negativo"
+        ],
+        "ans": 1,
+        "exp": "Na bacteremia por Staphylococcus aureus, um cateter venoso central pode manter a infecção e deve ser retirado precocemente, salvo contraindicação maior ou impossibilidade de outro acesso, situações que exigem estratégia especializada. Antibiótico sistêmico ativo, hemoculturas de controle e investigação de focos profundos orientam a duração. Um ecocardiograma transesofágico inicial negativo, isoladamente, não define baixo risco nem dispensa documentar a depuração das culturas. Em S. aureus sensível à meticilina (MSSA), um betalactâmico antiestafilocócico, como cefazolina ajustada à hemodiálise, é preferível a manter vancomicina sem contraindicação. Após retirada de cateter infectado, a colocação de novo cateter de longa permanência deve aguardar hemoculturas negativas. Curso curto não deve ser definido apenas pela melhora da febre ou pelo ecocardiograma.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "verdict": "aprovada",
+      "legacy": "REESCREVER",
+      "confidence": "alta",
+      "evidence": "PARCIALMENTE VERIFICADA",
+      "pending": "NÃO DECISIVA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "9fadb7da",
+        "originalHash": "33cfcda53d3cd15226c2c122db173ad9924ef60b9cf58be08e0fc8811c7ed3ce",
+        "op": "Definir a estratégia de controle de fonte e investigação em bacteremia por S. aureus associada a cateter tunelizado, sem presumir baixo risco por ecocardiograma inicialmente negativo.",
+        "competence": "manejo de infecção do acesso e reconhecimento de risco",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "reason": "O caso pede estratégia inicial em contexto de alto risco, não classificar o episódio como não complicado nem definir duração exata sem dados adicionais.",
+        "checks": "Verificar recomendações vigentes de bacteremia por S. aureus e CRBSI, culturas de controle, remoção, novo acesso e limites do TEE. Não fixar duração apenas pelo ecocardiograma."
+      },
+      "classificationReconciliation": "OP, competência, dados decisivos e conceito correto preservados. Rótulo final coincide com classificação cega root;680mantém hard e691passa a easy pelo mecanismo único, sem alteração do motor adaptativo.",
+      "justification": "A conduta não exige afirmar CRBSI comprovada pela simples presença de cateter: a recomendação contemporânea de retirada precoce deCVC emSAB sustenta a estratégia. Antibiótico sistêmico, culturas e busca de focos explicitam o plano. Nenhuma duração é inferida deTEE isolado.",
+      "adversary": "Considerei impossibilidade de novo acesso, exceções de salvamento eTEE falso negativo precoce. Não há essas contraindicações no enunciado; a explicação as delimita. Troca sobre fio-guia não é padrão nesta situação e curso14dias não decorre apenas de ausência de vegetação. Sem segunda alternativa defensável no caso apresentado.",
+      "plausibleAppealRemaining": false,
+      "eliminators": [],
+      "clinicalErrors": [],
+      "namedDistractorErrors": [
+        "Preservar cateter com base apenas no ecocardiograma",
+        "Usar troca sobre fio-guia como padrão paraS.aureus",
+        "Fixar duração sem culturas e avaliação adequada"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 1,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "Passo0: fatos decisivos conferidos; eventual pendência documental é NÃO DECISIVA. Sem eliminatório, anulação plausível, deriva de OP ou duplicidade. Score18–20 => aprovada;§18.4 deriva LIBERADA para esta versão exata.",
+      "nonDecisiveIssue": "O erratum650484 da referência herdadaIDSA2009 não abriu integralmente; apenas primeiro parágrafo indexado. Não é afirmada auditoria integral. Os fatos decisivos estão conferidos em fontes primárias atuais independentes; unidade MIC da correção651933 não está no item. Essa limitação documental não muda conduta, gabarito ou segurança.",
+      "verifiedSourceIds": [
+        "IDSA-CRBSI-2009",
+        "IDSA-2009-current-status",
+        "IDSA-ESCMID-SAB-2026"
+      ],
+      "identity": "Mesma identidade pedagógica reconhecível, qid e conceito correto. Não foi criado caso novo nem se trocou o raciocínio central para resolver comprimento.",
+      "preserveQid": true,
+      "preserveFSRS": true,
+      "implementation": "Aplicar somente este objeto A2 de hash exato. Preservar avaliações/respostas anteriores com suas versões e cards; nenhuma aprovação acompanha mudança material posterior."
+    },
+    {
+      "qid": "68091841",
+      "originalHash": "d7d63467145492fe8194e96f4d4390332761e8bf5b0fd1b66d625182115d3c2e",
+      "candidateHash": "207ebb0aedf788cb47969bd681124844ce5b649d99d88f55968ed96fffe09420",
+      "candidate": {
+        "t": "Hemodiálise — Bacteremia Persistente e Endocardite Mitral",
+        "qid": "68091841",
+        "q": "Paciente em hemodiálise mantém febre e bacteremia por Staphylococcus aureus sensível à meticilina após 72 horas de tratamento. Há fístula arteriovenosa trombosada com suspeita de infecção e o ecocardiograma transesofágico mostra vegetação mitral. Qual é a melhor estratégia?",
+        "refs": [
+          "idsa_crbsi_2009",
+          "esc_endocarditis_2023"
+        ],
+        "opts": [
+          "Usar betalactâmico por 14 dias e reavaliar o acesso apenas se a febre retornar após o tratamento",
+          "Usar betalactâmico intravenoso por curso prolongado, controlar o foco e envolver a equipe de endocardite",
+          "Usar vancomicina por curso prolongado e conservar a fístula, priorizando a conveniência de dose",
+          "Indicar cirurgia mitral imediatamente, adiando a abordagem do acesso até após o procedimento"
+        ],
+        "ans": 1,
+        "exp": "A vegetação mitral identifica endocardite esquerda; bacteremia persistente e suspeita de infecção no acesso exigem procurar e controlar o foco, além de documentar a depuração por hemoculturas. Para Staphylococcus aureus sensível à meticilina (MSSA), um betalactâmico antiestafilocócico intravenoso, ajustado à hemodiálise, é preferível à vancomicina quando não há contraindicação. Na endocardite de válvula nativa por MSSA, o tratamento costuma durar 4 a 6 semanas. Se houver prótese valvar, o regime é distinto e a duração é de pelo menos 6 semanas. A escolha e a duração exatas dependem da válvula, das complicações e da resposta; não se trata de um curso de 14 dias. A equipe de endocardite deve participar precocemente, incluindo avaliação cirúrgica. Persistência da infecção, disfunção valvar, extensão perivalvar, embolias e condições do paciente orientam a decisão, sem tornar cirurgia mitral imediata automática por uma vegetação. Adiar o controle do possível foco no acesso ou conservá-lo apenas por conveniência pode perpetuar a infecção.",
+        "diff": "hard",
+        "cat": "dialise"
+      },
+      "verdict": "aprovada",
+      "legacy": "REESCREVER",
+      "confidence": "alta",
+      "evidence": "PARCIALMENTE VERIFICADA",
+      "pending": "NÃO DECISIVA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "68091841",
+        "originalHash": "d7d63467145492fe8194e96f4d4390332761e8bf5b0fd1b66d625182115d3c2e",
+        "op": "Integrar bacteremia persistente por MSSA, endocardite mitral e possível fonte no acesso para escolher tratamento antimicrobiano adequado, controle de foco e avaliação especializada.",
+        "competence": "manejo de infecção complicada e decisão integrada",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "hard",
+        "reason": "O raciocínio cruza depuração microbiológica, agente sensível, fonte do acesso e comprometimento valvar para um plano integrado. A dificuldade não deriva do comprimento do gabarito ou de siglas.",
+        "checks": "Verificar duração e população nas diretrizes atuais; distinguir discussão cirúrgica de indicação automática. Acessibilidade diagnóstica não substitui controle de fonte."
+      },
+      "classificationReconciliation": "OP, competência, dados decisivos e conceito correto preservados. Rótulo final coincide com classificação cega root;680mantém hard e691passa a easy pelo mecanismo único, sem alteração do motor adaptativo.",
+      "justification": "Plano integrado de MSSA, endocardite esquerda e possível foco no acesso. A2 corrige a faixa de duração para válvula nativa e distingue prótese; não transporta doses de função renal normal àHD. A dificuldade hard final coincide com as duas classificações cegas e não é produzida por comprimento.",
+      "adversary": "O tipo de válvula não foi inventado: o gabarito exige curso prolongado e equipe, sem definir regime fechado. A explicação separa nativa/prótese. Persistência72h não é tratada como cirurgia automática nem como prova de foco exclusivamente valvar. Controle do possível foco no acesso não é ligadura obrigatória. Não restou argumento de anulação.",
+      "plausibleAppealRemaining": false,
+      "eliminators": [],
+      "clinicalErrors": [],
+      "namedDistractorErrors": [
+        "Tratar infecção profunda como episódio curto",
+        "Preferir vancomicina por conveniência emMSSA",
+        "Adiar controle do acesso por indicação cirúrgica automática"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 1,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "Passo0: fatos decisivos conferidos; eventual pendência documental é NÃO DECISIVA. Sem eliminatório, anulação plausível, deriva de OP ou duplicidade. Score18–20 => aprovada;§18.4 deriva LIBERADA para esta versão exata.",
+      "nonDecisiveIssue": "Mesma limitação documental do erratum650484 herdado. AESC integral e o consenso contemporâneo confirmam diretamente os fatos decisivos; não se usa o texto inacessível para criar recomendação nova.",
+      "verifiedSourceIds": [
+        "ESC-IE-2023",
+        "IDSA-CRBSI-2009",
+        "IDSA-ESCMID-SAB-2026"
+      ],
+      "identity": "Mesma identidade pedagógica reconhecível, qid e conceito correto. Não foi criado caso novo nem se trocou o raciocínio central para resolver comprimento.",
+      "preserveQid": true,
+      "preserveFSRS": true,
+      "implementation": "Aplicar somente este objeto A2 de hash exato. Preservar avaliações/respostas anteriores com suas versões e cards; nenhuma aprovação acompanha mudança material posterior."
+    },
+    {
+      "qid": "69177b72",
+      "originalHash": "9c056321197f7073e90f26f56ef8ff84b89680356d2c7e3debb5fc49e9fac4fd",
+      "candidateHash": "6ad9bee588bac042201c7423196a9867ad308ef527c4cfe46013664ba258b116",
+      "candidate": {
+        "t": "Hemodiálise — Mecanismo do Citrato no Bloqueio do Cateter",
+        "qid": "69177b72",
+        "q": "Em um cateter de hemodiálise, por que o citrato a 4% pode ser escolhido como solução de bloqueio em vez de heparina, especialmente quando há preocupação com sangramento?",
+        "refs": [
+          "lok_kdoqi_2020"
+        ],
+        "opts": [
+          "Favorece a lise de fibrina no lúmen, atuando como trombolítico nas obstruções",
+          "Quela cálcio no lúmen e, no volume correto, limita a anticoagulação sistêmica",
+          "Bloqueia a trombina circulante e mantém efeito anticoagulante sistêmico prolongado",
+          "Potencializa a antitrombina no lúmen, reproduzindo o mecanismo da heparina"
+        ],
+        "ans": 1,
+        "exp": "O citrato quela cálcio ionizado, necessário à cascata de coagulação. Como solução de bloqueio no volume correspondente à capacidade do lúmen, atua predominantemente no cateter e pode ser útil quando se deseja limitar a exposição sistêmica à heparina. Não dissolve trombos como a alteplase, não atua como inibidor direto da trombina nem pela potencialização da antitrombina, mecanismo da heparina. A escolha entre citrato e heparina deve ser individualizada; não se pode prometer superioridade universal na prevenção de infecção ou disfunção. Devem-se seguir o volume e as instruções do cateter e da solução, incluindo aspirar o bloqueio antes de usar o acesso quando indicado pelo produto. A solução de lock não deve ser infundida sistemicamente: exposição excessiva ao citrato pode reduzir o cálcio ionizado e causar eventos adversos.",
+        "diff": "easy",
+        "cat": "dialise"
+      },
+      "verdict": "aprovada",
+      "legacy": "REESCREVER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "qid": "69177b72",
+        "originalHash": "9c056321197f7073e90f26f56ef8ff84b89680356d2c7e3debb5fc49e9fac4fd",
+        "op": "Explicar a anticoagulação local por citrato a 4% como solução de bloqueio do cateter e sua relação com menor exposição à heparina.",
+        "competence": "mecanismo e segurança farmacológica do acesso",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "reason": "O comando pede explicar um único mecanismo, sem cálculo, decisão individual ou integração clínica adicional; a preocupação com sangramento não transforma o item em decisão de aplicação.",
+        "checks": "Verificar concentração e recomendação KDOQI, volume de preenchimento, chelação e risco de administração sistêmica. Não equiparar bloqueio a trombólise ou esterilização de biofilme."
+      },
+      "classificationReconciliation": "OP, competência, dados decisivos e conceito correto preservados. Rótulo final coincide com classificação cega root;680mantém hard e691passa a easy pelo mecanismo único, sem alteração do motor adaptativo.",
+      "justification": "A2 contrasta mecanismos farmacológicos reais: chelação, fibrinólise, inibição direta de trombina e antitrombina. Volume e exposição sistêmica estão qualificados; não se promete superioridade universal ou risco zero. Rótulo easy corresponde à compreensão de mecanismo único.",
+      "adversary": "Testei anticoagulação regional contínua, escape sistêmico do lock e ação antimicrobiana. O contexto é explicitamente bloqueio4% e o texto não transfere indicação/dose deRCA; o risco de hipocalcemia é delimitado por exposição excessiva. As instruções do produto e volume do lúmen limitam a afirmação. Uma melhor resposta.",
+      "plausibleAppealRemaining": false,
+      "eliminators": [],
+      "clinicalErrors": [],
+      "namedDistractorErrors": [
+        "Confundir anticoagulação com trombólise",
+        "Atribuir mecanismo de inibidor direto de trombina ao citrato",
+        "Atribuir ao citrato a potencialização da antitrombina pela heparina"
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "Passo0: fatos decisivos conferidos; eventual pendência documental é NÃO DECISIVA. Sem eliminatório, anulação plausível, deriva de OP ou duplicidade. Score18–20 => aprovada;§18.4 deriva LIBERADA para esta versão exata.",
+      "nonDecisiveIssue": null,
+      "verifiedSourceIds": [
+        "KDOQI-VA-2019",
+        "Citrate4-lock-IFU",
+        "FDA-citrate-mechanism",
+        "DailyMed-heparin-mechanism"
+      ],
+      "identity": "Mesma identidade pedagógica reconhecível, qid e conceito correto. Não foi criado caso novo nem se trocou o raciocínio central para resolver comprimento.",
+      "preserveQid": true,
+      "preserveFSRS": true,
+      "implementation": "Aplicar somente este objeto A2 de hash exato. Preservar avaliações/respostas anteriores com suas versões e cards; nenhuma aprovação acompanha mudança material posterior."
+    }
+  ]
+}

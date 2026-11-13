@@ -27,7 +27,7 @@ const snapshot = (page: Page) => page.evaluate(() => (0, eval)(
 async function abrir(page: Page) {
   await page.route('**/*', r => new URL(r.request().url()).hostname === 'localhost' ? r.continue() : r.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
-  await injectGameState(page);
+  await injectGameState(page, {}, { asGuest: true });
   await page.waitForLoadState('load');
   await page.evaluate(() => (0, eval)(`state.equipment.helmet={n:'Elmo do Filtrador Supremo',rar:'legendary',atk:2,def:3,kno:4,luck:5};renderHUD()`));
   if ((page.viewportSize()?.width || 1280) <= 768) {

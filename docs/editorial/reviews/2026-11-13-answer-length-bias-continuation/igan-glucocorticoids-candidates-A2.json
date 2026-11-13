@@ -1,0 +1,506 @@
+{
+  "schema": 1,
+  "batch": "IgAN-glucocorticoids-A2",
+  "createdAt": "2026-11-13T14:21:37.792Z",
+  "originalFile": "igan-glucocorticoids-original.json",
+  "originalFileSha256": "0adfe986d544267deb33e8e10e2d52aade897e8ac209066765e4594afdf6cc82",
+  "stage": "BLOQUEADA; autoria externa sem aplicação",
+  "hashMethod": "SHA256(JSON.stringify(question)) UTF-8",
+  "lengthMethod": "NFC; espaços normalizados; pontos de código; palavras por espaços; não remover desigualdades",
+  "proposedReferenceFiles": [
+    {
+      "file": "igan-glucocorticoids-card-proposals-A1.json",
+      "sha256": "3a1d5410b480109e2448f5e6df69dd05048e5d93c1b828b71b37883b6abca293"
+    }
+  ],
+  "aggregate": {
+    "before": {
+      "n": 3,
+      "uniqueLongestChars": 3,
+      "tiedLongestChars": 0,
+      "uniqueShortestChars": 0,
+      "uniqueLongestWords": 3,
+      "tiedLongestWords": 0,
+      "uniqueShortestWords": 0
+    },
+    "after": {
+      "n": 3,
+      "uniqueLongestChars": 2,
+      "tiedLongestChars": 0,
+      "uniqueShortestChars": 0,
+      "uniqueLongestWords": 1,
+      "tiedLongestWords": 0,
+      "uniqueShortestWords": 0
+    }
+  },
+  "questions": [
+    {
+      "qid": "d81defbb",
+      "originalHash": "c375779e5b4d883252586388304b0541bdb406a90bafc9741fd21b8d68ae2c88",
+      "candidate": {
+        "t": "IgAN — TESTING e Corticoide Sistêmico",
+        "qid": "d81defbb",
+        "q": "Pessoa com nefropatia por imunoglobulina A (IgA) primária em risco de progressão, com nefroproteção otimizada, não tem acesso a Nefecon. Ao discutir metilprednisolona sistêmica segundo a KDIGO 2025, qual síntese é mais adequada?",
+        "refs": [
+          "testing_study",
+          "kdigo_igan_igav_2025"
+        ],
+        "opts": [
+          "Benefício renal com risco de toxicidade; considerar esquema reduzido, profilaxia e seleção individual",
+          "Benefício renal maior com dose plena; preferi-la porque superou o esquema reduzido no TESTING",
+          "Ausência de benefício em função renal; evitar corticoide mesmo após seleção criteriosa de risco",
+          "Benefício renal com risco infeccioso; usar dose reduzida em substituição à profilaxia"
+        ],
+        "ans": 0,
+        "exp": "O TESTING demonstrou benefício no composto de perda de função renal, falência renal ou morte por doença renal, com maior incidência de eventos adversos graves, sobretudo no protocolo de dose plena. As coortes de dose plena e reduzida não foram comparadas diretamente por randomização para estabelecer superioridade entre as doses. Quando Nefecon não está disponível, a KDIGO 2025 sugere esquema sistêmico reduzido com profilaxia e avaliação individual de benefício e toxicidade. A fase de protocolo reduzido usou dose inicial de metilprednisolona de 0,4 mg/kg/dia, máximo 32 mg/dia, seguida de desmame. A profilaxia contra Pneumocystis jirovecii não é substituída pela dose menor. Função renal muito reduzida, diabetes ou prediabetes, obesidade e infecções, entre outros fatores, aumentam o risco; não há indicação automática para toda pessoa que ultrapasse um limiar de proteinúria.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "status": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW",
+      "authorAssessment": {
+        "qid": "d81defbb",
+        "originalHash": "c375779e5b4d883252586388304b0541bdb406a90bafc9741fd21b8d68ae2c88",
+        "op": "Ponderar benefício renal e toxicidade do corticoide sistêmico quando Nefecon não está disponível.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "storedDifficulty": "hard",
+        "subgroup": "Ensaios e segurança de glicocorticoides",
+        "queuePriority": false,
+        "lengthRatio": 1.3865546218487395,
+        "status": "NA_FILA",
+        "classificationRationale": "Integra benefício renal, toxicidade e necessidade de profilaxia em contexto de alternativa terapêutica; Aplicar/medium por decisão com condições, não pelo nome do estudo.",
+        "potentialIssues": [],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Escolha e segurança de glicocorticoides na nefropatia por IgA",
+        "finalDifficultyProposed": "medium",
+        "distractorErrors": [
+          null,
+          "Atribuir superioridade da dose plena a um ensaio que não randomizou diretamente dose plena versus reduzida.",
+          "Confundir TESTING com ausência de benefício funcional ou com resultado de outro ensaio.",
+          "Tratar redução de dose como substituto da profilaxia infecciosa."
+        ],
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "advocate": "Conferir população primária, segurança e limites dos ensaios; não confundir liberação direcionada com efeito exclusivamente tópico ou redução de dose com equivalência randomizada entre protocolos.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 2
+        },
+        "provisionalScore": 19,
+        "identity": "Preservados OP, competência, conceito discriminante, raciocínio e qid; confirmação independente ainda necessária."
+      },
+      "extraNotes": [],
+      "candidateHash": "6cf4876f99e62446840103405c21be571e2818b84c7e6549564fb228f851b3ac",
+      "changedFields": [
+        "q",
+        "opts",
+        "exp",
+        "diff"
+      ],
+      "claimIds": [
+        "TESTING_BENEFIT_HARM",
+        "REDUCED_REGIMEN",
+        "SYSTEMIC_RISK"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "testing_study",
+          "referenceHash": "ece9f584e9a94eaeb21271a34f1b56dea300b20b847ed8405c408354f96d558d",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": "9d029d20900715ac9e677581d494acf058ff69f8546bbf1d027e79ab25995657"
+        },
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "metrics": {
+        "before": {
+          "chars": [
+            165,
+            75,
+            119,
+            68
+          ],
+          "words": {
+            "correct": 24,
+            "maxDistractor": 16,
+            "ratioVsMaxDistractor": 1.5,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 165,
+            "maxDistractor": 119,
+            "ratioVsMaxDistractor": 1.3865546218487395,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        },
+        "after": {
+          "chars": [
+            101,
+            93,
+            95,
+            85
+          ],
+          "characters": {
+            "correct": 101,
+            "maxDistractor": 95,
+            "ratioVsMaxDistractor": 1.063157894736842,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "words": {
+            "correct": 13,
+            "maxDistractor": 14,
+            "ratioVsMaxDistractor": 0.9285714285714286,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 3
+          }
+        }
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "publication": "BLOQUEADA",
+        "problem": "Correta original reunia mais condições e justificativa que os distratores; referências compartilhadas têm reparos materiais próprios. Não retirar qualificadores para fabricar igualdade."
+      }
+    },
+    {
+      "qid": "f7107bc3",
+      "originalHash": "eceb69dc1bd50fb8264a1222d869de0958fdb1c5c17b5268cf35dc3c4d72ac28",
+      "candidate": {
+        "t": "Nefecon — Eixo Intestino-Rim e Curso Limitado",
+        "qid": "f7107bc3",
+        "q": "Em adultos com nefropatia por imunoglobulina A (IgA) primária em risco de progressão, qual afirmação integra corretamente a finalidade da liberação direcionada e o curso de Nefecon estudado no NefIgArd?",
+        "refs": [
+          "nefigard_trial",
+          "kdigo_igan_igav_2025"
+        ],
+        "opts": [
+          "Liberação ileal para modular a imunidade de mucosa; curso de nove meses, sem garantia de resposta permanente",
+          "Liberação ileal para induzir remissão; o protocolo prevê manutenção em dose menor após os nove meses",
+          "Liberação no cólon para modular a imunidade de mucosa; curso de nove meses com reavaliação posterior",
+          "Budesonida de outras formulações intestinais pode reproduzir o regime, com a mesma dose e duração"
+        ],
+        "ans": 0,
+        "exp": "Nefecon é uma formulação específica de budesonida com liberação no íleo terminal, desenhada para atuar no tecido linfoide intestinal e modular a produção de formas patogênicas de IgA e imunocomplexos. O local-alvo é o íleo terminal, e não o cólon. O NefIgArd avaliou 16 mg/dia por nove meses, com suporte otimizado mantido e quinze meses adicionais sem o medicamento do estudo, não manutenção em dose menor no protocolo randomizado. Houve benefício médio frente a placebo, mas isso não significa cura ou manutenção de resposta em cada pessoa: após a suspensão, a proteinúria pode aumentar e a função renal pode voltar a cair. A continuidade do cuidado e a reavaliação são necessárias; o ensaio não valida intercâmbio automático com qualquer formulação de budesonida nem uso indefinido sem revisão.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "status": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW",
+      "authorAssessment": {
+        "qid": "f7107bc3",
+        "originalHash": "eceb69dc1bd50fb8264a1222d869de0958fdb1c5c17b5268cf35dc3c4d72ac28",
+        "op": "Integrar liberação ileal de Nefecon, curso de nove meses e limitação após suspensão.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "medium",
+        "storedDifficulty": "hard",
+        "subgroup": "Nefecon: mecanismo, curso e segurança",
+        "queuePriority": true,
+        "lengthRatio": 1.8476190476190477,
+        "status": "NA_FILA",
+        "classificationRationale": "Integra finalidade da formulação, curso estudado e limite temporal da resposta; Compreender/medium pela combinação de conceitos, sem seleção individual avançada.",
+        "potentialIssues": [],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Escolha e segurança de glicocorticoides na nefropatia por IgA",
+        "finalDifficultyProposed": "medium",
+        "distractorErrors": [
+          null,
+          "Confundir o curso randomizado de nove meses seguido de retirada com protocolo de manutenção em dose menor.",
+          "Confundir liberação ileal direcionada com liberação colônica.",
+          "Presumir intercâmbio com outras formulações intestinais mantendo dose/duração, sem validação do mesmo regime."
+        ],
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "advocate": "Conferir população primária, segurança e limites dos ensaios; não confundir liberação direcionada com efeito exclusivamente tópico ou redução de dose com equivalência randomizada entre protocolos.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 2
+        },
+        "provisionalScore": 19,
+        "identity": "Preservados OP, competência, conceito discriminante, raciocínio e qid; confirmação independente ainda necessária."
+      },
+      "extraNotes": [
+        "Não se afirma ausência total de estudos novos de manutenção ou repetição em2026. O comando e a explicação delimitam o curso randomizadoNefIgArd, sem garantir resposta permanente. Estudos abertos/observacionais e protocolos novos não foram convertidos em manutenção universal.",
+        "Mecanismo é finalidade da formulação, não prova de que todo benefício renal decorra exclusivamente da mucosa intestinal."
+      ],
+      "candidateHash": "105d139d8ac719fe074fd8c4f8d29faa8439315e7b6f2d9eef758b4b23bcd977",
+      "changedFields": [
+        "q",
+        "opts",
+        "exp",
+        "diff"
+      ],
+      "claimIds": [
+        "TARGETED_RELEASE",
+        "NEFIGARD_COURSE",
+        "POST_STOP_RESPONSE",
+        "FORMULATION"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "nefigard_trial",
+          "referenceHash": "19cf1bd6b620b4615c3424862c387cbd850d46704f4b7ce7a119da357b68f361",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": "1278ec121cee8c1537b0a4c935094581a03c70f1d4c6c3c3a64cd959af1ed419"
+        },
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "metrics": {
+        "before": {
+          "chars": [
+            194,
+            95,
+            80,
+            105
+          ],
+          "words": {
+            "correct": 32,
+            "maxDistractor": 17,
+            "ratioVsMaxDistractor": 1.8823529411764706,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 194,
+            "maxDistractor": 105,
+            "ratioVsMaxDistractor": 1.8476190476190477,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        },
+        "after": {
+          "chars": [
+            108,
+            100,
+            100,
+            97
+          ],
+          "characters": {
+            "correct": 108,
+            "maxDistractor": 100,
+            "ratioVsMaxDistractor": 1.08,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "words": {
+            "correct": 17,
+            "maxDistractor": 16,
+            "ratioVsMaxDistractor": 1.0625,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        }
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "publication": "BLOQUEADA",
+        "problem": "Correta original reunia mais condições e justificativa que os distratores; referências compartilhadas têm reparos materiais próprios. Não retirar qualificadores para fabricar igualdade."
+      }
+    },
+    {
+      "qid": "ff676013",
+      "originalHash": "f5ab989fb0ad775d0d7f43932b0df5ab880af2143077dfe22dc15234d78ed56c",
+      "candidate": {
+        "t": "Nefecon — Exposição Sistêmica Residual",
+        "qid": "ff676013",
+        "q": "Pessoa com nefropatia por imunoglobulina A (IgA) primária e prediabetes iniciará Nefecon. Qual orientação de segurança é mais apropriada?",
+        "opts": [
+          "Manter vigilância glicêmica e avaliar riscos de infecção, pois há exposição sistêmica residual",
+          "Dispensar vigilância glicêmica e infecciosa, pois a liberação ileal limita o efeito ao intestino",
+          "Negar o tratamento por prediabetes, considerada contraindicação absoluta à formulação",
+          "Substituir a vigilância clínica pela queda da proteinúria, que confirma ausência de toxicidade"
+        ],
+        "ans": 0,
+        "exp": "A liberação no íleo não elimina a absorção sistêmica da budesonida nem seus possíveis efeitos de glicocorticoide. A KDIGO 2025 considera justificável vigilância glicêmica mais intensa na prediabetes e orienta avaliar infecções latentes, como hepatites virais e tuberculose, antes do tratamento. No NefIgArd, quatro participantes com prediabetes no início evoluíram para diabetes durante os nove meses de Nefecon. Isso exige avaliação individual e acompanhamento, sem tornar a prediabetes uma contraindicação absoluta para todas as pessoas. Queda de proteinúria indica resposta renal, mas não exclui toxicidade metabólica ou infecciosa.",
+        "diff": "easy",
+        "cat": "glomerular",
+        "refs": [
+          "nefigard_trial",
+          "kdigo_igan_igav_2025"
+        ]
+      },
+      "status": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW",
+      "authorAssessment": {
+        "qid": "ff676013",
+        "originalHash": "f5ab989fb0ad775d0d7f43932b0df5ab880af2143077dfe22dc15234d78ed56c",
+        "op": "Orientar segurança do Nefecon em prediabetes sem supor ausência de absorção sistêmica.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "easy",
+        "storedDifficulty": "medium",
+        "subgroup": "Nefecon: mecanismo, curso e segurança",
+        "queuePriority": true,
+        "lengthRatio": 1.530612244897959,
+        "status": "NA_FILA",
+        "classificationRationale": "Aplica uma orientação direta de segurança a prediabetes com uma pista explícita e sem dados concorrentes; Aplicar/easy pela rubrica de comando simples, não pelo tamanho.",
+        "potentialIssues": [],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Escolha e segurança de glicocorticoides na nefropatia por IgA",
+        "finalDifficultyProposed": "easy",
+        "distractorErrors": [
+          null,
+          "Interpretar liberação direcionada como ausência de exposição sistêmica.",
+          "Transformar fator de risco e necessidade de vigilância em contraindicação absoluta.",
+          "Confundir benefício renal com prova de ausência de toxicidade."
+        ],
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "advocate": "Conferir população primária, segurança e limites dos ensaios; não confundir liberação direcionada com efeito exclusivamente tópico ou redução de dose com equivalência randomizada entre protocolos.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 2
+        },
+        "provisionalScore": 19,
+        "identity": "Preservados OP, competência, conceito discriminante, raciocínio e qid; confirmação independente ainda necessária."
+      },
+      "extraNotes": [
+        "Retirada comparação de exposição com glicocorticoide convencional como se houvesse ensaio farmacocinético comparativo noNefIgArd; a afirmação necessária é a persistência de absorção sistêmica e necessidade de vigilância."
+      ],
+      "candidateHash": "d372fa666964f3662973f3966c393c7e4b94b1233b3af10dcb930d948be2c3d6",
+      "changedFields": [
+        "q",
+        "opts",
+        "exp",
+        "diff"
+      ],
+      "claimIds": [
+        "RESIDUAL_EXPOSURE",
+        "PREDIABETES"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "nefigard_trial",
+          "referenceHash": "19cf1bd6b620b4615c3424862c387cbd850d46704f4b7ce7a119da357b68f361",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": "1278ec121cee8c1537b0a4c935094581a03c70f1d4c6c3c3a64cd959af1ed419"
+        },
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "metrics": {
+        "before": {
+          "chars": [
+            150,
+            98,
+            65,
+            78
+          ],
+          "words": {
+            "correct": 20,
+            "maxDistractor": 14,
+            "ratioVsMaxDistractor": 1.4285714285714286,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          },
+          "characters": {
+            "correct": 150,
+            "maxDistractor": 98,
+            "ratioVsMaxDistractor": 1.530612244897959,
+            "correctUniqueLongest": true,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 1
+          }
+        },
+        "after": {
+          "chars": [
+            94,
+            96,
+            85,
+            94
+          ],
+          "words": {
+            "correct": 13,
+            "maxDistractor": 14,
+            "ratioVsMaxDistractor": 0.9285714285714286,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 2
+          },
+          "characters": {
+            "correct": 94,
+            "maxDistractor": 96,
+            "ratioVsMaxDistractor": 0.9791666666666666,
+            "correctUniqueLongest": false,
+            "correctTiedLongest": false,
+            "correctUniqueShortest": false,
+            "correctRankDescending": 2
+          }
+        }
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "publication": "BLOQUEADA",
+        "problem": "Correta original reunia mais condições e justificativa que os distratores; referências compartilhadas têm reparos materiais próprios. Não retirar qualificadores para fabricar igualdade."
+      }
+    }
+  ],
+  "noAppWrites": true
+}
