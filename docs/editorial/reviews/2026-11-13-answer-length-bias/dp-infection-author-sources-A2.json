@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "role": "AUTOR; levantamento de evidências, sem veredito ou autorização de publicação",
+  "date": "2026-11-13",
+  "candidateFile": "dp-infection-candidates-A2.json",
+  "candidateFileSHA256": "7d88ef685130b4535d922e0ad636707e978f33994acec361a5f7e03d6e265a07",
+  "sources": [
+    {
+      "id": "ISPD-catalogue-current",
+      "url": "https://ispd.org/guidelines/",
+      "access": "Página oficial integral aberta; consulta de vigência em13/11/2026.",
+      "locator": "Lista adulta mantém Peritonitis2022 e Catheter-related infections2023; distingue documento pediátrico2024 e ensino2025. O pacote é adulto e não importa recomendações pediátricas."
+    },
+    {
+      "id": "ISPD-peritonitis-2022",
+      "existingRef": "ispd_peritonitis_guideline",
+      "url": "https://journals.sagepub.com/doi/10.1177/08968608221080586",
+      "doi": "10.1177/08968608221080586",
+      "metadata": "Li PK-T et al. Perit Dial Int2022;42(2):110–153.",
+      "access": "Artigo primário integral HTML da editora aberto,4905linhas. Não apenas resumo/indexação.",
+      "locators": [
+        "Peritonitis/Definitions e Initial presentation and management: critérios diagnósticos, PMN e permanência; coleta de citologia/diferencial/Gram/cultura.",
+        "Empiric antibiotic selection e Dosage of antibiotics: cobertura por grupo/local, início após amostras, viaIP sem sepse e alternativa sistêmica se atraso. Cefepime monoterapia2B existe; não afirmar que toda monoterapia é inválida.",
+        "Staphylococcus aureus/Figura2: duração3semanas2C e avaliar retirada com infecção concomitante de cateter.",
+        "Culture-negative peritonitis/Figura10: resposta rápida, continuação do tratamento, total2semanas; repetir citologia/diferencial e culturas especiais quando sem crescimento após3dias.",
+        "Secondary prevention: profilaxia antifúngica concomitante a cursos antibióticos independentemente da indicação1B.",
+        "Fungal peritonitis: retirada imediata1C e antifúngico≥2semanas após retirada2C, usado para auditar o par retido, sem reescrevê-lo."
+      ]
+    },
+    {
+      "id": "ISPD-catheter-2023",
+      "existingRef": "ispd_catheter_infection_2023",
+      "url": "https://journals.sagepub.com/doi/full/10.1177/08968608231172740",
+      "doi": "10.1177/08968608231172740",
+      "metadata": "Chow KM et al. Perit Dial Int2023;43(3):201–219.",
+      "access": "Artigo primário integral HTML da editora aberto,2141linhas; metadados finais conferidos.",
+      "locators": [
+        "Definitions/Types: purulência de óstio e sinais de túnel; ultrassom auxilia e exame negativo não exclui.",
+        "Empirical antibiotic treatment e Tabelas1/2: tratamento oral com coberturaS.aureus e cefalexina; rifampicina não deve ser monoterapia.",
+        "Monitoring and duration: revisão em1semana; duração orientada por resposta/cultura; pode7–10dias com resolução precoce, não3semanas universais.",
+        "Surgical interventions: retirada sugerida2C quando peritonite e óstio/túnel pelo mesmo organismo; não reinserir simultaneamente durante peritonite não resolvida.",
+        "Figuras1/2 e parágrafo de doses: profilaxia antifúngica concomitante durante antibiótico."
+      ]
+    },
+    {
+      "id": "ISPD-peritonitis-corrigendum-2023",
+      "url": "https://journals.sagepub.com/doi/10.1177/08968608231166870",
+      "access": "Correção primária integral aberta.",
+      "finding": "Figura8/Enterococcus: onde havia ampicilinaIP, deve constar amoxicilina oral. Não afeta os sete comandos deste pacote; impede citar figura antiga para doses/rotas de Enterococcus."
+    },
+    {
+      "id": "ISPD-peritonitis-corrigendum-2024",
+      "url": "https://journals.sagepub.com/doi/full/10.1177/08968608241251453",
+      "access": "Correção primária integral aberta; versão HTML atual do artigo já mostra unidade corrigida.",
+      "finding": "Tabela1/refratariedade: unidade correta>0,1×10^9/L após5dias, não>100×10^9/L. Não é o corte diagnóstico e não afeta os sete gabaritos."
+    }
+  ],
+  "items": [
+    {
+      "qid": "68b630ba",
+      "sources": [
+        "ISPD-peritonitis-2022"
+      ],
+      "decisiveLocator": "Definitions/Peritonitis e Initial presentation and management",
+      "numericAudit": "Dados do caso3horas/140leucócitos/70%preservados. Critérios>100/µL,≥2horas,>50%PMN conferidos. Alternativa250neutrófilos é erro de critério, não recomendação.",
+      "identity": "Mesmo OP de critérios; remove justificativa longa só na correta sem retirar qualificadores decisivos do caso/explicação."
+    },
+    {
+      "qid": "28b53ff8",
+      "sources": [
+        "ISPD-peritonitis-2022",
+        "ISPD-catheter-2023"
+      ],
+      "decisiveLocator": "S.aureus/Figura2 e Surgical interventions for catheter-related infection",
+      "numericAudit": "3semanas de tratamento por S.aureus conferidas2C. Não há nova dose. Culturas concordantes no óstio/efluente tornam explícito o dado exigido pela diretriz2023 para controle de foco.",
+      "identity": "Revisor precisa confirmar continuidade: original já testava fonte de cateter e retirada diante de óstio/túnel, mas apenas presumivelmente o mesmo agente. Proposta explicita, não troca objetivo. Não deve resultar em retirada automática de todo S.aureus isolado."
+    },
+    {
+      "qid": "547a3dc2",
+      "sources": [
+        "ISPD-peritonitis-2022"
+      ],
+      "decisiveLocator": "Empiric antibiotic selection e Dosage of antibiotics",
+      "numericAudit": "Graus1C,1B,2B da explicação original conferidos. Agentes e rotas do cenário estão consistentes, sem dose exata. Cefepime é alternativa aceita, fora das opções.",
+      "identity": "Integralmente inalterado. Não há necessidade de fabricar nova redação para o comprimento."
+    },
+    {
+      "qid": "a221d304",
+      "sources": [
+        "ISPD-peritonitis-2022"
+      ],
+      "decisiveLocator": "Initial presentation and management; Empiric antibiotic selection",
+      "numericAudit": "Sem novo limiar, dose ou intervalo. Sequência microbiologia/tratamento preservada.",
+      "identity": "Foco de sequência temporal e coleta. Cobertura e justificativas ficam na explicação, com alternativas de sequência da mesma granularidade."
+    },
+    {
+      "qid": "31138710",
+      "sources": [
+        "ISPD-catheter-2023",
+        "ISPD-peritonitis-2022"
+      ],
+      "decisiveLocator": "Empirical antibiotic treatment; Monitoring and duration; Tabelas1/2; Secondary prevention",
+      "numericAudit": "Reavaliação em cerca de1semana e7–10dias quando resolução precoce conferidos. Sem dose nova de cefalexina ou antifúngico. Rifampicina isolada não recomendada.",
+      "identity": "Título ITU corrigido para infecção de óstio já descrita no original. Mesmo paciente/diagnóstico/conduta nuclear; profilaxia antifúngica na explicação é complemento de segurança verificado, não nova pergunta."
+    },
+    {
+      "qid": "11279207",
+      "sources": [
+        "ISPD-peritonitis-2022"
+      ],
+      "decisiveLocator": "Culture-negative peritonitis/Figura10",
+      "numericAudit": "2semanas totais e reavaliação/culturas especiais após3dias sem crescimento conferidas. Não se condiciona toda investigação adicional exclusivamente à falha de resposta.",
+      "identity": "Mesmo cenário de cultura negativa com melhora rápida; ramo hipotético longo retirado da opção e contextualizado na explicação."
+    },
+    {
+      "qid": "4792eca5",
+      "sources": [
+        "ISPD-peritonitis-2022"
+      ],
+      "decisiveLocator": "Identification of causative organisms; Empiric antibiotic selection; Dosage of antibiotics",
+      "numericAudit": "550/µL/85% e3anos são dados originais. Nenhum novo corte diagnóstico ou dose. A indicação é suspeita clínica, sem exigir inferência de permanência não informada.",
+      "identity": "Foco explicitado no Gram preliminar e cobertura, já central na explicação original. Revisor deve conferir distinção útil de a221d304: cobertura antes da identificação versus ordem coleta/tratamento. Não deve virar substituição silenciosa de OP."
+    }
+  ],
+  "cards": {
+    "changed": false,
+    "ids": [
+      "ispd_peritonitis_guideline",
+      "ispd_catheter_infection_2023"
+    ],
+    "audit": "Cards integrais lidos, metadados e afirmações mapeados nos artigos primários. Não há proposta de alteração nem ampliação de consumidores."
+  },
+  "retained": {
+    "fungalDuplicates": [
+      "e8040054",
+      "e1f9ccd1"
+    ],
+    "reason": "Mesmo OP e mesma decisão clínica; não se reescreve um conceito diferente sob o qid apenas para contornar duplicidade. Nenhum texto, qid ou histórico excluído."
+  },
+  "notPublicationGates": true,
+  "amendment": "A2: somente três distratores,28C preservação indevida de foco apesar de melhora inicial;311C retirada prematura em óstio isolado;112B falsa exclusão de infecção por cultura negativa. Nenhum outro campo clínico,classificação,referência ou resposta mudou."
+}

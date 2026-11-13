@@ -1,0 +1,632 @@
+{
+  "schema": 1,
+  "status": "DRAFT_BLOCKED",
+  "hashMethod": "SHA256 of JSON.stringify(question) preserving authored field order",
+  "questions": [
+    {
+      "qid": "2af04ec7",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "d81d6a04703183fda4cc03efd2e4238df91ada3491d413396e403339c91b71b0",
+      "candidateHash": "41dc654562f5a1228af415142d5164031f0046d0dcda7f0c1aaa18e1d9d24847",
+      "changes": [
+        "diff",
+        "opts"
+      ],
+      "candidate": {
+        "t": "DRPAD — Critérios Ultrassonográficos Unificados",
+        "qid": "2af04ec7",
+        "q": "Em pessoas com risco de 50% para doença renal policística autossômica dominante e genótipo familiar desconhecido, qual conjunto de critérios ultrassonográficos confirma o diagnóstico conforme a idade?",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ],
+        "opts": [
+          "15–39 anos: ≥3 no total; 40–59 anos: ≥2 por rim; ≥60 anos: ≥4 por rim",
+          "15–39 anos: ≥2 por rim; 40–59 anos: ≥3 no total; ≥60 anos: ≥4 por rim",
+          "15–39 anos: ≥3 no total; 40–59 anos: ≥4 por rim; ≥60 anos: ≥2 por rim",
+          "15–39 anos: ≥1 por rim; 40–59 anos: ≥2 por rim; ≥60 anos: ≥3 por rim"
+        ],
+        "ans": 0,
+        "exp": "Nos critérios ultrassonográficos unificados para familiares em risco com genótipo desconhecido, são diagnósticos pelo menos 3 cistos renais no total, uni ou bilaterais, entre 15 e 39 anos; pelo menos 2 em cada rim entre 40 e 59; e pelo menos 4 em cada rim a partir dos 60. A exigência cresce com a idade porque cistos simples tornam-se mais comuns. Esses limiares não devem ser extrapolados sem ajuste para pessoas sem história familiar ou para situações em que outra doença cística seja plausível.",
+        "diff": "easy",
+        "cat": "genetica"
+      },
+      "lengths": [
+        69,
+        69,
+        69,
+        68
+      ],
+      "correctRank": 1,
+      "ratio": 1
+    },
+    {
+      "qid": "b7a28d0b",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "9f3126588f0e2058d509cf5a709abade9ffa6dee5f4c9284f25fbc6861c61057",
+      "candidateHash": "746bbd9478e4c20a075fb3dfc10ee85f66038830ad6de2c7fec31ae1e0e1427e",
+      "changes": [
+        "diff",
+        "opts",
+        "exp"
+      ],
+      "candidate": {
+        "t": "Tolvaptana na DRPAD — Seleção pelo Risco",
+        "qid": "b7a28d0b",
+        "q": "Paciente de 43 anos com doença renal policística autossômica dominante (DRPAD) de morfologia típica, taxa de filtração glomerular estimada (TFGe) de 52 mL/min/1,73 m² e classificação de imagem de Mayo 1D não apresenta contraindicação ao fármaco. Qual é a interpretação mais adequada sobre tolvaptana?",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ],
+        "opts": [
+          "Oferecer tolvaptana em decisão compartilhada, após avaliação de segurança",
+          "Adiar a tolvaptana até a TFGe cair abaixo de 25 mL/min/1,73 m²",
+          "Acompanhar sem tolvaptana, pois a função renal atual exclui progressão rápida",
+          "Exigir declínio funcional histórico antes de considerar tolvaptana, apesar de Mayo 1D"
+        ],
+        "ans": 0,
+        "exp": "A pessoa descrita tem DRPAD típica, Mayo 1D e TFGe acima de 25 mL/min/1,73 m², preenchendo o algoritmo KDIGO para oferta de tolvaptana após avaliação de segurança e decisão compartilhada. O risco pode ser identificado pela imagem ou por declínio funcional histórico sustentado; não é necessário exigir os dois caminhos simultaneamente. A classe 1C tem sobreposição e pode precisar de dados adicionais, ao contrário do risco elevado mais claro em 1D. Antes de iniciar, devem ser revistas contraindicações, função hepática, acesso à água, tolerabilidade da aquarese e preferências da pessoa.",
+        "diff": "medium",
+        "cat": "genetica"
+      },
+      "lengths": [
+        73,
+        62,
+        77,
+        85
+      ],
+      "correctRank": 3,
+      "ratio": 0.8588235294117647
+    },
+    {
+      "qid": "61d4ad11",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "48ba48d9a4c639b1a214100be882e5b6542d6e1ff0d9e6c98a9512ddf94dde34",
+      "candidateHash": "135bc5f1e44a61ece06286c0c0e9160f245547a08637c3adfaddd40cf7658205",
+      "changes": [
+        "diff",
+        "opts"
+      ],
+      "candidate": {
+        "t": "Classificação de Imagem de Mayo — Componentes",
+        "qid": "61d4ad11",
+        "q": "Em um adulto com doença renal policística autossômica dominante (DRPAD) de morfologia típica bilateral e difusa, uma ressonância mede o volume renal total. Quais informações são integradas pela Classificação de Imagem de Mayo para estimar risco de progressão?",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ],
+        "opts": [
+          "Volume renal total ajustado à altura e idade cronológica",
+          "Volume renal total absoluto e duração conhecida da doença",
+          "Volume renal total ajustado ao peso e depuração de creatinina",
+          "Volume renal total absoluto e concentração de creatinina sérica"
+        ],
+        "ans": 0,
+        "exp": "A Classificação de Imagem de Mayo aplica-se ao fenótipo típico, classe 1, com comprometimento bilateral e difuso. Ela relaciona o volume renal total ajustado à altura com a idade para distribuir o paciente entre 1A e 1E. A medida é preferencialmente obtida por ressonância, embora tomografia e, em situações limitadas, estimativa ultrassonográfica possam ser usadas. TFGe, história familiar, PROPKD e genótipo podem complementar a avaliação, mas não são os eixos que definem a classe de imagem.",
+        "diff": "easy",
+        "cat": "genetica"
+      },
+      "lengths": [
+        56,
+        57,
+        61,
+        63
+      ],
+      "correctRank": 4,
+      "ratio": 0.8888888888888888
+    },
+    {
+      "qid": "eba4f29e",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "4a0db769f65fc483f1d24df99aad3af8c49ecc8d041967b76ae8e5af25aa7d12",
+      "candidateHash": "d9d2682a711da9f7578f22f623b348caf4890778cedca909d89f90455406183f",
+      "changes": [
+        "opts"
+      ],
+      "candidate": {
+        "t": "DRPAD — História Familiar na Estratificação",
+        "qid": "eba4f29e",
+        "q": "Paciente de 38 anos com doença renal policística autossômica dominante (DRPAD) e Mayo 1C tem taxa de filtração glomerular estimada (TFGe) ainda estável. Pai e irmã iniciaram terapia renal substitutiva antes dos 60 anos. Como essa história familiar deve influenciar a avaliação de progressão?",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ],
+        "opts": [
+          "Usá-la como evidência adicional e integrar a trajetória funcional à imagem",
+          "Adotar os 60 anos como a idade prevista de falência renal para o paciente",
+          "Classificar o caso como progressão lenta enquanto a TFGe se mantiver estável",
+          "Desconsiderá-la na estratificação quando a classe de imagem já estiver definida"
+        ],
+        "ans": 0,
+        "exp": "História de falência renal relativamente precoce em familiares afetados reforça a possibilidade de um fenótipo agressivo, sobretudo quando há mais de um parente de primeiro grau. Entretanto, Mayo 1C inclui sobreposição entre progressão lenta e rápida; por isso, história familiar, declínio histórico da TFGe, PROPKD, eventos urológicos precoces e genótipo podem ajudar a resolver a incerteza. A decisão sobre tolvaptana deve ser integrada e compartilhada, depois de excluir outras causas de perda funcional.",
+        "diff": "hard",
+        "cat": "genetica"
+      },
+      "lengths": [
+        74,
+        73,
+        76,
+        79
+      ],
+      "correctRank": 3,
+      "ratio": 0.9367088607594937
+    },
+    {
+      "qid": "ef5b94e4",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "20c6275c88798c2708f4207fce905fd03bcfb7b7a95c9327312132232dbbab4c",
+      "candidateHash": "e98e2665ad243434af200a96ae563e041222b223d4a01918fd70316adc8ba2da",
+      "changes": [
+        "diff",
+        "opts"
+      ],
+      "candidate": {
+        "t": "Classificação de Mayo — Fenótipo Atípico",
+        "qid": "ef5b94e4",
+        "q": "Paciente com diagnóstico de doença renal policística autossômica dominante (DRPAD) apresenta cistos predominantemente unilaterais e segmentares, com atrofia do parênquima contralateral. A equipe pretende inserir o volume renal total em um calculador para classificá-lo de 1A a 1E. Qual é a melhor conduta?",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ],
+        "opts": [
+          "Excluir o caso do nomograma 1A–1E e avaliar o prognóstico por outros dados",
+          "Aplicar o nomograma 1A–1E usando apenas o volume do rim com mais cistos",
+          "Aplicar o nomograma 1A–1E somando os dois rins, apesar do padrão atípico",
+          "Classificar como 1E, tomando a atrofia contralateral como marcador de alto risco"
+        ],
+        "ans": 0,
+        "exp": "As subclasses 1A–1E foram desenvolvidas para DRPAD de morfologia típica, bilateral e difusa. Padrões atípicos, como distribuição unilateral, segmentar ou assimétrica associada a atrofia, pertencem à classe 2 e não devem ser forçados no nomograma, pois a previsão de crescimento e perda funcional pode se tornar enganosa. Nesses casos, trajetória da TFGe, história familiar, genótipo e outros marcadores clínicos assumem maior importância.",
+        "diff": "medium",
+        "cat": "genetica"
+      },
+      "lengths": [
+        74,
+        71,
+        72,
+        80
+      ],
+      "correctRank": 2,
+      "ratio": 0.925
+    },
+    {
+      "qid": "72c98d51",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "0c2232475eefbdd6d2f6521165406af12f7e6d090e0785a0cf8d71c324189217",
+      "candidateHash": "14b10fec2b5afb80aa6c6d2c2c5c3c24a740df5b3ec1c28778aa4253b490608c",
+      "changes": [
+        "opts"
+      ],
+      "candidate": {
+        "t": "DRPAD — Rastreamento de Aneurisma Intracraniano",
+        "qid": "72c98d51",
+        "q": "Adulto assintomático com doença renal policística autossômica dominante (DRPAD) não tem história familiar conhecida de aneurisma ou hemorragia subaracnoide, mas solicita rastreamento após receber informação sobre riscos e consequências. Qual abordagem é mais alinhada à KDIGO 2025?",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ],
+        "opts": [
+          "Oferecer angiorressonância por tempo de voo sem gadolínio",
+          "Adiar o rastreamento até surgir história familiar positiva",
+          "Oferecer angiografia invasiva inicial pela maior resolução anatômica",
+          "Oferecer angiotomografia e repetir anualmente se o primeiro exame for normal"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO recomenda rastreamento em pessoas elegíveis para tratamento com história pessoal de hemorragia subaracnoide ou história familiar de aneurisma, hemorragia subaracnoide ou morte súbita inexplicada. Também orienta discutir o exame em contextos adicionais e permitir acesso após aconselhamento quando a pessoa, mesmo fora dos grupos clássicos, prefere rastrear. Quando realizado, o método de escolha é angiorressonância por tempo de voo sem gadolínio. Repetição em 5–10 anos é individualizada para alto risco com exame negativo, não uma regra anual universal.",
+        "diff": "hard",
+        "cat": "genetica"
+      },
+      "lengths": [
+        57,
+        58,
+        68,
+        76
+      ],
+      "correctRank": 4,
+      "ratio": 0.75
+    },
+    {
+      "qid": "f2f49b49",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "d8b3a099156468ff603aee4e33e65763353340f942ddaf9455ad2af4b6f233dd",
+      "candidateHash": "239d70c3c692e48691f6ed4010b5e9c88bedba60a8b309305c1adc32c5ded379",
+      "changes": [
+        "q",
+        "opts"
+      ],
+      "candidate": {
+        "t": "Tolvaptana na DRPAD — Início e Titulação",
+        "qid": "f2f49b49",
+        "q": "Adulto com doença renal policística autossômica dominante (DRPAD) de progressão rápida vai iniciar tolvaptana, sem contraindicações ou interações que exijam redução de dose. Para tomadas ao acordar e cerca de 8 horas depois, qual é o esquema inicial usual e a titulação se houver tolerância?",
+        "opts": [
+          "45/15 mg, avançando para 60/30 e 90/30 mg em intervalos de pelo menos uma semana",
+          "30/30 mg, avançando para 60/60 mg em intervalos de pelo menos uma semana",
+          "60/30 mg, avançando para 90/30 mg após 48 horas de tratamento",
+          "90/30 mg desde o início, sem etapas de titulação em doses menores"
+        ],
+        "ans": 0,
+        "exp": "A tolvaptana é iniciada habitualmente em dose dividida de 45 mg ao acordar e 15 mg cerca de 8 horas depois. Se tolerada, pode ser titulada após pelo menos uma semana para 60/30 mg e depois 90/30 mg, que é a dose-alvo. Doses menores podem ser usadas em situações especiais ou se houver intolerância. A dose vespertina não deve ser deslocada automaticamente para a noite, pois isso pode agravar noctúria; a titulação exige discussão da aquarese, acesso à água, interações e função hepática.",
+        "diff": "medium",
+        "cat": "genetica",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ]
+      },
+      "lengths": [
+        80,
+        72,
+        61,
+        65
+      ],
+      "correctRank": 1,
+      "ratio": 1.1111111111111112
+    },
+    {
+      "qid": "1ebc64f7",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "121736fe8b4d0cc1859b2e09316e682ebe2f75de15aa6a4ec3cd9e32f32fa7b2",
+      "candidateHash": "301024017b5d1fa3ea6ad46b422bcbc043d1840957f415e45a2d9d352fa3c443",
+      "changes": [
+        "opts",
+        "exp"
+      ],
+      "candidate": {
+        "t": "iSGLT2 na DRPAD — Limite da Evidência",
+        "qid": "1ebc64f7",
+        "q": "Paciente com doença renal policística autossômica dominante (DRPAD), sem outra indicação estabelecida para o fármaco, pede dapagliflozina exclusivamente para retardar a queda da taxa de filtração glomerular estimada (TFGe). Qual orientação é mais adequada segundo a KDIGO 2025?",
+        "opts": [
+          "Não indicar dapagliflozina especificamente para retardar a progressão da DRPAD",
+          "Indicá-la como alternativa à tolvaptana, mesmo sem diabetes ou insuficiência cardíaca",
+          "Indicá-la pelos mesmos critérios da doença renal crônica não policística",
+          "Indicá-la em associação à tolvaptana para intensificar a proteção renal"
+        ],
+        "ans": 0,
+        "exp": "A orientação solicitada é a da KDIGO 2025: não usar inibidores do cotransportador de sódio e glicose 2 (SGLT2) especificamente para retardar a progressão da DRPAD. Os grandes ensaios de nefroproteção em DRC não estabelecem benefício nessa população excluída de seus protocolos. Isso não equivale a afirmar dano clínico comprovado nem a declarar que não existem estudos humanos; a questão é a ausência de evidência suficiente para uso rotineiro com essa finalidade. O caso não traz outra indicação independente para dapagliflozina, que precisaria ser avaliada por seus próprios critérios.",
+        "diff": "hard",
+        "cat": "genetica",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ]
+      },
+      "lengths": [
+        78,
+        85,
+        72,
+        71
+      ],
+      "correctRank": 2,
+      "ratio": 0.9176470588235294
+    },
+    {
+      "qid": "341da45b",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "5c5415a29cadf047d5cc5d4a5ede4bc1d96feebbe68c8286be1088cd7eae21fa",
+      "candidateHash": "65a0d7dd91c2e0ec4339ab09113860150a800ab5180a506f6fa2a4a739914dee",
+      "changes": [
+        "diff",
+        "opts"
+      ],
+      "candidate": {
+        "t": "DRPAD — Inibidores de mTOR",
+        "qid": "341da45b",
+        "q": "Paciente com doença renal policística autossômica dominante (DRPAD) de progressão rápida pergunta se everolimo deve ser usado para reduzir o crescimento renal. Qual é a recomendação contemporânea?",
+        "opts": [
+          "Não indicar everolimo para retardar a progressão renal",
+          "Indicá-lo antes da tolvaptana quando a classe de Mayo for 1D ou 1E",
+          "Indicá-lo apenas em estágios avançados de doença renal crônica",
+          "Associá-lo à tolvaptana se persistir queda da função renal"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO recomenda não usar inibidores de mTOR, como everolimo ou sirolimo, para retardar a progressão da DRPAD. Ensaios clínicos não demonstraram benefício consistente em TFGe ou volume renal total e mostraram mais eventos adversos, incluindo estomatite, edema, proteinúria e eventos pulmonares. A recomendação não muda por progressão rápida nem por TFGe baixa, e não há indicação de combinação rotineira com tolvaptana para esse objetivo.",
+        "diff": "medium",
+        "cat": "genetica",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ]
+      },
+      "lengths": [
+        54,
+        66,
+        62,
+        58
+      ],
+      "correctRank": 4,
+      "ratio": 0.8181818181818182
+    },
+    {
+      "qid": "0c7eb6ce",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "d1b289d8e8586b27ef75c161dc38219e65cd4a4cb01e61ec8c811e887461df71",
+      "candidateHash": "b0b293ebff6b4faed00597e9cbfe922c1be88e0c5922eab4f5d3f008a9845a98",
+      "changes": [
+        "opts"
+      ],
+      "candidate": {
+        "t": "Tolvaptana — Plano de Dia Doente",
+        "qid": "0c7eb6ce",
+        "q": "Pessoa em uso de tolvaptana por doença renal policística autossômica dominante (DRPAD) desenvolve gastroenterite com vômitos, diarreia e dificuldade de repor água. Qual deve ser a orientação imediata?",
+        "opts": [
+          "Suspender temporariamente a tolvaptana até recuperar hidratação e ingestão de água",
+          "Reduzir apenas a dose da tarde, mantendo a dose matinal durante a gastroenterite",
+          "Manter a dose habitual e compensar as perdas com pequenas ofertas de água",
+          "Interromper definitivamente a tolvaptana após resolver o episódio gastrointestinal"
+        ],
+        "ans": 0,
+        "exp": "A tolvaptana aumenta a perda de água livre. Diante de vômitos, diarreia, acesso limitado à água ou outra situação em que a pessoa não consiga compensar a aquarese, o plano de dia doente deve prever suspensão temporária para reduzir risco de desidratação e hipernatremia. A retomada ocorre após recuperação clínica e capacidade de hidratação, com orientação da equipe. Interrupção também é necessária quando a monitorização laboratorial não pode ser realizada ou quando há suspeita de hepatotoxicidade.",
+        "diff": "medium",
+        "cat": "genetica",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ]
+      },
+      "lengths": [
+        82,
+        80,
+        73,
+        82
+      ],
+      "correctRank": 1,
+      "ratio": 1
+    },
+    {
+      "qid": "1ee3dfa2",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "267a8240c9db63ac29da5e5cf1e646a4750603f796093c7996b89659c1926bba",
+      "candidateHash": "4b9cac609fafdba907b7e325262b863cdd39fed419920c21ac8aee5b7fd88f59",
+      "changes": [
+        "opts"
+      ],
+      "candidate": {
+        "t": "Metformina na DRPAD sem Diabetes",
+        "qid": "1ee3dfa2",
+        "q": "Adulto sem diabetes e com doença renal policística autossômica dominante (DRPAD) pergunta se deve iniciar metformina para retardar o crescimento cístico e a perda de função renal. Qual é a resposta baseada na KDIGO 2025?",
+        "opts": [
+          "Não iniciar metformina para modificar a DRPAD fora de ensaio clínico",
+          "Iniciar metformina se houver progressão rápida pela classificação de Mayo",
+          "Prescrever metformina para substituir tolvaptana em caso de aquarese limitante",
+          "Associar metformina à tolvaptana para aumentar o efeito sobre a função renal"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO recomenda não usar metformina especificamente para retardar a progressão da DRPAD em pessoas sem diabetes. Os pequenos estudos disponíveis avaliaram sobretudo tolerabilidade, foram insuficientes para demonstrar benefício consistente em TFGe ou volume renal e não sustentam prescrição rotineira. Isso não invalida uma indicação convencional de metformina para diabetes quando apropriada; a pergunta trata de seu uso como terapia modificadora da DRPAD sem diabetes.",
+        "diff": "medium",
+        "cat": "genetica",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ]
+      },
+      "lengths": [
+        68,
+        73,
+        78,
+        76
+      ],
+      "correctRank": 4,
+      "ratio": 0.8717948717948718
+    },
+    {
+      "qid": "11ecbc0f",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "69c3833edc820bcbb2f672fd57fc2beba293ad80fda18134702d1bd2f0c56dc7",
+      "candidateHash": "5d4d1a9994b1c1d46cf331f893b003794c4082fa0f7e5d9b8f96e3aea96e4875",
+      "changes": [
+        "diff",
+        "q",
+        "opts",
+        "exp"
+      ],
+      "candidate": {
+        "t": "Tolvaptana — Monitorização Hepática",
+        "qid": "11ecbc0f",
+        "q": "Em pessoa que inicia tolvaptana por doença renal policística autossômica dominante (DRPAD), serão dosadas aspartato aminotransferase (AST), alanina aminotransferase (ALT) e bilirrubina. Com valores basais normais, qual é o seguimento previsto no cronograma da KDIGO 2025?",
+        "opts": [
+          "Mensalmente por 18 meses; depois, a cada 3 meses",
+          "Trimestralmente por 18 meses; depois, a cada 6 meses",
+          "Mensalmente por 6 meses; depois, uma vez ao ano",
+          "Semanalmente por 4 semanas; depois, a cada 6 meses"
+        ],
+        "ans": 0,
+        "exp": "O cronograma KDIGO para detecção de lesão hepática por tolvaptana inclui AST, ALT e bilirrubina antes do início, mensalmente nos primeiros 18 meses e a cada 3 meses depois. Esse esquema não dispensa exigências regulatórias adicionais, como coletas nas semanas 2 e 4 em determinadas jurisdições. Suspeita de lesão hepática exige interrupção do fármaco e investigação; a avaliação considera sintomas, magnitude das alterações e sua evolução. Não se deve aguardar icterícia nem substituir a monitorização laboratorial por exames de imagem de rotina.",
+        "diff": "easy",
+        "cat": "genetica",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ]
+      },
+      "lengths": [
+        48,
+        52,
+        47,
+        50
+      ],
+      "correctRank": 3,
+      "ratio": 0.9230769230769231
+    },
+    {
+      "qid": "d7c0052b",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "25f99a029b1601cc4893731fbea602ac46d0a4ffa85b21fef105480b5fc52bc9",
+      "candidateHash": "2299d54a3a49bf5ceb9cc7063221f54f30555c11ede2d0ae53ecbb471bdcaafb",
+      "changes": [
+        "opts"
+      ],
+      "candidate": {
+        "t": "DRPAD — Declínio Histórico da TFGe",
+        "qid": "d7c0052b",
+        "q": "Paciente com doença renal policística autossômica dominante (DRPAD) teve queda média da taxa de filtração glomerular estimada (TFGe) de 3,2 mL/min/1,73 m² ao ano documentada ao longo de quatro anos, sem episódios de LRA nem outra causa identificada. Como esse dado entra na decisão sobre tolvaptana?",
+        "opts": [
+          "Considerar progressão rápida e avaliar elegibilidade para tolvaptana",
+          "Exigir também Mayo 1D–1E para reconhecer progressão rápida",
+          "Aguardar queda funcional anual maior antes de avaliar terapia modificadora",
+          "Desconsiderar a trajetória funcional enquanto não houver medida de volume renal"
+        ],
+        "ans": 0,
+        "exp": "Declínio histórico sustentado de pelo menos 3 mL/min/1,73 m² ao ano é um dos caminhos do algoritmo KDIGO para identificar progressão rápida. Como a TFGe varia entre coletas, a inclinação deve ser documentada por período prolongado, em geral quatro anos ou mais, e causas concorrentes agudas ou crônicas precisam ser excluídas. Com TFGe de pelo menos 25 e avaliação de contraindicações, esse dado pode apoiar oferta de tolvaptana mesmo sem classificação de imagem conclusiva.",
+        "diff": "hard",
+        "cat": "genetica",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ]
+      },
+      "lengths": [
+        68,
+        58,
+        74,
+        79
+      ],
+      "correctRank": 3,
+      "ratio": 0.8607594936708861
+    },
+    {
+      "qid": "481c9380",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "46679747d29992764ded3077629804e60330b4f371791548282ed50eacf4d1b6",
+      "candidateHash": "42dc8b32b692ee7c894c98d29d31354ded393c0595f49244ab5c1bbea2983110",
+      "changes": [
+        "opts"
+      ],
+      "candidate": {
+        "t": "DRPAD — Análogos de Somatostatina",
+        "qid": "481c9380",
+        "q": "Pessoa com doença renal policística autossômica dominante (DRPAD) tem sintomas graves por rins policísticos maciçamente aumentados, sem opção melhor para aliviar a carga de volume. Como os análogos de somatostatina podem ser considerados?",
+        "opts": [
+          "Aliviar sintomas relacionados ao volume, com reavaliação da resposta",
+          "Retardar a perda da função renal como alternativa à tolvaptana",
+          "Manter tratamento mesmo sem resposta de volume ou sintomas",
+          "Prevenir falência renal por reduzir o crescimento dos cistos"
+        ],
+        "ans": 0,
+        "exp": "Análogos de somatostatina não mostraram benefício claro sobre a velocidade de queda da TFGe e não devem ser prescritos com esse objetivo isolado. A KDIGO admite considerá-los em pessoas selecionadas com sintomas graves por órgãos policísticos maciçamente aumentados quando não há alternativa melhor, pois podem reduzir crescimento de volume. Sintomas e volume devem ser reavaliados, e o fármaco retirado se não houver benefício. Efeitos adversos incluem sintomas gastrointestinais, cálculos biliares, alterações glicêmicas, bradicardia e pancreatite.",
+        "diff": "hard",
+        "cat": "genetica",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ]
+      },
+      "lengths": [
+        68,
+        62,
+        58,
+        60
+      ],
+      "correctRank": 1,
+      "ratio": 1.096774193548387
+    },
+    {
+      "qid": "1bd9b438",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "dfdd0e4b250d86a88a31e88389f86b49dbb9e488d6ce3876025b62f3fa5fa18c",
+      "candidateHash": "32e8ba39bc7a6e1cb4e8cc5f5d5e9978b80dd69c60950dfca32dca726f437922",
+      "changes": [
+        "q",
+        "opts"
+      ],
+      "candidate": {
+        "t": "DRPAD — Herança, Gene e Risco",
+        "qid": "1bd9b438",
+        "q": "Uma pessoa heterozigota com doença renal policística autossômica dominante (DRPAD) pergunta sobre o risco de transmitir a variante aos filhos e a influência do gene na idade de falência renal. Qual orientação é mais correta?",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ],
+        "opts": [
+          "Risco de 50% por gestação; PKD1 truncante associa-se a progressão mais precoce, com variabilidade individual",
+          "Risco de 50% por gestação; PKD2 associa-se, em média, a progressão mais precoce que PKD1 truncante",
+          "Risco de 25% por gestação; PKD1 truncante associa-se a progressão mais precoce que PKD2",
+          "Risco de 100% por gestação; PKD1 truncante associa-se a progressão mais precoce que PKD2"
+        ],
+        "ans": 0,
+        "exp": "Cada gestação de uma pessoa heterozigota afetada tem probabilidade de 50% de transmitir a variante. Em média, variantes truncantes de PKD1 associam-se a progressão mais precoce do que PKD2, mas há grande variabilidade entre e dentro das famílias. Por isso, aconselhamento genético deve separar risco de transmissão de previsão prognóstica: idade, classificação de Mayo, trajetória da TFGe, eventos precoces e PROPKD ajudam a estimar o curso individual.",
+        "diff": "medium",
+        "cat": "genetica"
+      },
+      "lengths": [
+        108,
+        98,
+        87,
+        88
+      ],
+      "correctRank": 1,
+      "ratio": 1.1020408163265305
+    },
+    {
+      "qid": "c8364d4e",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "932422d519937a48bd725e154239b56e74eb1619848887032a1f91f594d8ee95",
+      "candidateHash": "e8b9a1ca21542c8468d65bc9ed307d10f357672a7c251b6b0546b23bf42af1b9",
+      "changes": [
+        "opts"
+      ],
+      "candidate": {
+        "t": "DRPAD — Intervenções Cetogênicas",
+        "qid": "c8364d4e",
+        "q": "Paciente com doença renal policística autossômica dominante (DRPAD) pretende adotar dieta cetogênica e suplementos de cetonas para retardar a progressão renal. Qual aconselhamento é mais adequado?",
+        "opts": [
+          "Não recomendar rotineiramente para retardar a progressão renal",
+          "Recomendar pelo benefício já comprovado sobre a falência renal",
+          "Indicar suplementos de cetonas como terapia modificadora de primeira linha",
+          "Recomendar se houver progressão rápida apesar de tratamento com tolvaptana"
+        ],
+        "ans": 0,
+        "exp": "Embora exista racional metabólico e pequenos estudos de curta duração, não há evidência controlada de longo prazo que demonstre redução sustentada do crescimento renal ou da perda de TFGe. A KDIGO orienta não implementar rotineiramente dietas cetogênicas, jejum ou suplementos de cetonas para progressão da DRPAD até haver dados melhores. Também devem ser considerados riscos como hiperlipidemia, hipercalciúria e nefrolitíase. Essas intervenções não substituem controle pressórico, redução de sal, peso saudável e tolvaptana quando indicada.",
+        "diff": "medium",
+        "cat": "genetica",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ]
+      },
+      "lengths": [
+        62,
+        62,
+        74,
+        74
+      ],
+      "correctRank": 3,
+      "ratio": 0.8378378378378378
+    },
+    {
+      "qid": "ef396e94",
+      "publication": "BLOQUEADA",
+      "reason": "Rascunho aguarda revisão formal da versão exata; não aplicar em topics.js.",
+      "originalHash": "e0810dcd708ea2b55aafef0b54ea5d5c8d532e01e3eadb3c068eee5db07f2b41",
+      "candidateHash": "fd0bfbef315cf038fea4f6948858e3a6b8af1e8b4172cda02dfac9788abb68a5",
+      "changes": [
+        "diff",
+        "opts"
+      ],
+      "candidate": {
+        "t": "Doença Hepática Policística — Antagonista V2",
+        "qid": "ef396e94",
+        "q": "Pessoa com doença renal policística autossômica dominante (DRPAD) e doença hepática policística volumosa, mas sem indicação renal de tolvaptana, pergunta se o fármaco deve ser iniciado apenas para retardar o crescimento do fígado. Qual é a resposta?",
+        "opts": [
+          "Não iniciar tolvaptana para o objetivo isolado de reduzir o crescimento hepático",
+          "Iniciar tolvaptana se a hepatomegalia causar sintomas compressivos importantes",
+          "Iniciar tolvaptana antes de considerar análogos de somatostatina para o fígado",
+          "Associar tolvaptana a um análogo de somatostatina se houver crescimento hepático"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO orienta que antagonistas do receptor V2 não sejam usados para retardar o crescimento hepático na doença hepática policística. A tolvaptana pode estar indicada para desacelerar perda de função renal em adultos com DRPAD e risco de progressão rápida, mas essa indicação renal não deve ser confundida com tratamento do volume hepático. Doença hepática significativa que não seja a própria doença policística, aliás, pode contraindicar o fármaco. O manejo do fígado sintomático segue avaliação específica de carga, anatomia e opções clínicas ou intervencionistas.",
+        "diff": "medium",
+        "cat": "genetica",
+        "refs": [
+          "kdigo_adpkd_2025"
+        ]
+      },
+      "lengths": [
+        80,
+        78,
+        78,
+        80
+      ],
+      "correctRank": 1,
+      "ratio": 1
+    }
+  ]
+}

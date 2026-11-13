@@ -1,0 +1,144 @@
+{
+  "schema": 1,
+  "reviewer": "/root (revisor independente da autoria /root/medical_answer_bias)",
+  "reviewDate": "2026-11-13",
+  "authority": "Revisão formal pela skill local revisar-nefroquest v2 e fontes canônicas; usuário autorizou correção criteriosa do conteúdo em13/11/2026.",
+  "norms": {
+    ".claude/skills/revisar-nefroquest/SKILL.md": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef",
+    ".claude/skills/revisar-nefroquest/references/output-contract.md": "4a20348ac71a07836b4611d574496d97960b27a2bbfdcf1f1ed318396f0edcb8",
+    ".claude/skills/revisar-nefroquest/references/verification-protocol.md": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df",
+    "docs/editorial/annex-c-nefrologia.md": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+  },
+  "sourceTopicsSha256": "0a3916ea9010679309d3249c32daf5ff275c0b6e06ce91321056782ad2be01fb",
+  "independentClassificationFile": "finerenone-independent-classification.json",
+  "independentClassificationSha256": "6557217ec493b2e73e1cf03db4bf88f06fa9d31ff8d34dab1ab9c511f46c6fa5",
+  "evidenceFile": "finerenone-independent-evidence.json",
+  "evidenceFileSha256": "43ec4b46911efc0921fe758b0bc4d80e1e4b9ec6e73f374a3c30b00250be3c3c",
+  "derivation": "§18.4:LIBERADA somente com aprovação eVERIFICADA/NENHUMAouPARCIALMENTEVERIFICADA/NÃODECISIVA. Cada objeto foi julgado individualmente; comprimento não emite veredito.",
+  "version": "C1",
+  "candidateFile": "finerenone-card-candidates-C1.json",
+  "candidateFileHash": "65c6bbc8c500551abbe11dd1659a3fb037c98c9e245f7a9c6cf228d69b5b6dd0",
+  "cards": [
+    {
+      "id": "figaro_dkd",
+      "unitType": "shared_reference_card",
+      "version": "C1",
+      "originalHash": "333c63ab89b9ffa3f35b134304cd5afe28cc188e8e57b0d093fd283d003134a7",
+      "candidateHash": "acafce8bb8b5b85978b2cb26eab3372b294cbb30b41ed0f5207e8726f25c7457",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "scope": "Revisão integral do card exato e compatibilidade de todos os consumidores atuais e planejados; não apenas trecho alterado.",
+      "sources": [
+        "FIGARO_PRIMARY",
+        "FIDELIO_PRIMARY",
+        "LABEL_CURRENT"
+      ],
+      "verifiedClaims": [
+        "Identidade bibliográfica e desenho;7437randomizados;seleção porRAC/TFGe;10–20mg;sobreSRAAotimizado.",
+        "PrimárioCVcompleto;seguimento mediano3,4anos;12,4%vs14,2%;HR0,87/IC0,76–0,98/P0,03.",
+        "Composto renal completo;HR0,87/IC0,76–1,01,sem significância;descontinuação porhipercalemia1,2%vs0,4%.",
+        "Conclusão e curiosidade preservam natureza do desfecho e não provam benefício renal secundário significativo."
+      ],
+      "adversary": "Conferi confusão entre médio/mediano,randomizados/analisados,renal/CV e significância. A nova curiosidade não faz a alegação sem suporte de maior mortalidade precoce que diálise.",
+      "eliminators": [],
+      "editorialScore": "Não aplicável a card bibliográfico sem alternativas; nenhum score de questão foi fabricado.",
+      "currentConsumerCount": 1,
+      "plannedConsumerCount": 1,
+      "consumers": [
+        {
+          "qid": "b81a3c8a",
+          "currentQuestionHash": "466ffb656b1653c22a6e1437b205a65d1caaeadeed3ccf1fec9229738db75080",
+          "plannedQuestionHash": "c6c130f6f1d04d2e13326cf3fb0f4759c8723118d7d57ebe597ff68171fb944d",
+          "compatibility": "Sem contradição criada no conceito correto, segurança, explicação ou opções; o card não concede autorização própria à questão."
+        }
+      ],
+      "candidate": {
+        "label": "FIGARO-DKD Trial (Finerenona)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2110956",
+        "journal": "N Engl J Med 2021;385(24):2252-2263",
+        "ano": 2021,
+        "tipo": "Ensaio Clínico Fase III",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Finerenona ↓13% desfecho cardiovascular primário em DM2 com DRC; benefício impulsionado por menor hospitalização por insuficiência cardíaca",
+        "icon": "💊",
+        "resumo": "ECR multicêntrico duplo-cego fase III (FIGARO-DKD, n = 7.437 pacientes com diabetes tipo 2 e doença renal crônica). Incluiu relação albumina/creatinina urinária de 30 a <300 mg/g com taxa de filtração glomerular estimada (TFGe) de 25–90 mL/min/1,73 m², ou relação de 300–5.000 mg/g com TFGe ≥60. Comparou finerenona 10–20 mg/dia com placebo, ambos sobre bloqueio do sistema renina-angiotensina na maior dose tolerada. O desfecho primário foi morte cardiovascular, infarto não fatal, acidente vascular cerebral não fatal ou hospitalização por insuficiência cardíaca. Em seguimento mediano de 3,4 anos, ocorreu em 12,4% versus 14,2%: HR 0,87 (IC95% 0,76–0,98; P = 0,03), impulsionado principalmente por menor hospitalização por insuficiência cardíaca. O composto renal secundário incluía falência renal, queda sustentada ≥40% da TFGe ou morte renal: HR 0,87 (IC95% 0,76–1,01), sem diferença estatisticamente significativa. Descontinuação por hipercalemia: 1,2% versus 0,4%.",
+        "conclusao": "O FIGARO-DKD complementa o FIDELIO-DKD: em população com DRC diabética menos avançada ou albuminúria moderada, a finerenona reduziu eventos cardiovasculares, sobretudo hospitalização por insuficiência cardíaca, mantendo necessidade de monitorização de potássio.",
+        "curiosidade": "O desfecho principal do FIGARO-DKD foi cardiovascular; o composto renal foi secundário e seu intervalo de confiança incluiu ausência de efeito. Essa distinção impede tratar uma estimativa favorável como demonstração de benefício renal significativo neste ensaio isolado."
+      },
+      "historyRequirement": "Arquivar card anterior e apresentações antigas de todos consumidores afetados, inclusive só por referência; manter IDs."
+    },
+    {
+      "id": "finerenone_label_dailymed",
+      "unitType": "shared_reference_card",
+      "version": "C1",
+      "originalHash": "60529469fe7e9f0504ab5c0b6f46635aa3fa3395fe31246456473d672e2a0ccf",
+      "candidateHash": "3ecce37f98da228a2c910bbf8fbf25d00895bb5d49858bfe809e3c09fbde1508",
+      "verdict": "aprovada",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "scope": "Revisão integral do card exato e compatibilidade de todos os consumidores atuais e planejados; não apenas trecho alterado.",
+      "sources": [
+        "LABEL_CURRENT"
+      ],
+      "verifiedClaims": [
+        "Identidade e versão9/2026;K>5,0/TFGe<25antes de iniciar;risco dehipercalemia e vigilância.",
+        "CYP3A4fortes contraindicam;moderados/fracos requerem vigilância/ajuste;evitargrapefruit sem confundir com contraindicação absoluta.",
+        "Resumo focado em segurança,não inventário exaustivo das indicações; não excluiDM1ouICda bula atual."
+      ],
+      "adversary": "Conferi proibição vs evitar, início vs manutenção,limiares renais,população e inclusão de novas indicações. O resumo de segurança não pretende aprovar uso em transplantados.",
+      "eliminators": [],
+      "editorialScore": "Não aplicável a card bibliográfico sem alternativas; nenhum score de questão foi fabricado.",
+      "currentConsumerCount": 2,
+      "plannedConsumerCount": 4,
+      "consumers": [
+        {
+          "qid": "3d8fc3fe",
+          "currentQuestionHash": "dfd72c7ae02eb288daa5df10532764841b1fc1045cedb1b01447a9c88572e588",
+          "plannedQuestionHash": "c82f282207bd93083276c549e90a7b029f81bdc1796c6e098b36bc4bf1557bdd",
+          "compatibility": "Sem contradição criada no conceito correto, segurança, explicação ou opções; o card não concede autorização própria à questão."
+        },
+        {
+          "qid": "65fcdeae",
+          "currentQuestionHash": "634f86f2a03957d12f069e52e5d3f2131173b27af00f026e0ee1f2134d8e8a23",
+          "plannedQuestionHash": "e5f97630ae1342523ecd180c3b4d7428adc90624b97f89d09efcd13cc842cfb7",
+          "compatibility": "Sem contradição criada no conceito correto, segurança, explicação ou opções; o card não concede autorização própria à questão."
+        },
+        {
+          "qid": "e3f0e529",
+          "currentQuestionHash": "5ea9f17cd53419438b85f8e29476e4a5d0d15b4cb122566edceeda09f708e490",
+          "plannedQuestionHash": "fff1a3deeeca9176557ae952f9f2278c0fc0812da51fda211de7797d45c71034",
+          "compatibility": "Sem contradição criada no conceito correto, segurança, explicação ou opções; o card não concede autorização própria à questão."
+        },
+        {
+          "qid": "f9976e40",
+          "currentQuestionHash": "c2c591014f42201a692ef1824682f73a5587568e18ebc9244e5a1f0366ca1b50",
+          "plannedQuestionHash": "cd604cbaa084da41b8af2fcb9a97082327a88d3015eea871ad5cadc175e216c9",
+          "compatibility": "Sem contradição criada no conceito correto, segurança, explicação ou opções; o card não concede autorização própria à questão."
+        }
+      ],
+      "candidate": {
+        "label": "Kerendia (finerenona) — Prescribing Information (DailyMed)",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c",
+        "journal": "DailyMed/FDA label",
+        "ano": 2026,
+        "tipo": "Bula/rotulagem",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "Potássio, TFGe e interações CYP3A4 na prescrição de finerenona",
+        "icon": "📋",
+        "resumo": "Rotulagem profissional da finerenona. Antes de iniciar, recomenda medir potássio sérico e TFGe; não iniciar se K+ >5,0 mEq/L, e a dose inicial depende da TFGe, com início não recomendado se TFGe <25 mL/min/1,73m². A finerenona pode causar hipercalemia, com risco maior quanto menor a função renal, maior o potássio basal ou quando há fármacos que aumentam potássio. É substrato do CYP3A4: uso concomitante com inibidores fortes de CYP3A4 é contraindicado, e inibidores moderados/fracos exigem monitorização de potássio e ajuste.",
+        "conclusao": "A prescrição segura de finerenona exige checar K+, TFGe e interações CYP3A4; em cenários de risco, como DRC e fármacos que elevam potássio, a monitorização deve ser mais estreita.",
+        "curiosidade": "A bula norte-americana revisada em setembro de 2026 orienta evitar grapefruit e seu suco: a inibição intestinal de CYP3A4 pode aumentar a exposição à finerenona e o risco de reações adversas, incluindo hipercalemia."
+      },
+      "historyRequirement": "Arquivar card anterior e apresentações antigas de todos consumidores afetados, inclusive só por referência; manter IDs."
+    }
+  ]
+}

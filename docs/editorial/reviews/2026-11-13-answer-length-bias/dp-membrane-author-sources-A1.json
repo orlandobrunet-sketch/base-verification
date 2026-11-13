@@ -1,0 +1,85 @@
+{
+  "schema":1,
+  "role":"AUTOR; mapa de fontes, sem veredito ou autorização de publicação",
+  "date":"2026-11-13",
+  "candidateFile":"dp-membrane-candidates-A1.json",
+  "candidateFileSHA256":"55513c436d8ee1ea5e76b6770e8fae5ce7f317415a114ed0d8e901856ef2e7c4",
+  "originalFile":"dp-membrane-original-5.json",
+  "originalFileSHA256":"a160c90b0ccc84cefcb8c4cdb60ebd5db75f0e8459f8fa9e77ee5453c5dfc400",
+  "sources":[
+    {
+      "id":"ISPD-membrane-2021",
+      "existingRef":"ispd_membrane_dysfunction_2021",
+      "url":"https://journals.sagepub.com/doi/10.1177/0896860820982218",
+      "doi":"10.1177/0896860820982218",
+      "metadata":"Morelle J et al. Perit Dial Int2021;41(4):352–372. Publicado online10/02/2021.",
+      "access":"Artigo primário integral HTML da editora aberto,1841linhas. O PubMed direto33563110 devolveu apenas rodapé; a revisão não depende desse acesso limitado.",
+      "fallbackPrimary":"https://keele-repository.worktribe.com/output/419213/ispd-recommendations-for-the-evaluation-of-peritoneal-membrane-dysfunction-in-adults-classification-measurement-interpretation-and-rationale-for-intervention",
+      "fallbackAccess":"Registro institucional de coautores localizado; o artigo integral utilizado foi o da editora.",
+      "locators":[
+        "Key recommendations: Guidelines1/2a/2b/3/4a/4b; individualização, PET4horas, transporte rápido, limiares de rastreio e sodium dip.",
+        "Theoretical models; Peritoneal solute transfer rate; Mechanisms and pathways of water transport: solutos, glicose, área vascular, água livre e resistência intersticial.",
+        "Tabela1/Classification of membrane dysfunction: mecanismos coexistentes; very fast PSTR também pode causar baixo sodium dip; progressão não diagnostica EPS.",
+        "Mitigating the clinical consequences of fast PSTR, corpo que fundamenta Guideline2b: duração de permanências, icodextrina, automação e limites de impor modalidade ao transporte lento.",
+        "Measuring UF capacity/Guideline3: rastreio sujeito a erro, não diagnóstico etiológico isolado.",
+        "Measuring sodium sieving/sodium dip e Interpreting sodium sieving/dip/Guidelines4a/4b: medida indireta, influência do transporte de solutos, mecanismos além de aquaporinas e discussão compartilhada."
+      ],
+      "sourceInternalCaution":"A Tabela1 apresenta razão de sodium sieving<0,07, enquanto Key recommendation4a e o corpo usam valores próximos de0,03. Nenhum candidato ou card existente usa essa razão; todos os números decisivos usam a queda absoluta≤5mmol/L, consistente entre as seções. Não extrapolar a razão discrepante para material futuro sem resolver a discrepância."
+    },
+    {
+      "id":"ISPD-current-catalogue",
+      "url":"https://ispd.org/guidelines/",
+      "access":"Página oficial integral aberta; mantém documento2021 como Evaluation of Peritoneal Membrane Dysfunction, separando novos documentos2025/2026 de outros temas."
+    }
+  ],
+  "items":[
+    {
+      "qid":"8fee305a",
+      "op":"Ajuste de prescrição diante de transporte rápido e perda de ultrafiltração em permanências longas.",
+      "source":"ISPD-membrane-2021",
+      "locators":["Guideline2b","Tabela1/Fast PSTR","Mitigating clinical consequences of fast PSTR"],
+      "numericAudit":"PET4horas é dado original e procedimento recomendado. Nenhuma concentração, dose ou tempo de permanência novo.",
+      "decisiveScope":"Encurtar trocas com glicose e considerar icodextrina; automação é possibilidade, não obrigação. Aumento da transferência de solutos não significa manutenção do gradiente osmótico.",
+      "identity":"Mesmo OP, caso, resposta e referências. Explicação original preservada."
+    },
+    {
+      "qid":"cfa20f08",
+      "op":"Interpretar baixa ultrafiltração como rastreio e investigar o mecanismo.",
+      "source":"ISPD-membrane-2021",
+      "locators":["Guideline3","Measuring UF capacity","Tabela1/other causes"],
+      "numericAudit":"PET4horas,3,86%/4,25%,300mL são dados do caso; limiares<400mL e<100mL com2,27%/2,5% conferidos. Nenhuma unidade convertida sem fonte.",
+      "decisiveScope":"Valor abaixo do rastreio não identifica causa intrínseca nem impõe hemodiálise; há erro de medida, drenagem e vazamento a considerar.",
+      "identity":"Mesmo OP; diffproposto medium conforme classificação prévia: interpretação de teste e uma exclusão, sem escolha individual avançada."
+    },
+    {
+      "qid":"5d9f1a59",
+      "op":"Interpretar queda reduzida de sódio/água livre na anúria e integrar repercussão clínica à decisão de prescrição/modalidade.",
+      "source":"ISPD-membrane-2021",
+      "locators":["Guidelines4a/4b","Tabela1/poor intrinsic UF","Measuring e Interpreting sodium dip"],
+      "numericAudit":"3mmol/L é dado original; queda≤5mmol/L em1hora com3,86%/4,25% é consistente entre resumo/corpo. Não usa a razão de sieving divergente.",
+      "decisiveScope":"Marcador indireto, influenciado pelo transporte rápido de solutos; não prova defeito isolado de aquaporinas. Anúria e falha volêmica podem exigir soluções hipertônicas e discussão de transferência, não transferência automática.",
+      "identity":"Preserva o OP, sem criar confirmação histológica ou mudar qid. O revisor deve verificar se a nova ressalva elimina inferência indevida do original sem descaracterizar o objetivo."
+    },
+    {
+      "qid":"985e2d99",
+      "op":"Relacionar transporte rápido adquirido e perda de ultrafiltração a mecanismos de remodelamento e avaliação integrada.",
+      "source":"ISPD-membrane-2021",
+      "locators":["Tabela1/Fast PSTR e acquired intrinsic UF","Progressive fibrosis","Theoretical models/Mechanisms of water transport"],
+      "numericAudit":"Oitoanos é dado original; nenhum novo limiar, dose ou razão. Sodium dip não recebe razão numérica.",
+      "decisiveScope":"Área vascular efetiva favorece absorção rápida de glicose; fibrose pode acrescentar resistência ao transporte de água. Tempo/transporterapido não confirmam EPS. Confirmar função com testes e excluir causas mecânicas.",
+      "identity":"Mantém mecanismo/avaliação do caso de longa duração. Não transforma associação em diagnóstico obrigatório nem substitui o objetivo por tratamento de EPS."
+    },
+    {
+      "qid":"57aacceb",
+      "op":"Orientar permanências no transporte lento, sem impor modalidade pelo PET isolado.",
+      "source":"ISPD-membrane-2021",
+      "locators":["Peritoneal solute transfer rate","Guideline1","Mitigating clinical consequences of fast PSTR, parágrafo de very slow PSTR/APD"],
+      "numericAudit":"Quatrohoras é dado original. Nenhuma nova duração de permanência ou dose.",
+      "decisiveScope":"Considerar mais tempo para equilíbrio é aplicação da fisiologia ao transporte lento, não recomendação graduada de uma modalidade obrigatória. O documento aceita modalidades manual/automatizada segundo adequação, estilo de vida e balanço hídrico.",
+      "identity":"Mesmo OP de princípio da prescrição, com explicação original preservada; mantém a linguagem condicional."
+    }
+  ],
+  "duplicatesAssessment":{"pairs":[{"qids":["8fee305a","57aacceb"],"distinction":"Fenótipos opostos e ajuste de permanência em direção diferente; variação clínica útil, não simples duplicata lexical."},{"qids":["8fee305a","985e2d99"],"distinction":"Prescrição do transporte rápido versus mecanismo adquirido e investigação integrada."},{"qids":["cfa20f08","5d9f1a59"],"distinction":"Rastreio de baixa capacidade versus informação adicional da queda de sódio e repercussão na anúria."}],"independentReviewRequired":true},
+  "cardAudit":{"id":"ispd_membrane_dysfunction_2021","integralRead":true,"changed":false,"findings":"Metadados,4horas,6–12semanas,limiares de capacidade e queda absoluta de sódio conferidos. O card usa 'sugere' e orienta integrar transporte/causas mecânicas; não contém a razão divergente ou uma indicação automática de transferência."},
+  "notPublicationGates":true
+}

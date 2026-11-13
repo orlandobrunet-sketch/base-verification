@@ -296,7 +296,7 @@ test('actual full 741 catalog loads all four current runtime profiles from the p
   await info.attach('actual-741-catalog', { contentType: 'application/json', body: JSON.stringify(report) });
 });
 
-test('actual published archive retains sixteen questions and all sixty-four prior runtime bindings and cards', async ({ page }, info) => {
+test('actual published archive retains sixteen original questions and sixty-four bindings alongside the 17.09 additions', async ({ page }, info) => {
   const report = await page.evaluate(() => {
     const w = window as any, api = w.NQQuestionRevisions, archive = w.NQQuestionRevisionHistory;
     const rows = archive.flatMap((row: any) => ['main', 'exam', 'study', 'offline'].map(profile => {
@@ -315,7 +315,12 @@ test('actual published archive retains sixteen questions and all sixty-four prio
         legacyStatus: w.questionRevisionCatalog.inspectLegacy(row.qid, { profile }).status,
         policy: checked.value?.policy };
     }));
-    return { archiveCount: archive.length, referenceCount: Object.keys((0, eval)('refsDB')).length,
+    const originals = archive.filter((row: any) => ['16.09', '16.13', '16.19'].includes(row.release));
+    const additions = archive.filter((row: any) => row.release === '17.09');
+    return { archiveCount: archive.length, originalCount: originals.length, additionCount: additions.length,
+      originalDigest: api.digest(originals), additionDigest: api.digest(additions),
+      originalQids: originals.map((row: any) => row.qid).sort(),
+      referenceCount: Object.keys((0, eval)('refsDB')).length,
       referenceIds: Object.keys((0, eval)('refsDB')).sort(),
       qids: archive.map((row: any) => row.qid).sort(), rows };
   });
@@ -329,21 +334,40 @@ test('actual published archive retains sixteen questions and all sixty-four prio
     'extrip_salicylates_2015', 'hyperglycemic_crises_consensus_2024', 'metabolic_alkalosis_emmett_2020',
     'neurocritical_cerebral_edema_2020', 'surviving_sepsis_2026', 'ukka_hyperkalemia_2026',
   ];
+  const newReferenceIds = ['cruzado_post_tx_parathyroidectomy_2016', 'gohil_imel_fgf23_phosphate_2019', 'kdigo_ckd_mbd_2009'];
+  const retiredReferenceIds = ['dcor_trial', 'finerenone_2025'];
   const legacyReferenceIds = report.referenceIds.filter((id: string) => !chamberReferenceIds.includes(id));
-  expect(report.archiveCount).toBe(16);
+  expect(report.archiveCount).toBe(126);
+  expect(report.originalCount).toBe(16);
+  expect(report.additionCount).toBe(110);
+  // Freeze every original object, including its source, author, cards and metadata.
+  // The added archive is separately fixed to the reviewed 17.10 integration.
+  expect(report.originalDigest).toBe('sha256:7b0d9861291f6661a26546e4cea67492d4ef648f797e9757f08caf2642059f3e');
+  expect(report.additionDigest).toBe('sha256:64a0ffb3ff1571071826a052c4953e465a263d52d446297f1f725f6ceb0ea705');
   expect(chamberReferenceIds).toHaveLength(14);
-  expect(report.referenceCount).toBe(353 + chamberReferenceIds.length);
+  expect(report.referenceCount).toBe(354 + chamberReferenceIds.length);
   expect(report.referenceIds.filter((id: string) => chamberReferenceIds.includes(id))).toEqual(chamberReferenceIds);
-  expect(legacyReferenceIds).toHaveLength(353);
+  expect(legacyReferenceIds).toHaveLength(354);
+  expect(legacyReferenceIds.filter((id: string) => newReferenceIds.includes(id))).toEqual(newReferenceIds);
+  expect(legacyReferenceIds.filter((id: string) => retiredReferenceIds.includes(id))).toEqual([]);
+  const publishedLegacyIds = [...legacyReferenceIds.filter((id: string) => !newReferenceIds.includes(id)), ...retiredReferenceIds].sort();
   // Frozen ID-set digest from the published353-card registry; no deleted/replaced
   // legacy ID can be hidden by adding a different card while retaining the count.
-  expect(createHash('sha256').update(JSON.stringify(legacyReferenceIds)).digest('hex'))
+  expect(publishedLegacyIds).toHaveLength(353);
+  expect(createHash('sha256').update(JSON.stringify(publishedLegacyIds)).digest('hex'))
     .toBe('c35ba55bca3cec0ca1c51f2efffaee27ad86e8eaae1fa894030a38035ef99e56');
-  expect(report.qids).toEqual([...priorQids, ...addedQids, ...referenceOnlyQids].sort());
-  expect(report.rows).toHaveLength(64);
-  const priorRows = report.rows.filter((row: any) => priorQids.includes(row.qid));
-  const addedRows = report.rows.filter((row: any) => addedQids.includes(row.qid));
-  const referenceOnlyRows = report.rows.filter((row: any) => referenceOnlyQids.includes(row.qid));
+  expect(report.originalQids).toEqual([...priorQids, ...addedQids, ...referenceOnlyQids].sort());
+  expect(report.rows).toHaveLength(504);
+  const originalRows = report.rows.filter((row: any) => ['16.09', '16.13', '16.19'].includes(row.release));
+  expect(originalRows).toHaveLength(64);
+  const newRows = report.rows.filter((row: any) => row.release === '17.09');
+  expect(newRows).toHaveLength(440);
+  for (const row of newRows) expect(row).toMatchObject({ status: 'known', historical: true, release: '17.09',
+    sourceExact: true, authorExact: true, cardsExact: true, bindingExact: true, currentSeparate: true,
+    policy: { material: true, pending: 'update-required', answered: 'historical' } });
+  const priorRows = originalRows.filter((row: any) => priorQids.includes(row.qid));
+  const addedRows = originalRows.filter((row: any) => addedQids.includes(row.qid));
+  const referenceOnlyRows = originalRows.filter((row: any) => referenceOnlyQids.includes(row.qid));
   expect(priorRows).toHaveLength(40); expect(addedRows).toHaveLength(12);
   expect(referenceOnlyRows).toHaveLength(12);
   for (const row of priorRows) expect(row).toMatchObject({ status: 'known', historical: true, release: '16.09',
@@ -355,7 +379,7 @@ test('actual published archive retains sixteen questions and all sixty-four prio
   for (const row of referenceOnlyRows) expect(row).toMatchObject({ status: 'known', historical: true, release: '16.19',
     sourceExact: true, authorExact: true, cardsExact: true, bindingExact: true, currentSeparate: true,
     legacyStatus: 'ambiguous', policy: { material: true, pending: 'update-required', answered: 'historical' } });
-  await info.attach('actual-16-archive-64-bindings', { contentType: 'application/json', body: JSON.stringify(report) });
+  await info.attach('actual-original-16-and-added-110-archive-bindings', { contentType: 'application/json', body: JSON.stringify(report) });
 });
 
 test('actual campaign archive preserves old answer, explanation, changed card and wrong-answer review without writes', async ({ page }, info) => {

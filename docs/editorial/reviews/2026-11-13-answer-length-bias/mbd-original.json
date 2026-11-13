@@ -1,0 +1,553 @@
+{
+  "schema": 1,
+  "family": "kdigo_ckd_mbd_2017",
+  "source": "data/topics.js",
+  "sourceHash": "fad45d2ad3033bc15b296eb22c6fb062edc3728b5988dcbbd5adb99763f14005",
+  "createdAt": "2026-11-13T12:40:29.677Z",
+  "questionHashMethod": "SHA256(JSON.stringify(question)) em UTF-8; ordem dos campos preservada",
+  "questions": [
+    {
+      "qid": "efba1640",
+      "originalHash": "13d2727d48f1b7d22c2e70a2efd0c5387f929378741c9f443e8ea29511235a76",
+      "original": {
+        "t": "DRC-MBD — FGF23 Precoce",
+        "qid": "efba1640",
+        "q": "Na doença renal crônica, qual alteração hormonal costuma surgir precocemente para manter o fósforo sérico ainda normal, antes da hiperfosfatemia franca?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "phosphate_binders_ckd"
+        ],
+        "opts": [
+          "Aumento de eritropoietina por resposta osteocitária",
+          "Elevação de calcitonina como principal hormônio fosfatúrico",
+          "Elevação de aldosterona para aumentar fosfatúria distal",
+          "Elevação de FGF23, com efeito fosfatúrico e redução de calcitriol"
+        ],
+        "ans": 3,
+        "exp": "Na DRC, o FGF23 aumenta precocemente como resposta compensatória à menor capacidade renal de excretar fósforo. Ele reduz a reabsorção tubular proximal de fosfato e suprime a produção de calcitriol, ajudando a manter o fósforo sérico aparentemente normal por algum tempo. Essa adaptação contribui para hiperparatireoidismo secundário ao reduzir vitamina D ativa e alterar a homeostase cálcio-fósforo. Eritropoietina, calcitonina e aldosterona não são a resposta hormonal central nessa sequência.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      }
+    },
+    {
+      "qid": "b5f6baf9",
+      "originalHash": "3ab4d7a0fa707bcd92508324c28ed3647db49018be95ea2639f4f0fc58bd8c0c",
+      "original": {
+        "t": "DMO-DRC — Suspeita de Baixo Turnover Ósseo",
+        "qid": "b5f6baf9",
+        "q": "Paciente em hemodiálise apresenta, em medidas seriadas, PTH intacto abaixo de duas vezes o limite superior do ensaio e fosfatase alcalina óssea baixa. Qual é a interpretação mais adequada?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "O perfil sugere baixo turnover ósseo, mas não confirma sozinho doença óssea adinâmica; biópsia pode ser considerada se o tipo de osteodistrofia mudar a conduta",
+          "O perfil confirma osteíte fibrosa de alto turnover e indica intensificar imediatamente vitamina D ativa",
+          "A fosfatase alcalina óssea baixa confirma osteomalácia por alumínio, independentemente da exposição e da histologia",
+          "PTH e fosfatase alcalina não fornecem nenhuma informação sobre turnover ósseo na DRC"
+        ],
+        "ans": 0,
+        "exp": "Valores marcadamente baixos ou altos de PTH e fosfatase alcalina óssea ajudam a estimar o turnover na DRC, e o conjunto descrito sugere baixo turnover. Entretanto, nenhum biomarcador isolado ou combinação bioquímica classifica com segurança a histologia óssea de cada paciente. A biópsia óssea continua sendo o padrão para definir o tipo de osteodistrofia e pode ser considerada quando o resultado mudaria decisões terapêuticas. PTH alto com fosfatase alcalina elevada favoreceria alto turnover; osteomalácia é um defeito de mineralização e não pode ser atribuída automaticamente ao alumínio.",
+        "diff": "hard",
+        "cat": "dialise"
+      }
+    },
+    {
+      "qid": "67035e0e",
+      "originalHash": "260fa56f52858050aee1fcdc1150d0ebf507c544be90582bea097da688055063",
+      "original": {
+        "t": "Quelantes de Fosfato — Sevelamer vs Quelantes com Cálcio",
+        "qid": "67035e0e",
+        "q": "Em paciente em hemodiálise com hiperfosfatemia e tendência à hipercalcemia, qual é a principal vantagem de usar sevelamer em vez de carbonato/acetato de cálcio?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "dcor_trial"
+        ],
+        "opts": [
+          "Reduzir a carga de cálcio e o risco de hipercalcemia associada ao quelante",
+          "Ser invariavelmente mais barato e mais disponível",
+          "Reduzir fósforo por mecanismo hormonal sistêmico independente do intestino",
+          "Eliminar completamente efeitos gastrointestinais"
+        ],
+        "ans": 0,
+        "exp": "Sevelamer é um quelante de fosfato não cálcico; por isso controla absorção intestinal de fósforo sem acrescentar carga de cálcio. Em pacientes em diálise com risco de hipercalcemia ou calcificação vascular, essa é a vantagem prática sobre quelantes à base de cálcio. Ele não é escolhido por ser sempre mais barato, não atua por mecanismo hormonal sistêmico e ainda pode causar efeitos gastrointestinais.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      }
+    },
+    {
+      "qid": "38c82254",
+      "originalHash": "c38ad4ca37ba7c2cf9bb4257c1ccc5f1e54c108b11df9598e7c77569a8a50ce2",
+      "original": {
+        "t": "PTH no Túbulo Proximal — Fosfatúria",
+        "qid": "38c82254",
+        "q": "Além de estimular a 1α-hidroxilase renal, qual efeito direto do PTH no túbulo proximal ajuda a regular o fósforo sérico?",
+        "refs": [
+          "brenner_rector",
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Aumenta a reabsorção de glicose sem alterar a fosfatúria",
+          "Reduz a reabsorção proximal de fosfato por diminuir transportadores NaPi apicais",
+          "Aumenta reabsorção de bicarbonato como principal mecanismo fosfatúrico",
+          "Estimula secreção tubular de magnésio como via central de controle do fósforo"
+        ],
+        "ans": 1,
+        "exp": "O PTH reduz a reabsorção de fosfato no túbulo proximal ao diminuir a expressão/apresentação apical de cotransportadores sódio-fosfato, como NaPi-IIa/IIc, produzindo fosfatúria. Em paralelo, estimula a produção renal de calcitriol. Glicose, bicarbonato e magnésio não são o eixo tubular principal pelo qual o PTH controla a excreção de fósforo.",
+        "diff": "hard",
+        "cat": "eletrólitos"
+      }
+    },
+    {
+      "qid": "1366b930",
+      "originalHash": "8ed6cc39dd58f8ac5cf8865249f7fae9fbf40f5bc7fc1c0877802a2dad6fda09",
+      "original": {
+        "t": "DRC-MBD — Hiperparatireoidismo Secundário Inicial",
+        "qid": "1366b930",
+        "q": "Paciente com DRC G4 tem PTH elevado, fósforo no limite superior da normalidade e deficiência de vitamina D/calcitriol. Qual interpretação fisiopatológica é mais adequada?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "phosphate_binders_ckd"
+        ],
+        "opts": [
+          "Elevação precoce de FGF23 e queda de calcitriol favorecem hiperparatireoidismo secundário antes da hiperfosfatemia franca",
+          "Hipercalcemia é a alteração inicial típica e explica diretamente a elevação do PTH",
+          "O PTH só sobe depois de hiperfosfatemia franca e persistente",
+          "FGF23 reduz fosfatúria, aumentando a retenção de fósforo como mecanismo compensatório"
+        ],
+        "ans": 0,
+        "exp": "Na DRC-MBD, FGF23 pode se elevar antes da hiperfosfatemia franca, aumentando a fosfatúria e reduzindo calcitriol. A menor vitamina D ativa reduz absorção intestinal de cálcio e remove freio sobre paratireoides, favorecendo hiperparatireoidismo secundário. Hipercalcemia não é a explicação inicial típica; PTH pode subir antes de fósforo sérico claramente alto; e FGF23 aumenta, não reduz, a excreção renal de fosfato enquanto há reserva tubular.",
+        "diff": "hard",
+        "cat": "eletrólitos"
+      }
+    },
+    {
+      "qid": "0f739fb4",
+      "originalHash": "99c73e1b0b3920a2201f5a92cd176138bef3489d315f5388ef939c865db7c47d",
+      "original": {
+        "qid": "0f739fb4",
+        "q": "Nas fases avançadas da Doença Renal Crônica, instala-se o Distúrbio Mineral e Ósseo (hiperparatireoidismo secundário). Qual é o padrão laboratorial clássico inicial que desencadeia o quadro?",
+        "opts": [
+          "Cálcio sérico alto, Fósforo alto, PTH alto.",
+          "Cálcio sérico baixo, Fósforo baixo, PTH baixo.",
+          "Cálcio sérico alto, Fósforo baixo, PTH baixo.",
+          "Cálcio sérico baixo, Fósforo alto, PTH alto."
+        ],
+        "ans": 3,
+        "exp": "Nas fases avançadas da Doença Renal Crônica (DRC), a diminuição da Taxa de Filtração Glomerular (TFG) leva à retenção de fósforo, resultando em hiperfosfatemia. Simultaneamente, a capacidade renal de hidroxilar a 25-hidroxivitamina D em sua forma ativa, 1,25-di-hidroxivitamina D (calcitriol), é reduzida. A hiperfosfatemia e a deficiência de calcitriol contribuem para a hipocalcemia. A hipocalcemia, por sua vez, estimula as glândulas paratireoides a secretar Paratormônio (PTH) em excesso, caracterizando o hiperparatireoidismo secundário, que tenta normalizar o cálcio e o fósforo, mas leva a alterações ósseas e vasculares a longo prazo.",
+        "refs": [
+          "kdigo_ckd",
+          "evolve_trial",
+          "kdigo_ckd_mbd_2017"
+        ],
+        "cat": "drc",
+        "diff": "medium",
+        "t": "Distúrbio Mineral Ósseo na DRC"
+      }
+    },
+    {
+      "qid": "d4b2aa68",
+      "originalHash": "1a2abf194c1fecbf4e1e5b556ff0c416438f16bb52121d927dbf3621a37586bf",
+      "original": {
+        "qid": "d4b2aa68",
+        "q": "Qual das seguintes opções de quelante de fósforo utilizado em pacientes com Doença Renal Crônica (DRC) é caracterizada por ser uma resina isenta de cálcio e alumínio?",
+        "opts": [
+          "Sevelamer.",
+          "Hidróxido de alumínio.",
+          "Carbonato de cálcio.",
+          "Acetato de cálcio."
+        ],
+        "ans": 0,
+        "exp": "O sevelamer é um quelante de fósforo não calcêmico e livre de alumínio, atuando como uma resina de ligação intestinal do fosfato; por isso é a opção correta. O hidróxido de alumínio contém alumínio e, embora seja quelante, seu uso é limitado pelo risco de toxicidade por alumínio. Já o carbonato de cálcio e o acetato de cálcio são quelantes à base de cálcio, portanto não atendem ao critério de serem isentos de cálcio.",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "phosphate_binders_ckd"
+        ],
+        "cat": "drc",
+        "diff": "medium",
+        "t": "Quelantes de Fósforo na DRC — Comparação"
+      }
+    },
+    {
+      "qid": "2beb178a",
+      "originalHash": "abeb93792821d4923384a11faa8dc70be6ce0fa7e2fccae16517b03746ff22ae",
+      "original": {
+        "t": "DMO-DRC — Hiperfosfatemia com Calcificação Vascular",
+        "qid": "2beb178a",
+        "q": "Paciente com DRC G4 apresenta fósforo sérico de 6,8 mg/dL, PTH moderadamente aumentado e calcificação vascular extensa em imagem. Segundo a KDIGO CKD-MBD, qual estratégia é mais apropriada para tratar a hiperfosfatemia nesse contexto?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Usar vitamina D ativa em dose alta para suprimir rapidamente o PTH, independentemente do fósforo",
+          "Usar bisfosfonato para reverter calcificação vascular e reduzir mortalidade cardiovascular",
+          "Priorizar quelantes de fósforo à base de cálcio, porque a presença de calcificação vascular não muda a escolha do quelante",
+          "Reduzir o fósforo sérico e restringir a carga de cálcio, preferindo quelante não cálcico quando há calcificação vascular extensa"
+        ],
+        "ans": 3,
+        "exp": "A alternativa correta é D. Na DRC com hiperfosfatemia, a KDIGO recomenda reduzir fósforo elevado em direção à faixa normal e basear o tratamento em avaliações seriadas de fósforo, cálcio e PTH. Na presença de calcificação vascular conhecida, o paciente deve ser considerado de alto risco cardiovascular, e a diretriz sugere restringir a dose de quelantes à base de cálcio; por isso, um quelante não cálcico é preferível quando é necessário quelante. Vitamina D ativa em dose alta pode agravar cálcio/fósforo e não é primeira resposta para hiperfosfatemia; bisfosfonatos não são tratamento de calcificação vascular; e ignorar a carga de cálcio é inseguro nesse cenário.",
+        "diff": "hard",
+        "cat": "drc"
+      }
+    },
+    {
+      "qid": "3dfa2ab5",
+      "originalHash": "7b39bd3665aa0b05af4af0f567cc4e19e93c059dbdde6854fdc5336c5aae590f",
+      "original": {
+        "t": "DMO-DRC — Hiperparatireoidismo Grave Refratário",
+        "qid": "3dfa2ab5",
+        "q": "Paciente em hemodiálise apresenta hiperparatireoidismo secundário grave persistente, apesar de tratamento clínico otimizado para fósforo, cálcio e PTH. Evolui com dor óssea progressiva e sinais de osteíte fibrosa. Segundo a KDIGO CKD-MBD, qual é a melhor conduta quando o hiperparatireoidismo grave não responde ao tratamento médico/farmacológico?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Indicar paratireoidectomia, por falha do tratamento clínico em hiperparatireoidismo grave",
+          "Manter indefinidamente a mesma dose de vitamina D ativa e quelantes, mesmo com sintomas progressivos",
+          "Suspender quelantes e vitamina D ativa para aguardar reversão espontânea do hiperparatireoidismo",
+          "Tratar como hiperparatireoidismo primário assintomático, sem relação com a DRC"
+        ],
+        "ans": 0,
+        "exp": "A alternativa correta é A. A KDIGO sugere paratireoidectomia em pacientes com DRC G3a–G5D que têm hiperparatireoidismo grave e falham ao tratamento médico ou farmacológico. O caso descreve doença dialítica, refratariedade e complicação óssea, portanto não é um cenário para apenas repetir a mesma estratégia clínica. Suspender todo tratamento mineral sem plano alternativo é inadequado, e o quadro não é hiperparatireoidismo primário assintomático. O item foi reformulado para evitar confundir hiperparatireoidismo secundário refratário com o termo “terciário”, que pode gerar ambiguidade fora do contexto pós-transplante ou autonomia persistente bem documentada.",
+        "diff": "hard",
+        "cat": "drc"
+      }
+    },
+    {
+      "qid": "9c43ab07",
+      "originalHash": "4b9daac686cdd65490887719bca50e5d80740cb34d5059eead396e13e2d2102e",
+      "original": {
+        "t": "DMO-DRC — Vitamina D Ativa em DRC Não Dialítica",
+        "qid": "9c43ab07",
+        "q": "Paciente com DRC G4 não dialítica apresenta PTH moderadamente elevado e cálcio sérico no limite superior da normalidade. Segundo a KDIGO CKD-MBD, qual é a melhor conduta inicial para o hiperparatireoidismo secundário nesse cenário?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Iniciar calcitriol em dose alta para suprimir rapidamente o PTH, apesar do cálcio alto-normal",
+          "Preferir análogo de vitamina D ativa de rotina, pois elimina o risco de hipercalcemia e calcificação vascular",
+          "Avaliar tendência do PTH e corrigir fatores modificáveis, como hiperfosfatemia, ingestão elevada de fósforo e deficiência de vitamina D nutricional; reservar calcitriol/análogo para hiperparatireoidismo grave e progressivo",
+          "Iniciar cinacalcete como primeira linha em todo paciente não dialítico com qualquer elevação de PTH"
+        ],
+        "ans": 2,
+        "exp": "A alternativa correta é C. Em DRC G3a–G5 não dialítica, o nível ótimo de PTH é desconhecido, e elevações moderadas podem ser resposta adaptativa. A KDIGO recomenda avaliar tendência e corrigir fatores modificáveis, incluindo hiperfosfatemia, hipocalcemia, ingestão elevada de fósforo e deficiência de vitamina D. Em adultos não dialíticos, calcitriol e análogos de vitamina D não devem ser usados rotineiramente; podem ser reservados para DRC G4–G5 com hiperparatireoidismo grave e progressivo. Cálcio alto-normal aumenta a cautela com vitamina D ativa. Cinacalcete é terapia de PTH sobretudo no contexto dialítico e não é primeira linha para PTH moderadamente elevado em DRC não dialítica.",
+        "diff": "hard",
+        "cat": "drc"
+      }
+    },
+    {
+      "qid": "9482bda7",
+      "originalHash": "7151a416f58bf5aad2d0c8d6ec65ba342b6946bbd14027a12a35c3407af99391",
+      "original": {
+        "t": "DMO-DRC — estímulos do hiperparatireoidismo secundário",
+        "qid": "9482bda7",
+        "q": "Paciente com DRC G4 apresenta cálcio 8,4 mg/dL, fósforo 5,9 mg/dL, PTH 780 pg/mL e fosfatase alcalina elevada. Qual combinação explica melhor o hiperparatireoidismo secundário nesse cenário?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Deficiência de calcitonina e aumento da excreção urinária de cálcio",
+          "Retenção de fosfato e redução de calcitriol, com tendência à hipocalcemia",
+          "Supressão sustentada de FGF23 e aumento da absorção intestinal de cálcio",
+          "Hipercalcemia primária por adenoma autônomo de paratireoide"
+        ],
+        "ans": 1,
+        "exp": "Na DRC avançada, a menor excreção de fosfato e a queda de calcitriol reduzem a absorção intestinal de cálcio e removem freios fisiológicos sobre a secreção de PTH. O resultado é hiperparatireoidismo secundário, frequentemente acompanhado de fosfatase alcalina elevada quando há alta remodelação óssea. Calcitonina não é o eixo central; FGF23 tende a estar elevado, não suprimido; e hipercalcemia por adenoma autônomo sugere hiperparatireoidismo primário/terciário, não o quadro bioquímico descrito.",
+        "diff": "hard",
+        "cat": "drc"
+      }
+    },
+    {
+      "qid": "e77d2078",
+      "originalHash": "c4bdd5a8052a0e951c07daba64bf50a97d59262c5247cdc6b2b8cbf90655d8ed",
+      "original": {
+        "t": "DMO-DRC — PTH Persistentemente Baixo em Hemodiálise",
+        "qid": "e77d2078",
+        "q": "Paciente em hemodiálise usa acetato de cálcio e calcitriol. Apresenta hipercalcemia recorrente, calcificação vascular, PTH persistentemente abaixo de duas vezes o limite superior do ensaio e fosfatase alcalina óssea baixa. Qual ajuste é mais apropriado?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Reavaliar e reduzir a carga de cálcio e os fármacos que suprimem PTH, monitorando cálcio, fósforo e PTH em série",
+          "Aumentar o calcitriol para suprimir ainda mais o PTH e tratar a calcificação vascular",
+          "Adicionar cinacalcete para levar o PTH ao intervalo de referência da população sem DRC",
+          "Elevar a concentração de cálcio do dialisato como tratamento obrigatório do baixo turnover"
+        ],
+        "ans": 0,
+        "exp": "O conjunto sugere supressão excessiva do turnover e sobrecarga de cálcio. A KDIGO recomenda restringir quelantes à base de cálcio quando há calcificação arterial, suspeita de doença adinâmica ou PTH persistentemente baixo; tratamentos redutores de PTH devem ser reduzidos ou interrompidos quando o PTH cai excessivamente. A conduta deve ser individualizada e acompanhada por tendências de cálcio, fósforo e PTH. Intensificar calcitriol, iniciar calcimimético ou aumentar cálcio do dialisato pode aprofundar a supressão do PTH ou a carga de cálcio.",
+        "diff": "hard",
+        "cat": "dialise"
+      }
+    },
+    {
+      "qid": "8ba55c24",
+      "originalHash": "64257ec83a05a39b80d83413514b5d1df45b2e557b9f9719f8d6f76a7be99a9e",
+      "original": {
+        "t": "DMO-DRC — FGF23 e fosfatúria",
+        "qid": "8ba55c24",
+        "q": "Na DRC, o FGF23 se eleva como resposta adaptativa à retenção de fosfato. Qual é seu principal efeito tubular proximal sobre o fosfato?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "phosphate_binders_ckd"
+        ],
+        "opts": [
+          "Aumentar a expressão de NaPi-IIa/IIc e reter fosfato",
+          "Reduzir a expressão de NaPi-IIa/IIc e aumentar a fosfatúria",
+          "Estimular a 1-alfa-hidroxilase e elevar o calcitriol",
+          "Reduzir a excreção fracional de fosfato"
+        ],
+        "ans": 1,
+        "exp": "O FGF23 é produzido principalmente por osteócitos e funciona como hormônio fosfatúrico. No túbulo proximal, reduz cotransportadores sódio-fosfato (NaPi-IIa/IIc), diminuindo a reabsorção tubular e aumentando a excreção urinária de fosfato. Em paralelo, inibe a produção renal de calcitriol. Por isso, as alternativas que aumentam NaPi, aumentam calcitriol ou reduzem a fosfatúria invertem a fisiologia esperada.",
+        "diff": "hard",
+        "cat": "drc"
+      }
+    },
+    {
+      "qid": "c9da6fdf",
+      "originalHash": "d24e07bbd99bcc0e14c0439a1fc6e2ba49020536fee6a9530dd25a8fd28cfd45",
+      "original": {
+        "t": "DMO-DRC — calcificação vascular",
+        "qid": "c9da6fdf",
+        "q": "Na DRC com distúrbio mineral-ósseo, qual mecanismo celular participa diretamente da calcificação vascular?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Transdiferenciação osteogênica de células musculares lisas vasculares",
+          "Aumento da síntese hepática de colágeno",
+          "Redução primária da atividade osteoclástica",
+          "Aumento compensatório de calcitonina"
+        ],
+        "ans": 0,
+        "exp": "A calcificação vascular da DRC não é mera precipitação passiva de cálcio e fósforo. A hiperfosfatemia e a perda de inibidores de calcificação favorecem mudança fenotípica de células musculares lisas vasculares para um perfil osteogênico/osteoblasto-like, com deposição ativa de matriz mineral. Síntese hepática de colágeno, atividade osteoclástica óssea e calcitonina não são o mecanismo celular direto desse processo vascular.",
+        "diff": "hard",
+        "cat": "drc"
+      }
+    },
+    {
+      "qid": "21e9cefb",
+      "originalHash": "08de68e55fe85b0fee8c3b3d14c66557502d9e4bac394d1f26d988510a7412c0",
+      "original": {
+        "t": "DMO-DRC — hipocalcemia e hiperfosfatemia",
+        "qid": "21e9cefb",
+        "q": "Paciente com DRC G4 apresenta fósforo 7,2 mg/dL, cálcio 7,8 mg/dL e PTH elevado. Qual combinação explica melhor a tendência à hipocalcemia nesse contexto?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Retenção de fosfato e menor produção de calcitriol",
+          "Aumento da absorção intestinal de cálcio por excesso de calcitriol",
+          "Redução da ligação entre cálcio e fosfato",
+          "Aumento da excreção urinária de cálcio como mecanismo principal"
+        ],
+        "ans": 0,
+        "exp": "Na DRC, a retenção de fosfato reduz o cálcio ionizado por complexação cálcio-fosfato e participa do estímulo ao PTH. Além disso, FGF23 elevado e menor massa renal reduzem calcitriol, diminuindo a absorção intestinal de cálcio. Essa combinação explica melhor a hipocalcemia e o hiperparatireoidismo secundário. As demais alternativas invertem a fisiologia ou atribuem o quadro a mecanismo urinário que não é o principal na DRC avançada.",
+        "diff": "hard",
+        "cat": "drc"
+      }
+    },
+    {
+      "qid": "ffee06f0",
+      "originalHash": "8d475944798a1131b7e1d709a6218d4468f86ab7545d6b5546f341666502f2d9",
+      "original": {
+        "t": "DMO-DRC — FGF23 e calcitriol",
+        "qid": "ffee06f0",
+        "q": "Na DRC, a elevação do FGF23 contribui para reduzir o calcitriol. Qual mecanismo renal explica melhor essa queda?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "phosphate_binders_ckd"
+        ],
+        "opts": [
+          "Inibição da 1-alfa-hidroxilase renal",
+          "Aumento da 1-alfa-hidroxilase renal",
+          "Aumento da hidroxilação hepática da vitamina D",
+          "Estímulo direto da absorção intestinal de cálcio"
+        ],
+        "ans": 0,
+        "exp": "O FGF23 inibe a 1-alfa-hidroxilase renal, reduzindo a conversão de 25-hidroxivitamina D em calcitriol. Menos calcitriol reduz a absorção intestinal de cálcio e fósforo e favorece, junto com hiperfosfatemia e hipocalcemia, o hiperparatireoidismo secundário da DRC. As alternativas restantes confundem etapas hepáticas, aumentam a enzima que deveria estar inibida ou descrevem efeito intestinal downstream, não o mecanismo renal da queda do calcitriol.",
+        "diff": "hard",
+        "cat": "drc"
+      }
+    },
+    {
+      "qid": "2f2cdd55",
+      "originalHash": "3bf8ef7469da3b62007644f6a5ec2ecb465c1467d760e794b11627bbb72827a9",
+      "original": {
+        "t": "DMO-DRC — Osteomalácia na Biópsia Óssea",
+        "qid": "2f2cdd55",
+        "q": "Paciente em hemodiálise apresenta dor óssea e fratura por fragilidade. A histomorfometria com marcação por tetraciclina mostra grande volume de osteoide e atraso acentuado da mineralização. Qual interpretação é mais adequada?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "brenner_rector"
+        ],
+        "opts": [
+          "O padrão define defeito de mineralização compatível com osteomalácia e exige investigação etiológica, incluindo vitamina D, fósforo e exposição ao alumínio conforme o contexto",
+          "O padrão confirma doença óssea adinâmica, na qual não há defeito de mineralização nem necessidade de investigar causas",
+          "O padrão confirma osteíte fibrosa exclusivamente pelo excesso de PTH, independentemente dos dados bioquímicos",
+          "O padrão é suficiente para atribuir intoxicação por alumínio mesmo sem exposição, coloração específica ou avaliação adicional"
+        ],
+        "ans": 0,
+        "exp": "Osteomalácia é um defeito de mineralização: a biópsia mostra acúmulo de osteoide não mineralizado e aumento do tempo de mineralização. Em paciente dialítico, a causa não deve ser presumida apenas pela histologia; a investigação pode incluir deficiência de vitamina D, hipofosfatemia e exposição ao alumínio, com métodos específicos quando houver suspeita. Doença óssea adinâmica é definida por formação e turnover muito baixos, enquanto osteíte fibrosa é um fenótipo de alto turnover associado ao hiperparatireoidismo.",
+        "diff": "hard",
+        "cat": "dialise"
+      }
+    },
+    {
+      "qid": "666e748d",
+      "originalHash": "8ca3437ab509c1e8770152eed2653c37f97467c14e9cb082dca5bad275b31fb3",
+      "original": {
+        "t": "DMO-DRC — Calcimimético no Hiperparatireoidismo Secundário",
+        "qid": "666e748d",
+        "q": "Paciente em hemodiálise apresenta PTH persistentemente elevado, hipercalcemia e hiperfosfatemia apesar do controle dietético, da diálise e de quelantes. Usa calcitriol, mas ainda não recebeu calcimimético e não tem indicação cirúrgica urgente. Qual estratégia é mais coerente com a KDIGO?",
+        "refs": [
+          "evolve_trial",
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Considerar calcimimético e reavaliar a vitamina D ativa conforme cálcio e fósforo, acompanhando a resposta bioquímica em série",
+          "Aumentar obrigatoriamente o calcitriol, embora cálcio e fósforo já estejam elevados",
+          "Indicar paratireoidectomia antes de tentar qualquer outra terapia redutora de PTH",
+          "Reduzir a frequência da hemodiálise para limitar a remoção de fósforo"
+        ],
+        "ans": 0,
+        "exp": "Em DRC G5D que requer redução do PTH, calcimimético, calcitriol ou análogos de vitamina D, isolados ou combinados, são opções; a escolha deve considerar cálcio e fósforo. Com ambos elevados durante calcitriol, um calcimimético é uma opção coerente e a vitamina D ativa deve ser reavaliada. A indicação de paratireoidectomia surge no hiperparatireoidismo grave que falha ao tratamento médico ou farmacológico. O EVOLVE não demonstrou redução significativa do desfecho cardiovascular primário com cinacalcete, portanto o benefício ensinado aqui é controle bioquímico, não promessa de menor mortalidade.",
+        "diff": "hard",
+        "cat": "dialise"
+      }
+    },
+    {
+      "qid": "c44f053b",
+      "originalHash": "39f08e00f248c780de05e557ef4a41675ed54fca34747cf6e392d4d8454b2d92",
+      "original": {
+        "t": "Etelcalcetida versus Cinacalcete — Desfecho Bioquímico",
+        "qid": "c44f053b",
+        "q": "No ensaio direto com 683 pacientes em hemodiálise e hiperparatireoidismo secundário moderado a grave, qual conclusão sobre etelcalcetida e cinacalcete é sustentada?",
+        "refs": [
+          "block_etelcalcetide_cinacalcet_2017",
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Etelcalcetida IV três vezes por semana foi não inferior e atingiu critérios secundários de maior redução do PTH, mas reduziu cálcio com maior frequência e não provou benefício em desfechos clínicos",
+          "Etelcalcetida reduziu mortalidade cardiovascular e fraturas, desfechos primários do estudo",
+          "A via intravenosa eliminou hipocalcemia, náusea e necessidade de monitorização",
+          "Cinacalcete foi inferior porque não reduziu PTH em nenhum participante"
+        ],
+        "ans": 0,
+        "exp": "O estudo comparou etelcalcetida intravenosa administrada com a hemodiálise a cinacalcete oral diário. A proporção com redução superior a 30% do PTH foi 68,2% versus 57,7%; etelcalcetida cumpriu não inferioridade e critérios secundários de superioridade bioquímica. Redução do cálcio foi mais frequente, e náusea ou vômito não desapareceram. Como o ensaio avaliou principalmente PTH durante 26 semanas, não demonstrou superioridade em mortalidade, eventos cardiovasculares ou fraturas, nem autoriza afirmar adesão total fora das doses observadas na unidade.",
+        "diff": "hard",
+        "cat": "dialise"
+      }
+    },
+    {
+      "qid": "22189222",
+      "originalHash": "948e5431d9e49064fb4efe623512d2fa3dcdc44b955b9a65929ae29ea8ae89b4",
+      "original": {
+        "t": "DMO-DRC — sequência FGF23-calcitriol-PTH",
+        "qid": "22189222",
+        "q": "Na progressão da DRC, qual sequência resume melhor a adaptação inicial do metabolismo mineral antes da hiperfosfatemia franca?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "phosphate_binders_ckd"
+        ],
+        "opts": [
+          "Retenção de fosfato por menor massa nefrônica → ↑FGF23 → ↓calcitriol → ↑PTH",
+          "↑PTH isolado → ↑calcitriol → hipercalcemia → queda do FGF23",
+          "Hipocalcemia primária → queda do PTH → ↑calcitriol → hiperfosfatemia",
+          "↑calcitriol → maior absorção intestinal de cálcio e fósforo → queda do FGF23"
+        ],
+        "ans": 0,
+        "exp": "Com a perda de néfrons, a excreção de fosfato fica progressivamente mais dependente de respostas hormonais. O FGF23 aumenta cedo para promover fosfatúria e reduzir calcitriol; a queda do calcitriol diminui a absorção intestinal de cálcio e contribui para elevação progressiva do PTH. A hiperfosfatemia manifesta tende a aparecer mais tarde, quando a compensação não basta. As demais sequências invertem a relação entre FGF23, calcitriol e PTH.",
+        "diff": "medium",
+        "cat": "drc"
+      }
+    },
+    {
+      "qid": "891b3e02",
+      "originalHash": "049f28cffec7f7f282bbb22a87c23a72f81e4483ca1ec15768c0f0489190790b",
+      "original": {
+        "t": "Pós-transplante — Hiperparatireoidismo Terciário",
+        "qid": "891b3e02",
+        "q": "Receptor de transplante renal há 8 anos mantém PTH de 820 pg/mL, cálcio de 11,4 mg/dL e dor óssea apesar de manejo clínico adequado. Qual diagnóstico e conduta devem ser considerados?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Hiperparatireoidismo terciário por secreção autônoma; diante de hipercalcemia grave persistente e doença óssea refratária, avaliar paratireoidectomia",
+          "Hiperparatireoidismo secundário simples, que nunca causa hipercalcemia e não requer reavaliação",
+          "Intoxicação por vitamina D, confirmada apenas pelo PTH elevado",
+          "Hipercalcemia hipocalciúrica familiar, diagnóstico automático em todo transplantado"
+        ],
+        "ans": 0,
+        "exp": "Após estímulo prolongado da DRC, as paratireoides podem manter secreção autônoma mesmo depois do transplante, produzindo PTH alto com hipercalcemia: hiperparatireoidismo terciário. Hipercalcemia persistente importante, doença óssea ou complicações refratárias ao manejo clínico justificam avaliação cirúrgica. Após paratireoidectomia há risco de síndrome do osso faminto, exigindo planejamento de cálcio e vitamina D ativa. A decisão deve considerar função do enxerto, fósforo, sintomas e resposta prévia a calcimimético.",
+        "diff": "hard",
+        "cat": "genetica"
+      }
+    },
+    {
+      "qid": "73069894",
+      "originalHash": "c745d89425dd7b2672db17eb13694120cd6754c956a195d61c62aea5a79528d3",
+      "original": {
+        "t": "DRC G4 — hiperparatireoidismo secundário e fatores modificáveis",
+        "qid": "73069894",
+        "q": "Paciente com DRC G4 apresenta elevação progressiva do PTH, fósforo de 5,8 mg/dL, cálcio normal e 25-hidroxivitamina D de 12 ng/mL. Ainda não houve correção sistemática da deficiência de vitamina D nem revisão de dieta, adesão e quelação de fósforo. Qual é o próximo passo mais apropriado?",
+        "refs": [
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Corrigir os fatores modificáveis, incluindo hiperfosfatemia, ingestão de fósforo e deficiência de vitamina D, e reavaliar a tendência do PTH",
+          "Indicar paratireoidectomia imediatamente porque um valor elevado de PTH é indicação cirúrgica absoluta",
+          "Adicionar carbonato de cálcio independentemente do cálcio sérico e da carga total de cálcio",
+          "Iniciar calcitriol em alta dose sem corrigir a hiperfosfatemia, pois o PTH deve ser normalizado rapidamente"
+        ],
+        "ans": 0,
+        "exp": "Na DRC G3a–G5 não dialítica, a KDIGO recomenda avaliar primeiro fatores modificáveis diante de PTH progressivamente elevado: hiperfosfatemia, alta ingestão de fósforo, hipocalcemia e deficiência de vitamina D. O tratamento deve ser guiado por tendências e pelo conjunto dos parâmetros, não por um valor isolado. Calcitriol ou análogos podem ser reservados a hiperparatireoidismo grave e progressivo em DRC G4–G5, após essa correção; paratireoidectomia é opção para hiperparatireoidismo grave que não responde ao tratamento clínico ou farmacológico.",
+        "diff": "medium",
+        "cat": "nefrologia_geral"
+      }
+    },
+    {
+      "qid": "50d30738",
+      "originalHash": "c1808a15c7c8e81bf66f508023f03b45a77729982575eaac6d7375e03fcf071a",
+      "original": {
+        "t": "FGF-23 e Metabolismo Mineral na DRC",
+        "qid": "50d30738",
+        "q": "Paciente com doença renal crônica (DRC) estágio 3 apresenta FGF-23 elevado e níveis de calcitriol baixos, mas com fósforo sérico ainda dentro da faixa normal. Qual é a razão para o aumento do FGF-23 antes do desenvolvimento de hiperfosfatemia?",
+        "refs": [
+          "kdigo_ckd_mbd_2017",
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "FGF-23 sobe em resposta à hipocalcemia precoce da DRC",
+          "FGF-23 sobe para compensar o excesso de fósforo aumentando a fosfatúria dos néfrons remanescentes",
+          "FGF-23 é liberado pelos rins lesados como marcador de fibrose",
+          "FGF-23 sobe em resposta ao PTH elevado na DRC inicial"
+        ],
+        "ans": 1,
+        "exp": "O FGF-23 é um hormônio fosfatúrico produzido principalmente pelos osteócitos e osteoblastos, que aumenta precocemente na doença renal crônica para promover a excreção renal de fósforo e prevenir a hiperfosfatemia. Mesmo antes do aumento dos níveis séricos de fósforo, o FGF-23 se eleva para manter o equilíbrio do fósforo, uma vez que a capacidade de excreção renal de fósforo está comprometida devido à redução da taxa de filtração glomerular. Além disso, o FGF-23 inibe a 1-alfa-hidroxilase, reduzindo a síntese de calcitriol, o que explica os níveis baixos de calcitriol observados. As outras opções estão incorretas: o FGF-23 não é um marcador de disfunção renal, não é diretamente induzido pelo PTH, e não aumenta a produção de calcitriol.",
+        "diff": "easy",
+        "cat": "drc"
+      }
+    },
+    {
+      "qid": "0792a38e",
+      "originalHash": "565a33d63b50946a96cb6a23741e9f09f449d9485f92e362eba15f8cac30c136",
+      "original": {
+        "t": "Vitamina D e Rim",
+        "qid": "0792a38e",
+        "q": "Paciente com doença renal crônica (DRC) estágio 4 apresenta níveis baixos de calcitriol, PTH de 320 pg/mL e cálcio de 8,2 mg/dL. Qual é a principal razão para a redução do calcitriol na DRC?",
+        "refs": [
+          "kdigo_ckd",
+          "kdigo_ckd_mbd_2017"
+        ],
+        "opts": [
+          "Os rins lesados não conseguem absorver vitamina D da dieta",
+          "O rim lesado tem redução da 1-alfa-hidroxilase, enzima que converte calcidiol em calcitriol ativo",
+          "A DRC aumenta a degradação hepática da vitamina D",
+          "O FGF-23 baixo inibe a conversão de vitamina D no intestino"
+        ],
+        "ans": 1,
+        "exp": "Na doença renal crônica, especialmente em estágios avançados como o estágio 4, há uma redução na atividade da enzima 1-alfa-hidroxilase nos túbulos proximais dos rins. Esta enzima é responsável pela conversão da 25-hidroxivitamina D em 1,25-dihidroxivitamina D (calcitriol), a forma ativa da vitamina D. A diminuição da atividade da 1-alfa-hidroxilase é causada pela redução da massa renal funcional e pela presença de fatores inibitórios, como o aumento do FGF23. Isso resulta em níveis baixos de calcitriol, contribuindo para o hiperparatireoidismo secundário observado na DRC. As outras opções estão incorretas, pois a excreção renal de calcitriol não é um fator significativo, a conversão hepática não é a principal via de inativação do calcitriol, e a absorção intestinal de cálcio não está aumentada na DRC.",
+        "diff": "easy",
+        "cat": "drc"
+      }
+    }
+  ]
+}

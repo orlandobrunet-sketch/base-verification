@@ -1,0 +1,2671 @@
+{
+  "schema": 1,
+  "reviewer": "/root/medical_answer_bias (independente de autoriaanemia_authoring)",
+  "reviewDate": "2026-11-13",
+  "version": "A2",
+  "candidateFile": "anemia-candidates-A2.json",
+  "candidateFileHash": "113b110fd7d436b1a958101fedf88a05626a50d84f6af57832400aa9de8d0d01",
+  "independentClassificationFrozenBeforeCandidates": "anemia-independent-classification.json",
+  "norms": {
+    ".claude/skills/revisar-nefroquest/SKILL.md": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef",
+    ".claude/skills/revisar-nefroquest/references/output-contract.md": "4a20348ac71a07836b4611d574496d97960b27a2bbfdcf1f1ed318396f0edcb8",
+    ".claude/skills/revisar-nefroquest/references/verification-protocol.md": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df",
+    "docs/editorial/annex-c-nefrologia.md": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+  },
+  "authority": "Revisão formal pela skill local revisar-nefroquest e normas canônicas; usuário autorizou correção criteriosa de pistas das alternativas.",
+  "derivation": "LIBERADA exige veredito de aprovação e combinação válida:VERIFICADA/NENHUMAouPARCIALMENTEVERIFICADA/NÃODECISIVA, sem eliminatório/recurso/pendência decisiva. Todos os itens foram avaliados individualmente.",
+  "requiredSharedCard": {
+    "file": "anemia-kdigo-card-candidate-C2.json",
+    "fileHash": "aea80f4814b0e6be156502c4e27720b83a6fd1c32f329f68a276af232801fd9f",
+    "reviewFile": "anemia-card-independent-gate-C2.json",
+    "condition": "O card C2 exato precisa ter gate independente LIBERADA e ser aplicado antes destes itens; não aplicar condicionalmente sem esse gate.",
+    "candidateHash": "46b3b968371f99d4c9a37afe931f0a3245b7b30fbfe12fcde20e7a55810bcd29"
+  },
+  "counts": {
+    "reviewed": 23,
+    "approved": 21,
+    "blocked": 2
+  },
+  "metrics": {
+    "method": "CaracteresUnicode com espaços normalizados, sem retirar desigualdades. Tamanho apenas triagem; sem comprimentos artificiais.",
+    "original": {
+      "n": 21,
+      "uniqueLongest": 21,
+      "tiedLongest": 0,
+      "uniqueShortest": 0,
+      "longestHeuristicAccuracy": 1
+    },
+    "final": {
+      "n": 21,
+      "uniqueLongest": 3,
+      "tiedLongest": 3,
+      "uniqueShortest": 7,
+      "longestHeuristicAccuracy": 0.19047619047619047
+    }
+  },
+  "sources": {
+    "KDIGO2026": {
+      "kind": "Diretriz oficial vigente",
+      "title": "KDIGO 2026 Clinical Practice Guideline for the Management of Anemia in Chronic Kidney Disease",
+      "organization": "KDIGO",
+      "year": 2026,
+      "journal": "Kidney International 109 (Suppl 1S), S1–S99",
+      "url": "https://kdigo.org/wp-content/uploads/2026/01/KDIGO-2026-Anemia-in-CKD-Guideline.pdf",
+      "landing": "https://kdigo.org/guidelines/anemia-in-ckd/",
+      "access": "PDF oficial completo consultado em memória por urllib + pypdf; 99 páginas, numeração PDF igual a S1–S99. Web open recusou tamanho de 10,8 MB; landing 403. Nenhum PDF persistido.",
+      "pdfSha256": "08829c8b41d6964ab849a973dadfa69cd778e45e8550c5f2b8a7765302039a14",
+      "retrievedDate": "2026-11-13",
+      "limitations": "Fonte completa é síntese normativa; diferenciar recomendações graduadas de pontos de prática e resultados de ensaios.",
+      "independentAccess": "PDF oficial99p aberto viaweb em2026-11-13 no caminho/uploads/2026/04/; recomendações, figuras e discussão citadas foram lidas. Figuras em texto extraído; não alegar inspeção visual.",
+      "independentUrl": "https://kdigo.org/wp-content/uploads/2026/04/KDIGO-2026-Anemia-in-CKD-Guideline.pdf"
+    },
+    "PIVOTAL_PRIMARY": {
+      "kind": "RCT original, resumo primário",
+      "title": "Intravenous Iron in Patients Undergoing Maintenance Hemodialysis",
+      "authors": "Macdougall IC et al.; PIVOTAL Investigators",
+      "year": 2019,
+      "journal": "N Engl J Med 380:447–458",
+      "doi": "10.1056/NEJMoa1810742",
+      "pmid": "30365356",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1810742",
+      "abstract": "https://pubmed.ncbi.nlm.nih.gov/30365356/",
+      "retrieval": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:30365356%20OR%20EXT_ID:31340089&format=xml&resultType=core",
+      "access": "Resumo dos autores lido integralmente na API Europe PMC. NEJM 403; PubMed web retornou página vazia. Não usar editorial como prova.",
+      "limitations": "Resumo suficiente para protocolo, composto primário e infecção citados no candidato. Transfusões foram removidas da nova explicação para não depender de resultado secundário não descrito nesse resumo."
+    },
+    "ROX_PRIMARY": {
+      "kind": "RCT original, resumo primário",
+      "title": "Roxadustat for Anemia in Patients with Kidney Disease Not Receiving Dialysis",
+      "authors": "Chen N et al.",
+      "year": 2019,
+      "journal": "N Engl J Med 381:1001–1010",
+      "doi": "10.1056/NEJMoa1813599",
+      "pmid": "31340089",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1813599",
+      "abstract": "https://pubmed.ncbi.nlm.nih.gov/31340089/",
+      "retrieval": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:30365356%20OR%20EXT_ID:31340089&format=xml&resultType=core",
+      "access": "Resumo primário integral consultado por Europe PMC; NEJM/PubMed direto não acessível.",
+      "limitations": "Pequeno, curto, China; desfecho hematológico. Não suporta superioridade em hiporresponsividade ao AEE nem segurança cardiovascular superior."
+    },
+    "MEDLINEPLUS_RBC": {
+      "kind": "Referência laboratorial institucional, suporte a conhecimento básico",
+      "title": "RBC indices",
+      "url": "https://medlineplus.gov/ency/article/003648.htm",
+      "reviewDate": "2026-02-27",
+      "access": "Página aberta integralmente; Normal Results e What Abnormal Results Mean conferidos.",
+      "limitations": "Não é estudo primário nem diretriz terapêutica. Usado somente para interpretar os índices eritrocitários dados, sem propor intervalo universal; nenhum limiar de tratamento deriva desta fonte."
+    },
+    "PRIMARY_ABSTRACT_ACCESS": {
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID:30365356%20OR%20EXT_ID:31340089&format=xml&resultType=core",
+      "access": "Resumos dos autores de ambos ensaios lidos integralmente e independentemente porurllib; NEJM403/PubMedvazio registrados. Não alegar leitura dos artigos integrais.",
+      "responseSha256": "5cc1513a4d1626f07ea6945a5a844a82f343f0e0bf3a6d2d4529a108549093aa"
+    },
+    "PIVOTAL_INFECTION": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7217408/",
+      "doi": "10.1681/ASN.2019090972",
+      "access": "Análise secundária primária aberta integralmente, confirma ausência de diferença detectada nas taxas de infecção; não equivale a segurança universal."
+    }
+  },
+  "sharedReferenceCards": {
+    "kdigo_anemia_2026": {
+      "label": "KDIGO Anemia in CKD 2026",
+      "url": "https://kdigo.org/guidelines/anemia-in-ckd/",
+      "journal": "Kidney International",
+      "ano": 2026,
+      "tipo": "Diretriz Internacional",
+      "badge": "GUIDELINE",
+      "badgeColor": "#6366f1",
+      "impacto": "Avaliação de ferro, causas reversíveis, AEE, HIF-PHI e transfusão na anemia da DRC",
+      "icon": "📋",
+      "resumo": "Diretriz KDIGO 2026 para anemia na DRC. Recomenda avaliar hemograma, reticulócitos, ferritina e saturação de transferrina e investigar causas reversíveis antes de iniciar ou escalar AEE. Reconhece que ferritina e saturação têm limitações e distingue deficiência sistêmica de ferro de eritropoiese restrita por ferro. Em adultos tratados com AEE, recomenda manter a meta de hemoglobina abaixo de 11,5 g/dL; decisão de iniciar AEE e transfundir deve ser individualizada por sintomas, riscos, comorbidades e contexto de transplante.",
+      "conclusao": "O tratamento seguro da anemia renal começa por definir a causa e a disponibilidade de ferro; AEE, ferro, HIF-PHI e transfusão não devem ser usados para perseguir um número isolado de hemoglobina.",
+      "curiosidade": "A diretriz substituiu o termo “deficiência funcional de ferro” por “eritropoiese restrita por ferro”, destacando que o ferro pode estar armazenado, mas indisponível à medula por ação da hepcidina e da inflamação."
+    },
+    "pivotal_trial": {
+      "label": "Macdougall IC et al. — PIVOTAL (NEJM 2019)",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1810742",
+      "journal": "N Engl J Med. 2019;380(5):447-458",
+      "ano": 2019,
+      "tipo": "Ensaio Clínico RCT",
+      "badge": "RCT",
+      "badgeColor": "#10b981",
+      "impacto": "Ferro IV proativo (400 mg/mês com limites de segurança) versus estratégia reativa em hemodiálise",
+      "icon": "🔬",
+      "resumo": "ECR multicêntrico (PIVOTAL, n=2.141), em pacientes incidentes em hemodiálise de manutenção, comparando ferro IV proativo em alta dose — sacarato de ferro 400 mg/mês, enquanto ferritina ≤700 µg/L e TSAT <40% — vs estratégia reativa em baixa dose, administrada apenas se ferritina <200 µg/L ou TSAT <20%. O desfecho primário composto — morte, IM não fatal, AVC não fatal ou hospitalização por insuficiência cardíaca — foi menor com estratégia proativa: HR 0,85 (IC 95% 0,73–1,00; P=0,04). Também houve menor necessidade de AEE e transfusões.",
+      "conclusao": "PIVOTAL mostrou que, em hemodiálise, reposição proativa de ferro IV dentro de limites de segurança definidos é eficaz e não aumenta eventos adversos maiores, reduzindo dose de AEE e transfusões.",
+      "curiosidade": "O estudo não autoriza ferro irrestrito: o protocolo suspendia ferro quando ferritina ultrapassava 700 µg/L ou TSAT chegava a 40%. A mensagem correta é reposição proativa monitorizada, não liberalidade sem limite."
+    },
+    "roxadustat_trial": {
+      "label": "Roxadustat em DRC não dialítica (NEJM 2019)",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1813599",
+      "journal": "N Engl J Med 2019;381:1001-1010",
+      "ano": 2019,
+      "tipo": "Ensaio clínico randomizado",
+      "badge": "RCT",
+      "badgeColor": "#10b981",
+      "impacto": "HIF-PHI oral elevou Hb e reduziu hepcidina em DRC não dialítica",
+      "icon": "🔬",
+      "resumo": "Ensaio fase 3, duplo-cego, realizado na China, randomizou 154 pacientes com DRC não dialítica e Hb 7,0–10,0 g/dL para roxadustat ou placebo por 8 semanas, seguido de fase aberta. O desfecho primário foi a mudança média de hemoglobina nas semanas 7–9. O roxadustat aumentou a Hb em 1,9±1,2 g/dL versus queda de 0,4±0,8 g/dL com placebo (P<0,001) e reduziu hepcidina, compatível com maior disponibilidade de ferro.",
+      "conclusao": "Roxadustat demonstrou mecanismo e eficácia hematológica em DRC não dialítica, mas não elimina a necessidade de seleção clínica cuidadosa e vigilância de segurança da classe HIF-PHI.",
+      "curiosidade": "Durante a fase randomizada, ferro parenteral foi retido; mesmo assim, o grupo roxadustat manteve ferro sérico relativamente estável enquanto elevava hemoglobina."
+    },
+    "brenner_rector": {
+      "label": "Brenner & Rector's The Kidney",
+      "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+      "journal": "Elsevier (Textbook)",
+      "ano": 2024,
+      "tipo": "Livro-texto de referência",
+      "badge": "TEXTBOOK",
+      "badgeColor": "#64748b",
+      "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+      "icon": "📚",
+      "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+      "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+      "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+    }
+  },
+  "nonDecisiveReferenceIssues": [
+    {
+      "qid": "81e1082b",
+      "card": "brenner_rector",
+      "pending": "NÃO DECISIVA",
+      "reason": "A identidade bibliográfica e o conteúdo integral do livro não foram confirmados; nenhum valor ou decisão do gabarito depende dele. KDIGO2026Rec2.1/2.2/3.2.1ePP3.1.2sustentam cada afirmação decisiva. Não editarcard ou alegar acesso."
+    },
+    {
+      "card": "pivotal_trial",
+      "scope": "Não ampliado",
+      "reason": "O card herdado contém afirmação de menos transfusões ausente do resumo primário; a explicação nova não a inclui. O resultado primário, dose deAEEe infecções usados no item foram conferidos no resumo original; a leitura não certifica por si cada frase histórica do card."
+    }
+  ],
+  "scopeLimits": [
+    "21objetos novos exatos;2candidatos bloqueados não podem ser aplicados.",
+    "Não é revisão integral das741questões nem calibração empírica.",
+    "Não foram executados testes do app neste gate.",
+    "Refs/cardBrennernão são reconstruídos por conveniência; cardKDIGOtem revisão própria."
+  ],
+  "items": [
+    {
+      "qid": "32661acb",
+      "originalHash": "e6bef1a6dc3c1a8b82ab9f5ecb68715e8611dbfccdbcd2581fe622c57a0a7cb5",
+      "candidateHash": "e4897d68afd430b57f18aaf2d9d431af78ae1bac2ba881025f37cefee1625dd5",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Relacionar a inibição de HIF-prolil-hidroxilase à resposta eritropoiética endógena e ao metabolismo do ferro.",
+        "competency": "mecanismo",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "Recupera ou explica conceito/limiar único; a vinheta não acrescenta complexidade decisória.",
+        "independentOriginal": {
+          "qid": "32661acb",
+          "op": "Explicar como HIF-PHI modifica eritropoiese e disponibilidade de ferro",
+          "competence": "mecanismo",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "medium"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "O mecanismo liga estabilização deHIFà eritropoietina endógena e ao metabolismo do ferro, sem confundir agonismo direto ou menor depuração. A via e o ensaio não prometem segurança superior.",
+      "problems": [],
+      "adversary": "Testei se antagonismo da hepcidina seria descrição equivalente: é efeito indireto da respostaHIF, não bloqueio direto. A alternativa correta expressa o mecanismo central. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Confundir HIF-PHI com agonista direto do receptor de eritropoietina.",
+        "Confundir efeito indireto sobre a homeostase do ferro com antagonismo direto de hepcidina.",
+        "Confundir produção endógena de eritropoietina com redução de sua depuração."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 1,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "score": 18,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score18/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "ROX_PRIMARY;KDIGO2026 Figura2,S31 e capítulo3,S49–S51",
+        "claimIds": [
+          "HIF_MECHANISM",
+          "ROX_PHASE3"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            121,
+            99,
+            157,
+            106
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.2975206611570247,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            82,
+            80,
+            78,
+            75
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.9512195121951219,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "HIF-PHI na Anemia da DRC — Mecanismo",
+        "qid": "32661acb",
+        "q": "Paciente com doença renal crônica (DRC) G4 e anemia discute o uso de roxadustat, um inibidor de HIF-prolil-hidroxilase (HIF-PHI). Qual mecanismo explica o efeito dessa classe sobre a anemia?",
+        "refs": [
+          "roxadustat_trial",
+          "kdigo_anemia_2026"
+        ],
+        "opts": [
+          "Estimulação direta do receptor de eritropoietina nas células precursoras da medula",
+          "Bloqueio da ação da hepcidina sobre a ferroportina, sem estimular eritropoietina",
+          "Estabilização do HIF, com estímulo à eritropoietina endógena e ao uso do ferro",
+          "Prolongamento da meia-vida da eritropoietina circulante por menor depuração"
+        ],
+        "ans": 2,
+        "exp": "Os HIF-PHIs estabilizam o fator induzível por hipóxia (HIF), ativando a resposta à hipóxia que participa da produção endógena de eritropoietina e do metabolismo do ferro. Não são agonistas diretos do receptor de eritropoietina, bloqueadores diretos da hepcidina ou fármacos que apenas prolongam a meia-vida da eritropoietina circulante. No ensaio de roxadustat em DRC não dialítica, houve aumento da hemoglobina e redução da hepcidina; isso não demonstra superioridade de segurança nem dispensa a avaliação de causas corrigíveis.",
+        "diff": "easy",
+        "cat": "drc"
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "061c9bcb",
+      "originalHash": "a7be2ae7bfe1d765bf38df821ebdcfa4deea421ee01840a4a9fc57b04af25d19",
+      "candidateHash": "a83596dc05dc28561699468b9275828a47be8daea10a67183ef58a63c25df195",
+      "candidate": {
+        "t": "Anemia da DRC",
+        "qid": "061c9bcb",
+        "q": "Pessoa com doença renal crônica (DRC) G4 apresenta anemia recém-identificada e ainda não fez investigação da causa. Antes de decidir sobre um agente estimulador da eritropoiese (AEE), qual avaliação inicial é mais adequada?",
+        "refs": [
+          "kdigo_anemia_2026"
+        ],
+        "opts": [
+          "Hemograma, reticulócitos, ferritina e saturação de transferrina, ampliando a investigação conforme os achados",
+          "Ferritina isolada, usando um resultado dentro da referência para atribuir a anemia à perda de função renal",
+          "Hemograma e função renal, reservando os índices de ferro para o caso de resposta insatisfatória ao AEE",
+          "Hemograma e índices de ferro, reservando a investigação de outras causas para depois do início do AEE"
+        ],
+        "ans": 0,
+        "exp": "A investigação inicial inclui hemograma, reticulócitos, ferritina e saturação de transferrina. Esses dados orientam a avaliação de deficiência de ferro e de outras causas de anemia; conforme os achados e o contexto, amplia-se a investigação para inflamação, perdas sanguíneas, hemólise e deficiências nutricionais, entre outras causas. Ferritina isolada não define a etiologia, e a DRC não justifica atribuir automaticamente toda anemia à deficiência de eritropoietina. As causas corrigíveis devem ser abordadas antes de iniciar AEE; a indicação desse tratamento é uma decisão posterior e individualizada.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "verdict": "redirecionar",
+      "legacy": null,
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "DECISIVA",
+      "publication": "BLOQUEADA",
+      "classification": {
+        "qid": "061c9bcb",
+        "op": "Organizar investigação e correção de causas antes de AEE",
+        "competence": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "diff": "hard"
+      },
+      "justification": "O candidato muda o discriminante da sequência de correção pré-AEE para selecionar painel laboratorial. Não preservar qid sob§18.5; avaliar outroOP/identidade ou fusão em processo separado.",
+      "problems": [
+        {
+          "severity": "CRÍTICO",
+          "text": "Deriva deOP/identidade do candidato"
+        }
+      ],
+      "adversary": "O reparo não pode apenas mudar redação e herdar liberação; exige decisão de identidade/destino pedagógico.",
+      "eliminators": [
+        "Questão mede outroOP"
+      ],
+      "scoreDimensions": null,
+      "score": null,
+      "scoreBand": "Score anulado por eliminatório",
+      "decisionTree": "Fonte verificada → eliminatório presente → redirecionar/fundir → publicaçãoBLOQUEADA.",
+      "editorialLifecycleDestination": "em_revisão",
+      "implementation": "Não escrever candidato emtopics.js. Preservar original eFSRSneste lote; nenhuma exclusão ou reescrita autorizada por este gate."
+    },
+    {
+      "qid": "a3b199d4",
+      "originalHash": "7ba47e83a3fcdafc759aa9001adfe3a8c32092b78c8e455390233fe3004da486",
+      "candidateHash": "f5b4d2239b232a6c86dfb5a55beee212c81e1c4990d8fd524935d7c3b48ff53f",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Investigar causas reversíveis de hiporresponsividade ao AEE diante de inflamação antes de escalar ou trocar a terapia.",
+        "competency": "conduta",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária",
+        "diff": "medium",
+        "justification": "Integra padrão laboratorial e contexto clínico sem decisão complexa sob incerteza; o tamanho não justifica hard.",
+        "independentOriginal": {
+          "qid": "a3b199d4",
+          "op": "Investigar causas reversíveis antes de escalar AEE na inflamação",
+          "competence": "conduta",
+          "bloom": "Avaliar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "A inflamação é dado decisivo para investigar hiporresponsividade antes de escalarAEE. Os índices de ferro não estabelecem sozinhos depleção nem encerram investigação.",
+      "problems": [],
+      "adversary": "Testei se ferritina500/TSAT30impõe ferroIV ou trocaHIF-PHI: não; a pergunta pede primeiro investigar causas, não escolher tratamento após investigação. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Tratar anemia persistente como diagnóstico suficiente de deficiência de ferro.",
+        "Escalar AEE com falsa segurança fornecida pelos índices de ferro.",
+        "Presumir superioridade clínica de HIF-PHI em hiporresponsividade inflamatória."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score20/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 PP3.7.1–3.7.2,S26/S59–S60",
+        "claimIds": [
+          "ESA_HYPORESPONSE",
+          "IRON_INDICES",
+          "HIF_HYPORESPONSE"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            109,
+            90,
+            56,
+            66
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.211111111111111,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            72,
+            78,
+            83,
+            83
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.8674698795180723,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Hiporresponsividade ao AEE na DRC G4",
+        "qid": "a3b199d4",
+        "q": "Paciente com doença renal crônica (DRC) G4 mantém anemia apesar de agente estimulador da eritropoiese (AEE). Ferritina é 500 ng/mL, saturação de transferrina 30%, proteína C reativa elevada e vitamina B12 e folato normais. Antes de aumentar novamente o AEE, qual é o próximo passo mais adequado?",
+        "refs": [
+          "kdigo_anemia_2026"
+        ],
+        "opts": [
+          "Investigar a inflamação e outras causas tratáveis de resposta inadequada",
+          "Repor ferro intravenoso tomando a anemia persistente como prova de deficiência",
+          "Aumentar a dose do AEE tomando os índices de ferro como prova de reposição adequada",
+          "Trocar o AEE por HIF-PHI tomando a inflamação como prova de superioridade da classe"
+        ],
+        "ans": 0,
+        "exp": "A proteína C reativa elevada torna a inflamação uma causa relevante de hiporresponsividade ao AEE. Deve-se procurar sua origem e revisar outras causas tratáveis, como perdas sanguíneas, deficiência de ferro, distúrbios nutricionais e hiperparatireoidismo, conforme o contexto. Ferritina e saturação de transferrina têm limitações: nem anemia persistente comprova deficiência de ferro nem esses índices encerram a investigação. A KDIGO não demonstra superioridade dos HIF-PHIs na hiporresponsividade inflamatória; uma eventual mudança de tratamento exige avaliação individual, não substitui a investigação.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "c7e8cc9a",
+      "originalHash": "44fcb79246eb967798bd56ea8d70a0fa5f6606dda2b0ddd59c8d7cd1f78db467",
+      "candidateHash": "54b053f938d8f1c9c6da999511296a7004831972ecdeeb4df7cb6d31e851b701",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Interpretar ferritina, saturação de transferrina e inflamação como padrão sugestivo de eritropoiese restrita por ferro.",
+        "competency": "interpretação",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária",
+        "diff": "medium",
+        "justification": "Integra padrão laboratorial e contexto clínico sem decisão complexa sob incerteza; o tamanho não justifica hard.",
+        "independentOriginal": {
+          "qid": "c7e8cc9a",
+          "op": "Interpretar ferritina e saturação na ferro-restrição associada a inflamação",
+          "competence": "interpretação",
+          "bloom": "Analisar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "A TSATbaixa com ferritina elevada e inflamação favorece eritropoiese restrita por ferro, sem quantificar estoques nem impor ferroIV automático.",
+      "problems": [],
+      "adversary": "Deficiência sistêmica pode coexistir, mas não está demonstrada; a correta diz favorecida pela inflamação e disponibilidade baixa. Ferritina400fora do início rotineiro não é proibição absoluta. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Inferir depleção dos estoques sem considerar a elevação inflamatória de ferritina.",
+        "Usar ferritina elevada como prova isolada de sobrecarga e disponibilidade aumentada.",
+        "Ignorar a saturação baixa ao atribuir toda a anemia à deficiência de eritropoietina."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score20/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 Figuras3–4,S32–S33 e Rec2.3,S20",
+        "claimIds": [
+          "IRON_INDICES",
+          "IRON_NON_HD"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            104,
+            225,
+            90,
+            84
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 2.1634615384615383,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            82,
+            88,
+            79,
+            78
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.0731707317073171,
+          "longestHeuristic": 1
+        }
+      },
+      "candidate": {
+        "t": "Anemia na DRC — Ferro-restrição Funcional",
+        "qid": "c7e8cc9a",
+        "q": "Paciente com doença renal crônica (DRC) G4 não dialítica apresenta anemia normocítica, hemoglobina 9,5 g/dL, ferritina 400 ng/mL, saturação de transferrina de 15% e proteína C reativa elevada. Qual interpretação dos índices de ferro é mais adequada?",
+        "refs": [
+          "kdigo_anemia_2026"
+        ],
+        "opts": [
+          "Deficiência sistêmica de ferro, com depleção dos estoques demonstrada pelos exames",
+          "Eritropoiese restrita por ferro, favorecida pela inflamação e pela baixa disponibilidade",
+          "Sobrecarga de ferro, com excesso de ferro circulante demonstrado pela ferritina",
+          "Deficiência isolada de eritropoietina, com disponibilidade de ferro preservada"
+        ],
+        "ans": 1,
+        "exp": "A saturação de transferrina baixa com ferritina elevada e inflamação sugere eritropoiese restrita por ferro: há limitação da disponibilidade de ferro para a medula. A ferritina é também reagente de fase aguda e não quantifica com segurança os estoques nesse contexto; não se pode afirmar depleção ou sobrecarga apenas com esses resultados. Deficiência relativa de eritropoietina pode coexistir, mas não torna normal a baixa disponibilidade de ferro observada. Na DRC não dialítica, ferritina de 400 ng/mL fica fora dos critérios de início rotineiro de ferro da KDIGO 2026; isso exige julgamento clínico e não equivale a proibição de qualquer uso de ferro.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "3c54eaa0",
+      "originalHash": "0bdc817be0dd65516e997d3a4e89320775b0ed2278f60732af3eacb3059de4b9",
+      "candidateHash": "848b482f1d312fc1713cf4fb812c591d98f2074c777950270720382f904025cb",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Distinguir a vantagem prática da via oral dos HIF-PHIs de alegações não demonstradas de superioridade na hiporresponsividade ao AEE.",
+        "competency": "conduta",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "Recupera ou explica conceito/limiar único; a vinheta não acrescenta complexidade decisória.",
+        "independentOriginal": {
+          "qid": "3c54eaa0",
+          "op": "Distinguir característica prática de HIF-PHI versus AEE no contexto de hiporresponsividade",
+          "competence": "conduta",
+          "bloom": "Avaliar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "hard"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "O OP prático original perguntava vantagem da classe e é preservado: via oral. Foi retirada a alegação não estabelecida de eficácia superior em hiporresponsividade inflamatória.",
+      "problems": [],
+      "adversary": "Uma tentativa selecionada não equivale a escolha preferencial, associação comAEEou dispensa de monitorização. O contexto deixa causas já investigadas; nenhuma superioridade é prometida. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Confundir via oral com menor necessidade de monitorização de hemoglobina.",
+        "Confundir efeito sobre homeostase do ferro com dispensa de acompanhamento.",
+        "Extrapolar eficácia hematológica para superioridade cardiovascular em hiporresponsividade."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 1,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "score": 18,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score18/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 PP3.7.2,S60;PP3.6.1,S58;ROX_PRIMARY",
+        "claimIds": [
+          "HIF_ORAL",
+          "HIF_HYPORESPONSE",
+          "HIF_MONITORING",
+          "ROX_PHASE3"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            83,
+            157,
+            83,
+            71
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.891566265060241,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            78,
+            74,
+            79,
+            80
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.925,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Anemia na DRC: Inibidores de HIF-PH (Roxadustat) - Mecanismo",
+        "qid": "3c54eaa0",
+        "q": "Pessoa com doença renal crônica (DRC) G4 e anemia sintomática teve resposta insatisfatória a agente estimulador da eritropoiese (AEE) injetável. Após investigar causas tratáveis, discute-se um teste com inibidor de HIF-prolil-hidroxilase (HIF-PHI), como roxadustat. Qual característica prática distingue essa classe dos AEE convencionais?",
+        "refs": [
+          "kdigo_anemia_2026",
+          "roxadustat_trial"
+        ],
+        "opts": [
+          "Menor necessidade de acompanhar a hemoglobina durante os ajustes do tratamento",
+          "Possibilidade de tratamento por via oral em lugar de aplicações injetáveis",
+          "Menor necessidade de acompanhar a disponibilidade de ferro durante o tratamento",
+          "Segurança cardiovascular superior demonstrada em pessoas hiporresponsivas ao AEE"
+        ],
+        "ans": 1,
+        "exp": "A via oral é uma vantagem prática dos HIF-PHIs em relação aos AEE injetáveis. A KDIGO admite considerar um teste em pessoas selecionadas com hiporresponsividade, após avaliação das causas e discussão de riscos e benefícios, mas a segurança e os benefícios nesse grupo não estão estabelecidos. A melhora de hemoglobina e a redução de hepcidina em ensaios não comprovam superioridade em hiporresponsividade inflamatória. Continuam necessários acompanhamento da hemoglobina, avaliação de ferro e vigilância de eventos adversos.",
+        "diff": "easy",
+        "cat": "drc"
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "4c4445f5",
+      "originalHash": "a847e79732312a5a04a2edc17d1c5af8303393f46b3361156372f02175386b03",
+      "candidateHash": "86769d245abe89d98e535cef73661681f48355117b967a27fd55d42704bfa0c0",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Combinar a classificação morfológica da anemia com a interpretação da disponibilidade de ferro na DRC.",
+        "competency": "interpretação",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária",
+        "diff": "medium",
+        "justification": "Aplica critérios ao caso, integrando dados relevantes.",
+        "independentOriginal": {
+          "qid": "4c4445f5",
+          "op": "Integrar morfologia eritrocitária e índices de ferro na anemia da DRC",
+          "competence": "interpretação",
+          "bloom": "Analisar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "Os índices eritrocitários dados sustentam padrão normocítico/normocrômico, enquantoTSAT18mostra disponibilidade reduzida. Morfologia não exclui restrição de ferro.",
+      "problems": [],
+      "adversary": "Ferritina250não exclui deficiência e atende ao critério de considerar ferro comTSAT<25fora da diálise. VCM84não suporta micro/macro; a dificuldade vem da integração, não do número de palavras. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Usar ferritina isolada para excluir deficiência ou restrição de ferro.",
+        "Interpretar VCM e HCM normais como microcitose e hipocromia.",
+        "Interpretar VCM normal como macrocitose e inferir deficiência de B12."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 1,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score19/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 Figuras3–4,S32–S33;Rec2.3,S20;MedlinePlusRBC,normal/abnormalresults",
+        "claimIds": [
+          "MORPHOLOGY",
+          "IRON_INDICES",
+          "IRON_NON_HD"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            137,
+            65,
+            64,
+            53
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 2.1076923076923078,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            85,
+            83,
+            79,
+            86
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 2,
+          "ratio": 0.9883720930232558,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Anemia da DRC — Morfologia e Ferro",
+        "qid": "4c4445f5",
+        "q": "Paciente com doença renal crônica (DRC) G3b apresenta hemoglobina de 9,2 g/dL, VCM de 84 fL, HCM normal, ferritina de 250 ng/mL e saturação de transferrina de 18%. Qual interpretação é mais adequada?",
+        "refs": [
+          "kdigo_anemia_2026"
+        ],
+        "opts": [
+          "Anemia normocítica e normocrômica, com possível restrição da disponibilidade de ferro",
+          "Anemia normocítica e normocrômica, com deficiência de ferro excluída pela ferritina",
+          "Anemia microcítica e hipocrômica, com deficiência sistêmica de ferro comprovada",
+          "Anemia macrocítica e normocrômica, com deficiência de vitamina B12 como causa provável"
+        ],
+        "ans": 0,
+        "exp": "VCM de 84 fL e HCM normal indicam anemia normocítica e normocrômica, padrão comum na DRC. Essa morfologia não exclui restrição de ferro: a saturação de transferrina de 18% indica baixa disponibilidade, mesmo com ferritina de 250 ng/mL. A ferritina isolada não encerra a investigação, e os índices fornecidos não mostram microcitose, hipocromia ou macrocitose. Nesse contexto não dialítico, ferritina entre 100 e menos de 300 ng/mL com saturação abaixo de 25% também atende ao critério da KDIGO 2026 para considerar tratamento com ferro.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "a97509f5",
+      "originalHash": "4f4d9207f1edb1bb9cc8f43aa050dfb976a6e6299d6ecf794551f4b9c5e03ac2",
+      "candidateHash": "60e0c203e6bd9357f3e638d0a558e3485fb669236338258344f42e4d577c6067",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada com pequenos ajustes",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "PARCIALMENTE VERIFICADA",
+      "pending": "NÃO DECISIVA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Reconhecer a estratégia proativa monitorizada do PIVOTAL e interpretar seu desfecho primário sem extrapolar para ferro irrestrito.",
+        "competency": "interpretação",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "O comando final recupera a dose protocolar e a direção do desfecho; a interpretação estatística da explicação não é exigida para acertar. Não sustenta medium/hard.",
+        "independentOriginal": {
+          "qid": "a97509f5",
+          "op": "Interpretar estratégia proativa de ferro e limites de aplicação do PIVOTAL",
+          "competence": "interpretação",
+          "bloom": "Analisar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "hard"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "A prescrição proativa400mg/mês e a direção do composto primário estão corretas. O enunciado e a explicação preservam limites de segurança; o gabarito não carrega sozinho todo o resumo do ensaio.",
+      "problems": [
+        {
+          "severity": "MENOR",
+          "text": "O cardPIVOTALherdado resume redução de transfusões não descrita no resumo primário acessível. Essa afirmação não está no candidato novo nem discrimina seu gabarito. Dose, composto primário, risco relativo e infecções foram verificados diretamente no resumo original; o artigo integral não foi declarado lido."
+        }
+      ],
+      "adversary": "Diferenciei dose prescrita400da mediana efetivamente recebida264. HR0,85/IC0,73–1,00eP0,04são os resultados do primeiro evento; não se promete redução de cada componente nem ferro irrestrito. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Inverter a direção do resultado primário mantendo a intervenção correta.",
+        "Confundir a prescrição proativa com uma dose mensal menor.",
+        "Confundir a dose proativa e interpretar o desfecho primário como neutro."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 1,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 1,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "score": 17,
+      "scoreBand": "Boa",
+      "decisionTree": "PARCIALMENTE VERIFICADA+NÃO DECISIVA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score17/20 → aprovada com pequenos ajustes → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "PIVOTAL_PRIMARY Methods/Results;KDIGO2026 PP2.1–2.2,S20/S44",
+        "claimIds": [
+          "PIVOTAL_PROTOCOL",
+          "PIVOTAL_PRIMARY"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            211,
+            88,
+            112,
+            91
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.8839285714285714,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            75,
+            75,
+            75,
+            85
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 2,
+          "ratio": 0.8823529411764706,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "PIVOTAL — Ferro IV Proativo com Limites de Segurança",
+        "qid": "a97509f5",
+        "q": "O PIVOTAL comparou reposição proativa de sacarato de ferro intravenoso, com limites de ferritina e saturação de transferrina, à reposição reativa em pessoas em hemodiálise. Qual alternativa associa corretamente a prescrição do braço proativo ao resultado primário do ensaio?",
+        "refs": [
+          "pivotal_trial",
+          "kdigo_anemia_2026"
+        ],
+        "opts": [
+          "400 mg por mês; menor risco do composto de morte e eventos cardiovasculares",
+          "400 mg por mês; maior risco do composto de morte e eventos cardiovasculares",
+          "100 mg por mês; menor risco do composto de morte e eventos cardiovasculares",
+          "100 mg por mês; ausência de diferença no composto de morte e eventos cardiovasculares"
+        ],
+        "ans": 0,
+        "exp": "O braço proativo prescrevia sacarato de ferro 400 mg por mês, retendo novas doses se ferritina ultrapassasse 700 ng/mL ou a saturação de transferrina fosse pelo menos 40%. O composto de morte, infarto ou AVC não fatais e hospitalização por insuficiência cardíaca foi menos frequente que no braço reativo: HR 0,85, IC95% 0,73–1,00; P=0,04 para superioridade. A dose de AEE foi menor e a taxa de infecções foi semelhante. O estudo avaliou uma estratégia monitorizada em hemodiálise; seus resultados não autorizam ferro irrestrito nem demonstram redução de cada componente isoladamente.",
+        "diff": "easy",
+        "cat": "dialise"
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "78823c61",
+      "originalHash": "759185e354d9ad3fb87018c5996b705b2141026a78ac83fb7113f564ae0f6de5",
+      "candidateHash": "31ca7989734d5bbecda4e51d97197101cab0c2d6675c6fcbeaca635e8a3dfdd4",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Aplicar os critérios de reposição de ferro na DRC não dialítica antes de considerar AEE.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária",
+        "diff": "medium",
+        "justification": "Aplica critérios ao caso, integrando dados relevantes.",
+        "independentOriginal": {
+          "qid": "78823c61",
+          "op": "Corrigir disponibilidade de ferro antes de iniciar AEE em DRC não dialítica",
+          "competence": "conduta",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "DRCnão dialítica, ferritina285eTSAT19satisfazem o início de ferro antes de decisão individual deAEE. Estabilidade e ausência de sangramento afastam o pressuposto de urgência transfusional.",
+      "problems": [],
+      "adversary": "Hb9,8não tornaAEEautomaticamente obrigatório. Nenhuma via de ferro é imposta sem preferência/contexto; o gabarito pede reposição e acompanhamento. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Usar Hb abaixo de 10 g/dL como indicação automática de AEE.",
+        "Usar ferritina acima de 100 ng/mL para descartar tratamento com ferro.",
+        "Priorizar velocidade de correção em anemia estável sem indicação transfusional."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score20/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 Rec2.3–2.4;PP3.1.2;Rec3.2.2",
+        "claimIds": [
+          "IRON_NON_HD",
+          "IRON_ROUTE",
+          "ESA_NON_HD",
+          "TRANSFUSION_CLINICAL"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            75,
+            83,
+            66,
+            156
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.8795180722891567,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            66,
+            74,
+            74,
+            77
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.0405405405405406,
+          "longestHeuristic": 1
+        }
+      },
+      "candidate": {
+        "t": "DRC Não Dialítica — Ferro Antes de AEE",
+        "qid": "78823c61",
+        "q": "Pessoa com doença renal crônica (DRC) G3b não dialítica, clinicamente estável e sem sangramento, apresenta Hb 9,8 g/dL, VCM 82 fL, ferritina 285 ng/mL e saturação de transferrina de 19%. Antes de iniciar agente estimulador da eritropoiese (AEE), qual é o próximo passo mais adequado?",
+        "refs": [
+          "kdigo_anemia_2026"
+        ],
+        "opts": [
+          "Iniciar AEE, usando Hb abaixo de 10 g/dL como indicação suficiente",
+          "Adiar o ferro, usando ferritina acima de 100 ng/mL como sinal de reposição",
+          "Transfundir hemácias, usando a correção rápida da Hb como objetivo inicial",
+          "Iniciar reposição de ferro e acompanhar a resposta antes de decidir sobre AEE"
+        ],
+        "ans": 3,
+        "exp": "Esse perfil atende ao critério da KDIGO 2026 para iniciar ferro na DRC não dialítica: ferritina de 100 a menos de 300 ng/mL e saturação de transferrina abaixo de 25%. A via oral ou intravenosa é individualizada conforme grau de anemia e deficiência, tolerabilidade, eficácia, preferências, disponibilidade e custo. Hb abaixo de 10 g/dL não basta, isoladamente, para iniciar AEE nesse grupo; devem-se abordar causas corrigíveis. Em anemia crônica estável sem sangramento, não se indica transfusão apenas para corrigir rapidamente esse valor de Hb.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "911fdbb4",
+      "originalHash": "5f0a43204fe27ef4b9d4a65403505f41e875fd8529ebc7a9a18f7dd63981d142",
+      "candidateHash": "63382ee15874517c4cd5ebdbeb72af0d324cfb4678d7d658a75346bf3d2dd111",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Reconhecer indicação de investigar e tratar deficiência de ferro mesmo quando a anemia da DRC não dialítica é leve.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária",
+        "diff": "medium",
+        "justification": "Aplica critérios ao caso, integrando dados relevantes.",
+        "independentOriginal": {
+          "qid": "911fdbb4",
+          "op": "Priorizar correção de ferro na anemia leve da DRC",
+          "competence": "conduta",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "A anemia leve do homem com índices de deficiência exige investigar e tratar ferro; não aguardarHb10ou usarAEEprimeiro.",
+      "problems": [],
+      "adversary": "HomemHb11,9tem anemia; ferritina95/TSAT18cumpre critério não dialítico. Investigar perdas e repor são ações compatíveis, sem afirmar etiologia já estabelecida. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Antecipar AEE sem corrigir deficiência de ferro.",
+        "Transferir um valor de Hb discutido para AEE ao critério de reposição de ferro.",
+        "Usar anemia leve como motivo para não tratar deficiência documentada."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score20/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 Figura6,S35;Rec2.3–2.4,S20",
+        "claimIds": [
+          "ANEMIA_DEFINITION",
+          "IRON_NON_HD",
+          "IRON_ROUTE",
+          "CORRECT_CAUSES"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            25,
+            26,
+            115,
+            79
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.4556962025316456,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            53,
+            64,
+            53,
+            54
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.828125,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "DRC Não Dialítica — Ferro em Anemia Leve",
+        "qid": "911fdbb4",
+        "q": "Homem com doença renal crônica (DRC) G3a, clinicamente estável, apresenta Hb 11,9 g/dL, ferritina 95 ng/mL e saturação de transferrina de 18%. Qual é a conduta inicial mais adequada em relação à anemia?",
+        "refs": [
+          "kdigo_anemia_2026"
+        ],
+        "opts": [
+          "Iniciar AEE para corrigir a Hb antes de repor o ferro",
+          "Aguardar Hb abaixo de 10 g/dL para considerar reposição de ferro",
+          "Investigar a deficiência e iniciar reposição de ferro",
+          "Acompanhar sem reposição porque a anemia é apenas leve"
+        ],
+        "ans": 2,
+        "exp": "Há anemia em homem adulto, associada a índices que atendem ao critério de iniciar ferro na DRC não dialítica: ferritina abaixo de 100 ng/mL e saturação de transferrina abaixo de 40%. Deve-se investigar a causa da deficiência e escolher ferro oral ou intravenoso conforme o contexto e a preferência da pessoa. O critério de reposição não exige que a Hb caia abaixo de 10 g/dL. AEE não é a primeira medida nesse cenário, e o caráter leve da anemia não justifica ignorar a deficiência de ferro.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "29338dc5",
+      "originalHash": "67d087245a6ae6c3c33d387af0cce273c933732edfc28b76dfd5809ffb80d3c0",
+      "candidateHash": "eeaabe290fe4bec423dddd81af44c63a591788a5312974eed33366306e0ffdd6",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Identificar deficiência relativa de eritropoietina como mecanismo endócrino central da anemia na DRC avançada.",
+        "competency": "mecanismo",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "Recupera ou explica conceito/limiar único; a vinheta não acrescenta complexidade decisória.",
+        "independentOriginal": {
+          "qid": "29338dc5",
+          "op": "Reconhecer deficiência relativa de eritropoietina na anemia da DRC",
+          "competence": "mecanismo",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "A deficiência relativa de eritropoietina é o mecanismo endócrino central, preservando a natureza multifatorial da anemia daDRC.",
+      "problems": [],
+      "adversary": "O comando restringe à função endócrina, evitando que menor sobrevida de hemácias ou restrição de ferro virem alternativas simultaneamente melhores. Anticorposanti-EPOexigem contexto próprio. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Atribuir a perda de função endócrina renal à deficiência de vitamina B12.",
+        "Confundir deficiência relativa de eritropoietina com aplasia de série vermelha imunológica.",
+        "Confundir anemia endócrina renal com hemólise autoimune."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 1,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score19/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 Figura2,S31 e capítulo1,S29–S31",
+        "claimIds": [
+          "CKD_PHYSIOLOGY"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            57,
+            63,
+            53,
+            117
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.8571428571428572,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            62,
+            72,
+            62,
+            61
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.8472222222222222,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Anemia da DRC — Mecanismo Central",
+        "qid": "29338dc5",
+        "q": "Pessoa com doença renal crônica (DRC) avançada em hemodiálise tem anemia normocítica e normocrômica. Qual mecanismo central da anemia se relaciona diretamente à perda da função endócrina renal?",
+        "refs": [
+          "kdigo_anemia_2026"
+        ],
+        "opts": [
+          "Deficiência de vitamina B12 por redução da absorção intestinal",
+          "Destruição dos precursores eritroides por anticorpos anti-eritropoietina",
+          "Destruição das hemácias por autoanticorpos contra sua membrana",
+          "Produção de eritropoietina insuficiente para o grau de anemia"
+        ],
+        "ans": 3,
+        "exp": "A perda da função endócrina renal causa deficiência relativa de eritropoietina: sua produção é inadequada para o grau de anemia. A anemia na DRC é multifatorial, podendo somar inflamação, restrição de ferro, perdas sanguíneas e menor sobrevida das hemácias. Deficiência de B12, aplasia de série vermelha por anticorpos anti-eritropoietina e hemólise autoimune são causas específicas que exigem achados próprios; não constituem o mecanismo endócrino central da DRC. Morfologia normocítica e normocrômica não dispensa investigar essas e outras causas quando houver indicação.",
+        "diff": "easy",
+        "cat": "drc"
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "83ae1c0b",
+      "originalHash": "1074e75cbd410dac6b0a7f5b4cedefe236f67ed2e5af882cf5aafc4d304a254e",
+      "candidateHash": "dd564a9b86f41df82b0109525da0613e9881aee5443a662cb44a0cbc2a37be49",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Reconhecer que ferritina elevada e saturação baixa não encerram a investigação de hiporresponsividade ao AEE em hemodiálise.",
+        "competency": "conduta",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária",
+        "diff": "medium",
+        "justification": "Integra padrão laboratorial e contexto clínico sem decisão complexa sob incerteza; o tamanho não justifica hard.",
+        "independentOriginal": {
+          "qid": "83ae1c0b",
+          "op": "Investigar causas reversíveis de hiporresponsividade ao AEE na hemodiálise",
+          "competence": "conduta",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "A queda de resposta emHDexige investigação de causas reversíveis, sem inferir estoques adequados por ferritina680nem depleção porTSAT24.",
+      "problems": [],
+      "adversary": "A repetição de ferro pode ser individualmente considerada, mas a alternativa propõe diagnóstico já fechado porTSAT; isso não substitui reavaliação. Não há regra de proibir todo ferro acima500. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Escalar AEE sem investigar a hiporresponsividade.",
+        "Confundir saturação baixa com prova isolada de depleção dos estoques.",
+        "Presumir falha de classe e trocar tratamento sem investigar causas."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score20/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 PP3.7.1,S59;PP2.2discussão,S44;Figura10",
+        "claimIds": [
+          "ESA_HYPORESPONSE",
+          "IRON_INDICES",
+          "HIF_HYPORESPONSE"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            101,
+            192,
+            123,
+            113
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.5609756097560976,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            69,
+            75,
+            77,
+            76
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.974025974025974,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Hiporresponsividade ao AEE em Hemodiálise",
+        "qid": "83ae1c0b",
+        "q": "Paciente em hemodiálise trissemanal mantém Hb 9,2 g/dL apesar de doses crescentes de agente estimulador da eritropoiese (AEE). Ferritina é 680 ng/mL e saturação de transferrina 24%. Antes de nova escalada do AEE, qual conduta é mais adequada?",
+        "refs": [
+          "kdigo_anemia_2026"
+        ],
+        "opts": [
+          "Aumentar o AEE, atribuindo a anemia à perda da função endócrina renal",
+          "Reavaliar causas tratáveis, incluindo inflamação e disponibilidade de ferro",
+          "Repor ferro, atribuindo a anemia à depleção dos estoques pela saturação baixa",
+          "Trocar o AEE por HIF-PHI, atribuindo a falha à escolha da classe terapêutica"
+        ],
+        "ans": 1,
+        "exp": "A resposta inadequada ao AEE exige reavaliar causas tratáveis antes de aumentar a dose. Ferritina elevada não assegura ferro disponível para a eritropoiese, e saturação baixa não comprova, sozinha, depleção dos estoques. Devem-se rever inflamação ou infecção, perdas sanguíneas, adequação da diálise, adesão, nutrição e outras causas conforme o contexto. Uma estratégia individualizada com ferro pode ser considerada em situações selecionadas, mas não substitui essa avaliação; os dados não autorizam concluir que a causa já foi identificada. Trocar por HIF-PHI também não dispensa investigar a hiporresponsividade.",
+        "diff": "medium",
+        "cat": "nefrologia_geral"
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "81e1082b",
+      "originalHash": "b41b0a0e7157a91777f29c3cb023abf06e6feddf2e1ad2fcf2ad6a197e837243",
+      "candidateHash": "8b6b8f3d5b3ac4a535ee219bfb5c492c607b6f52ed3df69975f0d57472dccdd7",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "PARCIALMENTE VERIFICADA",
+      "pending": "NÃO DECISIVA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Planejar tratamento da anemia importante em hemodiálise integrando ferro intravenoso e indicação individualizada de AEE.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária",
+        "diff": "medium",
+        "justification": "Aplica critérios ao caso, integrando dados relevantes.",
+        "independentOriginal": {
+          "qid": "81e1082b",
+          "op": "Selecionar tratamento antianêmico em hemodiálise com anemia e ferro disponível reduzido",
+          "competence": "conduta",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "O plano integrado contempla ferroIVcom critérios preenchidos e decisão individualizada deAEEparaHb8em diálise. A explicação preserva a ordem de abordar causas corrigíveis antes da decisão deAEE.",
+      "problems": [
+        {
+          "severity": "MENOR",
+          "text": "Brennerherdado: edição/ano não confirmados e texto integral não aberto. A conduta e todos os números decisivos são integralmente sustentados pela diretrizKDIGO2026aberta; nenhum dado deste candidato depende do livro."
+        }
+      ],
+      "adversary": "Testei ambiguidade entre ferroprimeiro eAEEimediato: o comando pergunta plano, não administração simultânea imediata; gabaritoindividualizadoeexplicação deixam a sequência segura. Brenner não é prova decisiva. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Usar transfusão programada como manutenção quando há opções de tratamento.",
+        "Dispensar ferro com base apenas na ferritina.",
+        "Usar ferro oral isoladamente apesar de anemia importante em hemodiálise."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 1,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "PARCIALMENTE VERIFICADA+NÃO DECISIVA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score19/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 Rec2.1–2.2,S20;PP3.1.2,S22;Rec3.2.1,S23",
+        "claimIds": [
+          "IRON_HD",
+          "ESA_DIALYSIS",
+          "CORRECT_CAUSES"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            58,
+            101,
+            75,
+            73
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.3466666666666667,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            68,
+            59,
+            69,
+            68
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.855072463768116,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Anemia na DRC — Eritropoetina",
+        "qid": "81e1082b",
+        "q": "Pessoa em hemodiálise apresenta Hb 8,0 g/dL, ferritina 320 ng/mL e saturação de transferrina de 22%. Está estável, sem sangramento ou infecção ativa, e a investigação não identificou outras causas tratáveis além da limitação de ferro. Qual plano de tratamento é mais adequado?",
+        "refs": [
+          "kdigo_anemia_2026",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Transfusões programadas como estratégia de manutenção da hemoglobina",
+          "Reposição intravenosa de ferro e uso individualizado de AEE",
+          "AEE isolado, considerando a ferritina suficiente para dispensar ferro",
+          "Reposição oral de ferro como única terapia para a anemia persistente"
+        ],
+        "ans": 1,
+        "exp": "O plano deve abordar a disponibilidade de ferro e considerar AEE de forma individualizada. Em hemodiálise, ferritina até 500 ng/mL com saturação até 30% atende ao critério de iniciar ferro, com preferência pela via intravenosa. Hb de 8,0 g/dL está abaixo da faixa em que a KDIGO sugere considerar AEE em diálise, após abordar causas corrigíveis; ferro e AEE integram o plano, com acompanhamento da resposta. Isso não significa aplicar AEE antes de avaliar e corrigir a deficiência de ferro. Transfusões programadas e ferro oral isolado não são a melhor estratégia de manutenção nesse cenário.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "5b9730b8",
+      "originalHash": "3714e7012ad2a8bd2dd2cb418f437ae39ef49e495931f65e8b8bdbe4ca0cb2ce",
+      "candidateHash": "4dade96de87e52c459f21cf9511841edd0c3911d784fddee2a9bf8413c7c70ea",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Identificar a preferência por AEE, em vez de HIF-PHI, como primeira linha após correção das causas tratáveis.",
+        "competency": "conduta",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "Recupera ou explica conceito/limiar único; a vinheta não acrescenta complexidade decisória.",
+        "independentOriginal": {
+          "qid": "5b9730b8",
+          "op": "Selecionar primeira linha entre AEE e HIF-PHI após causas corrigíveis",
+          "competence": "conduta",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "AEEé a primeira linha sugerida depois de causas corrigíveis, grau2D. A questão não transforma sugestão em obrigação nem combina duas classes.",
+      "problems": [],
+      "adversary": "HIF-PHIpode ser alternativa selecionada, mas não a primeira escolha sugerida explicitamente pelaKDIGO2026. Transfusões têm indicações próprias; o comando já decidiu estimular eritropoiese. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Inverter a preferência de primeira linha da diretriz.",
+        "Eleger transfusão como primeira linha para anemia crônica tratável.",
+        "Combinar classes que não devem ser usadas em associação."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score19/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 Rec3.1.1,S22/S49;PP3.5.1,S25",
+        "claimIds": [
+          "FIRST_LINE",
+          "NO_COMBINATION"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            47,
+            22,
+            58,
+            27
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.2340425531914894,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            37,
+            38,
+            33,
+            40
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.825,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "AEE vs HIF-PHI — KDIGO 2026 Anemia na DRC",
+        "qid": "5b9730b8",
+        "q": "Em pessoa com doença renal crônica (DRC), as causas tratáveis de anemia foram abordadas e decidiu-se estimular a eritropoiese. Entre agente estimulador da eritropoiese (AEE), inibidor de HIF-prolil-hidroxilase (HIF-PHI) e outras estratégias, qual é a primeira escolha sugerida pela KDIGO 2026?",
+        "opts": [
+          "Usar um HIF-PHI como primeira escolha",
+          "Usar transfusões como primeira escolha",
+          "Usar um AEE como primeira escolha",
+          "Usar AEE e HIF-PHI como primeira escolha"
+        ],
+        "ans": 2,
+        "exp": "A KDIGO 2026 sugere AEE em vez de HIF-PHI como primeira linha, após abordar causas corrigíveis (Recomendação 3.1.1, grau 2D). É uma sugestão apoiada em evidência de certeza muito baixa, que exige ponderar sintomas, riscos, preferências e acesso. Transfusão tem indicações próprias e não substitui rotineiramente essa estratégia. AEE e HIF-PHI não devem ser combinados.",
+        "diff": "easy",
+        "cat": "drc",
+        "refs": [
+          "kdigo_anemia_2026"
+        ]
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "eacfb643",
+      "originalHash": "385418406cf89171b9656e8c06333f009764f7bcc4851e1817b7657fd0210498",
+      "candidateHash": "b519270f29e5408e5e45512a1279801f574427daa66434839152e209f6b30b29",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Reconhecer a faixa sugerida para considerar início de AEE em diálise, distinguindo-a da meta de manutenção.",
+        "competency": "conduta",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "Recupera ou explica conceito/limiar único; a vinheta não acrescenta complexidade decisória.",
+        "independentOriginal": {
+          "qid": "eacfb643",
+          "op": "Reconhecer intervalo de hemoglobina para considerar AEE em diálise",
+          "competence": "conduta",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "easy"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "O intervalo9–10g/dLorienta o ponto individual de início em diálise, após corrigir causas, sem gatilho universal rígido.",
+      "problems": [],
+      "adversary": "As faixas adjacentes não são todas ordens de início; o comando pede a faixa usual de individualização sugerida. A explicação inclui valores abaixo e os riscos de esperar demasiadamente. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Retardar a consideração inicial do AEE até anemia mais profunda.",
+        "Confundir uma faixa mais baixa com a faixa usual de início.",
+        "Confundir limite de manutenção com faixa de início."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 1,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score19/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 Rec3.2.1,S23/S51",
+        "claimIds": [
+          "ESA_DIALYSIS"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            12,
+            12,
+            13,
+            17
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.3076923076923077,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            24,
+            24,
+            26,
+            25
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 2,
+          "ratio": 0.9615384615384616,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Limiar de Hb para Iniciar AEE em Diálise — KDIGO 2026",
+        "qid": "eacfb643",
+        "q": "Após abordar as causas corrigíveis de anemia, em qual faixa de hemoglobina a KDIGO 2026 sugere individualizar o início de agente estimulador da eritropoiese (AEE) em adultos em hemodiálise ou diálise peritoneal?",
+        "opts": [
+          "Em torno de 7,0–8,0 g/dL",
+          "Em torno de 8,0–9,0 g/dL",
+          "Em torno de 11,0–12,0 g/dL",
+          "Em torno de 9,0–10,0 g/dL"
+        ],
+        "ans": 3,
+        "exp": "Em adultos em hemodiálise ou diálise peritoneal, a KDIGO 2026 sugere considerar AEE quando a Hb estiver em torno de 9,0–10,0 g/dL ou abaixo, após abordar causas corrigíveis (Recomendação 3.2.1, grau 2D). A escolha do ponto de início nesse intervalo é individualizada por sintomas, risco de transfusão e riscos do tratamento. As faixas mais baixas retardam a consideração inicial da terapia, e 11,0–12,0 g/dL antecipa o início em relação ao intervalo sugerido. Esse intervalo não é uma ordem automática de prescrição.",
+        "diff": "easy",
+        "cat": "drc",
+        "refs": [
+          "kdigo_anemia_2026"
+        ]
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "6f1598c5",
+      "originalHash": "31b58b219733f2a4ab7fd40b8d4fc23223a5ea950906b98aba14256661c309fe",
+      "candidateHash": "922b17f6c4b3b9a17eee4c39c81d3ce457436c9527da3e905661324db7478298",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Identificar o limite superior de manutenção com AEE, sem confundi-lo com uma meta individual única.",
+        "competency": "conduta",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "Recupera ou explica conceito/limiar único; a vinheta não acrescenta complexidade decisória.",
+        "independentOriginal": {
+          "qid": "6f1598c5",
+          "op": "Evitar ultrapassar o limite de hemoglobina recomendado durante AEE",
+          "competence": "conduta",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "easy"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "O comando agora pede limite superior, não intervalo individual, removendo a dupla resposta antes possível com10–11. A meta recomendada é estritamente abaixo11,5.",
+      "problems": [],
+      "adversary": "Estar abaixo12também inclui alguns valores seguros, mas não identifica o limite superior pedido. A leitura como teto recomendado fixa11,5; não se exige um valor único deHbpara todos. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Aceitar limite de manutenção acima do recomendado.",
+        "Aceitar limite de manutenção acima do recomendado.",
+        "Aceitar limite de manutenção acima do recomendado."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 1,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score19/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 Rec3.3.1,S23/S53 e ApêndiceA",
+        "claimIds": [
+          "ESA_TARGET"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            14,
+            14,
+            19,
+            18
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.0555555555555556,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            31,
+            31,
+            31,
+            31
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": true,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1,
+          "longestHeuristic": 0.25
+        }
+      },
+      "candidate": {
+        "t": "Meta de Hemoglobina com AEE — KDIGO 2026",
+        "qid": "6f1598c5",
+        "q": "Em adultos com doença renal crônica (DRC) tratados com agente estimulador da eritropoiese (AEE), qual é o limite superior recomendado pela KDIGO 2026 para a hemoglobina de manutenção, sem definir uma meta individual para todos?",
+        "opts": [
+          "Manter a Hb abaixo de 13,0 g/dL",
+          "Manter a Hb abaixo de 12,0 g/dL",
+          "Manter a Hb abaixo de 11,5 g/dL",
+          "Manter a Hb abaixo de 14,0 g/dL"
+        ],
+        "ans": 2,
+        "exp": "A KDIGO 2026 recomenda manter a meta de Hb abaixo de 11,5 g/dL em adultos tratados com AEE (Recomendação 3.3.1). Esse é o limite superior recomendado, e não uma obrigação de atingir um único valor ou um intervalo estreito em todas as pessoas. A meta dentro desse limite depende de sintomas, benefícios esperados e riscos. Metas mais altas com AEE aumentam a exposição a eventos adversos, incluindo hipertensão, eventos cardiovasculares e trombose. Um intervalo como 10–11 g/dL pode ser uma meta individual válida; não deve ser apresentado como errado apenas por ser mais estreito.",
+        "diff": "easy",
+        "cat": "drc",
+        "refs": [
+          "kdigo_anemia_2026"
+        ]
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "5cf5b826",
+      "originalHash": "378c2eeb712db06e4a46613b431b948858227845a3cd5255789d0d5c1c9a1a6a",
+      "candidateHash": "3837b121fb43b67ea85ea0d1dc192e4b4bcfd5a813edef13f78e35e30dc6817e",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Priorizar a correção de deficiência de ferro já documentada antes da escolha entre AEE e HIF-PHI.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "Aplica ponto de prática explícito sem conflito decisório relevante.",
+        "independentOriginal": {
+          "qid": "5cf5b826",
+          "op": "Identificar correção de causas reversíveis como pré-requisito terapêutico",
+          "competence": "conduta",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "easy"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "A deficiência já documentada fixa a prioridade de corrigir causa antes de escolher estimulador. Mantém OP/competência/conceito; difere da investigaçãoetiológicainicial pretendida em061, que foi retida.",
+      "problems": [],
+      "adversary": "O caso não pede apenas exames. HIF-PHInão contorna deficiência de ferro e a combinação não cria atalho; não há insuficiência para decidir correção da causa conhecida. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Usar HIF-PHI como substituto da correção de deficiência de ferro.",
+        "Usar AEE como substituto da correção de deficiência de ferro.",
+        "Combinar AEE e HIF-PHI e adiar a correção causal."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score20/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 PP3.1.2,S22/S49;PP3.5.1,S25",
+        "claimIds": [
+          "CORRECT_CAUSES",
+          "NO_COMBINATION"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            32,
+            36,
+            77,
+            41
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.8780487804878048,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            53,
+            66,
+            65,
+            71
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.9154929577464789,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Pré-requisito para Iniciar AEE ou HIF-PHI — KDIGO 2026",
+        "qid": "5cf5b826",
+        "q": "Pessoa com doença renal crônica (DRC) e anemia tem deficiência de ferro documentada e ainda não tratada. Antes de escolher entre agente estimulador da eritropoiese (AEE) e inibidor de HIF-prolil-hidroxilase (HIF-PHI), qual prioridade deve orientar a conduta?",
+        "opts": [
+          "Iniciar HIF-PHI para contornar a deficiência de ferro",
+          "Iniciar AEE para compensar a limitação da disponibilidade de ferro",
+          "Corrigir a deficiência de ferro e abordar outras causas tratáveis",
+          "Associar AEE e HIF-PHI para acelerar a resposta enquanto se repõe ferro"
+        ],
+        "ans": 2,
+        "exp": "A prioridade é corrigir a deficiência de ferro e abordar as demais causas tratáveis da anemia antes de iniciar AEE ou HIF-PHI (Practice Point 3.1.2 da KDIGO 2026). A escolha de uma classe não corrige, por si, uma deficiência de ferro já documentada. Tampouco se deve combinar AEE e HIF-PHI para contornar essa etapa. Se a anemia persistir após a correção das causas, discute-se a indicação de estimular a eritropoiese, considerando sintomas, riscos e preferências.",
+        "diff": "easy",
+        "cat": "drc",
+        "refs": [
+          "kdigo_anemia_2026"
+        ]
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "f44b5edc",
+      "originalHash": "d55e1d12f650d8325147e08f1e6ff70cecb069d0bf8480907d391de144323e73",
+      "candidateHash": "989ed1f10e9deacbbbf841bae9b55c5c5a544a6f0a38fb586419df954ad4720b",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Aplicar a orientação de não combinar AEE e HIF-PHI mesmo diante de resposta insatisfatória ao AEE.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "Aplica ponto de prática explícito sem conflito decisório relevante.",
+        "independentOriginal": {
+          "qid": "f44b5edc",
+          "op": "Evitar combinação de AEE e HIF-PHI na anemia da DRC",
+          "competence": "conduta",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "easy"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "O ponto de prática determina não combinarAEEeHIF-PHI, inclusive em hiporresponsividade. O texto corrige o hedging anterior que podia sugerir associação excepcional dentro da recomendação.",
+      "problems": [],
+      "adversary": "Baixas doses,HDou ferro adequado não são exceções reconhecidas. Um estudo pequeno aberto não estabelece eficácia/segurança da combinação; testeHIF-PHIselecionado é alternativa. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Criar exceção à orientação de não combinar com base em baixas doses.",
+        "Criar exceção com base na modalidade de tratamento renal.",
+        "Criar exceção com base no estado do ferro."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score19/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 PP3.5.1,S25/S57",
+        "claimIds": [
+          "NO_COMBINATION",
+          "HIF_HYPORESPONSE"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            43,
+            29,
+            55,
+            34
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.2790697674418605,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            60,
+            59,
+            59,
+            67
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 3,
+          "ratio": 0.8805970149253731,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Combinação AEE + HIF-PHI — KDIGO 2026",
+        "qid": "f44b5edc",
+        "q": "Pessoa com anemia da doença renal crônica (DRC) e resposta insatisfatória ao agente estimulador da eritropoiese (AEE) teve causas tratáveis reavaliadas. Propõe-se acrescentar um inibidor de HIF-prolil-hidroxilase (HIF-PHI) ao AEE. Qual orientação da KDIGO 2026 se aplica?",
+        "opts": [
+          "Associar as duas classes se forem utilizadas em baixas doses",
+          "Associar as duas classes se a pessoa estiver em hemodiálise",
+          "Evitar a associação e discutir as classes como alternativas",
+          "Associar as duas classes se a disponibilidade de ferro for adequada"
+        ],
+        "ans": 2,
+        "exp": "A KDIGO 2026 orienta não combinar AEE com HIF-PHI, inclusive em hiporresponsividade ao AEE (Practice Point 3.5.1). Baixas doses, hemodiálise ou índices de ferro adequados não criam uma exceção a esse ponto de prática. As causas de resposta inadequada devem ser investigadas; em situações selecionadas pode-se discutir um teste de HIF-PHI como alternativa, com avaliação de riscos e benefícios, sem manter a combinação.",
+        "diff": "easy",
+        "cat": "drc",
+        "refs": [
+          "kdigo_anemia_2026"
+        ]
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "12121893",
+      "originalHash": "07b77fd86a02c3db13ce32598e188b2847c9d0cf76f26185ae73017c2df1450a",
+      "candidateHash": "c06a8cb72055aacdd06482ed850594eac9b5a163e7a96c77264fd2d46657c906",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Integrar a hemoglobina à avaliação clínica e aos riscos ao decidir transfusão na anemia crônica estável da DRC.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária",
+        "diff": "medium",
+        "justification": "Aplica critérios ao caso, integrando dados relevantes.",
+        "independentOriginal": {
+          "qid": "12121893",
+          "op": "Integrar sintomas e limiar restritivo à decisão de transfusão em anemia crônica estável",
+          "competence": "conduta",
+          "bloom": "Avaliar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "O princípio transfusional integraHbcom sinais, sintomas e riscos; o guia restritivo7em paciente estável não vira regra universal nem exclusão absoluta diante de ferro/AEE.",
+      "problems": [],
+      "adversary": "AEEou ferro disponíveis não impedem transfusão clinicamente indicada. O comando pede princípio, não prescrição individual semHb/sintomas; isso evita dado decisivo ausente. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Adotar gatilho liberal independente da repercussão clínica.",
+        "Transformar um valor numérico em regra universal para DRC.",
+        "Tratar a existência de alternativas como contraindicação absoluta à transfusão."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score20/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 PP4.4,S28/S66 e discussãoS67",
+        "claimIds": [
+          "TRANSFUSION_CLINICAL",
+          "TRANSFUSION_THRESHOLDS"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            61,
+            70,
+            77,
+            138
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.7922077922077921,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            67,
+            77,
+            79,
+            79
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": true,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1,
+          "longestHeuristic": 0.5
+        }
+      },
+      "candidate": {
+        "t": "Transfusão de Hemácias na DRC — KDIGO 2026",
+        "qid": "12121893",
+        "q": "Adulto hospitalizado com doença renal crônica (DRC) e anemia crônica está hemodinamicamente estável, sem sangramento ativo. Segundo a KDIGO 2026, qual princípio deve orientar a decisão de transfundir hemácias?",
+        "opts": [
+          "Usar Hb abaixo de 9 g/dL como gatilho, mesmo sem sintomas de anemia",
+          "Aplicar Hb abaixo de 8 g/dL como limiar isolado para todas as pessoas com DRC",
+          "Adiar a transfusão enquanto houver possibilidade de tratamento com ferro ou AEE",
+          "Integrar a Hb com sinais, sintomas e riscos atribuíveis à anemia e à transfusão"
+        ],
+        "ans": 3,
+        "exp": "A decisão deve integrar o valor de Hb com sinais e sintomas atribuíveis à anemia, estabilidade clínica e riscos e benefícios da transfusão. A KDIGO não recomenda basear a decisão apenas em um limiar arbitrário. Em adultos hospitalizados e hemodinamicamente estáveis, Hb abaixo de 7 g/dL pode servir como guia restritivo, vindo de evidência da população geral, e não como regra isolada específica para toda DRC. Ferro e AEE não impedem uma transfusão quando ela estiver clinicamente indicada; por outro lado, a existência de anemia não justifica gatilhos liberais automáticos.",
+        "diff": "medium",
+        "cat": "drc",
+        "refs": [
+          "kdigo_anemia_2026"
+        ]
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "1ba5a94d",
+      "originalHash": "3bb0bb9183bcbc5b48e477b5757286d20e913ba2d397be252184dbe97102524f",
+      "candidateHash": "281f107b8cf628ec68d6af7946f430b622c8ef44c99f4ab964e93ca0e6046ed3",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Individualizar a via da reposição de ferro fora da hemodiálise usando fatores clínicos e preferências.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "Aplica ponto de prática explícito sem conflito decisório relevante.",
+        "independentOriginal": {
+          "qid": "1ba5a94d",
+          "op": "Individualizar a via de ferro fora da hemodiálise",
+          "competence": "conduta",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "A escolha de via fora daHDconsidera deficiência, resposta, tolerância e preferência, nãoTFGeisolada nem regra universal.",
+      "problems": [],
+      "adversary": "DRCsemHDincluiPD; o texto não generaliza a preferênciaIVdaHDnem elimina disponibilidade/custo na explicação. Resposta e tolerância podem justificar troca. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Aplicar preferência da hemodiálise a toda DRC não dialítica.",
+        "Tratar ferro oral como única via antes da hemodiálise.",
+        "Usar estágio ou TFGe isoladamente para escolher a via."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 1,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score19/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 Rec2.4,S20/S40;PP2.7,S21/S46",
+        "claimIds": [
+          "IRON_ROUTE",
+          "ORAL_TO_IV"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            24,
+            17,
+            84,
+            29
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 2.896551724137931,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            73,
+            68,
+            77,
+            72
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.0547945205479452,
+          "longestHeuristic": 1
+        }
+      },
+      "candidate": {
+        "t": "Ferro IV vs Oral na DRC Não-HD — KDIGO 2026",
+        "qid": "1ba5a94d",
+        "q": "Uma pessoa com doença renal crônica (DRC) que não faz hemodiálise tem anemia e indicação de reposição de ferro. Segundo a KDIGO 2026, como escolher entre ferro oral e intravenoso?",
+        "opts": [
+          "Priorizar a via intravenosa para todo caso de anemia na DRC não dialítica",
+          "Priorizar a via oral como única opção antes do início de hemodiálise",
+          "Individualizar a via pela deficiência, resposta, tolerabilidade e preferência",
+          "Definir a via de administração pelo estágio da DRC, usando apenas a TFGe"
+        ],
+        "ans": 2,
+        "exp": "Ferro oral ou intravenoso pode ser usado fora da hemodiálise; a escolha é individualizada. A KDIGO inclui preferências, grau de anemia e deficiência de ferro, eficácia relativa, tolerabilidade, disponibilidade e custo. Resposta prévia e necessidade clínica também ajudam a decisão. Não há uma via única para toda pessoa nem um ponto de corte de taxa de filtração glomerular estimada (TFGe) que, isoladamente, resolva a escolha. Resposta insuficiente após um teste adequado de ferro oral ou má tolerância pode justificar mudança para a via intravenosa.",
+        "diff": "easy",
+        "cat": "drc",
+        "refs": [
+          "kdigo_anemia_2026"
+        ]
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "43834a55",
+      "originalHash": "57b6dc967c2908893a3bfc924ccad4f51e4daa54045549fd9093ebccfec6f52f",
+      "candidateHash": "5e3c62163c89afa5f1c870d55475ccf0e15876e699cedd3b60e0bb19cf4b62da",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Selecionar o objetivo conservador de titulação de HIF-PHI, distinguindo benefício clínico de normalização da hemoglobina.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "Aplica ponto de prática explícito sem conflito decisório relevante.",
+        "independentOriginal": {
+          "qid": "43834a55",
+          "op": "Titular HIF-PHI pela menor dose eficaz e pelos limites de segurança",
+          "competence": "conduta",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "A menor dose eficaz dentro dos limites aprovados orientaHIF-PHI; a explicação preserva monitorização e limites de segurança, sem perseguirHbnormal.",
+      "problems": [],
+      "adversary": "Manter dose inicial pode caber se eficaz, mas não é objetivo universal de titulação. A dose máxima e normalização rápida não são metas; o comando diferencia objetivo de uma dose fixa. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Manter dose inicial independentemente da resposta.",
+        "Priorizar dose máxima e velocidade de normalização.",
+        "Buscar Hb normal da população sem DRC como alvo de titulação."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 1,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score19/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 PP3.5.3–3.5.5,S25/S58;PP3.6.1",
+        "claimIds": [
+          "HIF_DOSING",
+          "HIF_MONITORING"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            27,
+            105,
+            47,
+            49
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 2.142857142857143,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            76,
+            67,
+            76,
+            88
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.7613636363636364,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "HIF-PHI — Dose e Monitoramento — KDIGO 2026",
+        "qid": "43834a55",
+        "q": "Em pessoa com anemia da doença renal crônica (DRC), um inibidor de HIF-prolil-hidroxilase (HIF-PHI) foi escolhido após avaliação clínica. Dentro dos limites de dose aprovados para o fármaco, qual objetivo deve orientar a titulação?",
+        "opts": [
+          "Manter a dose inicial para reduzir a variação da resposta entre as consultas",
+          "Usar a menor dose eficaz para aliviar sintomas e evitar transfusões",
+          "Atingir a dose máxima para reduzir o tempo até a normalização da hemoglobina",
+          "Aumentar a dose para alcançar valores de hemoglobina equivalentes aos de pessoas sem DRC"
+        ],
+        "ans": 1,
+        "exp": "A KDIGO 2026 orienta usar a menor dose de HIF-PHI necessária para melhorar sintomas de anemia ou evitar transfusões, sem exceder a dose máxima recomendada para o fármaco. A titulação depende da resposta e da segurança, não de manter uma dose fixa, começar pela máxima ou normalizar agressivamente a hemoglobina. Deve-se acompanhar a Hb após início ou ajustes e durante a manutenção. A escolha da classe e sua posologia exigem discussão de benefícios e riscos, inclusive cardiovasculares e trombóticos.",
+        "diff": "easy",
+        "cat": "drc",
+        "refs": [
+          "kdigo_anemia_2026"
+        ]
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "5d9455ca",
+      "originalHash": "50e7bdc0fa35a9f4758ff6dd723ce15d130cb6cdb08d90b703a27f84f1a941fd",
+      "candidateHash": "e7f566f64481e74dcf1f2e30bc5e664a88eb3ab68d72a471e313294e5876c533",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Relacionar transfusão de hemácias à alossensibilização anti-HLA e ao acesso a transplante renal.",
+        "competency": "mecanismo",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "Recupera ou explica conceito/limiar único; a vinheta não acrescenta complexidade decisória.",
+        "independentOriginal": {
+          "qid": "5d9455ca",
+          "op": "Relacionar transfusão a alossensibilização em candidato a transplante",
+          "competence": "mecanismo",
+          "bloom": "Compreender",
+          "miller": "Sabe",
+          "intrinsicDifficulty": "easy"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "A alossensibilizaçãoanti-HLAé o risco que dificulta compatibilidade de futuros doadores; outros riscos transfusionais são reais, porém pertencem a outra decisão.",
+      "problems": [],
+      "adversary": "Aloanticorposeritrocitários afetam futuras transfusões, enquanto o enunciado delimita doador de órgão. Leucorredução não elimina sensibilização. O risco não proíbe transfusão urgente. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Confundir a compatibilidade eritrocitária de futuras transfusões com compatibilidade HLA de transplante.",
+        "Confundir toxicidade cumulativa transfusional com barreira imunológica à seleção de doador.",
+        "Confundir reação aguda por incompatibilidade ABO com sensibilização HLA para transplante."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 1,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score19/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 PP4.2,S28;HLAe leucorredução,S64–S65",
+        "claimIds": [
+          "TRANSPLANT_ALLOSENSITIZATION"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            58,
+            67,
+            49,
+            39
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.1551724137931034,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            57,
+            54,
+            55,
+            56
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "uniqueShortest": true,
+          "rank": 4,
+          "ratio": 0.9473684210526315,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Transfusão e Candidatos a Transplante — KDIGO 2026",
+        "qid": "5d9455ca",
+        "q": "Em pessoa com doença renal crônica (DRC) elegível para transplante renal, qual risco das transfusões de hemácias é particularmente relevante para a compatibilidade com futuros doadores?",
+        "opts": [
+          "Formação de aloanticorpos contra antígenos eritrocitários",
+          "Formação de anticorpos anti-HLA por alossensibilização",
+          "Acúmulo de ferro após exposição a transfusões repetidas",
+          "Reações hemolíticas por incompatibilidade do sistema ABO"
+        ],
+        "ans": 1,
+        "exp": "Transfusões podem causar alossensibilização, com formação de anticorpos anti-HLA que dificultam encontrar um doador compatível. Por isso, a KDIGO recomenda evitar transfusões quando possível em pessoas elegíveis para transplante, ponderando sempre a indicação clínica. A leucorredução não elimina esse risco. Aloanticorpos contra antígenos eritrocitários podem dificultar futuras transfusões, mas não são a barreira HLA avaliada na compatibilidade para transplante. Sobrecarga de ferro e reações por incompatibilidade ABO são outros riscos transfusionais, sem explicar a alossensibilização anti-HLA. A recomendação não proíbe uma transfusão necessária em situação urgente.",
+        "diff": "easy",
+        "cat": "drc",
+        "refs": [
+          "kdigo_anemia_2026"
+        ]
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "74186985",
+      "originalHash": "a9da040e097c98e5ebb8ef1071c92ad9c70557dd35bbceeb7f4ccf53a524581d",
+      "candidateHash": "ea279590f4608f4abe46ddc59588e63dbd94c8856659232970a10df5764d0e98",
+      "hashMethod": "SHA256(JSON.stringify(candidate)), authored field order",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Distinguir o limiar-guia de transfusão restritiva em cirurgia ortopédica dos guias de outros contextos.",
+        "competency": "conduta",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "Recupera ou explica conceito/limiar único; a vinheta não acrescenta complexidade decisória.",
+        "independentOriginal": {
+          "qid": "74186985",
+          "op": "Interpretar limiar restritivo de transfusão no perioperatório ortopédico da DRC",
+          "competence": "conduta",
+          "bloom": "Avaliar",
+          "miller": "Sabe como",
+          "intrinsicDifficulty": "medium"
+        },
+        "reconciliation": "Classificação cega do original preservada no registro; versão final foi classificada pelo comando e conceito efetivamente exigidos. Quando difere, a concisão/exposição da explicação não é confundida com raciocínio solicitado. A mudança não decorre da contagem de caracteres."
+      },
+      "justification": "O guia restritivo8g/dLpara cirurgia ortopédica foi preservado e o enunciado já exige integrar sinais e riscos; o número não é ordem automática de transfusão.",
+      "problems": [],
+      "adversary": "Diferenciei7,5da cirurgia cardíaca e7do adulto hospitalizado estável. A pergunta fixa o contexto ortopédico; não afirma benefício de gatilho liberal9em todos comDRC. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "clinicalErrors": [
+        "Aplicar o guia hospitalar geral sem reconhecer o contexto ortopédico.",
+        "Transferir o guia de cirurgia cardíaca para cirurgia ortopédica.",
+        "Usar um guia mais liberal que o citado para o contexto."
+      ],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 1,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "decisionTree": "VERIFICADA+NENHUMA é combinação válida → nenhum eliminatório → recurso sem argumento remanescente → score19/20 → aprovada → LIBERADA.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "verifiedSources": {
+        "primary": "KDIGO2026 discussãoPP4.4,S67",
+        "claimIds": [
+          "TRANSFUSION_THRESHOLDS"
+        ]
+      },
+      "lengths": {
+        "original": {
+          "lengths": [
+            94,
+            60,
+            162,
+            110
+          ],
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1.4727272727272727,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            21,
+            21,
+            21,
+            21
+          ],
+          "uniqueLongest": false,
+          "tiedLongest": true,
+          "uniqueShortest": false,
+          "rank": 1,
+          "ratio": 1,
+          "longestHeuristic": 0.25
+        }
+      },
+      "candidate": {
+        "t": "KDIGO 2026 — Transfusão Perioperatória",
+        "qid": "74186985",
+        "q": "Pessoa com doença renal crônica (DRC) e anemia fará cirurgia ortopédica, sem sangramento ativo. Além de integrar sintomas e riscos, qual limiar de hemoglobina é citado pela KDIGO 2026 como guia restritivo razoável nesse contexto?",
+        "opts": [
+          "Hb abaixo de 7,0 g/dL",
+          "Hb abaixo de 7,5 g/dL",
+          "Hb abaixo de 8,0 g/dL",
+          "Hb abaixo de 9,0 g/dL"
+        ],
+        "ans": 2,
+        "exp": "Para cirurgia ortopédica ou doença cardiovascular clinicamente significativa, a KDIGO 2026 cita Hb abaixo de 8 g/dL como guia restritivo razoável, e não como ordem automática de transfusão. A discussão usa evidência de estratégias restritivas na população geral, integrada aos riscos e ao contexto da pessoa com DRC. O guia de 7,5 g/dL se refere à cirurgia cardíaca; 7 g/dL é um guia geral para adultos hospitalizados estáveis. A decisão final considera sinais, sintomas e balanço entre benefício e riscos transfusionais.",
+        "diff": "easy",
+        "cat": "drc",
+        "refs": [
+          "kdigo_anemia_2026"
+        ]
+      },
+      "identity": "MesmoOPprático, competência e conceito correto reconhecível; preserva qid/ans/refs/cat. Qualificadores de segurança estão no enunciado e/ou explicação quando não precisam compor a alternativa.",
+      "implementation": "Aplicar somente objeto exato com hash e cardKDIGO C2 liberado; preservarqid/FSRSe avaliações históricas como versão anterior. Não reutilizar aprovação após mudança material."
+    },
+    {
+      "qid": "1e6a4479",
+      "originalHash": "76ed2050d7a3e91b338cf85d03fc0ea88286b3f7bf996c479a2f1eb229280c61",
+      "candidateHash": "515b88b1e0e51c3335e1d0b8831e08435d4cf88df62dd5088ce0f7a70d5289f2",
+      "candidate": {
+        "t": "Anemia na DRC — Classificação da Evidência KDIGO 2026",
+        "qid": "1e6a4479",
+        "q": "A KDIGO 2026 apresenta uma orientação que prefere agente estimulador da eritropoiese (AEE) a inibidor de HIF-prolil-hidroxilase (HIF-PHI) como primeira linha na anemia da doença renal crônica (DRC). Como é classificada a força e a certeza dessa orientação?",
+        "opts": [
+          "Grau 1A: recomendação forte, com evidência de alta certeza",
+          "Grau 2D: sugestão, com evidência de certeza muito baixa",
+          "Grau 1B: recomendação forte, com evidência de certeza moderada",
+          "Grau 2B: sugestão, com evidência de certeza moderada"
+        ],
+        "ans": 1,
+        "exp": "A preferência por AEE em vez de HIF-PHI como primeira linha é uma sugestão de grau 2D (Recomendação 3.1.1). O número 2 indica recomendação condicional, e D indica certeza muito baixa da evidência; isso não equivale a uma recomendação forte ou a evidência de certeza moderada ou alta. A orientação apoia uma escolha individualizada e compartilhada depois de abordar causas corrigíveis, considerando sintomas, riscos, preferências e acesso. O grau da evidência não significa equivalência comprovada entre as classes nem dispensa a avaliação de segurança.",
+        "diff": "hard",
+        "cat": "drc",
+        "refs": [
+          "kdigo_anemia_2026"
+        ]
+      },
+      "verdict": "fundir",
+      "legacy": null,
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "DECISIVA",
+      "publication": "BLOQUEADA",
+      "classification": {
+        "qid": "1e6a4479",
+        "op": "Identificar força e certeza da sugestão KDIGO entre AEE e HIF-PHI",
+        "competence": "interpretação",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "easy",
+        "diff": "hard"
+      },
+      "justification": "MemorizarGrau2Dsem decisão clínica não passa o portão de existência. A aplicação da recomendação já está em5b9730b8; avaliar fusão editorial, sem reescrever ou excluir automaticamente.",
+      "problems": [
+        {
+          "severity": "CRÍTICO",
+          "text": "Trivia sem consequência clínica"
+        }
+      ],
+      "adversary": "O reparo não pode apenas mudar redação e herdar liberação; exige decisão de identidade/destino pedagógico.",
+      "eliminators": [
+        "Trivia sem consequência clínica"
+      ],
+      "scoreDimensions": null,
+      "score": null,
+      "scoreBand": "Score anulado por eliminatório",
+      "decisionTree": "Fonte verificada → eliminatório presente → redirecionar/fundir → publicaçãoBLOQUEADA.",
+      "editorialLifecycleDestination": "em_revisão",
+      "implementation": "Não escrever candidato emtopics.js. Preservar original eFSRSneste lote; nenhuma exclusão ou reescrita autorizada por este gate."
+    }
+  ]
+}

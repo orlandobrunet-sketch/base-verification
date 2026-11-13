@@ -1,0 +1,384 @@
+{
+  "schema": 1,
+  "stage": "Originais congelados antes de qualquer candidato; para classificação cega independente",
+  "sourceSha256": "bf92129ae513dbf5b7d74c2d56571bc82e24d7aa4d0dc13e8ec1bcc8d4d07ef5",
+  "baseCommit": "e36b5f3e5383d82489da001d54851ec7c8e6a083",
+  "questions": [
+    {
+      "qid": "3d8fc3fe",
+      "originalHash": "dfd72c7ae02eb288daa5df10532764841b1fc1045cedb1b01447a9c88572e588",
+      "sourceQuestion": {
+        "t": "Finerenona — Classe e Indicação na DRC Diabética",
+        "qid": "3d8fc3fe",
+        "q": "Paciente com diabetes tipo 2, DRC albuminúrica persistente apesar de IECA/BRA em dose tolerada, TFGe 38 mL/min/1,73m² e potássio 4,5 mEq/L recebe finerenona. Qual é a classe farmacológica da finerenona?",
+        "refs": [
+          "fidelio_dkd",
+          "finerenone_2025",
+          "kdigo_diabetes_in_ckd_guideline"
+        ],
+        "opts": [
+          "Antagonista não esteroidal seletivo do receptor mineralocorticoide",
+          "Inibidor direto da renina",
+          "Antagonista esteroidal do receptor mineralocorticoide, como espironolactona",
+          "Diurético de alça poupador de potássio"
+        ],
+        "ans": 0,
+        "exp": "A finerenona é um antagonista não esteroidal seletivo do receptor mineralocorticoide. Em DRC associada ao diabetes tipo 2, seu uso foi estudado sobre bloqueio otimizado do SRAA, com seleção por potássio e necessidade de monitorização de hipercalemia. A distinção em relação à espironolactona é estrutural e de perfil de receptor; não autoriza tratar a finerenona como isenta de hipercalemia. FIDELIO-DKD, FIGARO-DKD/FIDELITY e diretrizes de diabetes na DRC sustentam o papel cardiorrenal da classe nessa população.",
+        "diff": "medium",
+        "cat": "nefropatia_diabetica"
+      }
+    },
+    {
+      "qid": "86949ab7",
+      "originalHash": "3f78555760b60956950b8779740d576541a1c9e7a546a1c004e51d979c21ae05",
+      "sourceQuestion": {
+        "t": "Finerenona — Potássio Antes de Iniciar",
+        "qid": "86949ab7",
+        "q": "Paciente com diabetes tipo 2 e doença renal crônica (DRC) albuminúrica, em uso otimizado de inibidor da enzima conversora de angiotensina (IECA), tem potássio sérico de 5,2 mEq/L. Ao considerar finerenona, como interpretar o critério de potássio do FIDELIO-DKD e sua aplicação a este caso?",
+        "refs": [
+          "fidelio_dkd_design_2019",
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Critério ≤4,8 mEq/L; adiar o início e reavaliar o potássio.",
+          "Critério ≤4,8 mEq/L; iniciar agora e monitorar em quatro semanas.",
+          "Critério ≤5,5 mEq/L; iniciar com dose menor até corrigir o potássio.",
+          "Sem limite de potássio; iniciar pela albuminúria."
+        ],
+        "ans": 0,
+        "exp": "O FIDELIO-DKD exigia potássio ≤4,8 mEq/L nas visitas de run-in e triagem, e não potássio exatamente 4,8. K+ de 5,2 mEq/L não corresponde a essa seleção; deve-se adiar o início, avaliar fatores reversíveis e repetir/monitorar potássio antes de reconsiderar. A Kidney Disease: Improving Global Outcomes (KDIGO), na diretriz de 2024, orienta selecionar pessoas com potássio consistentemente normal e monitorar após o início de antagonista mineralocorticoide não esteroidal. Não confundir critérios de entrada do ensaio com limiares de continuidade ou reinício durante o tratamento, nem transformar 4,8 em limite regulatório universal. O limite de prescrição deve ser confrontado com a rotulagem e o contexto local vigentes. Este item não afirma que qualquer paciente com albuminúria possa receber finerenona sem avaliar a taxa de filtração glomerular estimada (TFGe) e demais condições clínicas.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      }
+    },
+    {
+      "qid": "f9976e40",
+      "originalHash": "c2c591014f42201a692ef1824682f73a5587568e18ebc9244e5a1f0366ca1b50",
+      "sourceQuestion": {
+        "t": "Finerenona — Potássio e TFGe antes do Início",
+        "qid": "f9976e40",
+        "q": "Paciente com diabetes tipo 2, DRC albuminúrica, TFGe de 28 mL/min/1,73 m² e potássio de 5,2 mEq/L usa losartana na dose tolerada. Qual é a conduta mais segura antes de iniciar finerenona?",
+        "refs": [
+          "finerenone_label_dailymed",
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Não iniciar enquanto o potássio estiver acima de 5,0 mEq/L; corrigir fatores reversíveis e reavaliar potássio e TFGe",
+          "Iniciar 20 mg imediatamente, pois TFGe baixa protege contra hipercalemia",
+          "Associar espironolactona para reduzir o potássio",
+          "Suspender toda monitorização após a primeira dose se a creatinina estiver estável"
+        ],
+        "ans": 0,
+        "exp": "A finerenona pode causar hipercalemia, e o risco cresce com função renal mais baixa e potássio basal elevado. A rotulagem orienta medir potássio e TFGe antes do início, não iniciar se potássio for maior que 5,0 mEq/L e não recomenda início quando TFGe é menor que 25 mL/min/1,73 m². Após corrigir causas reversíveis, o potássio deve ser reavaliado; se o tratamento for iniciado, dose e monitorização seguem TFGe, potássio e interações por CYP3A4. Combinar antagonistas mineralocorticoides aumenta risco.",
+        "diff": "hard",
+        "cat": "drc"
+      }
+    },
+    {
+      "qid": "d7ac22f6",
+      "originalHash": "0befc862f04d9630ead16b1785da9cb459610105bb5c9f608409ffec18ccf1dd",
+      "sourceQuestion": {
+        "t": "Finerenona na DRC Diabética Albuminúrica",
+        "qid": "d7ac22f6",
+        "q": "Paciente com diabetes tipo 2 e DRC albuminúrica mantém RAC elevada apesar de IECA ou BRA na maior dose tolerada; TFGe e potássio permitem o uso. Qual afirmação sobre finerenona é correta?",
+        "refs": [
+          "fidelio_dkd",
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "É antagonista não esteroidal do receptor mineralocorticoide que reduz risco renal e cardiovascular, com necessidade de monitorar potássio",
+          "Substitui o bloqueio do SRAA e dispensa IECA ou BRA",
+          "É indicada apenas depois do início da diálise",
+          "Elimina o risco de hipercalemia por não ser esteroidal"
+        ],
+        "ans": 0,
+        "exp": "Finerenona é um antagonista não esteroidal do receptor mineralocorticoide estudado sobre bloqueio do SRAA em pessoas com diabetes tipo 2 e DRC albuminúrica. FIDELIO-DKD demonstrou redução do desfecho renal composto, e FIGARO-DKD mostrou benefício cardiovascular. O fármaco é adicional, não substituto automático de IECA ou BRA, e não é terapia para iniciar em diálise. A estrutura não esteroidal reduz efeitos endócrinos fora do alvo, mas a hipercalemia permanece o principal cuidado clínico.",
+        "diff": "medium",
+        "cat": "drc"
+      }
+    },
+    {
+      "qid": "65fcdeae",
+      "originalHash": "634f86f2a03957d12f069e52e5d3f2131173b27af00f026e0ee1f2134d8e8a23",
+      "sourceQuestion": {
+        "t": "Farmacologia Renal",
+        "qid": "65fcdeae",
+        "q": "Paciente transplantado renal há 6 meses, com TFGe de 52 mL/min/1,73m² e potássio de 4,6 mEq/L, usa tacrolimo, micofenolato e prednisona. Considera-se finerenona por indicação cardiometabólica. Qual é o cuidado farmacológico mais relevante?",
+        "refs": [
+          "fidelio_dkd",
+          "finerenone_label_dailymed"
+        ],
+        "opts": [
+          "Não há interações relevantes; a finerenona pode ser iniciada sem monitorização adicional.",
+          "Monitorar potássio e TFGe, evitar início se K+ >5,0 mEq/L e checar interações por CYP3A4, pois tacrolimo/DRC aumentam a preocupação com hipercalemia e exposição medicamentosa.",
+          "A finerenona é contraindicada sempre que a TFGe for <60 mL/min/1,73m².",
+          "A finerenona deve substituir a prednisona, pois ambas atuam no receptor mineralocorticoide."
+        ],
+        "ans": 1,
+        "exp": "O cuidado central é segurança farmacológica: medir e monitorar potássio/TFGe, não iniciar se K+ >5,0 mEq/L e checar interações por CYP3A4. A finerenona é substrato do CYP3A4; inibidores fortes são contraindicados, e situações que aumentam potássio exigem monitorização mais estreita. Em transplantados, tacrolimo e DRC já aumentam a vulnerabilidade à hipercalemia, portanto a resposta não pode ser “sem monitorização”. TFGe 52 não contraindica por si só, e finerenona não substitui glicocorticoide nem imunossupressão do transplante.",
+        "diff": "medium",
+        "cat": "farmacologia"
+      }
+    },
+    {
+      "qid": "b86f4e37",
+      "originalHash": "90f9e4cb572f586c8aebbe63f53994e53ca5e900c8c1e87c4048de04c8ad6e1c",
+      "sourceQuestion": {
+        "t": "CONFIDENCE — Finerenona + Empagliflozina",
+        "qid": "b86f4e37",
+        "q": "No CONFIDENCE, em pacientes com DRC e diabetes tipo 2 já em bloqueio do SRAA, qual foi o principal achado da iniciação simultânea de finerenona com empagliflozina?",
+        "opts": [
+          "Maior redução da relação albumina/creatinina urinária em 180 dias do que qualquer monoterapia isolada",
+          "Contraindicação da combinação por hipotensão sintomática frequente",
+          "Superioridade da empagliflozina isolada sobre a combinação",
+          "Redução comprovada de diálise e mortalidade como desfecho primário do estudo"
+        ],
+        "ans": 0,
+        "exp": "O CONFIDENCE testou iniciação simultânea de finerenona e empagliflozina contra cada monoterapia, com desfecho primário de mudança da relação albumina/creatinina urinária em 180 dias. A combinação reduziu albuminúria mais do que finerenona isolada e mais do que empagliflozina isolada, sem sinais inesperados de segurança. A leitura correta é antiproteinúrica e de curto prazo: o estudo não teve desfecho primário de mortalidade, diálise ou queda sustentada de TFGe, e não prova diretamente superioridade sobre uma estratégia sequencial de longo prazo.",
+        "diff": "hard",
+        "cat": "nefropatia_diabetica",
+        "refs": [
+          "confidence_trial_2025"
+        ]
+      }
+    },
+    {
+      "qid": "13e53210",
+      "originalHash": "bcb54b1a034d50991619b454175adc880063e36116db68afb62610b0f72f666a",
+      "sourceQuestion": {
+        "t": "FIDELIO-DKD — Finerenona na DKD",
+        "qid": "13e53210",
+        "q": "No FIDELIO-DKD, a finerenona reduziu aproximadamente quanto o risco relativo do desfecho renal composto primário em pacientes com diabetes tipo 2 e DRC albuminúrica?",
+        "opts": [
+          "10,5%",
+          "18% (HR 0,82; IC95% 0,73–0,93)",
+          "39,69%",
+          "55,0%"
+        ],
+        "ans": 1,
+        "exp": "No FIDELIO-DKD, a finerenona reduziu em cerca de 18% o risco relativo do desfecho renal primário composto — insuficiência renal, queda sustentada ≥40% da TFGe ou morte renal — em comparação ao placebo, com HR 0,82 (IC95% 0,73–0,93; P=0,001). O benefício ocorreu em pacientes com diabetes tipo 2 e DRC albuminúrica sobre IECA ou BRA em dose tolerada. As demais alternativas subestimam ou exageram o efeito e não correspondem ao resultado do ensaio.",
+        "diff": "medium",
+        "cat": "nefropatia_diabetica",
+        "refs": [
+          "fidelio_dkd"
+        ]
+      }
+    },
+    {
+      "qid": "e3f0e529",
+      "originalHash": "5ea9f17cd53419438b85f8e29476e4a5d0d15b4cb122566edceeda09f708e490",
+      "sourceQuestion": {
+        "t": "Finerenona — Seletividade vs Espironolactona",
+        "qid": "e3f0e529",
+        "q": "Qual é a principal vantagem farmacológica da finerenona em comparação com a espironolactona como antagonista do receptor mineralocorticoide?",
+        "opts": [
+          "Meia-vida mais longa, permitindo dose única diária.",
+          "Maior potência anti-hipertensiva.",
+          "Maior seletividade pelo receptor mineralocorticoide, por ser não esteroidal, com menos efeitos endócrinos antiandrogênicos e progestínicos (ginecomastia, disfunção sexual).",
+          "Disponibilidade apenas intravenosa, garantindo melhor adesão."
+        ],
+        "ans": 2,
+        "exp": "A finerenona é um antagonista não esteroidal do receptor mineralocorticoide, com maior seletividade por esse receptor e menor interação com receptores androgênicos e progestínicos do que a espironolactona; por isso causa menos efeitos endócrinos, como ginecomastia e disfunção sexual (alternativa C). A hipercalemia NÃO é uma vantagem da finerenona — permanece um efeito adverso relevante da classe e exige monitorização do potássio. A maior seletividade é uma diferença de tolerabilidade endócrina e não deve ser interpretada como superioridade clínica de desfechos. A alternativa A é incorreta (a finerenona tem meia-vida curta); a B está errada (o diferencial não é potência anti-hipertensiva); e a D está errada (a administração é oral).",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "fidelio_dkd"
+        ]
+      }
+    },
+    {
+      "qid": "b81a3c8a",
+      "originalHash": "466ffb656b1653c22a6e1437b205a65d1caaeadeed3ccf1fec9229738db75080",
+      "sourceQuestion": {
+        "t": "FIGARO-DKD — Desfecho Primário Cardiovascular",
+        "qid": "b81a3c8a",
+        "q": "No FIGARO-DKD, que avaliou finerenona em pacientes com diabetes tipo 2 e DRC, qual foi o desfecho primário?",
+        "opts": [
+          "Composto renal: insuficiência renal, queda sustentada ≥40% da TFGe ou morte renal, como no FIDELIO-DKD",
+          "Composto cardiovascular: morte cardiovascular, infarto não fatal, AVC não fatal ou hospitalização por insuficiência cardíaca",
+          "Mortalidade por todas as causas como desfecho único",
+          "Mudança percentual de albuminúria em 6 meses"
+        ],
+        "ans": 1,
+        "exp": "O FIGARO-DKD foi complementar ao FIDELIO-DKD. Enquanto o FIDELIO-DKD priorizou desfecho renal em DRC diabética mais avançada, o FIGARO-DKD teve como desfecho primário um composto cardiovascular: morte cardiovascular, infarto não fatal, AVC não fatal ou hospitalização por insuficiência cardíaca. A finerenona reduziu esse composto, benefício impulsionado sobretudo por menos hospitalização por insuficiência cardíaca. Albuminúria e desfechos renais foram importantes, mas não eram o desfecho primário do FIGARO-DKD.",
+        "diff": "medium",
+        "cat": "nefropatia_diabetica",
+        "refs": [
+          "figaro_dkd"
+        ]
+      }
+    },
+    {
+      "qid": "73030d16",
+      "originalHash": "652ea517ab5228b8d916b3ce81b97759e070a67d2908b97bd831f0fbd9f7a3bf",
+      "sourceQuestion": {
+        "t": "Finerenona no Transplante — Limites da Evidência",
+        "qid": "73030d16",
+        "q": "Uma coorte retrospectiva de receptores de transplante renal comparou 15 pacientes que toleraram finerenona por pelo menos seis meses com 15 controles pareados. Houve redução intragrupo de proteinúria, sem diferença significativa entre grupos, e hipercalemia grave ocorreu em parte dos pacientes inicialmente prescritos. Como interpretar esses dados?",
+        "opts": [
+          "Eles comprovam que finerenona prolonga a sobrevida do enxerto e deve ser usada rotineiramente",
+          "Eles fornecem um sinal exploratório antiproteinúrico, mas seleção de toleradores, amostra pequena e desenho retrospectivo exigem monitorização de potássio e ensaios maiores",
+          "Eles demonstram que finerenona substitui tacrolimo e micofenolato na manutenção",
+          "Eles excluem risco de hipercalemia porque a TFGe média permaneceu estável"
+        ],
+        "ans": 1,
+        "exp": "O estudo oferece evidência preliminar, não confirmação de eficácia. Apenas 15 pacientes tratados por pelo menos seis meses entraram na comparação, o desenho foi retrospectivo e a redução de proteinúria dentro do grupo não se traduziu em diferença significativa versus controle. Além disso, quatro dos 39 pacientes inicialmente prescritos apresentaram hipercalemia grave. Assim, a finerenona pode ser hipótese adjuvante em casos selecionados, com monitorização estreita de potássio e função, mas não há base para prometer preservação do enxerto, substituir imunossupressão ou generalizar o uso.",
+        "diff": "hard",
+        "cat": "transplante",
+        "refs": [
+          "finerenone_transplant_2025"
+        ]
+      }
+    },
+    {
+      "qid": "5906012f",
+      "originalHash": "5a9756e7daf93c7ef1b018208187fd64e7b63ddf195fd06edb7941401bfe6ac1",
+      "sourceQuestion": {
+        "t": "Finerenona — Classe Farmacológica",
+        "qid": "5906012f",
+        "q": "A finerenona pertence a qual classe farmacológica e qual é sua principal indicação aprovada?",
+        "opts": [
+          "Inibidor de SGLT2; DM2 com ou sem DRC",
+          "Antagonista do receptor mineralocorticoide não-esteroidal (ARM); DRC com DM2",
+          "Inibidor da ECA de longa ação; hipertensão",
+          "Inibidor direto da renina; nefropatia diabética"
+        ],
+        "ans": 1,
+        "exp": "A finerenona é um antagonista não-esteroidal do receptor mineralocorticoide (ARM), com efeito anti-inflamatório e antifibrótico mediado pelo bloqueio seletivo desse receptor. Sua principal indicação aprovada é a DRC associada ao DM2, com redução de progressão renal e de eventos cardiovasculares (FIDELIO-DKD, NEJM 2020; FIGARO-DKD, NEJM 2021). Inibidores de SGLT2 (dapagliflozina, empagliflozina) têm mecanismo distinto — bloqueio da reabsorção tubular de glicose — e constituem outra classe nefroprotetora. A finerenona não é IECA nem inibidor direto da renina; embora todos atuem no eixo SRAA, os sítios farmacológicos e as indicações aprovadas são distintos.",
+        "diff": "easy",
+        "cat": "farmacologia",
+        "refs": [
+          "fidelio_dkd"
+        ]
+      }
+    }
+  ],
+  "referenceCards": {
+    "fidelio_dkd": {
+      "label": "FIDELIO-DKD Trial (Finerenona)",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2025845",
+      "journal": "N Engl J Med 2020;383(23):2219-2229",
+      "ano": 2020,
+      "tipo": "Ensaio Clínico Fase III",
+      "badge": "RCT",
+      "badgeColor": "#10b981",
+      "impacto": "Finerenona ↓18% desfecho renal composto · ↓14% eventos CV · Antagonista não-esteroidal do receptor mineralocorticoide",
+      "icon": "💊",
+      "resumo": "ECR fase III, duplo-cego, placebo-controlado (FIDELIO-DKD, n=5.734), em DM2 com DRC albuminúrica, potássio controlado e uso de IECA ou BRA em dose máxima tolerada. Finerenona 10–20 mg/dia reduziu o desfecho renal primário composto — queda sustentada de TFGe ≥40%, DRCT ou morte renal — com HR 0,82 (IC 95% 0,73–0,93; P=0,001). O desfecho cardiovascular secundário também foi reduzido: HR 0,86 (IC 95% 0,75–0,99; P=0,03). Descontinuação por hipercalemia foi mais frequente com finerenona: 2,3% vs 0,9%.",
+      "conclusao": "FIDELIO-DKD estabeleceu a finerenona como terapia nefroprotetora e cardioprotetora adicional ao bloqueio do SRAA em DRC diabética albuminúrica, com necessidade de seleção por potássio e monitorização laboratorial.",
+      "curiosidade": "A finerenona é um antagonista não esteroidal do receptor mineralocorticoide. Diferencia-se dos MRAs esteroidais por estrutura, distribuição tecidual e ausência de atividade androgênica/progestagênica relevante, mas não elimina o principal cuidado clínico da classe: hipercalemia."
+    },
+    "finerenone_2025": {
+      "label": "Finerenona — FIDELIO-DKD + FIGARO-DKD (FIDELITY)",
+      "url": "https://academic.oup.com/eurheartj/article/43/6/474/6433230",
+      "journal": "Eur Heart J 2022;43(6):474-484",
+      "ano": 2022,
+      "tipo": "Análise Pooled RCT",
+      "badge": "RCT",
+      "badgeColor": "#10b981",
+      "impacto": "Finerenona ↓23% desfecho renal e ↓14% eventos cardiovasculares maiores em DRC diabética — análise combinada FIDELITY (>13.000 pacientes)",
+      "icon": "💊",
+      "resumo": "Análise combinada pré-especificada em larga escala (FIDELITY, n = 13.026 pacientes com DRC albuminúrica e diabetes mellitus tipo 2), unificando as coortes individuais dos ensaios clínicos pivotais de fase III FIDELIO-DKD e FIGARO-DKD. Avaliou a eficácia e segurança da finerenona (10 mg ou 20 mg uma vez ao dia) versus placebo, adicionados à terapia máxima tolerada com IECA ou BRA. O desfecho renal primário composto incluiu queda sustentada de TFGe ≥57% ou DRCT, e o desfecho cardiovascular foi um composto de morte CV, IAM não fatal, AVC não fatal ou hospitalização por IC. Resultados: A finerenona reduziu significativamente o risco do composto renal em 23% (HR 0,77; IC 95% 0,67–0,88; P < 0,001) e o risco de eventos cardiovasculares maiores (MACE) em 14% (HR 0,86; IC 95% 0,78–0,95; P = 0,0018). O risco de interrupção do tratamento por hipercalemia permaneceu muito baixo (1,7% no grupo ativo vs 0,6% no placebo).",
+      "conclusao": "A análise combinada do FIDELITY consolida a finerenona como pilar inequívoco de proteção dupla — renal e cardiovascular — em pacientes com nefropatia diabética proteinúrica ao longo de um amplo espectro de gravidade no Reino.",
+      "curiosidade": "O desfecho renal principal mediu a queda de TFGe ≥57% por equivaler matematicamente ao dobro do nível de creatinina sérica basal, um marcador de declínio funcional renal crônico aceito por órgãos reguladores globais como preditor confiável de falência renal estabelecida."
+    },
+    "kdigo_diabetes_in_ckd_guideline": {
+      "label": "KDIGO Diabetes in CKD 2022",
+      "url": "https://kdigo.org/guidelines/diabetes-ckd/",
+      "journal": "Kidney International",
+      "ano": 2022,
+      "tipo": "Diretriz Internacional",
+      "badge": "GUIDELINE",
+      "badgeColor": "#6366f1",
+      "impacto": "Manejo integrado do diabetes e DRC — metas glicêmicas, nefroproteção e tratamento",
+      "icon": "📋",
+      "resumo": "Diretriz KDIGO 2022 para manejo do diabetes na DRC. Recomenda controle glicêmico individualizado com alvo de HbA1c 6,5–8% conforme risco de hipoglicemia e expectativa de vida. Posiciona iSGLT2 como primeira adição ao metformim em DRC com TFGe ≥20 e ACR ≥200 mg/g ou IC; GLP-1 RA como segunda linha com benefício CV e renal demonstrado. Finerenona indicada em DRC diabética com TFGe ≥25 e ACR ≥300 mg/g para redução de risco cardiorrenal.",
+      "conclusao": "A diretriz 2022 integrou o manejo glicêmico ao cardiorrenal — iSGLT2, GLP-1 RA e finerenona deixaram de ser apenas antidiabéticos para se tornarem a base da nefroproteção na DRC diabética.",
+      "curiosidade": "A DRC é o principal fator de risco de hipoglicemia grave em DM2: a insulina e as sulfoniluréias acumulam em pacientes com TFGe reduzida. Essa é a razão pela qual o alvo de HbA1c é deliberadamente menos estrito (<8%) em DRC avançada — reduzir hipoglicemia pode ser mais importante que otimizar glicemia."
+    },
+    "fidelio_dkd_design_2019": {
+      "label": "FIDELIO-DKD — Desenho e seleção dos participantes (2019)",
+      "url": "https://karger.com/ajn/article/50/5/333/41617/Design-and-Baseline-Characteristics-of-the",
+      "journal": "American Journal of Nephrology 2019;50(5):333-344",
+      "ano": 2019,
+      "tipo": "Ensaio clínico randomizado",
+      "badge": "RCT",
+      "badgeColor": "#10b981",
+      "impacto": "Seleção do FIDELIO-DKD exigiu K+ ≤4,8 mEq/L em duas visitas",
+      "icon": "🔬",
+      "resumo": "Publicação primária do desenho e das características basais do ensaio duplo-cego FIDELIO-DKD: 5734 adultos com diabetes tipo 2 e doença renal crônica albuminúrica randomizados para finerenona ou placebo, sobre bloqueio otimizado do sistema renina-angiotensina. Exigia K+ ≤4,8 mEq/L nas visitas de run-in e triagem. O desfecho primário planejado combinava falência renal, queda sustentada ≥40% da taxa de filtração glomerular estimada (TFGe) e morte renal. Este artigo não apresenta resultados de eficácia; não usar seus dados basais para afirmar benefício clínico.",
+      "conclusao": "O critério é um limite superior de seleção, não potássio exatamente 4,8 nem uma regra regulatória universal; confrontar com segurança atual antes da prescrição.",
+      "curiosidade": ""
+    },
+    "kdigo_ckd": {
+      "label": "KDIGO CKD 2024",
+      "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+      "journal": "Kidney International",
+      "ano": 2024,
+      "tipo": "Diretriz Internacional",
+      "badge": "GUIDELINE",
+      "badgeColor": "#6366f1",
+      "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+      "icon": "📋",
+      "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+      "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+      "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+    },
+    "finerenone_label_dailymed": {
+      "label": "Kerendia (finerenona) — Prescribing Information (DailyMed)",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c",
+      "journal": "DailyMed/FDA label",
+      "ano": 2025,
+      "tipo": "Bula/rotulagem",
+      "badge": "BULA",
+      "badgeColor": "#64748b",
+      "impacto": "Potássio, TFGe e interações CYP3A4 na prescrição de finerenona",
+      "icon": "📋",
+      "resumo": "Rotulagem profissional da finerenona. Antes de iniciar, recomenda medir potássio sérico e TFGe; não iniciar se K+ >5,0 mEq/L, e a dose inicial depende da TFGe, com início não recomendado se TFGe <25 mL/min/1,73m². A finerenona pode causar hipercalemia, com risco maior quanto menor a função renal, maior o potássio basal ou quando há fármacos que aumentam potássio. É substrato do CYP3A4: uso concomitante com inibidores fortes de CYP3A4 é contraindicado, e inibidores moderados/fracos exigem monitorização de potássio e ajuste.",
+      "conclusao": "A prescrição segura de finerenona exige checar K+, TFGe e interações CYP3A4; em cenários de risco, como DRC e fármacos que elevam potássio, a monitorização deve ser mais estreita.",
+      "curiosidade": "A rotulagem proíbe grapefruit/grapefruit juice porque a inibição intestinal de CYP3A4 pode aumentar a exposição à finerenona — uma interação de fruta com final potencialmente hipercalêmico."
+    },
+    "confidence_trial_2025": {
+      "label": "CONFIDENCE Trial (Finerenona + Empagliflozina)",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2410659",
+      "journal": "N Engl J Med 2025;393:533-543",
+      "ano": 2025,
+      "tipo": "Ensaio Clínico Fase II",
+      "badge": "RCT",
+      "badgeColor": "#10b981",
+      "impacto": "Iniciação simultânea finerenona + empagliflozina bem tolerada; maior redução de albuminúria que monoterapia isolada em DRC diabética",
+      "icon": "💊",
+      "resumo": "ECR duplo-cego, double-dummy, fase 2 (CONFIDENCE, n = 818), em adultos com DRC e diabetes tipo 2, TFGe 30–90 mL/min/1,73m² e RAC urinária 100–5.000 mg/g, em dose estável de IECA ou BRA. Comparou iniciação simultânea de finerenona + empagliflozina versus finerenona isolada ou empagliflozina isolada. Desfecho primário: mudança da RAC urinária até o dia 180. A combinação reduziu a RAC 29% mais que finerenona isolada e 32% mais que empagliflozina isolada. Não houve eventos adversos inesperados; hipotensão sintomática, LRA e hipercalemia levando à descontinuação foram incomuns.",
+      "conclusao": "O CONFIDENCE sustenta efeito antiproteinúrico aditivo de curto prazo com iniciação simultânea de finerenona e empagliflozina em DRC diabética albuminúrica, mas não substitui trials de desfechos duros nem prova superioridade sobre escalonamento sequencial de longo prazo.",
+      "curiosidade": "O estudo é didático porque testou combinação inicial contra cada monoterapia em desenho duplo-cego; sua força está no sinal de albuminúria em 180 dias, enquanto sua principal limitação pedagógica é não ter mortalidade, diálise ou queda sustentada de TFGe como desfecho primário."
+    },
+    "figaro_dkd": {
+      "label": "FIGARO-DKD Trial (Finerenona)",
+      "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2110956",
+      "journal": "N Engl J Med 2021;385(24):2252-2263",
+      "ano": 2021,
+      "tipo": "Ensaio Clínico Fase III",
+      "badge": "RCT",
+      "badgeColor": "#10b981",
+      "impacto": "Finerenona ↓13% desfecho cardiovascular primário em DM2 com DRC; benefício impulsionado por menor hospitalização por insuficiência cardíaca",
+      "icon": "💊",
+      "resumo": "ECR multicêntrico duplo-cego fase III (FIGARO-DKD, n = 7.437 pacientes com DM2 e DRC de gravidade moderada, caracterizada por albuminúria persistente de alto grau e TFGe preservada, ou albuminúria moderada com TFGe reduzida). Comparou a finerenona (10-20 mg/dia) versus placebo, associados à dose máxima tolerada de bloqueadores do SRAA. Desfecho primário: morte CV, IAM não fatal, AVC não fatal ou internação por IC. Resultados: A finerenona reduziu significativamente o desfecho primário em 13% (HR 0,87; IC 95% 0,76–0,98; P = 0,03) após um seguimento médio de 3,4 anos. O benefício foi impulsionado principalmente por uma redução de 29% nas hospitalizações por IC (HR 0,71; IC 95% 0,56–0,90). O desfecho renal composto secundário (queda de TFGe ≥40% ou morte renal) também favoreceu o grupo ativo com HR 0,87.",
+      "conclusao": "O FIGARO-DKD complementa o FIDELIO-DKD: em população com DRC diabética menos avançada ou albuminúria moderada, a finerenona reduziu eventos cardiovasculares, sobretudo hospitalização por insuficiência cardíaca, mantendo necessidade de monitorização de potássio.",
+      "curiosidade": "Ao passo que o FIDELIO-DKD focou em pacientes com doença renal avançada (onde o risco de falência renal é primário), o FIGARO-DKD incluiu uma população com função renal mais preservada, em que o risco de morte cardiovascular precoce superava o risco de diálise."
+    },
+    "finerenone_transplant_2025": {
+      "label": "Kahvecioglu S et al. — Finerenona em Receptores de Transplante Renal (2025)",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12693042/",
+      "journal": "Journal of Clinical Medicine 2025;14(23):8296",
+      "ano": 2025,
+      "tipo": "Coorte Retrospectiva",
+      "badge": "COHORT",
+      "badgeColor": "#f59e0b",
+      "impacto": "Primeiro sinal clínico antiproteinúrico e alerta de hipercalemia com finerenona após transplante renal",
+      "icon": "🔬",
+      "resumo": "Coorte retrospectiva de centro único: entre 1.750 receptores rastreados, 39 receberam prescrição de finerenona; 15 que a toleraram por pelo menos seis meses foram comparados a 15 controles pareados. A proteinúria caiu 40% em seis meses dentro do grupo tratado, mas não houve diferença significativa versus o controle, nem mudança relevante de TFGe ou creatinina. Quatro dos 39 pacientes inicialmente prescritos apresentaram hipercalemia grave e dois interromperam por outros efeitos adversos.",
+      "conclusao": "O estudo gera um sinal exploratório antiproteinúrico, mas a seleção de toleradores, a amostra mínima e o desenho retrospectivo impedem inferir preservação do enxerto ou recomendar uso rotineiro; potássio e função renal exigem monitorização estreita.",
+      "curiosidade": "A diferença entre 39 pacientes prescritos e apenas 15 incluídos na análise de seis meses ilustra o viés do sobrevivente terapêutico: estudar somente quem tolerou o fármaco pode fazer o tratamento parecer mais seguro e eficaz."
+    }
+  }
+}

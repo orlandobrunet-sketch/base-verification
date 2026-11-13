@@ -1,0 +1,1890 @@
+{
+  "schema": 1,
+  "reviewer": "/root/medical_answer_bias/adpkd_independent_review",
+  "reviewDate": "2026-11-13",
+  "version": "A3",
+  "candidateFile": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\medical-answer-bias-analysis\\lupus-candidates-A3.json",
+  "candidateFileHash": "e9d271c7ae0d46848659a5cd8db4034ec03c0d79281a23b643b5a7f70d300cd2",
+  "classificationFrozenBeforeCandidates": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\medical-answer-bias-analysis\\lupus-independent-classification.json",
+  "authority": "Revisão formal pela skill local revisar-nefroquest, conforme Model/Handbook/AnexoC. Autorização explícita do usuário para corrigir pistas no conteúdo; nenhuma permissão adicional inferida.",
+  "norms": {
+    ".claude/skills/revisar-nefroquest/SKILL.md": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef",
+    ".claude/skills/revisar-nefroquest/references/output-contract.md": "4a20348ac71a07836b4611d574496d97960b27a2bbfdcf1f1ed318396f0edcb8",
+    ".claude/skills/revisar-nefroquest/references/verification-protocol.md": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df",
+    "docs/editorial/annex-c-nefrologia.md": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+  },
+  "derivation": "Aprovação + evidênciaVERIFICADA/pendênciaNENHUMA, sem eliminatório nem recurso plausível remanescente. As16versões finais foram examinadas individualmente.",
+  "counts": {
+    "reviewed": 16,
+    "approved": 16,
+    "blocked": 0
+  },
+  "metrics": {
+    "method": "Caracteres Unicode após normalização de espaços; empates da heurística da mais longa distribuídos uniformemente. Medida estrutural, não veredito.",
+    "original": {
+      "n": 16,
+      "uniqueLongest": 15,
+      "tiedLongest": 0,
+      "correctRanks": {
+        "1": 15,
+        "2": 1,
+        "3": 0,
+        "4": 0
+      },
+      "longestHeuristicAccuracy": 0.9375,
+      "maxCorrectToLargestDistractorRatio": 2.736842105263158
+    },
+    "final": {
+      "n": 16,
+      "uniqueLongest": 3,
+      "tiedLongest": 1,
+      "correctRanks": {
+        "1": 4,
+        "2": 4,
+        "3": 2,
+        "4": 6
+      },
+      "longestHeuristicAccuracy": 0.21875,
+      "maxCorrectToLargestDistractorRatio": 1.1898734177215189
+    }
+  },
+  "sharedReferenceCards": [
+    {
+      "id": "kdigo_lupus_nephritis_guideline_2024",
+      "action": "Preservar o card existente; nenhum card novo ou alteração de referência solicitada.",
+      "card": {
+        "label": "KDIGO 2024 — Nefrite Lúpica",
+        "url": "https://kdigo.org/wp-content/uploads/2024/01/KDIGO-2024-Lupus-Nephritis-Guideline.pdf",
+        "journal": "Kidney International 2024;105(1S):S1-S69",
+        "ano": 2024,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Atualização focada do diagnóstico, tratamento e monitorização da nefrite lúpica.",
+        "icon": "📋",
+        "resumo": "Diretriz KDIGO 2024, atualização focada do capítulo de nefrite lúpica de 2021. Para classe III/IV ativa, recomenda glicocorticoide combinado a análogo do ácido micofenólico, ciclofosfamida intravenosa em baixa dose, belimumabe com uma dessas terapias ou análogo do ácido micofenólico com inibidor de calcineurina quando a função renal não está gravemente reduzida (1B). Apresenta definições clínicas de resposta e orienta considerar nova biópsia diante de dúvida entre atividade e cronicidade, diagnóstico alternativo ou antes de decisões terapêuticas maiores.",
+        "conclusao": "A classe e os índices histológicos, a trajetória clínica, a função renal e a segurança devem ser integrados; biomarcador ou proteinúria isolados não substituem essa avaliação.",
+        "curiosidade": "A diretriz ressalta que resposta clínica e atividade histológica podem ser discordantes, inclusive após normalização da proteinúria e da função renal."
+      }
+    },
+    {
+      "id": "isn_rps_lupus_revision_2018",
+      "action": "Preservar o card existente; nenhum card novo ou alteração de referência solicitada.",
+      "card": {
+        "label": "Bajema et al. — Revisão ISN/RPS da Nefrite Lúpica (2018)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/29459092/",
+        "journal": "Kidney International 2018;93(4):789-796",
+        "ano": 2018,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Clarificou classes e padronizou índices modificados de atividade e cronicidade.",
+        "icon": "📋",
+        "resumo": "Relatório de consenso do grupo internacional de nefropatologia que revisou definições da classificação ISN/RPS. Manteve a distinção entre classe III focal, envolvendo menos de 50% dos glomérulos, e classe IV difusa, envolvendo 50% ou mais; eliminou as subdivisões IV-S/IV-G e os sufixos A/C. Propôs índices modificados de atividade e cronicidade para todas as classes e definiu crescentes celulares, fibrocelulares e fibrosos.",
+        "conclusao": "Classe histológica, atividade e cronicidade são dimensões relacionadas, mas não intercambiáveis, e devem ser descritas separadamente.",
+        "curiosidade": "Necrose fibrinoide passou a constar como descritor específico no índice modificado de atividade."
+      }
+    },
+    {
+      "id": "anti_c1q_lupus_nephritis_meta_2014",
+      "action": "Preservar o card existente; nenhum card novo ou alteração de referência solicitada.",
+      "card": {
+        "label": "Eggleton et al. — Anti-C1q na Nefrite Lúpica (2014)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4062947/",
+        "journal": "Journal of Clinical & Cellular Immunology 2014;5(2):210",
+        "ano": 2014,
+        "tipo": "Metanálise",
+        "badge": "META",
+        "badgeColor": "#0ea5e9",
+        "impacto": "Quantificou a acurácia moderada do anti-C1q e rejeitou seu uso isolado.",
+        "icon": "🔬",
+        "resumo": "Revisão sistemática com 31 estudos transversais. Vinte e oito estudos incluíram 2.769 pessoas com lúpus para distinguir história de nefrite, e nove incluíram 517 pessoas para distinguir nefrite ativa de inativa. Para atividade renal, a especificidade mediana foi 80% e a sensibilidade estimada pelo modelo hierárquico foi 75,7%; a heterogeneidade de ensaios e limiares foi relevante.",
+        "conclusao": "Anti-C1q pode integrar um painel de monitorização, mas as probabilidades pós-teste não permitem confirmar nem excluir atividade da nefrite lúpica como biomarcador isolado.",
+        "curiosidade": "Diferenças de método laboratorial e população contribuíram para ampla variação de sensibilidade e especificidade entre estudos."
+      }
+    },
+    {
+      "id": "alms_maintenance_2011",
+      "action": "Preservar o card existente; nenhum card novo ou alteração de referência solicitada.",
+      "card": {
+        "label": "Dooley et al. — ALMS Manutenção (NEJM 2011)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22087680/",
+        "journal": "New England Journal of Medicine 2011;365(20):1886-1895",
+        "ano": 2011,
+        "tipo": "Ensaio Clínico Randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Micofenolato reduziu falha terapêutica em comparação com azatioprina na manutenção da nefrite lúpica.",
+        "icon": "🔬",
+        "resumo": "Após resposta à indução, 227 pacientes foram randomizados para manutenção com micofenolato de mofetila ou azatioprina. Falha terapêutica ocorreu em 19 de 116 (16,4%) com micofenolato e em 36 de 111 (32,4%) com azatioprina; HR 0,44 (IC95% 0,25–0,77; P=0,003). O composto incluía morte, doença renal terminal, duplicação da creatinina, flare renal ou terapia de resgate.",
+        "conclusao": "No ALMS, micofenolato foi superior à azatioprina para manutenção da resposta; escolhas individuais ainda consideram gravidez, tolerabilidade, acesso e preferências.",
+        "curiosidade": "O estudo randomizou novamente pacientes que haviam respondido à fase de indução, separando a pergunta de manutenção da pergunta de indução."
+      }
+    },
+    {
+      "id": "ext1ext2_sethi",
+      "action": "Preservar o card existente; nenhum card novo ou alteração de referência solicitada.",
+      "card": {
+        "label": "Sethi S et al. — EXT1/EXT2 Membranous Nephropathy (JASN 2019)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/31061139/",
+        "journal": "JASN 2019;30(6):1123-1136",
+        "ano": 2019,
+        "tipo": "Coorte",
+        "badge": "COHORT",
+        "badgeColor": "#f59e0b",
+        "impacto": "EXT1/EXT2 na biópsia sinalizam um fenótipo membranoso fortemente ligado à autoimunidade.",
+        "icon": "🔬",
+        "resumo": "Estudo patológico e proteômico de nefropatia membranosa PLA2R-negativa. EXT1 e EXT2 foram detectadas por espectrometria de massas em 21 casos e confirmadas por imuno-histoquímica; ao todo, 26 casos associados a EXT1/EXT2 foram caracterizados. Achados clínicos ou histológicos de doença autoimune, incluindo lúpus, estavam presentes em 80,7%. Na validação, a marcação ocorreu em 8 de 18 biópsias de nefrite lúpica classe V pura e em 3 de 16 casos presumidamente primários com sinais de autoimunidade. Não foram detectados anticorpos anti-exostosina circulantes nos sete pacientes testados.",
+        "conclusao": "A positividade glomerular para EXT1/EXT2 apoia investigação de lúpus ou outra autoimunidade; não deve ser ensinada como prova isolada de doença primária nem como autoanticorpo sérico estabelecido.",
+        "curiosidade": "O estudo definiu EXT1/EXT2 como proteínas associadas ao padrão membranoso; a ausência de anticorpos circulantes no pequeno grupo testado impede equipará-las automaticamente ao modelo sorológico do anti-PLA2R."
+      }
+    }
+  ],
+  "sources": {
+    "KDIGO2024": {
+      "url": "https://kdigo.org/wp-content/uploads/2024/01/KDIGO-2024-Lupus-Nephritis-Guideline.pdf",
+      "title": "KDIGO 2024 Clinical Practice Guideline for the Management of Lupus Nephritis",
+      "publication": "Kidney International 2024;105(Suppl 1S):S1–S69",
+      "doi": "10.1016/j.kint.2023.09.002",
+      "opened": true,
+      "fullTextAvailable": true
+    },
+    "ISNRPS2018": {
+      "url": "https://pure.rug.nl/ws/portalfiles/portal/708374299/1-s2.0-S0085253817308591-main.pdf",
+      "title": "Revision of the International Society of Nephrology/Renal Pathology Society classification for lupus nephritis: clarification of definitions, and modified National Institutes of Health activity and chronicity indices",
+      "publication": "Kidney International 2018;93(4):789–796",
+      "doi": "10.1016/j.kint.2017.11.023",
+      "pmid": "29459092",
+      "opened": true,
+      "fullTextAvailable": true,
+      "accessNote": "Versão oficial de registro disponibilizada pelo repositório institucional dos autores, com DOI e identificação de publisher PDF; PubMed e editora direta falharam."
+    },
+    "AntiC1q2014": {
+      "url": "https://www.longdom.org/open-access-pdfs/autoantibodies-against-cq-as-a-diagnostic-measure-of-lupus-nephritis-2155-9899.1000210.pdf",
+      "title": "Autoantibodies against C1q as a Diagnostic Measure of Lupus Nephritis: Systematic Review and Meta-analysis",
+      "publication": "Journal of Clinical & Cellular Immunology 2014;5(2):210",
+      "doi": "10.4172/2155-9899.1000210",
+      "pmc": "PMC4062947",
+      "opened": true,
+      "fullTextAvailable": true,
+      "verifiedResults": "31 estudos;28 estudos/2769 participantes para história de nefrite;9 estudos/517 para atividade; especificidade mediana80%, sensibilidade correspondente pelo HSROC75,7%. Não são suficientes para confirmação/exclusão isoladas.",
+      "accessNote": "PDF da editora aberto; PMC retornou captcha. A qualidade metodológica e a heterogeneidade limitam a aplicação; não se trata de ensaio demonstrando que tratar com base no marcador melhora desfechos."
+    },
+    "ALMS2011": {
+      "url": "https://pure.psu.edu/en/publications/mycophenolate-versus-azathioprine-as-maintenance-therapy-for-lupu/",
+      "title": "Mycophenolate versus azathioprine as maintenance therapy for lupus nephritis",
+      "publication": "New England Journal of Medicine 2011;365(20):1886–1895",
+      "doi": "10.1056/NEJMoa1014460",
+      "pmid": "22087680",
+      "opened": true,
+      "fullTextAvailable": false,
+      "primaryAbstractAvailable": true,
+      "verifiedResults": "Resumo primário do registro institucional de coautora:227 randomizados,116 MMF/111 AZA; falha19/116(16,4%) versus36/111(32,4%);HR0,44(IC95%0,25–0,77;P0,003). Definição do desfecho composto e repetição da randomização após resposta à indução confirmadas.",
+      "accessNote": "PubMed veio sem conteúdo e NEJM retornou403. Todos os resultados numéricos presentes no card e necessários aqui constam do resumo primário reproduzido no repositório da instituição de uma autora; não declaro leitura do texto integral."
+    },
+    "EXT2019": {
+      "url": "https://mayoclinic.elsevierpure.com/en/publications/exostosin-1exostosin-2associated-membranous-nephropathy/",
+      "title": "Exostosin 1/Exostosin 2–Associated Membranous Nephropathy",
+      "publication": "Journal of the American Society of Nephrology 2019;30(6):1123–1136",
+      "doi": "10.1681/ASN.2018080852",
+      "pmid": "31061139",
+      "opened": true,
+      "fullTextAvailable": false,
+      "primaryAbstractAvailable": true,
+      "verifiedResults": "Registro primário da instituição dos autores:21 casos com detecção por espectrometria,26 caracterizados;80,7% com sinais clínicos/histológicos autoimunes;8/18 classeV pura,3/16 presumidos primários com autoimunidade; sete soros testados sem anti-exostosina detectado.",
+      "accessNote": "PMC retornou captcha; DOI e links legados da editora falharam. O resumo primário institucional foi aberto e contém cada número e associação usados pelo item/card; não declaro leitura do integral nem inexistência atual de toda pesquisa de anticorpos séricos."
+    },
+    "ACR2024published2025": {
+      "url": "https://acrjournals.onlinelibrary.wiley.com/doi/10.1002/acr.25528",
+      "title": "2024 American College of Rheumatology Guideline for the Screening, Treatment, and Management of Lupus Nephritis",
+      "publication": "Arthritis Care & Research2025;77(9):1045–1065",
+      "doi": "10.1002/acr.25528",
+      "opened": true,
+      "fullTextAvailable": true,
+      "role": "Fonte atual adicional: distingue recomendações de combinações triplas e intensificação em resposta parcial após dupla. Impediu tratar manutenção segundoKDIGO2024 como regra universal sem trajetória ou diretriz explícita."
+    },
+    "AKI2023": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37188962/",
+      "title": "Predictors of treatment outcomes in lupus nephritis with severe acute kidney injury and requirement of dialytic support",
+      "publication": "Clinical Rheumatology2023;42(8):2115–2123",
+      "doi": "10.1007/s10067-023-06629-1",
+      "pmid": "37188962",
+      "opened": true,
+      "fullTextAvailable": false,
+      "primaryAbstractAvailable": true,
+      "role": "Conferência auxiliar de que necessidade aguda deTRS não prova irreversibilidade. Não são adicionados números de recuperação ao item."
+    }
+  },
+  "sourceAccessLimitations": [
+    "KDIGO2024,ISN/RPS2018 eAnti-C1q2014 foram abertos integralmente.",
+    "ALMS2011 eEXT2019 tiveram resumos primários integrais abertos em repositórios institucionais de autores; os artigos completos não foram declarados como lidos. Cada número usado no item/card consta do resumo primário recuperado.",
+    "PubMed/PMC/editora direta retornaram em parte captcha,conteúdo vazio ou403. Não foram contornados logins ou captchas; fontes institucionais legítimas alternativas foram usadas.",
+    "ACR2024publicada2025 foi aberta integralmente para identificar diferença atual de manejo da resposta parcial. Sua recomendação não foi silenciosamente atribuída àKDIGO."
+  ],
+  "scopeLimits": [
+    "Somente esta família16; não é revisão global das741questões.",
+    "Não foram executados testes do aplicativo pelo revisor.",
+    "Bloom e dificuldade são classificações editoriais intrínsecas, não calibração empírica nem reescrita de notas históricas.",
+    "Nenhuma liberação concedida aA1/A2 ou a modificações posteriores dos objetos A3."
+  ],
+  "items": [
+    {
+      "qid": "69ad5a5e",
+      "originalHash": "d73c1ef45c16eab99ff4e1c092a3509f0cf51fb98c8b6013fe7d9ace567a3140",
+      "candidateHash": "9802ef91d177fdab0e85eae83bff9f28ef646c38adb31ebf72ffd6132eb17b24",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Planejar concepção após controle sustentado da nefrite lúpica e retirada prévia de terapia teratogênica, preservando manutenção compatível quando necessária.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "avançada",
+        "diff": "hard",
+        "justification": "Temporalidade da inatividade e segurança reprodutiva interagem na decisão."
+      },
+      "justification": "A3 preserva tanto a inatividade por pelo menos seis meses quanto a retirada do micofenolato antes da concepção. A indicação é planejamento seguro, sem tratar azatioprina como autorização para gestação após apenas dois meses.",
+      "problems": [],
+      "adversary": "Procurei interpretação que permitisse concepção ainda sob micofenolato ou confundisse seis meses desde hoje com seis meses de inatividade. A correta diz inatividade e transição antes da concepção; a explicação exige planejamento. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Tentar gestação durante exposição teratogênica",
+        "Confundir troca do fármaco com controle sustentado suficiente",
+        "Adiar mas manter teratógeno durante as tentativas"
+      ],
+      "verifiedSources": {
+        "primary": "KDIGO2024",
+        "locations": [
+          "Practice Points10.3.2.1–10.3.2.3,PDF páginas22 e49–50",
+          "Contraception and pregnancy,PDF página27"
+        ],
+        "additionalSources": []
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            90,
+            175,
+            89,
+            78
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 1.9444444444444444,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            64,
+            87,
+            75,
+            78
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 1.1153846153846154,
+          "longestHeuristic": 1
+        }
+      },
+      "candidate": {
+        "t": "Nefrite Lúpica — Planejamento da Gestação",
+        "qid": "69ad5a5e",
+        "q": "Mulher com nefrite lúpica classe IV usa micofenolato e deseja engravidar. A atividade renal cessou há dois meses. Qual é a orientação mais adequada?",
+        "refs": [
+          "kdigo_lupus_nephritis_guideline_2024"
+        ],
+        "opts": [
+          "Tentar gestação agora e manter o esquema que produziu a remissão",
+          "Adiar até pelo menos 6 meses de inatividade e trocar por azatioprina antes da concepção",
+          "Trocar por azatioprina e tentar gestação após apenas dois meses de remissão",
+          "Adiar por seis meses, mantendo micofenolato durante as tentativas de concepção"
+        ],
+        "ans": 1,
+        "exp": "A KDIGO orienta evitar gestação enquanto a nefrite lúpica estiver ativa, durante o uso de fármacos teratogênicos e por pelo menos seis meses após a doença se tornar inativa. Micofenolato e ciclofosfamida são contraindicados na gestação; para quem necessita manutenção, a azatioprina é uma alternativa compatível, com transição planejada e acompanhamento multidisciplinar. Hidroxicloroquina costuma ser mantida se não houver contraindicação. A classe histológica prévia não torna a gestação absolutamente proibida, mas dois meses de inatividade ainda são insuficientes para reduzir adequadamente o risco materno-fetal.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    },
+    {
+      "qid": "b1f746f3",
+      "originalHash": "9cccfbba85f043160e91c500d4b0538408045486e9d00c225dcd39c104ac31ee",
+      "candidateHash": "11ff087a24580c000f945820fdd978ed5f17170da199cba2bf9cdfa5ef5e1f7f",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Reconhecer depósitos subepiteliais e padrão membranoso como definidores da classe V, sem confundir achados proliferativos ou crônicos de outras classes.",
+        "competency": "diagnóstico",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "A classe V já foi dada; pede reconhecimento direto de seu padrão, sem classificação de achados desconhecidos."
+      },
+      "justification": "Deposição subepitelial com padrão membranoso define a classe dada. Os outros padrões representam componentes proliferativos, mesangiais ou escleróticos, sem distratores absurdos. O termo endocapilar foi atualizado para hipercelularidade.",
+      "problems": [],
+      "adversary": "Testei coexistência de classes, depósitos mesangiais associados e interpretação de um padrão esclerótico. A pergunta delimita classe V pura e pede o padrão definidor, não toda alteração que pode coexistir. Nenhum argumento plausível de anulação.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 1
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Confundir depósitos subendoteliais proliferativos com padrão membranoso",
+        "Confundir padrão predominantemente mesangial com classe V",
+        "Substituir padrão de depósitos por esclerose avançada"
+      ],
+      "verifiedSources": {
+        "primary": "ISNRPS2018",
+        "locations": [
+          "Figura2 e seçãoClassV,p793–794",
+          "KDIGO10.2.4,S42–S44"
+        ],
+        "additionalSources": [
+          "KDIGO2024"
+        ]
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            114,
+            98,
+            91,
+            79
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 1.163265306122449,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            45,
+            63,
+            70,
+            62
+          ],
+          "correctRank": 4,
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "ratio": 0.6428571428571429,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Nefrite Lúpica Classe V — Padrão Histológico",
+        "qid": "b1f746f3",
+        "q": "Paciente com lúpus apresenta proteinúria nefrótica, função renal preservada e sedimento pouco ativo. A biópsia mostra nefrite lúpica classe V pura. Qual conjunto histológico melhor define essa classe?",
+        "refs": [
+          "kdigo_lupus_nephritis_guideline_2024",
+          "isn_rps_lupus_revision_2018"
+        ],
+        "opts": [
+          "Depósitos subepiteliais com padrão membranoso",
+          "Depósitos subendoteliais e hipercelularidade endocapilar difusa",
+          "Depósitos mesangiais com hipercelularidade predominantemente mesangial",
+          "Esclerose global extensa, sem atividade proliferativa residual"
+        ],
+        "ans": 0,
+        "exp": "A classe V é a nefrite lúpica membranosa, caracterizada por depósitos imunes subepiteliais globais ou segmentares e alterações da membrana basal glomerular. Pode cursar com proteinúria nefrótica e sedimento pouco ativo. Hipercelularidade endocapilar envolvendo pelo menos 50% dos glomérulos define componente proliferativo classe IV, que pode coexistir com a classe V e deve ser relatado separadamente; necrose e crescentes não são requisitos da classe V.",
+        "diff": "easy",
+        "cat": "glomerular"
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    },
+    {
+      "qid": "9fae2cae",
+      "originalHash": "79ab838a20e99bb478907aa49411975f135d8a304aaafbe003835c5aebb5d62c",
+      "candidateHash": "bccbfda2691f214694349274b978dbc31f181d8f29a688633ffefdbf72f6956f",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Distinguir componentes histológicos de atividade dos de cronicidade para interpretar potencial inflamatório e cicatricial da nefrite lúpica.",
+        "competency": "interpretação",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "Pede mapear achados a dois índices, sem decisão terapêutica ou dados concorrentes. Não é automaticamente avançada pela terminologia histológica."
+      },
+      "justification": "A distinção entre crescentes celulares e fibrosos é correta. A explicação preserva os crescentes fibrocelulares no índice de atividade e não transforma índice histológico isolado em prescrição.",
+      "problems": [],
+      "adversary": "Procurei argumento de que todo crescente seria irreversível ou de que fibrocelulares deveriam ser exclusivamente crônicos. O consenso de 2018 inclui fibrocelulares na atividade. Somente A separa corretamente os exemplos apresentados. Nenhum argumento plausível de anulação.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 1,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Inverter crescente fibroso e necrose fibrinoide",
+        "Tratar atrofia tubular como atividade e hipercelularidade como cicatriz",
+        "Tratar fibrose intersticial como atividade e crescente celular como cronicidade"
+      ],
+      "verifiedSources": {
+        "primary": "ISNRPS2018",
+        "locations": [
+          "Tabela2 e texto,p794",
+          "KDIGOFigura2,S24"
+        ],
+        "additionalSources": [
+          "KDIGO2024"
+        ]
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            158,
+            120,
+            101,
+            97
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 1.3166666666666667,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            65,
+            63,
+            70,
+            66
+          ],
+          "correctRank": 3,
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "ratio": 0.9285714285714286,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Nefrite Lúpica — Atividade versus Cronicidade",
+        "qid": "9fae2cae",
+        "q": "Na biópsia de nefrite lúpica proliferativa, qual combinação separa corretamente lesões do índice de atividade das lesões do índice de cronicidade?",
+        "refs": [
+          "isn_rps_lupus_revision_2018",
+          "kdigo_lupus_nephritis_guideline_2024"
+        ],
+        "opts": [
+          "Atividade: crescentes celulares; cronicidade: crescentes fibrosos",
+          "Atividade: crescentes fibrosos; cronicidade: necrose fibrinoide",
+          "Atividade: atrofia tubular; cronicidade: hipercelularidade endocapilar",
+          "Atividade: fibrose intersticial; cronicidade: crescentes celulares"
+        ],
+        "ans": 0,
+        "exp": "Crescentes celulares ou fibrocelulares e necrose fibrinoide integram o índice de atividade; crescentes fibrosos, glomeruloesclerose, fibrose intersticial e atrofia tubular integram o índice de cronicidade. Essa distinção informa o potencial de resposta da inflamação e o dano cicatricial, mas não prescreve sozinha um fármaco: a conduta integra gravidade clínica, função renal, atividade extrarrenal, contraindicações e exposição prévia. Proteinúria e histologia podem ser discordantes.",
+        "diff": "easy",
+        "cat": "glomerular"
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    },
+    {
+      "qid": "4642ba40",
+      "originalHash": "6cc568ace9ddfce9312e8329f808daa0e6680a3a59455ac0bd786bdd59b78c7a",
+      "candidateHash": "1e1701078c45f2ab9bfa6f58a3f13f06b6be81763ac6ee0cadf4ba356606ecda",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Interpretar elevação isolada do anti-C1q sem converter associação imperfeita em diagnóstico de reativação ou indicação autônoma de intensificar imunossupressão.",
+        "competency": "interpretação",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "avançada",
+        "diff": "hard",
+        "justification": "Discordância de biomarcador e quadro clínico, com limitação da evidência diagnóstica."
+      },
+      "justification": "Anti-C1q isolado não diagnostica atividade nem indica intensificação de terapia. O caso explicita estabilidade dos demais parâmetros; os números de acurácia da explicação foram conferidos no artigo primário da metanálise.",
+      "problems": [],
+      "adversary": "Procurei tratar associação ou previsão de recaída como certeza suficiente para imunossuprimir. A metanálise é diagnóstica e heterogênea, não demonstra estratégia terapêutica baseada isoladamente no marcador. A correta não exclui atividade por si só. Nenhum argumento plausível de anulação.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 1,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Diagnosticar reativação por marcador isolado",
+        "Atribuir marcador de associação a dano crônico específico",
+        "Converter acurácia imperfeita em gatilho terapêutico autônomo"
+      ],
+      "verifiedSources": {
+        "primary": "AntiC1q2014",
+        "locations": [
+          "Resumo,p1",
+          "Discussão de atividade e probabilidades pós-teste"
+        ],
+        "additionalSources": [
+          "KDIGO2024"
+        ]
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            120,
+            68,
+            92,
+            85
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 1.3043478260869565,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            67,
+            84,
+            76,
+            87
+          ],
+          "correctRank": 4,
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "ratio": 0.7701149425287356,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Anti-C1q na Nefrite Lúpica — Limites do Biomarcador",
+        "qid": "4642ba40",
+        "q": "Paciente com nefrite lúpica em acompanhamento apresenta elevação do anti-C1q, mas proteinúria, sedimento, função renal, anti-dsDNA e complemento permanecem estáveis. Qual é a interpretação mais adequada?",
+        "refs": [
+          "anti_c1q_lupus_nephritis_meta_2014",
+          "kdigo_lupus_nephritis_guideline_2024"
+        ],
+        "opts": [
+          "Elevação isolada é dado complementar e não confirma atividade renal",
+          "Elevação isolada demonstra reativação renal, mesmo com parâmetros urinários estáveis",
+          "Elevação isolada demonstra dano renal crônico, e não inflamação em atividade",
+          "Elevação isolada prediz recaída com precisão suficiente para orientar a imunossupressão"
+        ],
+        "ans": 0,
+        "exp": "Anti-C1q se associa à nefrite lúpica e à atividade renal, mas sua acurácia não permite usá-lo isoladamente para confirmar ou excluir atividade. Na metanálise, para distinguir doença ativa de inativa, a especificidade mediana foi 80% e a sensibilidade estimada 75,7%, com heterogeneidade entre estudos. O resultado deve ser integrado à tendência de proteinúria, sedimento, função renal, anti-dsDNA e complemento; se persistir dúvida capaz de mudar tratamento, a avaliação histológica pode ser necessária.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    },
+    {
+      "qid": "865d9e5d",
+      "originalHash": "beb30a9f6f61eb4eed4cec5506c8b52fe0e3b19b1f58f0e838fa3a7af69b9a15",
+      "candidateHash": "4c58a992784aef460268d334453769b6f78ea6fbb582616234373b85bf46baa6",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Reconhecer o esquema de baixa dose de ciclofosfamida intravenosa do protocolo Euro-Lupus e não o confundir com dose única, manutenção ou exposição oral prolongada.",
+        "competency": "conduta",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "Reconhecimento direto de prescrição; a dose tem consequência de segurança, não é trivia sem utilidade."
+      },
+      "justification": "A dose, a via, o intervalo e o número de administrações correspondem ao esquema Euro-Lupus. As alternativas agora comparam prescrições concretas em vez de exposição oral absurda e prolongada.",
+      "problems": [],
+      "adversary": "Testei confusão com pulsos mensais, prolongamento de doze administrações e dose fixa de um grama. O enunciado identifica o protocolo de baixa dose; nenhuma alternativa concorrente corresponde a ele. O esquema inclui glicocorticoide na explicação, sem premiar ciclofosfamida isolada. Nenhum argumento plausível de anulação.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 1,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Trocar intervalo quinzenal por mensal",
+        "Duplicar o número de doses do protocolo",
+        "Confundir esquema de baixa dose com pulso mensal mais alto"
+      ],
+      "verifiedSources": {
+        "primary": "KDIGO2024",
+        "locations": [
+          "Figura5,S30",
+          "Figura6,S31"
+        ],
+        "additionalSources": []
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            61,
+            70,
+            54,
+            44
+          ],
+          "correctRank": 2,
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "ratio": 0.8714285714285714,
+          "longestHeuristic": 0
+        },
+        "final": {
+          "lengths": [
+            55,
+            55,
+            56,
+            52
+          ],
+          "correctRank": 2,
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "ratio": 0.9821428571428571,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Nefrite Lúpica — Protocolo Euro-Lupus",
+        "qid": "865d9e5d",
+        "q": "Uma paciente com nefrite lúpica proliferativa iniciará ciclofosfamida intravenosa em baixa dose pelo protocolo Euro-Lupus. Qual prescrição identifica esse esquema?",
+        "refs": [
+          "kdigo_lupus_nephritis_guideline_2024"
+        ],
+        "opts": [
+          "500 mg por via intravenosa a cada 2 semanas, em 6 doses",
+          "500 mg por via intravenosa a cada 4 semanas, em 6 doses",
+          "500 mg por via intravenosa a cada 2 semanas, em 12 doses",
+          "1 g por via intravenosa a cada 4 semanas, em 6 doses"
+        ],
+        "ans": 0,
+        "exp": "O protocolo Euro-Lupus utiliza ciclofosfamida 500 mg por via intravenosa a cada duas semanas, totalizando seis doses ao longo de 12 semanas, sempre como parte da terapia inicial associada a glicocorticoide. Ele não é um esquema de manutenção. Dose única, pulsos mensais prolongados e ciclofosfamida oral diária não definem o protocolo de baixa dose recomendado como uma das opções para nefrite lúpica classe III ou IV ativa.",
+        "diff": "easy",
+        "cat": "glomerular"
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    },
+    {
+      "qid": "e37b11cb",
+      "originalHash": "f5f326b154d4efe2e6660826836437e72f5f9668111512d47f72c1de333b84ed",
+      "candidateHash": "716676eedc5c072ca7afa04de3f97754bf2a39c9d007614954773544e0632d5f",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Classificar resposta renal clínica a partir de proteinúria e estabilidade funcional no tempo apropriado, sem inferir remissão histológica.",
+        "competency": "interpretação",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária",
+        "diff": "medium",
+        "justification": "Integra tempo e dois limiares em definição padronizada."
+      },
+      "justification": "Os dados satisfazem a definição clínica de resposta completa da KDIGO. A nova alternativa correta nomeia a classificação sem carregar explicação extra ausente nas demais.",
+      "problems": [],
+      "adversary": "Testei sobreposição lógica com resposta parcial, uso de outro limiar e inferência de remissão histológica. A pergunta pede classificação do resultado aos doze meses; a categoria mais completa é resposta clínica completa, e não comprovação histológica. Nenhum argumento plausível de anulação.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Classificar como parcial um resultado que já satisfaz resposta completa",
+        "Exigir proteinúria zero para reconhecer resposta",
+        "Inferir remissão histológica de dados clínicos"
+      ],
+      "verifiedSources": {
+        "primary": "KDIGO2024",
+        "locations": [
+          "Practice Point10.2.5.1.1 eFigura11,PDF páginas20 e45",
+          "Discussão de resposta,PDF páginas45–46"
+        ],
+        "additionalSources": []
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            102,
+            86,
+            99,
+            97
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 1.0303030303030303,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            23,
+            22,
+            26,
+            31
+          ],
+          "correctRank": 3,
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "ratio": 0.7419354838709677,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Nefrite Lúpica — Resposta Renal Completa",
+        "qid": "e37b11cb",
+        "q": "Após 12 meses de tratamento da nefrite lúpica, uma paciente apresenta relação proteína/creatinina urinária de 0,42 g/g e função renal dentro de 10% do basal. Como esse resultado se enquadra nas definições de resposta usadas pela KDIGO 2024?",
+        "refs": [
+          "kdigo_lupus_nephritis_guideline_2024"
+        ],
+        "opts": [
+          "Resposta renal completa",
+          "Resposta renal parcial",
+          "Ausência de resposta renal",
+          "Remissão histológica comprovada"
+        ],
+        "ans": 0,
+        "exp": "A definição de resposta completa apresentada pela KDIGO inclui relação proteína/creatinina urinária abaixo de 0,5 g/g e estabilização ou melhora da função renal dentro de aproximadamente 10%–15% do basal, usualmente avaliadas em 6–12 meses, embora alguns pacientes em melhora contínua levem mais tempo. É uma resposta clínica: atividade intrarrenal residual pode persistir, portanto não equivale automaticamente a remissão histológica.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    },
+    {
+      "qid": "024fe542",
+      "originalHash": "24446273a75b1bd27cbc6e26c786dfdbae4420e2d433273fd890544b422590aa",
+      "candidateHash": "cc92a7f41e2ba4f37c63c37544bb0c23eeb0430b880d59ec0506323e6148f710",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Manter hidroxicloroquina como adjuvante da nefrite lúpica salvo contraindicação, distinguindo-a de substituição da manutenção e suspensão automática pela DRC.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária",
+        "diff": "medium",
+        "justification": "Aplicação de recomendação à manutenção estável, sem toxicidade ou interação concreta concorrente."
+      },
+      "justification": "Hidroxicloroquina continua indicada como adjuvante salvo contraindicação. A explicação conserva dose e toxicidade dependentes de função renal, sem recomendar suspensão automática ou substituição de toda manutenção.",
+      "problems": [],
+      "adversary": "Testei retirada após remissão, duplicação de imunossupressão e uso de hidroxicloroquina como única terapia renal. O enunciado não traz contraindicação ou toxicidade; outro imunossupressor não elimina sua indicação adjuvante. Nenhum argumento plausível de anulação.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 1,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Retirar adjuvante após remissão sem contraindicação",
+        "Substituir a manutenção renal pelo antimalárico",
+        "Tratar terapias complementares como duplicação dispensável"
+      ],
+      "verifiedSources": {
+        "primary": "KDIGO2024",
+        "locations": [
+          "Recomendação10.2.1.1 e discussão,PDF página25"
+        ],
+        "additionalSources": []
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            89,
+            161,
+            107,
+            98
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 1.5046728971962617,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            66,
+            62,
+            61,
+            62
+          ],
+          "correctRank": 2,
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "ratio": 0.9393939393939394,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Nefrite Lúpica — Papel da Hidroxicloroquina",
+        "qid": "024fe542",
+        "q": "Paciente com nefrite lúpica está estável em terapia de manutenção e pergunta se pode suspender a hidroxicloroquina porque já recebe outro imunossupressor. Qual resposta é mais adequada?",
+        "refs": [
+          "kdigo_lupus_nephritis_guideline_2024"
+        ],
+        "opts": [
+          "Interromper hidroxicloroquina após obter remissão renal sustentada",
+          "Manter hidroxicloroquina como adjuvante, salvo contraindicação",
+          "Usar hidroxicloroquina no lugar do micofenolato de manutenção",
+          "Suspender hidroxicloroquina por já haver outro imunossupressor"
+        ],
+        "ans": 1,
+        "exp": "A KDIGO recomenda hidroxicloroquina, ou antimalárico equivalente, para pessoas com lúpus eritematoso sistêmico e nefrite lúpica, a menos que exista contraindicação. A recomendação se apoia sobretudo em dados observacionais de menor atividade e dano do lúpus; por isso, não se deve prometer um benefício individual específico nem usá-la como substituta do esquema renal. Como a exposição aumenta com disfunção renal, dose e toxicidade, especialmente retiniana, devem ser monitoradas. Doença renal crônica por si só não impõe suspensão automática.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    },
+    {
+      "qid": "3e1b0fe8",
+      "originalHash": "368c82024e43c596f7b4f330057d9c2084bb8835f06fa9b891a7873509d0e8a0",
+      "candidateHash": "646fc4777455d92ed4acea62a5547e9c4e27f0dadc431175d45897a4b926be05",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Utilizar repetição de biópsia para resolver incerteza relevante entre atividade, cronicidade e outra lesão antes de ampliar imunossupressão.",
+        "competency": "conduta",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "avançada",
+        "diff": "hard",
+        "justification": "Discordância clínico-histológica e decisão com consequências terapêuticas opostas."
+      },
+      "justification": "A nova biópsia resolve dúvida terapêutica entre inflamação, cicatriz ou outro diagnóstico. O item não dispensa revisão de adesão, dose e segurança, explicitada na explicação.",
+      "problems": [],
+      "adversary": "Procurei obrigatoriedade indiscriminada de rebiopsiar ou argumento de que a biópsia vem antes de avaliar adesão. O comando pergunta seu papel quando a atividade está incerta, não sua prioridade sobre toda avaliação. Nenhum argumento plausível de anulação.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 1,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Tratar proteinúria como sinônimo obrigatório de atividade",
+        "Esperar falência renal sem reavaliar mecanismo",
+        "Generalizar calendário de pesquisa como obrigação clínica"
+      ],
+      "verifiedSources": {
+        "primary": "KDIGO2024",
+        "locations": [
+          "Figura12,PDF páginas20 e46",
+          "Discussão de resposta e biópsia,PDF página46"
+        ],
+        "additionalSources": []
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            140,
+            85,
+            69,
+            82
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 1.6470588235294117,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            73,
+            80,
+            74,
+            74
+          ],
+          "correctRank": 4,
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "ratio": 0.9125,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Nefrite Lúpica — Quando Repetir a Biópsia",
+        "qid": "3e1b0fe8",
+        "q": "Paciente com nefrite lúpica tratada mantém proteinúria e apresenta piora da função renal, mas sedimento e sorologias não esclarecem se há inflamação persistente. Antes de ampliar a imunossupressão, qual é o papel mais apropriado da nova biópsia?",
+        "refs": [
+          "kdigo_lupus_nephritis_guideline_2024"
+        ],
+        "opts": [
+          "Considerar a biópsia para separar atividade de cronicidade ou outra lesão",
+          "Dispensar a biópsia e tratar proteinúria persistente como atividade inflamatória",
+          "Postergar a biópsia até falência renal, mantendo o esquema sem reavaliação",
+          "Repetir a biópsia em calendário semestral, sem considerar a dúvida clínica"
+        ],
+        "ans": 0,
+        "exp": "Na resposta insatisfatória, a KDIGO orienta primeiro verificar adesão e exposição adequada e considerar nova biópsia quando houver dúvida sobre cronicidade ou outro diagnóstico, como microangiopatia trombótica. Também pode ser útil diante de discordância clínico-histológica ou antes de decisões maiores, pois proteinúria persistente pode refletir inflamação ativa ou cicatriz. A biópsia não é calendário obrigatório nem substitui a avaliação de adesão e segurança.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    },
+    {
+      "qid": "578c3128",
+      "originalHash": "38eb3d0ba385c7ae947f5c631e686affb5dddd9191d7e65d676e8947a88dcb1b",
+      "candidateHash": "723e8be82b1e89e54c5286f83ec7e9bd30ff85a0442f5b007df291cc9e638036",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Selecionar terapia inicial combinada, baseada em evidência, para nefrite lúpica proliferativa ativa, evitando monoterapia insuficiente ou tratamento de manutenção como indução.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária",
+        "diff": "medium",
+        "justification": "Aplicação de algoritmo a classe ativa e função renal não gravemente reduzida; não há contraindicação concorrente a resolver."
+      },
+      "justification": "Micofenolato com glicocorticoide é uma estratégia recomendada pela KDIGO 2024 para classe proliferativa ativa. O enunciado explicita a diretriz e não apresenta essa dupla como catálogo exclusivo de possibilidades atuais.",
+      "problems": [],
+      "adversary": "Testei AZA como alternativa excepcional e o avanço de combinações triplas em recomendações posteriores. C e D dizem primeira escolha; AZA pode ser alternativa em limitações não dadas, e rituximabe não é primeira escolha universal. A estratégia B permanece válida na diretriz solicitada. Nenhum argumento plausível de anulação.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 1,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Tratar nefrite proliferativa apenas com glicocorticoide",
+        "Promover alternativa de manutenção/exceção a primeira escolha universal",
+        "Promover terapia de refratariedade a primeira escolha universal"
+      ],
+      "verifiedSources": {
+        "primary": "KDIGO2024",
+        "locations": [
+          "Recomendação10.2.3.1.1,PDF páginas17 e28",
+          "Figura5,PDF página30"
+        ],
+        "additionalSources": [
+          "ACR2024published2025"
+        ]
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            62,
+            251,
+            103,
+            90
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 2.436893203883495,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            64,
+            57,
+            70,
+            69
+          ],
+          "correctRank": 4,
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "ratio": 0.8142857142857143,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Nefrite Lúpica Proliferativa — Terapia Inicial",
+        "qid": "578c3128",
+        "q": "Mulher com lúpus, taxa de filtração glomerular estimada (TFGe) de 68 mL/min/1,73 m² e biópsia mostrando nefrite classe IV ativa precisa iniciar tratamento. Qual alternativa representa corretamente a estratégia recomendada pela KDIGO 2024?",
+        "refs": [
+          "kdigo_lupus_nephritis_guideline_2024"
+        ],
+        "opts": [
+          "Glicocorticoide isolado, com redução após melhora da proteinúria",
+          "Glicocorticoide associado a análogo do ácido micofenólico",
+          "Azatioprina e glicocorticoide como esquema inicial de primeira escolha",
+          "Rituximabe e glicocorticoide como esquema inicial de primeira escolha"
+        ],
+        "ans": 1,
+        "exp": "Na nefrite lúpica classe III ou IV ativa, a KDIGO recomenda glicocorticoide combinado a análogo do ácido micofenólico, ciclofosfamida intravenosa em baixa dose, belimumabe associado a um desses agentes ou análogo do ácido micofenólico com inibidor de calcineurina quando a função renal não está gravemente reduzida. A escolha depende do perfil clínico, adesão, fertilidade, acesso e toxicidade. Glicocorticoide ou azatioprina isolados e suporte sem imunossupressão não controlam adequadamente a doença proliferativa ativa.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    },
+    {
+      "qid": "0f0075a0",
+      "originalHash": "9c7675d8b544602934b9bf5d0dff40a57c13aa76a455531201507f7024833c02",
+      "candidateHash": "7dbbfd8ca434faef6c6e34a565a254386cd6e3a26c438a484fbd69de927b70ac",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Selecionar manutenção após resposta inicial da nefrite proliferativa e preservar duração total mínima com individualização, sem interromper após resposta parcial.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária",
+        "diff": "medium",
+        "justification": "Fase terapêutica e resposta parcial orientam continuação padronizada; a opção atual contém vários qualificadores não necessários no enunciado."
+      },
+      "justification": "A versão final delimita KDIGO 2024, conclusão da fase inicial e melhora contínua com função estável. A duração é de tratamento total, não trinta e seis meses adicionais obrigatórios de micofenolato. A explicação impede esperar passivamente esse prazo diante de resposta estagnada ou piora.",
+      "problems": [],
+      "adversary": "Na A1 identifiquei falta de trajetória e possível generalização indevida perante recomendação ACR posterior de intensificação da dupla em resposta parcial. A3 ancora a pergunta à KDIGO 2024 e descreve melhora contínua. A manutenção não é ensinada como regra universal para toda resposta parcial. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Interromper manutenção após resposta apenas parcial",
+        "Usar ciclofosfamida mensal prolongada como manutenção de rotina",
+        "Encerrar terapia por normalização sorológica sem avaliar resposta renal"
+      ],
+      "verifiedSources": {
+        "primary": "KDIGO2024",
+        "locations": [
+          "Recomendação10.2.3.2.1,PDF página18",
+          "Practice Points10.2.3.2.1 e10.2.3.2.4,PDF páginas18–19",
+          "ALMS resumo primário institucional"
+        ],
+        "additionalSources": [
+          "ALMS2011",
+          "ACR2024published2025"
+        ]
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            95,
+            260,
+            85,
+            82
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 2.736842105263158,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            79,
+            94,
+            71,
+            64
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 1.1898734177215189,
+          "longestHeuristic": 1
+        }
+      },
+      "candidate": {
+        "qid": "0f0075a0",
+        "q": "Mulher com nefrite lúpica classe IV completou a fase inicial com micofenolato e glicocorticoide. Apresenta resposta renal parcial, com proteinúria ainda em queda e função renal estável. Segundo a KDIGO 2024, qual plano de manutenção é mais apropriado?",
+        "opts": [
+          "Suspender micofenolato após resposta parcial e manter hidroxicloroquina isolada",
+          "Continuar micofenolato, com duração individualizada de pelo menos 36 meses de tratamento total",
+          "Trocar micofenolato por ciclofosfamida mensal como manutenção de rotina",
+          "Manter micofenolato apenas até normalizar complemento e anti-DNA"
+        ],
+        "ans": 1,
+        "exp": "Após resposta à terapia inicial, a KDIGO 2024 recomenda análogo do ácido micofenólico como manutenção preferencial. Azatioprina é alternativa quando há intolerância, limitação de acesso ou intenção de gestação. A duração total do tratamento inicial mais manutenção deve ser de pelo menos 36 meses, individualizada por atividade, toxicidade e risco de recaída. A melhora contínua com função renal estável permite acompanhar a trajetória; resposta estagnada ou piora exige reavaliar adesão, exposição, diagnóstico e necessidade de intensificação, em vez de apenas aguardar esse prazo. Hidroxicloroquina é adjuvante e não substitui a manutenção; ciclofosfamida mensal prolongada não é manutenção de rotina.",
+        "refs": [
+          "kdigo_lupus_nephritis_guideline_2024",
+          "alms_maintenance_2011"
+        ],
+        "cat": "glomerular",
+        "diff": "medium",
+        "t": "Nefrite Lúpica — Manutenção e Duração"
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    },
+    {
+      "qid": "1528d0ef",
+      "originalHash": "0a7f6b431ff9d7085fced5f73f7af596373afb7c734c22509c382c58457e8f20",
+      "candidateHash": "ea43c81c95144f9f1aeea8c297618590f6dd721b9e8e2f74840ef0d42837a1b8",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Incorporar preservação de fertilidade à escolha de terapia inicial, distinguindo gonadotoxicidade da ciclofosfamida de teratogenicidade do micofenolato.",
+        "competency": "conduta",
+        "bloom": "Avaliar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "avançada",
+        "diff": "hard",
+        "justification": "Segurança reprodutiva futura e tratamento de doença ativa exigem distinguir objetivos que parecem conflitantes."
+      },
+      "justification": "O caso diferencia fertilidade futura de tentativa atual de gestação e explicita contracepção eficaz. Micofenolato é opção inicial válida que evita gonadotoxicidade cumulativa de ciclofosfamida, sem ser considerado seguro na gravidez.",
+      "problems": [],
+      "adversary": "Procurei conflito pela teratogenicidade do micofenolato e argumento de que ciclofosfamida também controla doença ativa. Não há gestação nem tentativa; o comando pede incorporar fertilidade futura, favorecendo A. A explicação reconhece preservação gonadal se ciclofosfamida for necessária. Nenhum argumento plausível de anulação.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Escolher AZA como primeira escolha de indução por confundir fertilidade e gestação",
+        "Aceitar exposição oral prolongada gonadotóxica sem necessidade",
+        "Preferir exposição gonadotóxica alta quando há opção válida menos lesiva à fertilidade"
+      ],
+      "verifiedSources": {
+        "primary": "KDIGO2024",
+        "locations": [
+          "Practice Point10.2.3.1.3,PDF página17",
+          "Escolha da terapia inicial,PDF página33",
+          "Preservação da fertilidade,PDF página27"
+        ],
+        "additionalSources": []
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            221,
+            94,
+            87,
+            84
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 2.351063829787234,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            72,
+            72,
+            59,
+            68
+          ],
+          "correctRank": 1,
+          "uniqueLongest": false,
+          "tiedLongest": true,
+          "ratio": 1,
+          "longestHeuristic": 0.5
+        }
+      },
+      "candidate": {
+        "qid": "1528d0ef",
+        "q": "Mulher de 28 anos com nefrite lúpica classe IV ativa e função renal preservada deseja manter a fertilidade futura. Não está gestante e utiliza contracepção eficaz. Qual terapia inicial melhor incorpora esse objetivo?",
+        "opts": [
+          "Micofenolato associado a glicocorticoide, com aconselhamento reprodutivo",
+          "Azatioprina associada a glicocorticoide como primeira escolha de indução",
+          "Ciclofosfamida oral prolongada, associada a glicocorticoide",
+          "Ciclofosfamida intravenosa em alta dose, associada a glicocorticoide"
+        ],
+        "ans": 0,
+        "exp": "Análogo do ácido micofenólico associado a glicocorticoide é uma das opções recomendadas para nefrite lúpica classe III ou IV ativa e evita a gonadotoxicidade cumulativa da ciclofosfamida. Isso o torna especialmente pertinente quando a preservação da fertilidade pesa na escolha, sem implicar superioridade universal entre esquemas. Gravidade, função renal, adesão, preferência e contraindicações continuam relevantes. Se ciclofosfamida for selecionada, deve-se discutir proteção gonadal ou criopreservação. Micofenolato é teratogênico e exige contracepção durante o uso; desejar fertilidade futura não significa tentar gestação durante a doença ativa.",
+        "cat": "glomerular",
+        "diff": "hard",
+        "refs": [
+          "kdigo_lupus_nephritis_guideline_2024"
+        ],
+        "t": "Nefrite Lúpica — Fertilidade e Terapia Inicial"
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    },
+    {
+      "qid": "d4bdf47d",
+      "originalHash": "0ccd530a9c3ff388a3c217d5bb03903f5e5ce962a5bac853205ca3d8bb008cfe",
+      "candidateHash": "a93852b5bdeab553abbff733c2e728f39e9681a1e2a50d98d48565dccc8f9a69",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Explicar por que marcadores clínicos e sorológicos de atividade não substituem a biópsia na definição de classe, atividade, cronicidade e lesões concomitantes.",
+        "competency": "interpretação",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "básica",
+        "diff": "easy",
+        "justification": "O enunciado pergunta a finalidade geral da histologia, sem exigir interpretar uma biópsia ou escolher tratamento entre alternativas próximas."
+      },
+      "justification": "Sorologias e alterações urinárias apoiam suspeita e atividade, mas não identificam classe, cronicidade ou lesões concomitantes com segurança. O distrator full house sérico foi substituído por erros de interpretação plausíveis.",
+      "problems": [],
+      "adversary": "Testei o argumento de que o conjunto sorológico seria suficiente para a classe IV e de que anti-DNA excluiria lesão vascular. Nenhuma dessas inferências é válida. O item trata da finalidade diagnóstica da biópsia quando se planeja terapia, sem negar exceções em que o procedimento é inviável. Nenhum argumento plausível de anulação.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 1,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 19,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Restringir a biópsia a prognóstico após presumir atividade pela sorologia",
+        "Atribuir classe por proteinúria e sorologia",
+        "Excluir microangiopatia por anti-DNA elevado"
+      ],
+      "verifiedSources": {
+        "primary": "KDIGO2024",
+        "locations": [
+          "Diagnóstico eFigura1,S23–S24",
+          "ISN/RPS2018,p789–796"
+        ],
+        "additionalSources": [
+          "ISNRPS2018"
+        ]
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            151,
+            104,
+            88,
+            78
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 1.4519230769230769,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            89,
+            94,
+            82,
+            78
+          ],
+          "correctRank": 2,
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "ratio": 0.9468085106382979,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Nefrite Lúpica — Por que a Biópsia Define a Conduta",
+        "qid": "d4bdf47d",
+        "q": "Paciente com lúpus apresenta proteinúria, hematúria, queda de C3/C4 e elevação do anti-DNA de dupla hélice. Por que a biópsia renal continua necessária quando se planeja o tratamento?",
+        "refs": [
+          "kdigo_lupus_nephritis_guideline_2024",
+          "isn_rps_lupus_revision_2018"
+        ],
+        "opts": [
+          "Sorologias não substituem a classe histológica nem a avaliação de atividade e cronicidade",
+          "Sorologias identificam atividade renal; a biópsia é necessária apenas para estimar prognóstico",
+          "Sorologias e proteinúria já definem a classe; a biópsia confirma a atividade imune",
+          "Anti-DNA elevado afasta microangiopatia, dispensando avaliar lesões vasculares"
+        ],
+        "ans": 0,
+        "exp": "Proteinúria, sedimento, complemento e anti-DNA de dupla hélice ajudam a reconhecer atividade renal, mas não substituem a histologia. A biópsia classifica o padrão glomerular, quantifica atividade e cronicidade e pode revelar lesões concomitantes, como microangiopatia trombótica ou podocitopatia, que alteram prognóstico e tratamento. Além disso, parâmetros clínicos e histológicos podem ser discordantes; “full house” é um padrão de imunofluorescência tecidual, não uma sorologia.",
+        "diff": "easy",
+        "cat": "glomerular"
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    },
+    {
+      "qid": "7968a07d",
+      "originalHash": "e69cc140cf4f5deef3de92938fadf1f7dacf14bdc665ff9834dce25c08317e7b",
+      "candidateHash": "6709a27dd8815af0a4a9e1a4b10f8475725556e751d9b75949e63c478f34ad18",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Reavaliar adesão, exposição e causas concorrentes na suspeita de reativação sob tratamento antes de acrescentar imunossupressão, usando biópsia quando muda a conduta.",
+        "competency": "conduta",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "avançada",
+        "diff": "hard",
+        "justification": "Temporalidade, falha aparente e mecanismo incerto tornam necessária revisão estruturada."
+      },
+      "justification": "A sequência de revisão de adesão/exposição, causas concorrentes e possível histologia precede rotular refratariedade e acrescentar fármacos. A pergunta não premia deixar atividade real sem tratamento nem imunossuprimir cicatriz.",
+      "problems": [],
+      "adversary": "Procurei urgência clínica omitida que tornasse reavaliação inadequada e pressuposição de classe ativa sem biópsia. Não há emergência específica no enunciado; o mecanismo da piora é incerto. B e C presumem falha/segurança sem reavaliar, D presume cicatriz. Nenhum argumento plausível de anulação.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Acrescentar medicamento antes de confirmar refratariedade",
+        "Usar CNI sem avaliar função renal e mecanismo da piora",
+        "Abandonar imunossupressão presumindo cronicidade"
+      ],
+      "verifiedSources": {
+        "primary": "KDIGO2024",
+        "locations": [
+          "Practice Point10.2.5.2.1 eFigura12,PDF páginas20 e46"
+        ],
+        "additionalSources": []
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            144,
+            66,
+            57,
+            73
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 1.9726027397260273,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            81,
+            79,
+            77,
+            83
+          ],
+          "correctRank": 2,
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "ratio": 0.9759036144578314,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Nefrite Lúpica — Suspeita de Reativação sob Tratamento",
+        "qid": "7968a07d",
+        "q": "Paciente com nefrite lúpica previamente tratada apresenta aumento da proteinúria e queda da taxa de filtração glomerular estimada (TFGe) apesar de micofenolato. Qual é o próximo passo mais adequado?",
+        "refs": [
+          "kdigo_lupus_nephritis_guideline_2024"
+        ],
+        "opts": [
+          "Revisar adesão e exposição, excluir causas concorrentes e considerar nova biópsia",
+          "Adicionar belimumabe ao micofenolato, assumindo refratariedade do esquema atual",
+          "Trocar para voclosporina sem reavaliar função renal e diagnóstico histológico",
+          "Suspender micofenolato e observar, atribuindo toda a proteinúria a dano cicatricial"
+        ],
+        "ans": 0,
+        "exp": "Piora de proteinúria e função renal não identifica sozinha o mecanismo. É preciso confirmar adesão e dose, revisar infecção, hemodinâmica e toxicidade, e considerar nova biópsia quando o resultado puder distinguir atividade tratável de dano crônico ou outra lesão. Belimumabe e inibidores de calcineurina são opções em esquemas combinados selecionados, mas não devem ser acrescentados por um marcador isolado. Diálise é indicada por complicações refratárias, não preventivamente pela TFGe. A decisão correta evita imunossuprimir cicatriz ou perder uma reativação verdadeira.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    },
+    {
+      "qid": "67cb9059",
+      "originalHash": "d840fc5d2258301f5367839d6256c8175e76007ccc26b5fbaf9eed1ac745ff9e",
+      "candidateHash": "36846386eb92c50cff8a05c6c118154c3648405b7a57bc3bb6fe5bef1bb4f6a4",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Reconhecer nefrite proliferativa rapidamente progressiva como urgência de imunossupressão, respeitando limitações de evidência em disfunção renal grave e cautela com inibidores de calcineurina.",
+        "competency": "conduta",
+        "bloom": "Avaliar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "avançada",
+        "diff": "hard",
+        "justification": "Gravidade extrema e sub-representação em ensaios modificam a escolha e o grau de certeza."
+      },
+      "justification": "A cronologia de poucos dias, anúria e classe IV com muitos crescentes celulares sustenta a síndrome rapidamente progressiva e a urgência. A explicação preserva limites da evidência e cautela com CNI em disfunção grave.",
+      "problems": [],
+      "adversary": "Na A1 faltava cronologia para afirmar deterioração rapidamente progressiva; A3 a acrescenta. Testei diálise como substituto da imunossupressão, preferência automática por voclosporina e plasmaférese de rotina. Nenhuma representa a melhor conduta da nefrite lúpica isolada descrita. Nenhum argumento plausível de anulação remanescente.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Adiar imunossupressão apesar de atividade grave",
+        "Extrapolar CNI para função renal gravemente reduzida",
+        "Transformar crescentes em indicação universal de plasmaférese"
+      ],
+      "verifiedSources": {
+        "primary": "KDIGO2024",
+        "locations": [
+          "Escolha da terapia inicial e limitação de evidência,PDF páginas33–34",
+          "Figura5 e cautela comCNI,PDF página30",
+          "Glicocorticoide eRPGN,PDF páginas34–35"
+        ],
+        "additionalSources": []
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            91,
+            94,
+            248,
+            82
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 2.6382978723404253,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            79,
+            85,
+            88,
+            79
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 1.035294117647059,
+          "longestHeuristic": 1
+        }
+      },
+      "candidate": {
+        "t": "Nefrite Lúpica Grave — Conduta Urgente",
+        "qid": "67cb9059",
+        "q": "Mulher com lúpus evolui, ao longo de poucos dias, com anúria, creatinina de 8,4 mg/dL e biópsia com nefrite classe IV ativa e crescentes celulares em 60% dos glomérulos. Qual interpretação deve orientar a conduta imediata?",
+        "refs": [
+          "kdigo_lupus_nephritis_guideline_2024"
+        ],
+        "opts": [
+          "A gravidade da disfunção justifica aguardar recuperação antes de imunossuprimir",
+          "Voclosporina com micofenolato e glicocorticoide deve ser preferida nessa função renal",
+          "A doença proliferativa ativa exige imunossupressão urgente e suporte à lesão renal aguda",
+          "Crescentes indicam acrescentar troca plasmática de rotina ao esquema de indução"
+        ],
+        "ans": 2,
+        "exp": "O quadro representa nefrite lúpica classe IV com deterioração renal rapidamente progressiva e exige tratamento urgente, além do manejo simultâneo da lesão renal aguda e de suas complicações. Pulsos intravenosos de glicocorticoide são usados em apresentações graves, e muitos especialistas escolhem ciclofosfamida quando há queda rápida da função e abundantes crescentes. Entretanto, esses pacientes foram pouco representados nos ensaios; portanto, não é correto afirmar equivalência comprovada entre todos os esquemas. Inibidores de calcineurina exigem cautela na função gravemente reduzida, e troca plasmática não é tratamento rotineiro da nefrite lúpica isolada.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    },
+    {
+      "qid": "58befdc8",
+      "originalHash": "76d214059583f67be129d89481043312a5ca6021b7dc0b5b20f12d54aa59ac63",
+      "candidateHash": "b6ce6ea5c72d2ffb404ebed9c0a420df34fffc75ede64814fddba10d975f7a2a",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Oferecer suporte dialítico quando indicado sem abandonar automaticamente a terapia da nefrite ativa, ajustando doses e segurança à condição clínica.",
+        "competency": "conduta",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária",
+        "diff": "medium",
+        "justification": "A indicação dialítica já está dada; a decisão é distinguir suporte de controle imunológico."
+      },
+      "justification": "A indicação dialítica está explicitamente dada. O suporte não substitui o tratamento da atividade imune; a explicação condiciona doses e segurança a função renal, infecção e estado clínico, sem ajuste numérico inventado.",
+      "problems": [],
+      "adversary": "Testei se anúria após três dias prova falha irreversível da indução ou se a disfunção impõe suspensão de qualquer imunossupressor. Não prova e não impõe. A indicação de TRS não é deduzida de creatinina isolada: já consta como clínica no caso. Nenhum argumento plausível de anulação.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Esperar resposta imune antes de oferecer suporte indicado",
+        "Confundir suporte dialítico com controle da doença ativa",
+        "Tratar diálise precoce como prova de falha irreversível do esquema"
+      ],
+      "verifiedSources": {
+        "primary": "KDIGO2024",
+        "locations": [
+          "Terapia inicial de classeIII/IV ativa,PDF páginas28–34",
+          "10.3.4,manejo de falência renal,PDF páginas50–51",
+          "EstudoAKI2023,resumo primário"
+        ],
+        "additionalSources": [
+          "AKI2023"
+        ]
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            82,
+            124,
+            111,
+            99
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 1.117117117117117,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            70,
+            65,
+            71,
+            75
+          ],
+          "correctRank": 4,
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "ratio": 0.8666666666666667,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Nefrite Lúpica Grave — Diálise de Suporte",
+        "qid": "58befdc8",
+        "q": "Paciente com lúpus eritematoso sistêmico (LES) ativo e nefrite lúpica classe IV com crescentes inicia pulsoterapia e ciclofosfamida ajustada. Em 72 horas evolui com anúria, piora importante da creatinina e indicação clínica de suporte dialítico. Qual conduta é mais adequada?",
+        "refs": [
+          "kdigo_lupus_nephritis_guideline_2024"
+        ],
+        "opts": [
+          "Aguardar resposta imunossupressora antes de oferecer suporte dialítico",
+          "Iniciar diálise de suporte e manter o tratamento da nefrite ativa",
+          "Suspender a indução e manter apenas diálise até a função renal melhorar",
+          "Trocar o esquema de indução por rituximabe porque a diálise demonstra falha"
+        ],
+        "ans": 1,
+        "exp": "Nefrite lúpica proliferativa grave com crescentes é emergência imunológica. Se surgem indicações de TRS, a diálise deve ser oferecida como suporte, mas ela não trata a atividade imunológica renal; portanto, a indução não deve ser abandonada automaticamente. Doses e segurança dos imunossupressores precisam ser ajustadas ao grau de disfunção renal, infecção e estado clínico. Aguardar semanas diante de indicação dialítica é inseguro; por outro lado, iniciar diálise não significa irreversibilidade nem falha obrigatória da indução.",
+        "diff": "medium",
+        "cat": "uti"
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    },
+    {
+      "qid": "0e31dedb",
+      "originalHash": "3ee2a0e1285b1cd723a6337ca539a7889b982b1cb186ede9be27af52b86a12c0",
+      "candidateHash": "5057cecc6a0f8d240642735ea374be93d73ec5cf413bf3dfef0191cef19366b6",
+      "hashMethod": "SHA256(JSON.stringify(candidate)) preservando ordem de campos do autor",
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "classification": {
+        "op": "Interpretar marcação glomerular EXT1/EXT2 como associação a autoimunidade que exige correlação sistêmica, sem transformá-la em diagnóstico ou teste sérico validado independente.",
+        "competency": "interpretação",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "avançada",
+        "diff": "hard",
+        "justification": "Integra padrão tecidual, marcador negativo e limites de biomarcador relativamente específico."
+      },
+      "justification": "O padrão EXT1/EXT2 em contexto PLA2R-negativo sinaliza investigação autoimune. A correta solicita correlação, sem atribuir diagnóstico sistêmico automático ou intervenção específica. Os sete soros negativos são explicitamente um achado do estudo inicial.",
+      "problems": [],
+      "adversary": "Testei especificidade absoluta para lúpus, associação neoplásica e equiparação de marcação tecidual a teste sérico validado. A pergunta não afirma exclusividade nem inexistência de pesquisas séricas posteriores; o estudo original confirma a associação e os limites. Nenhum argumento plausível de anulação.",
+      "eliminators": [],
+      "scoreDimensions": {
+        "Alinhamento ao OP": 2,
+        "Validade de conteúdo": 2,
+        "Validade de construto": 2,
+        "Qualidade do enunciado": 2,
+        "Alternativas": 2,
+        "Distratores": 2,
+        "Explicação": 2,
+        "Referências": 2,
+        "Ausência de cara de IA": 2,
+        "Valor pedagógico": 2
+      },
+      "score": 20,
+      "scoreBand": "Excelente",
+      "clinicalErrors": [
+        "Rotular como primária sem investigar associação autoimune",
+        "Equiparar proteína tecidual a teste sérico confirmatório estabelecido",
+        "Confundir marcador autoimune com associação neoplásica específica"
+      ],
+      "verifiedSources": {
+        "primary": "EXT2019",
+        "locations": [
+          "Resumo primário institucional,Methods/Results/Conclusions"
+        ],
+        "additionalSources": [
+          "KDIGO2024"
+        ]
+      },
+      "decisionTree": "Evidência verificada e nenhuma pendência → nenhum eliminatório → nenhum recurso plausível remanescente → score18–20 → aprovada.",
+      "editorialLifecycleDestination": "publicado após integração",
+      "operationalStatus": "Material aprovado em relatório; revisor não alterou o app.",
+      "lengths": {
+        "original": {
+          "lengths": [
+            138,
+            109,
+            102,
+            89
+          ],
+          "correctRank": 1,
+          "uniqueLongest": true,
+          "tiedLongest": false,
+          "ratio": 1.2660550458715596,
+          "longestHeuristic": 1
+        },
+        "final": {
+          "lengths": [
+            57,
+            61,
+            63,
+            59
+          ],
+          "correctRank": 4,
+          "uniqueLongest": false,
+          "tiedLongest": false,
+          "ratio": 0.9047619047619048,
+          "longestHeuristic": 0
+        }
+      },
+      "candidate": {
+        "t": "Nefropatia Membranosa — EXT1/EXT2 e Autoimunidade",
+        "qid": "0e31dedb",
+        "q": "Mulher jovem com síndrome nefrótica tem biópsia compatível com nefropatia membranosa, anti-PLA2R sérico negativo, C1q mesangial e marcação glomerular para EXT1/EXT2. Qual é a interpretação mais adequada?",
+        "opts": [
+          "Investigar associação com lúpus ou outra doença autoimune",
+          "Classificar como forma primária, sem investigar autoimunidade",
+          "Solicitar anti-EXT sérico como teste confirmatório estabelecido",
+          "Priorizar neoplasia como associação específica de EXT1/EXT2"
+        ],
+        "ans": 0,
+        "exp": "EXT1/EXT2 foram identificadas em um subgrupo de nefropatia membranosa PLA2R-negativa fortemente associado a sinais clínicos ou histológicos de autoimunidade, especialmente nefrite lúpica classe V. A positividade glomerular deve levar à correlação com sintomas, complemento e autoanticorpos e não a rotular o caso como primário. No estudo inicial, não foram detectados anticorpos anti-exostosina circulantes nos sete pacientes testados, portanto a marcação tecidual não deve ser equiparada ao modelo sorológico do anti-PLA2R. EXT1/EXT2 também não é marcador específico de câncer nem prescreve imunossupressão sem integrar atividade, cronicidade e diagnóstico sistêmico.",
+        "diff": "hard",
+        "cat": "glomerular",
+        "refs": [
+          "ext1ext2_sethi",
+          "kdigo_lupus_nephritis_guideline_2024"
+        ]
+      },
+      "implementation": "Aplicar somente o objeto de hash exato; preservar qid,ans,refs e categoria, histórico de avaliações eFSRS. Registrar nova revisão de conteúdo. Edição material posterior exige nova revisão e novo hash; não reaproveitar esta liberação como carimbo."
+    }
+  ]
+}
