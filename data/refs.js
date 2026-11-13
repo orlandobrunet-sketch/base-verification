@@ -803,18 +803,18 @@ kdigo_ckd:{
   },
 
   testing_study:{
-    label:"TESTING Trial",
+    label:"Lv et al. — TESTING: metilprednisolona na nefropatia por IgA (2022)",
     url:"https://jamanetwork.com/journals/jama/fullarticle/2792252",
-    journal:"JAMA",
+    journal:"JAMA. 2022;327(19):1888–1898",
     ano:2022,
-    tipo:"Ensaio Clínico Fase III",
+    tipo:"Ensaio clínico randomizado",
     badge:"RCT",
     badgeColor:"#10b981",
-    impacto:"Metilprednisolona reduziu desfecho renal na IgAN de alto risco, com aumento de eventos adversos graves",
-    icon:"💊",
-    resumo:"ECR internacional multicêntrico (n = 503), avaliando metilprednisolona oral (dose plena de 0,6-0,8 mg/kg/dia ou dose reduzida de 0,4 mg/kg/dia) versus placebo em pacientes com nefropatia por IgA (IgAN) de alto risco (proteinúria ≥ 1 g/dia e TFGe de 20-120 mL/min/1,73m² após otimização do SRAA). Desfecho primário: declínio sustentado de 40% na TFGe, DRCT ou morte renal. Resultados: Metilprednisolona reduziu o desfecho renal em 47% (HR 0,53; IC 95% 0,39–0,72; P < 0,001) em 4,2 anos de seguimento. O grupo de dose reduzida manteve a eficácia com menor taxa de eventos adversos graves, principalmente infecções graves (que haviam interrompido o trial na fase de dose plena).",
-    conclusao:"O TESTING demonstrou benefício renal da metilprednisolona em IgAN proteinúrica de alto risco, mas não autoriza uso automático: eventos adversos graves aumentaram, sobretudo com dose plena, e o esquema reduzido exige seleção cuidadosa e profilaxia infecciosa.",
-    curiosidade:"Após o excesso de infecções graves, o protocolo reduziu a dose inicial de 0,6–0,8 para 0,4 mg/kg/dia, limitou-a a 32 mg/dia e acrescentou profilaxia para Pneumocystis."
+    impacto:"Metilprednisolona reduziu o composto renal primário, com maior incidência de eventos adversos graves",
+    icon:"🔬",
+    resumo:"Ensaio multicêntrico, duplo-cego, com 503 participantes com nefropatia por imunoglobulina A (IgA) primária, proteinúria ≥1 g/d e suporte otimizado. A taxa de filtração glomerular estimada (TFGe) elegível era 20–120 mL/min/1,73 m² no protocolo inicial e 30–120 no reduzido. Metilprednisolona versus placebo reduziu o composto de queda sustentada de 40% da TFGe, falência renal ou morte por doença renal: razão de riscos (HR) 0,53, intervalo de confiança de 95% 0,39–0,72; P<0,001, em seguimento médio de 4,2 anos. Eventos adversos graves ocorreram em 10,9% versus 2,8%, sobretudo com dose plena. Após excesso de infecções, houve redução de dose e acréscimo de profilaxia; houve benefício do esquema reduzido contra seu placebo contemporâneo, sem demonstrar equivalência randomizada direta entre as duas doses.",
+    conclusao:"O benefício renal exige ponderação da toxicidade e seleção individual. Dose menor e profilaxia mitigaram o risco, sem eliminá-lo; não autorizam corticoide automático para toda pessoa com proteinúria.",
+    curiosidade:"A fase reduzida usou 0,4 mg/kg/dia, máximo 32 mg/dia, e profilaxia contra Pneumocystis jirovecii. As coortes de dose plena e reduzida foram recrutadas em períodos diferentes."
   },
   nostone_study:{
     label:"NOSTONE Trial",
@@ -841,14 +841,18 @@ kdigo_ckd:{
     curiosidade:"Ao contrário do RAVE, o RITUXVAS incluiu doença renal muito avançada, porém o braço rituximabe recebeu duas doses de ciclofosfamida; atribuir todo o efeito exclusivamente ao anti-CD20 excede o desenho."
   },
   dapa_ckd_igan_2021:{
-    label:"Wheeler et al. — DAPA-CKD na Nefropatia por IgA",
+    label:"Wheeler et al. — DAPA-CKD na nefropatia por IgA (2021)",
     url:"https://pubmed.ncbi.nlm.nih.gov/33878338/",
-    journal:"Kidney Int. 2021;100(1):215-224",
-    ano:2021,tipo:"Análise pré-especificada de ensaio clínico",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Dapagliflozina reduziu eventos renais no subgrupo IgAN, com número pequeno de eventos e população de DRC estabelecida",icon:"🔬",
-    resumo:"Análise pré-especificada de 270 participantes com IgAN no DAPA-CKD, 94% com confirmação histológica, TFGe média de 43,8 mL/min/1,73 m² e UACR mediana de 900 mg/g. O desfecho composto ocorreu em 6 de 137 participantes com dapagliflozina e 20 de 133 com placebo, HR 0,29 (IC 95% 0,12–0,73), em mediana de 2,1 anos. A UACR caiu 26% em relação ao placebo.",
-    conclusao:"A análise sustenta dapagliflozina como nefroproteção na IgAN proteinúrica com DRC estabelecida, mas o efeito grande deriva de apenas 26 eventos e não deve ser extrapolado como terapia imunológica específica ou benefício idêntico em jovens com TFGe preservada.",
-    curiosidade:"Dos 270 participantes classificados como IgAN, 254 tinham confirmação por biópsia; a idade média foi 51 anos, mais alta que a de muitas coortes de ensaios específicos de IgAN."
+    journal:"Kidney Int. 2021;100(1):215–224",
+    ano:2021,
+    tipo:"Análise pré-especificada de ensaio clínico randomizado",
+    badge:"RCT",
+    badgeColor:"#10b981",
+    impacto:"Dapagliflozina reduziu o composto renal/CV no subgrupo de IgA, com poucos eventos",
+    icon:"🔬",
+    resumo:"Subgrupo pré-especificado do DAPA-CKD com 270 participantes com nefropatia por imunoglobulina A (IgA), 254 confirmados por biópsia. Taxa de filtração glomerular estimada (TFGe) média de 43,8 mL/min/1,73 m² e relação albumina/creatinina urinária mediana de 900 mg/g. Dapagliflozina 10 mg/dia versus placebo, além do suporte. O composto primário incluía queda sustentada ≥50% da TFGe, falência renal ou morte renal/cardiovascular: 6/137 versus 20/133 eventos em mediana de 2,1 anos; razão de riscos (HR) 0,29, intervalo de confiança de 95% 0,12–0,73; P=0,005. A relação albumina/creatinina caiu 26% frente a placebo.",
+    conclusao:"O resultado apoia nefroproteção na população estudada, com precisão limitada por apenas 26 eventos. Não prova mecanismo imune específico, benefício exclusivo da IgA ou efeito idêntico em toda população.",
+    curiosidade:"O composto renal secundário excluía morte cardiovascular; não deve ser confundido com o composto primário descrito acima."
   },
 rave_study:{
     label:"Stone JH et al. — RAVE Trial (NEJM 2010)",
@@ -1010,11 +1014,11 @@ rave_study:{
     journal:"Kidney International 2020;97(5):861-876",
     ano:2020,
     tipo:"Relatório de Consenso",
-    badge:"GUIDELINE",
+    badge:"CONSENSUS",
     badgeColor:"#6366f1",
     impacto:"Manejo individualizado de pressão, volume e hipotensão intradialítica",
     icon:"📋",
-    resumo:"Relatório da conferência de controvérsias KDIGO sobre pressão arterial e volume em diálise. Identifica como principais determinantes da hipotensão intradialítica o volume intravascular insuficiente para sustentar a taxa de ultrafiltração desejada e respostas cardiovasculares compensatórias inadequadas. Recomenda reavaliar peso-alvo e estado volêmico, considerar sintomas e comorbidades e reduzir a taxa de ultrafiltração por maior duração ou frequência das sessões e menor ganho de peso interdialítico. Dialisato mais frio pode melhorar a tolerância hemodinâmica.",
+    resumo:"Relatório da conferência de controvérsias Kidney Disease: Improving Global Outcomes (KDIGO) sobre pressão arterial e volume em diálise. Identifica como principais determinantes da hipotensão intradialítica o volume intravascular insuficiente para sustentar a taxa de ultrafiltração desejada e respostas cardiovasculares compensatórias inadequadas. Recomenda reavaliar peso-alvo e estado volêmico, considerar sintomas e comorbidades e reduzir a taxa de ultrafiltração por maior duração ou frequência das sessões e menor ganho de peso interdialítico. Dialisato mais frio pode melhorar a tolerância hemodinâmica.",
     conclusao:"A prevenção da hipotensão intradialítica começa pela prescrição volêmica individualizada; nenhum limiar único de ultrafiltração é apropriado para todos os pacientes e em todas as sessões.",
     curiosidade:"O relatório distingue peso-alvo de peso seco estimado: em doença aguda ou sintomas intensos pode ser necessário aceitar temporariamente um peso-alvo um pouco maior, equilibrando hipoperfusão imediata e sobrecarga crônica."
   },
@@ -1380,14 +1384,18 @@ canvas_program:{
     curiosidade:"Foi o grande trial de iSGLT2 com maior heterogeneidade etiológica e incluiu proporção expressiva de pacientes sem diabetes."
   },
   empa_kidney_primary_disease_2024:{
-    label:"EMPA-KIDNEY — Efeito por Doença Renal Primária",
+    label:"EMPA-KIDNEY — efeito por doença renal primária (2024)",
     url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC7618536/",
-    journal:"Lancet Diabetes Endocrinol. 2024;12(1):51-60",
-    ano:2024,tipo:"Análise secundária pré-especificada",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Efeito da empagliflozina foi amplamente consistente entre etiologias da DRC, incluindo glomerulopatias",icon:"🔬",
-    resumo:"Análise secundária do EMPA-KIDNEY por doença renal primária. Entre 6.609 participantes, 1.669 tinham doença glomerular e 817 foram classificados como IgAN. A empagliflozina reduziu em 29% o risco de progressão da doença renal na coorte analisada, HR 0,71 (IC 95% 0,62–0,81), e não houve heterogeneidade importante do efeito relativo entre as categorias etiológicas ou subtipos de glomerulopatia; análises de slope aumentaram a precisão.",
-    conclusao:"O EMPA-KIDNEY apoia nefroproteção por iSGLT2 em ampla variedade de doenças renais, mas a análise etiológica não transforma a contagem de 817 casos de IgAN em ensaio independente desenhado para provar um efeito específico nessa doença.",
-    curiosidade:"IgAN representou quase metade dos 1.669 participantes com doença glomerular, formando um dos maiores conjuntos randomizados dessa etiologia."
+    journal:"Lancet Diabetes Endocrinol. 2024;12(1):51–60",
+    ano:2024,
+    tipo:"Análise secundária de ensaio clínico randomizado",
+    badge:"RCT",
+    badgeColor:"#10b981",
+    impacto:"Empagliflozina preservou função renal em várias etiologias; IgA foi recorte exploratório",
+    icon:"🔬",
+    resumo:"Análise secundária do EMPA-KIDNEY, com 6609 participantes com doença renal crônica (DRC), empagliflozina 10 mg/dia versus placebo e mediana de 2 anos. As categorias etiológicas amplas eram pré-especificadas; o grupo glomerular de 1669 participantes foi subdividido post hoc, incluindo 817 com nefropatia por imunoglobulina A (IgA). Na coorte total, o componente de progressão renal ocorreu em 384/3304 versus 504/3305: razão de riscos (HR) 0,71, intervalo de confiança de 95% 0,62–0,81. Não houve evidência de heterogeneidade por categoria etiológica (P=0,62). A inclinação crônica da taxa de filtração glomerular estimada (TFGe) também foi favorável, com efeitos relativos amplamente consistentes entre causas.",
+    conclusao:"Sustenta nefroproteção em várias causas de DRC. O recorte de IgA não equivale a um ensaio independente, dimensionado para comprovar benefício exclusivo dessa doença; ausência de heterogeneidade não demonstra efeitos exatamente iguais.",
+    curiosidade:"O HR 0,71 acima é de progressão renal. O composto principal do ensaio, que também incluía morte cardiovascular, teve HR 0,72."
   },
   // --- Hipertensão ---
   pathway2_trial:{
@@ -1821,14 +1829,18 @@ canvas_program:{
     curiosidade:"A FDA aprovou a atrasentana em 2 de abril de 2025 pelo programa de aprovação acelerada, usando mudança do UPCR na semana 36 como desfecho substituto."
   },
   nefigard_trial:{
-    label:"Lafayette RA et al. — NefIgArd (Lancet 2023)",
-    url:"https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(23)02765-2/fulltext",
-    journal:"Lancet 2023;402(10405):859-870",
-    ano:2023,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Budesonida de liberação alvo (atua nos Peyer's patches) ↓proteinúria e preserva TFG em IgAN com proteinúria ≥1g/dia",icon:"🔬",
-    resumo:"ECR fase III (NefIgArd, n=364), nefecon (budesonida de liberação alvo nos Patches de Peyer do íleo distal) vs placebo por 9 meses em IgAN com TFGe ≥35 e proteinúria ≥1 g/dia. Reduziu proteinúria de forma sustentada vs placebo ao final do tratamento. Resultados aos 2 anos mostraram preservação da TFGe: diferença estimada de +3,8 ml/min/1,73m² vs placebo. Aprovado pelo FDA (Tarpeyo) e EMA (Kinpeygo) para IgAN primária com risco de progressão.",
-    conclusao:"NefIgArd sustentou o eixo intestino-rim e mostrou benefício antiproteinúrico e funcional com um curso de 9 meses; a liberação dirigida reduz, mas não elimina, exposição sistêmica e efeitos de glicocorticoide.",
-    curiosidade:"Após a suspensão do curso de 9 meses houve aumento de proteinúria e declínio de TFGe; a segurança e eficácia de ciclos adicionais ou manutenção ainda não estavam estabelecidas na KDIGO 2025."
+    label:"Lafayette et al. — NefIgArd: resultados de 2 anos (2023)",
+    url:"https://pubmed.ncbi.nlm.nih.gov/37591292/",
+    journal:"Lancet. 2023;402(10405):859–870",
+    ano:2023,
+    tipo:"Ensaio clínico randomizado",
+    badge:"RCT",
+    badgeColor:"#10b981",
+    impacto:"Budesonida de liberação direcionada reduziu proteinúria e perda de função renal na população estudada",
+    icon:"🔬",
+    resumo:"Ensaio fase 3, randomizado e duplo-cego com 364 adultos com nefropatia por imunoglobulina A (IgA) primária, taxa de filtração glomerular estimada (TFGe) de 35–90 mL/min/1,73 m² e proteinúria persistente apesar de bloqueio otimizado do sistema renina-angiotensina. A inclusão exigia relação proteína/creatinina urinária ≥0,8 g/g ou proteinúria ≥1 g/24 h. Comparou Nefecon 16 mg/dia com placebo por 9 meses, seguidos de 15 meses sem o medicamento do estudo. O desfecho primário foi a média ponderada da TFGe ao longo de 2 anos: diferença de 5,05 mL/min/1,73 m², intervalo de confiança de 95% 3,24–7,38; P<0,0001, favorável ao Nefecon. Edema periférico, hipertensão e acne foram mais frequentes com Nefecon; a liberação direcionada não exclui efeitos sistêmicos de glicocorticoide.",
+    conclusao:"Um curso de 9 meses melhorou os resultados médios frente a placebo durante o acompanhamento. Isso não equivale a cura, resposta garantida em cada pessoa ou indicação de substituir a nefroproteção de base.",
+    curiosidade:"Benefício médio entre grupos pode persistir enquanto a proteinúria aumenta ou a função renal cai após a suspensão. O curso estudado e a reavaliação posterior não devem ser confundidos com garantia de efeito permanente."
   },
   fabhalta_iptacopan_label_2025:{
     label:"FABHALTA (iptacopan) — Prescribing Information FDA/DailyMed (2026)",
@@ -3007,16 +3019,6 @@ canvas_program:{
     conclusao:"A associação justifica rastreamento oncológico mais atento e guiado pelo contexto em THSD7A-positivos, sem transformar o anticorpo em diagnóstico de câncer ou exigir exame único universal.",
     curiosidade:"Positividade simultânea para THSD7A e PLA2R é rara, mas já foi descrita; portanto, tratá-los como absolutamente mutuamente exclusivos cria uma regra falsa."
   },
-  kdigo_igan_2021:{
-    label:"KDIGO IgAN — Capítulo da Diretriz GN 2021",
-    url:"https://kdigo.org/guidelines/iga-nephropathy/",
-    journal:"Kidney International",
-    ano:2021,tipo:"Diretriz Internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Manejo da nefropatia por IgA: suporte otimizado (IECA/BRA), imunossupressão selecionada e critérios de progressão renal",icon:"📋",
-    resumo:"Capítulo dedicado à nefropatia por IgA (IgAN) na diretriz KDIGO de Doenças Glomerulares de 2021. Estabelece como base absoluta do manejo a terapia de suporte otimizada por ≥ 3 meses: controle de PA (alvo < 120 mmHg sistólica), bloqueio de SRAA em dose máxima tolerada e restrição de sódio. Para pacientes com proteinúria persistente > 1 g/dia apesar do suporte otimizado, orienta avaliar risco de progressão (usando a ferramenta de previsão IIgANN) e discutir corticoterapia se a TFGe for ≥ 30, alertando para os riscos infecciosos graves identificados no TESTING.",
-    conclusao:"A diretriz IgAN 2021 colocou o suporte conservador otimizado de 3 meses como pré-requisito indispensável antes de qualquer consideração de imunossupressão, que deve ser reservada para alto risco progressivo e discutida individualmente.",
-    curiosidade:"A ferramenta de predição International IgAN Prediction Tool (IIgANN) integra variáveis clínicas tradicionais (TFGe, proteinúria, PA basal) com o score histopatológico MEST-C da classificação de Oxford (Hipercelularidade Mesangial, Endovascular, Esclerose Segmentar, Atrofia Tubular e Crescentes) para calcular o risco de declínio de 50% da TFGe em 5 anos."
-  },
   tamm_horsfall:{
     label:"Uromodulina (Tamm-Horsfall) — Biomarcador Tubular",
     url:"https://jasn.asnjournals.org/",
@@ -3201,18 +3203,18 @@ canvas_program:{
     curiosidade:"A diretriz enfatiza que testes diagnósticos para doença celíaca devem ser interpretados considerando se o paciente já iniciou dieta sem glúten."
   },
   moeller_plosone_2014:{
-    label:"Lack of Serologic Evidence to Link IgA Nephropathy with Celiac Disease or Immune Reactivity to Gluten",
+    label:"Moeller et al. — Sorologia celíaca e glúten na nefropatia por IgA (2014)",
     url:"https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0094677",
-    journal:"PLOS ONE",
+    journal:"PLOS ONE. 2014;9(4):e94677",
     ano:2014,
     tipo:"Estudo caso-controle",
-    badge:"COHORT",
-    badgeColor:"#f59e0b",
-    impacto:"Ajuda a evitar extrapolação indevida sobre glúten e NIgA.",
+    badge:"CASE_CONTROL",
+    badgeColor:"#0ea5e9",
+    impacto:"Sorologia em caso-controle não justifica prescrição universal de dieta sem glúten",
     icon:"🔬",
-    resumo:"Estudo caso-controle que avaliou marcadores sorológicos relacionados à doença celíaca e reatividade imune ao glúten em pacientes com nefropatia por IgA. Os dados não demonstraram evidência sorológica consistente de ligação entre NIgA e doença celíaca ou reatividade imune ao glúten. Por desenho observacional, não avalia intervenção dietética nem desfechos renais longitudinais.",
-    conclusao:"A associação entre glúten, doença celíaca e NIgA não deve ser convertida em recomendação terapêutica universal.",
-    curiosidade:"O estudo é útil pedagogicamente porque separa plausibilidade imunológica de evidência clínica acionável."
+    resumo:"Estudo caso-controle com 99 pessoas com nefropatia por imunoglobulina A (IgA), 96 controles sem doença e 30 participantes com doença celíaca confirmada por biópsia como controles adicionais. Comparou marcadores sorológicos de reatividade ao glúten e doença celíaca. Não encontrou aumento significativo dos marcadores celíacos específicos ou da reatividade à gliadina no grupo com nefropatia por IgA em relação aos controles sem doença. Foi realizado em centro único, com limitações de população e dieta não controlada; não avaliou intervenção dietética nem desfechos renais longitudinais.",
+    conclusao:"Os resultados não sustentam transformar uma hipótese imunológica em recomendação universal de dieta sem glúten. Também não excluem que doença celíaca e nefropatia por IgA coexistam em uma pessoa.",
+    curiosidade:"O desenho compara casos e controles por seus marcadores; não é uma coorte longitudinal nem um ensaio de tratamento dietético."
   },
   meropenem_anvisa:{
     label:"Meropeném — Bula Profissional (ANVISA, Fresenius Kabi Brasil)",
@@ -3747,11 +3749,15 @@ canvas_program:{
     label:"ISPD — Diálise Peritoneal na LRA (Atualização 2020)",
     url:"https://doi.org/10.1177/0896860820970834",
     journal:"Perit Dial Int. 2021;41(1):15-31",
-    ano:2021,tipo:"Diretriz internacional",badge:"GUIDELINE",badgeColor:"#6366f1",
-    impacto:"Seleção, acesso, prescrição e monitorização da diálise peritoneal em adultos com LRA",icon:"📋",
-    resumo:"A ISPD considera a diálise peritoneal modalidade adequada para LRA em diferentes cenários. Cita evidência de baixa certeza de sobrevida equivalente entre DP automatizada tidal de 25 L/dia e hemodiafiltração venovenosa contínua de 23 mL/kg/h e orienta ajustar ciclos e glicose à urgência metabólica e ao balanço volêmico.",
-    conclusao:"DP pode oferecer tratamento efetivo da LRA quando paciente, acesso, prescrição e monitorização são adequados; isso não estabelece superioridade universal sobre CRRT nem elimina contraindicações abdominais ou limitações de depuração rápida.",
-    curiosidade:"A diretriz reduziu o alvo semanal de Kt/V para 2,2 porque doses maiores não mostraram vantagem e aumentam consumo de solução e carga de glicose."
+    ano:2021,
+    tipo:"Diretriz internacional",
+    badge:"GUIDELINE",
+    badgeColor:"#6366f1",
+    impacto:"Seleção, acesso, prescrição e monitorização da diálise peritoneal em adultos com LRA",
+    icon:"📋",
+    resumo:"A International Society for Peritoneal Dialysis (ISPD) considera a diálise peritoneal (DP) uma opção para lesão renal aguda (LRA) em diferentes cenários. A diretriz discute evidência de baixa certeza de um ensaio que comparou DP automatizada tidal, com drenagem parcial dos ciclos e 25 L/dia, à hemodiafiltração venovenosa contínua com efluente de 23 mL/kg/h. As populações, prescrições e limitações dos estudos exigem cautela na extrapolação. Acesso, dose e monitorização devem acompanhar as necessidades metabólicas e o balanço de volume.",
+    conclusao:"A diálise peritoneal pode tratar a lesão renal aguda quando seleção clínica, acesso, prescrição e monitorização são apropriados. A comparação com terapia renal substitutiva contínua exige considerar contraindicações abdominais, urgência de depuração e recursos locais; a escolha é individualizada.",
+    curiosidade:"Kt/V é um índice de depuração de ureia ajustado à água corporal. A seção 4.1 descreve 3,5 por semana em pacientes críticos e admite que doses menores, como 2,2, podem ser suficientes conforme o contexto. Os estudos de intensidade têm protocolos diferentes e limitações de poder estatístico; a dose deve acompanhar a resposta metabólica e a remoção de volume."
   },
   era_calciphylaxis_2025:{
     label:"ERA CKD-MBD — Calcifilaxia (2025)",
@@ -4079,4 +4085,60 @@ canvas_program:{
   gohil_imel_fgf23_phosphate_2019: {"label":"Gohil & Imel — FGF23 e regulação de fosfato (2019)","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC7040960/","journal":"Pediatr Endocrinol Rev. 2019;17(1):17–34","ano":2019,"tipo":"Revisão narrativa fisiológica e clínica","badge":"REVIEW","badgeColor":"#8b5cf6","impacto":"Hormônios regulam a reabsorção renal de fosfato e a ativação da vitamina D","icon":"🔬","resumo":"Revisão sobre a biologia do fator de crescimento de fibroblastos 23 (FGF23) e doenças de perda renal de fosfato. Descreve menor expressão apical dos cotransportadores sódio-fosfato NaPi-IIa/IIc com FGF23 e paratormônio (PTH), reduzindo reabsorção proximal de fosfato. FGF23 reduz CYP27B1/1α-hidroxilase e aumenta CYP24A1/24-hidroxilase, diminuindo calcitriol. A interação entre PTH, FGF23, cálcio e vitamina D é complexa; experimentos e estudos humanos não sustentam uma negação universal de regulação PTH–FGF23. Usada como referência de mecanismo básico, conferida contra trabalhos experimentais originais; não como diretriz terapêutica da doença renal crônica (DRC).","conclusao":"Sustenta os mecanismos renais de fosfato e vitamina D; não demonstra benefício clínico de manipular FGF23 em pessoas com DRC.","curiosidade":"A revisão distingue evidência experimental de resultados humanos, que podem variar conforme o tempo de exposição ao PTH."},
   kdigo_ckd_mbd_2009: {"label":"KDIGO CKD-MBD 2009 — documento-base","url":"https://kdigo.org/wp-content/uploads/2017/02/KDIGO-2009-CKD-MBD-Guideline-English.pdf","journal":"Kidney Int. 2009;76(Suppl113):S1–S130","ano":2009,"tipo":"Diretriz internacional — documento-base histórico","badge":"GUIDELINE","badgeColor":"#6366f1","impacto":"Histologia e mecanismos do distúrbio mineral e ósseo na doença renal crônica; condutas seguem a atualização de 2017","icon":"📋","resumo":"Documento-base KDIGO de distúrbio mineral e ósseo na doença renal crônica (DMO-DRC), complementado e seletivamente atualizado em 2017. Explica a classificação da osteodistrofia por turnover, mineralização e volume: osteomalácia envolve osteoide aumentado e atraso de mineralização; doença adinâmica tem formação muito baixa sem esse padrão. Descreve a transformação osteogênica de células musculares lisas na calcificação vascular. Neste acervo, é usado para esses fundamentos histológicos e fisiopatológicos. Recomendações terapêuticas devem ser lidas junto à atualização de 2017, não reaplicadas como se não tivessem sido revistas.","conclusao":"Sustenta a interpretação histológica e os mecanismos básicos; a atualização de 2017 orienta as recomendações clínicas atuais.","curiosidade":""},
   cruzado_post_tx_parathyroidectomy_2016: {"label":"Cruzado et al. — Paratireoidectomia versus cinacalcete após transplante (2016)","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC4978046/","journal":"J Am Soc Nephrol. 2016;27(8):2487–2494","ano":2016,"tipo":"Ensaio clínico randomizado","badge":"RCT","badgeColor":"#10b981","impacto":"Cirurgia controlou melhor a hipercalcemia em pequeno ensaio pós-transplante","icon":"🔬","resumo":"Ensaio aberto, multicêntrico e randomizado com 30 receptores de transplante há pelo menos 6 meses, hipercalcemia, paratormônio (PTH) elevado e taxa de filtração glomerular estimada (TFGe) >30 mL/min/1,73 m². Comparou cinacalcete (n=15) com paratireoidectomia subtotal (n=15). O desfecho primário foi normocalcemia em 12 meses: 10/15 versus 15/15 (P=0,04), favorável à cirurgia. Houve maior redução de PTH e aumento de densidade mineral no colo femoral no grupo cirúrgico. Hipocalcemia foi evento frequente após cirurgia; intolerância digestiva, com cinacalcete. O tamanho e o seguimento não permitem concluir benefício sobre fratura, mortalidade ou sobrevida do enxerto.","conclusao":"Sustenta considerar avaliação cirúrgica em hiperparatireoidismo hipercalcêmico persistente após transplante, com decisão individual e planejamento de hipocalcemia pós-operatória.","curiosidade":""},
+  rodrigues_haas_reich_igan_2017:{
+    label:"Rodrigues, Haas e Reich — Fundamentos da nefropatia por IgA (2017)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC5383386/",
+    journal:"Clin J Am Soc Nephrol. 2017;12(4):677–686",
+    ano:2017,
+    tipo:"Revisão clínica e fisiopatológica",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Relaciona apresentação clínica, imunocomplexos e lesões histológicas na nefropatia por IgA",
+    icon:"🔬",
+    resumo:"Revisão da nefropatia por imunoglobulina A (IgA). Descreve o modelo em que a IgA da subclasse 1 (IgA1) deficiente em galactose e autoanticorpos formam imunocomplexos associados à lesão mesangial; a alteração da IgA1 isolada não explica toda a doença. A hematúria visível junto a infecção de mucosa é uma apresentação sugestiva. A classificação de Oxford acrescenta informação prognóstica: atrofia tubular e fibrose intersticial em 26–50% do córtex correspondem a T1, e acima de 50%, a T2. A histologia deve ser integrada à função renal, proteinúria e evolução clínica.",
+    conclusao:"Usada neste acervo para fundamentos de apresentação, patologia e mecanismo. Diagnóstico, estratificação e tratamento atuais devem seguir a diretriz KDIGO 2025 e evidência posterior pertinente.",
+    curiosidade:"A presença de C3 do complemento nos depósitos é compatível com a participação do complemento na doença e não equivale, sozinha, a glomerulopatia C3."
+  },
+  barbour_igan_prediction_2019:{
+    label:"Barbour et al. — International IgAN Prediction Tool (2019)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC6583088/",
+    journal:"JAMA Intern Med. 2019;179(7):942–952",
+    ano:2019,
+    tipo:"Derivação e validação em coortes longitudinais",
+    badge:"COHORT",
+    badgeColor:"#f59e0b",
+    impacto:"Combinação de dados clínicos e histológicos estima progressão; não prevê resposta a uma terapia",
+    icon:"🔬",
+    resumo:"Estudo com 3927 adultos com nefropatia por imunoglobulina A (IgA) primária (idiopática) confirmada por biópsia: 2781 na derivação e 1146 na validação externa. Estimou o risco de queda permanente de 50% da taxa de filtração glomerular estimada (TFGe) ou falência renal. Os modelos completos combinaram função renal, pressão, proteinúria, idade, medicações e os componentes histológicos de hipercelularidade mesangial, hipercelularidade endocapilar, esclerose segmentar e atrofia/fibrose (MEST), com versões com ou sem raça/etnia. O componente de crescentes não integrou esses modelos originais.",
+    conclusao:"A ferramenta auxilia a conversa sobre prognóstico após diagnóstico histológico. Não é exame diagnóstico nem teste de resposta à imunossupressão e não substitui reavaliação ao longo do tempo.",
+    curiosidade:"O modelo original na biópsia usou MEST. O laudo patológico atual inclui também crescentes (MEST-C); registrar uma lesão no laudo não significa que ela integre automaticamente uma equação de risco."
+  },
+  vallon_sglt2_renoprotection_2022:{
+    label:"Vallon — mecanismos renoprotetores dos inibidores de SGLT2 (2022)",
+    url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC9558099/",
+    journal:"Heart Fail Clin. 2022;18(4):539–549",
+    ano:2022,
+    tipo:"Revisão fisiológica narrativa",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Relaciona transporte proximal, feedback tubuloglomerular e pressão intraglomerular",
+    icon:"🔬",
+    resumo:"Revisão narrativa dos mecanismos de nefroproteção dos inibidores do cotransportador sódio-glicose 2 (SGLT2), integrando estudos experimentais e humanos. Menor reabsorção proximal aumenta a entrega de cloreto de sódio à mácula densa; o feedback tubuloglomerular contribui para reduzir a pressão intraglomerular. O padrão clínico pode incluir queda inicial reversível da taxa de filtração glomerular (TFG), seguida de preservação de função em longo prazo. A síntese fisiológica foi necessária porque ensaios de desfechos não medem diretamente cada etapa desse mecanismo.",
+    conclusao:"Explica uma resposta hemodinâmica compatível com a nefroproteção, sem supor dano estrutural a partir de toda queda inicial de filtração. Não prova que o mesmo mecanismo explique isoladamente o benefício em cada pessoa com nefropatia por IgA.",
+    curiosidade:"Experimentos por micropunção sustentam a participação do feedback e de respostas pré e pós-glomerulares. Muitos mecanismos continuam em investigação; dados animais não são ensaios clínicos de eficácia na IgA."
+  },
+  eudial_hdf_2025:{
+    label:"Battaglia Y et al. — Consenso EuDial sobre hemodiafiltração (2025)",
+    url:"https://academic.oup.com/ndt/article/40/8/1590/8003757",
+    journal:"Nephrol Dial Transplant 2025;40(8):1590–1614",
+    ano:2025,
+    tipo:"Consenso de Especialistas",
+    badge:"CONSENSUS",
+    badgeColor:"#6366f1",
+    impacto:"A hemodiafiltração combina difusão e convecção para ampliar a depuração de moléculas médias",
+    icon:"📋",
+    resumo:"Consenso do grupo EuDial da Associação Renal Europeia, elaborado por revisão de ensaios randomizados e método mini-Delphi, sobre hemodiafiltração (HDF) versus hemodiálise de alto fluxo. A HDF combina difusão e convecção: o fluxo de água através da membrana carrega solutos, e o volume removido além da perda de peso desejada é reposto por solução estéril e apirogênica. A técnica aumenta a depuração de moléculas médias; isso não garante menor concentração sérica pré-diálise.",
+    conclusao:"Há sinal de benefício de sobrevida com alta convecção em populações selecionadas, com limitações de generalização. O consenso não define um padrão universal de cuidado.",
+    curiosidade:"Volume convectivo total e volume de substituição não são sinônimos: a retirada líquida para controle de peso também integra a convecção."
+  },
 };

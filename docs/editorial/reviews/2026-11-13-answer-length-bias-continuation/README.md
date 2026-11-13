@@ -1,0 +1,25 @@
+# Continuação médica — pacote restrito de 42 questões
+
+Este pacote conclui os candidatos que já estavam em andamento. Contém 42 reescritas liberadas por revisão independente, com os objetos exatos, evidências declaradas, classificações, contratos, gates e registros de aplicação na autoria isolada. Não é uma publicação e não atribui número de versão.
+
+O ponto de entrada é **bounded-42-final-inventory-R2.json**. O payload de integração é **bounded-42-approved-overlay-R2.json**. Os hashes desses arquivos constam em artifact-integrity.json. R1 foi uma prévia descartada antes da entrega: apenas o resumo de métricas ficou vazio por diferença de schema; nenhum candidato, card, gate ou aplicação foi alterado. R2 corrige esse resumo.
+
+Integre apenas os 42 objetos e as 12 operações de referência do overlay, sobre a base real publicada que já contém os 107 objetos médicos anteriores. Os 107 foram comparados ao snapshot imutável e permanecem idênticos. O checkout de autoria ainda parte da versão 17.08 e contém dois cards antigos excluídos do overlay: dcor_trial e finerenone_2025. Copiar data/refs.js inteiro restauraria indevidamente esses cards.
+
+Há sete atualizações de cards, quatro novos cards e a aposentadoria corrente de kdigo_igan_2021. A aposentadoria tem gate operacional próprio e exige preservação histórica; seu campo de publicação BLOQUEADA refere-se à republicação do card antigo. Não religar referências inadequadas para evitar um alerta de órfão. Os inventários finais não mostram referências desconhecidas nem perda de último consumidor corrente.
+
+Antes da publicação, arquive as versões realmente publicadas anteriores de 43 questões nos quatro perfis, com apresentações e cards correspondentes, preservando todo o histórico existente. A questão 5530b59c exige histórico apenas por alteração do card Moeller: sua questão não foi reescrita, continua intacta e não está liberada para a reescrita proposta. Os outros 42 registros correspondem às questões alteradas. Não copie o catálogo ou o histórico antigo da autoria.
+
+Os sete itens retidos estão listados no inventário e continuam intactos; não foram contabilizados como corrigidos. Onze questões que tinham apenas originais ou pesquisa inicial foram suspensas sem candidatos. O par fúngico de DP permanece em triagem, sem retirada ou reescrita autorizada neste lote. Não há candidato restante aguardando gate entre as 42 concluídas.
+
+Os arquivos A1 históricos citados por gates portáteis A2 são provas de origem e preservam caminhos absolutos antigos. Os vínculos ativos dos novos gates portáteis usam basenames e hashes. O inventário HD inclui absolutePath apenas como conveniência histórica. Nenhum desses campos significa que uma fonte não aberta foi lida. package-path-provenance.json lista os caminhos de origem encontrados; os bytes assinados não foram reescritos para alterar caminhos.
+
+Trinta e nove questões estão VERIFICADAS/NENHUMA/LIBERADA. Três (4decf9f9, 9fadb7da e 68091841) estão PARCIALMENTE VERIFICADAS/NÃO DECISIVA/LIBERADA: os fatos decisivos foram conferidos e os limites bibliográficos estão explicitados nos gates. Não se converteu acesso parcial em alegação de leitura integral.
+
+Todo card foi revisado como card completo e não recebe NQ Editorial Score de questão. As variantes de schema dos gates são intencionais: score numérico ou score.total ou NQScore.total; cards em cards ou items; requiredCardGate em objeto; eliminatórios HD em dez registros com triggered=false. A aprovação exige a combinação válida entre veredito, evidência, pendência e publicação, além dos hashes exatos.
+
+Na integração Git, preserve os bytes dos documentos deste diretório, com regra limitada equivalente à usada no primeiro pacote: docs/editorial/reviews/2026-11-13-answer-length-bias-continuation/** -text -whitespace. Os hashes canônicos dos objetos são a autoridade clínica; hashes raw dos arquivos de autoria documentam a origem e podem diferir da normalização de linhas do Git. refs-eol-technical-normalization-after136.json documenta uma correção estritamente técnica de uma quebra de linha duplicada, sem mudança nos objetos.
+
+Verificação realizada: 42 hashes de candidatos e bases, 12 operações de cards com gates, 107 objetos anteriores preservados, demais questões intactas, índices/qids/gabaritos preservados, inventários de consumidores e sete retidos intactos. Node syntax e git diff --check passaram. Não foi executada CI nem teste visual deste lote por este revisor; esses passos pertencem à integração.
+
+No subconjunto de 42, a correta era única mais longa em 40 e agora em 11. A heurística de escolher a mais longa, com empates, caiu de 95,24% para 27,98%; oito corretas ficaram únicas mais curtas. Isso é uma medição, não uma meta artificial de redação. A medição global de 741 passou de 598 para 490 corretas únicas mais longas e de 81,47% para 67,44% na heurística. **O viés global permanece aberto.** A baseline original foi preservada; não se deve apresentar 149 reescritas como revisão integral das 741.

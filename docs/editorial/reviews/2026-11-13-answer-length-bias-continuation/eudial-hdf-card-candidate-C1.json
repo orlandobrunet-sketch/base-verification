@@ -1,0 +1,266 @@
+{
+  "schema": 1,
+  "status": "DRAFT_BLOCKED",
+  "role": "AUTOR",
+  "publication": "BLOQUEADA",
+  "reason": "Novo card necessita gate independente integral próprio antes de aplicação.",
+  "cardId": "eudial_hdf_2025",
+  "originalCard": null,
+  "candidateCard": {
+    "label": "Battaglia Y et al. — Consenso EuDial sobre hemodiafiltração (2025)",
+    "url": "https://academic.oup.com/ndt/article/40/8/1590/8003757",
+    "journal": "Nephrol Dial Transplant 2025;40(8):1590–1614",
+    "ano": 2025,
+    "tipo": "Consenso de Especialistas",
+    "badge": "CONSENSO",
+    "badgeColor": "#60a5fa",
+    "impacto": "A hemodiafiltração combina difusão e convecção para ampliar a depuração de moléculas médias",
+    "icon": "⚖️",
+    "resumo": "Consenso do grupo EuDial da Associação Renal Europeia, com revisão de ensaios randomizados sobre hemodiafiltração (HDF) versus hemodiálise de alto fluxo. A HDF combina difusão e convecção: o fluxo de água através da membrana carrega solutos, e o volume removido além da perda de peso desejada é reposto por solução estéril e apirogênica. A técnica aumenta a depuração de moléculas médias; isso não garante menor concentração sérica pré-diálise.",
+    "conclusao": "Há sinal de benefício de sobrevida com alta convecção em populações selecionadas, com limitações de generalização. O consenso não define um padrão universal de cuidado.",
+    "curiosidade": "Volume convectivo total e volume de substituição não são sinônimos: a retirada líquida para controle de peso também integra a convecção."
+  },
+  "candidateCardHash": "6bd985c1cad11610944088e4424f390615aa5a085ff27737aebced24f9b50a3e",
+  "candidateFile": "hd-hdf-convince-candidates-A1.json",
+  "candidateFileSHA256": "dab8cc477ba17b9cbcc9139fdfd582d0e71b2bb60fe904ebf378e52bad32ec7c",
+  "currentConsumers": [],
+  "plannedConsumers": [
+    {
+      "qid": "cb6c4aae",
+      "candidateHash": "01dcacabe9df7add4555cd8cbe41b7faa5088d51aea788f6f2963928fb4294fb",
+      "candidate": {
+        "t": "Hemodiafiltração — Difusão e Convecção",
+        "qid": "cb6c4aae",
+        "q": "Qual característica da hemodiafiltração online amplia a remoção de moléculas médias em relação à hemodiálise convencional de alto fluxo?",
+        "refs": [
+          "eudial_hdf_2025"
+        ],
+        "opts": [
+          "Convecção em grande volume associada à difusão, com reposição do ultrafiltrado excedente",
+          "Maior fluxo de dialisato para aumentar a remoção por gradiente de concentração",
+          "Maior ultrafiltração líquida do paciente para intensificar a perda de peso por sessão",
+          "Adsorção de moléculas médias à membrana, com retenção dos solutos no filtro"
+        ],
+        "ans": 0,
+        "exp": "Na hemodiafiltração online, a convecção em grande volume se associa à difusão. O fluxo de água através da membrana transporta solutos por arraste de solvente, ampliando a depuração de moléculas médias. O ultrafiltrado que excede a perda de peso desejada é reposto por solução estéril e apirogênica; alto volume convectivo não significa retirar esse volume líquido do paciente. A hemodiálise de alto fluxo também pode apresentar convecção interna, mas aumentar o fluxo de dialisato atua principalmente no transporte difusivo. Adsorção pode contribuir em algumas membranas, mas não é o mecanismo que define a hemodiafiltração. Maior depuração de uma molécula não garante, por si só, menor concentração sérica pré-diálise.",
+        "diff": "easy",
+        "cat": "dialise"
+      }
+    }
+  ],
+  "replacedReferenceInventories": {
+    "daugirdas_handbook_of_dialysis": [
+      {
+        "qid": "cb6c4aae",
+        "currentHash": "ba7e25f2918874c3c196652f6199779d1a371de313333f7d1a017d29e380fcbd",
+        "currentQuestion": {
+          "t": "Hemodiafiltração — Difusão e Convecção",
+          "qid": "cb6c4aae",
+          "q": "Qual característica da hemodiafiltração online amplia a remoção de moléculas médias em relação à hemodiálise convencional de alto fluxo?",
+          "refs": [
+            "daugirdas_handbook_of_dialysis",
+            "convince_study"
+          ],
+          "opts": [
+            "Associação da difusão à convecção, com arraste de solutos pelo fluxo de água através da membrana e reposição de volume por fluido estéril",
+            "Uso exclusivo de difusão, sem ultrafiltração além da necessária para controlar o peso",
+            "Osmose reversa aplicada diretamente ao sangue para retirar toxinas urêmicas",
+            "Adsorção inespecífica como único mecanismo de depuração, sem transporte de água pela membrana"
+          ],
+          "ans": 0,
+          "exp": "A hemodiafiltração mantém a difusão, eficiente para pequenos solutos, e acrescenta convecção em grande volume. Na convecção, o fluxo transmembrana de água carrega solutos por arraste de solvente, favorecendo a depuração de moléculas médias; o volume removido além da perda de peso desejada é reposto com fluido de substituição estéril. Osmose reversa pertence ao tratamento da água, e adsorção não é o mecanismo definidor da HDF.",
+          "diff": "medium",
+          "cat": "dialise"
+        },
+        "plannedQuestion": {
+          "t": "Hemodiafiltração — Difusão e Convecção",
+          "qid": "cb6c4aae",
+          "q": "Qual característica da hemodiafiltração online amplia a remoção de moléculas médias em relação à hemodiálise convencional de alto fluxo?",
+          "refs": [
+            "eudial_hdf_2025"
+          ],
+          "opts": [
+            "Convecção em grande volume associada à difusão, com reposição do ultrafiltrado excedente",
+            "Maior fluxo de dialisato para aumentar a remoção por gradiente de concentração",
+            "Maior ultrafiltração líquida do paciente para intensificar a perda de peso por sessão",
+            "Adsorção de moléculas médias à membrana, com retenção dos solutos no filtro"
+          ],
+          "ans": 0,
+          "exp": "Na hemodiafiltração online, a convecção em grande volume se associa à difusão. O fluxo de água através da membrana transporta solutos por arraste de solvente, ampliando a depuração de moléculas médias. O ultrafiltrado que excede a perda de peso desejada é reposto por solução estéril e apirogênica; alto volume convectivo não significa retirar esse volume líquido do paciente. A hemodiálise de alto fluxo também pode apresentar convecção interna, mas aumentar o fluxo de dialisato atua principalmente no transporte difusivo. Adsorção pode contribuir em algumas membranas, mas não é o mecanismo que define a hemodiafiltração. Maior depuração de uma molécula não garante, por si só, menor concentração sérica pré-diálise.",
+          "diff": "easy",
+          "cat": "dialise"
+        },
+        "plannedHash": "01dcacabe9df7add4555cd8cbe41b7faa5088d51aea788f6f2963928fb4294fb"
+      },
+      {
+        "qid": "a12cb84d",
+        "currentHash": "d20b78ab99591ae9344c070a0c8bf465a61594f7205a1993b14142fb9cba7d6c",
+        "currentQuestion": {
+          "t": "Anticoagulação do Circuito na Hemodiálise",
+          "qid": "a12cb84d",
+          "q": "Qual princípio orienta a anticoagulação com heparina não fracionada durante a sessão de hemodiálise?",
+          "opts": [
+            "A heparina de baixo peso molecular é obrigatória e superior à não fracionada em todos os pacientes.",
+            "A anticoagulação é dispensável sempre que a punção é feita por fístula arteriovenosa.",
+            "A anticoagulação visa manter a patência do circuito extracorpóreo; a dose é ajustada ao risco de coagulação do sistema e de sangramento, podendo ser reduzida ou omitida (diálise sem heparina, com lavagens de salina) no alto risco hemorrágico.",
+            "A dose de heparina é fixa e independe do risco hemorrágico do paciente."
+          ],
+          "ans": 2,
+          "exp": "O objetivo da anticoagulação na hemodiálise é impedir a coagulação do sangue no circuito extracorpóreo (linhas e dialisador), e não anticoagular sistemicamente o paciente. A intensidade é individualizada conforme a tendência de coagulação do sistema e o risco de sangramento: em pacientes de alto risco hemorrágico (pós-operatório, sangramento ativo), pode-se reduzir a dose, realizar diálise sem heparina com lavagens periódicas do circuito com solução salina, ou usar anticoagulação regional com citrato. Esquemas com heparina não fracionada empregam um bolus inicial seguido de infusão ajustada pelo tempo de coagulação, mas as doses variam conforme o protocolo local e não devem ser memorizadas como valores universais.",
+          "diff": "medium",
+          "cat": "farmacologia",
+          "refs": [
+            "daugirdas_handbook_of_dialysis"
+          ]
+        },
+        "plannedQuestion": {
+          "t": "Anticoagulação do Circuito na Hemodiálise",
+          "qid": "a12cb84d",
+          "q": "Qual princípio orienta a anticoagulação com heparina não fracionada durante a sessão de hemodiálise?",
+          "opts": [
+            "A heparina de baixo peso molecular é obrigatória e superior à não fracionada em todos os pacientes.",
+            "A anticoagulação é dispensável sempre que a punção é feita por fístula arteriovenosa.",
+            "A anticoagulação visa manter a patência do circuito extracorpóreo; a dose é ajustada ao risco de coagulação do sistema e de sangramento, podendo ser reduzida ou omitida (diálise sem heparina, com lavagens de salina) no alto risco hemorrágico.",
+            "A dose de heparina é fixa e independe do risco hemorrágico do paciente."
+          ],
+          "ans": 2,
+          "exp": "O objetivo da anticoagulação na hemodiálise é impedir a coagulação do sangue no circuito extracorpóreo (linhas e dialisador), e não anticoagular sistemicamente o paciente. A intensidade é individualizada conforme a tendência de coagulação do sistema e o risco de sangramento: em pacientes de alto risco hemorrágico (pós-operatório, sangramento ativo), pode-se reduzir a dose, realizar diálise sem heparina com lavagens periódicas do circuito com solução salina, ou usar anticoagulação regional com citrato. Esquemas com heparina não fracionada empregam um bolus inicial seguido de infusão ajustada pelo tempo de coagulação, mas as doses variam conforme o protocolo local e não devem ser memorizadas como valores universais.",
+          "diff": "medium",
+          "cat": "farmacologia",
+          "refs": [
+            "daugirdas_handbook_of_dialysis"
+          ]
+        },
+        "plannedHash": "d20b78ab99591ae9344c070a0c8bf465a61594f7205a1993b14142fb9cba7d6c"
+      }
+    ],
+    "convince_study": [
+      {
+        "qid": "66b811c3",
+        "currentHash": "58bf596c382934490facb538448d5a9db5f5a705ccc3f34bd54fd81ee0c00747",
+        "currentQuestion": {
+          "t": "CONVINCE — HDF de Alta Dose e Mortalidade",
+          "qid": "66b811c3",
+          "q": "No CONVINCE, 1.360 pacientes em hemodiálise de alto fluxo considerados capazes de atingir volume convectivo de pelo menos 23 L por sessão foram randomizados para manter hemodiálise ou receber hemodiafiltração de alta dose. Qual foi o resultado primário?",
+          "refs": [
+            "convince_study"
+          ],
+          "opts": [
+            "Menor risco de morte por qualquer causa com hemodiafiltração: HR 0,77 (IC95% 0,65–0,93)",
+            "Ausência de diferença na mortalidade por qualquer causa entre as modalidades",
+            "Redução comprovada apenas de infecção do acesso vascular, sem diferença de mortalidade",
+            "Superioridade universal da hemodiafiltração em qualquer paciente, independentemente da possibilidade de atingir alto volume convectivo"
+          ],
+          "ans": 0,
+          "exp": "No CONVINCE, ocorreram 118 mortes no grupo hemodiafiltração e 148 no grupo hemodiálise de alto fluxo durante mediana de 30 meses, correspondendo a HR 0,77 para morte por qualquer causa. A leitura exige respeitar a população: os participantes eram candidatos a atingir pelo menos 23 L de volume convectivo por sessão e podiam completar avaliações do estudo, o que selecionou uma coorte relativamente apta e com acesso adequado. O ensaio sustenta benefício nessa estratégia e população, mas não prova superioridade universal quando o alto volume não é viável.",
+          "diff": "hard",
+          "cat": "dialise"
+        },
+        "plannedQuestion": {
+          "t": "CONVINCE — HDF de Alta Dose e Mortalidade",
+          "qid": "66b811c3",
+          "q": "No CONVINCE, 1.360 pacientes em hemodiálise de alto fluxo considerados capazes de atingir volume convectivo de pelo menos 23 L por sessão foram randomizados para manter hemodiálise ou receber hemodiafiltração de alta dose. Qual foi o resultado primário?",
+          "refs": [
+            "convince_study"
+          ],
+          "opts": [
+            "Menor risco de morte por qualquer causa com hemodiafiltração de alta dose",
+            "Maior risco de morte por qualquer causa com hemodiafiltração de alta dose",
+            "Risco semelhante de morte por qualquer causa, com redução de eventos cardiovasculares",
+            "Risco semelhante de morte por qualquer causa, com menos internações por infecção"
+          ],
+          "ans": 0,
+          "exp": "No CONVINCE, ocorreram 118 mortes no grupo de hemodiafiltração e 148 no de hemodiálise de alto fluxo, durante mediana de 30 meses. A razão de riscos instantâneos (hazard ratio) para morte por qualquer causa foi 0,77, com intervalo de confiança de 95% de 0,65 a 0,93. O resultado primário favoreceu a estratégia de hemodiafiltração de alta dose; não se limitou a eventos cardiovasculares ou internações por infecção. Os participantes eram considerados capazes de atingir pelo menos 23 L de convecção por sessão e completar as avaliações do estudo. Isso limita a generalização: o ensaio não prova benefício universal quando não é viável entregar alto volume convectivo.",
+          "diff": "easy",
+          "cat": "dialise"
+        },
+        "plannedHash": "0e60f9c5abe407c258af05e28d95979e636348b120e01fdad2fb36108fcb6444"
+      },
+      {
+        "qid": "cb6c4aae",
+        "currentHash": "ba7e25f2918874c3c196652f6199779d1a371de313333f7d1a017d29e380fcbd",
+        "currentQuestion": {
+          "t": "Hemodiafiltração — Difusão e Convecção",
+          "qid": "cb6c4aae",
+          "q": "Qual característica da hemodiafiltração online amplia a remoção de moléculas médias em relação à hemodiálise convencional de alto fluxo?",
+          "refs": [
+            "daugirdas_handbook_of_dialysis",
+            "convince_study"
+          ],
+          "opts": [
+            "Associação da difusão à convecção, com arraste de solutos pelo fluxo de água através da membrana e reposição de volume por fluido estéril",
+            "Uso exclusivo de difusão, sem ultrafiltração além da necessária para controlar o peso",
+            "Osmose reversa aplicada diretamente ao sangue para retirar toxinas urêmicas",
+            "Adsorção inespecífica como único mecanismo de depuração, sem transporte de água pela membrana"
+          ],
+          "ans": 0,
+          "exp": "A hemodiafiltração mantém a difusão, eficiente para pequenos solutos, e acrescenta convecção em grande volume. Na convecção, o fluxo transmembrana de água carrega solutos por arraste de solvente, favorecendo a depuração de moléculas médias; o volume removido além da perda de peso desejada é reposto com fluido de substituição estéril. Osmose reversa pertence ao tratamento da água, e adsorção não é o mecanismo definidor da HDF.",
+          "diff": "medium",
+          "cat": "dialise"
+        },
+        "plannedQuestion": {
+          "t": "Hemodiafiltração — Difusão e Convecção",
+          "qid": "cb6c4aae",
+          "q": "Qual característica da hemodiafiltração online amplia a remoção de moléculas médias em relação à hemodiálise convencional de alto fluxo?",
+          "refs": [
+            "eudial_hdf_2025"
+          ],
+          "opts": [
+            "Convecção em grande volume associada à difusão, com reposição do ultrafiltrado excedente",
+            "Maior fluxo de dialisato para aumentar a remoção por gradiente de concentração",
+            "Maior ultrafiltração líquida do paciente para intensificar a perda de peso por sessão",
+            "Adsorção de moléculas médias à membrana, com retenção dos solutos no filtro"
+          ],
+          "ans": 0,
+          "exp": "Na hemodiafiltração online, a convecção em grande volume se associa à difusão. O fluxo de água através da membrana transporta solutos por arraste de solvente, ampliando a depuração de moléculas médias. O ultrafiltrado que excede a perda de peso desejada é reposto por solução estéril e apirogênica; alto volume convectivo não significa retirar esse volume líquido do paciente. A hemodiálise de alto fluxo também pode apresentar convecção interna, mas aumentar o fluxo de dialisato atua principalmente no transporte difusivo. Adsorção pode contribuir em algumas membranas, mas não é o mecanismo que define a hemodiafiltração. Maior depuração de uma molécula não garante, por si só, menor concentração sérica pré-diálise.",
+          "diff": "easy",
+          "cat": "dialise"
+        },
+        "plannedHash": "01dcacabe9df7add4555cd8cbe41b7faa5088d51aea788f6f2963928fb4294fb"
+      },
+      {
+        "qid": "0c1d09c3",
+        "currentHash": "f104e2d0be1144985d5894b3bff937088aa56047155f0b6ae4e47ec139cbf6fe",
+        "currentQuestion": {
+          "t": "CONVINCE — O que Significa Volume Convectivo de 23 L",
+          "qid": "0c1d09c3",
+          "q": "No protocolo do CONVINCE, como deve ser interpretado o alvo de pelo menos 23 L por sessão na hemodiafiltração pós-dilucional?",
+          "refs": [
+            "convince_study"
+          ],
+          "opts": [
+            "Como volume convectivo total, soma do fluido de substituição com a ultrafiltração líquida para controle de peso, usado para definir a intervenção de alta dose",
+            "Como volume de substituição isolado, sem incluir a ultrafiltração líquida em nenhuma circunstância",
+            "Como limiar universal já validado para qualquer paciente, mesmo quando acesso e fluxo sanguíneo não permitem alcançá-lo",
+            "Como volume semanal dividido entre três sessões, e não volume de cada sessão"
+          ],
+          "ans": 0,
+          "exp": "No CONVINCE, volume convectivo era o volume total de ultrafiltração: fluido de substituição mais a ultrafiltração líquida correspondente à perda de peso. O alvo da intervenção pós-dilucional foi pelo menos 23 L em cada sessão, e a média atingida foi 25,3 L. Esse número descreve o regime testado e a população considerada capaz de alcançá-lo; não deve ser convertido em um mínimo universal para pacientes nos quais acesso, fluxo sanguíneo ou tolerância limitam a convecção.",
+          "diff": "hard",
+          "cat": "dialise"
+        },
+        "plannedQuestion": {
+          "t": "CONVINCE — O que Significa Volume Convectivo de 23 L",
+          "qid": "0c1d09c3",
+          "q": "No protocolo do CONVINCE, como deve ser interpretado o alvo de pelo menos 23 L por sessão na hemodiafiltração pós-dilucional?",
+          "refs": [
+            "convince_study"
+          ],
+          "opts": [
+            "Soma do volume de substituição e da ultrafiltração líquida para atingir o peso-alvo",
+            "Volume de substituição infundido, excluindo a retirada líquida para controle de peso",
+            "Volume convectivo total padronizado por uma superfície corporal de 1,73 m²",
+            "Volume de substituição menos a ultrafiltração líquida para atingir o peso-alvo"
+          ],
+          "ans": 0,
+          "exp": "No CONVINCE, o volume convectivo era a ultrafiltração total: soma do volume de substituição com a ultrafiltração líquida correspondente à perda de peso. Não era apenas o volume infundido, a diferença entre esses volumes ou um alvo padronizado para 1,73 m². A intervenção pós-dilucional visava pelo menos 23 L por sessão; a média atingida foi 25,3 L. Esse número descreve o regime testado em pessoas consideradas capazes de alcançá-lo. Não constitui um mínimo universal para pacientes nos quais acesso, fluxo sanguíneo ou tolerância limitam a convecção.",
+          "diff": "easy",
+          "cat": "dialise"
+        },
+        "plannedHash": "2a066bfac29ff8692dee65962330fd295d9bd21917a238bcde3286e555ca27a0"
+      }
+    ]
+  },
+  "lastConsumerRemoval": false,
+  "disposition": "Nenhum card herdado é alterado ou apagado. Daugirdas permanece ligado a a12cb84d; CONVINCE permanece ligado aos dois itens próprios do ensaio. A nova ligação sustenta diretamente o mecanismo, não retém artificialmente um card de resultado clínico."
+}

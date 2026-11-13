@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "unitType": "reference_card",
+  "version": "A1",
+  "reviewer": "/root/medical_answer_bias independente da autoria anemia_authoring",
+  "reviewDate": "2026-11-13",
+  "norms": {
+    ".claude/skills/revisar-nefroquest/SKILL.md": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef",
+    ".claude/skills/revisar-nefroquest/references/output-contract.md": "4a20348ac71a07836b4611d574496d97960b27a2bbfdcf1f1ed318396f0edcb8",
+    ".claude/skills/revisar-nefroquest/references/verification-protocol.md": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df",
+    "docs/editorial/annex-c-nefrologia.md": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+  },
+  "candidateFile": "igan-treatment-general-card-proposals-A1.json",
+  "candidateFileHash": "f85ce25fffd4497e40b4afd25fa8edc24c6e94d5dee8709ee523528e8751046f",
+  "id": "moeller_plosone_2014",
+  "candidate": {
+    "label": "Moeller et al. — Sorologia celíaca e glúten na nefropatia por IgA (2014)",
+    "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0094677",
+    "journal": "PLOS ONE. 2014;9(4):e94677",
+    "ano": 2014,
+    "tipo": "Estudo caso-controle",
+    "badge": "CASE_CONTROL",
+    "badgeColor": "#0ea5e9",
+    "impacto": "Sorologia em caso-controle não justifica prescrição universal de dieta sem glúten",
+    "icon": "🔬",
+    "resumo": "Estudo caso-controle com 99 pessoas com nefropatia por imunoglobulina A (IgA), 96 controles sem doença e 30 participantes com doença celíaca confirmada por biópsia como controles adicionais. Comparou marcadores sorológicos de reatividade ao glúten e doença celíaca. Não encontrou aumento significativo dos marcadores celíacos específicos ou da reatividade à gliadina no grupo com nefropatia por IgA em relação aos controles sem doença. Foi realizado em centro único, com limitações de população e dieta não controlada; não avaliou intervenção dietética nem desfechos renais longitudinais.",
+    "conclusao": "Os resultados não sustentam transformar uma hipótese imunológica em recomendação universal de dieta sem glúten. Também não excluem que doença celíaca e nefropatia por IgA coexistam em uma pessoa.",
+    "curiosidade": "O desenho compara casos e controles por seus marcadores; não é uma coorte longitudinal nem um ensaio de tratamento dietético."
+  },
+  "candidateHash": "5355da0a46d1be6bac540bdfd6207184ef862ab775baa1f2929e5bc8304dc34f",
+  "originalHash": "7fac8579d18e73957dd803436fd2705c79a73c2a430cfd75044b6feec79e9d58",
+  "verdict": "aprovada",
+  "confidence": "alta",
+  "evidence": "VERIFICADA",
+  "pending": "NENHUMA",
+  "publication": "LIBERADA",
+  "publicationDerivation": "VERIFICADA/NENHUMA+aprovada→LIBERADA;cardnãoaprovaquestão553.",
+  "nqEditorialScore": null,
+  "nqEditorialScoreApplicability": "NÃOAPLICÁVELàrubricadequestão;cardverificadodeformaintegral.",
+  "currentConsumers": [
+    {
+      "qid": "5530b59c",
+      "hash": "e80317068d6f3eb684e4c03f7d3aafe2b293915e3c23c5aa077399c7947de18c",
+      "refs": [
+        "kdigo_igan_igav_2025",
+        "acg_celiac_2023",
+        "moeller_plosone_2014"
+      ]
+    }
+  ],
+  "plannedConsumers": [],
+  "unchangedConsumers": [
+    {
+      "qid": "5530b59c",
+      "hash": "e80317068d6f3eb684e4c03f7d3aafe2b293915e3c23c5aa077399c7947de18c"
+    }
+  ],
+  "compatibility": "Acorreçãodedesenho/sorologiaéverdadeiraporfonteprimária enãocontradizoobjetooriginal553,quepermaneceinalteradobloqueadoporrevisão clínicadeconduta. Cardreparadocom explicitaausênciadeensaiodietético,nãopromoveeficácianemineficáciauniversal.",
+  "independentSourceVerification": {
+    "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0094677",
+    "doi": "10.1371/journal.pone.0094677",
+    "access": "Artigo primário integral474linhasaberto;Abstract/Methods/Results/Discussion/limitations lidos.99casos,96controles,30celíacos;casocontrolesorológico,semensaio dietéticoou seguimentorenal. Reatividadesnãoaumentadas;IgGantigliadinamenor,nãoafirmarausênciadetodadiferença. Únicocentro,maioria branca,dietanãocontrolada,nãoexcluicoexistênciaindividual."
+  },
+  "eliminators": [],
+  "historyRequirement": "Arquivarcardanterioreversãoanterior553mesmosemreescrita;legadoassets/artigos_nefro.jsoníndice256inventariadomasnãoreescrito,nãoparte de runtimeconformeautoria."
+}

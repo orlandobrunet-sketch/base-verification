@@ -1,0 +1,553 @@
+{
+  "schema": 1,
+  "batch": "IgAN-diagnosis-pathology-prognosis-A3",
+  "createdAt": "2026-11-13T13:36:40.094Z",
+  "candidateFile": "igan-candidates-A3.json",
+  "candidateFileSha256": "083486a48c97390425366845c510dfb4b9941dc3531774119386f4a91092a0ad",
+  "originalFile": "igan-original.json",
+  "originalFileSha256": "6bdc18e799b0d90384537330d4146597b586210d813486f1a07c1d9d6afef640",
+  "sourceVerificationDate": "2026-11-13",
+  "scope": "Seis itens de diagnóstico, patologia e prognóstico; 20 residuais permanecem na fila. 2a595b23 excluído, em gate ANCA independente. O lote não resolve sozinho o viés global.",
+  "sources": {
+    "KDIGO2025": {
+      "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+      "title": "KDIGO2025 IgAN/IgAV Clinical Practice Guideline",
+      "journal": "Kidney Int.2025;108(Suppl4S):S1–S71",
+      "pmid": "40975564",
+      "doi": "10.1016/j.kint.2025.04.004",
+      "access": "PDF oficial aberto pelo web; lidas as seções normativas de diagnóstico, prognóstico e seleção de tratamento (PP1.2.1,1.3.1,1.4.2.3,Figuras1–3). Não se afirma que todas as terapias de2026foram auditadas.",
+      "accessDate": "2026-11-13",
+      "pdfSha256": null,
+      "pdfHashLimitation": "A abertura oficial pelo web funcionou; tentativa independente de obter os bytes porurllib recebeu403, sem criação de arquivo ou hash presumido.",
+      "currentScope": "DiretrizIgAN/IgAV vigente encontrada. ComentáriosKDIGO2026sobre novas terapias não alteram automaticamente os fundamentos diagnósticos aqui usados."
+    },
+    "RODRIGUES2017": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5383386/",
+      "title": "IgA Nephropathy",
+      "authors": "RodriguesJC,HaasM,ReichHN",
+      "journal": "Clin J Am Soc Nephrol.2017;12(4):677–686",
+      "pmid": "28159829",
+      "doi": "10.2215/CJN.07420716",
+      "design": "Revisão narrativa clínica/fisiopatológica",
+      "access": "Texto integral PMC consultado por seções, epidemiologia até discussão final. Acesso inicial comCAPTCHA; a URLnumérica/5383386/abriu o texto. Fundamentos usados, sem reutilizar decisões terapêuticas antigas.",
+      "accessDate": "2026-11-13"
+    },
+    "OXFORD2017": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/28341274/",
+      "title": "Oxford Classification of IgA nephropathy 2016: an update from the IgA Nephropathy Classification Working Group",
+      "authors": "TrimarchiHetal.",
+      "journal": "Kidney Int.2017;91(5):1014–1021",
+      "pmid": "28341274",
+      "doi": "10.1016/j.kint.2017.02.003",
+      "design": "Atualização do grupo de classificação baseada em validações de coortes",
+      "access": "Resumo primário integral por Europe PMC; posteriormente obtida cópia íntegra do artigo publicado (8 páginas) em repositório público. Conferidos identidade/DOI na primeira página, definições na Tabela 3 (p.1018) e discussão sobre limites da seleção terapêutica. Não foram desativadas verificações TLS na cópia anterior inacessível.",
+      "accessDate": "2026-11-13",
+      "fullText": "https://cdn1.redemc.net/campus/wp-content/uploads/2019/04/IgA-KIDNEY-INT-Review.pdf",
+      "pdfSha256": "591a3bdf8881c760342b41b3c8cbb074ad13f639eb9955fefcd97b69d4cf7b1d"
+    },
+    "BARBOUR2019": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6583088/",
+      "title": "Evaluating a New International Risk-Prediction Tool in IgA Nephropathy",
+      "authors": "BarbourSJetal.",
+      "journal": "JAMA Intern Med.2019;179(7):942–952",
+      "pmid": "30980653",
+      "doi": "10.1001/jamainternmed.2019.0600",
+      "design": "Derivação e validação externa de modelo em coortes longitudinais",
+      "access": "ResumoPubMedintegral; textoPMC: Methods/StudyPopulation/Definitions/StatisticalAnalysis eResults/Derivation/Validation. O endpoint e composição do modelo foram conferidos diretamente; não alegada leitura de suplementos.",
+      "accessDate": "2026-11-13"
+    },
+    "SUZUKI2009": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19478457/",
+      "title": "Aberrantly glycosylated IgA1 in IgA nephropathy patients is recognized by IgG antibodies with restricted heterogeneity",
+      "authors": "SuzukiHetal.",
+      "journal": "J Clin Invest.2009;119(6):1668–1677",
+      "pmid": "19478457",
+      "doi": "10.1172/JCI38468",
+      "design": "Estudo mecanístico com célulasBimortalizadas/anticorposrecombinantes e material sérico humano",
+      "access": "Resumo primário integral aberto porEuropePMC. PáginaJCIretornoutimeout ePMC/CAPTCHA; sem alegação de leitura integral. Sustenta reconhecimento antiglicano e formação de complexos, não valida teste clínico substituto de biópsia.",
+      "accessDate": "2026-11-13"
+    },
+    "MAYO_RPS2016": {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4849835/",
+      "title": "Mayo Clinic/Renal Pathology Society Consensus Report on Pathologic Classification, Diagnosis, and Reporting of GN",
+      "authors": "SethiSetal.",
+      "journal": "J Am Soc Nephrol.2016;27(5):1278–1287",
+      "doi": "10.1681/ASN.2015060612",
+      "design": "Consenso de classificação/diagnóstico anatomopatológico",
+      "access": "TextoPMCaberto, seçõesGuidelinesonClassificationofGN,KeyDiseaseSpecificCommentsparaIFeEM, incluindoIgAdominante/codominante,C3 e integração das microscopias. Sem classificação como ensaio de benefício clínico.",
+      "accessDate": "2026-11-13"
+    },
+    "SHI_TESTING_2026": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40627446/",
+      "pmid": "40627446",
+      "doi": "10.1681/ASN.0000000796",
+      "title": "Predictive Value of the Oxford Classification for the Effect of Glucocorticoid Therapy in IgA Nephropathy",
+      "journal": "J Am Soc Nephrol.2026;37(1):150–159",
+      "design": "Subanálise anatomopatológica do ensaio TESTING; 279 participantes chineses com revisão central, de379 participantes chineses.",
+      "access": "Resumo primário PubMed recuperado integralmente no resultado de busca; o texto PMC também foi recuperado com métodos, resultados e discussão. As aberturas diretas de PubMed/PMC retornaram página técnica ou CAPTCHA. Não se afirma leitura por uma abertura direta que falhou.",
+      "relevance": "Há sinais de modificação de resposta, sobretudo esclerose segmentar celular; limites de subgrupos, população e discordância local/central impedem prescrição automática por M1/S1. Não se afirma ausência de toda evidência de resposta histológica."
+    },
+    "NONG_2026": {
+      "url": "https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2026.1873181/full",
+      "doi": "10.3389/fendo.2026.1873181",
+      "title": "Guiding immunotherapy based on the oxford classification activity score in IgA nephropathy",
+      "journal": "Front Endocrinol.2026;17:1873181",
+      "design": "Coorte retrospectiva com pareamento por escore de propensão;2389incluídos antes da seleção e pareamento.",
+      "access": "Artigo primário aberto: resumo, métodos2.1, resultados e limitações da discussão.",
+      "relevance": "Associação deSumMECcom remissão de proteinúria; não ensaio prospectivo randomizado de tratamento atribuído pela histologia."
+    }
+  },
+  "claims": {
+    "DIAG_BIOPSY": {
+      "sources": [
+        "KDIGO2025"
+      ],
+      "location": "KDIGO PP 1.2.1, S15 e S33; Figura 2, S34",
+      "claim": "O diagnóstico exige biópsia. Considerar biópsia em adulto com possibilidade de IgAN e proteinúria ≥0,5 g/d, se não contraindicada; o fenótipo isolado não confirma."
+    },
+    "IGA_SEROLOGY": {
+      "sources": [
+        "KDIGO2025"
+      ],
+      "location": "KDIGO PP 1.2.1, S15/S33",
+      "claim": "Não há biomarcador sérico ou urinário validado para substituir o diagnóstico histológico. IgA sérica normal não exclui IgAN; estudos mecanísticos não mudam essa regra."
+    },
+    "IGA_SECONDARY": {
+      "sources": [
+        "KDIGO2025"
+      ],
+      "location": "KDIGO PP 1.2.1 e Figura 2, S34",
+      "claim": "Após reconhecer o padrão, avaliar causas secundárias e diagnósticos próximos: vasculite por IgA, infecções virais, doença inflamatória intestinal, autoimunidade, cirrose e glomerulonefrite relacionada à infecção com IgA dominante."
+    },
+    "MEST_PROGNOSIS": {
+      "sources": [
+        "KDIGO2025",
+        "RODRIGUES2017",
+        "OXFORD2017"
+      ],
+      "location": "KDIGO PP 1.3.1; Rodrigues, Clinical-Pathologic Correlation; Oxford, resumo",
+      "claim": "A histologia de Oxford acrescenta informação prognóstica aos dados clínicos; não neutraliza função renal, proteinúria, pressão ou evolução. M/E/S/T/C descrevem compartimentos distintos."
+    },
+    "T_EXTENT": {
+      "sources": [
+        "OXFORD2017",
+        "RODRIGUES2017"
+      ],
+      "location": "Oxford 2017 Tabela 3, p.1018; Rodrigues, Clinical-Pathologic Correlation",
+      "claim": "Atrofia tubular/fibrose intersticial em 26–50% da área cortical é T1; acima de 50%, T2. Os limites foram conferidos diretamente na tabela da classificação original e na revisão aberta."
+    },
+    "MEST_NO_AUTO_THERAPY": {
+      "sources": [
+        "KDIGO2025",
+        "SHI_TESTING_2026",
+        "NONG_2026"
+      ],
+      "location": "KDIGO PP 1.4.2.3, S37; Shi, Methods/Results/limitations; Nong, Methods2.1 e Discussion",
+      "claim": "Não há demonstração prospectiva de melhores resultados ao atribuir tratamento apenas pelo MEST-C. Histologia/crescentes devem ser integrados à evolução clínica; nenhum componente isolado seleciona automaticamente terapia.",
+      "limit": "Não se nega associação histológica com resposta: a subanálise TESTING sugere benefício diferencial de lesões específicas, e Nong propõe SumMEC. Nenhum é ensaio prospectivo de alocação terapêutica guiada pelo MEST-C; o limite do item é não usar o laudo sozinho como prescrição."
+    },
+    "PRED_MODEL": {
+      "sources": [
+        "BARBOUR2019",
+        "KDIGO2025"
+      ],
+      "location": "Barbour, Methods/Definitions e Results/Derivation Analysis, Table 1; KDIGO Figura 1, S33",
+      "claim": "O modelo original na biópsia integra dados clínicos e MEST, sem C, para risco de queda permanente de 50% da TFGe ou falência renal. Foram 3927 participantes: 2781 na derivação e 1146 na validação externa.",
+      "sourceDiscrepancy": "A narrativa KDIGO 2025 S33 emprega MEST-C; a Figura 1 e o primário Barbour listam MEST. A afirmação está ancorada no modelo primário, com a divergência explicitamente registrada."
+    },
+    "PRED_LIMIT": {
+      "sources": [
+        "KDIGO2025",
+        "BARBOUR2019"
+      ],
+      "location": "KDIGO PP 1.3.1 e 1.4.2.3; Barbour, Objectives/Methods",
+      "claim": "A ferramenta prognóstica não é diagnóstica nem teste validado de resposta a uma terapia. Não substitui reavaliação dinâmica. Versões na biópsia e pós-biópsia têm momentos definidos de uso."
+    },
+    "SYNPHARYNGITIC": {
+      "sources": [
+        "RODRIGUES2017",
+        "KDIGO2025"
+      ],
+      "location": "Rodrigues, Clinical Manifestations/Less Frequent Manifestations; KDIGO PP 1.2.1",
+      "claim": "Hematúria visível durante ou ao redor de infecção de mucosa é apresentação clássica sugestiva de IgAN; não confirma diagnóstico nem autoriza ignorar proteinúria persistente."
+    },
+    "IGA_IF": {
+      "sources": [
+        "KDIGO2025",
+        "MAYO_RPS2016",
+        "RODRIGUES2017"
+      ],
+      "location": "KDIGO, introdução S32 e Figura 2; Mayo, Key Disease-Specific Comments de IF/EM; Rodrigues, complemento",
+      "claim": "IgA mesangial dominante/codominante é padrão característico. C3 pode acompanhar. Presença de C3 não é igual a padrão de C3 dominante; integrar microscopia óptica, imunofluorescência, microscopia eletrônica e clínica. Textura granular não determina localização subepitelial."
+    },
+    "FOUR_HITS": {
+      "sources": [
+        "RODRIGUES2017",
+        "SUZUKI2009",
+        "KDIGO2025"
+      ],
+      "location": "Rodrigues, Disease Pathogenesis e Figura 1; Suzuki, resumo primário; KDIGO, introdução/Figura 3",
+      "claim": "O modelo associa IgA1 deficiente em galactose, autoanticorpos antiglicano, imunocomplexos circulantes e depósito mesangial com lesão. IgA1 alterada isolada não explica a doença; excesso de galactose, localização subepitelial e lesão direta antes dos autoanticorpos não descrevem essa sequência."
+    }
+  },
+  "perQuestion": [
+    {
+      "qid": "ce79d609",
+      "originalHash": "cb69780349ebbf5c52ba4e14acf194d6d7a72a8a59b30431007d7dbc44ffdfcb",
+      "candidateHash": "9455e6e16e8bde218f6b1cb2c0f49d20880c3d423e2d80c102b5818eeee962a0",
+      "claimIds": [
+        "MEST_PROGNOSIS",
+        "T_EXTENT",
+        "MEST_NO_AUTO_THERAPY"
+      ],
+      "verifiedClaims": [
+        {
+          "id": "MEST_PROGNOSIS",
+          "sources": [
+            "KDIGO2025",
+            "RODRIGUES2017",
+            "OXFORD2017"
+          ],
+          "location": "KDIGO PP 1.3.1; Rodrigues, Clinical-Pathologic Correlation; Oxford, resumo",
+          "claim": "A histologia de Oxford acrescenta informação prognóstica aos dados clínicos; não neutraliza função renal, proteinúria, pressão ou evolução. M/E/S/T/C descrevem compartimentos distintos."
+        },
+        {
+          "id": "T_EXTENT",
+          "sources": [
+            "OXFORD2017",
+            "RODRIGUES2017"
+          ],
+          "location": "Oxford 2017 Tabela 3, p.1018; Rodrigues, Clinical-Pathologic Correlation",
+          "claim": "Atrofia tubular/fibrose intersticial em 26–50% da área cortical é T1; acima de 50%, T2. Os limites foram conferidos diretamente na tabela da classificação original e na revisão aberta."
+        },
+        {
+          "id": "MEST_NO_AUTO_THERAPY",
+          "sources": [
+            "KDIGO2025",
+            "SHI_TESTING_2026",
+            "NONG_2026"
+          ],
+          "location": "KDIGO PP 1.4.2.3, S37; Shi, Methods/Results/limitations; Nong, Methods2.1 e Discussion",
+          "claim": "Não há demonstração prospectiva de melhores resultados ao atribuir tratamento apenas pelo MEST-C. Histologia/crescentes devem ser integrados à evolução clínica; nenhum componente isolado seleciona automaticamente terapia.",
+          "limit": "Não se nega associação histológica com resposta: a subanálise TESTING sugere benefício diferencial de lesões específicas, e Nong propõe SumMEC. Nenhum é ensaio prospectivo de alocação terapêutica guiada pelo MEST-C; o limite do item é não usar o laudo sozinho como prescrição."
+        }
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "rodrigues_haas_reich_igan_2017",
+          "referenceHash": "00163f00b6450e568835e35b346eb60191c6dca4a14157026ec61835f0256376",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE"
+        }
+      ],
+      "evidence": "VERIFICADA na autoria para afirmações mapeadas",
+      "pending": "NENHUMA decisiva detectada pelo autor;contraprova independente do item, identidade e cards ainda pendente",
+      "publication": "BLOQUEADA"
+    },
+    {
+      "qid": "795d4589",
+      "originalHash": "5d2b0720f8600289b8d73c479bc3154e4812fd948ecd63d5215237918155d7d5",
+      "candidateHash": "d02917c1509c4564603250eb8d005e86ed8e2dc204597812eeae604afb034e57",
+      "claimIds": [
+        "PRED_MODEL",
+        "PRED_LIMIT"
+      ],
+      "verifiedClaims": [
+        {
+          "id": "PRED_MODEL",
+          "sources": [
+            "BARBOUR2019",
+            "KDIGO2025"
+          ],
+          "location": "Barbour, Methods/Definitions e Results/Derivation Analysis, Table 1; KDIGO Figura 1, S33",
+          "claim": "O modelo original na biópsia integra dados clínicos e MEST, sem C, para risco de queda permanente de 50% da TFGe ou falência renal. Foram 3927 participantes: 2781 na derivação e 1146 na validação externa.",
+          "sourceDiscrepancy": "A narrativa KDIGO 2025 S33 emprega MEST-C; a Figura 1 e o primário Barbour listam MEST. A afirmação está ancorada no modelo primário, com a divergência explicitamente registrada."
+        },
+        {
+          "id": "PRED_LIMIT",
+          "sources": [
+            "KDIGO2025",
+            "BARBOUR2019"
+          ],
+          "location": "KDIGO PP 1.3.1 e 1.4.2.3; Barbour, Objectives/Methods",
+          "claim": "A ferramenta prognóstica não é diagnóstica nem teste validado de resposta a uma terapia. Não substitui reavaliação dinâmica. Versões na biópsia e pós-biópsia têm momentos definidos de uso."
+        }
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "barbour_igan_prediction_2019",
+          "referenceHash": "ccd87a4d44940d2715bc8158d92d560d0fee9e97b47691f1ce2380d048fb30a7",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE"
+        }
+      ],
+      "evidence": "VERIFICADA na autoria para afirmações mapeadas",
+      "pending": "NENHUMA decisiva detectada pelo autor;contraprova independente do item, identidade e cards ainda pendente",
+      "publication": "BLOQUEADA"
+    },
+    {
+      "qid": "5e5b8558",
+      "originalHash": "2c9ac7475d900cf788faa10dc9e11ff74fe09fe56a801844644871accfbfcdec",
+      "candidateHash": "07789df21e4f1c63d614daf7cee1767ccb4755ae4f3d6d2d907b31b543366c50",
+      "claimIds": [
+        "SYNPHARYNGITIC",
+        "DIAG_BIOPSY",
+        "IGA_SEROLOGY",
+        "IGA_SECONDARY"
+      ],
+      "verifiedClaims": [
+        {
+          "id": "SYNPHARYNGITIC",
+          "sources": [
+            "RODRIGUES2017",
+            "KDIGO2025"
+          ],
+          "location": "Rodrigues, Clinical Manifestations/Less Frequent Manifestations; KDIGO PP 1.2.1",
+          "claim": "Hematúria visível durante ou ao redor de infecção de mucosa é apresentação clássica sugestiva de IgAN; não confirma diagnóstico nem autoriza ignorar proteinúria persistente."
+        },
+        {
+          "id": "DIAG_BIOPSY",
+          "sources": [
+            "KDIGO2025"
+          ],
+          "location": "KDIGO PP 1.2.1, S15 e S33; Figura 2, S34",
+          "claim": "O diagnóstico exige biópsia. Considerar biópsia em adulto com possibilidade de IgAN e proteinúria ≥0,5 g/d, se não contraindicada; o fenótipo isolado não confirma."
+        },
+        {
+          "id": "IGA_SEROLOGY",
+          "sources": [
+            "KDIGO2025"
+          ],
+          "location": "KDIGO PP 1.2.1, S15/S33",
+          "claim": "Não há biomarcador sérico ou urinário validado para substituir o diagnóstico histológico. IgA sérica normal não exclui IgAN; estudos mecanísticos não mudam essa regra."
+        },
+        {
+          "id": "IGA_SECONDARY",
+          "sources": [
+            "KDIGO2025"
+          ],
+          "location": "KDIGO PP 1.2.1 e Figura 2, S34",
+          "claim": "Após reconhecer o padrão, avaliar causas secundárias e diagnósticos próximos: vasculite por IgA, infecções virais, doença inflamatória intestinal, autoimunidade, cirrose e glomerulonefrite relacionada à infecção com IgA dominante."
+        }
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "rodrigues_haas_reich_igan_2017",
+          "referenceHash": "00163f00b6450e568835e35b346eb60191c6dca4a14157026ec61835f0256376",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE"
+        }
+      ],
+      "evidence": "VERIFICADA na autoria para afirmações mapeadas",
+      "pending": "NENHUMA decisiva detectada pelo autor;contraprova independente do item, identidade e cards ainda pendente",
+      "publication": "BLOQUEADA"
+    },
+    {
+      "qid": "26804856",
+      "originalHash": "1ccce85c48a91c66b1f7595bcca91c045e59e08b8b593b21ab7fd15bc6793b04",
+      "candidateHash": "add6b7d47d807adb7fc11b65f4027838a169a5e5e6216b9788caf83cb397797d",
+      "claimIds": [
+        "IGA_IF",
+        "IGA_SECONDARY"
+      ],
+      "verifiedClaims": [
+        {
+          "id": "IGA_IF",
+          "sources": [
+            "KDIGO2025",
+            "MAYO_RPS2016",
+            "RODRIGUES2017"
+          ],
+          "location": "KDIGO, introdução S32 e Figura 2; Mayo, Key Disease-Specific Comments de IF/EM; Rodrigues, complemento",
+          "claim": "IgA mesangial dominante/codominante é padrão característico. C3 pode acompanhar. Presença de C3 não é igual a padrão de C3 dominante; integrar microscopia óptica, imunofluorescência, microscopia eletrônica e clínica. Textura granular não determina localização subepitelial."
+        },
+        {
+          "id": "IGA_SECONDARY",
+          "sources": [
+            "KDIGO2025"
+          ],
+          "location": "KDIGO PP 1.2.1 e Figura 2, S34",
+          "claim": "Após reconhecer o padrão, avaliar causas secundárias e diagnósticos próximos: vasculite por IgA, infecções virais, doença inflamatória intestinal, autoimunidade, cirrose e glomerulonefrite relacionada à infecção com IgA dominante."
+        }
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "rodrigues_haas_reich_igan_2017",
+          "referenceHash": "00163f00b6450e568835e35b346eb60191c6dca4a14157026ec61835f0256376",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE"
+        }
+      ],
+      "evidence": "VERIFICADA na autoria para afirmações mapeadas",
+      "pending": "NENHUMA decisiva detectada pelo autor;contraprova independente do item, identidade e cards ainda pendente",
+      "publication": "BLOQUEADA"
+    },
+    {
+      "qid": "12328a3e",
+      "originalHash": "88bc8cc717729dd6951d4558e9242d9e6bdd231851a60ec31e4815fc91444111",
+      "candidateHash": "b400e064283ba1079bbe1c0759076165c90158b83aba656dfa09a43df4941031",
+      "claimIds": [
+        "T_EXTENT",
+        "MEST_PROGNOSIS",
+        "MEST_NO_AUTO_THERAPY"
+      ],
+      "verifiedClaims": [
+        {
+          "id": "T_EXTENT",
+          "sources": [
+            "OXFORD2017",
+            "RODRIGUES2017"
+          ],
+          "location": "Oxford 2017 Tabela 3, p.1018; Rodrigues, Clinical-Pathologic Correlation",
+          "claim": "Atrofia tubular/fibrose intersticial em 26–50% da área cortical é T1; acima de 50%, T2. Os limites foram conferidos diretamente na tabela da classificação original e na revisão aberta."
+        },
+        {
+          "id": "MEST_PROGNOSIS",
+          "sources": [
+            "KDIGO2025",
+            "RODRIGUES2017",
+            "OXFORD2017"
+          ],
+          "location": "KDIGO PP 1.3.1; Rodrigues, Clinical-Pathologic Correlation; Oxford, resumo",
+          "claim": "A histologia de Oxford acrescenta informação prognóstica aos dados clínicos; não neutraliza função renal, proteinúria, pressão ou evolução. M/E/S/T/C descrevem compartimentos distintos."
+        },
+        {
+          "id": "MEST_NO_AUTO_THERAPY",
+          "sources": [
+            "KDIGO2025",
+            "SHI_TESTING_2026",
+            "NONG_2026"
+          ],
+          "location": "KDIGO PP 1.4.2.3, S37; Shi, Methods/Results/limitations; Nong, Methods2.1 e Discussion",
+          "claim": "Não há demonstração prospectiva de melhores resultados ao atribuir tratamento apenas pelo MEST-C. Histologia/crescentes devem ser integrados à evolução clínica; nenhum componente isolado seleciona automaticamente terapia.",
+          "limit": "Não se nega associação histológica com resposta: a subanálise TESTING sugere benefício diferencial de lesões específicas, e Nong propõe SumMEC. Nenhum é ensaio prospectivo de alocação terapêutica guiada pelo MEST-C; o limite do item é não usar o laudo sozinho como prescrição."
+        }
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "rodrigues_haas_reich_igan_2017",
+          "referenceHash": "00163f00b6450e568835e35b346eb60191c6dca4a14157026ec61835f0256376",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE"
+        }
+      ],
+      "evidence": "VERIFICADA na autoria para afirmações mapeadas",
+      "pending": "NENHUMA decisiva detectada pelo autor;contraprova independente do item, identidade e cards ainda pendente",
+      "publication": "BLOQUEADA"
+    },
+    {
+      "qid": "ea37c153",
+      "originalHash": "a5e252630c39635c2156830f410289e690b44acee6f659a2817a73095b253f61",
+      "candidateHash": "37cc8c5109d8d3b325dc64c2dab07debd7d5f3cc515b69aa7fbc9513ba562c02",
+      "claimIds": [
+        "FOUR_HITS",
+        "IGA_SEROLOGY"
+      ],
+      "verifiedClaims": [
+        {
+          "id": "FOUR_HITS",
+          "sources": [
+            "RODRIGUES2017",
+            "SUZUKI2009",
+            "KDIGO2025"
+          ],
+          "location": "Rodrigues, Disease Pathogenesis e Figura 1; Suzuki, resumo primário; KDIGO, introdução/Figura 3",
+          "claim": "O modelo associa IgA1 deficiente em galactose, autoanticorpos antiglicano, imunocomplexos circulantes e depósito mesangial com lesão. IgA1 alterada isolada não explica a doença; excesso de galactose, localização subepitelial e lesão direta antes dos autoanticorpos não descrevem essa sequência."
+        },
+        {
+          "id": "IGA_SEROLOGY",
+          "sources": [
+            "KDIGO2025"
+          ],
+          "location": "KDIGO PP 1.2.1, S15/S33",
+          "claim": "Não há biomarcador sérico ou urinário validado para substituir o diagnóstico histológico. IgA sérica normal não exclui IgAN; estudos mecanísticos não mudam essa regra."
+        }
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "rodrigues_haas_reich_igan_2017",
+          "referenceHash": "00163f00b6450e568835e35b346eb60191c6dca4a14157026ec61835f0256376",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE"
+        }
+      ],
+      "evidence": "VERIFICADA na autoria para afirmações mapeadas",
+      "pending": "NENHUMA decisiva detectada pelo autor;contraprova independente do item, identidade e cards ainda pendente",
+      "publication": "BLOQUEADA"
+    }
+  ],
+  "newReferenceProposals": {
+    "file": "igan-reference-proposals-A3.json",
+    "sha256": "a4da7f66c9b168f1eea9bf371a746d423712e4ab90cd84fe239a4fcbb9816da3",
+    "gate": "Todos BLOQUEADOS; revisão da versão exata A3, sem aprovação herdada."
+  },
+  "existingCardIssueFile": {
+    "file": "igan-existing-card-issues.json",
+    "sha256": "5cefd5d5af31d28d57fc54232f55eee45711e1f085d77c7fa143ba0ce67faac8",
+    "stage": "HOLDsempropostadepatch"
+  },
+  "unresolvedEditorialPoints": [
+    {
+      "qids": [
+        "ce79d609",
+        "12328a3e"
+      ],
+      "kind": "USEFUL_VARIATION_TO_ADJUDICATE",
+      "action": "Contraprova das quatro dimensões antes de decidir aplicar ambos ou reter redundante."
+    },
+    {
+      "qid": "5e5b8558",
+      "kind": "IDENTITY_CONTEXT_ADDITION",
+      "action": "Confirmar que a dosagem normal de IgA, explicitando um distrator original, preserva o OP e a identidade."
+    },
+    {
+      "refId": "kdigo_igan_2021",
+      "kind": "SEPARATE_MATERIAL_CARD_ISSUE",
+      "action": "Contextualizar o acervo antigo em gate separado, com único consumidor atual ddb4938a; não modificar por inferência."
+    }
+  ],
+  "checks": {
+    "medicalAppWrites": false,
+    "clinicalTrials2026UnreviewedRemainQueued": true,
+    "allCandidatesBlocked": true,
+    "independentScoresNotInherited": true,
+    "noTherapeuticReview2017AppliedAsCurrent": true
+  },
+  "priorCandidateFileSha256": "7a6a4eed0593e87601ce534b9f3c9b4bcd055f7a41b979231277944e5d03148a",
+  "authorErrata": [
+    {
+      "version": "A2",
+      "correction": "Somente ícone padronizado de REVIEW no card Rodrigues: 📖 para 🔬; nenhum texto clínico, resultado, fonte ou outro campo de card mudou.",
+      "clinicalChange": false
+    },
+    {
+      "version": "A3",
+      "correction": "Explicitação do domínio primário/idiopático do modelo prognóstico na pergunta e no card Barbour.",
+      "clinicalChange": true
+    }
+  ]
+}

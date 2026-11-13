@@ -1,0 +1,338 @@
+{
+  "schema": 1,
+  "createdAt": "2026-11-13T14:18:54.992Z",
+  "stage": "PROPOSTAS BLOQUEADAS; gate independente integral por versão e consumidor",
+  "hashMethod": "SHA256(JSON.stringify(card)) UTF-8",
+  "sourceRefsHash": "dc0ff51514e24b4f073d342146a6075048845c476586b11246198e2e4b18296b",
+  "cards": [
+    {
+      "refId": "dapa_ckd_igan_2021",
+      "version": "A1",
+      "originalHash": "6617ac3efc650b3d80c4abce3b5ac07d089c87ce05a5dd58ac575daa0ac9c239",
+      "original": {
+        "label": "Wheeler et al. — DAPA-CKD na Nefropatia por IgA",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33878338/",
+        "journal": "Kidney Int. 2021;100(1):215-224",
+        "ano": 2021,
+        "tipo": "Análise pré-especificada de ensaio clínico",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Dapagliflozina reduziu eventos renais no subgrupo IgAN, com número pequeno de eventos e população de DRC estabelecida",
+        "icon": "🔬",
+        "resumo": "Análise pré-especificada de 270 participantes com IgAN no DAPA-CKD, 94% com confirmação histológica, TFGe média de 43,8 mL/min/1,73 m² e UACR mediana de 900 mg/g. O desfecho composto ocorreu em 6 de 137 participantes com dapagliflozina e 20 de 133 com placebo, HR 0,29 (IC 95% 0,12–0,73), em mediana de 2,1 anos. A UACR caiu 26% em relação ao placebo.",
+        "conclusao": "A análise sustenta dapagliflozina como nefroproteção na IgAN proteinúrica com DRC estabelecida, mas o efeito grande deriva de apenas 26 eventos e não deve ser extrapolado como terapia imunológica específica ou benefício idêntico em jovens com TFGe preservada.",
+        "curiosidade": "Dos 270 participantes classificados como IgAN, 254 tinham confirmação por biópsia; a idade média foi 51 anos, mais alta que a de muitas coortes de ensaios específicos de IgAN."
+      },
+      "candidate": {
+        "label": "Wheeler et al. — DAPA-CKD na nefropatia por IgA (2021)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33878338/",
+        "journal": "Kidney Int. 2021;100(1):215–224",
+        "ano": 2021,
+        "tipo": "Análise pré-especificada de ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Dapagliflozina reduziu o composto renal/CV no subgrupo de IgA, com poucos eventos",
+        "icon": "🔬",
+        "resumo": "Subgrupo pré-especificado do DAPA-CKD com 270 participantes com nefropatia por imunoglobulina A (IgA), 254 confirmados por biópsia. Taxa de filtração glomerular estimada (TFGe) média de 43,8 mL/min/1,73 m² e relação albumina/creatinina urinária mediana de 900 mg/g. Dapagliflozina 10 mg/dia versus placebo, além do suporte. O composto primário incluía queda sustentada ≥50% da TFGe, falência renal ou morte renal/cardiovascular: 6/137 versus 20/133 eventos em mediana de 2,1 anos; razão de riscos (HR) 0,29, intervalo de confiança de 95% 0,12–0,73; P=0,005. A relação albumina/creatinina caiu 26% frente a placebo.",
+        "conclusao": "O resultado apoia nefroproteção na população estudada, com precisão limitada por apenas 26 eventos. Não prova mecanismo imune específico, benefício exclusivo da IgA ou efeito idêntico em toda população.",
+        "curiosidade": "O composto renal secundário excluía morte cardiovascular; não deve ser confundido com o composto primário descrito acima."
+      },
+      "candidateHash": "8ed92f5b7a5dd5be41536aadc8cc11a1cc74ae8c1df8995dcaa6a61b77eb4ecb",
+      "status": "BLOQUEADA",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "BLOQUEADA",
+      "authorProvisionalVerdict": "revisão maior",
+      "sources": [
+        {
+          "id": "DAPA_IGA2021",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/33878338/",
+          "openPrimaryFullText": "https://discovery.ucl.ac.uk/id/eprint/10127323/1/1-s2.0-S0085253821003963-main.pdf",
+          "doi": "10.1016/j.kint.2021.03.033",
+          "pmid": "33878338",
+          "design": "Análise de subgrupo pré-especificada de ensaio randomizado",
+          "access": "Resumo primário completo e cópia primária em repositório institucionalUCL; Methods, Table1, Results, endpoint e Limitations conferidos. PDF está em estágio de prova de autor, identificado no registro, com valores corroborados pelo resumo publicado.",
+          "verified": "2026-11-13",
+          "limits": "N=270 e26eventos; inclui morte renal/CV no composto primário. Não é ensaio autônomo de IgAN nem medição de produção patogênica deIgA."
+        },
+        {
+          "id": "KDIGO2025",
+          "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+          "doi": "10.1016/j.kint.2025.04.004",
+          "pmid": "40975564",
+          "design": "Diretriz clínica",
+          "access": "PDF oficial integral aberto; PP1.4.2.2/Figura3, Rec1.4.4.1/1.4.4.3, PP1.4.4.2/1.4.4.4, S48–S49 lidos diretamente.",
+          "verified": "2026-11-13",
+          "limits": "Incerteza em jovens com TFGe>60 não equivale a contraindicação. iSGLT2 não substitui avaliação de terapia dirigida à IgAN."
+        }
+      ],
+      "issues": [
+        "O composto primário original era referido sem definição; explicitar que inclui morte cardiovascular evita chamá-lo de endpoint exclusivamente renal.",
+        "Expandidas siglas na primeira ocorrência e incluídos dose, comparador, endpoint ePverificados."
+      ],
+      "consumers": {
+        "currentQuestions": [
+          {
+            "qid": "9fd2cfdb",
+            "t": "DAPA-CKD na IgAN — Benefício e Cautela",
+            "originalHash": "cac134169e14123f684ee77973d454e5d939ad92812c84a70ab6fff1662af8c7",
+            "refs": [
+              "dapa_ckd_igan_2021",
+              "kdigo_igan_igav_2025"
+            ],
+            "original": {
+              "t": "DAPA-CKD na IgAN — Benefício e Cautela",
+              "qid": "9fd2cfdb",
+              "q": "Na análise pré-especificada do DAPA-CKD em 270 participantes com nefropatia por IgA, qual interpretação é mais correta?",
+              "refs": [
+                "dapa_ckd_igan_2021",
+                "kdigo_igan_igav_2025"
+              ],
+              "opts": [
+                "O desfecho composto ocorreu em 6 participantes com dapagliflozina e 20 com placebo (HR 0,29), mas foram apenas 26 eventos em uma população com DRC estabelecida; o resultado apoia nefroproteção sem provar efeito idêntico em toda IgAN",
+                "A redução relativa de 71% prova que a dapagliflozina modifica diretamente a produção de IgA1 galactose-deficiente",
+                "O estudo avaliou hematúria como desfecho primário e demonstrou sua remissão com dapagliflozina",
+                "O subgrupo incluiu apenas adultos jovens com TFGe acima de 90 mL/min/1,73 m²"
+              ],
+              "ans": 0,
+              "exp": "No subgrupo pré-especificado, 254 dos 270 participantes (94%) tinham confirmação histológica; a TFGe média era 43,8 mL/min/1,73 m², a idade média 51 anos e a UACR mediana 900 mg/g. Em 2,1 anos, o composto renal ocorreu em 6 de 137 versus 20 de 133 participantes, HR 0,29 (IC 95% 0,12–0,73), e a UACR caiu 26% em relação ao placebo. O resultado sustenta nefroproteção na IgAN proteinúrica com DRC estabelecida, mas deriva de apenas 26 eventos e não demonstra mecanismo imunológico específico nem autoriza extrapolação automática para jovens com TFGe preservada.",
+              "diff": "hard",
+              "cat": "glomerular"
+            }
+          }
+        ],
+        "proposedConsumers": [
+          "9fd2cfdb",
+          "02814d6c"
+        ],
+        "legacyObjects": [],
+        "literalOccurrenceFiles": [
+          "data/topics.js",
+          "data/refs.js",
+          "docs/editorial/reviews/2026-10-12/group-b-output-003.json",
+          "docs/editorial/reviews/2026-10-12/group-c-output-007-A3.json",
+          "docs/editorial/reviews/2026-10-12/independent-b009-A4-final-binding-addendum-A2.json",
+          "docs/editorial/reviews/2026-10-12/independent-b009-A3.json",
+          "docs/editorial/reviews/2026-10-12/independent-c007-A3.json",
+          "docs/editorial/reviews/2026-10-12/independent-initial-b003-A2.json",
+          "docs/editorial/reviews/2026-10-12/independent-initial-b003-A1.json",
+          "docs/editorial/review-batches/FARM-18I.json",
+          "data/question-revision-manifest.js"
+        ],
+        "sharedDynamicReaders": [
+          "js/game.js",
+          "js/study-mode.js",
+          "js/utils.js",
+          "js/dashboard.js",
+          "js/achievements.js",
+          "js/minigame-acidbase.js"
+        ]
+      },
+      "implementationInstruction": "Não aplicar antes de revisão independente exata do card e compatibilidade de todos consumidores; não reescrever snapshots históricos."
+    },
+    {
+      "refId": "empa_kidney_primary_disease_2024",
+      "version": "A1",
+      "originalHash": "ff386bd3592aa7f71367b64ff20133bbf11991ca70d2b11039e33e0ef4f9dd55",
+      "original": {
+        "label": "EMPA-KIDNEY — Efeito por Doença Renal Primária",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7618536/",
+        "journal": "Lancet Diabetes Endocrinol. 2024;12(1):51-60",
+        "ano": 2024,
+        "tipo": "Análise secundária pré-especificada",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Efeito da empagliflozina foi amplamente consistente entre etiologias da DRC, incluindo glomerulopatias",
+        "icon": "🔬",
+        "resumo": "Análise secundária do EMPA-KIDNEY por doença renal primária. Entre 6.609 participantes, 1.669 tinham doença glomerular e 817 foram classificados como IgAN. A empagliflozina reduziu em 29% o risco de progressão da doença renal na coorte analisada, HR 0,71 (IC 95% 0,62–0,81), e não houve heterogeneidade importante do efeito relativo entre as categorias etiológicas ou subtipos de glomerulopatia; análises de slope aumentaram a precisão.",
+        "conclusao": "O EMPA-KIDNEY apoia nefroproteção por iSGLT2 em ampla variedade de doenças renais, mas a análise etiológica não transforma a contagem de 817 casos de IgAN em ensaio independente desenhado para provar um efeito específico nessa doença.",
+        "curiosidade": "IgAN representou quase metade dos 1.669 participantes com doença glomerular, formando um dos maiores conjuntos randomizados dessa etiologia."
+      },
+      "candidate": {
+        "label": "EMPA-KIDNEY — efeito por doença renal primária (2024)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7618536/",
+        "journal": "Lancet Diabetes Endocrinol. 2024;12(1):51–60",
+        "ano": 2024,
+        "tipo": "Análise secundária de ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Empagliflozina preservou função renal em várias etiologias; IgA foi recorte exploratório",
+        "icon": "🔬",
+        "resumo": "Análise secundária do EMPA-KIDNEY, com 6609 participantes com doença renal crônica (DRC), empagliflozina 10 mg/dia versus placebo e mediana de 2 anos. As categorias etiológicas amplas eram pré-especificadas; o grupo glomerular de 1669 participantes foi subdividido post hoc, incluindo 817 com nefropatia por imunoglobulina A (IgA). Na coorte total, o componente de progressão renal ocorreu em 384/3304 versus 504/3305: razão de riscos (HR) 0,71, intervalo de confiança de 95% 0,62–0,81. Não houve evidência de heterogeneidade por categoria etiológica (P=0,62). A inclinação crônica da taxa de filtração glomerular estimada (TFGe) também foi favorável, com efeitos relativos amplamente consistentes entre causas.",
+        "conclusao": "Sustenta nefroproteção em várias causas de DRC. O recorte de IgA não equivale a um ensaio independente, dimensionado para comprovar benefício exclusivo dessa doença; ausência de heterogeneidade não demonstra efeitos exatamente iguais.",
+        "curiosidade": "O HR 0,71 acima é de progressão renal. O composto principal do ensaio, que também incluía morte cardiovascular, teve HR 0,72."
+      },
+      "candidateHash": "b46a2000ee1d8c3a1800ec60a34344344e815fb7d66d6c8506e6b05e61f650d7",
+      "status": "BLOQUEADA",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "BLOQUEADA",
+      "authorProvisionalVerdict": "revisão maior",
+      "sources": [
+        {
+          "id": "EMPA_ETIO2024",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7618536/",
+          "doi": "10.1016/S2213-8587(23)00322-4",
+          "pmid": "38061372",
+          "design": "Análise secundária doRCT; categorias etiológicas pré-especificadas, subtipos glomerulares post hoc",
+          "access": "Texto primário integral aberto; Methods, Statistical analyses, Table1/Table2, Results, Discussion e limitações lidos diretamente.",
+          "verified": "2026-11-13",
+          "limits": "HR0,71 refere-se à progressão renal em toda coorte, não é oHR0,72 do composto principal com morteCV nem efeito exclusivo dos817IgAN. SubdivisãoIgAN/FSGS/outros éposthoc."
+        },
+        {
+          "id": "KDIGO2025",
+          "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+          "doi": "10.1016/j.kint.2025.04.004",
+          "pmid": "40975564",
+          "design": "Diretriz clínica",
+          "access": "PDF oficial integral aberto; PP1.4.2.2/Figura3, Rec1.4.4.1/1.4.4.3, PP1.4.4.2/1.4.4.4, S48–S49 lidos diretamente.",
+          "verified": "2026-11-13",
+          "limits": "Incerteza em jovens com TFGe>60 não equivale a contraindicação. iSGLT2 não substitui avaliação de terapia dirigida à IgAN."
+        }
+      ],
+      "issues": [
+        "Separar categorias amplas pré-especificadas da subdivisão glomerularIgAN/FSGS/outros, que foi posthoc segundo Methods.",
+        "Distinguir endpoint de progressão renalHR0,71 do composto principal com morteCVHR0,72.",
+        "Não transformar ausência de heterogeneidade em prova de equivalência dos efeitos por etiologia."
+      ],
+      "consumers": {
+        "currentQuestions": [
+          {
+            "qid": "3a01ea4b",
+            "t": "EMPA-KIDNEY — IgAN na Análise Etiológica",
+            "originalHash": "e7050fe6f08e3b8ea197450deb55c7cff46b3232fa0ee48c9af857927b9d0e81",
+            "refs": [
+              "empa_kidney_primary_disease_2024",
+              "kdigo_igan_igav_2025"
+            ],
+            "original": {
+              "t": "EMPA-KIDNEY — IgAN na Análise Etiológica",
+              "qid": "3a01ea4b",
+              "q": "Como deve ser interpretada a evidência do EMPA-KIDNEY para pessoas com nefropatia por IgA?",
+              "refs": [
+                "empa_kidney_primary_disease_2024",
+                "kdigo_igan_igav_2025"
+              ],
+              "opts": [
+                "Havia 817 participantes com IgAN entre 1.669 com doença glomerular, e o efeito sobre progressão e slope foi amplamente consistente entre etiologias; porém, trata-se de análise secundária, não de ensaio independente desenhado apenas para IgAN",
+                "A redução relativa de 29% foi demonstrada exclusivamente nos 817 participantes com IgAN e não se aplica às demais etiologias",
+                "Pessoas com glomerulopatias foram excluídas da randomização para impedir interferência da imunossupressão",
+                "Biópsias renais mensais confirmaram desaparecimento dos depósitos de IgA com empagliflozina"
+              ],
+              "ans": 0,
+              "exp": "No EMPA-KIDNEY, 1.669 dos 6.609 participantes tinham doença glomerular e 817 foram classificados como IgAN. A empagliflozina reduziu o risco de progressão renal na coorte analisada (HR 0,71), e não houve heterogeneidade importante do efeito relativo entre categorias etiológicas ou subtipos glomerulares; análises de slope deram maior precisão. Isso apoia nefroproteção em diferentes causas de DRC, mas a análise por etiologia é secundária e não equivale a um ensaio autônomo, dimensionado para provar benefício exclusivo na IgAN.",
+              "diff": "hard",
+              "cat": "glomerular"
+            }
+          }
+        ],
+        "proposedConsumers": [
+          "3a01ea4b"
+        ],
+        "legacyObjects": [],
+        "literalOccurrenceFiles": [
+          "data/topics.js",
+          "data/refs.js",
+          "docs/editorial/reviews/2026-10-12/group-b-output-009-A3.json",
+          "docs/editorial/reviews/2026-10-12/group-b-output-009.json",
+          "docs/editorial/reviews/2026-10-12/group-b-output-009-A4.json",
+          "docs/editorial/reviews/2026-10-12/independent-b009-A4-final-binding-addendum-A2.json",
+          "docs/editorial/reviews/2026-10-12/independent-b009-A3.json",
+          "docs/editorial/review-batches/FARM-18I.json",
+          "data/question-revision-manifest.js"
+        ],
+        "sharedDynamicReaders": [
+          "js/game.js",
+          "js/study-mode.js",
+          "js/utils.js",
+          "js/dashboard.js",
+          "js/achievements.js",
+          "js/minigame-acidbase.js"
+        ]
+      },
+      "implementationInstruction": "Não aplicar antes de revisão independente exata do card e compatibilidade de todos consumidores; não reescrever snapshots históricos."
+    },
+    {
+      "refId": "vallon_sglt2_renoprotection_2022",
+      "version": "A1",
+      "originalHash": null,
+      "original": null,
+      "candidate": {
+        "label": "Vallon — mecanismos renoprotetores dos inibidores de SGLT2 (2022)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9558099/",
+        "journal": "Heart Fail Clin. 2022;18(4):539–549",
+        "ano": 2022,
+        "tipo": "Revisão fisiológica narrativa",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Relaciona transporte proximal, feedback tubuloglomerular e pressão intraglomerular",
+        "icon": "🔬",
+        "resumo": "Revisão narrativa dos mecanismos de nefroproteção dos inibidores do cotransportador sódio-glicose 2 (SGLT2), integrando estudos experimentais e humanos. Menor reabsorção proximal aumenta a entrega de cloreto de sódio à mácula densa; o feedback tubuloglomerular contribui para reduzir a pressão intraglomerular. O padrão clínico pode incluir queda inicial reversível da taxa de filtração glomerular (TFG), seguida de preservação de função em longo prazo. A síntese fisiológica foi necessária porque ensaios de desfechos não medem diretamente cada etapa desse mecanismo.",
+        "conclusao": "Explica uma resposta hemodinâmica compatível com a nefroproteção, sem supor dano estrutural a partir de toda queda inicial de filtração. Não prova que o mesmo mecanismo explique isoladamente o benefício em cada pessoa com nefropatia por IgA.",
+        "curiosidade": "Experimentos por micropunção sustentam a participação do feedback e de respostas pré e pós-glomerulares. Muitos mecanismos continuam em investigação; dados animais não são ensaios clínicos de eficácia na IgA."
+      },
+      "candidateHash": "3a4751434a22fbdab423848144199acaef9ac3eb8fa2aae89540a5fa03b340d1",
+      "status": "BLOQUEADA",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "BLOQUEADA",
+      "authorProvisionalVerdict": "revisão maior; card novo aguardando gate",
+      "sources": [
+        {
+          "id": "VALLON2022",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9558099/",
+          "openFullTextRoute": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9558099&retmode=xml",
+          "contentSha256": "19cfd8170ea3298b2ae83f3a85b0f72842fc7fc940fd7d38a6a1d6c13c038b5f",
+          "doi": "10.1016/j.hfc.2022.03.005",
+          "pmid": "36216484",
+          "design": "Revisão fisiológica narrativa",
+          "access": "Todas as seções do corpo integral foram lidas pelo serviço oficialNCBIefetch; revisão usada para integrar fisiologia, não para provar eficácia clínica específica daIgAN.",
+          "verified": "2026-11-13",
+          "limits": "Mecanismos de nefroproteção são múltiplos e parcialmente inferenciais. Revisão chama o fármaco da ref38 deipragliflozina, mas o primário2021 usaertugliflozina; lapso não reproduzido e não decisivo para o conceito de classe verificado no original."
+        },
+        {
+          "id": "THOMSON2012",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3349378/",
+          "doi": "10.1152/ajpregu.00357.2011",
+          "pmid": "21940401",
+          "design": "Experimentos fisiológicos por micropunção em ratos diabéticos",
+          "access": "Texto primário aberto; resumo, introdução, métodos de micropunção e aferição de cloreto distal lidos. Dapagliflozina reduziu reabsorção proximal, aumentou cloreto distal e ativou feedback.",
+          "verified": "2026-11-13",
+          "limits": "Modelo animal diabético, não IgAN humana; mantido no mapa, sem falso badgeRCT."
+        },
+        {
+          "id": "THOMSON2021",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8174804/",
+          "doi": "10.1152/ajprenal.00552.2020",
+          "pmid": "33645318",
+          "design": "Experimentos fisiológicos por micropunção em ratos diabéticos",
+          "access": "Texto primário aberto; resumo, introdução e métodos de medição direta de pressão capilar. Inibição comertugliflozina reduziu pressão e exigiu feedback funcionante.",
+          "verified": "2026-11-13",
+          "limits": "Não assumir que apenas a arteríola aferente responde, nem transpor a magnitude numérica animal aIgAN humana. Referência experimental somente no mapa."
+        }
+      ],
+      "issues": [
+        "Referência fisiológica própria substitui o uso de ensaios de desfechos como prova direta deNaCl/mácula densa.",
+        "Os primários animais permanecem no mapa, com desenho correto, sem inventar badge ou ampliar taxonomia."
+      ],
+      "consumers": {
+        "currentQuestions": [],
+        "proposedConsumers": [
+          "0e1a838d"
+        ],
+        "legacyObjects": [],
+        "literalOccurrenceFiles": [],
+        "sharedDynamicReaders": [
+          "js/game.js",
+          "js/study-mode.js",
+          "js/utils.js",
+          "js/dashboard.js",
+          "js/achievements.js",
+          "js/minigame-acidbase.js"
+        ]
+      },
+      "implementationInstruction": "Não aplicar antes de revisão independente exata do card e compatibilidade de todos consumidores; não reescrever snapshots históricos."
+    }
+  ],
+  "noAppWrites": true
+}

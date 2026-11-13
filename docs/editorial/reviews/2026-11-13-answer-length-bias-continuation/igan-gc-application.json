@@ -1,0 +1,93 @@
+{
+  "applied": true,
+  "group": "igan-gc",
+  "baseCommit": "e36b5f3e5383d82489da001d54851ec7c8e6a083",
+  "questionGate": "igan-glucocorticoids-independent-gates-A2.json",
+  "questionGateSha256": "23967287599686706edf869ae4f08801e9013baa3d1083b97ca57127aff531be",
+  "cardGate": "igan-glucocorticoids-card-independent-gates-A1.json",
+  "cardGateSha256": "c272e7d16b4739a0acfd730e693d6736b9917e589ae9731c3b58755b73ef491c",
+  "topicsBefore": "42f90bffd4c79b927cd67a041dbbdbac92e2b05d0a75a1fb264108150c2d409b",
+  "topicsAfter": "e5dcc536af5b6610aa8d19e489ea6d53e5e59e89fa48da1c0c205e177a5dbcec",
+  "refsBefore": "a3fba5ff8c0e5fb5e3f9a0c113db66efb93b56065c327bfdfbd3ad3e4ad7473f",
+  "refsAfter": "eb8a64e314cf25e977ec1a0a88679ce6b8f9ccd190f464e97ca9c8794ab7c6bd",
+  "items": [
+    {
+      "qid": "d81defbb",
+      "originalHash": "c375779e5b4d883252586388304b0541bdb406a90bafc9741fd21b8d68ae2c88",
+      "candidateHash": "6cf4876f99e62446840103405c21be571e2818b84c7e6549564fb228f851b3ac",
+      "diffBefore": "hard",
+      "diffAfter": "medium",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA"
+    },
+    {
+      "qid": "f7107bc3",
+      "originalHash": "eceb69dc1bd50fb8264a1222d869de0958fdb1c5c17b5268cf35dc3c4d72ac28",
+      "candidateHash": "105d139d8ac719fe074fd8c4f8d29faa8439315e7b6f2d9eef758b4b23bcd977",
+      "diffBefore": "hard",
+      "diffAfter": "medium",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA"
+    },
+    {
+      "qid": "ff676013",
+      "originalHash": "f5ab989fb0ad775d0d7f43932b0df5ab880af2143077dfe22dc15234d78ed56c",
+      "candidateHash": "d372fa666964f3662973f3966c393c7e4b94b1233b3af10dcb930d948be2c3d6",
+      "diffBefore": "medium",
+      "diffAfter": "easy",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA"
+    }
+  ],
+  "cards": [
+    {
+      "id": "testing_study",
+      "newCard": false,
+      "originalHash": "9d029d20900715ac9e677581d494acf058ff69f8546bbf1d027e79ab25995657",
+      "candidateHash": "ece9f584e9a94eaeb21271a34f1b56dea300b20b847ed8405c408354f96d558d",
+      "currentConsumers": [
+        {
+          "qid": "d81defbb",
+          "hash": "c375779e5b4d883252586388304b0541bdb406a90bafc9741fd21b8d68ae2c88"
+        }
+      ],
+      "plannedConsumers": [
+        {
+          "qid": "d81defbb",
+          "candidateHash": "6cf4876f99e62446840103405c21be571e2818b84c7e6549564fb228f851b3ac"
+        }
+      ]
+    },
+    {
+      "id": "nefigard_trial",
+      "newCard": false,
+      "originalHash": "1278ec121cee8c1537b0a4c935094581a03c70f1d4c6c3c3a64cd959af1ed419",
+      "candidateHash": "19cf1bd6b620b4615c3424862c387cbd850d46704f4b7ce7a119da357b68f361",
+      "currentConsumers": [
+        {
+          "qid": "f7107bc3",
+          "hash": "eceb69dc1bd50fb8264a1222d869de0958fdb1c5c17b5268cf35dc3c4d72ac28"
+        },
+        {
+          "qid": "ff676013",
+          "hash": "f5ab989fb0ad775d0d7f43932b0df5ab880af2143077dfe22dc15234d78ed56c"
+        }
+      ],
+      "plannedConsumers": [
+        {
+          "qid": "f7107bc3",
+          "candidateHash": "105d139d8ac719fe074fd8c4f8d29faa8439315e7b6f2d9eef758b4b23bcd977"
+        },
+        {
+          "qid": "ff676013",
+          "candidateHash": "d372fa666964f3662973f3966c393c7e4b94b1233b3af10dcb930d948be2c3d6"
+        }
+      ]
+    }
+  ],
+  "preserveFsrs": true,
+  "historyRequirement": "Arquivar todas as versões anteriores e os cards de todos consumidores, inclusive eventuais consumidores sem reescrita. Nenhum catálogo/histórico gerado nesta autoria."
+}

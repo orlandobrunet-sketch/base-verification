@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "role": "AUTOR; mapa de fontes e contratos, sem veredito editorial ou gate próprio",
+  "date": "2026-11-13",
+  "originalFile": "hd-hdf-convince-original-3.json",
+  "originalFileSHA256": "056603c1bd4a71b2aa8c80e2b2006e8a845b0ea21a0dedafc17292e5ec54fa31",
+  "candidateFile": "hd-hdf-convince-candidates-A1.json",
+  "candidateFileSHA256": "dab8cc477ba17b9cbcc9139fdfd582d0e71b2bb60fe904ebf378e52bad32ec7c",
+  "cardFile": "eudial-hdf-card-candidate-C1.json",
+  "cardFileSHA256": "673eb5412735bc5865e69fc62df7a93c820ae6ace82769030fb202de8410ed89",
+  "cardHash": "6bd985c1cad11610944088e4424f390615aa5a085ff27737aebced24f9b50a3e",
+  "classificationBeforeAuthorship": "hd-hdf-convince-author-classification-original-3.json",
+  "sources": [
+    {
+      "id": "NEJM-2023",
+      "existingRef": "convince_study",
+      "doi": "10.1056/NEJMoa2304820",
+      "metadata": "Blankestijn PJ et al. Effect of Hemodiafiltration or Hemodialysis on Mortality in Kidney Failure. N Engl J Med. 2023;389(8):700–709. PMID 37326323.",
+      "officialURL": "https://www.nejm.org/doi/full/10.1056/NEJMoa2304820",
+      "openedFullText": "https://nefro.cl/hemofiltracion/articulos/PDF/latest/CONVINCE%20N.%20Engl.%20J.%20Med%202023.pdf",
+      "access": "Editora direta retornou 403. Cópia integral do artigo original de 10 páginas aberta em site da nefrologia chilena: autores, título, DOI e rodapés NEJM conferidos. PDF é publicação online antecipada, com páginas internas 1–10, não confundir essa paginação com 700–709 finais.",
+      "locators": [
+        "Abstract, página interna 1: 1360 randomizados, seguimento mediano 30 meses, média convectiva 25,3 L, desfecho primário e eventos.",
+        "Patients, páginas internas 2–3: candidatos a ≥23 L em pós-diluição por sessão, três sessões semanais e capacidade de completar avaliações relatadas pelo paciente.",
+        "Randomization, Procedures, and Follow-Up, página interna 3: volume convectivo = substituição + ultrafiltração líquida; ≥23 L por sessão, ajuste gradual 2–3 semanas.",
+        "Primary Outcome e Table 2, páginas internas 5 e 7: 118/683 (17,3%) versus 148/677 (21,9%); HR 0,77, IC95% 0,65–0,93.",
+        "Secondary Outcomes e Table 2: não houve redução demonstrada do composto de eventos cardiovasculares nem das internações por infecção que substituísse um resultado primário nulo.",
+        "Discussion, página interna 9: seleção para alto volume e avaliações, acesso relativamente apto e limites de generalização; não declarar superioridade universal."
+      ],
+      "numericAudit": "1360 = 683 + 677. Mortes 118 e 148; 17,3% e 21,9%; mediana 30 meses; HR 0,77 com IC95% 0,65–0,93; média 25,3 L; alvo bruto ≥23 L por sessão em pós-diluição. Métodos não descrevem o alvo como 23 L/1,73 m².",
+      "limits": "Protocolo BMJ Open 2020, DOI 10.1136/bmjopen-2019-033228, identificado; página direta retornou 403 e só o texto primário indexado foi lido. Não se alega leitura integral desse protocolo. A definição usada no candidato está expressamente no artigo de resultados integral. Busca de errata não identificou correção pertinente; isso não é garantia de ausência de qualquer correção. Os itens perguntam achado histórico e definição do ensaio, não elegem modalidade para toda a população em 2026."
+    },
+    {
+      "id": "EuDial-2025",
+      "proposedRef": "eudial_hdf_2025",
+      "doi": "10.1093/ndt/gfaf024",
+      "metadata": "Battaglia Y et al. Haemodiafiltration versus high-flux haemodialysis—a Consensus Statement from the EuDial Working Group of the ERA. Nephrol Dial Transplant. 2025;40(8):1590–1614. PMID 39914451. Online 6 de fevereiro de 2025; edição de agosto de 2025.",
+      "officialURL": "https://academic.oup.com/ndt/article/40/8/1590/8003757",
+      "openedFullText": "https://pure.umcutrecht.nl/ws/portalfiles/portal/629293240/gfaf024.pdf",
+      "access": "PDF integral de 26 páginas, incluindo capa do repositório de coautoria Utrecht e versão publicada. DOI, autores, volume e páginas confirmados. PMC retornou challenge e ERKNet direto retornou 403; essas tentativas não foram contadas como leitura integral.",
+      "locators": [
+        "Página 1591, Introduction: difusão + convecção; volume filtrado além da perda de peso reposto por solução estéril e apirogênica; definição de HDF e modos de reposição.",
+        "Página 1595, Convection volume: volume é soma de substituição e ultrafiltração; seleção, capacidade de entrega e generalização.",
+        "Páginas 1595–1599, All-cause mortality: sinal de menor mortalidade, limitações dos ensaios, dependência de população e volume entregue.",
+        "Páginas 1603–1604, Biochemical outcomes: maior depuração de moléculas médias não implica diferença de concentração pré-diálise de beta-2-microglobulina; geração e função residual importam.",
+        "Resumo/página 1590: consenso elaborado com revisão de ensaios e opinião especializada; orienta decisões e não define padrão obrigatório de cuidado."
+      ],
+      "cardAudit": "Card novo C1 integralmente proposto, sem dados inventados, dose nova ou recomendação universal. A afirmação de maior clearance não foi convertida em garantia de nível sérico menor. Tipo Consenso de Especialistas, não novo ensaio randomizado. Recebe gate próprio separado da questão.",
+      "limits": "Apoia diretamente o mecanismo e o limite de depuração versus concentração. As ressalvas técnicas específicas sobre convecção interna de HD e adsorção foram confrontadas adicionalmente com o consenso primário de nomenclatura Reis 2024; não são atribuídas como citação literal de EuDial. Nenhum threshold técnico de coeficiente ou fração de filtração foi importado aos candidatos."
+    },
+    {
+      "id": "Rome-Nomenclature-2024",
+      "doi": "10.1159/000533330",
+      "metadata": "Reis T et al. Standardization of Nomenclature for the Mechanisms and Materials Utilized for Extracorporeal Blood Purification. Blood Purif. 2024;53:329–342; online setembro de 2023. Consenso de nomenclatura de mecanismos, não ensaio de resultado.",
+      "officialURL": "https://karger.com/bpu/article/53/5/329/862430/Standardization-of-Nomenclature-for-the-Mechanisms",
+      "openedFullText": "https://karger.com/bpu/article-pdf/53/5/329/4218846/000533330.pdf",
+      "access": "HTML integral da editora e PDF integral de 14 páginas abertos; lidas seções pertinentes. Não se confunde data online 2023 com edição 2024.",
+      "locators": [
+        "Mechanisms of Solute and Fluid Removal / Convection: transporte de soluto com fluxo de água, arraste de solvente e contraste com difusão.",
+        "Hemodialysis: high-flux também permite transporte convectivo suplementar por filtração interna; não afirmar difusão exclusiva de toda HD.",
+        "Hemodiafiltration: combina depuração difusiva e convectiva, alto fluxo de ultrafiltração e reposição do volume além da retirada líquida desejada.",
+        "Adsorption and Adsorptive Capacity: contribuição dependente da membrana, distinta dos mecanismos transmembrana; pode ser relevante, mas não define toda HDF."
+      ],
+      "use": "Contraprova técnica de precisão da explicação e plausibilidade dos distratores cb6c4aae. Não foi criado um segundo card para esse apoio auxiliar; a fonte EuDial cobre o fundamento decisivo do OP. O revisor pode exigir referência explícita adicional ou restringir a explicação caso julgue necessária a atribuição no aplicativo. Não tratar esta nota como liberação antecipada."
+    }
+  ],
+  "items": [
+    {
+      "qid": "66b811c3",
+      "candidateHash": "0e60f9c5abe407c258af05e28d95979e636348b120e01fdad2fb36108fcb6444",
+      "sources": ["NEJM-2023"],
+      "OP": "Reconhecer o resultado primário do ensaio na população selecionada para alta convecção; não há conversão para prescrição ou decisão individual.",
+      "correct": "A identifica menor mortalidade geral com a estratégia testada.",
+      "distractors": {"B": "Inverte a direção do desfecho primário.", "C": "Confunde o ensaio com primário nulo e benefício cardiovascular; não corresponde ao resultado publicado.", "D": "Confunde o ensaio com primário nulo e redução de internações por infecção; não corresponde ao resultado publicado."},
+      "difficulty": "Lembrar/easy, como na classificação autoral anterior aos candidatos. Saber o nome do ensaio não transforma recordação em análise avançada.",
+      "pedagogicalCaution": "Resultado clínico relevante de ensaio, não cobrança de número isolado. O revisor deve confirmar utilidade e não salvar o item transformando o OP sob o qid existente. A correta original já não era a mais longa; revisão elimina o distrator universal remoto e torna os resultados comparáveis."
+    },
+    {
+      "qid": "cb6c4aae",
+      "candidateHash": "01dcacabe9df7add4555cd8cbe41b7faa5088d51aea788f6f2963928fb4294fb",
+      "sources": ["EuDial-2025", "Rome-Nomenclature-2024"],
+      "OP": "Explicar por que a associação de convecção em grande volume à difusão amplia a remoção de moléculas médias.",
+      "correct": "A mantém convecção, difusão e reposição do volume excedente. Qualificador de reposição é necessário para não confundir convecção com perda líquida de todo esse volume.",
+      "distractors": {"B": "Confunde ampliar transporte difusivo pelo fluxo de dialisato com a característica convectiva que define a modalidade.", "C": "Confunde ultrafiltração total com retirada líquida e supõe que maior perda de peso seja a característica técnica.", "D": "Confunde transporte de solutos com a água com retenção por adsorção na membrana."},
+      "difficulty": "Compreender/easy; reconhecimento de mecanismo conceitual em uma etapa, não cálculo de prescrição.",
+      "referenceChange": "Troca os dois apoios herdados redundantes por fonte específica aberta. Daugirdas fica com a12cb84d; CONVINCE fica com os dois itens próprios. Nenhum card perde seu último consumidor ou é apagado. Card novo C1 e questão exigem gates separados.",
+      "adversarialCaution": "Maior fluxo de dialisato pode afetar difusão, mas o comando compara a característica própria da HDF com HD de alto fluxo; não se afirma que esse ajuste nunca tenha efeito na remoção de qualquer soluto. A explicação também evita declarar que HD de alto fluxo seja exclusivamente difusiva."
+    },
+    {
+      "qid": "0c1d09c3",
+      "candidateHash": "2a066bfac29ff8692dee65962330fd295d9bd21917a238bcde3286e555ca27a0",
+      "sources": ["NEJM-2023"],
+      "OP": "Interpretar a definição da dose convectiva do CONVINCE; não memorizar um número, que o comando já fornece.",
+      "correct": "A soma substituição e ultrafiltração líquida por sessão.",
+      "distractors": {"B": "Conta apenas substituição e exclui a retirada líquida.", "C": "Importa padronização por superfície corporal não usada no alvo bruto do protocolo.", "D": "Subtrai em vez de somar a retirada líquida."},
+      "difficulty": "Compreender/easy; definição conceitual clinicamente útil, sem cálculo ou escolha individual de modalidade.",
+      "adversarialCaution": "O alvo se refere a pós-diluição, como no comando. A discussão clínica mais ampla sobre indexação de dose por tamanho não altera retrospectivamente o método do ensaio. Não se converte o alvo em limiar ótimo universal."
+    }
+  ],
+  "duplicationFourDimensions": [
+    {"pair": ["66b811c3", "0c1d09c3"], "command": "Resultado clínico versus definição de dose.", "decisiveData": "Mortes/resultado randomizado versus volumes componentes da prescrição.", "decision": "Reconhecer direção do efeito versus distinguir substituição, UF líquida e padronização.", "cognitiveProcess": "Recordar evidência versus compreender definição; relação temática não é repetição do mesmo OP."},
+    {"pair": ["cb6c4aae", "0c1d09c3"], "command": "Explicar mecanismo de remoção de solutos versus interpretar volume de uma intervenção específica.", "decisiveData": "Fluxo de água/soluto e reposição versus soma dos volumes por sessão.", "decision": "Identificar convecção mais difusão versus classificar grandeza e unidade testadas.", "cognitiveProcess": "Ambos compreender, porém operações distintas. A menção de reposição em ambos não basta para presumir duplicata ou variedade; o revisor deve avaliar o valor incremental."}
+  ],
+  "safetyAndIdentity": {
+    "allStemsAndAnswerIndicesPreserved": true,
+    "allQidsPreserved": true,
+    "noFSRSOrHistoryChange": true,
+    "noUniversalHDFRecommendation": true,
+    "noNewDosePrescription": true,
+    "noOwnEditorialVerdict": true,
+    "publication": "BLOQUEADA"
+  }
+}

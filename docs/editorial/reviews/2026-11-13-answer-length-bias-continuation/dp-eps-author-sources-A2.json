@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "role": "AUTOR; fonte e limites, sem gate de publicação",
+  "date": "2026-11-13",
+  "candidateFile": "dp-eps-candidates-A2.json",
+  "candidateFileSHA256": "8be4c4874b5b5cd950e8bcbc2fada9a12ecec3255e888a1c86256bf88882485b",
+  "originalFile": "dp-eps-original-2.json",
+  "originalFileSHA256": "9ea7a69a46c7890fab94f10b346bed4209258d8d86de9b21e2a72e1f15083e03",
+  "sources": [
+    {
+      "id": "ISPD-EPS-2017",
+      "existingRef": "eps_dp",
+      "url": "https://journals.sagepub.com/doi/10.3747/pdi.2017.00018",
+      "doi": "10.3747/pdi.2017.00018",
+      "metadata": "Brown EA et al. Perit Dial Int2017;37(4):362–374.",
+      "access": "Artigo primário integral HTML da editora aberto,1494linhas; PubMed28676507retornou somente rodapé, sem substituir a leitura da editora.",
+      "locators": [
+        "Epidemiology of EPS, apósTabela1: duração é fator mais consistente; outros fatores com dados imprecisos/inconsistentes; maioria emDPprolongada não desenvolveEPS.",
+        "Diagnosis/Clinical features/Radiological diagnosis: obstrução funcional e encapsulamento estrutural;tomografia de escolha;espessamento/calcificação isolados não suficientes.",
+        "Screening for EPS: sem ferramenta confiável,CTnormal não exclui surgimento futuro.",
+        "Guidelines for EPS/Epidemiology e conclusões: ocorrência/progressão após interrupção ou transplante e ausência de limite temporal universal para toda pessoa."
+      ],
+      "limits": "Não há inferência de precisão individual de risco a partir de coortes nem recomendação de modalidade por uma data fixa. Não se incluem prevalências,mortalidade,tamoxifeno,doses ou condutas cirúrgicas do documento nos candidatos."
+    },
+    {
+      "id": "ISPD-current-catalogue",
+      "url": "https://ispd.org/guidelines/",
+      "access": "Página oficial integral aberta; mantém Length of time onPD2017 como posicionamento específico."
+    }
+  ],
+  "items": [
+    {
+      "qid": "3e0788ac",
+      "source": "ISPD-EPS-2017",
+      "locators": [
+        "Epidemiology of EPS",
+        "Screening for EPS",
+        "Conclusions/Guidance on time onPD"
+      ],
+      "numericAudit": "Seteanos é dado original do caso. Cincoanos é distrator de um prazo fixo inexistente, não recomendação. Nenhum percentual de risco ou dose novo.",
+      "decisiveScope": "Duração aumenta risco, mas não define data universal de interrupção; investigação e escolha compartilhada não podem ser substituídas porCTnormal em assintomático.",
+      "identity": "Mesmo OP de aconselhamento sobre duração e risco. Não muda para tratamento de doença estabelecida."
+    },
+    {
+      "qid": "fe70507d",
+      "source": "ISPD-EPS-2017",
+      "locators": [
+        "Diagnosis of EPS",
+        "Clinical Features of EPS",
+        "Radiological Diagnosis of EPS"
+      ],
+      "numericAudit": "Sem nova dose,limiar ou estatística. Mantidos os achados do caso original.",
+      "decisiveScope": "Associação de suboclusão,perda de peso e encapsulamento tomográfico sustenta diagnóstico;tempo,espessamento isolado ou massa palpável não substituem a associação.",
+      "identity": "Mesmo OP diagnóstico clínico/estrutural; não se cria doença ou novo perfil sob o mesmoqid."
+    }
+  ],
+  "cardAudit": {
+    "id": "eps_dp",
+    "integralRead": true,
+    "changed": false,
+    "findings": "Metadados,duração,CT/obstrução,ausência de data universal e ocorrência após interrupção/transplante conferidos. A formulação de outros fatores como motivo de preocupação, não previsão individual confirmada, é compatível com os limites do posicionamento."
+  },
+  "duplicateAssessment": {
+    "qids": [
+      "3e0788ac",
+      "fe70507d"
+    ],
+    "distinction": "Pessoa clinicamente bem com pergunta de continuidade versus pessoa com sintomas obstrutivos e imagem de encapsulamento. Ações e perfis diferem; avaliação independente pelo teste de4dimensões ainda necessária."
+  },
+  "notPublicationGates": true,
+  "versionDelta": "Somente primeira ocorrência de diálise peritoneal nos dois enunciados passa a diálise peritoneal (DP). Nenhum dado clínico, alternativa, gabarito, explicação, referência ou dificuldade mudou de A1.",
+  "itemBindings": [
+    {
+      "qid": "3e0788ac",
+      "candidateHash": "6055331e855aff804296ddda58beb8be62a9a49bb4c0fb7fe577191a45b43f36"
+    },
+    {
+      "qid": "fe70507d",
+      "candidateHash": "b458ba2bfba965fd74e2f125f69db7d60787dd4880070ecf06342f09f816f833"
+    }
+  ]
+}

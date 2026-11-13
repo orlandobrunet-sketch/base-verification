@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "version": "C2",
+  "unitType": "reference_card",
+  "reviewer": "/root/medical_answer_bias independente de autoria adpkd_independent_review",
+  "reviewDate": "2026-11-13",
+  "norms": {
+    ".claude/skills/revisar-nefroquest/SKILL.md": "6027e111ff75ff8798aad8d4ef10daf231fefeca65317d53de9a2fc6a891aeef",
+    ".claude/skills/revisar-nefroquest/references/output-contract.md": "4a20348ac71a07836b4611d574496d97960b27a2bbfdcf1f1ed318396f0edcb8",
+    ".claude/skills/revisar-nefroquest/references/verification-protocol.md": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df",
+    "docs/editorial/annex-c-nefrologia.md": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+  },
+  "candidateFile": "aki-pd-card-candidate-C2.json",
+  "candidateFileHash": "e7b0b791f147296308e94e0f58b4c949b439d5a74876ad23d2d17d0df7afb5c6",
+  "id": "ispd_aki_pd_2020",
+  "candidate": {
+    "label": "ISPD — Diálise Peritoneal na LRA (Atualização 2020)",
+    "url": "https://doi.org/10.1177/0896860820970834",
+    "journal": "Perit Dial Int. 2021;41(1):15-31",
+    "ano": 2021,
+    "tipo": "Diretriz internacional",
+    "badge": "GUIDELINE",
+    "badgeColor": "#6366f1",
+    "impacto": "Seleção, acesso, prescrição e monitorização da diálise peritoneal em adultos com LRA",
+    "icon": "📋",
+    "resumo": "A International Society for Peritoneal Dialysis (ISPD) considera a diálise peritoneal (DP) uma opção para lesão renal aguda (LRA) em diferentes cenários. A diretriz discute evidência de baixa certeza de um ensaio que comparou DP automatizada tidal, com drenagem parcial dos ciclos e 25 L/dia, à hemodiafiltração venovenosa contínua com efluente de 23 mL/kg/h. As populações, prescrições e limitações dos estudos exigem cautela na extrapolação. Acesso, dose e monitorização devem acompanhar as necessidades metabólicas e o balanço de volume.",
+    "conclusao": "A diálise peritoneal pode tratar a lesão renal aguda quando seleção clínica, acesso, prescrição e monitorização são apropriados. A comparação com terapia renal substitutiva contínua exige considerar contraindicações abdominais, urgência de depuração e recursos locais; a escolha é individualizada.",
+    "curiosidade": "Kt/V é um índice de depuração de ureia ajustado à água corporal. A seção 4.1 descreve 3,5 por semana em pacientes críticos e admite que doses menores, como 2,2, podem ser suficientes conforme o contexto. Os estudos de intensidade têm protocolos diferentes e limitações de poder estatístico; a dose deve acompanhar a resposta metabólica e a remoção de volume."
+  },
+  "candidateHash": "22467ba8b9f32e9ac3d85971dc02eb963eac9846b322ce5f3d7adbfec44932d1",
+  "originalHash": "b5e994ccf74e5bf2420d6536ab6707b952d800128fe5e95fc1e7acc1423b5483",
+  "verdict": "aprovada",
+  "confidence": "alta",
+  "evidence": "VERIFICADA",
+  "pending": "NENHUMA",
+  "publication": "LIBERADA",
+  "publicationDerivation": "VERIFICADA/NENHUMA+aprovada→LIBERADA. Esta aprovação não libera as questões automaticamente.",
+  "nqEditorialScore": null,
+  "nqEditorialScoreApplicability": "NÃOAPLICÁVELàrubricadequestão;cardintegralverificadoporfonte/schema/inventário.",
+  "currentConsumers": [
+    {
+      "qid": "f4de7965",
+      "hash": "0656ad2ef3b50c0add62563fe5f436d587da87969751b1f33aa6ec2f868fff82"
+    }
+  ],
+  "plannedConsumers": [
+    {
+      "qid": "f4de7965",
+      "candidateHash": "5f7e1a0d35126d45d4df26781ca86895c0da1ffe90c507974b20595fa304281f"
+    }
+  ],
+  "independentSourceVerification": {
+    "url": "https://journals.sagepub.com/doi/10.1177/0896860820970834",
+    "access": "Texto primário integral1459linhas aberto;Guidelines1/2/4.1–4.4,Rationale/Table5 lidos. Modalidade em diferentes cenários,escolha/acesso individual,monitorização/ciclos,glicose/volume. §4.1cita1Cde sobrevida equivalente,masRationale descreve estudo125subpotente com sinal favorável àDP e necessidade de replicação;nãoinferirequivalência formal universal. CardC2não repete resultado conflitante,nemdeclara redução universal paraKt/V2,2. §4.1mantém3,5comodiálise diária/críticos e admite doses menores segundo contexto;índice/casosdafonte conferidos."
+  },
+  "wholeCardReview": "Todosmetadados e texto integralconferidos.C2substituiequivalênciaabreviadaporcomparaçãodebaixacerteza emprotocolosespecíficos,distingue3,5/2,2semmetageral,eexpandesiglas. Nãorefazensaio nemnega resultados mostrados;apenaslimitaainferênciaaosdadoseàpopulação.",
+  "adversary": "Cardnãoprometequalquermodalidadeoudosesejaequivalenteemqualquerpessoa. DefiniçãodeKt/V é índice de depuraçãocomnormalizaçãodevolumedeágua;dose/frequênciasclínicasnafonteconferidas. Nenhumdirecionamento inseguro.",
+  "eliminators": [],
+  "historyRequirement": "Arquivarcardanterioreconsumerf4exatos publicados;aplicarcardsemalteraroutrosIDs. C2nãomudaidentidadedaquestão."
+}

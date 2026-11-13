@@ -1,0 +1,162 @@
+{
+  "limit": "Official CI traces read offline; no browser execution, product mutation, or clinical assessment.",
+  "spec": "tests/specs/206-overview-action-colors.spec.ts",
+  "failure": {
+    "testLine": 66,
+    "timeoutMs": 5000,
+    "error": "element(s) not found",
+    "assertionLine": 75,
+    "locator": "#studyModePage"
+  },
+  "attempts": [
+    {
+      "firstFourIds": [
+        "1e5e88e9",
+        "66b811c3",
+        "e56795a6",
+        "70129a64"
+      ],
+      "attempt": "initial",
+      "context": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ci1073-artifacts-4\\test-results\\206-overview-action-colors-5457f-d-opens-the-real-study-flow-chromium\\error-context.md",
+      "contextContainsBothVersionButtons": true,
+      "contextSHA256": "12728057f37384c9362e2d2dcb17b3eb2bc46242cbde2114c3abcb7bc01f3820",
+      "keyboard": {
+        "key": "Enter",
+        "started": 96965.089,
+        "completed": 97013.609,
+        "callId": "call@9178"
+      },
+      "traceSHA256": "6a6f14686131386c36fedad5c83654e5df63b67d8b551295e1647e343ccfb10d",
+      "snapshot": {
+        "name": "after@call@9178",
+        "timestamp": 97040.738,
+        "nativeHold": {
+          "messages": [
+            "A sessão salva foi preservada. Não foi possível identificar uma única revisão com segurança.",
+            "Escolha uma versão publicada para consulta, sem alterar respostas ou progresso."
+          ],
+          "buttons": [
+            {
+              "text": "Consultar versão atual (17.12)",
+              "action": "consultSavedStudyRevision",
+              "arg": "1|sha256:82078a1e365aebe4c155109e7030385e88de0bd1cee7e8279d0dc940d704e2b0"
+            },
+            {
+              "text": "Consultar versão histórica (17.11)",
+              "action": "consultSavedStudyRevision",
+              "arg": "1|sha256:78ddf4234d722f91ebdebd04347be3a7897fc43bd6dadc73f3dd752de4c5642b"
+            }
+          ],
+          "role": "alert",
+          "id": "studyRevisionHold"
+        },
+        "millisecondsAfterKeyCompletion": 27.129
+      },
+      "trace": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ci1073-artifacts-4\\test-results\\206-overview-action-colors-5457f-d-opens-the-real-study-flow-chromium\\trace.zip",
+      "idCall": "call@9174"
+    },
+    {
+      "firstFourIds": [
+        "1e5e88e9",
+        "66b811c3",
+        "e56795a6",
+        "70129a64"
+      ],
+      "attempt": "retry1",
+      "context": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ci1073-artifacts-4\\test-results\\206-overview-action-colors-5457f-d-opens-the-real-study-flow-chromium-retry1\\error-context.md",
+      "contextContainsBothVersionButtons": true,
+      "contextSHA256": "12728057f37384c9362e2d2dcb17b3eb2bc46242cbde2114c3abcb7bc01f3820",
+      "keyboard": {
+        "key": "Enter",
+        "started": 109023.2,
+        "completed": 109068.847,
+        "callId": "call@592"
+      },
+      "traceSHA256": "15c971b51ae9a4abbeeb8055333ae40421c27f478859b3164e191f97d36633f7",
+      "snapshot": {
+        "name": "after@call@592",
+        "timestamp": 109103.791,
+        "nativeHold": {
+          "messages": [
+            "A sessão salva foi preservada. Não foi possível identificar uma única revisão com segurança.",
+            "Escolha uma versão publicada para consulta, sem alterar respostas ou progresso."
+          ],
+          "buttons": [
+            {
+              "text": "Consultar versão atual (17.12)",
+              "action": "consultSavedStudyRevision",
+              "arg": "1|sha256:82078a1e365aebe4c155109e7030385e88de0bd1cee7e8279d0dc940d704e2b0"
+            },
+            {
+              "text": "Consultar versão histórica (17.11)",
+              "action": "consultSavedStudyRevision",
+              "arg": "1|sha256:78ddf4234d722f91ebdebd04347be3a7897fc43bd6dadc73f3dd752de4c5642b"
+            }
+          ],
+          "role": "alert",
+          "id": "studyRevisionHold"
+        },
+        "millisecondsAfterKeyCompletion": 34.944
+      },
+      "trace": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ci1073-artifacts-4\\test-results\\206-overview-action-colors-5457f-d-opens-the-real-study-flow-chromium-retry1\\trace.zip",
+      "idCall": "call@588"
+    },
+    {
+      "firstFourIds": [
+        "1e5e88e9",
+        "66b811c3",
+        "e56795a6",
+        "70129a64"
+      ],
+      "attempt": "retry2",
+      "context": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ci1073-artifacts-4\\test-results\\206-overview-action-colors-5457f-d-opens-the-real-study-flow-chromium-retry2\\error-context.md",
+      "contextContainsBothVersionButtons": true,
+      "contextSHA256": "12728057f37384c9362e2d2dcb17b3eb2bc46242cbde2114c3abcb7bc01f3820",
+      "keyboard": {
+        "key": "Enter",
+        "started": 121547.642,
+        "completed": 121586.572,
+        "callId": "call@592"
+      },
+      "traceSHA256": "e72f0ef1996d1db8b808007e96638fd7936cbffe756f21cb6cf8a9679abddd91",
+      "snapshot": {
+        "name": "after@call@592",
+        "timestamp": 121610.944,
+        "nativeHold": {
+          "messages": [
+            "A sessão salva foi preservada. Não foi possível identificar uma única revisão com segurança.",
+            "Escolha uma versão publicada para consulta, sem alterar respostas ou progresso."
+          ],
+          "buttons": [
+            {
+              "text": "Consultar versão atual (17.12)",
+              "action": "consultSavedStudyRevision",
+              "arg": "1|sha256:82078a1e365aebe4c155109e7030385e88de0bd1cee7e8279d0dc940d704e2b0"
+            },
+            {
+              "text": "Consultar versão histórica (17.11)",
+              "action": "consultSavedStudyRevision",
+              "arg": "1|sha256:78ddf4234d722f91ebdebd04347be3a7897fc43bd6dadc73f3dd752de4c5642b"
+            }
+          ],
+          "role": "alert",
+          "id": "studyRevisionHold"
+        },
+        "millisecondsAfterKeyCompletion": 24.372
+      },
+      "trace": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ci1073-artifacts-4\\test-results\\206-overview-action-colors-5457f-d-opens-the-real-study-flow-chromium-retry2\\trace.zip",
+      "idCall": "call@588"
+    }
+  ],
+  "run": "43476104388",
+  "head": "c97045c1ca20d6d8f14b8ea0497d353bc1de4a03",
+  "causalCrosscheck": {
+    "against": "ci1073-shard4-study-fixture-proof.json",
+    "qid": "66b811c3",
+    "savedIndex": 1,
+    "matchingAttemptCount": 3,
+    "bothCandidateRecordHashesMatch": true,
+    "allNativeHoldsBeforeTimeout": true,
+    "cardOnly553Selected": false
+  }
+}

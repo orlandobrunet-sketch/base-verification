@@ -1,0 +1,931 @@
+{
+  "schema": 1,
+  "role": "AUTOR; não emite veredito nem liberação",
+  "date": "2026-11-13",
+  "candidateFile": "dp-final-candidates-A2.json",
+  "candidateFileSHA256": "290d98e2d629850a8ed1e4cbbaa5a0870cb704058642b7ce5b114358c27f16ea",
+  "originalFile": "dp-final-original-5.json",
+  "originalFileSHA256": "68cf1b8b0c0b853fc67b46a0600be9add89562b38f68e84ba447dfd4c664b509",
+  "sources": [
+    {
+      "id": "ISPD-AKI-2020",
+      "existingRef": "ispd_aki_pd_2020",
+      "url": "https://journals.sagepub.com/doi/10.1177/0896860820970834",
+      "doi": "10.1177/0896860820970834",
+      "metadata": "Cullis B et al. Perit Dial Int.2021;41(1):15–31. Atualização denominada2020, publicação online03/12/2020.",
+      "access": "HTML integral da editora aberto,1459 linhas; lidas recomendações e justificativas relevantes, não apenas resumo.",
+      "locators": [
+        "Summary statement1(1B)",
+        "Guideline2: acesso conforme paciente/equipe e sistemas",
+        "Guideline4.1–4.4 e Rationale",
+        "Table5: comparações entre prescrições de DP e modalidades extracorpóreas",
+        "Guideline5: complicações e manejo"
+      ],
+      "decisiveClaims": "DP é opção para LRA em diferentes cenários; seleção, acesso e prescrição individual importam. Ciclos e glicose acompanham alterações metabólicas e volume. Evidência1C compara protocolo tidal25L/24h a hemodiafiltração contínua23mL/kg/h; não estabelece preferência universal na sepse ou equivalência de qualquer protocolo.",
+      "numericAudit": "Os números25L,70%tidal e23mL/kg/h do card foram conferidos na4.1; Kt/V2,2 versus dose maior na4.1/justificativa. Os candidatos não exigem essas doses. Volume36–44L é de protocolo específico, não regra universal.",
+      "limits": "Ajustes e limitações não significam que toda cirurgia abdominal prévia ou oligúria contraindique DP. A explicação mantém avaliação individual, sem declarar superioridade universal. Não se usa a frase antiga da fonte sobre controle glicêmico intensivo como recomendação atual."
+    },
+    {
+      "id": "ISPD-access-2019",
+      "existingRef": "ispd_pd_access_2019",
+      "url": "https://journals.sagepub.com/doi/10.3747/pdi.2018.00232",
+      "doi": "10.3747/pdi.2018.00232",
+      "metadata": "Crabtree JH et al. Perit Dial Int.2019;39(5):414–436. PMID31028108.",
+      "access": "PubMed metadados abertos; link com parâmetros expirou, mas DOI direto abriu HTML integral2577 linhas.",
+      "locators": [
+        "Hernia Repair",
+        "Catheter Break-In Procedures",
+        "Peritoneal Leakage and Management/Late Pericatheter Leaks"
+      ],
+      "decisiveClaims": "Reparo de hérnias e fechamento estanque podem permitir continuidade de DP. Volume e postura influenciam pressão; uso de baixo volume em decúbito e abdome seco ao deambular reduz vazamento após reparo. A avaliação não determina abandono definitivo da modalidade.",
+      "numericAudit": "Não foram introduzidas doses ou prazo obrigatório no candidato. A fonte descreve regime de baixo volume/decúbito por2semanas após reparo, mas o item individualiza pausa e retomada em vez de universalizar esse prazo."
+    },
+    {
+      "id": "EP-2023",
+      "existingRef": "eosinophilic_peritonitis_review_2023",
+      "url": "https://link.springer.com/article/10.1186/s12882-022-03027-8",
+      "doi": "10.1186/s12882-022-03027-8",
+      "metadata": "Zhang Q et al. BMC Nephrol.2023;24:10. Caso e revisão da literatura; PMID36635670.",
+      "access": "Texto integral da editora aberto,362 linhas, incluindo caso, discussão e limitações.",
+      "locators": [
+        "Discussion and conclusions: definição e apresentação",
+        "Discussion: mecanismos propostos, hipersensibilidade, materiais, soluções, ar e medicamentos",
+        "Limitação do próprio caso: possível peritonite infecciosa inicial coexistente"
+      ],
+      "decisiveClaims": "Mais de100eosinófilos/µL ou mais de10%das células não eritrocitárias caracteriza eosinofilia do efluente. Início precoce, turvação com poucos sintomas e predomínio eosinofílico sustentam hipótese; investigação infecciosa não é dispensada por eosinofilia ou cultura isolada negativa.",
+      "numericAudit": "Duas semanas,320leucócitos/µL e60%eosinófilos são dados originais mantidos;192eosinófilos/µL excedem100 e60%excede10%. Nenhum tratamento ou dose novo.",
+      "limits": "Mecanismos são associações/propostas, não causa comprovada em toda pessoa. O texto não prescreve corticosteroide nem suspensão automática de antibiótico."
+    },
+    {
+      "id": "ISPD-peritonitis-2022",
+      "existingRef": "ispd_peritonitis_guideline",
+      "url": "https://journals.sagepub.com/doi/10.1177/08968608221080586",
+      "doi": "10.1177/08968608221080586",
+      "access": "HTML integral já aberto e conferido nesta frente; ver também dp-infection-author-sources-A2.json.",
+      "locators": [
+        "Initial presentation and management/diagnostic criteria",
+        "Differential diagnosis of cloudy effluent"
+      ],
+      "decisiveClaims": "Efluente turvo requer avaliação e coleta; infecção deve ser excluída cuidadosamente. Eosinofilia não equivale ao critério de predomínio de neutrófilos."
+    },
+    {
+      "id": "ISPD-membrane-2021",
+      "existingRef": "ispd_membrane_dysfunction_2021",
+      "url": "https://journals.sagepub.com/doi/10.1177/0896860820982218",
+      "doi": "10.1177/0896860820982218",
+      "metadata": "Morelle J et al. Perit Dial Int.2021;41(4):352–372.",
+      "access": "HTML integral1841linhas aberto; seções fisiológicas e recomendações conferidas. Fonte já usada na autoria membrane5.",
+      "locators": [
+        "How the membrane works in PD/Theoretical models",
+        "Peritoneal solute transfer rate",
+        "Mechanisms and pathways of water transport",
+        "Conclusão terminológica: transfer evita confusão com processo ativo"
+      ],
+      "decisiveClaims": "Pequenos poros permitem difusão de solutos e transporte associado à água. Capacidade difusiva depende do gradiente; transporte de água responde a forças osmóticas, inclusive pelas aquaporinas. Difusão é passiva; convecção pode contribuir, sem substituir seu papel principal na remoção de ureia.",
+      "numericAudit": "Nenhum tamanho de poro, coeficiente, dose ou limiar foi introduzido no item fisiológico."
+    },
+    {
+      "id": "Neumann-2018",
+      "existingRef": "neumann_2018",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/29042081/",
+      "doi": "10.1016/j.kint.2017.07.022",
+      "metadata": "Neumann D, Mau W, Wienke A, Girndt M. Kidney Int.2018;93(2):430–438.",
+      "access": "Resumo indexado primário da PubMed lido por resultado de busca; abertura direta retornou apenas rodapé. ScienceDirect e KidneyInternational fulltext403. NÃO se declara leitura integral.",
+      "locators": [
+        "Abstract: CORETH, testes e pareamento",
+        "Abstract: resultados e viés de exclusões"
+      ],
+      "decisiveClaims": "Coorte com pareamento por escore de propensão; associação favorável à DP nos testes, com limitações de comparabilidade e exclusões. O próprio resumo distingue associação e generalização limitada.",
+      "numericAudit": "271avaliados, subconjuntos96HD/101DP e1ano constam no resumo; não são cobrados no candidato."
+    },
+    {
+      "id": "Niknafs-2025",
+      "existingRef": "niknafs_2025",
+      "url": "https://www.journalrip.com/Inpress/jrip-38662.pdf",
+      "doi": "10.34172/jrip.2025.38662",
+      "metadata": "Niknafs B et al. J Renal Inj Prev.2025;e38662. Publicado10/06/2025.",
+      "access": "PáginaHTML500; PDF primário da editora abriu integralmente5páginas/519linhas.",
+      "locators": [
+        "p1resumo",
+        "p2Study design and participants",
+        "p3resultados",
+        "p4Discussion/Limitations"
+      ],
+      "decisiveClaims": "Estudo transversal pareado,200pessoas,100por modalidade, MMSE; melhor desempenho associado à DP, sem inferência causal. Autores reconhecem seleção/cognição basal e indicam atenção cognitiva nas duas modalidades.",
+      "numericAudit": "200e100/100 e diferenças nos domínios do MMSE do card conferidas. Não se importa prevalência ou efeito causal no candidato."
+    },
+    {
+      "id": "Malik-2026",
+      "existingRef": "malik_meta_2025",
+      "url": "https://link.springer.com/article/10.1007/s10157-025-02798-2",
+      "doi": "10.1007/s10157-025-02798-2",
+      "metadata": "Malik A et al. Clin Exp Nephrol.2026;30:408–423. Online01/12/2025; fascículo03/2026.",
+      "access": "Texto integral da editora aberto,463linhas, incluindo métodos, resultados e limitações.",
+      "locators": [
+        "Methods/Study selection",
+        "Results/Study and patient characteristics",
+        "Dementia/heterogeneity",
+        "Discussion/Limitations"
+      ],
+      "decisiveClaims": "Dados comparativos observacionais favorecem DP em cognição global/demência; não foram identificados ensaios randomizados. Seleção, confundimento e heterogeneidade impedem concluir neuroproteção causal pela escolha da modalidade.",
+      "numericAudit": "Resumo e início deResultados dizem26estudos/326216pessoas; seção seguinte diz27e soma categorias sobrepostas. Registrada inconsistência interna, não repetida no item. I2demência94%conferido; não cobrado. Sete bases, GRADE e datas do card conferidos.",
+      "limits": "Contagem26do card acompanha resumo da fonte, mas a inconsistência impede usar número como afirmação decisiva. Busca da revisão termina01/2025; explicação candidata limita ausência deRCTà metanálise citada, sem alegar levantamento exaustivo até hoje."
+    }
+  ],
+  "items": [
+    {
+      "qid": "f4de7965",
+      "sources": [
+        "ISPD-AKI-2020"
+      ],
+      "contract": "Aseleção e prescrição individualizadas;Bconfunde oligúria com contraindicação;Cextrapola benefício causal de sobrevida na sepse;Dgeneraliza volumes dos ensaios em vez de seguir resposta metabólica/volume.",
+      "identity": "MesmoOP: aplicabilidade e limites de DP naLRA. Sem nova indicação ou dose sobqid."
+    },
+    {
+      "qid": "23635484",
+      "sources": [
+        "ISPD-access-2019"
+      ],
+      "contract": "Areparo planejado e reinício individual;Bespera encarceramento apesar de sintomas;Cignora pressão do volume habitual no pós-operatório imediato;DtornaHDdefinitiva obrigatória por hérnia tratável.",
+      "identity": "MesmoOP: manejo de hérnia sintomática redutível sem estrangulamento, preservando possibilidade deDP."
+    },
+    {
+      "qid": "5eb00a6e",
+      "sources": [
+        "EP-2023",
+        "ISPD-peritonitis-2022"
+      ],
+      "contract": "Amesmo diagnóstico;B/Cnão são a melhor hipótese após exclusão infecciosa cuidadosa e predomínio eosinofílico;Dnãoseajustaao diferencial celular. Mantém todos os diagnósticos originais, sem razões absurdas embutidas.",
+      "identity": "MesmoOP de reconhecer efluente eosinofílico; não autoriza excluir infecção a partir de cultura única."
+    },
+    {
+      "qid": "faac594e",
+      "sources": [
+        "ISPD-membrane-2021"
+      ],
+      "contract": "Adifusão;Bconvecçãocontribui mas não é o principal;Ctransporteenérgicoativo não é mecanismo da troca;Dosmoseéágua, não o transporte da ureia.",
+      "identity": "Mesmo OP e gabarito; apenas a referência específica primária já adicionada permanece. Os dois livros são redundantes para este mecanismo; nenhum card herdado foi reconstruído ou alterado."
+    },
+    {
+      "qid": "4decf9f9",
+      "sources": [
+        "Neumann-2018",
+        "Niknafs-2025",
+        "Malik-2026"
+      ],
+      "contract": "Aassociaçãonão causal;Bsuperestimaeliminação do viés por pareamento;Cconfunde rapidez de depuração com prova de desfecho cognitivo;Dtransformaincerteza em irrelevância do rastreamento/planejamento.",
+      "identity": "MesmoOP de comunicação dos limites causais; sem superioridade causal ou promessa clínica nova."
+    }
+  ],
+  "cardAudit": {
+    "readInFullInApp": [
+      "ispd_aki_pd_2020",
+      "ispd_pd_access_2019",
+      "eosinophilic_peritonitis_review_2023",
+      "daugirdas_handbook_of_dialysis",
+      "brenner_rector",
+      "neumann_2018",
+      "niknafs_2025",
+      "malik_meta_2025"
+    ],
+    "sourceFullTextUnavailable": [
+      "daugirdas_handbook_of_dialysis",
+      "brenner_rector",
+      "neumann_2018"
+    ],
+    "changed": false,
+    "BrennerIssue": "IDherdado usaISBN9780323532655(11ªedição/copyright2020emcatálogos e resultado primário daElsevier), mas cardafirma2024. Páginas antigas da editora redirecionam àhome; não se declara obra integral conferida nem validação do ano2024. Lead/root já registraram o problema e determinaram não reconstruir cardagora.",
+    "criticalSourceCoverage": "Em faac, todas as afirmações decisivas são cobertas pela ISPD2021 integral, agora única referência. Os livros são removidos somente deste item; seus cards e demais consumidores permanecem, com problemas já registrados fora deste gate. Em cognição, Malik/Niknafs integrais cobrem o limite causal; Neumann é resumo primário com limite de acesso informado.",
+    "noInheritedApproval": true
+  },
+  "notPublicationGates": true,
+  "versionDelta": "Somente faac594e.refs muda para a fonte específica ISPD2021; os cinco demais campos de conteúdo desse item e todos os outros quatro objetos candidatos ficam idênticos a A1.",
+  "bookConsumerInventory": [
+    {
+      "refId": "daugirdas_handbook_of_dialysis",
+      "currentConsumerCount": 3,
+      "remainingAfterFaacCount": 2,
+      "lastConsumerRemoved": false,
+      "remainingConsumers": [
+        {
+          "qid": "cb6c4aae",
+          "currentHash": "ba7e25f2918874c3c196652f6199779d1a371de313333f7d1a017d29e380fcbd"
+        },
+        {
+          "qid": "a12cb84d",
+          "currentHash": "d20b78ab99591ae9344c070a0c8bf465a61594f7205a1993b14142fb9cba7d6c"
+        }
+      ]
+    },
+    {
+      "refId": "brenner_rector",
+      "currentConsumerCount": 171,
+      "remainingAfterFaacCount": 170,
+      "lastConsumerRemoved": false,
+      "remainingConsumers": [
+        {
+          "qid": "cc3248a3",
+          "currentHash": "6a93f7dbd373cdb87898f69849df5b1d506c582248e753d4accb8a73accc939e"
+        },
+        {
+          "qid": "63040771",
+          "currentHash": "b6bf3c897902e1ffc3034d7005c0ffa0986a426ba2c2295c0abe5543931c01b6"
+        },
+        {
+          "qid": "b5bfaf2c",
+          "currentHash": "5fcc9d3a0eb38c62e8544d36e8977e9ca38550ca5bebb588b4b4409e120cc43c"
+        },
+        {
+          "qid": "d39cf860",
+          "currentHash": "d1bd51c682beb473a433fc80847193f67971e5d3176301141fffd9e3f6519b46"
+        },
+        {
+          "qid": "7e4990d5",
+          "currentHash": "9101d49323d9656e02a625e5a65fe75608d69070e42af68dc24f0941f5dfb79a"
+        },
+        {
+          "qid": "2aa239e9",
+          "currentHash": "29a2e895094cedd6eaa81d0d7195994557f5666626f1c15335d14efd2437c082"
+        },
+        {
+          "qid": "bfb82aa0",
+          "currentHash": "0121d7fa5b078d30cd57c35d1cfca263edfe3affe0df568bda16f1d3ec7209b8"
+        },
+        {
+          "qid": "8b80b0a9",
+          "currentHash": "b6990004c340b218d98ff7e7fedf86e30b13987da6770775cc431a1d49080ff2"
+        },
+        {
+          "qid": "43b59c52",
+          "currentHash": "2f9a4a9ec76059a890ff475b43eef8cffd3a88a123f9c98450fea6c150706db7"
+        },
+        {
+          "qid": "c3222d12",
+          "currentHash": "84d4b7fc7c73d0725da202da1fb3009b122d1c0928f9b56d4f7c100e1c4a6f82"
+        },
+        {
+          "qid": "1e62bd9e",
+          "currentHash": "ca5d4fdb54f77a18e89db1cd4115998a98a88f7869647edbf4649d77c17f926d"
+        },
+        {
+          "qid": "c69f0607",
+          "currentHash": "7368f280da1f4c8bc41d56c79a9a44d5ae310a550fd58b66bcbea046ba091de9"
+        },
+        {
+          "qid": "a9d85046",
+          "currentHash": "0f599f75b496037508a0c31cf8521a8002fd5b53b8b945c16c05264ba111b45e"
+        },
+        {
+          "qid": "71a9210e",
+          "currentHash": "4b71fd1ffcc0a5ae8f71286524d2de093556bcd35db928bcc12c2950433285fa"
+        },
+        {
+          "qid": "40b3d28b",
+          "currentHash": "e76842820ef323eb1da419ea411a2238b889746af0bec035c2c04acd36076279"
+        },
+        {
+          "qid": "09451637",
+          "currentHash": "3a2195039ced4fa7108634dba1fa5a21b23908b03bcebeee22057c56a5a7f954"
+        },
+        {
+          "qid": "86ad6fc4",
+          "currentHash": "406064062ff84487f7cf88d6acd1561b1d17bfebe810a6f66db8b4b9b2f9bfa4"
+        },
+        {
+          "qid": "6f3fbd14",
+          "currentHash": "a83004c88394a10db3ea8e974def47d6c349b8fe30f09516d479accb9b7265c1"
+        },
+        {
+          "qid": "e0448d0b",
+          "currentHash": "b5bbb1e634519d48b740f921dbb6c62c87d6da156ad71b711f71e93c5137c857"
+        },
+        {
+          "qid": "b4165730",
+          "currentHash": "681d4c87a837b367e01e0ce8a37f0640858e3102fa9121860c9bff01ded03be3"
+        },
+        {
+          "qid": "985d735c",
+          "currentHash": "1b7e568c57f786795f6255aa5246808bd5955545860c58fd4d021900ebf72110"
+        },
+        {
+          "qid": "fe10a36e",
+          "currentHash": "b9d1db7a058d70e8e3beaaa536de87d2c86f3f540e01bc2d2844bdee0875a42c"
+        },
+        {
+          "qid": "4d3fd561",
+          "currentHash": "f6823fb1f2f85fa5b7e758cc67fff3a74419252315d993500f0082929d59968d"
+        },
+        {
+          "qid": "e5c78a9f",
+          "currentHash": "8324109e6ccadd9f9ced0100d9586783fbc45c4b3a94f7181faa829e1e608b9d"
+        },
+        {
+          "qid": "50166346",
+          "currentHash": "87524665df4dc090ed4358044c8bb0ca8982ff4f7f23a8279dc46ba7566f05d0"
+        },
+        {
+          "qid": "1f962c0e",
+          "currentHash": "de90df7b79d41f96113cd7cb55002513ad4caf1dc5411bec977cd1682cb5c0fd"
+        },
+        {
+          "qid": "17dc6d7e",
+          "currentHash": "20b04d984512c0b4f23fe8f02e903d6448a85683629f51852d586e6c8f6860fb"
+        },
+        {
+          "qid": "b933be69",
+          "currentHash": "83e939b035fe525c48bfc6512705c2dbdc96e162fa3e13f1172785df43762cb0"
+        },
+        {
+          "qid": "43313455",
+          "currentHash": "72ba867059ce7725340b2b239ada52e03f91e4ba28368d451e86461a0913a687"
+        },
+        {
+          "qid": "81182ae0",
+          "currentHash": "82ca435f53462236f95bf9e3cfa694a334b8dde7188280b9c2f7a5beb736d2e3"
+        },
+        {
+          "qid": "61fc6237",
+          "currentHash": "7dc3e3dfa915646f7f8c61c4a3e7480d59f734a1437b94c5f3c52745504b50f9"
+        },
+        {
+          "qid": "22142814",
+          "currentHash": "bdf1b066af71d5bf1e3cbba3314e01f3e3c5f9c43c21b9e0e2ddc3ab8e75dc5b"
+        },
+        {
+          "qid": "ebea50d5",
+          "currentHash": "1e5f9eab73c2929f3f5e321ff4c8db28a8004e9f951327d710b2f330a2e34351"
+        },
+        {
+          "qid": "61edc2d9",
+          "currentHash": "d630a198f5cac6918d34b105d5872341a08730300b55f07564fd05c244ffed0e"
+        },
+        {
+          "qid": "1b286739",
+          "currentHash": "5ecffbba12116b4e8cd2bd7a9cbfd76ec70ae824d8215b40fb5036d4abd1fc58"
+        },
+        {
+          "qid": "f676438e",
+          "currentHash": "dead2e8353111a018394d833e3f1916f5392654c04c793f4358d0a244da08ee7"
+        },
+        {
+          "qid": "899cadd8",
+          "currentHash": "8766957e3b871798620ae7a9b842f785ae6f07e1271e4265c0a4c3e12c5e241d"
+        },
+        {
+          "qid": "b8666d0a",
+          "currentHash": "b115f9ea59abf89906e68edea479b05a5f35865609425fbfc6f1cd0840fc7e27"
+        },
+        {
+          "qid": "a73f61f6",
+          "currentHash": "0faa2f516d4d08e00845bffc4358dc730d368031cf5533baf5a81d2043815788"
+        },
+        {
+          "qid": "69018bb9",
+          "currentHash": "740e6b49b60b0e40cd8e9f7b852185b30a372ac7cd02b994959a664b2e0350e8"
+        },
+        {
+          "qid": "a799c154",
+          "currentHash": "0a6c87ab73b3dcc95dd8ba32ab59176665f36d5977b478b985a66cc4ca70e625"
+        },
+        {
+          "qid": "5ea4847a",
+          "currentHash": "43161f0aa44c6a2beb53d780c26d89268d4bc64f5ee929c8af8a2ad3ca8875fc"
+        },
+        {
+          "qid": "6e1db964",
+          "currentHash": "7d10be2a21d197ba5759f161c29747f00986511872b4b58eeb2c4157396260f8"
+        },
+        {
+          "qid": "65d19905",
+          "currentHash": "7d9a96d4a15a49797b6f0787826caca0564bdcb8d8674e1aa6de07396efb2287"
+        },
+        {
+          "qid": "7987651d",
+          "currentHash": "3e2aac38fb0f88a1164c4f05fedd2691dd601f892f6700ba8271486f079fd68d"
+        },
+        {
+          "qid": "cf609480",
+          "currentHash": "a6954c32ec95624bb6df2eda014b48066d5290f018a5c474a541d2e7999595ec"
+        },
+        {
+          "qid": "0bc2e7aa",
+          "currentHash": "b8b1e448d448b7c1691bf865880897c524443af17e176a84e6297050f07d8648"
+        },
+        {
+          "qid": "a79c0cc3",
+          "currentHash": "0bd8b43413b245ed72db7365f5aa584c155e7361373ad44665793dfa2d463e41"
+        },
+        {
+          "qid": "6d52cb77",
+          "currentHash": "71d6451f3106069ac420c2d12808adedc210b1dece1d9904a2391f169b785920"
+        },
+        {
+          "qid": "d305e74d",
+          "currentHash": "af93fa6ef682c6070b1400cd5482e5518e6608d0dd2b392352cf6bdd4bbec18b"
+        },
+        {
+          "qid": "6a54b25c",
+          "currentHash": "16bf569345c9f10322ed8782e20f30194ecc6d22095037b65fcfd81a7a8321d9"
+        },
+        {
+          "qid": "ef084c2d",
+          "currentHash": "a4c0e290b93ad582f0c224bb2d3a708310180a343611822fbd0a455933ea36df"
+        },
+        {
+          "qid": "9a545994",
+          "currentHash": "47012188fc11dc7d2439b7f19c2d8a49d0557664ac846e836744e37de65c357c"
+        },
+        {
+          "qid": "10d210a3",
+          "currentHash": "7fa511bfdad1d36fe62d41ca9dbe0104491d2d01c09ef217cbaa778db4d47bcc"
+        },
+        {
+          "qid": "d92f30a9",
+          "currentHash": "33dce3f5381b0f9a904674c92aa8dd4020c0264e7600c2d6c90475ed2d0bbdc8"
+        },
+        {
+          "qid": "0f36f320",
+          "currentHash": "47b0d2e45da4bc5d1ab732b2d7cdeb26486c00445c72904c891ddc230119de11"
+        },
+        {
+          "qid": "06df2814",
+          "currentHash": "a5744c45d60f5fbd90780805a10d9011e72143bf4bb2adb74617175223e5aa07"
+        },
+        {
+          "qid": "ac2d05ad",
+          "currentHash": "2ad031b530984e70aec98de4835eb9a47c74d904367aaeb401692c34f9bd2fd1"
+        },
+        {
+          "qid": "805733f8",
+          "currentHash": "b40b8baa40ac751aaa5e13c734af78733d29923059c3b0b7602d60967db8373d"
+        },
+        {
+          "qid": "89bab6a0",
+          "currentHash": "d5400bb6762d06466b846ce00e3fd6f7f1f7686c0ef7cc01d85274c821902791"
+        },
+        {
+          "qid": "6474ec20",
+          "currentHash": "0ba72f8511c1be465b17829c8dfcd5e50fcf4fd303ace24ebec533af8e559916"
+        },
+        {
+          "qid": "11df44bf",
+          "currentHash": "fda32c96d70f4a2d0a6f4ec7e2467cade285bc149bc3361d56770d2b2c9f066e"
+        },
+        {
+          "qid": "df02efdf",
+          "currentHash": "fc748e0e621e31a4ebc5b56bc87970ea41f7981c20e6092dce10ab08408efaa4"
+        },
+        {
+          "qid": "f40c533c",
+          "currentHash": "0868f769ec645e87654458365ff754d154b6e743c520890562beac94137ede38"
+        },
+        {
+          "qid": "1867db90",
+          "currentHash": "3b891977bb0886d0a66878660eceac9743e7af9eefc57e0ce54d03c2d9767740"
+        },
+        {
+          "qid": "a8bc43ae",
+          "currentHash": "0757d877fbadc7f9810846a99e71823d7d58f97f958fb88fd4239b9b71010339"
+        },
+        {
+          "qid": "aca17286",
+          "currentHash": "e2ba07201a1df79d4c02f08225f8f0967abe8403ebfaeee28253b8509ea554ac"
+        },
+        {
+          "qid": "582bc7df",
+          "currentHash": "b2ac96e00a419e0387a6d7771476920f3213ee458fb9c0442490c1a12080dcc2"
+        },
+        {
+          "qid": "adcbaae7",
+          "currentHash": "df507c46a8a29d5c64e1c5b7a09a23ae00d96ba45857ddbf2d7a5b0c183b3ce2"
+        },
+        {
+          "qid": "d86f36d3",
+          "currentHash": "d8de6554953d297773fc9193e7ee597b68eece91bc1fa036f370bd207af49e93"
+        },
+        {
+          "qid": "19c5b8a4",
+          "currentHash": "c3400c207cfb835252cb6ae2f531f4a1b9a90a1bf32c0313caa6d3d499b2b386"
+        },
+        {
+          "qid": "5c743fb2",
+          "currentHash": "1d0c53c9ae366b2cd725dc7dc8480255df255c78335182d0e7c67dc28a11fe01"
+        },
+        {
+          "qid": "21a89255",
+          "currentHash": "8af0ccfe0d96f351e54bba77fd0cc8b271bc83c6d2496493cd386d8fabd64ae6"
+        },
+        {
+          "qid": "85e1d082",
+          "currentHash": "5939f1b2889c63ff0000fa7117bb3022d7c63b0217ac62697697c7192ead0ed4"
+        },
+        {
+          "qid": "bc72d377",
+          "currentHash": "987c1a4d52465d2e8a087dd3b6624c8c0aba725941c118955e577c7e9eed5fa8"
+        },
+        {
+          "qid": "b35be598",
+          "currentHash": "bdf4f0b5ccc244e61a0af0bcbbc7f23392170876074d6dea44977da23877127b"
+        },
+        {
+          "qid": "6a19aece",
+          "currentHash": "bd119c950126dbdce61a02866602c5b3f58caf4122de80d5cbc9b9fc960061c7"
+        },
+        {
+          "qid": "5189c79f",
+          "currentHash": "eb9e0d6bc51f04e7414b160634839ca1a99eb556135e043cef3625b836dbed45"
+        },
+        {
+          "qid": "c187c49d",
+          "currentHash": "63e30e38ea1474acb5434f59b7816e91b9543a9258fa9182afff4cc72591acea"
+        },
+        {
+          "qid": "14af2b14",
+          "currentHash": "54e9a27ff8ed5a11a4a30df958d8425e90688b602067e7bea5ace7b42427980d"
+        },
+        {
+          "qid": "fcf76497",
+          "currentHash": "053450bd9b17dab2784517f20bbfd2303ebab90f32431e560aeb5db10639bb4e"
+        },
+        {
+          "qid": "9eafbe49",
+          "currentHash": "cf5c2d1527ef55c1a6bb7fdf2d61c05b886a04ab5e40eda3858eb70fffeb75f9"
+        },
+        {
+          "qid": "4ecfd6aa",
+          "currentHash": "d1ff8875ccae04690027a7c6ba65752085ba1031944bdec74d91e863f689a954"
+        },
+        {
+          "qid": "bba3c997",
+          "currentHash": "4e6e2318c9cc1cdacd126975f6a72f427f60ec4eb1fc01e838d88ac804c34efd"
+        },
+        {
+          "qid": "b057a5cd",
+          "currentHash": "4a12a85f71942ffc698b465211ef644121a8039038eb8d8d2b7b85d0e49cfe3a"
+        },
+        {
+          "qid": "c4e8b495",
+          "currentHash": "d97f3cd9fbd7355c9f664ec38594533d3cdfe95f6448e6d9a79a6dc60f51a7fd"
+        },
+        {
+          "qid": "54eac6b8",
+          "currentHash": "06a162dd9a151caf835e6655b233d467afabe1891a7f0c6f48ae1ec16983d009"
+        },
+        {
+          "qid": "16482653",
+          "currentHash": "eca17ecea3428b88d02bb919ae72d169751117cb0ff843cbd152bdcf6107929a"
+        },
+        {
+          "qid": "d10de245",
+          "currentHash": "7bc4df5488b79815383aff48cd3d4b3d056d1cd6636f25ac07591f84ca88eb78"
+        },
+        {
+          "qid": "98052e5c",
+          "currentHash": "7d227d86e0b3e4abb0b18c503c0e6452f4c0cb1df2be877fd930ac9bccc6f769"
+        },
+        {
+          "qid": "09748d98",
+          "currentHash": "8c4a25e383396aca6e9dfb7a19a873fd47858d268719a60eb66cb3d14c5d70fc"
+        },
+        {
+          "qid": "010b6339",
+          "currentHash": "c2dafce47df7f1bf65f3905ab0a88e9f67370caa44b5ecb54fd6351421550d6a"
+        },
+        {
+          "qid": "8071ef90",
+          "currentHash": "b836e57c29aba7cbe4c374cba3d0d4664bbc7bcaaa5cd740f7d675417ecc9282"
+        },
+        {
+          "qid": "8d443cc2",
+          "currentHash": "620bdf72ea430445dab44000c667b1299376f71ab10c4d63e133e5c66f5f68ef"
+        },
+        {
+          "qid": "51e8c525",
+          "currentHash": "718abc7ec3d9240988b94b7f2c849a972b0236daf97164647ba6f7f709fae88d"
+        },
+        {
+          "qid": "d87a4c59",
+          "currentHash": "bad8b338ddafa8cae03192321b6a5e98c4ed3844313b6fc63260d2a8179cd330"
+        },
+        {
+          "qid": "0334d0d1",
+          "currentHash": "341044b7b924718531632d7afeeb2c1832e7329be327f8efc3ff46ce2658e3db"
+        },
+        {
+          "qid": "44f1204f",
+          "currentHash": "4af12c79a2e99a39525f35ab3ffcc8bf663808f55678229c1bbd3133fca5e0c9"
+        },
+        {
+          "qid": "5426acba",
+          "currentHash": "f159b3c682e47c81385a2d90c38dbaba60205bc8525f925e9ec814169d50c524"
+        },
+        {
+          "qid": "ede008ca",
+          "currentHash": "ad0350673f7c5cbc0aa5f830405ab39479ef7ead770711f357df5d225dfa666d"
+        },
+        {
+          "qid": "e8ca8ba5",
+          "currentHash": "1276a8c0613b72d1b03b09186ce1c3efcb1de671b5f1f1180444b38a1da60935"
+        },
+        {
+          "qid": "d889795b",
+          "currentHash": "d8a7fcad7ef11ca2d85441bd0afccb19e9698f462fcb18725ffd3bbb61dbff09"
+        },
+        {
+          "qid": "7888b974",
+          "currentHash": "4a9b643e80b8569bd2768ecd8df4851310a0acd4bf1ee46bca480ccd325e3531"
+        },
+        {
+          "qid": "fc859f6a",
+          "currentHash": "4fa42904505f9fe15f8c62c259dc5feed76345a17fb644161e56239f5f3085d3"
+        },
+        {
+          "qid": "6ca50d2d",
+          "currentHash": "16305e4162521099b2970073b46ec79fbadd87d8bbb5a452085a0b5b8d80a3da"
+        },
+        {
+          "qid": "212f3a7d",
+          "currentHash": "9c66938fb318c1bed2031414bcf0dd403e3c5c2c23fb164c040f7b232c14137b"
+        },
+        {
+          "qid": "121adcc7",
+          "currentHash": "dad06f78e32ac1204408c6a3c73552a75fb34c039be1ebc54b98055fa01bc689"
+        },
+        {
+          "qid": "b9f66cbc",
+          "currentHash": "c6a8e655a01be9bac7b2511609e4043e0bb9cdd1ab2ba1d14198b136f62d8192"
+        },
+        {
+          "qid": "ece4696c",
+          "currentHash": "8e9d95c793fd48079ef88fd4ce522341b30f228cd15931eca68271ee813d5568"
+        },
+        {
+          "qid": "0eb0386d",
+          "currentHash": "a25fa66b90237639d5490b941e5aebbf2d273f8a06397f36dca8613cd93aa9b0"
+        },
+        {
+          "qid": "e24c60f6",
+          "currentHash": "a68276384fe911819a2ab6c254a2ea579670b28f53daf55c0484e6e5001ca01c"
+        },
+        {
+          "qid": "aeb58919",
+          "currentHash": "4a97a68fe9d0715a5377d38f6473ab0f5433daa6680bebdc882bd6cab13c55b3"
+        },
+        {
+          "qid": "f3a883e1",
+          "currentHash": "ffe58a93e971c4b34d454821cc55f71fd35292bd7ce9ea6850bcd8984de8718a"
+        },
+        {
+          "qid": "235c52d8",
+          "currentHash": "cd6c855c290af95182b873785a20b3acfc8985487d6e0afa683de6698bcb9878"
+        },
+        {
+          "qid": "022e7562",
+          "currentHash": "c57b69659f6f3201dda9b4e6d9190692d3718d39f90bd2e1b4884f72e823c972"
+        },
+        {
+          "qid": "db25ef93",
+          "currentHash": "4f5128e654cf300663ef967e07ced72efdddd5ee3276e886b6659655103f7d13"
+        },
+        {
+          "qid": "f75b87ef",
+          "currentHash": "3946b0e41c74b400d5ece6c8645e955bae75e8d3ab979aaf6d897cedce0e3ff9"
+        },
+        {
+          "qid": "68f04699",
+          "currentHash": "5e63e920955a59c0a95174885361f043058167542d69cd022c88a08507e31761"
+        },
+        {
+          "qid": "eedac5ba",
+          "currentHash": "4969ddc6390800da37408a03b3274245617282d134ce72d91dd6c6dc61190682"
+        },
+        {
+          "qid": "e0b825bb",
+          "currentHash": "359f59da86ef9f8b43d4da22e38ebbf5ae250fa2a09117e0cd3ee7e9d7524633"
+        },
+        {
+          "qid": "a4c85d32",
+          "currentHash": "2390f3dbbd86d094c3a6262fa0c2f46998b122c76530de602ac7f467f2b6f00e"
+        },
+        {
+          "qid": "80fb7281",
+          "currentHash": "50365cf2bee12bfab80e0096eb62a7ceb57b6ee266fed4b706601d2680567acf"
+        },
+        {
+          "qid": "efcbb8d4",
+          "currentHash": "870b67670d5e0fdc5c26704f939bd13536192c00efe6b8388a3b9c9db72b224d"
+        },
+        {
+          "qid": "2310ea28",
+          "currentHash": "68d31ceb480ce214213497a0d4ca08ab05ea00e4ba6fec397161de51d399ba62"
+        },
+        {
+          "qid": "bdcaa30c",
+          "currentHash": "f57a74a08d451f7c319b0a316cc55e5a82b0a29a89899eaa6b3eb89bf980abfe"
+        },
+        {
+          "qid": "db438123",
+          "currentHash": "644b2314fc4c85c3d0279a0426e4db92c19c7dec2954a6edcf4ea3a797af051d"
+        },
+        {
+          "qid": "60286409",
+          "currentHash": "47d539bdae14ec05a4d2bd5306a56d11a7ecb4f3ce1fe59b33bbf9510d2abe57"
+        },
+        {
+          "qid": "c11c9a7d",
+          "currentHash": "44b4649f8da50576c02809058842d52a21ceff70461e929aa1384319b18da1b9"
+        },
+        {
+          "qid": "f893d58a",
+          "currentHash": "dec2a0e20762609c1c4bf654bcf6182d868de2cf609a0b4a046ac5637e33bf1b"
+        },
+        {
+          "qid": "23323f09",
+          "currentHash": "b949fde7ab756582d4b11bf1980dfb41cc2c91eb75c8df9f387a558ecbdc989e"
+        },
+        {
+          "qid": "cd99f72b",
+          "currentHash": "53f79cf817483954f9f9bd16faefc2b28084dff7eacd92e1a10c7483325bcf5d"
+        },
+        {
+          "qid": "d9a50019",
+          "currentHash": "ba597cb84308522ea1b35849ce07681c46efe8889d590803f2e87d5de45115e9"
+        },
+        {
+          "qid": "2a615157",
+          "currentHash": "37b8a213c8db7c6b4c65eae392f16e0a10bdf03efb01ba89db3389cb89fb7bc9"
+        },
+        {
+          "qid": "d49c5c3c",
+          "currentHash": "2a4b040373b96fb27fb361fb015cca63bcf6cc7c2a22db36b7c58e1905f96ef4"
+        },
+        {
+          "qid": "7ea727d8",
+          "currentHash": "1c9142dd18a1f0c53d422dbaab5c730c826983a4068c5b9c03ac4c1c56902755"
+        },
+        {
+          "qid": "387cdad2",
+          "currentHash": "7e1de2416f683cf6d3710fe1cfa75017e2a4a00cd138138dfabfe6e48c3065e7"
+        },
+        {
+          "qid": "8c9be3b6",
+          "currentHash": "261c5b9ed221b6e67069451dfca93f1babf16d501707087d18d74f4809a63f27"
+        },
+        {
+          "qid": "6cebbdb0",
+          "currentHash": "40ed6572023c6143f22565027d02f9c7b7978eebf674f8ae65bff7b40275ca5d"
+        },
+        {
+          "qid": "0bf48f5b",
+          "currentHash": "72b811052bc48082059532e65e167f4b200d0e96b7521aabf0aac5430b4936ba"
+        },
+        {
+          "qid": "94028b5e",
+          "currentHash": "6a962a078183cd4695ab88f6f42746992491a7aa3e7c2f64959e2d9330868597"
+        },
+        {
+          "qid": "99e6abdd",
+          "currentHash": "11137bebdcc7630db4bf48df0996bfe034ca275b9c7b11c265e8923fee21b29b"
+        },
+        {
+          "qid": "d54bff9c",
+          "currentHash": "9b0da270bdd84b42237125b5a23aab98d67101afa54c70b826a88f105ae1e02f"
+        },
+        {
+          "qid": "1e2668d6",
+          "currentHash": "e6f5d83726888c7df959f19e6b2cfefb360e266ce18294eb3e73b2562b8d9969"
+        },
+        {
+          "qid": "5705f74c",
+          "currentHash": "a96e88a2946b469fb9f778db54429d970b6a275a0e2c52576b03fa601093db32"
+        },
+        {
+          "qid": "459c4d9a",
+          "currentHash": "efbf1629e2314f46967a43337b478cf069f5d1689d26cfc24348e231209a4ac8"
+        },
+        {
+          "qid": "760901ee",
+          "currentHash": "a181c030bd622971891ffe66510d408c40fe9c06af59d35d02f594e937536857"
+        },
+        {
+          "qid": "053bc658",
+          "currentHash": "990493c6c30e312ad8f42b9cc1317438be7a5859b65104c71a6e62f5c53aa960"
+        },
+        {
+          "qid": "cf15d456",
+          "currentHash": "7238fb810afbd16a4a94d0fb5b7f61e0854748cd4b7b81378c4541f5a9ba743f"
+        },
+        {
+          "qid": "0aa9eaa4",
+          "currentHash": "9c4eb43f7e163b11224064870dcce2d1b99868d2eb9850b7fc551101b456a335"
+        },
+        {
+          "qid": "ea7fe551",
+          "currentHash": "704ba27185d016c3f5928f8bf3a3f50f67cdec534070ac5bb0139f0895d0dadc"
+        },
+        {
+          "qid": "321a25ae",
+          "currentHash": "d5f1e539847ca099b7f490e600261ca82a3bd7a98ec5bcd31070e128533e4964"
+        },
+        {
+          "qid": "63034956",
+          "currentHash": "0e372cd272b33e97e6dbeadb7e3263463086eece9c06e697439b25b1ab268614"
+        },
+        {
+          "qid": "14076185",
+          "currentHash": "806dbec199b950549bcfe55950b121b7c48d23c93b8bd45608e5932be1d69eae"
+        },
+        {
+          "qid": "baee3a8b",
+          "currentHash": "b484514a697c401228649b455319c431713d03e21c508496e48b41c28c276d8e"
+        },
+        {
+          "qid": "7d63f158",
+          "currentHash": "689b5f59fb80c0b912831e88c55cd29388054808065676701040d092952c39b5"
+        },
+        {
+          "qid": "53090d19",
+          "currentHash": "82e479431daad9edc6179374c9898c36ea5c03d5f1c8dca1932e2dff572c3b8f"
+        },
+        {
+          "qid": "0583e607",
+          "currentHash": "83a9d27d66758fd8ef9b43a9d5120e68de3634ec5a9ff44d2ebbd4517b373497"
+        },
+        {
+          "qid": "bd5a8015",
+          "currentHash": "fafefa3f9738d46395185869bc82f49e36f99ee58eedb2646324b70e62758ca8"
+        },
+        {
+          "qid": "4adc13fd",
+          "currentHash": "7d02465d91b3ac85db05ae641b2e3f24ad9c26e4976eca4fc06d69a5fd2efc88"
+        },
+        {
+          "qid": "11831459",
+          "currentHash": "7de050525259a280a613ba98cdc46ec50e6a391f58d8436617447630626049d4"
+        },
+        {
+          "qid": "81e1082b",
+          "currentHash": "8b6b8f3d5b3ac4a535ee219bfb5c492c607b6f52ed3df69975f0d57472dccdd7"
+        },
+        {
+          "qid": "74179a29",
+          "currentHash": "bf839c3cc6adae48351a9ca6ebc9954464b637f53a5751e8b18692252918ba96"
+        },
+        {
+          "qid": "4f32d657",
+          "currentHash": "6e42e0fd301a98f3af068d957ac63448b35f71515104f8d3997ed02c04d3c4aa"
+        },
+        {
+          "qid": "72fbf8f7",
+          "currentHash": "69275f6fb600feeb7e02a660c214872a2a19648e05c6e32fea15bee4c6197285"
+        },
+        {
+          "qid": "705cb60b",
+          "currentHash": "ebe95647c68f21095fbc5ce617f4a9c21a72ad1e5b7712a2a37c679684983055"
+        },
+        {
+          "qid": "096ed861",
+          "currentHash": "98c861a49f1a23cf5f5edf0fa085fa1c999ce04ae69b067612cba41181ec3130"
+        },
+        {
+          "qid": "9046d70e",
+          "currentHash": "f268fac138f7293875bc3494f50e908af8780178213a81e4a85b3a98b5a6f77f"
+        },
+        {
+          "qid": "125cf9bf",
+          "currentHash": "63ff8b8c5c2cf99760953c22bc41b877484b78cde318ba23f6b303371cc5cdc0"
+        },
+        {
+          "qid": "51814977",
+          "currentHash": "b0ec6404fc31a614a66cb07cb622acf2ce335461551dc825b6515115ff6aefe4"
+        },
+        {
+          "qid": "940b2835",
+          "currentHash": "726cb96cefa7643b30a8ce4418951c00d575af4d7cac95f1496a60c1c0364195"
+        }
+      ]
+    }
+  ],
+  "itemBindings": [
+    {
+      "qid": "f4de7965",
+      "candidateHash": "5f7e1a0d35126d45d4df26781ca86895c0da1ffe90c507974b20595fa304281f"
+    },
+    {
+      "qid": "23635484",
+      "candidateHash": "daa4abf664c21888dc73ef0c778b6b4cecc5843fab27fb6babe83a55ea77251d"
+    },
+    {
+      "qid": "5eb00a6e",
+      "candidateHash": "b64b65be9a4edfae62e0c549fc68a2239f8ad025cde2b919ae5c335ad51619f3"
+    },
+    {
+      "qid": "faac594e",
+      "candidateHash": "936009c086bcc312c51853202ebe7e61381fcaa33fecab03d70d1d057fba06ec"
+    },
+    {
+      "qid": "4decf9f9",
+      "candidateHash": "e6b21995e1701ba736124a38ece9d92066b4902884f6903a4244083c20d6973e"
+    }
+  ]
+}

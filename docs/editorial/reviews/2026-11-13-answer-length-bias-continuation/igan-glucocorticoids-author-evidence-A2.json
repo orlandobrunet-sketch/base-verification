@@ -1,0 +1,485 @@
+{
+  "schema": 1,
+  "batch": "IgAN-glucocorticoids-A2",
+  "createdAt": "2026-11-13T14:21:37.795Z",
+  "candidateFile": "igan-glucocorticoids-candidates-A2.json",
+  "candidateFileSha256": "3d987fea2a2cf8112710ef140d9c2912520007be3663914a3bac3765815fc02b",
+  "originalFile": "igan-glucocorticoids-original.json",
+  "originalFileSha256": "0adfe986d544267deb33e8e10e2d52aade897e8ac209066765e4594afdf6cc82",
+  "sourceVerificationDate": "2026-11-13",
+  "scope": {
+    "qids": [
+      "d81defbb",
+      "f7107bc3",
+      "ff676013"
+    ],
+    "currentTopicQuestions": 3,
+    "broaderIgANOriginalCount": 26,
+    "remainingOutsideThisAndPriorPackets": 12,
+    "excludedQid": "2a595b23",
+    "noAppWrites": true
+  },
+  "sources": [
+    {
+      "id": "KDIGO2025",
+      "title": "KDIGO 2025 Clinical Practice Guideline for IgAN and IgAV",
+      "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+      "doi": "10.1016/j.kint.2025.04.004",
+      "pmid": "40975564",
+      "design": "Diretriz clínica",
+      "access": "PDF integral oficial aberto; seções S41–S44, recomendações1.4.3.1/1.4.3.2, PP1.4.3.1–1.4.3.3 e considerações de implementação lidos diretamente.",
+      "verified": "2026-11-13",
+      "limits": "Afirmações de ausência de dados são datadas2025. O lote não extrapola que não existam estudos de manutenção em2026, nem universaliza disponibilidade/aprovação regulatória."
+    },
+    {
+      "id": "TESTING2022",
+      "title": "Lv et al. Effect of Oral Methylprednisolone on Decline in Kidney Function or Kidney Failure in Patients With IgA Nephropathy",
+      "url": "https://jamanetwork.com/journals/jama/fullarticle/2792252",
+      "doi": "10.1001/jama.2022.5368",
+      "pmid": "35579642",
+      "journal": "JAMA.2022;327(19):1888–1898",
+      "design": "Ensaio clínico randomizado, duplo-cego, multicêntrico",
+      "access": "Texto primário completo aberto: Methods, Treatment Protocol, Results, Table2, Adverse Events e Limitations; resumo completo corroborado por EuropePMC.",
+      "verified": "2026-11-13",
+      "limits": "Coortes de doses foram recrutadas em períodos diferentes; cada dose foi comparada ao placebo contemporâneo. Ausência de heterogeneidade não prova equivalência entre doses nem elimina risco de infecção."
+    },
+    {
+      "id": "NEFIGARD2023",
+      "title": "Lafayette et al. Efficacy and safety of a targeted-release formulation of budesonide in patients with primary IgA nephropathy:2-year results",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37591292/",
+      "doi": "10.1016/S0140-6736(23)01554-4",
+      "pmid": "37591292",
+      "journal": "Lancet.2023;402(10405):859–870",
+      "design": "Ensaio clínico randomizado fase3, duplo-cego, placebo-controlado",
+      "access": "Resumo primário integral lido em PubMed e EuropePMC; dados necessários de desenho, população, dose, curso, endpoint, efeito e eventos verificados no resumo. KDIGO integral fornece contraprova e considerações de segurança/curso após suspensão.",
+      "verified": "2026-11-13",
+      "limits": "Resumo primário não foi chamado de texto integral da publicação. Não se afirma superioridade de exposição frente a outro corticoide em ensaio direto, benefício exclusivamente intestinal ou resposta permanente em cada indivíduo."
+    }
+  ],
+  "claims": [
+    {
+      "id": "TESTING_BENEFIT_HARM",
+      "qids": [
+        "d81defbb"
+      ],
+      "claim": "TESTING encontrou benefício no composto renal e maior incidência de eventos adversos graves; a toxicidade foi sobretudo da coorte de dose plena.",
+      "sources": [
+        "TESTING2022",
+        "KDIGO2025"
+      ],
+      "location": "TESTING resumo/Results/Table2/Adverse Events; KDIGO S42–S43",
+      "verified": true,
+      "limits": "Não equiparar coortes de doses a comparação randomizada de equivalência."
+    },
+    {
+      "id": "REDUCED_REGIMEN",
+      "qids": [
+        "d81defbb"
+      ],
+      "claim": "Quando Nefecon não está disponível, KDIGO2025 sugere glicocorticoide sistêmico reduzido com profilaxia e seleção individual; dose inicial de metilprednisolona0,4mg/kg/dia, máximo32mg, com desmame.",
+      "sources": [
+        "KDIGO2025",
+        "TESTING2022"
+      ],
+      "location": "Rec1.4.3.2; PP1.4.3.2; TESTING Treatment Protocol",
+      "verified": true,
+      "limits": "Recomendação2B, decisão compartilhada; não indicação automática por limiar de proteinúria. Dose reduzida não substitui Pneumocystis-profilaxia."
+    },
+    {
+      "id": "SYSTEMIC_RISK",
+      "qids": [
+        "d81defbb"
+      ],
+      "claim": "Filtração muito reduzida, diabetes/prediabetes, obesidade e infecções são fatores de toxicidade do corticoide sistêmico.",
+      "sources": [
+        "KDIGO2025"
+      ],
+      "location": "PP1.4.3.3",
+      "verified": true,
+      "limits": "Lista exemplificativa do item não transforma risco em contraindicação absoluta em todos os cenários."
+    },
+    {
+      "id": "TARGETED_RELEASE",
+      "qids": [
+        "f7107bc3"
+      ],
+      "claim": "Nefecon foi desenhado para liberação no íleo terminal e modulação de imunidade de mucosa, não liberação colônica.",
+      "sources": [
+        "KDIGO2025"
+      ],
+      "location": "S41 Nefecon, mecanismo e rationale",
+      "verified": true,
+      "limits": "Finalidade e mecanismo proposto da formulação não provam exclusividade causal de ação intestinal."
+    },
+    {
+      "id": "NEFIGARD_COURSE",
+      "qids": [
+        "f7107bc3"
+      ],
+      "claim": "NefIgArd randomizou364 adultos com IgAN primária; Nefecon16mg/dia por9meses versus placebo,15meses adicionais sem medicamento de estudo, mantendo suporte otimizado.",
+      "sources": [
+        "NEFIGARD2023",
+        "KDIGO2025"
+      ],
+      "location": "Resumo primário Methods/Findings; KDIGO S41",
+      "verified": true,
+      "limits": "TFGe35–90; PCR≥0,8g/g ou proteína≥1g/24h. Não equivaler curso estudado a regra de que nunca se possa repetir tratamento."
+    },
+    {
+      "id": "POST_STOP_RESPONSE",
+      "qids": [
+        "f7107bc3"
+      ],
+      "claim": "Benefício médio frente a placebo não significa cura nem resposta permanente individual; KDIGO documenta proteinúria crescente/TFGe decrescente após cessação e necessidade de reavaliar.",
+      "sources": [
+        "KDIGO2025",
+        "NEFIGARD2023"
+      ],
+      "location": "KDIGO S42 Implementation/Rationale; resumo primário Interpretation",
+      "verified": true,
+      "limits": "Não afirmar que o benefício entre grupos desapareceu nem que inexistam estudos novos de manutenção em2026."
+    },
+    {
+      "id": "FORMULATION",
+      "qids": [
+        "f7107bc3"
+      ],
+      "claim": "Curso NefIgArd não valida intercâmbio automático por qualquer budesonida nem uso indefinido sem revisão.",
+      "sources": [
+        "KDIGO2025",
+        "NEFIGARD2023"
+      ],
+      "location": "KDIGO S42, outras formulações; desenho doRCT",
+      "verified": true,
+      "limits": "Não é proibição de investigar manutenção; é limite de extrapolação do ensaio/formulação."
+    },
+    {
+      "id": "RESIDUAL_EXPOSURE",
+      "qids": [
+        "ff676013"
+      ],
+      "claim": "Liberação ileal não elimina exposição sistêmica; na prediabetes pode justificar maior vigilância glicêmica e é necessário avaliar infecções latentes.",
+      "sources": [
+        "KDIGO2025",
+        "NEFIGARD2023"
+      ],
+      "location": "KDIGO S41–S42 Harms/Considerations for Implementation; resumo primário Adverse Events",
+      "verified": true,
+      "limits": "A diretriz diz que não exige monitorização específica universal, mas explicita a exceção pertinente à prediabetes; não contradizer essa nuance."
+    },
+    {
+      "id": "PREDIABETES",
+      "qids": [
+        "ff676013"
+      ],
+      "claim": "Quatro pessoas com prediabetes basal no grupoNefecon desenvolveram diabetes durante os9meses; isso fundamenta acompanhamento, não contraindicação absoluta universal.",
+      "sources": [
+        "KDIGO2025"
+      ],
+      "location": "S41 Harms/Implementation",
+      "verified": true,
+      "limits": "Não estimar incidência pela população toda nem comparação direta com outro glicocorticoide."
+    }
+  ],
+  "perQuestion": [
+    {
+      "qid": "d81defbb",
+      "originalHash": "c375779e5b4d883252586388304b0541bdb406a90bafc9741fd21b8d68ae2c88",
+      "candidateHash": "6cf4876f99e62446840103405c21be571e2818b84c7e6549564fb228f851b3ac",
+      "claimIds": [
+        "TESTING_BENEFIT_HARM",
+        "REDUCED_REGIMEN",
+        "SYSTEMIC_RISK"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "testing_study",
+          "referenceHash": "ece9f584e9a94eaeb21271a34f1b56dea300b20b847ed8405c408354f96d558d",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": "9d029d20900715ac9e677581d494acf058ff69f8546bbf1d027e79ab25995657"
+        },
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "BLOQUEADA",
+      "verdict": "revisão maior",
+      "independentReview": "PENDENTE; não herdar scores ou liberação autorais",
+      "authorAssessment": {
+        "qid": "d81defbb",
+        "originalHash": "c375779e5b4d883252586388304b0541bdb406a90bafc9741fd21b8d68ae2c88",
+        "op": "Ponderar benefício renal e toxicidade do corticoide sistêmico quando Nefecon não está disponível.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "medium",
+        "storedDifficulty": "hard",
+        "subgroup": "Ensaios e segurança de glicocorticoides",
+        "queuePriority": false,
+        "lengthRatio": 1.3865546218487395,
+        "status": "NA_FILA",
+        "classificationRationale": "Integra benefício renal, toxicidade e necessidade de profilaxia em contexto de alternativa terapêutica; Aplicar/medium por decisão com condições, não pelo nome do estudo.",
+        "potentialIssues": [],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Escolha e segurança de glicocorticoides na nefropatia por IgA",
+        "finalDifficultyProposed": "medium",
+        "distractorErrors": [
+          null,
+          "Atribuir superioridade da dose plena a um ensaio que não randomizou diretamente dose plena versus reduzida.",
+          "Confundir TESTING com ausência de benefício funcional ou com resultado de outro ensaio.",
+          "Tratar redução de dose como substituto da profilaxia infecciosa."
+        ],
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "advocate": "Conferir população primária, segurança e limites dos ensaios; não confundir liberação direcionada com efeito exclusivamente tópico ou redução de dose com equivalência randomizada entre protocolos.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 2
+        },
+        "provisionalScore": 19,
+        "identity": "Preservados OP, competência, conceito discriminante, raciocínio e qid; confirmação independente ainda necessária."
+      }
+    },
+    {
+      "qid": "f7107bc3",
+      "originalHash": "eceb69dc1bd50fb8264a1222d869de0958fdb1c5c17b5268cf35dc3c4d72ac28",
+      "candidateHash": "105d139d8ac719fe074fd8c4f8d29faa8439315e7b6f2d9eef758b4b23bcd977",
+      "claimIds": [
+        "TARGETED_RELEASE",
+        "NEFIGARD_COURSE",
+        "POST_STOP_RESPONSE",
+        "FORMULATION"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "nefigard_trial",
+          "referenceHash": "19cf1bd6b620b4615c3424862c387cbd850d46704f4b7ce7a119da357b68f361",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": "1278ec121cee8c1537b0a4c935094581a03c70f1d4c6c3c3a64cd959af1ed419"
+        },
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "BLOQUEADA",
+      "verdict": "revisão maior",
+      "independentReview": "PENDENTE; não herdar scores ou liberação autorais",
+      "authorAssessment": {
+        "qid": "f7107bc3",
+        "originalHash": "eceb69dc1bd50fb8264a1222d869de0958fdb1c5c17b5268cf35dc3c4d72ac28",
+        "op": "Integrar liberação ileal de Nefecon, curso de nove meses e limitação após suspensão.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "intrinsicDifficulty": "medium",
+        "storedDifficulty": "hard",
+        "subgroup": "Nefecon: mecanismo, curso e segurança",
+        "queuePriority": true,
+        "lengthRatio": 1.8476190476190477,
+        "status": "NA_FILA",
+        "classificationRationale": "Integra finalidade da formulação, curso estudado e limite temporal da resposta; Compreender/medium pela combinação de conceitos, sem seleção individual avançada.",
+        "potentialIssues": [],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Escolha e segurança de glicocorticoides na nefropatia por IgA",
+        "finalDifficultyProposed": "medium",
+        "distractorErrors": [
+          null,
+          "Confundir o curso randomizado de nove meses seguido de retirada com protocolo de manutenção em dose menor.",
+          "Confundir liberação ileal direcionada com liberação colônica.",
+          "Presumir intercâmbio com outras formulações intestinais mantendo dose/duração, sem validação do mesmo regime."
+        ],
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "advocate": "Conferir população primária, segurança e limites dos ensaios; não confundir liberação direcionada com efeito exclusivamente tópico ou redução de dose com equivalência randomizada entre protocolos.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 2
+        },
+        "provisionalScore": 19,
+        "identity": "Preservados OP, competência, conceito discriminante, raciocínio e qid; confirmação independente ainda necessária."
+      }
+    },
+    {
+      "qid": "ff676013",
+      "originalHash": "f5ab989fb0ad775d0d7f43932b0df5ab880af2143077dfe22dc15234d78ed56c",
+      "candidateHash": "d372fa666964f3662973f3966c393c7e4b94b1233b3af10dcb930d948be2c3d6",
+      "claimIds": [
+        "RESIDUAL_EXPOSURE",
+        "PREDIABETES"
+      ],
+      "referenceBindings": [
+        {
+          "refId": "nefigard_trial",
+          "referenceHash": "19cf1bd6b620b4615c3424862c387cbd850d46704f4b7ce7a119da357b68f361",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": "1278ec121cee8c1537b0a4c935094581a03c70f1d4c6c3c3a64cd959af1ed419"
+        },
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "BLOQUEADA",
+      "verdict": "revisão maior",
+      "independentReview": "PENDENTE; não herdar scores ou liberação autorais",
+      "authorAssessment": {
+        "qid": "ff676013",
+        "originalHash": "f5ab989fb0ad775d0d7f43932b0df5ab880af2143077dfe22dc15234d78ed56c",
+        "op": "Orientar segurança do Nefecon em prediabetes sem supor ausência de absorção sistêmica.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "easy",
+        "storedDifficulty": "medium",
+        "subgroup": "Nefecon: mecanismo, curso e segurança",
+        "queuePriority": true,
+        "lengthRatio": 1.530612244897959,
+        "status": "NA_FILA",
+        "classificationRationale": "Aplica uma orientação direta de segurança a prediabetes com uma pista explícita e sem dados concorrentes; Aplicar/easy pela rubrica de comando simples, não pelo tamanho.",
+        "potentialIssues": [],
+        "publication": "BLOQUEADA",
+        "finalEditorialVerdict": null,
+        "competency": "Escolha e segurança de glicocorticoides na nefropatia por IgA",
+        "finalDifficultyProposed": "easy",
+        "distractorErrors": [
+          null,
+          "Interpretar liberação direcionada como ausência de exposição sistêmica.",
+          "Transformar fator de risco e necessidade de vigilância em contraindicação absoluta.",
+          "Confundir benefício renal com prova de ausência de toxicidade."
+        ],
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "advocate": "Conferir população primária, segurança e limites dos ensaios; não confundir liberação direcionada com efeito exclusivamente tópico ou redução de dose com equivalência randomizada entre protocolos.",
+        "eliminatoriesDetectedInCandidate": [],
+        "provisionalDimensionScores": {
+          "Alinhamento ao OP": 2,
+          "Validade de conteúdo": 2,
+          "Validade de construto": 2,
+          "Qualidade do enunciado": 2,
+          "Alternativas": 2,
+          "Distratores": 2,
+          "Explicação": 2,
+          "Referências": 2,
+          "Ausência de cara de IA": 1,
+          "Valor pedagógico": 2
+        },
+        "provisionalScore": 19,
+        "identity": "Preservados OP, competência, conceito discriminante, raciocínio e qid; confirmação independente ainda necessária."
+      }
+    }
+  ],
+  "sharedCardProposals": [
+    {
+      "refId": "testing_study",
+      "candidateHash": "ece9f584e9a94eaeb21271a34f1b56dea300b20b847ed8405c408354f96d558d",
+      "originalHash": "9d029d20900715ac9e677581d494acf058ff69f8546bbf1d027e79ab25995657",
+      "file": "igan-glucocorticoids-card-proposals-A1.json",
+      "fileSha256": "3a1d5410b480109e2448f5e6df69dd05048e5d93c1b828b71b37883b6abca293",
+      "entireCardGateRequired": true,
+      "currentConsumers": [
+        "d81defbb"
+      ],
+      "legacyIndices": [
+        12
+      ]
+    },
+    {
+      "refId": "nefigard_trial",
+      "candidateHash": "19cf1bd6b620b4615c3424862c387cbd850d46704f4b7ce7a119da357b68f361",
+      "originalHash": "1278ec121cee8c1537b0a4c935094581a03c70f1d4c6c3c3a64cd959af1ed419",
+      "file": "igan-glucocorticoids-card-proposals-A1.json",
+      "fileSha256": "3a1d5410b480109e2448f5e6df69dd05048e5d93c1b828b71b37883b6abca293",
+      "entireCardGateRequired": true,
+      "currentConsumers": [
+        "f7107bc3",
+        "ff676013"
+      ],
+      "legacyIndices": [
+        12,
+        59,
+        101,
+        121,
+        142,
+        152,
+        168,
+        191,
+        205,
+        216,
+        231,
+        245,
+        271,
+        285,
+        296,
+        307,
+        328,
+        350,
+        373,
+        374,
+        375
+      ]
+    }
+  ],
+  "current2026Context": {
+    "dateChecked": "2026-11-13",
+    "purpose": "Contraprova temporal; não incorporada como recomendação terapêutica universal nem necessária ao gabarito delimitado aoRCT.",
+    "primaryAbstracts": [
+      {
+        "url": "https://www.asn-online.org/education/kidneyweek/2026/program-abstract.aspx?controlId=4556711",
+        "design": "Resumo de estudo retrospectivo pareado30cursoestendidovs60padrão",
+        "limit": "Observacional; não prova manutenção universal nem equivale aRCT."
+      },
+      {
+        "url": "https://www.asn-online.org/education/kidneyweek/2026/program-abstract.aspx?controlId=4555208",
+        "design": "Resumo de protocoloNEFRIN, manutenção8mgversusplacebo apósremissão",
+        "limit": "Protocolo planejado; não são resultados de eficácia."
+      }
+    ],
+    "clinicalTextGuard": "O candidato não afirma inexistência de dados em2026. Delimita9meses estudados e necessidade de reavaliação."
+  },
+  "unresolvedEditorialPoints": [
+    "Contraprova independente de todas as versões finais, classificação intrínseca e cards materiais permanece obrigatória.",
+    "Pontos de informação dos objetos legados são inventariados, sem promover sua qualidade científica nem reescrever seus snapshots.",
+    "Não houve investigação regulatória destinada a autorizar prescrição por jurisdição; os cards descrevem os ensaios, sem afirmar aprovação geral."
+  ],
+  "noAppWrites": true,
+  "versionDelta": {
+    "from": "A1",
+    "changedQids": [
+      "d81defbb",
+      "f7107bc3"
+    ],
+    "unchangedQids": [
+      "ff676013"
+    ],
+    "cardsUnchanged": true,
+    "why": "Contraprova de plausibilidade: dose plena não tem comparação randomizada direta de superioridade; f710 usa erros de curso/manutenção, local de liberação e intercâmbio de formulação, sem farmacologia inventada nem ressalva de imprudência."
+  }
+}

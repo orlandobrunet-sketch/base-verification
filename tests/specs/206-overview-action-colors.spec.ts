@@ -2,16 +2,25 @@ import { test, expect, type Page, type BrowserContext } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import { openVisualDashboard, visualProgress } from '../helpers/dashboard-visual-fixture';
 
+// Stable current-only authored cases: this layout/keyboard contract must not depend on archive additions.
+const STUDY_ACTION_IDS = ['1e5e88e9', 'e56795a6', '70129a64', 'cc3248a3'];
+
 async function openActions(page: Page, context: BrowserContext, baseURL: string, kinds = ['study', 'review', 'gap']) {
   await openVisualDashboard(page, context, baseURL);
-  await page.evaluate(kinds => {
-    const w = window as any, ids = w.questionBank.slice(0, 4).map((q: any) => String(q.id));
+  const fixture = await page.evaluate(ids => ids.map(id => {
+    const w = window as any, q = w.questionBank.find((q: any) => String(q.id) === id);
+    const checked = w.questionRevisionCatalog.inspectLegacy(id, { profile: 'study' });
+    return { id: q ? String(q.id) : null, status: checked.status, historical: checked.value?.historical, options: q?.o.length };
+  }), STUDY_ACTION_IDS);
+  expect(fixture).toEqual(STUDY_ACTION_IDS.map(id => ({ id, status: 'known', historical: false, options: 4 })));
+  await page.evaluate(({ kinds, ids }) => {
+    const w = window as any;
     if (kinds.includes('study')) localStorage.setItem('nefroquest-study-state', JSON.stringify({ questions: ids, index: 1, correct: 1, wrong: 0, axisStats: {}, savedAt: Date.now() }));
     if (kinds.includes('review')) localStorage.setItem('nefroquest-sr-data', JSON.stringify({ [ids[0]]: { S: 3, D: 4.9, interval: 3, due: new Date().setHours(0, 0, 0, 0) - 86400000, last: Date.now() - 4 * 86400000, reps: 2, lapses: 0 } }));
     if (!kinds.includes('gap')) localStorage.setItem('nefroquest-detailed-stats', JSON.stringify({ version: 1, totalQuestions: 0, totalCorrect: 0, byCategory: {}, byTopic: {}, questionHistory: [], dailyActivity: {}, timeStats: {}, mostMissed: {} }));
     w.closeDashboard();
     return w.openDashboard({ tab: 'overview' });
-  }, kinds);
+  }, { kinds, ids: STUDY_ACTION_IDS });
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
   return page.locator('.nqd-next-actions-list');
 }
@@ -65,7 +74,7 @@ test('320px with 200 percent text preserves all action text and buttons without 
 
 for (const kind of ['study', 'review', 'gap']) test(`keyboard opens the real ${kind} flow`, async ({ page, context, baseURL }) => {
   const list = await openActions(page, context, baseURL!), before = await visualProgress(page);
-  const ids = await page.evaluate(() => (window as any).questionBank.slice(0, 4).map((q: any) => String(q.id)));
+  const ids = [...STUDY_ACTION_IDS];
   const button = list.locator(`[data-action-kind="${kind}"] button`);
   await button.focus(); await page.keyboard.press('Enter');
   if (kind === 'gap') {

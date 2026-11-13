@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "createdAt": "2026-11-13T13:36:40.093Z",
+  "refId": "kdigo_igan_2021",
+  "originalHash": "8774ec46f2a76bd5353f5c123628f03e99fae40b1eefb36105a7349034454ae9",
+  "original": {
+    "label": "KDIGO IgAN — Capítulo da Diretriz GN 2021",
+    "url": "https://kdigo.org/guidelines/iga-nephropathy/",
+    "journal": "Kidney International",
+    "ano": 2021,
+    "tipo": "Diretriz Internacional",
+    "badge": "GUIDELINE",
+    "badgeColor": "#6366f1",
+    "impacto": "Manejo da nefropatia por IgA: suporte otimizado (IECA/BRA), imunossupressão selecionada e critérios de progressão renal",
+    "icon": "📋",
+    "resumo": "Capítulo dedicado à nefropatia por IgA (IgAN) na diretriz KDIGO de Doenças Glomerulares de 2021. Estabelece como base absoluta do manejo a terapia de suporte otimizada por ≥ 3 meses: controle de PA (alvo < 120 mmHg sistólica), bloqueio de SRAA em dose máxima tolerada e restrição de sódio. Para pacientes com proteinúria persistente > 1 g/dia apesar do suporte otimizado, orienta avaliar risco de progressão (usando a ferramenta de previsão IIgANN) e discutir corticoterapia se a TFGe for ≥ 30, alertando para os riscos infecciosos graves identificados no TESTING.",
+    "conclusao": "A diretriz IgAN 2021 colocou o suporte conservador otimizado de 3 meses como pré-requisito indispensável antes de qualquer consideração de imunossupressão, que deve ser reservada para alto risco progressivo e discutida individualmente.",
+    "curiosidade": "A ferramenta de predição International IgAN Prediction Tool (IIgANN) integra variáveis clínicas tradicionais (TFGe, proteinúria, PA basal) com o score histopatológico MEST-C da classificação de Oxford (Hipercelularidade Mesangial, Endovascular, Esclerose Segmentar, Atrofia Tubular e Crescentes) para calcular o risco de declínio de 50% da TFGe em 5 anos."
+  },
+  "materialIssues": [
+    "O card atribui MEST-C ao modelo original; o primário Barbour 2019 usa MEST, com a divergência interna da KDIGO 2025 explicitamente registrada.",
+    "O card de 2021 é apresentado sem contexto histórico e impõe três meses antes de qualquer imunossupressão; requer revisão formal da referência antiga e comparação com a atualização 2025."
+  ],
+  "currentQuestionConsumers": [
+    {
+      "qid": "ddb4938a",
+      "t": "IgAN — Limite Populacional da Tonsilectomia",
+      "originalHash": "56883ce1dfe5bd7693a33db724129ec72a282503f87d9d47d4abc28fae82fb88",
+      "refs": [
+        "kdigo_igan_igav_2025",
+        "kdigo_igan_2021"
+      ],
+      "original": {
+        "t": "IgAN — Limite Populacional da Tonsilectomia",
+        "qid": "ddb4938a",
+        "q": "Adulto não japonês com nefropatia por IgA pergunta sobre tonsilectomia para melhorar o prognóstico renal, sem outra indicação otorrinolaringológica. Qual orientação é mais adequada?",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "kdigo_igan_2021"
+        ],
+        "opts": [
+          "Não realizar tonsilectomia como tratamento da IgAN nessa população; os sinais de benefício vêm sobretudo de estudos japoneses e não são generalizáveis",
+          "Indicar tonsilectomia universal, pois qualquer episódio de hematúria sinfaringítica prova benefício renal",
+          "Associar obrigatoriamente tonsilectomia e pulsos de corticoide antes de otimizar nefroproteção",
+          "Remover as tonsilas somente se a IgA sérica estiver elevada, pois esse biomarcador seleciona respondedores"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO 2025 reconhece que tonsilectomia, isolada ou com pulsos de glicocorticoide, pode aumentar remissão de hematúria/proteinúria e talvez prolongar sobrevida renal em estudos predominantemente retrospectivos do Japão; a estratégia integra recomendações japonesas. A diretriz, porém, orienta não realizar tonsilectomia como tratamento da IgAN em pessoas não japonesas. Isso não impede tonsilectomia por indicação otorrinolaringológica independente, mas evita extrapolar evidência populacional limitada.",
+        "diff": "hard",
+        "cat": "glomerular"
+      }
+    }
+  ],
+  "literalOccurrenceFiles": [
+    "data/topics.js",
+    "data/refs.js",
+    "data/question-revision-manifest.js",
+    "scratch/find_mismatches_advanced.py",
+    "docs/editorial/annex-c-nefrologia.md",
+    "docs/editorial/reviews/2026-10-12/group-b-output-008.json",
+    "docs/editorial/reviews/2026-10-12/independent-b008.json"
+  ],
+  "sharedReaders": [
+    "js/game.js",
+    "js/study-mode.js",
+    "js/utils.js",
+    "js/dashboard.js",
+    "js/achievements.js"
+  ],
+  "stage": "HOLD; não há proposta de card nem liberação neste arquivo",
+  "scopeForFirst6": "O card não é usado pelos seis candidatos. Pendência separada do acervo; não bloqueia logicamente um item com fontes adequadas. Seu consumidor ddb4938a continua na fila.",
+  "noAppWrites": true
+}

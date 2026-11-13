@@ -1,0 +1,82 @@
+{
+  "schema": 1,
+  "kind": "STRUCTURAL_ADDENDUM_ONLY",
+  "reviewer": "/root/medical_answer_bias/adpkd_independent_review",
+  "previousReviewFile": "continuation-package-structural-audit-adpkd-R2.json",
+  "previousReviewSHA256": "2ae7fde77da7b7e81139bdac674b654a3b9d322dc9f3c125d876d371d70fca92",
+  "reviewedChanges": [
+    "bounded-42-readonly-simulation-R1.json",
+    "bounded-closeout-dispositions-R1.json",
+    "README.md",
+    "artifact-integrity.json"
+  ],
+  "integritySHA256": "e8a0d046fac5db9da498deb2aea7d78eb92b507b3c685d3fa4f7cd037a147089",
+  "counts": {
+    "packageFiles": 134,
+    "manifestEntries": 133,
+    "questions": 42,
+    "referenceOperations": 12,
+    "held": 7,
+    "suspendedOriginalOnly": 11
+  },
+  "coreInventorySHA256": "fdb8d02a20cd9f94238bbb5dd78d78785a2297dbd5ee67b5ef50a3aff0bdca50",
+  "coreOverlaySHA256": "6f2d1ad06d3223b87bd6976296f5099e5bdf968604068cd647f88c5c64534bbd",
+  "newReportHashes": {
+    "simulation": "ffa9a219633fd375317c0d355db94677332542ddaad24adfaf70192ca135c248",
+    "dispositions": "f479e3762a8a35fe2589af406914d3610d169d64196631427672ae05b140cf17",
+    "readme": "b93ba8e4c60c3fb1acc91b034b8a44a28a71c62300de04b6c0f4105c399d46a0"
+  },
+  "core42CardsAndGatesUnchanged": true,
+  "heldSourceGateChecks": [
+    {
+      "qid": "061c9bcb",
+      "file": "../2026-11-13-answer-length-bias/anemia-independent-gates-A2.json",
+      "hash": "050bc6c861d857bb2b692825a2a2c6f971960e4d0718470869d3696970317a59",
+      "expected": "050bc6c861d857bb2b692825a2a2c6f971960e4d0718470869d3696970317a59"
+    },
+    {
+      "qid": "1e6a4479",
+      "file": "../2026-11-13-answer-length-bias/anemia-independent-gates-A2.json",
+      "hash": "050bc6c861d857bb2b692825a2a2c6f971960e4d0718470869d3696970317a59",
+      "expected": "050bc6c861d857bb2b692825a2a2c6f971960e4d0718470869d3696970317a59"
+    },
+    {
+      "qid": "13e53210",
+      "file": "../2026-11-13-answer-length-bias/finerenone-independent-gates-A4.json",
+      "hash": "e3e81c3bc0606f6fc92f8a37d285da2fe24c8e87965976cd5db93d74fbd6a725",
+      "expected": "e3e81c3bc0606f6fc92f8a37d285da2fe24c8e87965976cd5db93d74fbd6a725"
+    },
+    {
+      "qid": "5906012f",
+      "file": "../2026-11-13-answer-length-bias/finerenone-independent-gates-A4.json",
+      "hash": "e3e81c3bc0606f6fc92f8a37d285da2fe24c8e87965976cd5db93d74fbd6a725",
+      "expected": "e3e81c3bc0606f6fc92f8a37d285da2fe24c8e87965976cd5db93d74fbd6a725"
+    },
+    {
+      "qid": "21e9cefb",
+      "file": "../2026-11-13-answer-length-bias/mbd-independent-gates-A4.json",
+      "hash": "95d58a29000272f646aedc30ef3fbd7b0ceb80f646c2406577072d8656f4d813",
+      "expected": "95d58a29000272f646aedc30ef3fbd7b0ceb80f646c2406577072d8656f4d813"
+    },
+    {
+      "qid": "22189222",
+      "file": "../2026-11-13-answer-length-bias/mbd-independent-gates-A4.json",
+      "hash": "95d58a29000272f646aedc30ef3fbd7b0ceb80f646c2406577072d8656f4d813",
+      "expected": "95d58a29000272f646aedc30ef3fbd7b0ceb80f646c2406577072d8656f4d813"
+    },
+    {
+      "qid": "5530b59c",
+      "file": "igan-treatment-general-independent-gates-A2.json",
+      "hash": "dd2e32c2d96764a6f5c64712e3ad454ccfc226f66fb8d9f39e42415cd0ae8f57",
+      "expected": "dd2e32c2d96764a6f5c64712e3ad454ccfc226f66fb8d9f39e42415cd0ae8f57"
+    }
+  ],
+  "passed": true,
+  "findings": [],
+  "limits": [
+    "Adendo estritamente estrutural aos dois relatórios novos e README; nenhuma reavaliação clínica.",
+    "Não executa publicação, histórico43x4, CI ou teste visual.",
+    "A adição dos dois relatórios de contraprova ao pacote exigirá regenerar integrity; este adendo ancora o estado134, sem autorreferência."
+  ],
+  "noWritesToPackageAppOrCandidates": true
+}

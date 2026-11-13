@@ -1,0 +1,251 @@
+{
+  "schema": 1,
+  "role": "AUTOR; fontes e contratos, sem veredito nem gate de publicação",
+  "date": "2026-11-13",
+  "originalFile": "hd-access-original-5.json",
+  "originalFileSHA256": "40c6484b3ac97ccd24393ff97e90556875d86ad462743d7d227fc8ce39c580ce",
+  "candidateFile": "hd-access-candidates-A2.json",
+  "candidateFileSHA256": "3b92c42261c465fb6246af239ee3d744f2fcf82faecd555d1da5c49f8d03bd99",
+  "sources": [
+    {
+      "id": "KDOQI-VA-2019",
+      "existingRef": "lok_kdoqi_2020",
+      "url": "https://www.kidney.org/sites/default/files/2026-07/2019-kdoqi-guideline-vascular-access.pdf",
+      "doi": "10.1053/j.ajkd.2019.12.001",
+      "metadata": "LokCEetal. AmJKidneyDis.2020;75(4Suppl2):S1–S164. PMID32778223; atualização chamada2019.",
+      "access": "PDF primário oficialNKF aberto integralmente,166páginas; lidas seções relevantes, não se alega leitura linear de todas as166páginas.",
+      "locators": [
+        "18.2–18.4,pS107–S108/PDF106–107: gravidade, encaminhamento urgente e individualização da isquemia",
+        "21.4–21.5,pS111: escolha clínica deheparina/citrato e baixa concentração<5%",
+        "22.1–22.5,pS116/PDF115–116: medidas conservadoras e trombolítico intraluminal,alteplase2mgemvezde1mg,dwell/push",
+        "22.8,pS117: novo sítio como último recurso após outras estratégias",
+        "16.5–16.7,pS100: culturas, antibioticoterapia e avaliação cirúrgica para infecção de acessoAV",
+        "25,pS126–S127/PDF125–127: infecção porS.aureus e retirada com reposição adiada"
+      ],
+      "numericAudit": "Alteplase2mgporlúmenempreferênciaa1mg é sugestão22.4, evidênciamoderada; permanência/push é sugestão22.5, evidênciabaixa. Citrato4%doenunciado está abaixo de5%; não são impostas doses sistêmicas deanticoagulante. Nenhumlimiardenúmerodefluxo novo.",
+      "limits": "O PDF oficial de 166 páginas inclui ao final o erratum de 2021, DOI 10.1053/j.ajkd.2021.02.002: correção textual de 16.6 (to have), sem mudança de conduta nos cinco itens. A seção histórica sobre duração da bacteremia é confrontada com o consenso IDSA/ESCMID de 2026; não se replica uma duração automática de 4–6 semanas para toda bacteremia por S. aureus.",
+      "erratum2021": "Página final do mesmo PDF oficial, lida diretamente em 2026-11-13. Não equivale a afirmar auditoria exaustiva de qualquer outra correção não identificada."
+    },
+    {
+      "id": "UKKA-VA-2025",
+      "url": "https://link.springer.com/article/10.1186/s12882-025-04374-y",
+      "doi": "10.1186/s12882-025-04374-y",
+      "metadata": "AitkenEetal. BMCNephrol.2025;26:461,14/08/2025.",
+      "access": "Texto integral da editora aberto,1840linhas.",
+      "locators": [
+        "4.8–4.9eSteal syndrome/Table1: indicação depende de gravidade; investigar alto fluxo/estenose e opções depreservação",
+        "6.2–6.3eRationale: trombolítico emcad alúmen como tratamento inicial de disfunção, troca/intervençãoquando falha",
+        "Catheter care/locks: volume igual àcapacidade do lúmen; ausência de benefício universal de permeabilidade; possível menor sangramento comcitrato, heterogeneidade dos estudos"
+      ],
+      "limits": "Não se extrapola conduta conservadora da isquemia leve assintomática para o caso sintomático com perfusão digital reduzida. A diretriz não estabelece uma técnica cirúrgica única. As concentrações dos estudos de citrate variam; não se transforma metanálise de misturas antimicrobianas em prova de esterilização por citrato4%."
+    },
+    {
+      "id": "IDSA-CRBSI-2009",
+      "existingRef": "idsa_crbsi_2009",
+      "url": "https://umcg.adult.nl.antibiotica.app/sites/default/files/guidelines/local/IDSA%20guideline%20IV%20cath%20related%20infection%202009%20update.pdf",
+      "officialPage": "https://www.idsociety.org/practice-guideline/iv-catheter",
+      "doi": "10.1086/599376",
+      "metadata": "MermelLAetal. ClinInfectDis.2009;49(1):1–45.",
+      "access": "Oxford redirecionou para canal inacessível; PMC/EuropePMC retornaramchallenge/403. PDF integral inglês da publicação original,45páginas, foi aberto em repositório clínico institucionalUMCG, comDOI/autores/paginação/fólio da editora conferidos. PDF japonês oficialIDSAfoi localizado mas não usado como substituto do texto inglês.",
+      "locators": [
+        "57–58,p28: retirarcateterHDporS.aureus e reinserção longa após culturasnegativas",
+        "62–64,p28–29: cefazolinaemMSSA e cursoprolongadocomendocardite",
+        "78–85,p31–32: curso curto requer critérios alémdoTEE, falso negativo precoce e repetição se persistência",
+        "88,p32: novoacesso após culturas sem crescimento"
+      ],
+      "numericAudit": "14dias é distrator quando automático apósTEE; não é apresentado como sempre insuficiente em todaSAB.72hdooutro caso é dado original mantido.4–6semanaséfaixaparaendocardite/complicações,não regra para qualquer bacteremia.",
+      "corrections": "Página oficial listaDOI10.1086/650484e10.1086/651933. Segunda correção foi lida no texto primário indexado daOxford: limiarMICvancomicina≥2µg/mL,não mg/mL. Essa afirmação não está nos candidatos nem no card. O primeiro texto da correção não abriu integralmente; registrar limite, não alegar ausência de impacto por memória.",
+      "statusLimit": "Página oficial atual conferida novamente: ARCHIVED na linha 128 e atualização em andamento nas linhas 144–146. O status de arquivamento do card herdado está confirmado. Persistem os limites de acesso à primeira correção de 2010 já registrados."
+    },
+    {
+      "id": "IDSA-ESCMID-SAB-2026",
+      "url": "https://www.idsociety.org/practice-guideline/staphylococcus-aureus-bacteremia/",
+      "followUpPDF": "https://www.idsociety.org/globalassets/idsa/practice-guidelines/sab/consensus-statement-2.-follow-up-blood-cultures-manuscript.pdf",
+      "metadata": "IDSA/ESCMIDConsensusStatementsPart1,09/09/2026.",
+      "access": "Página oficial integral501linhas e manuscrito primário dehemoculturas16páginas abertos; manuscrito de duração embaixo risco15páginas tambémaberto.",
+      "locators": [
+        "ExecutiveSummary: retirarCVCprecocemente emSAB; avaliar história/exame,focos,hemoculturas eeco",
+        "Consensus2: culturas48h e cada24–48haténegativação; ≥48hpositivaslevaareavaliarcontroledefoco",
+        "Consensus6–7:14diasapósavaliaçãoadequadasemfocosprofundos; individualizaremrisco/avaliaçãoincompleta"
+      ],
+      "limits": "Part1trataavaliação,riscoseduração, não substitui diretrizes farmacológicasMSSA/MRSA. Não é usado para reduzir endocardite mitral a14dias. O item9f não prova diagnósticoCRBSIporpresençadecateter, mas a recomendação atual de retirarCVCemSABsustenta a conduta mesmo assim. Nenhuma recomendaçãoISPDfoiaplicada aHD."
+    },
+    {
+      "id": "ESC-IE-2023",
+      "existingRef": "esc_endocarditis_2023",
+      "url": "https://boa.unimib.it/retrieve/bca64184-0776-42ba-8aed-66f81de61a58/Delgado-2023-Eur%20Heart%20J-VoR.pdf",
+      "officialPage": "https://www.escardio.org/guidelines/clinical-practice-guidelines/all-esc-practice-guidelines/endocarditis/",
+      "doi": "10.1093/eurheartj/ehad193",
+      "metadata": "DelgadoVetal. EurHeartJ.2023;44(39):3948–4042.",
+      "access": "Página oficialESCaberta; Oxford nãoabriu. PDFversãoderegistro da publicação,95páginas, aberto no repositório decoautoriaBicocca; semwwwfoinecessário.",
+      "locators": [
+        "4,p16–18: EndocarditisTeam e manejo multidisciplinar",
+        "7.6eRecommendationTable8,p32–34: MSSA, betalactâmicosIV,4–6semanasparaNVE",
+        "7.13: eventualterapiaambulatorial/oraléparapacientesestabilizadoseavaliados,nãopersistênciabacterêmica",
+        "8.3–8.4,p42–44: infecçãonãocontrolada, controle deoutrosfocos e critérios/timingcirúrgicos"
+      ],
+      "numericAudit": "4–6semanasconferidasparaNVEporMSSA; válvulaprotética≥6semanasesquemadistinto. A explicaçãoindividualiza porválvula/esquema e não acrescentadosagem genérica6g/diaemHD.72hdenãodepuraçãonãoéconvertidoemcritérioautomáticocirurgia>1semana.",
+      "limits": "Não presume válvula nativa ou protética no comando; pergunta exige planogeral e discussão especializadadefoco/cirurgia, não regimedetalhado. Recomendação de cirurgia mitral não éinferida apenasdepresençadevegetação."
+    },
+    {
+      "id": "Citrate4-lock-IFU",
+      "url": "https://www.salfspa.it/media/attachments/products/attachments/IFU_CITRA-lock-4_r-03_OK.pdf",
+      "metadata": "S.A.L.F., SodiumCitrate4%CatheterLockInstructionsForUse,rev03/2021.",
+      "access": "PDFfabricante integral4páginas aberto; seção inglesaP2–3 conferida.",
+      "locators": [
+        "Description: quelação do cálcio ionizado",
+        "Warnings: apenaslock, seminjeçãoIVdireta/infusão; volumesexatos dofabricantecateter",
+        "Instructions1e5: aspirare descartarobloqueio anterior e instilar volumeexato"
+      ],
+      "limits": "Bula deproduto delock,nãodeanticoagulaçãoregionalcontínua. Nãohárecomendação de marca, promessadeesterilização ou extrapolação dedosesentreprodutos."
+    },
+    {
+      "id": "FDA-citrate-systemic-mechanism",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/219455Orig1s000lbl.pdf",
+      "metadata": "CIENBY, sod iumcitrate40g/L, bulaFDArev10/2026.",
+      "access": "PDFprimárioFDA11páginas aberto.",
+      "locators": [
+        "5.1: hipocalcemia por mecanismo eeventosgraves",
+        "12.1: mecanismo dequelarCaionizado"
+      ],
+      "limits": "Usada EXCLUSIVAMENTE para mecanismo farmacológico deexposição sistêmica excessiva ecálcio; éproduto paraRCAemCVVHD/CVVHDF, NÃOéindicação delock. Nenhumvolume, dose, limiar, monitorização ou taxa deevento desta bula étransferidopara cateterlock4%. OprodutoIFUespecífico acima sustenta via/volume do lock."
+    }
+  ],
+  "items": [
+    {
+      "qid": "d314fb0a",
+      "sources": [
+        "KDOQI-VA-2019",
+        "UKKA-VA-2025"
+      ],
+      "contract": "Após falha de medidas conservadoras, tentar trombolítico intraluminal. Troca para acesso temporário em outro sítio é uma intervenção possível em outras circunstâncias, mas não é a próxima etapa rotineira antes de esgotar recuperação deste cateter sem infecção.",
+      "identity": "Preserva OP,pergunta,dados,qid,ans0erefs; título deixa de mencionarDPsempertinência.",
+      "candidateHash": "46145e346c784561cf4d14ff7f49e2f9c25ece8f27724889d206d6221acf95bf"
+    },
+    {
+      "qid": "ee80e444",
+      "sources": [
+        "KDOQI-VA-2019",
+        "UKKA-VA-2025"
+      ],
+      "contract": "Isquemia sintomática e perfusão digital diminuída exigem avaliação vascular urgente para tratamento conforme mecanismo e gravidade. Ajustes de tolerância hemodinâmica à diálise não substituem essa avaliação; ligadura pode ser necessária em casos graves, mas não é o tratamento inicial automático deste quadro sem ameaça tecidual descrita. Não há evidência de trombose arterial para anticoagulação como plano inicial. Distratores são condutas reais, sem garantias falsas ou sufixos de imprudência.",
+      "identity": "Preserva comando, dados eans2. Não impõe técnicaDRIL/RUDI/PAIsem mapa anatômico.",
+      "candidateHash": "bee838fc152bee9881e7fff647d3f481caa57bf4665ab07e1e639a25f1b624d0"
+    },
+    {
+      "qid": "9fadb7da",
+      "sources": [
+        "IDSA-CRBSI-2009",
+        "KDOQI-VA-2019",
+        "IDSA-ESCMID-SAB-2026"
+      ],
+      "contract": "Retirada precoce, antibiótico sistêmico e documentação de depuração/focos. Troca por fio-guia com tratamento prolongado é estratégia de exceção quando não há alternativa de acesso, não informada. Ecocardiograma inicial negativo não basta para escolher 14 dias; a A2 não afirma que um curso de 14 dias seja proibido em toda bacteremia nem inclui a frase de dispensar culturas.",
+      "identity": "Não acrescentaCRBSIconfirmada aoenunciado. ExplicaqueCVCpodeserfonte e a remoçãoprecoce érecomendaçãoatualemSAB;preserva oobjetivodesegurançaapósTEEnegativo.",
+      "candidateHash": "d8c348173abab454e230dc8bfa9411b808a7f075be7447d2c1fafd41f432b2b8"
+    },
+    {
+      "qid": "68091841",
+      "sources": [
+        "ESC-IE-2023",
+        "IDSA-CRBSI-2009",
+        "IDSA-ESCMID-SAB-2026",
+        "KDOQI-VA-2019"
+      ],
+      "contract": "Plano geral de betalactâmico intravenoso, controle do foco e equipe de endocardite preservado. Explicação distingue válvula nativa (4–6 semanas) de prótese (regime distinto e pelo menos 6 semanas). A presença de vegetação não determina cirurgia automática.",
+      "identity": "MesmaendocarditeesquerdacomMSSA,persistência72heacessosuspeito.NãoatualizaOPparaindicaçãoindividualdetécnicacirúrgica.",
+      "candidateHash": "207ebb0aedf788cb47969bd681124844ce5b649d99d88f55968ed96fffe09420"
+    },
+    {
+      "qid": "69177b72",
+      "sources": [
+        "KDOQI-VA-2019",
+        "UKKA-VA-2025",
+        "Citrate4-lock-IFU",
+        "FDA-citrate-systemic-mechanism"
+      ],
+      "contract": "A solução de citrato quela cálcio no lúmen, em vez de lise de fibrina, inibição direta de trombina ou potencialização de antitrombina. O novo distrator D confunde mecanismo com heparina, sem alegar dispensa de prevenção de infecção.",
+      "identity": "MesmoOPmecanismodolock4%compreocupaçãocomexposiçãosistêmica.NãotransfereregimeRCAoumarcaaojogo.",
+      "candidateHash": "6ad9bee588bac042201c7423196a9867ad308ef527c4cfe46013664ba258b116"
+    }
+  ],
+  "cardAudit": {
+    "readInFullInApp": [
+      "lok_kdoqi_2020",
+      "idsa_crbsi_2009",
+      "esc_endocarditis_2023"
+    ],
+    "changed": false,
+    "KDOQI": "Card integral herdado não alterado. Erratum de 2021 no fim do PDF oficial agora lido: correção textual de 16.6, sem impacto nos pontos em revisão.",
+    "IDSA": "Card integral herdado não alterado. Rótulo ARCHIVED confirmado na página oficial atual; atualização em andamento também informada. Não tratar arquivamento como ausência de valor histórico nem como diretriz nova.",
+    "ESC": "Card integral herdado não alterado. A2 explicita 4–6 semanas para válvula nativa e pelo menos 6 semanas, com regime distinto, para prótese; não presume o tipo valvar no enunciado nem automatiza cirurgia por vegetação.",
+    "noCardApprovalByAuthor": true
+  },
+  "notPublicationGates": true,
+  "version": "A2",
+  "deltaFromA1": [
+    {
+      "qid": "d314fb0a",
+      "previousHash": "2df468e47b221df3d62f72711948c12e27db66faa6f1f7a91c09a63638cb5c50",
+      "candidateHash": "46145e346c784561cf4d14ff7f49e2f9c25ece8f27724889d206d6221acf95bf",
+      "fields": [
+        "opts"
+      ],
+      "optionIndices": [
+        2
+      ]
+    },
+    {
+      "qid": "ee80e444",
+      "previousHash": "4d94dae8b25a21e165ace2d8c23c92915c3ee54b8c5c72654edec70205463722",
+      "candidateHash": "bee838fc152bee9881e7fff647d3f481caa57bf4665ab07e1e639a25f1b624d0",
+      "fields": [
+        "opts"
+      ],
+      "optionIndices": [
+        0,
+        1,
+        3
+      ]
+    },
+    {
+      "qid": "9fadb7da",
+      "previousHash": "9139074b1ae6bb8379aceb4c9d312d386c24d2aadd47daece424b659fcfd89e7",
+      "candidateHash": "d8c348173abab454e230dc8bfa9411b808a7f075be7447d2c1fafd41f432b2b8",
+      "fields": [
+        "opts"
+      ],
+      "optionIndices": [
+        2,
+        3
+      ]
+    },
+    {
+      "qid": "68091841",
+      "previousHash": "006a731c098c16c2b97ea0f3fb3674c20476e0d3323393f944dc1a2d04322cd7",
+      "candidateHash": "207ebb0aedf788cb47969bd681124844ce5b649d99d88f55968ed96fffe09420",
+      "fields": [
+        "exp",
+        "diff"
+      ],
+      "optionIndices": []
+    },
+    {
+      "qid": "69177b72",
+      "previousHash": "03632648a93718522a01b955e4a4734b9a5e667d7a1b7bbca3300a9ae0f78040",
+      "candidateHash": "6ad9bee588bac042201c7423196a9867ad308ef527c4cfe46013664ba258b116",
+      "fields": [
+        "opts",
+        "exp"
+      ],
+      "optionIndices": [
+        3
+      ]
+    }
+  ],
+  "difficultyReconciliation": {
+    "qid": "68091841",
+    "priorAuthorLabel": "Analisar/medium",
+    "candidateA2": "hard",
+    "reason": "Após contraprova dos dois revisores cegos, mantém-se a dificuldade original: o caso exige integrar persistência bacterêmica, foco em acesso trombosado, endocardite esquerda por MSSA e escolha coordenada de antimicrobiano/controle de foco/equipe, evitando reduzir o plano a duração, conveniência do acesso ou cirurgia isolada. O comando e o OP não foram simplificados na A2; o comprimento não fundamenta a classificação. A classificação autoral original é preservada como registro da divergência, não sobrescrita."
+  }
+}

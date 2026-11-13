@@ -1,0 +1,2445 @@
+{
+  "schema": 1,
+  "revision": "R2",
+  "scope": "Conclusão finita de 42 questões adicionais aos 107 objetos do snapshot médico anterior; não há autorização para novos grupos neste pacote.",
+  "status": "GATES EDITORIAIS CONCLUÍDOS; INTEGRAÇÃO TÉCNICA E HISTÓRICO DA BASE PUBLICADA AINDA OBRIGATÓRIOS",
+  "authorshipBaseCommit": "e36b5f3e5383d82489da001d54851ec7c8e6a083",
+  "integrationBase": {
+    "medicalBasis": "snapshot107 imutável + aposentadoria R1 de dcor_trial e finerenone_2025",
+    "snapshotFile": "../2026-11-13-answer-length-bias/snapshot-107.json",
+    "snapshotSHA256": "5374535d13aa82cefe163113462d501d55029af873f002f815cbd2cf7c788854",
+    "previous107Unchanged": true,
+    "integrationMustUseActualPublishedParent": true,
+    "noVersionAssigned": true
+  },
+  "sourceFiles": {
+    "topics": {
+      "rawSHA256": "38d08d0469b085078613cb15afc096d817c227ee4f9d2b6fbfce949adab12b62",
+      "objectHash": "9ed79b6f567ca112b5d27312dfcd61c7fe47624005f33e0384276a776f53e111"
+    },
+    "refs": {
+      "rawSHA256": "cf69cdc05ea8f8310914ca9f77ccd3b65df06761df114fdac2c7bc3884b3069a",
+      "objectHash": "0a59f60ce303e97b07dfe0b3fb155bf94671c6f53d05a6bf2347f188ef5bdd74",
+      "effectiveObjectHash": "472e685106e98103d8eb43cca47f9b9bd52200b2afdc4d91d5f0cee4fde0fc51"
+    }
+  },
+  "counts": {
+    "approvedApplied": 42,
+    "pendingCandidates": 0,
+    "previous107Preserved": 107,
+    "totalAuthorshipQuestionChanges": 149,
+    "referenceUpdates": 7,
+    "referenceAdds": 4,
+    "referenceRetirements": 1,
+    "historyQuestionRecordsRequired": 43,
+    "formalHeldUnchanged": 7
+  },
+  "allowedQids": [
+    "1b4ebca6",
+    "5d6677ab",
+    "b1b484d1",
+    "4c7566cf",
+    "ce79d609",
+    "795d4589",
+    "5e5b8558",
+    "26804856",
+    "12328a3e",
+    "ea37c153",
+    "3e0788ac",
+    "fe70507d",
+    "f4de7965",
+    "23635484",
+    "5eb00a6e",
+    "faac594e",
+    "4decf9f9",
+    "9961a406",
+    "ddb4938a",
+    "b7a93d7a",
+    "c1089f2e",
+    "d81defbb",
+    "f7107bc3",
+    "ff676013",
+    "d314fb0a",
+    "ee80e444",
+    "9fadb7da",
+    "68091841",
+    "69177b72",
+    "9fd2cfdb",
+    "0e1a838d",
+    "3a01ea4b",
+    "02814d6c",
+    "18784ef8",
+    "f7fd9e8a",
+    "f3ab76f3",
+    "e3246f2c",
+    "4b27ea54",
+    "236ed8f1",
+    "66b811c3",
+    "cb6c4aae",
+    "0c1d09c3"
+  ],
+  "approvedApplied": [
+    {
+      "group": "dp-goals",
+      "qid": "1b4ebca6",
+      "index": 320,
+      "baseQuestionHash": "03dd18543a0afe94602ec887ef77bac4e8db2279deecf15fdd9fdff27a22d00a",
+      "candidateHash": "cc92f122c4ba112ba7ceea9d767a97be11f9a413d57109e2c270edfcc22014c8",
+      "candidate": {
+        "qid": "1b4ebca6",
+        "q": "Pessoa candidata à diálise peritoneal (DP) deseja tratamento domiciliar, mas retinopatia e neuropatia limitam visão e destreza para conexões seguras. Qual estratégia melhor preserva essa escolha com segurança?",
+        "opts": [
+          "Avaliar assistência treinada para as tarefas da DP e individualizar a modalidade",
+          "Escolher DP automatizada autônoma, pois a cicladora faz as conexões sem ajuda",
+          "Escolher DP manual autônoma, pois exige menos destreza mesmo com limitação visual",
+          "Indicar hemodiálise sem avaliar assistência, pois visão e destreza limitadas impedem DP"
+        ],
+        "ans": 0,
+        "exp": "Barreiras visuais ou motoras podem impedir autocuidado seguro, mas não tornam a DP automaticamente inviável. É preciso identificar quais tarefas exigem ajuda e avaliar assistência treinada, disponibilidade, preferências e carga para o cuidador. A posição da International Society for Peritoneal Dialysis (ISPD) de 2024 recomenda avaliar barreiras ao autocuidado, treinar assistentes e manter comunicação e monitorização de qualidade. A escolha entre modalidade manual e automatizada continua individual. A cicladora pode reduzir algumas tarefas, mas ainda requer preparação, conexões e acompanhamento; não se deve presumir autonomia sem avaliar a capacidade para essas etapas. A prescrição orientada por objetivos também incorpora recursos locais, estilo de vida e participação da família ou do cuidador.",
+        "cat": "dialise",
+        "diff": "medium",
+        "refs": [
+          "ispd_assisted_pd_2024",
+          "ispd_goal_directed_pd_2020"
+        ],
+        "t": "Diálise Peritoneal Assistida — Barreiras ao Autocuidado"
+      },
+      "gate": {
+        "file": "dp-goals-independent-gates-A2.json",
+        "sha256": "e1a87e215fb4eea6f00b3adfd5256e84c5bd19d66a9ef84c30e403dc17e4c4cc",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "dp-goals-application.json",
+        "sha256": "43274b93ed1d7d94ea0c2f821d346290019f7252c6279c566020af43de60bc3e"
+      }
+    },
+    {
+      "group": "dp-goals",
+      "qid": "5d6677ab",
+      "index": 349,
+      "baseQuestionHash": "6301147e5c468a42aa4a4d196f5a9a828a8abf4976529b0cc8525c5a6c84852e",
+      "candidateHash": "75d5c90f3de82705df18140c1a0da0ea16c0ea4991e0924549cdbbb034ac1cb1",
+      "candidate": {
+        "t": "DP — Adequação Orientada por Objetivos",
+        "qid": "5d6677ab",
+        "q": "Paciente em diálise peritoneal mantém fadiga, anorexia e dificuldade de concentração apesar de Kt/V semanal de ureia de 1,8. Está euvolêmico e a coleta foi tecnicamente adequada. Qual é o próximo passo mais alinhado às recomendações atuais?",
+        "refs": [
+          "ispd_goal_directed_pd_2020"
+        ],
+        "opts": [
+          "Investigar causas dos sintomas e reavaliar a prescrição segundo os achados e os objetivos",
+          "Manter a prescrição sem investigar os sintomas, pois o Kt/V já certifica adequação",
+          "Aumentar a dose até Kt/V acima de 2,2, dispensando a busca de outras causas dos sintomas",
+          "Transferir para hemodiálise com base nos sintomas, sem revisar fatores não dialíticos"
+        ],
+        "ans": 0,
+        "exp": "Kt/V mede remoção de ureia; não certifica isoladamente bem-estar ou qualidade da diálise peritoneal (DP). A International Society for Peritoneal Dialysis (ISPD) orienta avaliar sintomas, volume, função renal residual, nutrição, bioquímica, qualidade de vida, preferências e carga do tratamento. Em sintomas persistentes apesar de Kt/V acima de 1,7, devem-se investigar causas dialíticas e não dialíticas. Um teste de aumento da dose pode ser considerado conforme os achados, mas não é substituto dessa avaliação nem exige perseguir 2,2. Não há vantagem de sobrevida demonstrada em buscar rotineiramente um Kt/V semanal acima de 1,7; isso não impede ajustar a prescrição quando há indicação clínica.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "dp-goals-independent-gates-A2.json",
+        "sha256": "e1a87e215fb4eea6f00b3adfd5256e84c5bd19d66a9ef84c30e403dc17e4c4cc",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "dp-goals-application.json",
+        "sha256": "43274b93ed1d7d94ea0c2f821d346290019f7252c6279c566020af43de60bc3e"
+      }
+    },
+    {
+      "group": "dp-goals",
+      "qid": "b1b484d1",
+      "index": 459,
+      "baseQuestionHash": "6107d7c99a763268c52275d16040116c178a2510e4b5fa743c9bcecd49538b2a",
+      "candidateHash": "e39c3962d1460886cd934d553da5735c537e60c352f985c0f00277fe197863af",
+      "candidate": {
+        "t": "Diálise Peritoneal — Kt/V em Prescrição Orientada por Objetivos",
+        "qid": "b1b484d1",
+        "q": "Paciente anúrico em diálise peritoneal está euvolêmico e sem sintomas urêmicos, mas uma coleta tecnicamente adequada mostra Kt/V semanal de ureia de 1,6. Qual interpretação é mais alinhada à prescrição orientada por objetivos?",
+        "refs": [
+          "ispd_goal_directed_pd_2020"
+        ],
+        "opts": [
+          "Integrar clínica e bioquímica para decidir ajustes, sem declarar falha pelo Kt/V isolado",
+          "Transferir para hemodiálise porque o Kt/V é inferior a 1,7, apesar da boa evolução clínica",
+          "Manter sem avaliar nutrição ou bioquímica, pois a ausência de sintomas garante diálise suficiente",
+          "Aumentar a dose até Kt/V acima de 2,2, mesmo sem avaliar o impacto sobre a vida do paciente"
+        ],
+        "ans": 0,
+        "exp": "A International Society for Peritoneal Dialysis (ISPD) reconhece evidência de certeza muito baixa de associação entre Kt/V semanal abaixo de 1,7 e maior morbidade, mas desencoraja um corte isolado como certificação de adequação ou falha. O resultado deve ser interpretado com sintomas, volume, nutrição, parâmetros bioquímicos, função renal residual, preferências e carga terapêutica, reconhecendo também a incerteza da estimativa do volume de distribuição da ureia. Neste caso, a anúria é relevante, mas não transforma 1,6 em indicação automática de hemodiálise. Pode-se ajustar a dose se a avaliação clínica indicar; se sintomas, nutrição e volume estiverem controlados, a prescrição não precisa ser modificada apenas para atingir um alvo arbitrário. A ausência de sintomas, sozinha, tampouco dispensa as outras avaliações.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "dp-goals-independent-gates-A2.json",
+        "sha256": "e1a87e215fb4eea6f00b3adfd5256e84c5bd19d66a9ef84c30e403dc17e4c4cc",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "dp-goals-application.json",
+        "sha256": "43274b93ed1d7d94ea0c2f821d346290019f7252c6279c566020af43de60bc3e"
+      }
+    },
+    {
+      "group": "dp-goals",
+      "qid": "4c7566cf",
+      "index": 485,
+      "baseQuestionHash": "b24f38b7b3707e8b84af0be57ba43d3eeb26391f6d23d1fa73821089ed7e4ef8",
+      "candidateHash": "21255fbda854e64ab028dead15023e79cd328c108b3b1c6c76e0aae64e2cc21e",
+      "candidate": {
+        "t": "DP — Exposição Sistêmica à Glicose",
+        "qid": "4c7566cf",
+        "q": "Após intensificação de bolsas hipertônicas de glicose para controle de volume, paciente em diálise peritoneal apresenta piora de glicemia, triglicerídeos e ganho de peso. Qual princípio explica e orienta esse cenário?",
+        "refs": [
+          "ispd_cardio_metabolic_2015",
+          "ispd_goal_directed_pd_2020"
+        ],
+        "opts": [
+          "Há absorção sistêmica; revisar a carga de glicose sem comprometer o controle de volume",
+          "Não há absorção sistêmica; manter as bolsas e atribuir as alterações apenas à alimentação",
+          "Há absorção sistêmica; substituir todas as trocas por icodextrina para reduzir a carga",
+          "Não há relevância clínica da absorção; manter as bolsas sem avaliar o perfil metabólico"
+        ],
+        "ans": 0,
+        "exp": "Parte da glicose do dialisato é absorvida e pode contribuir para hiperglicemia, hiperinsulinemia, dislipidemia e ganho de gordura. Isso não demonstra que todo ganho de peso seja causado pela glicose: devem-se avaliar também volume, alimentação e composição corporal. O distúrbio metabólico deve ser tratado enquanto se revisam sódio, diurese residual e necessidade de bolsas hipertônicas, preservando o controle volêmico. A International Society for Peritoneal Dialysis (ISPD) orienta considerar icodextrina uma vez ao dia na permanência longa quando indicada, inclusive para dificuldades de ultrafiltração e, em pessoas com diabetes, para reduzir a carga de glicose. Não se devem substituir todas as trocas por icodextrina nem abandonar a avaliação metabólica.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "dp-goals-independent-gates-A2.json",
+        "sha256": "e1a87e215fb4eea6f00b3adfd5256e84c5bd19d66a9ef84c30e403dc17e4c4cc",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "dp-goals-application.json",
+        "sha256": "43274b93ed1d7d94ea0c2f821d346290019f7252c6279c566020af43de60bc3e"
+      }
+    },
+    {
+      "group": "igan-diagnosis",
+      "qid": "ce79d609",
+      "index": 34,
+      "baseQuestionHash": "cb69780349ebbf5c52ba4e14acf194d6d7a72a8a59b30431007d7dbc44ffdfcb",
+      "candidateHash": "9455e6e16e8bde218f6b1cb2c0f49d20880c3d423e2d80c102b5818eeee962a0",
+      "candidate": {
+        "t": "IgAN — Oxford MEST-C sem Prescrição Automática",
+        "qid": "ce79d609",
+        "q": "Na nefropatia por imunoglobulina A (IgA), a classificação de Oxford registra hipercelularidade mesangial (M), hipercelularidade endocapilar (E), esclerose segmentar (S), atrofia tubular/fibrose intersticial (T) e crescentes (C). Um laudo informa M1 E0 S1 T2 C0. Como esse resultado deve ser usado?",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "rodrigues_haas_reich_igan_2017"
+        ],
+        "opts": [
+          "Acrescenta informação prognóstica aos dados clínicos, sem escolher sozinho a terapia",
+          "Seleciona a imunossupressão a partir de M1 e S1, sem depender da evolução clínica",
+          "Estabelece baixo risco a partir de C0, mesmo com atrofia e fibrose cortical extensas",
+          "Demonstra ausência de atividade a partir de E0, mesmo se houver proteinúria persistente"
+        ],
+        "ans": 0,
+        "exp": "O escore de Oxford acrescenta informação prognóstica à avaliação clínica. T2 corresponde a atrofia tubular/fibrose intersticial em mais de 50% do córtex e sinaliza dano crônico extenso. Esse dado deve ser integrado à taxa de filtração glomerular estimada (TFGe), proteinúria, pressão e trajetória clínica. E0 informa ausência de hipercelularidade endocapilar na amostra, sem excluir toda atividade da doença. C0 não anula o risco ligado à cronicidade. M1 e S1 também não selecionam, por si sós, imunossupressão ou um fármaco específico: essa inferência não foi validada por ensaios prospectivos de tratamento baseado no escore.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "gate": {
+        "file": "igan-independent-gates-A3.json",
+        "sha256": "b76a552a84f995b27532b8be4f50f876f196d0fb7a21fdf63fd6e339ea54d120",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "igan-application-A3.json",
+        "sha256": "fbd29822509d181cb88264c1aece956a08fb7c432774fb6677aba72ede6ca480"
+      }
+    },
+    {
+      "group": "igan-diagnosis",
+      "qid": "795d4589",
+      "index": 166,
+      "baseQuestionHash": "5d2b0720f8600289b8d73c479bc3154e4812fd948ecd63d5215237918155d7d5",
+      "candidateHash": "d02917c1509c4564603250eb8d005e86ed8e2dc204597812eeae604afb034e57",
+      "candidate": {
+        "t": "IgAN Prediction Tool — Prognóstico, não Resposta Terapêutica",
+        "qid": "795d4589",
+        "q": "Em adulto com nefropatia por imunoglobulina A (IgA) primária confirmada por biópsia, qual é a principal finalidade do International IgAN Prediction Tool?",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "barbour_igan_prediction_2019"
+        ],
+        "opts": [
+          "Estimar o risco de progressão renal combinando dados clínicos e histológicos",
+          "Estimar a resposta à imunossupressão a partir das lesões inflamatórias na biópsia",
+          "Estabelecer o diagnóstico da doença combinando IgA sérica, hematúria e proteinúria",
+          "Determinar o intervalo definitivo de seguimento a partir do risco calculado na biópsia"
+        ],
+        "ans": 0,
+        "exp": "A ferramenta estima risco de queda de 50% da taxa de filtração glomerular estimada (TFGe) ou falência renal e auxilia a discussão do prognóstico. Nos modelos originais na biópsia, entram dados clínicos e os componentes de hipercelularidade mesangial, hipercelularidade endocapilar, esclerose segmentar e atrofia tubular/fibrose intersticial (MEST). Crescentes são registrados no laudo atualizado de Oxford, mas não compõem esses modelos originais. A diretriz reúne versões da ferramenta para momentos definidos na biópsia ou após ela. O cálculo não diagnostica a doença, não define um seguimento imutável e não foi validado para prever resposta ou selecionar uma terapia específica.",
+        "diff": "easy",
+        "cat": "glomerular"
+      },
+      "gate": {
+        "file": "igan-independent-gates-A3.json",
+        "sha256": "b76a552a84f995b27532b8be4f50f876f196d0fb7a21fdf63fd6e339ea54d120",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "igan-application-A3.json",
+        "sha256": "fbd29822509d181cb88264c1aece956a08fb7c432774fb6677aba72ede6ca480"
+      }
+    },
+    {
+      "group": "igan-diagnosis",
+      "qid": "5e5b8558",
+      "index": 253,
+      "baseQuestionHash": "2c9ac7475d900cf788faa10dc9e11ff74fe09fe56a801844644871accfbfcdec",
+      "candidateHash": "07789df21e4f1c63d614daf7cee1767ccb4755ae4f3d6d2d907b31b543366c50",
+      "candidate": {
+        "qid": "5e5b8558",
+        "q": "Adulto jovem apresenta hematúria macroscópica recorrente durante ou até dois dias após infecções de vias aéreas, com proteinúria persistente de 0,7 g/d entre os episódios. A imunoglobulina A (IgA) sérica é normal. Qual interpretação e próximo passo são mais apropriados?",
+        "opts": [
+          "Suspeitar de nefropatia por IgA e considerar biópsia renal na investigação da proteinúria",
+          "Suspeitar de glomerulonefrite pós-infecciosa e usar a curta latência para dispensar biópsia",
+          "Suspeitar de doença da membrana basal fina e atribuir a proteinúria à hematúria recorrente",
+          "Suspeitar de nefropatia por IgA e usar a dosagem sérica normal para encerrar a investigação"
+        ],
+        "ans": 0,
+        "exp": "Hematúria visível junto ou logo após uma infecção de mucosa é uma apresentação sugestiva de nefropatia por IgA, chamada sinfaringítica. O padrão não basta para confirmar a doença, e IgA sérica normal não a exclui: não existe biomarcador sérico ou urinário validado para substituir o diagnóstico por biópsia. A KDIGO orienta considerar biópsia em adulto com possibilidade dessa doença e proteinúria de pelo menos 0,5 g/d, se não houver contraindicação, além de investigar causas secundárias. Recorrência e curta latência também não comprovam doença da membrana basal fina ou glomerulonefrite pós-infecciosa nem justificam ignorar proteinúria persistente.",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "rodrigues_haas_reich_igan_2017"
+        ],
+        "cat": "glomerular",
+        "diff": "medium",
+        "t": "IgAN — Hematúria Sinfaringítica e Confirmação"
+      },
+      "gate": {
+        "file": "igan-independent-gates-A3.json",
+        "sha256": "b76a552a84f995b27532b8be4f50f876f196d0fb7a21fdf63fd6e339ea54d120",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "igan-application-A3.json",
+        "sha256": "fbd29822509d181cb88264c1aece956a08fb7c432774fb6677aba72ede6ca480"
+      }
+    },
+    {
+      "group": "igan-diagnosis",
+      "qid": "26804856",
+      "index": 371,
+      "baseQuestionHash": "1ccce85c48a91c66b1f7595bcca91c045e59e08b8b593b21ab7fd15bc6793b04",
+      "candidateHash": "add6b7d47d807adb7fc11b65f4027838a169a5e5e6216b9788caf83cb397797d",
+      "candidate": {
+        "t": "IgAN — Interpretação da Imunofluorescência",
+        "qid": "26804856",
+        "q": "Adulto com hematúria glomerular e proteinúria é submetido a biópsia renal. A imunofluorescência mostra depósitos mesangiais predominantes de imunoglobulina A (IgA), acompanhados do componente C3 do complemento, e a microscopia óptica demonstra proliferação mesangial. Qual é a interpretação mais adequada?",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "rodrigues_haas_reich_igan_2017"
+        ],
+        "opts": [
+          "Nefropatia por IgA primária, definida pelo predomínio mesangial sem depender de investigação clínica",
+          "Padrão compatível com nefropatia por IgA, com etiologia a definir pela correlação clinicopatológica",
+          "Glomerulopatia C3, definida pela presença de C3 mesmo quando a IgA é o depósito predominante",
+          "Nefropatia membranosa, definida por depósitos granulares que devem ocupar o espaço subepitelial"
+        ],
+        "ans": 1,
+        "exp": "Depósitos glomerulares de IgA predominantes ou codominantes, em geral mesangiais, são o padrão característico da nefropatia por IgA. C3 pode acompanhar esses depósitos e não transforma o caso, isoladamente, em glomerulopatia C3. A interpretação reúne microscopia óptica, imunofluorescência, microscopia eletrônica e dados clínicos. Ainda é necessário avaliar causas secundárias e diagnósticos próximos, como vasculite por IgA, cirrose, infecções virais, doença inflamatória intestinal e glomerulonefrite relacionada à infecção com IgA dominante. Depósito granular não é sinônimo de localização subepitelial nem define nefropatia membranosa.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "gate": {
+        "file": "igan-independent-gates-A3.json",
+        "sha256": "b76a552a84f995b27532b8be4f50f876f196d0fb7a21fdf63fd6e339ea54d120",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "igan-application-A3.json",
+        "sha256": "fbd29822509d181cb88264c1aece956a08fb7c432774fb6677aba72ede6ca480"
+      }
+    },
+    {
+      "group": "igan-diagnosis",
+      "qid": "12328a3e",
+      "index": 504,
+      "baseQuestionHash": "88bc8cc717729dd6951d4558e9242d9e6bdd231851a60ec31e4815fc91444111",
+      "candidateHash": "b400e064283ba1079bbe1c0759076165c90158b83aba656dfa09a43df4941031",
+      "candidate": {
+        "t": "IgAN — Lesão T na Classificação MEST-C",
+        "qid": "12328a3e",
+        "q": "Na biópsia de um adulto com nefropatia por imunoglobulina A (IgA), atrofia tubular e fibrose intersticial ocupam aproximadamente 35% da área cortical. Como esse achado deve ser registrado e interpretado na classificação de Oxford?",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "rodrigues_haas_reich_igan_2017"
+        ],
+        "opts": [
+          "T1: comprometimento de 26–50% do córtex, indicando dano tubulointersticial crônico",
+          "T2: comprometimento acima de 25% do córtex, indicando a maior faixa de extensão",
+          "M1: lesão mesangial quantificada pelo percentual de atrofia e fibrose cortical",
+          "C1: crescente fibrocelular quantificada pela extensão da fibrose intersticial"
+        ],
+        "ans": 0,
+        "exp": "A lesão de atrofia tubular/fibrose intersticial é registrada pelo componente T da classificação de Oxford. Envolvimento de 26–50% do córtex corresponde a T1; acima de 50%, a T2. Assim, 35% é T1 e expressa dano crônico com valor prognóstico. M refere-se a hipercelularidade mesangial, e C a crescentes celulares ou fibrocelulares; nenhum deles é medido pela extensão de fibrose intersticial. A histologia deve ser integrada à função renal, proteinúria, pressão e evolução clínica, sem converter uma lesão isolada em prescrição automática.",
+        "diff": "easy",
+        "cat": "glomerular"
+      },
+      "gate": {
+        "file": "igan-independent-gates-A3.json",
+        "sha256": "b76a552a84f995b27532b8be4f50f876f196d0fb7a21fdf63fd6e339ea54d120",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "igan-application-A3.json",
+        "sha256": "fbd29822509d181cb88264c1aece956a08fb7c432774fb6677aba72ede6ca480"
+      }
+    },
+    {
+      "group": "igan-diagnosis",
+      "qid": "ea37c153",
+      "index": 555,
+      "baseQuestionHash": "a5e252630c39635c2156830f410289e690b44acee6f659a2817a73095b253f61",
+      "candidateHash": "37cc8c5109d8d3b325dc64c2dab07debd7d5f3cc515b69aa7fbc9513ba562c02",
+      "candidate": {
+        "t": "IgAN — Hipótese Patogênica dos Quatro Hits",
+        "qid": "ea37c153",
+        "q": "Qual sequência descreve o modelo dos quatro eventos (“hits”) na nefropatia por imunoglobulina A (IgA), envolvendo sua subclasse 1 (IgA1)?",
+        "refs": [
+          "kdigo_igan_igav_2025",
+          "rodrigues_haas_reich_igan_2017"
+        ],
+        "opts": [
+          "Produção de IgA1 deficiente em galactose → autoanticorpos → imunocomplexos → depósito e lesão mesangial",
+          "Produção de IgA1 deficiente em galactose → autoanticorpos → imunocomplexos → depósito e lesão subepitelial",
+          "Produção de IgA1 deficiente em galactose → depósito mesangial direto → lesão renal → autoanticorpos",
+          "Produção de IgA1 com excesso de galactose → autoanticorpos → imunocomplexos → depósito e lesão mesangial"
+        ],
+        "ans": 0,
+        "exp": "O modelo propõe IgA da subclasse 1 (IgA1) com glicanos deficientes em galactose, seguida por autoanticorpos que reconhecem essa alteração, formação de imunocomplexos circulantes e acúmulo mesangial com ativação celular e lesão glomerular. A alteração da IgA1 isoladamente não explica toda a doença clínica. O modelo não começa por excesso de galactose nem atribui a lesão apenas ao depósito direto de IgA1 antes dos autoanticorpos. A localização característica dos complexos é mesangial, e não subepitelial. Trata-se de um modelo patogênico, sem tornar a dosagem dessas moléculas um substituto validado da biópsia.",
+        "diff": "easy",
+        "cat": "glomerular"
+      },
+      "gate": {
+        "file": "igan-independent-gates-A3.json",
+        "sha256": "b76a552a84f995b27532b8be4f50f876f196d0fb7a21fdf63fd6e339ea54d120",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "igan-application-A3.json",
+        "sha256": "fbd29822509d181cb88264c1aece956a08fb7c432774fb6677aba72ede6ca480"
+      }
+    },
+    {
+      "group": "dp-eps",
+      "qid": "3e0788ac",
+      "index": 139,
+      "baseQuestionHash": "e19c979066716ad690f970d430e1f54825fb73eb9e381c15e95a3770eee80939",
+      "candidateHash": "6055331e855aff804296ddda58beb8be62a9a49bb4c0fb7fe577191a45b43f36",
+      "candidate": {
+        "t": "Encapsulamento Peritoneal Esclerosante — Risco",
+        "qid": "3e0788ac",
+        "q": "Paciente está clinicamente bem após 7 anos em diálise peritoneal (DP) e pergunta se o tempo de técnica, por si só, exige troca eletiva para hemodiálise para prevenir encapsulamento peritoneal esclerosante (EPS). Qual resposta é mais adequada?",
+        "refs": [
+          "eps_dp"
+        ],
+        "opts": [
+          "Reavaliar riscos e objetivos, sem impor troca de modalidade apenas pelo tempo de DP",
+          "Indicar hemodiálise agora por já ter ultrapassado o limite fixo de cinco anos de DP",
+          "Manter DP sem reavaliar membrana ou sintomas, pois o tempo não modifica o risco",
+          "Garantir continuidade segura da DP se a tomografia anual permanecer normal"
+        ],
+        "ans": 0,
+        "exp": "A duração crescente da diálise peritoneal é o fator de risco mais consistentemente associado ao encapsulamento peritoneal esclerosante (EPS). Outras associações, como peritonite e alterações de transporte, têm dados mais limitados ou inconsistentes e não permitem prever individualmente quem desenvolverá a doença. A posição da International Society for Peritoneal Dialysis (ISPD) não estabelece prazo universal para interromper a DP. A decisão integra funcionamento da técnica, sintomas, riscos de continuar ou mudar de modalidade e objetivos da pessoa. Tomografia normal em assintomáticos não garante proteção futura; a EPS pode surgir ou progredir mesmo depois de interromper DP, inclusive após transplante. Por isso, uma data fixa de transferência não elimina o risco.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "dp-eps-independent-gates-A2.json",
+        "sha256": "68c2e03dbc854493dcd1f2cfe9379c48dee3f97722242c16b9704faa9f51442e",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "dp-eps-application.json",
+        "sha256": "132178a16cfd7aa085dfe87fc31c0d496ea086de44261757741932f142a85e00"
+      }
+    },
+    {
+      "group": "dp-eps",
+      "qid": "fe70507d",
+      "index": 321,
+      "baseQuestionHash": "b133181debaef66a62dc7c4045a6c8ceea9bc53e7a9aaa059e41bc9e7be1b06c",
+      "candidateHash": "b458ba2bfba965fd74e2f125f69db7d60787dd4880070ecf06342f09f816f833",
+      "candidate": {
+        "qid": "fe70507d",
+        "q": "Paciente com longa exposição à diálise peritoneal (DP) apresenta perda de peso, náuseas e episódios recorrentes de suboclusão. A tomografia mostra espessamento e calcificação peritoneal, loculações e alças intestinais agrupadas em encapsulamento. Qual interpretação é correta?",
+        "opts": [
+          "O conjunto clínico e tomográfico sustenta encapsulamento peritoneal esclerosante",
+          "O tempo de DP basta para o diagnóstico; sintomas e tomografia são apenas complementares",
+          "São alterações inespecíficas da DP prolongada, sem relação com os episódios de obstrução",
+          "A ausência de massa abdominal palpável afasta a doença, mesmo com esses achados"
+        ],
+        "ans": 0,
+        "exp": "O diagnóstico de encapsulamento peritoneal esclerosante combina manifestações de obstrução intestinal com alterações estruturais, especialmente o encapsulamento de alças. A tomografia é a técnica radiológica de escolha, mas espessamento ou calcificação isolados podem ocorrer em DP prolongada sem essa síndrome. Neste caso, suboclusões recorrentes, perda de peso e alças agrupadas em encapsulamento fornecem a associação clínica e estrutural que sustenta o diagnóstico. Massa palpável não é requisito obrigatório. Tempo em DP não basta para diagnosticar, e imagem isolada não prevê de modo confiável a doença futura em assintomáticos.",
+        "cat": "dialise",
+        "diff": "medium",
+        "refs": [
+          "eps_dp"
+        ],
+        "t": "Encapsulamento Peritoneal Esclerosante — Diagnóstico"
+      },
+      "gate": {
+        "file": "dp-eps-independent-gates-A2.json",
+        "sha256": "68c2e03dbc854493dcd1f2cfe9379c48dee3f97722242c16b9704faa9f51442e",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 18
+      },
+      "application": {
+        "file": "dp-eps-application.json",
+        "sha256": "132178a16cfd7aa085dfe87fc31c0d496ea086de44261757741932f142a85e00"
+      }
+    },
+    {
+      "group": "dp-final",
+      "qid": "f4de7965",
+      "index": 475,
+      "baseQuestionHash": "0656ad2ef3b50c0add62563fe5f436d587da87969751b1f33aa6ec2f868fff82",
+      "candidateHash": "5f7e1a0d35126d45d4df26781ca86895c0da1ffe90c507974b20595fa304281f",
+      "candidate": {
+        "t": "Diálise Peritoneal na LRA — Modalidade Selecionada",
+        "qid": "f4de7965",
+        "q": "Sobre o uso de diálise peritoneal em adultos com lesão renal aguda hospitalar, qual afirmação é mais adequada?",
+        "refs": [
+          "ispd_aki_pd_2020"
+        ],
+        "opts": [
+          "É uma opção com seleção clínica, acesso adequado, prescrição e monitorização individualizadas",
+          "A oligúria contraindica a modalidade por impossibilitar depuração suficiente de pequenos solutos",
+          "Na sepse, deve ser preferida à terapia contínua por oferecer benefício comprovado de sobrevida",
+          "A prescrição deve repetir os volumes usados nos ensaios para assegurar a mesma eficácia clínica"
+        ],
+        "ans": 0,
+        "exp": "A International Society for Peritoneal Dialysis (ISPD) considera a diálise peritoneal (DP) modalidade adequada para lesão renal aguda em diferentes cenários. A escolha depende do contexto, e a prescrição deve ser ajustada à necessidade de corrigir alterações metabólicas e sobrecarga de volume, com acesso, equipe e monitorização apropriados. A oligúria, isoladamente, não demonstra que a DP será insuficiente. A diretriz cita evidência de baixa certeza de sobrevida semelhante entre um protocolo tidal automatizado e hemodiafiltração venovenosa contínua; isso não comprova superioridade na sepse nem equivalência entre todas as prescrições. Volume, duração dos ciclos e concentração de glicose devem acompanhar a evolução clínica. Cirurgia abdominal recente, defeitos da parede e necessidades urgentes de depuração exigem avaliação individual, sem extrapolar os resultados de um protocolo a qualquer paciente.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "dp-final-independent-gates-A2.json",
+        "sha256": "34965406135733dab8d2195e9aafe7ba1ff61333b65a11e868cdb7a3a0f4d26e",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "dp-final-application-A2.json",
+        "sha256": "2d50cd06f12b4b063b716973e85a68b3143add3e97c078d2c5fb30967f0e26a0"
+      }
+    },
+    {
+      "group": "dp-final",
+      "qid": "23635484",
+      "index": 484,
+      "baseQuestionHash": "6d3955da74f9f064afbe1b55c6103d732b1b4e0b411748e6286c139d05617e8d",
+      "candidateHash": "daa4abf664c21888dc73ef0c778b6b4cecc5843fab27fb6babe83a55ea77251d",
+      "candidate": {
+        "t": "DP — Hérnia da Parede Abdominal",
+        "qid": "23635484",
+        "q": "Paciente em diálise peritoneal apresenta hérnia umbilical sintomática, redutível e sem sinais de estrangulamento. Qual estratégia é mais adequada?",
+        "refs": [
+          "ispd_pd_access_2019"
+        ],
+        "opts": [
+          "Planejar o reparo e individualizar a pausa e o reinício da diálise peritoneal",
+          "Adiar o reparo até haver encarceramento, mantendo o esquema dialítico habitual",
+          "Planejar o reparo e manter o volume habitual nas trocas desde o pós-operatório imediato",
+          "Transferir definitivamente para hemodiálise antes de encaminhar para reparo"
+        ],
+        "ans": 0,
+        "exp": "Hérnias são complicações relacionadas ao aumento da pressão intraperitoneal e requerem avaliação cirúrgica, sobretudo quando sintomáticas. A presença de hérnia não implica abandono definitivo da DP. Em muitos casos é possível evitar hemodiálise temporária, ajustando o período perioperatório conforme função renal residual e urgência; quando a DP precisa ser mantida ou reiniciada cedo, trocas de baixo volume em decúbito, frequentemente automatizadas e sem permanência diurna, reduzem pressão sobre o reparo. Encarceramento ou estrangulamento exige abordagem urgente.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "dp-final-independent-gates-A2.json",
+        "sha256": "34965406135733dab8d2195e9aafe7ba1ff61333b65a11e868cdb7a3a0f4d26e",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "dp-final-application-A2.json",
+        "sha256": "2d50cd06f12b4b063b716973e85a68b3143add3e97c078d2c5fb30967f0e26a0"
+      }
+    },
+    {
+      "group": "dp-final",
+      "qid": "5eb00a6e",
+      "index": 487,
+      "baseQuestionHash": "51ef79ce1b665933a7c80671346e5fc079cb8eb481978c77d4f568467935d266",
+      "candidateHash": "b64b65be9a4edfae62e0c549fc68a2239f8ad025cde2b919ae5c335ad51619f3",
+      "candidate": {
+        "t": "DP — Efluente Eosinofílico",
+        "qid": "5eb00a6e",
+        "q": "Duas semanas após iniciar diálise peritoneal, paciente apresenta efluente turvo, desconforto mínimo, cultura negativa e 320 leucócitos/µL, dos quais 60% são eosinófilos. Qual hipótese merece destaque após coleta adequada e exclusão de infecção?",
+        "refs": [
+          "ispd_peritonitis_guideline",
+          "eosinophilic_peritonitis_review_2023"
+        ],
+        "opts": [
+          "Peritonite eosinofílica",
+          "Peritonite bacteriana de cultura negativa",
+          "Peritonite fúngica",
+          "Hemoperitônio"
+        ],
+        "ans": 0,
+        "exp": "Eosinófilos acima de 10% das células do efluente ou contagem absoluta acima de 100/µL sustentam efluente eosinofílico; o quadro ocorre com frequência nas primeiras semanas após cateter ou início da DP e pode refletir hipersensibilidade a materiais, solução, fármacos ou ar. Dor discreta, cultura negativa e predomínio de eosinófilos favorecem peritonite eosinofílica. Ainda assim, efluente turvo deve receber coleta e avaliação microbiológica adequadas, pois infecção é mais comum e eosinofilia não a exclui automaticamente.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "dp-final-independent-gates-A2.json",
+        "sha256": "34965406135733dab8d2195e9aafe7ba1ff61333b65a11e868cdb7a3a0f4d26e",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 18
+      },
+      "application": {
+        "file": "dp-final-application-A2.json",
+        "sha256": "2d50cd06f12b4b063b716973e85a68b3143add3e97c078d2c5fb30967f0e26a0"
+      }
+    },
+    {
+      "group": "dp-final",
+      "qid": "faac594e",
+      "index": 639,
+      "baseQuestionHash": "9f6c9523cd8b77d8c2637371fcd59addee81f8734df9979511c1bc0f1a67f0e8",
+      "candidateHash": "936009c086bcc312c51853202ebe7e61381fcaa33fecab03d70d1d057fba06ec",
+      "candidate": {
+        "t": "Diálise Peritoneal — Difusão e Ultrafiltração",
+        "qid": "faac594e",
+        "q": "Na diálise peritoneal, qual mecanismo remove principalmente ureia e outros pequenos solutos do sangue para o dialisato?",
+        "refs": [
+          "ispd_membrane_dysfunction_2021"
+        ],
+        "opts": [
+          "Difusão passiva conforme o gradiente de concentração dos solutos",
+          "Transporte convectivo dos solutos acompanhando a ultrafiltração de água",
+          "Transporte ativo dos solutos por bombas da membrana peritoneal",
+          "Osmose, que desloca pequenos solutos para equilibrar os compartimentos"
+        ],
+        "ans": 0,
+        "exp": "Na diálise peritoneal (DP), pequenos solutos como a ureia atravessam a barreira peritoneal principalmente por difusão passiva, conforme seu gradiente de concentração, em geral do sangue capilar para o dialisato. O transporte convectivo acompanha o fluxo de água e também pode contribuir para remover solutos, mas não é o principal mecanismo pedido. Osmose descreve o movimento de água em resposta ao gradiente osmótico, que sustenta a ultrafiltração com agentes como glicose ou icodextrina; não é o nome da difusão da ureia. A troca dialítica de pequenos solutos não depende de bombas de transporte ativo. A função renal residual complementa a depuração total, sem constituir o mecanismo de transferência peritoneal.",
+        "diff": "easy",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "dp-final-independent-gates-A2.json",
+        "sha256": "34965406135733dab8d2195e9aafe7ba1ff61333b65a11e868cdb7a3a0f4d26e",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "dp-final-application-A2.json",
+        "sha256": "2d50cd06f12b4b063b716973e85a68b3143add3e97c078d2c5fb30967f0e26a0"
+      }
+    },
+    {
+      "group": "dp-final",
+      "qid": "4decf9f9",
+      "index": 692,
+      "baseQuestionHash": "441802736db28d7d94be2097af2499165dbd37f3d7d0ea13fccbe3fd8aceba35",
+      "candidateHash": "e6b21995e1701ba736124a38ece9d92066b4902884f6903a4244083c20d6973e",
+      "candidate": {
+        "t": "Cognição — Diálise Peritoneal versus Hemodiálise",
+        "qid": "4decf9f9",
+        "q": "Pessoa com falência renal pergunta se escolher diálise peritoneal, em vez de hemodiálise, protegerá sua cognição. Qual resposta melhor representa a evidência atual?",
+        "refs": [
+          "neumann_2018",
+          "niknafs_2025",
+          "malik_meta_2025"
+        ],
+        "opts": [
+          "Há associação favorável à diálise peritoneal, sem comprovar proteção causal pela modalidade",
+          "O pareamento das coortes elimina o viés de seleção e confirma proteção pela diálise peritoneal",
+          "A depuração mais rápida da hemodiálise demonstra maior proteção cognitiva nessa modalidade",
+          "A heterogeneidade dos estudos permite dispensar a cognição na escolha e no seguimento clínico"
+        ],
+        "ans": 0,
+        "exp": "Coortes e metanálises observacionais associam diálise peritoneal a melhor desempenho cognitivo e menor incidência de demência. Porém, os grupos podem diferir em cognição basal, idade, autonomia e comorbidades; pareamento por variáveis medidas não elimina todo viés de seleção ou confundimento. A metanálise citada não identificou ensaios randomizados comparando modalidades para esses desfechos, e encontrou heterogeneidade importante, sobretudo para demência. Assim, associação não equivale a proteção causal comprovada, nem a rapidez de depuração demonstra superioridade cognitiva da hemodiálise. A incerteza tampouco torna a cognição irrelevante. Comprometimento cognitivo exige atenção nas duas modalidades, e a decisão deve integrar preferências, capacidade de autocuidado ou assistência e risco clínico.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "dp-final-independent-gates-A2.json",
+        "sha256": "34965406135733dab8d2195e9aafe7ba1ff61333b65a11e868cdb7a3a0f4d26e",
+        "verdict": "aprovada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "publication": "LIBERADA",
+        "score": 18
+      },
+      "application": {
+        "file": "dp-final-application-A2.json",
+        "sha256": "2d50cd06f12b4b063b716973e85a68b3143add3e97c078d2c5fb30967f0e26a0"
+      }
+    },
+    {
+      "group": "igan-general",
+      "qid": "9961a406",
+      "index": 81,
+      "baseQuestionHash": "9adb7ebffd5edb7efefe772732be48c37004918c175fc2a28f8f7ffab1112091",
+      "candidateHash": "1eb55243d25845e7f31f28a90cd43ed078d2ea761949ad4c24b7cfb28f3c5740",
+      "candidate": {
+        "t": "IgAN — Papel do Óleo de Peixe",
+        "qid": "9961a406",
+        "q": "Pessoa com nefropatia por imunoglobulina A (IgA) pergunta se deve acrescentar óleo de peixe para prevenir perda de função renal. Qual orientação é mais alinhada à KDIGO 2025?",
+        "opts": [
+          "Não indicar de rotina; manter terapias com benefício demonstrado para o perfil clínico",
+          "Indicar de rotina; o efeito nefroprotetor é consistente nos ensaios clínicos",
+          "Usar como alternativa ao bloqueio do sistema renina-angiotensina quando houver proteinúria",
+          "Reservar como terapia renal eficaz para quem apresenta hematúria sinfaringítica recorrente"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO não recomenda óleo de peixe como terapia rotineira para nefropatia por IgA: os estudos não mostraram benefício consistente para sustentar seu uso rotineiro. Ele não deve substituir nefroproteção ou tratamento dirigido à doença quando indicado. Se a pessoa ainda desejar usá-lo, a diretriz orienta discutir dose e formulação dos ensaios que relataram eficácia, sem transformar essa conversa em recomendação universal. Hematúria sinfaringítica ou proteinúria não identificam um grupo em que a eficácia renal do suplemento esteja automaticamente comprovada.",
+        "diff": "easy",
+        "cat": "glomerular",
+        "refs": [
+          "kdigo_igan_igav_2025"
+        ]
+      },
+      "gate": {
+        "file": "igan-treatment-general-independent-gates-A2.json",
+        "sha256": "dd2e32c2d96764a6f5c64712e3ad454ccfc226f66fb8d9f39e42415cd0ae8f57",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "igan-treatment-general-application-A2.json",
+        "sha256": "912bd8eeff3f5c4b3985bb6b4cd7dc30d523a475bf3ccb03ddea4c4bcc5d0f13"
+      }
+    },
+    {
+      "group": "igan-general",
+      "qid": "ddb4938a",
+      "index": 176,
+      "baseQuestionHash": "56883ce1dfe5bd7693a33db724129ec72a282503f87d9d47d4abc28fae82fb88",
+      "candidateHash": "b80b754892c12767aa3b8077bf0ac92cf9cc13279996cb8f8e0e5967353211fa",
+      "candidate": {
+        "t": "IgAN — Limite Populacional da Tonsilectomia",
+        "qid": "ddb4938a",
+        "q": "Adulto não japonês com nefropatia por imunoglobulina A (IgA) pergunta sobre tonsilectomia para melhorar o prognóstico renal, sem outra indicação otorrinolaringológica. Qual orientação é mais adequada?",
+        "refs": [
+          "kdigo_igan_igav_2025"
+        ],
+        "opts": [
+          "Não indicar a cirurgia para a doença renal nessa população, mantendo a nefroproteção",
+          "Indicar a cirurgia se houver hematúria sinfaringítica, aplicando os resultados japoneses",
+          "Indicar a cirurgia com pulsos de corticoide como etapa anterior à nefroproteção otimizada",
+          "Adiar a cirurgia até a IgA sérica aumentar, usando o marcador para selecionar respondedores"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO 2025 orienta não realizar tonsilectomia como tratamento da nefropatia por IgA em pessoas não japonesas. Os sinais de benefício renal provêm sobretudo de estudos japoneses, em grande parte retrospectivos; a estratégia faz parte das recomendações do Japão, mas isso não permite extrapolação universal. IgA sérica elevada não é um teste validado para selecionar respondedores à cirurgia. Essa orientação renal não impede tonsilectomia por indicação otorrinolaringológica independente. A decisão também não deve deslocar a nefroproteção apropriada.",
+        "diff": "easy",
+        "cat": "glomerular"
+      },
+      "gate": {
+        "file": "igan-treatment-general-independent-gates-A2.json",
+        "sha256": "dd2e32c2d96764a6f5c64712e3ad454ccfc226f66fb8d9f39e42415cd0ae8f57",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "igan-treatment-general-application-A2.json",
+        "sha256": "912bd8eeff3f5c4b3985bb6b4cd7dc30d523a475bf3ccb03ddea4c4bcc5d0f13"
+      }
+    },
+    {
+      "group": "igan-general",
+      "qid": "b7a93d7a",
+      "index": 221,
+      "baseQuestionHash": "b66e7f2d734abd24fa3f78b1f7091c73fdb3657a666fde400f11f240aef907e3",
+      "candidateHash": "5da47e4f6b5a12c443f404e0f7caf5e0e39aaf8359493b4127e1bcd57d60caf9",
+      "candidate": {
+        "t": "IgAN em Risco — Tratamento em Camadas",
+        "qid": "b7a93d7a",
+        "q": "Adulto com nefropatia por imunoglobulina A (IgA) primária confirmada por biópsia mantém proteinúria de 0,8 g/d e queda lenta da taxa de filtração glomerular estimada (TFGe). Qual plano melhor representa a KDIGO 2025?",
+        "refs": [
+          "kdigo_igan_igav_2025"
+        ],
+        "opts": [
+          "Combinar nefroproteção e avaliação de terapia dirigida à doença, conforme risco e segurança",
+          "Priorizar nefroproteção isolada e adiar a avaliação de terapia dirigida até proteinúria nefrótica",
+          "Usar o limiar de 0,5 g/d de proteinúria como critério suficiente para iniciar glicocorticoide sistêmico",
+          "Escolher terapia dirigida como estratégia suficiente para controlar também as respostas à perda de néfrons"
+        ],
+        "ans": 0,
+        "exp": "Proteinúria persistente a partir de 0,5 g/d identifica risco de progressão na nefropatia por IgA. A KDIGO propõe abordar simultaneamente os mecanismos específicos da doença e as respostas à perda de néfrons. O plano inclui medidas de estilo de vida, controle pressórico e hemodinâmico e avaliação de terapias dirigidas à formação de imunocomplexos ou à lesão glomerular, conforme risco, segurança, acesso e decisão compartilhada. Não se deve aguardar proteinúria nefrótica para avaliar tratamento adicional, nem transformar 0,5 g/d em prescrição universal de imunossupressão. Terapia dirigida também não substitui o cuidado das consequências da perda de néfrons.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "gate": {
+        "file": "igan-treatment-general-independent-gates-A2.json",
+        "sha256": "dd2e32c2d96764a6f5c64712e3ad454ccfc226f66fb8d9f39e42415cd0ae8f57",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "igan-treatment-general-application-A2.json",
+        "sha256": "912bd8eeff3f5c4b3985bb6b4cd7dc30d523a475bf3ccb03ddea4c4bcc5d0f13"
+      }
+    },
+    {
+      "group": "igan-general",
+      "qid": "c1089f2e",
+      "index": 652,
+      "baseQuestionHash": "5ae127af7d2254563f943fd9ea40d0a0b36a9d9116e19a78b5033ad6285eeaed",
+      "candidateHash": "fd101c9431d18979917fbfb07e2d8441390effbfc60a5c0c36f6263be617a046",
+      "candidate": {
+        "t": "IgAN — Meta de Proteinúria KDIGO 2025",
+        "qid": "c1089f2e",
+        "q": "Qual meta de proteinúria deve orientar o tratamento da nefropatia por imunoglobulina A (IgA) em risco de progressão segundo a KDIGO 2025?",
+        "opts": [
+          "Abaixo de 0,5 g/d e, idealmente, abaixo de 0,3 g/d",
+          "Abaixo de 1,0 g/d e, idealmente, abaixo de 0,8 g/d",
+          "Abaixo de 2,0 g/d e, idealmente, abaixo de 1,5 g/d",
+          "Abaixo de 0,3 g/d e, idealmente, abaixo de 0,1 g/d"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO orienta manter a excreção de proteína abaixo de 0,5 g/d e, idealmente, abaixo de 0,3 g/d. O objetivo é reduzir o risco e aproximar a perda de função renal da faixa fisiológica. A meta não é uma ordem de intensificar imunossupressão até alcançar qualquer valor e não garante risco zero: cicatriz extensa pode limitar a redução possível. Proteinúria baixa não dispensa acompanhar a trajetória da função renal. O alvo de menos de 1 g/d corresponde ao enquadramento da diretriz de 2021, atualizado em 2025.",
+        "diff": "easy",
+        "cat": "glomerular",
+        "refs": [
+          "kdigo_igan_igav_2025"
+        ]
+      },
+      "gate": {
+        "file": "igan-treatment-general-independent-gates-A2.json",
+        "sha256": "dd2e32c2d96764a6f5c64712e3ad454ccfc226f66fb8d9f39e42415cd0ae8f57",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "igan-treatment-general-application-A2.json",
+        "sha256": "912bd8eeff3f5c4b3985bb6b4cd7dc30d523a475bf3ccb03ddea4c4bcc5d0f13"
+      }
+    },
+    {
+      "group": "igan-gc",
+      "qid": "d81defbb",
+      "index": 10,
+      "baseQuestionHash": "c375779e5b4d883252586388304b0541bdb406a90bafc9741fd21b8d68ae2c88",
+      "candidateHash": "6cf4876f99e62446840103405c21be571e2818b84c7e6549564fb228f851b3ac",
+      "candidate": {
+        "t": "IgAN — TESTING e Corticoide Sistêmico",
+        "qid": "d81defbb",
+        "q": "Pessoa com nefropatia por imunoglobulina A (IgA) primária em risco de progressão, com nefroproteção otimizada, não tem acesso a Nefecon. Ao discutir metilprednisolona sistêmica segundo a KDIGO 2025, qual síntese é mais adequada?",
+        "refs": [
+          "testing_study",
+          "kdigo_igan_igav_2025"
+        ],
+        "opts": [
+          "Benefício renal com risco de toxicidade; considerar esquema reduzido, profilaxia e seleção individual",
+          "Benefício renal maior com dose plena; preferi-la porque superou o esquema reduzido no TESTING",
+          "Ausência de benefício em função renal; evitar corticoide mesmo após seleção criteriosa de risco",
+          "Benefício renal com risco infeccioso; usar dose reduzida em substituição à profilaxia"
+        ],
+        "ans": 0,
+        "exp": "O TESTING demonstrou benefício no composto de perda de função renal, falência renal ou morte por doença renal, com maior incidência de eventos adversos graves, sobretudo no protocolo de dose plena. As coortes de dose plena e reduzida não foram comparadas diretamente por randomização para estabelecer superioridade entre as doses. Quando Nefecon não está disponível, a KDIGO 2025 sugere esquema sistêmico reduzido com profilaxia e avaliação individual de benefício e toxicidade. A fase de protocolo reduzido usou dose inicial de metilprednisolona de 0,4 mg/kg/dia, máximo 32 mg/dia, seguida de desmame. A profilaxia contra Pneumocystis jirovecii não é substituída pela dose menor. Função renal muito reduzida, diabetes ou prediabetes, obesidade e infecções, entre outros fatores, aumentam o risco; não há indicação automática para toda pessoa que ultrapasse um limiar de proteinúria.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "gate": {
+        "file": "igan-glucocorticoids-independent-gates-A2.json",
+        "sha256": "23967287599686706edf869ae4f08801e9013baa3d1083b97ca57127aff531be",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "igan-gc-application.json",
+        "sha256": "a106985d16127388a360a72351e5832bdb4fa75750608a5283acafb856692fe9"
+      }
+    },
+    {
+      "group": "igan-gc",
+      "qid": "f7107bc3",
+      "index": 146,
+      "baseQuestionHash": "eceb69dc1bd50fb8264a1222d869de0958fdb1c5c17b5268cf35dc3c4d72ac28",
+      "candidateHash": "105d139d8ac719fe074fd8c4f8d29faa8439315e7b6f2d9eef758b4b23bcd977",
+      "candidate": {
+        "t": "Nefecon — Eixo Intestino-Rim e Curso Limitado",
+        "qid": "f7107bc3",
+        "q": "Em adultos com nefropatia por imunoglobulina A (IgA) primária em risco de progressão, qual afirmação integra corretamente a finalidade da liberação direcionada e o curso de Nefecon estudado no NefIgArd?",
+        "refs": [
+          "nefigard_trial",
+          "kdigo_igan_igav_2025"
+        ],
+        "opts": [
+          "Liberação ileal para modular a imunidade de mucosa; curso de nove meses, sem garantia de resposta permanente",
+          "Liberação ileal para induzir remissão; o protocolo prevê manutenção em dose menor após os nove meses",
+          "Liberação no cólon para modular a imunidade de mucosa; curso de nove meses com reavaliação posterior",
+          "Budesonida de outras formulações intestinais pode reproduzir o regime, com a mesma dose e duração"
+        ],
+        "ans": 0,
+        "exp": "Nefecon é uma formulação específica de budesonida com liberação no íleo terminal, desenhada para atuar no tecido linfoide intestinal e modular a produção de formas patogênicas de IgA e imunocomplexos. O local-alvo é o íleo terminal, e não o cólon. O NefIgArd avaliou 16 mg/dia por nove meses, com suporte otimizado mantido e quinze meses adicionais sem o medicamento do estudo, não manutenção em dose menor no protocolo randomizado. Houve benefício médio frente a placebo, mas isso não significa cura ou manutenção de resposta em cada pessoa: após a suspensão, a proteinúria pode aumentar e a função renal pode voltar a cair. A continuidade do cuidado e a reavaliação são necessárias; o ensaio não valida intercâmbio automático com qualquer formulação de budesonida nem uso indefinido sem revisão.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "gate": {
+        "file": "igan-glucocorticoids-independent-gates-A2.json",
+        "sha256": "23967287599686706edf869ae4f08801e9013baa3d1083b97ca57127aff531be",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "igan-gc-application.json",
+        "sha256": "a106985d16127388a360a72351e5832bdb4fa75750608a5283acafb856692fe9"
+      }
+    },
+    {
+      "group": "igan-gc",
+      "qid": "ff676013",
+      "index": 701,
+      "baseQuestionHash": "f5ab989fb0ad775d0d7f43932b0df5ab880af2143077dfe22dc15234d78ed56c",
+      "candidateHash": "d372fa666964f3662973f3966c393c7e4b94b1233b3af10dcb930d948be2c3d6",
+      "candidate": {
+        "t": "Nefecon — Exposição Sistêmica Residual",
+        "qid": "ff676013",
+        "q": "Pessoa com nefropatia por imunoglobulina A (IgA) primária e prediabetes iniciará Nefecon. Qual orientação de segurança é mais apropriada?",
+        "opts": [
+          "Manter vigilância glicêmica e avaliar riscos de infecção, pois há exposição sistêmica residual",
+          "Dispensar vigilância glicêmica e infecciosa, pois a liberação ileal limita o efeito ao intestino",
+          "Negar o tratamento por prediabetes, considerada contraindicação absoluta à formulação",
+          "Substituir a vigilância clínica pela queda da proteinúria, que confirma ausência de toxicidade"
+        ],
+        "ans": 0,
+        "exp": "A liberação no íleo não elimina a absorção sistêmica da budesonida nem seus possíveis efeitos de glicocorticoide. A KDIGO 2025 considera justificável vigilância glicêmica mais intensa na prediabetes e orienta avaliar infecções latentes, como hepatites virais e tuberculose, antes do tratamento. No NefIgArd, quatro participantes com prediabetes no início evoluíram para diabetes durante os nove meses de Nefecon. Isso exige avaliação individual e acompanhamento, sem tornar a prediabetes uma contraindicação absoluta para todas as pessoas. Queda de proteinúria indica resposta renal, mas não exclui toxicidade metabólica ou infecciosa.",
+        "diff": "easy",
+        "cat": "glomerular",
+        "refs": [
+          "nefigard_trial",
+          "kdigo_igan_igav_2025"
+        ]
+      },
+      "gate": {
+        "file": "igan-glucocorticoids-independent-gates-A2.json",
+        "sha256": "23967287599686706edf869ae4f08801e9013baa3d1083b97ca57127aff531be",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "igan-gc-application.json",
+        "sha256": "a106985d16127388a360a72351e5832bdb4fa75750608a5283acafb856692fe9"
+      }
+    },
+    {
+      "group": "hd-access",
+      "qid": "d314fb0a",
+      "index": 462,
+      "baseQuestionHash": "11bb0968766e91365af3f9310e552098d0d7d20cfd960f66ee4974476fb2dde2",
+      "candidateHash": "46145e346c784561cf4d14ff7f49e2f9c25ece8f27724889d206d6221acf95bf",
+      "candidate": {
+        "t": "Hemodiálise — Disfunção do Cateter Tunelizado",
+        "qid": "d314fb0a",
+        "q": "Paciente em hemodiálise por cateter venoso central tunelizado apresentava fluxo sanguíneo adequado, mas agora não alcança o fluxo prescrito. Reposicionamento, lavagem com solução salina e inversão temporária dos lúmens não restauraram a função. Não há sinais de infecção. Qual é a próxima conduta mais apropriada?",
+        "refs": [
+          "lok_kdoqi_2020"
+        ],
+        "opts": [
+          "Instilar alteplase em cada lúmen do cateter para recuperar o fluxo",
+          "Iniciar anticoagulação sistêmica para tratar a provável obstrução",
+          "Trocar o cateter tunelizado por um cateter temporário em outro sítio",
+          "Reduzir permanentemente o fluxo prescrito para manter o cateter atual"
+        ],
+        "ans": 0,
+        "exp": "Após falha das manobras conservadoras, a Kidney Disease Outcomes Quality Initiative (KDOQI) recomenda trombolítico intraluminal para disfunção do cateter atribuível a trombose. Quando se usa alteplase, a diretriz sugere 2 mg em cada lúmen em preferência a 1 mg, por permanência (dwell) ou instilação fracionada (push), conforme protocolo. Não se trata de trombólise sistêmica. Se a função não for restaurada, devem-se investigar causas mecânicas, posição da ponta e bainha de fibrina, considerando intervenção ou troca. Anticoagulação sistêmica plena e mudança imediata para outro sítio não são a próxima etapa de rotina neste cenário; aceitar fluxo permanentemente inadequado também não resolve a disfunção.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "hd-access-independent-gates-A2-root.json",
+        "sha256": "8586e992452684db74a28c9e1176bcb4130584428930f5a23dce48a05bbdba07",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "hd-access-application.json",
+        "sha256": "974c0e07c45c30a258c5f818ed74192a1ad4c87f43f2c65d947ea9d6c3e05974"
+      }
+    },
+    {
+      "group": "hd-access",
+      "qid": "ee80e444",
+      "index": 463,
+      "baseQuestionHash": "654a8025f797bcd1daf3c6af86500d0032c5eff5cd5c1920d3638a79ec0cfb24",
+      "candidateHash": "bee838fc152bee9881e7fff647d3f481caa57bf4665ab07e1e639a25f1b624d0",
+      "candidate": {
+        "t": "Hemodiálise — Isquemia da Mão Relacionada ao Acesso",
+        "qid": "ee80e444",
+        "q": "Pessoa em hemodiálise com fístula arteriovenosa apresenta mão ipsilateral fria, dor durante as sessões, redução do pulso digital e pressão digital diminuída. O fluxo do acesso é elevado. Qual é a conduta mais apropriada?",
+        "refs": [
+          "lok_kdoqi_2020"
+        ],
+        "opts": [
+          "Ajustar a temperatura do dialisato e reduzir a ultrafiltração nas sessões",
+          "Indicar ligadura da fístula como tratamento inicial da isquemia",
+          "Encaminhar para avaliação vascular urgente e correção conforme o mecanismo",
+          "Iniciar anticoagulação sistêmica para tratar trombose arterial distal"
+        ],
+        "ans": 2,
+        "exp": "A associação de mão fria, dor nas sessões e redução da perfusão digital é compatível com isquemia relacionada ao acesso arteriovenoso. O fluxo alto não a exclui: pode contribuir para o desvio de sangue da circulação distal. A Kidney Disease Outcomes Quality Initiative (KDOQI) orienta encaminhamento urgente a profissional com experiência em acesso vascular; a necessidade e a urgência da intervenção dependem da gravidade. A avaliação deve procurar alto fluxo, estenose de influxo e anatomia relevante. Redução de fluxo pode ser apropriada quando esse é o mecanismo; outras técnicas de correção ou revascularização podem preservar o acesso. Ligadura é uma opção para situações graves ou sem alternativa adequada, e não um passo automático antes dessa avaliação. O quadro não demonstra embolia como causa para anticoagular empiricamente.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "hd-access-independent-gates-A2-root.json",
+        "sha256": "8586e992452684db74a28c9e1176bcb4130584428930f5a23dce48a05bbdba07",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 20
+      },
+      "application": {
+        "file": "hd-access-application.json",
+        "sha256": "974c0e07c45c30a258c5f818ed74192a1ad4c87f43f2c65d947ea9d6c3e05974"
+      }
+    },
+    {
+      "group": "hd-access",
+      "qid": "9fadb7da",
+      "index": 468,
+      "baseQuestionHash": "33cfcda53d3cd15226c2c122db173ad9924ef60b9cf58be08e0fc8811c7ed3ce",
+      "candidateHash": "d8c348173abab454e230dc8bfa9411b808a7f075be7447d2c1fafd41f432b2b8",
+      "candidate": {
+        "t": "Hemodiálise — Bacteremia por Staphylococcus aureus e Cateter",
+        "qid": "9fadb7da",
+        "q": "Paciente em hemodiálise por cateter tunelizado apresenta febre e hemoculturas positivas para Staphylococcus aureus. O ecocardiograma transesofágico inicial não mostra endocardite. Qual estratégia é mais apropriada?",
+        "refs": [
+          "idsa_crbsi_2009",
+          "lok_kdoqi_2020"
+        ],
+        "opts": [
+          "Tratar com antibiótico e lock, preservando o cateter após ecocardiograma inicial negativo",
+          "Tratar por via sistêmica, remover o cateter e definir a duração com culturas de controle e avaliação de focos",
+          "Trocar o cateter por fio-guia e administrar antibiótico sistêmico por curso prolongado",
+          "Remover o cateter e adotar um curso de 14 dias pelo ecocardiograma inicial negativo"
+        ],
+        "ans": 1,
+        "exp": "Na bacteremia por Staphylococcus aureus, um cateter venoso central pode manter a infecção e deve ser retirado precocemente, salvo contraindicação maior ou impossibilidade de outro acesso, situações que exigem estratégia especializada. Antibiótico sistêmico ativo, hemoculturas de controle e investigação de focos profundos orientam a duração. Um ecocardiograma transesofágico inicial negativo, isoladamente, não define baixo risco nem dispensa documentar a depuração das culturas. Em S. aureus sensível à meticilina (MSSA), um betalactâmico antiestafilocócico, como cefazolina ajustada à hemodiálise, é preferível a manter vancomicina sem contraindicação. Após retirada de cateter infectado, a colocação de novo cateter de longa permanência deve aguardar hemoculturas negativas. Curso curto não deve ser definido apenas pela melhora da febre ou pelo ecocardiograma.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "hd-access-independent-gates-A2-root.json",
+        "sha256": "8586e992452684db74a28c9e1176bcb4130584428930f5a23dce48a05bbdba07",
+        "verdict": "aprovada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "hd-access-application.json",
+        "sha256": "974c0e07c45c30a258c5f818ed74192a1ad4c87f43f2c65d947ea9d6c3e05974"
+      }
+    },
+    {
+      "group": "hd-access",
+      "qid": "68091841",
+      "index": 478,
+      "baseQuestionHash": "d7d63467145492fe8194e96f4d4390332761e8bf5b0fd1b66d625182115d3c2e",
+      "candidateHash": "207ebb0aedf788cb47969bd681124844ce5b649d99d88f55968ed96fffe09420",
+      "candidate": {
+        "t": "Hemodiálise — Bacteremia Persistente e Endocardite Mitral",
+        "qid": "68091841",
+        "q": "Paciente em hemodiálise mantém febre e bacteremia por Staphylococcus aureus sensível à meticilina após 72 horas de tratamento. Há fístula arteriovenosa trombosada com suspeita de infecção e o ecocardiograma transesofágico mostra vegetação mitral. Qual é a melhor estratégia?",
+        "refs": [
+          "idsa_crbsi_2009",
+          "esc_endocarditis_2023"
+        ],
+        "opts": [
+          "Usar betalactâmico por 14 dias e reavaliar o acesso apenas se a febre retornar após o tratamento",
+          "Usar betalactâmico intravenoso por curso prolongado, controlar o foco e envolver a equipe de endocardite",
+          "Usar vancomicina por curso prolongado e conservar a fístula, priorizando a conveniência de dose",
+          "Indicar cirurgia mitral imediatamente, adiando a abordagem do acesso até após o procedimento"
+        ],
+        "ans": 1,
+        "exp": "A vegetação mitral identifica endocardite esquerda; bacteremia persistente e suspeita de infecção no acesso exigem procurar e controlar o foco, além de documentar a depuração por hemoculturas. Para Staphylococcus aureus sensível à meticilina (MSSA), um betalactâmico antiestafilocócico intravenoso, ajustado à hemodiálise, é preferível à vancomicina quando não há contraindicação. Na endocardite de válvula nativa por MSSA, o tratamento costuma durar 4 a 6 semanas. Se houver prótese valvar, o regime é distinto e a duração é de pelo menos 6 semanas. A escolha e a duração exatas dependem da válvula, das complicações e da resposta; não se trata de um curso de 14 dias. A equipe de endocardite deve participar precocemente, incluindo avaliação cirúrgica. Persistência da infecção, disfunção valvar, extensão perivalvar, embolias e condições do paciente orientam a decisão, sem tornar cirurgia mitral imediata automática por uma vegetação. Adiar o controle do possível foco no acesso ou conservá-lo apenas por conveniência pode perpetuar a infecção.",
+        "diff": "hard",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "hd-access-independent-gates-A2-root.json",
+        "sha256": "8586e992452684db74a28c9e1176bcb4130584428930f5a23dce48a05bbdba07",
+        "verdict": "aprovada",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "NÃO DECISIVA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "hd-access-application.json",
+        "sha256": "974c0e07c45c30a258c5f818ed74192a1ad4c87f43f2c65d947ea9d6c3e05974"
+      }
+    },
+    {
+      "group": "hd-access",
+      "qid": "69177b72",
+      "index": 482,
+      "baseQuestionHash": "9c056321197f7073e90f26f56ef8ff84b89680356d2c7e3debb5fc49e9fac4fd",
+      "candidateHash": "6ad9bee588bac042201c7423196a9867ad308ef527c4cfe46013664ba258b116",
+      "candidate": {
+        "t": "Hemodiálise — Mecanismo do Citrato no Bloqueio do Cateter",
+        "qid": "69177b72",
+        "q": "Em um cateter de hemodiálise, por que o citrato a 4% pode ser escolhido como solução de bloqueio em vez de heparina, especialmente quando há preocupação com sangramento?",
+        "refs": [
+          "lok_kdoqi_2020"
+        ],
+        "opts": [
+          "Favorece a lise de fibrina no lúmen, atuando como trombolítico nas obstruções",
+          "Quela cálcio no lúmen e, no volume correto, limita a anticoagulação sistêmica",
+          "Bloqueia a trombina circulante e mantém efeito anticoagulante sistêmico prolongado",
+          "Potencializa a antitrombina no lúmen, reproduzindo o mecanismo da heparina"
+        ],
+        "ans": 1,
+        "exp": "O citrato quela cálcio ionizado, necessário à cascata de coagulação. Como solução de bloqueio no volume correspondente à capacidade do lúmen, atua predominantemente no cateter e pode ser útil quando se deseja limitar a exposição sistêmica à heparina. Não dissolve trombos como a alteplase, não atua como inibidor direto da trombina nem pela potencialização da antitrombina, mecanismo da heparina. A escolha entre citrato e heparina deve ser individualizada; não se pode prometer superioridade universal na prevenção de infecção ou disfunção. Devem-se seguir o volume e as instruções do cateter e da solução, incluindo aspirar o bloqueio antes de usar o acesso quando indicado pelo produto. A solução de lock não deve ser infundida sistemicamente: exposição excessiva ao citrato pode reduzir o cálcio ionizado e causar eventos adversos.",
+        "diff": "easy",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "hd-access-independent-gates-A2-root.json",
+        "sha256": "8586e992452684db74a28c9e1176bcb4130584428930f5a23dce48a05bbdba07",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 20
+      },
+      "application": {
+        "file": "hd-access-application.json",
+        "sha256": "974c0e07c45c30a258c5f818ed74192a1ad4c87f43f2c65d947ea9d6c3e05974"
+      }
+    },
+    {
+      "group": "igan-sglt2",
+      "qid": "9fd2cfdb",
+      "index": 48,
+      "baseQuestionHash": "cac134169e14123f684ee77973d454e5d939ad92812c84a70ab6fff1662af8c7",
+      "candidateHash": "c2e3316316567ee0321cf12fdcf8ab9a4a7ebc9170b9113f10a5db0680673d0d",
+      "candidate": {
+        "t": "DAPA-CKD na IgAN — Benefício e Cautela",
+        "qid": "9fd2cfdb",
+        "q": "Na análise pré-especificada do DAPA-CKD, 270 participantes com nefropatia por imunoglobulina A (IgA) tiveram 6 eventos do composto primário com dapagliflozina e 20 com placebo: razão de riscos 0,29, com intervalo de confiança de 95% de 0,12–0,73. Qual interpretação é mais adequada?",
+        "refs": [
+          "dapa_ckd_igan_2021",
+          "kdigo_igan_igav_2025"
+        ],
+        "opts": [
+          "Há sinal de nefroproteção, com precisão limitada pelo número de eventos do subgrupo",
+          "A estimativa identifica ação imune específica, pois a produção patogênica de IgA foi o desfecho",
+          "O intervalo confirma benefício de igual magnitude em qualquer estágio de função renal",
+          "Por ser análise de subgrupo, o resultado não contribui para decisões de nefroproteção"
+        ],
+        "ans": 0,
+        "exp": "A análise apoia nefroproteção, com incerteza sobre a magnitude exata do efeito pelo número limitado de eventos. O composto primário incluía queda sustentada ≥50% da taxa de filtração glomerular estimada (TFGe), falência renal ou morte renal/cardiovascular; não era produção de IgA nem hematúria. Houve 26 eventos entre 270 participantes, em mediana de 2,1 anos. A TFGe média era 43,8 mL/min/1,73 m², e 94% tinham confirmação por biópsia. Ser pré-especificada aumenta a relevância dessa análise, mas não a transforma em ensaio autônomo com poder próprio para toda população de IgA. Nem a estimativa pontual nem o intervalo provam efeito idêntico em todos os estágios ou mecanismo imune direto.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "gate": {
+        "file": "igan-sglt2-nephroprotection-independent-gates-adpkd-A2-portable.json",
+        "sha256": "095d6583061c2fc6a6a2c93f89f75634a207b163e2c63ed11717433a89b67dd5",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "igan-sglt2-application.json",
+        "sha256": "173d685d84163ed455a73587c8c47cb990a8f7d111a4dfffa346d1113584c8a1"
+      }
+    },
+    {
+      "group": "igan-sglt2",
+      "qid": "0e1a838d",
+      "index": 131,
+      "baseQuestionHash": "8a962c5d6ae5262123ebb05d33502eaad9f5657a8fe8ea82a62e765efbdd31d7",
+      "candidateHash": "99043095ed211278bdefc7a8b058b620a574bce9c39f74bd5e90804ed424636a",
+      "candidate": {
+        "t": "iSGLT2 na IgAN — Mecanismo Hemodinâmico",
+        "qid": "0e1a838d",
+        "q": "Pessoa com nefropatia por imunoglobulina A (IgA) apresenta pequena queda inicial reversível da taxa de filtração glomerular estimada (TFGe) após dapagliflozina, seguida de menor albuminúria. Qual sequência hemodinâmica é mais compatível com esse padrão?",
+        "refs": [
+          "vallon_sglt2_renoprotection_2022",
+          "kdigo_igan_2025"
+        ],
+        "opts": [
+          "Menor reabsorção proximal, maior oferta de cloreto de sódio à mácula densa e menor pressão intraglomerular",
+          "Menor oferta de cloreto de sódio à mácula densa, dilatação aferente e redução da pressão intraglomerular",
+          "Maior reabsorção proximal de sódio, ativação do feedback tubuloglomerular e redução da albuminúria",
+          "Vasoconstrição eferente predominante, aumento da pressão intraglomerular e redução da albuminúria"
+        ],
+        "ans": 0,
+        "exp": "A menor reabsorção proximal de sódio e glicose aumenta a entrega de cloreto de sódio à mácula densa. O feedback tubuloglomerular participa da redução da pressão intraglomerular, um modelo hemodinâmico compatível com a queda inicial reversível da filtração e parte do efeito antiproteinúrico. Menor entrega distal ou maior reabsorção proximal inverteriam a sequência; aumentar a pressão por constrição eferente não explica o efeito protetor proposto. A revisão fisiológica integra achados experimentais e respostas humanas, sem demonstrar que cada etapa foi medida diretamente neste paciente ou que esse seja o único mecanismo de nefroproteção. O padrão não comprova depleção imune específica da IgA nem dano estrutural irreversível.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "gate": {
+        "file": "igan-sglt2-nephroprotection-independent-gates-adpkd-A2-portable.json",
+        "sha256": "095d6583061c2fc6a6a2c93f89f75634a207b163e2c63ed11717433a89b67dd5",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 20
+      },
+      "application": {
+        "file": "igan-sglt2-application.json",
+        "sha256": "173d685d84163ed455a73587c8c47cb990a8f7d111a4dfffa346d1113584c8a1"
+      }
+    },
+    {
+      "group": "igan-sglt2",
+      "qid": "3a01ea4b",
+      "index": 208,
+      "baseQuestionHash": "e7050fe6f08e3b8ea197450deb55c7cff46b3232fa0ee48c9af857927b9d0e81",
+      "candidateHash": "b0f3bc7e3946ca23fd08787476b944a963396175e39757509629b99e75b062f1",
+      "candidate": {
+        "t": "EMPA-KIDNEY — IgAN na Análise Etiológica",
+        "qid": "3a01ea4b",
+        "q": "O EMPA-KIDNEY incluiu 817 pessoas com nefropatia por imunoglobulina A (IgA) entre 1669 com doença glomerular. Ao interpretar a análise por etiologia, qual conclusão respeita o desenho do estudo?",
+        "refs": [
+          "empa_kidney_primary_disease_2024",
+          "kdigo_igan_igav_2025"
+        ],
+        "opts": [
+          "Os resultados apoiam nefroproteção; o recorte de IgA é exploratório dentro de um ensaio amplo",
+          "Os resultados estabelecem benefício exclusivo da IgA, superior ao das outras etiologias",
+          "Os resultados equivalem aos de um ensaio próprio de IgA, com poder definido para esse diagnóstico",
+          "Os resultados demonstram remoção dos depósitos de IgA, explicando o efeito sobre a função renal"
+        ],
+        "ans": 0,
+        "exp": "Os dados apoiam nefroproteção, sem transformar o recorte de IgA em ensaio autônomo. O estudo randomizou 6609 pessoas com doença renal crônica (DRC); as categorias etiológicas amplas eram pré-especificadas, enquanto a subdivisão glomerular em IgA e outros subtipos foi feita post hoc. Na coorte total, a razão de riscos de progressão renal foi 0,71, com intervalo de confiança de 95% de 0,62–0,81; esse valor não é estimativa exclusiva dos 817 participantes com IgA. Os efeitos relativos por etiologia foram amplamente consistentes, inclusive nas análises da velocidade de perda de filtração. Isso não demonstra superioridade específica da IgA, igualdade exata dos efeitos, poder de um ensaio próprio ou remoção de depósitos glomerulares.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "gate": {
+        "file": "igan-sglt2-nephroprotection-independent-gates-adpkd-A2-portable.json",
+        "sha256": "095d6583061c2fc6a6a2c93f89f75634a207b163e2c63ed11717433a89b67dd5",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "igan-sglt2-application.json",
+        "sha256": "173d685d84163ed455a73587c8c47cb990a8f7d111a4dfffa346d1113584c8a1"
+      }
+    },
+    {
+      "group": "igan-sglt2",
+      "qid": "02814d6c",
+      "index": 604,
+      "baseQuestionHash": "b0414567ca32c1a6f7149f50744fc1ce6f6600ae0ce6cac46f6138a521ae593d",
+      "candidateHash": "39fff44620a46afea09f657dac8c7c8046d75175c39de3de6b6a3d478fd1ab94",
+      "candidate": {
+        "t": "Nefropatia por IgA — iSGLT2 após suporte otimizado",
+        "qid": "02814d6c",
+        "q": "Homem de 42 anos com nefropatia por imunoglobulina A (IgA) confirmada por biópsia mantém proteinúria de 1,8 g/dia e taxa de filtração glomerular estimada (TFGe) de 55 mL/min/1,73 m² após controle pressórico e uso de inibidor da enzima conversora de angiotensina (IECA) na dose máxima tolerada. Sem hipovolemia nem contraindicação medicamentosa, qual medida nefroprotetora adicional é mais apropriada?",
+        "refs": [
+          "kdigo_igan_2025",
+          "dapa_ckd_igan_2021",
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Associar dapagliflozina, mantendo o IECA e o acompanhamento renal",
+          "Associar um bloqueador do receptor de angiotensina, mantendo o IECA",
+          "Trocar o IECA por dapagliflozina, retirando o tratamento que estava tolerado",
+          "Adiar terapia adicional até a filtração cair abaixo de 30 mL/min/1,73 m²"
+        ],
+        "ans": 0,
+        "exp": "A melhor opção é acrescentar dapagliflozina à nefroproteção tolerada. A KDIGO 2025 sugere um inibidor do cotransportador sódio-glicose 2 (SGLT2) para pessoas com nefropatia por IgA em risco de perda progressiva de função; o cenário tem proteinúria persistente importante e TFGe dentro das populações com evidência. Isso não exige retirar um IECA tolerado nem esperar que a filtração caia abaixo de 30. Associar IECA a bloqueador do receptor de angiotensina não é a estratégia de nefroproteção recomendada. É necessário reavaliar função renal, proteinúria e tratamento dirigido à doença; o inibidor de SGLT2 atua sobre respostas à perda de néfrons e não substitui essa avaliação.",
+        "diff": "medium",
+        "cat": "nefrologia_geral"
+      },
+      "gate": {
+        "file": "igan-sglt2-nephroprotection-independent-gates-adpkd-A2-portable.json",
+        "sha256": "095d6583061c2fc6a6a2c93f89f75634a207b163e2c63ed11717433a89b67dd5",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 20
+      },
+      "application": {
+        "file": "igan-sglt2-application.json",
+        "sha256": "173d685d84163ed455a73587c8c47cb990a8f7d111a4dfffa346d1113584c8a1"
+      }
+    },
+    {
+      "group": "igan-sglt2",
+      "qid": "18784ef8",
+      "index": 653,
+      "baseQuestionHash": "e96a5135a2362257b951c86ee6b90b76e89f941d6b0a231c3c7404985acf55ef",
+      "candidateHash": "fa2557b3d718d0b2e80c633f085a7805cbb753a47bef782a784807b6997a3b0d",
+      "candidate": {
+        "t": "iSGLT2 na IgAN — Limite de Extrapolação",
+        "qid": "18784ef8",
+        "q": "A KDIGO 2025 destaca incerteza sobre o benefício dos inibidores do cotransportador sódio-glicose 2 (SGLT2) em um perfil de pessoas com nefropatia por imunoglobulina A (IgA). Qual perfil corresponde ao grupo pouco representado nos grandes ensaios de doença renal crônica?",
+        "opts": [
+          "Pessoas jovens, com filtração glomerular estimada acima de 60 mL/min/1,73 m²",
+          "Pessoas sem diabetes, com albuminúria e filtração entre 25 e 45 mL/min/1,73 m²",
+          "Pessoas mais velhas, com albuminúria e filtração abaixo de 45 mL/min/1,73 m²",
+          "Pessoas em bloqueio renina-angiotensina, com filtração entre 20 e 45 mL/min/1,73 m²"
+        ],
+        "ans": 0,
+        "exp": "A incerteza específica é maior em jovens com filtração relativamente preservada, acima de 60 mL/min/1,73 m². Os grupos com IgA nos grandes ensaios de doença renal crônica eram, em geral, mais velhos e tinham função renal mais comprometida que os participantes de ensaios específicos da doença. A ausência de diabetes não anula nefroproteção, e bloqueio renina-angiotensina indicado/tolerado fazia parte do cuidado em muitos participantes. Esse limite de validade externa não é contraindicação universal em jovens: a decisão depende do risco e de outras indicações, sem usar o SGLT2 como substituto automático de tratamento dirigido à IgA.",
+        "diff": "easy",
+        "cat": "glomerular",
+        "refs": [
+          "kdigo_igan_2025"
+        ]
+      },
+      "gate": {
+        "file": "igan-sglt2-nephroprotection-independent-gates-adpkd-A2-portable.json",
+        "sha256": "095d6583061c2fc6a6a2c93f89f75634a207b163e2c63ed11717433a89b67dd5",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 20
+      },
+      "application": {
+        "file": "igan-sglt2-application.json",
+        "sha256": "173d685d84163ed455a73587c8c47cb990a8f7d111a4dfffa346d1113584c8a1"
+      }
+    },
+    {
+      "group": "hd-volume",
+      "qid": "f7fd9e8a",
+      "index": 430,
+      "baseQuestionHash": "31bec09b5b8a0fa6cb4bbfa196e2cef7fb9b52cea0bbcf7e499dc31cda5a7db2",
+      "candidateHash": "f64d0ae0eac3d9d0f53857de8e2b4d492a0a5eb8bf8b26904d1d8f03411e7363",
+      "candidate": {
+        "t": "Hipotensão Intradialítica — Mecanismo Hemodinâmico",
+        "qid": "f7fd9e8a",
+        "q": "Paciente de 70 kg chega à hemodiálise com 4 kg acima do peso-alvo e todo o volume é programado para remoção em uma sessão curta. Na segunda metade da sessão, apresenta queda sintomática da pressão arterial. Qual mecanismo é mais provável?",
+        "refs": [
+          "kdigo_bp_volume_dialysis_2020"
+        ],
+        "opts": [
+          "Ultrafiltração mais rápida que o reenchimento vascular e a compensação cardiovascular",
+          "Redução da resistência vascular provocada por acúmulo de calor durante a sessão",
+          "Redução do débito cardíaco por uma taquiarritmia desencadeada durante a sessão",
+          "Obstrução ao enchimento ventricular por tamponamento pericárdico de origem urêmica"
+        ],
+        "ans": 0,
+        "exp": "O grande volume programado para retirada em uma sessão curta favorece ultrafiltração incompatível com o reenchimento intravascular e com a resposta cardiovascular compensatória, reduzindo o volume circulante efetivo. Esse é o mecanismo mais sustentado pelos dados do caso. Acúmulo de calor, arritmias e tamponamento podem causar hipotensão em outros contextos, mas não há dados específicos que os favoreçam aqui. Grande ganho interdialítico, peso-alvo inadequado e baixa reserva cardíaca ou autonômica estreitam a tolerância à retirada de líquido. A prevenção integra reavaliação de volume e peso-alvo, redução da taxa de ultrafiltração por maior tempo ou frequência quando necessário e redução do ganho interdialítico. Um único limite de ultrafiltração não é seguro para todas as pessoas e sessões.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "hd-volume-independent-gates-anemia-A1.json",
+        "sha256": "39dd28811067117f72bd538ec097d98a3c4e5ba6a89783c5c93a42c764c5da29",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 20
+      },
+      "application": {
+        "file": "hd-volume-convince-application.json",
+        "sha256": "8769970045ed2ee37784c2804ad6bd15ac07708935e7e6c235d044e92eb50f75"
+      }
+    },
+    {
+      "group": "hd-volume",
+      "qid": "f3ab76f3",
+      "index": 461,
+      "baseQuestionHash": "57b43d3230e64bf87d0697cfa986be69b0affb4e5d05668cb0fc6766bf161382",
+      "candidateHash": "72ce217c1d15f2fdf49e8fdee7f852cc2b02839f74d1f9d20402499ac0500a09",
+      "candidate": {
+        "t": "Hipotensão Intradialítica — Reserva Cardíaca Reduzida",
+        "qid": "f3ab76f3",
+        "q": "Paciente em hemodiálise apresenta hipotensão intradialítica recorrente mesmo após redução da taxa de ultrafiltração. O ecocardiograma mostra fração de ejeção de 30%, sem derrame pericárdico. Qual interpretação e próximo passo são mais apropriados?",
+        "refs": [
+          "kdigo_bp_volume_dialysis_2020"
+        ],
+        "opts": [
+          "A baixa reserva cardíaca pede revisão integrada de cardiopatia, volume e prescrição",
+          "A fração de ejeção baixa identifica neuropatia autonômica e indica midodrina",
+          "A hipotensão indica sobrecarga de volume e favorece intensificar a ultrafiltração",
+          "A hipotensão recorrente favorece bolus de salina em cada sessão para manter a meta de ultrafiltração"
+        ],
+        "ans": 0,
+        "exp": "A disfunção sistólica pode limitar a manutenção do débito cardíaco quando a ultrafiltração reduz o retorno venoso, favorecendo hipotensão mesmo após diminuir a taxa de retirada de líquido. Ela não demonstra, por si só, neuropatia autonômica ou incapacidade de vasoconstrição. É necessário integrar avaliação da cardiopatia, medicamentos, estado volêmico, peso-alvo e prescrição de diálise, ajustando duração ou frequência conforme a tolerância e a necessidade de remoção. Hipotensão durante a sessão pode coexistir com sobrecarga extracelular; não autoriza concluir que aumentar a ultrafiltração resolverá o quadro. Dialisato mais frio ou midodrina podem ser considerados em pessoas selecionadas, mas não substituem essa revisão. Salina pode ser necessária no resgate de um episódio agudo, mas programar bolus recorrentes para sustentar a mesma meta de ultrafiltração não substitui reavaliar a prescrição e o balanço volêmico.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "hd-volume-independent-gates-anemia-A1.json",
+        "sha256": "39dd28811067117f72bd538ec097d98a3c4e5ba6a89783c5c93a42c764c5da29",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "hd-volume-convince-application.json",
+        "sha256": "8769970045ed2ee37784c2804ad6bd15ac07708935e7e6c235d044e92eb50f75"
+      }
+    },
+    {
+      "group": "hd-volume",
+      "qid": "e3246f2c",
+      "index": 477,
+      "baseQuestionHash": "0bf25f65fc4a419ace4cb725cb1a38f9c8bd20a1ac1e11e3ec2a1eef0c83eed8",
+      "candidateHash": "75f543d9f0ebad55a41fc8b01817861d9cda361c596984b718ef134df2ba7686",
+      "candidate": {
+        "t": "Sódio do Dialisato — Individualização e Balanço",
+        "qid": "e3246f2c",
+        "q": "Paciente em hemodiálise tem sódio pré-diálise repetidamente em 134 mEq/L, usa dialisato com sódio de 140 mEq/L e apresenta sede intensa, hipertensão e grande ganho interdialítico. Após revisar ingestão e volume, qual ajuste é mais coerente?",
+        "refs": [
+          "kdigo_bp_volume_dialysis_2020"
+        ],
+        "opts": [
+          "Reduzir o gradiente de sódio gradualmente, avaliando pressão, sintomas e ganho de peso",
+          "Elevar o sódio do dialisato, buscando corrigir o sódio plasmático e reduzir a sede",
+          "Reduzir abruptamente para 130 mEq/L para maximizar a remoção difusiva de sódio",
+          "Manter o sódio do dialisato e concentrar o ajuste na restrição hídrica mais rigorosa"
+        ],
+        "ans": 0,
+        "exp": "Um gradiente positivo entre sódio do dialisato e do plasma pode favorecer ganho difusivo de sódio, sede e maior ganho de peso interdialítico. O relatório da conferência Kidney Disease: Improving Global Outcomes (KDIGO) orienta evitar carga de sódio e individualizar a prescrição dentro do manejo de pressão e volume. Neste perfil, reduzir o gradiente é uma estratégia coerente, acompanhando sintomas, pressão e balanço volêmico. A concentração ideal não é universal: reduzir excessivamente ou de forma abrupta pode aumentar câimbras e hipotensão. Elevar o sódio para corrigir um valor plasmático discretamente baixo pode agravar a carga e a sede; restringir apenas água também não aborda essa fonte de sódio. O ajuste deve considerar ainda que sódio prescrito e efetivamente entregue podem diferir.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "hd-volume-independent-gates-anemia-A1.json",
+        "sha256": "39dd28811067117f72bd538ec097d98a3c4e5ba6a89783c5c93a42c764c5da29",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 20
+      },
+      "application": {
+        "file": "hd-volume-convince-application.json",
+        "sha256": "8769970045ed2ee37784c2804ad6bd15ac07708935e7e6c235d044e92eb50f75"
+      }
+    },
+    {
+      "group": "hd-volume",
+      "qid": "4b27ea54",
+      "index": 481,
+      "baseQuestionHash": "05b90a2e08860d747ed84586010ff0938f482b5b54674617b589883a87dc9f22",
+      "candidateHash": "b24c8213db5811789c708807463cbc6f6d7e454c2fb799e4c6ad77d9195c3788",
+      "candidate": {
+        "t": "Hipotensão Intradialítica — Resfriamento do Dialisato",
+        "qid": "4b27ea54",
+        "q": "Paciente continua apresentando hipotensão intradialítica sintomática após revisão do peso-alvo, redução da taxa de ultrafiltração e prolongamento da sessão. Qual ajuste do dialisato é um adjuvante razoável?",
+        "refs": [
+          "kdigo_bp_volume_dialysis_2020"
+        ],
+        "opts": [
+          "Testar redução individualizada da temperatura, acompanhando sintomas e conforto",
+          "Elevar a temperatura para aumentar a vasodilatação e melhorar a tolerância à retirada",
+          "Usar sódio alto rotineiramente, aceitando maior sede e ganho de peso entre as sessões",
+          "Manter a temperatura e reduzir o cálcio do dialisato para melhorar a pressão"
+        ],
+        "ans": 0,
+        "exp": "Em pessoas propensas a hipotensão intradialítica, pode-se testar dialisato mais frio como adjuvante após reavaliar peso-alvo, volume, taxa de ultrafiltração e duração. O benefício e a tolerância variam; frio, tremores ou desconforto podem limitar o uso, e não existe temperatura única para todos. Evitar aquecimento durante a sessão pode favorecer estabilidade hemodinâmica; aquecer para causar vasodilatação não trata esse mecanismo. Sódio alto pode melhorar a pressão em uma sessão, mas aumenta o risco de carga de sódio, sede e ganho interdialítico, exigindo seleção cuidadosa. Cálcio do dialisato excessivamente baixo pode piorar a estabilidade, em vez de corrigir a hipotensão. Resfriamento não substitui manejo volêmico nem deve ser apresentado como garantia de benefício cardiovascular.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "hd-volume-independent-gates-anemia-A1.json",
+        "sha256": "39dd28811067117f72bd538ec097d98a3c4e5ba6a89783c5c93a42c764c5da29",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 18
+      },
+      "application": {
+        "file": "hd-volume-convince-application.json",
+        "sha256": "8769970045ed2ee37784c2804ad6bd15ac07708935e7e6c235d044e92eb50f75"
+      }
+    },
+    {
+      "group": "hd-volume",
+      "qid": "236ed8f1",
+      "index": 610,
+      "baseQuestionHash": "639ecb748408cc4bcb91123dca6a05aba071b4789d9deadc47aca5c5cb52881f",
+      "candidateHash": "32949767e7291f3d3e9d775124721ebbf287cbfa179de775940c29cb02c86560",
+      "candidate": {
+        "t": "Hipotensão Intradialítica Recorrente — Ajuste da Prescrição",
+        "qid": "236ed8f1",
+        "q": "Paciente de 70 kg em hemodiálise por quatro horas ganha 3,5 kg entre as sessões e apresenta quedas sintomáticas recorrentes da pressão durante a ultrafiltração. Após estabilizar o episódio agudo, qual ajuste preventivo deve ser priorizado?",
+        "refs": [
+          "kdigo_bp_volume_dialysis_2020"
+        ],
+        "opts": [
+          "Aumentar a taxa de ultrafiltração para alcançar o peso-alvo antes que ocorra nova queda de pressão",
+          "Reavaliar volume e peso-alvo e reduzir a taxa de ultrafiltração, ampliando o tempo se necessário",
+          "Elevar o sódio do dialisato para tolerar a retirada de todo o ganho interdialítico no mesmo tempo",
+          "Adicionar midodrina para manter o volume a remover e a duração das sessões como estão"
+        ],
+        "ans": 1,
+        "exp": "A hipotensão intradialítica resulta frequentemente de retirada de volume incompatível com o reenchimento vascular e com a reserva cardiovascular. A prioridade é revisar o peso-alvo e o estado volêmico e reduzir a taxa de ultrafiltração, aumentando o tempo ou a frequência quando necessário e controlando sódio e ganho de peso interdialítico. Não há um único limite de ultrafiltração apropriado para todos os pacientes; a prescrição deve integrar sintomas, hemodinâmica e comorbidades. Dialisato mais frio pode melhorar tolerância. Sódio alto e fármacos como midodrina exigem seleção individual e não corrigem uma prescrição volêmica inadequada.",
+        "diff": "medium",
+        "cat": "nefrologia_geral"
+      },
+      "gate": {
+        "file": "hd-volume-independent-gates-anemia-A1.json",
+        "sha256": "39dd28811067117f72bd538ec097d98a3c4e5ba6a89783c5c93a42c764c5da29",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 20
+      },
+      "application": {
+        "file": "hd-volume-convince-application.json",
+        "sha256": "8769970045ed2ee37784c2804ad6bd15ac07708935e7e6c235d044e92eb50f75"
+      }
+    },
+    {
+      "group": "hd-hdf-convince",
+      "qid": "66b811c3",
+      "index": 1,
+      "baseQuestionHash": "58bf596c382934490facb538448d5a9db5f5a705ccc3f34bd54fd81ee0c00747",
+      "candidateHash": "0e60f9c5abe407c258af05e28d95979e636348b120e01fdad2fb36108fcb6444",
+      "candidate": {
+        "t": "CONVINCE — HDF de Alta Dose e Mortalidade",
+        "qid": "66b811c3",
+        "q": "No CONVINCE, 1.360 pacientes em hemodiálise de alto fluxo considerados capazes de atingir volume convectivo de pelo menos 23 L por sessão foram randomizados para manter hemodiálise ou receber hemodiafiltração de alta dose. Qual foi o resultado primário?",
+        "refs": [
+          "convince_study"
+        ],
+        "opts": [
+          "Menor risco de morte por qualquer causa com hemodiafiltração de alta dose",
+          "Maior risco de morte por qualquer causa com hemodiafiltração de alta dose",
+          "Risco semelhante de morte por qualquer causa, com redução de eventos cardiovasculares",
+          "Risco semelhante de morte por qualquer causa, com menos internações por infecção"
+        ],
+        "ans": 0,
+        "exp": "No CONVINCE, ocorreram 118 mortes no grupo de hemodiafiltração e 148 no de hemodiálise de alto fluxo, durante mediana de 30 meses. A razão de riscos instantâneos (hazard ratio) para morte por qualquer causa foi 0,77, com intervalo de confiança de 95% de 0,65 a 0,93. O resultado primário favoreceu a estratégia de hemodiafiltração de alta dose; não se limitou a eventos cardiovasculares ou internações por infecção. Os participantes eram considerados capazes de atingir pelo menos 23 L de convecção por sessão e completar as avaliações do estudo. Isso limita a generalização: o ensaio não prova benefício universal quando não é viável entregar alto volume convectivo.",
+        "diff": "easy",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "hd-hdf-convince-independent-gates-anemia-A1.json",
+        "sha256": "bd581306e4230681f0f84c426e76b77e7efb354fa01b661075c9785dd65fae62",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 19
+      },
+      "application": {
+        "file": "hd-volume-convince-application.json",
+        "sha256": "8769970045ed2ee37784c2804ad6bd15ac07708935e7e6c235d044e92eb50f75"
+      }
+    },
+    {
+      "group": "hd-hdf-convince",
+      "qid": "cb6c4aae",
+      "index": 78,
+      "baseQuestionHash": "ba7e25f2918874c3c196652f6199779d1a371de313333f7d1a017d29e380fcbd",
+      "candidateHash": "01dcacabe9df7add4555cd8cbe41b7faa5088d51aea788f6f2963928fb4294fb",
+      "candidate": {
+        "t": "Hemodiafiltração — Difusão e Convecção",
+        "qid": "cb6c4aae",
+        "q": "Qual característica da hemodiafiltração online amplia a remoção de moléculas médias em relação à hemodiálise convencional de alto fluxo?",
+        "refs": [
+          "eudial_hdf_2025"
+        ],
+        "opts": [
+          "Convecção em grande volume associada à difusão, com reposição do ultrafiltrado excedente",
+          "Maior fluxo de dialisato para aumentar a remoção por gradiente de concentração",
+          "Maior ultrafiltração líquida do paciente para intensificar a perda de peso por sessão",
+          "Adsorção de moléculas médias à membrana, com retenção dos solutos no filtro"
+        ],
+        "ans": 0,
+        "exp": "Na hemodiafiltração online, a convecção em grande volume se associa à difusão. O fluxo de água através da membrana transporta solutos por arraste de solvente, ampliando a depuração de moléculas médias. O ultrafiltrado que excede a perda de peso desejada é reposto por solução estéril e apirogênica; alto volume convectivo não significa retirar esse volume líquido do paciente. A hemodiálise de alto fluxo também pode apresentar convecção interna, mas aumentar o fluxo de dialisato atua principalmente no transporte difusivo. Adsorção pode contribuir em algumas membranas, mas não é o mecanismo que define a hemodiafiltração. Maior depuração de uma molécula não garante, por si só, menor concentração sérica pré-diálise.",
+        "diff": "easy",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "hd-hdf-convince-independent-gates-anemia-A1.json",
+        "sha256": "bd581306e4230681f0f84c426e76b77e7efb354fa01b661075c9785dd65fae62",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 20
+      },
+      "application": {
+        "file": "hd-volume-convince-application.json",
+        "sha256": "8769970045ed2ee37784c2804ad6bd15ac07708935e7e6c235d044e92eb50f75"
+      }
+    },
+    {
+      "group": "hd-hdf-convince",
+      "qid": "0c1d09c3",
+      "index": 467,
+      "baseQuestionHash": "f104e2d0be1144985d5894b3bff937088aa56047155f0b6ae4e47ec139cbf6fe",
+      "candidateHash": "2a066bfac29ff8692dee65962330fd295d9bd21917a238bcde3286e555ca27a0",
+      "candidate": {
+        "t": "CONVINCE — O que Significa Volume Convectivo de 23 L",
+        "qid": "0c1d09c3",
+        "q": "No protocolo do CONVINCE, como deve ser interpretado o alvo de pelo menos 23 L por sessão na hemodiafiltração pós-dilucional?",
+        "refs": [
+          "convince_study"
+        ],
+        "opts": [
+          "Soma do volume de substituição e da ultrafiltração líquida para atingir o peso-alvo",
+          "Volume de substituição infundido, excluindo a retirada líquida para controle de peso",
+          "Volume convectivo total padronizado por uma superfície corporal de 1,73 m²",
+          "Volume de substituição menos a ultrafiltração líquida para atingir o peso-alvo"
+        ],
+        "ans": 0,
+        "exp": "No CONVINCE, o volume convectivo era a ultrafiltração total: soma do volume de substituição com a ultrafiltração líquida correspondente à perda de peso. Não era apenas o volume infundido, a diferença entre esses volumes ou um alvo padronizado para 1,73 m². A intervenção pós-dilucional visava pelo menos 23 L por sessão; a média atingida foi 25,3 L. Esse número descreve o regime testado em pessoas consideradas capazes de alcançá-lo. Não constitui um mínimo universal para pacientes nos quais acesso, fluxo sanguíneo ou tolerância limitam a convecção.",
+        "diff": "easy",
+        "cat": "dialise"
+      },
+      "gate": {
+        "file": "hd-hdf-convince-independent-gates-anemia-A1.json",
+        "sha256": "bd581306e4230681f0f84c426e76b77e7efb354fa01b661075c9785dd65fae62",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "score": 20
+      },
+      "application": {
+        "file": "hd-volume-convince-application.json",
+        "sha256": "8769970045ed2ee37784c2804ad6bd15ac07708935e7e6c235d044e92eb50f75"
+      }
+    }
+  ],
+  "referenceDelta": [
+    {
+      "id": "testing_study",
+      "action": "update",
+      "baseCardHash": "9d029d20900715ac9e677581d494acf058ff69f8546bbf1d027e79ab25995657",
+      "candidateCardHash": "ece9f584e9a94eaeb21271a34f1b56dea300b20b847ed8405c408354f96d558d",
+      "candidate": {
+        "label": "Lv et al. — TESTING: metilprednisolona na nefropatia por IgA (2022)",
+        "url": "https://jamanetwork.com/journals/jama/fullarticle/2792252",
+        "journal": "JAMA. 2022;327(19):1888–1898",
+        "ano": 2022,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Metilprednisolona reduziu o composto renal primário, com maior incidência de eventos adversos graves",
+        "icon": "🔬",
+        "resumo": "Ensaio multicêntrico, duplo-cego, com 503 participantes com nefropatia por imunoglobulina A (IgA) primária, proteinúria ≥1 g/d e suporte otimizado. A taxa de filtração glomerular estimada (TFGe) elegível era 20–120 mL/min/1,73 m² no protocolo inicial e 30–120 no reduzido. Metilprednisolona versus placebo reduziu o composto de queda sustentada de 40% da TFGe, falência renal ou morte por doença renal: razão de riscos (HR) 0,53, intervalo de confiança de 95% 0,39–0,72; P<0,001, em seguimento médio de 4,2 anos. Eventos adversos graves ocorreram em 10,9% versus 2,8%, sobretudo com dose plena. Após excesso de infecções, houve redução de dose e acréscimo de profilaxia; houve benefício do esquema reduzido contra seu placebo contemporâneo, sem demonstrar equivalência randomizada direta entre as duas doses.",
+        "conclusao": "O benefício renal exige ponderação da toxicidade e seleção individual. Dose menor e profilaxia mitigaram o risco, sem eliminá-lo; não autorizam corticoide automático para toda pessoa com proteinúria.",
+        "curiosidade": "A fase reduzida usou 0,4 mg/kg/dia, máximo 32 mg/dia, e profilaxia contra Pneumocystis jirovecii. As coortes de dose plena e reduzida foram recrutadas em períodos diferentes."
+      },
+      "baseConsumers": [
+        {
+          "qid": "d81defbb",
+          "questionHash": "c375779e5b4d883252586388304b0541bdb406a90bafc9741fd21b8d68ae2c88",
+          "outside42": false
+        }
+      ],
+      "plannedConsumers": [
+        {
+          "qid": "d81defbb",
+          "questionHash": "6cf4876f99e62446840103405c21be571e2818b84c7e6549564fb228f851b3ac",
+          "outside42": false
+        }
+      ],
+      "gate": {
+        "file": "igan-glucocorticoids-card-independent-gates-A1.json",
+        "sha256": "c272e7d16b4739a0acfd730e693d6736b9917e589ae9731c3b58755b73ef491c",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "questionNQScore": "NÃO APLICÁVEL — card científico"
+      }
+    },
+    {
+      "id": "dapa_ckd_igan_2021",
+      "action": "update",
+      "baseCardHash": "6617ac3efc650b3d80c4abce3b5ac07d089c87ce05a5dd58ac575daa0ac9c239",
+      "candidateCardHash": "8ed92f5b7a5dd5be41536aadc8cc11a1cc74ae8c1df8995dcaa6a61b77eb4ecb",
+      "candidate": {
+        "label": "Wheeler et al. — DAPA-CKD na nefropatia por IgA (2021)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33878338/",
+        "journal": "Kidney Int. 2021;100(1):215–224",
+        "ano": 2021,
+        "tipo": "Análise pré-especificada de ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Dapagliflozina reduziu o composto renal/CV no subgrupo de IgA, com poucos eventos",
+        "icon": "🔬",
+        "resumo": "Subgrupo pré-especificado do DAPA-CKD com 270 participantes com nefropatia por imunoglobulina A (IgA), 254 confirmados por biópsia. Taxa de filtração glomerular estimada (TFGe) média de 43,8 mL/min/1,73 m² e relação albumina/creatinina urinária mediana de 900 mg/g. Dapagliflozina 10 mg/dia versus placebo, além do suporte. O composto primário incluía queda sustentada ≥50% da TFGe, falência renal ou morte renal/cardiovascular: 6/137 versus 20/133 eventos em mediana de 2,1 anos; razão de riscos (HR) 0,29, intervalo de confiança de 95% 0,12–0,73; P=0,005. A relação albumina/creatinina caiu 26% frente a placebo.",
+        "conclusao": "O resultado apoia nefroproteção na população estudada, com precisão limitada por apenas 26 eventos. Não prova mecanismo imune específico, benefício exclusivo da IgA ou efeito idêntico em toda população.",
+        "curiosidade": "O composto renal secundário excluía morte cardiovascular; não deve ser confundido com o composto primário descrito acima."
+      },
+      "baseConsumers": [
+        {
+          "qid": "9fd2cfdb",
+          "questionHash": "cac134169e14123f684ee77973d454e5d939ad92812c84a70ab6fff1662af8c7",
+          "outside42": false
+        }
+      ],
+      "plannedConsumers": [
+        {
+          "qid": "9fd2cfdb",
+          "questionHash": "c2e3316316567ee0321cf12fdcf8ab9a4a7ebc9170b9113f10a5db0680673d0d",
+          "outside42": false
+        },
+        {
+          "qid": "02814d6c",
+          "questionHash": "39fff44620a46afea09f657dac8c7c8046d75175c39de3de6b6a3d478fd1ab94",
+          "outside42": false
+        }
+      ],
+      "gate": {
+        "file": "igan-sglt2-nephroprotection-independent-card-gates-adpkd-A2-portable.json",
+        "sha256": "2c892d4734db28dd9e95282e5e0d3e7234b1ab31e6fb4a569b8d432d4bb82747",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "questionNQScore": "NÃO APLICÁVEL — card científico"
+      }
+    },
+    {
+      "id": "kdigo_bp_volume_dialysis_2020",
+      "action": "update",
+      "baseCardHash": "a86a9b3550a75b11f4a754eb3027d93f4c34547546ef21798ed232ba649ec089",
+      "candidateCardHash": "552a5f01c881b628200e1a64b35e00c8dcc03c931b9e7ad8a3e7f8707b0f1247",
+      "candidate": {
+        "label": "KDIGO — Blood Pressure and Volume Management in Dialysis (2020)",
+        "url": "https://kdigo.org/wp-content/uploads/2017/05/KDIGO-BP-Volume-in-Dialysis-FINAL.pdf",
+        "journal": "Kidney International 2020;97(5):861-876",
+        "ano": 2020,
+        "tipo": "Relatório de Consenso",
+        "badge": "CONSENSUS",
+        "badgeColor": "#6366f1",
+        "impacto": "Manejo individualizado de pressão, volume e hipotensão intradialítica",
+        "icon": "📋",
+        "resumo": "Relatório da conferência de controvérsias Kidney Disease: Improving Global Outcomes (KDIGO) sobre pressão arterial e volume em diálise. Identifica como principais determinantes da hipotensão intradialítica o volume intravascular insuficiente para sustentar a taxa de ultrafiltração desejada e respostas cardiovasculares compensatórias inadequadas. Recomenda reavaliar peso-alvo e estado volêmico, considerar sintomas e comorbidades e reduzir a taxa de ultrafiltração por maior duração ou frequência das sessões e menor ganho de peso interdialítico. Dialisato mais frio pode melhorar a tolerância hemodinâmica.",
+        "conclusao": "A prevenção da hipotensão intradialítica começa pela prescrição volêmica individualizada; nenhum limiar único de ultrafiltração é apropriado para todos os pacientes e em todas as sessões.",
+        "curiosidade": "O relatório distingue peso-alvo de peso seco estimado: em doença aguda ou sintomas intensos pode ser necessário aceitar temporariamente um peso-alvo um pouco maior, equilibrando hipoperfusão imediata e sobrecarga crônica."
+      },
+      "baseConsumers": [
+        {
+          "qid": "f7fd9e8a",
+          "questionHash": "31bec09b5b8a0fa6cb4bbfa196e2cef7fb9b52cea0bbcf7e499dc31cda5a7db2",
+          "outside42": false
+        },
+        {
+          "qid": "f3ab76f3",
+          "questionHash": "57b43d3230e64bf87d0697cfa986be69b0affb4e5d05668cb0fc6766bf161382",
+          "outside42": false
+        },
+        {
+          "qid": "e3246f2c",
+          "questionHash": "0bf25f65fc4a419ace4cb725cb1a38f9c8bd20a1ac1e11e3ec2a1eef0c83eed8",
+          "outside42": false
+        },
+        {
+          "qid": "4b27ea54",
+          "questionHash": "05b90a2e08860d747ed84586010ff0938f482b5b54674617b589883a87dc9f22",
+          "outside42": false
+        },
+        {
+          "qid": "236ed8f1",
+          "questionHash": "639ecb748408cc4bcb91123dca6a05aba071b4789d9deadc47aca5c5cb52881f",
+          "outside42": false
+        }
+      ],
+      "plannedConsumers": [
+        {
+          "qid": "f7fd9e8a",
+          "questionHash": "f64d0ae0eac3d9d0f53857de8e2b4d492a0a5eb8bf8b26904d1d8f03411e7363",
+          "outside42": false
+        },
+        {
+          "qid": "f3ab76f3",
+          "questionHash": "72ce217c1d15f2fdf49e8fdee7f852cc2b02839f74d1f9d20402499ac0500a09",
+          "outside42": false
+        },
+        {
+          "qid": "e3246f2c",
+          "questionHash": "75f543d9f0ebad55a41fc8b01817861d9cda361c596984b718ef134df2ba7686",
+          "outside42": false
+        },
+        {
+          "qid": "4b27ea54",
+          "questionHash": "b24c8213db5811789c708807463cbc6f6d7e454c2fb799e4c6ad77d9195c3788",
+          "outside42": false
+        },
+        {
+          "qid": "236ed8f1",
+          "questionHash": "32949767e7291f3d3e9d775124721ebbf287cbfa179de775940c29cb02c86560",
+          "outside42": false
+        }
+      ],
+      "gate": {
+        "file": "hd-independent-card-gates-anemia-A1.json",
+        "sha256": "e582d3a75c5ef73e7cae4d7f8d82f0b0eb9e7da7daa46b9d043470a4a2988ebc",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "questionNQScore": "NÃO APLICÁVEL — card científico"
+      }
+    },
+    {
+      "id": "empa_kidney_primary_disease_2024",
+      "action": "update",
+      "baseCardHash": "ff386bd3592aa7f71367b64ff20133bbf11991ca70d2b11039e33e0ef4f9dd55",
+      "candidateCardHash": "b46a2000ee1d8c3a1800ec60a34344344e815fb7d66d6c8506e6b05e61f650d7",
+      "candidate": {
+        "label": "EMPA-KIDNEY — efeito por doença renal primária (2024)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7618536/",
+        "journal": "Lancet Diabetes Endocrinol. 2024;12(1):51–60",
+        "ano": 2024,
+        "tipo": "Análise secundária de ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Empagliflozina preservou função renal em várias etiologias; IgA foi recorte exploratório",
+        "icon": "🔬",
+        "resumo": "Análise secundária do EMPA-KIDNEY, com 6609 participantes com doença renal crônica (DRC), empagliflozina 10 mg/dia versus placebo e mediana de 2 anos. As categorias etiológicas amplas eram pré-especificadas; o grupo glomerular de 1669 participantes foi subdividido post hoc, incluindo 817 com nefropatia por imunoglobulina A (IgA). Na coorte total, o componente de progressão renal ocorreu em 384/3304 versus 504/3305: razão de riscos (HR) 0,71, intervalo de confiança de 95% 0,62–0,81. Não houve evidência de heterogeneidade por categoria etiológica (P=0,62). A inclinação crônica da taxa de filtração glomerular estimada (TFGe) também foi favorável, com efeitos relativos amplamente consistentes entre causas.",
+        "conclusao": "Sustenta nefroproteção em várias causas de DRC. O recorte de IgA não equivale a um ensaio independente, dimensionado para comprovar benefício exclusivo dessa doença; ausência de heterogeneidade não demonstra efeitos exatamente iguais.",
+        "curiosidade": "O HR 0,71 acima é de progressão renal. O composto principal do ensaio, que também incluía morte cardiovascular, teve HR 0,72."
+      },
+      "baseConsumers": [
+        {
+          "qid": "3a01ea4b",
+          "questionHash": "e7050fe6f08e3b8ea197450deb55c7cff46b3232fa0ee48c9af857927b9d0e81",
+          "outside42": false
+        }
+      ],
+      "plannedConsumers": [
+        {
+          "qid": "3a01ea4b",
+          "questionHash": "b0f3bc7e3946ca23fd08787476b944a963396175e39757509629b99e75b062f1",
+          "outside42": false
+        }
+      ],
+      "gate": {
+        "file": "igan-sglt2-nephroprotection-independent-card-gates-adpkd-A2-portable.json",
+        "sha256": "2c892d4734db28dd9e95282e5e0d3e7234b1ab31e6fb4a569b8d432d4bb82747",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "questionNQScore": "NÃO APLICÁVEL — card científico"
+      }
+    },
+    {
+      "id": "nefigard_trial",
+      "action": "update",
+      "baseCardHash": "1278ec121cee8c1537b0a4c935094581a03c70f1d4c6c3c3a64cd959af1ed419",
+      "candidateCardHash": "19cf1bd6b620b4615c3424862c387cbd850d46704f4b7ce7a119da357b68f361",
+      "candidate": {
+        "label": "Lafayette et al. — NefIgArd: resultados de 2 anos (2023)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/37591292/",
+        "journal": "Lancet. 2023;402(10405):859–870",
+        "ano": 2023,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Budesonida de liberação direcionada reduziu proteinúria e perda de função renal na população estudada",
+        "icon": "🔬",
+        "resumo": "Ensaio fase 3, randomizado e duplo-cego com 364 adultos com nefropatia por imunoglobulina A (IgA) primária, taxa de filtração glomerular estimada (TFGe) de 35–90 mL/min/1,73 m² e proteinúria persistente apesar de bloqueio otimizado do sistema renina-angiotensina. A inclusão exigia relação proteína/creatinina urinária ≥0,8 g/g ou proteinúria ≥1 g/24 h. Comparou Nefecon 16 mg/dia com placebo por 9 meses, seguidos de 15 meses sem o medicamento do estudo. O desfecho primário foi a média ponderada da TFGe ao longo de 2 anos: diferença de 5,05 mL/min/1,73 m², intervalo de confiança de 95% 3,24–7,38; P<0,0001, favorável ao Nefecon. Edema periférico, hipertensão e acne foram mais frequentes com Nefecon; a liberação direcionada não exclui efeitos sistêmicos de glicocorticoide.",
+        "conclusao": "Um curso de 9 meses melhorou os resultados médios frente a placebo durante o acompanhamento. Isso não equivale a cura, resposta garantida em cada pessoa ou indicação de substituir a nefroproteção de base.",
+        "curiosidade": "Benefício médio entre grupos pode persistir enquanto a proteinúria aumenta ou a função renal cai após a suspensão. O curso estudado e a reavaliação posterior não devem ser confundidos com garantia de efeito permanente."
+      },
+      "baseConsumers": [
+        {
+          "qid": "f7107bc3",
+          "questionHash": "eceb69dc1bd50fb8264a1222d869de0958fdb1c5c17b5268cf35dc3c4d72ac28",
+          "outside42": false
+        },
+        {
+          "qid": "ff676013",
+          "questionHash": "f5ab989fb0ad775d0d7f43932b0df5ab880af2143077dfe22dc15234d78ed56c",
+          "outside42": false
+        }
+      ],
+      "plannedConsumers": [
+        {
+          "qid": "f7107bc3",
+          "questionHash": "105d139d8ac719fe074fd8c4f8d29faa8439315e7b6f2d9eef758b4b23bcd977",
+          "outside42": false
+        },
+        {
+          "qid": "ff676013",
+          "questionHash": "d372fa666964f3662973f3966c393c7e4b94b1233b3af10dcb930d948be2c3d6",
+          "outside42": false
+        }
+      ],
+      "gate": {
+        "file": "igan-glucocorticoids-card-independent-gates-A1.json",
+        "sha256": "c272e7d16b4739a0acfd730e693d6736b9917e589ae9731c3b58755b73ef491c",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "questionNQScore": "NÃO APLICÁVEL — card científico"
+      }
+    },
+    {
+      "id": "kdigo_igan_2021",
+      "action": "retire",
+      "baseCardHash": "8774ec46f2a76bd5353f5c123628f03e99fae40b1eefb36105a7349034454ae9",
+      "candidateCardHash": null,
+      "candidate": null,
+      "baseConsumers": [
+        {
+          "qid": "ddb4938a",
+          "questionHash": "56883ce1dfe5bd7693a33db724129ec72a282503f87d9d47d4abc28fae82fb88",
+          "outside42": false
+        }
+      ],
+      "plannedConsumers": [],
+      "gate": {
+        "file": "igan-kdigo2021-retirement-independent-gate-A1.json",
+        "sha256": "b0e06a73fa0d9e9da3d160551dd1ab73274be08f8e86493314fd59c1812c2db0",
+        "verdict": "aposentar",
+        "publication": "BLOQUEADA",
+        "retirementAuthorization": "APROVADA_CONDICIONADA",
+        "conditions": [
+          "Aplicarddb4938aA2exataapósgateLIBERADA.",
+          "Recalcularinventárioeconferirzero consumidoresantesderetirarapenasesteID.",
+          "Arquivarcard17.10anterioreconsumidorddbnosquatroperfishistóricos;resoluçãohistóricanãopodedepender doacervocorrente.",
+          "Manterversãocorrigida2021apenasnodocumentoautoral,semaprovaçãoclínicacorrenteimplícita.",
+          "Nenhumqid/estadoFSRS/avaliaçãoéapagado."
+        ]
+      }
+    },
+    {
+      "id": "moeller_plosone_2014",
+      "action": "update",
+      "baseCardHash": "7fac8579d18e73957dd803436fd2705c79a73c2a430cfd75044b6feec79e9d58",
+      "candidateCardHash": "5355da0a46d1be6bac540bdfd6207184ef862ab775baa1f2929e5bc8304dc34f",
+      "candidate": {
+        "label": "Moeller et al. — Sorologia celíaca e glúten na nefropatia por IgA (2014)",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0094677",
+        "journal": "PLOS ONE. 2014;9(4):e94677",
+        "ano": 2014,
+        "tipo": "Estudo caso-controle",
+        "badge": "CASE_CONTROL",
+        "badgeColor": "#0ea5e9",
+        "impacto": "Sorologia em caso-controle não justifica prescrição universal de dieta sem glúten",
+        "icon": "🔬",
+        "resumo": "Estudo caso-controle com 99 pessoas com nefropatia por imunoglobulina A (IgA), 96 controles sem doença e 30 participantes com doença celíaca confirmada por biópsia como controles adicionais. Comparou marcadores sorológicos de reatividade ao glúten e doença celíaca. Não encontrou aumento significativo dos marcadores celíacos específicos ou da reatividade à gliadina no grupo com nefropatia por IgA em relação aos controles sem doença. Foi realizado em centro único, com limitações de população e dieta não controlada; não avaliou intervenção dietética nem desfechos renais longitudinais.",
+        "conclusao": "Os resultados não sustentam transformar uma hipótese imunológica em recomendação universal de dieta sem glúten. Também não excluem que doença celíaca e nefropatia por IgA coexistam em uma pessoa.",
+        "curiosidade": "O desenho compara casos e controles por seus marcadores; não é uma coorte longitudinal nem um ensaio de tratamento dietético."
+      },
+      "baseConsumers": [
+        {
+          "qid": "5530b59c",
+          "questionHash": "e80317068d6f3eb684e4c03f7d3aafe2b293915e3c23c5aa077399c7947de18c",
+          "outside42": true
+        }
+      ],
+      "plannedConsumers": [
+        {
+          "qid": "5530b59c",
+          "questionHash": "e80317068d6f3eb684e4c03f7d3aafe2b293915e3c23c5aa077399c7947de18c",
+          "outside42": true
+        }
+      ],
+      "gate": {
+        "file": "igan-moeller-card-independent-gate-A1.json",
+        "sha256": "2b95823e0325c1f0326455b27f6250eb1bbb9e1d2fecf05aec95cf0385cc3800",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "questionNQScore": "NÃO APLICÁVEL — card científico"
+      }
+    },
+    {
+      "id": "ispd_aki_pd_2020",
+      "action": "update",
+      "baseCardHash": "b5e994ccf74e5bf2420d6536ab6707b952d800128fe5e95fc1e7acc1423b5483",
+      "candidateCardHash": "22467ba8b9f32e9ac3d85971dc02eb963eac9846b322ce5f3d7adbfec44932d1",
+      "candidate": {
+        "label": "ISPD — Diálise Peritoneal na LRA (Atualização 2020)",
+        "url": "https://doi.org/10.1177/0896860820970834",
+        "journal": "Perit Dial Int. 2021;41(1):15-31",
+        "ano": 2021,
+        "tipo": "Diretriz internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Seleção, acesso, prescrição e monitorização da diálise peritoneal em adultos com LRA",
+        "icon": "📋",
+        "resumo": "A International Society for Peritoneal Dialysis (ISPD) considera a diálise peritoneal (DP) uma opção para lesão renal aguda (LRA) em diferentes cenários. A diretriz discute evidência de baixa certeza de um ensaio que comparou DP automatizada tidal, com drenagem parcial dos ciclos e 25 L/dia, à hemodiafiltração venovenosa contínua com efluente de 23 mL/kg/h. As populações, prescrições e limitações dos estudos exigem cautela na extrapolação. Acesso, dose e monitorização devem acompanhar as necessidades metabólicas e o balanço de volume.",
+        "conclusao": "A diálise peritoneal pode tratar a lesão renal aguda quando seleção clínica, acesso, prescrição e monitorização são apropriados. A comparação com terapia renal substitutiva contínua exige considerar contraindicações abdominais, urgência de depuração e recursos locais; a escolha é individualizada.",
+        "curiosidade": "Kt/V é um índice de depuração de ureia ajustado à água corporal. A seção 4.1 descreve 3,5 por semana em pacientes críticos e admite que doses menores, como 2,2, podem ser suficientes conforme o contexto. Os estudos de intensidade têm protocolos diferentes e limitações de poder estatístico; a dose deve acompanhar a resposta metabólica e a remoção de volume."
+      },
+      "baseConsumers": [
+        {
+          "qid": "f4de7965",
+          "questionHash": "0656ad2ef3b50c0add62563fe5f436d587da87969751b1f33aa6ec2f868fff82",
+          "outside42": false
+        }
+      ],
+      "plannedConsumers": [
+        {
+          "qid": "f4de7965",
+          "questionHash": "5f7e1a0d35126d45d4df26781ca86895c0da1ffe90c507974b20595fa304281f",
+          "outside42": false
+        }
+      ],
+      "gate": {
+        "file": "aki-pd-card-independent-gate-C2.json",
+        "sha256": "3571138d05e2dae358140d4027be0c458988109b61cacc55333a0e7d49e3fa51",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "questionNQScore": "NÃO APLICÁVEL — card científico"
+      }
+    },
+    {
+      "id": "rodrigues_haas_reich_igan_2017",
+      "action": "add",
+      "baseCardHash": null,
+      "candidateCardHash": "00163f00b6450e568835e35b346eb60191c6dca4a14157026ec61835f0256376",
+      "candidate": {
+        "label": "Rodrigues, Haas e Reich — Fundamentos da nefropatia por IgA (2017)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5383386/",
+        "journal": "Clin J Am Soc Nephrol. 2017;12(4):677–686",
+        "ano": 2017,
+        "tipo": "Revisão clínica e fisiopatológica",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Relaciona apresentação clínica, imunocomplexos e lesões histológicas na nefropatia por IgA",
+        "icon": "🔬",
+        "resumo": "Revisão da nefropatia por imunoglobulina A (IgA). Descreve o modelo em que a IgA da subclasse 1 (IgA1) deficiente em galactose e autoanticorpos formam imunocomplexos associados à lesão mesangial; a alteração da IgA1 isolada não explica toda a doença. A hematúria visível junto a infecção de mucosa é uma apresentação sugestiva. A classificação de Oxford acrescenta informação prognóstica: atrofia tubular e fibrose intersticial em 26–50% do córtex correspondem a T1, e acima de 50%, a T2. A histologia deve ser integrada à função renal, proteinúria e evolução clínica.",
+        "conclusao": "Usada neste acervo para fundamentos de apresentação, patologia e mecanismo. Diagnóstico, estratificação e tratamento atuais devem seguir a diretriz KDIGO 2025 e evidência posterior pertinente.",
+        "curiosidade": "A presença de C3 do complemento nos depósitos é compatível com a participação do complemento na doença e não equivale, sozinha, a glomerulopatia C3."
+      },
+      "baseConsumers": [],
+      "plannedConsumers": [
+        {
+          "qid": "ce79d609",
+          "questionHash": "9455e6e16e8bde218f6b1cb2c0f49d20880c3d423e2d80c102b5818eeee962a0",
+          "outside42": false
+        },
+        {
+          "qid": "5e5b8558",
+          "questionHash": "07789df21e4f1c63d614daf7cee1767ccb4755ae4f3d6d2d907b31b543366c50",
+          "outside42": false
+        },
+        {
+          "qid": "26804856",
+          "questionHash": "add6b7d47d807adb7fc11b65f4027838a169a5e5e6216b9788caf83cb397797d",
+          "outside42": false
+        },
+        {
+          "qid": "12328a3e",
+          "questionHash": "b400e064283ba1079bbe1c0759076165c90158b83aba656dfa09a43df4941031",
+          "outside42": false
+        },
+        {
+          "qid": "ea37c153",
+          "questionHash": "37cc8c5109d8d3b325dc64c2dab07debd7d5f3cc515b69aa7fbc9513ba562c02",
+          "outside42": false
+        }
+      ],
+      "gate": {
+        "file": "igan-card-independent-gates-A3.json",
+        "sha256": "08c0aecd4657ec4282ef613cea78850c0237a4510091498aeb2969b6edd956fa",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "questionNQScore": "NÃO APLICÁVEL — card científico"
+      }
+    },
+    {
+      "id": "barbour_igan_prediction_2019",
+      "action": "add",
+      "baseCardHash": null,
+      "candidateCardHash": "ccd87a4d44940d2715bc8158d92d560d0fee9e97b47691f1ce2380d048fb30a7",
+      "candidate": {
+        "label": "Barbour et al. — International IgAN Prediction Tool (2019)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6583088/",
+        "journal": "JAMA Intern Med. 2019;179(7):942–952",
+        "ano": 2019,
+        "tipo": "Derivação e validação em coortes longitudinais",
+        "badge": "COHORT",
+        "badgeColor": "#f59e0b",
+        "impacto": "Combinação de dados clínicos e histológicos estima progressão; não prevê resposta a uma terapia",
+        "icon": "🔬",
+        "resumo": "Estudo com 3927 adultos com nefropatia por imunoglobulina A (IgA) primária (idiopática) confirmada por biópsia: 2781 na derivação e 1146 na validação externa. Estimou o risco de queda permanente de 50% da taxa de filtração glomerular estimada (TFGe) ou falência renal. Os modelos completos combinaram função renal, pressão, proteinúria, idade, medicações e os componentes histológicos de hipercelularidade mesangial, hipercelularidade endocapilar, esclerose segmentar e atrofia/fibrose (MEST), com versões com ou sem raça/etnia. O componente de crescentes não integrou esses modelos originais.",
+        "conclusao": "A ferramenta auxilia a conversa sobre prognóstico após diagnóstico histológico. Não é exame diagnóstico nem teste de resposta à imunossupressão e não substitui reavaliação ao longo do tempo.",
+        "curiosidade": "O modelo original na biópsia usou MEST. O laudo patológico atual inclui também crescentes (MEST-C); registrar uma lesão no laudo não significa que ela integre automaticamente uma equação de risco."
+      },
+      "baseConsumers": [],
+      "plannedConsumers": [
+        {
+          "qid": "795d4589",
+          "questionHash": "d02917c1509c4564603250eb8d005e86ed8e2dc204597812eeae604afb034e57",
+          "outside42": false
+        }
+      ],
+      "gate": {
+        "file": "igan-card-independent-gates-A3.json",
+        "sha256": "08c0aecd4657ec4282ef613cea78850c0237a4510091498aeb2969b6edd956fa",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "questionNQScore": "NÃO APLICÁVEL — card científico"
+      }
+    },
+    {
+      "id": "vallon_sglt2_renoprotection_2022",
+      "action": "add",
+      "baseCardHash": null,
+      "candidateCardHash": "3a4751434a22fbdab423848144199acaef9ac3eb8fa2aae89540a5fa03b340d1",
+      "candidate": {
+        "label": "Vallon — mecanismos renoprotetores dos inibidores de SGLT2 (2022)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9558099/",
+        "journal": "Heart Fail Clin. 2022;18(4):539–549",
+        "ano": 2022,
+        "tipo": "Revisão fisiológica narrativa",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Relaciona transporte proximal, feedback tubuloglomerular e pressão intraglomerular",
+        "icon": "🔬",
+        "resumo": "Revisão narrativa dos mecanismos de nefroproteção dos inibidores do cotransportador sódio-glicose 2 (SGLT2), integrando estudos experimentais e humanos. Menor reabsorção proximal aumenta a entrega de cloreto de sódio à mácula densa; o feedback tubuloglomerular contribui para reduzir a pressão intraglomerular. O padrão clínico pode incluir queda inicial reversível da taxa de filtração glomerular (TFG), seguida de preservação de função em longo prazo. A síntese fisiológica foi necessária porque ensaios de desfechos não medem diretamente cada etapa desse mecanismo.",
+        "conclusao": "Explica uma resposta hemodinâmica compatível com a nefroproteção, sem supor dano estrutural a partir de toda queda inicial de filtração. Não prova que o mesmo mecanismo explique isoladamente o benefício em cada pessoa com nefropatia por IgA.",
+        "curiosidade": "Experimentos por micropunção sustentam a participação do feedback e de respostas pré e pós-glomerulares. Muitos mecanismos continuam em investigação; dados animais não são ensaios clínicos de eficácia na IgA."
+      },
+      "baseConsumers": [],
+      "plannedConsumers": [
+        {
+          "qid": "0e1a838d",
+          "questionHash": "99043095ed211278bdefc7a8b058b620a574bce9c39f74bd5e90804ed424636a",
+          "outside42": false
+        }
+      ],
+      "gate": {
+        "file": "igan-sglt2-nephroprotection-independent-card-gates-adpkd-A2-portable.json",
+        "sha256": "2c892d4734db28dd9e95282e5e0d3e7234b1ab31e6fb4a569b8d432d4bb82747",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "questionNQScore": "NÃO APLICÁVEL — card científico"
+      }
+    },
+    {
+      "id": "eudial_hdf_2025",
+      "action": "add",
+      "baseCardHash": null,
+      "candidateCardHash": "919ba780c28da319606943b5225468fa774d3ac1779bf7d6c2c8d009ea4ec67f",
+      "candidate": {
+        "label": "Battaglia Y et al. — Consenso EuDial sobre hemodiafiltração (2025)",
+        "url": "https://academic.oup.com/ndt/article/40/8/1590/8003757",
+        "journal": "Nephrol Dial Transplant 2025;40(8):1590–1614",
+        "ano": 2025,
+        "tipo": "Consenso de Especialistas",
+        "badge": "CONSENSUS",
+        "badgeColor": "#6366f1",
+        "impacto": "A hemodiafiltração combina difusão e convecção para ampliar a depuração de moléculas médias",
+        "icon": "📋",
+        "resumo": "Consenso do grupo EuDial da Associação Renal Europeia, elaborado por revisão de ensaios randomizados e método mini-Delphi, sobre hemodiafiltração (HDF) versus hemodiálise de alto fluxo. A HDF combina difusão e convecção: o fluxo de água através da membrana carrega solutos, e o volume removido além da perda de peso desejada é reposto por solução estéril e apirogênica. A técnica aumenta a depuração de moléculas médias; isso não garante menor concentração sérica pré-diálise.",
+        "conclusao": "Há sinal de benefício de sobrevida com alta convecção em populações selecionadas, com limitações de generalização. O consenso não define um padrão universal de cuidado.",
+        "curiosidade": "Volume convectivo total e volume de substituição não são sinônimos: a retirada líquida para controle de peso também integra a convecção."
+      },
+      "baseConsumers": [],
+      "plannedConsumers": [
+        {
+          "qid": "cb6c4aae",
+          "questionHash": "01dcacabe9df7add4555cd8cbe41b7faa5088d51aea788f6f2963928fb4294fb",
+          "outside42": false
+        }
+      ],
+      "gate": {
+        "file": "hd-independent-card-gates-anemia-A1.json",
+        "sha256": "e582d3a75c5ef73e7cae4d7f8d82f0b0eb9e7da7daa46b9d043470a4a2988ebc",
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "questionNQScore": "NÃO APLICÁVEL — card científico"
+      }
+    }
+  ],
+  "staleAuthorshipOnlyExcludedFromIntegration": [
+    "dcor_trial",
+    "finerenone_2025"
+  ],
+  "historyRequirements": {
+    "qids": [
+      "1b4ebca6",
+      "5d6677ab",
+      "b1b484d1",
+      "4c7566cf",
+      "ce79d609",
+      "795d4589",
+      "5e5b8558",
+      "26804856",
+      "12328a3e",
+      "ea37c153",
+      "3e0788ac",
+      "fe70507d",
+      "f4de7965",
+      "23635484",
+      "5eb00a6e",
+      "faac594e",
+      "4decf9f9",
+      "9961a406",
+      "ddb4938a",
+      "b7a93d7a",
+      "c1089f2e",
+      "d81defbb",
+      "f7107bc3",
+      "ff676013",
+      "d314fb0a",
+      "ee80e444",
+      "9fadb7da",
+      "68091841",
+      "69177b72",
+      "9fd2cfdb",
+      "0e1a838d",
+      "3a01ea4b",
+      "02814d6c",
+      "18784ef8",
+      "f7fd9e8a",
+      "f3ab76f3",
+      "e3246f2c",
+      "4b27ea54",
+      "236ed8f1",
+      "66b811c3",
+      "cb6c4aae",
+      "0c1d09c3",
+      "5530b59c"
+    ],
+    "cardOnlyQids": [
+      "5530b59c"
+    ],
+    "profilesPerQuestion": 4,
+    "rule": "Arquivar as versões reais publicadas anteriores das questões, apresentações e cards em todos os quatro perfis, com bindings. Não copiar histórico/catálogo da autoria 17.08. Confirmar equivalência dos objetos antes de aplicar overlay. Aposentadoria KDIGO 2021 é condicionada a essa preservação.",
+    "existingHistoryMustBePreserved": true
+  },
+  "heldUnchanged": [
+    {
+      "qid": "061c9bcb",
+      "hash": "a7be2ae7bfe1d765bf38df821ebdcfa4deea421ee01840a4a9fc57b04af25d19",
+      "newHold": false,
+      "countAsCorrected": false
+    },
+    {
+      "qid": "1e6a4479",
+      "hash": "76ed2050d7a3e91b338cf85d03fc0ea88286b3f7bf996c479a2f1eb229280c61",
+      "newHold": false,
+      "countAsCorrected": false
+    },
+    {
+      "qid": "13e53210",
+      "hash": "bcb54b1a034d50991619b454175adc880063e36116db68afb62610b0f72f666a",
+      "newHold": false,
+      "countAsCorrected": false
+    },
+    {
+      "qid": "5906012f",
+      "hash": "5a9756e7daf93c7ef1b018208187fd64e7b63ddf195fd06edb7941401bfe6ac1",
+      "newHold": false,
+      "countAsCorrected": false
+    },
+    {
+      "qid": "21e9cefb",
+      "hash": "08de68e55fe85b0fee8c3b3d14c66557502d9e4bac394d1f26d988510a7412c0",
+      "newHold": false,
+      "countAsCorrected": false
+    },
+    {
+      "qid": "22189222",
+      "hash": "948e5431d9e49064fb4efe623512d2fa3dcdc44b955b9a65929ae29ea8ae89b4",
+      "newHold": false,
+      "countAsCorrected": false
+    },
+    {
+      "qid": "5530b59c",
+      "hash": "e80317068d6f3eb684e4c03f7d3aafe2b293915e3c23c5aa077399c7947de18c",
+      "newHold": true,
+      "countAsCorrected": false
+    }
+  ],
+  "retainedTriageOnly": [
+    "e8040054",
+    "e1f9ccd1"
+  ],
+  "suspendedOriginalOnly": [
+    {
+      "file": "hd-dose-original-4.json",
+      "count": 4
+    },
+    {
+      "file": "igan-sparsentan-original.json",
+      "count": 2
+    },
+    {
+      "file": "igan-targeted-agents-original.json",
+      "count": 5
+    }
+  ],
+  "metrics": {
+    "method": "Texto literal, espaços normalizados, caracteres Unicode; desigualdades preservadas; empates divididos uniformemente. Comprimento não é critério de correção.",
+    "continuation42": {
+      "before": {
+        "n": 42,
+        "uniqueLongest": 40,
+        "tiedLongest": 0,
+        "uniqueShortest": 0,
+        "longestRuleAccuracy": 0.9523809523809523,
+        "ratiosOver125": 37,
+        "ratiosOver150": 23,
+        "ratiosOver200": 7
+      },
+      "after": {
+        "n": 42,
+        "uniqueLongest": 11,
+        "tiedLongest": 2,
+        "uniqueShortest": 8,
+        "longestRuleAccuracy": 0.27976190476190477,
+        "ratiosOver125": 0,
+        "ratiosOver150": 0,
+        "ratiosOver200": 0
+      }
+    },
+    "globalBaseline": {
+      "n": 741,
+      "chars": {
+        "uniqueLongest": 598,
+        "tiedLongest": 14,
+        "shortest": 35,
+        "longestRuleAccuracy": 0.8146648672964464,
+        "ratiosOver125": 422,
+        "ratiosOver150": 250,
+        "ratiosOver200": 56
+      },
+      "words": {
+        "uniqueLongest": 542,
+        "tiedLongest": 61,
+        "shortest": 26,
+        "longestRuleAccuracy": 0.7631578947368419,
+        "ratiosOver125": 409,
+        "ratiosOver150": 249,
+        "ratiosOver200": 67
+      }
+    },
+    "globalFinal": {
+      "n": 741,
+      "chars": {
+        "uniqueLongest": 490,
+        "tiedLongest": 24,
+        "shortest": 71,
+        "longestRuleAccuracy": 0.6744264507422402,
+        "ratiosOver125": 306,
+        "ratiosOver150": 171,
+        "ratiosOver200": 31
+      },
+      "words": {
+        "uniqueLongest": 431,
+        "tiedLongest": 85,
+        "shortest": 57,
+        "longestRuleAccuracy": 0.6242690058479533,
+        "ratiosOver125": 299,
+        "ratiosOver150": 173,
+        "ratiosOver200": 48
+      }
+    }
+  },
+  "globalBiasResolved": false,
+  "noProductionWrite": true,
+  "noVersionBump": true,
+  "noCommit": true
+}

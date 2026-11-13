@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "kind": "REFERENCE_RETIREMENT_OPERATIONAL_APPROVAL",
+  "id": "kdigo_igan_2021",
+  "baseCommit": "e63cbb85fc20fd926f29e28c8132eb7bbaafba14",
+  "release": "17.12",
+  "conditionsProofHash": "e491866eb05f10f5d4cb1bc9c502a15bb18a2470d0336dc9885dfe21915e466b",
+  "conditionsProof": {
+    "baseCommit": "e63cbb85fc20fd926f29e28c8132eb7bbaafba14",
+    "baseRelease": "17.11",
+    "targetRelease": "17.12",
+    "sourceConditionalGate": {
+      "file": "docs/editorial/reviews/2026-11-13-answer-length-bias-continuation/igan-kdigo2021-retirement-independent-gate-A1.json",
+      "sha256": "b0e06a73fa0d9e9da3d160551dd1ab73274be08f8e86493314fd59c1812c2db0"
+    },
+    "retiredCardId": "kdigo_igan_2021",
+    "retiredCardHash": "8774ec46f2a76bd5353f5c123628f03e99fae40b1eefb36105a7349034454ae9",
+    "migratedQuestion": {
+      "qid": "ddb4938a",
+      "candidateHash": "b80b754892c12767aa3b8077bf0ac92cf9cc13279996cb8f8e0e5967353211fa",
+      "publication": "LIBERADA"
+    },
+    "conditions": {
+      "ddbExactApproved": true,
+      "zeroCurrentConsumers": true,
+      "historicalCardAndConsumerBoundInAllFourProfiles": true,
+      "corrected2021CardNotPublished": true,
+      "noQuestionOrFSRSOrEvaluationDeleted": true
+    },
+    "outputDataSHA256": {
+      "data/topics.js": "0a6da5cd78f5c48f1e3828755ed63a726e7a5e44fba3107a8f4b8b90777c140d",
+      "data/refs.js": "5fcec88275c0a61019c8a3f608cd4b80ae6ca347f0b2aa31d749c044c1a681e5",
+      "data/question-revision-history.js": "323825a6cd8f3641d842785ce80dd5b9efce38f08aa76f291d1cbfe5d67e54f1",
+      "data/question-revision-manifest.js": "2d829c837955241e37a3bdcda071ea1c1e2b0b4365a71100c32e0d6872882330"
+    },
+    "archivedQids": [
+      "66b811c3",
+      "d81defbb",
+      "ce79d609",
+      "9fd2cfdb",
+      "cb6c4aae",
+      "9961a406",
+      "0e1a838d",
+      "3e0788ac",
+      "f7107bc3",
+      "795d4589",
+      "ddb4938a",
+      "5530b59c",
+      "3a01ea4b",
+      "b7a93d7a",
+      "5e5b8558",
+      "1b4ebca6",
+      "fe70507d",
+      "5d6677ab",
+      "26804856",
+      "f7fd9e8a",
+      "b1b484d1",
+      "f3ab76f3",
+      "d314fb0a",
+      "ee80e444",
+      "0c1d09c3",
+      "9fadb7da",
+      "f4de7965",
+      "e3246f2c",
+      "68091841",
+      "4b27ea54",
+      "69177b72",
+      "23635484",
+      "4c7566cf",
+      "5eb00a6e",
+      "12328a3e",
+      "ea37c153",
+      "02814d6c",
+      "236ed8f1",
+      "faac594e",
+      "c1089f2e",
+      "18784ef8",
+      "4decf9f9",
+      "ff676013"
+    ],
+    "historicalBindingsVerified": 172
+  },
+  "retirementAuthorization": "APROVADA",
+  "publication": "BLOQUEADA",
+  "verdict": "aposentar",
+  "reviewer": "/root/medical_answer_bias/adpkd_independent_review",
+  "clinicalGateUnchanged": true,
+  "scope": "Independent operational approval of the exact simulated outputs only. No application or publication is claimed. Source APROVADA_CONDICIONADA gate is unchanged.",
+  "rootPrerequisites": [
+    "Complete and verify publicUI/Pages17.11 before applying/publishing17.12."
+  ],
+  "technicalReview": {
+    "file": "bounded42-operational-independent-review-adpkd-e63cbb85fc20-17.12-R1.json",
+    "sha256": "7a95102717010f77e42215a8a29c8ae5eb5e856261af96bdb9a56bf3b5efb058"
+  }
+}

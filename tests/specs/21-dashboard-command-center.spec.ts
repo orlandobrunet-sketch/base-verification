@@ -38,6 +38,11 @@ const DETAILED_STATS = {
   syncedMastered: [],
 };
 
+// ID-only saves below intentionally exercise current, unambiguous legacy migration.
+// These pinned records have unchanged authors, four source profiles and cards
+// across 17.11/17.12, with no published history; do not pick by bank position.
+const LEGACY_CURRENT_STUDY_QIDS = ['1e5e88e9', 'e56795a6', '70129a64'];
+
 type CommandCenterOptions = {
   sparse?: boolean;
   compStats?: Record<string, { c: number; t: number }>;
@@ -448,8 +453,12 @@ test.describe('Central de Comando do aprendizado', () => {
     await gotoGame(page);
     await page.waitForFunction(() => typeof (window as any).resumeSavedStudyMode === 'function');
     await page.evaluate(() => (window as any)._loadTopics());
-    const saved = await page.evaluate(() => {
-      const questions = ((window as any).questionBank || []).slice(0, 3);
+    const saved = await page.evaluate(qids => {
+      const questions = qids.map(id => {
+        const question = ((window as any).questionBank || []).find((entry: any) => String(entry.id || entry.qid) === id);
+        if (!question) throw new Error('Missing pinned legacy study fixture: ' + id);
+        return question;
+      });
       const ids = questions.map((question: any) => String(question.id || question.qid));
       const state = {
         questions: [ids[2], ids[0], ids[1]], index: 1.5, correct: 1, wrong: 1,
@@ -457,7 +466,7 @@ test.describe('Central de Comando do aprendizado', () => {
       };
       localStorage.setItem('nefroquest-study-state', JSON.stringify(state));
       return { state, expectedQuestion: questions[0].q };
-    });
+    }, LEGACY_CURRENT_STUDY_QIDS);
     const confirmCalls = await page.evaluate(() => {
       let calls = 0;
       window.confirm = () => { calls += 1; return false; };
@@ -478,15 +487,19 @@ test.describe('Central de Comando do aprendizado', () => {
     await gotoGame(page);
     await page.waitForFunction(() => typeof (window as any).resumeSavedStudyMode === 'function');
     await page.evaluate(() => (window as any)._loadTopics());
-    const fixtures = await page.evaluate(() => {
-      const questions = ((window as any).questionBank || []).slice(0, 3);
+    const fixtures = await page.evaluate(qids => {
+      const questions = qids.map(id => {
+        const question = ((window as any).questionBank || []).find((entry: any) => String(entry.id || entry.qid) === id);
+        if (!question) throw new Error('Missing pinned legacy study fixture: ' + id);
+        return question;
+      });
       const ids = questions.map((question: any) => String(question.id || question.qid));
       const base = { questions: [ids[2], ids[0], ids[1]], correct: 0, wrong: 0, axisStats: {}, savedAt: Date.now() };
       return [
         { state: base, expectedQuestion: questions[2].q },
         { state: { ...base, index: -4 }, expectedQuestion: questions[2].q },
       ];
-    });
+    }, LEGACY_CURRENT_STUDY_QIDS);
 
     for (const fixture of fixtures) {
       await page.evaluate(state => {
@@ -1227,8 +1240,12 @@ test.describe('vínculo da entrada pública de retomada do estudo', () => {
     await gotoGame(page);
     await page.waitForFunction(() => typeof (window as any).resumeSavedStudyMode === 'function');
     await page.evaluate(() => (window as any)._loadTopics());
-    await page.evaluate(() => {
-      const ids = (window as any).questionBank.slice(0, 3).map((q: any) => String(q.id));
+    await page.evaluate(qids => {
+      const ids = qids.map(id => {
+        if (!(window as any).questionBank.some((question: any) => String(question.id || question.qid) === id))
+          throw new Error('Missing pinned legacy study fixture: ' + id);
+        return id;
+      });
       localStorage.setItem('nefroquest-study-state', JSON.stringify({ questions: ids,
         index: 0, correct: 0, wrong: 0, axisStats: {}, savedAt: Date.now() }));
       const today = new Date().setHours(0, 0, 0, 0), day = 86400000;
@@ -1255,7 +1272,7 @@ test.describe('vínculo da entrada pública de retomada do estudo', () => {
         if (this === localStorage && key in existing) w.__studyBindingProgressWrites.push({ action: 'remove', key });
         return remove.call(this, key);
       };
-    });
+    }, LEGACY_CURRENT_STUDY_QIDS);
   });
 
   test('captura o vínculo atual somente na entrada fresh e preserva FSRS/progresso', async ({ page }) => {

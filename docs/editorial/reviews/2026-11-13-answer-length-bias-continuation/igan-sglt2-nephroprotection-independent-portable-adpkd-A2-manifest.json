@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "exportVersion": "A2-portable",
+  "clinicalVersion": "A1",
+  "questionGate": {
+    "file": "igan-sglt2-nephroprotection-independent-gates-adpkd-A2-portable.json",
+    "sha256": "095d6583061c2fc6a6a2c93f89f75634a207b163e2c63ed11717433a89b67dd5"
+  },
+  "cardGate": {
+    "file": "igan-sglt2-nephroprotection-independent-card-gates-adpkd-A2-portable.json",
+    "sha256": "2c892d4734db28dd9e95282e5e0d3e7234b1ab31e6fb4a569b8d432d4bb82747"
+  },
+  "validation": {
+    "allFiveQuestionHashesUnchanged": true,
+    "allThreeCardHashesAndReviewsUnchanged": true,
+    "axesScoresAndSourcesUnchanged": true,
+    "noAbsoluteLocalPathsInNewExports": true,
+    "requiredCardBindingsValid": true
+  },
+  "objectChecks": [
+    {
+      "kind": "question",
+      "id": "9fd2cfdb",
+      "hash": "c2e3316316567ee0321cf12fdcf8ab9a4a7ebc9170b9113f10a5db0680673d0d",
+      "unchanged": true
+    },
+    {
+      "kind": "question",
+      "id": "0e1a838d",
+      "hash": "99043095ed211278bdefc7a8b058b620a574bce9c39f74bd5e90804ed424636a",
+      "unchanged": true
+    },
+    {
+      "kind": "question",
+      "id": "3a01ea4b",
+      "hash": "b0f3bc7e3946ca23fd08787476b944a963396175e39757509629b99e75b062f1",
+      "unchanged": true
+    },
+    {
+      "kind": "question",
+      "id": "02814d6c",
+      "hash": "39fff44620a46afea09f657dac8c7c8046d75175c39de3de6b6a3d478fd1ab94",
+      "unchanged": true
+    },
+    {
+      "kind": "question",
+      "id": "18784ef8",
+      "hash": "fa2557b3d718d0b2e80c633f085a7805cbb753a47bef782a784807b6997a3b0d",
+      "unchanged": true
+    },
+    {
+      "kind": "card",
+      "id": "dapa_ckd_igan_2021",
+      "hash": "8ed92f5b7a5dd5be41536aadc8cc11a1cc74ae8c1df8995dcaa6a61b77eb4ecb",
+      "unchanged": true
+    },
+    {
+      "kind": "card",
+      "id": "empa_kidney_primary_disease_2024",
+      "hash": "b46a2000ee1d8c3a1800ec60a34344344e815fb7d66d6c8506e6b05e61f650d7",
+      "unchanged": true
+    },
+    {
+      "kind": "card",
+      "id": "vallon_sglt2_renoprotection_2022",
+      "hash": "3a4751434a22fbdab423848144199acaef9ac3eb8fa2aae89540a5fa03b340d1",
+      "unchanged": true
+    }
+  ],
+  "packageFiles": [
+    {
+      "file": "igan-sglt2-nephroprotection-independent-gates-adpkd-A2-portable.json",
+      "sha256": "095d6583061c2fc6a6a2c93f89f75634a207b163e2c63ed11717433a89b67dd5"
+    },
+    {
+      "file": "igan-sglt2-nephroprotection-independent-card-gates-adpkd-A2-portable.json",
+      "sha256": "2c892d4734db28dd9e95282e5e0d3e7234b1ab31e6fb4a569b8d432d4bb82747"
+    },
+    {
+      "file": "igan-sglt2-nephroprotection-candidates-A1.json",
+      "sha256": "40a367d58df4bf30c09f7f2fec0e8aa81a69179f63adfa119e1aa38f4b9867d3"
+    },
+    {
+      "file": "igan-sglt2-nephroprotection-card-proposals-A1.json",
+      "sha256": "3fc78778936f872ed093d47ac0d354f44baed3353cb18f303f6e3bc48e5e8017"
+    },
+    {
+      "file": "igan-sglt2-nephroprotection-independent-classification-adpkd.json",
+      "sha256": "6d467d5e6b9fbd1be49ccc93982ef740139943c02d9aff3d1231d0471aabab6f"
+    },
+    {
+      "file": "igan-sglt2-nephroprotection-independent-gates-adpkd-A1.json",
+      "sha256": "b9de8db5af1473f05dac946fb1181d634ad9d157a42cc948df4f4a9cbb9730e5"
+    },
+    {
+      "file": "igan-sglt2-nephroprotection-original.json",
+      "sha256": "2b84fd9e409c87b220694cbc519fe063e8993ff5af65c4ae5541f071a5b4583e"
+    },
+    {
+      "file": "igan-original.json",
+      "sha256": "6bdc18e799b0d90384537330d4146597b586210d813486f1a07c1d9d6afef640"
+    }
+  ],
+  "notes": [
+    "O JSON amplo igan-sglt2-nephroprotection-independent-gates-adpkd-A1.json deve ser copiado como fonte histórica exata citada por sourceReviewFile. Seus caminhos absolutos originais são proveniência arquivada; os consumidores de aplicação devem usar apenas os novos exports A2-portable. Não editar o A1 histórico.",
+    "igan-sglt2-nephroprotection-original.json aponta para igan-original.json, por isso ambos estão na lista transitiva.",
+    "As normas docs/editorial e skill já pertencem ao repositório; os hashes canônicos foram preservados, não são novos arquivos externos a copiar.",
+    "Não são necessários o antigo export A1-portable, o card gate A1, os scripts geradores nem o mapa autoral de evidência para resolver os vínculos dos novos exports; a evidência da revisão independente está embutida em sources."
+  ]
+}

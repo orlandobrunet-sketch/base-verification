@@ -1,0 +1,391 @@
+{
+  "schema": 1,
+  "batch": "IgAN-treatment-general-A2",
+  "createdAt": "2026-11-13T14:20:13.106Z",
+  "candidateFile": "igan-treatment-general-candidates-A2.json",
+  "candidateFileSha256": "ed60d10a4cb35a4ff958b387bd248314485e80e16171dc2485dde607a022c3c4",
+  "originalFile": "igan-treatment-general-original.json",
+  "originalFileSha256": "64bc0bc1d917e8a841675805be9e06262953aa31ea177eb51939f7d58857657a",
+  "sourceVerificationDate": "2026-11-13",
+  "scope": "Cinco itens do bloco geral: quatro propostas potenciais e5530b59cretido para adjudicação de evidência; nenhuma aplicação autorizada. Os quinze demais residuais não foram abrangidos por estes dois recortes.",
+  "sources": {
+    "KDIGO2025": {
+      "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+      "doi": "10.1016/j.kint.2025.04.004",
+      "title": "KDIGO2025 IgAN/IgAV Clinical Practice Guideline",
+      "access": "PDF oficial aberto: PP1.4.1.1,1.4.2.1,1.4.2.2,1.4.3.4,1.4.3.5 eFigura4. A busca integral degluten/glúten não encontrou termo; não atribuir à diretriz recomendação textual inexistente."
+    },
+    "KDIGO2021": {
+      "url": "https://kdigo.org/wp-content/uploads/2017/02/KDIGO-Glomerular-Diseases-Guideline-2021-English.pdf",
+      "doi": "10.1016/j.kint.2021.05.021",
+      "pdfSha256": "e7e366b29b3803e030cc4cb0ce072893a0a0ae3f41213b978a3078114fe0d711",
+      "title": "KDIGO2021 Glomerular Diseases",
+      "access": "PDF oficial integral,281páginas. PP2.3.1.1e2.3.1.2na sínteseS43lidos; resumo executivo capítulo2S756aberto e lido. Usado apenas para descrição histórica, não como protocolo atual."
+    },
+    "ACG2023": {
+      "url": "https://www.giboardreview.com/wp-content/uploads/2023/01/Guideline-ACG-Celiac-disease-Jan-2023.pdf",
+      "canonicalUrl": "https://pubmed.ncbi.nlm.nih.gov/36602836/",
+      "pmid": "36602836",
+      "doi": "10.14309/ajg.0000000000002075",
+      "title": "American College of Gastroenterology Guidelines Update: Diagnosis and Management of Celiac Disease",
+      "access": "Resumo primário integral viaEuropePMC e cópia integral18páginas do artigo publicado; conferidos indicação de dieta e diagnóstico em dieta contendo glúten (seção2/SerologicTesting,p.63). Não foi usada a diretriz2013como se fosse2023."
+    },
+    "MOELLER2014": {
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0094677",
+      "doi": "10.1371/journal.pone.0094677",
+      "title": "Lack of Serologic Evidence to Link IgA Nephropathy with Celiac Disease or Immune Reactivity to Gluten",
+      "access": "Texto primário integral: resumo, métodos, resultados e discussão.99casos,96controles e30controlescelíacos. Caso-controle; não ensaio de dieta nem desfechos longitudinais."
+    },
+    "COPPO1990": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/2311308/",
+      "pmid": "2311308",
+      "title": "Effects of a gluten-free diet in primary IgA nephropathy",
+      "access": "Resumo primário integral lido viaEuropePMC.29pacientes em intervenção sem controle; todos6meses,23por1ano,9por2–4anos. Alterações imunológicas/proteinúria não comprovaram benefício de progressão renal; não interpretar como prova universal de ineficácia ou de dano.",
+      "design": "Estudo dietético sem controle; usado como contraprova dos limites, não para prescrição de rotina."
+    },
+    "GLUTEN_MR2025": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/40527780/",
+      "pmid": "40527780",
+      "doi": "10.1097/MD.0000000000041964",
+      "title": "The relationship between gluten-free diet and IgA nephropathy: A review",
+      "access": "Resumo primário integral viaEuropePMC: análise de randomização mendeliana de predisposição a dieta sem glúten e risco de doença; não ensaio de tratamento dietético nem prova de redução de progressão renal emIgANestabelecida.",
+      "design": "Análise genética com revisão; sem card novo classificado de forma imprópria."
+    }
+  },
+  "claims": {
+    "FISH_OIL": {
+      "sources": [
+        "KDIGO2025"
+      ],
+      "location": "PP1.4.3.4 eFigura4, S24/S45",
+      "claim": "Óleo de peixe não é recomendado como terapia rotineira. Pacientes que desejam usá-lo devem conhecer dose/formulação de estudos que relataram eficácia; isso não o torna substituto de terapia com evidência."
+    },
+    "TONSILLECTOMY": {
+      "sources": [
+        "KDIGO2025"
+      ],
+      "location": "PP1.4.3.5, S25/S46",
+      "claim": "Não realizar tonsilectomia como tratamento daIgANem pessoas não japonesas. Benefícios sugeridos em estudos predominantemente japoneses, muitos retrospectivos, não autorizam extrapolação universal. Indicação otorrinolaringológica independente é questão distinta."
+    },
+    "IGA_RESPONSE_MARKER": {
+      "sources": [
+        "KDIGO2025"
+      ],
+      "location": "PP1.3.1ePP1.4.3.5",
+      "claim": "Não há biomarcador sérico validado além de função renal/proteinúria para prognóstico, e a diretriz não utilizaIgAsérica para selecionar resposta à tonsilectomia; o aumento não é indicação cirúrgica."
+    },
+    "DUAL_AXES": {
+      "sources": [
+        "KDIGO2025"
+      ],
+      "location": "PP1.4.2.2/Figura3 ePP1.4.2.3, S18/S36–S37",
+      "claim": "NaIgANprimária em risco, tratar mecanismos específicos da doença e respostas à perda de néfrons em eixos simultâneos, conforme benefício provável, segurança e escolha compartilhada; não imunossuprimir todos pelo limiar isolado."
+    },
+    "RISK_THRESHOLD": {
+      "sources": [
+        "KDIGO2025"
+      ],
+      "location": "PP1.4.1.1, S17/S35",
+      "claim": "Proteinúria persistente≥0,5g/d identifica risco que justifica considerar tratamento ou tratamento adicional, sem estabelecer droga obrigatória para todos."
+    },
+    "PROTEINURIA_TARGET": {
+      "sources": [
+        "KDIGO2025"
+      ],
+      "location": "PP1.4.2.1, S17/S35",
+      "claim": "Manter proteinúria<0,5g/d e idealmente<0,3g/d. Cicatriz extensa pode impedir alcançar a meta; o alvo não garante risco zero nem impõe escalada ilimitada de imunossupressão."
+    },
+    "HISTORIC_2021_TARGET": {
+      "sources": [
+        "KDIGO2021",
+        "KDIGO2025"
+      ],
+      "location": "2021PP2.3.1.2 versus2025PP1.4.2.1",
+      "claim": "O enquadramento2021utilizava alvo<1g/d; a orientação específica foi atualizada em2025. Não reaplicar automaticamente metas ou sequência antigas como protocolo atual."
+    },
+    "GLUTEN_DIET": {
+      "sources": [
+        "KDIGO2025",
+        "MOELLER2014",
+        "COPPO1990",
+        "GLUTEN_MR2025",
+        "ACG2023"
+      ],
+      "location": "Tratamentos/escopoKDIGO2025; MoellerMethods/Discussion; CoppoAbstract; MR2025Abstract; ACGdiagnóstico/tratamento",
+      "claim": "Não prescrever retirada rotineira de glúten como terapia renal daIgANprimária sem indicação clínica específica. A evidência exploratória e associações não estabelecem benefício clínico universal sobre progressão.",
+      "type": "INFERÊNCIA CLÍNICA EXPLÍCITA",
+      "limits": "A KDIGO2025não traz recomendação textual sobre glúten, e sua revisão excluiu dietas do escopo. Moeller não testou dieta; Coppo é sem controle; a análiseMR2025não é ensaio de tratamento em doença estabelecida. Não declarar ausência de plausibilidade, impossibilidade de benefício individual ou prova definitiva de ineficácia."
+    },
+    "CELIAC_DIET": {
+      "sources": [
+        "ACG2023"
+      ],
+      "location": "Abstract/Introduction e manejo dietético",
+      "claim": "Dieta sem glúten é tratamento da doença celíaca confirmada. Essa indicação não pode ser convertida em terapia renal universal para qualquerIgAN."
+    },
+    "GLUTEN_TESTING": {
+      "sources": [
+        "ACG2023"
+      ],
+      "location": "SerologicTesting, p.63 (PDFp.5)",
+      "claim": "Testes sorológicos para doença celíaca devem ser realizados em dieta contendo glúten; restrição iniciada antes da investigação pode prejudicar a interpretação."
+    }
+  },
+  "perQuestion": [
+    {
+      "qid": "9961a406",
+      "originalHash": "9adb7ebffd5edb7efefe772732be48c37004918c175fc2a28f8f7ffab1112091",
+      "candidateHash": "1eb55243d25845e7f31f28a90cd43ed078d2ea761949ad4c24b7cfb28f3c5740",
+      "claimIds": [
+        "FISH_OIL"
+      ],
+      "verifiedClaims": [
+        {
+          "id": "FISH_OIL",
+          "sources": [
+            "KDIGO2025"
+          ],
+          "location": "PP1.4.3.4 eFigura4, S24/S45",
+          "claim": "Óleo de peixe não é recomendado como terapia rotineira. Pacientes que desejam usá-lo devem conhecer dose/formulação de estudos que relataram eficácia; isso não o torna substituto de terapia com evidência."
+        }
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "ddb4938a",
+      "originalHash": "56883ce1dfe5bd7693a33db724129ec72a282503f87d9d47d4abc28fae82fb88",
+      "candidateHash": "b80b754892c12767aa3b8077bf0ac92cf9cc13279996cb8f8e0e5967353211fa",
+      "claimIds": [
+        "TONSILLECTOMY",
+        "IGA_RESPONSE_MARKER"
+      ],
+      "verifiedClaims": [
+        {
+          "id": "TONSILLECTOMY",
+          "sources": [
+            "KDIGO2025"
+          ],
+          "location": "PP1.4.3.5, S25/S46",
+          "claim": "Não realizar tonsilectomia como tratamento daIgANem pessoas não japonesas. Benefícios sugeridos em estudos predominantemente japoneses, muitos retrospectivos, não autorizam extrapolação universal. Indicação otorrinolaringológica independente é questão distinta."
+        },
+        {
+          "id": "IGA_RESPONSE_MARKER",
+          "sources": [
+            "KDIGO2025"
+          ],
+          "location": "PP1.3.1ePP1.4.3.5",
+          "claim": "Não há biomarcador sérico validado além de função renal/proteinúria para prognóstico, e a diretriz não utilizaIgAsérica para selecionar resposta à tonsilectomia; o aumento não é indicação cirúrgica."
+        }
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "5530b59c",
+      "originalHash": "e80317068d6f3eb684e4c03f7d3aafe2b293915e3c23c5aa077399c7947de18c",
+      "candidateHash": "812cc4fd3d344cd94780de974953e6b3f3c1289ad7ce032b68745d2c16191aa0",
+      "claimIds": [
+        "GLUTEN_DIET",
+        "CELIAC_DIET",
+        "GLUTEN_TESTING"
+      ],
+      "verifiedClaims": [
+        {
+          "id": "GLUTEN_DIET",
+          "sources": [
+            "KDIGO2025",
+            "MOELLER2014",
+            "COPPO1990",
+            "GLUTEN_MR2025",
+            "ACG2023"
+          ],
+          "location": "Tratamentos/escopoKDIGO2025; MoellerMethods/Discussion; CoppoAbstract; MR2025Abstract; ACGdiagnóstico/tratamento",
+          "claim": "Não prescrever retirada rotineira de glúten como terapia renal daIgANprimária sem indicação clínica específica. A evidência exploratória e associações não estabelecem benefício clínico universal sobre progressão.",
+          "type": "INFERÊNCIA CLÍNICA EXPLÍCITA",
+          "limits": "A KDIGO2025não traz recomendação textual sobre glúten, e sua revisão excluiu dietas do escopo. Moeller não testou dieta; Coppo é sem controle; a análiseMR2025não é ensaio de tratamento em doença estabelecida. Não declarar ausência de plausibilidade, impossibilidade de benefício individual ou prova definitiva de ineficácia."
+        },
+        {
+          "id": "CELIAC_DIET",
+          "sources": [
+            "ACG2023"
+          ],
+          "location": "Abstract/Introduction e manejo dietético",
+          "claim": "Dieta sem glúten é tratamento da doença celíaca confirmada. Essa indicação não pode ser convertida em terapia renal universal para qualquerIgAN."
+        },
+        {
+          "id": "GLUTEN_TESTING",
+          "sources": [
+            "ACG2023"
+          ],
+          "location": "SerologicTesting, p.63 (PDFp.5)",
+          "claim": "Testes sorológicos para doença celíaca devem ser realizados em dieta contendo glúten; restrição iniciada antes da investigação pode prejudicar a interpretação."
+        }
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "acg_celiac_2023",
+          "referenceHash": "b6f96b60ba486eeb4e587ef2112b600d4b7894673807e4f6af173ff2d391bc53",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        },
+        {
+          "refId": "moeller_plosone_2014",
+          "referenceHash": "5355da0a46d1be6bac540bdfd6207184ef862ab775baa1f2929e5bc8304dc34f",
+          "stage": "PROPOSED_REFERENCE_REQUIRES_INDEPENDENT_GATE",
+          "originalHash": "7fac8579d18e73957dd803436fd2705c79a73c2a430cfd75044b6feec79e9d58"
+        }
+      ],
+      "evidence": "PARCIALMENTE VERIFICADA",
+      "pending": "DECISIVA",
+      "publication": "BLOQUEADA",
+      "implementationDisposition": "HOLD_EVIDENCE_ADJUDICATION"
+    },
+    {
+      "qid": "b7a93d7a",
+      "originalHash": "b66e7f2d734abd24fa3f78b1f7091c73fdb3657a666fde400f11f240aef907e3",
+      "candidateHash": "5da47e4f6b5a12c443f404e0f7caf5e0e39aaf8359493b4127e1bcd57d60caf9",
+      "claimIds": [
+        "DUAL_AXES",
+        "RISK_THRESHOLD"
+      ],
+      "verifiedClaims": [
+        {
+          "id": "DUAL_AXES",
+          "sources": [
+            "KDIGO2025"
+          ],
+          "location": "PP1.4.2.2/Figura3 ePP1.4.2.3, S18/S36–S37",
+          "claim": "NaIgANprimária em risco, tratar mecanismos específicos da doença e respostas à perda de néfrons em eixos simultâneos, conforme benefício provável, segurança e escolha compartilhada; não imunossuprimir todos pelo limiar isolado."
+        },
+        {
+          "id": "RISK_THRESHOLD",
+          "sources": [
+            "KDIGO2025"
+          ],
+          "location": "PP1.4.1.1, S17/S35",
+          "claim": "Proteinúria persistente≥0,5g/d identifica risco que justifica considerar tratamento ou tratamento adicional, sem estabelecer droga obrigatória para todos."
+        }
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    },
+    {
+      "qid": "c1089f2e",
+      "originalHash": "5ae127af7d2254563f943fd9ea40d0a0b36a9d9116e19a78b5033ad6285eeaed",
+      "candidateHash": "fd101c9431d18979917fbfb07e2d8441390effbfc60a5c0c36f6263be617a046",
+      "claimIds": [
+        "PROTEINURIA_TARGET",
+        "HISTORIC_2021_TARGET"
+      ],
+      "verifiedClaims": [
+        {
+          "id": "PROTEINURIA_TARGET",
+          "sources": [
+            "KDIGO2025"
+          ],
+          "location": "PP1.4.2.1, S17/S35",
+          "claim": "Manter proteinúria<0,5g/d e idealmente<0,3g/d. Cicatriz extensa pode impedir alcançar a meta; o alvo não garante risco zero nem impõe escalada ilimitada de imunossupressão."
+        },
+        {
+          "id": "HISTORIC_2021_TARGET",
+          "sources": [
+            "KDIGO2021",
+            "KDIGO2025"
+          ],
+          "location": "2021PP2.3.1.2 versus2025PP1.4.2.1",
+          "claim": "O enquadramento2021utilizava alvo<1g/d; a orientação específica foi atualizada em2025. Não reaplicar automaticamente metas ou sequência antigas como protocolo atual."
+        }
+      ],
+      "referenceBindings": [
+        {
+          "refId": "kdigo_igan_igav_2025",
+          "referenceHash": "0afab502295e77079ed7adb5d4607626931ee287528bbcfd056278dcc9bc0ae0",
+          "stage": "EXISTING_REFERENCE_UNCHANGED"
+        }
+      ],
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "BLOQUEADA",
+      "implementationDisposition": "POTENTIAL_PATCH_PENDING_INDEPENDENT_REVIEW"
+    }
+  ],
+  "sharedCardProposals": {
+    "file": "igan-treatment-general-card-proposals-A1.json",
+    "sha256": "f85ce25fffd4497e40b4afd25fa8edc24c6e94d5dee8709ee523528e8751046f",
+    "gate": "BLOQUEADA; revisar ambos cards integralmente e compatibilidade de atuais/legados, mesmo quando vínculo sai do item."
+  },
+  "unresolvedEditorialPoints": [
+    {
+      "qid": "5530b59c",
+      "kind": "INFERENCE_AND_REFERENCE_ADJUDICATION",
+      "action": "Confirmar que a inferência clínica de não uso rotineiro está sustentada sem atribuir recomendação explícita inexistente àKDIGO; nenhuma fonte isolada prova ineficácia universal."
+    },
+    {
+      "qid": "c1089f2e",
+      "kind": "BASIC_NUMERIC_OP",
+      "action": "Confirmar valor pedagógico do limiar clínico acionável versus trivia. Não mudarOPsobmesmoqidpara elevarBloom."
+    }
+  ],
+  "noAppWrites": true,
+  "materialReferenceActions": [
+    {
+      "refId": "kdigo_igan_2021",
+      "action": "RETIRE_CURRENT_LIBRARY",
+      "proposalFile": "igan-kdigo2021-retirement-proposal-A1.json",
+      "proposalFileSha256": "5dcc85d039c16f834078de4c62ef341ed5461f96bca554f26dddcb8a1212a7ac",
+      "historicalRepair": "DOCUMENTAL_ONLY"
+    },
+    {
+      "refId": "moeller_plosone_2014",
+      "action": "FULL_CARD_REPAIR_PENDING_INDEPENDENT_GATE",
+      "file": "igan-treatment-general-card-proposals-A1.json",
+      "candidateHash": "5355da0a46d1be6bac540bdfd6207184ef862ab775baa1f2929e5bc8304dc34f"
+    }
+  ],
+  "versionDelta": {
+    "from": "A1",
+    "clinicalChangedQids": [
+      "b7a93d7a"
+    ],
+    "fields": [
+      "optsB",
+      "optsC",
+      "optsD",
+      "exp: alinhamento comB"
+    ],
+    "allOtherQuestionObjectsIdentical": true,
+    "reason": "Retirar pistas de imprudência explícita e trocar por erros plausíveis de seleção/seqüenciamento de camadas; não ajustar comprimento."
+  }
+}
