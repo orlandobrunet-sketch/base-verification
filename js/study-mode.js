@@ -1122,9 +1122,19 @@
       } catch(e) { return null; }
     }
 
-    function _clearStudyState() {
-      if (_studyConsultationOnly) return;
-      try { _studyProgressStorage().removeItem(STUDY_SAVE_KEY); } catch(e) {}
+    function _clearStudyState(expectedRaw = _studySavedRaw) {
+      if (_studyConsultationOnly || !_studyBindingCurrent()) return false;
+      const binding = _studyProgressBinding, savedRaw = _studySavedRaw;
+      const current = () => _studyBindingCurrent(binding) && _studySavedRaw === savedRaw;
+      try {
+        const storage = _studyProgressStorage();
+        // An old tab may only remove the snapshot it actually loaded or saved.
+        if (!current() || storage.getItem(STUDY_SAVE_KEY) !== expectedRaw || !current()) return false;
+        storage.removeItem(STUDY_SAVE_KEY);
+        if (!current() || storage.getItem(STUDY_SAVE_KEY) !== null) return false;
+        _studySavedRaw = null;
+        return true;
+      } catch(e) { return false; }
     }
 
     function resumeSavedStudyMode() {
@@ -1139,7 +1149,7 @@
         return false;
       }
       if (saved.presentationVersion !== undefined && saved.presentationVersion !== 1) return false;
-      if (saved.index >= saved.questions.length) { _clearStudyState(); return false; }
+      if (saved.index >= saved.questions.length) { _clearStudyState(loaded.raw); return false; }
       const byId = new Map(topics.map(question => [_studyQuestionId(question), question]));
       const restoredEntries = saved.questions.map((id, savedIndex) => ({question: byId.get(id), savedIndex})).filter(entry => entry.question);
       if (!restoredEntries.length) return false;
@@ -2003,6 +2013,11 @@
         return;
       }
 
+      if (!_clearStudyState()) {
+        _toast('Não foi possível substituir o estudo salvo. Recarregue para conferir a sessão mais recente.', 'warning');
+        return;
+      }
+
       // Lançar mini-sessão reutilizando o fluxo existente
       studyModeQuestions = questions;
       studyModeIndex     = 0;
@@ -2010,8 +2025,6 @@
       studyModeWrong     = 0;
       studyModeActive    = true;
       _studyAxisStats    = {};
-      _clearStudyState();
-
       // Label especial para sessão de reforço
       showStudyModePage('reforço');
     }
@@ -2035,8 +2048,13 @@
       if (catalog === null) return;
       const current = catalog ? studyModeQuestions.map(q => catalog.current(_studyQuestionId(q), 'study')?.author) : studyModeQuestions;
       if (current.some(q => !q)) return;
+      const consultationOnly = _studyConsultationOnly;
       _studyConsultationOnly = false;
-      _clearStudyState();
+      if (!_clearStudyState()) {
+        _studyConsultationOnly = consultationOnly;
+        _toast('Não foi possível substituir o estudo salvo. Recarregue para conferir a sessão mais recente.', 'warning');
+        return;
+      }
       studyModeQuestions = shuffle(current);
       studyModeIndex = 0;
       studyModeCorrect = 0;
