@@ -2403,14 +2403,18 @@
   }
 
   async function _ensureTopics() {
+    const root = document.getElementById('nqDashboard');
     const binding = _dashboardBinding || window.NQPilot?.captureBinding();
+    const current = () => root?.isConnected && root === document.getElementById('nqDashboard')
+      && _dashboardBindingCurrent(binding);
+    if (!current()) return false;
     if (typeof topics !== 'undefined' && Array.isArray(topics) && topics.length) return true;
     if (typeof window._loadTopics !== 'function') return false;
     try {
       await window._loadTopics();
-      return _dashboardBindingCurrent(binding) && typeof topics !== 'undefined' && Array.isArray(topics) && topics.length > 0;
+      return current() && typeof topics !== 'undefined' && Array.isArray(topics) && topics.length > 0;
     } catch (error) {
-      if (_dashboardBindingCurrent(binding) && typeof _toast === 'function') _toast('Não foi possível carregar as questões.', 'error');
+      if (current() && typeof _toast === 'function') _toast('Não foi possível carregar as questões.', 'error');
       return false;
     }
   }

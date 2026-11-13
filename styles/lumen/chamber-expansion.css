@@ -158,6 +158,9 @@
 .acid-base-page.nq-chamber-expansion:not(.nq-chamber-workspace) .ab-context:has(> .abx-context-fold) { padding-bottom: 16px; margin-bottom: 16px; }
 
 /* Also suspend the native Chamber effects when the document or preference pauses motion. */
+.nq-chamber-expansion:not([data-abx-motion-enabled="true"]),
+.nq-chamber-expansion:not([data-abx-motion-enabled="true"])::before,
+.nq-chamber-expansion:not([data-abx-motion-enabled="true"])::after,
 .nq-chamber-expansion:not([data-abx-motion-enabled="true"]) *,
 .nq-chamber-expansion:not([data-abx-motion-enabled="true"]) *::before,
 .nq-chamber-expansion:not([data-abx-motion-enabled="true"]) *::after { animation: none !important; transition-property: color, background-color, border-color, box-shadow, opacity !important; }

@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v17.08
-const CACHE = 'nefroquest-v17.08';
+// NefroQuest Service Worker — v17.09
+const CACHE = 'nefroquest-v17.09';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -192,7 +192,7 @@ const STATIC_ASSETS = [
 const ASSET_VERSIONS = {
   '/js/progression.js': '16.84',
   '/js/chamber-expansion.js': '17.06',
-  '/styles/lumen/chamber-expansion.css': '17.06',
+  '/styles/lumen/chamber-expansion.css': '17.09',
   '/js/chamber-workspace.js': '17.06',
   '/styles/lumen/chamber-workspace.css': '17.03',
   '/js/chamber-art.js': '17.03',
@@ -247,7 +247,7 @@ const ASSET_VERSIONS = {
   '/js/answer-presentation.js': '16.09',
   '/js/audio.js': '16.28',
   '/js/leaderboard.js': '17.01',
-  '/js/study-mode.js': '17.08',
+  '/js/study-mode.js': '17.09',
   '/js/game.js': '17.08',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '17.03',
@@ -265,7 +265,7 @@ const ASSET_VERSIONS = {
   '/js/equipment-preview.js': '16.62',
   '/js/dashboard-skills.js': '17.06',
   '/styles/lumen/skills.css': '17.06',
-  '/js/dashboard.js': '17.06',
+  '/js/dashboard.js': '17.09',
 };
 // bump-release:asset-versions:fim
 
