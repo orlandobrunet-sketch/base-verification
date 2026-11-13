@@ -127,9 +127,9 @@
     s.readers.push({root,restore,reflow,hide(){nav.hidden=true;},get pages(){return pages.length||1;},get conserved(){return conserved;}});
   }
   function hub(s) {
-    const layout=s.root.querySelector('.ab-hub-layout'), banner=layout.querySelector('.ab-hub-banner'), opening=layout.querySelector('.ab-hub-opening');
+    const layout=s.root.querySelector('.ab-hub-layout'), opening=layout.querySelector('.ab-hub-opening');
     const overview=make(s,'section','nql-hub-overview'),collection=make(s,'section','nql-hub-collection');layout.prepend(overview,collection);
-    move(s,banner,overview);move(s,opening,overview);
+    move(s,layout.querySelector('.ab-hub-stage'),overview);
     const completedNote=opening.querySelector('.ab-next-case p');
     if(completedNote&&!opening.querySelector('[data-ab-next]')){const original=completedNote.textContent;completedNote.textContent='Todos os casos foram concluídos. Abra a aba Casos clínicos para jogar novamente com novos valores.';s.undo.push(()=>{completedNote.textContent=original;});}
     ['.ab-collection-heading','.ab-grid','.ab-hub-note'].forEach(q=>move(s,layout.querySelector(q),collection));

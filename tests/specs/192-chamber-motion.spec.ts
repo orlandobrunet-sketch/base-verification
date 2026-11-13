@@ -47,7 +47,16 @@ test('large text and narrow screens keep readable content without horizontal ove
  for(const [width,font]of[[1440,16],[1159,16],[1100,32],[390,16],[320,32]]){
   await page.setViewportSize({width,height:900});await page.evaluate(f=>document.documentElement.style.fontSize=f+'px',font);await open(page);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
-  await expect(page.locator('.ab-lead')).toBeVisible();
+  const about=page.locator('.ab-hub-about'),lead=about.locator('.ab-lead'),summary=about.locator('summary');
+  await expect(about).not.toHaveAttribute('open');await expect(lead).toBeHidden();
+  const original=await lead.textContent();expect(original?.trim().length).toBeGreaterThan(0);
+  await expect(summary).toHaveText('O que você vai praticar');
+  await summary.scrollIntoViewIfNeeded();await summary.focus();await expect(summary).toBeFocused();
+  expect(await summary.evaluate(element=>{const box=element.getBoundingClientRect();return box.width>=44&&box.height>=44&&element.contains(document.elementFromPoint(box.left+box.width/2,box.top+box.height/2));})).toBe(true);
+  await summary.press('Enter');await expect(about).toHaveAttribute('open','');
+  await expect(lead).toBeVisible();expect(await lead.textContent()).toBe(original);
+  expect(await lead.evaluate(element=>{const range=document.createRange();range.selectNodeContents(element);return [...range.getClientRects()].every(box=>!box.width||box.left>=-1&&box.right<=innerWidth+1);})).toBe(true);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
   const desktop=await page.evaluate(()=>matchMedia('(min-width:961px) and (pointer:fine)').matches);
   await expect(page.locator('[data-ab-lab]')).toBeVisible();
   await expect(page.getByRole('button',{name:'Preferências',exact:true})).toBeVisible();

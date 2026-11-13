@@ -2174,6 +2174,7 @@
         <div class="ab-scroll">
           <div class="ab-hub">
             <div class="ab-hub-layout">
+            <div class="ab-hub-stage">
             <div class="ab-hub-banner">
             <div class="ab-hub-copy">
             <div class="ab-ornament">✦ A Câmara do Equilíbrio ✦</div>
@@ -2184,7 +2185,9 @@
             </div>
             <div class="ab-hub-opening">
             <div class="ab-hub-heading">
+            <details class="ab-hub-about"><summary>O que você vai praticar</summary>
             <p class="ab-lead">${CASES.length} casos clínicos do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta ratio, o cloreto e o pH urinário, os distúrbios mistos e triplos e o gap osmolar para restaurar o equilíbrio.</p>
+            </details>
             </div>
             <aside class="ab-desktop-only ab-next-case">
               <svg class="ab-balance-seal" viewBox="0 0 120 120" fill="none" aria-hidden="true" focusable="false">
@@ -2193,6 +2196,7 @@
               </svg>
               ${nextHTML}
             </aside>
+            </div>
             </div>
             <div class="ab-desktop-only ab-collection-heading">
               <h2>Casos clínicos do reino</h2>
@@ -2285,14 +2289,18 @@
         </div>
         <p class="ab-narrative">${kase.narrative}</p>
         <div class="ab-gas-grid">
+          <section class="ab-lab-group" aria-label="Gasometria"><h2>Gasometria</h2>
           <div class="ab-gas"><span>pH</span><strong>${_c(g.pH)}</strong></div>
           <div class="ab-gas"><span>PaCO₂</span><strong>${g.PaCO2}</strong><em>mmHg</em></div>
           <div class="ab-gas"><span>HCO₃⁻</span><strong>${g.HCO3}</strong><em>mEq/L</em></div>
           <div class="ab-gas"><span>BE</span><strong>${g.BE}</strong><em>mEq/L</em></div>
+          </section>
+          <section class="ab-lab-group" aria-label="Exames complementares"><h2>Exames complementares</h2>
           <div class="ab-gas"><span>Na⁺</span><strong>${g.Na}</strong><em>mEq/L</em></div>
           <div class="ab-gas"><span>Cl⁻</span><strong>${g.Cl}</strong><em>mEq/L</em></div>
           <div class="ab-gas"><span>K⁺</span><strong>${_c(g.K)}</strong><em>mEq/L</em></div>
           <div class="ab-gas"><span>Albumina</span><strong>${_c(g.alb)}</strong><em>g/dL</em></div>
+          </section>
         </div>
       </div>`;
   }

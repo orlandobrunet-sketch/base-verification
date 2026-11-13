@@ -165,7 +165,7 @@
     const selected = [...skills].sort((a, b) => priority[a.state] - priority[b.state])[0].index;
     return `<div class="nqs-component" data-nqs-component data-nqs-current="${escape(skills[selected].id)}">
       <section class="nqs-atlas" aria-labelledby="nqsAtlasTitle">
-        <header class="nqs-atlas-header"><div><h2 id="nqsAtlasTitle">Atlas de competências</h2><p>Uma jornada por cada área da Nefrologia.</p>${!measured.length ? `<button type="button" class="nqs-explore-action" data-action="_dashExploreSkills" data-nqd-primary="true">Escolher temas${arrow()}</button>` : ''}</div><p class="nqs-coverage"><strong>${measured.length}<span> / ${skills.length}</span></strong><span>áreas com amostra suficiente</span></p></header>
+        <header class="nqs-atlas-header"><div><h1 id="nqsAtlasTitle">Competências</h1><p>Explore suas áreas e escolha onde continuar.</p>${!measured.length ? `<button type="button" class="nqs-explore-action" data-action="_dashExploreSkills" data-nqd-primary="true">Escolher temas${arrow()}</button>` : ''}</div><p class="nqs-coverage"><strong>${measured.length}<span> / ${skills.length}</span></strong><span>áreas com amostra suficiente</span></p></header>
         <div class="nqs-observatory">${chartMarkup(skills, selected)}<div class="nqs-detail-slot">${skills.map(skill => detailMarkup(skill, selected)).join('')}</div></div>
       </section>
       <section class="nqs-areas" aria-labelledby="nqsAreasTitle"><header class="nqs-areas-header"><h2 id="nqsAreasTitle">Suas áreas de conhecimento</h2><p>Explore os resultados e escolha onde continuar.</p></header><div class="nqs-area-grid" role="group" aria-label="Selecionar área de conhecimento">${skills.map(skill => cardMarkup(skill, selected)).join('')}</div></section>

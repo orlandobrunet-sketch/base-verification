@@ -708,8 +708,15 @@
   }
 
   function _actionsMarkup(actions) {
+    const marks = {
+      study: '<path d="M7 9c5-2 9-1 13 2v19c-4-3-8-4-13-2zm13 2c4-3 8-4 13-2v19c-5-2-9-1-13 2V11Z"/><path d="M11 14h5m-5 5h5m8-5h5m-5 5h5"/>',
+      review: '<path d="M10 11a14 14 0 1 1-3 14M5 11h7v7"/><path d="M20 12v9l6 3"/>',
+      gap: '<circle cx="20" cy="20" r="13"/><circle cx="20" cy="20" r="6"/><path d="m20 20 12-12m-2-3 5 0 0 5"/>',
+      journey: '<path d="m20 5 5 10 10 5-10 5-5 10-5-10-10-5 10-5Z"/><path d="m25 15-10 10 3-7Z"/>',
+    };
     return actions.map(item => `
       <article class="nqd-next-action${item.primary ? ' is-primary' : ''}" data-action-kind="${_escape(item.kind)}">
+        <span class="nqd-action-emblem" aria-hidden="true"><svg viewBox="0 0 40 40" focusable="false"><circle class="nqd-emblem-orbit" cx="20" cy="20" r="19"/>${marks[item.kind] || marks.journey}</svg></span>
         <div class="nqd-next-action-copy">
           <small>${_escape(item.kicker)}</small>
           <strong>${_escape(item.title)}</strong>
@@ -999,7 +1006,6 @@
   function _tabSkills(data) {
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-skills" role="tabpanel" aria-labelledby="nqdTab-skills" data-dash-pane="skills" hidden>
-        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Competências</h1><p class="nqd-section-copy">Explore suas áreas, acompanhe as respostas e escolha onde continuar.</p></div></div>
         ${window.NQDashboardSkills.render(data.coreSkills)}
         <section class="nqd-section nqd-error-patterns"><header class="nqd-section-header"><div><h2 class="nqd-section-title">Como você erra</h2></div></header>${_errorPatternsMarkup()}</section>
       </section>
@@ -1550,7 +1556,7 @@
             <p class="nqd-grimoire-rule">Seu acervo cresce durante a jornada: acerte questões ou abra baús para descobrir novos artigos</p>
             <p class="nqd-section-copy nqd-library-summary"><span>Referências descobertas até o momento:</span> <strong>${totalUnlocked}/${library.totalArticles + library.totalRefs}</strong></p>
           </div>
-          <div class="nqd-grimoire-art-region" aria-hidden="true"><img class="nqd-grimoire-art" src="/assets/images/grimoire-banner-1706.webp" width="2172" height="724" alt="" aria-hidden="true" decoding="async"></div>
+          <div class="nqd-grimoire-art-region" aria-hidden="true"><img class="nqd-grimoire-art" src="/assets/images/grimoire-banner-1711.webp" width="2172" height="724" alt="" aria-hidden="true" decoding="async"></div>
         </header>
         <div class="nqd-library-controls"><div class="nqd-library-toolbar">
           <div class="nqd-library-navigation"><div class="nqd-library-tabs" role="tablist" aria-label="Coleções do Grimório">

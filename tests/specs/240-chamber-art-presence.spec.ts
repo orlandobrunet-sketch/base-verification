@@ -14,7 +14,40 @@ async function open(page: Page) {
   await expect(page.locator('#nqEntryCinema[open]')).toHaveCount(0);
 }
 
-test('pintura real ocupa a cena sem disputar o título e sem controle de pausa local', async ({ page }) => {
+async function assertUnoccluded(page: Page, selector: string) {
+  const target = page.locator(selector);
+  await expect(target).toHaveCount(1);
+  await expect(target).toBeVisible();
+  await target.scrollIntoViewIfNeeded();
+  const observed = await target.evaluate(element => {
+    const bounds = element.getBoundingClientRect();
+    const points = [.25, .5, .75].map(fraction => ({ x: bounds.left + bounds.width * fraction, y: bounds.top + bounds.height / 2 }));
+    const hit = points.every(point => element.contains(document.elementFromPoint(point.x, point.y)));
+    const range = document.createRange(); range.selectNodeContents(element);
+    const lines = [...range.getClientRects()].filter(rect => rect.width > 0 && rect.height > 0);
+    const rect = (box: DOMRect) => ({ x: box.x, y: box.y, width: box.width, height: box.height });
+    const clipping: unknown[] = [];
+    if (lines.some(line => line.left < -1 || line.right > innerWidth + 1))
+      clipping.push({ ancestor: 'viewport', width: innerWidth, glyphs: lines.map(rect) });
+    for (let parent = element.parentElement; parent; parent = parent.parentElement) {
+      const style = getComputedStyle(parent), box = parent.getBoundingClientRect();
+      // Contents has no clipping box. Root overflow applies to the viewport;
+      // the fixed Chamber is not clipped by BODY's in-flow bounding rectangle.
+      if (style.display === 'contents' || parent === document.body || parent === document.documentElement) continue;
+      if (lines.some(line =>
+        (['hidden', 'clip', 'auto', 'scroll'].includes(style.overflowX) && (line.left < box.left - 1 || line.right > box.right + 1)) ||
+        (['hidden', 'clip', 'auto', 'scroll'].includes(style.overflowY) && (line.top < box.top - 1 || line.bottom > box.bottom + 1))))
+        clipping.push({ ancestor: parent.className, display: style.display, overflow: [style.overflowX, style.overflowY], bounds: rect(box), glyphs: lines.map(rect) });
+    }
+    return { hit, clipping, width: bounds.width, height: bounds.height, viewportWidth: innerWidth, font: getComputedStyle(document.documentElement).fontSize };
+  });
+  const label = selector + ' at ' + observed.viewportWidth + 'px / font ' + observed.font;
+  expect(observed.hit, label + ' remains in front of the painted scene and mask').toBe(true);
+  expect(observed.clipping, label + ' keeps its whole label legible').toEqual([]);
+  expect(observed.width).toBeGreaterThan(0); expect(observed.height).toBeGreaterThan(0);
+}
+
+test('pintura real envolve o hub com título legível, destinos desobstruídos e sem pausa local', async ({ page }) => {
   const scenesRequested: string[] = [];
   const visibleWhenRequested = new Map<string, Promise<boolean>>();
   page.on('request', request => {
@@ -32,9 +65,11 @@ test('pintura real ocupa a cena sem disputar o título e sem controle de pausa l
   });
   await open(page);
   const image = page.locator('[data-ab-lab] .ab-lab-art');
+  const progressBefore = await page.evaluate(() => localStorage.getItem('nq-acidbase-progress'));
   await expect(image).toHaveJSProperty('tagName', 'IMG');
   await expect(image).toHaveAttribute('src', /assets\/scenes\/chamber-balance-still\.webp$/);
   await expect.poll(() => image.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth === 1280)).toBe(true);
+  expect(await image.evaluate(async (el: HTMLImageElement) => { await el.decode(); return el.naturalWidth === 1280 && el.naturalHeight > 0; })).toBe(true);
   await expect(page.locator('[data-ab-lab] svg, [data-ab-motion-toggle]')).toHaveCount(0);
   const overview = page.getByRole('tab', { name: 'Visão geral', exact: true });
   if (await overview.isVisible()) {
@@ -57,17 +92,62 @@ test('pintura real ocupa a cena sem disputar o título e sem controle de pausa l
   for (const [width, font] of [[1440, 16], [1440, 32], [390, 16], [320, 32]]) {
     await page.setViewportSize({ width, height: 900 });
     await page.evaluate(font => document.documentElement.style.fontSize = font + 'px', font);
+    await page.waitForFunction(font => Math.abs(parseFloat(getComputedStyle(document.documentElement).fontSize) - font) < .01, font);
     await page.evaluate(() => scrollTo(0, 0));
     await expect(image).toBeVisible();
     const layout = await page.evaluate(() => {
-      const root = document.getElementById('acidBaseOverlay')!, title = root.querySelector('.ab-title')!.getBoundingClientRect(), image = root.querySelector('.ab-lab-art')!.getBoundingClientRect();
-      const gear = root.querySelector('.ab-preferences')!, box = gear.getBoundingClientRect();
-      return { headerHit: gear.contains(document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2)), overlap: !(title.right <= image.left || title.bottom <= image.top || image.right <= title.left || image.bottom <= title.top), width: image.width,
-        overflow: document.documentElement.scrollWidth > innerWidth + 1 };
+      const root = document.getElementById('acidBaseOverlay')!, stage = root.querySelector('.ab-hub-stage')!;
+      const picture = root.querySelector<HTMLImageElement>('.ab-lab-art')!, scene = picture.closest('[data-ab-lab]')!;
+      const frame = stage.getBoundingClientRect(), art = scene.getBoundingClientRect(), rendered = picture.getBoundingClientRect();
+      const title = root.querySelector('.ab-title')!.getBoundingClientRect();
+      const style = getComputedStyle(picture), transform = new DOMMatrixReadOnly(style.transform), mask = getComputedStyle(stage, '::after');
+      return {
+        // The approved composition deliberately paints behind the title. Verify
+        // full coverage and undistorted native imagery rather than separation.
+        fullBleed: Math.abs(art.left - frame.left) <= 2 && Math.abs(art.top - frame.top) <= 2 &&
+          Math.abs(art.right - frame.right) <= 2 && Math.abs(art.bottom - frame.bottom) <= 2,
+        titleOverScene: title.left >= art.left && title.right <= art.right && title.top >= art.top && title.bottom <= art.bottom,
+        covers: rendered.left <= art.left + 1 && rendered.top <= art.top + 1 && rendered.right >= art.right - 1 && rendered.bottom >= art.bottom - 1,
+        fit: style.objectFit, scaleX: Math.hypot(transform.a, transform.b), scaleY: Math.hypot(transform.c, transform.d),
+        mask: mask.backgroundImage.includes('gradient(') && mask.pointerEvents === 'none',
+        decorative: scene.getAttribute('aria-hidden'), width: rendered.width,
+        native: picture.complete && picture.naturalWidth === 1280 && picture.naturalHeight > 0,
+        overflow: document.documentElement.scrollWidth > innerWidth + 1,
+      };
     });
-    expect(layout.headerHit).toBe(true); expect(layout.overlap).toBe(false); expect(layout.overflow).toBe(false); expect(layout.width).toBeGreaterThan(180);
+    expect(layout.fullBleed).toBe(true); expect(layout.titleOverScene).toBe(true); expect(layout.covers).toBe(true);
+    expect(layout.fit).toBe('cover'); expect(layout.scaleX).toBeCloseTo(layout.scaleY, 5);
+    expect(layout.mask).toBe(true); expect(layout.decorative).toBe('true'); expect(layout.native).toBe(true);
+    expect(layout.overflow).toBe(false); expect(layout.width).toBeGreaterThan(180);
+    for (const selector of ['#acidBaseOverlay .ab-hub-copy .ab-title', '#acidBaseOverlay .ab-preferences',
+      '#acidBaseOverlay [data-ab-close]', '#acidBaseOverlay [data-ab-next]:visible',
+      '#acidBaseOverlay .ab-hub-about summary']) await assertUnoccluded(page, selector);
+    const workspace = await page.locator('#acidBaseOverlay').evaluate(root => root.classList.contains('nq-chamber-workspace'));
+    if (workspace) {
+      await expect(page.getByRole('tab', { name: 'Visão geral', exact: true })).toHaveAttribute('aria-selected', 'true');
+      await expect(page.getByRole('tab', { name: 'Casos clínicos (20)', exact: true })).toHaveAttribute('aria-selected', 'false');
+      for (const selector of ['#acidBaseOverlay [role="tab"][aria-selected="true"]',
+        '#acidBaseOverlay [role="tab"][aria-selected="false"]']) await assertUnoccluded(page, selector);
+    } else {
+      // Native layout intentionally replaces workspace tabs for narrow/coarse
+      // displays or enlarged type. Its collection and actual case route remain.
+      await expect(page.locator('#acidBaseOverlay [role="tab"]')).toHaveCount(0);
+      const heading = page.locator('#acidBaseOverlay .ab-collection-heading h2');
+      await expect(heading).toHaveCount(1); await expect(heading).toHaveText('Casos clínicos do reino');
+      if (await page.evaluate(() => matchMedia('(min-width:961px) and (pointer:fine)').matches))
+        await assertUnoccluded(page, '#acidBaseOverlay .ab-collection-heading h2');
+      else await expect(heading).toBeHidden();
+      const firstCase = page.locator('#acidBaseOverlay .ab-grid [data-ab-case]:not([disabled])').first();
+      await expect(firstCase).toHaveJSProperty('tagName', 'BUTTON'); await expect(firstCase).toBeEnabled();
+      await expect(firstCase).toHaveAttribute('data-ab-case', 'aldric');
+      await assertUnoccluded(page, '#acidBaseOverlay .ab-grid [data-ab-case="aldric"]');
+    }
+    const next = page.locator('#acidBaseOverlay [data-ab-next]:visible');
+    await expect(next).toHaveJSProperty('tagName', 'BUTTON'); await expect(next).toBeEnabled();
+    await expect(next).toHaveAttribute('data-ab-next', 'aldric');
   }
   await Promise.all(visibleWhenRequested.values());
+  expect(await page.evaluate(() => localStorage.getItem('nq-acidbase-progress'))).toBe(progressBefore);
 });
 
 test('preferência de movimento persiste fora da cena e a pintura continua visível ao pausar ou reduzir', async ({ page }) => {

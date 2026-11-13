@@ -95,7 +95,7 @@ test.describe('Gabarito legível sem depender de cor', () => {
 
   test('no modo normal a correta mantém nome acessível e ícone no marcador', async ({ page }) => {
     await page.goto('/jogar/');
-    await injectGameState(page);
+    await injectGameState(page, {}, { asGuest: true });
     await responder(page);
 
     const correta = page.locator('#options .option.correct').first();
@@ -107,7 +107,7 @@ test.describe('Gabarito legível sem depender de cor', () => {
 
   test('responder não joga o foco no corpo da página', async ({ page }) => {
     await page.goto('/jogar/');
-    await injectGameState(page);
+    await injectGameState(page, {}, { asGuest: true });
     await responder(page);
     await page.waitForTimeout(300);
 
@@ -123,7 +123,7 @@ test.describe('Gabarito legível sem depender de cor', () => {
     // O save-base tem 80 de ouro: acertar cruza o marco de 100 e a celebração
     // (um diálogo, com foco) recebe o Enter. Marcada como vista, como no app.
     await page.evaluate(() => localStorage.setItem('nefroquest-gold-milestone-shown', '1'));
-    await injectGameState(page);
+    await injectGameState(page, {}, { asGuest: true });
     const antes = await page.locator('#question').textContent();
     await expect(page.locator('#options .option').first()).toBeEnabled({ timeout: 5000 });
 
@@ -144,7 +144,7 @@ test.describe('Gabarito legível sem depender de cor', () => {
     await page.goto('/jogar/');
     // Sem a celebração do marco de ouro: ela é um diálogo e receberia o Enter.
     await page.evaluate(() => localStorage.setItem('nefroquest-gold-milestone-shown', '1'));
-    await injectGameState(page);
+    await injectGameState(page, {}, { asGuest: true });
     const antes = await page.locator('#question').textContent();
     await responder(page);
 

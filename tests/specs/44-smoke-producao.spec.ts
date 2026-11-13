@@ -52,18 +52,40 @@ test.describe('Smoke de produção (somente leitura)', () => {
     expect(quebrados, `assets versionados que não respondem: ${quebrados.join(', ')}`).toEqual([]);
   });
 
-  test('o app abre para visitante, sem erro de console', async ({ page }) => {
-    const erros: string[] = [];
-    page.on('console', (m) => { if (m.type() === 'error') erros.push(m.text().slice(0, 90)); });
-    page.on('pageerror', (e) => erros.push('pageerror: ' + String(e.message).slice(0, 90)));
+  test('o app abre para visitante, sem erro de console', async ({ page, baseURL }, info) => {
+    const ownOrigin = new URL(baseURL!).origin;
+    const externalHosts = ['challenges.cloudflare.com', 'googletagmanager.com',
+      'google-analytics.com', 'analytics.google.com', 'sentry-cdn.com', 'sentry.io'];
+    const erros: { message: string; source: string; thirdParty: boolean }[] = [];
+    const safeMessage = (text: string) => text.replace(/https?:\/\/[^\s"'<>]+/g, value => {
+      try { return new URL(value).origin; } catch { return '[URL]'; }
+    }).slice(0, 200);
+    page.on('console', (message) => {
+      if (message.type() !== 'error') return;
+      let source = 'unknown', thirdParty = false;
+      try {
+        const url = new URL(message.location().url);
+        const extension = ['chrome-extension:', 'moz-extension:'].includes(url.protocol);
+        thirdParty = url.origin !== ownOrigin && (extension || externalHosts.some(host =>
+          url.hostname === host || url.hostname.endsWith('.' + host)));
+        // Keep the source needed for diagnosis without third-party paths or tokens.
+        source = url.origin === ownOrigin ? url.origin + url.pathname : url.origin;
+      } catch { /* Unknown source stays a failure, including generic network errors. */ }
+      erros.push({ message: safeMessage(message.text()), source, thirdParty });
+    });
+    page.on('pageerror', (error) => erros.push({
+      message: 'pageerror: ' + safeMessage(String(error.message)), source: 'pageerror', thirdParty: false,
+    }));
 
     await page.goto('/jogar/', { waitUntil: 'load' });
     await expect(page.locator('#landingScreen')).toBeVisible({ timeout: 20000 });
 
-    // Ruído de terceiros não é defeito nosso: extensões, Turnstile e analytics
-    // falham por rede ou bloqueador sem que o app esteja quebrado.
-    const nossos = erros.filter((e) => !/turnstile|cloudflare|gtag|googletagmanager|analytics|sentry|favicon|extension/i.test(e));
-    expect(nossos, `erros de console próprios: ${nossos.join(' | ')}`).toEqual([]);
+    // Classify known external sources by URL: generic ERR_FAILED/NAME_NOT_RESOLVED
+    // messages alone do not identify their origin. Own-origin errors always fail,
+    // even if their message mentions analytics, Sentry or a network failure.
+    const nossos = erros.filter(error => !error.thirdParty);
+    await info.attach('host-console-diagnostics', { contentType: 'application/json', body: JSON.stringify(erros) });
+    expect(nossos, `erros de console próprios: ${JSON.stringify(nossos)}`).toEqual([]);
   });
 
   test('a tipografia do sistema resolve — nada cai no serif padrão', async ({ page }) => {

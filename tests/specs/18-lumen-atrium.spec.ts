@@ -501,28 +501,61 @@ test.describe('Página 2 — Átrio da Jornada Lúmen', () => {
     await enterWithSavedJourney(page);
 
     const primary = page.locator('#welcomeContinueBtn');
-    await primary.focus();
-    await primary.press('Enter');
-    const pendingState = await page.evaluate(async () => {
-      const game = window as typeof window & { continueGame?: () => Promise<boolean> | boolean };
-      const button = document.getElementById('welcomeContinueBtn') as HTMLButtonElement | null;
-      const duplicateResult = game.continueGame?.();
-      const snapshot = {
-        disabled: button?.disabled,
-        busy: button?.getAttribute('aria-busy'),
-        hasBusyClass: button?.classList.contains('is-busy'),
-        text: button?.textContent,
+    // Keep the real load pending: separate Playwright commands can arrive after
+    // a fast resume and its cleanup, so elapsed time alone is not a busy state.
+    await page.evaluate(() => {
+      const game = window as any;
+      const original = game._loadTopics;
+      if (typeof original !== 'function') throw new Error('Native question loader is unavailable');
+      let release!: () => void;
+      const pending = new Promise<void>(resolve => { release = resolve; });
+      const gate = { original, release, calls: 0, delegated: 0 };
+      game.__nqAtriumResumeGate = gate;
+      game._loadTopics = function (this: unknown, ...args: unknown[]) {
+        gate.calls++;
+        return pending.then(() => {
+          gate.delegated++;
+          return original.apply(this, args);
+        });
       };
-      return { duplicateWasRejected: await duplicateResult, ...snapshot };
     });
-    expect(pendingState).toMatchObject({
-      duplicateWasRejected: false,
-      disabled: true,
-      busy: 'true',
-      hasBusyClass: true,
-    });
-    expect(pendingState.text).toContain('Carregando jornada…');
-    expect(pendingState.text).toContain('Preparando questões e progresso');
+    try {
+      await primary.focus();
+      await primary.press('Enter');
+      await page.waitForFunction(() => (window as any).__nqAtriumResumeGate?.calls === 1);
+      const pendingState = await page.evaluate(async () => {
+        const game = window as any;
+        const button = document.getElementById('welcomeContinueBtn') as HTMLButtonElement | null;
+        const duplicateResult = game.continueGame();
+        const snapshot = {
+          disabled: button?.disabled,
+          busy: button?.getAttribute('aria-busy'),
+          hasBusyClass: button?.classList.contains('is-busy'),
+          text: button?.textContent,
+          loaderCalls: game.__nqAtriumResumeGate.calls,
+          delegatedLoads: game.__nqAtriumResumeGate.delegated,
+        };
+        return { duplicateWasRejected: await duplicateResult, ...snapshot };
+      });
+      expect(pendingState).toMatchObject({
+        duplicateWasRejected: false,
+        disabled: true,
+        busy: 'true',
+        hasBusyClass: true,
+        loaderCalls: 1,
+        delegatedLoads: 0,
+      });
+      expect(pendingState.text).toContain('Carregando jornada…');
+      expect(pendingState.text).toContain('Preparando questões e progresso');
+    } finally {
+      await page.evaluate(() => {
+        const game = window as any, gate = game.__nqAtriumResumeGate;
+        if (!gate) return;
+        game._loadTopics = gate.original;
+        gate.release();
+        delete game.__nqAtriumResumeGate;
+      });
+    }
 
     await page.waitForTimeout(100);
 

@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v17.10
-const CACHE = 'nefroquest-v17.10';
+// NefroQuest Service Worker — v17.11
+const CACHE = 'nefroquest-v17.11';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -8,6 +8,7 @@ const STATIC_ASSETS = [
   '/assets/scenes/ritual-initiation.webp',
   '/js/chamber-expansion.js',
   '/styles/lumen/chamber-expansion.css',
+  '/styles/lumen/chamber-entrance.css',
   '/js/chamber-workspace.js',
   '/styles/lumen/chamber-workspace.css',
   '/assets/chamber/patients/aldric.webp',
@@ -175,7 +176,7 @@ const STATIC_ASSETS = [
   '/js/equipment-preview.js',
   '/js/dashboard-skills.js',
   '/styles/lumen/skills.css',
-  '/assets/images/grimoire-banner-1706.webp',
+  '/assets/images/grimoire-banner-1711.webp',
   '/js/dashboard.js',
 ];
 
@@ -193,7 +194,8 @@ const ASSET_VERSIONS = {
   '/js/progression.js': '16.84',
   '/js/chamber-expansion.js': '17.06',
   '/styles/lumen/chamber-expansion.css': '17.09',
-  '/js/chamber-workspace.js': '17.06',
+  '/styles/lumen/chamber-entrance.css': '17.11',
+  '/js/chamber-workspace.js': '17.11',
   '/styles/lumen/chamber-workspace.css': '17.03',
   '/js/chamber-art.js': '17.03',
   '/styles/lumen/chamber-desktop.css': '17.03',
@@ -229,7 +231,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/atrium.css': '17.08',
   '/styles/lumen/game.css': '17.06',
   '/styles/lumen/difficulty.css': '17.06',
-  '/styles/lumen/dashboard.css': '17.06',
+  '/styles/lumen/dashboard.css': '17.11',
   '/styles/lumen/charselect.css': '17.06',
   '/styles/lumen/modes.css': '17.06',
   '/styles/lumen/exam.css': '17.01',
@@ -259,13 +261,13 @@ const ASSET_VERSIONS = {
   '/js/exam.js': '17.01',
   '/js/admin.js': '15.35',
   '/js/minigame.js': '17.01',
-  '/js/minigame-acidbase.js': '17.06',
+  '/js/minigame-acidbase.js': '17.11',
   '/js/achievements.js': '16.75',
   '/js/changelog.js': '15.94',
   '/js/equipment-preview.js': '16.62',
-  '/js/dashboard-skills.js': '17.06',
-  '/styles/lumen/skills.css': '17.06',
-  '/js/dashboard.js': '17.09',
+  '/js/dashboard-skills.js': '17.11',
+  '/styles/lumen/skills.css': '17.11',
+  '/js/dashboard.js': '17.11',
 };
 // bump-release:asset-versions:fim
 
