@@ -1013,30 +1013,44 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-status {
-  display: flex;
+  display: grid;
+  grid-template-columns: .4rem minmax(0, 1fr);
   min-height: 3.5rem;
   margin-top: 1.4rem;
   padding: .85rem 0;
   border-top: 1px solid var(--nql-line);
   border-bottom: 1px solid var(--nql-line);
-  align-items: flex-start;
+  align-items: start;
   gap: .65rem;
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-status > span {
+  grid-column: 1;
+  grid-row: 1;
   width: .4rem;
   height: .4rem;
   margin-top: .38rem;
   border-radius: 50%;
-  flex: 0 0 auto;
   background: var(--nql-lumen);
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-status p {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
   margin: 0;
   color: var(--nql-text-muted);
   font-size: .8rem;
   line-height: 1.45;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-measure {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-measure::before {
+  content: attr(data-route-copy);
 }
 
 #welcomeScreen[data-nq-ui="lumen"] .nql-atrium__route-list {

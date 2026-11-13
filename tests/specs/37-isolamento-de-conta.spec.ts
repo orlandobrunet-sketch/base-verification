@@ -37,6 +37,8 @@ const CHAVES_DE_CONTA: Record<string, string> = {
   'nq-bib-favorites': '["cni_nephrotoxicity_naesens"]',
   'nq-pending-leaderboard': '{"score":7300,"player_name":"Conta Anterior"}',
   'nq-nickname-asked': '1',
+  'nefroquest-study-state': '{"questions":["technical-study"]}',
+  'nefroquest-exam-state': '{"questions":["technical-exam"]}',
   'nq_last_study': '2026-08-21',
   'unlockedArticles': '["a1"]',
   'nq-unlocked-refs': '["r1"]',

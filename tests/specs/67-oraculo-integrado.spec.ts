@@ -14,6 +14,7 @@ async function abrirOraculo(page: Page, opcoes: { logado: boolean; largura?: num
   await page.setViewportSize({ width: opcoes.largura ?? 1280, height: (opcoes.largura ?? 1280) === 390 ? 844 : 800 });
   await page.route('**/*', (rota) => {
     const url = rota.request().url();
+    if (new URL(url).pathname === '/assets/vendor/supabase-js-2.106.2/supabase.js') return rota.abort();
     return new URL(url).hostname === 'localhost' ? rota.continue() : rota.abort();
   });
   if (opcoes.resposta) {

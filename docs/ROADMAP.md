@@ -1,12 +1,12 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação operacional:** 12/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
+**Última reconciliação operacional:** 13/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
 Este documento controla direção, prioridade e critérios de conclusão. Ele não autoriza execução automática: cada frente precisa ser solicitada explicitamente pelo proprietário do produto.
 
-## Estado operacional - 12/11/2026
+## Estado operacional - 13/11/2026
 
 **Publicado: 17.02 (PR956).** Travamento ao voltar do Ponto Fraco corrigido; captura de tela e foco de origem preservados. CI1057 e Pages aprovados, sete arquivos públicos conferidos e 12 cenários de retorno/cancelamento aprovados no site publicado.
 
@@ -18,7 +18,9 @@ Este documento controla direção, prioridade e critérios de conclusão. Ele n�
 
 **Publicado: 17.06 (PR960).** Merge `ce96a6640d7c6b6ac34b45bea4d7b55f0e59d555`, Pages `43341380747` aprovado e 20 arquivos públicos conferidos contra o merge. CI1064: 15/15 jobs, 3.096 aprovações diretas + uma após repetição + 265 skips previstos, sem falhas finais. Os 12 percursos públicos passaram sem retries, flaky, skips ou erros de página. Câmara imersiva, Competências interativas e os ajustes solicitados de dificuldade, personagem, XP/ouro, Grimório e revisão estão publicados; conteúdo médico e progressão preservados. [Escopo, causa, evidências e limites](design/NQ_EXPERIENCIA_1706.md).
 
-**Entrega 17.07 — conservação do Estudo entre abas.** Proteção da sessão mais recente contra limpeza ou substituição por uma aba antiga, com comparação de bytes e vínculo de progresso; entrada Guest explícita somente no primeiro preparo da spec 07. A regressão 248 passou de oito falhas de conservação e seis controles aprovados para 14 aprovações sem repetição; progressão e piloto passaram 167 testes Node. O estado final da validação, integração e publicação será registrado no PR desta entrega. [Causa, provas e limites](design/NQ_STUDY_CONCURRENT_CLEAR_1707.md).
+**Publicado: 17.07 (PR961).** Merge `03a4cc284921e37e93909ce3fd2b0023ff9e1598`, Pages `43349668348` aprovado e sete hashes públicos conferidos contra o merge. CI1065: 15/15 jobs, 3.109 aprovações diretas + duas após repetição + 265 skips previstos, sem falhas finais. Os 14 percursos públicos passaram sem retries, flaky, skips ou erros de página. Conservação do Estudo entre abas e preparo Guest do primeiro caso da spec 07 publicados, com conteúdo médico preservado. [Causa, provas e limites](design/NQ_STUDY_CONCURRENT_CLEAR_1707.md).
+
+**Entrega 17.08 — fronteiras do progresso e navegação.** Limpeza das sessões normais de Estudo/Prova ao trocar o contexto; avanço do Estudo condicionado à gravação do próximo índice, com consulta histórica preservada; isolamento dos preparos 138/67. A regressão 250 passou de quatro exposições e quatro controles para oito aprovações; a 249 passou de seis falhas e dois controles para dez aprovações finais. A rodada relacionada passou 88 casos e os contratos Node passaram 167. A oscilação de altura do menu do Átrio foi reproduzida e sua regressão geométrica 251 passou 16/16 após o reparo, sem bloqueador na revisão estática. O percurso Guest original, sem instrumentação, passou nos quatro cenários. Os resultados finais da CI, integração e publicação são registrados no PR desta entrega. [Escopo, provas e limites](design/NQ_PROGRESS_BOUNDARIES_1708.md).
 
 **Pendências mantidas:** atribuição causal dos dois registros históricos de visibilidade em 191; validação entre aparelhos físicos e serviços reais; vídeos opcionais e projetos futuros conforme as decisões registradas. O mecanismo determinístico novo não prova retrospectivamente a causa histórica. A parametrização do HUD evita um teste que acumulava várias larguras, sem declarar comprovada a causa dos timeouts anteriores. Os demais marcos abaixo são históricos.
 

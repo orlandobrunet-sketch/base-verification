@@ -1681,6 +1681,8 @@
         'nq-bib-favorites',
         'nq-pending-leaderboard',
         'nq-nickname-asked',
+        'nefroquest-study-state',
+        'nefroquest-exam-state',
         'nq_last_study'
       ];
       keys.forEach(k => localStorage.removeItem(k));

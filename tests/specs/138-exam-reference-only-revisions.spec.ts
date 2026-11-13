@@ -22,7 +22,7 @@ test.beforeEach(async ({page, context, baseURL}) => {
       ? route.continue() : route.abort();
   });
   await page.goto('/jogar/', {waitUntil: 'domcontentloaded'});
-  await injectGameState(page, {gold: 0, score: 0, correctTotal: 0});
+  await injectGameState(page, {gold: 0, score: 0, correctTotal: 0}, {asGuest: true});
   await page.waitForFunction(() => (window as any).questionBank?.length === 741 &&
     typeof (window as any).questionRevisionCatalog?.current === 'function');
   await page.evaluate(() => { localStorage.removeItem('nefroquest-exam-state'); return document.fonts.ready; });
