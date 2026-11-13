@@ -4,7 +4,7 @@ import { injectGameState, waitForGame , isLiveEnv } from '../helpers/game';
 test.describe('Leaderboard — rate limiting e validação', () => {
   test('boardPush respeita rate limit de 1 push por sessão', async ({ page }) => {
     await page.goto('/jogar/');
-    await injectGameState(page);
+    await injectGameState(page, {}, { asGuest: true });
     await waitForGame(page);
 
     const pushCalls: string[] = [];
