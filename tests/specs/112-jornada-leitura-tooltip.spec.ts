@@ -401,41 +401,35 @@ test('rolar uma dica longa a 200% mantém sua leitura; rolar a gaveta fecha a di
   await expect(floating).toBeHidden();
 });
 
-for (const correct of [true, false]) {
-  test('pergunta e explicação integrais, justificadas e contidas após ' + (correct ? 'acerto' : 'erro'), async ({ page }, testInfo) => {
-    await openGame(page, 1100);
+for (const width of WIDTHS) for (const correct of [true, false]) {
+  test('pergunta e explicação integrais, justificadas e contidas após ' + (correct ? 'acerto' : 'erro') + ' em ' + width + 'px', async ({ page }, testInfo) => {
+    await openGame(page, width);
     const question = await page.evaluate(() => (0, eval)('state.current'));
-    for (const width of WIDTHS) {
-      await page.setViewportSize({ width, height: 844 });
-      for (const percent of [100, 200]) {
-        await fontScale(page, percent);
-        await expect(page.locator('#question')).toHaveCSS('text-align', 'justify');
-        await expect(page.locator('#question')).toHaveCSS('text-align-last', 'start');
-        await expectRightContainment(page, '#question');
-      }
+    for (const percent of [100, 200]) {
+      await fontScale(page, percent);
+      await expect(page.locator('#question')).toHaveCSS('text-align', width <= 768 ? 'left' : 'justify');
+      await expect(page.locator('#question')).toHaveCSS('text-align-last', 'start');
+      await expectRightContainment(page, '#question');
     }
     const index = correct ? question.a : (question.a + 1) % question.o.length;
     await page.locator('#options .option').nth(index).click();
     await expect(page.locator('#nqlQuestionRatingToggle')).toBeVisible();
-    for (const width of WIDTHS) {
-      await page.setViewportSize({ width, height: 844 });
-      for (const percent of [100, 200]) {
-        await fontScale(page, percent);
-        const explanation = page.locator('#feedback .fb-snip');
-        await expect(explanation).toHaveText(question.e);
-        await expect(explanation).toHaveCSS('text-align', 'justify');
-        await expect(explanation).toHaveCSS('text-align-last', 'start');
-        await expect(explanation).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
-        for (const side of ['top', 'right', 'bottom', 'left']) {
-          await expect(explanation).toHaveCSS('border-' + side + '-width', '0px');
-        }
-        await expect(page.locator('#feedback .nql-answer-result'))
-          .toHaveText(correct ? '✓Resposta correta' : '×Resposta incorreta');
-        await expectRightContainment(page, '#feedback');
-        await expectRightContainment(page, '#feedback .fb-snip');
+    for (const percent of [100, 200]) {
+      await fontScale(page, percent);
+      const explanation = page.locator('#feedback .fb-snip');
+      await expect(explanation).toHaveText(question.e);
+      await expect(explanation).toHaveCSS('text-align', width <= 768 ? 'left' : 'justify');
+      await expect(explanation).toHaveCSS('text-align-last', 'start');
+      await expect(explanation).toHaveCSS('background-color', 'rgba(0, 0, 0, 0)');
+      for (const side of ['top', 'right', 'bottom', 'left']) {
+        await expect(explanation).toHaveCSS('border-' + side + '-width', '0px');
       }
+      await expect(page.locator('#feedback .nql-answer-result'))
+        .toHaveText(correct ? '✓Resposta correta' : '×Resposta incorreta');
+      await expectRightContainment(page, '#feedback');
+      await expectRightContainment(page, '#feedback .fb-snip');
     }
-    await testInfo.attach('explicacao-' + (correct ? 'acerto' : 'erro') + '-200', {
+    await testInfo.attach('explicacao-' + (correct ? 'acerto' : 'erro') + '-' + width + '-200', {
       body: await page.screenshot({ fullPage: true }), contentType: 'image/png',
     });
     await page.locator('#nextBtn').click();

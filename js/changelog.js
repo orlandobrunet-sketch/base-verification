@@ -412,6 +412,56 @@
           <footer class="nqnarr-footer"><button class="nqnarr-primary" data-close-closest=".modal">Fechar</button></footer>
         </div>
       `;
+      // Local navigation belongs to this reader; the published history above
+      // stays intact and opening an entry does not change the SPA URL.
+      const reader = modal.querySelector('.nqnarr-reading');
+      const entries = [...reader.children].filter(entry => entry.matches('article, div'));
+      const index = document.createElement('nav');
+      index.id = 'nqNewsIndex';
+      index.setAttribute('aria-label', 'Índice de novidades');
+      index.style.cssText = 'margin:0 0 18px;padding:6px 12px;border:1px solid #91dfe344;border-radius:8px;';
+      const disclosure = document.createElement('details');
+      const summary = document.createElement('summary');
+      summary.textContent = 'Ir para uma atualização';
+      summary.style.cssText = 'min-height:44px;display:flex;align-items:center;cursor:pointer;color:#91dfe3;font:600 .9rem/1.5 var(--nql-font-body,inherit);overflow-wrap:anywhere;';
+      const list = document.createElement('ul');
+      list.style.cssText = 'list-style:none;margin:0;padding:4px 0 8px;display:grid;gap:4px;';
+      const localLink = (label, destination, onActivate) => {
+        const link = document.createElement('a');
+        link.textContent = label;
+        link.href = '#' + destination;
+        link.style.cssText = 'display:flex;align-items:center;min-height:44px;max-width:100%;color:#91dfe3;font:inherit;font-size:.9rem;line-height:1.5;text-underline-offset:3px;overflow-wrap:anywhere;';
+        link.addEventListener('click', event => { event.preventDefault(); onActivate(); });
+        return link;
+      };
+      entries.forEach((entry, position) => {
+        const heading = entry.querySelector('h3') || entry.firstElementChild?.lastElementChild;
+        if (!heading) return;
+        const prefix = entry.matches('article') ? entry.firstElementChild.textContent.split('·')[0].trim()
+          : entry.firstElementChild.firstElementChild.textContent.trim();
+        entry.id = 'nqNewsEntry-' + position;
+        entry.dataset.newsEntry = String(position);
+        entry.tabIndex = -1;
+        entry.style.scrollMarginBlock = '12px';
+        if (!heading.id) heading.id = 'nqNewsHeading-' + position;
+        entry.setAttribute('aria-labelledby', heading.id);
+        const item = document.createElement('li');
+        item.appendChild(localLink(prefix + ' — ' + heading.textContent.trim(), entry.id, () => {
+          disclosure.open = false;
+          entry.focus({ preventScroll: true });
+          entry.scrollIntoView({ block: 'start', behavior: 'instant' });
+        }));
+        list.appendChild(item);
+        const back = localLink('Voltar ao índice', index.id, () => {
+          summary.focus({ preventScroll: true });
+          index.scrollIntoView({ block: 'start', behavior: 'instant' });
+        });
+        back.style.marginBottom = '16px';
+        entry.after(back);
+      });
+      disclosure.append(summary, list);
+      index.appendChild(disclosure);
+      reader.prepend(index);
       modal.setAttribute('role', 'presentation');
       document.body.appendChild(modal);
       nqDialogo(modal, { painel: modal.querySelector('.nqnews-card') });

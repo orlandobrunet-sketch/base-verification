@@ -994,6 +994,11 @@
     const incomplete = (counts != null && !containerValid) || parsed.some(([, count]) => !Number.isSafeInteger(count) || count < 0);
     const rows = parsed.filter(([, count]) => Number.isSafeInteger(count) && count > 0)
       .sort((left, right) => right[1] - left[1]);
+    const now = Date.now(), monthAgo = now - 30 * 86400000;
+    const activity = (Array.isArray(data?.log) ? data.log : []).filter(entry => entry && typeof entry === 'object' && !Array.isArray(entry)
+      && typeof entry.qid === 'string' && entry.qid.trim().length > 0
+      && typeof entry.reason === 'string' && Number.isSafeInteger(entry.ts) && entry.ts >= monthAgo && entry.ts <= now)
+      .sort((left, right) => right.ts - left.ts);
 
     if (!rows.length) {
       return `<p class="nqd-error-empty">${incomplete ? 'Os motivos registrados não puderam ser exibidos.' : 'Você ainda não registrou motivos de erro. Ao marcar o motivo depois de uma resposta, os padrões aparecem aqui.'}</p>`;
@@ -1005,8 +1010,14 @@
         const share = count / Number(total) * 100;
         const label = share > 0 && share < .1 ? 'menos de 0,1%' : share.toLocaleString('pt-BR', { maximumFractionDigits: 1 }) + '%';
         const reasonLabel = Object.prototype.hasOwnProperty.call(ERROR_REASON_LABELS, reason) ? ERROR_REASON_LABELS[reason] : reason;
-        return `<div role="listitem"><span>${_escape(reasonLabel)}</span><span class="nqd-error-count"><strong>${_formatNumber(count)}</strong><small>${count === 1 ? 'registro' : 'registros'}</small><span class="nqd-error-share">${label}</span><span class="nqd-sr-only"> dos registros</span></span><div class="nqd-error-bar" aria-hidden="true"><span style="width:${share}%"></span></div></div>`;
+        const recent = activity.filter(entry => entry.reason === reason).slice(0, Math.min(3, count));
+        const recentMarkup = recent.length ? `<ol class="nqd-error-activity">${recent.map(entry => {
+          const date = new Date(entry.ts);
+          return `<li>Reflexão registrada em <time datetime="${date.toISOString()}">${_escape(date.toLocaleString('pt-BR', {day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit'}))}</time></li>`;
+        }).join('')}</ol>` : '<p>Nenhuma atividade recente disponível para este motivo.</p>';
+        return `<div role="listitem"><span>${_escape(reasonLabel)}</span><span class="nqd-error-count"><strong>${_formatNumber(count)}</strong><small>${count === 1 ? 'registro' : 'registros'}</small><span class="nqd-error-share">${label}</span><span class="nqd-sr-only"> dos registros</span></span><div class="nqd-error-bar" aria-hidden="true"><span style="width:${share}%"></span></div><details class="nqd-error-detail"><summary>Ver atividade recente<span class="nqd-sr-only">: ${_escape(reasonLabel)}</span></summary><p>Até três reflexões disponíveis dos últimos 30 dias. A frequência acima inclui todos os registros acumulados.</p>${recentMarkup}</details></div>`;
       }).join('')}</div>
+      <div class="nqd-error-study"><p>Escolha uma área para continuar estudando.</p><button type="button" class="nqd-action" data-action="_dashExploreSkills">Escolher uma área de estudo ${_svg('arrow')}</button></div>
       <p class="nqd-error-note">A reflexão é opcional: estes registros não representam todos os seus erros.</p>${incomplete ? '<p class="nqd-error-note">Alguns valores não puderam ser exibidos.</p>' : ''}`;
   }
 
@@ -1028,6 +1039,17 @@
     if (accuracy < 0.5) return { key: 'attention', label: 'Menos da metade de acertos', rank: 0 };
     if (accuracy < 0.7 || total < 10) return { key: 'consolidating', label: total < 10 ? 'Resultado de 5 a 9 respostas' : 'De 50% a menos de 70% de acertos', rank: 1 };
     return { key: 'consistent', label: '70% ou mais em 10+ respostas', rank: 4 };
+  }
+
+  function _mapStudyPreview(category) {
+    const axes = typeof NEFRO_AXES !== 'undefined' && Array.isArray(NEFRO_AXES) ? NEFRO_AXES : [];
+    if (typeof topics === 'undefined' || !Array.isArray(topics)) return '';
+    // Same read-only category set used by _selectStudyCategories and native Study.
+    const selectedCategories = new Set(axes.filter(axis => axis.cat === category).map(axis => axis.cat));
+    if (!selectedCategories.size) return '';
+    const pool = topics.filter(question => selectedCategories.has(question.cat)).length;
+    const session = Math.min(20, pool);
+    return `<small class="nqd-map-study-preview" data-map-study-preview data-category="${_escape(category)}" data-pool="${pool}" data-session="${session}">${_formatNumber(pool)} ${pool === 1 ? 'questão disponível' : 'questões disponíveis'} · sessão de ${session}</small>`;
   }
 
   function _tabMapa() {
@@ -1072,13 +1094,13 @@
     const attentionCount = competencies.filter(comp => _mapStatus(stats[comp.id]).key === 'attention').length;
     const recommendationStat = recommendation && stats[recommendation.weakest.id];
     const mapAction = recommendation ? `
-      <aside class="nqd-map-suggestion" aria-label="Sugestão de estudo"><div><strong>Uma área para retomar: ${_escape(recommendation.label)}</strong><p>Em ${_escape(recommendation.weakest.label)}, ${recommendationStat.c} ${recommendationStat.c === 1 ? 'acerto' : 'acertos'} em ${recommendationStat.t} ${recommendationStat.t === 1 ? 'resposta' : 'respostas'}.</p></div><button type="button" class="nqd-action" data-action="_dashTrainCategories" data-arg="${_escape(recommendation.cat)}">Estudar ${_escape(recommendation.label)} ${_svg('arrow')}</button><small>Abre questões de toda a área, não apenas do tema citado.</small></aside>` : `
+      <aside class="nqd-map-suggestion" aria-label="Sugestão de estudo"><div><strong>Uma área para retomar: ${_escape(recommendation.label)}</strong><p>Em ${_escape(recommendation.weakest.label)}, ${recommendationStat.c} ${recommendationStat.c === 1 ? 'acerto' : 'acertos'} em ${recommendationStat.t} ${recommendationStat.t === 1 ? 'resposta' : 'respostas'}.</p>${_mapStudyPreview(recommendation.cat)}</div><button type="button" class="nqd-action" data-action="_dashTrainCategories" data-arg="${_escape(recommendation.cat)}">Estudar ${_escape(recommendation.label)} ${_svg('arrow')}</button><small>Abre questões de toda a área, não apenas do tema citado.</small></aside>` : `
       <p class="nqd-map-intro-note">As respostas por tema aparecem conforme você pratica. Escolha uma área abaixo para começar.</p>`;
 
     const content = groupEntries.length ? groupEntries.map((group, groupIndex) => {
       const searchable = [group.label, ...group.ordered.map(comp => comp.label)].join(' ').toLocaleLowerCase('pt-BR');
       return `<article class="nqd-map-area" data-map-area aria-labelledby="nqdMapArea-${groupIndex}">
-        <div class="nqd-map-area-heading"><div><h3 id="nqdMapArea-${groupIndex}">${_escape(group.label)}</h3><p>${group.ordered.length} ${group.ordered.length === 1 ? 'tema' : 'temas'} nesta área</p></div><button type="button" class="nqd-action" data-action="_dashTrainCategories" data-arg="${_escape(group.cat)}" aria-label="Estudar esta área: ${_escape(group.label)}">Estudar esta área ${_svg('arrow')}</button></div>
+        <div class="nqd-map-area-heading"><div><h3 id="nqdMapArea-${groupIndex}">${_escape(group.label)}</h3><p>${group.ordered.length} ${group.ordered.length === 1 ? 'tema' : 'temas'} nesta área</p>${_mapStudyPreview(group.cat)}</div><button type="button" class="nqd-action" data-action="_dashTrainCategories" data-arg="${_escape(group.cat)}" aria-label="Estudar esta área: ${_escape(group.label)}">Estudar esta área ${_svg('arrow')}</button></div>
         <details class="nqd-map-group" data-map-group data-map-skill="${_escape(group.identity)}" data-map-status="${_escape(group.statuses.join(' '))}" data-map-label="${_escape(group.label.toLocaleLowerCase('pt-BR'))}" data-search="${_escape(searchable)}">
         <summary class="nqd-map-summary">
           <span>Ver respostas por tema</span>

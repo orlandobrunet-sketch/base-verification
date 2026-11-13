@@ -180,9 +180,19 @@
     component._nqsCleanup?.();
     const controls = [...component.querySelectorAll('[data-nqs-select]')];
     const cards = [...component.querySelectorAll('[data-nqs-card]')];
+    const pane = component.closest('[role="tabpanel"]');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let activeDetail = null;
+    const stopDetailMotion = () => {
+      activeDetail?.classList.remove('is-selecting');
+      activeDetail = null;
+    };
+    const motionAllowed = () => !document.hidden && !reducedMotion.matches
+      && component.isConnected && !component.closest('[hidden], [inert]');
     const select = index => {
       const card = cards.find(item => item.dataset.nqsSelect === index);
-      if (!card) return;
+      if (!card || card.getAttribute('aria-pressed') === 'true') return;
+      stopDetailMotion();
       component.dataset.nqsCurrent = card.dataset.skillId;
       controls.forEach(control => {
         const active = control.dataset.nqsSelect === index;
@@ -193,6 +203,10 @@
         item.classList.toggle('is-selected', (item.dataset.nqsAxis ?? item.dataset.nqsVertex) === index);
       });
       component.querySelectorAll('[data-nqs-detail]').forEach(detail => { detail.hidden = detail.dataset.nqsDetail !== index; });
+      if (motionAllowed()) {
+        activeDetail = component.querySelector(`[data-nqs-detail="${index}"]`);
+        activeDetail?.classList.add('is-selecting');
+      }
       const announcement = component.querySelector('[data-nqs-announcement]');
       if (announcement) announcement.textContent = `${card.querySelector('.nqs-area-name').textContent}. ${card.querySelector('.nqs-area-score').textContent}. ${card.querySelector('.nqs-area-sample').textContent}. ${card.querySelector('.nqs-area-state').textContent}. Detalhes atualizados no atlas.`;
     };
@@ -215,11 +229,30 @@
       group[next].focus({ preventScroll: true });
       select(group[next].dataset.nqsSelect);
     };
+    const onMotionBoundary = () => { if (!motionAllowed()) stopDetailMotion(); };
+    const onAnimationEnd = event => {
+      if (event.target === activeDetail && event.animationName === 'nqs-select-detail') stopDetailMotion();
+    };
+    const onDetailFocus = event => {
+      if (activeDetail?.contains(event.target)) stopDetailMotion();
+    };
     component.addEventListener('click', onClick);
     component.addEventListener('keydown', onKeydown);
+    component.addEventListener('animationend', onAnimationEnd);
+    component.addEventListener('focusin', onDetailFocus);
+    document.addEventListener('visibilitychange', onMotionBoundary);
+    reducedMotion.addEventListener?.('change', onMotionBoundary);
+    const paneObserver = new MutationObserver(onMotionBoundary);
+    if (pane) paneObserver.observe(pane, {attributes: true, attributeFilter: ['hidden', 'inert']});
     const cleanup = () => {
+      stopDetailMotion();
+      paneObserver.disconnect();
       component.removeEventListener('click', onClick);
       component.removeEventListener('keydown', onKeydown);
+      component.removeEventListener('animationend', onAnimationEnd);
+      component.removeEventListener('focusin', onDetailFocus);
+      document.removeEventListener('visibilitychange', onMotionBoundary);
+      reducedMotion.removeEventListener?.('change', onMotionBoundary);
       component._nqsCleanup = null;
     };
     component._nqsCleanup = cleanup;

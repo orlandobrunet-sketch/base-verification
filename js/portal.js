@@ -76,6 +76,7 @@
     var wasOpen = false;
     var returnFocus = null;
     var initialFocusFrame = 0;
+    var activePanel = null;
 
     function isVisible(element) {
       if (!element || element.hidden || !element.getClientRects().length) return false;
@@ -111,6 +112,15 @@
       if (formEntrar) formEntrar.setAttribute('aria-hidden', String(!loginActive));
       if (formCadastrar) formCadastrar.setAttribute('aria-hidden', String(!registerActive));
       if (formForgot) formForgot.setAttribute('aria-hidden', String(!forgotActive));
+      // Route changes affect the form alone. Message/busy mutations retain the
+      // same node and never restart the entrance or defer its existing focus.
+      var nextPanel = !modal.classList.contains('show') ? null
+        : forgotActive ? formForgot : registerActive ? formCadastrar : loginActive ? formEntrar : null;
+      if (nextPanel !== activePanel) {
+        if (activePanel) activePanel.classList.remove('nql-auth-panel-active');
+        activePanel = nextPanel;
+        if (activePanel) activePanel.classList.add('nql-auth-panel-active');
+      }
     }
 
     function firstFieldForCurrentPanel() {

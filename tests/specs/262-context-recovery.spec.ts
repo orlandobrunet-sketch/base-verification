@@ -207,7 +207,7 @@ for (const fault of ['rejection', 'incomplete'] as const) {
     await page.clock.install({ time: new Date('2026-11-13T12:00:00Z') });
     await page.clock.pauseAt(new Date('2026-11-13T12:00:01Z'));
     await page.addInitScript(({ fault, destination, protectedStorage }) => {
-      if (location.pathname !== '/clear-cache.html') return;
+      if (!['/clear-cache.html', '/clear-cache'].includes(location.pathname)) return;
       for (const [key, value] of Object.entries(protectedStorage)) localStorage.setItem(key, value);
       sessionStorage.setItem('nq-post-cache-url', destination);
       const nativeKeys = CacheStorage.prototype.keys;
@@ -238,6 +238,7 @@ for (const fault of ['rejection', 'incomplete'] as const) {
     await page.goto('/clear-cache.html', { waitUntil: 'domcontentloaded' });
     const status = page.locator('#status');
     const retry = page.getByRole('button', { name: 'Tentar novamente', exact: true });
+    await expect.poll(() => page.evaluate(() => (window as any).__recoveryProbe?.deletes ?? -1)).toBe(1);
     await expect(status).toHaveAttribute('role', 'alert');
     await expect(status).toContainText('Não foi possível concluir');
     await expect(status).not.toContainText('Pronto');
@@ -274,3 +275,132 @@ for (const fault of ['rejection', 'incomplete'] as const) {
     expect(writes).toEqual([]);
   });
 }
+
+test('focused ranking refresh keeps its scroll anchor, deduplicates native clicks and preserves editing at 320px and 200%', async ({ page }, info) => {
+  const rows = Array.from({ length: 24 }, (_, index) => ({
+    ...recordRows[index === 14 ? 0 : 1],
+    player_name: index === 14 ? 'Ana da coleção' : 'Explorador ' + String(index + 1).padStart(2, '0'),
+    score: 900 - index * 17,
+  }));
+  let records = 0;
+  const held = new Map<number, Route>();
+  const writes = await localRoutes(page, async (route, url) => {
+    if (route.request().method() !== 'GET' || url.hostname !== 'wviutasgroltjuyxpevc.supabase.co'
+      || url.pathname !== '/rest/v1/leaderboard') return false;
+    records++;
+    if (records === 1) await route.fulfill({ status: 200, json: rows });
+    else if (records === 2 || records === 3) held.set(records, route);
+    else await route.fulfill({ status: 500, json: { message: 'Unexpected extra ranking request' } });
+    return true;
+  });
+  // More recent, type-specific routes apply only to this new real-font case.
+  // They never permit an external script and do not change localRoutes().
+  for (const [pattern, type] of [
+    ['https://fonts.googleapis.com/**', 'stylesheet'],
+    ['https://fonts.gstatic.com/**', 'font'],
+  ]) await page.route(pattern, route => {
+    const request = route.request();
+    if (request.method() !== 'GET') {
+      writes.push(request.method() + ' ' + new URL(request.url()).pathname);
+      return route.abort();
+    }
+    return request.resourceType() === type ? route.continue() : route.abort();
+  });
+  await page.setViewportSize({ width: 320, height: 700 });
+  await enterGuestAtrium(page);
+  const realFonts = await page.evaluate(async () => {
+    const body = await document.fonts.load('400 16px "Source Sans 3"');
+    const heading = await document.fonts.load('600 24px "Alegreya"');
+    await document.fonts.ready;
+    return {
+      body: body.filter(face => face.status === 'loaded').map(face => face.family.replaceAll('"', '')),
+      heading: heading.filter(face => face.status === 'loaded').map(face => face.family.replaceAll('"', '')),
+    };
+  });
+  expect(realFonts.body, 'Focused Refresh geometry requires the actual body font').toContain('Source Sans 3');
+  expect(realFonts.heading, 'The native ranking heading uses its actual display font').toContain('Alegreya');
+  await info.attach('focused-refresh-real-fonts', { contentType: 'application/json', body: JSON.stringify(realFonts) });
+  expect(await page.evaluate(() => (window as any).authUser)).toBeNull();
+  const protectedBefore = await rankingProtectedState(page);
+  await page.locator('[data-atrium-route="ranking"]').click();
+  await expect(page.locator('#boardBody tr')).toHaveCount(rows.length);
+  expect(records).toBe(1);
+  await page.addStyleTag({ content: 'html { font-size: 32px !important; }' });
+  const refresh = page.locator('#boardRefresh');
+  const search = page.locator('#boardSearch');
+  const observations: unknown[] = [];
+  const observe = async (label: string) => {
+    const geometry = await page.locator('#boardModal .board-modal').evaluate(panel => {
+      const control = document.getElementById('boardRefresh')!;
+      const box = control.getBoundingClientRect();
+      return { scrollTop: panel.scrollTop, scrollHeight: panel.scrollHeight, clientHeight: panel.clientHeight,
+        activeId: (document.activeElement as HTMLElement | null)?.id || null,
+        refresh: { x: box.x, y: box.y, width: box.width, height: box.height, bottom: box.bottom,
+          disabled: (control as HTMLButtonElement).disabled,
+          ariaDisabled: control.getAttribute('aria-disabled'), busy: control.getAttribute('aria-busy') },
+        viewport: { width: innerWidth, height: innerHeight }, font: getComputedStyle(document.documentElement).fontSize };
+    });
+    observations.push({ label, records, geometry });
+    await info.attach('focused-refresh-' + label, { contentType: 'application/json', body: JSON.stringify(geometry) });
+  };
+  await refresh.scrollIntoViewIfNeeded(); await refresh.focus();
+  await expect(refresh).toBeFocused(); await expect(refresh).toBeInViewport();
+  await observe('before-first-refresh');
+
+  await refresh.click();
+  await expect.poll(() => held.has(2)).toBe(true);
+  await expect(refresh).toHaveAttribute('aria-disabled', 'true');
+  await expect(refresh).toHaveAttribute('aria-busy', 'true');
+  expect(await refresh.evaluate(button => (button as HTMLButtonElement).disabled)).toBe(false);
+  await expect(refresh).toBeFocused(); await expect(refresh).toBeInViewport();
+  // aria-disabled communicates unavailability without native disabled removing
+  // this focus anchor. Exercise HTMLElement.click() itself, not a controller or
+  // a forced Playwright gesture; pending-request dedup must prevent real work.
+  await refresh.evaluate(button => {
+    (button as HTMLButtonElement).click(); (button as HTMLButtonElement).click();
+  });
+  await page.evaluate(() => new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve()))));
+  expect(records).toBe(2);
+  await expect(refresh).toBeFocused(); await expect(refresh).toBeInViewport();
+  await observe('held-first-refresh-after-native-clicks');
+  await info.attach('focused-refresh-held-320-200', { contentType: 'image/png', body: await page.screenshot({ fullPage: false }) });
+  const firstResponse = page.waitForResponse(response => response.request().method() === 'GET'
+    && new URL(response.url()).pathname === '/rest/v1/leaderboard' && response.status() === 200);
+  await held.get(2)!.fulfill({ status: 200, json: rows }); await firstResponse;
+  await expect(page.locator('#boardBody tr')).toHaveCount(rows.length);
+  await expect(page.locator('#boardLoading')).toBeHidden();
+  await expect(refresh).not.toHaveAttribute('aria-disabled', 'true');
+  await expect(refresh).not.toHaveAttribute('aria-busy', 'true');
+  await expect(refresh).toBeEnabled(); await expect(refresh).toBeFocused(); await expect(refresh).toBeInViewport();
+  await observe('first-response-restored-same-focus');
+  expect(await rankingProtectedState(page)).toEqual(protectedBefore);
+
+  await refresh.click();
+  await expect.poll(() => held.has(3)).toBe(true);
+  await expect(refresh).toHaveAttribute('aria-disabled', 'true');
+  await expect(refresh).toHaveAttribute('aria-busy', 'true');
+  await expect(refresh).toBeFocused(); await expect(refresh).toBeInViewport();
+  await search.fill('Ana da coleção');
+  await expect(search).toBeFocused(); await expect(search).toHaveValue('Ana da coleção');
+  await expect(search).toBeInViewport();
+  await observe('held-second-refresh-user-editing');
+  const secondResponse = page.waitForResponse(response => response.request().method() === 'GET'
+    && new URL(response.url()).pathname === '/rest/v1/leaderboard' && response.status() === 200);
+  await held.get(3)!.fulfill({ status: 200, json: rows }); await secondResponse;
+  await expect(page.locator('#boardBody tr')).toHaveCount(1);
+  await expect(page.locator('#boardBody')).toContainText('Ana da coleção');
+  await expect(page.locator('#boardBody')).not.toContainText('Explorador');
+  await expect(search).toHaveValue('Ana da coleção');
+  await expect(search).toBeFocused(); await expect(search).toBeInViewport();
+  await expect(refresh).not.toBeFocused();
+  await expect(refresh).not.toHaveAttribute('aria-disabled', 'true');
+  await expect(refresh).not.toHaveAttribute('aria-busy', 'true');
+  await expect(refresh).toBeEnabled(); await expect(page.locator('#boardLoading')).toBeHidden();
+  expect(records).toBe(3);
+  await observe('second-response-preserved-editing');
+  await info.attach('focused-refresh-user-edit-320-200', { contentType: 'image/png', body: await page.screenshot({ fullPage: false }) });
+  await info.attach('focused-refresh-observations', { contentType: 'application/json', body: JSON.stringify(observations) });
+  expect(await rankingProtectedState(page)).toEqual(protectedBefore);
+  expect(await page.evaluate(() => (window as any).authUser)).toBeNull();
+  expect(writes).toEqual([]);
+});

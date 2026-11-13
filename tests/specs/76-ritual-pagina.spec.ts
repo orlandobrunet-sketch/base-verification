@@ -27,7 +27,7 @@ async function abrir(page: Page, opcoes: { largura?: number; bloquearBanco?: boo
   if (opcoes.bloquearBanco) {
     await page.locator('[data-portal-route="guest"]').click();
   } else {
-    await injectGameState(page);
+    await injectGameState(page, {}, { asGuest: true });
     await page.waitForLoadState('load');
   }
   await page.evaluate(() => { localStorage.removeItem('nefroquest-recommended-difficulty'); localStorage.removeItem('nefroquest-ritual-done'); });

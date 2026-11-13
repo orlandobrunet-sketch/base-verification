@@ -78,6 +78,13 @@
       gap: 10px;
     }
 
+    .nq-off-sync-banner > div { min-width: 0; flex: 1; }
+    .nq-off-connection { display: grid; margin-top: 4px; color: #b7c2cc; }
+    .nq-off-connection > span { grid-area: 1 / 1; overflow-wrap: anywhere; }
+    .nq-off-connection-reserve { visibility: hidden; }
+    .nq-off-return { display: inline-flex; align-items: center; min-height: 44px; margin-top: 4px; color: #91dfe3; text-underline-offset: 3px; }
+    .nq-off-return:focus-visible { outline: 2px solid #91dfe3; outline-offset: 3px; }
+
     .nq-off-card {
       background: linear-gradient(180deg, #161d30, #0d1424);
       border: 2px solid rgba(59, 130, 246, 0.2);
@@ -235,11 +242,16 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
       </div>
     </div>
 
-    <!-- Banner informativo de sincronização -->
+    <!-- Estado local: a conexão não altera a sessão nem navega automaticamente. -->
     <div class="nq-off-sync-banner">
-      <span style="font-size:1.2rem;">⚡</span>
+      <span style="font-size:1.2rem;" aria-hidden="true">⚡</span>
       <div>
-        <strong>Modo Offline Ativo:</strong> Todo o progresso obtido nesta página será salvo localmente e sincronizado automaticamente com a nuvem (Supabase) assim que você se conectar à internet.
+        <strong>Estudo local</strong> As respostas ficam salvas neste navegador.
+        <span class="nq-off-connection">
+          <span class="nq-off-connection-reserve" aria-hidden="true">Conexão disponível</span>
+          <span id="nqOffConnection" role="status" aria-live="polite" aria-atomic="true"></span>
+        </span>
+        <a class="nq-off-return" href="/jogar/">Voltar ao jogo</a>
       </div>
     </div>
 
@@ -250,6 +262,16 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
       </div>
     </div>
   </main>
+
+  <script>
+    (function () {
+      const status = document.getElementById('nqOffConnection');
+      const updateConnection = () => { status.textContent = navigator.onLine ? 'Conexão disponível' : 'Sem conexão'; };
+      window.addEventListener('online', updateConnection);
+      window.addEventListener('offline', updateConnection);
+      updateConnection();
+    })();
+  </script>
 
   <!-- Banco de dados de questões (topics) em cache -->
   <script>window.NQ_REQUIRES_QUESTION_REVISIONS = true;</script>

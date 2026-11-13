@@ -2634,6 +2634,52 @@
       (window.requestAnimationFrame || window.setTimeout)(startReward);
     }
 
+    // Presentation only. A missing resumable save is not proof of a new player.
+    // Retain raw records (including tombstones/foreign owners) without reading,
+    // migrating or claiming their contents, and wait for authentication startup.
+    let _welcomeFirstAccessObserver = null;
+    function _syncWelcomeFirstAccess() {
+      const screen = document.getElementById('welcomeScreen');
+      const actions = screen?.querySelector('.nql-atrium__primary-actions');
+      if (!screen || !actions || screen.dataset.nqUi !== 'lumen') return;
+      let fresh = false;
+      try {
+        const historyKeys = [SAVE_KEY, CANONICAL_SAVE_KEY, STATS_KEY, MASTERED_KEY,
+          'nefroquest-pilot-v1', 'nefroquest-detailed-stats', 'nefroquest-all-answered-qids',
+          'nefroquest-sr-data', 'nefroquest-achievements', 'nefroquest-badge-history',
+          'nefroquest-journey-count', 'nefroquest-study-state', 'nefroquest-exam-state',
+          'nq-acidbase-progress', 'nefroquest-minigame-best', 'nefroquest-ritual-done',
+          'nefroquest-comp-stats', 'nefroquest-error-reasons', 'nefroquest-arqui-defeated',
+          'nefroquest-hardcore-completed', 'nefroquest_total_accumulated_knowledge',
+          'nq-unlocked-refs', 'unlockedArticles', 'nq_last_study'];
+        const hasStoredSession = Array.from({length:localStorage.length}, (_, index) => localStorage.key(index))
+          .some(key => /^sb-.*-auth-token(?:[.].*)?$/.test(key || ''));
+        fresh = !authUser && !hasStoredSession && !document.documentElement.classList.contains('nq-auth-pending') &&
+          !isCharacterPilot() && historyKeys.every(key => localStorage.getItem(key) === null);
+      } catch (error) { /* An unreadable history cannot establish a first visit. */ }
+      screen.dataset.firstAccess = String(fresh);
+      let hint = screen.querySelector('.nql-atrium__first-step');
+      if (fresh && !hint) {
+        hint = document.createElement('p');
+        hint.className = 'nql-atrium__first-step';
+        hint.id = 'welcomeFirstStep';
+        hint.textContent = 'Seu primeiro passo: escolha um guardião e o ritmo da jornada.';
+        actions.insertAdjacentElement('afterend', hint);
+      }
+      if (hint) hint.hidden = !fresh;
+      const start = actions.querySelector('[data-action="startNewFromWelcome"]');
+      if (start) {
+        const ids = new Set((start.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean));
+        fresh ? ids.add('welcomeFirstStep') : ids.delete('welcomeFirstStep');
+        ids.size ? start.setAttribute('aria-describedby', [...ids].join(' ')) : start.removeAttribute('aria-describedby');
+      }
+      if (!_welcomeFirstAccessObserver) {
+        _welcomeFirstAccessObserver = new MutationObserver(_syncWelcomeFirstAccess);
+        _welcomeFirstAccessObserver.observe(document.documentElement, {attributes:true, attributeFilter:['class']});
+        _welcomeFirstAccessObserver.observe(screen, {attributes:true, attributeFilter:['class']});
+      }
+    }
+
     function refreshWelcomeSave() {
       // The normal resume card always previews its own domain. This read must
       // not migrate, claim, or repair normal storage while a pilot is active.
@@ -2715,6 +2761,7 @@
           delete resumeShell.dataset.rewardToken;
         }
       }
+      _syncWelcomeFirstAccess();
     }
 
     

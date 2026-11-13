@@ -1527,3 +1527,11 @@ body.nql-auth-open {
   .nql-portal__heroes strong { font-size: .8rem; }
   .nql-portal__heroes small { display: none; }
 }
+
+/* Only a newly selected form fades; focus and asynchronous feedback stay immediate. */
+@keyframes nql-auth-panel-enter { from { opacity: .2; } to { opacity: 1; } }
+@media (prefers-reduced-motion: no-preference) {
+  #authModal[data-nq-ui="lumen"].show .nql-auth-panel-active {
+    animation: nql-auth-panel-enter 180ms ease-out;
+  }
+}

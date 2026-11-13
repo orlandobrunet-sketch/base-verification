@@ -54,10 +54,15 @@ function harness(mode, f) {
     if (id) nodes.set(id, value);
     return value;
   }
-  for (const id of ['studyQuestionArea', 'studyFeedback', 'studyProgress', 'studyCorrect', 'studyWrong', 'nqOffCard', 'nqOffCorrectCount', 'nqOffFeedbackArea']) node(id);
+  for (const id of ['studyQuestionArea', 'studyFeedback', 'studyProgress', 'studyCorrect', 'studyWrong', 'nqOffCard', 'nqOffCorrectCount', 'nqOffFeedbackArea', 'nqOffConnection']) node(id);
   let owner = {generation: 1}, rejectWrites = false, fault = null, readbackThrows = false, armedReads = 0;
   const saveKey = mode === 'study' ? 'nefroquest-study-state' : 'nefroquest-offline-study-state';
+  const browserEvents = new EventTarget();
   const context = vm.createContext({console, Date, JSON, Math, Map, Set, Promise, AbortController,
+    Event, navigator: {onLine: false},
+    addEventListener: browserEvents.addEventListener.bind(browserEvents),
+    removeEventListener: browserEvents.removeEventListener.bind(browserEvents),
+    dispatchEvent: browserEvents.dispatchEvent.bind(browserEvents),
     topics: clone([f.after]), refsDB: clone(f.refs), NQQuestionRevisionManifest: clone(f.manifest), NQQuestionRevisionHistory: clone(f.history),
     localStorage: {getItem(key) {
       if (key === saveKey && readbackThrows) { readbackThrows = false; throw Error('Technical readback failure'); }

@@ -1571,3 +1571,69 @@ body:has(#welcomeScreen[data-nq-ui="lumen"]:not(.hidden)) .mobile-hero-btn {
 .cloud-conflict-summary { margin: 1rem 0; padding: .75rem; border: 1px solid var(--blue-dark); border-radius: .5rem; }
 .cloud-conflict-card .modal-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
 .cloud-conflict-card button { min-height: 44px; white-space: normal; flex: 1 1 12rem; }
+
+/* First access is established by local history and settled authentication. */
+#welcomeScreen[data-nq-ui="lumen"][data-first-access="true"] .welcome-stats.nql-mastery-rail {
+  display: none !important;
+}
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__first-step {
+  margin: .7rem 0 0;
+  max-width: 36rem;
+  color: var(--nql-text-soft);
+  font-size: .875rem;
+  line-height: 1.5;
+}
+#welcomeScreen[data-nq-ui="lumen"] .nql-atrium__first-step[hidden] { display: none; }
+
+/* Inline preferences stay inside the existing disclosure, without another dialog. */
+.profile-popup .nql-preference-help { margin: -.2rem 0 .5rem; padding-inline: .35rem; }
+.profile-popup .nql-preference-state {
+  margin: 0;
+  color: var(--txt-dim);
+  font-size: .75rem;
+  line-height: 1.5;
+}
+.profile-popup .nql-reading-preview { margin-top: .15rem; }
+.profile-popup .nql-reading-preview summary {
+  display: list-item;
+  min-height: 44px;
+  padding: .7rem 0;
+  color: var(--txt-mid);
+  font-size: .78rem;
+  cursor: pointer;
+}
+.profile-popup .nql-reading-preview summary:focus-visible {
+  outline: 2px solid var(--nql-lumen);
+  outline-offset: 2px;
+}
+.profile-popup .nql-reading-preview > p {
+  margin: 0 0 .5rem;
+  padding: .65rem;
+  border: 1px solid var(--nql-line);
+  border-radius: .35rem;
+  background: var(--nql-surface-solid);
+  color: var(--txt-mid);
+  font-size: .9rem;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: left;
+}
+body.reading-mode .profile-popup .nql-reading-preview > p {
+  color: var(--txt);
+  font-size: 1.15rem;
+  line-height: 1.68;
+}
+
+/* The narrow header can wrap with enlarged text. Keep this menu anchored to
+   the viewport horizontally, while its auto top retains the button's static
+   vertical position. The existing popup remains its own native scroller. */
+@media (max-width: 40rem) {
+  #welcomeScreen[data-nq-ui="lumen"] #welcomeProfilePopup {
+    position: fixed;
+    top: auto !important;
+    right: 12px !important;
+    left: auto !important;
+    margin-top: 8px;
+    max-height: calc(100dvh - max(96px, 6rem));
+  }
+}

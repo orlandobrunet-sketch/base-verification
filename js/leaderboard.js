@@ -332,7 +332,7 @@
       _boardPendingView = null;
       document.getElementById('boardLoading')?.classList.add('hidden');
       const refresh = document.getElementById('boardRefresh');
-      if (refresh) { refresh.disabled = false; refresh.removeAttribute('aria-busy'); }
+      if (refresh) { refresh.disabled = false; refresh.removeAttribute('aria-disabled'); refresh.removeAttribute('aria-busy'); }
       if (request.retry?.isConnected) {
         request.retry.disabled = false;
         request.retry.removeAttribute('aria-busy');
@@ -573,7 +573,13 @@
       if (retryHadFocus) searchEl?.focus({ preventScroll: true });
       if (loading) { loading.setAttribute('role', 'status'); loading.classList.remove('hidden'); }
       const refresh = document.getElementById('boardRefresh');
-      if (refresh) { refresh.disabled = true; refresh.setAttribute('aria-busy', 'true'); }
+      if (refresh) {
+        // Keep the focused refresh as the scroll anchor while its rows are rebuilt.
+        // Pending-view deduplication above blocks reactivation; other loads retain native disabled.
+        refresh.disabled = document.activeElement !== refresh;
+        refresh.setAttribute('aria-disabled', 'true');
+        refresh.setAttribute('aria-busy', 'true');
+      }
       ui.boardBody.setAttribute('aria-busy', 'true');
       if (retryButton?.isConnected && ui.boardBody.contains(retryButton)) {
         retryButton.disabled = true;
