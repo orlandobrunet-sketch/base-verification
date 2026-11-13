@@ -144,13 +144,19 @@ test.describe('movimento normal', () => {
   test('arte ausente mantém conteúdo nativo, fallback, início e saída alcançáveis', async ({ page }) => {
     const errors: string[] = [];
     page.on('pageerror', error => errors.push(error.message));
+    const aborted: string[] = [];
+    // The mobile catalogue can request Aldric before entering the case.
+    // Fail both approved asset paths before the first hub request can cache them.
+    await page.route('**/assets/chamber/**/aldric.webp', route => {
+      aborted.push(new URL(route.request().url()).pathname);
+      return route.abort();
+    });
     await openChamber(page);
-    const portrait = await page.evaluate(() => (window as any).NQChamberArt.portraits.aldric.src);
-    await page.route('**/assets/chamber/scenes/aldric.webp', route => route.abort());
-    await page.route('**/' + portrait.replace(/^\//, ''), route => route.abort());
     await openChamberCase(page, 'aldric');
     const before = await progress(page), original = await contextDigest(page);
     await expect(page.locator('[data-ab-case-scene="aldric"]')).toHaveAttribute('data-ab-scene-source', 'chamber');
+    expect(aborted.length).toBeGreaterThan(0);
+    expect(aborted).toContain('/assets/chamber/scenes/aldric.webp');
     await expect(page.locator('.ab-context .ab-title')).toBeVisible();
     await page.setViewportSize({ width: 320, height: 740 });
     await page.evaluate(async () => {

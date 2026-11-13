@@ -75,7 +75,7 @@ test('explicitly unavailable patient art leaves no markup, probe or placeholder'
   expect(requests).toEqual([]);
 });
 
-test('banner preserves full approved frame and canonical cinema narrative', async ({ page }) => {
+test('banner preserves approved native image, full-stage coverage and canonical cinema narrative', async ({ page }) => {
   test.skip(!await page.evaluate(() => matchMedia('(pointer:fine)').matches), 'Desktop-only banner/approved portrait; touch absence is covered separately.');
   await prepare(page);
   const frame = await page.evaluate(async () => {
@@ -85,9 +85,21 @@ test('banner preserves full approved frame and canonical cinema narrative', asyn
   expect(frame).toEqual({ width: 1280, height: 720 });
   await page.locator('.ab-hub-banner .ab-lab-art').evaluate((image: HTMLImageElement) => image.decode());
   const art = await page.locator('.ab-hub-banner .ab-lab-art').evaluate((el: HTMLImageElement) => {
-    const s = getComputedStyle(el); return { fit: s.objectFit, image: el.src, width: el.naturalWidth, height: el.naturalHeight };
+    const s = getComputedStyle(el), matrix = new DOMMatrixReadOnly(s.transform);
+    const stage = el.closest('.ab-hub-stage')!.getBoundingClientRect();
+    const scene = el.closest('[data-ab-lab]')!.getBoundingClientRect(), image = el.getBoundingClientRect();
+    return { fit: s.objectFit, image: el.src, width: el.naturalWidth, height: el.naturalHeight,
+      scaleX: Math.hypot(matrix.a, matrix.b), scaleY: Math.hypot(matrix.c, matrix.d),
+      fullStage: Math.abs(scene.left - stage.left) <= 2 && Math.abs(scene.top - stage.top) <= 2 &&
+        Math.abs(scene.right - stage.right) <= 2 && Math.abs(scene.bottom - stage.bottom) <= 2,
+      covers: image.left <= scene.left + 1 && image.top <= scene.top + 1 &&
+        image.right >= scene.right - 1 && image.bottom >= scene.bottom - 1 };
   });
-  expect(art.fit).toBe('contain');
+  // The entrance intentionally fills its stage; native pixels and uniform
+  // scaling protect the approved painting while allowing the requested crop.
+  expect(art.fit).toBe('cover');
+  expect(art.scaleX).toBeCloseTo(art.scaleY, 5);
+  expect(art.fullStage).toBe(true); expect(art.covers).toBe(true);
   expect(art.image).toContain('chamber-balance-still.webp');
   expect([art.width, art.height]).toEqual([1280,720]);
   const canonicalLead = `${expected.length} casos clínicos do reino aguardam diagnóstico ácido-base. Domine a fórmula de Winter, o ânion gap (e sua correção pela albumina), a delta ratio, o cloreto e o pH urinário, os distúrbios mistos e triplos e o gap osmolar para restaurar o equilíbrio.`;
