@@ -161,6 +161,7 @@ for (const viewport of [NOTEBOOK, CELULAR]) {
     await page.setViewportSize(viewport);
     await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
     await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+    await page.locator('[data-portal-route="guest"]').click();
     await injectBossState(page);
     const text = 'Alternativa demonstrativa com informações adicionais para validar a leitura e a escolha em uma janela de notebook. '.repeat(3).trim();
     await page.locator('#question').evaluate(el => { el.textContent = 'Pergunta de demonstração com respostas longas.'; });

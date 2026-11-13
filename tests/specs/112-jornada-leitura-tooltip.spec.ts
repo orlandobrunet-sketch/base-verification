@@ -29,8 +29,8 @@ async function openGame(page: Page, width: number) {
     return hostname === 'localhost' || hostname === '127.0.0.1'
       ? route.continue() : route.abort();
   });
-  await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
-  await injectGameState(page, { gold: 0, streak: 0 });
+  await page.goto('/404.html', { waitUntil: 'domcontentloaded' });
+  await injectGameState(page, { gold: 0, streak: 0 }, { asGuest: true, navigateToApp: true });
   await expect(page.locator('#question')).not.toBeEmpty();
   await settle(page);
 }

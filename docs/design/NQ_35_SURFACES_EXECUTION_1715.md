@@ -2,7 +2,7 @@
 
 13/11/2026. O proprietário autorizou implementar o relatório e delegou a ordem das prioridades. Este ledger conserva os 35 fluxos do inventário e distingue mudanças aplicadas de trabalho ainda necessário. Uma linha não equivale a uma melhoria entregue ou a uma página integralmente certificada.
 
-Base publicada: 17.12, merge 06f27f1a6e77c58f8cbe5481d16a6adeae62bfaf. A candidata 17.13 não foi publicada após a CI1075. Os dois primeiros lotes foram reunidos na 17.14, HEAD bc2eec760e72e3e50b25ba13a182a647b20ecaca; sua CI1076 ainda está pendente. A publicação da 17.14 foi segurada pelo overflow real do rótulo Acertos na Derrota em 320 px/fonte raiz de 32 px. A continuidade passa à candidata 17.15 no mesmo PR967, ainda sem publicação. O CSS mínimo foi integrado após 2/2 percursos completos, com bump 17.15 aplicado; os gates do HEAD final permanecem pendentes. As seis provas anteriores do menu R3 continuam válidas apenas para seu recorte e condições registrados.
+Base publicada: 17.12, merge 06f27f1a6e77c58f8cbe5481d16a6adeae62bfaf. A candidata 17.13 não foi publicada após a CI1075. Os dois primeiros lotes foram reunidos na 17.14, HEAD bc2eec760e72e3e50b25ba13a182a647b20ecaca; sua CI1076 concluiu RED com duas falhas do seletor antigo109, quatro flaky e 265 skips. A publicação da 17.14 foi segurada pelo overflow real do rótulo Acertos na Derrota em 320 px/fonte raiz de 32 px. A continuidade passa à candidata 17.15 no mesmo PR967, ainda sem publicação. O CSS mínimo foi integrado após 2/2 percursos completos, com bump 17.15 aplicado; os gates do HEAD final permanecem pendentes. As seis provas anteriores do menu R3 continuam válidas apenas para seu recorte e condições registrados.
 
 Estados usados na tabela:
 
@@ -58,7 +58,7 @@ A fase 2 R1 passou 40 de 42 cenários; seus dois REDs do menu estreito permanece
 
 Os cinco recortes E17.11 têm publicação comprovada no PR965/merge e63cbb85fc20fd926f29e28c8132eb7bbaafba14, Pages 43472577933, 17 hashes e percursos públicos delimitados. A evidência de personagem 16/32 px cobre somente as capturas registradas; a prévia preta no visualizador não é declarada defeito de produto. Inventário ocupado, compras, serviços reais e movimento normal de todas as superfícies não foram certificados por essas capturas.
 
-A CI1076 do HEAD 17.14 ainda está pendente; mesmo uma aprovação não publicaria automaticamente essa candidata, segurada pelo defeito de reflow encontrado depois. As provas de recompensas ficaram em 5/10 na rodada original e 3/4 na R1 focal, com um overflow ainda aberto. O timeout de preparo/decodificação de Conquistas permanece em diagnóstico. A contraprova do CSS passou 2/2; Conquistas mobile passou 1/1 após ajuste somente no helper de imagens efetivamente visíveis. A 17.15 ainda exige seus próprios gates finais e a observação complementar 1/1, aprovada e conferida nas duas capturas.
+A CI1076 do HEAD17.14 concluiu RED (3.301 diretos, duas falhas109, quatro flaky e 265 skips); mesmo uma aprovação não publicaria automaticamente essa candidata, segurada pelo defeito de reflow encontrado depois. As provas de recompensas ficaram em 5/10 na rodada original e 3/4 na R1 focal, com um overflow ainda aberto. O timeout de preparo/decodificação de Conquistas permanece em diagnóstico. A contraprova do CSS passou 2/2; Conquistas mobile passou 1/1 após ajuste somente no helper de imagens efetivamente visíveis. A 17.15 ainda exige seus próprios gates finais e a observação complementar 1/1, aprovada e conferida nas duas capturas.
 
 ## Condições restantes da candidata
 
@@ -69,3 +69,7 @@ A CI1076 do HEAD 17.14 ainda está pendente; mesmo uma aprovação não publicar
 - Continuar os recortes C sem reduzir silenciosamente as 35 superfícies aos lotes já aplicados. Publicar a 17.15 não encerra as linhas pendentes deste ledger.
 
 Conteúdo médico, referências, identidades, histórico, FSRS, economia e regras de pagamento permanecem fora desta revisão. A intermitência 191 segue aberta. Celular emulado, leitor de tela falado, aparelhos físicos, sincronização entre aparelhos reais e serviços reais têm limites próprios; não há declaração de perfeição ou certificação integral do site.
+
+Atualização de regressão:70/78 tiveram 30 aprovações e dois skips previstos;64/109 passaram 4/4 após Guest explícito e título exato. O quarto flaky181 teve Portal comprovado no frame dentro da medição; a entrada Guest nativa passou4/4 na contraprova. A R3 de Conquistas passou1/1 e confirmou90/90 pontos cobertos, scroll externo zero e capturas conferidas: o problema era o enquadramento artificial do helper, corrigido sem alterar produto. Ver o relatório17.15 para o fechamento das candidatas.
+
+Preparação final:65/112 optam por navegação única no helper, preservando defaultreload/seed/owner/Guest/asserções/prazo20s. Os quatro casos passaram em11,4–15,3s após os timeouts locais de preparo preservados. As intermitências97/198 da CI1077 permanecem sem causa atribuída; todos os resultados das candidatas e seus artefatos serão mantidos.
