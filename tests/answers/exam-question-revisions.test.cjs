@@ -47,7 +47,13 @@ function harness({ f = fixture(), initial = saved(f), legacy = false, failure = 
   const map = new Map(initial === null ? [] : [[KEY, JSON.stringify(initial)]]);
   const events = { writes: 0, tracks: 0, loads: 0 };
   const scope = { epoch: 1, owner: 'technical-owner' };
-  const page = { innerHTML: '', focus() {}, remove() {}, classList: { contains() { return false; } } };
+  const properties = new Map();
+  const header = { getBoundingClientRect() { return { height: 96 }; }, contains(node) { return node === this; } };
+  const page = { innerHTML: '', focus() {}, remove() {}, classList: { contains() { return false; } },
+    style: { getPropertyValue: key => properties.get(key) || '', setProperty: (key, value) => properties.set(key, String(value)),
+      removeProperty: key => properties.delete(key) },
+    querySelector(selector) { return selector === '.nq-exam-cabecalho' && this.innerHTML.includes('class="nq-exam-cabecalho"') ? header : null; },
+    contains(node) { return node === header && this.querySelector('.nq-exam-cabecalho') === header; } };
   const storage = { getItem: key => map.has(key) ? map.get(key) : null,
     setItem(key, value) { events.writes++; if (failure === 'refuse') throw Error('synthetic refusal');
       map.set(key, failure === 'diverge' ? 'synthetic competing bytes' : String(value)); },

@@ -326,6 +326,24 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       return qs.filter(q => !q.qid || !data[q.qid] || data[q.qid].due <= today);
     }
 
+    // Named review queues contain persisted schedules only. The broader helper
+    // above also introduces unseen questions for other practice flows.
+    function getSRScheduledDueQuestions(qs) {
+      const data = _loadSRData();
+      if (!data || typeof data !== 'object' || Array.isArray(data)) return [];
+      const today = new Date().setHours(0, 0, 0, 0);
+      return qs.filter(q => {
+        const qid = q.qid || q.id;
+        if (!qid || !Object.prototype.hasOwnProperty.call(data, qid)) return false;
+        const card = data[qid];
+        if (!card || typeof card !== 'object' || Array.isArray(card)) return false;
+        const due = card.due;
+        if (typeof due !== 'number' && (typeof due !== 'string' || !due.trim())) return false;
+        const timestamp = Number(due);
+        return Number.isFinite(timestamp) && timestamp <= today;
+      });
+    }
+
     // ── Modo Leitura (acessibilidade) ─────────────────────────────────────
     const READING_MODE_KEY = 'nefroquest-reading-mode';
     function _syncReadingModeButtons(on) {

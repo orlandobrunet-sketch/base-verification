@@ -1978,6 +1978,15 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   overflow-wrap: break-word;
 }
 
+@media (max-width: 768px) {
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #question,
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #feedback .fb-snip,
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #feedback .fb-rest {
+    text-align: left;
+    text-justify: auto;
+  }
+}
+
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes .stat-badge {
   appearance: none;
   min-width: 44px;
@@ -2304,7 +2313,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 
 @media (prefers-reduced-motion: no-preference) {
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #msbStreak.msb-subiu { animation: nql-sequencia-sobe .4s ease-out; }
-  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #options.nql-erro { animation: nql-erro-treme .32s ease-out; }
+  body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"]:not(.hidden):not([inert]) #feedback:is(.good, .bad) { animation: fadeIn .2s ease-out both; }
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .msb-perdeu .msb-icon span[style*="#ef4444"] + span[style*="#555"],
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .msb-perdeu .msb-icon > span[style*="#555"]:first-child {
     display: inline-block;
@@ -2315,11 +2324,6 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 
 @keyframes nql-sequencia-sobe {
   40% { scale: 1.5; }
-}
-@keyframes nql-erro-treme {
-  20% { translate: -6px 0; }
-  45% { translate: 5px 0; }
-  70% { translate: -3px 0; }
 }
 @keyframes nql-coracao-parte {
   0% { scale: 1.7; filter: drop-shadow(0 0 .35rem #ef4444); }

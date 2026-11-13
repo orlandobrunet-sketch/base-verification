@@ -95,7 +95,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@17.12',
+          release: 'nefroquest@17.13',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -160,15 +160,15 @@
   <link rel="stylesheet" href="styles/lumen/shell.css?v=16.18">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=16.99">
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=17.08">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=17.06">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=17.13">
   <link rel="stylesheet" href="styles/lumen/difficulty.css?v=17.06">
   <link rel="stylesheet" href="styles/lumen/dashboard.css?v=17.11">
   <link rel="stylesheet" href="styles/lumen/skills.css?v=17.11">
-  <link rel="stylesheet" href="styles/lumen/charselect.css?v=17.06">
+  <link rel="stylesheet" href="styles/lumen/charselect.css?v=17.13">
   <link rel="stylesheet" href="styles/lumen/forge.css?v=16.85">
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
-  <link rel="stylesheet" href="styles/lumen/modes.css?v=17.06">
-  <link rel="stylesheet" href="styles/lumen/exam.css?v=17.01">
+  <link rel="stylesheet" href="styles/lumen/modes.css?v=17.13">
+  <link rel="stylesheet" href="styles/lumen/exam.css?v=17.13">
   <link rel="stylesheet" href="styles/lumen/equipment.css?v=16.62">
   <link rel="stylesheet" href="styles/lumen/boss.css?v=16.84">
   <link rel="stylesheet" href="styles/lumen/cinemalayout.css?v=16.43">
@@ -179,7 +179,7 @@
   <link rel="stylesheet" href="styles/lumen/cinemamotion.css?v=16.42">
   <link rel="stylesheet" href="styles/lumen/bossfinishing.css?v=16.78">
   <link rel="stylesheet" href="styles/lumen/ritual.css?v=16.72">
-  <link rel="stylesheet" href="styles/lumen/ranking.css?v=16.52">
+  <link rel="stylesheet" href="styles/lumen/ranking.css?v=17.13">
   <link rel="stylesheet" href="styles/lumen/achievements.css?v=16.75">
   <link rel="stylesheet" href="styles/lumen/oracle.css?v=16.25">
   <link rel="stylesheet" href="styles/lumen/chamber-desktop.css?v=17.03">
@@ -1609,9 +1609,9 @@
       </ul></aside>
         <section id="nqcProfile" class="nqc-profile" aria-labelledby="nqcProfileName">
           <header class="nqc-profile-heading"><p id="nqcProfileTitle"></p><h3 id="nqcProfileName"></h3></header>
-          <p id="nqcProfileStory" class="nqc-profile-story"></p>
-          <div class="nqc-profile-benefits"><h4>Atributos da classe</h4><ul id="nqcAttributes" class="nqc-attributes"></ul><div class="nqc-initial"><h4>Bônus inicial</h4><p id="nqcInitialBonus"></p></div></div>
-          <div class="nqc-profile-art"><div class="nqc-scene-aura" aria-hidden="true"></div><div id="nqcProfileEmblem" aria-hidden="true"></div><img id="nqcProfilePortrait" src="assets/classes-cinema/clerigo_renal/nivel_01.webp" alt="" width="512" height="512" decoding="async"><p class="nqc-evolution"><span class="nqc-path" aria-hidden="true"><i class="is-current"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="nqc-path-label">Arte inicial · 10 estágios de evolução</span></p></div>
+          <div class="nqc-profile-benefits"><div class="nqc-profile-attributes"><h4>Atributos da classe</h4><ul id="nqcAttributes" class="nqc-attributes"></ul></div><div class="nqc-initial"><h4>Bônus inicial</h4><p id="nqcInitialBonus"></p></div></div>
+          <div class="nqc-story-panel"><button type="button" class="nqc-story-toggle" data-action="toggleCharacterStory" aria-controls="nqcProfileStory" aria-expanded="false">Ler história completa</button><p id="nqcProfileStory" class="nqc-profile-story"></p></div>
+          <div class="nqc-profile-art"><div class="nqc-scene-aura" aria-hidden="true"></div><div id="nqcProfileEmblem" aria-hidden="true"></div><div class="nqc-portrait-stage" data-portrait-state="ready"><img id="nqcProfilePrevious" alt="" aria-hidden="true" width="512" height="512" hidden><img id="nqcProfilePortrait" src="assets/classes-cinema/clerigo_renal/nivel_01.webp" alt="" width="512" height="512" decoding="async"><p class="nqc-portrait-status" role="status" hidden></p></div><p class="nqc-evolution"><span class="nqc-path" aria-hidden="true"><i class="is-current"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="nqc-path-label">Arte inicial · 10 estágios de evolução</span></p></div>
         </section>
       </div>
       <footer class="nqc-actions"><div><p class="nqc-commit-note">Ao iniciar uma nova jornada, a anterior é substituída.</p><p class="nqc-foot" id="nqcBenefitRules">A classe acompanha a jornada inteira. Os bônus iniciais valem nas primeiras 20 respostas da campanha, incluindo erros, em Fácil, Médio e Difícil. Não se aplicam no Hardcore. Jornadas salvas mantêm suas regras originais.</p></div><div class="nqc-action-buttons"><button type="button" class="nqc-cancel" data-character-cancel data-action="closeCharSelectModal">Cancelar</button><button type="button" class="nqc-primary" data-action="startCharacterPreview" aria-describedby="nqcProfileName nqcInitialBonus">Iniciar Jornada</button></div></footer>
@@ -1870,10 +1870,10 @@
   <script defer src="data/question-revision-history.js?v=16.20"></script>
   <script defer src="js/question-revisions.js?v=16.12"></script>
   <script defer src="js/progression.js?v=16.84"></script>
-  <script defer src="js/utils.js?v=16.83"></script>
+  <script defer src="js/utils.js?v=17.13"></script>
   <script defer src="js/audio.js?v=16.28"></script>
-  <script defer src="js/leaderboard.js?v=17.01"></script>
-  <script defer src="js/study-mode.js?v=17.09"></script>
+  <script defer src="js/leaderboard.js?v=17.13"></script>
+  <script defer src="js/study-mode.js?v=17.13"></script>
   <script defer src="js/game.js?v=17.08"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
@@ -1882,7 +1882,7 @@
   <script defer src="js/atrium.js?v=17.08"></script>
   <script defer src="js/paywall.js?v=16.97"></script>
   <script defer src="js/account.js?v=16.97"></script>
-  <script defer src="js/boss.js?v=16.90"></script>
+  <script defer src="js/boss.js?v=17.13"></script>
   <script defer src="js/cinema-intro-source-config.js?v=16.39"></script>
   <script defer src="js/cinema-equipment-seals.js?v=16.43"></script>
   <script defer src="js/cinema-poison-portraits.js?v=16.43"></script>
@@ -1890,7 +1890,7 @@
   <script defer src="js/cinema-cinematic-intro.js?v=16.46"></script>
   <script defer src="js/cinema-boss-art-states.js?v=16.39"></script>
   <script defer src="js/cinema-boss-static-adapter.js?v=16.43"></script>
-  <script defer src="js/exam.js?v=17.01"></script>
+  <script defer src="js/exam.js?v=17.13"></script>
   <script defer src="js/admin.js?v=15.35"></script>
   <script defer src="js/minigame.js?v=17.01"></script>
   <script defer src="js/cinema-intro-bridge.js?v=16.43"></script>
@@ -1909,7 +1909,7 @@
   <script defer src="js/changelog.js?v=15.94"></script>
   <script defer src="js/equipment-preview.js?v=16.62"></script>
   <script defer src="js/dashboard-skills.js?v=17.11"></script>
-  <script defer src="js/dashboard.js?v=17.11"></script>
+  <script defer src="js/dashboard.js?v=17.13"></script>
 
   <!-- Single source of truth for profile popup menu items -->
   <template id="profilePopupItems">

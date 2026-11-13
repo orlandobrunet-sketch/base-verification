@@ -64,7 +64,7 @@
     function getSRDueCount() {
       const selectedCats = new Set();
       NEFRO_AXES.forEach(ax => { if (_studySelectedAxes.has(ax.id)) selectedCats.add(ax.cat); });
-      return getSRDueQuestions(topics.filter(q => selectedCats.has(q.cat))).length;
+      return getSRScheduledDueQuestions(topics.filter(q => selectedCats.has(q.cat))).length;
     }
     /* Revisão a partir da Central, sem passar pelo seletor de eixos.
      *
@@ -85,7 +85,7 @@
       if (_studySelectedAxes.size === 0) { _toast('Selecione pelo menos um eixo!', 'warning'); return; }
       const selectedCats = new Set();
       NEFRO_AXES.forEach(ax => { if (_studySelectedAxes.has(ax.id)) selectedCats.add(ax.cat); });
-      const due = getSRDueQuestions(topics.filter(q => selectedCats.has(q.cat)));
+      const due = getSRScheduledDueQuestions(topics.filter(q => selectedCats.has(q.cat)));
       if (due.length === 0) {
         _toast('Sem revisões pendentes hoje. Volte amanhã ou use o Estudo Livre.', 'info', 4000);
         return;
@@ -94,7 +94,7 @@
       studyModeIndex = 0; studyModeCorrect = 0; studyModeWrong = 0; studyModeActive = true;
       _studyAxisStats = {};
       document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
-      showStudyModePage();
+      showStudyModePage('revisão agendada');
     }
 
     const NEFRO_AXES = [
@@ -856,8 +856,8 @@
       modal.className = 'study-mode-popup';
 
       // Calcular SR due com todos os temas
-      const totalDue = getSRDueQuestions(topics).length;
-      const srLabel = totalDue > 0 ? `${totalDue} ${totalDue > 1 ? 'questões' : 'questão'} disponíveis para revisão` : 'Nenhuma questão disponível para revisão';
+      const totalDue = getSRScheduledDueQuestions(topics).length;
+      const srLabel = totalDue > 0 ? `${totalDue} ${totalDue > 1 ? 'questões agendadas' : 'questão agendada'} para revisar agora` : 'Nenhuma revisão agendada para agora';
 
       const saved = _loadStudyState();
       const canResume = saved && !saved.revisionHold && saved.index < saved.questions.length;
@@ -872,7 +872,7 @@
           <div class="nq-study-choices">
             <section><div><h2>Por tema</h2><p>Escolha os eixos e pratique até 20 questões dos assuntos selecionados.</p></div><button class="btn gold" data-action="showAxesSelector">Selecionar Temas</button></section>
             <section><div><h2>Estudo livre</h2><p>Uma sessão com 20 questões de todos os temas, sem configuração.</p></div><button class="btn sec" data-action="startFreeStudyMode">Iniciar estudo livre</button></section>
-            <section><div><h2>Revisão espaçada</h2><p>Retome as questões selecionadas pelo seu histórico de revisão.</p><strong>${srLabel}</strong></div><button class="btn sec" data-action="startSRStudyAllMode" ${totalDue === 0 ? 'disabled' : ''}>Revisar agora</button></section>
+            <section><div><h2>Revisão espaçada</h2><p>${totalDue > 0 ? 'Retome questões já respondidas cuja data de revisão chegou.' : 'Suas revisões aparecem aqui quando chega a data. Você pode continuar no Estudo livre.'}</p><strong>${srLabel}</strong></div><button class="btn sec" data-action="startSRStudyAllMode" ${totalDue === 0 ? 'disabled' : ''}>Revisar agora</button></section>
           </div>
         </div>
       `;
@@ -1317,7 +1317,7 @@
       // Revisão Espaçada com todos os temas
       _studySelectedAxes.clear();
       NEFRO_AXES.forEach(a => _studySelectedAxes.add(a.id));
-      const due = getSRDueQuestions(topics);
+      const due = getSRScheduledDueQuestions(topics);
       if (due.length === 0) {
         _toast('Nenhuma revisão pendente hoje. Volte amanhã ou use o Estudo Livre.', 'info', 4000);
         return;
@@ -1326,7 +1326,7 @@
       studyModeQuestions = shuffle(due);
       studyModeIndex = 0; studyModeCorrect = 0; studyModeWrong = 0; studyModeActive = true;
       _studyAxisStats = {};
-      showStudyModePage('revisão espaçada');
+      showStudyModePage('revisão agendada');
     }
 
     async function startScheduledSRStudyMode() {
@@ -1337,13 +1337,7 @@
         catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
       }
       if (!_studyBindingCurrent(binding)) return;
-      let cards = {};
-      try { cards = JSON.parse(_studyProgressStorage().getItem('nefroquest-sr-data') || '{}'); } catch {}
-      const today = new Date().setHours(0, 0, 0, 0);
-      const dueIds = new Set(Object.entries(cards)
-        .filter(([, card]) => card && typeof card === 'object' && Number.isFinite(Number(card.due)) && Number(card.due) <= today)
-        .map(([qid]) => qid));
-      const due = topics.filter(question => dueIds.has(String(question.qid || question.id || '')));
+      const due = getSRScheduledDueQuestions(topics);
       if (!due.length) {
         _toast('Nenhuma revisão agendada está vencida.', 'info', 4000);
         return;
@@ -1597,7 +1591,7 @@
         <div class="nq-study-session-shell">
           <header class="nq-study-session-header">
             <button class="btn sec" data-action="exitStudyMode">Pausar e voltar</button>
-            <div class="nq-study-session-identity"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M24 12C18 8 10 8 5 10v27c6-2 13-1 19 3 6-4 13-5 19-3V10c-5-2-13-2-19 2Z"/><path d="M24 12v28M10 16c3-1 6 0 9 1m-9 6c3-1 6 0 9 1m10-7c3-1 6-2 9-1m-9 8c3-1 6-2 9-1"/></svg><h1>${sessionLabel === 'reforço' ? 'Sessão de reforço' : 'Estudo e Revisão'}</h1></div>
+            <div class="nq-study-session-identity"><svg viewBox="0 0 48 48" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M24 12C18 8 10 8 5 10v27c6-2 13-1 19 3 6-4 13-5 19-3V10c-5-2-13-2-19 2Z"/><path d="M24 12v28M10 16c3-1 6 0 9 1m-9 6c3-1 6 0 9 1m10-7c3-1 6-2 9-1m-9 8c3-1 6-2 9-1"/></svg><h1>${sessionLabel === 'reforço' ? 'Sessão de reforço' : sessionLabel === 'revisão agendada' ? 'Revisão agendada' : 'Estudo e Revisão'}</h1></div>
             <div class="nq-study-session-status"><div class="nq-study-session-progress">Questão <strong id="studyProgress">${studyModeIndex + 1}</strong> de ${studyModeQuestions.length}</div>
             <div class="nq-study-session-score"><span><strong id="studyCorrect">${studyModeCorrect}</strong> acertos</span><span><strong id="studyWrong">${studyModeWrong}</strong> erros</span></div></div>
           </header>

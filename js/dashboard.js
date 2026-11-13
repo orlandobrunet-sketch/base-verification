@@ -277,6 +277,14 @@
    *  - não há série histórica de estabilidade gravada, então nada de
    *    "era X há um mês" — a variação no tempo não é dado que o app possua.
    */
+  function _scheduledCardDue(card) {
+    if (!card || typeof card !== 'object' || Array.isArray(card)) return NaN;
+    const due = card.due;
+    if (typeof due !== 'number' && (typeof due !== 'string' || !due.trim())) return NaN;
+    const timestamp = Number(due);
+    return Number.isFinite(timestamp) ? timestamp : NaN;
+  }
+
   function _memoryState() {
     const cards = _readJson('nefroquest-sr-data', {});
     const bank = Array.isArray(window.questionBank) ? window.questionBank : [];
@@ -287,7 +295,7 @@
     const hoje = _startOfToday();
     const DIA = 86400000;
     const validos = Object.entries(cards || {})
-      .filter(([qid, card]) => validIds.has(String(qid)) && card && typeof card === 'object')
+      .filter(([qid, card]) => validIds.has(String(qid)) && card && typeof card === 'object' && !Array.isArray(card))
       .map(([, card]) => card);
     if (!validos.length) return vazio;
 
@@ -297,7 +305,7 @@
     const estabilidades = [];
 
     validos.forEach(card => {
-      const due = _number(card.due, NaN);
+      const due = _scheduledCardDue(card);
       if (Number.isFinite(due)) {
         if (due <= hoje) overdue++;
         else {
@@ -329,8 +337,7 @@
     if (!validIds.size) return 0;
     return Object.entries(cards || {}).filter(([qid, card]) => {
       if (!validIds.has(String(qid))) return false;
-      if (!card || typeof card !== 'object') return false;
-      const due = _number(card.due, NaN);
+      const due = _scheduledCardDue(card);
       return Number.isFinite(due) && due <= boundary;
     }).length;
   }

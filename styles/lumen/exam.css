@@ -1,4 +1,7 @@
 /* Modo Prova: configuração, resposta registrada e revisão somente ao final. */
+/* The document owns scrolling. An auto-overflow body traps sticky descendants
+   even when that body has no scroll range of its own. */
+body.nq-studying:has(#examPage) { overflow: visible !important; }
 #examPage { --txt: #eee8d9; --txt-dim: #b7c2cc; --gold: #edce83; background: #0b141d; color: var(--txt); font-family: var(--nql-font-body, Philosopher, sans-serif); }
 #examPage .nq-study-content { width: min(100%, 1080px); padding-block: clamp(24px, 4vw, 48px); }
 #examPage .nq-exam-intro { max-width: 1080px !important; }
@@ -16,9 +19,12 @@
 #examPage .nq-exam-brief h2 { margin: 0 0 20px !important; color: #91dfe3; }
 #examPage .nq-exam-brief p { color: #d1dde3; line-height: 1.8; max-width: 48ch; margin: 0 0 22px; }
 #examPage .nq-exam-brief p:last-child { margin-bottom: 0; }
-#examPage .nq-exam-cabecalho { border-bottom-color: #607480; padding-bottom: 20px; margin-bottom: 12px; }
-#examPage .nq-exam-titulo { font-family: var(--nql-font-display, Cinzel, serif); color: var(--gold); font-size: 1.05rem; }
-#examPage .nq-exam-relogio { color: #91dfe3; font-size: 1.25rem; font-variant-numeric: tabular-nums; }
+#examPage .nq-exam-cabecalho { position: sticky; top: var(--nq-exam-safe-top, env(safe-area-inset-top, 0px)); z-index: 2; border-bottom-color: #607480; padding-block: 12px; margin-bottom: 12px; background: #0b141d; box-shadow: 0 10px 16px -14px #000; }
+#examPage .nq-exam-contexto { min-width: 0; display: grid; gap: 2px; }
+#examPage .nq-exam-titulo { font-family: var(--nql-font-display, Cinzel, serif); color: var(--gold); font-size: .8rem; }
+#examPage .nq-exam-contexto h1 { margin: 0; color: var(--txt); font-family: var(--nql-font-body, sans-serif); font-size: 1.05rem; line-height: 1.35; overflow-wrap: anywhere; }
+#examPage .nq-exam-relogio { color: #91dfe3; font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+#examPage :is(.nq-exam-opcao, #examCorrecao, .nq-exam-rodape button) { scroll-margin-block-start: calc(var(--nq-exam-header-height, 7rem) + var(--nq-exam-safe-top, env(safe-area-inset-top, 0px)) + 16px); scroll-margin-block-end: 16px; }
 #examPage .nq-exam-relogio.nq-exam-urgente { color: #f7b2bf; }
 #examPage .nq-exam-progresso { height: 6px; }
 #examPage .nq-exam-questao { max-width: 78ch; padding-block: 24px 28px; }
@@ -48,5 +54,6 @@
   #examPage .nq-exam-brief { border-left: 0; border-top: 1px solid #607480; }
   #examPage .nq-exam-config, #examPage .nq-exam-brief { padding: 20px 16px; }
   #examPage .nq-exam-cabecalho { grid-template-columns: minmax(0, 1fr); }
+  #examPage .nq-exam-titulo { display: none; }
   #examPage .nq-exam-opcao { padding: 12px; gap: 10px; }
 }

@@ -1,6 +1,6 @@
 # Plano de acabamento das páginas — 13/11/2026
 
-Os cinco ajustes expressamente pedidos são a entrega visual atual. As sugestões gerais abaixo são planejamento e não autorizam aplicação automática.
+Os cinco ajustes expressamente pedidos foram publicados na17.11. Depois da entrega do relatório, o proprietário autorizou implementar as melhorias das35superfícies e delegou a ordem de prioridades em13/11/2026. A execução começa na17.13 e é acompanhada no [plano de implementação](../superpowers/plans/2026-11-13-ux-priorities-1713.md); esta tabela não significa que todas as superfícies já foram alteradas ou validadas.
 
 ## Aplicação atual
 
