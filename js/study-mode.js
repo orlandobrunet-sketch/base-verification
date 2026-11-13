@@ -1696,7 +1696,8 @@
           return;
         }
         updateSRData(q.qid, isCorrect);
-        _studyProgressStorage().setItem('nq_last_study', Date.now().toString());
+        try { _studyProgressStorage().setItem('nq_last_study', Date.now().toString()); }
+        catch (e) { console.warn('[NQ] Last study activity could not be saved', e); }
         if (typeof trackQuestionAnswer === 'function') trackQuestionAnswer(q, isCorrect, 0);
         document.getElementById('studyCorrect').textContent = studyModeCorrect;
         document.getElementById('studyWrong').textContent = studyModeWrong;
