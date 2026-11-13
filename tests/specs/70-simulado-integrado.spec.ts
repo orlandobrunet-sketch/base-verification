@@ -22,7 +22,7 @@ async function entrar(page: Page, largura = 1280) {
   await page.setViewportSize({ width: largura, height: largura < 500 ? 700 : 800 });
   await page.route('**/*', r => new URL(r.request().url()).hostname === 'localhost' ? r.continue() : r.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
-  await injectGameState(page);
+  await injectGameState(page, {}, { asGuest: true });
   await page.waitForLoadState('load');
   await page.evaluate(() => { localStorage.removeItem('nefroquest-exam-state'); return document.fonts.ready; });
 }

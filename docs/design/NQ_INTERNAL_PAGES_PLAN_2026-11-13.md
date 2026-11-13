@@ -1,6 +1,6 @@
 # Plano de acabamento das páginas — 13/11/2026
 
-Os cinco ajustes expressamente pedidos foram publicados na 17.11. Depois da entrega do relatório, o proprietário autorizou implementar as melhorias das 35 superfícies e delegou a ordem de prioridades em 13/11/2026. A candidata 17.13 não foi publicada após a CI1075; os dois primeiros lotes foram reunidos na candidata 17.14. O [ledger de execução](NQ_35_SURFACES_EXECUTION_1714.md) distingue os recortes aplicados, as validações pendentes e o trabalho ainda necessário. O [plano técnico](../superpowers/plans/2026-11-13-ux-priorities-1713.md) preserva a sequência das decisões; esta tabela não certifica todas as superfícies.
+Os cinco ajustes expressamente pedidos foram publicados na 17.11. Depois da entrega do relatório, o proprietário autorizou implementar as melhorias das 35 superfícies e delegou a ordem de prioridades em 13/11/2026. A candidata 17.13 não foi publicada após a CI1075; a 17.14 reuniu os dois primeiros lotes, mas sua publicação foi segurada por overflow real na Derrota em 320 px/fonte raiz de 32 px. A continuidade é a candidata 17.15, com CSS mínimo em contraprova e sem novo HEAD ou publicação; a CI1076 da 17.14 continua pendente. O [ledger atual de execução](NQ_35_SURFACES_EXECUTION_1715.md) distingue os recortes aplicados, as validações pendentes e o trabalho ainda necessário. O [relatório histórico da 17.14](NQ_USABILITY_PRIORITIES_1714.md) e o [plano técnico](../superpowers/plans/2026-11-13-ux-priorities-1713.md) preservam a sequência das decisões; esta tabela não certifica todas as superfícies.
 
 ## Recortes publicados na 17.11
 
@@ -12,7 +12,7 @@ Os cinco ajustes expressamente pedidos foram publicados na 17.11. Depois da entr
 
 ## Inventário original e continuidade autorizada
 
-Inventário de 35 superfícies ou fluxos, agrupando os diálogos do mesmo contexto. As sugestões abaixo preservam a proposta original: consolidam o que já funciona e indicam refinamentos, sem representar 35 defeitos atuais. A implementação foi autorizada e avança por recortes; seu estado atual está no [ledger](NQ_35_SURFACES_EXECUTION_1714.md). Uma linha deste inventário não significa alteração aplicada, conferência visual completa ou publicação.
+Inventário de 35 superfícies ou fluxos, agrupando os diálogos do mesmo contexto. As sugestões abaixo preservam a proposta original: consolidam o que já funciona e indicam refinamentos, sem representar 35 defeitos atuais. A implementação foi autorizada e avança por recortes; seu estado atual está no [ledger](NQ_35_SURFACES_EXECUTION_1715.md). Uma linha deste inventário não significa alteração aplicada, conferência visual completa ou publicação.
 
 | Página | Sugestão objetiva |
 |---|---|
