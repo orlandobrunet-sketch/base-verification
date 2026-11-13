@@ -93,7 +93,7 @@ test('caixa única refluente mantém busca em Favoritos e controles acessíveis 
  await expect(page.locator('[data-library-rarity-filter="raro"]')).toHaveAttribute('aria-pressed','true');
  await page.keyboard.press('Escape');
  await page.setViewportSize({width:1280,height:900});await page.evaluate(()=>{document.documentElement.style.fontSize='16px'});
- await page.route('**/assets/achievements/grimorio.webp',r=>r.abort());await page.locator('[data-atrium-route="library"]').click();
+ await page.route('**/assets/images/grimoire-banner-1706.webp',r=>r.abort());await page.locator('[data-atrium-route="library"]').click();
  await expect(page.locator('.nqd-grimoire-art')).toBeHidden();
  await expect(page.locator('.nqd-grimoire-header')).toHaveClass(/has-no-art/);
  await expect(page.locator('.nqd-grimoire-art-region')).toBeHidden();

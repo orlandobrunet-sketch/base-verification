@@ -5,7 +5,12 @@ test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } 
 const errors = new WeakMap<Page, string[]>();
 test.beforeEach(async ({ page, context, baseURL }, info) => {
   const origin = new URL(baseURL!).origin;
-  await context.route('**/*', r => r.request().method() === 'GET' && new URL(r.request().url()).origin === origin ? r.continue() : r.abort());
+  await context.route('**/*', r => {
+    const url = new URL(r.request().url());
+    // A conta fictícia abaixo não pode receber a sessão anônima do SDK real.
+    if (url.pathname === '/assets/vendor/supabase-js-2.106.2/supabase.js') return r.abort();
+    return r.request().method() === 'GET' && url.origin === origin ? r.continue() : r.abort();
+  });
   await context.routeWebSocket('**/*', s => s.close());
   const runtime: string[] = []; errors.set(page, runtime);
   page.on('pageerror', e => runtime.push(e.message));

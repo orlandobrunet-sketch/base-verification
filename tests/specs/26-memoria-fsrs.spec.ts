@@ -2,12 +2,9 @@ import { test, expect, Page } from '@playwright/test';
 import { saveBase } from '../helpers/fixtures';
 
 /**
- * Memória — o FSRS na superfície (v14.55).
- *
- * O motor FSRS-4.5 já gravava por card S (estabilidade em dias até a retenção
- * cair a 90%), due, reps e lapses. A Central lia apenas `due <= hoje` e
- * descartava o resto — a resposta para "não dá a sensação de ir aumentando o
- * conhecimento" estava no localStorage e não era exibida.
+ * Memória — revisão agendada com explicação em linguagem de estudo.
+ * O motor FSRS continua determinando as datas; a interface mostra o que
+ * revisar agora, o histórico e o calendário sem expor métricas do motor.
  *
  * As duas regras de honestidade que estes cenários protegem:
  *  - o denominador é sempre "itens já vistos", nunca o banco inteiro;
@@ -53,24 +50,27 @@ async function abrirCom(page: Page, srBuilder: (ids: string[]) => Record<string,
 }
 
 test.describe('Memória (FSRS na superfície)', () => {
-  test('exibe vencidos, histórico e estabilidade estimada a partir do que o motor grava', async ({ page }) => {
+  test('explica o agendamento em linguagem clara e preserva vencidos, histórico e calendário', async ({ page }) => {
     await abrirCom(page, () => ({}));
     const secao = page.locator('#nqDashboard .nqd-memory-section');
     await expect(secao).toBeVisible();
     // Renomeada na v14.88 (NQ-06A): a seção deixou de ser um relatório de
     // memória e passou a abrir com ação, então o título diz o que ela faz.
     await expect(secao).toContainText('Estudo e revisão');
-    // A16.23 explica a estimativa sob demanda em vez de afirmar domínio.
-    const explicacao = secao.locator('details').filter({ has: page.getByText('Como o agendamento é estimado', { exact: true }) });
+    const explicacao = secao.locator('details').filter({ has: page.getByText('Como funcionam as revisões?', { exact: true }) });
     await expect(explicacao).not.toHaveAttribute('open', '');
     await explicacao.locator('summary').click();
-    await expect(explicacao.locator('p')).toBeVisible();
-    // 4 cards com S >= 21 dias (30,45,22,60); mediana12 dos9 QIDs válidos.
-    await expect(explicacao).toContainText('4 de 9 questões têm estabilidade estimada de pelo menos 21 dias');
-    await expect(explicacao).toContainText('A mediana estimada é de 12 dias');
-    await expect(explicacao).toContainText('não garantem domínio ou lembrança');
+    await expect(explicacao.locator('p')).toHaveCount(2);
+    await expect(explicacao.locator('p').first()).toHaveText('Depois de cada resposta, o NefroQuest sugere uma próxima data para aquela questão. Erros antecipam a revisão; novos acertos podem aumentar o intervalo.');
+    await expect(explicacao.locator('p').nth(1)).toHaveText('“Revisar agora” reúne as questões que já chegaram à data, inclusive as atrasadas. O calendário mostra as próximas revisões. As datas são sugestões: você pode estudar quando quiser.');
+    await expect(explicacao.locator('p').first()).toBeVisible();
+    await expect(explicacao.locator('p').nth(1)).toBeVisible();
+    await expect(explicacao).not.toContainText(/mediana|estabilidade estimada|FSRS/i);
     await expect(secao.locator('.nqd-metric-value').first()).toHaveText('2');
     await expect(secao.locator('.nqd-metric-value').nth(1)).toHaveText('9');
+    await expect(secao.locator('.nqd-memory-day')).toHaveCount(7);
+    await expect(secao.locator('.nqd-memory-day.has-due')).toHaveCount(3);
+    await expect(secao.locator('.nqd-memory-note')).toHaveText('3 revisões previstas nos próximos sete dias.');
   });
 
   test('o denominador é o que já foi visto, nunca o banco inteiro', async ({ page }) => {
@@ -91,16 +91,17 @@ test.describe('Memória (FSRS na superfície)', () => {
     await abrirCom(page, () => ({}));
     const secao = page.locator('#nqDashboard .nqd-memory-section');
     // 10 entradas gravadas, 1 sem questão correspondente -> 9 vistas
-    const explicacao = secao.locator('details').filter({ has: page.getByText('Como o agendamento é estimado', { exact: true }) });
+    const explicacao = secao.locator('details').filter({ has: page.getByText('Como funcionam as revisões?', { exact: true }) });
     const summary = explicacao.locator('summary');
     await summary.focus();
     await expect(summary).toBeFocused();
     await page.keyboard.press('Space');
     await expect(explicacao).toHaveAttribute('open', '');
-    await expect(explicacao.locator('p')).toBeVisible();
-    await expect(explicacao).toContainText('4 de 9 questões têm estabilidade estimada');
-    await expect(explicacao).not.toContainText('de 10 questões');
+    await expect(explicacao.locator('p').first()).toBeVisible();
+    await expect(explicacao.locator('p').nth(1)).toBeVisible();
+    await expect(secao.locator('.nqd-metric-value').first()).toHaveText('2');
     await expect(secao.locator('.nqd-metric-value').nth(1)).toHaveText('9');
+    await expect(secao.locator('.nqd-metric-value')).not.toHaveText(['2', '10']);
   });
 
   test('o horizonte de sete dias tem rótulo acessível e um dia sem revisão não parece um dia com pouca', async ({ page }) => {

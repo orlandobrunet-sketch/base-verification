@@ -8,6 +8,7 @@ test.beforeEach(async({context,baseURL})=>{
 });
 async function openForge(page:Page,rarity='epic',occupied=false){
   await page.goto('/jogar/',{waitUntil:'domcontentloaded'});
+  await page.locator('[data-portal-route="guest"]').click();
   const empty=Object.fromEntries(['helmet','glove','armor','weapon','relic','boot'].map(s=>[s,{n:'Vazio',rar:'common',atk:0,def:0,kno:0,luck:0}]));
   await injectGameState(page,{gold:5000,equipment:empty,obtainedItems:[]});
   await page.waitForFunction(()=>!(0,eval)('_loadingNextQuestion'));

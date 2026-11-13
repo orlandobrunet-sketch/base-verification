@@ -6,6 +6,7 @@ export const isLiveEnv = (process.env.BASE_URL || '').includes('nefroquest.com')
 type GameFixtureOptions = {
   authUser?: ({ id: string } & Record<string, unknown>) | null;
   replaceSnapshot?: boolean;
+  asGuest?: boolean;
 };
 
 /**
@@ -19,6 +20,7 @@ type GameFixtureOptions = {
  * 'guerreiro' (chave antiga) faz characters[c].name lançar em continueGame.
  */
 export async function injectGameState(page: Page, overrides: Record<string, unknown> = {}, options: GameFixtureOptions = {}) {
+  if (options.asGuest && options.authUser) throw new Error('asGuest requires an anonymous fixture');
   const base = {
     schemaVersion: 2,
     level: 5, xp: 150, xpToNext: 400, score: 2500,
@@ -51,6 +53,12 @@ export async function injectGameState(page: Page, overrides: Record<string, unkn
   // progresso; trocá-la depois de continuar é uma mudança de conta real.
   if (options.authUser !== undefined) {
     await page.evaluate(user => { (window as any).authUser = user; }, options.authUser);
+  }
+  if (options.asGuest) {
+    // A entrada nativa sinaliza visitante antes de continuar; apenas ocultar o
+    // portal não impede que um callback inicial de autenticação o reabra.
+    await page.waitForFunction(() => typeof (window as any).playAsGuest === 'function');
+    await page.evaluate(() => (window as any).playAsGuest());
   }
   await enterGame(page);
 }

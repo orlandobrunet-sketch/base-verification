@@ -316,12 +316,14 @@ test.describe('Central de Comando do aprendizado', () => {
     await page.getByRole('tab', { name: 'Competências', exact: true }).click();
     await waitForDashboardTabTerminal(page, 'skills');
 
-    const withoutSample = page.locator('#nqDashboard .nqd-skill-unmeasured');
-    expect(await withoutSample.count()).toBeGreaterThan(0);
+    const withoutSample = page.locator('#nqDashboard .nqs-area:is([data-state="unseen"], [data-state="sample"])');
+    await expect(withoutSample).toHaveCount(7);
     for (const row of await withoutSample.all()) {
       await expect(row).toContainText(/Sem amostra|Amostra inicial/);
       await expect(row).not.toContainText('0%');
     }
+    await expect(page.locator('#nqDashboard .nqs-vertex-point')).toHaveCount(0);
+    await expect(page.locator('#nqDashboard .nqs-area[data-state="sample"]')).toContainText('2 respostas');
   });
 
   test('abre a recomendação exata de menor desempenho em vez de selecionar todos os temas', async ({ page }) => {

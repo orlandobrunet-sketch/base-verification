@@ -53,7 +53,7 @@ test.describe('Acessibilidade — axe-core / WCAG 2.1 AA', () => {
     // Usa a configuração real para chegar legitimamente ao resultado. A prova
     // curta inclui acerto, erro e, na expiração, uma questão não respondida.
     await page.goto('/jogar/');
-    await injectGameState(page);
+    await injectGameState(page, {}, { asGuest: expired });
     await waitForGame(page);
     await page.evaluate(async () => {
       localStorage.removeItem('nefroquest-exam-state');

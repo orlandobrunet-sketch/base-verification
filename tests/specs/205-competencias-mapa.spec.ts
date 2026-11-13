@@ -29,7 +29,7 @@ async function openSkills(page: Page, count = 3) {
 test('panels separate results from reflection while keeping counts and contrast', async ({ page }) => {
   const pane = await openSkills(page), before = await progress(page);
   const metrics = await pane.evaluate(el => {
-    const top = el.querySelector('.nqd-skill-list-section')!, bottom = el.querySelector('.nqd-error-patterns')!;
+    const top = el.querySelector('.nqs-component')!, bottom = el.querySelector('.nqd-error-patterns')!;
     return { gap: bottom.getBoundingClientRect().top - top.getBoundingClientRect().bottom, top: getComputedStyle(top).backgroundColor, bottom: getComputedStyle(bottom).backgroundColor };
   });
   expect(metrics.gap).toBeGreaterThanOrEqual(20);
@@ -50,35 +50,41 @@ test('panels separate results from reflection while keeping counts and contrast'
 
 for (const count of [0, 2, 3, 7]) test(`profile preserves ${count} measured areas and actual values`, async ({ page }) => {
   const pane = await openSkills(page, count), before = await progress(page);
-  await expect(pane.locator('.nqd-skill-row')).toHaveCount(count);
-  await expect(pane.locator('.nqd-radar')).toHaveCount(count < 3 ? 0 : 2);
+  await expect(pane.locator('.nqs-area:is([data-state="attention"], [data-state="consolidating"], [data-state="consistent"])')).toHaveCount(count);
+  await expect(pane.locator('.nqs-vertex-point')).toHaveCount(count < 3 ? 0 : count);
+  await expect(pane.locator('.nqs-profile-fill')).toHaveCount(count === 7 ? 1 : 0);
+  await expect(pane.locator('.nqs-area:is([data-state="unseen"], [data-state="sample"])')).toHaveCount(7 - count);
   if (count >= 3) {
-    const radar = pane.locator('#nqDashRadarContainer');
-    const label = await radar.getAttribute('aria-label');
-    expect(label).toContain('20% em 10 respostas');
-    expect(label?.includes('sem amostra')).toBe(count < 7);
-    if (count === 7) expect(label).toContain('0% em 10 respostas');
-  } else if (!count) await expect(pane.locator('.nqd-skill-empty')).toContainText('Nenhuma área é tratada como desempenho zero');
+    const nodes = pane.locator('.nqs-orbit-node');
+    await expect(nodes.first()).toHaveAttribute('aria-label', /20% de acertos, 10 respostas/);
+    const labels = (await nodes.evaluateAll(items => items.map(item => item.getAttribute('aria-label')))).join('; ');
+    expect(labels.includes('Sem amostra')).toBe(count < 7);
+    if (count === 7) await expect(nodes.nth(5)).toHaveAttribute('aria-label', /Diálise, 0% de acertos, 10 respostas/);
+  } else if (!count) {
+    for (const score of await pane.locator('.nqs-area-score').all()) await expect(score).not.toContainText('%');
+    await expect(pane.locator('#nqsProfileContext')).toHaveText('O perfil visual aparece quando três áreas tiverem pelo menos cinco respostas.');
+  }
   expect(await progress(page)).toEqual(before);
 });
 
 test('narrow profile keeps readable values at 200 percent text without clipping', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 740 });
   const pane = await openSkills(page), before = await progress(page);
-  const label = await pane.locator('#nqDashRadarMobileContainer').getAttribute('aria-label');
+  const labels = await pane.locator('.nqs-orbit-node').evaluateAll(nodes => nodes.map(node => node.getAttribute('aria-label')));
   await page.evaluate(() => { document.documentElement.style.fontSize = '32px'; });
-  const toggle = pane.locator('.nqd-skill-radar-mobile > summary');
-  await toggle.focus(); await page.keyboard.press('Enter');
-  const values = pane.locator('#nqDashRadarMobileContainer .nqd-radar-values');
+  const selector = pane.locator('.nqs-orbit-node').first();
+  await selector.focus(); await page.keyboard.press('Enter');
+  await expect(selector).toHaveAttribute('aria-pressed', 'true');
+  const values = pane.locator('.nqs-area-grid');
   await expect(values).toBeVisible();
-  await expect(values.locator('li')).toHaveCount(7);
+  await expect(values.locator('.nqs-area')).toHaveCount(7);
   await expect(values).toContainText('20%');
   await expect(values).toContainText('Sem amostra');
-  const metrics = await values.evaluate(el => ({ minFont: Math.min(...[...el.querySelectorAll('span,strong,small')].map(e => parseFloat(getComputedStyle(e).fontSize))), overflow: el.scrollWidth > el.clientWidth + 1 }));
+  const metrics = await values.evaluate(el => ({ minFont: Math.min(...[...el.querySelectorAll('.nqs-area-name,.nqs-area-sample,.nqs-area-state,.nqs-area-score,.nqs-area-score > small')].map(e => parseFloat(getComputedStyle(e).fontSize))), overflow: el.scrollWidth > el.clientWidth + 1 }));
   expect(metrics.minFont).toBeGreaterThanOrEqual(24);
   expect(metrics.overflow).toBe(false);
   expect(await pane.evaluate(el => el.scrollWidth <= el.clientWidth + 1)).toBe(true);
-  await expect(pane.locator('#nqDashRadarMobileContainer')).toHaveAttribute('aria-label', label!);
+  expect(await pane.locator('.nqs-orbit-node').evaluateAll(nodes => nodes.map(node => node.getAttribute('aria-label')))).toEqual(labels);
   const audit = await new AxeBuilder({ page }).include('#nqdPane-skills').withRules(['color-contrast']).analyze();
   expect(audit.violations).toEqual([]);
   expect(await progress(page)).toEqual(before);

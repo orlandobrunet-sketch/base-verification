@@ -4426,7 +4426,7 @@
 }
 /* Grimório: livro integrado, coleção próxima e filtros sob demanda. */
 #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-header {
-  position: relative; isolation: isolate; display: grid; grid-template-columns: minmax(0,1fr) 13rem;
+  position: relative; isolation: isolate; display: grid; grid-template-columns: minmax(0,1fr);
   align-items: center; min-width: 0; min-height: 160px; margin-bottom: .75rem;
   overflow: hidden; border-bottom: 1px solid #34505b; background: #080e17;
 }
@@ -4434,17 +4434,25 @@
 #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: .3rem .9rem; margin-bottom: .55rem; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-heading h1 { margin: 0; color: #eee6cf; font-size: clamp(2.2rem,3.6vw,2.9rem); line-height: 1.05; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-subtitle { margin: 0; color: #efcc83; font: 600 .76rem/1.4 var(--nql-font-body); letter-spacing: .075em; text-transform: uppercase; }
-#nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-rule { max-width: 75ch; margin: 0 0 .55rem; color: #c5d3d6; font: 400 .85rem/1.5 var(--nql-font-body); overflow-wrap: anywhere; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-rule { max-width: none; margin: 0 0 .55rem; color: #c5d3d6; font: 400 .85rem/1.5 var(--nql-font-body); overflow-wrap: anywhere; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-header .nqd-library-summary { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem .5rem; margin: 0; color: #c5d3d6; font: 400 .8rem/1.4 var(--nql-font-body); }
 #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-header .nqd-library-summary > span { margin: 0; padding: 0; border: 0; color: inherit; font: inherit; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-header .nqd-library-summary strong { margin: 0; color: #efcc83; font: 500 .9rem/1.4 var(--nql-font-instrument); white-space: nowrap; }
-#nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-art-region { position: relative; align-self: stretch; min-width: 0; min-height: 160px; overflow: hidden; background: radial-gradient(ellipse at center,#24404b66,transparent 72%); }
-#nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-art { position: absolute; top: 50%; left: 50%; width: 190px; height: 190px; max-width: none; object-fit: contain; pointer-events: none; transform: translate(-50%,-50%); mix-blend-mode: lighten; animation: none; transition: transform 180ms ease-out,filter 180ms ease-out; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-art-region { position: absolute; z-index: 0; inset: 0 0 0 auto; width: min(72%,960px); min-width: 0; overflow: hidden; pointer-events: none; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-art-region::after { position: absolute; inset: 0; content: ""; background: linear-gradient(90deg,#080e17 0%,#080e17de 22%,#080e174d 52%,transparent 78%); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-art { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; object-position: right 80%; pointer-events: none; transform: none; mix-blend-mode: normal; animation: none; transition: transform 180ms ease-out,filter 180ms ease-out; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-header:hover .nqd-grimoire-art,
-#nqDashboard[data-nq-ui="lumen"]:has(.nqd-library-controls:focus-within) .nqd-grimoire-art { transform: translate(-50%,calc(-50% - 2px)) scale(1.015); filter: brightness(1.07); }
+#nqDashboard[data-nq-ui="lumen"]:has(.nqd-library-controls:focus-within) .nqd-grimoire-art { transform: scale(1.012); filter: brightness(1.06); }
 #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-art[hidden],
 #nqDashboard[data-nq-ui="lumen"] .has-no-art .nqd-grimoire-art-region { display: none; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-header.has-no-art { grid-template-columns: minmax(0,1fr); min-height: 0; }
+
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-actions .nqd-library-read-locked:disabled,
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-actions .nqd-library-read-locked:disabled:hover {
+  border: 1px solid #425969; background: #14212d; color: #b8c9d4; opacity: 1;
+  box-shadow: inset 0 1px 0 #c5d3d60a; cursor: not-allowed; filter: none; transform: none;
+}
+#nqDashboard[data-nq-ui="lumen"] .nqd-library-read-locked svg { flex: none; width: 1.05rem; height: 1.05rem; }
 
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-controls { min-width: 0; margin-bottom: .65rem; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-library-toolbar { display: grid; grid-template-columns: max-content minmax(0,1fr); align-items: center; gap: .6rem 1rem; }
@@ -4494,13 +4502,17 @@
   #nqDashboard[data-nq-ui="lumen"] .nqd-library-explore-controls { grid-template-columns: repeat(2,minmax(0,1fr)); }
   #nqDashboard[data-nq-ui="lumen"] .nqd-library-rarities { grid-column: 1/-1; }
 }
+@media (max-width: 64rem) {
+  /* Com pouco espaço ou texto ampliado, a cena fica discreta atrás da leitura. */
+  #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-art-region { opacity: .42; }
+}
 @media (max-width: 42rem) {
   #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-header { grid-template-columns: minmax(0,1fr); min-height: 0; }
   #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-intro { padding: .85rem; }
   #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-heading { display: block; min-height: 72px; padding-right: 5.2rem; }
   #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-subtitle { margin-top: .3rem; }
-  #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-art-region { position: absolute; top: .35rem; right: .3rem; width: 88px; height: 88px; min-height: 0; }
-  #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-art { width: 96px; height: 96px; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-art-region { inset: 0 0 0 auto; width: 66%; }
+  #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-art { object-position: right center; }
   #nqDashboard[data-nq-ui="lumen"] .nqd-library-navigation { gap: .4rem; }
   #nqDashboard[data-nq-ui="lumen"] .nqd-library-tabs { flex: 1 1 auto; }
   #nqDashboard[data-nq-ui="lumen"] .nqd-library-query { flex-basis: 8.5rem; }
@@ -4517,6 +4529,6 @@
 @media (prefers-reduced-motion: reduce) {
   #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-art { transition: none; }
   #nqDashboard[data-nq-ui="lumen"] .nqd-grimoire-header:hover .nqd-grimoire-art,
-  #nqDashboard[data-nq-ui="lumen"]:has(.nqd-library-controls:focus-within) .nqd-grimoire-art { transform: translate(-50%,-50%); filter: none; }
+  #nqDashboard[data-nq-ui="lumen"]:has(.nqd-library-controls:focus-within) .nqd-grimoire-art { transform: none; filter: none; }
   #nqDashboard[data-nq-ui="lumen"] .nqd-library-explore:not([hidden]) { animation: none; }
 }

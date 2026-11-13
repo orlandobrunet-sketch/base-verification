@@ -50,6 +50,7 @@ test('collection count follows discoveries and the full admin catalogue without 
   await page.locator('[data-portal-route="guest"]').click();
   await page.evaluate(() => { (window as any).isAdminUser = () => true; });
   await page.locator('[data-atrium-route="library"]').click();
+  await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
   const entries = page.locator('[data-library-entry]');
   const total = await entries.count();
   const discovered = await page.locator('[data-library-entry][data-library-discovered="true"]').count();
@@ -69,6 +70,7 @@ test('stronger rarity strip preserves card and content geometry across rarities'
   await page.locator('[data-portal-route="guest"]').click();
   await page.evaluate(() => { (window as any).isAdminUser = () => true; });
   await page.locator('[data-atrium-route="library"]').click();
+  await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
   const cards = page.locator('[data-library-item]');
   expect(await cards.count()).toBeGreaterThan(0);
   const sample = cards.first();

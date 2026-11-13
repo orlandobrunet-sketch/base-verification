@@ -4,7 +4,7 @@ import { injectGameState, waitForGame , isLiveEnv } from '../helpers/game';
 test.describe('Feedback de resposta', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/jogar/');
-    await injectGameState(page);
+    await injectGameState(page, {}, { asGuest: true });
     await waitForGame(page);
   });
 

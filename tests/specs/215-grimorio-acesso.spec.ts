@@ -178,9 +178,15 @@ test('prévia administrativa lê sem transformar acesso em descoberta pessoal', 
   await page.locator('#nqDashLibraryDiscovery').selectOption('locked');
   await expect(visibleEntries(page)).toHaveCount(total - 2);
   await expect(page.locator('[data-library-discovered="true"]:visible')).toHaveCount(0);
-  await visibleEntries(page).first().getByRole('button', { name: 'Ler resumo', exact: true }).click();
+  // Bloqueados agora é uma consulta de itens trancados também para o admin;
+  // a prévia administrativa continua em Todos sem conceder a descoberta.
+  await expect(visibleEntries(page).first().getByRole('button', { name: 'Resumo bloqueado', exact: true })).toBeDisabled();
+  await expect(page.locator('.bib-resumo-modal')).toHaveCount(0);
+  await page.locator('#nqDashLibraryDiscovery').selectOption('all');
+  await expect(visibleEntries(page)).toHaveCount(total);
+  await page.locator('[data-library-entry][data-library-discovered="false"]:visible').first().getByRole('button', { name: 'Ler resumo', exact: true }).click();
   await expect(page.locator('.bib-resumo-modal')).toBeVisible();
   await page.keyboard.press('Escape');
-  await expect(page.locator('#nqDashLibraryDiscovery')).toHaveValue('locked');
+  await expect(page.locator('#nqDashLibraryDiscovery')).toHaveValue('all');
   expect(await ledger(page)).toEqual(before);
 });

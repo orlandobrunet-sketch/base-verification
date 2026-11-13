@@ -114,9 +114,10 @@ test.describe('Dashboard, Core Skills & Layout Reset E2E Tests', () => {
   //   treinar exatamente a lacuna exibida; ver "abre a recomendação exata de menor
   //   desempenho em vez de selecionar todos os temas", que exige _studySelectedAxes === ['drc'].
   //
-  // - "clicking Skills tab renders radar chart canvas" afirmava #nqDashRadarContainer.
-  //   O radar foi removido por exibir 0% onde não havia amostra; ver "não converte
-  //   competência sem amostra em desempenho de zero por cento", que exige "—" e
-  //   "Sem precisão calculada" nas competências sem dado.
+  // - "clicking Skills tab renders radar chart canvas" foi substituído pelo
+  //   atlas SVG: specs/149-dashboard-skill-hierarchy.spec.ts protege valores,
+  //   pontos medidos e rótulos acessíveis; o cenário "não converte competência
+  //   sem amostra em desempenho de zero por cento", no spec21, preserva as
+  //   sete áreas em aberto e impede que falta de amostra vire um vértice zero.
 });
 

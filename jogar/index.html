@@ -95,7 +95,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@17.05',
+          release: 'nefroquest@17.06',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -160,13 +160,14 @@
   <link rel="stylesheet" href="styles/lumen/shell.css?v=16.18">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=16.99">
   <link rel="stylesheet" href="styles/lumen/atrium.css?v=16.99">
-  <link rel="stylesheet" href="styles/lumen/game.css?v=17.05">
-  <link rel="stylesheet" href="styles/lumen/difficulty.css?v=16.86">
-  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=17.03">
-  <link rel="stylesheet" href="styles/lumen/charselect.css?v=16.90">
+  <link rel="stylesheet" href="styles/lumen/game.css?v=17.06">
+  <link rel="stylesheet" href="styles/lumen/difficulty.css?v=17.06">
+  <link rel="stylesheet" href="styles/lumen/dashboard.css?v=17.06">
+  <link rel="stylesheet" href="styles/lumen/skills.css?v=17.06">
+  <link rel="stylesheet" href="styles/lumen/charselect.css?v=17.06">
   <link rel="stylesheet" href="styles/lumen/forge.css?v=16.85">
   <link rel="stylesheet" href="styles/lumen/header.css?v=15.91">
-  <link rel="stylesheet" href="styles/lumen/modes.css?v=16.69">
+  <link rel="stylesheet" href="styles/lumen/modes.css?v=17.06">
   <link rel="stylesheet" href="styles/lumen/exam.css?v=17.01">
   <link rel="stylesheet" href="styles/lumen/equipment.css?v=16.62">
   <link rel="stylesheet" href="styles/lumen/boss.css?v=16.84">
@@ -183,6 +184,7 @@
   <link rel="stylesheet" href="styles/lumen/oracle.css?v=16.25">
   <link rel="stylesheet" href="styles/lumen/chamber-desktop.css?v=17.03">
   <link rel="stylesheet" href="styles/lumen/chamber-workspace.css?v=17.03">
+  <link rel="stylesheet" href="styles/lumen/chamber-expansion.css?v=17.06">
   <script>
     // Version beacon - one policy for every public label; technical release remains monotonic.
     (function() {
@@ -1871,7 +1873,7 @@
   <script defer src="js/audio.js?v=16.28"></script>
   <script defer src="js/leaderboard.js?v=17.01"></script>
   <script defer src="js/study-mode.js?v=17.02"></script>
-  <script defer src="js/game.js?v=17.04"></script>
+  <script defer src="js/game.js?v=17.06"></script>
   <script>window._VAPID_PUBLIC_KEY = 'BEShig3Nuyd6QFD3pFk4H01-yy17a9gDc3XCpVFRphmVI9HxXlTZRxypO8icYfqjV0-BUQoFbLVrxpn1c4pZItQ';</script>
   <script defer src="js/notifications.js?v=11.90"></script>
   <script defer src="js/auth.js?v=17.03"></script>
@@ -1895,8 +1897,9 @@
   <script defer src="js/cinema-victory-epilogue.js?v=16.43"></script>
   <script defer src="js/cinema-victory-bridge.js?v=16.43"></script>
   <script defer src="js/chamber-art.js?v=17.03"></script>
-  <script defer src="js/chamber-workspace.js?v=17.03"></script>
-  <script defer src="js/minigame-acidbase.js?v=17.03"></script>
+  <script defer src="js/chamber-expansion.js?v=17.06"></script>
+  <script defer src="js/chamber-workspace.js?v=17.06"></script>
+  <script defer src="js/minigame-acidbase.js?v=17.06"></script>
   <script defer src="js/cinema-entry-source-config.js?v=16.28"></script>
   <script defer src="js/cinema-entry-seen.js?v=16.28"></script>
   <script defer src="js/cinema-entry-cinema.js?v=16.43"></script>
@@ -1904,7 +1907,8 @@
   <script defer src="js/achievements.js?v=16.75"></script>
   <script defer src="js/changelog.js?v=15.94"></script>
   <script defer src="js/equipment-preview.js?v=16.62"></script>
-  <script defer src="js/dashboard.js?v=17.03"></script>
+  <script defer src="js/dashboard-skills.js?v=17.06"></script>
+  <script defer src="js/dashboard.js?v=17.06"></script>
 
   <!-- Single source of truth for profile popup menu items -->
   <template id="profilePopupItems">
