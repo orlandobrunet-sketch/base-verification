@@ -1,11 +1,13 @@
-// NefroQuest Service Worker — v17.05
-const CACHE = 'nefroquest-v17.05';
+// NefroQuest Service Worker — v17.06
+const CACHE = 'nefroquest-v17.06';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
   '/assets/vendor/supabase-js-2.106.2/supabase.js',
   '/js/progression.js',
   '/assets/scenes/ritual-initiation.webp',
+  '/js/chamber-expansion.js',
+  '/styles/lumen/chamber-expansion.css',
   '/js/chamber-workspace.js',
   '/styles/lumen/chamber-workspace.css',
   '/assets/chamber/patients/aldric.webp',
@@ -171,6 +173,9 @@ const STATIC_ASSETS = [
   '/js/achievements.js',
   '/js/changelog.js',
   '/js/equipment-preview.js',
+  '/js/dashboard-skills.js',
+  '/styles/lumen/skills.css',
+  '/assets/images/grimoire-banner-1706.webp',
   '/js/dashboard.js',
 ];
 
@@ -186,7 +191,9 @@ const STATIC_ASSETS = [
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
   '/js/progression.js': '16.84',
-  '/js/chamber-workspace.js': '17.03',
+  '/js/chamber-expansion.js': '17.06',
+  '/styles/lumen/chamber-expansion.css': '17.06',
+  '/js/chamber-workspace.js': '17.06',
   '/styles/lumen/chamber-workspace.css': '17.03',
   '/js/chamber-art.js': '17.03',
   '/styles/lumen/chamber-desktop.css': '17.03',
@@ -220,11 +227,11 @@ const ASSET_VERSIONS = {
   '/styles/lumen/shell.css': '16.18',
   '/styles/lumen/portal.css': '16.99',
   '/styles/lumen/atrium.css': '16.99',
-  '/styles/lumen/game.css': '17.05',
-  '/styles/lumen/difficulty.css': '16.86',
-  '/styles/lumen/dashboard.css': '17.03',
-  '/styles/lumen/charselect.css': '16.90',
-  '/styles/lumen/modes.css': '16.69',
+  '/styles/lumen/game.css': '17.06',
+  '/styles/lumen/difficulty.css': '17.06',
+  '/styles/lumen/dashboard.css': '17.06',
+  '/styles/lumen/charselect.css': '17.06',
+  '/styles/lumen/modes.css': '17.06',
   '/styles/lumen/exam.css': '17.01',
   '/styles/lumen/forge.css': '16.85',
   '/styles/lumen/header.css': '15.91',
@@ -241,7 +248,7 @@ const ASSET_VERSIONS = {
   '/js/audio.js': '16.28',
   '/js/leaderboard.js': '17.01',
   '/js/study-mode.js': '17.02',
-  '/js/game.js': '17.04',
+  '/js/game.js': '17.06',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '17.03',
   '/js/portal.js': '16.93',
@@ -252,11 +259,13 @@ const ASSET_VERSIONS = {
   '/js/exam.js': '17.01',
   '/js/admin.js': '15.35',
   '/js/minigame.js': '17.01',
-  '/js/minigame-acidbase.js': '17.03',
+  '/js/minigame-acidbase.js': '17.06',
   '/js/achievements.js': '16.75',
   '/js/changelog.js': '15.94',
   '/js/equipment-preview.js': '16.62',
-  '/js/dashboard.js': '17.03',
+  '/js/dashboard-skills.js': '17.06',
+  '/styles/lumen/skills.css': '17.06',
+  '/js/dashboard.js': '17.06',
 };
 // bump-release:asset-versions:fim
 

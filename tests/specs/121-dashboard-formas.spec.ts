@@ -128,38 +128,43 @@ test('contorno de desempenho fecha a última aresta e fica contínuo com os sete
   await abrir(page);
   await page.evaluate(() => {
     (window as any).closeDashboard();
-    const ids = ['glomerulopatias', 'hidroeletrolitico_acidobase', 'drc_nefroprotecao', 'nefrologia_geral_diagnostico', 'lra_critico', 'dialise', 'transplante'];
     const values = [84, 73, 74, 76, 76, 84, 82];
-    (window as any).getCoreSkillsStats = () => ids.map((id, index) => ({ id, label: id, totalAnswered: 100, accuracy: values[index] }));
+    const stats = JSON.parse(localStorage.getItem('nefroquest-detailed-stats') || '{}');
+    // Usa o cálculo real com cem respostas por área; o componente recebe
+    // também acertos e erros coerentes, em vez de um percentual avulso.
+    stats.byCategory = Object.fromEntries((window as any).CORE_SKILLS.map((skill: any, index: number) => [skill.categories[0], { correct: values[index], wrong: 100 - values[index] }]));
+    stats.totalQuestions = 700;
+    stats.totalCorrect = values.reduce((sum, value) => sum + value, 0);
+    stats.totalWrong = 700 - stats.totalCorrect;
+    localStorage.setItem('nefroquest-detailed-stats', JSON.stringify(stats));
     (window as any).openDashboard();
   });
   await expect(page.locator('#nqDashboard')).toHaveAttribute('data-dashboard-state', 'ready');
   await page.getByRole('tab', { name: 'Competências', exact: true }).click();
-  const mobile = page.locator('.nqd-skill-radar-mobile');
-  if (await mobile.isVisible()) await mobile.locator('summary').click();
-  const canvas = page.locator('.nqd-radar:visible canvas');
-  await expect(canvas).toBeVisible();
-  const missing = () => canvas.evaluate((el: HTMLCanvasElement) => {
-    const ctx = el.getContext('2d')!;
-    const ratio = el.width / 380;
+  const chart = page.locator('svg.nqs-chart');
+  await expect(chart).toBeVisible();
+  await expect(chart.locator('.nqs-profile-fill')).toHaveCount(1);
+  await expect(chart.locator('.nqs-profile-line')).toHaveCount(7);
+  const missing = () => chart.evaluate(el => {
     const values = [84, 73, 74, 76, 76, 84, 82];
     const points = values.map((value, index) => {
       const angle = -Math.PI / 2 + 2 * Math.PI * index / values.length;
-      return { x: 190 + Math.cos(angle) * 108 * value / 100, y: 190 + Math.sin(angle) * 108 * value / 100 };
+      return { x: 280 + Math.cos(angle) * 170 * value / 100, y: 280 + Math.sin(angle) * 170 * value / 100 };
     });
     const failures: string[] = [];
+    const lines = [...el.querySelectorAll<SVGGeometryElement>('.nqs-profile-line')];
     for (let index = 0; index < points.length; index += 1) {
       const a = points[index], b = points[(index + 1) % points.length];
+      const line = lines[index];
+      if (!line || getComputedStyle(line).stroke !== 'rgb(181, 237, 241)') { failures.push(`${index}:stroke`); continue; }
       for (const fraction of [.2, .4, .6, .8]) {
-        const x = Math.round((a.x + (b.x - a.x) * fraction) * ratio);
-        const y = Math.round((a.y + (b.y - a.y) * fraction) * ratio);
-        const pixels = ctx.getImageData(x - 2, y - 2, 5, 5).data;
-        let cyan = false;
-        for (let offset = 0; offset < pixels.length; offset += 4) {
-          if (Math.abs(pixels[offset] - 159) < 20 && Math.abs(pixels[offset + 1] - 219) < 20 && Math.abs(pixels[offset + 2] - 228) < 20 && pixels[offset + 3] > 180) cyan = true;
-        }
-        if (!cyan) failures.push(`${index}:${fraction}`);
+        const actual = line.getPointAtLength(line.getTotalLength() * fraction);
+        const expected = { x: a.x + (b.x - a.x) * fraction, y: a.y + (b.y - a.y) * fraction };
+        if (Math.hypot(actual.x - expected.x, actual.y - expected.y) > .02) failures.push(`${index}:${fraction}`);
       }
+      const end = line.getPointAtLength(line.getTotalLength());
+      const next = lines[(index + 1) % lines.length].getPointAtLength(0);
+      if (Math.hypot(end.x - next.x, end.y - next.y) > .02) failures.push(`${index}:closure`);
     }
     return failures;
   });

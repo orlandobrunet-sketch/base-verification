@@ -2108,7 +2108,7 @@
     _bindOverlayEvents(pagina);
     return pagina;
   }
-  function _abFechar(overlay, options){ window.closeProfilePopup?.(); window.NQChamberMotion?.unmount(); overlay._abFechar ? overlay._abFechar(options) : overlay.remove(); }
+  function _abFechar(overlay, options){ window.NQChamberExpansion?.unmount(overlay); window.closeProfilePopup?.(); window.NQChamberMotion?.unmount(); overlay._abFechar ? overlay._abFechar(options) : overlay.remove(); }
   // Cada tela é redesenhada inteira: o foco vai para o título (ou para o
   // campo/próximo passo), senão cai no body a cada ato.
   function _abFocar(card, sel){

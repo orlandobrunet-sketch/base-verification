@@ -20,8 +20,12 @@ async function portrait(page:Page,id:string,name:string){
  await expect(img).toHaveAttribute('src',`assets/chamber/patients/${id}.webp`);await expect(img).toHaveAttribute('alt','Retrato ilustrado de '+name);
  const geometry=await img.evaluate((el:HTMLImageElement)=>{const r=el.getBoundingClientRect(),s=getComputedStyle(el);return{width:el.naturalWidth,height:el.naturalHeight,ratio:r.width/r.height,fit:s.objectFit,animation:s.animationName,transform:s.transform};});
  expect(geometry.width).toBe(768);expect(geometry.height).toBe(960);expect(geometry.ratio).toBeCloseTo(.8,2);expect(geometry.fit).toBe('contain');expect(geometry.animation).toBe('none');expect(geometry.transform).toBe('none');
- const bounds=await figure.evaluate(el=>{const p=el.getBoundingClientRect(),n=el.parentElement!.querySelector('.ab-patient-identity')!.getBoundingClientRect();return{p:p.toJSON(),n:n.toJSON()};});
- expect(bounds.p.right<=bounds.n.left||bounds.p.bottom<=bounds.n.top).toBe(true);
+ const bounds=await figure.evaluate(el=>{
+  const portrait=el.getBoundingClientRect(),identity=el.parentElement!.querySelector('.ab-patient-identity')!,walker=document.createTreeWalker(identity,NodeFilter.SHOW_TEXT),rects:DOMRect[]=[];let node:Node|null;
+  while((node=walker.nextNode())){if(!node.textContent?.trim())continue;const range=document.createRange();range.selectNodeContents(node);rects.push(...range.getClientRects());}
+  return{lines:rects.length,clear:rects.every(text=>portrait.right<=text.left||portrait.bottom<=text.top||text.right<=portrait.left||text.bottom<=portrait.top)};
+ });
+ expect(bounds.lines).toBeGreaterThan(0);expect(bounds.clear).toBe(true);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBe(true);
 }
 test('all20 native case identities keep the matching real portrait in intro and act',async({page})=>{

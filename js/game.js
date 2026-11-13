@@ -4967,11 +4967,11 @@
       return true;
     }
 
-    function showFloatingFeedback(text, isCorrect, x, y) {
+    function showFloatingFeedback(text, isCorrect, x, y, presentationClass = '') {
       try { if (window.NQBossArena?.presentNativeFeedback(text, isCorrect)) return; }
       catch (error) { console.warn('[NQ] Boss feedback skipped', error); }
       const el = document.createElement('div');
-      el.className = 'floating-text ' + (isCorrect ? 'correct' : 'wrong');
+      el.className = 'floating-text ' + (isCorrect ? 'correct' : 'wrong') + (presentationClass ? ' ' + presentationClass : '');
       el.textContent = text;
       if (x === undefined || y === undefined) {
         el.style.left = '50%';
@@ -5178,7 +5178,7 @@
           _revealFeedback();
         }
         // Feedback de dano/XP flutuante
-        let x, y;
+        let x, y, rewardPresentation = '';
         if (btn && typeof btn.getBoundingClientRect === 'function') {
           const rect = btn.getBoundingClientRect();
           x = rect.left + rect.width / 2;
@@ -5192,10 +5192,25 @@
             const rect = loadout.getBoundingClientRect();
             x = rect.left + rect.width * .5;
             y = rect.top + rect.height * .79;
+            const vitality = loadout.querySelector('#guardianVitality');
+            const progress = loadout.querySelector('.nql-hero-progress');
+            if (vitality && progress) {
+              const livesRect = vitality.getBoundingClientRect();
+              const progressRect = progress.getBoundingClientRect();
+              const inWindow = bounds => bounds.width > 0 && bounds.height > 0 &&
+                bounds.top >= 0 && bounds.bottom <= window.innerHeight &&
+                bounds.left >= 0 && bounds.right <= window.innerWidth;
+              if (inWindow(livesRect) && inWindow(progressRect) && progressRect.top > livesRect.bottom &&
+                  getComputedStyle(vitality).visibility === 'visible' && getComputedStyle(progress).visibility === 'visible') {
+                x = progressRect.left + progressRect.width / 2;
+                y = (livesRect.bottom + progressRect.top) / 2;
+                rewardPresentation = 'nql-arsenal-reward';
+              }
+            }
           }
         }
         const naFaixa = !isBossBattle() && window.innerWidth <= 768 && _mostrarGanho(`+${xp} XP · +${g} ouro`);
-        if (!naFaixa) showFloatingFeedback(`+${xp} XP  +${g}💰`, true, x, y);
+        if (!naFaixa) showFloatingFeedback(`+${xp} XP  +${g}💰`, true, x, y, rewardPresentation);
 
         // Boss log & damage animation
         if (isBossBattle()) {

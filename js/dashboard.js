@@ -818,8 +818,10 @@
 
         <p class="nqd-memory-note">${naSemana > 0
           ? `${_formatNumber(naSemana)} ${naSemana === 1 ? 'revisão prevista' : 'revisões previstas'} nos próximos sete dias.`
-          : 'Nenhuma revisão prevista para os próximos sete dias.'}</p>
-        <details class="nqd-overview-explanation"><summary>Como o agendamento é estimado</summary><p>${_formatNumber(memory.consolidated)} de ${_formatNumber(memory.seen)} questões têm estabilidade estimada de pelo menos 21 dias.${memory.medianS == null ? '' : ` A mediana estimada é de ${Math.round(memory.medianS)} dias.`} Estes números ajudam a agendar as revisões; não garantem domínio ou lembrança.</p></details>
+          : vencidas > 0
+            ? `Você tem ${_formatNumber(vencidas)} ${vencidas === 1 ? 'questão' : 'questões'} para revisar agora. As próximas datas serão atualizadas conforme você revisar.`
+            : 'Nenhuma revisão prevista para os próximos sete dias.'}</p>
+        <details class="nqd-overview-explanation"><summary>Como funcionam as revisões?</summary><p>Depois de cada resposta, o NefroQuest sugere uma próxima data para aquela questão. Erros antecipam a revisão; novos acertos podem aumentar o intervalo.</p><p>“Revisar agora” reúne as questões que já chegaram à data, inclusive as atrasadas. O calendário mostra as próximas revisões. As datas são sugestões: você pode estudar quando quiser.</p></details>
       </section>
     `;
   }
@@ -995,71 +997,10 @@
   }
 
   function _tabSkills(data) {
-    const skills = Array.isArray(data.coreSkills) ? data.coreSkills : [];
-    const measured = skills.filter(skill => _number(skill.totalAnswered, 0) >= 5 && skill.accuracy != null);
-    const unmeasured = skills.filter(skill => _number(skill.totalAnswered, 0) < 5 || skill.accuracy == null);
-    const stateRank = { attention: 0, consolidating: 1, consistent: 2 };
-    const stateFor = skill => {
-      const answered = _number(skill.totalAnswered, 0);
-      const accuracy = skill.accuracy == null ? null : Math.round(skill.accuracy);
-      return accuracy < 50 ? 'attention' : accuracy < 70 || answered < 10 ? 'consolidating' : 'consistent';
-    };
-    measured.sort((left, right) => stateRank[stateFor(left)] - stateRank[stateFor(right)]);
-    const rows = measured.map(skill => {
-      const answered = _number(skill.totalAnswered, 0);
-      const accuracy = Math.round(skill.accuracy);
-      const skillState = stateFor(skill);
-      return `
-        <article class="nqd-skill-row" data-state="${skillState}" data-skill-id="${_escape(skill.id)}">
-          <div class="nqd-skill-identity"><h3 class="nqd-skill-name">${_escape(skill.label)}</h3><span class="nqd-skill-sample">${skillState === 'attention' ? 'Requer atenção' : skillState === 'consolidating' ? 'Em consolidação' : 'Consistente na amostra'} · ${_formatNumber(answered)} ${answered === 1 ? 'resposta' : 'respostas'}</span></div>
-          <strong class="nqd-skill-value">${accuracy}%</strong>
-          ${_meterMarkup(accuracy, 100, `Precisão observada em ${skill.label}`)}
-        </article>
-      `;
-    }).join('');
-    const unmeasuredRows = unmeasured.map(skill => {
-      const answered = _number(skill.totalAnswered, 0);
-      return `<div class="nqd-skill-unmeasured" data-skill-id="${_escape(skill.id)}"><span>${_escape(skill.label)}</span><span>${answered ? `Amostra inicial · ${_formatNumber(answered)} ${answered === 1 ? 'resposta' : 'respostas'}` : 'Sem amostra'}</span></div>`;
-    }).join('');
-    const unmeasuredDetails = unmeasured.length ? `
-      <details class="nqd-skill-unmeasured-group">
-        <summary>${measured.length ? `${unmeasured.length} ${unmeasured.length === 1 ? 'área ainda sem amostra suficiente' : 'áreas ainda sem amostra suficiente'}` : `Ver as ${unmeasured.length} áreas acompanhadas`}</summary>
-        <div>${unmeasuredRows}</div>
-      </details>` : '';
-    const radarTitle = measured.length < skills.length ? 'Perfil visual parcial' : 'Perfil visual';
-    const radarContext = measured.length < skills.length
-      ? `${measured.length} de ${skills.length} áreas têm amostra. A forma não representa o perfil completo.`
-      : 'Todas as áreas já têm amostra.';
-    const radar = measured.length >= 3 ? `
-      <aside class="nqd-skill-radar-side" aria-label="Perfil visual complementar">
-        <h3>${radarTitle}</h3>
-        <p>${radarContext}</p>
-        <div id="nqDashRadarContainer" class="nqd-radar" role="img" aria-label="${radarTitle} por competência"></div>
-      </aside>
-      <details class="nqd-skill-radar-mobile">
-        <summary>Ver ${radarTitle.toLowerCase()}</summary>
-        <div class="nqd-skill-radar-mobile-body">
-          <p>${radarContext}</p>
-          <div id="nqDashRadarMobileContainer" class="nqd-radar" role="img" aria-label="${radarTitle} por competência"></div>
-        </div>
-      </details>` : '';
-
     return `
       <section class="nqd-pane nq-dash-pane" id="nqdPane-skills" role="tabpanel" aria-labelledby="nqdTab-skills" data-dash-pane="skills" hidden>
-        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Competências</h1><p class="nqd-section-copy">Veja os resultados observados e o tamanho da amostra em cada área.</p></div></div>
-        ${measured.length ? '' : `
-          <section class="nqd-skill-priority is-forming">
-            <div><span class="nqd-eyebrow">Próximo passo</span><h2>Seu perfil começa com as respostas.</h2><p>Escolha um tema para estudar. Depois de cinco respostas, o resultado dele aparece aqui.</p></div>
-            <button type="button" class="nqd-primary-action" data-action="_dashExploreSkills" data-nqd-primary="true">Escolher temas${_svg('arrow')}</button>
-          </section>`}
-        ${measured.length ? `
-          <section class="nqd-section nqd-skill-list-section" aria-label="Desempenho por competência ampla">
-            <header class="nqd-skill-list-header"><div><h2>Desempenho por área</h2><p>Áreas amplas reúnem vários temas.</p></div><span>${measured.length} de ${skills.length} áreas com dados</span></header>
-            <div class="nqd-skill-data-layout"><div><div class="nqd-skill-list">${rows}</div>${unmeasuredDetails}${measured.length < 3 ? '<p class="nqd-skill-visual-pending">O perfil visual aparece quando três áreas tiverem dados suficientes.</p>' : ''}</div>${radar}</div>
-          </section>
-        ` : `
-          <section class="nqd-section nqd-skill-empty" aria-label="Áreas acompanhadas"><h2>Áreas acompanhadas</h2><p>O desempenho por área aparecerá quando houver respostas suficientes. Nenhuma área é tratada como desempenho zero.</p>${unmeasuredDetails}</section>
-        `}
+        <div class="nqd-section-header"><div><h1 class="nqd-title-lg">Competências</h1><p class="nqd-section-copy">Explore suas áreas, acompanhe as respostas e escolha onde continuar.</p></div></div>
+        ${window.NQDashboardSkills.render(data.coreSkills)}
         <section class="nqd-section nqd-error-patterns"><header class="nqd-section-header"><div><h2 class="nqd-section-title">Como você erra</h2></div></header>${_errorPatternsMarkup()}</section>
       </section>
     `;
@@ -1609,7 +1550,7 @@
             <p class="nqd-grimoire-rule">Seu acervo cresce durante a jornada: acerte questões ou abra baús para descobrir novos artigos</p>
             <p class="nqd-section-copy nqd-library-summary"><span>Referências descobertas até o momento:</span> <strong>${totalUnlocked}/${library.totalArticles + library.totalRefs}</strong></p>
           </div>
-          <div class="nqd-grimoire-art-region" aria-hidden="true"><img class="nqd-grimoire-art" src="/assets/achievements/grimorio.webp" width="512" height="512" alt="" aria-hidden="true" decoding="async"></div>
+          <div class="nqd-grimoire-art-region" aria-hidden="true"><img class="nqd-grimoire-art" src="/assets/images/grimoire-banner-1706.webp" width="2172" height="724" alt="" aria-hidden="true" decoding="async"></div>
         </header>
         <div class="nqd-library-controls"><div class="nqd-library-toolbar">
           <div class="nqd-library-navigation"><div class="nqd-library-tabs" role="tablist" aria-label="Coleções do Grimório">
@@ -1784,196 +1725,8 @@
       });
     }
     if (tabId === 'ranking' && !_rankingLoaded) _loadRanking(false);
-    if (tabId === 'skills') _drawRadar();
+    if (tabId === 'skills') window.NQDashboardSkills.activate(root);
     window.prepareAchievementCollectionLayout?.(tabId === 'achievements' ? root.querySelector('.nqd-achievement-grid') : null);
-  }
-
-  /**
-   * Radar de competências.
-   *
-   * Foi removido na 14.50 por plotar 0% onde não havia amostra — a forma do
-   * polígono mentia sobre o desempenho. O defeito estava em três linhas, não
-   * no gráfico: agora o polígono liga apenas os eixos medidos, e o eixo sem
-   * amostra fica com raio apagado, sem vértice e rotulado "—".
-   */
-  function _drawRadar() {
-    if (!_dashboardData) return;
-    const skills = _dashboardData.coreSkills || [];
-    const resumo = skills.map(skill => {
-      const valor = _number(skill.totalAnswered, 0) < 5 || skill.accuracy == null
-        ? 'sem amostra'
-        : `${Math.round(skill.accuracy)}% em ${_number(skill.totalAnswered, 0)} respostas`;
-      return `${skill.label}: ${valor}`;
-    }).join('; ');
-    const profileName = skills.filter(skill => _number(skill.totalAnswered, 0) >= 5 && skill.accuracy != null).length < skills.length
-      ? 'Perfil visual parcial'
-      : 'Perfil visual';
-    ['nqDashRadarContainer', 'nqDashRadarMobileContainer'].forEach(id => {
-      const container = document.getElementById(id);
-      if (!container || container.dataset.rendered === 'true') return;
-      container.dataset.rendered = 'true';
-      container.setAttribute('aria-label', `${profileName}. Precisão observada por competência: ${resumo}`);
-      _drawDashboardRadar(container, skills);
-    });
-  }
-
-  function _drawDashboardRadar(container, skills) {
-    const size = 380;
-    const ratio = Math.min(2, window.devicePixelRatio || 1);
-    const canvas = document.createElement('canvas');
-    canvas.width = size * ratio;
-    canvas.height = size * ratio;
-    canvas.style.width = '100%';
-    canvas.style.maxWidth = `${size}px`;
-    canvas.style.aspectRatio = '1';
-    canvas.setAttribute('aria-hidden', 'true');
-    container.replaceChildren(canvas);
-
-    // Em espaço estreito, o mesmo perfil é apresentado sem reduzir o texto.
-    // A descrição acessível do contêiner já contém estes valores completos.
-    const values = document.createElement('ul');
-    values.className = 'nqd-radar-values';
-    values.setAttribute('aria-hidden', 'true');
-    values.innerHTML = skills.map(skill => {
-      const total = _number(skill.totalAnswered, 0);
-      const measured = total >= 5 && skill.accuracy != null;
-      return `<li data-profile-skill="${_escape(skill.id)}"><span>${_escape(skill.label)}</span><strong>${measured ? Math.round(skill.accuracy) + '%' : 'Sem amostra'}</strong>${measured ? '<small>' + total + ' respostas</small>' : ''}</li>`;
-    }).join('');
-    container.append(values);
-
-    const context = canvas.getContext('2d');
-    if (!context || !skills.length) return;
-    context.scale(ratio, ratio);
-    const axisStyles = getComputedStyle(container);
-    const identityColors = new Map(skills.map(skill => [skill.id, axisStyles.getPropertyValue(`--nqd-axis-${skill.id}`).trim() || '#b8c6d8']));
-
-    const center = size / 2;
-    const radius = 108;
-    const labelRadius = 160;
-    const angleFor = index => -Math.PI / 2 + (Math.PI * 2 * index) / skills.length;
-    const pointFor = (index, factor) => ({
-      x: center + Math.cos(angleFor(index)) * radius * factor,
-      y: center + Math.sin(angleFor(index)) * radius * factor,
-    });
-    const medido = skill => skill && _number(skill.totalAnswered, 0) >= 5 && skill.accuracy != null;
-    const fator = skill => Math.max(0, Math.min(100, _number(skill.accuracy, 0))) / 100;
-
-    context.lineJoin = 'round';
-    context.lineCap = 'round';
-
-    // O desenho inteiro é uma função do progresso (0..1) para poder ser
-    // animado: o polígono cresce do centro até o valor real. Sob
-    // prefers-reduced-motion, renderiza uma única vez em 1.
-    let renderedProgress = 0;
-    const desenhar = progresso => {
-      renderedProgress = progresso;
-      context.clearRect(0, 0, size, size);
-      _radarFrame(context, { skills, size, center, radius, labelRadius, angleFor, pointFor, medido, fator, progresso, identityColors });
-    };
-
-    if (document.fonts && typeof document.fonts.load === 'function') {
-      document.fonts.load('600 18px "Source Sans 3"').then(() => {
-        if (canvas.isConnected) desenhar(renderedProgress);
-      }).catch(() => {});
-    }
-    const semMovimento = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (semMovimento) {
-      desenhar(1);
-      return;
-    }
-
-    const inicio = performance.now();
-    const DURACAO = 620;
-    const passo = agora => {
-      const t = Math.min(1, (agora - inicio) / DURACAO);
-      // easeOutCubic: chega rápido e assenta, sem quicar
-      desenhar(1 - Math.pow(1 - t, 3));
-      if (t < 1 && container.isConnected) window.requestAnimationFrame(passo);
-    };
-    window.requestAnimationFrame(passo);
-  }
-
-  /** Um quadro do radar. Extraído para permitir a animação de entrada. */
-  function _radarFrame(context, cfg) {
-    const { skills, size, center, radius, labelRadius, angleFor, pointFor, medido, fator, progresso, identityColors } = cfg;
-    const shortLabels = {
-      glomerulopatias: 'Glomérulo',
-      hidroeletrolitico_acidobase: 'DHE',
-      drc_nefroprotecao: 'DRC',
-      nefrologia_geral_diagnostico: 'Geral',
-      lra_critico: 'IRA',
-      dialise: 'Diálise',
-      transplante: 'TX',
-    };
-
-    // Malha de referência
-    [0.25, 0.5, 0.75, 1].forEach((level, levelIndex) => {
-      context.beginPath();
-      skills.forEach((_, index) => {
-        const point = pointFor(index, level);
-        if (!index) context.moveTo(point.x, point.y);
-        else context.lineTo(point.x, point.y);
-      });
-      context.closePath();
-      context.strokeStyle = levelIndex === 3 ? 'rgba(157, 215, 226, 0.32)' : 'rgba(157, 215, 226, 0.14)';
-      context.lineWidth = 1;
-      context.stroke();
-    });
-
-    // Raios: apagado e tracejado onde não há amostra
-    skills.forEach((skill, index) => {
-      const edge = pointFor(index, 1);
-      context.beginPath();
-      context.setLineDash(medido(skill) ? [] : [3, 4]);
-      context.moveTo(center, center);
-      context.lineTo(edge.x, edge.y);
-      context.strokeStyle = medido(skill) ? 'rgba(157, 215, 226, 0.14)' : 'rgba(121, 145, 167, 0.22)';
-      context.stroke();
-    });
-    context.setLineDash([]);
-
-    // Polígono apenas sobre os eixos medidos
-    const medidos = skills.map((skill, index) => ({ skill, index })).filter(item => medido(item.skill));
-    if (medidos.length >= 3) {
-      context.beginPath();
-      context.setLineDash([]);
-      medidos.forEach((item, ordem) => {
-        const point = pointFor(item.index, fator(item.skill) * progresso);
-        if (!ordem) context.moveTo(point.x, point.y);
-        else context.lineTo(point.x, point.y);
-      });
-      context.closePath();
-      context.strokeStyle = '#9fdbe4';
-      context.lineWidth = 2;
-      context.stroke();
-      context.setLineDash([]);
-    }
-
-    // Vértices e rótulos
-    skills.forEach((skill, index) => {
-      if (medido(skill)) {
-        const valuePoint = pointFor(index, fator(skill) * progresso);
-        context.beginPath();
-        context.arc(valuePoint.x, valuePoint.y, 3.5, 0, Math.PI * 2);
-        context.fillStyle = '#e3c970';
-        context.fill();
-      }
-
-      const angle = angleFor(index);
-      const x = center + Math.cos(angle) * labelRadius;
-      const y = center + Math.sin(angle) * labelRadius;
-      context.fillStyle = identityColors.get(skill.id) || '#b8c6d8';
-      context.font = '600 18px "Source Sans 3", sans-serif';
-      context.textAlign = Math.cos(angle) > 0.25 ? 'left' : Math.cos(angle) < -0.25 ? 'right' : 'center';
-      context.textBaseline = 'middle';
-      const rotulo = medido(skill) ? `${Math.round(skill.accuracy)}%` : '—';
-      const label = shortLabels[skill.id] || skill.label.slice(0, 3).toUpperCase();
-      const width = Math.max(context.measureText(label).width, context.measureText(rotulo).width);
-      const offset = context.textAlign === 'right' ? -width : context.textAlign === 'center' ? -width / 2 : 0;
-      const labelX = Math.max(8 - offset, Math.min(size - 8 - width - offset, x));
-      context.fillText(label, labelX, y - 10);
-      context.fillText(rotulo, labelX, y + 12);
-    });
   }
 
   function _handleDashboardKeydown(event) {
@@ -2387,6 +2140,24 @@
     if (explore) explore.hidden = !expanded;
   }
 
+  function _libraryReadBlocked(item, root) {
+    if (!item?.unlocked) return true;
+    const pane = root || document.querySelector('#nqdPane-library');
+    const collection = pane?.querySelector('[data-library-collection][aria-selected="true"]')?.dataset.libraryCollection || 'all';
+    const discovery = pane?.querySelector('#nqDashLibraryDiscovery')?.value || 'all';
+    // A prévia administrativa não transforma um item filtrado como bloqueado em descoberta.
+    return collection !== 'favorites' && discovery === 'locked' && !item.discovered;
+  }
+
+  function _syncLibraryReadAction(button, blocked) {
+    if (button.disabled === blocked && button.classList.contains('nqd-library-read-locked') === blocked) return;
+    button.disabled = blocked;
+    button.classList.toggle('nqd-library-read-locked', blocked);
+    if (blocked) button.setAttribute('aria-disabled', 'true');
+    else button.removeAttribute('aria-disabled');
+    button.innerHTML = `<span>${blocked ? 'Resumo bloqueado' : 'Ler resumo'}</span>${_svg(blocked ? 'lock' : 'arrow')}`;
+  }
+
   function _applyLibraryView(root) {
     if (!root) return;
     const list = root.querySelector('#nqDashLibraryList');
@@ -2399,6 +2170,7 @@
     const discovery = root.querySelector('#nqDashLibraryDiscovery')?.value || 'all';
 
     const items = [...list.querySelectorAll('[data-library-entry]')];
+    const models = new Map(_libraryItems().items.map(item => [item.key, item]));
     // Todos conta o catálogo antes da busca; acesso não equivale a descoberta.
     const allCount = root.querySelector('#nqDashLibraryTab-all [data-library-count]');
     if (allCount) allCount.textContent = String(items.length);
@@ -2435,6 +2207,8 @@
       const matchesFilter = collection === 'favorites' || filter === 'all'
         || (filter.startsWith('rarity:') && item.dataset.libraryRarity === filter.slice(7))
         || (filter.startsWith('theme:') && (item.dataset.libraryTheme || '').split(' · ').includes(filter.slice(6)));
+      const read = item.querySelector('[data-library-read-key]');
+      if (read) _syncLibraryReadAction(read, _libraryReadBlocked(models.get(read.dataset.libraryReadKey), root));
       item.hidden = !(inCollection && matches && matchesFilter && matchesDiscovery);
       if (!item.hidden) visible += 1;
     });
@@ -2516,6 +2290,7 @@
       root.innerHTML = _readyMarkup(_dashboardData);
       root.dataset.dashboardState = 'ready';
       _wireDashboard(root);
+      root._nqsSkillsCleanup = window.NQDashboardSkills.mount(root);
       _switchTab(_activeTab, false);
       window.requestAnimationFrame(() => {
         if (!current()) return;
@@ -2551,6 +2326,7 @@
     _rememberLibraryReading(root);
     const restoreFocus = !(options && options.restoreFocus === false);
     root.removeEventListener('keydown', _handleDashboardKeydown);
+    root._nqsSkillsCleanup?.();
     window.clearTimeout(_rankingSearchTimer);
     _rankingSearchTimer = null;
     _rankingRequestId += 1;
@@ -2742,7 +2518,7 @@
   function _dashToggleArticle(element) {
     const key = element?.dataset?.libraryReadKey;
     const item = key && _libraryItems().items.find(entry => entry.key === key);
-    if (!item?.unlocked || typeof _showResumoModal !== 'function') return;
+    if (_libraryReadBlocked(item) || typeof _showResumoModal !== 'function') return;
     _showResumoModal({
       label: item.title, autores: item.authors, jornal: item.source, ano: item.year,
       resumo: item.summary, conclusao: item.conclusion,

@@ -61,16 +61,16 @@ for (const entrada of ['clique', 'teclado'] as const) {
   });
 }
 
-test('legendas e valores do HUD cabem em suas colunas com fonte normal e ampliada', async ({ page }) => {
-  await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
-  await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
-  await page.locator('[data-portal-route="guest"]').click();
-  await injectGameState(page);
-  await page.waitForLoadState('load');
-  await page.evaluate(() => document.fonts.ready);
-  for (const width of [1440, 1100, 844, 390, 320]) {
-    await page.setViewportSize({ width, height: 900 });
-    for (const font of [16, 32]) {
+for (const width of [1440, 1100, 844, 390, 320]) {
+  for (const font of [16, 32]) {
+    test(`legendas e valores do HUD cabem em suas colunas: ${width}px / fonte ${font}px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
+      await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+      await page.locator('[data-portal-route="guest"]').click();
+      await injectGameState(page);
+      await page.waitForLoadState('load');
+      await page.evaluate(() => document.fonts.ready);
       await page.evaluate(async size => {
         document.documentElement.style.fontSize = size + 'px';
         await new Promise(requestAnimationFrame); await new Promise(requestAnimationFrame);
@@ -96,6 +96,6 @@ test('legendas e valores do HUD cabem em suas colunas com fonte normal e ampliad
         return fora;
       });
       expect(cortes, `${width}px / fonte ${font}px: texto invade a coluna vizinha`).toEqual([]);
-    }
+    });
   }
-});
+}

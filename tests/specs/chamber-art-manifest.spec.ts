@@ -31,7 +31,7 @@ function enableAldric(src: string | null = 'assets/chamber/patients/aldric.webp'
     `aldric: { name: 'Ferreiro Aldric', src: ${src === null ? 'null' : `'${src}'`}, approved: ${approved} }`);
 }
 
-test('20 approved patient identities resolve to their own real art; touch remains unchanged', async ({ page }) => {
+test('20 approved patient identities resolve to their own real art; mobile intro uses approved expansion art', async ({ page }) => {
   const requests: string[] = [];
   page.on('request', r => { if (r.url().includes('/assets/chamber/patients/')) requests.push(r.url()); });
   await prepare(page);
@@ -47,7 +47,20 @@ test('20 approved patient identities resolve to their own real art; touch remain
     expect(requests.every(url => url.endsWith('/assets/chamber/patients/aldric.webp'))).toBe(true);
   } else {
     await expect(page.locator('.ab-patient-portrait')).toHaveCount(0);
-    expect(requests).toEqual([]);
+    expect(await page.evaluate(() => (window as any).NQChamberArt.portraitHTML('aldric'))).toBe('');
+    const approved = manifest.find((p: any) => p.id === 'aldric');
+    const portrait = page.locator('.ab-context .abx-patient-portrait');
+    const image = portrait.locator('img');
+    await expect(portrait).toHaveCount(1);
+    await expect(image).toHaveAttribute('src', approved.expectedSource);
+    await image.evaluate((img: HTMLImageElement) => img.decode());
+    await expect(portrait).toBeVisible();
+    expect(await image.evaluate((img: HTMLImageElement) => [img.naturalWidth, img.naturalHeight])).toEqual([768,960]);
+    await expect(portrait.locator('img')).toHaveCount(1);
+    await expect(portrait.locator('svg, canvas')).toHaveCount(0);
+    await expect(page.locator('.ab-context img[src*="assets/classes/"], .ab-context img[src*="assets/classes-cinema/"]')).toHaveCount(0);
+    expect(requests.length).toBeGreaterThan(0);
+    expect(requests.every(url => url.endsWith('/assets/chamber/patients/aldric.webp'))).toBe(true);
   }
 });
 
@@ -123,26 +136,62 @@ test('a hero URL cannot be enabled as a patient portrait', async ({ page }) => {
   expect(await page.evaluate(() => (window as any).NQChamberArt.portraitHTML('aldric'))).toBe('');
 });
 
-test('portrait component keeps mobile unchanged even when an art entry is available', async ({ page }) => {
+test('mobile keeps native portrait markup empty while the intro expansion decodes approved patient art', async ({ page }) => {
   await prepare(page, enableAldric());
   await page.setViewportSize({ width: 390, height: 844 });
   const requests: string[] = [];
   page.on('request', r => { if (r.url().includes('/assets/chamber/patients/')) requests.push(r.url()); });
   await openChamberCase(page,'aldric');
   await expect(page.locator('.ab-patient-portrait')).toHaveCount(0);
-  expect(requests).toEqual([]);
+  expect(await page.evaluate(() => (window as any).NQChamberArt.portraitHTML('aldric'))).toBe('');
+  const approved = await page.evaluate(() => (window as any).NQChamberArt.portraits.aldric);
+  expect(approved.approved).toBe(true);
+  expect(approved.src).toBe(approved.expectedSource);
+  const portrait = page.locator('.ab-context .abx-patient-portrait');
+  const image = portrait.locator('img');
+  await expect(portrait).toHaveCount(1);
+  await expect(image).toHaveAttribute('src', approved.expectedSource);
+  await image.evaluate((img: HTMLImageElement) => img.decode());
+  await expect(portrait).toBeVisible();
+  expect(await image.evaluate((img: HTMLImageElement) => [img.naturalWidth, img.naturalHeight])).toEqual([768,960]);
+  await expect(portrait.locator('img')).toHaveCount(1);
+  await expect(portrait.locator('svg, canvas')).toHaveCount(0);
+  await expect(page.locator('.ab-context img[src*="assets/classes/"], .ab-context img[src*="assets/classes-cinema/"]')).toHaveCount(0);
+  expect(requests.length).toBeGreaterThan(0);
+  expect(requests.every(url => url.endsWith('/assets/chamber/patients/aldric.webp'))).toBe(true);
 });
 
-test('a loaded desktop portrait disappears on mobile resize and returns only on desktop', async ({ page }) => {
+test('a loaded portrait keeps its approved identity, pixels and readable text across mobile resize', async ({ page }) => {
   test.skip(!await page.evaluate(() => matchMedia('(pointer:fine)').matches), 'Desktop-only banner/approved portrait; touch absence is covered separately.');
   await prepare(page, enableAldric());
   await page.route('**/assets/chamber/patients/aldric.webp', r => r.fulfill({ contentType: 'image/svg+xml', body: fixture }));
   await openChamberCase(page,'aldric');
   await expect(page.locator('[data-ab-portrait="aldric"]')).toBeVisible();
-  await page.setViewportSize({ width: 390, height: 844 });
-  await expect(page.locator('[data-ab-portrait="aldric"]')).toBeHidden();
-  await expect(page.locator('.ab-context .ab-title')).toBeVisible();
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
-  await page.setViewportSize({ width: 1440, height: 960 });
+  const approved = await page.evaluate(() => (window as any).NQChamberArt.portraits.aldric);
+  expect(approved.approved).toBe(true); expect(approved.src).toBe(approved.expectedSource);
+  for (const [width, height] of [[1440, 960], [390, 844], [1440, 960]]) {
+    await page.setViewportSize({ width, height });
+    if (width === 390) expect(await page.evaluate(() => (window as any).NQChamberArt.portraitHTML('aldric'))).toBe('');
+    const portrait = page.locator('.ab-context :is(.ab-patient-portrait, .abx-patient-portrait)');
+    const image = portrait.locator('img');
+    await expect(portrait).toHaveCount(1);
+    await expect(image).toHaveAttribute('src', approved.expectedSource);
+    await image.evaluate((img: HTMLImageElement) => img.decode());
+    await expect(portrait).toBeVisible();
+    expect(await image.evaluate((img: HTMLImageElement) => [img.naturalWidth, img.naturalHeight])).toEqual([768,960]);
+    await expect(page.locator('.ab-context .ab-title')).toHaveText('Ferreiro Aldric');
+    await expect(page.locator('.ab-context .ab-title')).toBeVisible();
+    await expect(page.locator('.ab-context .ab-narrative')).toBeVisible();
+    await expect(page.locator('.ab-context .ab-gas-grid')).toBeVisible();
+    const textClear = await portrait.evaluate(el => {
+      const portrait = el.getBoundingClientRect(), identity = el.closest('.ab-context')!.querySelector('.ab-patient-identity')!;
+      const walker = document.createTreeWalker(identity, NodeFilter.SHOW_TEXT), rects: DOMRect[] = []; let node: Node | null;
+      while ((node = walker.nextNode())) { if (!node.textContent?.trim()) continue; const range = document.createRange(); range.selectNodeContents(node); rects.push(...range.getClientRects()); }
+      return rects.length > 0 && rects.every(text => portrait.right <= text.left || portrait.bottom <= text.top || text.right <= portrait.left || text.bottom <= portrait.top);
+    });
+    expect(textClear).toBe(true);
+    await expect(page.locator('.ab-context img[src*="assets/classes/"], .ab-context img[src*="assets/classes-cinema/"]')).toHaveCount(0);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1)).toBe(true);
+  }
   await expect(page.locator('[data-ab-portrait="aldric"]')).toBeVisible();
 });

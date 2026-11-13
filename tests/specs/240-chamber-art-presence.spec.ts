@@ -16,14 +16,37 @@ async function open(page: Page) {
 
 test('pintura real ocupa a cena sem disputar o título e sem controle de pausa local', async ({ page }) => {
   const scenesRequested: string[] = [];
-  page.on('request', request => { if (new URL(request.url()).pathname.startsWith('/assets/chamber/scenes/')) scenesRequested.push(request.url()); });
+  const visibleWhenRequested = new Map<string, Promise<boolean>>();
+  page.on('request', request => {
+    const path = new URL(request.url()).pathname;
+    if (!path.startsWith('/assets/chamber/scenes/')) return;
+    scenesRequested.push(path);
+    if (!visibleWhenRequested.has(path)) visibleWhenRequested.set(path, page.evaluate(path => {
+      const image = [...document.querySelectorAll<HTMLImageElement>('.ab-case .abx-case-art')]
+        .find(image => new URL(image.src, location.href).pathname === path);
+      const card = image?.closest('.ab-case'), bounds = card?.getBoundingClientRect();
+      return !!card && !!bounds && bounds.width > 0 && bounds.height > 0
+        && bounds.bottom > 0 && bounds.right > 0 && bounds.top < innerHeight && bounds.left < innerWidth
+        && !card.closest('[hidden], [inert], .nql-hidden') && getComputedStyle(card).visibility === 'visible';
+    }, path).catch(() => false));
+  });
   await open(page);
   const image = page.locator('[data-ab-lab] .ab-lab-art');
   await expect(image).toHaveJSProperty('tagName', 'IMG');
   await expect(image).toHaveAttribute('src', /assets\/scenes\/chamber-balance-still\.webp$/);
   await expect.poll(() => image.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth === 1280)).toBe(true);
   await expect(page.locator('[data-ab-lab] svg, [data-ab-motion-toggle]')).toHaveCount(0);
-  expect(scenesRequested).toEqual([]);
+  const overview = page.getByRole('tab', { name: 'Visão geral', exact: true });
+  if (await overview.isVisible()) {
+    await expect(overview).toHaveAttribute('aria-selected', 'true');
+    expect(scenesRequested).toEqual([]);
+  } else {
+    const approved = await page.evaluate(() => Object.values((window as any).NQChamberArt.scenes)
+      .filter((entry: any) => entry.approved).map((entry: any) => '/' + entry.src));
+    expect(scenesRequested.every(path => approved.includes(path))).toBe(true);
+    expect(new Set(scenesRequested).size).toBeLessThan(approved.length);
+    expect((await Promise.all(visibleWhenRequested.values())).every(Boolean)).toBe(true);
+  }
   if (await page.evaluate(() => matchMedia('(min-width:961px) and (pointer:fine)').matches)) {
     const copyGap = await page.evaluate(() => {
       const title = document.querySelector('.ab-hub-banner .ab-title')!.getBoundingClientRect();
@@ -44,6 +67,7 @@ test('pintura real ocupa a cena sem disputar o título e sem controle de pausa l
     });
     expect(layout.headerHit).toBe(true); expect(layout.overlap).toBe(false); expect(layout.overflow).toBe(false); expect(layout.width).toBeGreaterThan(180);
   }
+  await Promise.all(visibleWhenRequested.values());
 });
 
 test('preferência de movimento persiste fora da cena e a pintura continua visível ao pausar ou reduzir', async ({ page }) => {

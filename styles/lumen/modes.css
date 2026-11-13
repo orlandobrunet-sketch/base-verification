@@ -255,3 +255,16 @@ dialog.nq-weak-plan[open] { display:flex; flex-direction:column; }
 @media(max-width:40rem) { #studyModePage .nq-study-session-header { grid-template-columns:minmax(0,1fr); gap:16px; } #studyModePage .nq-study-session-identity { grid-column:1; } #studyModePage .nq-study-session-header>.btn { grid-column:1; grid-row:2; justify-self:start; } #studyModePage .nq-study-session-status { grid-column:1; grid-row:3; padding:12px 16px; } #studyModePage .nq-study-question-meta { margin-bottom:20px; } #studyModePage .nq-study-feedback-card { padding:16px; } }
 @media(max-width:25rem) { #studyModePage .nq-study-session-identity svg { display:none; } #studyModePage .nq-study-feedback-actions>.btn { width:100%; } }
 @media(prefers-reduced-motion:reduce) { #studyModePage .study-option-btn { transition:none; } }
+
+/* Reduced motion must not interpolate the text geometry used by the answer's
+ * scrollIntoView. Include font-size ancestors so a scale change is immediate. */
+@media (prefers-reduced-motion: reduce) {
+  html:has(body.nq-studying #studyModePage),
+  body.nq-studying:has(#studyModePage),
+  #studyModePage,
+  #studyModePage *,
+  #studyModePage *::before,
+  #studyModePage *::after {
+    transition-property: color, background-color, border-color, box-shadow, opacity !important;
+  }
+}

@@ -217,13 +217,14 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
   --nql-hero-secondary: #89a9c2;
   --nql-hero-secondary-rgb: 137, 169, 194;
   --nql-hero-frame-line: rgba(var(--nql-hero-primary-rgb), .48);
+  --nql-guardian-row-gap: 10px;
   position: relative;
   isolation: isolate;
   container: nq-guardian / inline-size;
   display: grid;
   grid-template-columns: 54px minmax(0, 1fr) 54px;
   grid-template-rows: auto repeat(3, 68px) auto auto;
-  gap: 10px;
+  gap: var(--nql-guardian-row-gap);
   min-width: 0;
   margin: 0 0 1rem;
   padding: 20px 12px 15px;
@@ -1406,6 +1407,19 @@ body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.
   }
 }
 
+/* Ganho entre Vidas e Nível: ocupa o respiro reservado, sem atravessar barras. */
+body:has(#mainApp[data-nq-ui="lumen"]:not(.hidden)):not(.boss-battle-mode):not(.arqui-nefromante-final) .floating-text.correct.nql-arsenal-reward {
+  line-height: 1.25;
+  transform: translate(-50%, -50%);
+  animation-name: nql-reward-between-bars;
+}
+
+@keyframes nql-reward-between-bars {
+  0% { transform: translate(-50%, -50%) scale(.92); opacity: 0; }
+  18%, 64% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(.98); opacity: 0; }
+}
+
 @media (min-width: 769px) {
   body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] #nextBtn {
     padding-inline: .2rem;
@@ -2525,7 +2539,7 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final)[data-nq-streak="3"] #ma
 #mainApp[data-nq-ui="lumen"] .nql-life.is-empty { color:#756571; }
 #mainApp[data-nq-ui="lumen"] #guardianStreakMultiplier { color:#d8c08a; font:.7rem/1.3 var(--nql-font-body); }
 #mainApp[data-nq-ui="lumen"] .hud > .tile { display:flex !important; }
-body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-hero-progress { grid-row:6; margin-top:.5rem; padding:0 .2rem .25rem; gap:.3rem; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); }
+body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-hero-progress { grid-row:6; margin-top:calc(2rem - var(--nql-guardian-row-gap)); padding:0 .2rem .25rem; gap:.3rem; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .nql-xp-hint { grid-row:3; }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .hud { grid-template-columns:repeat(auto-fit,minmax(min(100%,4rem),1fr)); gap:.6rem 0; padding:12px 6px; }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"] .equip-total-attributes { grid-row:7; }

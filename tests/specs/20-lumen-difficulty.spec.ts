@@ -74,10 +74,14 @@ test.describe('Página 3A — Calibração da Jornada Lúmen', () => {
     await expect(dialog.locator('#diffConfirmBtn')).toHaveAttribute('aria-label', 'Continuar com dificuldade Difícil');
 
     await settleDifficultyGeometry(overlay);
+    // A grade 2×2 pode rolar para revelar Hardcore. Compare seus elementos
+    // nas coordenadas do conteúdo, preservando o rodapé externo na viewport.
     const geometryBefore = await dialog.locator('.nql-difficulty__body, .difficulty-grid, .nql-difficulty__impact, .nql-difficulty__footer')
       .evaluateAll((elements) => elements.map((element) => {
         const rect = element.getBoundingClientRect();
-        return { x: rect.x, y: rect.y, width: rect.width, height: rect.height };
+        const content = element.closest('[role="dialog"]')!.querySelector('.nql-difficulty__content')!;
+        const y = rect.y + (content.contains(element) ? content.scrollTop : 0);
+        return { x: rect.x, y, width: rect.width, height: rect.height };
       }));
 
     await group.locator('[data-diff-key="hardcore"]').click();
@@ -89,7 +93,9 @@ test.describe('Página 3A — Calibração da Jornada Lúmen', () => {
     const geometryAfter = await dialog.locator('.nql-difficulty__body, .difficulty-grid, .nql-difficulty__impact, .nql-difficulty__footer')
       .evaluateAll((elements) => elements.map((element) => {
         const rect = element.getBoundingClientRect();
-        return { x: rect.x, y: rect.y, width: rect.width, height: rect.height };
+        const content = element.closest('[role="dialog"]')!.querySelector('.nql-difficulty__content')!;
+        const y = rect.y + (content.contains(element) ? content.scrollTop : 0);
+        return { x: rect.x, y, width: rect.width, height: rect.height };
       }));
     expect(geometryAfter).toEqual(geometryBefore);
 

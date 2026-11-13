@@ -34,79 +34,83 @@ async function abrirCompetencias(page: Page, stats: unknown) {
   await page.evaluate(() => (window as any).openDashboard());
   await expect(page.locator('#nqDashboard')).toBeVisible();
   await page.getByRole('tab', { name: 'Competências', exact: true }).click();
-  const mobileRadar = page.locator('#nqDashboard .nqd-skill-radar-mobile');
-  if (await mobileRadar.isVisible()) await mobileRadar.locator('summary').click();
 }
+
+const rotulosDoAtlas = (page: Page) => page.locator('#nqDashboard .nqs-orbit-node')
+  .evaluateAll(nodes => nodes.map(node => node.getAttribute('aria-label') || '').join('; '));
 
 test.describe('Radar de competências', () => {
   test('o gráfico volta a existir e é desenhado', async ({ page }) => {
     await abrirCompetencias(page, STATS_PARCIAL);
-    const canvas = page.locator('#nqDashboard .nqd-radar:visible canvas');
-    await expect(canvas).toBeVisible();
-
-    // Não basta existir: precisa ter pixel pintado.
-    const pintado = await canvas.evaluate((el: HTMLCanvasElement) => {
-      const ctx = el.getContext('2d');
-      if (!ctx) return false;
-      const d = ctx.getImageData(0, 0, el.width, el.height).data;
-      for (let i = 3; i < d.length; i += 4) if (d[i] > 0) return true;
-      return false;
-    });
-    expect(pintado, 'o canvas do radar não pode ficar em branco').toBe(true);
+    const chart = page.locator('#nqDashboard svg.nqs-chart');
+    await expect(chart).toBeVisible();
+    await expect(chart.locator('.nqs-vertex-point')).toHaveCount(4);
+    await expect(chart.locator('.nqs-profile-line')).toHaveCount(2);
+    // Os segmentos precisam ter geometria e tinta, não apenas um SVG vazio.
+    const pintado = await chart.locator('.nqs-profile-line').evaluateAll(lines => lines.every(line => {
+      const style = getComputedStyle(line);
+      return (line as SVGGeometryElement).getTotalLength() > 0 && style.stroke !== 'none' && Number(style.opacity) > 0;
+    }));
+    expect(pintado, 'o perfil SVG precisa ter segmentos visíveis').toBe(true);
   });
 
   test('o rótulo acessível nomeia cada competência e diz quando não há amostra', async ({ page }) => {
     await abrirCompetencias(page, STATS_PARCIAL);
-    const rotulo = await page.locator('#nqDashboard .nqd-radar:visible').getAttribute('aria-label');
+    const rotulo = await rotulosDoAtlas(page);
     expect(rotulo).toContain('Glomerulopatias');
     expect(rotulo).toContain('respostas');
     // Os eixos sem nenhuma resposta precisam ser declarados como tal.
-    expect(rotulo, 'ausência de amostra tem de ser dita, não plotada como zero').toContain('sem amostra');
+    expect(rotulo, 'ausência de amostra tem de ser dita, não plotada como zero').toContain('Sem amostra');
   });
 
   test('competência sem amostra nunca é descrita como zero por cento', async ({ page }) => {
     await abrirCompetencias(page, STATS_PARCIAL);
-    const rotulo = (await page.locator('#nqDashboard .nqd-radar:visible').getAttribute('aria-label')) || '';
+    const rotulo = await rotulosDoAtlas(page);
     // Nenhum eixo pode aparecer como "0%" — o que não foi medido é "sem amostra".
-    expect(rotulo).not.toMatch(/:\s*0%/);
+    expect(rotulo).not.toMatch(/\b0% de acertos/);
+    await expect(page.locator('#nqDashboard .nqs-vertex-point')).toHaveCount(4);
   });
 
   test('o radar acompanha os sete eixos clínicos, não o recorte antigo de cinco', async ({ page }) => {
     await abrirCompetencias(page, STATS_PARCIAL);
-    const rotulo = (await page.locator('#nqDashboard .nqd-radar:visible').getAttribute('aria-label')) || '';
+    const rotulo = await rotulosDoAtlas(page);
+    await expect(page.locator('#nqDashboard .nqs-orbit-node')).toHaveCount(7);
     for (const eixo of ['Glomerulopatias', 'Diálise', 'Transplante renal']) {
       expect(rotulo, `o eixo ${eixo} precisa estar no perfil`).toContain(eixo);
     }
     expect(rotulo, 'o agrupamento antigo não pode voltar').not.toContain('Fisiopatologia & Pesquisa');
   });
 
-  test('sem amostra não mostra gráfico nem sete indicadores vazios', async ({ page }) => {
+  test('sem amostra mantém as sete áreas abertas sem desenhar desempenho ou indicadores zero', async ({ page }) => {
     await abrirCompetencias(page, { totalQuestions: 0, totalCorrect: 0, totalWrong: 0, byCategory: {}, dailyActivity: {} });
-    await expect(page.locator('#nqDashboard .nqd-radar')).toHaveCount(0);
-    await expect(page.locator('#nqDashboard .nqd-skill-row')).toHaveCount(0);
-    await expect(page.locator('#nqDashboard .nqd-skill-empty')).toContainText('Nenhuma área é tratada como desempenho zero');
-    await page.locator('#nqDashboard .nqd-skill-unmeasured-group summary').click();
-    await expect(page.locator('#nqDashboard .nqd-skill-unmeasured')).toHaveCount(7);
+    await expect(page.locator('#nqDashboard .nqs-vertex-point, #nqDashboard .nqs-profile-line, #nqDashboard .nqs-profile-fill')).toHaveCount(0);
+    await expect(page.locator('#nqDashboard .nqs-detail-value')).toHaveCount(0);
+    await expect(page.locator('#nqDashboard .nqs-area[data-state="unseen"]')).toHaveCount(7);
+    await expect(page.locator('#nqDashboard #nqsProfileContext')).toHaveText('O perfil visual aparece quando três áreas tiverem pelo menos cinco respostas.');
+    for (const row of await page.locator('#nqDashboard .nqs-area').all()) await expect(row).not.toContainText('0%');
   });
 });
 
 test.describe('Leitura do perfil', () => {
   test('a lista é principal e mantém os dados e áreas sem amostra sem legenda duplicada', async ({ page }) => {
     await abrirCompetencias(page, STATS_PARCIAL);
-    await expect(page.locator('#nqDashboard .nqd-skill-row')).toHaveCount(4);
-    await expect(page.locator('#nqDashboard .nqd-radar-legend-row')).toHaveCount(0);
-    await page.locator('#nqDashboard .nqd-skill-unmeasured-group summary').click();
-    await expect(page.locator('#nqDashboard .nqd-skill-unmeasured')).toHaveCount(3);
-    await expect(page.locator('#nqDashboard .nqd-skill-list')).toContainText('Diálise');
-    await expect(page.locator('#nqDashboard .nqd-skill-list')).toContainText('respostas');
+    await expect(page.locator('#nqDashboard .nqs-area:is([data-state="attention"], [data-state="consolidating"], [data-state="consistent"])')).toHaveCount(4);
+    await expect(page.locator('#nqDashboard .nqs-area-grid')).toHaveCount(1);
+    await expect(page.locator('#nqDashboard .nqs-instrument')).toHaveCount(1);
+    await expect(page.locator('#nqDashboard .nqs-area[data-state="unseen"]')).toHaveCount(3);
+    await expect(page.locator('#nqDashboard .nqs-area-grid')).toContainText('Diálise');
+    await expect(page.locator('#nqDashboard .nqs-area-grid')).toContainText('respostas');
+    await expect(page.locator('#nqDashboard .nqs-area[data-skill-id="dialise"] .nqs-area-score')).toHaveText('75% de acertos na amostra');
   });
 
   test('o perfil visual parcial não anuncia tendência nem certeza completa', async ({ page }) => {
     await abrirCompetencias(page, STATS_PARCIAL);
-    const leitura = page.locator('#nqDashboard .nqd-skill-radar-side:visible, #nqDashboard .nqd-skill-radar-mobile-body:visible').first();
+    const leitura = page.locator('#nqDashboard .nqs-instrument');
     await expect(leitura).toBeVisible();
     const texto = await leitura.innerText();
-    expect(texto).toContain('não representa o perfil completo');
+    expect(texto).toContain('Seu perfil observado é parcial');
+    expect(texto).toContain('As áreas sem amostra suficiente ficam sem ponto. Os intervalos permanecem abertos.');
+    await expect(leitura.locator('.nqs-profile-fill')).toHaveCount(0);
     expect(texto, 'não há série histórica que sustente tendência').not.toMatch(/era \d|há um mês|tendência|melhorou|piorou/i);
   });
 
@@ -120,17 +124,18 @@ test.describe('Leitura do perfil', () => {
   test('prefers-reduced-motion desenha o radar sem animação', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await abrirCompetencias(page, STATS_PARCIAL);
-    const canvas = page.locator('#nqDashboard .nqd-radar:visible canvas');
-    await expect(canvas).toBeVisible();
-    // Sem animação o desenho já está completo no primeiro quadro.
-    const pintado = await canvas.evaluate((el: HTMLCanvasElement) => {
-      const ctx = el.getContext('2d');
-      if (!ctx) return false;
-      const d = ctx.getImageData(0, 0, el.width, el.height).data;
-      for (let i = 3; i < d.length; i += 4) if (d[i] > 0) return true;
-      return false;
-    });
-    expect(pintado).toBe(true);
+    const chart = page.locator('#nqDashboard svg.nqs-chart');
+    await expect(chart).toBeVisible();
+    await expect(chart.locator('.nqs-vertex-point')).toHaveCount(4);
+    const lines = await chart.locator('.nqs-profile-line').evaluateAll(nodes => nodes.map(node => ({
+      length: (node as SVGGeometryElement).getTotalLength(), animation: getComputedStyle(node).animationName,
+      stroke: getComputedStyle(node).stroke, offset: getComputedStyle(node).strokeDashoffset,
+    })));
+    expect(lines).toHaveLength(2);
+    for (const line of lines) {
+      expect(line.length).toBeGreaterThan(0); expect(line.animation).toBe('none');
+      expect(line.stroke).not.toBe('none'); expect(parseFloat(line.offset)).toBe(0);
+    }
   });
 
   test('o perfil com dados preserva acessibilidade no desktop e celular', async ({ page }) => {

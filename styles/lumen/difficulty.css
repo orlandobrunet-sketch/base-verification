@@ -1,7 +1,7 @@
 /*
  * NefroQuest — Lúmen Vivo / Página 3A: Calibração da Jornada
  *
- * Um único conduíte torna visíveis as consequências reais de cada modo.
+ * Quatro escolhas comparáveis mostram as consequências reais de cada modo.
  * O seletor preserva o contrato funcional legado por meio das classes
  * .difficulty-* e restringe toda a nova direção visual ao overlay Lúmen.
  */
@@ -212,13 +212,14 @@
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: repeat(4, minmax(4.3rem, 1fr));
-  gap: 0;
+  grid-template-rows: repeat(4, minmax(min-content, 1fr));
+  gap: clamp(.65rem, 1.2vw, 1rem);
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid::before,
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid::after,
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__corruption {
+  display: none;
   position: absolute;
   z-index: 0;
   left: 1.48rem;
@@ -261,17 +262,16 @@
   box-sizing: border-box;
   display: grid;
   width: 100%;
-  min-height: 4.3rem;
+  min-height: 44px;
   margin: 0;
-  padding: .45rem .75rem .45rem 0;
-  border: 0;
-  border-bottom: 1px solid var(--nql-line);
-  border-radius: 0;
+  padding: .8rem .9rem;
+  border: 1px solid var(--nql-line);
+  border-radius: var(--nql-radius-control);
   grid-template-columns: 3rem minmax(0, 1fr) auto;
   align-items: center;
   gap: .65rem;
   overflow: visible;
-  background: transparent;
+  background: rgba(var(--nql-cortex-rgb), .28);
   box-shadow: none;
   color: var(--nql-text-soft);
   font-family: var(--nql-font-body);
@@ -282,18 +282,17 @@
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card::before {
   position: absolute;
-  inset: .3rem 0;
+  inset: 0;
   border-left: 2px solid transparent;
+  border-radius: inherit;
   background: transparent;
   content: "";
   pointer-events: none;
   transition: border-color var(--nql-duration-fast), background-color var(--nql-duration-fast);
 }
 
-#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card:last-of-type { border-bottom-color: transparent; }
-
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card[aria-checked="true"] {
-  border-color: var(--nql-line-strong);
+  border-color: rgba(var(--nql-option-rgb), .65);
   background: rgba(var(--nql-option-rgb), .13);
   box-shadow: none;
   color: var(--nql-text);
@@ -607,7 +606,7 @@
 }
 
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact-panel > p {
-  max-width: 38ch;
+  max-width: none;
   margin: 0;
   color: var(--nql-text-soft);
   font-size: .92rem;
@@ -793,12 +792,12 @@
 
   #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: repeat(4, minmax(4.5rem, auto));
+    grid-template-rows: repeat(4, minmax(min-content, 1fr));
   }
 
   #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card {
-    min-height: 4.5rem;
-    padding-block: .55rem;
+    min-height: 44px;
+    padding: .75rem;
     grid-template-columns: 2.75rem minmax(0, 1fr) auto;
     gap: .45rem;
   }
@@ -876,9 +875,9 @@
 
 /* A largura útil e o tamanho do texto decidem quando cabem duas colunas. */
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__selector { container:nqlDifficultyOptions / inline-size; display:flex; flex-direction:column; }
-#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid { flex:initial; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid { flex:1 0 auto; }
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact { border-left:0; border-top:1px solid var(--nql-line); }
-#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card { grid-template-columns:44px minmax(0,1fr) auto; }
+#diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card { grid-template-columns:24px minmax(0,1fr) auto; }
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__node { width:20px; height:20px; }
 #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__node > span { width:6px; height:6px; }
 #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid::before,
@@ -897,17 +896,51 @@
   #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__body { grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); }
   #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__impact { border-top:0; border-left:1px solid var(--nql-line); }
 }
+/* A grade ocupa a altura natural do painel vizinho, sem uma área vazia abaixo.
+ * O limiar em rem devolve uma coluna quando o texto ampliado precisa de espaço. */
+@container nqlDifficultyOptions (min-width:36rem) {
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-rows:repeat(2,minmax(min-content,1fr));
+  }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card {
+    grid-template-columns:minmax(0,1fr) auto;
+    align-content:center;
+    row-gap:.85rem;
+    padding:clamp(1rem,1.6vw,1.35rem);
+  }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__node {
+    grid-column:1;
+    grid-row:1;
+    justify-self:start;
+    margin:0;
+    width:1.25rem;
+    height:1.25rem;
+  }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__node > span {
+    width:.38rem;
+    height:.38rem;
+  }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__option-copy {
+    grid-column:1 / -1;
+    grid-row:2;
+    gap:.35rem;
+  }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__lives {
+    grid-column:2;
+    grid-row:1;
+    gap:.18rem;
+  }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-name { font-size:1.5rem; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-role { font-size:.9rem; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-description { font-size:.72rem; line-height:1.45; }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__lives strong { font-size:1.55rem; }
+}
 @container nqlDifficultyOptions (max-width:18rem) {
-  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card { grid-template-columns:44px minmax(0,1fr); }
+  #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-card { grid-template-columns:24px minmax(0,1fr); }
   #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__node { grid-column:1; grid-row:1 / span 2; }
   #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__option-copy { grid-column:2; grid-row:1; }
   #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__lives { grid-column:2; grid-row:2; display:flex; justify-content:flex-start; align-items:baseline; gap:.3rem; min-width:0; text-align:left; }
-}
-/* A lista ganha respiro em janela alta sem empurrar a última opção no laptop. */
-@media (min-height:56rem) {
-  @container nqlDifficultyContent (min-width:64rem) {
-    #diffSelectorOverlay[data-nq-ui="lumen"] .difficulty-grid { flex:1; }
-  }
 }
 @media (max-width:40rem) {
   #diffSelectorOverlay[data-nq-ui="lumen"] .nql-difficulty__footer { padding-block:.5rem; }

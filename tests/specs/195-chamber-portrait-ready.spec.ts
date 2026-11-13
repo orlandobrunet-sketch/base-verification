@@ -18,8 +18,12 @@ test('portrait is revealed only after its pixels are decoded',async({page})=>{
  await expect(page.locator('.ab-patient-identity')).toBeVisible();
  await page.evaluate(()=>(window as any).__portraitGate.splice(0).forEach((r:()=>void)=>r()));
  await expect(page.locator('[data-ab-portrait]')).toBeVisible();
- const boxes=await page.locator('.ab-patient-heading').evaluate(el=>{const p=el.querySelector('figure')!.getBoundingClientRect(),n=el.querySelector('.ab-patient-identity')!.getBoundingClientRect();return{p:p.toJSON(),n:n.toJSON()};});
- expect(boxes.p.right<=boxes.n.left||boxes.p.bottom<=boxes.n.top).toBe(true);
+ const boxes=await page.locator('.ab-patient-heading').evaluate(el=>{
+  const portrait=el.querySelector('figure')!.getBoundingClientRect(),identity=el.querySelector('.ab-patient-identity')!,walker=document.createTreeWalker(identity,NodeFilter.SHOW_TEXT),rects:DOMRect[]=[];let node:Node|null;
+  while((node=walker.nextNode())){if(!node.textContent?.trim())continue;const range=document.createRange();range.selectNodeContents(node);rects.push(...range.getClientRects());}
+  return{lines:rects.length,clear:rects.every(text=>portrait.right<=text.left||portrait.bottom<=text.top||text.right<=portrait.left||text.bottom<=portrait.top)};
+ });
+ expect(boxes.lines).toBeGreaterThan(0);expect(boxes.clear).toBe(true);
 });
 test('failed portrait decoding leaves the case identity and navigation usable',async({page})=>{
  await page.addInitScript(()=>{
