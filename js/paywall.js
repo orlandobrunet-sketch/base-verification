@@ -288,71 +288,126 @@
       }, 400);
     }
 
+    let _paymentPreparation = null;
+    const _paymentPreparationSameOwner = attempt => authUser?.id === attempt.owner && _authSessionEpoch === attempt.epoch;
+    const _paymentPreparationCurrent = attempt => _paymentPreparation === attempt &&
+      attempt.preparing && !attempt.controller.signal.aborted && _paymentPreparationSameOwner(attempt) && attempt.overlay?.isConnected;
+
+    function _closePaymentPreparation(attempt) {
+      // Uma resposta antiga não pode remover a janela da tentativa nova.
+      if (_paymentPreparation !== attempt) return;
+      _paymentPreparation = null;
+      clearTimeout(attempt.timeout);
+      attempt.subscription?.unsubscribe();
+      attempt.controller.abort();
+      attempt.releaseFocus?.(false);
+      attempt.overlay?.remove();
+    }
+
+    function _leavePaymentPreparation(attempt) {
+      if (_paymentPreparation !== attempt) return;
+      _closePaymentPreparation(attempt);
+      // Encerra somente esta preparação local, sem cancelar uma compra no
+      // provedor nem apagar comprovantes de outro fluxo.
+      showPricingModal();
+    }
+
     async function _initPayment(plan) {
       if (!authUser) { showPricingModal(); return; }
-      const owner = authUser.id;
-      const epoch = _authSessionEpoch;
-      const startedAt = Date.now();
-      const current = () => authUser?.id === owner && _authSessionEpoch === epoch;
-
-      // Mostrar loading
-      const loadingEl = _showPaymentLoading(plan);
-
+      if (!_validPaymentPlan(plan)) return;
+      const previous = _paymentPreparation;
+      if (previous?.preparing && _paymentPreparationSameOwner(previous)) return;
+      if (previous) _closePaymentPreparation(previous);
+      const attempt = {
+        owner: authUser.id, epoch: _authSessionEpoch, plan, startedAt: Date.now(),
+        controller: new AbortController(), preparing: true, timedOut: false,
+      };
+      _paymentPreparation = attempt;
+      const interrupted = new Promise((_, reject) => {
+        attempt.controller.signal.addEventListener('abort', () => reject(new Error('Preparação interrompida')), { once: true });
+      });
+      const wait = value => Promise.race([value, interrupted]);
+      _showPaymentLoading(attempt);
+      attempt.timeout = setTimeout(() => {
+        if (_paymentPreparation !== attempt || !attempt.preparing) return;
+        attempt.timedOut = true;
+        attempt.controller.abort();
+      }, 30000);
+      if (_supaClient?.auth?.onAuthStateChange) {
+        const { data } = _supaClient.auth.onAuthStateChange(() => queueMicrotask(() => {
+          if (_paymentPreparation === attempt && !_paymentPreparationSameOwner(attempt)) _closePaymentPreparation(attempt);
+        }));
+        attempt.subscription = data?.subscription;
+      }
       try {
-        const session = await _supaClient.auth.getSession();
-        const token = session.data.session?.access_token;
-        if (!token || session.data.session.user?.id !== owner || !current()) throw new Error('Sessão inválida');
-
-        const res = await fetch(`${SUPA_URL}/functions/v1/create-mp-preference`, {
+        const session = await wait(_supaClient.auth.getSession());
+        if (!_paymentPreparationCurrent(attempt)) return;
+        const token = session.data?.session?.access_token;
+        if (session.error || !token || session.data.session.user?.id !== attempt.owner) throw new Error('Sessão inválida');
+        const res = await wait(fetch(`${SUPA_URL}/functions/v1/create-mp-preference`, {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-          },
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
           body: JSON.stringify({ plan }),
-        });
-
-        const data = await res.json();
-
-        if (!res.ok || !data.checkout_url) {
-          throw new Error(data.error || 'Erro ao criar checkout');
-        }
-
-        loadingEl?.remove();
-        if (!current()) return;
+          signal: attempt.controller.signal,
+        }));
+        if (!_paymentPreparationCurrent(attempt)) return;
+        const data = await wait(res.json());
+        if (!_paymentPreparationCurrent(attempt)) return;
+        if (!res.ok || !data.checkout_url) throw new Error('Checkout indisponível');
         _writePaymentSession(_paymentCheckoutKey, _validPreferenceId(data.preference_id)
-          ? { owner, plan, startedAt, preferenceId: data.preference_id }
+          ? { owner: attempt.owner, plan, startedAt: attempt.startedAt, preferenceId: data.preference_id }
           : null);
         _track('checkout_started', { plan });
-        // Redirecionar para Mercado Pago
+        _closePaymentPreparation(attempt);
         window.location.href = data.checkout_url;
-
-      } catch (err) {
-        loadingEl?.remove();
-        if (current()) _showPaymentError(err.message || 'Erro ao iniciar pagamento. Tente novamente.');
+      } catch {
+        if (_paymentPreparation === attempt && _paymentPreparationSameOwner(attempt)) _showPaymentError(attempt);
+      } finally {
+        clearTimeout(attempt.timeout);
+        if (_paymentPreparation === attempt && (!_paymentPreparationSameOwner(attempt) || !attempt.overlay?.isConnected)) _closePaymentPreparation(attempt);
       }
     }
 
-    function _showPaymentLoading(plan) {
+    function _showPaymentLoading(attempt) {
       const el = document.createElement('div');
       el.id = 'paymentLoadingOverlay';
-      el.className = 'nq-overlay nq-overlay--col';
-      el.style.cssText = 'background:rgba(0,0,0,0.9);z-index:10000;gap:16px;';
-      const label = plan === 'lifetime' ? 'Plano Vitalício' : 'Plano Mensal';
+      el.className = 'nq-overlay nqnarr-overlay nqplan-overlay';
+      el.style.zIndex = '10000';
+      const label = attempt.plan === 'lifetime' ? 'Plano Vitalício' : 'Plano Mensal';
+      const motion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       el.innerHTML = `
-        <div style="width:48px;height:48px;border:3px solid rgba(255,215,0,0.2);border-top-color:#ffd700;border-radius:50%;animation:spin 0.8s linear infinite;"></div>
-        <div class="nq-section-heading">Preparando ${label}…</div>
-        <div style="color:#6080a0;font-size:0.78rem;">Você será redirecionado para o Mercado Pago</div>`;
+        <section class="nqnarr-card nqplan-card" role="dialog" aria-modal="true" aria-labelledby="paymentPreparationTitle">
+          <div class="nqnarr-reading" role="region" tabindex="0" aria-label="Preparação do checkout">
+            <h2 id="paymentPreparationTitle">Preparando pagamento</h2>
+            <div data-payment-spinner aria-hidden="true" style="width:40px;height:40px;margin-bottom:18px;border:3px solid #91dfe333;border-top-color:#91dfe3;border-radius:50%;${motion ? 'animation:spin .8s linear infinite;' : ''}"></div>
+            <div role="status" aria-live="polite" aria-atomic="true">
+              <p class="plan-stat"><strong>${label}</strong></p>
+              <p class="plan-stat" data-preparation-message>Você será redirecionado para o Mercado Pago. Aguarde a preparação do checkout.</p>
+            </div>
+          </div>
+          <footer class="nqnarr-footer nqaccount-footer">
+            <button type="button" class="nqaccount-cancel" data-preparation-back>Voltar aos planos</button>
+            <button type="button" class="nqnarr-primary" data-preparation-retry hidden>Tentar novamente</button>
+          </footer>
+        </section>`;
+      attempt.overlay = el;
       document.body.appendChild(el);
-      return el;
+      el.querySelector('[data-preparation-back]').onclick = () => _leavePaymentPreparation(attempt);
+      el.querySelector('[data-preparation-retry]').onclick = () => {
+        if (_paymentPreparation === attempt && _paymentPreparationSameOwner(attempt)) _initPayment(attempt.plan);
+      };
+      attempt.releaseFocus = manageDialogFocus(el, () => _leavePaymentPreparation(attempt), document.activeElement,
+        el.querySelector('[data-preparation-back]'));
     }
 
-    function _showPaymentError(msg) {
-      const el = document.createElement('div');
-      el.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1a0a0a;border:1px solid rgba(220,50,50,0.5);color:#ff8080;padding:14px 24px;border-radius:10px;font-size:0.85rem;z-index:10001;max-width:340px;text-align:center;';
-      el.textContent = msg;
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 5000);
+    function _showPaymentError(attempt) {
+      attempt.preparing = false;
+      attempt.overlay.querySelector('h2').textContent = 'Preparação não concluída';
+      attempt.overlay.querySelector('[data-payment-spinner]').hidden = true;
+      attempt.overlay.querySelector('[data-preparation-message]').textContent = attempt.timedOut
+        ? 'A preparação demorou mais que o esperado. Tente novamente ou volte aos planos.'
+        : 'Não foi possível preparar o checkout agora. Tente novamente ou volte aos planos.';
+      attempt.overlay.querySelector('[data-preparation-retry]').hidden = false;
     }
 
     function _paymentReturnReceipt() {

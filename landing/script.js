@@ -495,6 +495,45 @@
     updateIrtDemo();
   }
 
+  /* Ambient motion belongs to the part of the atlas the reader can see. */
+  var syncChatActivity = function () {};
+  var ambientAreas = Array.prototype.slice.call(document.querySelectorAll(
+    '.oracle-core, .route, .method-visual, .chat'
+  )).map(function (element) {
+    return { element: element, visible: !('IntersectionObserver' in window) };
+  });
+
+  function syncAmbientActivity() {
+    ambientAreas.forEach(function (area) {
+      var active = area.visible && !document.hidden && !reduced;
+      area.element.style.setProperty('--landing-ambient-play-state', active ? 'running' : 'paused');
+      area.element.querySelectorAll('svg').forEach(function (svg) {
+        var visible = active && svg.getClientRects().length > 0;
+        if (visible && typeof svg.unpauseAnimations === 'function') svg.unpauseAnimations();
+        else if (!visible && typeof svg.pauseAnimations === 'function') svg.pauseAnimations();
+      });
+    });
+    if (boss) boss.classList.toggle('is-active', bossVisible && !document.hidden && !reduced);
+    if (finale) finale.classList.toggle('is-active', finaleVisible && !document.hidden && !reduced);
+  }
+
+  if ('IntersectionObserver' in window) {
+    var ambientObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var area = ambientAreas.find(function (candidate) { return candidate.element === entry.target; });
+        if (area) area.visible = entry.isIntersecting && entry.intersectionRatio >= .01;
+      });
+      syncAmbientActivity();
+    }, { threshold: [0, .01] });
+    ambientAreas.forEach(function (area) { ambientObserver.observe(area.element); });
+  }
+  syncAmbientActivity();
+  document.addEventListener('visibilitychange', function () {
+    syncAmbientActivity();
+    syncChatActivity();
+  });
+  window.addEventListener('resize', syncAmbientActivity, { passive: true });
+
   /* Remaining content reveals only as it becomes relevant. */
   var reveals = document.querySelectorAll('.reveal-up, .finale .reveal');
   if ('IntersectionObserver' in window && !reduced) {
@@ -536,7 +575,7 @@
   if (finale && 'IntersectionObserver' in window) {
     var finaleObserver = new IntersectionObserver(function (entries) {
       finaleVisible = entries.some(function (entry) { return entry.isIntersecting; });
-      finale.classList.toggle('is-active', finaleVisible && !reduced);
+      finale.classList.toggle('is-active', finaleVisible && !document.hidden && !reduced);
       requestScrollUpdate();
     }, { threshold: 0.12 });
     finaleObserver.observe(finale);
@@ -545,7 +584,7 @@
   if (boss && 'IntersectionObserver' in window) {
     var bossObserver = new IntersectionObserver(function (entries) {
       bossVisible = entries.some(function (entry) { return entry.isIntersecting; });
-      boss.classList.toggle('is-active', bossVisible && !reduced);
+      boss.classList.toggle('is-active', bossVisible && !document.hidden && !reduced);
       requestScrollUpdate();
     }, { threshold: 0.12 });
     bossObserver.observe(boss);
@@ -616,46 +655,57 @@
     var bubbles = chat.querySelectorAll('.chat-bubble');
     var typing = chat.querySelector('[data-typing]');
     var oracleCore = document.querySelector('.oracle-core');
-    var chatPlayed = false;
+    var chatVisible = !('IntersectionObserver' in window);
+    var chatStep = 0;
+    var chatTimer = 0;
+    var chatStartedAt = 0;
+    var chatRemaining = 420;
 
-    function playChat() {
-      if (chatPlayed) return;
-      chatPlayed = true;
+    function pauseChat() {
+      if (!chatTimer) return;
+      window.clearTimeout(chatTimer);
+      chatTimer = 0;
+      chatRemaining = Math.max(0, chatRemaining - (performance.now() - chatStartedAt));
+    }
 
+    function revealChatStep() {
+      if (typing) typing.classList.add('hide');
+      if (bubbles[chatStep]) bubbles[chatStep].classList.add('show');
+      chatStep += 1;
+      if (oracleCore) {
+        oracleCore.classList.remove('is-thinking');
+        oracleCore.classList.add('is-answering');
+      }
+      chatRemaining = 880;
+    }
+
+    syncChatActivity = function () {
       if (reduced) {
-        bubbles.forEach(function (bubble) { bubble.classList.add('show'); });
-        if (typing) typing.classList.add('hide');
-        if (oracleCore) oracleCore.classList.add('is-answering');
+        pauseChat();
+        while (chatStep < bubbles.length) revealChatStep();
         return;
       }
-
-      if (oracleCore) oracleCore.classList.add('is-thinking');
-
-      window.setTimeout(function () {
-        if (typing) typing.classList.add('hide');
-        if (bubbles[0]) bubbles[0].classList.add('show');
-        if (oracleCore) {
-          oracleCore.classList.remove('is-thinking');
-          oracleCore.classList.add('is-answering');
-        }
-      }, 420);
-
-      window.setTimeout(function () {
-        if (bubbles[1]) bubbles[1].classList.add('show');
-      }, 1300);
-    }
+      if (!chatVisible || document.hidden) { pauseChat(); return; }
+      if (chatTimer || chatStep >= bubbles.length) return;
+      if (chatStep === 0 && oracleCore) oracleCore.classList.add('is-thinking');
+      chatStartedAt = performance.now();
+      chatTimer = window.setTimeout(function () {
+        chatTimer = 0;
+        chatRemaining = 0;
+        if (!chatVisible || document.hidden || !chat.isConnected) return;
+        revealChatStep();
+        syncChatActivity();
+      }, chatRemaining);
+    };
 
     if ('IntersectionObserver' in window) {
       var chatObserver = new IntersectionObserver(function (entries) {
-        if (entries.some(function (entry) { return entry.isIntersecting; })) {
-          playChat();
-          chatObserver.disconnect();
-        }
+        chatVisible = entries.some(function (entry) { return entry.isIntersecting && entry.intersectionRatio >= .3; });
+        syncChatActivity();
       }, { threshold: 0.3 });
       chatObserver.observe(chat);
-    } else {
-      playChat();
     }
+    syncChatActivity();
   }
 
   /* Parallax sutil nas cenas grandes; o conteúdo não depende do ponteiro. */
@@ -712,6 +762,8 @@
     } else {
       root.classList.add('motion-ready');
     }
+    syncAmbientActivity();
+    syncChatActivity();
   }
 
   if (typeof reduceQuery.addEventListener === 'function') {

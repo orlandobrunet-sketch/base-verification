@@ -2638,3 +2638,18 @@ main, .nav, .footer { position: relative; z-index: 1; }
   #metodo .method-row--adaptive .method-visual--irt { height: auto; min-height: 158px; }
   #metodo .irt-labels { flex-wrap: wrap; gap: .35rem .65rem; }
 }
+
+/* Motion stops with its region, while the composition and text stay intact. */
+.oracle-core::before,
+.oracle-core::after,
+.oracle-core__ring,
+.oracle-core__flow,
+.oracle-core__particle,
+.route-line .route-bed,
+.route-line .route-current,
+.method-visual .orbit,
+.method-visual--refs .evidence-current i,
+.chat .chat-typing span {
+  animation-play-state: var(--landing-ambient-play-state, running);
+}
+.hero-atlas.is-paused .nephron-probe { animation-play-state: paused; }

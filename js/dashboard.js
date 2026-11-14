@@ -959,7 +959,7 @@
   }
 
   function _tabOverview(data) {
-    const reviewPromoted = data.actions[0]?.kind === 'review';
+    const reviewPromoted = data.actions.some(action => action.kind === 'review');
     return `
       <section class="nqd-pane nq-dash-pane active" id="nqdPane-overview" role="tabpanel" aria-labelledby="nqdTab-overview" data-dash-pane="overview">
         <h1 class="nqd-sr-only">Visão geral</h1>

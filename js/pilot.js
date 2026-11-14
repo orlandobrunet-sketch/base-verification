@@ -25,6 +25,7 @@
   let active = false, writable = false, owner = null, envelope = null, baseline = null;
   let generation = 0, status = 'normal', error = null, lease = false, unlock = null;
   let pendingLock = null, reservedDifficulty = null, transaction = null;
+  let settledLock = Promise.resolve();
   const listeners = new Set();
 
   function identity() {
@@ -75,9 +76,13 @@
     }
     const token = {};
     pendingLock = token;
+    // release() resolves the held callback; Web Locks releases the lease when
+    // its request settles. Do not compete with our own still-releasing lease.
+    await settledLock;
+    if (pendingLock !== token) return false;
     return new Promise(resolve => {
       try {
-        Promise.resolve(locks.request(KEY, {mode: 'exclusive', ifAvailable: true}, async lock => {
+        settledLock = Promise.resolve(locks.request(KEY, {mode: 'exclusive', ifAvailable: true}, async lock => {
           if (!lock || pendingLock !== token) {
             if (pendingLock === token) pendingLock = null;
             resolve(false); return;

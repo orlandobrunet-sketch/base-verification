@@ -33,12 +33,14 @@ async function chegarAoResultado(page: Page, opcoes: { logado?: boolean; respost
   await page.goto('/jogar/');
   await page.locator('[data-portal-route="guest"]').click();
   await page.evaluate(async ({ logado, usados }) => {
-    if (usados !== undefined) {
-      localStorage.setItem('nq-diag-quota', JSON.stringify({ date: new Date().toISOString().slice(0, 10), count: usados }));
-    }
     if (logado) {
       (0, eval)(`authUser = {id:'00000000-0000-4000-8000-000000000001',user_metadata:{},app_metadata:{}}`);
       (window as any).getAuthToken = async () => 'token-ficticio';
+    }
+    if (usados !== undefined) {
+      const owner = (window as any).authUser?.id;
+      if (!owner) throw Error('A fixture de cota exige uma conta autenticada.');
+      localStorage.setItem('nq-diag-quota:' + encodeURIComponent(owner), JSON.stringify({ date: new Date().toISOString().slice(0, 10), count: usados }));
     }
     await (window as any).startFreeStudyMode();
     (0, eval)('studyModeQuestions = studyModeQuestions.slice(0, 1); showStudyModePage();');
@@ -49,7 +51,7 @@ async function chegarAoResultado(page: Page, opcoes: { logado?: boolean; respost
   return { pedidos, card: page.locator('#aiDiagnosisCard') };
 }
 
-const cotaUsada = (page: Page) => page.evaluate(() => JSON.parse(localStorage.getItem('nq-diag-quota') || '{}').count ?? 0);
+const cotaUsada = (page: Page) => page.evaluate(() => JSON.parse(localStorage.getItem('nq-diag-quota:' + encodeURIComponent((window as any).authUser.id)) || '{}').count ?? 0);
 
 test('sucesso mostra o diagnóstico e gasta um do limite diário', async ({ page }) => {
   const { pedidos, card } = await chegarAoResultado(page);

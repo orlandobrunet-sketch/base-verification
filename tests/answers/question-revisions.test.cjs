@@ -50,6 +50,8 @@ function harness(mode, f) {
   function node(id = '') {
     const value = {id, innerHTML: '', textContent: '', style: {}, dataset: {}, children: [], classList: {add() {}, remove() {}, toggle() {}},
       setAttribute() {}, remove() { nodes.delete(this.id); }, appendChild(child) { this.children.push(child); if (child.id) nodes.set(child.id, child); },
+      // Layout belongs to browser tests; this detached DOM shell has no ancestors.
+      closest() { return null; },
       querySelector() { return null; }, querySelectorAll(selector) { return selector.includes('btn') ? buttons : []; }, focus() {}, scrollIntoView() {}};
     if (id) nodes.set(id, value);
     return value;

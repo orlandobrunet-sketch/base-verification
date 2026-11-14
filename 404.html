@@ -3,72 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#070a13">
   <title>Página não encontrada — NefroQuest</title>
   <link rel="icon" type="image/svg+xml" href="/landing/assets/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="/landing/assets/favicon-32x32.png">
   <link rel="icon" type="image/x-icon" sizes="32x32" href="/landing/assets/favicon-q.ico?v=15.91">
   <link rel="apple-touch-icon" sizes="192x192" href="/landing/assets/favicon-192x192.png">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@600;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background: #0a0e1a;
-      color: #c8d8f0;
-      font-family: 'Georgia', serif;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 24px;
-    }
-    .wrap { max-width: 480px; }
-    .ornament { color: #a08040; font-size: 0.78rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 12px; }
-    h1 {
-      font-family: 'Cinzel Decorative', serif;
-      color: #ffd700;
-      font-size: clamp(1.8rem, 8vw, 2.8rem);
-      letter-spacing: 2px;
-      margin-bottom: 4px;
-      filter: drop-shadow(0 2px 8px rgba(255,215,0,0.25));
-    }
-    .sub { color: #8090a0; font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 32px; }
-    .icon { font-size: 4rem; margin-bottom: 20px; }
-    h2 { color: #e0f0ff; font-family: 'Cinzel', serif; font-size: 1.1rem; margin-bottom: 12px; letter-spacing: 1px; }
-    p { color: #708090; font-size: 0.9rem; line-height: 1.7; margin-bottom: 28px; }
-    .btn {
-      display: inline-block;
-      background: linear-gradient(135deg, #c8960b, #ffd700);
-      color: #1a0e00;
-      font-family: 'Cinzel', serif;
-      font-weight: 700;
-      font-size: 0.88rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      text-decoration: none;
-      padding: 13px 32px;
-      border-radius: 10px;
-    }
-    .btn:hover { opacity: 0.9; }
-    .footer { margin-top: 32px; color: #3a4a5a; font-size: 0.75rem; }
-    .footer a { color: #506070; text-decoration: none; }
+    :root{color-scheme:dark;--bg:#070a13;--paper:#efe6d2;--dim:#aab7c9;--gold:#f1cf7a;--light:#91dfe3;--line:#91dfe333}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;background:radial-gradient(ellipse at 75% 45%,#14232c 0,transparent 58%),var(--bg);color:var(--paper);font:400 1rem/1.6 "Source Sans 3","Segoe UI",sans-serif;overflow-wrap:anywhere}
+    a{color:inherit}a:focus-visible{outline:2px solid var(--light);outline-offset:5px}
+    header,footer{width:min(100% - 3rem,68rem);margin-inline:auto}header{padding-block:1.5rem;border-bottom:1px solid var(--line)}
+    .brand{display:inline-flex;align-items:center;gap:.45rem;min-height:44px;max-width:100%;text-decoration:none;font:700 clamp(1.15rem,5vw,1.6rem)/1.2 Alegreya,Georgia,serif}.brand img{width:32px;height:32px;flex-shrink:0}
+    main{width:min(100% - 3rem,58rem);margin:auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(12rem,.7fr);align-items:center;gap:2rem;padding-block:3rem}
+    .code{margin:0 0 .75rem;color:var(--gold);font-weight:600}.code span{display:inline-block;width:1.6rem;border-top:1px solid currentColor;vertical-align:middle;margin-right:.6rem}
+    h1{font:600 clamp(2rem,4.5vw,3.5rem)/1.1 Alegreya,Georgia,serif;margin:0;max-width:14ch;text-wrap:balance}p{color:var(--dim);margin:1.2rem 0 1.75rem;max-width:44ch}
+    nav{display:flex;align-items:center;flex-wrap:wrap;gap:.75rem}.action{display:inline-flex;align-items:center;justify-content:center;gap:.7rem;min-height:48px;padding:.75rem 1.2rem;border:1px solid var(--gold);border-radius:7px;background:var(--gold);color:#111a2e;font-weight:700;text-decoration:none}.action svg{width:18px;height:18px;flex-shrink:0}.action:hover{background:#f7dda3}.home{min-height:48px;display:inline-flex;align-items:center;padding:.75rem;color:var(--paper);text-underline-offset:5px}.home:hover{color:var(--light)}
+    .map{width:100%;max-width:21rem;justify-self:center;overflow:visible}.map .grid{fill:none;stroke:#91dfe324;stroke-width:1}.map .route{fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-dasharray:260;stroke-dashoffset:0;animation:find-route .8s ease-out both}.map .waypoint{fill:var(--bg);stroke:var(--gold);stroke-width:2}.map .destination{fill:var(--gold)}
+    footer{padding-block:1.2rem;color:var(--dim);font-size:.9rem;border-top:1px solid var(--line)}footer p{margin:0}
+    @keyframes find-route{from{stroke-dashoffset:260}to{stroke-dashoffset:0}}
+    @media(max-width:640px){main{grid-template-columns:1fr;gap:1.4rem;padding-block:2rem}.map{grid-row:1;width:min(9rem,100%)}h1{max-width:18ch}header,footer,main{width:calc(100% - 2.5rem)}nav{align-items:stretch}.action,.home{max-width:100%}}
+    @media(prefers-reduced-motion:reduce){.map .route{animation:none}}
   </style>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Philosopher:wght@400;700&display=swap" rel="stylesheet"><style>/* Apoio Lúmen — conteúdo e fluxos preservados. */
-:root{--gold:#f1cf7a;--blue:#91dfe3;--bg:#071018;--surface:#12202b;--border:#91dfe333;--txt:#eee8d9;--txt-dim:#b7c2cc;--ok:#83d8ad;--err:#efa7b2}
-body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#071018;color:#eee8d9;font-family:Philosopher,Georgia,serif;line-height:1.75}header{background:#0b1620;border-color:#91dfe333}header a{font-family:Cinzel,Georgia,serif;letter-spacing:normal;color:#f1cf7a}h1,h2,h3{font-family:Cinzel,Georgia,serif;letter-spacing:normal}h1{color:#eee8d9;line-height:1.4}h2{color:#f1cf7a}main{max-width:760px}section{background:linear-gradient(135deg,#192733,#0b141d 70%);border-color:#91dfe333;border-radius:12px}a,footer a,main a{color:#91dfe3;text-decoration:underline;text-underline-offset:3px}p,.subtitle,footer{color:#b7c2cc}input,textarea,select{background:#07121b77;color:#eee8d9;border:1px solid #a5bdc344;border-radius:6px;font-family:inherit;line-height:1.6}input::placeholder,textarea::placeholder{color:#94a6b3}button[type=submit]{background:#f1cf7a;color:#142330;border:1px solid #f1cf7a88;border-radius:6px;font-family:inherit;box-shadow:none}a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid #91dfe3;outline-offset:3px}header a,footer a{display:inline-flex;align-items:center;min-height:44px}.wrap{width:min(100%,540px);padding:32px 26px;background:linear-gradient(135deg,#192733,#0b141d 70%);border:1px solid #91dfe333;border-radius:18px}.wrap h1{font-family:Cinzel,Georgia,serif;color:#f1cf7a;filter:none;letter-spacing:normal}.wrap .sub,.wrap .ornament,.wrap .footer{color:#b7c2cc;letter-spacing:1px}.wrap h2{color:#eee8d9;line-height:1.5}.wrap p{color:#b7c2cc}.wrap .btn{background:#f1cf7a;color:#142330;border-radius:6px;text-transform:none;letter-spacing:normal;min-height:50px;max-width:100%;text-decoration:none;font-family:Philosopher,Georgia,serif}.wrap .footer a{color:#91dfe3}.nq-off-container{max-width:760px}.nq-off-header{flex-wrap:wrap;gap:12px;background:#12202b;border-color:#91dfe333}.nq-off-title{color:#f1cf7a;letter-spacing:normal;text-transform:none}.nq-off-card{background:linear-gradient(135deg,#192733,#0b141d 70%);border:1px solid #91dfe333;border-radius:14px}.nq-off-sync-banner{background:#91dfe308;color:#b7c2cc;border-color:#91dfe333}.nq-off-sync-banner strong{color:#91dfe3}.nq-off-question{color:#eee8d9;line-height:1.75}.nq-off-option{background:#07121b77;border-color:#a5bdc344;color:#eee8d9}.btn-next{background:#f1cf7a;color:#142330;text-transform:none;letter-spacing:normal;box-shadow:none}body{overflow-wrap:anywhere}@media(max-width:600px){main{padding:30px 20px 48px}section{padding:22px 18px}h1{font-size:1.45rem}.wrap{padding:28px 20px;border-radius:14px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
-</style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="ornament">✦ Reino dos Néfrons ✦</div>
-    <h1>NefroQuest</h1>
-    <div class="sub">Ascension</div>
-    <h2>Território Inexplorado</h2>
-    <p>Esta página não existe no mapa do Reino dos Néfrons.<br>Talvez você tenha se perdido na jornada.</p>
-    <a href="https://nefroquest.com" class="btn">Voltar ao Reino</a>
-    <div class="footer">
-      <a href="https://nefroquest.com">nefroquest.com</a>
+  <header><a class="brand" href="/"><img src="/landing/assets/favicon.svg" width="32" height="32" alt="">NefroQuest</a></header>
+  <main>
+    <div>
+      <p class="code"><span aria-hidden="true"></span>Página não encontrada · 404</p>
+      <h1>Essa rota saiu do mapa.</h1>
+      <p>Não encontramos a página que você procurou. Continue pelo Átrio ou volte à página inicial.</p>
+      <nav aria-label="Caminhos para continuar">
+        <a class="action" href="/jogar/">Voltar ao Átrio<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></a>
+        <a class="home" href="/">Página inicial</a>
+      </nav>
     </div>
-  </div>
+    <svg class="map" viewBox="0 0 300 300" aria-hidden="true" focusable="false">
+      <g class="grid"><circle cx="150" cy="150" r="126"/><circle cx="150" cy="150" r="91"/><circle cx="150" cy="150" r="54"/><path d="M150 8v284M8 150h284M49 49l202 202M49 251 251 49"/><path d="m150 16 7 15h-14zm134 134-15 7v-14zM150 284l-7-15h14zM16 150l15-7v14z"/></g>
+      <path class="route" d="M65 201 113 183 132 143 180 123 223 77"/>
+      <circle class="waypoint" cx="65" cy="201" r="6"/><circle class="waypoint" cx="132" cy="143" r="5"/><circle class="destination" cx="223" cy="77" r="6"/>
+      <path d="m223 60 4 10 10 7-10 4-4 10-4-10-10-4 10-7z" fill="none" stroke="#f1cf7a"/>
+    </svg>
+  </main>
+  <footer><p>Há outros caminhos para continuar sua jornada.</p></footer>
 </body>
 </html>

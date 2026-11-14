@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v17.16
-const CACHE = 'nefroquest-v17.16';
+// NefroQuest Service Worker — v17.17
+const CACHE = 'nefroquest-v17.17';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -206,7 +206,7 @@ const ASSET_VERSIONS = {
   '/js/cinema-equipment-seals.js': '16.43',
   '/js/cinema-victory-epilogue.js': '16.43',
   '/styles/lumen/cinemamotion.css': '16.42',
-  '/styles/lumen/bossfinishing.css': '16.78',
+  '/styles/lumen/bossfinishing.css': '17.17',
   '/js/cinema-boss-art-states.js': '16.39',
   '/js/cinema-boss-static-adapter.js': '16.43',
   '/js/cinema-cinematic-intro.js': '16.46',
@@ -229,9 +229,9 @@ const ASSET_VERSIONS = {
   '/styles/lumen/shell.css': '16.18',
   '/styles/lumen/portal.css': '17.15',
   '/styles/lumen/atrium.css': '17.15',
-  '/styles/lumen/game.css': '17.15',
+  '/styles/lumen/game.css': '17.17',
   '/styles/lumen/difficulty.css': '17.06',
-  '/styles/lumen/dashboard.css': '17.15',
+  '/styles/lumen/dashboard.css': '17.17',
   '/styles/lumen/charselect.css': '17.15',
   '/styles/lumen/modes.css': '17.15',
   '/styles/lumen/exam.css': '17.15',
@@ -244,30 +244,30 @@ const ASSET_VERSIONS = {
   '/styles/lumen/achievements.css': '16.75',
   '/styles/lumen/oracle.css': '16.25',
   '/js/utils.js': '17.15',
-  '/js/pilot.js': '16.06',
+  '/js/pilot.js': '17.17',
   '/js/character-benefits.js': '16.07',
   '/js/answer-presentation.js': '16.09',
   '/js/audio.js': '16.28',
   '/js/leaderboard.js': '17.15',
-  '/js/study-mode.js': '17.16',
-  '/js/game.js': '17.16',
+  '/js/study-mode.js': '17.17',
+  '/js/game.js': '17.17',
   '/js/notifications.js': '11.90',
-  '/js/auth.js': '17.15',
+  '/js/auth.js': '17.17',
   '/js/portal.js': '17.15',
   '/js/atrium.js': '17.08',
-  '/js/paywall.js': '16.97',
-  '/js/account.js': '16.97',
+  '/js/paywall.js': '17.17',
+  '/js/account.js': '17.17',
   '/js/boss.js': '17.16',
   '/js/exam.js': '17.15',
-  '/js/admin.js': '15.35',
-  '/js/minigame.js': '17.01',
+  '/js/admin.js': '17.17',
+  '/js/minigame.js': '17.17',
   '/js/minigame-acidbase.js': '17.16',
   '/js/achievements.js': '16.75',
   '/js/changelog.js': '17.15',
   '/js/equipment-preview.js': '16.62',
   '/js/dashboard-skills.js': '17.15',
   '/styles/lumen/skills.css': '17.15',
-  '/js/dashboard.js': '17.16',
+  '/js/dashboard.js': '17.17',
 };
 // bump-release:asset-versions:fim
 

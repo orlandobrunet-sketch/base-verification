@@ -11,8 +11,8 @@ import { medirContraste } from '../helpers/contraste';
  * texto a 200% o campo de e-mail da Lista de Acesso era espremido a 26px de
  * largura; os caminhos de arquivo da Galeria ficavam a 4,36:1.
  *
- * O administrador é simulado no navegador do teste (isAdminUser), sem
- * credencial: as telas só são desenhadas, nenhuma ação administrativa roda.
+ * A identidade admin é técnica; a checagem real de permissão permanece ativa.
+ * O SDK externo é bloqueado e nenhuma ação administrativa é enviada.
  */
 test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 
@@ -26,11 +26,17 @@ const TELAS = [
 
 async function abrir(page: Page, fn: string, largura = 1280) {
   await page.setViewportSize({ width: largura, height: 844 });
-  await page.route('**/*', r => new URL(r.request().url()).hostname === 'localhost' ? r.continue() : r.abort());
+  await page.route('**/*', r => {
+    const url = new URL(r.request().url());
+    if (url.pathname === '/assets/vendor/supabase-js-2.106.2/supabase.js') return r.abort();
+    return url.hostname === 'localhost' && r.request().method() === 'GET' ? r.continue() : r.abort();
+  });
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
-  await injectGameState(page);
+  await injectGameState(page, {}, { authUser: {
+    id: '00000000-0000-4000-8000-0000000000a1',
+    email: 'admin-dialogs@example.invalid', app_metadata: { is_admin: true },
+  } });
   await page.waitForLoadState('load');
-  await page.evaluate(() => { (0, eval)('isAdminUser = () => true'); });
   await page.locator(ORIGEM).first().focus();
   await page.evaluate(f => (window as any)[f](), fn);
 }

@@ -25,6 +25,33 @@
       painel: modal.querySelector('.modal-panel'),
       visivel: el => el.isConnected && el.style.display !== 'none',
     });
+    const _adminReadTokens = new WeakMap();
+    const _adminOpenings = new WeakMap();
+    function _captureAdminView(id, reading = false) {
+      const modal = document.getElementById(id);
+      if (!modal || !isAdminUser() || !_adminOpenings.has(modal)) return null;
+      const binding = _captureJourneyBinding();
+      const opening = _adminOpenings.get(modal);
+      const token = {};
+      if (reading) _adminReadTokens.set(modal, token);
+      return {
+        modal,
+        current: () => modal.isConnected && document.getElementById(id) === modal &&
+          modal.style.display !== 'none' && isAdminUser() && _matchesJourneyBinding(binding) &&
+          _adminOpenings.get(modal) === opening &&
+          (!reading || _adminReadTokens.get(modal) === token),
+      };
+    }
+    window._retireAdminContext = function() {
+      const retired = ['adminModal', 'analyticsModal', 'pushCampaignModal']
+        .map(id => document.getElementById(id));
+      retired.forEach(modal => {
+        if (!modal) return;
+        _adminOpenings.delete(modal);
+        _adminReadTokens.delete(modal);
+        modal.remove();
+      });
+    };
     function openAdminPanel() {
       if (!isAdminUser()) return;
       document.querySelectorAll('.profile-popup.open').forEach(p => p.classList.remove('open'));
@@ -51,13 +78,14 @@
         `;
         document.body.appendChild(modal);
       }
+      _adminOpenings.set(modal, {});
       modal.style.display = 'flex';
       _adminDialogo(modal);
       adminLoadWhitelist();
     }
     function closeAdminPanel() {
       const m = document.getElementById('adminModal');
-      if (m) m.style.display = 'none';
+      if (m) { _adminOpenings.delete(m); m.style.display = 'none'; }
     }
 
     // ── Analytics Panel ───────────────────────────────────────────────────────
@@ -142,6 +170,7 @@
         `;
         document.body.appendChild(modal);
       }
+      _adminOpenings.set(modal, {});
       modal.style.display = 'flex';
       _adminDialogo(modal);
       loadAnalyticsData();
@@ -149,35 +178,38 @@
 
     function closeAnalyticsPanel() {
       const m = document.getElementById('analyticsModal');
-      if (m) m.style.display = 'none';
+      if (m) { _adminOpenings.delete(m); m.style.display = 'none'; }
     }
 
     async function loadAnalyticsData() {
-      if (!_supaClient) return;
+      const view = _captureAdminView('analyticsModal', true);
+      if (!view) return;
+      const find = id => view.modal.querySelector('#' + id);
       try {
+        if (!_supaClient) throw new Error('Cliente indisponível.');
         // Busca dados do leaderboard
         const { data, error } = await _supaClient
           .from('leaderboard')
           .select('player_name, score, level')
           .order('score', { ascending: false })
           .limit(200);
+        if (!view.current()) return;
         if (error) throw error;
         if (!data || data.length === 0) {
-          document.getElementById('anTotalPlayers').textContent = '0';
-          document.getElementById('anAvgScore').textContent = '0';
-          document.getElementById('anMaxScore').textContent = '0';
-          document.getElementById('anLevelChart').textContent = 'Sem dados ainda.';
-          document.getElementById('anTop5').textContent = 'Sem dados ainda.';
-          return;
-        }
+          find('anTotalPlayers').textContent = '0';
+          find('anAvgScore').textContent = '0';
+          find('anMaxScore').textContent = '0';
+          find('anLevelChart').textContent = 'Sem dados ainda.';
+          find('anTop5').textContent = 'Sem dados ainda.';
+        } else {
 
         // Métricas gerais
         const total = data.length;
         const avgScore = Math.round(data.reduce((s, r) => s + (r.score || 0), 0) / total);
         const maxScore = data[0].score || 0;
-        document.getElementById('anTotalPlayers').textContent = total.toLocaleString('pt-BR');
-        document.getElementById('anAvgScore').textContent = avgScore.toLocaleString('pt-BR');
-        document.getElementById('anMaxScore').textContent = maxScore.toLocaleString('pt-BR');
+        find('anTotalPlayers').textContent = total.toLocaleString('pt-BR');
+        find('anAvgScore').textContent = avgScore.toLocaleString('pt-BR');
+        find('anMaxScore').textContent = maxScore.toLocaleString('pt-BR');
 
         // Distribuição de níveis em faixas
         const bands = [
@@ -188,7 +220,7 @@
           { label: 'Lv 51+',   min: 51, max: 999 },
         ];
         const maxBandCount = Math.max(...bands.map(b => data.filter(r => r.level >= b.min && r.level <= b.max).length), 1);
-        const chartEl = document.getElementById('anLevelChart');
+        const chartEl = find('anLevelChart');
         if (chartEl) {
           chartEl.innerHTML = '';
           bands.forEach(b => {
@@ -222,7 +254,7 @@
 
         // Top 5
         const medals = ['🥇','🥈','🥉','4º','5º'];
-        const top5El = document.getElementById('anTop5');
+        const top5El = find('anTop5');
         if (top5El) {
           top5El.innerHTML = '';
           data.slice(0, 5).forEach((r, i) => {
@@ -252,9 +284,10 @@
             top5El.appendChild(itemDiv);
           });
         }
+        }
 
         // Carregar avaliações das questões do Supabase
-        const ratingsEl = document.getElementById('anRatingsList');
+        const ratingsEl = find('anRatingsList');
         if (ratingsEl) {
           ratingsEl.innerHTML = '<div style="color:var(--txt-dim); font-size:0.74rem;">Carregando avaliações…</div>';
           try {
@@ -263,7 +296,7 @@
               .select('question_id, question_text, rating_quality, rating_learning, player_email, created_at')
               .order('created_at', { ascending: false })
               .limit(50);
-
+            if (!view.current()) return;
             if (ratingError) throw ratingError;
 
             if (!ratingData || ratingData.length === 0) {
@@ -288,13 +321,14 @@
               }).join('');
             }
           } catch (err) {
+            if (!view.current()) return;
             console.error('[NQ] Load ratings error', err);
             ratingsEl.innerHTML = '<div style="color:#fb7185; font-size:0.74rem;">Erro ao carregar avaliações.</div>';
           }
         }
 
         // Reclassificação de dificuldade — agrega votos da comunidade
-        const diffEl = document.getElementById('anDifficultyList');
+        const diffEl = find('anDifficultyList');
         if (diffEl) {
           diffEl.innerHTML = '<div style="color:var(--txt-dim); font-size:0.74rem;">Carregando votos…</div>';
           try {
@@ -302,6 +336,7 @@
               .from('question_difficulty_votes')
               .select('question_id, vote, current_diff')
               .limit(5000);
+            if (!view.current()) return;
             if (vErr) throw vErr;
 
             const LABEL = { easy: 'Fácil', medium: 'Médio', hard: 'Difícil' };
@@ -343,15 +378,18 @@
               `).join('');
             }
           } catch (err) {
+            if (!view.current()) return;
             console.error('[NQ] Load difficulty votes error', err);
             diffEl.innerHTML = '<div style="color:#fb7185; font-size:0.74rem;">Erro ao carregar votos de dificuldade.</div>';
           }
         }
 
       } catch(e) {
+        if (!view.current()) return;
         if (typeof _reportError === 'function') _reportError(e, { action: 'loadAnalyticsData' });
-        ['anLevelChart','anTop5','anRatingsList'].forEach(id => {
-          const el = document.getElementById(id);
+        ['anTotalPlayers','anAvgScore','anMaxScore'].forEach(id => { find(id).textContent = '—'; });
+        ['anLevelChart','anTop5','anRatingsList','anDifficultyList'].forEach(id => {
+          const el = find(id);
           if (el) {
             el.innerHTML = '';
             const errDiv = document.createElement('div');
@@ -364,14 +402,18 @@
     }
     // ─────────────────────────────────────────────────────────────────────────
     async function adminLoadWhitelist() {
-      const list = document.getElementById('wlList');
-      if (!list || !_supaClient) return;
+      const view = _captureAdminView('adminModal', true);
+      if (!view) return;
+      const list = view.modal.querySelector('#wlList');
+      if (!list) return;
       list.innerHTML = '<div class="whitelist-empty">Carregando...</div>';
       try {
+        if (!_supaClient) throw new Error('Cliente indisponível.');
         const { data, error } = await _supaClient
           .from('access_whitelist')
           .select('email, added_at')
           .order('added_at', { ascending: false });
+        if (!view.current()) return;
         if (error) throw error;
         if (!data || data.length === 0) {
           list.innerHTML = '<div class="whitelist-empty">Nenhum email na lista ainda.</div>';
@@ -391,13 +433,16 @@
           list.appendChild(item);
         });
       } catch(e) {
+        if (!view.current()) return;
         if (typeof _reportError === 'function') _reportError(e, { action: 'adminLoadWhitelist' });
         list.innerHTML = '<div class="whitelist-empty" style="color:#fb7185">Erro ao carregar. Verifique a tabela no Supabase.</div>';
       }
     }
     async function adminAddWhitelist() {
       if (!isAdminUser()) return;
-      const input = document.getElementById('wlEmailInput');
+      const view = _captureAdminView('adminModal');
+      if (!view) return;
+      const input = view.modal.querySelector('#wlEmailInput');
       const email = input?.value.trim().toLowerCase();
       if (!email || !email.includes('@')) { _toast('Digite um email válido.', 'error'); return; }
       if (!_supaClient) return;
@@ -406,27 +451,34 @@
         const { error } = await _supaClient
           .from('access_whitelist')
           .upsert({ email, added_at: new Date().toISOString() });
+        if (!view.current()) return;
         if (error) throw error;
-        if (input) input.value = '';
+        if (input?.value.trim().toLowerCase() === email) input.value = '';
         _toast('Email adicionado com sucesso!', 'ok');
         adminLoadWhitelist();
       } catch(e) {
+        if (!view.current()) return;
         if (typeof _reportError === 'function') _reportError(e, { action: 'adminAddWhitelist', email });
         _toast('Erro ao adicionar: ' + (e.message || e), 'error');
       }
     }
     async function adminRemoveWhitelist(email) {
       if (!isAdminUser()) return;
+      const view = _captureAdminView('adminModal');
+      if (!view) return;
       if (!_supaClient) return;
       if (!confirm(`Remover acesso de ${email}?`)) return;
+      if (!view.current()) return;
       try {
         const { error } = await _supaClient
           .from('access_whitelist')
           .delete()
           .eq('email', email);
+        if (!view.current()) return;
         if (error) throw error;
         adminLoadWhitelist();
       } catch(e) {
+        if (!view.current()) return;
         if (typeof _reportError === 'function') _reportError(e, { action: 'adminRemoveWhitelist', email });
         _toast('Erro ao remover: ' + (e.message || e), 'error');
       }
@@ -468,6 +520,7 @@
           </div>
         </div>`;
       document.body.appendChild(modal);
+      _adminOpenings.set(modal, {});
       _adminDialogo(modal);
       setTimeout(() => document.getElementById('pushCampTitle')?.focus(), 60);
     }
@@ -475,11 +528,13 @@
 
     async function _sendPushCampaign() {
       if (!isAdminUser()) return;
-      const title = (document.getElementById('pushCampTitle')?.value || '').trim();
-      const body  = (document.getElementById('pushCampBody')?.value || '').trim();
-      const url   = (document.getElementById('pushCampUrl')?.value || '').trim() || '/jogar/';
-      const statusEl = document.getElementById('pushCampStatus');
-      const btn = document.getElementById('pushCampSend');
+      const view = _captureAdminView('pushCampaignModal');
+      if (!view) return;
+      const title = (view.modal.querySelector('#pushCampTitle')?.value || '').trim();
+      const body  = (view.modal.querySelector('#pushCampBody')?.value || '').trim();
+      const url   = (view.modal.querySelector('#pushCampUrl')?.value || '').trim() || '/jogar/';
+      const statusEl = view.modal.querySelector('#pushCampStatus');
+      const btn = view.modal.querySelector('#pushCampSend');
       if (!title || !body) {
         if (statusEl) { statusEl.style.color = '#fbbf24'; statusEl.textContent = 'Preencha título e mensagem.'; }
         return;
@@ -490,6 +545,7 @@
         if (typeof _supaClient === 'undefined' || !_supaClient) throw new Error('Sessão indisponível.');
         // functions.invoke já inclui o token do admin logado no Authorization.
         const { data, error } = await _supaClient.functions.invoke('send-push', { body: { title, body, url } });
+        if (!view.current()) return;
         if (error) throw error;
         const sent = data?.sent ?? 0, failed = data?.failed ?? 0, stale = data?.stale_removed ?? 0;
         if (statusEl) {
@@ -498,9 +554,10 @@
         }
         if (typeof playSound === 'function') playSound('chest');
       } catch (e) {
+        if (!view.current()) return;
         if (statusEl) { statusEl.style.color = '#f87171'; statusEl.textContent = '❌ Erro: ' + (e?.message || e); }
       } finally {
-        if (btn) { btn.disabled = false; btn.textContent = '📣 Enviar campanha'; }
+        if (view.current() && btn) { btn.disabled = false; btn.textContent = '📣 Enviar campanha'; }
       }
     }
     window.openPushCampaign       = openPushCampaign;

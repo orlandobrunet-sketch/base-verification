@@ -947,6 +947,7 @@
     }
     function _syncProfilePopupPermissions() {
       const showAdmin = !!authUser && typeof isAdminUser === 'function' && isAdminUser();
+      if (!showAdmin) window._retireAdminContext?.();
       document.querySelectorAll('.admin-item').forEach(el => el.classList.toggle('visible', showAdmin));
       document.querySelectorAll('.profile-popup-admin-group').forEach(el => { el.hidden = !showAdmin; });
     }
