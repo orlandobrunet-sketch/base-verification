@@ -4577,3 +4577,15 @@
     overflow-wrap: anywhere;
   }
 }
+
+/* Context near the existing map and reflection actions; no statistics are recalculated here. */
+#nqDashboard[data-nq-ui="lumen"] .nqd-map-study-preview { display:block; margin-top:.35rem; color:var(--nql-text-soft); font:400 .8rem/1.45 var(--nql-font-body); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-detail { grid-column:1 / -1; min-width:0; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-detail summary { min-height:44px; align-content:center; color:#eee6d6; font:500 1rem/1.5 var(--nql-font-body); cursor:pointer; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-detail summary:focus-visible { outline:2px solid var(--nqd-cyan); outline-offset:3px; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-detail > p { margin:.35rem 0 .5rem; color:#c9ced8; font:400 1rem/1.6 var(--nql-font-body); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-activity { margin:.35rem 0 .5rem; padding-left:1.25rem; color:#eee6d6; font:400 1rem/1.6 var(--nql-font-body); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-activity time { font-variant-numeric:tabular-nums; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-study { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.65rem 1rem; margin-top:1rem; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-study > p { min-width:0; max-width:60ch; color:#c9ced8; font:400 1rem/1.6 var(--nql-font-body); }
+#nqDashboard[data-nq-ui="lumen"] .nqd-error-study > .nqd-action { max-width:100%; min-height:44px; white-space:normal; text-align:left; }

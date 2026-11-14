@@ -47,9 +47,14 @@
 #charSelectModal[data-presentation="scene"] .nqc-card .nqc-boon small { display:none; }
 #charSelectModal[data-presentation="scene"] .nqc-profile { position:relative; min-width:0; display:grid; grid-template-columns:minmax(12rem,.9fr) minmax(17rem,1.1fr); align-content:start; gap:1rem 1.5rem; }
 #charSelectModal[data-presentation="scene"] .nqc-profile-art { grid-column:1; grid-row:1 / span 3; position:relative; min-width:0; align-self:start; isolation:isolate; text-align:center; }
-#charSelectModal[data-presentation="scene"] #nqcProfilePortrait { position:relative; display:block; width:100%; height:auto; max-height:410px; object-fit:contain; margin:auto; border:0; border-radius:0; mask-image:linear-gradient(#000 75%,transparent); }
+#charSelectModal[data-presentation="scene"] .nqc-portrait-stage { position:relative; height:410px; min-width:0; }
+#charSelectModal[data-presentation="scene"] :is(#nqcProfilePortrait,#nqcProfilePrevious) { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain; margin:auto; border:0; border-radius:0; mask-image:linear-gradient(#000 75%,transparent); }
+#charSelectModal[data-presentation="scene"] #nqcProfilePrevious[hidden] { display:none; }
+#charSelectModal[data-presentation="scene"] .nqc-portrait-status { position:absolute; inset:auto 0 .5rem; margin:0; color:var(--nql-text-soft); font:.8rem/1.4 var(--nql-font-body); text-align:center; }
+#charSelectModal[data-presentation="scene"] .nqc-portrait-status[hidden] { display:none; }
 #charSelectModal[data-presentation="scene"] .nqc-scene-aura { position:absolute; z-index:-1; inset:8% 0 15%; border-radius:50%; background:radial-gradient(ellipse,color-mix(in srgb,var(--nqc-accent) 24%,transparent),transparent 68%); animation:nqc-scene-breathe 7s ease-in-out infinite alternate; }
 #charSelectModal[data-presentation="scene"]:not(.show) .nqc-scene-aura { animation-play-state:paused; }
+#charSelectModal[data-presentation="scene"]:is([data-page-hidden="true"],[data-art-visible="false"]) .nqc-scene-aura { animation-play-state:paused; }
 #charSelectModal[data-presentation="scene"] #nqcProfileEmblem { position:absolute; inset:8% 10%; z-index:-1; opacity:.12; color:var(--nqc-accent); }
 #charSelectModal[data-presentation="scene"] #nqcProfileEmblem svg { width:100%; height:auto; fill:none; stroke:currentColor; stroke-width:1.3; }
 #charSelectModal[data-presentation="scene"] .nqc-evolution { display:grid; gap:.5rem; margin:.3rem 0 0; }
@@ -57,11 +62,13 @@
 #charSelectModal[data-presentation="scene"] .nqc-path i { width:.35rem; height:.35rem; background:#567080; opacity:1; box-shadow:none; }
 #charSelectModal[data-presentation="scene"] .nqc-path i.is-current { background:var(--nqc-accent); }
 #charSelectModal[data-presentation="scene"] .nqc-path-label { color:var(--nql-text-muted); font:.75rem/1.4 var(--nql-font-body); }
-#charSelectModal[data-presentation="scene"] .nqc-profile-heading { grid-column:2; }
+#charSelectModal[data-presentation="scene"] .nqc-profile-heading { grid-column:2; grid-row:1; }
 #charSelectModal[data-presentation="scene"] #nqcProfileTitle { margin:0 0 .25rem; color:var(--nqc-accent); font:500 .95rem/1.4 var(--nql-font-body); }
 #charSelectModal[data-presentation="scene"] #nqcProfileName { margin:0; color:#eee6d2; font:600 clamp(1.3rem,2.8vw,2.8rem)/1.15 var(--nql-font-display); overflow-wrap:normal; word-break:normal; }
 #charSelectModal[data-presentation="scene"] .nqc-profile-story { grid-column:2; max-width:62ch; margin:0; color:var(--nql-text-soft); font:400 1rem/1.6 var(--nql-font-body); }
-#charSelectModal[data-presentation="scene"] .nqc-profile-benefits { grid-column:2; min-width:0; }
+#charSelectModal[data-presentation="scene"] .nqc-story-panel { grid-column:2; grid-row:2; min-width:0; }
+#charSelectModal[data-presentation="scene"] .nqc-story-toggle { display:none; }
+#charSelectModal[data-presentation="scene"] .nqc-profile-benefits { grid-column:2; grid-row:3; min-width:0; }
 #charSelectModal[data-presentation="scene"] .nqc-profile-benefits h4 { margin:0 0 .6rem; color:#eee6d2; font:600 .9rem/1.4 var(--nql-font-body); }
 #charSelectModal[data-presentation="scene"] .nqc-attributes { display:flex; flex-wrap:wrap; gap:.6rem 1.25rem; list-style:none; padding:0; margin:0 0 1rem; }
 #charSelectModal[data-presentation="scene"] .nqc-attributes li { display:flex; gap:.5rem; align-items:center; min-width:0; color:var(--nql-text); font-size:.9rem; }
@@ -84,10 +91,17 @@
 }
 @container nqcScene (max-width:46rem) {
  #charSelectModal[data-presentation="scene"] .nqc-grid { grid-template-columns:minmax(0,1fr); }
- #charSelectModal[data-presentation="scene"] .nqc-profile { grid-template-columns:minmax(0,1fr); }
- #charSelectModal[data-presentation="scene"] .nqc-profile-art { grid-column:1; grid-row:auto; max-width:24rem; margin:auto; width:100%; }
- #charSelectModal[data-presentation="scene"] #nqcProfilePortrait { max-height:300px; }
- #charSelectModal[data-presentation="scene"] :is(.nqc-profile-heading,.nqc-profile-story,.nqc-profile-benefits) { grid-column:1; }
+ #charSelectModal[data-presentation="scene"] .nqc-profile { grid-template-columns:minmax(112px,.72fr) minmax(0,1.28fr); gap:.75rem 1rem; }
+ #charSelectModal[data-presentation="scene"] .nqc-profile-art { grid-column:1; grid-row:1 / span 2; max-width:180px; margin:0 auto; width:100%; }
+ #charSelectModal[data-presentation="scene"] .nqc-portrait-stage { height:160px; }
+ #charSelectModal[data-presentation="scene"] .nqc-profile-heading { grid-column:2; grid-row:1; }
+ #charSelectModal[data-presentation="scene"] .nqc-profile-benefits { display:contents; }
+ #charSelectModal[data-presentation="scene"] .nqc-profile-attributes { grid-column:2; grid-row:2; min-width:0; }
+ #charSelectModal[data-presentation="scene"] .nqc-initial { grid-column:1 / -1; grid-row:3; min-width:0; }
+ #charSelectModal[data-presentation="scene"] .nqc-story-panel { grid-column:1 / -1; grid-row:4; }
+ #charSelectModal[data-presentation="scene"] .nqc-story-toggle { display:inline-flex; align-items:center; min-height:44px; max-width:100%; padding:.35rem 0; border:0; background:transparent; color:var(--nqc-accent); text-align:left; font:500 .9rem/1.4 var(--nql-font-body); text-decoration:underline; text-underline-offset:3px; cursor:pointer; }
+ #charSelectModal[data-presentation="scene"]:not([data-story-expanded="true"]) .nqc-profile-story { display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:3; max-height:4.8em; overflow:hidden; }
+ #charSelectModal[data-presentation="scene"] .nqc-path { gap:min(.35rem,2%); }
  #charSelectModal[data-presentation="scene"] .nqc-actions { grid-template-columns:minmax(0,1fr); }
  #charSelectModal[data-presentation="scene"] .nqc-primary { min-width:0; width:100%; }
 }
@@ -103,13 +117,21 @@
 #charSelectModal[data-presentation="scene"] :is(.nqc-path,.nqc-path-label) { grid-area:auto; min-width:0; max-width:100%; }
 #charSelectModal[data-presentation="scene"] .nqc-path-label { text-transform:none; letter-spacing:normal; text-align:center; }
 @container nqcScene (max-width:46rem) {
- #charSelectModal[data-presentation="scene"] .nqc-header { padding:3.5rem 0 0; }
+ #charSelectModal[data-presentation="scene"] .nqc-header { padding:0; }
+ #charSelectModal[data-presentation="scene"] .nqc-opening { display:flex; align-items:center; min-height:2.75rem; padding-right:3.25rem; }
  #charSelectModal[data-presentation="scene"] .nqc-header h2 { font-size:clamp(1.3rem,3vw,2.6rem); }
+ #charSelectModal[data-presentation="scene"] .nqc-card .nqc-choose { display:none; }
 }
 @container nqcScene (max-width:22rem) {
  #charSelectModal[data-presentation="scene"] .nqc-card { grid-template-columns:48px minmax(0,1fr); gap:.3rem 12px; }
  #charSelectModal[data-presentation="scene"] .nqc-card .nqc-art { width:48px; height:64px; }
  #charSelectModal[data-presentation="scene"] .nqc-card .nqc-name { font-size:1rem; overflow-wrap:normal; word-break:normal; }
+ #charSelectModal[data-presentation="scene"] .nqc-profile { grid-template-columns:minmax(0,1fr); }
+ #charSelectModal[data-presentation="scene"] .nqc-profile-art { grid-column:1; grid-row:1; }
+ #charSelectModal[data-presentation="scene"] .nqc-profile-heading { grid-column:1; grid-row:2; }
+ #charSelectModal[data-presentation="scene"] .nqc-profile-attributes { grid-column:1; grid-row:3; }
+ #charSelectModal[data-presentation="scene"] .nqc-initial { grid-row:4; }
+ #charSelectModal[data-presentation="scene"] .nqc-story-panel { grid-row:5; }
 }
 
 #charSelectModal[data-presentation="scene"] .nqc-card:hover:not([aria-checked="true"]) { background:#ffffff08; }

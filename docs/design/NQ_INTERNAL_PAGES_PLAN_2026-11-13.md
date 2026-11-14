@@ -1,8 +1,8 @@
 # Plano de acabamento das páginas — 13/11/2026
 
-Os cinco ajustes expressamente pedidos são a entrega visual atual. As sugestões gerais abaixo são planejamento e não autorizam aplicação automática.
+Os cinco ajustes expressamente pedidos foram publicados na 17.11. Depois da entrega do relatório, o proprietário autorizou implementar as melhorias das 35 superfícies e delegou a ordem de prioridades em 13/11/2026. A candidata 17.13 não foi publicada após a CI1075; a 17.14 reuniu os dois primeiros lotes, mas sua publicação foi segurada por overflow real na Derrota em 320 px/fonte raiz de 32 px. A continuidade é a candidata 17.15, com CSS mínimo em contraprova e sem novo HEAD ou publicação; a CI1076 da 17.14 continua pendente. O [ledger atual de execução](NQ_35_SURFACES_EXECUTION_1715.md) distingue os recortes aplicados, as validações pendentes e o trabalho ainda necessário. O [relatório histórico da 17.14](NQ_USABILITY_PRIORITIES_1714.md) e o [plano técnico](../superpowers/plans/2026-11-13-ux-priorities-1713.md) preservam a sequência das decisões; esta tabela não certifica todas as superfícies.
 
-## Aplicação atual
+## Recortes publicados na 17.11
 
 - Câmara, abertura: transformar a cena da balança no ambiente da página; reunir título, progresso e próximo caso em uma única composição. Entrada curta, luz ambiente e movimento discreto com pausa automática em aba oculta e respeito a movimento reduzido.
 - Câmara, exames: laudo vertical, parâmetros e valores alinhados, unidades próximas; gasometria e exames complementares em grupos distintos. Preservar os oito parâmetros existentes e os valores gerados de cada caso.
@@ -10,9 +10,9 @@ Os cinco ajustes expressamente pedidos são a entrega visual atual. As sugestõe
 - Competências: um título de página; retirar o segundo título e sua descrição repetida, aproximando o diagrama e a área selecionada.
 - Visão Geral: cards de retomar, revisar e estudar com ícones próprios, alinhamento de ações e hierarquia mais elegante. Dados e destinos preservados.
 
-## Demais páginas — sugestões, sem aplicação
+## Inventário original e continuidade autorizada
 
-Inventário de 35 superfícies ou fluxos, agrupando os diálogos do mesmo contexto. As sugestões consolidam o que já funciona e indicam possíveis próximos refinamentos; não descrevem 35 defeitos atuais nem autorizam executar esta tabela em lote. Os cinco pedidos acima continuam sendo a implementação desta entrega.
+Inventário de 35 superfícies ou fluxos, agrupando os diálogos do mesmo contexto. As sugestões abaixo preservam a proposta original: consolidam o que já funciona e indicam refinamentos, sem representar 35 defeitos atuais. A implementação foi autorizada e avança por recortes; seu estado atual está no [ledger](NQ_35_SURFACES_EXECUTION_1715.md). Uma linha deste inventário não significa alteração aplicada, conferência visual completa ou publicação.
 
 | Página | Sugestão objetiva |
 |---|---|

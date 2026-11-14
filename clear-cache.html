@@ -13,40 +13,68 @@
     h2 { color: #fbbf24; margin-bottom: 16px; }
     p { color: #94a3b8; margin-bottom: 8px; }
     #status { color: #34d399; font-size: 1.1rem; margin-top: 20px; }
+    #status { max-width: 40rem; line-height: 1.6; overflow-wrap: anywhere; }
+    #status[role="alert"] { color: #f4b9bd; }
+    button { min-height: 44px; max-width: 100%; margin-top: 20px; padding: .65rem 1.2rem; border: 1px solid #91dfe3; border-radius: 6px; background: #142638; color: #efe6d2; font: inherit; cursor: pointer; }
+    button:focus-visible { outline: 2px solid #f1cf7a; outline-offset: 4px; }
+    button:disabled { opacity: .65; cursor: progress; }
   </style>
 </head>
 <body>
   <h2>⚔️ NefroQuest</h2>
   <p>Limpando cache antigo e atualizando o jogo...</p>
-  <div id="status">Aguarde...</div>
+  <div id="status" role="status" aria-live="polite" aria-atomic="true">Aguarde...</div>
+  <button type="button" id="retryUpdate" hidden>Tentar novamente</button>
   <script>
+    const retryUpdate = document.getElementById('retryUpdate');
+    let clearing = false;
+    let redirecting = false;
     async function clearAll() {
+      if (clearing || redirecting) return;
+      clearing = true;
+      retryUpdate.disabled = true;
+      retryUpdate.setAttribute('aria-busy', 'true');
       const s = document.getElementById('status');
+      s.setAttribute('role', 'status');
+      s.textContent = 'Verificando a atualização...';
       try {
         // 1. Remover todos os service workers
         if ('serviceWorker' in navigator) {
           const regs = await navigator.serviceWorker.getRegistrations();
           for (const reg of regs) await reg.unregister();
+          if ((await navigator.serviceWorker.getRegistrations()).length) throw new Error('O cache do jogo ainda está em uso.');
           s.textContent = 'Service workers removidos ✓';
         }
         // 2. Limpar todos os caches
         if ('caches' in window) {
           const keys = await caches.keys();
           for (const key of keys) await caches.delete(key);
+          if ((await caches.keys()).length) throw new Error('Alguns arquivos antigos ainda não puderam ser removidos.');
           s.textContent = 'Caches limpos ✓';
         }
-        s.textContent = '✅ Pronto! Redirecionando...';
         let nextUrl = '/jogar/';
         try {
           const storedUrl = sessionStorage.getItem('nq-post-cache-url');
-          sessionStorage.removeItem('nq-post-cache-url');
           if (storedUrl && /^\/jogar\/(?:[?#]|$)/.test(storedUrl)) nextUrl = storedUrl;
         } catch (e) {}
-        setTimeout(() => { window.location.replace(nextUrl); }, 1500);
+        redirecting = true;
+        retryUpdate.hidden = true;
+        s.textContent = '✅ Pronto! Redirecionando...';
+        setTimeout(() => {
+          try { sessionStorage.removeItem('nq-post-cache-url'); } catch (e) {}
+          window.location.replace(nextUrl);
+        }, 1500);
       } catch(e) {
-        s.textContent = 'Erro: ' + e.message + ' — tente recarregar manualmente.';
+        s.setAttribute('role', 'alert');
+        s.textContent = 'Não foi possível concluir a atualização. Seu progresso foi mantido. Tente novamente. ' + (e?.message || 'A limpeza não foi concluída.');
+        retryUpdate.hidden = false;
+      } finally {
+        clearing = false;
+        retryUpdate.disabled = false;
+        retryUpdate.removeAttribute('aria-busy');
       }
     }
+    retryUpdate.addEventListener('click', clearAll);
     clearAll();
   </script>
 </body>

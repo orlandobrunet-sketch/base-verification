@@ -4,9 +4,9 @@ import { injectGameState } from '../helpers/game';
 test.use({ serviceWorkers: 'block', contextOptions: { reducedMotion: 'reduce' } });
 test('referência abre em popup, preserva os textos e fecha pelo teclado', async ({ page }) => {
   await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
-  await page.goto('/jogar/');
+  await page.goto('/404.html', { waitUntil: 'domcontentloaded' });
   // O cenário de leitura não deve cruzar o marco de 100 de ouro.
-  await injectGameState(page, { gold: 0 });
+  await injectGameState(page, { gold: 0 }, { asGuest: true, navigateToApp: true });
   await page.locator('#options button').first().click();
   const source = await page.evaluate(() => {
     return (0, eval)(`(() => {

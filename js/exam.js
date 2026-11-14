@@ -32,6 +32,8 @@
     let _examRequestToken = 0;
     let _examSavedRaw = null;
     let _examRevisionBlocked = false;
+    let _examOrientationObserver = null;
+    let _examOrientationHeader = null;
     function _examBindingCurrent(binding = _examProgressBinding) {
       return (!window.NQPilot || window.NQPilot.matchesBinding(binding)) &&
         (!_examJourneyBinding || (typeof _matchesJourneyBinding === 'function' && _matchesJourneyBinding(_examJourneyBinding)));
@@ -255,6 +257,9 @@
     }
 
     function _examFechar(restoreFocus = true) {
+      _examOrientationObserver?.disconnect();
+      _examOrientationObserver = null;
+      _examOrientationHeader = null;
       document.removeEventListener('keydown', _examTecladoForaDaPagina, true);
       if (_examState?.timerInterval) clearInterval(_examState.timerInterval);
       _examState = null;
@@ -282,13 +287,53 @@
       if (restoreFocus) volta?.focus({ preventScroll: true });
     }
 
+    function _examSyncOrientation() {
+      const pagina = document.getElementById('examPage');
+      const header = pagina?.querySelector('.nq-exam-cabecalho') || null;
+      if (_examOrientationHeader !== header) {
+        _examOrientationObserver?.disconnect();
+        _examOrientationObserver = null;
+        _examOrientationHeader = header;
+        if (header && typeof ResizeObserver === 'function') {
+          _examOrientationObserver = new ResizeObserver(_examSyncOrientation);
+          _examOrientationObserver.observe(header);
+        }
+      }
+      if (header) {
+        const previousHeight = pagina.style.getPropertyValue('--nq-exam-header-height');
+        const height = `${Math.ceil(header.getBoundingClientRect().height)}px`;
+        pagina.style.setProperty('--nq-exam-header-height', height);
+        // Enlarging text can move the focused answer out of view. Keep that
+        // same focus readable without moving focus or changing the exam.
+        if (previousHeight && previousHeight !== height && pagina.contains(document.activeElement) && !header.contains(document.activeElement)) {
+          _examRevealFocus(document.activeElement);
+        }
+      } else pagina?.style.removeProperty('--nq-exam-header-height');
+    }
+
     function _examFocar(seletor) {
+      _examSyncOrientation();
       const alvo = document.querySelector(seletor);
       if (!alvo) return;
+      // A new question starts at its text, even when the heading was already
+      // visible inside the sticky band while reading the previous question.
+      if (alvo.id === 'examQuestaoTitulo') {
+        document.getElementById('examPage')?.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'instant' });
+      }
       alvo.focus({ preventScroll: true });
+      _examRevealFocus(alvo);
+    }
+
+    function _examRevealFocus(alvo) {
       const area = alvo.getBoundingClientRect();
-      if (area.top < 16 || area.bottom > window.innerHeight - 16) {
-        alvo.style.scrollMarginBlock = '16px';
+      const header = _examOrientationHeader;
+      const belowBand = header && !header.contains(alvo);
+      const top = belowBand ? Math.max(16, header.getBoundingClientRect().bottom + 16) : 16;
+      if (area.top < top || area.bottom > window.innerHeight - 16) {
+        alvo.style.scrollMarginBlockStart = belowBand
+          ? 'calc(var(--nq-exam-header-height, 7rem) + var(--nq-exam-safe-top, env(safe-area-inset-top, 0px)) + 16px)'
+          : '16px';
+        alvo.style.scrollMarginBlockEnd = '16px';
         alvo.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'instant' });
       }
     }
@@ -537,14 +582,16 @@
       pagina.innerHTML = `
         <div class="nq-study-content">
           <header class="nq-exam-cabecalho">
-            <p class="nq-exam-titulo">Prova simulada</p>
+            <div class="nq-exam-contexto">
+              <p class="nq-exam-titulo">Prova simulada</p>
+              <h1 id="examQuestaoTitulo" tabindex="-1">Questão ${idx + 1} de ${questions.length}</h1>
+            </div>
             <p id="examTimer" class="nq-exam-relogio${restante < 600 ? ' nq-exam-urgente' : ''}" aria-label="Tempo restante">${_examRelogio(restante)} restantes</p>
             <div class="nq-exam-progresso" role="progressbar" aria-label="Progresso da prova" aria-valuemin="0" aria-valuemax="${questions.length}" aria-valuenow="${idx}">
               <div style="width:${(idx / questions.length * 100).toFixed(1)}%"></div>
             </div>
           </header>
-          <article class="nq-exam-questao">
-            <h1 id="examQuestaoTitulo" tabindex="-1">Questão ${idx + 1} de ${questions.length}</h1>
+          <article class="nq-exam-questao" aria-labelledby="examQuestaoTitulo">
             ${_examRevisionHtml(revision, resposta?.answered === true)}
             <p class="nq-exam-enunciado">${escapeHtml(q.q)}</p>
             ${pendingRevision ? '' : resposta ? `
@@ -573,6 +620,7 @@
           </article>
           <footer class="nq-exam-rodape" id="examRodape">${_examRodapeHtml()}</footer>
         </div>`;
+      _examSyncOrientation();
     }
 
     function _examRodapeHtml() {

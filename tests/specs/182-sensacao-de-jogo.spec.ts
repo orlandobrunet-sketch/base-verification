@@ -77,12 +77,20 @@ test('a sequência sobe de nível aos 3, 5 e 10 acertos e some ao errar', async 
   await expect(multiplicador).toBeEmpty();
 });
 
-test('errar treme as alternativas e parte um coração', async ({ page }) => {
+test('errar revela a correção sem tremer as alternativas e parte um coração', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
   await abrir(page, NOTEBOOK);
   await responder(page, false);
   await expect(page.locator('#options')).toHaveClass(/nql-erro/);
   await expect(page.locator('.msb-lives')).toHaveClass(/msb-perdeu/);
-  expect(await page.locator('#options').evaluate(el => getComputedStyle(el).animationName)).toBe('nql-erro-treme');
+  expect(await page.locator('#options').evaluate(el => getComputedStyle(el).animationName)).toBe('none');
+  const feedback = page.locator('#feedback');
+  await expect(feedback).toHaveClass(/bad/);
+  const animations = await feedback.evaluate(el => el.getAnimations().map(animation => ({
+    name: (animation as CSSAnimation).animationName,
+    duration: Number(animation.effect!.getComputedTiming().duration),
+  })));
+  expect(animations).toEqual([{ name: 'fadeIn', duration: 200 }]);
 });
 
 test.describe('movimento reduzido', () => {

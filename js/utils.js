@@ -326,12 +326,73 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       return qs.filter(q => !q.qid || !data[q.qid] || data[q.qid].due <= today);
     }
 
+    // Named review queues contain persisted schedules only. The broader helper
+    // above also introduces unseen questions for other practice flows.
+    function getSRScheduledDueQuestions(qs) {
+      const data = _loadSRData();
+      if (!data || typeof data !== 'object' || Array.isArray(data)) return [];
+      const today = new Date().setHours(0, 0, 0, 0);
+      return qs.filter(q => {
+        const qid = q.qid || q.id;
+        if (!qid || !Object.prototype.hasOwnProperty.call(data, qid)) return false;
+        const card = data[qid];
+        if (!card || typeof card !== 'object' || Array.isArray(card)) return false;
+        const due = card.due;
+        if (typeof due !== 'number' && (typeof due !== 'string' || !due.trim())) return false;
+        const timestamp = Number(due);
+        return Number.isFinite(timestamp) && timestamp <= today;
+      });
+    }
+
     // ── Modo Leitura (acessibilidade) ─────────────────────────────────────
     const READING_MODE_KEY = 'nefroquest-reading-mode';
+    const _preferenceHelpObserved = new WeakSet();
+    function _syncPreferenceHelpers() {
+      document.querySelectorAll('.profile-popup [data-action="toggleReadingMode"], .profile-popup [data-action="toggleChamberMotion"]').forEach(button => {
+        const reading = button.dataset.action === 'toggleReadingMode';
+        const key = reading ? 'reading' : 'motion';
+        let help = button.nextElementSibling;
+        if (!help || help.dataset.nqPreferenceHelp !== key) {
+          help = document.createElement('div');
+          help.className = 'nql-preference-help';
+          help.dataset.nqPreferenceHelp = key;
+          const state = document.createElement('p');
+          state.className = 'nql-preference-state';
+          state.dataset.nqPreferenceState = key;
+          help.appendChild(state);
+          if (reading) {
+            const preview = document.createElement('details');
+            preview.className = 'nql-reading-preview';
+            const summary = document.createElement('summary');
+            summary.textContent = 'Ver prévia de leitura';
+            const sample = document.createElement('p');
+            sample.textContent = 'Leia com calma. O texto acompanha o modo escolhido.';
+            preview.append(summary, sample);
+            help.appendChild(preview);
+          }
+          button.insertAdjacentElement('afterend', help);
+        }
+        const state = help.querySelector('[data-nq-preference-state]');
+        const text = reading
+          ? document.body.classList.contains('reading-mode') ? 'Aplicado: texto maior e mais contraste.' : 'Aplicado: leitura padrão.'
+          : button.disabled ? 'Aplicado: movimento reduzido pelo sistema.'
+          : button.getAttribute('aria-pressed') === 'true' ? 'Aplicado: animações da Câmara ativas.' : 'Aplicado: animações da Câmara pausadas.';
+        if (state.textContent !== text) state.textContent = text;
+        if (!reading && !_preferenceHelpObserved.has(button)) {
+          _preferenceHelpObserved.add(button);
+          new MutationObserver(_syncPreferenceHelpers).observe(button, {attributes:true, attributeFilter:['aria-pressed', 'disabled']});
+        }
+      });
+    }
+    document.addEventListener('nq:header-open', event => {
+      if (event.detail?.kind === 'profile') _syncPreferenceHelpers();
+    });
+
     function _syncReadingModeButtons(on) {
       document.querySelectorAll('[data-action="toggleReadingMode"]').forEach(b => {
         b.setAttribute('aria-pressed', on ? 'true' : 'false');
       });
+      _syncPreferenceHelpers();
     }
     function applyReadingMode() {
       let on = false;
@@ -344,7 +405,8 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
       document.body.classList.toggle('reading-mode', on);
       try { localStorage.setItem(READING_MODE_KEY, on ? '1' : '0'); } catch (e) {}
       _syncReadingModeButtons(on);
-      if (typeof _toast === 'function') _toast(on ? '🔠 Modo leitura ativado — texto maior e mais contraste.' : 'Modo leitura desativado.', 'info', 2500);
+      if (!document.querySelector('.profile-popup.open [data-nq-preference-state="reading"]') && typeof _toast === 'function')
+        _toast(on ? '🔠 Modo leitura ativado — texto maior e mais contraste.' : 'Modo leitura desativado.', 'info', 2500);
       if (typeof playSound === 'function') playSound('click');
     }
     window.toggleReadingMode = toggleReadingMode;

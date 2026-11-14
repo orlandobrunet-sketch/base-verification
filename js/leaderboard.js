@@ -311,6 +311,7 @@
     let _boardDataMode = null;
     let _boardRequestId = 0;
     let _boardSearchTimer = null;
+    let _boardPendingView = null;
 
     function _boardViewVisible() {
       const root = document.getElementById('boardModal');
@@ -318,11 +319,25 @@
     }
 
     function _invalidateBoardView() {
+      _finishBoardViewLoad(_boardPendingView);
       ++_boardRequestId;
       _boardDataMode = null;
       _lastBoardFetch = 0;
       clearTimeout(_boardSearchTimer);
       _boardSearchTimer = null;
+    }
+
+    function _finishBoardViewLoad(request) {
+      if (!request || _boardPendingView !== request) return;
+      _boardPendingView = null;
+      document.getElementById('boardLoading')?.classList.add('hidden');
+      const refresh = document.getElementById('boardRefresh');
+      if (refresh) { refresh.disabled = false; refresh.removeAttribute('aria-disabled'); refresh.removeAttribute('aria-busy'); }
+      if (request.retry?.isConnected) {
+        request.retry.disabled = false;
+        request.retry.removeAttribute('aria-busy');
+      }
+      ui.boardBody.removeAttribute('aria-busy');
     }
 
     // Modo do quadro: 'record' (recorde por partida) | 'global' (perfil acumulado)
@@ -527,13 +542,25 @@
       });
     }
 
-    async function renderBoard(forceRefresh = false){
+    async function renderBoard(forceRefresh = false, retryButton = null){
+      const requestedOwner = _leaderboardOwner();
+      const requestedEpoch = typeof _authSessionEpoch === 'undefined' ? null : _authSessionEpoch;
+      if (_boardPendingView?.requestId === _boardRequestId &&
+          _boardPendingView.mode === _boardMode && _boardPendingView.owner === requestedOwner &&
+          _boardPendingView.epoch === requestedEpoch) return;
       const now = Date.now();
       if (!forceRefresh && now - _lastBoardFetch < 5000) return;
       _lastBoardFetch = now;
       const requestId = ++_boardRequestId;
       const requestedMode = _boardMode;
-      const current = () => requestId === _boardRequestId && requestedMode === _boardMode && _boardViewVisible();
+      const currentView = () => requestId === _boardRequestId && requestedMode === _boardMode && _boardViewVisible();
+      const current = () => currentView() && requestedOwner === _leaderboardOwner() &&
+        requestedEpoch === (typeof _authSessionEpoch === 'undefined' ? null : _authSessionEpoch);
+      const retryHadFocus = retryButton === document.activeElement;
+      const canRestoreRetryFocus = () => retryHadFocus &&
+        (document.activeElement === document.body || document.activeElement === retryButton);
+      const request = { requestId, mode: requestedMode, owner: requestedOwner, epoch: requestedEpoch, retry: retryButton };
+      _boardPendingView = request;
       clearTimeout(_boardSearchTimer);
       _boardSearchTimer = null;
       _boardDataMode = null;
@@ -541,8 +568,23 @@
       const updateEl = document.getElementById('boardLastUpdate');
       const searchEl = document.getElementById('boardSearch');
       _setBoardHead();
-      if (loading) loading.classList.remove('hidden');
-      ui.boardBody.innerHTML = '';
+      // Keep keyboard focus on a stable, editable control before disabling the
+      // retry. Otherwise the dialog's focus repair must choose an unrelated tab.
+      if (retryHadFocus) searchEl?.focus({ preventScroll: true });
+      if (loading) { loading.setAttribute('role', 'status'); loading.classList.remove('hidden'); }
+      const refresh = document.getElementById('boardRefresh');
+      if (refresh) {
+        // Keep the focused refresh as the scroll anchor while its rows are rebuilt.
+        // Pending-view deduplication above blocks reactivation; other loads retain native disabled.
+        refresh.disabled = document.activeElement !== refresh;
+        refresh.setAttribute('aria-disabled', 'true');
+        refresh.setAttribute('aria-busy', 'true');
+      }
+      ui.boardBody.setAttribute('aria-busy', 'true');
+      if (retryButton?.isConnected && ui.boardBody.contains(retryButton)) {
+        retryButton.disabled = true;
+        retryButton.setAttribute('aria-busy', 'true');
+      } else ui.boardBody.innerHTML = '';
       /* `boardFetch` agora lança quando não conseguiu dado nenhum. Sem este
        * bloco, a falha deixaria o spinner girando e a tabela vazia — pior que
        * a mensagem errada que existia antes. */
@@ -551,22 +593,39 @@
         data = (requestedMode === 'global') ? await _doProfileFetch() : await boardFetch(forceRefresh);
       } catch (erro) {
         if (!current()) return;
-        if (loading) loading.classList.add('hidden');
+        const restoreFocus = canRestoreRetryFocus();
         ui.boardBody.innerHTML = '';
         const linha = document.createElement('tr');
         const celula = document.createElement('td');
         celula.colSpan = (requestedMode === 'global') ? 5 : 7;
         celula.className = 'board-empty';
-        celula.appendChild(document.createTextNode('Não foi possível carregar o ranking.'));
-        celula.appendChild(document.createElement('br'));
-        celula.appendChild(document.createTextNode('Verifique sua conexão e tente atualizar.'));
+        const recovery = document.createElement('div');
+        recovery.className = 'board-error';
+        const message = document.createElement('p');
+        message.setAttribute('role', 'alert');
+        message.textContent = 'Não foi possível carregar o ranking. Verifique sua conexão e tente novamente.';
+        const retry = document.createElement('button');
+        retry.type = 'button';
+        retry.className = 'btn-board-refresh board-retry';
+        retry.textContent = 'Tentar novamente';
+        retry.addEventListener('click', () => {
+          // A new gesture captures the current owner. An old or detached
+          // error control cannot restart a view that has already moved on.
+          if (_boardViewVisible() && requestedMode === _boardMode && retry.isConnected && ui.boardBody.contains(retry)) renderBoard(true, retry);
+        });
+        recovery.appendChild(message);
+        recovery.appendChild(retry);
+        celula.appendChild(recovery);
         linha.appendChild(celula);
         ui.boardBody.appendChild(linha);
         if (updateEl) updateEl.textContent = '';
+        if (restoreFocus) retry.focus({ preventScroll: true });
         return;
+      } finally {
+        _finishBoardViewLoad(request);
       }
       if (!current()) return;
-      if (loading) loading.classList.add('hidden');
+      const restoreFocus = canRestoreRetryFocus();
       _boardFullData = data.slice(0, 50);
       _boardDataMode = requestedMode;
       if (_boardFullData.length === 0) {
@@ -590,6 +649,7 @@
         _renderCurrentRows(searchEl?.value || '');
       }
       if (updateEl) updateEl.textContent = `Atualizado: ${new Date().toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'})}`;
+      if (restoreFocus) searchEl?.focus({ preventScroll: true });
 
       if (searchEl && !searchEl.dataset.wired) {
         searchEl.dataset.wired = '1';

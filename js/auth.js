@@ -207,6 +207,7 @@
           _invalidatePremiumCache();
         }
         updateWelcomeUserBadge();
+        if (!authUser && !_guestMode) _showSignedOutPortal();
         _finishAuthStartup();
         _consumeLoginIntent();
       }).catch(() => {

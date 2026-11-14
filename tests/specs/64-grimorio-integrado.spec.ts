@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('pergunta → Grimório → mesma pergunta, com foco e rascunho preservados', async ({ page }) => {
-  await injectGameState(page);
+  await injectGameState(page, {}, { asGuest: true });
   await expect(page.locator('#question')).not.toHaveText('');
   const question = await page.locator('#question').innerText();
   const snapshot = () => page.evaluate(() => {

@@ -7,6 +7,8 @@ type GameFixtureOptions = {
   authUser?: ({ id: string } & Record<string, unknown>) | null;
   replaceSnapshot?: boolean;
   asGuest?: boolean;
+  /** Opt in after seeding storage on a lightweight page of the same origin. */
+  navigateToApp?: boolean;
 };
 
 /**
@@ -48,7 +50,11 @@ export async function injectGameState(page: Page, overrides: Record<string, unkn
   });
   // O jogo fica pronto pelo DOM e pelas condições de enterGame/waitForGame.
   // Analytics/iframes externos podem continuar pendentes sem bloquear a fixture.
-  await page.reload({ waitUntil: 'domcontentloaded' });
+  if (options.navigateToApp) {
+    await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+  } else {
+    await page.reload({ waitUntil: 'domcontentloaded' });
+  }
   // A identidade da fixture precisa existir quando loadGame fixa o dono do
   // progresso; trocá-la depois de continuar é uma mudança de conta real.
   if (options.authUser !== undefined) {

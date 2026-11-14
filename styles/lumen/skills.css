@@ -275,7 +275,9 @@
 @keyframes nqs-reveal-shape { from { stroke-dasharray: 1; stroke-dashoffset: 1; opacity: .25; } to { stroke-dasharray: 1; stroke-dashoffset: 0; opacity: 1; } }
 @keyframes nqs-reveal-fill { from { opacity: 0; } to { opacity: 1; } }
 @keyframes nqs-illuminate-orbit { from { stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; } to { stroke-dasharray: 1; stroke-dashoffset: 0; opacity: .75; } }
+@keyframes nqs-select-detail { from { opacity: .35; } to { opacity: 1; } }
 @media (prefers-reduced-motion: no-preference) {
+  #nqDashboard[data-nq-ui="lumen"] .nqs-detail.is-selecting { animation: nqs-select-detail .2s ease-out; }
   #nqDashboard[data-nq-ui="lumen"] .nqs-component.is-revealed .nqs-profile-line { animation: nqs-reveal-shape 1s cubic-bezier(.2,.65,.3,1) both; }
   #nqDashboard[data-nq-ui="lumen"] .nqs-component.is-revealed .nqs-profile-fill { animation: nqs-reveal-fill .6s .35s both; }
   #nqDashboard[data-nq-ui="lumen"] .nqs-component.is-revealed .nqs-orbit-light { animation: nqs-illuminate-orbit 1.4s cubic-bezier(.2,.65,.3,1) both; }

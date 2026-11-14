@@ -593,7 +593,69 @@
     };
 
     let _characterPreviewStarting = false, _characterPreviewEpoch = 0;
-    function previewCharacter(charId) {
+    let _characterPortraitEpoch = 0, _characterPortraitAbort = null, _characterPortraitAnimation = null;
+    let _characterPortraitLastReady = '';
+    const _characterPreviewReducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    function _finishCharacterPortraitMotion(modal) {
+      _characterPortraitAnimation?.cancel();
+      _characterPortraitAnimation = null;
+      const portrait = modal?.querySelector('#nqcProfilePortrait');
+      if (portrait) portrait.style.opacity = modal.querySelector('.nqc-portrait-stage')?.dataset.portraitState === 'unavailable' ? '0' : '1';
+      const previous = modal?.querySelector('#nqcProfilePrevious');
+      if (previous) { previous.hidden = true; previous.removeAttribute('src'); }
+    }
+    function _setCharacterPreviewPortrait(modal, character, animateSelection) {
+      const portrait = modal.querySelector('#nqcProfilePortrait');
+      const previous = modal.querySelector('#nqcProfilePrevious');
+      const stage = modal.querySelector('.nqc-portrait-stage');
+      const status = stage.querySelector('.nqc-portrait-status');
+      if (portrait.complete && portrait.naturalWidth > 0) _characterPortraitLastReady = portrait.currentSrc || portrait.src;
+      _characterPortraitAbort?.abort();
+      const controller = new AbortController(), epoch = ++_characterPortraitEpoch;
+      _characterPortraitAbort = controller;
+      _finishCharacterPortraitMotion(modal);
+      const next = new URL(`assets/classes-cinema/${character.folder}/nivel_01.webp`, document.baseURI).href;
+      const changed = portrait.src !== next;
+      if (changed && _characterPortraitLastReady) {
+        previous.src = _characterPortraitLastReady;
+        previous.hidden = false;
+      }
+      stage.dataset.portraitState = 'loading';
+      status.textContent = 'Carregando retrato…';
+      status.hidden = false;
+      portrait.style.opacity = '0';
+      let settled = false;
+      const ready = () => {
+        if (settled || epoch !== _characterPortraitEpoch) return;
+        settled = true;
+        _characterPortraitLastReady = portrait.currentSrc || next;
+        stage.dataset.portraitState = 'ready';
+        status.hidden = true;
+        portrait.style.opacity = '1';
+        const box = stage.getBoundingClientRect();
+        const visible = modal.classList.contains('show') && !document.hidden && box.bottom > 0 && box.top < innerHeight;
+        if (animateSelection && changed && !previous.hidden && visible && !_characterPreviewReducedMotion.matches && portrait.animate) {
+          const animation = portrait.animate([{opacity: 0}, {opacity: 1}], {duration: 200, easing: 'ease-out'});
+          _characterPortraitAnimation = animation;
+          animation.finished.then(() => {
+            if (epoch === _characterPortraitEpoch) _finishCharacterPortraitMotion(modal);
+          }).catch(() => {});
+        } else _finishCharacterPortraitMotion(modal);
+      };
+      portrait.addEventListener('load', ready, {once: true, signal: controller.signal});
+      portrait.addEventListener('error', () => {
+        if (settled || epoch !== _characterPortraitEpoch) return;
+        settled = true;
+        _finishCharacterPortraitMotion(modal);
+        portrait.style.opacity = '0';
+        stage.dataset.portraitState = 'unavailable';
+        status.textContent = 'Retrato indisponível';
+        status.hidden = false;
+      }, {once: true, signal: controller.signal});
+      portrait.src = next;
+      if (portrait.complete && portrait.naturalWidth > 0) queueMicrotask(ready);
+    }
+    function previewCharacter(charId, animateSelection = true) {
       const modal = document.getElementById('charSelectModal');
       const character = characters[charId], intro = CHARACTER_INTROS[charId];
       if (!modal || !character || !intro) return false;
@@ -606,8 +668,11 @@
       modal.querySelector('#nqcProfileName').textContent = character.name;
       modal.querySelector('#nqcProfileTitle').textContent = character.title;
       modal.querySelector('#nqcProfileStory').textContent = intro.text;
-      const portrait = modal.querySelector('#nqcProfilePortrait');
-      portrait.src = `assets/classes-cinema/${character.folder}/nivel_01.webp`;
+      modal.dataset.storyExpanded = 'false';
+      const storyToggle = modal.querySelector('.nqc-story-toggle');
+      storyToggle.setAttribute('aria-expanded', 'false');
+      storyToggle.textContent = 'Ler história completa';
+      _setCharacterPreviewPortrait(modal, character, animateSelection);
       modal.querySelector('#nqcProfileEmblem').innerHTML = CHARACTER_INTRO_EMBLEMS[charId] || '';
       const attributes = [
         ['bonusAtk', 'Ataque', 'Mais dano ao boss'],
@@ -624,13 +689,40 @@
       modal.querySelector('#nqcPreviewAnnouncement').textContent = character.name + ' em destaque.';
       return true;
     }
+    window.toggleCharacterStory = function () {
+      const modal = document.getElementById('charSelectModal');
+      if (!modal?.classList.contains('show')) return false;
+      const expanded = modal.dataset.storyExpanded !== 'true';
+      modal.dataset.storyExpanded = String(expanded);
+      const button = modal.querySelector('.nqc-story-toggle');
+      button.setAttribute('aria-expanded', String(expanded));
+      button.textContent = expanded ? 'Recolher história' : 'Ler história completa';
+      return true;
+    };
+    const characterPreviewModal = document.getElementById('charSelectModal');
+    const syncCharacterPreviewMotion = () => {
+      if (!characterPreviewModal) return;
+      characterPreviewModal.dataset.pageHidden = String(document.hidden);
+      if (document.hidden || !characterPreviewModal.classList.contains('show') || _characterPreviewReducedMotion.matches) {
+        _finishCharacterPortraitMotion(characterPreviewModal);
+      }
+    };
+    document.addEventListener('visibilitychange', syncCharacterPreviewMotion);
+    _characterPreviewReducedMotion.addEventListener('change', syncCharacterPreviewMotion);
+    if (characterPreviewModal) {
+      new MutationObserver(syncCharacterPreviewMotion).observe(characterPreviewModal, {attributes: true, attributeFilter: ['class']});
+      if ('IntersectionObserver' in window) new IntersectionObserver(entries => {
+        characterPreviewModal.dataset.artVisible = String(entries[0].isIntersecting);
+      }).observe(characterPreviewModal.querySelector('.nqc-profile-art'));
+      syncCharacterPreviewMotion();
+    }
     window.resetCharacterPreview = function () {
       ++_characterPreviewEpoch;
       _lastSelectedCharacter = null;
       const button = document.querySelector('#charSelectModal [data-action="startCharacterPreview"]');
       button.disabled = _characterPreviewStarting;
       button.textContent = _characterPreviewStarting ? 'Carregando questões…' : 'Iniciar Jornada';
-      previewCharacter(characters[state.character] ? state.character : 'nephros');
+      previewCharacter(characters[state.character] ? state.character : 'nephros', false);
     };
     window.cancelCharacterPreview = function () {
       ++_characterPreviewEpoch;
@@ -676,7 +768,7 @@
       if (!(event.key in indices)) return;
       event.preventDefault();
       const next = buttons[indices[event.key]];
-      if (previewCharacter(next.dataset.char)) next.focus({preventScroll:true});
+      if (previewCharacter(next.dataset.char)) next.focus();
     });
 
     function selectCharacter(charId) {
