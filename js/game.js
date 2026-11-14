@@ -499,7 +499,10 @@
     window._signedOutSaveNeedsLogin = _signedOutSaveNeedsLogin;
 
     function _stopLocalJourney() {
+      const retiredQuestionReport = document.getElementById('flagPopup');
       ++_progressEpoch;
+      retiredQuestionReport?.remove();
+      window._retireAdminContext?.();
       window._retireMinigameContext?.();
       window._resetCloudSync?.();
       window.resetMentorQuestion?.();
@@ -1327,6 +1330,7 @@
       try {
       if (!isCharacterPilot() && !_saveBeforeDomainSwitch()) return false;
       if (isCharacterPilot() && state.gameStarted && !state.gameOver && !_doSaveGame()) return false;
+      const pendingMinigameInvite = window._capturePendingMinigamePilotResume?.();
       // Retire callbacks from the current domain before obtaining a new lease.
       _stopLocalJourney();
       const resumeEpoch = _progressEpoch;
@@ -1344,6 +1348,7 @@
       _stateData.journeyDomain = 'pilot';
       _stateData.classBenefits = window.NQPilot.classBenefits;
       _reloadJourneyCollections();
+      window._restorePendingMinigamePilotResume?.(pendingMinigameInvite);
       return await continueGame(true);
       } finally { _pilotResumePending = false; }
     }
@@ -3838,10 +3843,12 @@
           const _sName = _starter.n;
           const _sEmoji = _starter.e;
           const _sImg = _starter.img;
-          // Usa imagem real se disponível, senão emoji fallback
+          // Encode both the JS string and its HTML attribute. Names and slot
+          // labels must remain intact when the image's error handler runs.
+          const _starterFallback = `<div class="slot-diablo-icon slot-temp-emoji slot-starter-icon item-with-tooltip" data-item-name="${escapeHtml(_sName)}" data-item-desc="" data-slot-label="${escapeHtml(slotLabel)}">${_sEmoji}</div>`;
           const _starterIcon = _sImg
-            ? `<img class="slot-diablo-icon slot-starter-icon item-with-tooltip" loading="lazy" src="${_sImg}?v=11.98" alt="${escapeHtml(_sName)}" data-item-name="${escapeHtml(_sName)}" data-item-desc="" data-slot-label="${escapeHtml(slotLabel)}" onerror="this.outerHTML='<div class=\'slot-diablo-icon slot-temp-emoji slot-starter-icon item-with-tooltip\' data-item-name=\''+this.alt+'\' data-item-desc=\'\' data-slot-label=\'${escapeHtml(slotLabel)}\'>${_sEmoji}</div>'" />`
-            : `<div class="slot-diablo-icon slot-temp-emoji slot-starter-icon item-with-tooltip" data-item-name="${escapeHtml(_sName)}" data-item-desc="" data-slot-label="${escapeHtml(slotLabel)}">${_sEmoji}</div>`;
+            ? `<img class="slot-diablo-icon slot-starter-icon item-with-tooltip" loading="lazy" src="${_sImg}?v=11.98" alt="${escapeHtml(_sName)}" data-item-name="${escapeHtml(_sName)}" data-item-desc="" data-slot-label="${escapeHtml(slotLabel)}" onerror="${escapeHtml('this.outerHTML = ' + JSON.stringify(_starterFallback))}" />`
+            : _starterFallback;
           slotInnerHtml = `
             <div class="slot-diablo-filled slot-starter">
               ${_starterIcon}
@@ -4645,6 +4652,7 @@
       const popup = document.createElement('div');
       popup.id = 'flagPopup';
       popup.className = 'nqnarr-overlay nqflag-overlay';
+      popup._flagBinding = _captureJourneyBinding();
       const categories = [['resposta_incorreta','Resposta incorreta'], ['desatualizada','Desatualizada'], ['ambigua','Ambígua'], ['erro_texto','Erro de texto'], ['outra','Outra']];
       popup.innerHTML = `
         <section class="nqnarr-card nqflag-card" aria-labelledby="nqFlagTitle">
@@ -4674,18 +4682,31 @@
       document.body.appendChild(popup);
       nqDialogo(popup);
       // popup.addEventListener('click', e => { if(e.target===popup) popup.remove(); });
-      setTimeout(() => document.getElementById('flagComment')?.focus(), 100);
+      const commentInput = popup.querySelector('#flagComment');
+      const initialFocus = document.activeElement;
+      setTimeout(() => {
+        if (popup.isConnected && document.getElementById('flagPopup') === popup &&
+            _matchesJourneyBinding(popup._flagBinding) &&
+            (document.activeElement === initialFocus || document.activeElement === document.body)) {
+          commentInput?.focus({ preventScroll: true });
+        }
+      }, 100);
     }
 
     async function submitFlag(qNum) {
-      const comment = (document.getElementById('flagComment')?.value || '').trim();
-      const selectedCat = document.querySelector('#flagCategoryChips input:checked')?.value || 'outra';
+      const popup = document.getElementById('flagPopup');
+      const btn = popup?.querySelector('#flagSendBtn');
+      const status = popup?.querySelector('#flagStatus');
+      if (!popup || !btn || !status || btn.disabled) return;
+      const isCurrent = () => popup.isConnected && document.getElementById('flagPopup') === popup &&
+        _matchesJourneyBinding(popup._flagBinding);
+      if (!isCurrent()) return;
+      const comment = (popup.querySelector('#flagComment')?.value || '').trim();
+      const selectedCat = popup.querySelector('#flagCategoryChips input:checked')?.value || 'outra';
       const catLabels = { resposta_incorreta:'Resposta incorreta', desatualizada:'Desatualizada', ambigua:'Ambígua', erro_texto:'Erro de texto', outra:'Outra' };
       const catLabel = catLabels[selectedCat] || 'Outra';
       const q = state.current;
       const qText = (q?.q || '').substring(0, 500);
-      const btn = document.getElementById('flagSendBtn');
-      const status = document.getElementById('flagStatus');
 
       if (selectedCat === 'outra' && comment.length < 10) {
         status.className = 'flag-status flag-status--error';
@@ -4724,6 +4745,7 @@
           const _sess = await (typeof _supaClient !== 'undefined' ? _supaClient : null)?.auth?.getSession();
           _authToken = _sess?.data?.session?.access_token || _supaKey;
         } catch {}
+        if (!isCurrent()) return;
         const res = await fetch(`${SUPA_URL}/functions/v1/send-flag`, {
           method: 'POST',
           headers: {
@@ -4736,10 +4758,11 @@
         });
         let data = {};
         try { data = await res.json(); } catch {}
+        if (!isCurrent()) return;
         if (res.ok && data.success) {
           status.className = 'flag-status flag-status--success';
           status.textContent = '✅ Erro enviado! Obrigado pelo feedback.';
-          setTimeout(() => document.getElementById('flagPopup')?.remove(), 2000);
+          setTimeout(() => { if (isCurrent()) popup.remove(); }, 2000);
           log('🚩 Erro na questão #' + qNum + ' sinalizado com sucesso!');
         } else {
           // Mostra o motivo real para diagnosticar (config/auth/serviço de e-mail).
@@ -4756,6 +4779,7 @@
           _track('error_flag_submit', { status: code, reason });
         }
       } catch (err) {
+        if (!isCurrent()) return;
         // Erro de rede / função inexistente / CORS bloqueado.
         status.className = 'flag-status flag-status--error';
         status.textContent = '❌ Falha de conexão com o servidor. Verifique sua rede.';
@@ -5046,6 +5070,7 @@
       }
       document.body.appendChild(el);
       setTimeout(() => el.remove(), 1600);
+      return el;
     }
     window.showFloatingFeedback = showFloatingFeedback;
 
@@ -5557,12 +5582,99 @@
 
     // ── Avaliação 5★ por questão (qualidade + aprendizado) ──────────────
     // Comportamento: estrelas escuras → preenchem ao passar o mouse (amarelo
-    // para qualidade, azul para aprendizado) → cor fixada ao clicar. Sem
-    // mensagem de confirmação. O envio é diferido (flush) ao avançar de
-    // questão ou sair da página.
+    // para qualidade, azul para aprendizado) → cor fixada ao clicar.
+    // A escolha fica local até o envio diferido ao avançar ou sair da página;
+    // falhas ficam pendentes e uma nova tentativa exige ação explícita.
     const RATING_COLOR = { quality: '#fbbf24', learning: '#38bdf8' };
     const RATING_DARK = 'rgba(255,255,255,0.22)';
-    let _pendingRating = null; // { qid, qtext, quality, learning, saved }
+    let _pendingRating = null; // saved means no fresh edit is awaiting the normal flush.
+    const _ratingInFlight = new Map();
+
+    function _readQuestionRatingStore() {
+      try {
+        const records = JSON.parse(localStorage.getItem('nefroquest-rated-questions') || '{}');
+        return records && typeof records === 'object' && !Array.isArray(records) ? records : {};
+      } catch { return {}; }
+    }
+
+    function _questionRatingPrefix(owner) { return 'scope:' + JSON.stringify(owner) + ':'; }
+
+    function _readQuestionRatings(owner = _currentSaveOwner()) {
+      const store = _readQuestionRatingStore(), records = {};
+      const prefix = _questionRatingPrefix(owner);
+      // Unowned historical notes remain read-only until a fresh choice. They
+      // do not authorize a retry, and another account's pending notes stay out.
+      for (const [qid, record] of Object.entries(store)) {
+        if (!qid.startsWith('scope:') && record && typeof record === 'object' &&
+            (!Object.prototype.hasOwnProperty.call(record, 'owner') || record.owner === owner)) records[qid] = record;
+      }
+      for (const [key, record] of Object.entries(store)) {
+        if (key.startsWith(prefix) && record?.owner === owner) records[key.slice(prefix.length)] = record;
+      }
+      return records;
+    }
+
+    function _writeQuestionRatings(records, owner = _currentSaveOwner()) {
+      const store = _readQuestionRatingStore(), prefix = _questionRatingPrefix(owner);
+      for (const [qid, record] of Object.entries(records)) {
+        if (record?.owner === owner) store[prefix + qid] = record;
+      }
+      // Keep the existing top-level key so logout/reset retain their cleanup
+      // contract while edits from different accounts cannot replace each other.
+      try { localStorage.setItem('nefroquest-rated-questions', JSON.stringify(store)); } catch {}
+    }
+
+    function _ratingRequestKey(owner, qid) { return JSON.stringify([owner, String(qid)]); }
+
+    function _paintQuestionRatingDelivery() {
+      const pending = _pendingRating;
+      const panel = document.getElementById('qRatingContainer');
+      if (!pending || !panel || panel.dataset.qid !== String(pending.qid) ||
+          !_matchesJourneyBinding(pending.binding)) return;
+      const status = panel.querySelector('#nqlRatingDeliveryStatus');
+      const retry = panel.querySelector('[data-action="_retryQuestionRating"]');
+      const record = _readQuestionRatings()[pending.qid];
+      retry.hidden = true;
+      status.hidden = false;
+      if (!pending.saved) {
+        status.textContent = pending.quality > 0 && pending.learning > 0
+          ? 'Suas notas serão enviadas ao avançar.' : 'Escolha as duas notas para enviar sua avaliação.';
+      } else if (record?.delivery === 'pending') {
+        if (record.owner !== _currentSaveOwner()) {
+          status.textContent = 'Há uma avaliação pendente de outra conta.';
+        } else {
+          const busy = _ratingInFlight.has(_ratingRequestKey(record.owner, pending.qid));
+          status.textContent = busy ? 'Há uma avaliação em andamento.'
+            : 'Não foi possível confirmar o envio. Sua avaliação foi mantida.';
+          retry.hidden = false;
+          retry.disabled = busy;
+        }
+      } else if (record?.delivery === 'confirmed' && record.owner === _currentSaveOwner()) {
+        status.textContent = 'Avaliação enviada.';
+      } else if (record) {
+        // Legacy records do not prove a remote acknowledgement or authorize a retry.
+        status.textContent = 'Notas mantidas.';
+      } else {
+        status.textContent = '';
+        status.hidden = true;
+      }
+    }
+
+    window._retryQuestionRating = async function(button) {
+      const panel = button?.closest('#qRatingContainer');
+      const pending = _pendingRating;
+      if (!panel?.isConnected || button.disabled || !pending || !pending.saved ||
+          panel !== document.getElementById('qRatingContainer') || !_matchesJourneyBinding(pending.binding)) return;
+      const record = _readQuestionRatings()[pending.qid];
+      if (record?.delivery !== 'pending' || record.owner !== _currentSaveOwner() ||
+          _ratingInFlight.has(_ratingRequestKey(record.owner, pending.qid))) return;
+      await submitQuestionRating(pending.qid, pending.qtext, record.quality, record.learning, pending.binding);
+      if (!button.isConnected || !_matchesJourneyBinding(pending.binding) || !panel.getClientRects().length ||
+          panel.closest('[hidden], [inert]') ||
+          (document.activeElement !== button && document.activeElement !== document.body)) return;
+      const target = button.hidden ? panel.querySelector('#nqlRatingDeliveryStatus') : button;
+      target?.focus({ preventScroll: true });
+    };
 
     async function flushPendingRating() {
       if (isProgressSandbox() || isCharacterPilot()) {
@@ -5570,11 +5682,20 @@
         return;
       }
       const p = _pendingRating;
-      _pendingRating = null;
-      if (!p || p.saved) return;
+      if (!p) return;
+      const current = _matchesJourneyBinding(p.binding);
+      const panel = document.getElementById('qRatingContainer');
+      if (!current || !panel?.isConnected || panel.dataset.qid !== String(p.qid)) _pendingRating = null;
+      else queueMicrotask(() => {
+        // Legacy cards are removed later in the render stack. Never retire a
+        // newer model or the same card kept while the page is in background.
+        if (_pendingRating === p && !panel.isConnected) _pendingRating = null;
+      });
+      if (p.saved || !current) return;
       // A tabela exige ambas as notas (1–5). Só persiste quando as duas existem.
       if (p.quality > 0 && p.learning > 0) {
-        await submitQuestionRating(p.qid, p.qtext, p.quality, p.learning);
+        p.saved = true; // visibilitychange and pagehide may flush the same card.
+        await submitQuestionRating(p.qid, p.qtext, p.quality, p.learning, p.binding);
       }
     }
 
@@ -5586,10 +5707,7 @@
       const qid = q.qid || q.id;
       if (!qid) return;
 
-      let rated = {};
-      try {
-        rated = JSON.parse(localStorage.getItem('nefroquest-rated-questions') || '{}');
-      } catch (e) {}
+      const rated = _readQuestionRatings();
       const prev = rated[qid] || null;
 
       let diffVotes = {};
@@ -5602,11 +5720,13 @@
         qtext: (q.q || '').substring(0, 200),
         quality: prev ? (prev.quality || 0) : 0,
         learning: prev ? (prev.learning || 0) : 0,
-        saved: !!prev
+        saved: !!prev,
+        binding: _captureJourneyBinding()
       };
 
       const ratingDiv = document.createElement('div');
       ratingDiv.id = 'qRatingContainer';
+      ratingDiv.dataset.qid = String(qid);
       ratingDiv.className = 'q-rating-container';
       const starsFor = (label) => [1,2,3,4,5].map(v => debrief
         ? `<button type="button" class="star-rating nql-rating-star" data-value="${v}" aria-label="${label}: ${v} de 5" aria-pressed="false">★</button>`
@@ -5616,6 +5736,8 @@
         <div class="qr-left">
           <div class="qr-title">Avalie esta questão</div>
           <div class="qr-sub">(feedback opcional)</div>
+          <p class="q-rating-delivery-status" id="nqlRatingDeliveryStatus" role="status" tabindex="-1" hidden></p>
+          <button type="button" class="q-rating-retry" data-action="_retryQuestionRating" data-pass-this="1" hidden>Tentar enviar novamente</button>
           <div class="qr-diff">
             <div class="qr-diff-btns" role="group" aria-label="Dificuldade">${diffBtn('easy','Fácil')}${diffBtn('medium','Médio')}${diffBtn('hard','Difícil')}</div>
           </div>
@@ -5634,6 +5756,7 @@
       `;
       if (debrief) ratingDiv.querySelector('.q-flag-link').remove();
       appendQuestionReviewPanel(ratingDiv, 'rating', 'Avaliar questão', '<path d="m12 3 2.8 5.7 6.3.9-4.5 4.4 1.1 6.3-5.7-3-5.7 3 1.1-6.3L3.2 9.6l6.3-.9Z"/>');
+      _paintQuestionRatingDelivery();
 
       ratingDiv.querySelectorAll('.stars-row').forEach(row => {
         const type = row.dataset.ratingType;
@@ -5656,6 +5779,7 @@
           star.addEventListener('click', () => {
             if (_pendingRating) { _pendingRating[type] = val; _pendingRating.saved = false; }
             paint(val);
+            _paintQuestionRatingDelivery();
           });
         });
         row.addEventListener('mouseleave', () => paint(selected()));
@@ -5771,8 +5895,23 @@
       }
     }
 
-    async function submitQuestionRating(qid, qtext, qualityVal, learningVal) {
-      if (!qid || isProgressSandbox() || isCharacterPilot()) return;
+    async function submitQuestionRating(qid, qtext, qualityVal, learningVal, binding = _captureJourneyBinding()) {
+      if (!qid || isProgressSandbox() || isCharacterPilot() || !_matchesJourneyBinding(binding) ||
+          ![qualityVal, learningVal].every(value => Number.isInteger(value) && value >= 1 && value <= 5)) return false;
+
+      const owner = _currentSaveOwner();
+      const intent = window.crypto.randomUUID?.() ||
+        Array.from(window.crypto.getRandomValues(new Uint32Array(4)), value => value.toString(16)).join('-');
+      const localRecord = { quality: qualityVal, learning: learningVal, owner, intent, delivery: 'pending' };
+      const localRatings = _readQuestionRatings(owner);
+      localRatings[qid] = localRecord;
+      _writeQuestionRatings(localRatings, owner);
+      const requestKey = _ratingRequestKey(owner, qid);
+      // A newer choice stays local while its predecessor is awaiting a reply.
+      // A further request needs an explicit retry after that reply settles.
+      if (_ratingInFlight.has(requestKey)) { _paintQuestionRatingDelivery(); return false; }
+      _ratingInFlight.set(requestKey, intent);
+      _paintQuestionRatingDelivery();
 
       const ratingData = {
         question_id: qid,
@@ -5784,22 +5923,25 @@
         created_at: new Date().toISOString()
       };
 
-      // Guardar localmente (marca como avaliada — evita reenvio)
       try {
-        const rated = JSON.parse(localStorage.getItem('nefroquest-rated-questions') || '{}');
-        rated[qid] = { quality: qualityVal, learning: learningVal };
-        localStorage.setItem('nefroquest-rated-questions', JSON.stringify(rated));
-      } catch (e) {}
-
-      if (typeof _supaClient !== 'undefined' && _supaClient) {
-        try {
-          const { error } = await _supaClient
-            .from('question_ratings')
-            .insert([ratingData]);
-          if (error) console.error('[NQ] Rating save error', error);
-        } catch (err) {
-          console.error('[NQ] Rating save exception', err);
+        if (typeof _supaClient === 'undefined' || !_supaClient) return false;
+        const result = await _supaClient.from('question_ratings').insert([ratingData]);
+        if (!result || result.error !== null) {
+          console.error('[NQ] Rating save error', result?.error);
+          return false;
         }
+        if (!_matchesJourneyBinding(binding) || owner !== _currentSaveOwner()) return false;
+        const latest = _readQuestionRatings(owner);
+        if (latest[qid]?.intent !== intent || latest[qid]?.owner !== owner) return false;
+        latest[qid] = { ...localRecord, delivery: 'confirmed' };
+        _writeQuestionRatings(latest, owner);
+        return true;
+      } catch (err) {
+        console.error('[NQ] Rating save exception', err);
+        return false;
+      } finally {
+        if (_ratingInFlight.get(requestKey) === intent) _ratingInFlight.delete(requestKey);
+        _paintQuestionRatingDelivery();
       }
     }
 

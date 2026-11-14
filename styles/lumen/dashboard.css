@@ -3196,7 +3196,7 @@
 
 #nqDashboard[data-nq-ui="lumen"] .nqd-memory-horizon {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(min(2.75rem, 100%), 1fr));
   gap: .35rem;
   align-items: end;
   margin-top: .85rem;
@@ -4212,6 +4212,7 @@
 }
 #nqDashboard[data-nq-ui="lumen"] .nqd-stage-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-stage-body { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0 1.5rem; min-width: 0; }
+#nqDashboard[data-nq-ui="lumen"] .nqd-stage-body:only-child { grid-column: 1 / -1; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-stage-title { grid-column: 1; margin: 0; color: var(--nqh-ouro); font: 600 .9375rem/1.4 var(--nql-font-body); }
 #nqDashboard[data-nq-ui="lumen"] .nqd-stage-name { grid-column: 1; margin: .1rem 0 .25rem; color: var(--nql-parchment); font: 500 clamp(1.75rem, 3.6vw, 2.75rem)/1.1 var(--nql-font-display); overflow-wrap: anywhere; }
 #nqDashboard[data-nq-ui="lumen"] .nqd-stage-meta { grid-column: 1; margin: 0; color: var(--nql-text-soft); font: 400 1rem/1.5 var(--nql-font-body); }

@@ -28,21 +28,21 @@ const QUESTAO = { q: 'Paciente com hipercalemia grave.', o: ['A', 'B', 'C', 'D']
 async function abrirOraculo(page: Page, opcoes: { status: number; corpo: unknown; logado: boolean }) {
   await page.route('**/*', (rota) => {
     const url = rota.request().url();
+    if (new URL(url).pathname === '/assets/vendor/supabase-js-2.106.2/supabase.js') return rota.abort();
     return new URL(url).hostname === 'localhost' ? rota.continue() : rota.abort();
   });
   await page.route('**/functions/v1/ai-mentor', (rota) =>
     rota.fulfill({ status: opcoes.status, contentType: 'application/json', body: JSON.stringify(opcoes.corpo) }));
 
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
-  await injectGameState(page);
+  await injectGameState(page, {}, { authUser: opcoes.logado
+    ? { id: 'teste-1', email: 'teste@exemplo.com', app_metadata: {} } : null });
   await page.waitForLoadState('load');
-  await page.evaluate(({ logado, questao }) => {
+  await page.evaluate(questao => {
     const g = window as any;
-    // auth.js expõe authUser por defineProperty; dá para simular a sessão.
-    if (logado) g.authUser = { id: 'teste-1', email: 'teste@exemplo.com', app_metadata: {} };
     g.setMentorQuestion?.(questao);
     g.openMentorModal?.();
-  }, { logado: opcoes.logado, questao: QUESTAO });
+  }, QUESTAO);
   await expect(page.locator('#oraclePage')).toHaveAttribute('role', 'main');
   await expect(page.locator('#mentorPanel')).toBeVisible({ timeout: 15000 });
 }

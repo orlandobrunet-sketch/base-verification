@@ -9,6 +9,9 @@
     const MINIGAME_TRIGGER_AT = [25, 50, 75]; // 3 triggers GARANTIDOS
     const _minigameTimers = new Set();
     const _minigameClosers = new Set();
+    const _pendingMinigameInvites = [];
+    const _minigamePilotTransfers = new WeakMap();
+    let _minigameInviteWatch = null;
 
     function _minigameCaptureBinding() {
       return {progress: window.NQPilot?.captureBinding(),
@@ -32,6 +35,95 @@
       _minigameTimers.add(timer);
       return timer;
     }
+    function _stopMinigameInviteWatch() {
+      if (!_minigameInviteWatch) return;
+      _minigameInviteWatch.disconnect();
+      _minigameInviteWatch = null;
+      document.removeEventListener('visibilitychange', _flushMinigameInvites);
+      document.removeEventListener('focusin', _flushMinigameInvites);
+      document.removeEventListener('transitionend', _flushMinigameInvites);
+      window.removeEventListener('pageshow', _flushMinigameInvites);
+    }
+    function _minigameInviteVisible(element) {
+      if (!element?.isConnected || element.closest('.hidden,[hidden],[inert]') || !element.getClientRects().length) return false;
+      const style = getComputedStyle(element);
+      return style.display !== 'none' && style.visibility !== 'hidden';
+    }
+    function _watchMinigameInvites() {
+      if (!_pendingMinigameInvites.length) { _stopMinigameInviteWatch(); return; }
+      if (typeof MutationObserver !== 'function') return;
+      if (!_minigameInviteWatch) {
+        _minigameInviteWatch = new MutationObserver(_flushMinigameInvites);
+        document.addEventListener('visibilitychange', _flushMinigameInvites);
+        document.addEventListener('focusin', _flushMinigameInvites);
+        document.addEventListener('transitionend', _flushMinigameInvites);
+        window.addEventListener('pageshow', _flushMinigameInvites);
+      }
+      _minigameInviteWatch.disconnect();
+      // Observe screen visibility and dialog roots, never the question's text subtree.
+      _minigameInviteWatch.observe(document.body, { childList: true });
+      const roots = new Set([...document.body.children, document.getElementById('mainApp'),
+        ...document.querySelectorAll('[aria-modal="true"],dialog,.modal,[data-nq-dialogo]')]);
+      for (const root of [...roots]) {
+        for (let parent = root?.parentElement; parent && parent !== document.body; parent = parent.parentElement) roots.add(parent);
+      }
+      for (const root of roots) {
+        if (!root) continue;
+        _minigameInviteWatch.observe(root, { attributes: true, attributeFilter: ['class', 'style', 'hidden', 'inert'], childList: true });
+      }
+    }
+    function _flushMinigameInvites() {
+      for (let i = _pendingMinigameInvites.length - 1; i >= 0; i--) {
+        if (!_minigameBindingCurrent(_pendingMinigameInvites[i].binding)) _pendingMinigameInvites.splice(i, 1);
+      }
+      const pending = _pendingMinigameInvites[0];
+      const main = document.getElementById('mainApp');
+      if (pending?.ready && !document.hidden && state.gameStarted && !state.gameOver && _minigameInviteVisible(main)) {
+        const dialog = [...document.querySelectorAll('[aria-modal="true"],dialog[open]')].some(_minigameInviteVisible);
+        const focused = document.activeElement;
+        const otherFocus = focused && focused !== document.body && !main.contains(focused) && _minigameInviteVisible(focused);
+        if (!dialog && !otherFocus) {
+          _pendingMinigameInvites.shift();
+          // Remove this model before focusing the popup; focusin may re-enter here.
+          showMinigameIntroPopup(pending.atCorrectTotal, pending.triggerIdx, pending.binding);
+        }
+      }
+      _watchMinigameInvites();
+    }
+    function _queueMinigameInvite(atCorrectTotal, triggerIdx, binding, delay = 1500) {
+      const pending = { atCorrectTotal, triggerIdx, binding, ready: false, readyAt: performance.now() + delay };
+      _pendingMinigameInvites.push(pending);
+      _minigameDelay(binding, () => { pending.ready = true; _flushMinigameInvites(); }, delay);
+      _watchMinigameInvites();
+    }
+    function _capturePendingMinigamePilotResume() {
+      const binding = _minigameCaptureBinding();
+      const progress = binding.progress;
+      if (progress?.domain !== 'pilot' || binding.journey?.owner !== progress.owner ||
+          !_minigameBindingCurrent(binding) || !window.NQPilot.writable) return null;
+      const token = Object.freeze({});
+      const entries = _pendingMinigameInvites.filter(pending => _minigameBindingCurrent(pending.binding))
+        .map(pending => Object.freeze({ atCorrectTotal: pending.atCorrectTotal, triggerIdx: pending.triggerIdx, readyAt: pending.readyAt }));
+      _minigamePilotTransfers.set(token, Object.freeze({ owner: progress.owner, journeyId: progress.journeyId,
+        generation: progress.generation, epoch: binding.journey?.epoch, count: _minigameTriggerCount, entries: Object.freeze(entries) }));
+      return token;
+    }
+    function _restorePendingMinigamePilotResume(token) {
+      const saved = _minigamePilotTransfers.get(token);
+      _minigamePilotTransfers.delete(token);
+      const binding = _minigameCaptureBinding(), progress = binding.progress;
+      if (!saved || progress?.domain !== 'pilot' || !window.NQPilot.writable || !_minigameBindingCurrent(binding) ||
+          progress.owner !== saved.owner || binding.journey?.owner !== saved.owner ||
+          progress.journeyId !== saved.journeyId || progress.generation <= saved.generation ||
+          (saved.epoch !== undefined && !(binding.journey?.epoch > saved.epoch))) return false;
+      _minigameTriggerCount = saved.count;
+      for (const entry of saved.entries) {
+        _queueMinigameInvite(entry.atCorrectTotal, entry.triggerIdx, binding, Math.max(0, entry.readyAt - performance.now()));
+      }
+      return true;
+    }
+    window._capturePendingMinigamePilotResume = _capturePendingMinigamePilotResume;
+    window._restorePendingMinigamePilotResume = _restorePendingMinigamePilotResume;
     function _minigameFocar(alvo, reiniciarRolagem = false) {
       if (!alvo) return;
       alvo.focus({ preventScroll: true });
@@ -42,6 +134,8 @@
       }
     }
     function _retireMinigameContext() {
+      _pendingMinigameInvites.length = 0;
+      _stopMinigameInviteWatch();
       _minigameTimers.forEach(timer => clearTimeout(timer));
       _minigameTimers.clear();
       [..._minigameClosers].forEach(close => close({restoreFocus:false, restoreOrigin:false}));
@@ -57,7 +151,7 @@
       const triggerIdx = MINIGAME_TRIGGER_AT.indexOf(atCorrectTotal);
       _minigameTriggerCount++;
       const binding = _minigameCaptureBinding();
-      _minigameDelay(binding, () => showMinigameIntroPopup(atCorrectTotal, triggerIdx, binding), 1500);
+      _queueMinigameInvite(atCorrectTotal, triggerIdx, binding);
     }
 
     const _minigameIntros = [
@@ -142,6 +236,7 @@
     // correção diz em texto e concluir — por qualquer caminho — entrega tudo.
     function showRapidQuizMinigame(standalone, binding = _minigameCaptureBinding()) {
       if (!_minigameBindingCurrent(binding)) return;
+      if (document.getElementById('rapidQuizPage')) return;
       standalone = !!standalone;
       const POOL_SIZE = 10;
       // Selecionar 10 questões evitando repetição na sessão
@@ -169,6 +264,11 @@
       let resultsShown = false;
       let concluir = null; // definido no resultado: entrega o prêmio e fecha
       const TIME_PER_Q = 12;
+      const feedbackEffects = new Set();
+      const clearFeedbackEffects = () => {
+        feedbackEffects.forEach(effect => effect.remove());
+        feedbackEffects.clear();
+      };
 
       const { pagina, fechar } = nqPaginaPropria('rapidQuizPage', 'Julgamento Rápido', {
         classe: 'nq-exam nq-julgamento',
@@ -190,6 +290,7 @@
       const sair = (options = {}) => {
         if (timerInterval) clearInterval(timerInterval);
         timerInterval = null;
+        clearFeedbackEffects();
         document.removeEventListener('visibilitychange', conferirRetorno);
         window.removeEventListener('pageshow', atualizarRelogio);
         _minigameClosers.delete(sair);
@@ -230,6 +331,7 @@
 
       function _renderMinigameQuestion() {
         if (!current()) return;
+        clearFeedbackEffects();
         if (currentIdx >= pool.length) { showResults(); return; }
         const q = pool[currentIdx];
         questionDeadline = Date.now() + TIME_PER_Q * 1000;
@@ -301,7 +403,8 @@
         if (typeof nqRecordAnswer === 'function') nqRecordAnswer(q.qid, isCorrect, q.cat, q.q);
         if (isCorrect) correctCount++;
         if (typeof window.showFloatingFeedback === 'function') {
-          window.showFloatingFeedback(isCorrect ? '✓ Correto!' : userAns === null ? '⏱️ Esgotado' : '✗ Incorreto', isCorrect, x, y);
+          const effect = window.showFloatingFeedback(isCorrect ? '✓ Correto!' : userAns === null ? '⏱️ Esgotado' : '✗ Incorreto', isCorrect, x, y, 'nq-rapid-feedback');
+          if (typeof effect?.remove === 'function') feedbackEffects.add(effect);
         }
         if (typeof window.triggerHapticFeedback === 'function') {
           window.triggerHapticFeedback(isCorrect ? 'correct' : 'wrong');

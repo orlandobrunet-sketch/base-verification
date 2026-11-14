@@ -65,14 +65,19 @@ test('notas pelo teclado e dificuldade persistem na questão correta ao avançar
   await expect(learning).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('.qr-diff-btn[data-diff="hard"]')).toHaveAttribute('aria-pressed', 'true');
   await page.locator('#nextBtn').click();
+  await expect.poll(() => page.evaluate(qid => JSON.parse(localStorage.getItem('nefroquest-rated-questions') || '{}')['scope:null:' + qid]?.delivery, q.qid || q.id)).toBe('confirmed');
   const saved = await page.evaluate(() => ({
     ratings: JSON.parse(localStorage.getItem('nefroquest-rated-questions') || '{}'),
     difficulty: JSON.parse(localStorage.getItem('nefroquest-difficulty-votes') || '{}'),
     writes: (window as any).__reviewWrites,
   }));
-  expect(saved.ratings[q.qid || q.id]).toEqual({ quality: 4, learning: 5 });
+  expect(saved.ratings['scope:null:' + (q.qid || q.id)]).toEqual({ quality: 4, learning: 5, owner: null, delivery: 'confirmed', intent: expect.any(String) });
+  expect(saved.ratings['scope:null:' + (q.qid || q.id)].intent.length).toBeGreaterThan(0);
   expect(saved.difficulty[q.qid || q.id]).toBe('hard');
   expect(saved.writes.find((w: any) => w.table === 'question_ratings').rows[0]).toMatchObject({ question_id: q.qid || q.id, rating_quality: 4, rating_learning: 5 });
+  const ratingWrites = saved.writes.filter((w: any) => w.table === 'question_ratings');
+  expect(ratingWrites).toHaveLength(1);
+  expect(ratingWrites[0].rows).toHaveLength(1);
   expect(saved.writes.find((w: any) => w.table === 'question_difficulty_votes').rows[0]).toMatchObject({ question_id: q.qid || q.id, vote: 'hard' });
   await expect(page.locator('#nqlQuestionReview')).toHaveCount(0);
 });

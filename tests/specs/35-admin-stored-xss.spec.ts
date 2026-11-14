@@ -1,7 +1,13 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Painel administrativo — dados persistidos não executam HTML', () => {
-  test('trata payload público de avaliações e votos como texto', async ({ page }) => {
+  test('trata payload público de avaliações e votos como texto', async ({ page, baseURL }) => {
+    const origin = new URL(baseURL!).origin;
+    await page.route('**/*', route => {
+      const request = route.request(), url = new URL(request.url());
+      if (url.pathname === '/assets/vendor/supabase-js-2.106.2/supabase.js') return route.abort();
+      return request.method() === 'GET' && url.origin === origin ? route.continue() : route.abort();
+    });
     await page.goto('/jogar/');
     await page.waitForFunction(() => typeof (window as any).loadAnalyticsData === 'function');
 
@@ -38,21 +44,14 @@ test.describe('Painel administrativo — dados persistidos não executam HTML', 
 
       (window as any).__nqAdminTestClient = fakeClient;
       window.eval('_supaClient = window.__nqAdminTestClient');
-
-      for (const id of [
-        'anTotalPlayers',
-        'anAvgScore',
-        'anMaxScore',
-        'anLevelChart',
-        'anTop5',
-        'anRatingsList',
-        'anDifficultyList',
-      ]) {
-        const element = document.createElement('div');
-        element.id = id;
-        document.body.appendChild(element);
-      }
-
+      // Exercise the real restricted panel; detached divs no longer authorize
+      // an administrative read or represent its rendering destination.
+      (window as any).authUser = {
+        id: '00000000-0000-4000-8000-0000000000a1',
+        email: 'admin-xss@example.invalid',
+        app_metadata: { is_admin: true },
+      };
+      (window as any).openAnalyticsPanel();
       await (window as any).loadAnalyticsData();
 
       return {

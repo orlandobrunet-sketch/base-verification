@@ -213,8 +213,13 @@
       _accountSaving.add(binding.owner);
       const button = document.querySelector('[data-action="saveAccountData"]');
       const status = document.getElementById('accountSaveStatus');
+      const savingHasFocus = document.activeElement === button || document.activeElement === document.body;
       button.disabled = true;
       status.textContent = 'Salvando…';
+      // Desabilitar o botão focado envia o foco ao body no Chrome. Mantê-lo
+      // no aviso preserva o teclado e reenquadra a mensagem na área de leitura.
+      status.tabIndex = -1;
+      if (savingHasFocus) status.focus();
       let localSaved = false;
       try {
         const newIdentity = document.getElementById('acctIdentity').value;
@@ -265,6 +270,9 @@
         status.textContent = localSaved
           ? 'Dados guardados neste dispositivo, mas não foi possível confirmar o salvamento na conta. Tente salvar novamente.'
           : 'Não foi possível concluir o salvamento. Seus campos continuam preenchidos. Tente salvar novamente.';
+        // A mensagem pode ganhar linhas após a resposta. Só reenquadrar quem
+        // ainda aguarda aqui; não disputar foco com outro campo ou diálogo.
+        if (document.activeElement === status) status.scrollIntoView({ block: 'nearest' });
       } finally {
         _accountSaving.delete(binding.owner);
         if (_accountBinding === binding) button.disabled = false;

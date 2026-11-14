@@ -73,7 +73,9 @@ test.describe('Oráculo em tela dedicada', () => {
     await abrirOraculo(page, { logado: true });
     await page.evaluate(() => {
       const hoje = new Date().toISOString().slice(0, 10);
-      localStorage.setItem('nq-mentor-quota', JSON.stringify({ date: hoje, count: 99 }));
+      const owner = (window as any).authUser?.id;
+      if (!owner) throw Error('A fixture de cota exige uma conta autenticada.');
+      localStorage.setItem('nq-mentor-quota:' + encodeURIComponent(owner), JSON.stringify({ date: hoje, count: 99 }));
     });
     await perguntar(page);
 

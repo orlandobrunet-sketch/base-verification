@@ -816,6 +816,7 @@
     }
 
     function _restoreStudyOrigin(restoreDashboard = true) {
+      _stopStudyFeedbackReflow();
       const origin = _studySurfaceOrigin;
       _studySurfaceOrigin = null;
       _studyProgressBinding = null;
@@ -1385,10 +1386,17 @@
       showStudyModePage('revisão agendada');
     }
 
+    function _aiQuotaStorageKey(base) {
+      const owner = typeof authUser === 'undefined' ? null : authUser?.id;
+      return owner ? `${base}:${encodeURIComponent(String(owner))}` : null;
+    }
+
     function _getMentorQuota() {
       const today = new Date().toISOString().slice(0, 10);
       try {
-        const stored = JSON.parse(localStorage.getItem(MENTOR_QUOTA_KEY) || '{}');
+        // The old device-wide record has no owner and cannot be safely adopted.
+        const key = _aiQuotaStorageKey(MENTOR_QUOTA_KEY);
+        const stored = JSON.parse((key && localStorage.getItem(key)) || '{}');
         if (stored.date !== today) return { date: today, count: 0 };
         return stored;
       } catch { return { date: today, count: 0 }; }
@@ -1421,9 +1429,11 @@
 
     function _incrementMentorQuota() {
       if (isPremium()) return;
+      const key = _aiQuotaStorageKey(MENTOR_QUOTA_KEY);
+      if (!key) return;
       const q = _getMentorQuota();
       q.count = (q.count || 0) + 1;
-      localStorage.setItem(MENTOR_QUOTA_KEY, JSON.stringify(q));
+      localStorage.setItem(key, JSON.stringify(q));
     }
 
     /* O contador local não é a verdade — o servidor é.
@@ -1438,9 +1448,11 @@
      * refletir isso. */
     function _esgotarMentorQuotaLocal() {
       if (isPremium()) return;
+      const key = _aiQuotaStorageKey(MENTOR_QUOTA_KEY);
+      if (!key) return;
       const q = _getMentorQuota();
       q.count = MENTOR_DAILY_LIMIT;
-      localStorage.setItem(MENTOR_QUOTA_KEY, JSON.stringify(q));
+      localStorage.setItem(key, JSON.stringify(q));
       const barra = document.getElementById('mentorQuotaBar');
       if (barra) barra.textContent = _mentorRemainingText();
     }
@@ -1491,7 +1503,8 @@
     function _getDiagQuota() {
       const today = new Date().toISOString().slice(0, 10);
       try {
-        const stored = JSON.parse(localStorage.getItem(DIAG_QUOTA_KEY) || '{}');
+        const key = _aiQuotaStorageKey(DIAG_QUOTA_KEY);
+        const stored = JSON.parse((key && localStorage.getItem(key)) || '{}');
         if (stored.date !== today) return { date: today, count: 0 };
         return stored;
       } catch { return { date: today, count: 0 }; }
@@ -1504,18 +1517,22 @@
 
     function _incrementDiagQuota() {
       if (isPremium()) return;
+      const key = _aiQuotaStorageKey(DIAG_QUOTA_KEY);
+      if (!key) return;
       const q = _getDiagQuota();
       q.count = (q.count || 0) + 1;
-      localStorage.setItem(DIAG_QUOTA_KEY, JSON.stringify(q));
+      localStorage.setItem(key, JSON.stringify(q));
     }
 
     /* Mesmo contrato do Oráculo: a recusa por cota do servidor é a verdade,
      * e o contador local passa a refleti-la. */
     function _esgotarDiagQuotaLocal() {
       if (isPremium()) return;
+      const key = _aiQuotaStorageKey(DIAG_QUOTA_KEY);
+      if (!key) return;
       const q = _getDiagQuota();
       q.count = DIAG_DAILY_LIMIT;
-      localStorage.setItem(DIAG_QUOTA_KEY, JSON.stringify(q));
+      localStorage.setItem(key, JSON.stringify(q));
     }
     
     function startStudyMode(replaceSaved = false) {
@@ -1638,8 +1655,57 @@
       renderStudyQuestion();
     }
     
+    let _studyFeedbackReflow = null;
+    function _stopStudyFeedbackReflow() {
+      const watcher = _studyFeedbackReflow;
+      _studyFeedbackReflow = null;
+      if (!watcher) return;
+      watcher.observer.disconnect();
+      if (watcher.frame) window.cancelAnimationFrame(watcher.frame);
+    }
+
+    function _watchStudyFeedbackReflow(feedback) {
+      _stopStudyFeedbackReflow();
+      const area = feedback.closest('#studyQuestionArea');
+      const surface = feedback.closest('#studyModePage');
+      if (!area || !surface || typeof ResizeObserver !== 'function') return;
+      const binding = _studyProgressBinding;
+      const watcher = { observer: null, frame: 0 };
+      const current = () => _studyFeedbackReflow === watcher && studyModeActive &&
+        _studyProgressBinding === binding && _studyBindingCurrent(binding) &&
+        surface.isConnected && feedback.isConnected && document.getElementById('studyFeedback') === feedback;
+      watcher.observer = new ResizeObserver(() => {
+        if (!current()) {
+          if (_studyFeedbackReflow === watcher) _stopStudyFeedbackReflow();
+          return;
+        }
+        const target = document.activeElement;
+        if (!feedback.contains(target) || watcher.frame) return;
+        watcher.frame = window.requestAnimationFrame(() => {
+          watcher.frame = 0;
+          if (!current()) {
+            if (_studyFeedbackReflow === watcher) _stopStudyFeedbackReflow();
+            return;
+          }
+          if (document.activeElement !== target || !target.isConnected ||
+            target.closest('[hidden], [inert], .hidden') || !target.getClientRects().length) return;
+          const bounds = target.getBoundingClientRect();
+          const outside = bounds.bottom <= 0 || bounds.top >= window.innerHeight ||
+            bounds.right <= 0 || bounds.left >= window.innerWidth ||
+            (bounds.height <= window.innerHeight && (bounds.top < 0 || bounds.bottom > window.innerHeight)) ||
+            (bounds.width <= window.innerWidth && (bounds.left < 0 || bounds.right > window.innerWidth));
+          // Follow only a geometry change and the user's existing focus. Ordinary
+          // reading scrolls never run this observer or move focus back to the card.
+          if (outside) target.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
+        });
+      });
+      _studyFeedbackReflow = watcher;
+      watcher.observer.observe(area);
+    }
+
     function renderStudyQuestion() {
       if (!_studyBindingCurrent() || !studyModeActive) return;
+      _stopStudyFeedbackReflow();
       resetMentorQuestion();
       if (studyModeIndex >= studyModeQuestions.length) {
         showStudyModeResults();
@@ -1814,6 +1880,7 @@
         });
       }
 
+      _watchStudyFeedbackReflow(feedback);
       if (recordProgress) {
         feedback.focus({ preventScroll: true });
         feedback.scrollIntoView({ block: 'start' });
@@ -2342,6 +2409,8 @@
       } catch (err) {
         if (!_studyBindingCurrent(binding) || !_mentorContextValid(q) || contextVersion !== _mentorContextVersion || requestController.signal.aborted) return;
         _track('error_mentor_send', { msg: String(err) });
+        // Keep the failed question ready to edit or send again in this context.
+        if (input.isConnected && !input.value) input.value = text;
         thinkingEl.classList.remove('mentor-thinking');
         if (String(err).includes('quota_exceeded')) {
           // A recusa do servidor é a fonte: alinha o contador local antes de

@@ -1,6 +1,10 @@
 # Continuidade do NefroQuest
 
-## Estado atual - 13/11/2026
+## Estado atual - 14/11/2026
+
+**17.16 publicada e conferida:** [PR968](https://github.com/orlandobrunet-sketch/base-verification/pull/968), revisão `70dc16cc123a4957c0aeb35a374fa55d0b181d9e`, integração `125c73b41763c9c855d899bb696ea4298dbaeafa`. CI1080 (`43594460770`) com quinze grupos aprovados; 3.320 E2E diretos, duas aprovações após repetição automática, 266 skips previstos e zero falhas finais. Smoke 130. Pages `43596736199` aprovado no merge exato e quinze hashes públicos conferidos. Conferência nativa pública: quinze aprovações e um skip móvel previsto; contratos gerais do domínio: quatorze aprovações, sem retry. O verificador público inicial e as duas preparações legadas da CI conservam suas falhas e limites. [Escopo](design/NQ_LOADING_CONTEXT_PRIORITIES_1716.md).
+
+**Próxima candidata: 17.17, ainda em preparação.** Continuação expressamente autorizada das 35 superfícies, com bugs reproduzidos antes dos reparos e sem conteúdo médico. Estudo, Oráculo, avaliação/reporte, Home, Julgamento, retomada do piloto, Conta, checkout, chefe, equipamentos e 404 integram o recorte técnico; Administração está sob prova controlada. [Comportamentos, evidências e limites](design/NQ_CONTINUITY_AND_RECOVERY_1717.md). A sequência de CI e publicação do conjunto final ainda precisa ser concluída.
 
 **17.02 publicada:** [PR956](https://github.com/orlandobrunet-sketch/base-verification/pull/956), merge `576ba2b13bbb8ddf5a03c483dc552f7539a6f40b`, Pages `43147293190` aprovado e sete arquivos públicos idênticos ao merge. O retorno do Ponto Fraco pelo Átrio foi reproduzido com as duas telas principais ocultas; a captura da origem e o foco foram corrigidos. Os 12 cenários de retorno/cancelamento passaram também no site publicado, sem retries ou tentativas de escrita externa, em sessões de teste isoladas. CI1057: 3.004 aprovações diretas, cinco após repetição, 265 skips previstos e nenhuma falha final; lógica 424, PostgreSQL 43, smoke 130, oito testes Deno e nove funções no typecheck aprovados. A corrida das preparações legadas de testes continua registrada; não confundir essas repetições com prova de defeito novo do produto.
 

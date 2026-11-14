@@ -1876,6 +1876,13 @@ body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lu
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-review-panel { margin:.65rem 0 0; padding:1.1rem 1.25rem; border:1px solid rgba(145,223,227,.13); border-radius:6px; background:rgba(17,26,46,.35); }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .nql-review-panel[hidden] { display:none!important; }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] #nqlQuestionRating #qRatingContainer { display:block; margin:0; padding:0; border:0; background:none; }
+/* Delivery feedback belongs to the optional rating card, including enlarged text. */
+#mainApp[data-nq-ui="lumen"] #nqlQuestionRating { padding:clamp(12px,3vw,1rem); }
+#mainApp[data-nq-ui="lumen"] #qRatingContainer .q-rating-delivery-status { margin:.55rem 0 .7rem; color:var(--nql-text-soft); font:.9rem/1.5 var(--nql-font-body); overflow-wrap:anywhere; }
+#mainApp[data-nq-ui="lumen"] #qRatingContainer .q-rating-retry { display:block; width:fit-content; min-width:0; min-height:44px; max-width:100%; padding:.55rem .8rem; border:1px solid rgba(145,223,227,.4); border-radius:5px; background:rgba(145,223,227,.07); color:var(--nql-text-soft); font:600 .9rem/1.4 var(--nql-font-body); white-space:normal; overflow-wrap:anywhere; text-align:left; cursor:pointer; }
+#mainApp[data-nq-ui="lumen"] #qRatingContainer .q-rating-retry[hidden] { display:none; }
+#mainApp[data-nq-ui="lumen"] #qRatingContainer .q-rating-retry:disabled { color:var(--nql-text-muted); cursor:wait; }
+#mainApp[data-nq-ui="lumen"] #qRatingContainer :is(.q-rating-retry,.q-rating-delivery-status):focus-visible { outline:2px solid var(--nql-focus); outline-offset:4px; }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .qr-left,
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .qr-right { width:auto; }
 body:not(.boss-battle-mode):not(.arqui-nefromante-final) #mainApp[data-nq-ui="lumen"][data-lumen-debrief="true"] .qr-title,

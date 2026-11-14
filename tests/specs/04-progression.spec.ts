@@ -4,7 +4,7 @@ import { injectGameState, waitForGame, enterGame, answerAndAdvance } from '../he
 test.describe('Progressão e salvamento', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/jogar/');
-    await injectGameState(page, { score: 1000, level: 3 });
+    await injectGameState(page, { score: 1000, level: 3 }, { asGuest: true });
     await waitForGame(page);
   });
 

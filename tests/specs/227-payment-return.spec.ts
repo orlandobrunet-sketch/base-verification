@@ -133,12 +133,16 @@ test('espera o registro e usa o plano do servidor, com conversão única mesmo a
 });
 
 test('recarregar durante a espera retoma a consulta, e comprovante antigo não gera nova conversão', async ({ page }) => {
+  let releasePending!: (value: Record<string, unknown>) => void;
+  const firstLookup = new Promise<Record<string, unknown>>(resolve => { releasePending = resolve; });
   const requests = await fixture(page, {
     checkout: true,
-    lookup: async attempt => attempt === 1 ? { status: 'pending' }
+    lookup: async attempt => attempt === 1 ? firstLookup
       : { status: 'confirmed', plan: 'monthly', processed_at: '2000-01-01T00:00:00Z' },
   });
   await page.goto(returnUrl);
+  await expect.poll(() => requests.length).toBe(1);
+  releasePending({ status: 'pending' });
   await expect(dialog(page)).toContainText('Pagamento ainda não confirmado');
   await page.reload();
   await expect(dialog(page)).toContainText('Pagamento confirmado');

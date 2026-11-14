@@ -1,12 +1,16 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação operacional:** 13/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
+**Última reconciliação operacional:** 14/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
 Este documento controla direção, prioridade e critérios de conclusão. Ele não autoriza execução automática: cada frente precisa ser solicitada explicitamente pelo proprietário do produto.
 
-## Estado operacional - 13/11/2026
+## Estado operacional - 14/11/2026
+
+**17.16 publicada e conferida:** [PR968](https://github.com/orlandobrunet-sketch/base-verification/pull/968), revisão `70dc16cc123a4957c0aeb35a374fa55d0b181d9e`, integração `125c73b41763c9c855d899bb696ea4298dbaeafa`. CI1080 (`43594460770`): quinze grupos aprovados, 3.320 E2E diretos, dois após repetição automática, 266 skips previstos e nenhuma falha final, de 3.588 casos coletados; smoke 130. Pages `43596736199` aprovado no merge exato e quinze arquivos públicos idênticos. No site, quinze percursos nativos passaram e um controle exclusivo do desktop foi omitido no celular; quatorze contratos gerais do domínio também passaram, sem repetição. As duas falhas iniciais do verificador público e os dois preparos legados repetidos na CI permanecem registrados separadamente. Catálogo cooperativo e continuidade da Câmara publicados, sem alteração médica. [Escopo técnico](design/NQ_LOADING_CONTEXT_PRIORITIES_1716.md).
+
+**Continuação em preparação: 17.17.** O proprietário pediu seguir sem parar e manteve conteúdo médico fora do escopo. Correções delimitadas de continuidade, foco, cargas, retorno tardio e apresentação avançam em [continuidade e recuperação](design/NQ_CONTINUITY_AND_RECOVERY_1717.md). O documento distingue a candidata da versão já publicada e não certifica todas as 35 superfícies.
 
 **Publicado: 17.02 (PR956).** Travamento ao voltar do Ponto Fraco corrigido; captura de tela e foco de origem preservados. CI1057 e Pages aprovados, sete arquivos públicos conferidos e 12 cenários de retorno/cancelamento aprovados no site publicado.
 
