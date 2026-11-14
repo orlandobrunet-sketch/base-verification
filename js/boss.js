@@ -383,17 +383,29 @@
      * Inicia diretamente o Confronto Final para revisão rápida.
      * Usa o primeiro personagem, seta correctTotal=90 e salta para o jogo.
      */
+    function _bossCatalogPending() {
+      return !window.questionRevisionCatalog &&
+        typeof window.NQQuestionRevisions?.createCatalogAsync === 'function' &&
+        typeof window._loadTopics === 'function';
+    }
     async function startBossPreview(options) {
       const opts = options || {};
+      const startingOwner = typeof authUser !== 'undefined' ? authUser?.id || null : null;
+      const binding = typeof _captureJourneyBinding === 'function' ? _captureJourneyBinding() : null;
+      const current = () => startingOwner === (typeof authUser !== 'undefined' ? authUser?.id || null : null) &&
+        (!binding || (typeof _matchesJourneyBinding === 'function' && _matchesJourneyBinding(binding)));
       try {
         const loads = [];
-        if (!questionBank) loads.push(_loadTopics());
+        if (!questionBank || _bossCatalogPending()) loads.push(_loadTopics());
         if (typeof carregarDadosGrimorio === 'function') loads.push(carregarDadosGrimorio());
         await Promise.all(loads);
+        if (_bossCatalogPending()) throw new Error('Published question catalog is not ready.');
       } catch {
+        if (!current()) return;
         _toast('Erro ao carregar a demonstração. Recarregue a página.', 'error', 5000);
         return;
       }
+      if (!current()) return;
       beginProgressSandbox('boss-preview');
       // O aviso acompanha a altura real do texto, inclusive com fonte ampliada.
       // Continua sendo o mesmo nó e a mesma ação de saída do sandbox.
@@ -892,11 +904,12 @@
         showPricingModal();
         return;
       }
-      if (!questionBank) {
+      if (!questionBank || _bossCatalogPending()) {
         _toast('Carregando questões…', 'info', 30000);
         try {
           await _loadTopics();
           if (!startupCurrent()) return;
+          if (_bossCatalogPending()) throw new Error('Published question catalog is not ready.');
           document.querySelector('.nq-toast')?.remove();
         } catch {
           if (!startupCurrent()) return;

@@ -2065,6 +2065,8 @@
     return `<div class="ab-header-actions"><button type="button" class="ab-preferences" data-action="toggleProfilePopup" data-arg="chamberPreferences" aria-label="Preferências" aria-controls="mobileProfilePopup" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m10 3-1 3-3 1-2 3 2 3 1 3 3 1 2 3 3-2 3-1 1-3 2-3-2-3-3-1-1-3Z"/><circle cx="12" cy="12" r="3"/></svg></button><button type="button" class="ab-close" data-ab-close aria-label="Sair da Câmara">✕</button></div>`;
   }
   function _abRenderCard(card, html, caseId){
+    // Undo presentation moves while their original context still owns the scene.
+    window.NQChamberExpansion?.unmount(card.closest('#' + AB_OVERLAY_ID));
     const previous = card.querySelector('[data-ab-case-scene]');
     const keep = previous?.dataset.abCaseScene === caseId ? previous : null;
     if (keep) keep.remove();
@@ -2122,6 +2124,14 @@
     if (alvo.getBoundingClientRect().bottom > window.innerHeight) {
       alvo.scrollIntoView({ block: 'start', inline: 'nearest', behavior: 'instant' });
     }
+  }
+
+  function _abReturnToHub(overlay, button, fromIntro){
+    if (!_abCurrent(overlay) || !button?.isConnected || !overlay.contains(button)) return;
+    if (fromIntro ? !button.closest('.ab-body--intro') || overlay.dataset.abTela !== 'caso'
+      : !button.closest('.ab-summary-view') || overlay.dataset.abTela !== 'resumo') return;
+    window.NQChamberWorkspace?.restoreHubOrigin(overlay);
+    showAcidBaseMinigame();
   }
 
   // ── UI: Hub (lista de casos) ───────────────────────────────────────────
@@ -2224,7 +2234,10 @@
         const id = caseBtn.getAttribute('data-ab-case') || caseBtn.getAttribute('data-ab-next');
         const c = CASES.find(x => x.id === id);
         const completed = new Set((_loadProgress(overlay._abBinding).completed) || []);
-        if (c && _isPlayable(c, completed)) _startCase(overlay, c);
+        if (c && _isPlayable(c, completed)) {
+          window.NQChamberWorkspace?.rememberHubOrigin(overlay, caseBtn);
+          _startCase(overlay, c);
+        }
       }
     });
   }
@@ -2313,7 +2326,10 @@
       <div class="ab-scroll">
         ${_contextHeaderHTML(kase)}
         <div class="ab-body ab-body--intro">
+          <div class="ab-intro-actions">
+          <button type="button" class="ab-btn-secondary" data-ab-intro-back>Voltar à Câmara</button>
           <button type="button" class="ab-btn-primary" data-ab-start-acts>Iniciar Diagnóstico em ${kase.acts.length} Atos →</button>
+          </div>
         </div>
       </div>`, kase.id);
     const preview=document.createElement('section');preview.className='ab-intro-preview';
@@ -2329,6 +2345,8 @@
     });
     card.querySelector('.ab-body--intro').prepend(preview);
     window.NQChamberArt?.hydrate(card);
+    const back = card.querySelector('[data-ab-intro-back]');
+    back.onclick = () => _abReturnToHub(overlay, back, true);
     card.querySelector('[data-ab-start-acts]').onclick = () => _renderAct(overlay, kase, sess);
     _abFocar(card, '.ab-title');
     card.querySelector('[data-ab-close]').onclick = () => _abFechar(overlay);
@@ -2773,7 +2791,8 @@
     _appendCaseSources(card, kase);
     const retry = card.querySelector('[data-ab-sources-retry]');
     if (retry) retry.onclick = () => { sess.showSourcesOnSummary = true; _renderSummary(overlay, kase, sess); };
-    card.querySelector('[data-ab-back]').onclick = () => showAcidBaseMinigame();
+    const back = card.querySelector('[data-ab-back]');
+    back.onclick = () => _abReturnToHub(overlay, back, false);
     const continueButton = card.querySelector('[data-ab-continue-case]');
     if (continueButton) continueButton.onclick = () => {
       if (!_abCurrent(overlay) || !sess.completionStored || !continueButton.isConnected || continueButton.disabled) return;

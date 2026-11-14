@@ -88,6 +88,10 @@
 
 /* A route describes interaction formats, never future diagnoses or answers. */
 .acid-base-page .ab-intro-preview { width:100%;margin:0 0 18px;text-align:left; }
+.acid-base-page .ab-case { scroll-margin-block:12px; }
+.acid-base-page .ab-intro-actions { display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:stretch;gap:12px;width:100%; }
+.acid-base-page .ab-intro-actions :is(.ab-btn-primary,.ab-btn-secondary) { min-height:44px;max-width:100%;margin:0;white-space:normal; }
+@media(max-width:599px) { .acid-base-page .ab-intro-actions { flex-direction:column; } .acid-base-page .ab-intro-actions :is(.ab-btn-primary,.ab-btn-secondary) { width:100%; } }
 .acid-base-page .ab-intro-preview h2 { margin:0 0 12px;color:#d8bf7e;font:600 1.1rem/1.4 Philosopher,Georgia,serif; }
 .acid-base-page .ab-intro-route { display:grid;grid-template-columns:1fr;gap:8px;list-style:none;margin:0;padding:0; }
 .acid-base-page .ab-intro-route li { display:flex;align-items:baseline;gap:12px;min-width:0;padding:12px 14px;border:1px solid #91dfe333;border-radius:6px;background:#0c192480; }

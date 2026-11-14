@@ -3001,17 +3001,32 @@
 
     // ── Lazy loading do topics.js (1.4 MB) ─────────────────────────────────
     let _topicsPromise = null;
+    let _questionRevisionCatalogPromise = null;
     function _initializeQuestionRevisionCatalog() {
       if (window.questionRevisionCatalog) return;
       if (!_requiresQuestionRevisionCatalog()) return;
+      if (_questionRevisionCatalogPromise) return _questionRevisionCatalogPromise;
       if (!window.NQQuestionRevisions || !window.NQQuestionRevisionManifest || !window.NQQuestionRevisionHistory) {
         throw new Error('Published question revision files unavailable.');
       }
-      window.questionRevisionCatalog = window.NQQuestionRevisions.createCatalog({
+      const revisions = window.NQQuestionRevisions;
+      const options = {
         manifest:window.NQQuestionRevisionManifest, history:window.NQQuestionRevisionHistory,
         authors:topics, references:refsDB, sources:{main:questionBank, exam:questionBank,
           study:topics.map(_studyCanonical), offline:topics.map(q =>
-            ({id:q.qid,q:q.q,o:[...q.opts],a:q.ans,e:q.exp || q.e || ''}))}});
+            ({id:q.qid,q:q.q,o:[...q.opts],a:q.ans,e:q.exp || q.e || ''}))}};
+      // All callers share the same complete validation. Yielding during its
+      // construction must never expose a partial catalog to play or resume.
+      const pending = Promise.resolve().then(() =>
+        typeof revisions.createCatalogAsync === 'function'
+          ? revisions.createCatalogAsync(options) : revisions.createCatalog(options)
+      ).then(catalog => {
+        window.questionRevisionCatalog = catalog;
+      }).finally(() => {
+        if (_questionRevisionCatalogPromise === pending) _questionRevisionCatalogPromise = null;
+      });
+      _questionRevisionCatalogPromise = pending;
+      return pending;
     }
     function _loadTopics(options) {
       // A primeira carta lê refsDB: o download ocioso pode ainda estar em

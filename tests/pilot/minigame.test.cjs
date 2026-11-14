@@ -14,7 +14,11 @@ const ritual = source.slice(source.indexOf('    const RITUAL_LEN'),
 const bossSource = fs.readFileSync(path.join(__dirname, '../../js/boss.js'), 'utf8');
 const pilotCard = bossSource.slice(bossSource.indexOf('    function refreshCharacterPilotUI()'),
   bossSource.indexOf('    window.refreshCharacterPilotUI = refreshCharacterPilotUI;'));
-const characterStartup = bossSource.slice(bossSource.indexOf('    async function startGameWithCharacter()'));
+const readinessBegin = bossSource.indexOf('    function _bossCatalogPending()');
+const readinessEnd = bossSource.indexOf('    async function startBossPreview(', readinessBegin);
+assert(readinessBegin >= 0 && readinessEnd > readinessBegin, 'Production catalog readiness helper required.');
+const characterStartup = bossSource.slice(readinessBegin, readinessEnd) + '\n' +
+  bossSource.slice(bossSource.indexOf('    async function startGameWithCharacter()'));
 
 function fixture({pilot = false, loadTopics = async () => {}} = {}) {
   const normal = new Map([
