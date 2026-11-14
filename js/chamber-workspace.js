@@ -2,10 +2,69 @@
 (function () {
   'use strict';
   const media = matchMedia('(min-width:961px) and (pointer:fine)');
-  const states = new WeakMap(), memories = new WeakMap();
-  let serial = 0, resizeTimer;
+  const states = new WeakMap(), memories = new WeakMap(), hubMemories = new WeakMap();
+  let serial = 0, resizeTimer, fontRevealFrame = 0;
   const eligible = () => media.matches && innerHeight >= 600 && parseFloat(getComputedStyle(document.documentElement).fontSize) <= 20;
   const visible = node => node?.isConnected && !node.closest('[hidden],.nql-hidden');
+  const current = overlay => overlay?.isConnected && (!window.NQPilot || window.NQPilot.matchesBinding(overlay._abBinding));
+  function hubMemory(overlay) {
+    if (!hubMemories.has(overlay)) hubMemories.set(overlay, { tab: 0, page: null, scroll: 0, origin: null, returning: false });
+    return hubMemories.get(overlay);
+  }
+  function casePage(overlay, id) {
+    const cards = [...overlay.querySelectorAll('.ab-case')];
+    return Math.floor(Math.max(0, cards.findIndex(card => card.dataset.abCase === id)) / 4);
+  }
+  function captureHubLayout(overlay) {
+    if (!current(overlay) || overlay.dataset.abTela !== 'hub') return;
+    const state = states.get(overlay);
+    if (state && (!state.root.isConnected || !overlay.contains(state.root))) return;
+    const memory = hubMemory(overlay);
+    if (memory.returning) return;
+    if (state?.hub) { memory.tab = state.hub.tabs.active; memory.page = state.hub.paging.page; }
+    const active = document.activeElement;
+    const control = overlay.contains(active) ? active.closest('[data-ab-case], [data-ab-next]') : null;
+    if (control) {
+      memory.tab = control.hasAttribute('data-ab-next') ? 0 : 1;
+      if (!state?.hub && memory.tab === 1) memory.page = casePage(overlay, control.dataset.abCase);
+    }
+    memory.scroll = window.scrollY;
+  }
+  function rememberHubOrigin(overlay, control) {
+    if (!current(overlay) || overlay.dataset.abTela !== 'hub' || !control?.isConnected || !overlay.contains(control)) return;
+    const id = control.dataset.abCase || control.dataset.abNext;
+    if (!id) return;
+    captureHubLayout(overlay);
+    const memory = hubMemory(overlay), next = control.hasAttribute('data-ab-next');
+    memory.origin = { tab: next ? 0 : 1, page: states.get(overlay)?.hub?.paging.page ?? casePage(overlay, id),
+      kind: next ? 'next' : 'case', caseId: id, scroll: window.scrollY };
+  }
+  function restoreHubOrigin(overlay) {
+    if (!current(overlay)) return;
+    const memory = hubMemories.get(overlay), origin = memory?.origin;
+    if (!origin) return;
+    memory.tab = origin.tab; memory.page = origin.page; memory.scroll = origin.scroll; memory.returning = true;
+  }
+  function revealFocused(target) {
+    if (!visible(target) || !target.getClientRects().length || target.closest('[inert]')) return;
+    const rect = target.getBoundingClientRect();
+    if (rect.top < 0 || rect.bottom > innerHeight || rect.left < 0 || rect.right > innerWidth)
+      target.scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: 'instant' });
+  }
+  function finishHubReturn(overlay) {
+    const memory = hubMemories.get(overlay);
+    if (!current(overlay) || overlay.dataset.abTela !== 'hub' || !memory?.returning) return;
+    memory.returning = false;
+    const origin = memory.origin;
+    let target = origin.kind === 'next' ? overlay.querySelector('[data-ab-next]') || overlay.querySelector('.ab-next-case h2')
+      : [...overlay.querySelectorAll('[data-ab-case]')].find(card => card.dataset.abCase === origin.caseId && !card.disabled);
+    if (!visible(target) || !target.getClientRects().length || target.closest('[inert]'))
+      target = overlay.querySelector('.nql-hub-nav [aria-selected="true"]') || overlay.querySelector('.ab-title');
+    if (!target) return;
+    if (!target.matches('button, input, [tabindex]')) target.tabIndex = -1;
+    window.scrollTo({ top: memory.scroll, behavior: 'instant' });
+    focusNative(target); revealFocused(target);
+  }
   function make(s, tag, cls, parent) {
     const node = document.createElement(tag); node.className = cls; parent?.append(node); s.owned.push(node); return node;
   }
@@ -135,8 +194,11 @@
     ['.ab-collection-heading','.ab-grid','.ab-hub-note'].forEach(q=>move(s,layout.querySelector(q),collection));
     const bar=make(s,'div','nql-hub-nav');layout.prepend(bar);
     const cards=[...collection.querySelectorAll('.ab-case')],ready=cards.findIndex(n=>n.classList.contains('ab-case-ready'));
-    tabs(s,bar,[{label:'Visão geral',node:overview},{label:`Casos clínicos (${cards.length})`,node:collection}],0,'Câmara do Equilíbrio');
-    const paging=pager(s,collection,cards,4,'Página',Math.floor(Math.max(0,ready)/4));collection.querySelector('.ab-grid').before(paging.nav);
+    const memory=hubMemory(s.overlay);
+    const selection=tabs(s,bar,[{label:'Visão geral',node:overview},{label:`Casos clínicos (${cards.length})`,node:collection}],memory.tab===1?1:0,'Câmara do Equilíbrio',index=>{memory.tab=index;});
+    const start=Number.isInteger(memory.page)?memory.page:Math.floor(Math.max(0,ready)/4);
+    const paging=pager(s,collection,cards,4,'Página',Math.max(0,Math.min(Math.ceil(cards.length/4)-1,start)));collection.querySelector('.ab-grid').before(paging.nav);
+    s.hub={tabs:selection,paging};memory.page=paging.page;
   }
   function context(s, continuous = false) {
     const context=s.root.querySelector('.ab-context');if(!context)return;
@@ -184,19 +246,33 @@
     target.focus({preventScroll:true});
   }
   function mount(overlay){
-    if(!overlay?.isConnected)return;window.NQChamberMotion?.mount(overlay);const active=document.activeElement,hadFocus=overlay.contains(active),expansionFocus=window.NQChamberExpansion?.unmount(overlay);reset(overlay);if(!eligible()){if(hadFocus){const target=active?.isConnected?active:(expansionFocus||overlay.querySelector('.ab-prompt')||overlay.querySelector('.ab-summary-title')||overlay.querySelector('.ab-title'));focusNative(target);}window.NQChamberExpansion?.mount(overlay);return;}
+    if(!overlay?.isConnected)return;captureHubLayout(overlay);window.NQChamberMotion?.mount(overlay);const active=document.activeElement,hadFocus=overlay.contains(active),expansionFocus=window.NQChamberExpansion?.unmount(overlay);reset(overlay);if(!eligible()){if(hadFocus){const target=active?.isConnected?active:(expansionFocus||overlay.querySelector('.ab-prompt')||overlay.querySelector('.ab-summary-title')||overlay.querySelector('.ab-title'));focusNative(target);if(overlay.dataset.abTela==='hub')revealFocused(target);}window.NQChamberExpansion?.mount(overlay);finishHubReturn(overlay);return;}
     const root=overlay.querySelector('.ab-scroll');if(!root)return;
     const s={overlay,root,owned:[],undo:[],visibility:new Map(),readers:[],observers:[]};states.set(overlay,s);if(!memories.has(overlay))memories.set(overlay,{contextKey:'',contextTab:1});overlay.classList.add('nq-chamber-workspace');
     if(overlay.dataset.abTela==='hub'){overlay.classList.add('nq-chamber-natural');hub(s);}
     else{const body=root.querySelector('.ab-body');if(body?.classList.contains('ab-body--intro')){root.classList.add('nql-intro');overlay.classList.add('nq-chamber-natural');}else{const continuous=!!body?.querySelector('.ab-ddx-table');if(continuous){root.classList.add('nql-cardflow');overlay.classList.add('nq-chamber-natural');}context(s,continuous);if(body?.classList.contains('ab-summary-view'))summary(s,body);else if(body)act(s,body);}}
     fit(s);after(s);window.NQChamberExpansion?.mount(overlay);
-    if(hadFocus){const target=active?.isConnected&&visible(active)&&!active.closest('[inert]')?active:expansionFocus||root.querySelector('.ab-prompt,.ab-summary-title,.ab-title');focusNative(target);}
+    if(hadFocus){const fallback=overlay.dataset.abTela==='hub'?root.querySelector('.nql-hub-nav [aria-selected="true"]')||root.querySelector('.ab-title'):expansionFocus||root.querySelector('.ab-prompt,.ab-summary-title,.ab-title');const target=active?.isConnected&&visible(active)&&!active.closest('[inert]')?active:fallback;focusNative(target);if(overlay.dataset.abTela==='hub')revealFocused(target);}
+    finishHubReturn(overlay);
   }
   addEventListener('resize',()=>{clearTimeout(resizeTimer);const overlay=document.getElementById('acidBaseOverlay');if(overlay&&!eligible()){mount(overlay);return;}resizeTimer=setTimeout(()=>{const current=document.getElementById('acidBaseOverlay');if(current){const state=states.get(current);state?fit(state):mount(current);}},100);});
-  function syncFontLayout(){const overlay=document.getElementById('acidBaseOverlay');if(overlay&&!!states.get(overlay)!==eligible())mount(overlay);}
+  function syncFontLayout(){
+    if(fontRevealFrame){cancelAnimationFrame(fontRevealFrame);fontRevealFrame=0;}
+    const overlay=document.getElementById('acidBaseOverlay');
+    if(!current(overlay))return;
+    if(!!states.get(overlay)!==eligible()){mount(overlay);return;}
+    // Font reflow also changes the native mobile layout without changing eligibility.
+    const focused=document.activeElement;
+    if(overlay.dataset.abTela!=='hub'||!overlay.contains(focused))return;
+    fontRevealFrame=requestAnimationFrame(()=>{
+      fontRevealFrame=0;
+      if(current(overlay)&&document.getElementById('acidBaseOverlay')===overlay&&overlay.dataset.abTela==='hub'
+        &&document.activeElement===focused&&overlay.contains(focused))revealFocused(focused);
+    });
+  }
   const fontObserver = new MutationObserver(syncFontLayout);
   // A style mutation can precede the computed font-size change during a CSS transition.
   document.documentElement.addEventListener('transitionend',event=>{if(event.target===document.documentElement&&event.propertyName==='font-size')syncFontLayout();});
   fontObserver.observe(document.documentElement,{attributes:true,attributeFilter:['style','class']});
-  window.NQChamberWorkspace=Object.freeze({mount,get inspection(){const overlay=document.getElementById('acidBaseOverlay'),s=states.get(overlay);return{active:!!s,readings:s?s.readers.map(r=>({pages:r.pages,textConserved:r.conserved})):[]};}});
+  window.NQChamberWorkspace=Object.freeze({mount,rememberHubOrigin,restoreHubOrigin,get inspection(){const overlay=document.getElementById('acidBaseOverlay'),s=states.get(overlay);return{active:!!s,readings:s?s.readers.map(r=>({pages:r.pages,textConserved:r.conserved})):[]};}});
 })();

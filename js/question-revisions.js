@@ -33,7 +33,10 @@
     return JSON.stringify(value);
   }
   function digest(value) {
-    const encoded = unescape(encodeURIComponent(canonical(copy(value))));
+    return digestCanonical(canonical(copy(value)));
+  }
+  function digestCanonical(value) {
+    const encoded = unescape(encodeURIComponent(value));
     const words = [];
     for (let index = 0; index < encoded.length; index++) {
       words[index >> 2] = (words[index >> 2] || 0) | encoded.charCodeAt(index) << (24 - (index % 4) * 8);
@@ -73,6 +76,27 @@
     }
     return 'sha256:' + hash.map(value => (value >>> 0).toString(16).padStart(8, '0')).join('');
   }
+  function constructionDigestScope() {
+    const identities = new Map();
+    const identityDigest = value => {
+      // Validate and snapshot every value, even on a hit. Object identity or a
+      // published hash cannot stand in for checking the actual runtime input.
+      const snapshot = canonical(copy(value));
+      if (!identities.has(snapshot)) identities.set(snapshot, digestCanonical(snapshot));
+      return identities.get(snapshot);
+    };
+    return {digest: identityDigest, clear() { identities.clear(); }};
+  }
+  function constructionDigests(build) {
+    const scope = constructionDigestScope();
+    try { return build(scope.digest); }
+    finally { scope.clear(); }
+  }
+  function drainSteps(iterator) {
+    let step;
+    do { step = iterator.next(); } while (!step.done);
+    return step.value;
+  }
   function referencesFor(author, references) {
     const result = {};
     for (const id of author.refs || author.r || []) {
@@ -82,13 +106,13 @@
     }
     return result;
   }
-  function record(author, references) {
-    const authorRevision = digest(author), referenceRevisions = {};
+  function record(author, references, identityDigest = digest) {
+    const authorRevision = identityDigest(author), referenceRevisions = {};
     for (const id of Object.keys(references)) {
-      Object.defineProperty(referenceRevisions, id, {value: references[id] === null ? null : digest(references[id]),
+      Object.defineProperty(referenceRevisions, id, {value: references[id] === null ? null : identityDigest(references[id]),
         enumerable: true, writable: true, configurable: true});
     }
-    return {authorRevision, referenceRevisions, recordRevision: digest({authorRevision, referenceRevisions})};
+    return {authorRevision, referenceRevisions, recordRevision: identityDigest({authorRevision, referenceRevisions})};
   }
   function helper() {
     const answers = root.window?.NQAnswers || root.NQAnswers;
@@ -100,7 +124,10 @@
     return object(binding) && Object.keys(binding).length === 4 && binding.version === 1 &&
       binding.qid === qid && binding.profile === profile && hashPattern.test(binding.recordRevision);
   }
-  function createVerifier({manifest, history = []} = {}) {
+  function createVerifier(options = {}) {
+    return drainSteps(verifierSteps(options, digest));
+  }
+  function* verifierSteps({manifest, history = []} = {}, identityDigest) {
     const answers = helper(), entries = new Map();
     manifest = copy(manifest); history = copy(history);
     if (manifest?.version !== 1 || typeof manifest.release !== 'string' || !object(manifest.current) || !Array.isArray(history)) {
@@ -121,7 +148,7 @@
       if (!qid.trim() || !object(value) || !hashPattern.test(value.authorRevision) || !hashPattern.test(value.recordRevision) ||
           !object(value.referenceRevisions) || !object(value.sourceRevisions) ||
           Object.values(value.referenceRevisions).some(hash => hash !== null && !hashPattern.test(hash)) ||
-          value.recordRevision !== digest({authorRevision: value.authorRevision, referenceRevisions: value.referenceRevisions})) {
+          value.recordRevision !== identityDigest({authorRevision: value.authorRevision, referenceRevisions: value.referenceRevisions})) {
         throw new TypeError('Invalid published record.');
       }
       for (const profile of Object.keys(value.sourceRevisions)) {
@@ -129,6 +156,7 @@
         add({...value, qid, profile, sourceRevision: value.sourceRevisions[profile], release: manifest.release,
           historical: false, policy: {material: false, pending: 'current', answered: 'current'}});
       }
+      yield;
     }
     for (const archived of history) {
       if (!object(archived) || typeof archived.qid !== 'string' || !object(archived.author) ||
@@ -137,16 +165,17 @@
           archived.policy?.material !== true || archived.policy.pending !== 'update-required') {
         throw new TypeError('Invalid published history.');
       }
-      const refs = referencesFor(archived.author, archived.references), identity = record(archived.author, refs);
+      const refs = referencesFor(archived.author, archived.references), identity = record(archived.author, refs, identityDigest);
       for (const profile of Object.keys(archived.sources)) {
         const source = answers.restore(archived.sources[profile]);
         if (!profiles.includes(profile) || !source || source._answerPresentation || String(source.id) !== archived.qid ||
             !answers.present(source, {preserveOrder: true})) {
           throw new TypeError('Invalid archived profile.');
         }
-        add({...identity, qid: archived.qid, profile, sourceRevision: digest(source), source,
+        add({...identity, qid: archived.qid, profile, sourceRevision: identityDigest(source), source,
           author: archived.author, references: refs, release: archived.release, historical: true,
           policy: {material: true, pending: 'update-required', answered: 'historical'}});
+        yield;
       }
     }
     function result(entry, question) {
@@ -185,14 +214,18 @@
       resolveLegacy(qid, options) { const checked = inspectLegacy(qid, options); return checked.status === 'known' ? checked.value : null; },
       current(qid, profile) { const entry = (entries.get(String(qid) + '\n' + profile) || []).find(item => !item.historical); return entry ? result(entry) : null; }});
   }
-  function createCatalog({manifest, history = [], authors, sources, references} = {}) {
-    const verifier = createVerifier({manifest, history}), answers = helper();
+  function createCatalog(options = {}) {
+    return constructionDigests(identityDigest => drainSteps(catalogSteps(options, identityDigest)));
+  }
+  function* catalogSteps({manifest, history = [], authors, sources, references} = {}, identityDigest) {
+    const verifier = yield* verifierSteps({manifest, history}, identityDigest), answers = helper();
     const authorMap = new Map(), sourceMap = new Map();
     if (!Array.isArray(authors) || !object(sources)) throw new TypeError('Published runtime sources required.');
     if (own(sources, 'study') && !object(references)) throw new TypeError('Study reference registry required.');
     for (const author of copy(authors)) {
       if (typeof author.qid !== 'string' || authorMap.has(author.qid)) throw new TypeError('Unique stable authored IDs required.');
       authorMap.set(author.qid, author);
+      yield;
     }
     for (const profile of Object.keys(sources)) {
       if (!profiles.includes(profile) || !Array.isArray(sources[profile])) throw new TypeError('Runtime profile required.');
@@ -200,11 +233,12 @@
         const source = answers.restore(input), qid = String(source?.id), expected = verifier.current(qid, profile);
         const author = authorMap.get(qid), manifestRecord = manifest.current[qid];
         if (!source || source._answerPresentation || !expected || !author ||
-            digest(source) !== expected.sourceRevision || digest(author) !== manifestRecord.authorRevision ||
+            identityDigest(source) !== expected.sourceRevision || identityDigest(author) !== manifestRecord.authorRevision ||
             sourceMap.has(qid + '\n' + profile)) throw new TypeError('Runtime source differs from published manifest.');
         const refs = references === undefined ? undefined : referencesFor(author, references);
-        if (refs && record(author, refs).recordRevision !== expected.binding.recordRevision) throw new TypeError('Runtime reference cards differ from published manifest.');
+        if (refs && record(author, refs, identityDigest).recordRevision !== expected.binding.recordRevision) throw new TypeError('Runtime reference cards differ from published manifest.');
         sourceMap.set(qid + '\n' + profile, {source, author, ...(refs ? {references: refs} : {})});
+        yield;
       }
     }
     function hydrate(value, profile) {
@@ -240,7 +274,30 @@
       restoreKnown(snapshot, options) { return verifier.restoreKnown(snapshot, options); },
       resolveLegacy(qid, options) { const checked = inspectLegacy(qid, options); return checked.status === 'known' ? checked.value : null; }});
   }
-  const api = Object.freeze({VERSION: 1, digest, createVerifier, createCatalog});
+  async function createCatalogAsync(options = {}) {
+    const {manifest, history = [], authors, sources, references} = options;
+    // Nothing from the caller is retained across the first await. The async
+    // factory accepts JSON snapshots, not getters that can change while paused.
+    const snapshot = {manifest: copy(manifest), history: copy(history), authors: copy(authors),
+      sources: copy(sources), ...(references === undefined ? {} : {references: copy(references)})};
+    const scope = constructionDigestScope(), iterator = catalogSteps(snapshot, scope.digest);
+    const now = () => root.performance?.now() ?? Date.now();
+    const pause = () => new Promise(resolve => setTimeout(resolve, 0));
+    try {
+      // A timer is a real task boundary; a resolved promise would not let the
+      // browser handle input or paint while the catalog is being checked.
+      await pause();
+      let started = now();
+      while (true) {
+        const step = iterator.next();
+        if (step.done) return step.value;
+        if (now() - started >= 8) { await pause(); started = now(); }
+      }
+    } finally {
+      try { iterator.return(); } finally { scope.clear(); }
+    }
+  }
+  const api = Object.freeze({VERSION: 1, digest, createVerifier, createCatalog, createCatalogAsync});
   if (root.window) root.window.NQQuestionRevisions = api;
   else root.NQQuestionRevisions = api;
   if (typeof module === 'object' && module.exports) module.exports = api;

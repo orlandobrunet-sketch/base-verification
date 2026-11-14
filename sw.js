@@ -1,5 +1,5 @@
-// NefroQuest Service Worker — v17.15
-const CACHE = 'nefroquest-v17.15';
+// NefroQuest Service Worker — v17.16
+const CACHE = 'nefroquest-v17.16';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
@@ -195,8 +195,8 @@ const ASSET_VERSIONS = {
   '/js/chamber-expansion.js': '17.06',
   '/styles/lumen/chamber-expansion.css': '17.09',
   '/styles/lumen/chamber-entrance.css': '17.11',
-  '/js/chamber-workspace.js': '17.11',
-  '/styles/lumen/chamber-workspace.css': '17.03',
+  '/js/chamber-workspace.js': '17.16',
+  '/styles/lumen/chamber-workspace.css': '17.16',
   '/js/chamber-art.js': '17.03',
   '/styles/lumen/chamber-desktop.css': '17.03',
   '/js/cinema-poison-portraits.js': '16.43',
@@ -223,7 +223,7 @@ const ASSET_VERSIONS = {
   '/styles/lumen/cinemaframe.css': '16.28',
   '/styles/lumen/cinemalayout.css': '16.43',
   '/styles/lumen/cinemavictory.css': '16.28',
-  '/js/question-revisions.js': '16.12',
+  '/js/question-revisions.js': '17.16',
   '/style.css': '16.69',
   '/styles/lumen/tokens.css': '15.77',
   '/styles/lumen/shell.css': '16.18',
@@ -249,25 +249,25 @@ const ASSET_VERSIONS = {
   '/js/answer-presentation.js': '16.09',
   '/js/audio.js': '16.28',
   '/js/leaderboard.js': '17.15',
-  '/js/study-mode.js': '17.15',
-  '/js/game.js': '17.15',
+  '/js/study-mode.js': '17.16',
+  '/js/game.js': '17.16',
   '/js/notifications.js': '11.90',
   '/js/auth.js': '17.15',
   '/js/portal.js': '17.15',
   '/js/atrium.js': '17.08',
   '/js/paywall.js': '16.97',
   '/js/account.js': '16.97',
-  '/js/boss.js': '17.15',
+  '/js/boss.js': '17.16',
   '/js/exam.js': '17.15',
   '/js/admin.js': '15.35',
   '/js/minigame.js': '17.01',
-  '/js/minigame-acidbase.js': '17.11',
+  '/js/minigame-acidbase.js': '17.16',
   '/js/achievements.js': '16.75',
   '/js/changelog.js': '17.15',
   '/js/equipment-preview.js': '16.62',
   '/js/dashboard-skills.js': '17.15',
   '/styles/lumen/skills.css': '17.15',
-  '/js/dashboard.js': '17.15',
+  '/js/dashboard.js': '17.16',
 };
 // bump-release:asset-versions:fim
 

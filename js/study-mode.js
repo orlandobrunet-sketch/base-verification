@@ -842,10 +842,17 @@
       const binding = _studyCaptureBinding();
       // Capture before loading so returning can restore the original control.
       const returnFocus = document.activeElement;
-      if (typeof topics === 'undefined') {
+      if (typeof topics === 'undefined' || _studyCatalogPending()) {
         _toast('Carregando questões…', 'info', 30000);
-        try { await window._loadTopics(); document.querySelector('.nq-toast')?.remove(); }
-        catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
+        try {
+          await window._loadTopics();
+          if (!_studyBindingCurrent(binding)) return;
+          if (_studyCatalogPending()) throw new Error('Published question catalog is not ready.');
+          document.querySelector('.nq-toast')?.remove();
+        } catch {
+          if (_studyBindingCurrent(binding)) _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000);
+          return;
+        }
       }
       if (!_studyBindingCurrent(binding)) return;
       document.querySelectorAll('.study-mode-popup').forEach(el => el.remove());
@@ -1001,8 +1008,14 @@
       return ['NQ_REQUIRES_QUESTION_REVISIONS', 'NQQuestionRevisions', 'NQQuestionRevisionManifest',
         'NQQuestionRevisionHistory', 'questionRevisionCatalog'].some(key => typeof window[key] !== 'undefined');
     }
+    function _studyCatalogPending() {
+      return _studyRequiresQuestionRevisions() && !window.questionRevisionCatalog &&
+        typeof window.NQQuestionRevisions?.createCatalogAsync === 'function' &&
+        typeof window._loadTopics === 'function';
+    }
     function _studyRevisionCatalog() {
       if (window.questionRevisionCatalog) return window.questionRevisionCatalog;
+      if (_studyCatalogPending()) return null;
       // Older isolated bundles still validate against their loaded authored bank.
       if (!_studyRequiresQuestionRevisions()) return undefined;
       if (!window.NQQuestionRevisions || !window.NQQuestionRevisionManifest || !Array.isArray(window.NQQuestionRevisionHistory) || typeof topics === 'undefined' || typeof refsDB === 'undefined') return null;
@@ -1290,10 +1303,17 @@
 
     async function startFreeStudyMode() {
       const binding = _studyCaptureBinding();
-      if (typeof topics === 'undefined') {
+      if (typeof topics === 'undefined' || _studyCatalogPending()) {
         _toast('Carregando questões…', 'info', 30000);
-        try { await window._loadTopics(); document.querySelector('.nq-toast')?.remove(); }
-        catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
+        try {
+          await window._loadTopics();
+          if (!_studyBindingCurrent(binding)) return;
+          if (_studyCatalogPending()) throw new Error('Published question catalog is not ready.');
+          document.querySelector('.nq-toast')?.remove();
+        } catch {
+          if (_studyBindingCurrent(binding)) _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000);
+          return;
+        }
       }
       if (!_studyBindingCurrent(binding)) return;
       // Estudo Livre: 20 questões aleatórias de TODOS os temas, sem precisar selecionar eixos
@@ -1308,10 +1328,17 @@
 
     async function startSRStudyAllMode() {
       const binding = _studyCaptureBinding();
-      if (typeof topics === 'undefined') {
+      if (typeof topics === 'undefined' || _studyCatalogPending()) {
         _toast('Carregando questões…', 'info', 30000);
-        try { await window._loadTopics(); document.querySelector('.nq-toast')?.remove(); }
-        catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
+        try {
+          await window._loadTopics();
+          if (!_studyBindingCurrent(binding)) return;
+          if (_studyCatalogPending()) throw new Error('Published question catalog is not ready.');
+          document.querySelector('.nq-toast')?.remove();
+        } catch {
+          if (_studyBindingCurrent(binding)) _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000);
+          return;
+        }
       }
       if (!_studyBindingCurrent(binding)) return;
       // Revisão Espaçada com todos os temas
@@ -1331,10 +1358,17 @@
 
     async function startScheduledSRStudyMode() {
       const binding = _studyCaptureBinding();
-      if (typeof topics === 'undefined') {
+      if (typeof topics === 'undefined' || _studyCatalogPending()) {
         _toast('Carregando questões…', 'info', 30000);
-        try { await window._loadTopics(); document.querySelector('.nq-toast')?.remove(); }
-        catch { _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000); return; }
+        try {
+          await window._loadTopics();
+          if (!_studyBindingCurrent(binding)) return;
+          if (_studyCatalogPending()) throw new Error('Published question catalog is not ready.');
+          document.querySelector('.nq-toast')?.remove();
+        } catch {
+          if (_studyBindingCurrent(binding)) _toast('Erro ao carregar questões. Recarregue a página.', 'error', 5000);
+          return;
+        }
       }
       if (!_studyBindingCurrent(binding)) return;
       const due = getSRScheduledDueQuestions(topics);

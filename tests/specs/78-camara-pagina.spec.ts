@@ -88,13 +88,19 @@ test('Escape no hub fecha e devolve o foco', async ({ page }) => {
 
 test('concluir um caso e voltar à Câmara mantém a jornada restaurável', async ({ page }) => {
   await abrir(page);
+  const origemFoiProximoCaso = await page.locator('[data-ab-next="aldric"]:visible').count() > 0;
   await entrarNoCaso(page);
   for (let i = 0; i < 12 && !(await page.locator('.ab-summary-title').count()); i++) {
     await responderEAvancar(page);
   }
   await expect(page.locator('.ab-summary-title')).toBeFocused();
   await page.locator('[data-ab-back]').click();
-  await expect(page.getByRole('heading', { name: 'Alquimista Renal' })).toBeFocused();
+  // Return to the native origin control, with the overview CTA updated after completion.
+  const retorno = origemFoiProximoCaso
+    ? page.locator('[data-ab-next="mara"]')
+    : page.locator('[data-ab-case="aldric"]');
+  await expect(retorno).toBeFocused();
+  await expect(retorno).toBeInViewport();
   await expect(page.locator('#acidBaseOverlay .ab-case-done')).toHaveCount(1);
   await page.keyboard.press('Escape');
   await expect(page.locator('#acidBaseOverlay')).toHaveCount(0);

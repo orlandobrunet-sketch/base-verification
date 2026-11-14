@@ -2442,12 +2442,15 @@
     const binding = _dashboardBinding || window.NQPilot?.captureBinding();
     const current = () => root?.isConnected && root === document.getElementById('nqDashboard')
       && _dashboardBindingCurrent(binding);
+    const catalogPending = () => !window.questionRevisionCatalog &&
+      typeof window.NQQuestionRevisions?.createCatalogAsync === 'function' &&
+      typeof window._loadTopics === 'function';
     if (!current()) return false;
-    if (typeof topics !== 'undefined' && Array.isArray(topics) && topics.length) return true;
+    if (typeof topics !== 'undefined' && Array.isArray(topics) && topics.length && !catalogPending()) return true;
     if (typeof window._loadTopics !== 'function') return false;
     try {
       await window._loadTopics();
-      return current() && typeof topics !== 'undefined' && Array.isArray(topics) && topics.length > 0;
+      return current() && typeof topics !== 'undefined' && Array.isArray(topics) && topics.length > 0 && !catalogPending();
     } catch (error) {
       if (current() && typeof _toast === 'function') _toast('Não foi possível carregar as questões.', 'error');
       return false;
