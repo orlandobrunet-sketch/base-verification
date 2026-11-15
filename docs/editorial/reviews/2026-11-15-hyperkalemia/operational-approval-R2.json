@@ -1,0 +1,103 @@
+{
+  "schema": "NQ_HYPERKALEMIA_1726_OPERATIONAL_APPROVAL_v1",
+  "authorization": "APROVADA",
+  "independent": true,
+  "reviewer": "/root/editorial_inventory_1725",
+  "reviewedAtUTC": "2026-11-15T16:33:01.352Z",
+  "baseCommit": "33b203ddccc125c04b2c740c2316ae5c0ea362a0",
+  "release": "17.26",
+  "utilitySHA256": "3b86f0fd27f3e525e6df615bc76d99beae22c6e35c4b77782603de82d0b1b45f",
+  "planSHA256": "sha256:70ef3808fc6daab8af6e2d0b54067fe18d4fff039b1146d09249675ef37c6b34",
+  "publicationReceiptSHA256": "57c4ae30bd12106bbc198d191d252e83f901b025f4e00b5b9a51a4960be0572b",
+  "plannedDataFiles": {
+    "data/topics.js": {
+      "sha256": "448f4f4340a6208c2f89cdd15e77c2cd3ae558a2a678dac4476fea2b70fafed8",
+      "bytes": 975855
+    },
+    "data/question-revision-history.js": {
+      "sha256": "404457eed766447bdbb15b8d7845c30584b60fb320a350f77e0fcf605dc53b41",
+      "bytes": 1777592
+    },
+    "data/question-revision-manifest.js": {
+      "sha256": "5c2578a9acd48db45daa5acc858652c8576548f3f637c2ae06b9b3ad34d3f87a",
+      "bytes": 534537
+    }
+  },
+  "unresolvedConditions": [],
+  "scope": {
+    "questionIDs": [
+      "ebea50d5",
+      "e0853fac",
+      "b35be598"
+    ],
+    "existingReferenceCard": "ukka_hyperkalemia_2026",
+    "referenceFileWritten": false,
+    "heldTTKG": "6474ec20",
+    "heldTTKGChanged": false,
+    "fsrsResets": 0,
+    "medicalReassessment": false
+  },
+  "verification": {
+    "realPublicationConfirmed": {
+      "receiptSHA256": "57c4ae30bd12106bbc198d191d252e83f901b025f4e00b5b9a51a4960be0572b",
+      "mergeCommit": "33b203ddccc125c04b2c740c2316ae5c0ea362a0",
+      "remoteMain": "33b203ddccc125c04b2c740c2316ae5c0ea362a0",
+      "productionVersion": "17.25"
+    },
+    "publicationEvidenceHashesMatched": 11,
+    "exactIndependentPrepareMatch": true,
+    "writeAttemptsDuringPrepare": 0,
+    "authorSHA256": "1301e8314f1614c6bd4e07f8eef25933eb0096f8bb42a1d01ab6b25c3e48405e",
+    "independentClinicalReviewSHA256": "4a7e5b9cdbb961284fdfc8643276f349a61ded0c06ec58f4316c78677ab9eaa7",
+    "rootDryRunFileSHA256": "b1e9d8297ee941464e69aec77867664a9801f11d2bf7d45b50c05fc1149edbf2",
+    "independentProjectionFileSHA256": "560c04b43aa09785a98babcf36db9065e0aaa0f33801d452b32db5151edd5c53",
+    "sourceDataFiles": {
+      "data/topics.js": {
+        "sha256": "c6a6495dfd123dc5a2085f8f5ddea001863b6b12e5ff7dc2051fcf5fed6757e8",
+        "bytes": 975196
+      },
+      "data/refs.js": {
+        "sha256": "b754ce39d368b0a05ffd14ac33f609790162cb72d275bdc9da78c0b3f1a3de95",
+        "bytes": 510717
+      },
+      "data/question-revision-history.js": {
+        "sha256": "1282251abb6144d826ffb4b701229cf29ecc139026424177139173b639caffa0",
+        "bytes": 1749041
+      },
+      "data/question-revision-manifest.js": {
+        "sha256": "3cb339e75a6ac7763fb372d724caf2630ef282802736e331582e1db94f9a2aca",
+        "bytes": 534805
+      }
+    },
+    "byteChecks": {
+      "topicLinesChanged": [
+        "e0853fac",
+        "ebea50d5",
+        "b35be598"
+      ],
+      "other738AuthorsAndLinesPreserved": true,
+      "historyPrefixBytes": 1748877,
+      "historySuffixBytes": 164,
+      "all177HistoryBytesPreserved": true,
+      "refsUnchanged": true,
+      "heldTTKGUnchanged": true
+    },
+    "counts": {
+      "questions": 741,
+      "histories": 180,
+      "oldBindings": 708,
+      "newBindings": 12,
+      "totalBindings": 720,
+      "presentations": 2964
+    },
+    "priorHistoryReleaseForNewArchives": "17.25",
+    "otherAuthorsPreserved": 738,
+    "all741QuestionIDsAndOrderPreserved": true,
+    "clinicalGateBindings": "Three independently approved exact question literals and existing-card gate; no clinical gate replaced by this operational receipt."
+  },
+  "limitations": [
+    "No data applied or production files written by this review.",
+    "This receipt authorizes only the exact three planned data outputs and does not claim publication of release 17.26.",
+    "Caught write errors have guarded rollback; cross-file writes are not an atomic filesystem transaction."
+  ]
+}

@@ -296,7 +296,7 @@ test('actual full 741 catalog loads all four current runtime profiles from the p
   await info.attach('actual-741-catalog', { contentType: 'application/json', body: JSON.stringify(report) });
 });
 
-test('actual published archive retains every prior cohort alongside the eight 17.24 versions', async ({ page }, info) => {
+test('actual published archive retains every prior cohort alongside the eight 17.24 and three 17.25 versions', async ({ page }, info) => {
   const report = await page.evaluate(() => {
     const w = window as any, api = w.NQQuestionRevisions, archive = w.NQQuestionRevisionHistory;
     const rows = archive.flatMap((row: any) => ['main', 'exam', 'study', 'offline'].map(profile => {
@@ -320,9 +320,11 @@ test('actual published archive retains every prior cohort alongside the eight 17
     const additions = archive.filter((row: any) => row.release === '17.09');
     const continuation = archive.filter((row: any) => row.release === '17.11');
     const latest = archive.filter((row: any) => row.release === '17.24');
+    const hyperkalemia = archive.filter((row: any) => row.release === '17.25');
     return { archiveCount: archive.length, originalCount: originals.length, additionCount: additions.length,
       continuationCount: continuation.length, continuationQids: continuation.map((row: any) => row.qid).sort(),
       latestCount: latest.length, latestQids: latest.map((row: any) => row.qid).sort(),
+      hyperkalemiaCount: hyperkalemia.length, hyperkalemiaQids: hyperkalemia.map((row: any) => row.qid).sort(),
       originalDigest: api.digest(originals), additionDigest: api.digest(additions),
       originalQids: originals.map((row: any) => row.qid).sort(),
       referenceCount: Object.keys((0, eval)('refsDB')).length,
@@ -348,6 +350,7 @@ test('actual published archive retains every prior cohort alongside the eight 17
   const latestReferenceIds = ['hyponatremia_verbalis2013'];
   const latestQids = ['1a93346d', '21a99f07', '3fa2737c', '516ec2a6',
     'a4c85d32', 'd9257155', 'e2aae4c7', 'e94a6488'].sort();
+  const hyperkalemiaQids = ['b35be598', 'e0853fac', 'ebea50d5'];
   const continuationRewrittenQids = [
     '02814d6c', '0c1d09c3', '0e1a838d', '12328a3e', '18784ef8', '1b4ebca6',
     '23635484', '236ed8f1', '26804856', '3a01ea4b', '3e0788ac', '4b27ea54',
@@ -359,12 +362,14 @@ test('actual published archive retains every prior cohort alongside the eight 17
   ];
   const legacyReferenceIds = report.referenceIds.filter((id: string) =>
     !chamberReferenceIds.includes(id) && !continuationReferenceIds.includes(id) && !latestReferenceIds.includes(id));
-  expect(report.archiveCount).toBe(177);
+  expect(report.archiveCount).toBe(180);
   expect(report.originalCount).toBe(16);
   expect(report.additionCount).toBe(110);
   expect(report.continuationCount).toBe(43);
   expect(report.latestCount).toBe(8);
   expect(report.latestQids).toEqual(latestQids);
+  expect(report.hyperkalemiaCount).toBe(3);
+  expect(report.hyperkalemiaQids).toEqual(hyperkalemiaQids);
   expect(continuationRewrittenQids).toHaveLength(42);
   expect(report.continuationQids).toEqual([...continuationRewrittenQids, '5530b59c'].sort());
   // Freeze every original object, including its source, author, cards and metadata.
@@ -374,6 +379,7 @@ test('actual published archive retains every prior cohort alongside the eight 17
   expect(chamberReferenceIds).toHaveLength(14);
   expect(continuationReferenceIds).toHaveLength(4);
   expect(report.referenceCount).toBe(354 + chamberReferenceIds.length + 4 - 1 + 1);
+  expect(report.referenceCount).toBe(372);
   expect(report.referenceIds.filter((id: string) => latestReferenceIds.includes(id))).toEqual(latestReferenceIds);
   expect(report.referenceIds.filter((id: string) => continuationReferenceIds.includes(id))).toEqual(continuationReferenceIds);
   expect(report.referenceIds.filter((id: string) => continuationRetiredReferenceIds.includes(id))).toEqual([]);
@@ -389,7 +395,15 @@ test('actual published archive retains every prior cohort alongside the eight 17
   expect(createHash('sha256').update(JSON.stringify(publishedLegacyIds)).digest('hex'))
     .toBe('c35ba55bca3cec0ca1c51f2efffaee27ad86e8eaae1fa894030a38035ef99e56');
   expect(report.originalQids).toEqual([...priorQids, ...addedQids, ...referenceOnlyQids].sort());
-  expect(report.rows).toHaveLength(708);
+  expect(report.rows).toHaveLength(720);
+  const hyperkalemiaRows = report.rows.filter((row: any) => row.release === '17.25');
+  expect(hyperkalemiaRows).toHaveLength(12);
+  for (const qid of hyperkalemiaQids)
+    expect(hyperkalemiaRows.filter((row: any) => row.qid === qid).map((row: any) => row.profile).sort())
+      .toEqual(['exam', 'main', 'offline', 'study']);
+  for (const row of hyperkalemiaRows) expect(row).toMatchObject({status: 'known', historical: true, release: '17.25',
+    sourceExact: true, authorExact: true, cardsExact: true, bindingExact: true, currentSeparate: true,
+    policy: {material: true, pending: 'update-required', answered: 'historical'}});
   const latestRows = report.rows.filter((row: any) => row.release === '17.24');
   expect(latestRows).toHaveLength(32);
   for (const row of latestRows) expect(row).toMatchObject({status: 'known', historical: true, release: '17.24',

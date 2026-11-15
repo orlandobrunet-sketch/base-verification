@@ -1,0 +1,129 @@
+{
+  "schema": "NQ_HYPERKALEMIA_1726_TESTS_INDEPENDENT_REVIEW_v1",
+  "reviewer": "/root/editorial_inventory_1725",
+  "reviewedAtUTC": "2026-11-15T16:40:20.634Z",
+  "baseCommit": "33b203ddccc125c04b2c740c2316ae5c0ea362a0",
+  "status": "PASS",
+  "scope": "Static independent review of six changed tests; no tests/browser run, production-source write or medical reassessment.",
+  "blockers": [],
+  "diffSHA256": "690d12602de6da27793ec7b49b933478863a635988aeffc75cc82c1008bd5b15",
+  "snapshots": [
+    {
+      "file": "tests/answers/answer-length-history.test.cjs",
+      "sha256": "6ecd5a9808a70332ffeb54e4c451900a9593fde9bdfeb7745fa14c7b6b8a083e",
+      "bytes": 11221
+    },
+    {
+      "file": "tests/answers/catalog-construction-cache.test.cjs",
+      "sha256": "85542b66cfcc4d820b13157371f79bf3fa688128b2b3f447d41c5d5df54c9e75",
+      "bytes": 12811
+    },
+    {
+      "file": "tests/specs/103-confirmacao-gasto.spec.ts",
+      "sha256": "5ece6d369cc1dcbbaeaea2dec94b9e727754378273f555d034711e2b7aa7c5ae",
+      "bytes": 5032
+    },
+    {
+      "file": "tests/specs/136-question-revisions.spec.ts",
+      "sha256": "b3f4e77d5ef3e0601bb5d2783187d0f709bc8f2456635f09bd9d025381d2f8d7",
+      "bytes": 68234
+    },
+    {
+      "file": "tests/specs/255-medical-revision-history.spec.ts",
+      "sha256": "31963f15549e191fc948874638ca9f3757028562372563dd4c3859461bcf8dab",
+      "bytes": 7580
+    },
+    {
+      "file": "tests/specs/257-medical-continuation-history.spec.ts",
+      "sha256": "f8b9c0ac00b5b9385197638b4df8364ec6011bf9590a7a15ad33ddefa4ab4e95",
+      "bytes": 15738
+    }
+  ],
+  "checks": {
+    "priorAssertionsPreserved": true,
+    "noTimeoutRetrySkipOrConfigChange": true,
+    "gameHelperUnchanged": true,
+    "historyRegressionAppendOnly": true,
+    "published177PrefixDigest": "sha256:8e3a196d946d6e642cd64722e86ae75208fd0b26667ec014315a7c45a12ac168",
+    "published177PrefixMatchesActualBase": true,
+    "actualCounts": {
+      "authors": 741,
+      "histories": 180,
+      "historicalBindings": 720,
+      "currentPresentations": 2964,
+      "referenceCards": 372,
+      "newHistoricalBindings": 12
+    },
+    "cohortIDs": [
+      "b35be598",
+      "e0853fac",
+      "ebea50d5"
+    ],
+    "newArchivesRelease": "17.25"
+  },
+  "files": [
+    {
+      "file": "tests/answers/answer-length-history.test.cjs",
+      "line": 167,
+      "result": "PASS",
+      "reason": "Append-only regression. Frozen digest independently matches all177 records from git base33b. Exact three IDs,12 bound historical views/source/author/cards/policy and separate current revisions/current UKKA reference are asserted."
+    },
+    {
+      "file": "tests/answers/catalog-construction-cache.test.cjs",
+      "line": 182,
+      "result": "PASS",
+      "reason": "Updates exact totals177/708 to180/720; existing full sync/async equality loops remain. Adds exact372 cards and three archived IDs."
+    },
+    {
+      "file": "tests/specs/136-question-revisions.spec.ts",
+      "line": 365,
+      "result": "PASS",
+      "reason": "Adds exact three IDs and12 bindings over four profiles with known/historical/source/author/cards/binding/current-separation/policy checks. Frozen16+110 hashes,353 legacy-card ID digest,43-record cohort and32 previous17.24 bindings remain intact."
+    },
+    {
+      "file": "tests/specs/255-medical-revision-history.spec.ts",
+      "line": 62,
+      "result": "PASS",
+      "reason": "Only fixture rows added: answered e0853fac17.25 and pending ebea50d517.25. Existing bodies unchanged; saved grades/wording/cards/raw storage and explicit current-version confirmation/current binding/source/cards remain asserted."
+    },
+    {
+      "file": "tests/specs/257-medical-continuation-history.spec.ts",
+      "line": 146,
+      "result": "PASS",
+      "reason": "Only global total177 to180;43-record/172-binding cohort and all old behavior assertions unchanged."
+    },
+    {
+      "file": "tests/specs/103-confirmacao-gasto.spec.ts",
+      "line": 5,
+      "result": "PASS",
+      "reason": "Exact single callsite enables existing asGuest option. Helper waits for/invokes native playAsGuest, which sets guest mode/localStorage and adjusts portal/welcome DOM. No explicit timeout extension, forced click, new stub or masking of spending/accessibility/cancel/focus/overflow assertions. Existing localhost request restriction unchanged."
+    }
+  ],
+  "risks": {
+    "assertionWeakeningFound": false,
+    "falsePositiveIntroduced": false,
+    "externalWritesAdded": false,
+    "localFixtureStorageWritesIntentional": true,
+    "rationale": "Changes add cohort coverage or initialize the already-anonymous game fixture. Product functions, selectors and expected outcomes are not replaced by the diff."
+  },
+  "executionEvidence": {
+    "testsRerunByReviewer": false,
+    "browserStarted": false,
+    "rootReportedNodePass": 543,
+    "rootReportedBrowserConfigurationPass": 9,
+    "rootCountsIndependentlyVerified": false,
+    "pendingRuns": [
+      "103",
+      "269"
+    ],
+    "preApplicationEnvironmentBlockedAttempts": 3,
+    "environmentBlockedAttemptsAreProductFlakiness": false,
+    "ci1097Flaky103RemainsHistoricalIncident": true,
+    "flakyResolutionClaimed": false
+  },
+  "limits": [
+    "Static diff/source review does not establish a pass for the in-flight103/269 run.",
+    "Three reported host/network blocks before application start remain separate from product assertion failures.",
+    "The fixture change fits guest portal initialization; historical103 resolution requires execution artifacts and causal evidence, not a retry pass."
+  ]
+}

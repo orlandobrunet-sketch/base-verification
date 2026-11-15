@@ -1,0 +1,143 @@
+{
+  "batch": "HYPERKALEMIA-2026-11-15-01",
+  "change_type": "medical_editorial",
+  "expected_version": "17.26",
+  "allowed_files": [
+    ".gitattributes",
+    "data/question-revision-history.js",
+    "data/question-revision-manifest.js",
+    "data/topics.js",
+    "docs/CONTINUITY.md",
+    "docs/ROADMAP.md",
+    "docs/design/NQ_RELEASE_1726.md",
+    "docs/editorial/review-batches/HYPERKALEMIA-2026-11-15-01.json",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/README.md",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/application-byte-transport-check.json",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/application-independent-review-R2.json",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/application-independent-review-R2.md",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/application-receipt.json",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/author-A1.json",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/author-A1.md",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/evidence-copies.json",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/forge103-diagnosis-A1.json",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/forge103-diagnosis-A1.md",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/forge103-independent-review-A1.json",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/independent-review-A1.json",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/integration-R2-review.json",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/integration-R2-review.md",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/operational-approval-R2.json",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/operational-independent-review-R2.json",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/operational-independent-review-R2.md",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/original-independent-classification.json",
+    "docs/editorial/reviews/2026-11-15-hyperkalemia/tests-independent-review.json",
+    "index.html",
+    "jogar/index.html",
+    "sw.js",
+    "tests/answers/answer-length-history.test.cjs",
+    "tests/answers/catalog-construction-cache.test.cjs",
+    "tests/specs/103-confirmacao-gasto.spec.ts",
+    "tests/specs/136-question-revisions.spec.ts",
+    "tests/specs/255-medical-revision-history.spec.ts",
+    "tests/specs/257-medical-continuation-history.spec.ts",
+    "version.json"
+  ],
+  "expected_question_delta": 0,
+  "refs_policy": "unchanged",
+  "integration_base": "33b203ddccc125c04b2c740c2316ae5c0ea362a0",
+  "questions": {
+    "ebea50d5": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA",
+      "before_sha256": "sha256:576207cdcbdab967bd607427b540ce4a180344deeba03420734c3b741861fff9",
+      "after_sha256": "sha256:9425c92a731bf9422cee2ad886e98bea61038530f67da935842ea9b6437c50c0",
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-15-hyperkalemia/independent-review-A1.json",
+        "report_sha256": "4a7e5b9cdbb961284fdfc8643276f349a61ded0c06ec58f4316c78677ab9eaa7",
+        "version_pointer": "/questions/ebea50d5/version",
+        "gate_pointer": "/questions/ebea50d5/gate"
+      },
+      "difficulty_change": {
+        "before": "hard",
+        "after": "medium",
+        "reason": "Independent formal assessment of intrinsic difficulty; OP/qid preserved."
+      }
+    },
+    "e0853fac": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA",
+      "before_sha256": "sha256:bd961461115e71931f9f38d9d3148dcfa6cf71ea4de635c3cdb2a211af33a9d7",
+      "after_sha256": "sha256:e22eb8d91d46334a655e84d67bd29bbfcef30b3ac099f0eb9d5e675efd679289",
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-15-hyperkalemia/independent-review-A1.json",
+        "report_sha256": "4a7e5b9cdbb961284fdfc8643276f349a61ded0c06ec58f4316c78677ab9eaa7",
+        "version_pointer": "/questions/e0853fac/version",
+        "gate_pointer": "/questions/e0853fac/gate"
+      }
+    },
+    "b35be598": {
+      "action": "rebuild",
+      "preserve_fsrs": true,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA",
+      "before_sha256": "sha256:5d77f3f66105e2c689153a86b26dc0def8977283c54bc22c7e9294bf96d589dd",
+      "after_sha256": "sha256:ffd2c33159b97399236bf9350d418004e421cda19aa25438b622d148b6a2ce07",
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-15-hyperkalemia/independent-review-A1.json",
+        "report_sha256": "4a7e5b9cdbb961284fdfc8643276f349a61ded0c06ec58f4316c78677ab9eaa7",
+        "version_pointer": "/questions/b35be598/version",
+        "gate_pointer": "/questions/b35be598/gate"
+      },
+      "difficulty_change": {
+        "before": "medium",
+        "after": "easy",
+        "reason": "Independent formal assessment of intrinsic difficulty; OP/qid preserved."
+      }
+    }
+  },
+  "reused_reference_review": {
+    "id": "ukka_hyperkalemia_2026",
+    "scope": "Existing full 12-field card independently reviewed and retained byte-for-byte.",
+    "report_path": "docs/editorial/reviews/2026-11-15-hyperkalemia/independent-review-A1.json",
+    "report_sha256": "4a7e5b9cdbb961284fdfc8643276f349a61ded0c06ec58f4316c78677ab9eaa7",
+    "version_pointer": "/references/ukka_hyperkalemia_2026/version",
+    "gate_pointer": "/references/ukka_hyperkalemia_2026/gate"
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "/root/study_visibility_1717 (formal clinical and transport review), /root/editorial_inventory_1725 (independent operational and test review)",
+    "availability_basis": "Independent fallback retained from the preceding review workflow; no new external SaaS transmission."
+  },
+  "history_policy": {
+    "base_release": "17.25",
+    "records_before": 177,
+    "records_added": 3,
+    "records_after": 180,
+    "previous_bindings_preserved": 708,
+    "new_bindings": 12,
+    "bindings_after": 720,
+    "preserve_fsrs": true,
+    "operational_receipt": "docs/editorial/reviews/2026-11-15-hyperkalemia/operational-approval-R2.json",
+    "operational_receipt_sha256": "1ef55a8eed5bd40da7a0fc5304e6e3e0cc474a3508c2f399ffddf2f7468841b3",
+    "application_receipt": "docs/editorial/reviews/2026-11-15-hyperkalemia/application-receipt.json",
+    "application_receipt_sha256": "f57ceba5b779d2f8e800ba83688174c6d2a85b4444ee487995dc0d2dc2bfdbc0",
+    "application_review": "docs/editorial/reviews/2026-11-15-hyperkalemia/application-independent-review-R2.json",
+    "application_review_sha256": "b7ae380a7a092efba594005d7b6316789a70e4ca82dfce21dfd0d1ffa043967c"
+  },
+  "scope_limits": [
+    "741 questions and372 reference cards retained; no merge, retirement, addition or FSRS reset.",
+    "Only three exact approved hyperkalemia versions applied;738 other authors unchanged.",
+    "TTKG6474ec20 and vaptan duplicate disposition held in review, not disabled.",
+    "Only technical change is test103 Guest setup; no product runtime or shared helper change.",
+    "Historical intermittencies and global medical review remain open."
+  ]
+}

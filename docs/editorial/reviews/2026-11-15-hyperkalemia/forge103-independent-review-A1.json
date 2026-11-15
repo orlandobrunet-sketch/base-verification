@@ -1,0 +1,224 @@
+{
+  "schema": "NQ_FORGE103_INDEPENDENT_TECHNICAL_REVIEW_A1",
+  "date": "2026-11-15",
+  "reviewer": "/root/study_visibility_1717",
+  "scope": {
+    "reviewOnly": true,
+    "newBrowserOrTestsOrNetwork": false,
+    "rootEdits": false,
+    "writes": "Apenas este novo parecer emART. Diagnóstico e provas anteriores preservados."
+  },
+  "source": {
+    "diagnosis": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1726-forge103-investigation\\forge103-diagnosis-A1.json",
+    "sha256": "8bf6d932075d6992bc1256d149a69ee9de114854a72d821f0d8223cd94b2bef8",
+    "pinnedCommit": "845baee59bfa6fd285bd2f5814312b14322d97f8",
+    "headAtFirstInspection": "845baee59bfa6fd285bd2f5814312b14322d97f8",
+    "headAtFinalInspection": "33b203ddccc125c04b2c740c2316ae5c0ea362a0",
+    "tree": "b8e9ab73c3627c04b6a679494f19558f114189c2",
+    "pinnedAndFinalTreesIdentical": true,
+    "worktreeStatusAtBothInspections": "clean",
+    "note": "HEAD avançou ao merge33b203d durante o selo. O guard inicial parou por SHA diferente; comparação explícita de árvore e11pins confirmou fonte idêntica. Isso não foi falha do aplicativo ou teste."
+  },
+  "conclusion": {
+    "result": "SUPORTA_AJUSTE_APENAS_DA_FIXTURE103",
+    "blockingFinding": false,
+    "reason": "A103 pretende um jogo anônimo,mas o caminho legado de preparação só oculta oPortal sem ativarVisitante. AtraceCI e ocontrole negativo mostram a sobreposição resultante. A guarda real deauth e a entradaVisitante existente justificam o ajuste deprecondição; umPASS isolado não é sua única base."
+  },
+  "causalChain": [
+    {
+      "file": "tests/specs/103-confirmacao-gasto.spec.ts:5",
+      "finding": "injectGameState(page,{gold}) omite a opçãoVisitante num teste de confirmação/Forja,sem expectativa deLogin."
+    },
+    {
+      "file": "tests/helpers/game.ts:63,79",
+      "finding": "A opçãoasGuest chama playAsGuest real antes deenterGame; a entrada padrão apenas adicionahidden noDOM e chama continueGame."
+    },
+    {
+      "file": "js/auth.js:69,187,210,739",
+      "finding": "As rotas de retorno inicial nulo mostramPortal quando authUser é nulo e_guestMode é falso. playAsGuest define a flag e a persistência antes de ocultarLanding. A condição comum deixa de ser verdadeira no modo escolhido."
+    },
+    {
+      "file": "js/game.js:6487,6560,6605",
+      "finding": "O resultado emdialog.showModal pode funcionar acima doPortal; fechá-lo revela a superfície comum deForja abaixo. O local dafalha não indica uma cobrança extra nem requer mudarz-index."
+    },
+    {
+      "file": "TraceCI,call@11293",
+      "finding": "O botão final estava visível,habilitado e estável; oPortal interceptou oclique. Cancelamento ecompra já haviam avançado,comsaldo950."
+    }
+  ],
+  "independentTransportChecks": {
+    "all11SourceInventoryPinsValid": true,
+    "inventoryFile": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1726-forge103-investigation\\probe-source-inventory.json",
+    "inventorySHA256": "14bc8d21ecbcd7f23ba437906751f4fb5801576066b841cac3ecee44549e64ac",
+    "probeSHA256": "97c111346e8276774ee8269d699b139c55dcd7cb1b36c40ee0f5101a0b8c4626",
+    "testBodiesAndAssertionsExactAfterEOLNormalization": true,
+    "testBodySHA256": "0629f1be3d2c462e591d2e2e0a3d9c0b34957069a915a663f161c9cdd8422ba2",
+    "wholeSpecByteIdentical": false,
+    "declaredSurroundingAdaptations": [
+      "Imports absolutos",
+      "Wrapper depreparação seleciona somente{} ou{asGuest:true}",
+      "Guardas de rede iguais nosdois controles",
+      "Observação passiva eanexo",
+      "Configuração de coleta externa"
+    ],
+    "onlyOneCaseExecutedByDiagnostic": true,
+    "configSHA256": "a840e67d5536b58ea678d1ef3c5dd98561fb808bdd56b77bc745e9e7a952bf98",
+    "sameConstraints": {
+      "timeoutMs": 20000,
+      "retries": 2,
+      "workers": 1,
+      "project": "chromium",
+      "trace": "on",
+      "video": "off"
+    },
+    "allSixCausalSourcesEqualToPublished1724AfterEOLNormalization": true
+  },
+  "rawCITrace": {
+    "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1725-ci1097-review\\artifacts\\shard1\\report\\data\\ca308e757123252e94c52d1389f0e26996630ba1.zip",
+    "sha256": "fe2a1b7f8fbcfa4e644232ed5a420c16ae4248d6b4ddf8fae0dd393fdf7b019c",
+    "independentlyReadEvents": {
+      "clickCall": "call@11293",
+      "startTime": 332837.354,
+      "portalInterceptLogs": 33,
+      "gold950Observed": true
+    }
+  },
+  "actualReportsParsed": {
+    "report-original-unmarked-localbrowser.json": {
+      "sha256": "e5c53311c1e4966b08b697bf8cd69bc25f289fbce2ba039b2831c7563ee0d508",
+      "cases": [
+        {
+          "title": "forge: custo real, cancelamento sem gasto e cobrança única",
+          "project": "chromium",
+          "status": "flaky",
+          "timeoutMs": 20000,
+          "results": [
+            {
+              "retry": 0,
+              "status": "timedOut",
+              "durationMs": 20667
+            },
+            {
+              "retry": 1,
+              "status": "passed",
+              "durationMs": 5836
+            }
+          ]
+        }
+      ],
+      "runnerErrors": 0
+    },
+    "report-guest-native-localbrowser.json": {
+      "sha256": "ac0a3863ddbea5fb28b900420471d6e22a1c0c5e326cccc22f140dad03f2db98",
+      "cases": [
+        {
+          "title": "forge: custo real, cancelamento sem gasto e cobrança única",
+          "project": "chromium",
+          "status": "expected",
+          "timeoutMs": 20000,
+          "results": [
+            {
+              "retry": 0,
+              "status": "passed",
+              "durationMs": 6034
+            }
+          ]
+        }
+      ],
+      "runnerErrors": 0
+    },
+    "report-original-unmarked.json": {
+      "sha256": "2d7199806a3c183526585382fe10a0a18974229d7d9da0d89a4fbcce7ea17bc1",
+      "cases": [
+        {
+          "title": "forge: custo real, cancelamento sem gasto e cobrança única",
+          "project": "chromium",
+          "status": "unexpected",
+          "timeoutMs": 20000,
+          "results": [
+            {
+              "retry": 0,
+              "status": "failed",
+              "durationMs": 2
+            },
+            {
+              "retry": 1,
+              "status": "failed",
+              "durationMs": 2
+            },
+            {
+              "retry": 2,
+              "status": "failed",
+              "durationMs": 2
+            }
+          ]
+        }
+      ],
+      "runnerErrors": 0
+    }
+  },
+  "attachments": {
+    "allHashesVerified": true,
+    "count": 5,
+    "files": [
+      {
+        "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1726-forge103-investigation\\results-original-unmarked-localbrowser\\probe103-forge-custo-real--1259d--sem-gasto-e-cobrança-única-chromium\\test-failed-1.png",
+        "sha256": "77be125552b7422d9dc054ec2987936f75b7befd3938566caec9579c92380fb3"
+      },
+      {
+        "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1726-forge103-investigation\\results-original-unmarked-localbrowser\\probe103-forge-custo-real--1259d--sem-gasto-e-cobrança-única-chromium\\error-context.md",
+        "sha256": "53a6b58c5edfb16e0ad1aeafb992f8a8ebf9afb8c661e6fc3aedc7c94e8bc03b"
+      },
+      {
+        "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1726-forge103-investigation\\results-original-unmarked-localbrowser\\probe103-forge-custo-real--1259d--sem-gasto-e-cobrança-única-chromium\\trace.zip",
+        "sha256": "b83954f14e42b3d40c617cb5ff9df5730356d35f7bf3fc8eb6a7771fe04d50aa"
+      },
+      {
+        "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1726-forge103-investigation\\results-original-unmarked-localbrowser\\probe103-forge-custo-real--1259d--sem-gasto-e-cobrança-única-chromium-retry1\\trace.zip",
+        "sha256": "99c0cea561f9f27512f39144b39b24161c9ea025d07407e36f2529a8c1dfd1fd"
+      },
+      {
+        "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1726-forge103-investigation\\results-guest-native-localbrowser\\probe103-forge-custo-real--1259d--sem-gasto-e-cobrança-única-chromium\\trace.zip",
+        "sha256": "ef101d9b0d2e70e0c6ed2d330cd3f5138e79eb013c4e1acaf5ae25e1b8f4fbd0"
+      }
+    ]
+  },
+  "observationAndNetwork": {
+    "observerDoesNotMutateFocusScrollClassOrEventDefault": true,
+    "observerTimingCostIsNotZero": true,
+    "productFunctionsOrResponsesSubstituted": false,
+    "vendoredSDKRunsLocally": true,
+    "sourceGuardAllows": "SóGET emlocalhost:5514; outros métodos/origens abortados eWebSockets fechados.",
+    "networkCounterAttachmentExists": false,
+    "counterLimit": "Não inventar zero tentativas/erros. A política de bloqueio foi conferida emfonte; não há contadores reais anexados para esses acessos."
+  },
+  "existingRegressionRead": {
+    "file": "tests/specs/269-guest-fixture-entry.spec.ts",
+    "sha256": "cdb8f1979379986cc81ee80201fbfafe6f4fd43ea5d9c14634c849d230233838",
+    "contracts": "Entrega nula tardia porpromise/evento depois da preparaçãoVisitante,com handlers doapp reais efronteiraSDK controlada.",
+    "executedByThisReview": false
+  },
+  "recommendedPatch": {
+    "onlyFile": "tests/specs/103-confirmacao-gasto.spec.ts",
+    "onlyNecessaryChange": "Na função preparar,usar await injectGameState(page,{gold},{asGuest:true});",
+    "sharedHelperOrConfigOrProductChangeRequired": false,
+    "preserve": [
+      "Todos os cliques nativos",
+      "Asserções deouro,cancelamento,cobrança única,foco egeometria",
+      "Prazos eretries originais",
+      "Funções deproduto,RNG,banco,recompensas"
+    ],
+    "optionalBoundaryAssertion": "Pode observar queLanding está oculta como precondição. Não ocultá-la novamente apósForja,não usarforce:true e não substituir asserções existentes.",
+    "afterPatchValidation": "Validar a103 original e269 pertinente,sem reinterpretarretry comoPASS direto. Não foram executadas novas validações neste parecer."
+  },
+  "limits": [
+    "Ocallback exato e onome doevento deauth não foram capturados. Não escolher onAuthStateChange inicial ougetSession.then porinferência; o ajuste atua na precondição comum.",
+    "OcontroleVisitante passou uma vez,R0. Não se demonstrou nessa rodada uma entrega nula especificamente DEPOIS doGuest. A fonte e os contratos269 fundamentam a proteção,mas a leitura desses contratos não é execução nova.",
+    "Oestadofinal não exclui matematicamente todoSIGNED_OUT outroca emqualquer ponto anterior àrestauração dosave. Não há evidência de uma troca real nofluxo observado; não transformar ausência de evidência em exclusão absoluta.",
+    "Oretry1 semVisitante passou econtinuaFLAKY. Ele não corrige areproduçãoR0. Um resultado diretoGuest não garante ausência detodos os defeitos deauth.",
+    "Apreflight com executável ausente terminou antes do navegador; seus três resultados são infraestrutura,não três reproduções deproduto.",
+    "Aigualdade das seis fontes contra17.24 afasta alteração semântica nesses arquivos,mas não prova que mudanças dedados não possam expor diferenças de tempo. Não se atribui afalha aos oito itens médicos.",
+    "Não há prova de bug no fluxoVisitante nativo,nem motivo demonstrado para editar transação,auth,helperglobal,configuração ouestilo.",
+    "Foi lido oreceipt deencerramento do5514; não se iniciou,encerrou ou sondou processo neste parecer. Nenhum servidor oubrowser novo."
+  ]
+}

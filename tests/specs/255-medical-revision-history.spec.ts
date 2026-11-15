@@ -59,6 +59,7 @@ async function openSaved(page: Page) {
 for (const {qid, release} of [
   {qid: '32661acb', release: '17.09'}, {qid: '67035e0e', release: '17.09'},
   {qid: '1a93346d', release: '17.24'}, {qid: '516ec2a6', release: '17.24'},
+  {qid: 'e0853fac', release: '17.25'},
 ]) {
   test('answered ' + qid + ' keeps the saved grade, wording and complete previous reference cards', async ({page}) => {
     const fixture = await seed(page, qid, true, true, release);
@@ -83,6 +84,7 @@ for (const {qid, release} of [
 }
 for (const {qid, release} of [
   {qid: '32661acb', release: '17.09'}, {qid: 'a4c85d32', release: '17.24'},
+  {qid: 'ebea50d5', release: '17.25'},
 ]) {
 test('pending ' + qid + ' requires explicit current-content confirmation before enabling the revised alternatives', async ({page}) => {
   const fixture = await seed(page, qid, false, true, release);
