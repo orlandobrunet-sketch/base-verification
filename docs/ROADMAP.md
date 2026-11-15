@@ -8,13 +8,17 @@ Este documento controla direção, prioridade e critérios de conclusão. Ele n�
 
 ## Estado operacional - 15/11/2026
 
-**Preparação da 17.24:** End e foco da Câmara corrigidos; a conferência da candidata 17.23 revelou também oscilação do botão do Ritual e preparo anônimo incompleto num cenário de XP. Os dois receberam reparos próprios. A 17.23 não foi publicada; integração e publicação exigem nova CI e conferência pública. [Investigação anterior](design/NQ_END_AND_INTERMITTENCIES_1723.md), [causas adicionais e limites](design/NQ_END_AND_RITUAL_1724.md).
+**Candidata 17.25 aplicada localmente:** oito questões e dois cards com revisão formal independente, sem reset de QIDs/FSRS. Histórico 169→177 e 551 testes de lógica/configuração aprovados; bateria local de navegador em andamento. A revisão médica global, a decisão de fusão de vaptanos e as intermitências históricas continuam abertas. CI, integração e publicação ainda não encerradas. [Escopo e critérios](design/NQ_RELEASE_1725.md).
+
+**17.24 publicada e conferida:** [PR973](https://github.com/orlandobrunet-sketch/base-verification/pull/973), merge `ca1184916b53cddfc7581df17ed75ff3a029c14f`. CI1096: 16 grupos aprovados, 3.569 aprovações diretas, uma após repetição na 279, 268 skips previstos e nenhuma falha final, em 3.838 casos; smoke 130. Pages no merge exato, oito arquivos públicos idênticos e 32 percursos públicos aprovados sem retry/skip. São 30 auditorias reais limpas; os dois percursos de XP têm guards, sem contadores gravados. End, foco da Câmara, estabilidade do Ritual e preparo Guest de XP publicados; conteúdo médico preservado nesta entrega. A 17.23 não foi publicada, e CI1094 reprovada/CI1095 com duas repetições permanecem no histórico. [Fechamento e limites](design/NQ_RELEASE_1724.md).
 
 **17.22 publicada e conferida:** [PR971](https://github.com/orlandobrunet-sketch/base-verification/pull/971), merge `6246a0b3f0e8f07a80c1a13a3df6f740baa772e6`. CI1090 com 3.540 aprovações diretas, 268 pulos previstos e nenhuma falha ou repetição; smoke 130. Pages, oito arquivos públicos e 22 percursos no domínio conferidos. [Fechamento e limites](design/NQ_RELEASE_1722.md).
 
 **17.21 publicada e conferida:** [PR970](https://github.com/orlandobrunet-sketch/base-verification/pull/970), merge `434924dafb6797aca788f54f18fd3421be630285`. CI1087 aprovada: 3.510 aprovações diretas, 268 skips previstos, zero falha e zero repetição, além de smoke 130. Pages, doze arquivos públicos e 14 percursos no domínio conferidos. Foco, continuidade do baú e entrega do prêmio antes da vitória corrigidos; conteúdo médico preservado. [Proveniência e limites](design/NQ_RELEASE_1721.md).
 
-**Frente atual expressamente autorizada:** rolagem por End e intermitências 96/97/98/191/193/226/279, sem parte médica. Priorizar reprodução e atribuição causal; aprovações posteriores não explicam um evento antigo. Os demais recortes das 35 superfícies ficam no backlog.
+**Frente atual expressamente autorizada — 15/11/2026, após a publicação da 17.24:** continuar as prioridades do projeto incluindo a parte médica. Revisão e eventual implementação de questões seguem as skills próprias e os gates cumulativos do [guia operacional](../AGENTS.md) e do [Handbook, §18.4](editorial/NQ_EDITORIAL_HANDBOOK_v1.md); a autorização da frente não substitui revisão formal, veredito de aprovação e publicação LIBERADA para cada alteração. Os registros anteriores de escopo sem parte médica são históricos e não restringem esta autorização atual.
+
+**Pendências mantidas:** atribuição retrospectiva exclusiva de 96/97/98/191/193/226/279, validação em aparelhos físicos e com serviços reais, além dos demais recortes das 35 superfícies. Provas causais antecedem reparos; aprovações posteriores não encerram causas antigas.
 
 ## Histórico operacional até 14/11/2026
 

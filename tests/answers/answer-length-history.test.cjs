@@ -118,3 +118,48 @@ test('the retired KDIGO card survives bound history while the card-only continua
     assert.deepEqual(currentBound.references, current.references);
   }
 });
+
+test('the eight 17.24 published versions remain resolvable after the next medical revision in every mode', () => {
+  const expected = ['1a93346d', '21a99f07', '3fa2737c', '516ec2a6',
+    'a4c85d32', 'd9257155', 'e2aae4c7', 'e94a6488'].sort();
+  const rows = history.filter(entry => entry.release === '17.24');
+  assert.deepEqual(rows.map(entry => entry.qid).sort(), expected);
+  let bindingCount = 0;
+  for (const old of rows) {
+    assert.equal(builder.digest(old.author), old.authorRevision, old.qid);
+    for (const profile of profiles) {
+      const retained = catalog.inspect(old.sources[profile], {profile, binding: old.bindings[profile]});
+      assert.equal(retained.status, 'known', old.qid + ':' + profile);
+      assert.equal(retained.value.historical, true);
+      assert.equal(retained.value.release, '17.24');
+      assert.deepEqual(retained.value.source, old.sources[profile]);
+      assert.deepEqual(retained.value.author, old.author);
+      assert.deepEqual(retained.value.references, old.references);
+      assert.deepEqual(retained.value.binding, old.bindings[profile]);
+      assert.deepEqual(retained.value.policy, {material: true, pending: 'update-required', answered: 'historical'});
+      const current = catalog.current(old.qid, profile);
+      assert(current);
+      assert.equal(current.historical, false);
+      assert.notEqual(current.binding.recordRevision, old.recordRevision);
+      assert.notDeepEqual(current.source, old.sources[profile]);
+      bindingCount++;
+    }
+  }
+  assert.equal(bindingCount, 32);
+});
+
+test('an answered old SUSTAIN record retains its original card while the current record uses the reviewed card', () => {
+  for (const qid of ['1a93346d', '516ec2a6']) {
+    const old = history.find(entry => entry.qid === qid && entry.release === '17.24');
+    assert(old, 'Published before record is required for ' + qid);
+    for (const profile of profiles) {
+      const retained = catalog.resolve(old.sources[profile], {profile, binding: old.bindings[profile]});
+      const current = catalog.current(qid, profile);
+      assert.equal(retained.historical, true);
+      assert.deepEqual(retained.references.sustain6, old.references.sustain6);
+      assert.notDeepEqual(retained.references.sustain6, current.references.sustain6);
+      assert.deepEqual(current.references.sustain6, references.sustain6);
+      assert.equal(retained.author.qid, current.author.qid);
+    }
+  }
+});
