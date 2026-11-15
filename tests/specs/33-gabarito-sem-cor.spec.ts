@@ -52,6 +52,7 @@ async function responder(page: Page) {
 test.describe('Gabarito legível sem depender de cor', () => {
   test('no Confronto Final a alternativa correta se identifica por texto, não só por cor', async ({ page }) => {
     await page.goto('/jogar/');
+    await page.evaluate(() => (window as any).playAsGuest());
     await injectBossState(page);
     await page.evaluate(() => document.body.classList.add('boss-battle-mode'));
     await responder(page);
@@ -74,6 +75,7 @@ test.describe('Gabarito legível sem depender de cor', () => {
     // dispensa. Marcá-la como já vista é o mesmo caminho que o app usa, e
     // deixa o cenário determinístico em vez de disputar cliques com a animação.
     await page.evaluate(() => localStorage.setItem('nefroquest-gold-milestone-shown', '1'));
+    await page.evaluate(() => (window as any).playAsGuest());
     await injectBossState(page);
     await page.evaluate(() => document.body.classList.add('boss-battle-mode'));
     // Errar de propósito: o gabarito da questão atual está em state.current.a.
