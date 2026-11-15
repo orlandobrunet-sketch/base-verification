@@ -1,8 +1,8 @@
 # Intermitências — investigação técnica de 14/11/2026
 
-Base publicada: 17.17, merge `c0a6b53e2051c6d084ee0d4427f03686a5aa021f`. O proprietário autorizou investigar e resolver o que dependesse do desenvolvimento, mantendo conteúdo médico fora do escopo. Durante a conferência foi encontrado um defeito atual no gestor de foco; seu reparo exige a candidata 17.18 e acompanha o incremento do cache no mesmo commit.
+Base publicada: 17.17, merge `c0a6b53e2051c6d084ee0d4427f03686a5aa021f`. O proprietário autorizou investigar e resolver o que dependesse do desenvolvimento, mantendo conteúdo médico fora do escopo. Durante a conferência foram encontrados defeitos atuais no gestor de foco e na apresentação atrasada de baús. A candidata 17.19 reúne o reparo de foco da 17.18 não publicada e a continuidade dos baús, acompanhando o cache no mesmo commit de cada asset.
 
-## Defeito atual de foco — reparo da 17.18
+## Defeito atual de foco — incluído na candidata 17.19
 
 O observador `reparo` de `nqDialogo` podia retirar o foco de um diálogo novo quando o conteúdo do diálogo anterior recebia uma atualização tardia. O binding permanecia válido e ambos os diálogos estavam conectados: o problema era considerar qualquer foco fora da raiz antiga como foco perdido.
 
@@ -24,6 +24,22 @@ Uma contraprova adicional isolou exatamente as 13 linhas (484 bytes) da proteç�
 
 Os dois registros antigos da spec 191 conservam somente o contexto de erro, sem trace ou geometria suficientes para atribuição retrospectiva exclusiva. A reprodução de um mecanismo compatível não prova que ambos tiveram uma única causa. Não foi identificado novo reparo de produto para esse recorte, nem acrescentada uma regressão que duplicasse 244/268.
 
+## CI1083: duas causas adicionais demonstradas
+
+### Home / 271 — precondição do ensaio
+
+A trace oficial mostrou o salto controlado de 1450 ms ocorrendo em 1,66 ms reais enquanto a atividade da conversa ainda estava `running`; o observador aplicou `paused` depois da leitura que falhou, de zero para duas mensagens. Geometria fora da janela não garante que o IntersectionObserver já entregou a saída. O retorno já aguardava a atividade observável, mas a saída não.
+
+Dois perfis reproduziram o RED ao reter somente a notificação nativa; os dois controles com entrega antes do salto passaram. Uma segunda rodada preservou os mesmos dois RED deliberados e dois PASS. A única alteração na spec271 aguarda `animationPlayState === 'paused'` antes do relógio. `shown`, texto, 1450/1600 ms e prazo de 20 s permanecem intactos. Os oito originais passaram sem retry; JS e CSS da Home continuam idênticos.
+
+### Baú / 276 — continuidade da recompensa
+
+Cinco respostas e avanços nativos geram a oportunidade sem reescrever RNG ou recursos. A saída pelos botões Átrio → Modos → Julgamento Rápido, antes do prazo do baú, conserva a jornada ativa. Aos 1199 ms, `#mgSair` recebe o hit-test e o foco está no desafio; aos 1200 ms o baú antigo aparece, toma o foco e intercepta Sair. Os dois perfis reproduziram o RED e os dois controles na campanha passaram. A guarda antiga de epoch/gameStarted não certificava a superfície atual; o claim capturava a origem somente ao clicar no popup.
+
+O reparo conserva os contadores, o sorteio e o prazo de 1200 ms. Cria uma oportunidade local somente após o commit da resposta e vincula a apresentação e o claim à sua origem, incluindo owner, domínio, jornada, lease e sandbox. Múltiplos ganhos são conservados sem sobreposição; outro modo, diálogo ou foco escolhido faz a apresentação aguardar. A retomada validada do mesmo piloto usa uma transferência opaca de uso único. Mudança de contexto aposenta timers, observador e nós capturados, sem remover um popup novo pelo ID. As aberturas diretas existentes conservam o comportamento imediato e não são transferidas como ganhos automáticos. Não há novo schema ou persistência; reload não está coberto por essa retenção transitória.
+
+A mesma reprodução passou quatro casos após o reparo. A nova spec285 passou seis cenários em computador e celular emulado, incluindo retomada nativa com nova lease da mesma jornada e abertura pelo controle real, com sorteio original. A compatibilidade posterior fechou 18/18, com a 86 completa (12), a 153 completa (4) e os dois percursos naturais do acerto25 da 276, sem retry e com prazo de 20 s por caso. A 276 permanece intacta: não se oculta ou consome artificialmente o baú para fazer o teste passar. O retorno antecipado do cleanup vazio foi incluído depois da primeira rodada da 285; por isso a matriz final repete essa spec na fonte consolidada.
+
 ## Intermitências sem causa comprovada
 
 - **226 / contexto da entrada:** a mensagem do Playwright não prova, sozinha, que houve navegação. A trace oficial da CI1081 registra somente o goto e o reload explícitos, sem destino adicional comprovado. Quatro controles de espera do catálogo e coleta explícita de memória passaram, sem reproduzir o erro. Um lançamento posterior que não iniciou o runner não é contado como teste. Não há retry, sleep ou exceção engolida para ocultar a falha.
@@ -37,10 +53,18 @@ As specs 96/97/191/193/226 passam a produzir um anexo somente após falha, com v
 
 Seis contratos Node/VM e três diagnósticos técnicos de navegador passaram, inclusive após acrescentar os campos da 96. A página fechada e o renderer pausado via CDP produziram indisponibilidade explícita; o último foi retomado e encerrado normalmente. A prova AST conserva os statements anteriores das specs, acrescentando somente import e hook. Revisão independente não encontrou alteração do resultado original, efeito no caminho verde ou coleta de dados privados.
 
+## Contratos de lógica do baú e adaptações de harness
+
+Os 16 contratos Node dedicados conferem commit, retenção, multiplicidade, mudança de owner/jornada/domínio/epoch/lease/sandbox, cancelamento durante abertura e transferência opaca. A prova de escrita recusada foi reforçada na revisão independente: o ledger válido chega a uma tentativa real de gravação; a recusa gera zero afterCommit. Um controle equivalente aceita a gravação e chama afterCommit uma vez, sem repetir no segundo commit. A primeira versão desse teste recusava antes por um ledger incompleto e não certificava o ponto de falha anunciado; esse limite e a correção ficam separados das provas do produto.
+
+As extrações VM de `storage.test.cjs`, `campaign-question-revisions.test.cjs` e `save-debounce.test.cjs` passaram a carregar o colaborador real de baús, inicialmente vazio. Asserções anteriores continuam iguais. As falhas iniciais de ReferenceError nessas fixtures foram preservadas como dependências do harness; as rodadas posteriores passaram 167/167 no grupo piloto anterior à prova adicional, 16/16 nos contratos dedicados finais, 13/13 na seleção de revisão de campanha e 8/8 no debounce. Esses recortes não são somados como uma única bateria. A bateria Node completa e a matriz de navegador da fonte consolidada são registradas no PR e no recibo externo antes da publicação.
+
+A primeira bateria completa da 17.19 teve 495 aprovações e 14 falhas, todas no extrator `.mjs` de reinício que ainda não carregava o novo colaborador. A busca anterior havia limitado extensões e deixou esse harness passar; não era uma regressão de cache ou do produto. Duas linhas condicionais carregam o bloco real vazio, preservando o suporte à base antiga, todos os statements, asserções e prazos. O grupo afetado foi conferido novamente: 29/29 aprovados com os mesmos bytes de game.js. Os outros sete grupos, com 480 aprovações, não foram repetidos. A validação local consolidada cobre 509 contratos em rodadas distintas; o RED inicial permanece preservado.
+
 ## Validação e publicação
 
 Antes do reparo atual de foco, as seleções do coordenador passaram em duas rodadas: oito casos de Estudo/Câmara/entrada e dois do leitor, sem retry, skip ou erro do runner. A configuração preserva os perfis originais, asserções e prazo de 20 segundos. Nenhum anexo pós-falha foi coletado no caminho verde. Os 28 casos da 198, os quatro controles da 180 e as contraprovas do helper/Estudo possuem suas próprias rodadas; não são apresentados como uma única bateria. A seleção posterior de 13 aprovações e três skips usa o reparo e a versão 17.18.
 
 Após a ampliação do diagnóstico, os dois percursos originais da 96 passaram novamente, com corpo e prazo de 20 segundos preservados e sem anexo no caminho verde. Os cinco hooks conservam os statements originais por AST. Os oito grupos locais de lógica passaram 493 testes, sem falha, skip ou drift durante a execução. Sintaxe do utilitário e alinhamento de versão/cache/Sentry/URL foram conferidos; o manifesto derivado mudou somente `release`.
 
-Falhas de lançamento por cache de navegador ausente e filtros que não coletaram testes foram preservados como problemas do ensaio, sem contá-los como RED do produto. A CI1082 (`43656053674`, HEAD `029ee72c65a2195d4e0cfefb8687304dd3185a3c`) terminou com 15/15 grupos aprovados: 3.495 aprovações diretas, uma após repetição automática na 96, 268 skips e zero falha final; smoke 130/130. Esse conjunto ainda não continha o reparo de foco, a 284 ou o hook96. A CI completa do HEAD final 17.18 ainda é necessária antes de integrar. Versão, cache, Sentry e URL do utilitário acompanham seu reparo no mesmo commit. O manifesto de questões muda somente o identificador técnico da release; dados, fórmulas, referências e geradores clínicos permanecem iguais à base.
+Falhas de lançamento por cache de navegador ausente e filtros que não coletaram testes foram preservados como problemas do ensaio, sem contá-los como RED do produto. A CI1082 (`43656053674`, HEAD `029ee72c65a2195d4e0cfefb8687304dd3185a3c`) terminou com 15/15 grupos aprovados: 3.495 aprovações diretas, uma após repetição automática na 96, 268 skips e zero falha final; smoke 130/130. Esse conjunto ainda não continha o reparo de foco, a 284 ou o hook96. A CI1083 do HEAD `4db224585076e8df5e35992e753867ef43523873` também terminou 15/15: 3.499 aprovações diretas, três após repetição (271 desktop e 276 desktop/celular), 268 skips e zero falha final; smoke 130. Ela revelou as duas causas adicionais acima e não certifica seus reparos posteriores. A CI completa do HEAD consolidado 17.19 ainda é necessária antes de integrar. Versão, cache, Sentry e URL do utilitário acompanham seu reparo no mesmo commit. O manifesto de questões muda somente o identificador técnico da release; dados, fórmulas, referências e geradores clínicos permanecem iguais à base.

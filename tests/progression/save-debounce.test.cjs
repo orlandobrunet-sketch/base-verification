@@ -27,6 +27,7 @@ function fn(name) {
 }
 const product = [
   section('    let _autoSaveTimer = null;', '    function isProgressSandbox()'),
+  section('    const _pendingChestRewards = [];', '    function triggerChestRewardPopup('),
   ...['isCharacterPilot', '_currentSaveOwner', '_guestSavePair', '_canonicalSaveRecord', '_isSaveTombstone',
     '_writeSaveTombstone', '_mirrorLegacySave', '_captureJourneyBinding', '_matchesJourneyBinding',
     '_questionSaveExtras', 'saveGame', '_doSaveGame', 'deleteSave', 'isProgressSandbox', 'beginProgressSandbox'].map(fn),

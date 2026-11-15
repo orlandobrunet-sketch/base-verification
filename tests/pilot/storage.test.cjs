@@ -66,6 +66,14 @@ function sourceSection(start, end) {
   assert.ok(begin >= 0 && finish > begin, `missing production section ${start}`);
   return gameSource.slice(begin, finish);
 }
+function installChestRewardEngine(ctx) {
+  // The extracted resume/stop functions now own a transient chest collaborator.
+  // Load its real empty lifecycle rather than replacing resume eligibility.
+  Object.assign(ctx, {_progressSandboxMode: null,
+    document: ctx.document || {removeEventListener() {}}, removeEventListener() {}});
+  vm.runInContext(sourceSection('    function _captureJourneyBinding()', '    function _reloadJourneyCollections()'), ctx);
+  vm.runInContext(sourceSection('    const _pendingChestRewards = [];', '    function triggerChestRewardPopup('), ctx);
+}
 function installResumeEngine(f, onStop) {
   const ctx = f.ctx;
   Object.assign(ctx, {_continueGamePending: false, _progressEpoch: 0, _stateData: {},
@@ -80,6 +88,7 @@ function installResumeEngine(f, onStop) {
     _reloadJourneyCollections() {}, refreshWelcomeSave() {},
     _toast(message) { ctx.toasts.push(message); },
     async continueGame(pilotResume) { assert.equal(pilotResume, true); ctx.continuations++; return true; }});
+  installChestRewardEngine(ctx);
   vm.runInContext(sourceSection('    let _pilotResumePending = false;', '    function saveGame()'), ctx);
 }
 function installContinueEngine(f, {loadTopics = async () => {}, restore = true} = {}) {
@@ -110,6 +119,7 @@ function installContinueEngine(f, {loadTopics = async () => {}, restore = true} 
     setTimeout(callback) { timers.push(callback); return timers.length; }, clearTimeout() {},
     requestAnimationFrame(callback) { frames.push(callback); }, console });
   vm.runInContext(sourceSection('    function _captureJourneyBinding()', '    function _reloadJourneyCollections()'), ctx);
+  installChestRewardEngine(ctx);
   vm.runInContext(sourceSection('    function _stopLocalJourney()', '    window._stopLocalJourney'), ctx);
   vm.runInContext(sourceSection('    let _continueGamePending = false;', '    function startNewFromWelcome()'), ctx);
   return {ctx, calls, timers, frames, button, title, detail, classes, attributes};
