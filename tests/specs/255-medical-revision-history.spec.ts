@@ -1,6 +1,6 @@
 import {test, expect, type Page} from '@playwright/test';
 
-// Synthetic saves use the real published 17.09 archive. No product function or bank is replaced.
+// Synthetic saves use real published archives. No product function or bank is replaced.
 const KEY = 'nefroquest-exam-state';
 const evidence = new WeakMap<Page, {errors: string[]; blocked: string[]; fixture?: unknown}>();
 test.use({serviceWorkers: 'block', contextOptions: {reducedMotion: 'reduce'}});
@@ -33,10 +33,10 @@ test.afterEach(async ({page}, info) => {
   expect(evidence.get(page)?.errors).toEqual([]);
   expect(evidence.get(page)?.blocked.filter(value => !value.startsWith('GET '))).toEqual([]);
 });
-async function seed(page: Page, qid: string, answered: boolean, binding = true) {
-  const fixture = await page.evaluate(({qid, answered, binding, key}) => {
+async function seed(page: Page, qid: string, answered: boolean, binding = true, release = '17.09') {
+  const fixture = await page.evaluate(({qid, answered, binding, key, release}) => {
     const w = window as any;
-    const old = w.NQQuestionRevisionHistory.find((entry: any) => entry.qid === qid && entry.release === '17.09');
+    const old = w.NQQuestionRevisionHistory.find((entry: any) => entry.qid === qid && entry.release === release);
     if (!old) throw Error('Missing trusted published archive: ' + qid);
     const question = w.NQAnswers.present(old.sources.exam, {preserveOrder: true});
     const saved = {questions: [question], idx: 0,
@@ -46,7 +46,7 @@ async function seed(page: Page, qid: string, answered: boolean, binding = true) 
       startTime: Date.now() - 1000, savedAt: Date.now()};
     const raw = JSON.stringify(saved); localStorage.setItem(key, raw);
     return {raw, saved, old, current: w.questionRevisionCatalog.current(qid, 'exam')};
-  }, {qid, answered, binding, key: KEY});
+  }, {qid, answered, binding, key: KEY, release});
   evidence.get(page)!.fixture = fixture;
   return fixture;
 }
@@ -56,11 +56,14 @@ async function openSaved(page: Page) {
   await expect(page.locator('#examPage')).toBeVisible();
   await page.getByRole('button', {name: 'Retomar prova', exact: true}).click();
 }
-for (const qid of ['32661acb', '67035e0e']) {
+for (const {qid, release} of [
+  {qid: '32661acb', release: '17.09'}, {qid: '67035e0e', release: '17.09'},
+  {qid: '1a93346d', release: '17.24'}, {qid: '516ec2a6', release: '17.24'},
+]) {
   test('answered ' + qid + ' keeps the saved grade, wording and complete previous reference cards', async ({page}) => {
-    const fixture = await seed(page, qid, true);
+    const fixture = await seed(page, qid, true, true, release);
     await openSaved(page);
-    await expect(page.locator('[data-question-revision="historical"]')).toContainText('versão 17.09');
+    await expect(page.locator('[data-question-revision="historical"]')).toContainText('versão ' + release);
     await expect(page.locator('.nq-exam-enunciado')).toHaveText(fixture.old.sources.exam.q);
     const state = await page.evaluate(() => {
       const s = (0, eval)('_examState');
@@ -78,8 +81,11 @@ for (const qid of ['32661acb', '67035e0e']) {
     expect(await page.evaluate(key => localStorage.getItem(key), KEY)).toBe(fixture.raw);
   });
 }
-test('pending old answer requires explicit current-content confirmation before enabling the revised alternatives', async ({page}) => {
-  const fixture = await seed(page, '32661acb', false);
+for (const {qid, release} of [
+  {qid: '32661acb', release: '17.09'}, {qid: 'a4c85d32', release: '17.24'},
+]) {
+test('pending ' + qid + ' requires explicit current-content confirmation before enabling the revised alternatives', async ({page}) => {
+  const fixture = await seed(page, qid, false, true, release);
   await openSaved(page);
   await expect(page.locator('[data-question-revision="historical"]')).toContainText('Confirme a versão atual');
   await expect(page.locator('#examOpts button:enabled')).toHaveCount(0);
@@ -101,6 +107,7 @@ test('pending old answer requires explicit current-content confirmation before e
   await page.getByRole('button', {name: 'Ver resultado', exact: true}).click();
   await expect(page.locator('#examResultado')).toContainText('100%');
 });
+}
 test('a card-only legacy save without revision binding is held rather than silently assigned the new summary', async ({page}) => {
   const fixture = await seed(page, '061c9bcb', true, false);
   expect(fixture.current.source).toEqual(fixture.old.sources.exam);

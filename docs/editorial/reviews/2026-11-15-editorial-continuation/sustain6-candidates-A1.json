@@ -1,0 +1,784 @@
+{
+  "schema": "NQ_SUSTAIN6_AUTHOR_CANDIDATES_A1",
+  "date": "2026-11-15",
+  "reviewer": "reference_metadata_1725-author",
+  "stage": "AUTHOR_DRAFT_PENDING_INDEPENDENT_REVIEW",
+  "purpose": "Exact fullcard and two rewrite candidates; no datafile or runtimefile modified; no finalpublicationauthorization granted.",
+  "base": {
+    "branch": "codex/editorial-priorities-1725",
+    "commit": "ca1184916b53cddfc7581df17ed75ff3a029c14f",
+    "release": "17.24"
+  },
+  "normativeInputs": [
+    {
+      "path": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+      "sha256": "eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd"
+    },
+    {
+      "path": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/references/output-contract.md",
+      "sha256": "69354e1d6c079388260f9d977c8367b69205910554b673dcebd8c099534c471b"
+    },
+    {
+      "path": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/references/verification-protocol.md",
+      "sha256": "ba8d2ebfb23be11e7d7ee2cb312717f1cb6a3b38e03b77d4f97d5160b16810dc"
+    },
+    {
+      "path": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/references/evidence-policy.md",
+      "sha256": "a2d45e1b8a9f6e3157de3a05b7f415cbb2fb578d9e39d1b4d454387d3426e293"
+    },
+    {
+      "path": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/references/item-writing-rubric.md",
+      "sha256": "626cb208afb8d0adf8e028b3a6e674f4c496568955f56424ddbd4bb23debe205"
+    },
+    {
+      "path": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/references/nephrology-safety-checklist.md",
+      "sha256": "31f206dde8f987866600ec2ae52e894ef93da28f74ef63a7c51fafab50915967"
+    },
+    {
+      "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "path": "docs/editorial/annex-c-nefrologia.md",
+      "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "sourceDataInputs": [
+    {
+      "path": "data/topics.js",
+      "sha256": "0a6da5cd78f5c48f1e3828755ed63a726e7a5e44fba3107a8f4b8b90777c140d"
+    },
+    {
+      "path": "data/refs.js",
+      "sha256": "5fcec88275c0a61019c8a3f608cd4b80ae6ca347f0b2aa31d749c044c1a681e5"
+    }
+  ],
+  "sources": [
+    {
+      "id": "S1",
+      "type": "Original randomized trial; primary full-text reprint",
+      "title": "Semaglutide and Cardiovascular Outcomes in Patients with Type 2 Diabetes",
+      "authors": "Marso SP et al.; SUSTAIN-6 Investigators",
+      "doi": "10.1056/NEJMoa1607141",
+      "pmid": "27633186",
+      "journal": "N Engl J Med 2016;375(19):1834-1844",
+      "canonicalURL": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607141",
+      "openedFullTextURL": "https://www.acc.org/~/media/Non-Clinical/Files-PDFs-Excel-MS-Word-etc/Tools%20and%20Practice%20Support/Quality%20Programs/Diabetes-Roundtable-2017/SupplementalReading/4%20Semaglutide%20and%20Cardiovascular%20Outcomes%20in%20Patients%20with%20Type%202%20Diabetes%20SUSTAIN6.pdf?la=en",
+      "access": "Full original article opened and read through accessible ACC-hosted reprint, including methods, outcomes, results and discussion. Publisher direct fulltext URL returned403; it is not represented as readable. Primary title/DOI/journal confirmed in reprint first page. PubMed27633186 direct open returned HHS-only content; search metadata was not used as full text.",
+      "pinpoints": [
+        "p.1834: resumo e identificação bibliográfica",
+        "p.1835: participantes, randomização e tratamento por 104 semanas",
+        "p.1836: desfechos secundários pré-especificados",
+        "pp.1838–1840: resultados de retinopatia/nefropatia e Tabela 2",
+        "p.1843: macroalbuminúria, mecanismo ocular incerto, superioridade não pré-especificada e limites de generalização"
+      ]
+    },
+    {
+      "id": "S2",
+      "type": "Original post hoc analysis of trial data; primary full text",
+      "title": "Semaglutide, reduction in glycated haemoglobin and the risk of diabetic retinopathy",
+      "authors": "Vilsbøll T et al.",
+      "doi": "10.1111/dom.13172",
+      "pmid": "29178519",
+      "pmcid": "PMC5888154",
+      "journal": "Diabetes Obes Metab.2018;20(4):889-897",
+      "canonicalURL": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5888154/",
+      "openedFullTextURL": "https://pmc.ncbi.nlm.nih.gov/articles/5888154",
+      "publisherURL": "https://dom-pubs.onlinelibrary.wiley.com/doi/full/10.1111/dom.13172",
+      "access": "PMC initially challenged canonical URL; numeric URL opened full article and redirected to PMC5888154. Wiley full article also opened. Methods2.2.2 and results3.3/discussion read.",
+      "pinpoints": [
+        "§2.2.2: análises de subgrupos e mediação pós-hoc",
+        "§3.3: retinopatia prévia e variação da HbA1c",
+        "§4: limitações da avaliação de gravidade retiniana e explicação exploratória"
+      ],
+      "runtimeUse": "Research-only constraint. No new posthoc card is proposed and no HbA1c-mediated mechanism or prescriptive glucose-lowering strategy is asserted in candidate runtime text."
+    },
+    {
+      "id": "S3",
+      "type": "Primary publication bibliographic record only",
+      "title": "Liraglutide and Cardiovascular Outcomes in Type 2 Diabetes",
+      "authors": "Marso SP et al.; LEADER Trial Investigators",
+      "doi": "10.1056/NEJMoa1603827",
+      "pmid": "27295427",
+      "pmcid": "PMC4985288",
+      "journal": "N Engl J Med. 2016;375(4):311–322",
+      "canonicalURL": "https://pubmed.ncbi.nlm.nih.gov/27295427/",
+      "access": "PubMed bibliographic record and abstract opened. Used only to establish that existing sustain6 DOI points to LEADER/liraglutide; no LEADER clinical card review or change proposed."
+    }
+  ],
+  "evidenceClaimLedger": [
+    {
+      "id": "C01",
+      "claim": "O URL atual de sustain6 usa o DOI do LEADER. O DOI do SUSTAIN-6 é 10.1056/NEJMoa1607141.",
+      "sourceIds": [
+        "S1",
+        "S3"
+      ],
+      "status": "VERIFICADA",
+      "currentDisposition": "Replace only sustain6 URL; retain leader_trial unchanged; no merge/delete.",
+      "candidateDisposition": "Substituir somente o URL de sustain6; manter leader_trial. Não fundir nem excluir referências."
+    },
+    {
+      "id": "C02",
+      "claim": "SUSTAIN-6: 3.297 participantes com diabetes tipo 2 e alto risco cardiovascular; duplo-cego; semaglutida subcutânea 0,5 ou 1,0 mg semanal versus placebo por 104 semanas.",
+      "sourceIds": [
+        "S1"
+      ],
+      "pinpoint": "pp1834-1835",
+      "status": "VERIFICADA"
+    },
+    {
+      "id": "C03",
+      "claim": "Desfecho primário: morte cardiovascular, infarto não fatal ou acidente vascular cerebral não fatal; HR 0,74; IC95% 0,58–0,95; P<0,001 para não inferioridade.",
+      "sourceIds": [
+        "S1"
+      ],
+      "pinpoint": "abstract;resultsCV;Table2",
+      "status": "VERIFICADA"
+    },
+    {
+      "id": "C04",
+      "claim": "O ensaio foi dimensionado para não inferioridade; o teste de superioridade não foi pré-especificado.",
+      "sourceIds": [
+        "S1"
+      ],
+      "pinpoint": "p1843discussion",
+      "status": "VERIFICADA",
+      "candidateDisposition": "Não apresentar o P de superioridade como prova confirmatória pré-especificada."
+    },
+    {
+      "id": "C05",
+      "claim": "Nefropatia nova ou agravada e complicações de retinopatia foram desfechos secundários pré-especificados.",
+      "sourceIds": [
+        "S1"
+      ],
+      "pinpoint": "Outcomes,p1836",
+      "status": "VERIFICADA"
+    },
+    {
+      "id": "C06",
+      "claim": "Nefropatia: HR 0,64; IC95% 0,46–0,88; P=0,005; diferença principalmente em macroalbuminúria.",
+      "sourceIds": [
+        "S1"
+      ],
+      "pinpoint": "pp1840,1843",
+      "status": "VERIFICADA",
+      "constraint": "Não converter um sinal secundário predominantemente albuminúrico em prova dedicada de prevenção de falência renal ou terapia renal substitutiva."
+    },
+    {
+      "id": "C07",
+      "claim": "Complicações de retinopatia: HR 1,76; IC95% 1,11–2,78; P=0,02. O intervalo/P atuais do card não correspondem ao ensaio.",
+      "sourceIds": [
+        "S1"
+      ],
+      "pinpoint": "p1838results,Table2",
+      "status": "VERIFICADA"
+    },
+    {
+      "id": "C08",
+      "claim": "O desfecho retiniano incluía fotocoagulação, tratamento intravítreo, hemorragia vítrea e cegueira relacionada ao diabetes; a maioria dos participantes com eventos tinha retinopatia prévia.",
+      "sourceIds": [
+        "S1"
+      ],
+      "pinpoint": "abstract andmicrovascularresults,pp1838-1840",
+      "status": "VERIFICADA"
+    },
+    {
+      "id": "C09",
+      "claim": "O ensaio original não estabeleceu o mecanismo biológico do aumento de complicações retinianas; não excluiu um efeito direto.",
+      "sourceIds": [
+        "S1"
+      ],
+      "pinpoint": "p1843discussion",
+      "status": "VERIFICADA",
+      "constraint": "Não afirmar toxicidade direta comprovada nem mediação comprovada pela HbA1c. Mecanismo não estabelecido também não significa ausência demonstrada de efeito direto."
+    },
+    {
+      "id": "C10",
+      "claim": "A análise de mediação da HbA1c e os subgrupos foram pós-hoc; há limitações na avaliação da gravidade retiniana.",
+      "sourceIds": [
+        "S2"
+      ],
+      "pinpoint": "§2.2.2,§3.3,§4",
+      "status": "VERIFICADA",
+      "candidateDisposition": "Fonte explorada para limitar a interpretação, mas não incorporada às candidatas. Nenhum novo card pós-hoc é necessário para o OP conservador preservado."
+    },
+    {
+      "id": "C11",
+      "claim": "Diálise crônica foi critério de exclusão. População de alto risco e seguimento relativamente curto limitam a generalização.",
+      "sourceIds": [
+        "S1"
+      ],
+      "pinpoint": "p1835Patients;p1843discussion",
+      "status": "VERIFICADA"
+    },
+    {
+      "id": "C12",
+      "claim": "A afirmação sobre replicação em SUSTAIN 7/PIONEER da curiosidade antiga não é necessária aos OPs.",
+      "sourceIds": [],
+      "status": "NOT_RETAINED_NOT_VERIFIED",
+      "candidateDisposition": "Curiosidade vazia; nenhuma afirmação sobre esses ensaios foi herdada ou verificada para esta entrega."
+    }
+  ],
+  "reference": {
+    "referenceId": "sustain6",
+    "before": {
+      "orderedCompactPythonSHA256": "030e0e7aea792e2d3aa6b31295d71185e48b829776745f6a47d5328d3ac28ed8",
+      "sortedCompactPythonSHA256": "878a0f320c7e6fcdb1144b0ad063337321c380f25fd181a8c7ca12faef2bf925",
+      "fullLiteral": {
+        "label": "Marso SP et al. — SUSTAIN-6 (NEJM 2016)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1603827",
+        "journal": "N Engl J Med 2016;375(19):1834-1844",
+        "ano": 2016,
+        "tipo": "Ensaio Clínico RCT",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Semaglutida ↓26% MACE em DM2 de alto risco CV; ↓36% nefropatia nova/piora; risco aumentado de retinopatia diabética",
+        "icon": "🔬",
+        "resumo": "ECR cardiovascular de não-inferioridade (SUSTAIN-6, n=3.297), em DM2 com alto risco cardiovascular, comparando semaglutida subcutânea (0,5 mg ou 1 mg semanal) vs placebo. Desfecho primário MACE: HR 0,74 (IC 95% 0,58–0,95; P<0,001 para não-inferioridade, P=0,02 para superioridade). Desfecho renal composto (nefropatia nova ou piora): HR 0,64 (IC 95% 0,46–0,88; P=0,005), principalmente por redução da progressão para macroalbuminúria. Evento adverso relevante: progressão de retinopatia diabética, HR 1,76 (IC 95% 1,29–2,40; P=0,0004), possivelmente relacionado à queda rápida da HbA1c.",
+        "conclusao": "SUSTAIN-6 estabeleceu semaglutida como GLP-1 RA com benefício cardiovascular e renal (albuminúrico) em DM2, mas sinalizou risco aumentado de complicações de retinopatia — dado importante na prática clínica nefro-oftalmológica.",
+        "curiosidade": "O achado de retinopatia no SUSTAIN-6 gerou debate sobre causalidade: hipótese predominante é a 'paradoxo da retinopatia' — queda rápida da HbA1c pode deteriorar transitoriamente a retinopatia antes de melhorá-la, fenômeno descrito previamente com insulina. Trials posteriores (SUSTAIN 7, PIONEER) não replicaram o sinal de forma consistente."
+      }
+    },
+    "candidate": {
+      "orderedCompactPythonSHA256": "6c64d11b5f2fb5fa750e09c98401ecc6c737529b3434df3a6161fe408d356572",
+      "sortedCompactPythonSHA256": "6f6ed262373752793f550277a5a8b6883d91c00e2b1ca14ad82dda5036743117",
+      "fullLiteral": {
+        "label": "Marso SP et al. — SUSTAIN-6 (NEJM 2016)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa1607141",
+        "journal": "N Engl J Med 2016;375(19):1834-1844",
+        "ano": 2016,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Sinal renal predominantemente albuminúrico e alerta para complicações de retinopatia",
+        "icon": "🔬",
+        "resumo": "SUSTAIN-6 (2016): ensaio duplo-cego com 3.297 pessoas com diabetes tipo 2 e alto risco cardiovascular. Comparou semaglutida subcutânea 0,5 ou 1,0 mg uma vez por semana com placebo por 104 semanas. O desfecho primário foi morte cardiovascular, infarto não fatal ou acidente vascular cerebral não fatal: HR 0,74 (IC95% 0,58–0,95; P<0,001 para não inferioridade). Como desfechos secundários, houve menos nefropatia nova ou agravada (HR 0,64; IC95% 0,46–0,88; P=0,005), principalmente por diferenças em macroalbuminúria, e mais complicações de retinopatia diabética (HR 1,76; IC95% 1,11–2,78; P=0,02). O estudo não foi um ensaio renal dedicado; pessoas em diálise crônica foram excluídas.",
+        "conclusao": "O sinal renal não equivale a demonstração de benefício sobre falência renal. O alerta retiniano exige interpretação própria; o ensaio não estabeleceu o mecanismo do aumento de complicações.",
+        "curiosidade": ""
+      }
+    },
+    "mainConsumers": [
+      "1a93346d",
+      "516ec2a6"
+    ],
+    "otherReferenceIdentity": "leader_trial mantém sua identidade. Este relatório não avalia nem altera o conteúdo clínico desse outro card.",
+    "wholeCardFieldCoverage": [
+      {
+        "field": "label",
+        "sourceIds": [
+          "S1"
+        ],
+        "assessment": "Acrônimo reconhecível, primeiro autor e ano confirmados; rótulo existente preservado.",
+        "status": "VERIFICADA"
+      },
+      {
+        "field": "url",
+        "sourceIds": [
+          "S1"
+        ],
+        "assessment": "DOI/URL canônico corretos identificados no artigo original; texto clínico conferido no reprint da ACC, pois o editor retornou403.",
+        "status": "VERIFICADA"
+      },
+      {
+        "field": "journal",
+        "sourceIds": [
+          "S1"
+        ],
+        "assessment": "Periódico, volume, número e páginas conferidos na primeira página do original.",
+        "status": "VERIFICADA"
+      },
+      {
+        "field": "ano",
+        "sourceIds": [
+          "S1"
+        ],
+        "assessment": "Ano2016 conferido no original.",
+        "status": "VERIFICADA"
+      },
+      {
+        "field": "tipo",
+        "sourceIds": [
+          "S1"
+        ],
+        "assessment": "Ensaio randomizado e duplo-cego; tipo normalizado para a taxonomia da skill.",
+        "status": "VERIFICADA"
+      },
+      {
+        "field": "badge",
+        "sourceIds": [],
+        "assessment": "BadgeRCT conforme o contrato de saída carregado.",
+        "status": "SCHEMA_TAXONOMY"
+      },
+      {
+        "field": "badgeColor",
+        "sourceIds": [],
+        "assessment": "Cor#10b981 conforme a taxonomiaRCT.",
+        "status": "SCHEMA_TAXONOMY"
+      },
+      {
+        "field": "impacto",
+        "sourceIds": [
+          "S1"
+        ],
+        "assessment": "Limita o resultado renal ao sinal albuminúrico e identifica o achado retiniano de segurança.",
+        "status": "VERIFICADA"
+      },
+      {
+        "field": "icon",
+        "sourceIds": [],
+        "assessment": "Ícone deRCT conforme o contrato de saída.",
+        "status": "SCHEMA_TAXONOMY"
+      },
+      {
+        "field": "resumo",
+        "sourceIds": [
+          "S1"
+        ],
+        "assessment": "População, doses, tempo, desfechos, HR, IC95%, P, natureza secundária, macroalbuminúria e exclusão de diálise foram conferidos novamente.",
+        "status": "VERIFICADA"
+      },
+      {
+        "field": "conclusao",
+        "sourceIds": [
+          "S1"
+        ],
+        "assessment": "Interpretação limitada à fonte: o sinal secundário não é prova dedicada de falência renal; mecanismo ocular não estabelecido.",
+        "status": "VERIFICADA"
+      },
+      {
+        "field": "curiosidade",
+        "sourceIds": [],
+        "assessment": "String vazia: nenhuma afirmação adicional.",
+        "status": "EMPTY_NO_CLAIM"
+      }
+    ],
+    "authorDraftGate": {
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "verdict": "revisão maior",
+      "publicationAuthorization": "BLOQUEADA",
+      "lifecycle": "em_revisão",
+      "scope": "Author remediation draft, not independent final editorial approval.",
+      "derivation": "Handbook §18.4, Regra 7(c): a decisão desta etapa autoral não é de aprovação. As fontes foram conferidas novamente para os objetos propostos; a tarefa exige revisão independente dos hashes exatos antes de uma decisão final. Evidência e pendência descrevem a verificação autoral, e não uma liberação operacional."
+    },
+    "changes": [
+      "Corrigir o DOI/URL de SUSTAIN-6 e preservar leader_trial.",
+      "Corrigir IC95% e P da retinopatia conforme o ensaio original, sem herdar números anteriores.",
+      "Nomear os resultados renal e retiniano como secundários; limitar a interpretação renal ao sinal em macroalbuminúria.",
+      "Não apresentar superioridade confirmatória nem mecanismo retiniano demonstrado.",
+      "Esvaziar curiosidade para remover afirmações não verificadas sobre ensaios posteriores."
+    ],
+    "needsOwnIndependentWholeCardReview": true
+  },
+  "questions": [
+    {
+      "qid": "1a93346d",
+      "sourceLine": 125,
+      "before": {
+        "orderedCompactPythonSHA256": "569b54601b76d8dc3dbc1b52767e0008556d26af1c79776e3ec64bf167a34b5a",
+        "sortedCompactPythonSHA256": "9841a4a4f744d745a6ec6510d0eab0a36e2baf4ec9be99f40fc23f28115c4e66",
+        "fullLiteral": {
+          "t": "SUSTAIN-6 — Retinopatia Diabética",
+          "qid": "1a93346d",
+          "q": "No SUSTAIN-6, qual sinal de segurança ocular merece atenção ao iniciar semaglutida em paciente com diabetes tipo 2 e retinopatia prévia?",
+          "refs": [
+            "sustain6"
+          ],
+          "opts": [
+            "Maior frequência de complicações de retinopatia diabética, possivelmente relacionada à rápida melhora glicêmica em pacientes suscetíveis",
+            "Catarata aguda por toxicidade direta do cristalino, exigindo rastreio semanal universal",
+            "Glaucoma de ângulo fechado como evento adverso ocular dominante",
+            "Descolamento de retina como contraindicação absoluta em todo paciente com DRC"
+          ],
+          "ans": 0,
+          "exp": "No SUSTAIN-6 houve aumento de complicações de retinopatia diabética no grupo semaglutida. A interpretação mais aceita é cautelosa: o risco parece concentrar-se em pacientes com retinopatia prévia e grande/rápida queda de HbA1c, fenômeno já conhecido com intensificação glicêmica. Isso não transforma semaglutida em droga diretamente retinotóxica nem contraindica seu uso em todos; implica avaliar retinopatia basal, acompanhar oftalmologia quando indicado e evitar banalizar quedas glicêmicas muito abruptas em pacientes vulneráveis.",
+          "diff": "medium",
+          "cat": "nefropatia_diabetica"
+        }
+      },
+      "candidate": {
+        "orderedCompactPythonSHA256": "2c4e162d18b36a85e1704d2c106b1f06bba3cdd545e21c6c2d870690eeb6d0be",
+        "sortedCompactPythonSHA256": "05c629efbe7265f8dfbcc901f3373460bc60f8630fce2965c63b68c5bc779a7e",
+        "fullLiteral": {
+          "t": "SUSTAIN-6 — Retinopatia Diabética",
+          "qid": "1a93346d",
+          "q": "Uma pessoa com diabetes tipo 2 e retinopatia prévia pergunta sobre o risco ocular ao iniciar semaglutida. Que interpretação do SUSTAIN-6 é adequada para discutir esse sinal de segurança?",
+          "refs": [
+            "sustain6"
+          ],
+          "opts": [
+            "Mais complicações de retinopatia diabética com semaglutida, sem mecanismo causal definido pelo ensaio",
+            "Proteção contra complicações retinianas, acompanhando a melhora da glicemia com semaglutida no estudo",
+            "Complicações explicadas pela retinopatia prévia, sem diferença de risco entre semaglutida e placebo",
+            "Toxicidade direta da semaglutida na retina, demonstrada como causa das complicações observadas"
+          ],
+          "ans": 0,
+          "exp": "Houve mais complicações de retinopatia diabética com semaglutida. O desfecho incluía necessidade de fotocoagulação ou tratamento intravítreo, hemorragia vítrea e cegueira relacionada ao diabetes. A maioria dos eventos ocorreu em participantes com retinopatia prévia, mas isso não elimina a diferença observada entre os grupos. O ensaio não estabeleceu o mecanismo do aumento de complicações nem demonstrou toxicidade retiniana direta. A melhora glicêmica não permite presumir proteção ocular nesse estudo; o sinal deve integrar a discussão de segurança nessa população.",
+          "diff": "medium",
+          "cat": "nefropatia_diabetica"
+        }
+      },
+      "preserved": [
+        "qid",
+        "t",
+        "ans:0",
+        "posiçõesA–D",
+        "refs:[sustain6]",
+        "diff:medium",
+        "cat:nefropatia_diabetica",
+        "OP e competência"
+      ],
+      "declaredOP": "Reconhecer e interpretar o aumento de complicações de retinopatia diabética observado com semaglutida no SUSTAIN-6, sem confundir melhora glicêmica com proteção ocular nem o efeito do tratamento com mecanismo demonstrado.",
+      "classification": {
+        "primaryCompetence": "Interpretação de evidência clínica aplicada à segurança ocular",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária; diff medium preservado",
+        "rationale": "Integra população, resultado e limitação; exclui erro clínico plausível em vez de reconhecer uma alternativa obviamente absurda."
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "lifecycle": "em_revisão",
+        "rationale": "O card aponta para outro ensaio e contém números incorretos. Distratores sobre catarata aguda, glaucoma e descolamento de retina permitem acerto por eliminação. A explicação atual mistura hipótese pós-hoc e orientação clínica sem referência própria.",
+        "problems": [
+          {
+            "severity": "CRÍTICO",
+            "finding": "Referência vinculada ao LEADER e números retinianos no card incompatíveis com SUSTAIN-6."
+          },
+          {
+            "severity": "MAIOR",
+            "finding": "Distratores fora do construto, com alternativas obviamente inadequadas e correta mais longa."
+          },
+          {
+            "severity": "MAIOR",
+            "finding": "A hipótese sobre rápida queda glicêmica e a orientação de manejo exigiriam sustentação própria. A candidata remove essa extrapolação."
+          }
+        ],
+        "advogadoDoRecurso": "Há recurso plausível pela referência errada e pela validade de construto comprometida por distratores absurdos. Reescrita necessária antes de aprovação.",
+        "eliminatories": [
+          {
+            "number": 2,
+            "label": "Referência vinculada aponta para outro ensaio"
+          },
+          {
+            "number": 5,
+            "label": "Distratores absurdos ou fora de confusão clínica plausível"
+          }
+        ],
+        "nqEditorialScore": {
+          "status": "anulado por eliminatório",
+          "dimensions": null,
+          "total": null
+        },
+        "decisionTree": "§19, passo0: pendência decisiva mantém o teto em revisão maior e publicação bloqueada. Passo1: referência inadequada e distratores; item recuperável por reescrita com preservação do OP."
+      },
+      "authorCandidateAssessment": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "revisão maior",
+        "publicationAuthorization": "BLOQUEADA",
+        "lifecycle": "em_revisão",
+        "scope": "Author remediation draft, not independent final editorial approval.",
+        "derivation": "Handbook §18.4, Regra 7(c): a decisão desta etapa autoral não é de aprovação. As fontes foram conferidas novamente para os objetos propostos; a tarefa exige revisão independente dos hashes exatos antes de uma decisão final. Evidência e pendência descrevem a verificação autoral, e não uma liberação operacional.",
+        "sourceClaimsChecked": [
+          "C05",
+          "C07",
+          "C08",
+          "C09"
+        ],
+        "advogadoDoRecurso": "Testada a crítica de que a doença ocular prévia elimina o excesso de risco: ela não elimina a diferença entre os grupos randomizados. A candidata não atribui toxicidade direta nem mediação comprovada pela melhora glicêmica. As quatro alternativas interpretam o mesmo sinal e somenteA corresponde ao relato original. A revisão independente deve tentar anular o objeto exato.",
+        "candidateEliminatoriesDetectedByAuthor": [],
+        "provisionalNQEditorialScore": {
+          "dimensions": [
+            {
+              "name": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "name": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "name": "Validade de construto",
+              "score": 2
+            },
+            {
+              "name": "Enunciado",
+              "score": 2
+            },
+            {
+              "name": "Alternativas",
+              "score": 2
+            },
+            {
+              "name": "Distratores",
+              "score": 2
+            },
+            {
+              "name": "Explicação",
+              "score": 2
+            },
+            {
+              "name": "Referências",
+              "score": 2
+            },
+            {
+              "name": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "name": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 19,
+          "band": "Excelente na avaliação autoral provisória; não constitui autorização de publicação",
+          "limitation": "Não foi usada telemetria de processo de resposta. O score não substitui a revisão independente nem libera este rascunho."
+        },
+        "answerLengths": [
+          {
+            "characters": 101,
+            "words": 13
+          },
+          {
+            "characters": 101,
+            "words": 13
+          },
+          {
+            "characters": 99,
+            "words": 13
+          },
+          {
+            "characters": 94,
+            "words": 12
+          }
+        ],
+        "uniquenessRationale": "B confunde melhora glicêmica com proteção ocular; C elimina a diferença entre grupos ao atribuir os eventos à doença prévia; D converte o efeito randomizado em prova de mecanismo tóxico."
+      },
+      "suggestedPatchCall": "SUBSTITUIR A QUESTÃO POR (rascunho autoral BLOQUEADO)",
+      "implementationObservation": "Não aplicado. Preservar posição no array, qid, título, gabarito0, ordemA–D, referências, dificuldade e categoria. Aplicação depende de revisão independente dos hashes exatos e dos gates cumulativos. Mudança material invalida a avaliação desta versão."
+    },
+    {
+      "qid": "516ec2a6",
+      "sourceLine": 67,
+      "before": {
+        "orderedCompactPythonSHA256": "9f40f34312f01a97ee07386bcf93d1026c970563780dbe8c171edbb5286fdc15",
+        "sortedCompactPythonSHA256": "026eb3288243013ffca554b36bec12b2e7790eafda8a2908c8f7d99b738f727a",
+        "fullLiteral": {
+          "t": "SUSTAIN-6 — Semaglutida e Desfecho Renal",
+          "qid": "516ec2a6",
+          "q": "No SUSTAIN-6, qual interpretação é mais correta sobre o sinal renal observado com semaglutida em pacientes com diabetes tipo 2 de alto risco cardiovascular?",
+          "refs": [
+            "sustain6"
+          ],
+          "opts": [
+            "Reduziu nefropatia nova ou agravada, sinal impulsionado principalmente por menor progressão para macroalbuminúria",
+            "Demonstrou recuperação sustentada da TFGe como desfecho renal primário dedicado",
+            "Aumentou cálculos renais e contraindica semaglutida em qualquer DRC",
+            "Exigiu ajuste rotineiro de dose por toxicidade renal direta quando TFGe era <30 mL/min/1,73m²"
+          ],
+          "ans": 0,
+          "exp": "No SUSTAIN-6, semaglutida reduziu o desfecho microvascular composto, com sinal renal favorável para nefropatia nova ou agravada; esse efeito foi impulsionado principalmente por menor progressão para macroalbuminúria. A leitura correta é cautelosa: SUSTAIN-6 era um ensaio de segurança cardiovascular, não um trial renal primário desenhado para provar preservação dura de TFGe ou prevenção de terapia renal substitutiva. O estudo também não mostrou toxicidade renal direta nem aumento de litíase como mensagem central.",
+          "diff": "medium",
+          "cat": "nefropatia_diabetica"
+        }
+      },
+      "candidate": {
+        "orderedCompactPythonSHA256": "e146014687020dd1aefbccb070b5dc0584a7f879b5f3b347afff252d352db53e",
+        "sortedCompactPythonSHA256": "5eea57f2bfdd4ea6f33b0726ce7ded4e689084b8b6889054891cee8a566b3fed",
+        "fullLiteral": {
+          "t": "SUSTAIN-6 — Semaglutida e Desfecho Renal",
+          "qid": "516ec2a6",
+          "q": "Para uma pessoa com diabetes tipo 2 e alto risco cardiovascular, o resultado renal do SUSTAIN-6 é discutido como possível benefício da semaglutida. Qual interpretação corresponde ao que o ensaio demonstrou?",
+          "refs": [
+            "sustain6"
+          ],
+          "opts": [
+            "Menos nefropatia nova ou agravada, com diferença explicada principalmente pela progressão para macroalbuminúria",
+            "Menos início de terapia renal substitutiva, desfecho primário usado para demonstrar o benefício renal",
+            "Menor queda da filtração glomerular, que explicou a maior parte da diferença no desfecho renal composto",
+            "Menos duplicações persistentes da creatinina, principal componente responsável pela diferença entre os grupos"
+          ],
+          "ans": 0,
+          "exp": "O sinal foi de menor nefropatia nova ou agravada, principalmente pela diferença em macroalbuminúria. Esse era um desfecho secundário; o primário do SUSTAIN-6 era cardiovascular. O resultado não demonstra, por si, que o benefício renal decorreu principalmente de evitar terapia renal substitutiva, preservar a filtração ou reduzir duplicações da creatinina. Para interpretar o composto, é necessário identificar o componente que conduziu a diferença e evitar tomar o sinal albuminúrico como prova de benefício sobre falência renal.",
+          "diff": "medium",
+          "cat": "nefropatia_diabetica"
+        }
+      },
+      "preserved": [
+        "qid",
+        "t",
+        "ans:0",
+        "posiçõesA–D",
+        "refs:[sustain6]",
+        "diff:medium",
+        "cat:nefropatia_diabetica",
+        "OP e competência"
+      ],
+      "declaredOP": "Interpretar o sinal renal secundário do SUSTAIN-6 como predominantemente albuminúrico, evitando atribuí-lo a benefício renal duro ou a componente que não conduziu o resultado.",
+      "classification": {
+        "primaryCompetence": "Interpretação de evidência clínica aplicada à nefroproteção",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsicDifficulty": "intermediária; diff medium preservado",
+        "rationale": "Integra população, resultado e limitação; exclui erro clínico plausível em vez de reconhecer uma alternativa obviamente absurda."
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "legacy": "REESCREVER",
+        "confidence": "alta",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA",
+        "lifecycle": "em_revisão",
+        "rationale": "O card aponta para outro ensaio e contém números incorretos. Os distratores sobre litíase, contraindicação ampla e ajuste rotineiro por nefrotoxicidade não medem interpretação do composto renal. A explicação também precisa discriminar o resultado renal de outros resultados microvasculares.",
+        "problems": [
+          {
+            "severity": "CRÍTICO",
+            "finding": "Referência vinculada ao LEADER; card compartilhado contém números retinianos incorretos."
+          },
+          {
+            "severity": "MAIOR",
+            "finding": "Distratores de litíase, contraindicação ampla e ajuste por nefrotoxicidade não medem a interpretação dos componentes renais."
+          },
+          {
+            "severity": "MAIOR",
+            "finding": "Esclarecer a natureza secundária e a contribuição de macroalbuminúria, sem atribuir prova renal dedicada."
+          }
+        ],
+        "advogadoDoRecurso": "Há recurso plausível pela referência errada e pela validade de construto comprometida por distratores absurdos. Reescrita necessária antes de aprovação.",
+        "eliminatories": [
+          {
+            "number": 2,
+            "label": "Referência vinculada aponta para outro ensaio"
+          },
+          {
+            "number": 5,
+            "label": "Distratores absurdos ou fora de confusão clínica plausível"
+          }
+        ],
+        "nqEditorialScore": {
+          "status": "anulado por eliminatório",
+          "dimensions": null,
+          "total": null
+        },
+        "decisionTree": "§19, passo0: pendência decisiva mantém o teto em revisão maior e publicação bloqueada. Passo1: referência inadequada e distratores; item recuperável por reescrita com preservação do OP."
+      },
+      "authorCandidateAssessment": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "revisão maior",
+        "publicationAuthorization": "BLOQUEADA",
+        "lifecycle": "em_revisão",
+        "scope": "Author remediation draft, not independent final editorial approval.",
+        "derivation": "Handbook §18.4, Regra 7(c): a decisão desta etapa autoral não é de aprovação. As fontes foram conferidas novamente para os objetos propostos; a tarefa exige revisão independente dos hashes exatos antes de uma decisão final. Evidência e pendência descrevem a verificação autoral, e não uma liberação operacional.",
+        "sourceClaimsChecked": [
+          "C03",
+          "C05",
+          "C06"
+        ],
+        "advogadoDoRecurso": "Testada a crítica de que filtração, creatinina e terapia renal substitutiva podem integrar resultados renais: as alternativas atribuem a esses componentes o papel principal ou o desfecho primário; o original identifica macroalbuminúria como responsável pela diferença. A candidata não afirma efeito comprovadamente nulo dos demais componentes.",
+        "candidateEliminatoriesDetectedByAuthor": [],
+        "provisionalNQEditorialScore": {
+          "dimensions": [
+            {
+              "name": "Alinhamento ao OP",
+              "score": 2
+            },
+            {
+              "name": "Validade de conteúdo",
+              "score": 2
+            },
+            {
+              "name": "Validade de construto",
+              "score": 2
+            },
+            {
+              "name": "Enunciado",
+              "score": 2
+            },
+            {
+              "name": "Alternativas",
+              "score": 2
+            },
+            {
+              "name": "Distratores",
+              "score": 2
+            },
+            {
+              "name": "Explicação",
+              "score": 2
+            },
+            {
+              "name": "Referências",
+              "score": 2
+            },
+            {
+              "name": "Ausência de cara de IA",
+              "score": 1
+            },
+            {
+              "name": "Valor pedagógico",
+              "score": 2
+            }
+          ],
+          "total": 19,
+          "band": "Excelente na avaliação autoral provisória; não constitui autorização de publicação",
+          "limitation": "Não foi usada telemetria de processo de resposta. O score não substitui a revisão independente nem libera este rascunho."
+        },
+        "answerLengths": [
+          {
+            "characters": 111,
+            "words": 13
+          },
+          {
+            "characters": 101,
+            "words": 14
+          },
+          {
+            "characters": 103,
+            "words": 16
+          },
+          {
+            "characters": 109,
+            "words": 13
+          }
+        ],
+        "uniquenessRationale": "B transforma terapia renal substitutiva em desfecho primário; C atribui o resultado à filtração; D atribui o componente principal à duplicação da creatinina."
+      },
+      "suggestedPatchCall": "SUBSTITUIR A QUESTÃO POR (rascunho autoral BLOQUEADO)",
+      "implementationObservation": "Não aplicado. Preservar posição no array, qid, título, gabarito0, ordemA–D, referências, dificuldade e categoria. Aplicação depende de revisão independente dos hashes exatos e dos gates cumulativos. Mudança material invalida a avaliação desta versão."
+    }
+  ],
+  "publicationHold": {
+    "publicationAuthorization": "BLOQUEADA",
+    "reason": "Author draft only, nonapproval; root independent scientific review of exact full card and both question hashes is explicitly required before any application. No approval gate inherited from existing data, metadata report, other question or linked study.",
+    "authorMayApply": false,
+    "independentReviewCompleted": false
+  },
+  "verificationLimits": [
+    "O acesso direto ao texto completo do NEJM retornou403; foi lido o reprint integral do artigo original hospedado pela ACC.",
+    "A abertura direta de PubMed27633186 retornou somenteHHS. Metadados de busca não foram tratados como texto integral clínico.",
+    "Não foi feita revisão de bula vigente, de diretriz de prescrição ou de toda a literatura de segurança ocular. As candidatas perguntam explicitamente sobre a interpretação do SUSTAIN-6.",
+    "Não foi adicionado card pós-hoc. Mediação pelaHbA1c, intervalos de monitorização e prescrição de velocidade de redução glicêmica estão ausentes das candidatas.",
+    "Nenhum conteúdo clínico do LEADER foi revisado; não houve consolidação de referências nem aposentadoria de questões."
+  ],
+  "mechanicalValidation": {
+    "questionCount": 2,
+    "fullReferenceFieldCount": 12,
+    "ansOrderDiffCategoryAndQidsPreserved": true,
+    "candidateDigestMatchesReferenceDigest": true,
+    "fourDistinctOptionsEach": true,
+    "testsRun": "No fulltests/browser/Supabase/Gitactions; JSON/digest/invariantchecks only."
+  }
+}

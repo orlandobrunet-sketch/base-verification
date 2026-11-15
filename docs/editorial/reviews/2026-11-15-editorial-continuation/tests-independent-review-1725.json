@@ -1,0 +1,164 @@
+{
+  "schema": "NQ_1725_TEST_DIFF_INDEPENDENT_REVIEW_v1",
+  "date": "2026-11-15",
+  "reviewer": "/root/editorial_inventory_1725",
+  "independent": true,
+  "mode": "static-diff-and-read-only-source-review; no test executions repeated",
+  "baseCommit": "ca1184916b53cddfc7581df17ed75ff3a029c14f",
+  "result": "SEM ACHADOS BLOQUEANTES",
+  "findings": [],
+  "diffSHA256": "7d4abc3a828b47ba487198293b22f01b651c02870e30ee1815508f13ffc3524f",
+  "reviewedFiles": [
+    {
+      "file": "tests/answers/answer-length-history.test.cjs",
+      "rawSHA256": "2afecedadd430438939065ae43528e5f65d7f342a858b3360d2c5ec389d3bda6",
+      "lfNormalizedSHA256": "537d4cda24330fd30490616326b3a804af3395f33e8b070c1aba2dc69ccfd235",
+      "baseLFSourceSHA256": "ccd76be3fb15e41088c5d56bffa2562ef65dcfd77e2ab0c8a0880c1c105f4186"
+    },
+    {
+      "file": "tests/answers/catalog-construction-cache.test.cjs",
+      "rawSHA256": "c8505448dbe6fcfa0133919778befc7050b43eefdca60cb8cb1e060eff2604d2",
+      "lfNormalizedSHA256": "c8505448dbe6fcfa0133919778befc7050b43eefdca60cb8cb1e060eff2604d2",
+      "baseLFSourceSHA256": "00168c28eac2fc50ab2944e7de0a3568847fa914551066b1443b80c6834926fd"
+    },
+    {
+      "file": "tests/specs/136-question-revisions.spec.ts",
+      "rawSHA256": "2cb7ceaba503e091c8cee38102d3f3c9e8e6b282462c13974e2bc3fa514325b1",
+      "lfNormalizedSHA256": "c3b8d9f4e802d9a8d33ff14082b66727302d744d8eccb3012e363cca202f6fa7",
+      "baseLFSourceSHA256": "901b10b2b5b1dad28cffd981d469c88a80fcc4c1da00a09b45fcd3b6c5c4ef42"
+    },
+    {
+      "file": "tests/specs/255-medical-revision-history.spec.ts",
+      "rawSHA256": "9ba7c4d375cd74b67986b5865cb0ba994d44475508b326db45a4f7542807e3c1",
+      "lfNormalizedSHA256": "9ba7c4d375cd74b67986b5865cb0ba994d44475508b326db45a4f7542807e3c1",
+      "baseLFSourceSHA256": "970227c3d7375dbbfc76b092c1c0ee1e67ea4e2079f5cf2e7f85cf37673965c5"
+    },
+    {
+      "file": "tests/specs/257-medical-continuation-history.spec.ts",
+      "rawSHA256": "acae12334558ff33c03e9a7d0d4b5f06a657864cdd88658ef5db6c9c78d86b53",
+      "lfNormalizedSHA256": "acae12334558ff33c03e9a7d0d4b5f06a657864cdd88658ef5db6c9c78d86b53",
+      "baseLFSourceSHA256": "4c9d1129fa889be85ca2c43604bbca1d583eb66eb4675e161895be957642f0ea"
+    }
+  ],
+  "pinnedOperationalReceiptPreserved": {
+    "file": "docs/editorial/reviews/2026-11-15-editorial-continuation/operational-independent-review-1725.json",
+    "sha256": "24f3fbda58bf71129ae38e5585a0877a092e2e177eb8bd47f67b5c76502977f8",
+    "modified": false
+  },
+  "sourceConsistency": {
+    "currentQuestions": 741,
+    "totalHistoricalRecords": 177,
+    "historicalProfiles": 708,
+    "currentReferences": 372,
+    "cohort1724Count": 8,
+    "cohort1724Qids": [
+      "1a93346d",
+      "21a99f07",
+      "3fa2737c",
+      "516ec2a6",
+      "a4c85d32",
+      "d9257155",
+      "e2aae4c7",
+      "e94a6488"
+    ],
+    "frozen16Digest": "sha256:7b0d9861291f6661a26546e4cea67492d4ef648f797e9757f08caf2642059f3e",
+    "frozen110Digest": "sha256:64a0ffb3ff1571071826a052c4953e465a263d52d446297f1f725f6ceb0ea705",
+    "a4Difficulty": {
+      "old": "hard",
+      "current": "medium"
+    },
+    "sustainNewAnsweredCases": {
+      "qids": [
+        "1a93346d",
+        "516ec2a6"
+      ],
+      "bothOldAndCurrentQuestionTextDiffer": true,
+      "bothOldAndCurrentFullCardsDiffer": true
+    }
+  },
+  "fileAssessments": [
+    {
+      "file": "tests/answers/answer-length-history.test.cjs",
+      "change": "45 added lines; no removed assertion",
+      "assessment": "Previously reviewed real-catalog contracts preserve exact eight historical authors/cards and32bindings. No new weakening since prior review."
+    },
+    {
+      "file": "tests/answers/catalog-construction-cache.test.cjs",
+      "change": "Only169→177 and676→708",
+      "assessment": "Correct strict expectations for real async/sync catalog parity; every current and historical source/binding/policy comparison remains."
+    },
+    {
+      "file": "tests/specs/136-question-revisions.spec.ts",
+      "change": "New cohort8, reference2013 and32binding rows; exact totals updated",
+      "assessment": "Frozen16/110 object digests and353-card legacy ID-set digest unchanged. New reference is explicitly isolated from legacy IDs and separately required. Known/historical/exact author/source/card/binding/currentSeparate/policy assertions remain for prior cohorts and are added for32newrows."
+    },
+    {
+      "file": "tests/specs/255-medical-revision-history.spec.ts",
+      "change": "seed gains release default17.09; adds two answeredSUSTAIN17.24 and one pendinga4c85d32 case",
+      "assessment": "Old IDs and flows remain, now explicitly seeded at17.09. New cases use the real published17.24 archive and native Guest/Exam navigation. Exact old question, answers, complete reference view, historical flag, grade and final raw assertions remain. Pending path still requires explicit update and checks complete current source, binding and reference view."
+    },
+    {
+      "file": "tests/specs/257-medical-continuation-history.spec.ts",
+      "change": "Only total history169→177",
+      "assessment": "17.11 cohort-specific count43, exact qid allowlist and172bindings remain. The new total does not broaden or replace the prior cohort contracts."
+    }
+  ],
+  "assertionIntegrity": {
+    "timeoutsIncreased": false,
+    "retriesAdded": false,
+    "skipsOrFixmesAdded": false,
+    "softAssertionsAdded": false,
+    "priorStrictEqualitiesDropped": false,
+    "oldSeedCoveragePreserved": true,
+    "oldArchiveHashesRecomputedToAcceptNewContent": false
+  },
+  "writeSafety": {
+    "networkPolicyChanged": false,
+    "postOrOtherMutatingMethodsAllowed": false,
+    "webSocketsRemainClosed": true,
+    "guestAuthenticationCheckPreserved": true,
+    "syntheticSavesOnlyInIsolatedBrowserLocalStorage": true,
+    "realProductFunctionsOrBankReplacedByNewCases": false
+  },
+  "nonBlockingLimits": [
+    {
+      "area": "Spec255 answeredSUSTAIN",
+      "limit": "Checks the full reference object in revisionViews and final saved raw. It does not directly inspect every displayed card field, monitor every setItem/removeItem call, or compare every global progress key in these new cases.",
+      "interpretation": "Describe these as exact restore/reference-view/final-save preservation coverage. Existing136/257 generic contracts cover zero-write/progress/no-second-credit paths; the new cases alone are not proof of all those properties."
+    },
+    {
+      "area": "Spec255 pending hard→medium",
+      "limit": "The exact restored source is compared to the real current source, which includes difficulty. The test does not separately hardcode old hard/current medium.",
+      "interpretation": "The real source was independently read and has hard→medium; exact clinical gate/data checks bind that change. Do not call this browser test an independent clinical difficulty assessment."
+    },
+    {
+      "area": "Catalog parity and archive tests",
+      "limit": "Parity tests compare sync/async behavior; live archive tests establish internal source/card/binding identity. They do not independently freeze every new historical byte against the published parent.",
+      "interpretation": "The pinned operational plan and actual-application reviewer supply byte/base preservation evidence. Existing frozen16/110 hashes remain as stronger immutable subcohort guards."
+    }
+  ],
+  "executionEvidence": {
+    "reviewerExecutedTests": [],
+    "readExistingLogs": [
+      {
+        "file": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1725-local-logic.log",
+        "sha256": "05cba114e50dceff4df71888d91356a883c72ef957c2b5cac0f9d4e51caf48e3",
+        "observed": "542 tests passed; fail/cancelled/skipped/todo0; TAP ending observed."
+      },
+      {
+        "file": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1725-browser-config.log",
+        "sha256": "bae457c15813f4d150362e28c179c5f5379387016de8d014a7dc197a952838ec",
+        "observed": "9 tests passed; fail/cancelled/skipped/todo0; TAP ending observed."
+      },
+      {
+        "file": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1725-local-native-collected.log",
+        "sha256": "06493df212090c34f1ce29ba532493dc3dc7a120b8d0d79f2bcfd34a6f5d3c50",
+        "observed": "108 tests in3files collected, desktop+mobile, including the new cases."
+      }
+    ],
+    "nodeTotalObserved": 551,
+    "nativeExecutionStatusAtReview": "Execution was still ongoing according to root; native JSON artifact had0bytes at last read.108 collected is not108 execution passes.",
+    "newTestsWritten": false
+  },
+  "closure": "Diff is suitable for PR within reviewed scope. Final native execution results and CI belong in the release evidence; no duplicate test run or additional mirror test required by this review."
+}

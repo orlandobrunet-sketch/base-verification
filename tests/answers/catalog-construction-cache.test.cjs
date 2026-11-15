@@ -179,5 +179,5 @@ test('async and sync published catalogs retain every current and historical valu
     historicalProfiles++;
   }
   assert.equal(authors.length, 741); assert.equal(currentProfiles, 2964);
-  assert.equal(history.length, 169); assert.equal(historicalProfiles, 676);
+  assert.equal(history.length, 177); assert.equal(historicalProfiles, 708);
 });

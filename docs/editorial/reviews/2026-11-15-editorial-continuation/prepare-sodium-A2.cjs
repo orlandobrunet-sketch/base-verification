@@ -1,0 +1,21 @@
+'use strict';
+/* Supersedes A1 drafts; no writes to runtime data. */
+const fs = require('node:fs');
+const path = require('node:path');
+const b = require('../../../../tools/build-question-revision-manifest.cjs');
+const r = JSON.parse(fs.readFileSync(path.join(__dirname, 'sodium-candidates-A1.json'), 'utf8'));
+r.revision = 'sodium-A2';
+r.supersedes = 'sodium-A1: unsupported new card taxonomy removed; 21a99f07 now directly cites the expert-panel recommendations.';
+const q = r.questions['21a99f07'].candidate.fullLiteral;
+q.q = 'Em paciente euvolêmico com SIADH confirmada e hiponatremia persistente apesar da restrição hídrica, a equipe especializada considera tolvaptana. Não há necessidade de elevar o sódio em caráter emergencial. Qual afirmação sobre a segurança desse uso selecionado é correta?';
+q.refs = ['hyponatremia_verbalis2013'];
+q.exp = 'O início hospitalar permite controlar o sódio e a resposta aquarética. É necessário acesso à água conforme a sede; restrição hídrica durante a correção ativa aumenta o risco de hipercorreção. A associação com outras terapias que elevam o sódio, como salina hipertônica, deve ser evitada. Isso não torna a tolvaptana primeira escolha universal nem tratamento de emergência. Diretrizes diferem sobre seu lugar na SIADH; o item aborda a segurança quando a indicação já foi selecionada.';
+r.questions['21a99f07'].candidate.sha256 = b.digest(q);
+delete r.references.samsca_fda_2021;
+const c = r.references.hyponatremia_verbalis2013.candidate.fullLiteral;
+c.tipo = 'Diretriz'; c.badge = 'GUIDELINE'; c.badgeColor = '#6366f1'; c.icon = '📋';
+c.impacto = 'Recomendações de painel para correção segura da hiponatremia e prevenção de hipercorreção.';
+c.resumo = 'Recomendações de um painel de especialistas de 2013, não ensaio clínico nem diretriz europeia. Para alto risco de desmielinização na hiponatremia crônica, propõe meta de 4–6 mEq/L por dia e limite de 8 mEq/L em qualquer período de 24 horas. Na hipercorreção, descreve suspensão das medidas que elevam o sódio, água livre e desmopressina monitoradas. Para vaptanos selecionados, orienta início hospitalar da tolvaptana, controle próximo da natremia, acesso à água e evitar combinação com outras terapias para hiponatremia.';
+r.references.hyponatremia_verbalis2013.candidate.sha256 = b.digest(c);
+fs.writeFileSync(path.join(__dirname, 'sodium-candidates-A2.json'), JSON.stringify(r, null, 2) + '\n');
+console.log(JSON.stringify({revision:r.revision,questions:Object.keys(r.questions),references:Object.keys(r.references),runtimeDataWritten:false}));

@@ -1604,13 +1604,17 @@ canvas_program:{
   },
   sustain6:{
     label:"Marso SP et al. — SUSTAIN-6 (NEJM 2016)",
-    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1603827",
+    url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1607141",
     journal:"N Engl J Med 2016;375(19):1834-1844",
-    ano:2016,tipo:"Ensaio Clínico RCT",badge:"RCT",badgeColor:"#10b981",
-    impacto:"Semaglutida ↓26% MACE em DM2 de alto risco CV; ↓36% nefropatia nova/piora; risco aumentado de retinopatia diabética",icon:"🔬",
-    resumo:"ECR cardiovascular de não-inferioridade (SUSTAIN-6, n=3.297), em DM2 com alto risco cardiovascular, comparando semaglutida subcutânea (0,5 mg ou 1 mg semanal) vs placebo. Desfecho primário MACE: HR 0,74 (IC 95% 0,58–0,95; P<0,001 para não-inferioridade, P=0,02 para superioridade). Desfecho renal composto (nefropatia nova ou piora): HR 0,64 (IC 95% 0,46–0,88; P=0,005), principalmente por redução da progressão para macroalbuminúria. Evento adverso relevante: progressão de retinopatia diabética, HR 1,76 (IC 95% 1,29–2,40; P=0,0004), possivelmente relacionado à queda rápida da HbA1c.",
-    conclusao:"SUSTAIN-6 estabeleceu semaglutida como GLP-1 RA com benefício cardiovascular e renal (albuminúrico) em DM2, mas sinalizou risco aumentado de complicações de retinopatia — dado importante na prática clínica nefro-oftalmológica.",
-    curiosidade:"O achado de retinopatia no SUSTAIN-6 gerou debate sobre causalidade: hipótese predominante é a 'paradoxo da retinopatia' — queda rápida da HbA1c pode deteriorar transitoriamente a retinopatia antes de melhorá-la, fenômeno descrito previamente com insulina. Trials posteriores (SUSTAIN 7, PIONEER) não replicaram o sinal de forma consistente."
+    ano:2016,
+    tipo:"Ensaio clínico randomizado",
+    badge:"RCT",
+    badgeColor:"#10b981",
+    impacto:"Sinal renal predominantemente albuminúrico e alerta para complicações de retinopatia",
+    icon:"🔬",
+    resumo:"SUSTAIN-6 (2016): ensaio duplo-cego com 3.297 pessoas com diabetes tipo 2 e alto risco cardiovascular. Comparou semaglutida subcutânea 0,5 ou 1,0 mg uma vez por semana com placebo por 104 semanas. O desfecho primário foi morte cardiovascular, infarto não fatal ou acidente vascular cerebral não fatal: HR 0,74 (IC95% 0,58–0,95; P<0,001 para não inferioridade). Como desfechos secundários, houve menos nefropatia nova ou agravada (HR 0,64; IC95% 0,46–0,88; P=0,005), principalmente por diferenças em macroalbuminúria, e mais complicações de retinopatia diabética (HR 1,76; IC95% 1,11–2,78; P=0,02). O estudo não foi um ensaio renal dedicado; pessoas em diálise crônica foram excluídas.",
+    conclusao:"O sinal renal não equivale a demonstração de benefício sobre falência renal. O alerta retiniano exige interpretação própria; o ensaio não estabeleceu o mecanismo do aumento de complicações.",
+    curiosidade:""
   },
   leader_trial:{
     label:"Marso SP et al. — LEADER (NEJM 2016)",
@@ -4140,5 +4144,19 @@ canvas_program:{
     resumo:"Consenso do grupo EuDial da Associação Renal Europeia, elaborado por revisão de ensaios randomizados e método mini-Delphi, sobre hemodiafiltração (HDF) versus hemodiálise de alto fluxo. A HDF combina difusão e convecção: o fluxo de água através da membrana carrega solutos, e o volume removido além da perda de peso desejada é reposto por solução estéril e apirogênica. A técnica aumenta a depuração de moléculas médias; isso não garante menor concentração sérica pré-diálise.",
     conclusao:"Há sinal de benefício de sobrevida com alta convecção em populações selecionadas, com limitações de generalização. O consenso não define um padrão universal de cuidado.",
     curiosidade:"Volume convectivo total e volume de substituição não são sinônimos: a retirada líquida para controle de peso também integra a convecção."
+  },
+  hyponatremia_verbalis2013:{
+    label:"Verbalis JG et al. — Diagnosis, Evaluation, and Treatment of Hyponatremia: Expert Panel Recommendations (2013)",
+    url:"https://doi.org/10.1016/j.amjmed.2013.07.006",
+    journal:"Am J Med 2013;126(10 Suppl 1):S1–S42",
+    ano:2013,
+    tipo:"Revisão",
+    badge:"REVIEW",
+    badgeColor:"#8b5cf6",
+    impacto:"Recomendações de painel para correção segura da hiponatremia e prevenção de hipercorreção.",
+    icon:"🔬",
+    resumo:"Recomendações de um painel de especialistas de 2013, não ensaio clínico nem diretriz europeia. Para alto risco de desmielinização na hiponatremia crônica, propõe meta de 4–6 mEq/L por dia e limite de 8 mEq/L em qualquer período de 24 horas. Na hipercorreção, descreve suspensão das medidas que elevam o sódio, água livre e desmopressina monitoradas. Para vaptanos selecionados, orienta início hospitalar da tolvaptana, controle próximo da natremia, acesso à água e evitar combinação com outras terapias para hiponatremia.",
+    conclusao:"O limite de correção depende do risco; aquarese e reposição de potássio também podem elevar a natremia. Não se deve perseguir normalização rápida.",
+    curiosidade:""
   },
 };

@@ -1,0 +1,315 @@
+{
+  "batch": "EDITORIAL-PRIORITIES-2026-11-15",
+  "revision": "sodium-A3",
+  "integrationBase": "ca1184916b53cddfc7581df17ed75ff3a029c14f",
+  "author": "/root",
+  "publicationAuthorization": "BLOQUEADA",
+  "note": "Rascunhos: exigem revisão formal independente da versão exata antes de qualquer alteração em data/.",
+  "questions": {
+    "a4c85d32": {
+      "before": {
+        "sha256": "sha256:a1fcefab6c17888a89eb154ae5e492086899c533a0789d8c49f4b0108bdcdd09",
+        "fullLiteral": {
+          "t": "Hiponatremia na insuficiência cardíaca",
+          "qid": "a4c85d32",
+          "q": "Paciente de 65 anos com insuficiência cardíaca congestiva apresenta hiponatremia. Os exames mostram sódio urinário de 8 mEq/L e osmolalidade urinária de 520 mOsm/kg. Qual é o diagnóstico mais provável?",
+          "refs": [
+            "hyponatremia_adrogue2000",
+            "hyponatremia_verbalis2022",
+            "brenner_rector"
+          ],
+          "opts": [
+            "SIADH",
+            "Insuficiência adrenal",
+            "Hiponatremia hipervolêmica por insuficiência cardíaca",
+            "Polidipsia primária"
+          ],
+          "ans": 2,
+          "exp": "O quadro é mais compatível com hiponatremia hipervolêmica por insuficiência cardíaca, em que a redução do volume arterial efetivo ativa sistema renina-angiotensina-aldosterona e secreção não osmótica de ADH, levando à retenção de água livre, urina concentrada e sódio urinário baixo por avididez renal ao sódio. SIADH costuma cursar com urina inapropriadamente concentrada, mas em geral com sódio urinário mais alto e sem contexto de baixo volume arterial efetivo. Insuficiência adrenal pode causar hiponatremia, porém frequentemente cursa com outras alterações clínicas e laboratoriais, e não é a melhor explicação neste cenário. Polidipsia primária geralmente causa urina muito diluída, com osmolalidade urinária baixa, o oposto do achado apresentado.",
+          "diff": "hard",
+          "cat": "eletrólitos"
+        }
+      },
+      "candidate": {
+        "sha256": "sha256:67da5ed3ab04ffb150d11fb1342dbfcb6e1ae32852252148629fd6b2563567a5",
+        "fullLiteral": {
+          "t": "Hiponatremia na insuficiência cardíaca",
+          "qid": "a4c85d32",
+          "q": "Homem de 65 anos com insuficiência cardíaca apresenta edema de membros inferiores, turgência jugular e hiponatremia hipotônica. Antes de receber diuréticos, o sódio urinário é 8 mEq/L e a osmolalidade urinária, 520 mOsm/kg. Qual diagnóstico melhor integra a volemia e os exames?",
+          "refs": [
+            "hypona"
+          ],
+          "opts": [
+            "Hiponatremia euvolêmica por secreção inapropriada de ADH.",
+            "Hiponatremia hipovolêmica por perdas gastrointestinais.",
+            "Hiponatremia hipervolêmica por insuficiência cardíaca.",
+            "Hiponatremia euvolêmica por polidipsia primária."
+          ],
+          "ans": 2,
+          "exp": "A congestão indica aumento do volume extracelular. Na insuficiência cardíaca, a redução do volume arterial efetivo pode estimular vasopressina e retenção de sódio: a urina fica concentrada e com pouco sódio. Perdas digestivas sugeririam depleção, enquanto polidipsia isolada costuma produzir urina diluída. SIADH exige euvolemia e exclusão de outras causas. O sódio urinário deve ser interpretado com cautela após diuréticos.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        }
+      },
+      "preserveFSRS": true
+    },
+    "3fa2737c": {
+      "before": {
+        "sha256": "sha256:828388e041a0f622bfb600416cfdefa97d4bc3578d287bafb2c836a46348a267",
+        "fullLiteral": {
+          "t": "Síndrome Pós-RTU — Hiponatremia Aguda",
+          "qid": "3fa2737c",
+          "q": "Homem de 70 anos apresenta confusão, náuseas, hipotensão e Na 108 mEq/L poucas horas após ressecção transuretral de próstata com absorção de fluido de irrigação. Qual diagnóstico e conduta imediata são mais adequados?",
+          "refs": [
+            "hypona",
+            "hyponatremia_verbalis2022",
+            "salsa_trial"
+          ],
+          "opts": [
+            "SIADH pós-operatória; apenas restrição hídrica",
+            "Sepse urinária; antibioticoterapia como única medida inicial",
+            "Hipoglicemia pós-operatória; glicose IV sem tratar o sódio",
+            "Hiponatremia aguda sintomática por síndrome de absorção de irrigação; tratar como emergência com NaCl 3% em bolus sob monitorização"
+          ],
+          "ans": 3,
+          "exp": "O quadro é compatível com hiponatremia aguda sintomática por absorção de fluido de irrigação após ressecção transuretral. Sintomas neurológicos e Na 108 mEq/L tornam a situação uma emergência: a conduta é NaCl 3% em bolus sob monitorização, buscando elevação inicial suficiente para reduzir edema cerebral, sem perder o controle da correção total. Apenas restrição hídrica é insuficiente nesse cenário. Sepse e hipoglicemia podem entrar no diferencial, mas não explicam sozinhas a hiponatremia aguda grave pós-procedimento.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        }
+      },
+      "candidate": {
+        "sha256": "sha256:fe73c43b977353db3ce77d4344d05648ddb0e5adee79e2413ff970b5015a6972",
+        "fullLiteral": {
+          "t": "Síndrome Pós-RTU — Hiponatremia Aguda",
+          "qid": "3fa2737c",
+          "q": "Homem de 70 anos tinha Na de 138 mEq/L antes de uma ressecção transuretral da próstata com irrigação hipotônica sem sódio. Após grande absorção da solução, apresenta convulsão, Na de 108 mEq/L, glicemia normal e osmolalidade sérica de 230 mOsm/kg. O procedimento foi interrompido e a via aérea, estabilizada. Qual é a conduta imediata para a hiponatremia?",
+          "refs": [
+            "hypona"
+          ],
+          "opts": [
+            "Iniciar restrição hídrica e aguardar a elevação espontânea do sódio.",
+            "Iniciar furosemida e aguardar a diurese antes de reavaliar o sódio.",
+            "Infundir NaCl 0,9% lentamente e reservar a solução a 3% para depois.",
+            "Administrar bólus de NaCl 3% com monitorização clínica e da natremia."
+          ],
+          "ans": 3,
+          "exp": "Trata-se de hiponatremia aguda hipotônica com manifestação neurológica grave após absorção da irrigação. A prioridade é NaCl 3% em bólus monitorados, buscando melhora dos sintomas com elevação inicial limitada do sódio, não normalização imediata. Restrição hídrica, diurético ou salina isotônica isolados não substituem esse tratamento. A tonicidade foi informada porque soluções de irrigação com outros osmóis podem produzir quadros diferentes.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        }
+      },
+      "preserveFSRS": true
+    },
+    "e94a6488": {
+      "before": {
+        "sha256": "sha256:8f75ad7c582415349fee768251d9a6ff3ad82f8add818d40ffbac99e2132a2b7",
+        "fullLiteral": {
+          "qid": "e94a6488",
+          "q": "Paciente com hiponatremia crônica grave, alcoolismo e hipocalemia começa a corrigir rapidamente após suspensão de tiazídico. Qual conduta é mais alinhada à prevenção de síndrome de desmielinização osmótica?",
+          "opts": [
+            "Aceitar correção rápida desde que os sintomas melhorem",
+            "Buscar elevação de pelo menos 15 mEq/L nas primeiras 24 horas",
+            "Atingir normonatremia nas primeiras 18 horas",
+            "Interromper terapias que elevam o sódio, monitorar de perto e considerar água livre/desmopressina se ultrapassar limites de segurança"
+          ],
+          "ans": 3,
+          "exp": "Em hiponatremia crônica, especialmente com fatores de alto risco como alcoolismo, hipocalemia, desnutrição ou doença hepática, a hipercorreção exige ação ativa. A diretriz europeia recomenda intervenção se o sódio subir mais de 10 mmol/L nas primeiras 24 horas ou mais de 8 mmol/L em qualquer 24 horas subsequente; pode ser necessário suspender terapia ativa, repor água livre e considerar desmopressina sob monitorização. Melhorar sintomas não autoriza hipercorreção. Normalizar rapidamente a natremia aumenta risco de desmielinização.",
+          "refs": [
+            "hypona",
+            "hyponatremia_verbalis2022",
+            "hyponatremia_adrogue2000"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "Hiponatremia — Prevenção de Hipercorreção"
+        }
+      },
+      "candidate": {
+        "sha256": "sha256:3edd811ad215c82f3fe39594371aade69ff58491d04f9a320f5ea0a5ac661454",
+        "fullLiteral": {
+          "qid": "e94a6488",
+          "q": "Paciente com hiponatremia há mais de uma semana, uso de tiazídico, alcoolismo e K de 2,5 mEq/L recebeu NaCl 0,9% e reposição de potássio. Após suspensão do tiazídico, o Na subiu de 108 para 118 mEq/L em 10 horas, com diurese de 400 mL/h. Está hemodinamicamente estável. Com apoio especializado e monitorização intensiva, qual conduta é mais segura?",
+          "opts": [
+            "Suspender a salina e manter restrição hídrica para limitar novas oscilações.",
+            "Manter a salina isotônica e repor o potássio para atingir Na de 125 no mesmo dia.",
+            "Trocar a salina por tolvaptana e reduzir a correção nas próximas 24 horas.",
+            "Suspender a salina e conter a aquarese com desmopressina e água livre monitoradas."
+          ],
+          "ans": 3,
+          "exp": "O aumento de 10 mEq/L em 10 horas já ultrapassa o limite de 8 mEq/L em 24 horas recomendado para alto risco de desmielinização. A aquarese pode manter a elevação mesmo sem salina. Cabe interromper a salina, controlar as perdas de água e considerar rebaixamento com desmopressina e água livre, sob acompanhamento especializado. A reposição de potássio continua exigindo controle, pois também pode elevar a natremia.",
+          "refs": [
+            "hyponatremia_verbalis2013"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "Hiponatremia — Prevenção de Hipercorreção"
+        }
+      },
+      "preserveFSRS": true
+    },
+    "d9257155": {
+      "before": {
+        "sha256": "sha256:bdfe4433132c5e6e1c71fc227bb704bb9003728a473b5261b0b44b94d5a68d98",
+        "fullLiteral": {
+          "qid": "d9257155",
+          "q": "Na abordagem da hiponatremia grave crônica, o aumento muito rápido dos níveis séricos de sódio pode precipitar uma complicação neurológica grave. Como se chama essa complicação?",
+          "opts": [
+            "Síndrome de Desmielinização Osmótica (mielinólise pontina central).",
+            "Hemorragia subaracnoide espontânea.",
+            "Edema cerebral difuso com herniação uncal.",
+            "Encefalopatia de Wernicke."
+          ],
+          "ans": 0,
+          "exp": "A correção rápida da hiponatremia crônica, especialmente em taxas superiores a 8-10 mEq/L em 24 horas ou 18 mEq/L em 48 horas, pode levar à Síndrome de Desmielinização Osmótica (SDO), também conhecida como mielinólise pontina central. Nesta condição, a rápida elevação da osmolalidade plasmática causa a saída de água dos osmócitos cerebrais que se adaptaram à hiponatremia crônica, resultando em desidratação celular, disfunção e destruição da bainha de mielina, principalmente na ponte, manifestando-se com déficits neurológicos graves e irreversíveis.",
+          "refs": [
+            "hypona",
+            "hyponatremia_adrogue2000",
+            "hyponatremia_verbalis2022",
+            "salsa_trial"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "Hiponatremia Crônica — Risco de Correção Rápida"
+        }
+      },
+      "candidate": {
+        "sha256": "sha256:017e477323fb26f8b9d7a9a70edbbe8f4d4755264c377bee970f3770c24bbc6b",
+        "fullLiteral": {
+          "qid": "d9257155",
+          "q": "Paciente com hiponatremia documentada há dez dias teve Na elevado de 104 para 120 mEq/L em 24 horas. Houve melhora inicial da confusão, mas três dias depois surgiram disartria, disfagia e tetraparesia. Qual complicação melhor explica essa evolução?",
+          "opts": [
+            "Síndrome de desmielinização osmótica.",
+            "Encefalopatia hipertensiva com edema vasogênico.",
+            "Edema cerebral pela hiponatremia persistente.",
+            "Encefalopatia de Wernicke por carência de tiamina."
+          ],
+          "ans": 0,
+          "exp": "A melhora inicial seguida de novos déficits após correção excessiva da hiponatremia crônica é típica da síndrome de desmielinização osmótica. Pode haver acometimento pontino ou extrapontino; sequelas permanentes são possíveis, mas não inevitáveis. Edema pela hiponatremia explicaria melhor a fase anterior à correção. As outras encefalopatias não integram tão bem o vínculo temporal e a síndrome motora descrita.",
+          "refs": [
+            "hyponatremia_verbalis2013"
+          ],
+          "cat": "eletrólitos",
+          "diff": "medium",
+          "t": "Hiponatremia Crônica — Risco de Correção Rápida"
+        }
+      },
+      "preserveFSRS": true
+    },
+    "21a99f07": {
+      "before": {
+        "sha256": "sha256:c8d0f453da32421f6c00a91aabeaf80884a373c73738ec6fb6d9b7172d8b4701",
+        "fullLiteral": {
+          "t": "SIADH — Papel dos Vaptanos",
+          "qid": "21a99f07",
+          "q": "Sobre o uso de tolvaptana em hiponatremia por SIADH, qual afirmação é mais segura e correta?",
+          "refs": [
+            "hyponatremia_verbalis2022",
+            "hypona"
+          ],
+          "opts": [
+            "É primeira linha para toda hiponatremia, inclusive hipovolêmica",
+            "Pode ser iniciada sem monitorização da natremia",
+            "Pode ser considerada em SIADH euvolêmica selecionada/refratária, com monitorização para evitar correção rápida",
+            "Não eleva a natremia porque atua em mecanismo diferente da vasopressina"
+          ],
+          "ans": 2,
+          "exp": "Tolvaptana pode ser considerada em SIADH euvolêmica selecionada, especialmente quando medidas como restrição hídrica falham ou são impraticáveis, mas exige monitorização da natremia pelo risco de correção rápida. Não deve ser usada como primeira linha universal, é inadequada na hiponatremia hipovolêmica e não deve ser iniciada sem capacidade de monitorar sódio e acesso à água. Seu mecanismo é antagonismo V2, com aquarese e elevação da natremia.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        }
+      },
+      "candidate": {
+        "sha256": "sha256:4beb2312dce7da0ea025993f4830468e3b4c772af1212b2f0b93cde9ef84ff09",
+        "fullLiteral": {
+          "t": "SIADH — Papel dos Vaptanos",
+          "qid": "21a99f07",
+          "q": "Em paciente euvolêmico com SIADH confirmada e hiponatremia persistente apesar da restrição hídrica, a equipe especializada considera tolvaptana. Não há necessidade de elevar o sódio em caráter emergencial. Qual afirmação sobre a segurança desse uso selecionado é correta?",
+          "refs": [
+            "hyponatremia_verbalis2013"
+          ],
+          "opts": [
+            "O início ambulatorial é adequado se o primeiro controle do sódio ocorrer em uma semana.",
+            "A restrição hídrica rigorosa deve ser mantida nas primeiras 24 horas para aumentar a resposta.",
+            "O início deve ocorrer em hospital, com sódio monitorado e ingestão de água conforme a sede.",
+            "A associação com salina hipertônica é recomendada no início para tornar a resposta previsível."
+          ],
+          "ans": 2,
+          "exp": "O início hospitalar permite controlar o sódio e a resposta aquarética. É necessário acesso à água conforme a sede; restrição hídrica durante a correção ativa aumenta o risco de hipercorreção. A associação com outras terapias que elevam o sódio, como salina hipertônica, deve ser evitada. Isso não torna a tolvaptana primeira escolha universal nem tratamento de emergência. Diretrizes diferem sobre seu lugar na SIADH; o item aborda a segurança quando a indicação já foi selecionada.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        }
+      },
+      "preserveFSRS": true
+    },
+    "e2aae4c7": {
+      "before": {
+        "sha256": "sha256:32667b08037e187a0ea8dd813f6b809b79f06687b2f1007e36d2384366c9d75e",
+        "fullLiteral": {
+          "t": "SIADH — Critérios Laboratoriais",
+          "qid": "e2aae4c7",
+          "q": "Mulher com hiponatremia hipotônica apresenta osmolaridade urinária 620 mOsm/kg, sódio urinário 68 mEq/L, exame sem edema ou sinais de hipovolemia. Qual interpretação é mais adequada antes de fechar SIADH?",
+          "refs": [
+            "hypona",
+            "hyponatremia_verbalis2022"
+          ],
+          "opts": [
+            "O padrão sugere SIADH, mas é obrigatório excluir insuficiência adrenal, hipotireoidismo, insuficiência renal relevante e uso de diuréticos",
+            "Insuficiência cardíaca descompensada é o diagnóstico mais provável pelo sódio urinário alto",
+            "Polidipsia primária é provável porque a urina está muito concentrada",
+            "Hiponatremia por perda renal de sal está confirmada e exige SF 0,9% em todo caso"
+          ],
+          "ans": 0,
+          "exp": "Hiponatremia hipotônica com euvolemia clínica, urina inapropriadamente concentrada e sódio urinário elevado sugere SIADH, mas SIADH é diagnóstico de exclusão. Antes de fechá-lo, devem ser afastados insuficiência adrenal, hipotireoidismo, insuficiência renal relevante e efeitos de diuréticos. Insuficiência cardíaca costuma ter hipervolemia clínica e baixo volume arterial efetivo; polidipsia primária tipicamente cursa com urina diluída; perda renal de sal exige contexto e volemia compatíveis.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        }
+      },
+      "candidate": {
+        "sha256": "sha256:3c9c4e4cb257395e98afbb2496f140e28153f6c5ad2b35fc332c1ac39ea23cd0",
+        "fullLiteral": {
+          "t": "SIADH — Critérios Laboratoriais",
+          "qid": "e2aae4c7",
+          "q": "Mulher com hiponatremia hipotônica, euvolemia clínica, osmolalidade urinária de 620 mOsm/kg e sódio urinário de 68 mEq/L está em investigação de SIADH. Antes de concluir esse diagnóstico, qual avaliação ainda faz parte dos critérios?",
+          "refs": [
+            "hypona"
+          ],
+          "opts": [
+            "Excluir insuficiência adrenal, disfunção tireoidiana relevante, doença renal e uso de diuréticos.",
+            "Confirmar vasopressina elevada e usar esse achado para dispensar a avaliação hormonal.",
+            "Demonstrar sódio urinário acima de 60 mEq/L e usar esse corte como confirmação isolada.",
+            "Documentar urina concentrada e usar esse achado para dispensar a revisão dos fármacos."
+          ],
+          "ans": 0,
+          "exp": "Os exames são compatíveis com antidiurese, mas SIADH é diagnóstico de exclusão. É necessário avaliar causas adrenais, tireoidianas e renais e o uso recente de diuréticos. Insuficiência adrenal secundária pode simular o mesmo padrão; hiponatremia por hipotireoidismo costuma exigir doença clinicamente importante. Urina concentrada e sódio urinário elevado, isoladamente, não fecham o diagnóstico; dosar vasopressina não substitui essa avaliação.",
+          "diff": "medium",
+          "cat": "eletrólitos"
+        }
+      },
+      "preserveFSRS": true
+    }
+  },
+  "references": {
+    "hyponatremia_verbalis2013": {
+      "action": "add",
+      "candidate": {
+        "sha256": "sha256:c6802c01e8b397910f501691680d8f0f5189319ed2dbf961cec86b350f4d1e3c",
+        "fullLiteral": {
+          "label": "Verbalis JG et al. — Diagnosis, Evaluation, and Treatment of Hyponatremia: Expert Panel Recommendations (2013)",
+          "url": "https://doi.org/10.1016/j.amjmed.2013.07.006",
+          "journal": "Am J Med 2013;126(10 Suppl 1):S1–S42",
+          "ano": 2013,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Recomendações de painel para correção segura da hiponatremia e prevenção de hipercorreção.",
+          "icon": "🔬",
+          "resumo": "Recomendações de um painel de especialistas de 2013, não ensaio clínico nem diretriz europeia. Para alto risco de desmielinização na hiponatremia crônica, propõe meta de 4–6 mEq/L por dia e limite de 8 mEq/L em qualquer período de 24 horas. Na hipercorreção, descreve suspensão das medidas que elevam o sódio, água livre e desmopressina monitoradas. Para vaptanos selecionados, orienta início hospitalar da tolvaptana, controle próximo da natremia, acesso à água e evitar combinação com outras terapias para hiponatremia.",
+          "conclusao": "O limite de correção depende do risco; aquarese e reposição de potássio também podem elevar a natremia. Não se deve perseguir normalização rápida.",
+          "curiosidade": ""
+        }
+      },
+      "publicationAuthorization": "BLOQUEADA"
+    }
+  },
+  "supersedes": "A2: independent review correctly required medium in a4c85d32 and REVIEW taxonomy for the2013expert consensus. No A2 approval is inherited."
+}
