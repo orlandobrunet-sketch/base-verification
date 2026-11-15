@@ -1,6 +1,10 @@
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
+import { attachFailureEvidence } from '../helpers/failure-evidence';
 test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'reduce' }});
+test.afterEach(async ({ page }, info) => {
+ if (info.status !== info.expectedStatus) await attachFailureEvidence(page, info);
+});
 async function abrir(page: Page){
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
  await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await injectGameState(page,{gold:0});

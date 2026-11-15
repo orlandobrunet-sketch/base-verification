@@ -138,7 +138,10 @@ function nqDialogo(raiz, { painel = null, visivel = el => el.isConnected } = {})
    * conteúdo muda e o foco saiu, ele volta para o primeiro controle. */
   const reparo = new MutationObserver(() => {
     if (!raiz.isConnected) { reparo.disconnect(); return; }
-    if (!current() || !visivel(raiz) || raiz.contains(document.activeElement)) return;
+    const ativo = document.activeElement;
+    if (!current() || !visivel(raiz) || raiz.contains(ativo)) return;
+    // Repare só o foco perdido; preserve o controle que já recebeu o foco.
+    if (ativo && ativo !== document.body && ativo !== document.documentElement) return;
     const alvo = [...raiz.querySelectorAll('button:not(:disabled), [role="button"], a[href], input:not(:disabled), textarea, [tabindex="0"]')]
       .find(el => el.getClientRects().length && !/^[✕×x]$/i.test((el.textContent || '').trim()));
     alvo?.focus({ preventScroll: true });

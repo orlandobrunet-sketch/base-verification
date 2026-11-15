@@ -36,7 +36,7 @@ export async function attachFailureEvidence(page: Page, info: TestInfo): Promise
             rect: { x: rect.x, y: rect.y, top: rect.top, right: rect.right, bottom: rect.bottom, left: rect.left, width: rect.width, height: rect.height },
             scroll: { top: element.scrollTop, left: element.scrollLeft, height: element.scrollHeight, width: element.scrollWidth,
               clientHeight: element.clientHeight, clientWidth: element.clientWidth },
-            style: { display: style.display, visibility: style.visibility, opacity: style.opacity, overflowX: style.overflowX,
+            style: { display: style.display, visibility: style.visibility, opacity: style.opacity, fontSize: style.fontSize, overflowX: style.overflowX,
               overflowY: style.overflowY, position: style.position, transform: style.transform,
               transitionProperty: style.transitionProperty, transitionDuration: style.transitionDuration }
           };
@@ -56,7 +56,8 @@ export async function attachFailureEvidence(page: Page, info: TestInfo): Promise
           fonts: { status: document.fonts.status },
           regions: ['html', 'body', '#authStartup', '#landingScreen', '#portalMain', '#welcomeScreen', '#mainApp',
             '#studyModePage', '#studyQuestionArea', '#studyFeedback', '#acidBaseOverlay', '#acidBaseOverlay .ab-card',
-            '#acidBaseOverlay .ab-clinical', '#acidBaseOverlay .ab-reading', '#abFeedback', '#abGrimoirePanel', '#nqEntryCinema',
+            '#acidBaseOverlay .ab-clinical', '#acidBaseOverlay .ab-reading', '#abFeedback', '#abGrimoirePanel',
+            '#bossIntroPopup', '#bossIntroPopup .nqboss-card', '#bossIntroPopup .nqboss-reading', '#nqEntryCinema',
             '.nqnarr-card[data-nq-chapter]', '.nqnarr-card[data-nq-chapter] .nqnarr-reading']
             .map(shape)
         };

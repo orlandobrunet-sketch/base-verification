@@ -95,7 +95,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@17.17',
+          release: 'nefroquest@17.18',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -1870,7 +1870,7 @@
   <script defer src="data/question-revision-history.js?v=16.20"></script>
   <script defer src="js/question-revisions.js?v=17.16"></script>
   <script defer src="js/progression.js?v=16.84"></script>
-  <script defer src="js/utils.js?v=17.15"></script>
+  <script defer src="js/utils.js?v=17.18"></script>
   <script defer src="js/audio.js?v=16.28"></script>
   <script defer src="js/leaderboard.js?v=17.15"></script>
   <script defer src="js/study-mode.js?v=17.17"></script>
