@@ -1,0 +1,55 @@
+{
+  "schema": "NQ_1726_TRANSPORT_BYTE_COMPANION_v1",
+  "baseCommit": "33b203ddccc125c04b2c740c2316ae5c0ea362a0",
+  "questionSourceChangedLines": [
+    {
+      "line": 15,
+      "beforeSHA256": "71bce52e2777ab755d970871371972a41d95166b5c654df40f021e956cededf5",
+      "afterSHA256": "cdb6ad1b5509c96f6791482f561e7d36dbf5187827cca4d7772d4ef4b36174b9",
+      "qid": "e0853fac"
+    },
+    {
+      "line": 152,
+      "beforeSHA256": "0b13e5342adf2f4702f4e81b0e1bfc69ad69ac1b75fffe0065a7252ee522e84e",
+      "afterSHA256": "7fbcae727c742acdb8250b7ac7de652544df736260c335afeea421c718d502e1",
+      "qid": "ebea50d5"
+    },
+    {
+      "line": 278,
+      "beforeSHA256": "84d1c1e9df38c68067eda0cf6c64a263691c1edea0dd7c958541bdf099239a96",
+      "afterSHA256": "6062821671475ec81719c895d8135c8a408ec331f9fc6c31a6dd89ada4b811b3",
+      "qid": "b35be598"
+    }
+  ],
+  "allOtherSourceLinesUnchangedAfterLFNormalization": true,
+  "onlyEOLNormalizationAppliedForGitComparison": true,
+  "testFiles": {
+    "tests/specs/136-question-revisions.spec.ts": {
+      "sha256": "b3f4e77d5ef3e0601bb5d2783187d0f709bc8f2456635f09bd9d025381d2f8d7",
+      "normalizedLFSHA256": "a22134f7b6a9d3a7593c67b5b2bd727d7a688433a33bbc0d6fc9284f95b79d9d",
+      "bytes": 68234
+    },
+    "tests/specs/255-medical-revision-history.spec.ts": {
+      "sha256": "31963f15549e191fc948874638ca9f3757028562372563dd4c3859461bcf8dab",
+      "normalizedLFSHA256": "31963f15549e191fc948874638ca9f3757028562372563dd4c3859461bcf8dab",
+      "bytes": 7580
+    },
+    "tests/specs/257-medical-continuation-history.spec.ts": {
+      "sha256": "f8b9c0ac00b5b9385197638b4df8364ec6011bf9590a7a15ad33ddefa4ab4e95",
+      "normalizedLFSHA256": "f8b9c0ac00b5b9385197638b4df8364ec6011bf9590a7a15ad33ddefa4ab4e95",
+      "bytes": 15738
+    },
+    "tests/answers/catalog-construction-cache.test.cjs": {
+      "sha256": "85542b66cfcc4d820b13157371f79bf3fa688128b2b3f447d41c5d5df54c9e75",
+      "normalizedLFSHA256": "85542b66cfcc4d820b13157371f79bf3fa688128b2b3f447d41c5d5df54c9e75",
+      "bytes": 12811
+    }
+  },
+  "auditor": {
+    "path": "ux-1726-independent-application-check.cjs",
+    "sha256": "e02dc4f2d32798a71b46975c3e68c2cf5ada8d3ed68e96d731a170ca6979b13e"
+  },
+  "limits": [
+    "No test suite or browser run; source inspection only."
+  ]
+}

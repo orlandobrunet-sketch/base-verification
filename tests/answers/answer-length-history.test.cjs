@@ -163,3 +163,28 @@ test('an answered old SUSTAIN record retains its original card while the current
     }
   }
 });
+
+test('three 17.25 before revisions retain the entire previously published history and their original cards', () => {
+  assert.equal(builder.digest(history.slice(0, 177)), 'sha256:8e3a196d946d6e642cd64722e86ae75208fd0b26667ec014315a7c45a12ac168');
+  const rows = history.filter(entry => entry.release === '17.25');
+  assert.deepEqual(rows.map(entry => entry.qid).sort(), ['b35be598', 'e0853fac', 'ebea50d5']);
+  let bindingCount = 0;
+  for (const old of rows) {
+    for (const profile of profiles) {
+      const retained = catalog.inspect(old.sources[profile], {profile, binding: old.bindings[profile]});
+      assert.equal(retained.status, 'known', old.qid + ':' + profile);
+      assert.equal(retained.value.historical, true);
+      assert.equal(retained.value.release, '17.25');
+      assert.deepEqual(retained.value.source, old.sources[profile]);
+      assert.deepEqual(retained.value.author, old.author);
+      assert.deepEqual(retained.value.references, old.references);
+      assert.deepEqual(retained.value.policy, {material: true, pending: 'update-required', answered: 'historical'});
+      const current = catalog.current(old.qid, profile);
+      assert.notEqual(current.binding.recordRevision, old.recordRevision);
+      assert.equal(current.author.qid, old.author.qid);
+      assert.deepEqual(Object.keys(current.references), ['ukka_hyperkalemia_2026']);
+      bindingCount++;
+    }
+  }
+  assert.equal(bindingCount, 12);
+});

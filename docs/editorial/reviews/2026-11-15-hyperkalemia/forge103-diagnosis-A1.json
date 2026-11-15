@@ -1,0 +1,556 @@
+{
+  "scope": "Diagnosis only. No product, repository test, config, Git, medical data or release gate edits. Artifacts are confined to this directory.",
+  "sourceCommit": "845baee59bfa6fd285bd2f5814312b14322d97f8",
+  "sourceStatus": "",
+  "incident": {
+    "run": 1097,
+    "runId": 43751342965,
+    "shard": 1,
+    "test": "103-confirmacao-gasto.spec.ts",
+    "title": "forge: custo real, cancelamento sem gasto e cobrança única",
+    "attempt0": "timedOut",
+    "durationMs": 20791,
+    "retry1": "passed",
+    "retry1DurationMs": 5119,
+    "traceSHA256": "fe2a1b7f8fbcfa4e644232ed5a420c16ae4248d6b4ddf8fae0dd393fdf7b019c"
+  },
+  "classification": "PREPARO_INCOMPLETO_DO_TESTE: caminho padrão não ativa visitante e concorre com conclusão de autenticação anônima; defeito do fluxo Guest nativo não demonstrado.",
+  "exactFailure": "A linha17 não recebe clique: landingScreen visível, topbar intercepta pointer events. Compra e cancelamentos já passaram. Saldo1250→950, sem indicação de cobrança extra.",
+  "ciTimeline": [
+    {
+      "time": 330014.915,
+      "event": "enterGame evaluateExpression começa: acrescenta hidden a landing/welcome",
+      "callId": "call@11179"
+    },
+    {
+      "time": 330069.423,
+      "event": "evaluateExpression terminou",
+      "callId": "call@11179"
+    },
+    {
+      "time": 330077.425,
+      "event": "snapshot após evaluate já mostra landingScreen class=\"\"",
+      "callId": "call@11179"
+    },
+    {
+      "time": 331639.806,
+      "event": "após continueGame, landing class=\"\" e mainApp class=\"app\" coexistem",
+      "callId": "call@11183"
+    },
+    {
+      "time": 331853.46,
+      "event": "antes da primeira confirmação, landing permanece class=\"\"",
+      "callId": "call@11209"
+    },
+    {
+      "time": 332619.711,
+      "event": "state.gold observado950",
+      "callId": "call@11277"
+    },
+    {
+      "time": 332734.728,
+      "event": "clique no fechamento do resultado modal funciona",
+      "callId": "call@11287"
+    },
+    {
+      "time": 332837.354,
+      "event": "clique no voltar da página inicia e expira por interceptação do portal",
+      "callId": "call@11293"
+    }
+  ],
+  "mechanism": [
+    {
+      "file": "tests/specs/103-confirmacao-gasto.spec.ts",
+      "line": 5,
+      "fact": "injectGameState(page,{gold}) sem terceira opção asGuest."
+    },
+    {
+      "file": "tests/helpers/game.ts",
+      "line": 63,
+      "fact": "playAsGuest só é chamado se options.asGuest; enterGame padrão apenas oculta portal no DOM, continua e espera mainApp/pergunta."
+    },
+    {
+      "file": "js/auth.js",
+      "line": 69,
+      "fact": "_showSignedOutPortal mostra landing e oculta main/welcome, preservando ouro e página Forja."
+    },
+    {
+      "file": "js/auth.js",
+      "line": 187,
+      "fact": "Callback auth sem usuário e sem visitante mostra portal; getSession.then repete essa guarda na linha210."
+    },
+    {
+      "file": "js/auth.js",
+      "line": 739,
+      "fact": "playAsGuest põe _guestMode=true e nq_guest_mode=1 antes de ocultar landing."
+    },
+    {
+      "file": "js/game.js",
+      "line": 6487,
+      "fact": "Resultado usa dialog.showModal, na camada modal nativa, permitindo fechar resultado com portal exposto por trás."
+    },
+    {
+      "file": "js/game.js",
+      "line": 6560,
+      "fact": "fecharResultadoForja renderiza Forja e retira diálogo; a página comum volta a estar sob o portal."
+    },
+    {
+      "file": "js/game.js",
+      "line": 6616,
+      "fact": "showForjaModal isola mainApp/welcomeScreen; não cria a visibilidade indevida de landing."
+    },
+    {
+      "file": "style.css",
+      "line": 2398,
+      "fact": "landing é fixa z9000; superfície Forja z10 (variáveis linhas90/96 e superfície linha13827)."
+    }
+  ],
+  "attempts": [
+    {
+      "mode": "original-unmarked",
+      "report": "report-original-unmarked-localbrowser.json",
+      "status": "timedOut",
+      "retry": 0,
+      "durationMs": 20667,
+      "errors": [
+        {
+          "message": "\u001b[31mTest timeout of 20000ms exceeded.\u001b[39m"
+        },
+        {
+          "location": {
+            "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1726-forge103-investigation\\probe103.spec.ts",
+            "column": 72,
+            "line": 18
+          },
+          "message": "Error: locator.click: Test timeout of 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: '← Voltar à jornada', exact: true })\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" class=\"btn sec\" data-action=\"fecharForja\">← Voltar à jornada</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <header class=\"nql-portal__topbar\">…</header> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <header class=\"nql-portal__topbar\">…</header> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    28 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <header class=\"nql-portal__topbar\">…</header> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n  16 |  await page.getByRole('button',{name:'Fechar resultado e voltar à Forja',exact:true}).click();\n  17 |  await expect(page.locator('#forjaResultDialog')).toHaveCount(0);\n> 18 |  await page.getByRole('button',{name:'← Voltar à jornada',exact:true}).click();\n     |                                                                        ^\n  19 |  await expect(page.locator('.mdock-btn.forge-item:visible')).toBeFocused();\n  20 |  }\n  21 |  });\n    at C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1726-forge103-investigation\\probe103.spec.ts:18:72"
+        }
+      ],
+      "observation": {
+        "entry": "original-unmarked",
+        "retry": 0,
+        "status": "timedOut",
+        "observation": {
+          "events": [
+            {
+              "time": 333.29999999701977,
+              "label": "DOMContentLoaded",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 499.5,
+              "label": "load",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 520.2999999970198,
+              "label": "screen-attribute-mutation",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 521.4000000059605,
+              "label": "screen-attribute-mutation",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "hidden",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 522.2000000029802,
+              "label": "screen-attribute-mutation",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 2719.9000000059605,
+              "label": "screen-attribute-mutation",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "",
+              "main": "app",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 3807,
+              "label": "screen-attribute-mutation",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "",
+              "main": "app hidden",
+              "forja": true,
+              "dialog": true
+            }
+          ],
+          "guest": false,
+          "authUser": null,
+          "gold": 950,
+          "landing": "",
+          "main": "app hidden",
+          "forja": true
+        }
+      },
+      "attachments": [
+        {
+          "name": "screenshot",
+          "path": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1726-forge103-investigation\\results-original-unmarked-localbrowser\\probe103-forge-custo-real--1259d--sem-gasto-e-cobrança-única-chromium\\test-failed-1.png",
+          "sha256": "77be125552b7422d9dc054ec2987936f75b7befd3938566caec9579c92380fb3"
+        },
+        {
+          "name": "error-context",
+          "path": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1726-forge103-investigation\\results-original-unmarked-localbrowser\\probe103-forge-custo-real--1259d--sem-gasto-e-cobrança-única-chromium\\error-context.md",
+          "sha256": "53a6b58c5edfb16e0ad1aeafb992f8a8ebf9afb8c661e6fc3aedc7c94e8bc03b"
+        },
+        {
+          "name": "trace",
+          "path": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1726-forge103-investigation\\results-original-unmarked-localbrowser\\probe103-forge-custo-real--1259d--sem-gasto-e-cobrança-única-chromium\\trace.zip",
+          "sha256": "b83954f14e42b3d40c617cb5ff9df5730356d35f7bf3fc8eb6a7771fe04d50aa"
+        }
+      ]
+    },
+    {
+      "mode": "original-unmarked",
+      "report": "report-original-unmarked-localbrowser.json",
+      "status": "passed",
+      "retry": 1,
+      "durationMs": 5836,
+      "errors": [],
+      "observation": {
+        "entry": "original-unmarked",
+        "retry": 1,
+        "status": "passed",
+        "observation": {
+          "events": [
+            {
+              "time": 340.5,
+              "label": "DOMContentLoaded",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 492.29999999701977,
+              "label": "load",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 540.0999999940395,
+              "label": "screen-attribute-mutation",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 557.5999999940395,
+              "label": "screen-attribute-mutation",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 562,
+              "label": "screen-attribute-mutation",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "hidden",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 2700.4000000059605,
+              "label": "screen-attribute-mutation",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "hidden",
+              "main": "app",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 3750.2999999970198,
+              "label": "screen-attribute-mutation",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "hidden",
+              "main": "app hidden",
+              "forja": true,
+              "dialog": true
+            },
+            {
+              "time": 4169,
+              "label": "screen-attribute-mutation",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "hidden",
+              "main": "app",
+              "forja": false,
+              "dialog": false
+            }
+          ],
+          "guest": false,
+          "authUser": null,
+          "gold": 950,
+          "landing": "hidden",
+          "main": "app",
+          "forja": false
+        }
+      },
+      "attachments": [
+        {
+          "name": "trace",
+          "path": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1726-forge103-investigation\\results-original-unmarked-localbrowser\\probe103-forge-custo-real--1259d--sem-gasto-e-cobrança-única-chromium-retry1\\trace.zip",
+          "sha256": "99c0cea561f9f27512f39144b39b24161c9ea025d07407e36f2529a8c1dfd1fd"
+        }
+      ]
+    },
+    {
+      "mode": "guest-native",
+      "report": "report-guest-native-localbrowser.json",
+      "status": "passed",
+      "retry": 0,
+      "durationMs": 6034,
+      "errors": [],
+      "observation": {
+        "entry": "guest-native",
+        "retry": 0,
+        "status": "passed",
+        "observation": {
+          "events": [
+            {
+              "time": 449.8999999910593,
+              "label": "DOMContentLoaded",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 558.2999999970198,
+              "label": "load",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 580.0999999940395,
+              "label": "screen-attribute-mutation",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 581.3999999910593,
+              "label": "screen-attribute-mutation",
+              "guest": false,
+              "guestStorage": null,
+              "landing": "",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 629.5,
+              "label": "screen-attribute-mutation",
+              "guest": true,
+              "guestStorage": "1",
+              "landing": "hidden",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 725.3999999910593,
+              "label": "screen-attribute-mutation",
+              "guest": true,
+              "guestStorage": "1",
+              "landing": "hidden",
+              "main": "app hidden",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 2850.8999999910593,
+              "label": "screen-attribute-mutation",
+              "guest": true,
+              "guestStorage": "1",
+              "landing": "hidden",
+              "main": "app",
+              "forja": false,
+              "dialog": false
+            },
+            {
+              "time": 3912.3999999910593,
+              "label": "screen-attribute-mutation",
+              "guest": true,
+              "guestStorage": "1",
+              "landing": "hidden",
+              "main": "app hidden",
+              "forja": true,
+              "dialog": true
+            },
+            {
+              "time": 4334.0999999940395,
+              "label": "screen-attribute-mutation",
+              "guest": true,
+              "guestStorage": "1",
+              "landing": "hidden",
+              "main": "app",
+              "forja": false,
+              "dialog": false
+            }
+          ],
+          "guest": true,
+          "authUser": null,
+          "gold": 950,
+          "landing": "hidden",
+          "main": "app",
+          "forja": false
+        }
+      },
+      "attachments": [
+        {
+          "name": "trace",
+          "path": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1726-forge103-investigation\\results-guest-native-localbrowser\\probe103-forge-custo-real--1259d--sem-gasto-e-cobrança-única-chromium\\trace.zip",
+          "sha256": "ef101d9b0d2e70e0c6ed2d330cd3f5138e79eb013c4e1acaf5ae25e1b8f4fbd0"
+        }
+      ]
+    }
+  ],
+  "nativeGuestControl": {
+    "difference": "A única diferença de preparação entre modos é o terceiro argumento {asGuest:true}; mesmo corpo e assertivas originais, funções e respostas de produto reais.",
+    "observed": "guest=true,nq_guest_mode=1,authUser=null,landing hidden,saldo950,Forja removida,foco retornado ao dock; passou direto6034ms.",
+    "strength": "Contraprova local dirigida à hipótese, uma execução do controle Guest; não equivale a bateria completa nem garante ausência de todos os defeitos de autenticação."
+  },
+  "interpretationLimits": [
+    "TraceCI não registra call stack JavaScript ou flagGuest. Não identifica qual dos dois callbacks iniciais nulos (onAuthStateChange/getSession.then) produziu a reexibição.",
+    "No probe local, observer registra flagGuest=false e hidden→visível0,8ms depois; o retry mostra a ordem inversa e passa. Isso estabelece a corrida do preparo, mas não distingue os dois callbacks equivalentes.",
+    "SIGNED_OUT/troca real não é sustentada pelos dados: seu caminho chama _stopLocalJourney, que zera ouro e removeForja; falha observada preservou ambos.",
+    "Arquivos do caminho causal são canonicamente idênticos à17.24. A diferença em jogar/index.html é identificaçãoSentry17.25. Sem prova de causa semântica dos oito itens médicos; variações de tempo podem expor corrida preexistente.",
+    "A preflight inicial não encontrou executável por variável de ambiente isolada; seus retries configurados nem iniciaram o navegador. Esse erro de infraestrutura é preservado em report-original-unmarked.json e não conta como reprodução do produto.",
+    "Config do probe conserva timeoutCI20s/retries2/workers1 e assertivas originais; retém traces aprovados e desativa vídeo somente como coleta. Fonte, banco e funções não foram substituídos.",
+    "Nenhuma correção foi aplicada ou autorizada por esta investigação."
+  ],
+  "suggestedNarrowFollowup": {
+    "scope": "Teste103 apenas, sujeito à revisão da raiz.",
+    "candidate": "Usar a opção asGuest:true já suportada pelo helper e verificar landing oculta na fronteira da preparação/retorno. Manter clique nativo, asserts de ouro/cancelamento/cobrança/foco, timeout/retries e regressões269.",
+    "excluded": "Não alterar z-index, usar force:true, elevar timeout/retries, ocultar novamente o portal na saída daForja ou trocar funções/respostas para satisfazer o teste."
+  },
+  "existingRegression": "tests/specs/269-guest-fixture-entry.spec.ts contém controles promise/event de sessão inicial tardia comasGuest:true. Apenas lido; não executado porque usa substituição controlada deSDK, fora da restrição desta contraprova.",
+  "unchangedCausalSources": [
+    {
+      "file": "js/auth.js",
+      "workingByteSHA256": "89e2c6d931fd694cd1e680949f1520c060e8fec0449ce4a3a89eb12e3b151d02",
+      "published1724LF_SHA256": "fe10cc6f86d9aac294d758bb972050531a9a928856dc71fadfb44da7635497ae",
+      "workingLF_SHA256": "fe10cc6f86d9aac294d758bb972050531a9a928856dc71fadfb44da7635497ae",
+      "canonicalEqual": true
+    },
+    {
+      "file": "js/game.js",
+      "workingByteSHA256": "01bddc45ddcc5c4102c1da14c1cc642953d962cf86d2f2e5a79b64c389323ebb",
+      "published1724LF_SHA256": "47fa977b7b55923b51c63dab62632cefc1b03ed870a6d7fdfae2cf6d98b8b68c",
+      "workingLF_SHA256": "47fa977b7b55923b51c63dab62632cefc1b03ed870a6d7fdfae2cf6d98b8b68c",
+      "canonicalEqual": true
+    },
+    {
+      "file": "style.css",
+      "workingByteSHA256": "3d9c36a9e531f8020bbd10411efd70eb96fff441c66be756b8bc110cba4f33b8",
+      "published1724LF_SHA256": "efc899cdc219caeeac65a1549de882423e9dcce209e6104486017664eee7e5d4",
+      "workingLF_SHA256": "efc899cdc219caeeac65a1549de882423e9dcce209e6104486017664eee7e5d4",
+      "canonicalEqual": true
+    },
+    {
+      "file": "tests/specs/103-confirmacao-gasto.spec.ts",
+      "workingByteSHA256": "fbcd764b1c240d303308f9840d1dddf47d4bf353d891927d799d17a604580c54",
+      "published1724LF_SHA256": "7de532e9e413c9978f4be27d9a5060fc595ffce911fed35289fa98aaa05bc2fc",
+      "workingLF_SHA256": "7de532e9e413c9978f4be27d9a5060fc595ffce911fed35289fa98aaa05bc2fc",
+      "canonicalEqual": true
+    },
+    {
+      "file": "tests/helpers/game.ts",
+      "workingByteSHA256": "4d452ba481facd96231113038693629247e4b3376c72673166b07ddb7960e37b",
+      "published1724LF_SHA256": "de1ce9be0ba7379aafe1a8b79817150bf02022c92de7988886183b64bf307ff8",
+      "workingLF_SHA256": "de1ce9be0ba7379aafe1a8b79817150bf02022c92de7988886183b64bf307ff8",
+      "canonicalEqual": true
+    },
+    {
+      "file": "tests/playwright.config.ts",
+      "workingByteSHA256": "576444e2401a393f0259699ba431fba8346d64af1f4007a4bf42f2ece167f1b3",
+      "published1724LF_SHA256": "451de369e457727822c3030e1b8de34119e29a7f4705d5892e8ffaf3c62726c3",
+      "workingLF_SHA256": "451de369e457727822c3030e1b8de34119e29a7f4705d5892e8ffaf3c62726c3",
+      "canonicalEqual": true
+    }
+  ],
+  "localSession": {
+    "sourceCommit": "845baee59bfa6fd285bd2f5814312b14322d97f8",
+    "startedAt": "2026-11-15T16:14:42.077Z",
+    "port": 5514,
+    "serverPID": 33256,
+    "observations": [
+      {
+        "entry": "original-unmarked",
+        "pid": 20972,
+        "code": 0,
+        "signal": null
+      },
+      {
+        "entry": "guest-native",
+        "pid": 22824,
+        "code": 0,
+        "signal": null
+      }
+    ],
+    "sourceStatusBefore": "",
+    "portListeningAfter": false,
+    "serverExitCode": null,
+    "finishedAt": "2026-11-15T16:15:19.710Z",
+    "sourceStatusAfter": ""
+  },
+  "listenerCloseCheck": {
+    "port": 5514,
+    "open": false,
+    "method": "local-probe-session connect returnedfalse; independent host netstat search5514 showedTIME_WAIT only and noLISTENING; serverPID33256 absent afterclosing."
+  }
+}

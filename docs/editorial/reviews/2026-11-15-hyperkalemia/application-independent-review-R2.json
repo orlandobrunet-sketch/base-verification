@@ -1,0 +1,318 @@
+{
+  "schema": "NQ_1726_INDEPENDENT_APPLICATION_REVIEW_v1",
+  "reviewer": "/root/study_visibility_1717",
+  "date": "2026-11-15T16:39:03.855Z",
+  "status": "TRANSPORT_VERIFIED",
+  "scope": "Exact approved-object and published-origin transport; no fresh clinical reassessment and no release/publication claim.",
+  "baseCommit": "33b203ddccc125c04b2c740c2316ae5c0ea362a0",
+  "observedHead": "33b203ddccc125c04b2c740c2316ae5c0ea362a0",
+  "release": "17.26",
+  "evidence": {
+    "ux-next-hyperkalemia-author/hyperkalemia-author-A1.json": {
+      "sha256": "1301e8314f1614c6bd4e07f8eef25933eb0096f8bb42a1d01ab6b25c3e48405e",
+      "bytes": 45854
+    },
+    "ux-next-hyperkalemia-review/candidate-independent-review-A1.json": {
+      "sha256": "4a7e5b9cdbb961284fdfc8643276f349a61ded0c06ec58f4316c78677ab9eaa7",
+      "bytes": 47008
+    },
+    "ux-next-hyperkalemia-author/NQ_HYPERKALEMIA_1726_OPERATIONAL_APPROVAL_R2.json": {
+      "sha256": "1ef55a8eed5bd40da7a0fc5304e6e3e0cc474a3508c2f399ffddf2f7468841b3",
+      "bytes": 4011
+    },
+    "ux-1726-application-receipt.json": {
+      "sha256": "f57ceba5b779d2f8e800ba83688174c6d2a85b4444ee487995dc0d2dc2bfdbc0",
+      "bytes": 3863
+    },
+    "NQ_PUBLICATION_1725_RECEIPT.json": {
+      "sha256": "57c4ae30bd12106bbc198d191d252e83f901b025f4e00b5b9a51a4960be0572b",
+      "bytes": 4702
+    }
+  },
+  "sourceFiles": {
+    "data/topics.js": {
+      "baseGitSHA256": "c6a6495dfd123dc5a2085f8f5ddea001863b6b12e5ff7dc2051fcf5fed6757e8",
+      "actualSHA256": "448f4f4340a6208c2f89cdd15e77c2cd3ae558a2a678dac4476fea2b70fafed8",
+      "baseBytes": 975196,
+      "actualBytes": 975855,
+      "rawBytesEqual": false,
+      "normalizedLFEqual": false
+    },
+    "data/refs.js": {
+      "baseGitSHA256": "b754ce39d368b0a05ffd14ac33f609790162cb72d275bdc9da78c0b3f1a3de95",
+      "actualSHA256": "b754ce39d368b0a05ffd14ac33f609790162cb72d275bdc9da78c0b3f1a3de95",
+      "baseBytes": 510717,
+      "actualBytes": 510717,
+      "rawBytesEqual": true,
+      "normalizedLFEqual": true
+    },
+    "data/question-revision-manifest.js": {
+      "baseGitSHA256": "3cb339e75a6ac7763fb372d724caf2630ef282802736e331582e1db94f9a2aca",
+      "actualSHA256": "5c2578a9acd48db45daa5acc858652c8576548f3f637c2ae06b9b3ad34d3f87a",
+      "baseBytes": 534805,
+      "actualBytes": 534537,
+      "rawBytesEqual": false,
+      "normalizedLFEqual": false
+    },
+    "data/question-revision-history.js": {
+      "baseGitSHA256": "1282251abb6144d826ffb4b701229cf29ecc139026424177139173b639caffa0",
+      "actualSHA256": "404457eed766447bdbb15b8d7845c30584b60fb320a350f77e0fcf605dc53b41",
+      "baseBytes": 1749041,
+      "actualBytes": 1777592,
+      "rawBytesEqual": false,
+      "normalizedLFEqual": false
+    }
+  },
+  "changedDataFiles": [
+    "data/question-revision-history.js",
+    "data/question-revision-manifest.js",
+    "data/topics.js"
+  ],
+  "counts": {
+    "questions": 741,
+    "unchangedAuthors": 738,
+    "rewrittenAuthors": 3,
+    "references": 372,
+    "priorArchives": 177,
+    "archives": 180,
+    "priorBindings": 708,
+    "newBindings": 12,
+    "totalBindings": 720,
+    "currentProfileSources": 2964,
+    "difficultyChanges": 2
+  },
+  "allQuestionIDsOrderTitlesAnswerIndicesCategoriesStable": true,
+  "questionChecks": [
+    {
+      "qid": "b35be598",
+      "index": 276,
+      "beforeSHA256": "sha256:5d77f3f66105e2c689153a86b26dc0def8977283c54bc22c7e9294bf96d589dd",
+      "afterSHA256": "sha256:ffd2c33159b97399236bf9350d418004e421cda19aa25438b622d148b6a2ce07",
+      "difficultyBefore": "medium",
+      "difficultyAfter": "easy",
+      "identityAndAnswerIndexPreserved": true,
+      "fsrsDecision": "PRESERVAR",
+      "versionSHA256": "sha256:ffd2c33159b97399236bf9350d418004e421cda19aa25438b622d148b6a2ce07",
+      "literalExact": true,
+      "gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook§18.4,regra7: evidência verificada,nenhuma pendência e veredito aprovativo. Gate específico do literal abaixo; não é autorização de aplicação imediata."
+      },
+      "tenQuestionEliminatoriesUntriggered": true,
+      "cardBlockingFindingsAbsent": null,
+      "versionPointer": "/questions/b35be598/version",
+      "gatePointer": "/questions/b35be598/gate"
+    },
+    {
+      "qid": "e0853fac",
+      "index": 13,
+      "beforeSHA256": "sha256:bd961461115e71931f9f38d9d3148dcfa6cf71ea4de635c3cdb2a211af33a9d7",
+      "afterSHA256": "sha256:e22eb8d91d46334a655e84d67bd29bbfcef30b3ac099f0eb9d5e675efd679289",
+      "difficultyBefore": "medium",
+      "difficultyAfter": "medium",
+      "identityAndAnswerIndexPreserved": true,
+      "fsrsDecision": "PRESERVAR",
+      "versionSHA256": "sha256:e22eb8d91d46334a655e84d67bd29bbfcef30b3ac099f0eb9d5e675efd679289",
+      "literalExact": true,
+      "gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook§18.4,regra7: evidência verificada,nenhuma pendência e veredito aprovativo. Gate específico do literal abaixo; não é autorização de aplicação imediata."
+      },
+      "tenQuestionEliminatoriesUntriggered": true,
+      "cardBlockingFindingsAbsent": null,
+      "versionPointer": "/questions/e0853fac/version",
+      "gatePointer": "/questions/e0853fac/gate"
+    },
+    {
+      "qid": "ebea50d5",
+      "index": 150,
+      "beforeSHA256": "sha256:576207cdcbdab967bd607427b540ce4a180344deeba03420734c3b741861fff9",
+      "afterSHA256": "sha256:9425c92a731bf9422cee2ad886e98bea61038530f67da935842ea9b6437c50c0",
+      "difficultyBefore": "hard",
+      "difficultyAfter": "medium",
+      "identityAndAnswerIndexPreserved": true,
+      "fsrsDecision": "PRESERVAR",
+      "versionSHA256": "sha256:9425c92a731bf9422cee2ad886e98bea61038530f67da935842ea9b6437c50c0",
+      "literalExact": true,
+      "gate": {
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "verdict": "aprovada",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Handbook§18.4,regra7: evidência verificada,nenhuma pendência e veredito aprovativo. Gate específico do literal abaixo; não é autorização de aplicação imediata."
+      },
+      "tenQuestionEliminatoriesUntriggered": true,
+      "cardBlockingFindingsAbsent": null,
+      "versionPointer": "/questions/ebea50d5/version",
+      "gatePointer": "/questions/ebea50d5/gate"
+    }
+  ],
+  "cardCheck": {
+    "id": "ukka_hyperkalemia_2026",
+    "versionSHA256": "sha256:6f41098d441a55c6544104a29674bf4437050b4e2738b76f0e6c691e433e6888",
+    "literalExact": true,
+    "gate": {
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "verdict": "aprovada",
+      "publicationAuthorization": "LIBERADA",
+      "derivation": "Handbook§18.4,regra7: evidência verificada,nenhuma pendência e veredito aprovativo. Gate específico do literal abaixo; não é autorização de aplicação imediata."
+    },
+    "tenQuestionEliminatoriesUntriggered": null,
+    "cardBlockingFindingsAbsent": true,
+    "versionPointer": "/references/ukka_hyperkalemia_2026/version",
+    "gatePointer": "/references/ukka_hyperkalemia_2026/gate",
+    "all12FieldsReviewedAndUnchanged": true
+  },
+  "heldTTKG": {
+    "qid": "6474ec20",
+    "sha256": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+    "unchanged": true,
+    "notArchivedOrRewrittenInThisBatch": true
+  },
+  "history": {
+    "all177PriorObjectsUnchanged": true,
+    "all177LiteralPrefixBytesPreserved": true,
+    "wrapperAndSuffixExact": true,
+    "oldPrefixSHA256": "a712bd8f8692a37bb995bc5745a225aaebef46bba53a21053d47923327a1d720",
+    "additions": [
+      {
+        "qid": "e0853fac",
+        "release": "17.25",
+        "archiveSHA256": "sha256:f75a93960db0ea939dd279c742df7dc1900bfbbea0fb6b52e66d48facdc7a344",
+        "publishedAuthorSHA256": "sha256:bd961461115e71931f9f38d9d3148dcfa6cf71ea4de635c3cdb2a211af33a9d7",
+        "recordRevision": "sha256:5a73a231b55abc9134cb68bde1765e7d95f906a90b1024681df7226769cda7be",
+        "exactPublishedBefore": true,
+        "fourSourceProfilesExact": true,
+        "bindings": {
+          "main": {
+            "version": 1,
+            "qid": "e0853fac",
+            "profile": "main",
+            "recordRevision": "sha256:5a73a231b55abc9134cb68bde1765e7d95f906a90b1024681df7226769cda7be"
+          },
+          "exam": {
+            "version": 1,
+            "qid": "e0853fac",
+            "profile": "exam",
+            "recordRevision": "sha256:5a73a231b55abc9134cb68bde1765e7d95f906a90b1024681df7226769cda7be"
+          },
+          "study": {
+            "version": 1,
+            "qid": "e0853fac",
+            "profile": "study",
+            "recordRevision": "sha256:5a73a231b55abc9134cb68bde1765e7d95f906a90b1024681df7226769cda7be"
+          },
+          "offline": {
+            "version": 1,
+            "qid": "e0853fac",
+            "profile": "offline",
+            "recordRevision": "sha256:5a73a231b55abc9134cb68bde1765e7d95f906a90b1024681df7226769cda7be"
+          }
+        }
+      },
+      {
+        "qid": "ebea50d5",
+        "release": "17.25",
+        "archiveSHA256": "sha256:a26c148e9bde0a7722fefab35e36622dd87c32262f218c8d8dee808b8800f15b",
+        "publishedAuthorSHA256": "sha256:576207cdcbdab967bd607427b540ce4a180344deeba03420734c3b741861fff9",
+        "recordRevision": "sha256:38f7ce2f0cad3d95b385021e7132763959dfcab2d862aa898f3c1e07278c31dc",
+        "exactPublishedBefore": true,
+        "fourSourceProfilesExact": true,
+        "bindings": {
+          "main": {
+            "version": 1,
+            "qid": "ebea50d5",
+            "profile": "main",
+            "recordRevision": "sha256:38f7ce2f0cad3d95b385021e7132763959dfcab2d862aa898f3c1e07278c31dc"
+          },
+          "exam": {
+            "version": 1,
+            "qid": "ebea50d5",
+            "profile": "exam",
+            "recordRevision": "sha256:38f7ce2f0cad3d95b385021e7132763959dfcab2d862aa898f3c1e07278c31dc"
+          },
+          "study": {
+            "version": 1,
+            "qid": "ebea50d5",
+            "profile": "study",
+            "recordRevision": "sha256:38f7ce2f0cad3d95b385021e7132763959dfcab2d862aa898f3c1e07278c31dc"
+          },
+          "offline": {
+            "version": 1,
+            "qid": "ebea50d5",
+            "profile": "offline",
+            "recordRevision": "sha256:38f7ce2f0cad3d95b385021e7132763959dfcab2d862aa898f3c1e07278c31dc"
+          }
+        }
+      },
+      {
+        "qid": "b35be598",
+        "release": "17.25",
+        "archiveSHA256": "sha256:5de1a8d35090a0e7e5983ce249aa52aabad18c0a65019f5c9c7a5987d1922b86",
+        "publishedAuthorSHA256": "sha256:5d77f3f66105e2c689153a86b26dc0def8977283c54bc22c7e9294bf96d589dd",
+        "recordRevision": "sha256:8405dcbfe091ede97b6caebb4321735ac6fcf223cdd91945e2817e70b9537623",
+        "exactPublishedBefore": true,
+        "fourSourceProfilesExact": true,
+        "bindings": {
+          "main": {
+            "version": 1,
+            "qid": "b35be598",
+            "profile": "main",
+            "recordRevision": "sha256:8405dcbfe091ede97b6caebb4321735ac6fcf223cdd91945e2817e70b9537623"
+          },
+          "exam": {
+            "version": 1,
+            "qid": "b35be598",
+            "profile": "exam",
+            "recordRevision": "sha256:8405dcbfe091ede97b6caebb4321735ac6fcf223cdd91945e2817e70b9537623"
+          },
+          "study": {
+            "version": 1,
+            "qid": "b35be598",
+            "profile": "study",
+            "recordRevision": "sha256:8405dcbfe091ede97b6caebb4321735ac6fcf223cdd91945e2817e70b9537623"
+          },
+          "offline": {
+            "version": 1,
+            "qid": "b35be598",
+            "profile": "offline",
+            "recordRevision": "sha256:8405dcbfe091ede97b6caebb4321735ac6fcf223cdd91945e2817e70b9537623"
+          }
+        }
+      }
+    ]
+  },
+  "manifest": {
+    "release": "17.26",
+    "exactIndependentConstruction": true,
+    "all741AuthorsAnd2964ProfileDigestsChecked": true
+  },
+  "progress": {
+    "allJSGitContentUnchangedToPublishedBase": true,
+    "qidsAndFSRSIdentityPreserved": true,
+    "applicationFunctionsExecuted": false,
+    "browserOrStorageInspected": false,
+    "runtimeProgressMigrationOrResetNotIntroduced": true
+  },
+  "auditPreparation": {
+    "schemaCorrectionsBeforeFirstCompletedReport": [
+      "Question eliminatory checks are a keyed object,not an array; the auditor now verifies all10values.",
+      "The separately reviewed12field card records an empty blocking-findings list,not10question criteria; the auditor verifies its own schema and12field coverage."
+    ],
+    "priorCompletedReportPreserved": "ux-1726-application-independent-review.json",
+    "finalClarification": "UnchangedJS refers to Git content comparison,not an unmeasured claim that raw worktree CRLF equals Git LF."
+  },
+  "limitations": [
+    "Static source/byte audit only; no application/browser/Node test suite/network executed.",
+    "Publication of17.25 is bound to the preserved signed-off receipt hash; this audit performed no new public GET.",
+    "17.26 remains a candidate until root completes technical checks,CI and publication.",
+    "Other agents may change release metadata/docs/tests concurrently; the four medical data files were captured and rechecked stable."
+  ]
+}
