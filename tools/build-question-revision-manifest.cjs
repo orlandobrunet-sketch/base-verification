@@ -29,7 +29,7 @@ function sources(topic, index) {
       e: topic.exp || '', refs: [...(topic.refs || [])] },
     offline: { id: topic.qid, q: topic.q, o: [...topic.opts], a: topic.ans, e: topic.exp || topic.e || '' } };
 }
-function build(topics, references, release) {
+function build(topics, references, release, replacements = {}) {
   assert.equal(topics.length, 741);
   const current = {};
   topics.forEach((author, index) => {
@@ -42,14 +42,18 @@ function build(topics, references, release) {
       sourceRevisions: Object.fromEntries(Object.entries(sources(author, index)).map(([profile, source]) => [profile, digest(source)])),
       referenceRevisions };
   });
-  return { version: 1, release, current };
+  assert(replacements && typeof replacements === 'object' && !Array.isArray(replacements));
+  return { version: 1, release, current, ...(Object.keys(replacements).length ? {replacements: JSON.parse(JSON.stringify(replacements))} : {}) };
 }
 if (require.main === module) {
   const release = process.argv[2];
   assert(/^\d+\.\d+$/.test(release), 'Pass the technical release explicitly.');
   const topics = load('data/topics.js', 'topics');
   const references = load('data/refs.js', 'refsDB');
-  const manifest = build(topics, references, release);
+  const policyPath = path.join(ROOT, 'data/question-replacements.json');
+  const policy = fs.existsSync(policyPath) ? JSON.parse(fs.readFileSync(policyPath, 'utf8')) : {version: 1, replacements: {}};
+  assert.equal(policy.version, 1, 'Supported replacement policy required.');
+  const manifest = build(topics, references, release, policy.replacements);
   const answers = require('../js/answer-presentation.js');
   for (const [index, author] of topics.entries()) for (const [profile, source] of Object.entries(sources(author, index))) {
     const presentation = answers.present(source, { preserveOrder: true });

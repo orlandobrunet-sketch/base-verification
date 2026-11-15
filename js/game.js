@@ -2496,7 +2496,8 @@
         const bankMap = {};
         questionBank.forEach(q => bankMap[q.id] = q);
         state.queue = save.queueIds.map(id => bankMap[id]).filter(Boolean);
-        state.idx = save.idx || 0;
+        // Retiring an identity must not shift the cursor past the next eligible item.
+        state.idx = save.queueIds.slice(0, save.idx || 0).filter(id => bankMap[id]).length;
         if (save.recentIds) _recentIds = save.recentIds.slice(-HISTORY_SIZE);
         if ((window.NQPilot?.active || save.classBenefits) && save.currentQuestionId && bankMap[save.currentQuestionId] && presentation.legacy) {
           state.current = legacyCurrent;
@@ -4485,11 +4486,13 @@
       notice.className = 'nq-version-notice';
       notice.setAttribute('role', 'status');
       notice.style.cssText = 'margin:16px 0;padding:16px;border:1px solid var(--blue);border-radius:12px;line-height:1.6;overflow-wrap:anywhere';
-      const current = window.questionRevisionCatalog?.current(String(state.current.id), 'main');
+      const catalog = window.questionRevisionCatalog, qid = String(state.current.id);
+      const current = catalog?.current(qid, 'main') || catalog?.replacement?.(qid, 'main');
+      const replacement = !!current && current.binding.qid !== qid;
       if (wasAnswered) {
         notice.innerHTML = `<strong>Avaliação registrada na versão ${escapeHtml(revision.release)}.</strong>
           <p>Sua escolha, avaliação e recursos foram mantidos.</p>
-          ${current?.source ? `<details><summary>Ver conteúdo atual da questão</summary>
+          ${current?.source ? `<details><summary>${replacement ? 'Consultar nova questão, sem alterar a avaliação anterior' : 'Ver conteúdo atual da questão'}</summary>
             <p>${escapeHtml(current.source.q)}</p>
             <p><strong>Resposta na versão atual:</strong> ${escapeHtml(current.source.o[current.source.a])}</p>
             <p>${escapeHtml(current.source.e || '')}</p>
@@ -4497,9 +4500,9 @@
         if (ui.oraculoBtn) ui.oraculoBtn.classList.add('hidden');
         window.resetMentorQuestion?.();
       } else {
-        notice.innerHTML = `<strong>Esta pergunta foi atualizada.</strong>
-          <p>A versão ${escapeHtml(revision.release)} permanece aqui para consulta. Use a versão atual antes de responder; esta troca não consome resposta, vida ou benefício.</p>
-          <button type="button" class="btn gold" data-action="useCurrentCampaignQuestionRevision">Usar versão atual</button>`;
+        notice.innerHTML = `<strong>${replacement ? 'Esta pergunta foi substituída.' : 'Esta pergunta foi atualizada.'}</strong>
+          <p>A versão ${escapeHtml(revision.release)} permanece aqui para consulta. ${replacement ? 'Você pode responder à nova questão; a resposta anterior continua preservada.' : 'Use a versão atual antes de responder.'} Esta troca não consome resposta, vida ou benefício.</p>
+          <button type="button" class="btn gold" data-action="useCurrentCampaignQuestionRevision">${replacement ? 'Responder nova questão' : 'Usar versão atual'}</button>`;
         notice.querySelector('button').disabled = !current?.source;
         [...ui.options.querySelectorAll('.option')].forEach(option => { option.disabled = true; });
         ui.feedback.textContent = 'Confira a versão atual para responder.';
@@ -4510,7 +4513,8 @@
       if (!state.gameStarted || state.answered || isProgressSandbox() ||
           !_currentQuestionRevision?.historical || _currentQuestionRevision.policy.pending !== 'update-required') return false;
       const binding = _captureJourneyBinding();
-      const current = window.questionRevisionCatalog?.current(String(state.current.id), 'main');
+      const catalog = window.questionRevisionCatalog, qid = String(state.current.id);
+      const current = catalog?.current(qid, 'main') || catalog?.replacement?.(qid, 'main');
       const next = current?.source && window.NQAnswers?.present(current.source);
       if (!next) return false;
       let expectedRaw;
@@ -4519,7 +4523,7 @@
         if (!expectedRaw || (!isCharacterPilot() && localStorage.getItem(CANONICAL_SAVE_KEY) === null &&
             _legacySaveBaseline !== undefined && localStorage.getItem(SAVE_KEY) !== _legacySaveBaseline)) return false;
       } catch (_) { return false; }
-      const previous = {question:state.current, answer:state.questionAnswer,
+      const previous = {question:state.current, answer:state.questionAnswer, recent:_recentIds.slice(),
         revision:_currentQuestionRevision, origin:_currentQuestionRevisionOriginRaw};
       const previousStaging = _normalJourneyStaging;
       _normalJourneyStaging = true;
@@ -4530,11 +4534,16 @@
         _stateData.questionAnswer = null;
         _currentQuestionRevision = current;
         _currentQuestionRevisionOriginRaw = previous.origin || expectedRaw;
+        if (String(next.id) !== qid) {
+          _recentIds.push(next.id);
+          if (_recentIds.length > HISTORY_SIZE) _recentIds.shift();
+        }
         committed = _doSaveGame() === true && _matchesJourneyBinding(binding);
         return committed;
       } finally {
         if (!committed) {
           _stateData.current = previous.question; _stateData.questionAnswer = previous.answer;
+          _recentIds = previous.recent;
           _currentQuestionRevision = previous.revision; _currentQuestionRevisionOriginRaw = previous.origin;
         }
         _normalJourneyStaging = previousStaging;

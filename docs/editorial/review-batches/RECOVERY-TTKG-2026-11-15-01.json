@@ -1,0 +1,139 @@
+{
+  "batch": "RECOVERY-TTKG-2026-11-15-01",
+  "change_type": "medical_editorial",
+  "expected_version": "17.27",
+  "allowed_files": [
+    ".gitattributes",
+    "data/question-replacements.json",
+    "data/question-revision-history.js",
+    "data/question-revision-manifest.js",
+    "data/refs.js",
+    "data/topics.js",
+    "docs/CONTINUITY.md",
+    "docs/ROADMAP.md",
+    "docs/design/NQ_RELEASE_1727.md",
+    "docs/editorial/review-batches/RECOVERY-TTKG-2026-11-15-01.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/README.md",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/ai-premium-copy-overlay.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/ai-premium-red-summary.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/ai-recovery-initial-summary.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/application-receipt.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/author-A2.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/author-A2.md",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/author-transport-check-A2.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/author-validation-A2.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/diagnosis-race-probe.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/entry-completion-final-review.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/entry-handshake-review.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/evidence-copies.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/final-local-verification.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/independent-review-A2.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/independent-review-A2.md",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/local-native-summary.md",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/objective-replacement-native-review.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/technical-review.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/technical-review.md",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/technical-source-pins.json",
+    "index.html",
+    "jogar/index.html",
+    "js/exam.js",
+    "js/game.js",
+    "js/question-revisions.js",
+    "js/study-mode.js",
+    "offline.html",
+    "sw.js",
+    "tests/answers/answer-length-history.test.cjs",
+    "tests/answers/campaign-question-revisions.test.cjs",
+    "tests/answers/catalog-construction-cache.test.cjs",
+    "tests/answers/exam-question-revisions.test.cjs",
+    "tests/answers/question-replacement.test.cjs",
+    "tests/answers/question-revisions.test.cjs",
+    "tests/helpers/game.ts",
+    "tests/specs/136-question-revisions.spec.ts",
+    "tests/specs/257-medical-continuation-history.spec.ts",
+    "tests/specs/302-ai-request-recovery.spec.ts",
+    "tests/specs/303-question-objective-replacement.spec.ts",
+    "tests/specs/304-game-entry-completion.spec.ts",
+    "tools/build-question-revision-manifest.cjs",
+    "version.json"
+  ],
+  "expected_question_delta": 0,
+  "refs_policy": "declared",
+  "integration_base": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+  "questions": {
+    "6474ec20": {
+      "action": "retire",
+      "preserve_fsrs": false,
+      "before_sha256": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+      "clinical_gate": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "publicationAuthorization": "BLOQUEADA"
+      },
+      "disposition": "Withdraw from new draws only; archive actual17.26 author/cards/four bindings; retain all existing FSRS/user raw records. preserve_fsrs:false means no inheritance by the distinct new objective, not deletion of old progress."
+    },
+    "b515e1c7": {
+      "action": "add",
+      "preserve_fsrs": false,
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA",
+      "after_sha256": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-15-recovery-ttkg/independent-review-A2.json",
+        "report_sha256": "5a1a3ab01413010e433795d834376372ae56ce8c87e0ffe933d94169505a164a",
+        "version_pointer": "/questions/b515e1c7/version",
+        "gate_pointer": "/questions/b515e1c7/gate"
+      },
+      "replaces": "6474ec20",
+      "objective_policy": "New OP and qid; never import old learning or grade; explicit saved pending replacement only."
+    }
+  },
+  "references": {
+    "kamel_halperin_urine_electrolytes_2021": {
+      "action": "add",
+      "evidencia": "VERIFICADA",
+      "pendencia": "NENHUMA",
+      "veredito": "aprovada",
+      "publicacao": "LIBERADA",
+      "after_sha256": "sha256:9fb8a2ffc3725f64ff4a43ad71e1e38d1a7606b7d663c143c7a4b358e82db759",
+      "consumers": [
+        "b515e1c7"
+      ],
+      "before_consumers": [],
+      "independent_review": {
+        "report_path": "docs/editorial/reviews/2026-11-15-recovery-ttkg/independent-review-A2.json",
+        "report_sha256": "5a1a3ab01413010e433795d834376372ae56ce8c87e0ffe933d94169505a164a",
+        "version_pointer": "/references/kamel_halperin_urine_electrolytes_2021/version",
+        "gate_pointer": "/references/kamel_halperin_urine_electrolytes_2021/gate"
+      }
+    }
+  },
+  "external_review": {
+    "greptile": "unavailable",
+    "fallback_reviewer": "/root (formal independent clinical review of author A2); /root/ttkg_creation_1727 (independent technical source review, not clinical approval of own authorship)",
+    "availability_basis": "Independent fallback, no external transmission. Clinical author and reviewer are separate; reviewer did see author classification and makes no blind claim."
+  },
+  "history_policy": {
+    "base_release": "17.26",
+    "records_before": 180,
+    "records_added": 1,
+    "records_after": 181,
+    "previous_bindings_preserved": 720,
+    "new_bindings": 4,
+    "bindings_after": 724,
+    "old_literal_prefix_sha256": "sha256:1fce3c20bc7a49e63b36a7f028deab9ce2c2940166c392e0c88ad8578c36d1d6",
+    "application_receipt": "docs/editorial/reviews/2026-11-15-recovery-ttkg/application-receipt.json",
+    "application_receipt_sha256": "0e74f7fa156e2baaec61c346ccaf80eac43d8561ec1f78f9cf11ea6df6f030d8",
+    "author_transport_review": "docs/editorial/reviews/2026-11-15-recovery-ttkg/author-transport-check-A2.json"
+  },
+  "scope_limits": [
+    "741 current questions,373 cards,181 history records,724 historical bindings;740 other authors and372 existing cards unchanged.",
+    "Exactly the approved new question and full12-field card receive clinical release;old original and old Brenner card do not.",
+    "No user data written by integration. No automatic replacement, grade migration or FSRS transfer.",
+    "Entry helper fixes a proven Promise-GC failure class without proving exclusive historical279 cause. Product continueGame unchanged.",
+    "AI30second overall deadline and explicit retry/cancellation do not certify real backend latency or refund quota."
+  ]
+}

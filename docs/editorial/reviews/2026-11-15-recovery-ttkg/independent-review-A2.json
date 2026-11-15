@@ -1,0 +1,391 @@
+{
+  "schema": "NQ_TTKG_1727_INDEPENDENT_CLINICAL_REVIEW_v2",
+  "reviewer": {
+    "id": "/root",
+    "independentOf": "/root/ttkg_creation_1727",
+    "blind": false,
+    "reason": "Independent appraisal after author classification was visible; no blind-review claim."
+  },
+  "reviewedAtUTC": "2026-11-15T20:20:38.692Z",
+  "authorization": {
+    "user": "siga então com a intermitência da Aquaria, o TTKG e as melhorias do Oráculo, incluindo a revisão médica. resolva tudo que depender de vc",
+    "scope": "Create and formally assess a new objective,withdraw the unresolved original from new draws,preserve historical records and schedules;no assumption of clinical approval from user authorization."
+  },
+  "source": {
+    "report": "ux-1727-ttkg-author/ttkg-author-A2.json",
+    "sha256": "d9dad196334eb961d015756de99efcfcfa63b96edbdae0fb69ae58799b6ff40a",
+    "publishedBase": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+    "release": "17.26"
+  },
+  "normativeInputs": [
+    {
+      "path": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "path": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "path": "docs/editorial/annex-c-nefrologia.md",
+      "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "primaryEvidence": {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/8116912/",
+    "resolvedCanonical": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8116912/",
+    "access": "Independently opened by root with web tool;metadata33–77,abstract76–81,The TTKG87–92 read.",
+    "doi": "10.1016/j.ekir.2021.02.003",
+    "pmid": "34013099",
+    "type": "Narrative physiological review,not a society guideline",
+    "claimVerification": {
+      "C1": {
+        "status": "VERIFICADA",
+        "locator": "The TTKG,lines87–89",
+        "fullClaimInPinnedAuthorReport": true
+      },
+      "C2": {
+        "status": "VERIFICADA",
+        "locator": "The TTKG,lines89–91",
+        "fullClaimInPinnedAuthorReport": true
+      },
+      "C3": {
+        "status": "VERIFICADA",
+        "locator": "The TTKG,lines87–90",
+        "fullClaimInPinnedAuthorReport": true
+      },
+      "C4": {
+        "status": "VERIFICADA",
+        "locator": "Abstract/introduction,lines76–81,and author-specific nonuse rationale at92",
+        "fullClaimInPinnedAuthorReport": true
+      },
+      "C5": {
+        "status": "VERIFICADA",
+        "locator": "Metadata,lines33–77",
+        "fullClaimInPinnedAuthorReport": true
+      }
+    },
+    "noVerbatimQuotation": true,
+    "noUnverifiedNumericalEstimate": true
+  },
+  "questions": {
+    "b515e1c7": {
+      "version": {
+        "sha256": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+        "fullLiteral": {
+          "t": "Potássio Urinário e Limites de Interpretação",
+          "qid": "b515e1c7",
+          "q": "Na hipercalemia, qual processo limita a correção pela osmolalidade no TTKG (Gradiente Transtubular de Potássio), mesmo sob ação da vasopressina?",
+          "refs": [
+            "kamel_halperin_urine_electrolytes_2021"
+          ],
+          "opts": [
+            "Reabsorção de ureia no coletor medular, reduzindo a carga de osmóis.",
+            "Reabsorção de água no coletor medular, concentrando o potássio urinário.",
+            "Equilíbrio osmótico no coletor cortical, aproximando a osmolalidade tubular da plasmática.",
+            "Secreção de potássio no coletor cortical, elevando sua concentração no lúmen."
+          ],
+          "ans": 0,
+          "exp": "A reabsorção de ureia viola a premissa de conservação dos osmóis no coletor medular. Isso pode superestimar a concentração de potássio ao final do coletor cortical. Reabsorver água e alcançar equilíbrio sob vasopressina justificam a correção; a secreção cortical é seu alvo. Essa limitação impede definir isoladamente a causa da hipercalemia pelo índice.",
+          "diff": "easy",
+          "cat": "eletrólitos"
+        }
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "Alta para o objetivo fisiológico estreito,sem extrapolação para recomendação universal.",
+      "classification": {
+        "objective": "Explicar a limitação fisiológica da correção por osmolalidade do índice,evitando interpretação etiológica isolada.",
+        "competence": "mecanismo",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficulty": "easy",
+        "basis": "Um conceito,sem dados clínicos concorrentes;terminologia especializada não cria raciocínio avançado."
+      },
+      "appeal": {
+        "outcome": "Nenhum argumento plausível de anulação na A2",
+        "considered": [
+          "B descreve o motivo da correção,não seu defeito.",
+          "C descreve premissa de equilíbrio,não uma violação.",
+          "D agora delimita coletor cortical:fenômeno-alvo,sem transporte medular ambíguo.",
+          "O comando pede a limitação,não se os processos existem.",
+          "Explicação e card não atribuem proibição universal a sociedade."
+        ],
+        "A1NotApproved": true,
+        "A1MaterialChangeReevaluated": true
+      },
+      "eliminatories": {
+        "checks": [
+          {
+            "criterion": 1,
+            "name": "Mais de uma resposta defensável",
+            "triggered": false
+          },
+          {
+            "criterion": 2,
+            "name": "Referência não sustenta gabarito",
+            "triggered": false
+          },
+          {
+            "criterion": 3,
+            "name": "Deriva de objetivo",
+            "triggered": false
+          },
+          {
+            "criterion": 4,
+            "name": "Conduta insegura",
+            "triggered": false
+          },
+          {
+            "criterion": 5,
+            "name": "Distrator absurdo",
+            "triggered": false
+          },
+          {
+            "criterion": 6,
+            "name": "Trivia sem consequência",
+            "triggered": false
+          },
+          {
+            "criterion": 7,
+            "name": "Explicação contraditória",
+            "triggered": false
+          },
+          {
+            "criterion": 8,
+            "name": "Dado decisivo ausente",
+            "triggered": false
+          },
+          {
+            "criterion": 9,
+            "name": "Protocolo local omitido",
+            "triggered": false
+          },
+          {
+            "criterion": 10,
+            "name": "Desatualização relevante",
+            "triggered": false
+          }
+        ],
+        "anyTriggered": false
+      },
+      "score": {
+        "dimensions": [
+          {
+            "dimension": 1,
+            "name": "Alinhamento ao OP",
+            "score": 2,
+            "reason": "Atende ao critério no escopo explícito."
+          },
+          {
+            "dimension": 2,
+            "name": "Validade de conteúdo",
+            "score": 2,
+            "reason": "Atende ao critério no escopo explícito."
+          },
+          {
+            "dimension": 3,
+            "name": "Validade de construto",
+            "score": 2,
+            "reason": "Atende ao critério no escopo explícito."
+          },
+          {
+            "dimension": 4,
+            "name": "Qualidade do enunciado",
+            "score": 1,
+            "reason": "Comando contextualizado,mas sem vinheta individual;adequado ao fundamento fisiológico."
+          },
+          {
+            "dimension": 5,
+            "name": "Alternativas",
+            "score": 2,
+            "reason": "Atende ao critério no escopo explícito."
+          },
+          {
+            "dimension": 6,
+            "name": "Distratores",
+            "score": 2,
+            "reason": "Atende ao critério no escopo explícito."
+          },
+          {
+            "dimension": 7,
+            "name": "Explicação",
+            "score": 2,
+            "reason": "Atende ao critério no escopo explícito."
+          },
+          {
+            "dimension": 8,
+            "name": "Referências",
+            "score": 2,
+            "reason": "Atende ao critério no escopo explícito."
+          },
+          {
+            "dimension": 9,
+            "name": "Ausência de cara de IA",
+            "score": 2,
+            "reason": "Atende ao critério no escopo explícito."
+          },
+          {
+            "dimension": 10,
+            "name": "Valor pedagógico",
+            "score": 2,
+            "reason": "Atende ao critério no escopo explícito."
+          }
+        ],
+        "total": 19,
+        "psychometricCalibration": false
+      },
+      "decision": {
+        "tree": "§19passo0 permite;10eliminatórios negativos;recurso não substantivo;19/20=>aprovada.",
+        "lifecycle": "publicado quando integrado após gates técnicos",
+        "publicationDerivedFromAxes": true
+      },
+      "identity": {
+        "newQid": "b515e1c7",
+        "replacedQid": "6474ec20",
+        "newObjective": true,
+        "preserveOldIdentity": true,
+        "inheritOldFSRS": false,
+        "deleteOldFSRS": false
+      },
+      "novelty": {
+        "independentlyCompared": [
+          "6474ec20",
+          "9895f375"
+        ],
+        "fourDimensionDuplicate": false,
+        "basis": "Decisão e estrutura de dados diferentes;mesmo público/língua não bastam para duplicata."
+      }
+    }
+  },
+  "references": {
+    "kamel_halperin_urine_electrolytes_2021": {
+      "version": {
+        "sha256": "sha256:9fb8a2ffc3725f64ff4a43ad71e1e38d1a7606b7d663c143c7a4b358e82db759",
+        "fullLiteral": {
+          "label": "Kamel e Halperin — Índices urinários (2021)",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/8116912/",
+          "journal": "Kidney International Reports 2021;6(5):1211–1224",
+          "ano": 2021,
+          "tipo": "Revisão",
+          "badge": "REVIEW",
+          "badgeColor": "#8b5cf6",
+          "impacto": "Reciclagem de ureia limita a correção por osmolalidade",
+          "icon": "🔬",
+          "resumo": "Revisão narrativa de índices urinários. No TTKG (Gradiente Transtubular de Potássio), a reabsorção medular de ureia compromete a correção por osmolalidade. É fundamento fisiológico, não diretriz terapêutica.",
+          "conclusao": "O índice não define isoladamente a causa da hipercalemia.",
+          "curiosidade": ""
+        }
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "wholeCardFieldCoverage": {
+        "label": {
+          "status": "VERIFICADA",
+          "basis": "Metadata33–77 and URL independently opened."
+        },
+        "url": {
+          "status": "VERIFICADA",
+          "basis": "Metadata33–77 and URL independently opened."
+        },
+        "journal": {
+          "status": "VERIFICADA",
+          "basis": "Metadata33–77 and URL independently opened."
+        },
+        "ano": {
+          "status": "VERIFICADA",
+          "basis": "Metadata33–77 and URL independently opened."
+        },
+        "tipo": {
+          "status": "VERIFICADA",
+          "basis": "Narrative review and normative card taxonomy."
+        },
+        "badge": {
+          "status": "VERIFICADA",
+          "basis": "Narrative review and normative card taxonomy."
+        },
+        "badgeColor": {
+          "status": "VERIFICADA",
+          "basis": "Narrative review and normative card taxonomy."
+        },
+        "impacto": {
+          "status": "VERIFICADA",
+          "basis": "Abstract76–81 and TTKG87–92."
+        },
+        "icon": {
+          "status": "VERIFICADA",
+          "basis": "Narrative review and normative card taxonomy."
+        },
+        "resumo": {
+          "status": "VERIFICADA",
+          "basis": "Abstract76–81 and TTKG87–92."
+        },
+        "conclusao": {
+          "status": "VERIFICADA",
+          "basis": "Abstract76–81 and TTKG87–92."
+        },
+        "curiosidade": {
+          "status": "VERIFICADA",
+          "basis": "Empty;no unsupported extra fact."
+        }
+      },
+      "fieldCount": 12,
+      "noQuestionScoreAssignedToCard": true
+    }
+  },
+  "original": {
+    "qid": "6474ec20",
+    "version": {
+      "sha256": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+      "fullLiteral": {
+        "qid": "6474ec20",
+        "q": "Na hipercalemia, como interpretar um TTKG baixo, quando as condições de validade do cálculo estão atendidas?",
+        "opts": [
+          "Sugere resposta distal inadequada à secreção de K, como deficiência ou resistência à aldosterona",
+          "Confirma origem extrarrenal e dispensa avaliação medicamentosa",
+          "Demonstra secreção distal excessiva de potássio",
+          "Diagnostica hipercalemia por redistribuição celular isolada"
+        ],
+        "ans": 0,
+        "exp": "Um TTKG baixo em vigência de hipercalemia sugere resposta distal inadequada para secretar potássio, compatível com menor efeito mineralocorticoide ou resistência tubular à aldosterona. A interpretação exige cautela: o índice depende de condições como osmolalidade urinária e entrega distal adequadas, e não deve substituir avaliação de medicamentos, função renal, acidose, renina/aldosterona e contexto clínico. A versão anterior cobrava teste de fludrocortisona e dose, transformando uma ferramenta limitada em trivia pouco útil.",
+        "refs": [
+          "brenner_rector"
+        ],
+        "cat": "eletrólitos",
+        "diff": "hard",
+        "t": "TTKG na Hipercalemia — Interpretação Cautelosa"
+      }
+    },
+    "clinicalVerdict": "revisão maior",
+    "evidence": "PARCIALMENTE VERIFICADA",
+    "pending": "DECISIVA",
+    "publicationAuthorization": "BLOQUEADA",
+    "priorReport": "ux-1726-ttkg-disposition-review.json",
+    "priorSHA256": "08522e19da858b8f827634f691c5cd6d326b123a7c7dc2af14a76ebe47312de8",
+    "newClinicalApproval": false
+  },
+  "implementation": {
+    "approvedLiteralsOnly": true,
+    "newQuestionSameArraySlot": 238,
+    "originalArchivedRelease": "17.26",
+    "withdrawOriginalFromNewDraws": true,
+    "scientificUniversalRetirementClaim": false,
+    "oldAnswersAndRawFSRSMustRemain": true,
+    "newIdentityMayBeChosenOnlyByExplicitConfirmation": true,
+    "archivalBrennerCardIsNotNewClinicalApproval": true
+  },
+  "remainingConditions": [
+    "Technical transport verification against published17.26 and exact approved literals.",
+    "Tests of historical answered/pending/queued sessions and no mastery transfer.",
+    "Version/cache and one reviewed release commit."
+  ],
+  "clinicalPending": []
+}

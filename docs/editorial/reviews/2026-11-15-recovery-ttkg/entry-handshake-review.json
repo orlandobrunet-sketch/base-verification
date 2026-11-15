@@ -1,0 +1,796 @@
+{
+  "schema": "NQ_1727_ENTRY_HANDSHAKE_FIX_v1",
+  "reviewer": "/root/study_visibility_1717",
+  "dateUTC": "2026-11-15T20:22:37.546260+00:00",
+  "baseCommit": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+  "status": "CONTROLLED_MECHANISM_REPRODUCED_AND_FIX_VERIFIED",
+  "scope": "Testentry helper+focused regression only;no productfunction or medicaldata changed by this task.",
+  "provenMechanism": {
+    "rawCDPError": {
+      "code": -32000,
+      "message": "Promise was collected"
+    },
+    "playwrightProjection": "page.evaluate: Execution context was destroyed,most likely because of a navigation.",
+    "technicalDocumentNavigations": 0,
+    "pageReady": "complete",
+    "actionCalls": 1,
+    "explanation": "The isolated technicalPromise and its resolver form an otherwise unreachablecycle,reachable only byWeakRef. PublicGC collects the directawaited RPC value. A documentretained Promise survives until explicitly completed.",
+    "historicalCI1098CauseProven": false,
+    "historicalLimit": "This is a proven possiblemechanism and a regression of the fragiletestboundary;the exact rawCI1098protocolerror was not captured and is not retrospectively assigned."
+  },
+  "changes": {
+    "helper": {
+      "file": "C:\\Users\\orlan\\.codex\\worktrees\\nq-pagamento-atomico\\base-verification\\tests\\helpers\\game.ts",
+      "sha256": "20cb81107b3426d3b68e738ed0ede2888bc934c3089433beb6a52ed5793fabe2",
+      "bytes": 8516
+    },
+    "helperNormalizedLFSHA256": "b9bc578b9f5e11c89bd07e8b9e55e6758c9401c70ccde0539c12d7f0ec0b77bf",
+    "beforeHelper": {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\helper-before.ts",
+      "sha256": "de1ce9be0ba7379aafe1a8b79817150bf02022c92de7988886183b64bf307ff8",
+      "bytes": 5820
+    },
+    "focusedTest": {
+      "file": "C:\\Users\\orlan\\.codex\\worktrees\\nq-pagamento-atomico\\base-verification\\tests\\specs\\304-game-entry-completion.spec.ts",
+      "sha256": "6330bce649b96efc2b557ab24f181022d00e88539261cdb6f000805be88b4e94",
+      "bytes": 6957
+    },
+    "externalTest": {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\continuation-contract.spec.ts",
+      "sha256": "1e6ff9c991d352277d649864bb2cbcbeff88cd792e5c304355a1a2efb114adad",
+      "bytes": 7031
+    },
+    "testDifference": "Only absolute→relative helperimport;all7contracts/assertions identical.",
+    "outsideEnterGameAndSequenceCounterUnchanged": true,
+    "continueGameControllerUnchanged": true,
+    "originalNativeSpecs": {
+      "226-streak-multiplier-display.spec.ts": {
+        "gitSHA256": "f9997c7459c1d0456defff1efd699d92b763cd07729f336d1cc8688c6bf06aad",
+        "workingSHA256": "7b2564286b0d98e6edba088e09e7ac6536b3f4c949f39a557236317d8a156d5c",
+        "unchangedAfterLFNormalization": true
+      },
+      "279-starter-image-fallback.spec.ts": {
+        "gitSHA256": "bedc1572a5b7eab132dbaf5cc5e94438779f38c6e90b98ad49cfce7ff3f1acf5",
+        "workingSHA256": "bedc1572a5b7eab132dbaf5cc5e94438779f38c6e90b98ad49cfce7ff3f1acf5",
+        "unchangedAfterLFNormalization": true
+      }
+    },
+    "contract": [
+      "Invoke exactlyonce with originalwindowreceiver.",
+      "Keep the realPromise strongly in its document until completion.",
+      "Return no pendingapplicationPromise through the initiatingRPC.",
+      "Poll actualfulfillment/rejection,not merely gamevisibility.",
+      "Preserve originalJSerrorname/message as primitives;do not serialize arbitraryrejectedobjects.",
+      "Rejectlost document/token or changedactionsource withoutretry/reinvoke.",
+      "Keep fulfilledfalse handling unchanged.",
+      "Retire only the ownertoken incleanup;do not replace originalfailure withcleanupfailure."
+    ],
+    "timeouts": {
+      "availabilityMs": 15000,
+      "continuationPollMs": 0,
+      "waitForGameMs": [
+        10000,
+        10000
+      ],
+      "outerDeadlineUnchanged": true,
+      "note": "Poll0matches oldevaluate havingno independentcap. All focal/nativecases here were configured20s;callers with30/60/90retain their ownexistingdeadlines."
+    }
+  },
+  "counterproof": {
+    "red-r1": {
+      "summary": {
+        "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\red-r1\\results-summary.json",
+        "sha256": "d11c8a303a7e3b0f234d2e6d7e73ced97c2e1dc58eb9d80d0899344901fb5238",
+        "bytes": 4917
+      },
+      "launcher": {
+        "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\red-r1\\launcher.json",
+        "sha256": "732d80adf1a59c4558e6fa5b9582bf5306a9d6449adba35e40ef7ebbfc8d306f",
+        "bytes": 343
+      },
+      "stats": {
+        "passed": 4,
+        "failed": 3
+      },
+      "tests": [
+        {
+          "title": "raw CDP can collect an unreachable awaited Promise without retiring its document",
+          "project": null,
+          "file": "continuation-contract.spec.ts",
+          "expectedStatus": "passed",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 351,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "continuation-contract",
+              "contentType": "application/json",
+              "bodyOmitted": true
+            }
+          ]
+        },
+        {
+          "title": "entry retains its pending action through GC and waits after the game is already visible",
+          "project": null,
+          "file": "continuation-contract.spec.ts",
+          "expectedStatus": "passed",
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 263,
+          "errors": [
+            {
+              "kind": "other",
+              "messageSHA256": "bccfd4fed6bcb4349420ad720b1d853d0a69e050d0f5b447c3e88b7d3cce8e05",
+              "messageBytes": 168,
+              "originalMessageOmitted": true
+            }
+          ],
+          "attachments": [
+            {
+              "name": "continuation-contract",
+              "contentType": "application/json",
+              "bodyOmitted": true
+            },
+            {
+              "name": "error-context",
+              "contentType": "text/markdown",
+              "bodyOmitted": true
+            }
+          ]
+        },
+        {
+          "title": "entry does not accept visible content before a delayed action actually completes",
+          "project": null,
+          "file": "continuation-contract.spec.ts",
+          "expectedStatus": "passed",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 273,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "continuation-contract",
+              "contentType": "application/json",
+              "bodyOmitted": true
+            }
+          ]
+        },
+        {
+          "title": "entry propagates a genuine action rejection with its name and message",
+          "project": null,
+          "file": "continuation-contract.spec.ts",
+          "expectedStatus": "passed",
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 221,
+          "errors": [
+            {
+              "kind": "other",
+              "messageSHA256": "592b20147acace559644a641ece2402f4b550d3570cb6c73227ce6ded02fecef",
+              "messageBytes": 186,
+              "originalMessageOmitted": true
+            }
+          ],
+          "attachments": [
+            {
+              "name": "continuation-contract",
+              "contentType": "application/json",
+              "bodyOmitted": true
+            },
+            {
+              "name": "error-context",
+              "contentType": "text/markdown",
+              "bodyOmitted": true
+            }
+          ]
+        },
+        {
+          "title": "entry rejects a replaced document rather than accepting the new document as completion",
+          "project": null,
+          "file": "continuation-contract.spec.ts",
+          "expectedStatus": "passed",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 234,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "continuation-contract",
+              "contentType": "application/json",
+              "bodyOmitted": true
+            }
+          ]
+        },
+        {
+          "title": "entry rejects a changed action source even when the old action resolves into visible content",
+          "project": null,
+          "file": "continuation-contract.spec.ts",
+          "expectedStatus": "passed",
+          "status": "failed",
+          "retry": 0,
+          "durationMs": 236,
+          "errors": [
+            {
+              "kind": "other",
+              "messageSHA256": "21c37c23424444f2b77cc13923125ad291645f1b98536b6f0c6943e58f305d8c",
+              "messageBytes": 198,
+              "originalMessageOmitted": true
+            }
+          ],
+          "attachments": [
+            {
+              "name": "continuation-contract",
+              "contentType": "application/json",
+              "bodyOmitted": true
+            },
+            {
+              "name": "error-context",
+              "contentType": "text/markdown",
+              "bodyOmitted": true
+            }
+          ]
+        },
+        {
+          "title": "entry preserves the previous handling of a fulfilled false result and invokes the action once",
+          "project": null,
+          "file": "continuation-contract.spec.ts",
+          "expectedStatus": "passed",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 257,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "continuation-contract",
+              "contentType": "application/json",
+              "bodyOmitted": true
+            }
+          ]
+        }
+      ],
+      "audits": [
+        {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\red-r1\\artifacts\\continuation-contract-entr-40aa2-the-game-is-already-visible\\continuation-audit.json",
+          "sha256": "5ed0a72c8117e28a66d329baa708141a0299d348c735eaa1a40d51df4d27c9bd",
+          "bytes": 245,
+          "payload": {
+            "phase": "after-gc",
+            "beforeSettled": false,
+            "alive": false,
+            "outcomeIfSettled": {
+              "kind": "rejected",
+              "name": "Error",
+              "message": "page.evaluate: Execution context was destroyed, most likely because of a navigation."
+            }
+          }
+        },
+        {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\red-r1\\artifacts\\continuation-contract-entr-97c90-and-invokes-the-action-once\\continuation-audit.json",
+          "sha256": "96d2a87d75cf1a37af9a83efa7cb51d619e2e8a2e6b57cdb2848266312ba8c2a",
+          "bytes": 16,
+          "payload": {
+            "calls": 1
+          }
+        },
+        {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\red-r1\\artifacts\\continuation-contract-entr-b72a5-solves-into-visible-content\\continuation-audit.json",
+          "sha256": "cf4522e1da07773f362047eb51ed305554ea46f148f2eb3e7f88e93a4c181fe5",
+          "bytes": 56,
+          "payload": {
+            "kind": "fulfilled",
+            "name": "",
+            "message": ""
+          }
+        },
+        {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\red-r1\\artifacts\\continuation-contract-entr-dd87b--new-document-as-completion\\continuation-audit.json",
+          "sha256": "c71373abef67793db004bbf20396b58c6976f16885a7305111cca47185c3bb90",
+          "bytes": 144,
+          "payload": {
+            "kind": "rejected",
+            "name": "Error",
+            "message": "page.evaluate: Execution context was destroyed, most likely because of a navigation."
+          }
+        },
+        {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\red-r1\\artifacts\\continuation-contract-entr-dd978-d-action-actually-completes\\continuation-audit.json",
+          "sha256": "ff6165b5ea5bf3e00662253fcf753d39a9b2d7b25839c921d26dcd852bf2a986",
+          "bytes": 94,
+          "payload": {
+            "result": {
+              "kind": "fulfilled",
+              "name": "",
+              "message": ""
+            },
+            "calls": 1
+          }
+        },
+        {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\red-r1\\artifacts\\continuation-contract-entr-ffd8d-n-with-its-name-and-message\\continuation-audit.json",
+          "sha256": "9315b00a22fb6d9a0510f487513746f7a50765e812c4bb6bfec49301788ee3ff",
+          "bytes": 432,
+          "payload": {
+            "kind": "rejected",
+            "name": "Error",
+            "message": "page.evaluate: TypeError: controlled continuation rejection\n    at pending.reject (eval at evaluate (:302:30), <anonymous>:17:37)\n    at w.__releaseTechnical (eval at evaluate (:302:30), <anonymous>:24:20)\n    at eval (eval at evaluate (:302:30), <anonymous>:1:14)\n    at UtilityScript.evaluate (<anonymous>:304:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+          }
+        },
+        {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\red-r1\\artifacts\\continuation-contract-raw--92d8b-thout-retiring-its-document\\continuation-audit.json",
+          "sha256": "a279a6d8fd508f721aff14e9e84b7e2a7f27a737165a7a269869e13db98456f2",
+          "bytes": 234,
+          "payload": {
+            "result": {
+              "kind": "rejected",
+              "message": "cdpSession.send: Protocol error (Runtime.evaluate): Promise was collected"
+            },
+            "state": {
+              "ready": "complete",
+              "calls": 1,
+              "alive": false
+            },
+            "navigations": 0
+          }
+        }
+      ],
+      "protocol": {
+        "recordsWritten": 290,
+        "recordsDropped": 0,
+        "oversizedLines": 0,
+        "otherLines": 0,
+        "otherRecordsWritten": 0,
+        "otherRecordsDropped": 0,
+        "protocolLines": 1005,
+        "parseFailures": 0,
+        "unclassifiedErrors": 0,
+        "pendingEvictions": 0,
+        "malformedIdentifiers": 0,
+        "untrackedShutdownRepliesUpToFour": 4
+      },
+      "rawProtocolErrors": [
+        {
+          "timeMs": 1092.593,
+          "kind": "reply",
+          "id": 42,
+          "sessionId": "sha256:44cd596d3276078d7f6f53e7fb5b0b966272cb56823bb4d122de60e7983917af",
+          "method": "Runtime.evaluate",
+          "status": "protocol-error",
+          "resultOmitted": true,
+          "errorCode": -32000,
+          "allowedMessage": "Promise was collected",
+          "messageSHA256": "2f2dd2aa4c4ec96fbb0c28c493bce408fa8e84bd81bd91952a2bb9f0b8f8fad0",
+          "messageBytes": 21,
+          "dataOmitted": true
+        },
+        {
+          "timeMs": 1377.001,
+          "kind": "reply",
+          "id": 97,
+          "sessionId": "sha256:ac08729845add0232bd5a469f442982040ba5920edfbdb5a9c3ec00dcb3168d1",
+          "method": "Runtime.callFunctionOn",
+          "status": "protocol-error",
+          "resultOmitted": true,
+          "errorCode": -32000,
+          "allowedMessage": "Promise was collected",
+          "messageSHA256": "2f2dd2aa4c4ec96fbb0c28c493bce408fa8e84bd81bd91952a2bb9f0b8f8fad0",
+          "messageBytes": 21,
+          "dataOmitted": true
+        },
+        {
+          "timeMs": 3539.439,
+          "kind": "reply",
+          "id": 46,
+          "sessionId": "sha256:12535616c4ebab6cc4c7b5179894da4b9e031ac8641a3ce0b3d456d3ccf6d4dc",
+          "method": "Runtime.callFunctionOn",
+          "status": "protocol-error",
+          "resultOmitted": true,
+          "errorCode": -32000,
+          "allowedMessage": "Execution context was destroyed.",
+          "messageSHA256": "de3f96cc1f6fe0acb03373866c7a30017296f5d164bb065c58a78b85320213b7",
+          "messageBytes": 32,
+          "dataOmitted": true
+        }
+      ],
+      "metadata": {
+        "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\red-r1\\worker-protocol-metadata.jsonl",
+        "sha256": "7e495a972595e8c66deb7938b20195eeafca1fbfd28d11fbbdcd76f3cea2a098",
+        "bytes": 65812
+      }
+    },
+    "green-r1": {
+      "summary": {
+        "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\green-r1\\results-summary.json",
+        "sha256": "142fc00fba9b693900b09bc9ae4d4a094b896aa19183314cbac5370ba8851072",
+        "bytes": 3870
+      },
+      "launcher": {
+        "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\green-r1\\launcher.json",
+        "sha256": "5f4840b8b67d943b931a338870f34b3ddd69d30e2b8a92e7ae05abe63a49169d",
+        "bytes": 343
+      },
+      "stats": {
+        "passed": 7
+      },
+      "tests": [
+        {
+          "title": "raw CDP can collect an unreachable awaited Promise without retiring its document",
+          "project": null,
+          "file": "continuation-contract.spec.ts",
+          "expectedStatus": "passed",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 228,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "continuation-contract",
+              "contentType": "application/json",
+              "bodyOmitted": true
+            }
+          ]
+        },
+        {
+          "title": "entry retains its pending action through GC and waits after the game is already visible",
+          "project": null,
+          "file": "continuation-contract.spec.ts",
+          "expectedStatus": "passed",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 283,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "continuation-contract",
+              "contentType": "application/json",
+              "bodyOmitted": true
+            }
+          ]
+        },
+        {
+          "title": "entry does not accept visible content before a delayed action actually completes",
+          "project": null,
+          "file": "continuation-contract.spec.ts",
+          "expectedStatus": "passed",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 238,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "continuation-contract",
+              "contentType": "application/json",
+              "bodyOmitted": true
+            }
+          ]
+        },
+        {
+          "title": "entry propagates a genuine action rejection with its name and message",
+          "project": null,
+          "file": "continuation-contract.spec.ts",
+          "expectedStatus": "passed",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 197,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "continuation-contract",
+              "contentType": "application/json",
+              "bodyOmitted": true
+            }
+          ]
+        },
+        {
+          "title": "entry rejects a replaced document rather than accepting the new document as completion",
+          "project": null,
+          "file": "continuation-contract.spec.ts",
+          "expectedStatus": "passed",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 327,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "continuation-contract",
+              "contentType": "application/json",
+              "bodyOmitted": true
+            }
+          ]
+        },
+        {
+          "title": "entry rejects a changed action source even when the old action resolves into visible content",
+          "project": null,
+          "file": "continuation-contract.spec.ts",
+          "expectedStatus": "passed",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 194,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "continuation-contract",
+              "contentType": "application/json",
+              "bodyOmitted": true
+            }
+          ]
+        },
+        {
+          "title": "entry preserves the previous handling of a fulfilled false result and invokes the action once",
+          "project": null,
+          "file": "continuation-contract.spec.ts",
+          "expectedStatus": "passed",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 214,
+          "errors": [],
+          "attachments": [
+            {
+              "name": "continuation-contract",
+              "contentType": "application/json",
+              "bodyOmitted": true
+            }
+          ]
+        }
+      ],
+      "audits": [
+        {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\green-r1\\artifacts\\continuation-contract-entr-40aa2-the-game-is-already-visible\\continuation-audit.json",
+          "sha256": "efbd418e77dd1ac21bd91387cbae27206667404a5f6dcd4ac28230a676800021",
+          "bytes": 96,
+          "payload": {
+            "phase": "after-gc",
+            "beforeSettled": false,
+            "alive": true,
+            "outcomeIfSettled": null
+          }
+        },
+        {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\green-r1\\artifacts\\continuation-contract-entr-97c90-and-invokes-the-action-once\\continuation-audit.json",
+          "sha256": "96d2a87d75cf1a37af9a83efa7cb51d619e2e8a2e6b57cdb2848266312ba8c2a",
+          "bytes": 16,
+          "payload": {
+            "calls": 1
+          }
+        },
+        {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\green-r1\\artifacts\\continuation-contract-entr-b72a5-solves-into-visible-content\\continuation-audit.json",
+          "sha256": "bbb2b92bee2e3ca685fd28e706017a51b532e1d83e444931e0e649054bedcf65",
+          "bytes": 349,
+          "payload": {
+            "kind": "rejected",
+            "name": "Error",
+            "message": "page.waitForFunction: Error: Fixture continuation source changed before completion.\n    at eval (eval at predicate (eval at evaluate (:302:30)), <anonymous>:8:51)\n    at predicate (eval at evaluate (:302:30), <anonymous>:7:27)\n    at next (eval at evaluate (:302:30), <anonymous>:29:33)"
+          }
+        },
+        {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\green-r1\\artifacts\\continuation-contract-entr-dd87b--new-document-as-completion\\continuation-audit.json",
+          "sha256": "f081230fb5a9d6e5f5248b681dbc8feb323556f7a8637cf81c4f5ba27f2faa1e",
+          "bytes": 516,
+          "payload": {
+            "kind": "rejected",
+            "name": "Error",
+            "message": "page.waitForFunction: Error: Fixture document changed before continuation completed.\n    at eval (eval at predicate (eval at evaluate (:302:30)), <anonymous>:7:52)\n    at predicate (eval at evaluate (:302:30), <anonymous>:7:27)\n    at next (eval at evaluate (:302:30), <anonymous>:29:33)\n    at eval (eval at evaluate (:302:30), <anonymous>:42:13)\n    at UtilityScript.evaluate (<anonymous>:304:16)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)"
+          }
+        },
+        {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\green-r1\\artifacts\\continuation-contract-entr-dd978-d-action-actually-completes\\continuation-audit.json",
+          "sha256": "ff6165b5ea5bf3e00662253fcf753d39a9b2d7b25839c921d26dcd852bf2a986",
+          "bytes": 94,
+          "payload": {
+            "result": {
+              "kind": "fulfilled",
+              "name": "",
+              "message": ""
+            },
+            "calls": 1
+          }
+        },
+        {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\green-r1\\artifacts\\continuation-contract-entr-ffd8d-n-with-its-name-and-message\\continuation-audit.json",
+          "sha256": "33a375f5a46d0b2f39d88d720bc83814d90d15d0232377519c160ae8413e7573",
+          "bytes": 97,
+          "payload": {
+            "kind": "rejected",
+            "name": "TypeError",
+            "message": "controlled continuation rejection"
+          }
+        },
+        {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\green-r1\\artifacts\\continuation-contract-raw--92d8b-thout-retiring-its-document\\continuation-audit.json",
+          "sha256": "a279a6d8fd508f721aff14e9e84b7e2a7f27a737165a7a269869e13db98456f2",
+          "bytes": 234,
+          "payload": {
+            "result": {
+              "kind": "rejected",
+              "message": "cdpSession.send: Protocol error (Runtime.evaluate): Promise was collected"
+            },
+            "state": {
+              "ready": "complete",
+              "calls": 1,
+              "alive": false
+            },
+            "navigations": 0
+          }
+        }
+      ],
+      "protocol": {
+        "recordsWritten": 338,
+        "recordsDropped": 0,
+        "oversizedLines": 0,
+        "otherLines": 0,
+        "otherRecordsWritten": 0,
+        "otherRecordsDropped": 0,
+        "protocolLines": 1065,
+        "parseFailures": 0,
+        "unclassifiedErrors": 0,
+        "pendingEvictions": 0,
+        "malformedIdentifiers": 0,
+        "untrackedShutdownRepliesUpToFour": 1
+      },
+      "rawProtocolErrors": [
+        {
+          "timeMs": 954.148,
+          "kind": "reply",
+          "id": 42,
+          "sessionId": "sha256:ecd18b89d8203983181fa542eb6d2d2eba2a5597b75136f266de0808ecbffd80",
+          "method": "Runtime.evaluate",
+          "status": "protocol-error",
+          "resultOmitted": true,
+          "errorCode": -32000,
+          "allowedMessage": "Promise was collected",
+          "messageSHA256": "2f2dd2aa4c4ec96fbb0c28c493bce408fa8e84bd81bd91952a2bb9f0b8f8fad0",
+          "messageBytes": 21,
+          "dataOmitted": true
+        },
+        {
+          "timeMs": 1905.625,
+          "kind": "reply",
+          "id": 276,
+          "sessionId": "sha256:7e5c40b22534edab2fe2d65206c432e714b01727dd807f5c28fcca8e0a600abd",
+          "method": "Runtime.callFunctionOn",
+          "status": "protocol-error",
+          "resultOmitted": true,
+          "errorCode": -32000,
+          "allowedMessage": "Execution context was destroyed.",
+          "messageSHA256": "de3f96cc1f6fe0acb03373866c7a30017296f5d164bb065c58a78b85320213b7",
+          "messageBytes": 32,
+          "dataOmitted": true
+        },
+        {
+          "timeMs": 1908.945,
+          "kind": "reply",
+          "id": 280,
+          "sessionId": "sha256:7e5c40b22534edab2fe2d65206c432e714b01727dd807f5c28fcca8e0a600abd",
+          "method": "Runtime.callFunctionOn",
+          "status": "protocol-error",
+          "resultOmitted": true,
+          "errorCode": -32000,
+          "allowedMessage": "Cannot find context with specified id",
+          "messageSHA256": "51171ceec9085d583f6479cdbb4a7657d490c5a1f2d1ebda181dde5225964662",
+          "messageBytes": 37,
+          "dataOmitted": true
+        }
+      ],
+      "metadata": {
+        "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\green-r1\\worker-protocol-metadata.jsonl",
+        "sha256": "c768607299ceb2fdde122ebc17c4ff3bad10e043e18c3a77ae3aa6fe49b88bbc",
+        "bytes": 76450
+      }
+    }
+  },
+  "nativeOriginals": {
+    "report": {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\native-green-r1.json",
+      "sha256": "03a118e338a8946f1273a650d20e8dcf3e1941e8210791ddf7ca4dfe8a02f421",
+      "bytes": 23362
+    },
+    "stats": {
+      "startTime": "2026-11-15T20:16:33.320Z",
+      "duration": 21083.992000000002,
+      "expected": 8,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "cases": [
+      {
+        "title": "multiplicador só aparece quando efetivo, usa decimal PT-BR e some ao errar",
+        "project": "chromium",
+        "durationMs": 3378,
+        "retry": 0
+      },
+      {
+        "title": "multiplicador só aparece quando efetivo, usa decimal PT-BR e some ao errar",
+        "project": "mobile",
+        "durationMs": 3278,
+        "retry": 0
+      },
+      {
+        "title": "equipamento inicial de glomerulus mantém nomes e atributos quando a imagem falha",
+        "project": "chromium",
+        "durationMs": 1992,
+        "retry": 0
+      },
+      {
+        "title": "equipamento inicial de aquaria mantém nomes e atributos quando a imagem falha",
+        "project": "chromium",
+        "durationMs": 1978,
+        "retry": 0
+      },
+      {
+        "title": "equipamento inicial de nephros mantém nomes e atributos quando a imagem falha",
+        "project": "chromium",
+        "durationMs": 2042,
+        "retry": 0
+      },
+      {
+        "title": "equipamento inicial de glomerulus mantém nomes e atributos quando a imagem falha",
+        "project": "mobile",
+        "durationMs": 2178,
+        "retry": 0
+      },
+      {
+        "title": "equipamento inicial de aquaria mantém nomes e atributos quando a imagem falha",
+        "project": "mobile",
+        "durationMs": 2161,
+        "retry": 0
+      },
+      {
+        "title": "equipamento inicial de nephros mantém nomes e atributos quando a imagem falha",
+        "project": "mobile",
+        "durationMs": 2471,
+        "retry": 0
+      }
+    ],
+    "passed": 8,
+    "retry": 0,
+    "skipped": 0,
+    "runnerErrors": 0,
+    "meaning": "ActualcontinueGame/controller,original226and279bodies retained;4desktop+4mobile,includingall3characters."
+  },
+  "accounting": {
+    "baselineTechnical": {
+      "passed": 4,
+      "failed": 3
+    },
+    "sameTechnicalAfterFix": {
+      "passed": 7,
+      "failed": 0
+    },
+    "nativeRegressionSeparate": {
+      "passed": 8,
+      "failed": 0
+    },
+    "doNotTreatExpectedTechnicalErrorsAsProductFailures": true,
+    "doNotAddTheseRunsToCIOrPublicationCounts": true
+  },
+  "lifecycle": {
+    "preflight": {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\preflight.json",
+      "sha256": "e569fa4ff924ef5edb53bc361492f29d232d4e7eefb857b111bb9505359d5efb",
+      "bytes": 1099
+    },
+    "serverStart": {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\server-start.json",
+      "sha256": "93aa9dc863398c812596a31a2b5e442c8a52cd8fc8460448ccabca0e004818fc",
+      "bytes": 549
+    },
+    "serverClosed": {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-entry-handshake\\server-closed.json",
+      "sha256": "ab432b38271e6119a44680e6ab9d4f5e70aabf61104e8e1a5f44dbfacbcf415e",
+      "bytes": 259
+    },
+    "port": 5521,
+    "serverPid": 30800,
+    "processAbsent": true,
+    "listenerCount": 0
+  },
+  "limits": [
+    "Technicalfixtures do not load the product and do not replace a function in a runningapp. They define a controlledaction to test the helperprotocol.",
+    "The rawGCcontrol intentionally still produces a protocolerror afterthefix;the realnavigationcontrol also intentionally retiresits context.",
+    "ExistingPlaywrightprojection erases the originalTypeErrorname intoError in thebaseline,while retainingTypeError in its text;the newcompletionrecord preserves bothfields explicitly.",
+    "No blanketclaim that every historical226/279event was GC,and no attribution toPortal/imagefallback/medicalcontent.",
+    "Broader sharedhelpercallers remain for rootfinalmatrix/CI. This task did not rerun everycaller or release/deployanything."
+  ]
+}

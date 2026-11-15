@@ -4159,4 +4159,5 @@ canvas_program:{
     conclusao:"O limite de correção depende do risco; aquarese e reposição de potássio também podem elevar a natremia. Não se deve perseguir normalização rápida.",
     curiosidade:""
   },
+  "kamel_halperin_urine_electrolytes_2021": {"label":"Kamel e Halperin — Índices urinários (2021)","url":"https://pmc.ncbi.nlm.nih.gov/articles/8116912/","journal":"Kidney International Reports 2021;6(5):1211–1224","ano":2021,"tipo":"Revisão","badge":"REVIEW","badgeColor":"#8b5cf6","impacto":"Reciclagem de ureia limita a correção por osmolalidade","icon":"🔬","resumo":"Revisão narrativa de índices urinários. No TTKG (Gradiente Transtubular de Potássio), a reabsorção medular de ureia compromete a correção por osmolalidade. É fundamento fisiológico, não diretriz terapêutica.","conclusao":"O índice não define isoladamente a causa da hipercalemia.","curiosidade":""},
 };

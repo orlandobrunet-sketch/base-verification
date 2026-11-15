@@ -27,14 +27,17 @@ function manifestFor(raw, refs) {
     recordRevision: digest({authorRevision, referenceRevisions}),
     sourceRevisions: Object.fromEntries(Object.entries(sources(raw)).map(([profile, source]) => [profile, digest(source)]))}}};
 }
-function fixture({cardOnly = false, history = true} = {}) {
+function fixture({cardOnly = false, history = true, replacement = false} = {}) {
   const before = author(), after = cardOnly ? clone(before) : author({t: 'Current tokens', cat: 'tokens-current', diff: 'hard',
     q: 'Choose the updated marked token.', opts: ['plain token', 'round token', 'square token', 'updated token'], ans: 3, exp: 'Current token explanation.'});
   const oldRefs = {'technical-card': {label: 'Historical token card', summary: 'Historical card body.'}};
   const refs = {'technical-card': {label: 'Current token card', summary: 'Current card body.'}};
   const archive = {qid: before.qid, release: '16.09', author: before, sources: sources(before), references: oldRefs,
     policy: {material: true, pending: 'update-required'}};
+  if (replacement) after.qid = 'technical-new-objective';
   const manifest = manifestFor(after, refs), archived = history ? [archive] : [];
+  if (replacement) manifest.replacements = {[before.qid]: {qid: after.qid,
+    recordRevision: digest({authorRevision: digest(before), referenceRevisions: {'technical-card': digest(oldRefs['technical-card'])}})}};
   const catalog = revisions.createCatalog({manifest, history: archived, authors: [after],
     sources: Object.fromEntries(Object.entries(sources(after)).map(([profile, value]) => [profile, [value]])), references: refs});
   return {before, after, oldRefs, refs, archive, manifest, history: archived, catalog};
@@ -397,4 +400,25 @@ for (const isolated of ['flag false', 'flag null', 'catalog only']) test(`Study 
   assert.equal(h.context.resumeSavedStudyMode(), false); assert.equal(h.data.get('nefroquest-study-state'), raw);
   assert.equal(h.writes.length, 0); assert.equal(h.context.answerCalls, 0); assert.equal(h.context.srCalls, 0);
   assert.equal(h.run('studyModeActive'), false);
+});
+
+for (const mode of ['study', 'offline']) for (const answered of [false, true]) test(`${mode} retired identity resumes historical state and requires explicit new-objective choice (${answered ? 'answered' : 'pending'})`, () => {
+  const f = fixture({replacement: true}), h = harness(mode, f), q = answers.present(sources(f.before)[mode]);
+  const key = mode === 'study' ? 'nefroquest-study-state' : 'nefroquest-offline-study-state';
+  const raw = mode === 'study' ? studySave(f, q, answered ? answerFor(q) : null)
+    : offlineSave(f, q, answered ? answerFor(q) : null);
+  h.data.set(key, raw);
+  if (mode === 'study') assert.equal(h.context.resumeSavedStudyMode(), true); else h.context.initOfflineStudy();
+  const selected = () => clone(h.run(mode === 'study' ? '_studyPresentations[0]' : 'currentPresentation'));
+  assert.equal(selected().id, f.before.qid); assert.equal(h.data.get(key), raw);
+  assert.equal(h.context.srCalls, 0); assert.equal(h.context.answerCalls, 0);
+  if (answered) {
+    assert.equal(h.run(mode === 'study' ? 'useCurrentStudyRevision()' : 'useCurrentOfflineRevision()'), false);
+    assert.equal(h.data.get(key), raw); assert.equal(selected().id, f.before.qid);
+  } else {
+    assert.equal(h.run(mode === 'study' ? 'useCurrentStudyRevision()' : 'useCurrentOfflineRevision()'), true);
+    assert.equal(selected().id, f.after.qid); assert.equal(h.context.srCalls, 0); assert.equal(h.context.answerCalls, 0);
+    const updated = JSON.parse(h.data.get(key));
+    assert.equal(updated.revisionOriginRaw, raw);
+  }
 });

@@ -276,10 +276,10 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
   <!-- Banco de dados de questões (topics) em cache -->
   <script>window.NQ_REQUIRES_QUESTION_REVISIONS = true;</script>
   <script src="/js/answer-presentation.js?v=16.09"></script>
-<script src="/data/question-revision-manifest.js?v=16.22"></script>
-<script src="/data/question-revision-history.js?v=16.20"></script>
-  <script src="/js/question-revisions.js?v=16.11"></script>
-  <script src="/data/topics.js"></script>
+<script src="/data/question-revision-manifest.js?v=17.27"></script>
+<script src="/data/question-revision-history.js?v=17.27"></script>
+  <script src="/js/question-revisions.js?v=17.27"></script>
+  <script src="/data/topics.js?v=17.27"></script>
   <script>
     // Inicialização da sessão
     let sessionQuestions = [];
@@ -383,11 +383,11 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
         if (saved.version !== 1 || !Array.isArray(saved.questionIds) || !saved.questionIds.length ||
             !Number.isInteger(saved.index) || saved.index < 0 || saved.index >= saved.questionIds.length ||
             !Number.isSafeInteger(saved.correctCount) || saved.correctCount < 0) return false;
-        const byId = new Map(topics.map(q => [q.qid, q]));
-        const questions = saved.questionIds.map(id => byId.get(id));
-        if (questions.some(q => !q)) return false;
         const catalog = getOfflineRevisionCatalog();
         if (catalog === null) { offlineRevisionHold = {status: 'unavailable', candidates: []}; return false; }
+        const byId = new Map(topics.map(q => [q.qid, q]));
+        const questions = saved.questionIds.map(id => byId.get(id) || catalog?.retired?.(id, 'offline')?.author);
+        if (questions.some(q => !q)) return false;
         if (offlineSelectionRaw !== raw) { offlineSelection = null; offlineSelectionRaw = raw; }
         let resolved;
         if (catalog) {
@@ -454,7 +454,8 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
     }
     function useCurrentOfflineRevision() {
       if (offlineConsultationOnly || offlineAnswer || !offlineRevision?.historical || offlineRevision.policy.pending !== 'update-required') return false;
-      const current = getOfflineRevisionCatalog()?.current(offlineRevision.binding.qid, 'offline');
+      const catalog = getOfflineRevisionCatalog();
+      const current = catalog?.current(offlineRevision.binding.qid, 'offline') || catalog?.replacement?.(offlineRevision.binding.qid, 'offline');
       if (!current) return false;
       try { if (localStorage.getItem(OFFLINE_STUDY_SAVE_KEY) !== offlineSavedRaw) return false; }
       catch (_) { return false; }
@@ -474,12 +475,13 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
       return true;
     }
     function viewCurrentOfflineRevision() {
-      const current = getOfflineRevisionCatalog()?.current(sessionQuestions[currentIndex]?.qid, 'offline');
+      const catalog = getOfflineRevisionCatalog(), qid = sessionQuestions[currentIndex]?.qid;
+      const current = catalog?.current(qid, 'offline') || catalog?.replacement?.(qid, 'offline');
       if (!current) return;
       document.getElementById('nqOffCurrentRevision')?.remove();
       const panel = document.createElement('section');
       panel.id = 'nqOffCurrentRevision';
-      panel.innerHTML = `<h3>Atualização publicada (${escapeHtml(current.release)})</h3><p>Consulta separada; sua avaliação histórica permanece preservada.</p><p>${escapeHtml(current.author.q)}</p><p>${escapeHtml(current.source.e || '')}</p>`;
+      panel.innerHTML = `<h3>${current.binding.qid !== qid ? 'Nova questão publicada' : 'Atualização publicada'} (${escapeHtml(current.release)})</h3><p>Consulta separada; sua avaliação histórica permanece preservada.</p><p>${escapeHtml(current.author.q)}</p><p>${escapeHtml(current.source.e || '')}</p>`;
       cardContainer.appendChild(panel);
     }
 
@@ -520,7 +522,7 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
         currentPresentation = window.NQAnswers ? window.NQAnswers.present(authored) : authored;
         offlineAnswer = null;
         const catalog = getOfflineRevisionCatalog();
-        offlineRevision = catalog?.current(q.qid, 'offline') || null;
+        offlineRevision = catalog?.current(q.qid, 'offline') || catalog?.retired?.(q.qid, 'offline') || null;
         if (catalog === null || (catalog && !offlineRevision)) currentPresentation = null;
       }
       if (!currentPresentation) {
@@ -528,13 +530,14 @@ body{background:radial-gradient(ellipse at 10% 0%,#91dfe30b,transparent 55%),#07
         return;
       }
       const held = offlineConsultationOnly || (offlineRevision?.historical && offlineRevision.policy.pending === 'update-required' && !offlineAnswer);
+      const replacement = offlineRevision?.historical && getOfflineRevisionCatalog()?.replacement?.(q.qid, 'offline');
       isAnswered = !!offlineAnswer;
       correctVal.textContent = correctCount;
       
       cardContainer.innerHTML = `
-        ${offlineRevision?.historical ? `<p role="status">Versão histórica (${escapeHtml(offlineRevision.release)}). ${offlineAnswer ? 'Avaliação preservada; esta explicação pertence à versão respondida.' : 'Esta questão foi atualizada. Use a versão atual antes de responder.'}</p><button class="btn-next" onclick="viewCurrentOfflineRevision()">Consultar atualização publicada</button>` : ''}
+        ${offlineRevision?.historical ? `<p role="status">Versão histórica (${escapeHtml(offlineRevision.release)}). ${offlineAnswer ? 'Avaliação preservada; esta explicação pertence à versão respondida.' : replacement ? 'Esta questão foi substituída. Confirme a nova pergunta antes de responder.' : 'Esta questão foi atualizada. Use a versão atual antes de responder.'}</p><button class="btn-next" onclick="viewCurrentOfflineRevision()">${replacement ? 'Consultar nova questão' : 'Consultar atualização publicada'}</button>` : ''}
         ${offlineConsultationOnly ? '<p role="status">Consulta de uma revisão escolhida. Respostas e progresso da sessão salva permanecem intactos.</p>' : ''}
-        ${held && !offlineConsultationOnly ? '<button class="btn-next" onclick="useCurrentOfflineRevision()">Confirmar troca para a versão atual, sem consumir resposta</button>' : ''}
+        ${held && !offlineConsultationOnly ? `<button class="btn-next" onclick="useCurrentOfflineRevision()">${replacement ? 'Confirmar troca para a nova questão, sem consumir resposta' : 'Confirmar troca para a versão atual, sem consumir resposta'}</button>` : ''}
         <div class="nq-off-topic">${escapeHtml(q.cat || 'Geral')}</div>
         <h2 id="nqOffQuestionTitle" tabindex="-1">Questão ${currentIndex + 1}</h2>
         <p class="nq-off-question">${escapeHtml(q.q)}</p>

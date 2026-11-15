@@ -1,0 +1,103 @@
+{
+  "status": "APPLIED",
+  "dataWritten": true,
+  "planSHA256": "sha256:60b1bb3f7dfdf306fd060015037991762955b4a8124734c23d5eb12d0ac370db",
+  "proof": {
+    "schema": "NQ_TTKG_1727_DATA_PLAN_v1",
+    "baseCommit": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+    "baseRelease": "17.26",
+    "release": "17.27",
+    "branch": "codex/recovery-editorial-1727",
+    "utilitySHA256": "ab24e5acc78a63a0d2f9efd16009676a0ebb948d3be3d62a7f6fa2dc3e9a6613",
+    "authorSHA256": "d9dad196334eb961d015756de99efcfcfa63b96edbdae0fb69ae58799b6ff40a",
+    "independentClinicalReviewSHA256": "5a1a3ab01413010e433795d834376372ae56ce8c87e0ffe933d94169505a164a",
+    "helperHashes": {
+      "tools/build-question-revision-manifest.cjs": "6957024fcf92d976f3db7afc101c37bac1b1b4267ecdd773173c19f536525085",
+      "js/answer-presentation.js": "c833ef04b1ae9c3b1f3b4aeac7f8c2b94344535d622ef258d93dc38fb63d7a0a",
+      "js/question-revisions.js": "4cdf46b51310ea9aad5851f8b7ae8a5c793a9715648b1a73f2325e07883e01a9"
+    },
+    "sourceDataFiles": {
+      "data/topics.js": {
+        "sha256": "448f4f4340a6208c2f89cdd15e77c2cd3ae558a2a678dac4476fea2b70fafed8",
+        "bytes": 975855
+      },
+      "data/refs.js": {
+        "sha256": "b754ce39d368b0a05ffd14ac33f609790162cb72d275bdc9da78c0b3f1a3de95",
+        "bytes": 510717
+      },
+      "data/question-revision-history.js": {
+        "sha256": "404457eed766447bdbb15b8d7845c30584b60fb320a350f77e0fcf605dc53b41",
+        "bytes": 1777592
+      },
+      "data/question-revision-manifest.js": {
+        "sha256": "5c2578a9acd48db45daa5acc858652c8576548f3f637c2ae06b9b3ad34d3f87a",
+        "bytes": 534537
+      },
+      "data/question-replacements.json": {
+        "exists": false
+      }
+    },
+    "plannedDataFiles": {
+      "data/topics.js": {
+        "sha256": "32e76a61e669ad9673370810eb223b303efc4c3e8980a11971f82a11f3cd1e7f",
+        "bytes": 975785
+      },
+      "data/refs.js": {
+        "sha256": "9874303865b0a9a803eda9cffb7d7034509b1dcecb43f507ad2de1acb86b274b",
+        "bytes": 511414
+      },
+      "data/question-revision-history.js": {
+        "sha256": "16cec6ac0a347ab7ce9f19a53a7336f86a8df8a9d244a4f15eb5a6f03aa7a901",
+        "bytes": 1785427
+      },
+      "data/question-revision-manifest.js": {
+        "sha256": "7dcafa5835490395968a900f9ffb45705a43cdca34d2ed68ae9888a0eeef88a4",
+        "bytes": 534699
+      },
+      "data/question-replacements.json": {
+        "sha256": "828b041b81f2e3a6e86b3ba7d9b4b70f5fb9be4e8b4d2d172aa1b0552251fce7",
+        "bytes": 191
+      }
+    },
+    "approvedQuestionSHA256": "sha256:3d4b6e83fdd3843383be7601137f506e254e3dd3167a28cfb309e4241b44de52",
+    "approvedCardSHA256": "sha256:9fb8a2ffc3725f64ff4a43ad71e1e38d1a7606b7d663c143c7a4b358e82db759",
+    "originalAuthorSHA256": "sha256:c10a3764a028773d3b25e0bf3756d310670a17b38bf9a3fb94ba0186aaf9f51f",
+    "originalRecordRevision": "sha256:b3332b91e10a7891c5fa8a75a9e373f05a8db7f9e8aeb8d6614f5e3de2590bdd",
+    "archiveSHA256": "sha256:8d81282be69baf836f3b14e08a29361e643952961e13472433c0ec837fb23887",
+    "replacementPolicy": {
+      "version": 1,
+      "replacements": {
+        "6474ec20": {
+          "qid": "b515e1c7",
+          "recordRevision": "sha256:b3332b91e10a7891c5fa8a75a9e373f05a8db7f9e8aeb8d6614f5e3de2590bdd"
+        }
+      }
+    },
+    "oldArrayIndex": 238,
+    "newArrayIndex": 238,
+    "otherAuthorsAndSourceIndicesPreserved": 740,
+    "otherCardsPreserved": 372,
+    "history": {
+      "before": 180,
+      "after": 181,
+      "oldLiteralPrefixBytes": 1777428,
+      "oldCanonicalPrefixPreserved": true,
+      "oldBindings": 720,
+      "newBindings": 4,
+      "totalBindings": 724,
+      "archivedRelease": "17.26"
+    },
+    "currentQuestionCount": 741,
+    "referenceCount": 373,
+    "currentProfilePresentations": 2964,
+    "originalFSRSDataWritten": false,
+    "newQidInheritsOldMastery": false,
+    "originalClinicalGateNotUpgraded": true,
+    "scope": "Five data files only; no version,SW,runtime,tests,FSRS/backend/account writes. Caller owns lifecycle UI tests and release/cache."
+  },
+  "limitations": [
+    "The clinical gate covers only the exact new question/card; the original remains clinically blocked and is archived,not rewritten.",
+    "Caught errors have synchronous rollback; no claim of cross-file atomicity or safety against an uncoordinated competing writer.",
+    "No runtime or UI test result is inferred from these data-construction checks."
+  ]
+}
