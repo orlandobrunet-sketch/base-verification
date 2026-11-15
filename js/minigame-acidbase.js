@@ -2508,7 +2508,13 @@
         const go = () => _handleAnswerNum(overlay, kase, sess, parseFloat(input.value));
         submit.onclick = go;
         input.addEventListener('keydown', ev => { if (ev.key === 'Enter') go(); });
-        setTimeout(() => { if (_abCurrent(overlay) && input.isConnected) input.focus(); }, 30);
+        setTimeout(() => {
+          if (!_abCurrent(overlay) || !input.isConnected) return;
+          const active = document.activeElement;
+          if (active && active !== document.body && active !== document.documentElement &&
+              active !== card.querySelector('.ab-prompt')) return;
+          input.focus();
+        }, 30);
       }
     } else if (act.kind === 'cards') {
       const result = sess.cardResults[sess.actIdx];
@@ -2665,7 +2671,13 @@
     };
     const fb = card.querySelector('#abFeedback');
     fb.insertAdjacentElement('afterend', next);
-    setTimeout(() => { if (_abCurrent(overlay) && next.isConnected) next.focus(); }, 30);
+    setTimeout(() => {
+      if (!_abCurrent(overlay) || !next.isConnected) return;
+      const active = document.activeElement;
+      if (active && active !== document.body && active !== document.documentElement &&
+          active !== card.querySelector('.ab-prompt')) return;
+      next.focus();
+    }, 30);
   }
 
 
