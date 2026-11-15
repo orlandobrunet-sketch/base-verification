@@ -6996,9 +6996,13 @@
       const focused = document.activeElement;
       const otherFocus = focused && focused !== document.body && !main?.contains(focused) && _chestRewardVisible(focused);
       if (entry?.ready && !entry.popup && campaign && !dialog && !otherFocus) triggerChestRewardPopup(entry);
-      if (hasPendingVictoryResults() && !hasPendingChestReward() && campaign && !dialog && !otherFocus) {
-        _pendingVictoryResults = null;
-        renderVictoryResults();
+      if (hasPendingVictoryResults() && !hasPendingChestReward() && campaign && !dialog) {
+        const dock = document.getElementById('mobileBottomDock');
+        const nativeDockFocus = _chestRewardVisible(dock) && dock.contains(focused);
+        if (!otherFocus || nativeDockFocus) {
+          _pendingVictoryResults = null;
+          renderVictoryResults();
+        }
       }
       _watchChestRewards();
     }

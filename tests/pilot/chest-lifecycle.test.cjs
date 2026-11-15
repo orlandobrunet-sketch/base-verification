@@ -86,6 +86,7 @@ function fixture() {
     dialog(id = 'intermediate-dialog') { const dialog = new Node(id, body); dialog.dialog = true; return dialog; },
     victory() { const root = new Node('victoryModal', body), panel = new Node('victory-panel', root);
       panel.dialog = true; return {root, panel, control: panel.querySelector('button')}; },
+    dock() { const root = new Node('mobileBottomDock', body); return {root, control: new Node('dock-forge', root)}; },
     control() { return new Node('other-control', body); },
     switch(values = {}) { if ('owner' in values) owner = values.owner; if ('journeyId' in values) journeyId = values.journeyId;
       if ('pilot' in values) pilot = values.pilot; generation += values.generation || 0; ctx._progressEpoch += values.epoch || 0; },
@@ -281,4 +282,24 @@ test('pending earned rewards block completion before reveal, while direct or sta
   const direct = fixture(); direct.ctx.triggerChestRewardPopup(); assert.equal(direct.ctx.hasPendingChestReward(), false);
   const stale = fixture(); stale.queue(); stale.switch({owner: 'other'}); assert.equal(stale.ctx.hasPendingChestReward(), false);
   const ended = fixture(); ended.queue(); ended.ctx.state.gameOver = true; assert.equal(ended.ctx.hasPendingChestReward(), false);
+});
+
+test('the visible native dock remains a valid origin for current campaign results', () => {
+  const f = fixture(), dock = f.dock(); Object.assign(f.ctx.state, {gameCompleted:true,correctTotal:100});
+  dock.control.focus(); assert.equal(f.main.contains(dock.control), false);
+  f.ctx.showGameCompletionModal(); assert.equal(f.presentations(), 1);
+});
+
+test('native dock focus cannot bypass a pending prize, another dialog or a hidden campaign', () => {
+  for (const block of [f=>f.queue(),f=>f.dialog(),f=>{f.main.hidden=true;},f=>{f.ctx.document.hidden=true;}]) {
+    const f = fixture(), dock = f.dock(); Object.assign(f.ctx.state, {gameCompleted:true,correctTotal:100});
+    dock.control.focus(); block(f); f.ctx.showGameCompletionModal(); f.advance(1200);
+    assert.equal(f.presentations(), 0); assert.equal(f.popup(), undefined); assert.equal(f.ctx.document.activeElement, dock.control);
+  }
+});
+
+test('an external control with a native-looking action does not become campaign focus', () => {
+  const f = fixture(), control = f.control(); control.dataset.action = 'showForjaModal';
+  Object.assign(f.ctx.state, {gameCompleted:true,correctTotal:100}); control.focus();
+  f.ctx.showGameCompletionModal(); assert.equal(f.presentations(), 0);
 });

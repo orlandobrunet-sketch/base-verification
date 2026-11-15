@@ -10,7 +10,7 @@ async function abrir(page: Page, viewport: { width: number; height: number }, ov
   await page.setViewportSize(viewport);
   await page.route('**/*', route => new URL(route.request().url()).hostname === 'localhost' ? route.continue() : route.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
-  await injectGameState(page, { gold: 130, character: 'nephros', ...overrides });
+  await injectGameState(page, { gold: 130, character: 'nephros', ...overrides }, { asGuest: true });
   await page.waitForFunction(() => !(0, eval)('_loadingNextQuestion'));
 }
 
