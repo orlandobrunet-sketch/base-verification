@@ -4739,6 +4739,17 @@
           `COMENTÁRIO DO JOGADOR:\n${comment || '(sem comentário adicional)'}`,
       };
 
+      // One deadline covers session lookup, delivery and response body. Aborting
+      // a request does not prove that the server did not receive the report.
+      const controller = new AbortController();
+      let deadlineTimer;
+      const deadline = new Promise((_, reject) => {
+        deadlineTimer = setTimeout(() => {
+          controller.abort();
+          reject(new Error('Report confirmation timed out'));
+        }, 30000);
+      });
+      const waitFor = operation => Promise.race([operation, deadline]);
       try {
         // Headers de auth obrigatórios (verify_jwt): sem apikey/Authorization o
         // Supabase rejeita com 401 antes de chegar na função. Quando logado,
@@ -4748,12 +4759,13 @@
           || (typeof SUPA_KEY !== 'undefined' ? SUPA_KEY : '');
         let _authToken = _supaKey;
         try {
-          const _sess = await (typeof _supaClient !== 'undefined' ? _supaClient : null)?.auth?.getSession();
+          const _sess = await waitFor((typeof _supaClient !== 'undefined' ? _supaClient : null)?.auth?.getSession());
           _authToken = _sess?.data?.session?.access_token || _supaKey;
-        } catch {}
+        } catch (err) { if (controller.signal.aborted) throw err; }
         if (!isCurrent()) return;
-        const res = await fetch(`${SUPA_URL}/functions/v1/send-flag`, {
+        const res = await waitFor(fetch(`${SUPA_URL}/functions/v1/send-flag`, {
           method: 'POST',
+          signal: controller.signal,
           headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
@@ -4761,9 +4773,9 @@
             Authorization: `Bearer ${_authToken}`,
           },
           body: JSON.stringify(body),
-        });
+        }));
         let data = {};
-        try { data = await res.json(); } catch {}
+        try { data = await waitFor(res.json()); } catch (err) { if (controller.signal.aborted) throw err; }
         if (!isCurrent()) return;
         if (res.ok && data.success) {
           status.className = 'flag-status flag-status--success';
@@ -4788,10 +4800,14 @@
         if (!isCurrent()) return;
         // Erro de rede / função inexistente / CORS bloqueado.
         status.className = 'flag-status flag-status--error';
-        status.textContent = '❌ Falha de conexão com o servidor. Verifique sua rede.';
+        status.textContent = controller.signal.aborted
+          ? 'Não foi possível confirmar o envio. Seu texto foi mantido. Você pode tentar novamente.'
+          : '❌ Falha de conexão com o servidor. Verifique sua rede.';
         btn.disabled = false;
         btn.textContent = '📧 Enviar';
         _track('error_flag_submit', { msg: String(err) });
+      } finally {
+        clearTimeout(deadlineTimer);
       }
     }
 

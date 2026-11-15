@@ -1391,15 +1391,31 @@
       return owner ? `${base}:${encodeURIComponent(String(owner))}` : null;
     }
 
-    function _getMentorQuota() {
+    // A resposta do servidor não depende de conseguir gravar este cache.
+    // A cópia transitória conserva dono/dia e aceita uma cota maior de outra aba.
+    const _aiQuotaMemory = new Map();
+    function _readAIQuota(base) {
       const today = new Date().toISOString().slice(0, 10);
+      const key = _aiQuotaStorageKey(base);
+      let quota = { date: today, count: 0 };
       try {
         // The old device-wide record has no owner and cannot be safely adopted.
-        const key = _aiQuotaStorageKey(MENTOR_QUOTA_KEY);
         const stored = JSON.parse((key && localStorage.getItem(key)) || '{}');
-        if (stored.date !== today) return { date: today, count: 0 };
-        return stored;
-      } catch { return { date: today, count: 0 }; }
+        if (stored.date === today) quota = stored;
+      } catch {}
+      const memory = _aiQuotaMemory.get(key);
+      if (memory && memory.date !== today) _aiQuotaMemory.delete(key);
+      if (memory?.date === today && memory.count > (quota.count || 0)) return { ...memory };
+      return quota;
+    }
+
+    function _rememberAIQuota(key, quota) {
+      _aiQuotaMemory.set(key, { ...quota });
+      try { localStorage.setItem(key, JSON.stringify(quota)); } catch {}
+    }
+
+    function _getMentorQuota() {
+      return _readAIQuota(MENTOR_QUOTA_KEY);
     }
 
     function _renderMentorMarkdown(text) {
@@ -1433,7 +1449,7 @@
       if (!key) return;
       const q = _getMentorQuota();
       q.count = (q.count || 0) + 1;
-      localStorage.setItem(key, JSON.stringify(q));
+      _rememberAIQuota(key, q);
     }
 
     /* O contador local não é a verdade — o servidor é.
@@ -1452,7 +1468,7 @@
       if (!key) return;
       const q = _getMentorQuota();
       q.count = MENTOR_DAILY_LIMIT;
-      localStorage.setItem(key, JSON.stringify(q));
+      _rememberAIQuota(key, q);
       const barra = document.getElementById('mentorQuotaBar');
       if (barra) barra.textContent = _mentorRemainingText();
     }
@@ -1501,13 +1517,7 @@
     }
 
     function _getDiagQuota() {
-      const today = new Date().toISOString().slice(0, 10);
-      try {
-        const key = _aiQuotaStorageKey(DIAG_QUOTA_KEY);
-        const stored = JSON.parse((key && localStorage.getItem(key)) || '{}');
-        if (stored.date !== today) return { date: today, count: 0 };
-        return stored;
-      } catch { return { date: today, count: 0 }; }
+      return _readAIQuota(DIAG_QUOTA_KEY);
     }
 
     function _canRunDiagnosis() {
@@ -1521,7 +1531,7 @@
       if (!key) return;
       const q = _getDiagQuota();
       q.count = (q.count || 0) + 1;
-      localStorage.setItem(key, JSON.stringify(q));
+      _rememberAIQuota(key, q);
     }
 
     /* Mesmo contrato do Oráculo: a recusa por cota do servidor é a verdade,
@@ -1532,7 +1542,7 @@
       if (!key) return;
       const q = _getDiagQuota();
       q.count = DIAG_DAILY_LIMIT;
-      localStorage.setItem(key, JSON.stringify(q));
+      _rememberAIQuota(key, q);
     }
     
     function startStudyMode(replaceSaved = false) {
