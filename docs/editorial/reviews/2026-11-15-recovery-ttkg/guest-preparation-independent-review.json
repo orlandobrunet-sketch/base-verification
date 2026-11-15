@@ -1,0 +1,1349 @@
+{
+  "schema": "NQ_1727_GUEST_FIXTURE_INDEPENDENT_TECHNICAL_REVIEW_v1",
+  "decision": "APPROVED_TECHNICAL_FIXTURE_CHANGE",
+  "independent": true,
+  "readyForCommitAndNewExactCI": true,
+  "sourceBase": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+  "scope": "Read-only technical review of187/216 controls, source deltas and completed local evidence; separate from clinical review.",
+  "blockers": [],
+  "changes": [
+    {
+      "file": "tests/specs/187-forja-e-vitoria.spec.ts",
+      "rawSHA256": "3466bea0b9769532fc38908eac8a646c9beeac2ca4de4650868f3c9be3c6af1b",
+      "lfSHA256": "5f536249ded1e8804996e156a796cafca658dab5689541c9b39f56025c675240",
+      "bytes": 3285,
+      "changedLines": [
+        10
+      ],
+      "change": "Existing asGuest:true argument only",
+      "assertionsBefore": 12,
+      "assertionsAfter": 12,
+      "allOtherBytesEqualAfterEOL": true
+    },
+    {
+      "file": "tests/specs/216-progressao-xp.spec.ts",
+      "rawSHA256": "a9d272cb2aa0dc4ed94b6f27ccc0dabe813492392953eef4f11d61ba1d27b7fe",
+      "lfSHA256": "05624421da7de7dc1c6f68b27ee4d63075def63485b63e4c0f9de80e4721ac38",
+      "bytes": 16186,
+      "changedLines": [
+        14,
+        25,
+        40,
+        53,
+        80,
+        124,
+        139
+      ],
+      "change": "Existing asGuest:true argument only",
+      "assertionsBefore": 73,
+      "assertionsAfter": 73,
+      "allOtherBytesEqualAfterEOL": true
+    }
+  ],
+  "protectedSource": {
+    "unchangedRelativeToBase": [
+      "js",
+      "data",
+      "tests/helpers",
+      "tests/playwright.config.ts",
+      "style.css",
+      "sw.js",
+      "version.json"
+    ],
+    "pins": [
+      {
+        "file": "js/auth.js",
+        "gitBlobSHA256": "fe10cc6f86d9aac294d758bb972050531a9a928856dc71fadfb44da7635497ae",
+        "worktreeRawSHA256": "89e2c6d931fd694cd1e680949f1520c060e8fec0449ce4a3a89eb12e3b151d02",
+        "gitBytes": 52784,
+        "worktreeBytes": 53845,
+        "normalizedLFEqual": true
+      },
+      {
+        "file": "tests/helpers/game.ts",
+        "gitBlobSHA256": "b9bc578b9f5e11c89bd07e8b9e55e6758c9401c70ccde0539c12d7f0ec0b77bf",
+        "worktreeRawSHA256": "20cb81107b3426d3b68e738ed0ede2888bc934c3089433beb6a52ed5793fabe2",
+        "gitBytes": 8342,
+        "worktreeBytes": 8516,
+        "normalizedLFEqual": true
+      }
+    ]
+  },
+  "cohortParity": [
+    {
+      "spec": "187",
+      "baselineBodyEqualsOriginalAfterEOL": true,
+      "guestDiffOnlyOptions": true,
+      "cohortChangedLines": [
+        10
+      ],
+      "existingAssertionCount": 12,
+      "cohortAssertionCount": 12,
+      "originalExplicitDeadlines": [],
+      "cohortExplicitDeadlines": []
+    },
+    {
+      "spec": "216",
+      "baselineBodyEqualsOriginalAfterEOL": true,
+      "guestDiffOnlyOptions": true,
+      "cohortChangedLines": [
+        93,
+        106
+      ],
+      "existingAssertionCount": 73,
+      "cohortAssertionCount": 73,
+      "originalExplicitDeadlines": [
+        "  test.setTimeout(45000); // Four real question transitions and one evolution dialog.",
+        "  test.setTimeout(45000);"
+      ],
+      "cohortExplicitDeadlines": [
+        "  test.setTimeout(45000); // Four real question transitions and one evolution dialog.",
+        "  test.setTimeout(45000);"
+      ]
+    }
+  ],
+  "mechanism": {
+    "controlledBoundary": "Only the SDK service boundary is replaced in causal controls. Promise getSession:null (both187 and216) or INITIAL_SESSION:null (187) is delivered after the fixture has manually hidden Portal / the native Forge has mounted. No Portal function, game action, progression, resource or medical content is mocked.",
+    "nativeBehavior": "Without Guest, the unchanged Auth handler legitimately restores signed-out Portal when a null initial session arrives. Calling existing native playAsGuest through the explicit fixture option sets _guestMode and persists nq_guest_mode before continuation.",
+    "comparison": "Causal cohorts differ only in explicit Guest options; native forging/option clicks, original inputs, assertions and deadlines remain.",
+    "controlledMechanismConfirmed": true,
+    "specificOfficialCallbackIdentified": false,
+    "officialLimit": "CI1100 traces do not uniquely identify which initial Auth delivery caused either original intermittent event. The controlled mechanism is demonstrated and prevented; no exclusive callback attribution is made.",
+    "productForgeOrProgressionDefectDemonstrated": false
+  },
+  "evidence": {
+    "phases": [
+      {
+        "name": "187-red",
+        "receipt": {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis/baseline/results.json",
+          "bytes": 18616,
+          "sha256": "170ee5c4d23b2454ad4a50dbe0bf115631c759b33c0348d88460236999d51ada"
+        },
+        "stats": {
+          "startTime": "2026-11-15T21:27:27.078Z",
+          "duration": 43891.038,
+          "expected": 0,
+          "skipped": 0,
+          "unexpected": 2,
+          "flaky": 0
+        },
+        "rows": [
+          {
+            "title": "com movimento reduzido a forja mostra o item sem martelada",
+            "project": "chromium-promise",
+            "timeoutMs": 20000,
+            "outcome": "unexpected",
+            "retry": 0,
+            "status": "timedOut",
+            "durationMs": 20808,
+            "audit": {
+              "audit": {
+                "errors": [],
+                "nonGET": [],
+                "sockets": 0,
+                "sdkBlocked": 2
+              },
+              "state": {
+                "gate": {
+                  "delivery": "promise",
+                  "delivered": true,
+                  "observerAttached": false,
+                  "calls": [
+                    {
+                      "phase": "before-initial-delivery-after-native-forge-mounted",
+                      "guest": null,
+                      "game": {
+                        "gold": 5000,
+                        "xp": 150,
+                        "lives": 3,
+                        "correctTotal": 15
+                      },
+                      "landingHidden": true,
+                      "forgeMounted": true
+                    },
+                    {
+                      "phase": "after-initial-delivery",
+                      "guest": null,
+                      "game": {
+                        "gold": 5000,
+                        "xp": 150,
+                        "lives": 3,
+                        "correctTotal": 15
+                      },
+                      "landingHidden": false,
+                      "forgeMounted": true
+                    }
+                  ]
+                },
+                "guest": null,
+                "authUser": null,
+                "landingClass": "",
+                "mainClass": "app hidden",
+                "forgeMounted": true,
+                "resultMounted": false,
+                "game": {
+                  "gold": 5000,
+                  "xp": 150,
+                  "lives": 3,
+                  "correctTotal": 15
+                }
+              }
+            }
+          },
+          {
+            "title": "com movimento reduzido a forja mostra o item sem martelada",
+            "project": "chromium-event",
+            "timeoutMs": 20000,
+            "outcome": "unexpected",
+            "retry": 0,
+            "status": "timedOut",
+            "durationMs": 20807,
+            "audit": {
+              "audit": {
+                "errors": [],
+                "nonGET": [],
+                "sockets": 0,
+                "sdkBlocked": 2
+              },
+              "state": {
+                "gate": {
+                  "delivery": "event",
+                  "delivered": true,
+                  "observerAttached": false,
+                  "calls": [
+                    {
+                      "phase": "before-initial-delivery-after-native-forge-mounted",
+                      "guest": null,
+                      "game": {
+                        "gold": 5000,
+                        "xp": 150,
+                        "lives": 3,
+                        "correctTotal": 15
+                      },
+                      "landingHidden": true,
+                      "forgeMounted": true
+                    },
+                    {
+                      "phase": "after-initial-delivery",
+                      "guest": null,
+                      "game": {
+                        "gold": 5000,
+                        "xp": 150,
+                        "lives": 3,
+                        "correctTotal": 15
+                      },
+                      "landingHidden": false,
+                      "forgeMounted": true
+                    }
+                  ]
+                },
+                "guest": null,
+                "authUser": null,
+                "landingClass": "",
+                "mainClass": "app hidden",
+                "forgeMounted": true,
+                "resultMounted": false,
+                "game": {
+                  "gold": 5000,
+                  "xp": 150,
+                  "lives": 3,
+                  "correctTotal": 15
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "187-green",
+        "receipt": {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis/guest/results.json",
+          "bytes": 8132,
+          "sha256": "86ef95bd189c764fa51cba133f76a49e168299539f422374f9545580c7576fa3"
+        },
+        "stats": {
+          "startTime": "2026-11-15T21:28:37.425Z",
+          "duration": 29986.999,
+          "expected": 2,
+          "skipped": 0,
+          "unexpected": 0,
+          "flaky": 0
+        },
+        "rows": [
+          {
+            "title": "com movimento reduzido a forja mostra o item sem martelada",
+            "project": "chromium-promise",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 14343,
+            "audit": {
+              "audit": {
+                "errors": [],
+                "nonGET": [],
+                "sockets": 0,
+                "sdkBlocked": 2
+              },
+              "state": {
+                "gate": {
+                  "delivery": "promise",
+                  "delivered": true,
+                  "observerAttached": false,
+                  "calls": [
+                    {
+                      "phase": "before-initial-delivery-after-native-forge-mounted",
+                      "guest": "1",
+                      "game": {
+                        "gold": 5000,
+                        "xp": 150,
+                        "lives": 3,
+                        "correctTotal": 15
+                      },
+                      "landingHidden": true,
+                      "forgeMounted": true
+                    },
+                    {
+                      "phase": "after-initial-delivery",
+                      "guest": "1",
+                      "game": {
+                        "gold": 5000,
+                        "xp": 150,
+                        "lives": 3,
+                        "correctTotal": 15
+                      },
+                      "landingHidden": true,
+                      "forgeMounted": true
+                    }
+                  ]
+                },
+                "guest": "1",
+                "authUser": null,
+                "landingClass": "hidden",
+                "mainClass": "app hidden",
+                "forgeMounted": true,
+                "resultMounted": true,
+                "game": {
+                  "gold": 4700,
+                  "xp": 150,
+                  "lives": 3,
+                  "correctTotal": 15
+                }
+              }
+            }
+          },
+          {
+            "title": "com movimento reduzido a forja mostra o item sem martelada",
+            "project": "chromium-event",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 14083,
+            "audit": {
+              "audit": {
+                "errors": [],
+                "nonGET": [],
+                "sockets": 0,
+                "sdkBlocked": 2
+              },
+              "state": {
+                "gate": {
+                  "delivery": "event",
+                  "delivered": true,
+                  "observerAttached": false,
+                  "calls": [
+                    {
+                      "phase": "before-initial-delivery-after-native-forge-mounted",
+                      "guest": "1",
+                      "game": {
+                        "gold": 5000,
+                        "xp": 150,
+                        "lives": 3,
+                        "correctTotal": 15
+                      },
+                      "landingHidden": true,
+                      "forgeMounted": true
+                    },
+                    {
+                      "phase": "after-initial-delivery",
+                      "guest": "1",
+                      "game": {
+                        "gold": 5000,
+                        "xp": 150,
+                        "lives": 3,
+                        "correctTotal": 15
+                      },
+                      "landingHidden": true,
+                      "forgeMounted": true
+                    }
+                  ]
+                },
+                "guest": "1",
+                "authUser": null,
+                "landingClass": "hidden",
+                "mainClass": "app hidden",
+                "forgeMounted": true,
+                "resultMounted": true,
+                "game": {
+                  "gold": 4700,
+                  "xp": 150,
+                  "lives": 3,
+                  "correctTotal": 15
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "216-red",
+        "receipt": {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal/baseline-results.json",
+          "bytes": 21781,
+          "sha256": "8fbc70b334d3a4f6bcc0f9efedcf69c16f6ddd7ce41766ca468af25c552a7605"
+        },
+        "stats": {
+          "startTime": "2026-11-15T21:26:29.262Z",
+          "duration": 45031.531,
+          "expected": 0,
+          "skipped": 0,
+          "unexpected": 2,
+          "flaky": 0
+        },
+        "rows": [
+          {
+            "title": "limiar19/20 sobe somente após o acerto e conserva o saldo",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "unexpected",
+            "retry": 0,
+            "status": "timedOut",
+            "durationMs": 20725,
+            "audit": {
+              "errors": [],
+              "nonGET": [],
+              "sockets": 0,
+              "optionClicks": 0,
+              "state": {
+                "delivery": {
+                  "delivered": true,
+                  "guestAtDelivery": false
+                },
+                "optionClicks": 0,
+                "guest": false,
+                "storedGuest": null,
+                "visits": [
+                  {
+                    "storedGuest": null,
+                    "nativeGuest": false
+                  },
+                  {
+                    "storedGuest": null,
+                    "nativeGuest": false
+                  }
+                ],
+                "portalHidden": false,
+                "mainHidden": false,
+                "focus": {
+                  "tag": "MAIN",
+                  "id": "mainApp"
+                },
+                "progress": {
+                  "level": 2,
+                  "xp": 229,
+                  "correct": 19,
+                  "gold": 0,
+                  "lives": 5,
+                  "score": 2500
+                }
+              },
+              "status": "timedOut"
+            }
+          },
+          {
+            "title": "limiar19/20 sobe somente após o acerto e conserva o saldo",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "unexpected",
+            "retry": 0,
+            "status": "timedOut",
+            "durationMs": 21348,
+            "audit": {
+              "errors": [],
+              "nonGET": [],
+              "sockets": 0,
+              "optionClicks": 0,
+              "state": {
+                "delivery": {
+                  "delivered": true,
+                  "guestAtDelivery": false
+                },
+                "optionClicks": 0,
+                "guest": false,
+                "storedGuest": null,
+                "visits": [
+                  {
+                    "storedGuest": null,
+                    "nativeGuest": false
+                  },
+                  {
+                    "storedGuest": null,
+                    "nativeGuest": false
+                  }
+                ],
+                "portalHidden": false,
+                "mainHidden": false,
+                "focus": {
+                  "tag": "MAIN",
+                  "id": "mainApp"
+                },
+                "progress": {
+                  "level": 2,
+                  "xp": 229,
+                  "correct": 19,
+                  "gold": 0,
+                  "lives": 5,
+                  "score": 2500
+                }
+              },
+              "status": "timedOut"
+            }
+          }
+        ]
+      },
+      {
+        "name": "216-green",
+        "receipt": {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal/guest-results.json",
+          "bytes": 6262,
+          "sha256": "fd9457dfd454b82fe780ca6871d664518f5db478168043f02740ec1dd11f35c6"
+        },
+        "stats": {
+          "startTime": "2026-11-15T21:27:50.716Z",
+          "duration": 10893.26,
+          "expected": 2,
+          "skipped": 0,
+          "unexpected": 0,
+          "flaky": 0
+        },
+        "rows": [
+          {
+            "title": "limiar19/20 sobe somente após o acerto e conserva o saldo",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 4181,
+            "audit": {
+              "errors": [],
+              "nonGET": [],
+              "sockets": 0,
+              "optionClicks": 0,
+              "state": {
+                "delivery": {
+                  "delivered": true,
+                  "guestAtDelivery": true
+                },
+                "optionClicks": 1,
+                "guest": true,
+                "storedGuest": "1",
+                "visits": [
+                  {
+                    "storedGuest": null,
+                    "nativeGuest": false
+                  },
+                  {
+                    "storedGuest": null,
+                    "nativeGuest": false
+                  }
+                ],
+                "portalHidden": true,
+                "mainHidden": false,
+                "focus": {
+                  "tag": "BUTTON",
+                  "id": ""
+                },
+                "progress": {
+                  "level": 3,
+                  "xp": 30,
+                  "correct": 20,
+                  "gold": 44,
+                  "lives": 5,
+                  "score": 2767
+                }
+              },
+              "status": "passed"
+            }
+          },
+          {
+            "title": "limiar19/20 sobe somente após o acerto e conserva o saldo",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 4665,
+            "audit": {
+              "errors": [],
+              "nonGET": [],
+              "sockets": 0,
+              "optionClicks": 0,
+              "state": {
+                "delivery": {
+                  "delivered": true,
+                  "guestAtDelivery": true
+                },
+                "optionClicks": 1,
+                "guest": true,
+                "storedGuest": "1",
+                "visits": [
+                  {
+                    "storedGuest": null,
+                    "nativeGuest": false
+                  },
+                  {
+                    "storedGuest": null,
+                    "nativeGuest": false
+                  }
+                ],
+                "portalHidden": true,
+                "mainHidden": false,
+                "focus": {
+                  "tag": "BUTTON",
+                  "id": ""
+                },
+                "progress": {
+                  "level": 3,
+                  "xp": 30,
+                  "correct": 20,
+                  "gold": 44,
+                  "lives": 5,
+                  "score": 2767
+                }
+              },
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "216-reload",
+        "receipt": {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal/reload-results.json",
+          "bytes": 3956,
+          "sha256": "12508a933a3fdd9df029a40cc49f14f841dc57a87d63de94f1a22947f002e723"
+        },
+        "stats": {
+          "startTime": "2026-11-15T21:28:41.962Z",
+          "duration": 7318.625,
+          "expected": 1,
+          "skipped": 0,
+          "unexpected": 0,
+          "flaky": 0
+        },
+        "rows": [
+          {
+            "title": "save legado reconcilia níveis já conquistados e não consome XP ou vidas duas vezes",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 6259,
+            "audit": {
+              "errors": [],
+              "nonGET": [],
+              "sockets": 0,
+              "optionClicks": 0,
+              "state": {
+                "delivery": {
+                  "delivered": true,
+                  "guestAtDelivery": true
+                },
+                "optionClicks": 0,
+                "guest": true,
+                "storedGuest": "1",
+                "visits": [
+                  {
+                    "storedGuest": null,
+                    "nativeGuest": false
+                  },
+                  {
+                    "storedGuest": null,
+                    "nativeGuest": false
+                  },
+                  {
+                    "storedGuest": "1",
+                    "nativeGuest": true
+                  }
+                ],
+                "portalHidden": true,
+                "mainHidden": false,
+                "focus": {
+                  "tag": "MAIN",
+                  "id": "mainApp"
+                },
+                "progress": {
+                  "level": 6,
+                  "xp": 5,
+                  "correct": 60,
+                  "gold": 500,
+                  "lives": 2,
+                  "score": 9876
+                }
+              },
+              "status": "passed"
+            }
+          }
+        ]
+      },
+      {
+        "name": "187-native",
+        "receipt": {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis/native-r2/results.json",
+          "bytes": 13045,
+          "sha256": "c1c5c1ff56913b487e972c6c4ac549847a81b1baf5d6662ee429fe971641e205"
+        },
+        "stats": {
+          "startTime": "2026-11-15T21:33:52.243Z",
+          "duration": 92089.265,
+          "expected": 6,
+          "skipped": 0,
+          "unexpected": 0,
+          "flaky": 0
+        },
+        "rows": [
+          {
+            "title": "a forja martela antes de mostrar o item, só uma vez",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 14784,
+            "audit": {
+              "audit": {
+                "errors": [],
+                "nonGET": [],
+                "sockets": 0
+              },
+              "state": {
+                "guest": "1",
+                "authUser": null,
+                "landingClass": "hidden",
+                "nativeSupabaseCreateClient": "function",
+                "initialSDKGatePresent": false,
+                "resources": {
+                  "gold": 4700,
+                  "xp": 150,
+                  "lives": 3,
+                  "correctTotal": 15
+                }
+              }
+            }
+          },
+          {
+            "title": "com movimento reduzido a forja mostra o item sem martelada",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 14140,
+            "audit": {
+              "audit": {
+                "errors": [],
+                "nonGET": [],
+                "sockets": 0
+              },
+              "state": {
+                "guest": "1",
+                "authUser": null,
+                "landingClass": "hidden",
+                "nativeSupabaseCreateClient": "function",
+                "initialSDKGatePresent": false,
+                "resources": {
+                  "gold": 4700,
+                  "xp": 150,
+                  "lives": 3,
+                  "correctTotal": 15
+                }
+              }
+            }
+          },
+          {
+            "title": "na vitória, Compartilhar vem logo depois de Continuar e com o mesmo peso",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 14353,
+            "audit": {
+              "audit": {
+                "errors": [],
+                "nonGET": [],
+                "sockets": 0
+              },
+              "state": {
+                "guest": "1",
+                "authUser": null,
+                "landingClass": "hidden",
+                "nativeSupabaseCreateClient": "function",
+                "initialSDKGatePresent": false,
+                "resources": {
+                  "gold": 800,
+                  "xp": 150,
+                  "lives": 3,
+                  "correctTotal": 100
+                }
+              }
+            }
+          },
+          {
+            "title": "a forja martela antes de mostrar o item, só uma vez",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 15930,
+            "audit": {
+              "audit": {
+                "errors": [],
+                "nonGET": [],
+                "sockets": 0
+              },
+              "state": {
+                "guest": "1",
+                "authUser": null,
+                "landingClass": "hidden",
+                "nativeSupabaseCreateClient": "function",
+                "initialSDKGatePresent": false,
+                "resources": {
+                  "gold": 4700,
+                  "xp": 150,
+                  "lives": 3,
+                  "correctTotal": 15
+                }
+              }
+            }
+          },
+          {
+            "title": "com movimento reduzido a forja mostra o item sem martelada",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 14511,
+            "audit": {
+              "audit": {
+                "errors": [],
+                "nonGET": [],
+                "sockets": 0
+              },
+              "state": {
+                "guest": "1",
+                "authUser": null,
+                "landingClass": "hidden",
+                "nativeSupabaseCreateClient": "function",
+                "initialSDKGatePresent": false,
+                "resources": {
+                  "gold": 4700,
+                  "xp": 150,
+                  "lives": 3,
+                  "correctTotal": 15
+                }
+              }
+            }
+          },
+          {
+            "title": "na vitória, Compartilhar vem logo depois de Continuar e com o mesmo peso",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 16843,
+            "audit": {
+              "audit": {
+                "errors": [],
+                "nonGET": [],
+                "sockets": 0
+              },
+              "state": {
+                "guest": "1",
+                "authUser": null,
+                "landingClass": "hidden",
+                "nativeSupabaseCreateClient": "function",
+                "initialSDKGatePresent": false,
+                "resources": {
+                  "gold": 800,
+                  "xp": 150,
+                  "lives": 3,
+                  "correctTotal": 100
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "216-native",
+        "receipt": {
+          "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal/original-final-results.json",
+          "bytes": 1374775,
+          "sha256": "b80afeb00be4717d2db7085f06c79118986b0c30a51788c6cede2e09f9ffdfa7"
+        },
+        "stats": {
+          "startTime": "2026-11-15T21:30:32.517Z",
+          "duration": 158935.89,
+          "expected": 28,
+          "skipped": 0,
+          "unexpected": 0,
+          "flaky": 0
+        },
+        "rows": [
+          {
+            "title": "L1 com sete acertos aplica70% do limiar, sem prometer nível com barra cheia",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 3944,
+            "audit": null
+          },
+          {
+            "title": "XP excedente permanece guardado quando o teto por acertos impede evolução",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 3685,
+            "audit": null
+          },
+          {
+            "title": "limiar9/10 sobe somente após o acerto e conserva o saldo",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 3997,
+            "audit": null
+          },
+          {
+            "title": "limiar19/20 sobe somente após o acerto e conserva o saldo",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 3948,
+            "audit": null
+          },
+          {
+            "title": "limiar89/90 sobe somente após o acerto e conserva o saldo",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 4208,
+            "audit": null
+          },
+          {
+            "title": "save legado reconcilia níveis já conquistados e não consome XP ou vidas duas vezes",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 6209,
+            "audit": null
+          },
+          {
+            "title": "prévias projetam o nível ganho sem reescrever o save",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 3715,
+            "audit": null
+          },
+          {
+            "title": "vidas e Sequência usam valores reais, quatro campos no rodapé e refluem sem sobreposição",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 3928,
+            "audit": null
+          },
+          {
+            "title": "acertos consecutivos avançam valor e barra juntos e guardam todos os bônus",
+            "project": "chromium",
+            "timeoutMs": 45000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 7280,
+            "audit": null
+          },
+          {
+            "title": "vida máxima inclui equipamento e zero vidas continua legível sem inventar preenchimento",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 4217,
+            "audit": null
+          },
+          {
+            "title": "painel do personagem continua alcançável no celular com texto200% e foco restaurado",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 4593,
+            "audit": null
+          },
+          {
+            "title": "prévia de legado mostra a mesma vida extra que será restaurada, sem escrever",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 4494,
+            "audit": null
+          },
+          {
+            "title": "Nephros guarda o XP no cap e uma falha de persistência não duplica o bônus no reload",
+            "project": "chromium",
+            "timeoutMs": 45000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 9403,
+            "audit": null
+          },
+          {
+            "title": "save mais novo da nuvem conserva o XP guardado, progresso e conquistas anteriores",
+            "project": "chromium",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 5356,
+            "audit": null
+          },
+          {
+            "title": "L1 com sete acertos aplica70% do limiar, sem prometer nível com barra cheia",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 6480,
+            "audit": null
+          },
+          {
+            "title": "XP excedente permanece guardado quando o teto por acertos impede evolução",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 6275,
+            "audit": null
+          },
+          {
+            "title": "limiar9/10 sobe somente após o acerto e conserva o saldo",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 9966,
+            "audit": null
+          },
+          {
+            "title": "limiar19/20 sobe somente após o acerto e conserva o saldo",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 6421,
+            "audit": null
+          },
+          {
+            "title": "limiar89/90 sobe somente após o acerto e conserva o saldo",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 5648,
+            "audit": null
+          },
+          {
+            "title": "save legado reconcilia níveis já conquistados e não consome XP ou vidas duas vezes",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 8276,
+            "audit": null
+          },
+          {
+            "title": "prévias projetam o nível ganho sem reescrever o save",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 5420,
+            "audit": null
+          },
+          {
+            "title": "vidas e Sequência usam valores reais, quatro campos no rodapé e refluem sem sobreposição",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 6449,
+            "audit": null
+          },
+          {
+            "title": "acertos consecutivos avançam valor e barra juntos e guardam todos os bônus",
+            "project": "mobile",
+            "timeoutMs": 45000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 8234,
+            "audit": null
+          },
+          {
+            "title": "vida máxima inclui equipamento e zero vidas continua legível sem inventar preenchimento",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 4281,
+            "audit": null
+          },
+          {
+            "title": "painel do personagem continua alcançável no celular com texto200% e foco restaurado",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 4608,
+            "audit": null
+          },
+          {
+            "title": "prévia de legado mostra a mesma vida extra que será restaurada, sem escrever",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 4283,
+            "audit": null
+          },
+          {
+            "title": "Nephros guarda o XP no cap e uma falha de persistência não duplica o bônus no reload",
+            "project": "mobile",
+            "timeoutMs": 45000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 7350,
+            "audit": null
+          },
+          {
+            "title": "save mais novo da nuvem conserva o XP guardado, progresso e conquistas anteriores",
+            "project": "mobile",
+            "timeoutMs": 20000,
+            "outcome": "expected",
+            "retry": 0,
+            "status": "passed",
+            "durationMs": 3356,
+            "audit": null
+          }
+        ]
+      }
+    ],
+    "counts": {
+      "controlledExpectedRED": 4,
+      "controlledGuestGREEN": 4,
+      "controlledReloadGREEN": 1,
+      "controlledAuditAttachments": 9,
+      "completeNativeDirect": 34,
+      "native187Direct": 6,
+      "native216Direct": 28,
+      "native187AuditAttachments": 6,
+      "native216NewAuditCounters": 0,
+      "retries": 0,
+      "nativeSkips": 0,
+      "nativeFinalFailures": 0
+    },
+    "reload216": {
+      "thirdVisit": {
+        "storedGuest": "1",
+        "nativeGuest": true
+      },
+      "preservedProgress": {
+        "level": 6,
+        "xp": 5,
+        "correct": 60,
+        "gold": 500,
+        "lives": 2,
+        "score": 9876
+      },
+      "manualReloadAndEnterGameSourceUnchanged": true
+    },
+    "interrupted187": {
+      "receipt": {
+        "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis/native/launcher.json",
+        "bytes": 268,
+        "sha256": "150ab41c4728baba8c4f6e876da598563099cdd4600eb0f82d221f3a08cab6d8"
+      },
+      "launcher": {
+        "name": "native",
+        "status": null,
+        "signal": "SIGTERM",
+        "error": "Error: spawnSync C:\\Program Files\\nodejs\\node.exe ETIMEDOUT",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "finishedAtUTC": "2026-11-15T21:32:41.329Z"
+      },
+      "resultsBytes": 0,
+      "classification": "INCOMPLETE_EXTERNAL_LAUNCHER_INTERRUPTION",
+      "countedAsPass": false,
+      "countedAsProductFailure": false
+    },
+    "native187R2Launcher": {
+      "name": "native-r2",
+      "status": 0,
+      "signal": null,
+      "error": null,
+      "sha256": "c1c5c1ff56913b487e972c6c4ac549847a81b1baf5d6662ee429fe971641e205",
+      "finishedAtUTC": "2026-11-15T21:35:24.352Z"
+    }
+  },
+  "measurementLimits": [
+    "The outer216 optionClicks field is a never-incremented placeholder; only state.optionClicks is used (RED0/GREEN1).",
+    "Controlled216 sockets0 is the observed page websocket-event count; its original WebSocket route closes connections without a separate blocked-attempt counter. No claim of measured zero attempted WebSockets is inferred.",
+    "Original216 complete28 has no new pageerror/network-attempt counters. Its28 direct results and zero test/runner errors are confirmed; counter zeros belong only to its5 audited controls.",
+    "187 native-r2 has6 additional technical audit attachments. The earlier launcher100s interruption is preserved and excluded; each test remained20s.",
+    "The9 controlled variants and34 native cases overlap original scenarios; they are phase counts, not43 distinct new tests.",
+    "CI1100 retains2 flakes as historical facts. This review does not rewrite its reports or certify a future commit/CI/public release."
+  ],
+  "evidencePins": [
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis/boundary.ts",
+      "bytes": 4481,
+      "sha256": "07c69e72e4190ed01217c8f5a9ebe5aab5b29638a21fe59dcc6bd662bb62416e"
+    },
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis/native-boundary.ts",
+      "bytes": 2044,
+      "sha256": "891f6fab44e17563d64364fb2649105aec8e8c9017eef93f09b41a64e6042ca3"
+    },
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis/source-receipt.json",
+      "bytes": 1111,
+      "sha256": "5adaf2108acb3291b6f8a1b97f0cf901505f3cbf745c482a6aa50bed50ae4378"
+    },
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis/applied-and-native-source.json",
+      "bytes": 760,
+      "sha256": "c601b046ef780137d216831c0b468e5d77004deef9f691fbd45d2e0aa7bfd5b6"
+    },
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis/baseline/playwright.config.cjs",
+      "bytes": 1133,
+      "sha256": "104a8aa27d95c131040776ea84e375376b025d14f01b22a30d554c80d385514d"
+    },
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis/guest/playwright.config.cjs",
+      "bytes": 1127,
+      "sha256": "cc06d1b81995e3e9ac477ff3fce4fe2012e86a09ffc6eba6a0b5f19e7d926f45"
+    },
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis/native-r2/playwright.config.cjs",
+      "bytes": 1020,
+      "sha256": "57540e2170d14daf4c5699aa268e95899c78b8eef51da55188ccf08de60dafd3"
+    },
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis/native-r2/launcher.json",
+      "bytes": 203,
+      "sha256": "2422d25bad9df52d6d985f188b15524757b0a71a61c4d90f37153c905d5a3380"
+    },
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal/preparation-manifest.json",
+      "bytes": 1251,
+      "sha256": "2af619b25119599429d0ba1cf78ab5d34872953caa09c3547277c2b039e0873f"
+    },
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal/baseline.config.cjs",
+      "bytes": 762,
+      "sha256": "1faa72651792c7859e798a1c40f9b706fff391f241a10a1a0b64130382a45653"
+    },
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal/guest.config.cjs",
+      "bytes": 753,
+      "sha256": "8a803f199b927e87ecde155189a32ad4429c24bffcde413c266dd9b1674310d8"
+    },
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal/reload.config.cjs",
+      "bytes": 702,
+      "sha256": "d3dc13cdd559d05d29aaca5a89f260f6424787680a8cfe8e97f0bbb4e94070fe"
+    },
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal/original-final.config.cjs",
+      "bytes": 850,
+      "sha256": "8e0e62a2d6c74e2e05165b3f0da906ecc7fb034db3e76dc7ef534fc76e831984"
+    },
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal/CI216_CAUSAL_REVIEW.json",
+      "bytes": 11065,
+      "sha256": "0c5689a236ab165e3d77a5ef94bce9b1acbee1989c95850efee132906a1be91e"
+    },
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal/CI216_FINAL_REVIEW.json",
+      "bytes": 11923,
+      "sha256": "55010f3fdc1ee1ed452ec451bac4176be9df9892fd4074607dcdef7e3828afea"
+    },
+    {
+      "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-ci216-causal/ROOT_216_GUEST_BYTE_DELTA.json",
+      "bytes": 2706,
+      "sha256": "5a21f3364601311399566e9df28450d05e25d54540bf09e006350050ab354294"
+    }
+  ],
+  "reviewerActions": {
+    "ROOTWrites": 0,
+    "browserRuns": 0,
+    "serverStarts": 0,
+    "manualCIReruns": 0,
+    "oldReportOverwrites": 0,
+    "clinicalVerdictsIssued": 0
+  }
+}

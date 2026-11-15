@@ -1,0 +1,1511 @@
+{
+  "schema": "NQ_1727_CI1100_INDEPENDENT_AUDIT_v1",
+  "auditStatus": "COMPLETE_CI_SUCCESS_WITH_TWO_RETRIES",
+  "evidenceComplete": true,
+  "independent": true,
+  "scope": "Read-only CI evidence audit; no medical verdict or publication authorization is issued.",
+  "run": {
+    "id": 43867043503,
+    "number": 1100,
+    "attempt": 1,
+    "url": "https://github.com/orlandobrunet-sketch/base-verification/actions/runs/43867043503",
+    "pr": 976,
+    "status": "completed",
+    "conclusion": "success",
+    "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+    "base": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+    "sourceTree": "6c99f148b8070caa28b6aa8c044ace52011c43f2",
+    "actualMergeCheckout": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+    "checkoutParents": [
+      "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+      "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349"
+    ],
+    "checkoutTree": "6c99f148b8070caa28b6aa8c044ace52011c43f2",
+    "sourceTreeVerifiedFromGit": true
+  },
+  "jobs": {
+    "total": 16,
+    "success": 16,
+    "failed": 0,
+    "cancelled": 0,
+    "rows": [
+      {
+        "id": 133298165232,
+        "name": "Quality Gates",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:29:33Z",
+        "completedAt": "2026-11-16T12:30:20Z",
+        "failedSteps": []
+      },
+      {
+        "id": 133298165478,
+        "name": "Payment transactions (PostgreSQL)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:29:33Z",
+        "completedAt": "2026-11-16T12:30:20Z",
+        "failedSteps": []
+      },
+      {
+        "id": 133298588813,
+        "name": "Smoke E2E Tests (Playwright)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:30:22Z",
+        "completedAt": "2026-11-16T12:37:20Z",
+        "failedSteps": []
+      },
+      {
+        "id": 133298588891,
+        "name": "Entry protocol diagnostics (Playwright)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:30:23Z",
+        "completedAt": "2026-11-16T12:31:05Z",
+        "failedSteps": []
+      },
+      {
+        "id": 133298589132,
+        "name": "Full E2E Tests (Playwright) (3)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:30:23Z",
+        "completedAt": "2026-11-16T12:50:58Z",
+        "failedSteps": []
+      },
+      {
+        "id": 133298589153,
+        "name": "Full E2E Tests (Playwright) (5)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:30:22Z",
+        "completedAt": "2026-11-16T12:48:52Z",
+        "failedSteps": []
+      },
+      {
+        "id": 133298589185,
+        "name": "Full E2E Tests (Playwright) (4)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:30:23Z",
+        "completedAt": "2026-11-16T12:44:01Z",
+        "failedSteps": []
+      },
+      {
+        "id": 133298589245,
+        "name": "Full E2E Tests (Playwright) (10)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:30:27Z",
+        "completedAt": "2026-11-16T12:45:54Z",
+        "failedSteps": []
+      },
+      {
+        "id": 133298589272,
+        "name": "Full E2E Tests (Playwright) (9)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:30:28Z",
+        "completedAt": "2026-11-16T12:51:26Z",
+        "failedSteps": []
+      },
+      {
+        "id": 133298589285,
+        "name": "Full E2E Tests (Playwright) (7)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:30:28Z",
+        "completedAt": "2026-11-16T12:49:09Z",
+        "failedSteps": []
+      },
+      {
+        "id": 133298589315,
+        "name": "Full E2E Tests (Playwright) (1)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:30:22Z",
+        "completedAt": "2026-11-16T12:51:19Z",
+        "failedSteps": []
+      },
+      {
+        "id": 133298589326,
+        "name": "Full E2E Tests (Playwright) (2)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:30:23Z",
+        "completedAt": "2026-11-16T12:53:36Z",
+        "failedSteps": []
+      },
+      {
+        "id": 133298589357,
+        "name": "Full E2E Tests (Playwright) (12)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:30:28Z",
+        "completedAt": "2026-11-16T12:48:10Z",
+        "failedSteps": []
+      },
+      {
+        "id": 133298589427,
+        "name": "Full E2E Tests (Playwright) (11)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:30:27Z",
+        "completedAt": "2026-11-16T12:47:30Z",
+        "failedSteps": []
+      },
+      {
+        "id": 133298589623,
+        "name": "Full E2E Tests (Playwright) (8)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:30:29Z",
+        "completedAt": "2026-11-16T12:48:25Z",
+        "failedSteps": []
+      },
+      {
+        "id": 133298589673,
+        "name": "Full E2E Tests (Playwright) (6)",
+        "status": "completed",
+        "conclusion": "success",
+        "startedAt": "2026-11-16T12:30:29Z",
+        "completedAt": "2026-11-16T12:46:14Z",
+        "failedSteps": []
+      }
+    ]
+  },
+  "quality": {
+    "groups": [
+      {
+        "suite": "editorial-batch",
+        "tests": 78,
+        "pass": 78,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      {
+        "suite": "service-worker",
+        "tests": 29,
+        "pass": 29,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      {
+        "suite": "cinema",
+        "tests": 10,
+        "pass": 10,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      {
+        "suite": "pilot",
+        "tests": 178,
+        "pass": 178,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      {
+        "suite": "answers",
+        "tests": 180,
+        "pass": 180,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      {
+        "suite": "progression",
+        "tests": 15,
+        "pass": 15,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      {
+        "suite": "chamber",
+        "tests": 42,
+        "pass": 42,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      {
+        "suite": "diagnostics",
+        "tests": 27,
+        "pass": 27,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      }
+    ],
+    "totals": {
+      "tests": 559,
+      "pass": 559,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0
+    },
+    "deno": [
+      "2026-11-16T12:30:15.8538681Z ok | 8 passed | 0 failed (139ms)"
+    ],
+    "denoVerified": {
+      "pass": 8,
+      "fail": 0
+    },
+    "totalPassed": 567
+  },
+  "postgresql": {
+    "tests": 43,
+    "pass": 43,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "browserConfiguration": {
+    "tests": 9,
+    "passed": 9,
+    "failed": 0,
+    "skipped": 0,
+    "verifiedInSmokeAndEachOf12FullJobs": true,
+    "scope": "Separate configuration suite, repeated by jobs; not added thirteen times as unique tests and not part of Full3928."
+  },
+  "full": {
+    "total": 3928,
+    "direct": 3658,
+    "flaky": 2,
+    "finalFailures": 0,
+    "skipped": 268,
+    "expectedOther": 0,
+    "retryAttempts": 2,
+    "uniqueTestIds": 3928,
+    "uniqueSpecFiles": 279,
+    "fullHTMLReportsRead": 12,
+    "perFileJSONReportsRead": 558,
+    "resultRecords": 3930,
+    "resultStatuses": {
+      "passed": 3660,
+      "skipped": 268,
+      "timedOut": 2
+    },
+    "executedUniqueCases": 3660,
+    "nonSkippedResultRecords": 3662,
+    "shards": [
+      {
+        "name": "playwright-report-1",
+        "artifactId": 14228300295,
+        "zipSHA256": "dec8f5193244baedfa7a74fe48d202789f2aae0d639f075bebb1764c0a1391de",
+        "reportSHA256": "127e1a2d4508e5397b4bf1862763787ef4a6d26cc60f330dab00a76d9c050cc7",
+        "total": 343,
+        "direct": 335,
+        "flaky": 0,
+        "finalFailures": 0,
+        "skipped": 8,
+        "expectedOther": 0,
+        "attempts": 343,
+        "retryAttempts": 0,
+        "duration": 1217280.659,
+        "actualWorkers": 1,
+        "commit": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+        "base": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+        "skippedBySpec": {
+          "06-security.spec.ts": 2,
+          "107-forja-transacao.spec.ts": 1,
+          "112-jornada-leitura-tooltip.spec.ts": 3,
+          "112-modos-lumen.spec.ts": 1,
+          "12-performance.spec.ts": 1
+        },
+        "incidents": []
+      },
+      {
+        "name": "playwright-report-2",
+        "artifactId": 14228030923,
+        "zipSHA256": "4f8a2e93ccaf1fd2d0786482c9c17284da72333d2ef0df2ea8257da5b058fe3c",
+        "reportSHA256": "e679ef4bc003ac6c76c208ccc7f39b0b2a278c53e1460e1ba30bbdeb8134ab13",
+        "total": 325,
+        "direct": 323,
+        "flaky": 0,
+        "finalFailures": 0,
+        "skipped": 2,
+        "expectedOther": 0,
+        "attempts": 325,
+        "retryAttempts": 0,
+        "duration": 1345048.6300000001,
+        "actualWorkers": 1,
+        "commit": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+        "base": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+        "skippedBySpec": {
+          "174-poison-v2-portraits.spec.ts": 1,
+          "18-lumen-atrium.spec.ts": 1
+        },
+        "incidents": []
+      },
+      {
+        "name": "playwright-report-3",
+        "artifactId": 14226971630,
+        "zipSHA256": "8d264ed8df54fcc2c4f6b6363a31b3b42073c343d68c65387f96adeaf4ab33d3",
+        "reportSHA256": "2922736c3f90bdd8aea9b342007afd91dc474064d091687dc0f056ed9c435dac",
+        "total": 317,
+        "direct": 316,
+        "flaky": 1,
+        "finalFailures": 0,
+        "skipped": 0,
+        "expectedOther": 0,
+        "attempts": 318,
+        "retryAttempts": 1,
+        "duration": 1188359.378,
+        "actualWorkers": 1,
+        "commit": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+        "base": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+        "skippedBySpec": {},
+        "incidents": [
+          {
+            "id": "af2bfb9edf7a7b1e3e9c-3b6b07b233ae250e899b",
+            "spec": "187-forja-e-vitoria.spec.ts",
+            "line": 35,
+            "project": "chromium",
+            "title": "com movimento reduzido a forja mostra o item sem martelada",
+            "outcome": "flaky",
+            "attempts": [
+              {
+                "retry": 0,
+                "status": "timedOut",
+                "duration": 20969,
+                "startTime": "2026-11-16T12:35:11.028Z",
+                "errors": [
+                  "Test timeout of 20000ms exceeded.",
+                  "Error: locator.click: Test timeout of 20000ms exceeded.\nCall log:\n  - waiting for getByRole('button', { name: 'Forjar item aleatório' })\n    - locator resolved to <button type=\"button\" class=\"btn gold\" data-arg=\"comum\" data-action=\"forjarNaPagina\">Forjar item aleatório</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <strong>Dra. Aquaria</strong> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\n    - retrying click action\n    - waiting 20ms\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <strong>Dra. Aquaria</strong> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\n    - retrying click action\n      - waiting 100ms\n    35 × waiting for element to be visible, enabled and stable\n       - element is visible, enabled and stable\n       - scrolling into view if needed\n       - done scrolling\n       - <strong>Dra. Aquaria</strong> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\n     - retrying click action\n       - waiting 500ms\n\n\n  16 |   await botao.focus();\n  17 |   await botao.press('Enter');\n> 18 |   await page.getByRole('button', { name: 'Forjar item aleatório' }).click();\n     |                                                                     ^\n  19 |   const resultado = page.locator('#forjaResultado');\n  20 |   await expect(resultado.getByRole('heading', { name: 'Forja concluída' })).toBeVisible();\n  21 |   return resultado;\n    at forjar (/home/runner/work/base-verification/base-verification/tests/specs/187-forja-e-vitoria.spec.ts:18:69)\n    at /home/runner/work/base-verification/base-verification/tests/specs/187-forja-e-vitoria.spec.ts:38:21"
+                ],
+                "attachments": [
+                  {
+                    "name": "screenshot",
+                    "path": "data/2f190eb3e88c7c31604912bd1e3189b920fbf93a.png",
+                    "contentType": "image/png"
+                  },
+                  {
+                    "name": "video",
+                    "path": "data/bde90f7a1f3ebd42aa9a132e5471f9fbf1f1dd58.webm",
+                    "contentType": "video/webm"
+                  },
+                  {
+                    "name": "error-context",
+                    "path": "data/b45f7e5962191e62492a101bbe471a0a5a314c7f.md",
+                    "contentType": "text/markdown"
+                  },
+                  {
+                    "name": "trace",
+                    "path": "data/9fb732b6f92ea65b9842fa9c90b82dbddd2c052a.zip",
+                    "contentType": "application/zip"
+                  }
+                ]
+              },
+              {
+                "retry": 1,
+                "status": "passed",
+                "duration": 3001,
+                "startTime": "2026-11-16T12:35:32.815Z",
+                "errors": [],
+                "attachments": []
+              }
+            ],
+            "detailFile": "artifacts\\shard3\\report-data\\af2bfb9edf7a7b1e3e9c.json"
+          }
+        ]
+      },
+      {
+        "name": "playwright-report-4",
+        "artifactId": 14227745136,
+        "zipSHA256": "8c6d08ccb889d5f633b30076ff36a7344136445300112be968be0eebbe32fe87",
+        "reportSHA256": "c13d7235b7780ec62a50fd0924c7fa808bdf3f7a4a40081fcfe7b92b3eaf4168",
+        "total": 331,
+        "direct": 331,
+        "flaky": 0,
+        "finalFailures": 0,
+        "skipped": 0,
+        "expectedOther": 0,
+        "attempts": 331,
+        "retryAttempts": 0,
+        "duration": 773934.688,
+        "actualWorkers": 1,
+        "commit": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+        "base": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+        "skippedBySpec": {},
+        "incidents": []
+      },
+      {
+        "name": "playwright-report-5",
+        "artifactId": 14226729593,
+        "zipSHA256": "0ebd4abdb68c8b1ff52e25cd3ca22adc4a4f1f332cde8ff1f3e87204cb00d4d8",
+        "reportSHA256": "1b48b80cf204607b7f1798e3d7d32b8f3c16d0107b23408049385c7d656d8ef2",
+        "total": 323,
+        "direct": 316,
+        "flaky": 0,
+        "finalFailures": 0,
+        "skipped": 7,
+        "expectedOther": 0,
+        "attempts": 323,
+        "retryAttempts": 0,
+        "duration": 1076548.079,
+        "actualWorkers": 1,
+        "commit": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+        "base": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+        "skippedBySpec": {
+          "44-smoke-producao.spec.ts": 7
+        },
+        "incidents": []
+      },
+      {
+        "name": "playwright-report-6",
+        "artifactId": 14226324621,
+        "zipSHA256": "b5189edeb57a2b61db2e9595d727616218dbff803dbb8bd5853052fa8d58bebd",
+        "reportSHA256": "afeb738ba9d65896b7da08966faeafc514e00b303a37de99504be5c773e2c9cd",
+        "total": 342,
+        "direct": 342,
+        "flaky": 0,
+        "finalFailures": 0,
+        "skipped": 0,
+        "expectedOther": 0,
+        "attempts": 342,
+        "retryAttempts": 0,
+        "duration": 916496.939,
+        "actualWorkers": 1,
+        "commit": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+        "base": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+        "skippedBySpec": {},
+        "incidents": []
+      },
+      {
+        "name": "playwright-report-7",
+        "artifactId": 14226569860,
+        "zipSHA256": "b1b9b0fa39aedec0898bb20fe7a001e9714da2e17f3dbf4646ade9c69deff3d6",
+        "reportSHA256": "40e673d2873947a447c050c12cb4506a79b7586cac897386820f749e8c552d5d",
+        "total": 326,
+        "direct": 265,
+        "flaky": 0,
+        "finalFailures": 0,
+        "skipped": 61,
+        "expectedOther": 0,
+        "attempts": 326,
+        "retryAttempts": 0,
+        "duration": 1082765.3809999998,
+        "actualWorkers": 1,
+        "commit": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+        "base": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+        "skippedBySpec": {
+          "06-security.spec.ts": 2,
+          "102-historia-guardiao.spec.ts": 6,
+          "103-confirmacao-gasto.spec.ts": 10,
+          "104-escolha-caminho.spec.ts": 5,
+          "105-sinalizar-erro.spec.ts": 8,
+          "106-leitor-resumo.spec.ts": 5,
+          "107-conquistas-refinadas.spec.ts": 5,
+          "109-apoio-refinado.spec.ts": 3,
+          "110-popups-apoio-refinados.spec.ts": 3,
+          "112-jornada-leitura-tooltip.spec.ts": 5,
+          "113-favicon-q.spec.ts": 3,
+          "12-performance.spec.ts": 1,
+          "124-conquistas-colecao.spec.ts": 3,
+          "126-ranking-popup-lumen.spec.ts": 2
+        },
+        "incidents": []
+      },
+      {
+        "name": "playwright-report-8",
+        "artifactId": 14226419913,
+        "zipSHA256": "bc54ca9168c81c048bb74500474f22b2c0b1445ffc521af719654ae4e98c6ccb",
+        "reportSHA256": "b24a61423b01e7a106953c6324478394cce2a3f67c70f26fbe7756b9d5b09143",
+        "total": 325,
+        "direct": 267,
+        "flaky": 0,
+        "finalFailures": 0,
+        "skipped": 58,
+        "expectedOther": 0,
+        "attempts": 325,
+        "retryAttempts": 0,
+        "duration": 1033522.896,
+        "actualWorkers": 1,
+        "commit": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+        "base": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+        "skippedBySpec": {
+          "152-boss-climax.spec.ts": 1,
+          "165-cinema-motion-art.spec.ts": 1,
+          "166-cinema-preview-controls.spec.ts": 1,
+          "167-cinema-replay-audio.spec.ts": 2,
+          "168-cinema-battle-lore.spec.ts": 2,
+          "169-cinema-designated-music.spec.ts": 1,
+          "170-cinema-character-cards.spec.ts": 3,
+          "171-cinema-static-victory.spec.ts": 2,
+          "172-boss-presentation-finishing.spec.ts": 3,
+          "174-poison-v2-portraits.spec.ts": 4,
+          "175-boss-six-art-states.spec.ts": 1,
+          "176-consolidated-journey.spec.ts": 1,
+          "177-cinema-interruption-cleanup.spec.ts": 18,
+          "178-chamber-patient-portraits.spec.ts": 2,
+          "179-chamber-workspace.spec.ts": 12,
+          "18-lumen-atrium.spec.ts": 4
+        },
+        "incidents": []
+      },
+      {
+        "name": "playwright-report-9",
+        "artifactId": 14228205385,
+        "zipSHA256": "8a256ca58e22ff5d55134649af44674b863ac237c63b03644ddc5fc3b88a198b",
+        "reportSHA256": "940705b8132f121b920809f9032996ae79a7c4f7d2f9700d16aff8b0d910c5f1",
+        "total": 317,
+        "direct": 289,
+        "flaky": 1,
+        "finalFailures": 0,
+        "skipped": 27,
+        "expectedOther": 0,
+        "attempts": 318,
+        "retryAttempts": 1,
+        "duration": 1226119.6770000001,
+        "actualWorkers": 1,
+        "commit": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+        "base": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+        "skippedBySpec": {
+          "180-cinema-direction.spec.ts": 10,
+          "189-pedidos-novembro.spec.ts": 5,
+          "19-lumen-question.spec.ts": 4,
+          "192-chamber-motion.spec.ts": 3,
+          "195-chamber-portrait-ready.spec.ts": 3,
+          "20-lumen-difficulty.spec.ts": 1,
+          "21-dashboard-command-center.spec.ts": 1
+        },
+        "incidents": [
+          {
+            "id": "63bdbfafb8a31ad74889-497ca7d78852aefd47c0",
+            "spec": "216-progressao-xp.spec.ts",
+            "line": 38,
+            "project": "mobile",
+            "title": "limiar19/20 sobe somente após o acerto e conserva o saldo",
+            "outcome": "flaky",
+            "attempts": [
+              {
+                "retry": 0,
+                "status": "timedOut",
+                "duration": 21158,
+                "startTime": "2026-11-16T12:49:29.475Z",
+                "errors": [
+                  "Test timeout of 20000ms exceeded.",
+                  "Error: locator.click: Test timeout of 20000ms exceeded.\nCall log:\n  - waiting for locator('#options .option').nth(2)\n    - locator resolved to <button data-idx=\"2\" type=\"button\" class=\"option\" data-kbd-hint=\"3\" aria-keyshortcuts=\"3 C\">…</button>\n  - attempting click action\n    2 × waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <strong>Continuar com Google</strong> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\n    - retrying click action\n    - waiting 20ms\n    - waiting for element to be visible, enabled and stable\n    - element is visible, enabled and stable\n    - scrolling into view if needed\n    - done scrolling\n    - <strong>Dra. Aquaria</strong> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\n  2 × retrying click action\n      - waiting 100ms\n      - waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <li>…</li> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\n  8 × retrying click action\n      - waiting 500ms\n      - waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <strong>Continuar com Google</strong> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\n    - retrying click action\n      - waiting 500ms\n      - waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <strong>Dra. Aquaria</strong> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\n    - retrying click action\n      - waiting 500ms\n      - waiting for element to be visible, enabled and stable\n      - element is visible, enabled and stable\n      - scrolling into view if needed\n      - done scrolling\n      - <li>…</li> from <div class=\"\" id=\""
+                ],
+                "attachments": [
+                  {
+                    "name": "screenshot",
+                    "path": "data/a782f159574e0136a427817417c186e3c453a1bd.png",
+                    "contentType": "image/png"
+                  },
+                  {
+                    "name": "video",
+                    "path": "data/ff2ac563e36e80f84172f39fe6aee2e1b43487a8.webm",
+                    "contentType": "video/webm"
+                  },
+                  {
+                    "name": "error-context",
+                    "path": "data/76e1fe909d93317ae3bd763bc7468776a6488cc3.md",
+                    "contentType": "text/markdown"
+                  },
+                  {
+                    "name": "trace",
+                    "path": "data/fc5200a31d5dbfc3a04c827b635427f169a81f12.zip",
+                    "contentType": "application/zip"
+                  }
+                ]
+              },
+              {
+                "retry": 1,
+                "status": "passed",
+                "duration": 3879,
+                "startTime": "2026-11-16T12:49:52.081Z",
+                "errors": [],
+                "attachments": []
+              }
+            ],
+            "detailFile": "artifacts\\shard9\\report-data\\63bdbfafb8a31ad74889.json"
+          }
+        ]
+      },
+      {
+        "name": "playwright-report-10",
+        "artifactId": 14227655709,
+        "zipSHA256": "b5c30d48e51ba2e3ffdd90f79d7619d5e229cfd600ce4dbd85b7e7e7047f1c6e",
+        "reportSHA256": "5b0631dbc7b4feaf751df9b1112cef6d4f743441b46d5c8b970fbe8c9b4ec39e",
+        "total": 331,
+        "direct": 330,
+        "flaky": 0,
+        "finalFailures": 0,
+        "skipped": 1,
+        "expectedOther": 0,
+        "attempts": 331,
+        "retryAttempts": 0,
+        "duration": 894273.1630000001,
+        "actualWorkers": 1,
+        "commit": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+        "base": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+        "skippedBySpec": {
+          "267-chamber-context-return.spec.ts": 1
+        },
+        "incidents": []
+      },
+      {
+        "name": "playwright-report-11",
+        "artifactId": 14227855588,
+        "zipSHA256": "b8c130e18103cbbe95f685cfe7d78130ede29103921bf18ae4cddeeb09db8ccb",
+        "reportSHA256": "fe641a52ffe986c8eb72cf49564db39a0d033e3b2c4b67e75820036b0c147be6",
+        "total": 323,
+        "direct": 305,
+        "flaky": 0,
+        "finalFailures": 0,
+        "skipped": 18,
+        "expectedOther": 0,
+        "attempts": 323,
+        "retryAttempts": 0,
+        "duration": 993143.239,
+        "actualWorkers": 1,
+        "commit": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+        "base": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+        "skippedBySpec": {
+          "282-overview-single-review-action.spec.ts": 2,
+          "44-smoke-producao.spec.ts": 7,
+          "51-legibilidade-da-central.spec.ts": 3,
+          "52-popups-fora-da-central.spec.ts": 3,
+          "53-telas-do-jogo.spec.ts": 3
+        },
+        "incidents": []
+      },
+      {
+        "name": "playwright-report-12",
+        "artifactId": 14227375915,
+        "zipSHA256": "78f5ad3e4afb5e765ce9ac005df2277228f846606473954857d4698a0a80c9a7",
+        "reportSHA256": "b992de3b2fb756cef14b6c375f495f93082be130fd99030f73141a1beebc962b",
+        "total": 325,
+        "direct": 239,
+        "flaky": 0,
+        "finalFailures": 0,
+        "skipped": 86,
+        "expectedOther": 0,
+        "attempts": 325,
+        "retryAttempts": 0,
+        "duration": 1029127.6950000001,
+        "actualWorkers": 1,
+        "commit": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+        "base": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+        "skippedBySpec": {
+          "57-grimorio-legado-carga.spec.ts": 1,
+          "59-sentry-so-fora-do-local.spec.ts": 1,
+          "62-ranking-sem-rede.spec.ts": 3,
+          "63-texto-ampliado.spec.ts": 3,
+          "75-popups-dialogo.spec.ts": 47,
+          "76-ritual-pagina.spec.ts": 2,
+          "77-julgamento-pagina.spec.ts": 2,
+          "78-camara-pagina.spec.ts": 2,
+          "79-conta-plano-dialogo.spec.ts": 4,
+          "80-precos-paywall-dialogo.spec.ts": 6,
+          "81-admin-dialogos.spec.ts": 8,
+          "82-pagina-contato.spec.ts": 2,
+          "chamber-art-manifest.spec.ts": 5
+        },
+        "incidents": []
+      }
+    ],
+    "selectedSpecs": {
+      "103-confirmacao-gasto.spec.ts": {
+        "total": 20,
+        "direct": 10,
+        "flaky": 0,
+        "skipped": 10,
+        "finalFailures": 0,
+        "retryRecords": 0,
+        "projects": {
+          "chromium": 10,
+          "mobile": 10
+        }
+      },
+      "216-progressao-xp.spec.ts": {
+        "total": 28,
+        "direct": 27,
+        "flaky": 1,
+        "skipped": 0,
+        "finalFailures": 0,
+        "retryRecords": 1,
+        "projects": {
+          "mobile": 14,
+          "chromium": 14
+        }
+      },
+      "187-forja-e-vitoria.spec.ts": {
+        "total": 6,
+        "direct": 5,
+        "flaky": 1,
+        "skipped": 0,
+        "finalFailures": 0,
+        "retryRecords": 1,
+        "projects": {
+          "mobile": 3,
+          "chromium": 3
+        }
+      },
+      "279-starter-image-fallback.spec.ts": {
+        "total": 6,
+        "direct": 6,
+        "flaky": 0,
+        "skipped": 0,
+        "finalFailures": 0,
+        "retryRecords": 0,
+        "projects": {
+          "mobile": 3,
+          "chromium": 3
+        }
+      },
+      "302-ai-request-recovery.spec.ts": {
+        "total": 38,
+        "direct": 38,
+        "flaky": 0,
+        "skipped": 0,
+        "finalFailures": 0,
+        "retryRecords": 0,
+        "projects": {
+          "mobile": 19,
+          "chromium": 19
+        }
+      },
+      "303-question-objective-replacement.spec.ts": {
+        "total": 28,
+        "direct": 28,
+        "flaky": 0,
+        "skipped": 0,
+        "finalFailures": 0,
+        "retryRecords": 0,
+        "projects": {
+          "mobile": 14,
+          "chromium": 14
+        }
+      },
+      "304-game-entry-completion.spec.ts": {
+        "total": 14,
+        "direct": 14,
+        "flaky": 0,
+        "skipped": 0,
+        "finalFailures": 0,
+        "retryRecords": 0,
+        "projects": {
+          "mobile": 7,
+          "chromium": 7
+        }
+      },
+      "226-streak-multiplier-display.spec.ts": {
+        "total": 2,
+        "direct": 2,
+        "flaky": 0,
+        "skipped": 0,
+        "finalFailures": 0,
+        "retryRecords": 0,
+        "projects": {
+          "chromium": 1,
+          "mobile": 1
+        }
+      }
+    },
+    "logCrosschecks": [
+      {
+        "shard": 1,
+        "logSummary": {
+          "passed": 335,
+          "skipped": 8,
+          "flaky": 0,
+          "failed": 0
+        },
+        "matchesFullReport": true
+      },
+      {
+        "shard": 2,
+        "logSummary": {
+          "passed": 323,
+          "skipped": 2,
+          "flaky": 0,
+          "failed": 0
+        },
+        "matchesFullReport": true
+      },
+      {
+        "shard": 3,
+        "logSummary": {
+          "passed": 316,
+          "skipped": 0,
+          "flaky": 1,
+          "failed": 0
+        },
+        "matchesFullReport": true
+      },
+      {
+        "shard": 4,
+        "logSummary": {
+          "passed": 331,
+          "skipped": 0,
+          "flaky": 0,
+          "failed": 0
+        },
+        "matchesFullReport": true
+      },
+      {
+        "shard": 5,
+        "logSummary": {
+          "passed": 316,
+          "skipped": 7,
+          "flaky": 0,
+          "failed": 0
+        },
+        "matchesFullReport": true
+      },
+      {
+        "shard": 6,
+        "logSummary": {
+          "passed": 342,
+          "skipped": 0,
+          "flaky": 0,
+          "failed": 0
+        },
+        "matchesFullReport": true
+      },
+      {
+        "shard": 7,
+        "logSummary": {
+          "passed": 265,
+          "skipped": 61,
+          "flaky": 0,
+          "failed": 0
+        },
+        "matchesFullReport": true
+      },
+      {
+        "shard": 8,
+        "logSummary": {
+          "passed": 267,
+          "skipped": 58,
+          "flaky": 0,
+          "failed": 0
+        },
+        "matchesFullReport": true
+      },
+      {
+        "shard": 9,
+        "logSummary": {
+          "passed": 289,
+          "skipped": 27,
+          "flaky": 1,
+          "failed": 0
+        },
+        "matchesFullReport": true
+      },
+      {
+        "shard": 10,
+        "logSummary": {
+          "passed": 330,
+          "skipped": 1,
+          "flaky": 0,
+          "failed": 0
+        },
+        "matchesFullReport": true
+      },
+      {
+        "shard": 11,
+        "logSummary": {
+          "passed": 305,
+          "skipped": 18,
+          "flaky": 0,
+          "failed": 0
+        },
+        "matchesFullReport": true
+      },
+      {
+        "shard": 12,
+        "logSummary": {
+          "passed": 239,
+          "skipped": 86,
+          "flaky": 0,
+          "failed": 0
+        },
+        "matchesFullReport": true
+      }
+    ]
+  },
+  "smoke": {
+    "name": "playwright-smoke-evidence",
+    "artifactId": 14226183648,
+    "zipSHA256": "3746b59e99f75098138659a57e4c4399da312d3d6aad4bf682063239b5718f58",
+    "reportSHA256": "2b274dfe4b60af22aba58ffb1564b7ee5c96eff7f90ca2868814275403b7571e",
+    "total": 130,
+    "direct": 130,
+    "flaky": 0,
+    "finalFailures": 0,
+    "skipped": 0,
+    "expectedOther": 0,
+    "attempts": 130,
+    "retryAttempts": 0,
+    "duration": 377016.891,
+    "actualWorkers": 1,
+    "commit": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+    "base": "c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7",
+    "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+    "skippedBySpec": {},
+    "incidents": []
+  },
+  "entry": {
+    "schema": "NQ_1727_CI1100_ENTRY_AUDIT_v1",
+    "runId": 43867043503,
+    "artifactId": 14225413570,
+    "providerZIPDigest": "sha256:ea1b248344ebdd0db2484549202ad0035d6f83453f2e7f57e6e8c187ea5f3fe0",
+    "zipBytes": 7612,
+    "zipDigestVerified": true,
+    "zipSizeVerified": true,
+    "inputsAllMatchSourceDcc": true,
+    "inputs": [
+      {
+        "file": "tests/diagnostics/capture-entry-protocol.cjs",
+        "sha256": "d7198bb2190e81afdcc00a7ee008cbcb209b43ee826ccf7f540d969448c1d55c"
+      },
+      {
+        "file": "tests/diagnostics/protocol-projector.cjs",
+        "sha256": "4a54d4e0f7ac24c62f2feb1ffd29b4ffe75edb585e2d50d27f4f9da933ca567b"
+      },
+      {
+        "file": "tests/diagnostics/entry-protocol.config.cjs",
+        "sha256": "42713cba26d110ccf0525b5ee4e3f8458cdc13a3615be1b2cf68efbc24d3dda7"
+      },
+      {
+        "file": "tests/diagnostics/protocol-summary-reporter.cjs",
+        "sha256": "b807f7461c6a227a0efb9238158726a9230ba9c8dd90777403f644873ca76e3a"
+      },
+      {
+        "file": "tests/probes/entry-protocol-controls.spec.ts",
+        "sha256": "5c4fc38ff3220b0c65b66bc94d912dcf2ad42d43b1432ea24a1bb50448a329a2"
+      },
+      {
+        "file": "tests/specs/226-streak-multiplier-display.spec.ts",
+        "sha256": "f9997c7459c1d0456defff1efd699d92b763cd07729f336d1cc8688c6bf06aad"
+      },
+      {
+        "file": "tests/specs/279-starter-image-fallback.spec.ts",
+        "sha256": "bedc1572a5b7eab132dbaf5cc5e94438779f38c6e90b98ad49cfce7ff3f1acf5"
+      }
+    ],
+    "collected": 4,
+    "direct": 4,
+    "retries": 0,
+    "errors": 0,
+    "workerRecordsRead": 294,
+    "malformedIdentifiers": 0,
+    "outputLoss": 0,
+    "unknownOrMalformed": 0,
+    "shutdownReplies": 3,
+    "limits": [
+      "Protocol success is distinct from JavaScript/application success.",
+      "Diagnostic logging can affect timing. Negative entries do not resolve the historical causes.",
+      "Unknown protocol messages and ordinary child output are hashed, never retained verbatim.",
+      "Opaque session/frame/loader identifiers are bounded hashes. Malformed identifiers and any output loss make the collector incomplete.",
+      "Only one226 mobile case and one279 chromium/glomerulus case are selected, plus two technical controls."
+    ]
+  },
+  "artifacts": {
+    "count": 14,
+    "allDownloaded": true,
+    "allProviderDigestsMatch": true,
+    "allByteSizesMatch": true,
+    "allBoundToExactSourceAndRun": true,
+    "rows": [
+      {
+        "id": 14228300295,
+        "name": "playwright-report-1",
+        "file": "artifacts/shard1.zip",
+        "bytes": 9835573,
+        "providerDigest": "sha256:dec8f5193244baedfa7a74fe48d202789f2aae0d639f075bebb1764c0a1391de",
+        "actualSHA256": "dec8f5193244baedfa7a74fe48d202789f2aae0d639f075bebb1764c0a1391de",
+        "digestMatches": true,
+        "sizeMatches": true,
+        "runId": 43867043503,
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349"
+      },
+      {
+        "id": 14228205385,
+        "name": "playwright-report-9",
+        "file": "artifacts/shard9.zip",
+        "bytes": 42137990,
+        "providerDigest": "sha256:8a256ca58e22ff5d55134649af44674b863ac237c63b03644ddc5fc3b88a198b",
+        "actualSHA256": "8a256ca58e22ff5d55134649af44674b863ac237c63b03644ddc5fc3b88a198b",
+        "digestMatches": true,
+        "sizeMatches": true,
+        "runId": 43867043503,
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349"
+      },
+      {
+        "id": 14228030923,
+        "name": "playwright-report-2",
+        "file": "artifacts/shard2.zip",
+        "bytes": 54825748,
+        "providerDigest": "sha256:4f8a2e93ccaf1fd2d0786482c9c17284da72333d2ef0df2ea8257da5b058fe3c",
+        "actualSHA256": "4f8a2e93ccaf1fd2d0786482c9c17284da72333d2ef0df2ea8257da5b058fe3c",
+        "digestMatches": true,
+        "sizeMatches": true,
+        "runId": 43867043503,
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349"
+      },
+      {
+        "id": 14227855588,
+        "name": "playwright-report-11",
+        "file": "artifacts/shard11.zip",
+        "bytes": 1232834,
+        "providerDigest": "sha256:b8c130e18103cbbe95f685cfe7d78130ede29103921bf18ae4cddeeb09db8ccb",
+        "actualSHA256": "b8c130e18103cbbe95f685cfe7d78130ede29103921bf18ae4cddeeb09db8ccb",
+        "digestMatches": true,
+        "sizeMatches": true,
+        "runId": 43867043503,
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349"
+      },
+      {
+        "id": 14227745136,
+        "name": "playwright-report-4",
+        "file": "artifacts/shard4.zip",
+        "bytes": 6428217,
+        "providerDigest": "sha256:8c6d08ccb889d5f633b30076ff36a7344136445300112be968be0eebbe32fe87",
+        "actualSHA256": "8c6d08ccb889d5f633b30076ff36a7344136445300112be968be0eebbe32fe87",
+        "digestMatches": true,
+        "sizeMatches": true,
+        "runId": 43867043503,
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349"
+      },
+      {
+        "id": 14227655709,
+        "name": "playwright-report-10",
+        "file": "artifacts/shard10.zip",
+        "bytes": 13808606,
+        "providerDigest": "sha256:b5c30d48e51ba2e3ffdd90f79d7619d5e229cfd600ce4dbd85b7e7e7047f1c6e",
+        "actualSHA256": "b5c30d48e51ba2e3ffdd90f79d7619d5e229cfd600ce4dbd85b7e7e7047f1c6e",
+        "digestMatches": true,
+        "sizeMatches": true,
+        "runId": 43867043503,
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349"
+      },
+      {
+        "id": 14227375915,
+        "name": "playwright-report-12",
+        "file": "artifacts/shard12.zip",
+        "bytes": 2671774,
+        "providerDigest": "sha256:78f5ad3e4afb5e765ce9ac005df2277228f846606473954857d4698a0a80c9a7",
+        "actualSHA256": "78f5ad3e4afb5e765ce9ac005df2277228f846606473954857d4698a0a80c9a7",
+        "digestMatches": true,
+        "sizeMatches": true,
+        "runId": 43867043503,
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349"
+      },
+      {
+        "id": 14226971630,
+        "name": "playwright-report-3",
+        "file": "artifacts/shard3.zip",
+        "bytes": 23391285,
+        "providerDigest": "sha256:8d264ed8df54fcc2c4f6b6363a31b3b42073c343d68c65387f96adeaf4ab33d3",
+        "actualSHA256": "8d264ed8df54fcc2c4f6b6363a31b3b42073c343d68c65387f96adeaf4ab33d3",
+        "digestMatches": true,
+        "sizeMatches": true,
+        "runId": 43867043503,
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349"
+      },
+      {
+        "id": 14226729593,
+        "name": "playwright-report-5",
+        "file": "artifacts/shard5.zip",
+        "bytes": 1014215,
+        "providerDigest": "sha256:0ebd4abdb68c8b1ff52e25cd3ca22adc4a4f1f332cde8ff1f3e87204cb00d4d8",
+        "actualSHA256": "0ebd4abdb68c8b1ff52e25cd3ca22adc4a4f1f332cde8ff1f3e87204cb00d4d8",
+        "digestMatches": true,
+        "sizeMatches": true,
+        "runId": 43867043503,
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349"
+      },
+      {
+        "id": 14226569860,
+        "name": "playwright-report-7",
+        "file": "artifacts/shard7.zip",
+        "bytes": 33468468,
+        "providerDigest": "sha256:b1b9b0fa39aedec0898bb20fe7a001e9714da2e17f3dbf4646ade9c69deff3d6",
+        "actualSHA256": "b1b9b0fa39aedec0898bb20fe7a001e9714da2e17f3dbf4646ade9c69deff3d6",
+        "digestMatches": true,
+        "sizeMatches": true,
+        "runId": 43867043503,
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349"
+      },
+      {
+        "id": 14226419913,
+        "name": "playwright-report-8",
+        "file": "artifacts/shard8.zip",
+        "bytes": 18351529,
+        "providerDigest": "sha256:bc54ca9168c81c048bb74500474f22b2c0b1445ffc521af719654ae4e98c6ccb",
+        "actualSHA256": "bc54ca9168c81c048bb74500474f22b2c0b1445ffc521af719654ae4e98c6ccb",
+        "digestMatches": true,
+        "sizeMatches": true,
+        "runId": 43867043503,
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349"
+      },
+      {
+        "id": 14226324621,
+        "name": "playwright-report-6",
+        "file": "artifacts/shard6.zip",
+        "bytes": 2160386,
+        "providerDigest": "sha256:b5189edeb57a2b61db2e9595d727616218dbff803dbb8bd5853052fa8d58bebd",
+        "actualSHA256": "b5189edeb57a2b61db2e9595d727616218dbff803dbb8bd5853052fa8d58bebd",
+        "digestMatches": true,
+        "sizeMatches": true,
+        "runId": 43867043503,
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349"
+      },
+      {
+        "id": 14226183648,
+        "name": "playwright-smoke-evidence",
+        "file": "artifacts/smoke.zip",
+        "bytes": 322180,
+        "providerDigest": "sha256:3746b59e99f75098138659a57e4c4399da312d3d6aad4bf682063239b5718f58",
+        "actualSHA256": "3746b59e99f75098138659a57e4c4399da312d3d6aad4bf682063239b5718f58",
+        "digestMatches": true,
+        "sizeMatches": true,
+        "runId": 43867043503,
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349"
+      },
+      {
+        "id": 14225413570,
+        "name": "entry-protocol-metadata",
+        "file": "artifacts/entry.zip",
+        "bytes": 7612,
+        "providerDigest": "sha256:ea1b248344ebdd0db2484549202ad0035d6f83453f2e7f57e6e8c187ea5f3fe0",
+        "actualSHA256": "ea1b248344ebdd0db2484549202ad0035d6f83453f2e7f57e6e8c187ea5f3fe0",
+        "digestMatches": true,
+        "sizeMatches": true,
+        "runId": 43867043503,
+        "head": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349"
+      }
+    ]
+  },
+  "retryFindings": [
+    {
+      "schema": "NQ_1727_CI1100_RETRY_EVIDENCE_v1",
+      "source": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+      "mergeCheckout": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+      "runId": 43867043503,
+      "shard": 3,
+      "testId": "af2bfb9edf7a7b1e3e9c-3b6b07b233ae250e899b",
+      "spec": "187-forja-e-vitoria.spec.ts",
+      "project": "chromium",
+      "title": "com movimento reduzido a forja mostra o item sem martelada",
+      "finalOutcome": "flaky",
+      "attempts": [
+        {
+          "retry": 0,
+          "status": "timedOut",
+          "duration": 20969,
+          "startTime": "2026-11-16T12:35:11.028Z"
+        },
+        {
+          "retry": 1,
+          "status": "passed",
+          "duration": 3001,
+          "startTime": "2026-11-16T12:35:32.815Z"
+        }
+      ],
+      "boundary": "Attempt0 locator.click timed out at 20000ms while landingScreen intercepted pointer events; attempt1 passed. This identifies a visible failure boundary, not a confirmed trigger/root cause.",
+      "rootCauseConfirmed": false,
+      "paths": {
+        "directory": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1727-ci-review/ci1100/incidents/shard3-187-forja-chromium",
+        "rawTest": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1727-ci-review/ci1100/incidents/shard3-187-forja-chromium/raw-test.json",
+        "fullError": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1727-ci-review/ci1100/incidents/shard3-187-forja-chromium/attempt0-error.txt"
+      },
+      "attachments": [
+        {
+          "retry": 0,
+          "name": "screenshot",
+          "path": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1727-ci-review/ci1100/incidents/shard3-187-forja-chromium/attempt0-screenshot.png",
+          "size": 818623,
+          "sha256": "0a7c7ad1255aba21274513fe3a0e8760d0322ccc7e7bf71c3f19a391e5886d9a"
+        },
+        {
+          "retry": 0,
+          "name": "video",
+          "path": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1727-ci-review/ci1100/incidents/shard3-187-forja-chromium/attempt0-video.webm",
+          "size": 572955,
+          "sha256": "392ee6979722aaa2dd7f62cee18623b73b6f9dc7257b9c77ee3366131ed78f68"
+        },
+        {
+          "retry": 0,
+          "name": "error-context",
+          "path": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1727-ci-review/ci1100/incidents/shard3-187-forja-chromium/attempt0-error-context.md",
+          "size": 10860,
+          "sha256": "4774492cb905ed4342f27dd073f1d1be40b0e371b8af6eb3040618533deb8f41"
+        },
+        {
+          "retry": 0,
+          "name": "trace",
+          "path": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1727-ci-review/ci1100/incidents/shard3-187-forja-chromium/attempt0-trace.zip",
+          "size": 7916016,
+          "sha256": "6f245c1db7ec612455e3100a116095a42fad4ff333c13ca56e76aae60ab6b23e"
+        }
+      ]
+    },
+    {
+      "schema": "NQ_1727_CI1100_RETRY_EVIDENCE_v1",
+      "source": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+      "mergeCheckout": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+      "runId": 43867043503,
+      "shard": 9,
+      "testId": "63bdbfafb8a31ad74889-497ca7d78852aefd47c0",
+      "spec": "216-progressao-xp.spec.ts",
+      "project": "mobile",
+      "title": "limiar19/20 sobe somente após o acerto e conserva o saldo",
+      "finalOutcome": "flaky",
+      "attempts": [
+        {
+          "retry": 0,
+          "status": "timedOut",
+          "duration": 21158,
+          "startTime": "2026-11-16T12:49:29.475Z"
+        },
+        {
+          "retry": 1,
+          "status": "passed",
+          "duration": 3879,
+          "startTime": "2026-11-16T12:49:52.081Z"
+        }
+      ],
+      "boundary": "Attempt0 locator.click timed out at 20000ms while landingScreen intercepted pointer events; attempt1 passed. This identifies a visible failure boundary, not a confirmed trigger/root cause.",
+      "rootCauseConfirmed": false,
+      "paths": {
+        "directory": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1727-ci-review/ci1100/incidents/shard9-216-progressao-mobile",
+        "rawTest": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1727-ci-review/ci1100/incidents/shard9-216-progressao-mobile/raw-test.json",
+        "fullError": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1727-ci-review/ci1100/incidents/shard9-216-progressao-mobile/attempt0-error.txt"
+      },
+      "attachments": [
+        {
+          "retry": 0,
+          "name": "screenshot",
+          "path": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1727-ci-review/ci1100/incidents/shard9-216-progressao-mobile/attempt0-screenshot.png",
+          "size": 1344002,
+          "sha256": "7113c1051037087b7a46e9ac05b16e516467ae898f8e06366b084307362bc7bc"
+        },
+        {
+          "retry": 0,
+          "name": "video",
+          "path": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1727-ci-review/ci1100/incidents/shard9-216-progressao-mobile/attempt0-video.webm",
+          "size": 855324,
+          "sha256": "986cb909e33e82cb7eef94b1e495cdfafa58d9b7d4542c37586d492288e5c375"
+        },
+        {
+          "retry": 0,
+          "name": "error-context",
+          "path": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1727-ci-review/ci1100/incidents/shard9-216-progressao-mobile/attempt0-error-context.md",
+          "size": 26942,
+          "sha256": "d965d210433c548ab543f6a83aa7a0adc038e60344d91f908d9ec43c08e877ab"
+        },
+        {
+          "retry": 0,
+          "name": "trace",
+          "path": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1727-ci-review/ci1100/incidents/shard9-216-progressao-mobile/attempt0-trace.zip",
+          "size": 10469987,
+          "sha256": "ab88af760bd9951c502547d11226c6c93de1fba87e15e43539ec0550e7f52bb8"
+        }
+      ]
+    }
+  ],
+  "unresolved": [
+    {
+      "spec": "187-forja-e-vitoria.spec.ts",
+      "project": "chromium",
+      "status": "OPEN_RETRY_NOT_A_FIX",
+      "boundary": "locator.click timeout 20s; landingScreen intercepted pointer events. No CDP/context-destruction error and no final functional assertion reached in the failed action.",
+      "rootCauseConfirmed": false
+    },
+    {
+      "spec": "216-progressao-xp.spec.ts",
+      "project": "mobile",
+      "status": "OPEN_RETRY_NOT_A_FIX",
+      "boundary": "locator.click timeout 20s; landingScreen intercepted pointer events. No CDP/context-destruction error and no final functional assertion reached in the failed action.",
+      "rootCauseConfirmed": false
+    }
+  ],
+  "evidenceGaps": [],
+  "releaseDecision": "Deferred to root; CI success with retries is explicitly distinguished from direct success. Independent causal investigations are separate.",
+  "historicalIncidents": {
+    "ci1097_103": "Preserved; this run has 10 original Chromium103 direct passes and10 mobile skips. This is current-run evidence, not retroactive deletion of the prior incident.",
+    "ci1098_279": "Preserved; this run has6 original279 direct passes, but current green results alone do not settle the historical context-loss trigger."
+  },
+  "supersededRun": {
+    "runId": 43866197029,
+    "runNumber": 1099,
+    "head": "5ffd0fd8f9d686c3371ec8a6a76c7f022e56ef11",
+    "status": "completed",
+    "conclusion": "cancelled",
+    "reason": "Cancelled by root because documentation-only history hash field refinement produced final source dcc6 and a new exact CI1100; not a product-failure determination."
+  },
+  "actions": {
+    "manualReruns": 0,
+    "rootWrites": 0,
+    "merges": 0,
+    "localBrowsersOrServersStarted": 0,
+    "network": "Only authorized GitHub read/download operations; no signed artifact URL persisted in this report."
+  },
+  "limits": [
+    "3928 is the completed report total including268 skips, not3928 passes.",
+    "3930 result records include268 skipped records and2 failed first attempts; they are not3930 distinct executed cases.",
+    "Smoke/Entry overlap product areas with Full; their totals are reported separately.",
+    "Retry success does not establish a correction or a confirmed root cause.",
+    "No clinical or public deployment conclusion is inferred from this CI audit."
+  ],
+  "evidenceFiles": [
+    {
+      "file": "metadata/final.json",
+      "sha256": "74630e3e84af1e60bf258ad9a0d6cf8732dad421f8bfbc636e0fe8bc0311971f",
+      "bytes": 134882
+    },
+    {
+      "file": "metadata/merge-checkout.json",
+      "sha256": "650e0b093c0d0e92643fb8b7e993f36aaa6746aa4225f854a8d56ca4ffae879b",
+      "bytes": 2978
+    },
+    {
+      "file": "audit-context.json",
+      "sha256": "d83a80684f87d1a586e9eac8aacafbd622a28aefadf4f2ae7c74b081ad51d3e7",
+      "bytes": 674
+    },
+    {
+      "file": "artifact-manifest.json",
+      "sha256": "8e05090c218fe78e6a0baf879680a9bf8125dcfebc7575115b5569a96a593a50",
+      "bytes": 3622
+    },
+    {
+      "file": "browser-report-summary.json",
+      "sha256": "7c05d6c03faa9e5d920b27d7b47b212beb12986059e90ad1c18782c479c4d0cd",
+      "bytes": 21452
+    },
+    {
+      "file": "full-detail-audit.json",
+      "sha256": "c8405cccac09bf55ef95155c6c97def2e4bc47d6765ea0a21738398f859d069b",
+      "bytes": 269246
+    },
+    {
+      "file": "full-log-count-crosschecks.json",
+      "sha256": "b51a3168e6d0b1c55ec13fc5c12319aab2fb998539f9441c5c4a3979a559cd03",
+      "bytes": 3713
+    },
+    {
+      "file": "entry-review.json",
+      "sha256": "243d88b9291b45a1ab39253853a5bc93ad37cd02b47ab704fae7648827c958df",
+      "bytes": 2167
+    },
+    {
+      "file": "retry-evidence-index.json",
+      "sha256": "b9ed60cfd997140df390cfbb75f82e19df9a885e322d669c3e79cefae55bacaa",
+      "bytes": 6084
+    },
+    {
+      "file": "logs/quality.log",
+      "sha256": "2af0def802dfc90ffd0c76d34e53e1aa1e0eeea80b2e31abc6f12e98a896f1f9",
+      "bytes": 183803
+    },
+    {
+      "file": "logs/postgresql.log",
+      "sha256": "b2109ddd20d8b4d770c58ad7f33d7e3f90e557815fa8b0227f46679315dcb339",
+      "bytes": 51960
+    },
+    {
+      "file": "logs/entry.log",
+      "sha256": "32878fcc7386aa349a2108b34e77bbb9fc89eda96fac17ba6657f1c0af74741a",
+      "bytes": 22051
+    },
+    {
+      "file": "logs/smoke.log",
+      "sha256": "086b14f7880c744c44105624669e3ffaaa7a92e22a7c7ae749de13f4262bc6ed",
+      "bytes": 51516
+    },
+    {
+      "file": "logs/shard1.log",
+      "sha256": "65643b9d30a3e5b54bbede75ddccaf278ff45473c5efd91cf092f2c08ac1059c",
+      "bytes": 88377
+    },
+    {
+      "file": "logs/shard2.log",
+      "sha256": "a920d96a7f6dac7b9630a6c233702f75975bd598b547c9bb4c294d4f14b75ee2",
+      "bytes": 89577
+    },
+    {
+      "file": "logs/shard3.log",
+      "sha256": "3d636b35e4c91fcc307e7329289ceafb6b5ce7db0aa4d1637ed95f07f06702fc",
+      "bytes": 89995
+    },
+    {
+      "file": "logs/shard4.log",
+      "sha256": "b4dd3ae5f54f01ba01e476d17b844999462e21bfc29d278000533c71935d6dba",
+      "bytes": 89587
+    },
+    {
+      "file": "logs/shard5.log",
+      "sha256": "d28b374207bcd6680a5327283a965b3ccd106baa6b3870439a61b81cf2bcaa1f",
+      "bytes": 89721
+    },
+    {
+      "file": "logs/shard6.log",
+      "sha256": "c78275de95244b4a331d13608745c0d5a2961502d67ed9ab1b83039b83810e84",
+      "bytes": 84671
+    },
+    {
+      "file": "logs/shard7.log",
+      "sha256": "8ccb42812d76196631782a3eeb1fcd2c00b95a87d359aec98c5a4c13e806abc7",
+      "bytes": 83735
+    },
+    {
+      "file": "logs/shard8.log",
+      "sha256": "e9a7b6da1fffec3692ff7443c1d053254ff3d87c890f4c6d3247c2135a2530da",
+      "bytes": 87944
+    },
+    {
+      "file": "logs/shard9.log",
+      "sha256": "e8883bb8a0fe330864b81086a1b14918aadb680dbae24cbcd12b8204c2c14c8b",
+      "bytes": 92940
+    },
+    {
+      "file": "logs/shard10.log",
+      "sha256": "2d9de832bffabcdd6c601a0d6b8b49cccfd30453f42552d4b76e3b82a22c7d91",
+      "bytes": 88588
+    },
+    {
+      "file": "logs/shard11.log",
+      "sha256": "38f3871b0fb01eaa025127550a895ed1307daeb715d161d57954df11694831cc",
+      "bytes": 88980
+    },
+    {
+      "file": "logs/shard12.log",
+      "sha256": "0e22a2acd4c2d5ed1b178a96ae43d36b14311fd6cf97fc0b799bad25230ff5c5",
+      "bytes": 80372
+    }
+  ]
+}

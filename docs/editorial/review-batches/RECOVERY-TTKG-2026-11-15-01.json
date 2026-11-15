@@ -22,15 +22,19 @@
     "docs/editorial/reviews/2026-11-15-recovery-ttkg/author-A2.md",
     "docs/editorial/reviews/2026-11-15-recovery-ttkg/author-transport-check-A2.json",
     "docs/editorial/reviews/2026-11-15-recovery-ttkg/author-validation-A2.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/ci1100-with-intermittencies.json",
     "docs/editorial/reviews/2026-11-15-recovery-ttkg/diagnosis-race-probe.json",
     "docs/editorial/reviews/2026-11-15-recovery-ttkg/entry-completion-final-review.json",
     "docs/editorial/reviews/2026-11-15-recovery-ttkg/entry-handshake-review.json",
     "docs/editorial/reviews/2026-11-15-recovery-ttkg/evidence-copies.json",
     "docs/editorial/reviews/2026-11-15-recovery-ttkg/final-local-verification.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/forge187-guest-preparation-review.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/guest-preparation-independent-review.json",
     "docs/editorial/reviews/2026-11-15-recovery-ttkg/independent-review-A2.json",
     "docs/editorial/reviews/2026-11-15-recovery-ttkg/independent-review-A2.md",
     "docs/editorial/reviews/2026-11-15-recovery-ttkg/local-native-summary.md",
     "docs/editorial/reviews/2026-11-15-recovery-ttkg/objective-replacement-native-review.json",
+    "docs/editorial/reviews/2026-11-15-recovery-ttkg/progression216-guest-preparation-review.json",
     "docs/editorial/reviews/2026-11-15-recovery-ttkg/technical-review.json",
     "docs/editorial/reviews/2026-11-15-recovery-ttkg/technical-review.md",
     "docs/editorial/reviews/2026-11-15-recovery-ttkg/technical-source-pins.json",
@@ -50,6 +54,8 @@
     "tests/answers/question-revisions.test.cjs",
     "tests/helpers/game.ts",
     "tests/specs/136-question-revisions.spec.ts",
+    "tests/specs/187-forja-e-vitoria.spec.ts",
+    "tests/specs/216-progressao-xp.spec.ts",
     "tests/specs/257-medical-continuation-history.spec.ts",
     "tests/specs/302-ai-request-recovery.spec.ts",
     "tests/specs/303-question-objective-replacement.spec.ts",
@@ -138,5 +144,14 @@
     "No user data written by integration. No automatic replacement, grade migration or FSRS transfer.",
     "Entry helper fixes a proven Promise-GC failure class without proving exclusive historical279 cause. Product continueGame unchanged.",
     "AI30second overall deadline and explicit retry/cancellation do not certify real backend latency or refund quota."
-  ]
+  ],
+  "technical_followup": {
+    "previous_ci": 43867043503,
+    "previous_source": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+    "previous_result": "SUCCESS_WITH_TWO_FLAKY_TESTS_NOT_FINAL_CERTIFICATION",
+    "scope": "Explicit anonymous Guest fixture setup only in specs187 and216;85 assertions and original20/45second timeouts retained. No runtime/helper/medical change.",
+    "independent_review": "docs/editorial/reviews/2026-11-15-recovery-ttkg/guest-preparation-independent-review.json",
+    "independent_review_sha256": "e7851133e0ecb31c9a0b7494b7ef3d73c03328441f1962402819bde835a8de08",
+    "new_exact_ci_required": true
+  }
 }

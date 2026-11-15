@@ -1,6 +1,6 @@
 # Preparação da 17.27 — recuperação da IA, entrada e TTKG
 
-Checkpoint de preparação em 15/11/2026. A 17.27 está aplicada localmente, pronta para commit, ainda sem publicação neste registro. Base: 17.26, [PR975](https://github.com/orlandobrunet-sketch/base-verification/pull/975), fonte `bbcbaee6aa8298bd488aac70c76727ea99c3d6da` e merge `c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7`. Branch de trabalho: `codex/recovery-editorial-1727`.
+Checkpoint de preparação em 15/11/2026. A 17.27 está em revisão na PR976, ainda sem publicação neste registro. Base: 17.26, [PR975](https://github.com/orlandobrunet-sketch/base-verification/pull/975), fonte `bbcbaee6aa8298bd488aac70c76727ea99c3d6da` e merge `c6d1cd379ec73d6d3aa09b7e5e8276814d4d6dd7`. Branch de trabalho: `codex/recovery-editorial-1727`.
 
 O usuário autorizou expressamente continuar a investigação da Aquaria, o TTKG e as melhorias do Oráculo, incluindo revisão médica. As liberações clínicas abaixo se aplicam somente aos literais revisados. Os resultados de produção da 17.26 não certificam esta candidata.
 
@@ -53,6 +53,16 @@ A primeira rodada completa da IA registrou 32 aprovações e duas falhas de prep
 Na rodada de 66 casos da IA, todos registraram auditoria de erros de página, sem ocorrências. Há contadores de rede completos em 54 casos; os outros 12 têm guards de rede e auditoria de erros, sem inventar contadores. Não houve escrita externa inesperada nos casos medidos. Autenticação e IA reais foram isoladas. O prazo de 30 segundos foi exercitado com relógio controlado, sem uma espera real de 30 segundos por cenário.
 
 As fontes de evidência são os recibos locais da 17.27: logs de lógica/configuração, `ENTRY_HANDSHAKE_REVIEW.json`, `implementation-summary.json`, os relatórios nativos de recuperação/retomada, o parecer clínico A2 e o recibo de transporte. O manifesto da entrega deve conservar os hashes dos arquivos efetivamente verificados, inclusive as tentativas iniciais; uma rodada anterior não certifica uma alteração posterior.
+
+## CI1100 e correção de duas preparações anônimas
+
+A CI1100 da fonte `dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349` concluiu os 16 grupos com sucesso: 3.658 aprovações diretas, duas após repetição e 268 skips previstos, em 3.928 casos únicos. Não houve falha final. Todos os 14 ZIPs e os relatórios completos foram conferidos; os 80 casos novos desta etapa passaram diretamente. As duas intermitências foram preservadas, não apagadas pelo retry.
+
+Na 187/Chromium e na 216/mobile, o Portal interceptou o clique antes das asserções da Forja e da progressão. Os controles reproduziram o retorno do Portal com uma sessão inicial null entregue tardiamente. A correção escolhe explicitamente o visitante nativo nas entradas anônimas: um argumento na 187 e sete na 216. Não altera runtime, helper compartilhado, mecânicas ou conteúdo médico. A entrega específica que ocorreu na CI não é distinguível retrospectivamente; a classe de preparo incompleto foi demonstrada.
+
+Provas separadas: quatro RED causais, quatro GREEN e uma conferência nativa de recarga. Depois, os 34 testes originais passaram diretamente: seis da Forja com 20 s; 28 de progressão, sendo 24 com 20 s e quatro com os 45 s originais. As 85 asserções foram preservadas. Nove auditorias pertencem aos controles e seis à rodada nativa da Forja; os 28 originais de progressão não receberam contadores inventados. Uma execução da Forja foi interrompida pelo supervisor externo aos 100 s antes de gerar relatório completo e foi excluída das contagens; a execução integral seguinte manteve os prazos de cada teste.
+
+A revisão independente `guest-preparation-independent-review.json`, SHA-256 `e7851133e0ecb31c9a0b7494b7ef3d73c03328441f1962402819bde835a8de08`, aprovou somente o escopo técnico desses argumentos, sem bloqueios. Os relatórios e hashes estão no pacote de revisão. Os novos argumentos exigem uma nova CI na fonte final; a CI1100 não a substitui.
 
 ## Condições de fechamento
 

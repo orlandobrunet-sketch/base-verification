@@ -7,7 +7,7 @@ async function abrirJogo(page: Page, gold = 5000) {
   await page.route('**/*', r => new URL(r.request().url()).hostname === 'localhost' ? r.continue() : r.abort());
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
-  await injectGameState(page, { gold });
+  await injectGameState(page, { gold }, {asGuest: true});
   await page.waitForLoadState('load');
 }
 
