@@ -1,8 +1,15 @@
-// NefroQuest Service Worker — v17.21
-const CACHE = 'nefroquest-v17.21';
+// NefroQuest Service Worker — v17.22
+const CACHE = 'nefroquest-v17.22';
 
 // Apenas assets estáticos que raramente mudam (HTML não entra aqui — usa network-first)
 const STATIC_ASSETS = [
+  '/js/owner-authority.js',
+  '/js/normal-authority.js',
+  '/js/cloud-authority.js',
+  '/js/legacy-cloud-decision.js',
+  '/js/authority-cloud-decision.js',
+  '/js/auxiliary-progress.js',
+
   '/assets/vendor/supabase-js-2.106.2/supabase.js',
   '/js/progression.js',
   '/assets/scenes/ritual-initiation.webp',
@@ -244,20 +251,26 @@ const ASSET_VERSIONS = {
   '/styles/lumen/achievements.css': '16.75',
   '/styles/lumen/oracle.css': '16.25',
   '/js/utils.js': '17.21',
-  '/js/pilot.js': '17.17',
+  '/js/owner-authority.js': '17.22',
+  '/js/normal-authority.js': '17.22',
+  '/js/cloud-authority.js': '17.22',
+  '/js/legacy-cloud-decision.js': '17.22',
+  '/js/authority-cloud-decision.js': '17.22',
+  '/js/auxiliary-progress.js': '17.22',
+  '/js/pilot.js': '17.22',
   '/js/character-benefits.js': '16.07',
   '/js/answer-presentation.js': '16.09',
   '/js/audio.js': '16.28',
   '/js/leaderboard.js': '17.15',
-  '/js/study-mode.js': '17.17',
-  '/js/game.js': '17.21',
+  '/js/study-mode.js': '17.22',
+  '/js/game.js': '17.22',
   '/js/notifications.js': '11.90',
-  '/js/auth.js': '17.17',
+  '/js/auth.js': '17.22',
   '/js/portal.js': '17.15',
   '/js/atrium.js': '17.08',
   '/js/paywall.js': '17.17',
   '/js/account.js': '17.17',
-  '/js/boss.js': '17.16',
+  '/js/boss.js': '17.22',
   '/js/exam.js': '17.15',
   '/js/admin.js': '17.17',
   '/js/minigame.js': '17.17',

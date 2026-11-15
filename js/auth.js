@@ -30,6 +30,7 @@
     let _supaClient = null;
     let authUser = null;
     let _authSessionEpoch = 0;
+    let _authSessionEventGeneration = 0;
     let _explicitLoginIntent = false;
     let _explicitSessionOwner = null;
     let _explicitLogoutMarker = null;
@@ -142,7 +143,8 @@
       }
       _supaClient = supabase.createClient(SUPA_URL, SUPA_KEY);
 
-      _authSessionHandler = (event, session) => {
+      _authSessionHandler = async (event, session) => {
+        const eventGeneration=++_authSessionEventGeneration;
         const candidateUser = session?.user ?? null;
         if (!_acceptSessionUser(candidateUser, event)) {
           _setAuthSessionUser(null);
@@ -152,8 +154,14 @@
           _finishAuthStartup();
           return;
         }
-        const progressReady = typeof window._prepareProgressOwner !== 'function' ||
-          window._prepareProgressOwner(candidateUser?.id || null);
+        const prepareEpoch=_authSessionEpoch;
+        const progressReady = window.NQ_DURABLE_PROGRESS===true && typeof window._prepareProgressOwnerAsync==='function'
+          ? await window._prepareProgressOwnerAsync(candidateUser?.id || null)
+          : typeof window._prepareProgressOwner !== 'function' || window._prepareProgressOwner(candidateUser?.id || null);
+        if (_authSessionEpoch!==prepareEpoch || _authSessionEventGeneration!==eventGeneration) return;
+        if (window.NQ_DURABLE_PROGRESS===true && !progressReady) {
+          _setAuthSessionUser(null);window._stopLocalJourney?.();updateWelcomeUserBadge();_showSignedOutPortal();_finishAuthStartup();return;
+        }
         if ((authUser?.id || null) !== (candidateUser?.id || null) || event === 'SIGNED_OUT') {
           ++_authSessionEpoch;
           if (typeof window._stopLocalJourney === 'function') window._stopLocalJourney();
@@ -192,12 +200,19 @@
       _supaClient.auth.onAuthStateChange(_authSessionHandler);
 
       const initialSessionEpoch = _authSessionEpoch;
-      _supaClient.auth.getSession().then(({ data: { session } }) => {
-        if (_authSessionEpoch !== initialSessionEpoch) return;
+      const initialEventGeneration = _authSessionEventGeneration;
+      _supaClient.auth.getSession().then(async ({ data: { session } }) => {
+        if (_authSessionEpoch !== initialSessionEpoch || _authSessionEventGeneration!==initialEventGeneration) return;
         const candidateUser = session?.user ?? null;
         if (!_acceptSessionUser(candidateUser)) { _setAuthSessionUser(null); updateWelcomeUserBadge(); if (!_guestMode) _showSignedOutPortal(); _finishAuthStartup(); _consumeLoginIntent(); return; }
-        const progressReady = typeof window._prepareProgressOwner !== 'function' ||
-          window._prepareProgressOwner(candidateUser?.id || null);
+        const prepareEpoch=_authSessionEpoch;
+        const progressReady = window.NQ_DURABLE_PROGRESS===true && typeof window._prepareProgressOwnerAsync==='function'
+          ? await window._prepareProgressOwnerAsync(candidateUser?.id || null)
+          : typeof window._prepareProgressOwner !== 'function' || window._prepareProgressOwner(candidateUser?.id || null);
+        if (_authSessionEpoch!==prepareEpoch || _authSessionEventGeneration!==initialEventGeneration) return;
+        if (window.NQ_DURABLE_PROGRESS===true && !progressReady) {
+          _setAuthSessionUser(null);window._stopLocalJourney?.();updateWelcomeUserBadge();_showSignedOutPortal();_finishAuthStartup();return;
+        }
         _setAuthSessionUser(candidateUser);
         if (authUser) { _markExplicitLoginIntent(false); _loadPremiumFromDB(); if (progressReady) _loadProgressFromCloud(); }
         else {
@@ -700,13 +715,19 @@
         signOutSdk = !!sdkOwner;
       }
       const owner = authUser?.id || null;
-      const logoutEpoch = ++_authSessionEpoch;
+      if (window.NQ_DURABLE_PROGRESS===true && !window.NQNormalProgress &&
+          window.NQNormalAuthority?.peek?.({storage:localStorage,owner}).exists && typeof _ensureNormalAuthority==='function') {
+        const beforeEpoch=_authSessionEpoch;
+        if (!await _ensureNormalAuthority() || (authUser?.id || null)!==owner || _authSessionEpoch!==beforeEpoch) return false;
+      }
+      // Retire the current owner lease before advancing its identity generation.
       _explicitSessionOwner = null;
       _explicitLogoutMarker = null;
       _markExplicitLoginIntent(false);
       // Stop local writes before awaiting the SDK, including visitor sessions
       // where the SDK is unavailable or signOut cannot reach the network.
       if (typeof window.clearLocalProgress === 'function' && window.clearLocalProgress('logout') === false) return false;
+      const logoutEpoch = ++_authSessionEpoch;
       if (signOutSdk) {
         try {
           const result = await client.auth.signOut(localOnly ? { scope: 'local' } : undefined);

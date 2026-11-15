@@ -1,0 +1,236 @@
+'use strict';
+const {test} = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const vm = require('node:vm');
+const source = fs.readFileSync(path.join(__dirname, '../../js/game.js'), 'utf8').replace(/\r\n/g, '\n');
+function section(start, end) {
+  const a = source.indexOf(start), b = source.indexOf(end, a + start.length);
+  assert.ok(a >= 0 && b > a, 'Production lifecycle section must exist');
+  return source.slice(a, b);
+}
+function fixture() {
+  const nodes = new Map(), timers = new Map(), listeners = new Map(), contextListeners = [];
+  let now = 0, id = 0, claims = 0, presentations = 0, generation = 1, owner = null, journeyId = 'technical-pilot', pilot = true;
+  const events = {addEventListener(type, fn) { listeners.set(type, fn); },
+    removeEventListener(type, fn) { if (listeners.get(type) === fn) listeners.delete(type); }};
+  class Node {
+    constructor(id = '', parent = null) {
+      this.id = id; this.parentElement = parent; this.isConnected = true; this.dataset = {};
+      this.children = []; this.hidden = false; this.disabled = false;
+      this.classList = {add() {}};
+      if (id) nodes.set(id, this);
+      if (parent) parent.children.push(this);
+    }
+    set innerHTML(value) { this.html = value; }
+    appendChild(node) { node.parentElement = this; this.children.push(node); if (node.id) nodes.set(node.id, node); }
+    closest(selector) { if (selector === '#autoChestPopup') return this.id === 'autoChestPopup' ? this : this.parentElement?.closest(selector);
+      return this.hidden || this.parentElement?.hidden ? this : null; }
+    getClientRects() { return this.hidden ? [] : [{}]; }
+    contains(node) { return node === this || this.children.some(child => child.contains(node)); }
+    querySelector(selector) { this.controls ||= new Map();
+      if (!this.controls.has(selector)) this.controls.set(selector, new Node('', this));
+      return this.controls.get(selector); }
+    querySelectorAll() { return [this.querySelector('button')]; }
+    setAttribute() {}
+    focus() { ctx.document.activeElement = this; }
+    remove() { this.isConnected = false; if (nodes.get(this.id) === this) nodes.delete(this.id);
+      if (this.parentElement) this.parentElement.children = this.parentElement.children.filter(child => child !== this);
+      if (this.contains(ctx.document.activeElement)) ctx.document.activeElement = body; }
+  }
+  const body = new Node('body'), main = new Node('mainApp', body);
+  class Observer { observe() { this.connected = true; } disconnect() { this.connected = false; } }
+  const progress = () => ({domain: pilot ? 'pilot' : 'normal', journeyId: pilot ? journeyId : null, owner, generation});
+  const ctx = {console, Object, Math, WeakMap, WeakSet, Set,
+    _progressEpoch: 1, _progressSandboxMode: null, _pilotAnswerTransaction: null,
+    state: {gameStarted: true, gameOver: false, gameCompleted: false, correctTotal: 0},
+    _currentSaveOwner: () => owner, isCharacterPilot: () => pilot,
+    performance: {now: () => now}, MutationObserver: Observer,
+    getComputedStyle: () => ({display: 'block', visibility: 'visible'}),
+    document: {...events, body, activeElement: main, hidden: false,
+      createElement: () => new Node(), getElementById: key => nodes.get(key),
+      querySelector: () => [...nodes.values()].find(node => node.dialog && node.isConnected && !node.hidden) || null,
+      querySelectorAll: () => [...nodes.values()].filter(node => node.dialog && node.isConnected)},
+    ...events, setTimeout(fn, delay) { const timer = ++id; timers.set(timer, {fn, at: now + delay}); return timer; },
+    clearTimeout: timer => timers.delete(timer),
+    playSound() {}, nqDialogo() {}, claimChestReward() { claims++; },
+    renderVictoryResults() {
+      if (!ctx.state.gameCompleted || ctx.state.correctTotal < 100 || nodes.has('victoryModal')) return false;
+      presentations++; const result = new Node('victoryModal', body); result.dialog = true; return true;
+    },
+    matchMedia: () => ({matches: false}),
+    NQPilot: {writable: true, captureBinding: progress,
+      matchesBinding: binding => JSON.stringify(binding) === JSON.stringify(progress()),
+      onContextChange: fn => contextListeners.push(fn)}};
+  ctx.window = ctx; vm.createContext(ctx);
+  vm.runInContext(section('    function _captureJourneyBinding()', '    function _reloadJourneyCollections()'), ctx);
+  vm.runInContext(section('    function _afterCharacterCommit(', '    function _recordCharacterProgress('), ctx);
+  vm.runInContext(section('    const _pendingChestRewards = [];', '    function claimChestReward()'), ctx);
+  vm.runInContext(section('    function showGameCompletionModal()', '    function renderVictoryResults()'), ctx);
+  vm.runInContext(section('    function reopenVictoryResults()', '    function returnHomeAfterVictory()'), ctx);
+  function advance(ms) {
+    const end = now + ms;
+    for (;;) {
+      const next = [...timers.entries()].filter(([, t]) => t.at <= end).sort((a, b) => a[1].at - b[1].at || a[0] - b[0])[0];
+      if (!next) break;
+      timers.delete(next[0]); now = next[1].at; next[1].fn();
+    }
+    now = end;
+  }
+  return {ctx, main, nodes, timers, listeners, advance,
+    eval: code => vm.runInContext(code, ctx),
+    queue(delay = 1200) { ctx._queueChestReward(ctx._captureChestRewardBinding(), now + delay); },
+    flush: () => ctx._flushChestRewards(), popup: () => nodes.get('autoChestPopup'), claims: () => claims, presentations: () => presentations,
+    click() { ctx._animateAndClaimChest(nodes.get('autoChestPopup').querySelector('.nqch-trigger')); },
+    dialog(id = 'intermediate-dialog') { const dialog = new Node(id, body); dialog.dialog = true; return dialog; },
+    victory() { const root = new Node('victoryModal', body), panel = new Node('victory-panel', root);
+      panel.dialog = true; return {root, panel, control: panel.querySelector('button')}; },
+    dock() { const root = new Node('mobileBottomDock', body); return {root, control: new Node('dock-forge', root)}; },
+    control() { return new Node('other-control', body); },
+    switch(values = {}) { if ('owner' in values) owner = values.owner; if ('journeyId' in values) journeyId = values.journeyId;
+      if ('pilot' in values) pilot = values.pilot; generation += values.generation || 0; ctx._progressEpoch += values.epoch || 0; },
+    retire: () => ctx._retireChestRewardContext(), notify: () => contextListeners.forEach(fn => fn())};
+}
+
+// Isolated RED regression. Fresh VM models a new document; storage alone survives.
+// Real pilot commit/resume and production reward scheduling are used. DOM is a stub.
+test('committed earned chest remains deliverable after a fresh document resumes the save', async () => {
+  const values = new Map();
+  function page() {
+    const f = fixture();
+    Object.assign(f.ctx, {authUser: null, crypto: require('node:crypto').webcrypto,
+      localStorage: {getItem: key => values.get(key) ?? null,
+        setItem: (key, value) => values.set(key, String(value)), removeItem: key => values.delete(key)},
+      navigator: {locks: {request: async (_name, _options, callback) => callback({})}}});
+    vm.runInContext(fs.readFileSync(path.join(__dirname, '../../js/answer-presentation.js'), 'utf8'), f.ctx);
+    vm.runInContext(fs.readFileSync(path.join(__dirname, '../../js/pilot.js'), 'utf8'), f.ctx);
+    return f;
+  }
+  const before = page(), p = before.ctx.NQPilot;
+  assert.equal(await p.reserve('normal', null), true);
+  assert.equal(p.start('nephros', 'normal', null), true);
+  const initial = p.load();
+  Object.assign(initial, {gameStarted:true,lives:4,maxLives:4,level:1,xp:0,gold:0,score:0,
+    answered:false,queueIds:['technical-q1'],chestCorrectCount:4,chestTarget:5});
+  assert.equal(p.save(initial,p.classBenefits),true);
+  assert.equal(p.beginTransaction(),true);
+  before.ctx._pilotAnswerTransaction = {normal:false};
+  const staged = p.load();
+  Object.assign(before.ctx.state, staged);
+  before.eval(section('        state.chestCorrectCount = (state.chestCorrectCount || 0) + 1;', '\n        const sm'));
+  const ledger = p.classBenefits;
+  ledger.windowAnswers=1;ledger.seenQids.push('technical-q1');
+  ledger.creditedEvents.push(`${ledger.journeyId}:1:technical-q1`);
+  Object.assign(staged,{chestCorrectCount:before.ctx.state.chestCorrectCount,chestTarget:before.ctx.state.chestTarget,
+    classBenefits:ledger,pilotLastAnswer:{domain:'pilot',journeyId:ledger.journeyId,correct:true,xp:0,gold:0,shield:false}});
+  assert.equal(p.commit(staged,ledger),true);
+  assert.equal(before.eval('_pendingChestRewards.length'),1,'Control: accepted real commit queued earned opportunity');
+  assert.equal(p.load().chestCorrectCount,0,'Committed counter reset');
+  const committed=values.get(p.KEY);
+  p.release();
+  const after=page();
+  assert.ok(await after.ctx.NQPilot.resume(null));
+  const recovered=after.ctx.NQPilot.load();
+  Object.assign(after.ctx.state,recovered);
+  assert.equal(recovered.chestCorrectCount,0);
+  assert.equal(values.get(p.KEY),committed,'Resume did not replace the committed payload');
+  after.flush();after.advance(2000);
+  // Expected future behavior: the committed opportunity survives loss of the old document.
+  assert.equal(after.eval('_pendingChestRewards.length'),1,'Earned opportunity was lost across fresh-document resume');
+  assert.ok(after.popup());
+});
+
+async function durablePage(values, resume=false) {
+  const f=fixture();
+  Object.assign(f.ctx,{authUser:null,crypto:require('node:crypto').webcrypto,
+    localStorage:{getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,String(v)),removeItem:k=>values.delete(k)},
+    navigator:{locks:{request:async(n,o,fn)=>fn({})}},
+    _toast(){},renderHUD(){},updateBadges(){},showChestModal(){},showForgePopup(){},
+    _markObtained(n){f.ctx.state.obtainedItems.push(n);},
+    _matchesJourneyBinding:()=>true,
+    _itemSellVal:()=>20,nefroArticles:[{titulo:'Technical article'}],unlockedArticles:[]});
+  vm.runInContext(fs.readFileSync(path.join(__dirname,'../../js/pilot.js'),'utf8'),f.ctx);
+  const p=f.ctx.NQPilot;
+  if(resume)assert.ok(await p.resume(null));
+  else {assert.equal(await p.reserve('normal',null),true);assert.equal(p.start('nephros','normal',null),true);}
+  const save=p.load();
+  if(!resume)Object.assign(save,{gameStarted:true,gameOver:false,lives:4,level:1,gold:0,score:0,chestsOpened:0,obtainedItems:[],equipment:{relic:{n:'Vazio'},weapon:{n:'Old'}},queue:[],correctTotal:5});
+  assert.equal(p.save(save,p.classBenefits),true);
+  Object.assign(f.ctx.state,save);f.ctx._stateData=f.ctx.state;
+  f.ctx._pilotSavePayload=()=>JSON.parse(JSON.stringify(f.ctx.state));
+  f.ctx.unlockedArticles=JSON.parse(f.ctx.nqProgressStorage().getItem('unlockedArticles')||'[]');
+  return f;
+}
+test('real game durable article claim credits once, including article unlocked by another source',async()=>{
+  const values=new Map();let f=await durablePage(values),p=f.ctx.NQPilot;
+  p.beginTransaction();const receipt=p.stageChest();
+  p.updateChest(receipt.id,r=>{r.phase='prepared';r.reward={kind:'article',articleIndex:0};});
+  assert.equal(p.commit(f.ctx.state,p.classBenefits),true);
+  f.ctx.nqProgressStorage().setItem('unlockedArticles','[0]');f.ctx.unlockedArticles=[0];
+  f.flush();f.advance(1);
+  assert.equal(f.eval('_claimDurableChest(_pendingChestRewards[0])'),true);
+  assert.equal(p.load().score,40);assert.equal(p.load().chestsOpened,1);
+  assert.equal(f.ctx.nqProgressStorage().getItem('nefroquest_total_accumulated_knowledge'),'1');
+  assert.equal(f.ctx.nqProgressStorage().getItem('unlockedArticles'),'[0]');
+  p.release();f=await durablePage(values,true);f.flush();f.advance(2000);
+  assert.equal(f.eval('_pendingChestRewards.length'),0);assert.equal(f.ctx.NQPilot.load().score,40);
+  f.ctx.NQPilot.release();
+});
+for(const choice of ['equip','sell'])test('real game durable equipment '+choice+' commits choice once',async()=>{
+  const values=new Map(),f=await durablePage(values),p=f.ctx.NQPilot;
+  p.beginTransaction();const receipt=p.stageChest();p.updateChest(receipt.id,r=>{r.phase='prepared';r.reward={kind:'equipment',slot:'weapon',item:{n:'New',rar:'common',atk:1,def:0,kno:0,luck:0}};});
+  p.commit(f.ctx.state,p.classBenefits);
+  f.ctx.showEquipComparePopup=(slot,old,item,equip,sell)=>{f.decide=choice==='equip'?equip:sell;};
+  f.flush();f.advance(1);f.eval('_claimDurableChest(_pendingChestRewards[0])');
+  assert.equal(p.load().score,0,'presentation must not grant credit');
+  f.decide();f.decide();
+  assert.equal(p.load().score,20);assert.equal(p.load().gold,20);
+  assert.equal(p.load().equipment.weapon.n,choice==='equip'?'New':'Old');
+  assert.equal(p.chestReceipts()[0].phase,'consumed');p.release();
+});
+
+test('real game normal scheduler and article reducer use unified authority after reload',async()=>{
+  const {create}=require('../../js/normal-authority.js'),{createAuthority}=require('../../isolated-authority/owner-authority.cjs');
+  const values=new Map(),storage={getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,String(v)),removeItem:k=>values.delete(k)};
+  const locks={request:async(n,o,fn)=>fn({})};
+  const save={schemaVersion:7,saveOwner:null,journeyId:'normal-j',character:'nephros',gameStarted:true,gameOver:false,score:0,gold:0,chestsOpened:0,equipment:{relic:{n:'Vazio'}},obtainedItems:[]};
+  const make=()=>create({createAuthority,storage,locks,owner:null,currentOwner:()=>null,validateSave:s=>s.character==='nephros',newJourneyId:()=> 'normal-j'});
+  let store=make();await store.bootstrap({newSave:save});store.beginTransaction();const receipt=store.stageChest();store.updateChest(receipt.id,r=>{r.phase='prepared';r.reward={kind:'article',articleIndex:0};});store.commit(save);await store.release();store=make();await store.bootstrap();
+  const f=fixture();Object.assign(f.ctx,{isCharacterPilot:()=>false,NQNormalProgress:store,
+    nqProgressStorage:()=>store.storage,_toast(){},renderHUD(){},updateBadges(){},showChestModal(){},
+    unlockedArticles:[],nefroArticles:[{titulo:'Technical article'}]});
+  Object.assign(f.ctx.state,store.loadSave());f.ctx._stateData=f.ctx.state;
+  f.ctx._doSaveGame=()=>{store.commit(f.ctx.state);return true;};
+  f.flush();f.advance(1);assert.equal(f.eval('_pendingChestRewards.length'),1);
+  assert.equal(f.eval('_claimDurableChest(_pendingChestRewards[0])'),true);
+  assert.equal(store.loadSave().score,40);assert.equal(store.storage.getItem('nefroquest_total_accumulated_knowledge'),'1');
+  assert.equal(store.chestReceipts()[0].phase,'consumed');await store.release();
+});
+test('paused durable receipt never falls back to legacy award callback',()=>{
+  const f=fixture();f.eval("_queueChestReward(_captureChestRewardBinding(),0,{id:'durable-receipt'})");
+  f.advance(1);assert.ok(f.popup());f.ctx.NQPilot.writable=false;f.click();f.advance(1200);
+  assert.equal(f.claims(),0);assert.equal(f.eval('_pendingChestRewards.length'),1);
+});
+test('fresh-document resume wires durable scheduler after rendering campaign',()=>{
+  const resume=section('    async function continueGame(', '    function startNewFromWelcome()');
+  assert.ok(resume.lastIndexOf('_flushChestRewards()')>resume.lastIndexOf('renderQuestion()'));
+});
+test('completed pilot with an earned final chest remains resumable until consumed',async()=>{
+  const values=new Map(),f=await durablePage(values),p=f.ctx.NQPilot;
+  p.beginTransaction();p.stageChest();Object.assign(f.ctx.state,{gameCompleted:true,correctTotal:100});p.commit(f.ctx.state,p.classBenefits);p.release();
+  assert.equal(p.peek(null).resumable,true);assert.equal(p.peek(null).pendingChests,1);
+  assert.ok(await p.resume(null));assert.equal(p.load().gameOver,false);p.release();
+});
+test('starting a new pilot cannot silently discard earned pending chests',async()=>{
+  const values=new Map(),f=await durablePage(values),p=f.ctx.NQPilot;
+  p.beginTransaction();p.stageChest();p.commit(f.ctx.state,p.classBenefits);p.release();
+  assert.equal(await p.reserve('normal',null),true);assert.equal(p.start('nephros','normal',null),false);
+  assert.equal(p.start('nephros','normal',null,{discardPending:true}),true);assert.equal(p.chestReceipts().length,0);p.release();
+});
+
+test('legacy normal answer feedback does not require a character benefits ledger',()=>{const f=fixture();f.ctx.state.classBenefits=null;f.eval(section('    function _pilotAnswerFeedback(', '    let _pilotResumePending'));assert.equal(f.eval('_pilotAnswerFeedback({normal:true,xp:0,gold:0,shield:false})'),'');});
+test('malformed prepared reward cannot grant legacy or durable credit',async()=>{
+  const f=await durablePage(new Map()),p=f.ctx.NQPilot;p.beginTransaction();const receipt=p.stageChest();p.updateChest(receipt.id,r=>{r.phase='prepared';r.reward={};});p.commit(f.ctx.state,p.classBenefits);f.flush();f.advance(1);
+  assert.equal(f.eval('_claimDurableChest(_pendingChestRewards[0])'),false);assert.equal(p.load().score,0);assert.equal(p.chestReceipts()[0].phase,'prepared');p.release();
+});
