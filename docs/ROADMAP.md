@@ -8,7 +8,7 @@ Este documento controla direção, prioridade e critérios de conclusão. Ele n�
 
 ## Estado operacional - 15/11/2026
 
-**Preparação da 17.23:** corrigidas duas causas demonstradas — End antes da conclusão da ampliação do texto e foco atrasado da Câmara sobre uma escolha posterior do usuário. Validação local: 32 cenários End e 20 de foco. CI e publicação ainda dependem da conferência específica desta candidata. O coletor focal não encerra retrospectivamente os eventos antigos. [Provas e limites](design/NQ_END_AND_INTERMITTENCIES_1723.md).
+**Preparação da 17.24:** End e foco da Câmara corrigidos; a conferência da candidata 17.23 revelou também oscilação do botão do Ritual e preparo anônimo incompleto num cenário de XP. Os dois receberam reparos próprios. A 17.23 não foi publicada; integração e publicação exigem nova CI e conferência pública. [Investigação anterior](design/NQ_END_AND_INTERMITTENCIES_1723.md), [causas adicionais e limites](design/NQ_END_AND_RITUAL_1724.md).
 
 **17.22 publicada e conferida:** [PR971](https://github.com/orlandobrunet-sketch/base-verification/pull/971), merge `6246a0b3f0e8f07a80c1a13a3df6f740baa772e6`. CI1090 com 3.540 aprovações diretas, 268 pulos previstos e nenhuma falha ou repetição; smoke 130. Pages, oito arquivos públicos e 22 percursos no domínio conferidos. [Fechamento e limites](design/NQ_RELEASE_1722.md).
 

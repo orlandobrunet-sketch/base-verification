@@ -98,7 +98,7 @@ test('vidas e Sequência usam valores reais, quatro campos no rodapé e refluem 
 
 test('acertos consecutivos avançam valor e barra juntos e guardam todos os bônus', async ({ page }) => {
   test.setTimeout(45000); // Four real question transitions and one evolution dialog.
-  await injectGameState(page, { level: 1, xp: 2000, correctTotal: 7, gold: 0, streak: 0, narrativeShown: 100 });
+  await injectGameState(page, { level: 1, xp: 2000, correctTotal: 7, gold: 0, streak: 0, narrativeShown: 100 }, {asGuest:true});
   const percentages = ['80', '90', '0', '9'];
   for (let index = 0; index < percentages.length; index++) {
     await page.waitForFunction(() => !(0, eval)('_loadingNextQuestion'));

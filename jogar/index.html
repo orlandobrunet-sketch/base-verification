@@ -95,7 +95,7 @@
         if (typeof Sentry === 'undefined') return;
         Sentry.onLoad(function() {
         Sentry.init({
-          release: 'nefroquest@17.23',
+          release: 'nefroquest@17.24',
           environment: location.hostname === 'nefroquest.com' ? 'production' : 'development',
           tracesSampleRate: 0.1,
           // Ruído de extensão de navegador / proxy / cache stale servindo HTML
@@ -155,7 +155,7 @@
     #authStartup { display: none; }
     .nq-auth-pending #authStartup { display: grid !important; position: fixed; inset: 0; z-index: 1001; background: #0a0e1a; place-content: center; text-align: center; color: #e9e5d2; }
   </style>
-  <link rel="stylesheet" href="style.css?v=17.23">
+  <link rel="stylesheet" href="style.css?v=17.24">
   <link rel="stylesheet" href="styles/lumen/tokens.css?v=15.77">
   <link rel="stylesheet" href="styles/lumen/shell.css?v=16.18">
   <link rel="stylesheet" href="styles/lumen/portal.css?v=17.15">
@@ -178,7 +178,7 @@
   <link rel="stylesheet" href="styles/lumen/cinemaentry.css?v=16.28">
   <link rel="stylesheet" href="styles/lumen/cinemamotion.css?v=16.42">
   <link rel="stylesheet" href="styles/lumen/bossfinishing.css?v=17.17">
-  <link rel="stylesheet" href="styles/lumen/ritual.css?v=16.72">
+  <link rel="stylesheet" href="styles/lumen/ritual.css?v=17.24">
   <link rel="stylesheet" href="styles/lumen/ranking.css?v=17.15">
   <link rel="stylesheet" href="styles/lumen/achievements.css?v=16.75">
   <link rel="stylesheet" href="styles/lumen/oracle.css?v=16.25">
@@ -1900,7 +1900,7 @@
   <script defer src="js/chamber-art.js?v=17.03"></script>
   <script defer src="js/chamber-expansion.js?v=17.06"></script>
   <script defer src="js/chamber-workspace.js?v=17.16"></script>
-  <script defer src="js/minigame-acidbase.js?v=17.23"></script>
+  <script defer src="js/minigame-acidbase.js?v=17.24"></script>
   <script defer src="js/cinema-entry-source-config.js?v=16.28"></script>
   <script defer src="js/cinema-entry-seen.js?v=16.28"></script>
   <script defer src="js/cinema-entry-cinema.js?v=16.43"></script>

@@ -2,7 +2,7 @@
 
 ## Estado atual - 15/11/2026
 
-**Preparação da 17.23:** corrida de layout após ampliar texto e disputa de foco na Câmara reproduzidas e corrigidas. End: 32 casos locais aprovados; Câmara: 20. Captura focal de contexto adicionada sem modificar os testes originais. A integração e a publicação exigem CI e conferência pública próprias; as causas históricas sem prova exclusiva continuam abertas. [Causas, provas e limites](design/NQ_END_AND_INTERMITTENCIES_1723.md).
+**Preparação da 17.24:** reúne End, foco da Câmara, estabilidade do botão do Ritual e entrada nativa no preparo de XP. A 17.23 não foi publicada: a CI1094 reprovou somente o coletor; a CI1095 passou com duas repetições, investigadas antes da publicação. Nova CI e conferência pública continuam obrigatórias. [Causas e provas anteriores](design/NQ_END_AND_INTERMITTENCIES_1723.md), [reparos adicionais e limites](design/NQ_END_AND_RITUAL_1724.md).
 
 **17.22 publicada e conferida:** [PR971](https://github.com/orlandobrunet-sketch/base-verification/pull/971), merge `6246a0b3f0e8f07a80c1a13a3df6f740baa772e6`. CI1090: 15 grupos aprovados, 3.540 aprovações diretas, 268 pulos previstos e nenhuma falha ou repetição; smoke 130. Pages aprovado, oito arquivos públicos idênticos e 22 percursos públicos aprovados com 22 auditorias reais. [Fechamento e limites](design/NQ_RELEASE_1722.md).
 
