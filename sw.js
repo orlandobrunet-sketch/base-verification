@@ -198,6 +198,12 @@ const STATIC_ASSETS = [
 // chave canônica (sem query), que é a que canonicalAssetKey() consulta.
 // bump-release:asset-versions:início
 const ASSET_VERSIONS = {
+  '/js/owner-authority.js': '17.22',
+  '/js/normal-authority.js': '17.22',
+  '/js/cloud-authority.js': '17.22',
+  '/js/legacy-cloud-decision.js': '17.22',
+  '/js/authority-cloud-decision.js': '17.22',
+  '/js/auxiliary-progress.js': '17.22',
   '/js/progression.js': '16.84',
   '/js/chamber-expansion.js': '17.06',
   '/styles/lumen/chamber-expansion.css': '17.09',
@@ -251,12 +257,6 @@ const ASSET_VERSIONS = {
   '/styles/lumen/achievements.css': '16.75',
   '/styles/lumen/oracle.css': '16.25',
   '/js/utils.js': '17.21',
-  '/js/owner-authority.js': '17.22',
-  '/js/normal-authority.js': '17.22',
-  '/js/cloud-authority.js': '17.22',
-  '/js/legacy-cloud-decision.js': '17.22',
-  '/js/authority-cloud-decision.js': '17.22',
-  '/js/auxiliary-progress.js': '17.22',
   '/js/pilot.js': '17.22',
   '/js/character-benefits.js': '16.07',
   '/js/answer-presentation.js': '16.09',
