@@ -12,7 +12,7 @@ function section(start, end) {
 }
 function fixture() {
   const nodes = new Map(), timers = new Map(), listeners = new Map(), contextListeners = [];
-  let now = 0, id = 0, claims = 0, generation = 1, owner = null, journeyId = 'technical-pilot', pilot = true;
+  let now = 0, id = 0, claims = 0, presentations = 0, generation = 1, owner = null, journeyId = 'technical-pilot', pilot = true;
   const events = {addEventListener(type, fn) { listeners.set(type, fn); },
     removeEventListener(type, fn) { if (listeners.get(type) === fn) listeners.delete(type); }};
   class Node {
@@ -44,16 +44,21 @@ function fixture() {
   const progress = () => ({domain: pilot ? 'pilot' : 'normal', journeyId: pilot ? journeyId : null, owner, generation});
   const ctx = {console, Object, Math, WeakMap, WeakSet, Set,
     _progressEpoch: 1, _progressSandboxMode: null, _pilotAnswerTransaction: null,
-    state: {gameStarted: true, gameOver: false},
+    state: {gameStarted: true, gameOver: false, gameCompleted: false, correctTotal: 0},
     _currentSaveOwner: () => owner, isCharacterPilot: () => pilot,
     performance: {now: () => now}, MutationObserver: Observer,
     getComputedStyle: () => ({display: 'block', visibility: 'visible'}),
     document: {...events, body, activeElement: main, hidden: false,
       createElement: () => new Node(), getElementById: key => nodes.get(key),
+      querySelector: () => [...nodes.values()].find(node => node.dialog && node.isConnected && !node.hidden) || null,
       querySelectorAll: () => [...nodes.values()].filter(node => node.dialog && node.isConnected)},
     ...events, setTimeout(fn, delay) { const timer = ++id; timers.set(timer, {fn, at: now + delay}); return timer; },
     clearTimeout: timer => timers.delete(timer),
     playSound() {}, nqDialogo() {}, claimChestReward() { claims++; },
+    renderVictoryResults() {
+      if (!ctx.state.gameCompleted || ctx.state.correctTotal < 100 || nodes.has('victoryModal')) return false;
+      presentations++; const result = new Node('victoryModal', body); result.dialog = true; return true;
+    },
     matchMedia: () => ({matches: false}),
     NQPilot: {writable: true, captureBinding: progress,
       matchesBinding: binding => JSON.stringify(binding) === JSON.stringify(progress()),
@@ -62,6 +67,8 @@ function fixture() {
   vm.runInContext(section('    function _captureJourneyBinding()', '    function _reloadJourneyCollections()'), ctx);
   vm.runInContext(section('    function _afterCharacterCommit(', '    function _recordCharacterProgress('), ctx);
   vm.runInContext(section('    const _pendingChestRewards = [];', '    function claimChestReward()'), ctx);
+  vm.runInContext(section('    function showGameCompletionModal()', '    function renderVictoryResults()'), ctx);
+  vm.runInContext(section('    function reopenVictoryResults()', '    function returnHomeAfterVictory()'), ctx);
   function advance(ms) {
     const end = now + ms;
     for (;;) {
@@ -74,9 +81,11 @@ function fixture() {
   return {ctx, main, nodes, timers, listeners, advance,
     eval: code => vm.runInContext(code, ctx),
     queue(delay = 1200) { ctx._queueChestReward(ctx._captureChestRewardBinding(), now + delay); },
-    flush: () => ctx._flushChestRewards(), popup: () => nodes.get('autoChestPopup'), claims: () => claims,
+    flush: () => ctx._flushChestRewards(), popup: () => nodes.get('autoChestPopup'), claims: () => claims, presentations: () => presentations,
     click() { ctx._animateAndClaimChest(nodes.get('autoChestPopup').querySelector('.nqch-trigger')); },
-    dialog() { const dialog = new Node('intermediate-dialog', body); dialog.dialog = true; return dialog; },
+    dialog(id = 'intermediate-dialog') { const dialog = new Node(id, body); dialog.dialog = true; return dialog; },
+    victory() { const root = new Node('victoryModal', body), panel = new Node('victory-panel', root);
+      panel.dialog = true; return {root, panel, control: panel.querySelector('button')}; },
     control() { return new Node('other-control', body); },
     switch(values = {}) { if ('owner' in values) owner = values.owner; if ('journeyId' in values) journeyId = values.journeyId;
       if ('pilot' in values) pilot = values.pilot; generation += values.generation || 0; ctx._progressEpoch += values.epoch || 0; },
@@ -219,4 +228,57 @@ test('retiring or releasing the context disconnects every pending timer, popup a
     assert.equal(f.timers.size, 0); assert.equal(f.listeners.size, 0); assert.equal(f.popup(), undefined);
     assert.equal(f.eval('_pendingChestRewards.length'), 0); assert.equal(f.claims(), 0);
   }
+});
+
+test('an earned final chest keeps1200ms and its complete native prize precedes results once', () => {
+  const f = fixture(); Object.assign(f.ctx.state, {gameCompleted: true, correctTotal: 100});
+  f.queue(); f.ctx.showGameCompletionModal(); f.ctx.showGameCompletionModal();
+  assert.equal(f.presentations(), 0); f.advance(1199); assert.equal(f.popup(), undefined);
+  f.advance(1); assert.ok(f.popup()); assert.equal(f.presentations(), 0);
+  f.click(); f.click(); f.advance(1150);
+  const article = f.dialog('chestModal'); article.querySelector('button').focus(); f.flush();
+  assert.equal(f.claims(), 1); assert.equal(f.eval('_pendingChestRewards.length'), 0); assert.equal(f.presentations(), 0);
+  article.remove(); f.main.focus(); f.flush(); f.flush();
+  assert.equal(f.presentations(), 1); assert.equal(f.ctx.state.gameCompleted, true); assert.equal(f.ctx.state.correctTotal, 100);
+});
+
+for (const id of ['chestModal', 'equipCompareOverlay', 'forge-popup']) test('a handback after receipt consumption still awaits '+id, () => {
+  const f = fixture(); Object.assign(f.ctx.state, {gameCompleted: true, correctTotal: 100});
+  f.queue(0); f.advance(0); f.click(); f.advance(1150); assert.equal(f.claims(), 1);
+  const output = f.dialog(id); output.querySelector('button').focus();
+  f.ctx.showGameCompletionModal(); assert.equal(f.presentations(), 0);
+  output.remove(); f.main.focus(); f.flush(); assert.equal(f.presentations(), 1);
+});
+
+test('results remain synchronous without a prize and never reappear after an existing instance closes', () => {
+  const f = fixture(); Object.assign(f.ctx.state, {gameCompleted: true, correctTotal: 100});
+  f.ctx.showGameCompletionModal(); assert.equal(f.presentations(), 1);
+  f.ctx.showGameCompletionModal(); f.ctx.reopenVictoryResults(); assert.equal(f.presentations(), 1);
+  f.nodes.get('victoryModal').remove(); f.flush(); assert.equal(f.presentations(), 1);
+  f.ctx.state.completedGame = true; f.ctx.reopenVictoryResults(); assert.equal(f.presentations(), 2);
+});
+
+test('a deferred result respects external focus, hidden campaign and context retirement', () => {
+  const f = fixture(); Object.assign(f.ctx.state, {gameCompleted: true, correctTotal: 100});
+  const output = f.dialog(); output.querySelector('button').focus(); f.ctx.showGameCompletionModal();
+  assert.equal(f.presentations(), 0); output.remove(); f.control().focus(); f.flush(); assert.equal(f.presentations(), 0);
+  f.main.hidden = true; f.main.focus(); f.flush(); assert.equal(f.presentations(), 0);
+  f.main.hidden = false; f.ctx.document.hidden = true; f.flush(); assert.equal(f.presentations(), 0);
+  f.ctx.document.hidden = false; f.flush(); assert.equal(f.presentations(), 1);
+  for (const change of [g => g.switch({owner:'other'}), g => g.switch({epoch:1}),
+    g => {g.ctx._progressSandboxMode='other';}, g => {g.ctx.state.gameOver=true;}, g => g.retire()]) {
+    const g = fixture(); Object.assign(g.ctx.state, {gameCompleted: true, correctTotal: 100});
+    g.dialog(); g.ctx.showGameCompletionModal(); assert.equal(g.presentations(), 0);
+    change(g); g.flush(); g.advance(2000); assert.equal(g.presentations(), 0); assert.equal(g.listeners.size, 0);
+  }
+});
+
+test('pending earned rewards block completion before reveal, while direct or stale opportunities do not', () => {
+  const f = fixture(); f.queue();
+  assert.equal(f.ctx.hasPendingChestReward(), true);
+  f.advance(1199); assert.equal(f.ctx.hasPendingChestReward(), true); assert.equal(f.popup(), undefined);
+  f.advance(1); f.click(); f.advance(1150); assert.equal(f.ctx.hasPendingChestReward(), false);
+  const direct = fixture(); direct.ctx.triggerChestRewardPopup(); assert.equal(direct.ctx.hasPendingChestReward(), false);
+  const stale = fixture(); stale.queue(); stale.switch({owner: 'other'}); assert.equal(stale.ctx.hasPendingChestReward(), false);
+  const ended = fixture(); ended.queue(); ended.ctx.state.gameOver = true; assert.equal(ended.ctx.hasPendingChestReward(), false);
 });

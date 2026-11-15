@@ -1,8 +1,13 @@
 import { test, expect } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 import { routeTechnicalQuestionBank } from '../helpers/technical-question-bank';
+import { attachFailureEvidence } from '../helpers/failure-evidence';
 
 test.use({ serviceWorkers: 'block' });
+
+test.afterEach(async ({ page }, info) => {
+  if (info.status !== info.expectedStatus) await attachFailureEvidence(page, info);
+});
 
 for (const character of ['glomerulus', 'aquaria', 'nephros']) {
   test(`equipamento inicial de ${character} mantém nomes e atributos quando a imagem falha`, async ({ page, context }, info) => {

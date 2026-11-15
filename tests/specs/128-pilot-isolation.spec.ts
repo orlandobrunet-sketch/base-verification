@@ -21,7 +21,7 @@ async function occupyForgeSlots(page: Page) {
   await changeState(page, { equipment });
 }
 
-async function dismissCampaignOverlays(page: Page) {
+async function dismissCampaignOverlays(page: Page, pendingChest = false) {
   const overlays = page.locator('.nq-overlay:visible, .narrative-popup:visible, .forge-popup:visible, #chestModal.show, #equipCompareOverlay:visible');
   const controls = [
     '#guestHookContinue', '[data-close-closest=".narrative-popup"]',
@@ -35,12 +35,21 @@ async function dismissCampaignOverlays(page: Page) {
         inert: !!node.closest('[inert]') }))
       .filter(node => !node.inert)
       .sort((a, b) => a.z - b.z || a.index - b.index));
+    if (!ranked.length && pendingChest) {
+      await expect(page.locator('#autoChestPopup')).toBeVisible();
+      pendingChest = false;
+      continue;
+    }
     if (!ranked.length) {
       await expect(overlays).toHaveCount(0);
       return;
     }
     // DOM order alone misses the guest invitation above later narrative dialogs.
     const top = overlays.nth(ranked[ranked.length - 1].index);
+    if (pendingChest && await top.getAttribute('id') === 'autoChestPopup') {
+      await expect(page.locator('#autoChestPopup')).toBeVisible();
+      pendingChest = false;
+    }
     const control = top.locator(controls).first();
     await expect(control, 'Campaign overlay must have an expected native control').toBeVisible();
     const original = await top.elementHandle();
@@ -478,13 +487,13 @@ test('piloto e sua origem pendente continuam fora do ranking após janela e apó
       goldShown: _goldMilestoneShown, goldThreshold: GOLD_MILESTONE
     })`));
     const answered = await answerTechnical(page);
-    // Wait only for announcements actually scheduled by this accepted answer.
-    if (announcements.chestDue) await expect(page.locator('#autoChestPopup')).toBeVisible();
+    // Resolve earlier native dialogs before waiting for the earned chest.
+    // The helper asserts its presentation before claiming it.
     if (answered.level > before.level) await expect(page.locator('.evolution-popup')).toBeVisible();
     if (!announcements.goldShown && before.gold < announcements.goldThreshold && answered.gold >= announcements.goldThreshold) {
       await expect(page.locator('#goldMilestonePopup')).toBeVisible();
     }
-    await dismissCampaignOverlays(page);
+    await dismissCampaignOverlays(page, announcements.chestDue);
   }
   const completed = await pilotState(page);
   expect(completed.correctTotal).toBe(21);

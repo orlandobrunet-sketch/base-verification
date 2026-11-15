@@ -4,7 +4,7 @@ import { medirContraste } from '../helpers/contraste';
 test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'reduce' }});
 test.beforeEach(({},info)=>test.skip(info.project.name!=='chromium','Cenários fixam a própria viewport.'));
 async function abrir(page:Page,id='glomerulus',width=1100){
- await page.setViewportSize({width:1100,height:740});await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await injectGameState(page,{character:id});
+ await page.setViewportSize({width:1100,height:740});await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await injectGameState(page,{character:id},{asGuest:true});
  await page.evaluate(()=>(0,eval)('state.equipment.weapon={...state.equipment.weapon,atk:7,def:3,kno:5,luck:2};'));
  const before=await page.evaluate(()=>(0,eval)('JSON.stringify({state,lore:heroLores[state.character],stats:total(),image:ui.heroImg.src})'));
  await page.emulateMedia({reducedMotion:'reduce'});const origin=page.getByRole('button',{name:'Ver história do personagem'});await origin.click();await page.setViewportSize({width,height:740});const card=page.locator('.nqlore-card');await expect(card).toBeVisible();return {card,before,origin};

@@ -113,7 +113,7 @@
       }
     }
     
-    function showGameCompletionModal() { return renderVictoryResults(); }
+    function showGameCompletionModal() { return _requestVictoryResults(); }
     function renderVictoryResults() {
       if (!state.gameCompleted || state.correctTotal < 100 || document.getElementById('victoryModal')) return false;
       const awarded = typeof getUnlockedAchievements === 'function' && getUnlockedAchievements().includes('arqui_nefromante_slayer');
@@ -161,7 +161,7 @@
     function reopenVictoryResults() {
       if (!state.gameCompleted || state.correctTotal < 100 || state.gameOver ||
           document.querySelector('dialog[open], .nq-overlay, .evolution-popup')) return false;
-      return renderVictoryResults();
+      return _requestVictoryResults();
     }
     function returnHomeAfterVictory() {
       if (!state.gameCompleted || state.correctTotal < 100) return false;
@@ -6907,6 +6907,22 @@
     const _chestPilotTransfers = new WeakMap();
     const _claimedChestReceipts = new WeakSet();
     let _chestRewardWatch = null;
+    let _pendingVictoryResults = null;
+    function hasPendingChestReward() {
+      return !state.gameOver && _pendingChestRewards.some(entry => !entry.direct && _chestRewardCurrent(entry.binding));
+    }
+    function hasPendingVictoryResults() {
+      return !!_pendingVictoryResults && _chestRewardCurrent(_pendingVictoryResults.binding) &&
+        state.gameCompleted && state.correctTotal >= 100 && !state.gameOver;
+    }
+    function _requestVictoryResults() {
+      if (!state.gameCompleted || state.correctTotal < 100 || state.gameOver || document.getElementById('victoryModal')) return false;
+      const binding = _captureChestRewardBinding();
+      if (!_chestRewardCurrent(binding)) return false;
+      if (!hasPendingVictoryResults()) _pendingVictoryResults = {binding};
+      _flushChestRewards();
+      return !!document.getElementById('victoryModal');
+    }
     function _captureChestRewardBinding() {
       return { journey: _captureJourneyBinding(), sandbox: _progressSandboxMode };
     }
@@ -6928,7 +6944,7 @@
       window.removeEventListener('pageshow', _flushChestRewards);
     }
     function _watchChestRewards() {
-      if (!_pendingChestRewards.length) { _stopChestRewardWatch(); return; }
+      if (!_pendingChestRewards.length && !_pendingVictoryResults) { _stopChestRewardWatch(); return; }
       if (!_chestRewardWatch) {
         _chestRewardWatch = new MutationObserver(_flushChestRewards);
         document.addEventListener('visibilitychange', _flushChestRewards);
@@ -6953,6 +6969,7 @@
       entry.popup = null;
     }
     function _retireChestRewardContext() {
+      _pendingVictoryResults = null;
       const retired = _pendingChestRewards.splice(0);
       _stopChestRewardWatch();
       for (const entry of retired) {
@@ -6961,6 +6978,7 @@
       }
     }
     function _flushChestRewards() {
+      if (_pendingVictoryResults && !hasPendingVictoryResults()) _pendingVictoryResults = null;
       for (let index = _pendingChestRewards.length - 1; index >= 0; index--) {
         const entry = _pendingChestRewards[index];
         if (!_chestRewardCurrent(entry.binding) || state.gameOver) {
@@ -6974,11 +6992,13 @@
       for (const pending of _pendingChestRewards) {
         if (pending.popup && !pending.direct && !campaign) _withdrawChestReward(pending);
       }
-      if (entry?.ready && !entry.popup && campaign) {
-        const dialog = [...document.querySelectorAll('[aria-modal="true"],dialog[open]')].some(_chestRewardVisible);
-        const focused = document.activeElement;
-        const otherFocus = focused && focused !== document.body && !main.contains(focused) && _chestRewardVisible(focused);
-        if (!dialog && !otherFocus) triggerChestRewardPopup(entry);
+      const dialog = [...document.querySelectorAll('[aria-modal="true"],dialog[open]')].some(_chestRewardVisible);
+      const focused = document.activeElement;
+      const otherFocus = focused && focused !== document.body && !main?.contains(focused) && _chestRewardVisible(focused);
+      if (entry?.ready && !entry.popup && campaign && !dialog && !otherFocus) triggerChestRewardPopup(entry);
+      if (hasPendingVictoryResults() && !hasPendingChestReward() && campaign && !dialog && !otherFocus) {
+        _pendingVictoryResults = null;
+        renderVictoryResults();
       }
       _watchChestRewards();
     }
