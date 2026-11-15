@@ -975,7 +975,10 @@
         return pilotStartupCurrent();
       };
       if (startingPilot) {
-        if (!window.NQPilot.start(chosenCharacter, chosenDifficulty, startingOwner)) {
+        const pending=window.NQPilot.peek?.(startingOwner)?.pendingChests || 0;
+        const discardPending=pending>0 && confirm(`Há ${pending} baú(s) ainda não aberto(s) neste piloto. Iniciar outro descarta esses baús. Continuar?`);
+        if (pending && !discardPending) {abortPilotStart();return false;}
+        if (!window.NQPilot.start(chosenCharacter, chosenDifficulty, startingOwner,{discardPending})) {
           abortPilotStart();
           _toast('Não foi possível iniciar o piloto. Sua jornada normal foi preservada.', 'error', 5000);
           return false;
