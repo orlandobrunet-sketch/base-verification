@@ -106,6 +106,7 @@ test('the portrait carries the ending alone when the film cannot play', async ({
 test('a level-up arriving during the boss film waits for it to close', async ({ page }) => {
   await page.route('**/*', r => new URL(r.request().url()).hostname === 'localhost' ? r.continue() : r.abort());
   await page.goto('/jogar/', { waitUntil: 'domcontentloaded' });
+  await page.locator('[data-portal-route="guest"]').click();
   await injectBossState(page);
   await page.locator('#nqStaticIntro').click();
   const dialog = page.locator('#nqEntryCinema[open]');

@@ -1,8 +1,12 @@
 import {test,expect} from '@playwright/test';
 import {openChamberCase} from '../helpers/chamber';
 import {chamberCatalog} from '../helpers/chamber-catalog';
+import {attachFailureEvidence} from '../helpers/failure-evidence';
 
 test.use({serviceWorkers:'block',contextOptions:{reducedMotion:'reduce'}});
+test.afterEach(async({page},info)=>{
+ if(info.status!==info.expectedStatus)await attachFailureEvidence(page,info);
+});
 for(const patient of chamberCatalog)test(`all five authored acts complete once for ${patient.id}`,async({page})=>{
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());

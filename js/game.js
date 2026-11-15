@@ -113,7 +113,7 @@
       }
     }
     
-    function showGameCompletionModal() { return renderVictoryResults(); }
+    function showGameCompletionModal() { return _requestVictoryResults(); }
     function renderVictoryResults() {
       if (!state.gameCompleted || state.correctTotal < 100 || document.getElementById('victoryModal')) return false;
       const awarded = typeof getUnlockedAchievements === 'function' && getUnlockedAchievements().includes('arqui_nefromante_slayer');
@@ -161,7 +161,7 @@
     function reopenVictoryResults() {
       if (!state.gameCompleted || state.correctTotal < 100 || state.gameOver ||
           document.querySelector('dialog[open], .nq-overlay, .evolution-popup')) return false;
-      return renderVictoryResults();
+      return _requestVictoryResults();
     }
     function returnHomeAfterVictory() {
       if (!state.gameCompleted || state.correctTotal < 100) return false;
@@ -502,6 +502,7 @@
       const retiredQuestionReport = document.getElementById('flagPopup');
       ++_progressEpoch;
       retiredQuestionReport?.remove();
+      _retireChestRewardContext();
       window._retireAdminContext?.();
       window._retireMinigameContext?.();
       window._resetCloudSync?.();
@@ -1071,6 +1072,7 @@
       _normalJourneyStaging = true;
       let committed = false;
       ++_progressEpoch;
+      _retireChestRewardContext();
       window._retireMinigameContext?.();
       window._resetCloudSync?.();
       const epoch = _progressEpoch;
@@ -1104,6 +1106,7 @@
           _stopLocalJourney(); _reloadJourneyCollections(); refreshWelcomeSave();
         } else {
           ++_progressEpoch;
+          _retireChestRewardContext();
           window._retireMinigameContext?.();
           window._resetCloudSync?.();
           Object.assign(_stateData, snapshot);
@@ -1331,6 +1334,7 @@
       if (!isCharacterPilot() && !_saveBeforeDomainSwitch()) return false;
       if (isCharacterPilot() && state.gameStarted && !state.gameOver && !_doSaveGame()) return false;
       const pendingMinigameInvite = window._capturePendingMinigamePilotResume?.();
+      const pendingChests = _capturePendingChestPilotResume();
       // Retire callbacks from the current domain before obtaining a new lease.
       _stopLocalJourney();
       const resumeEpoch = _progressEpoch;
@@ -1349,6 +1353,7 @@
       _stateData.classBenefits = window.NQPilot.classBenefits;
       _reloadJourneyCollections();
       window._restorePendingMinigamePilotResume?.(pendingMinigameInvite);
+      _restorePendingChestPilotResume(pendingChests);
       return await continueGame(true);
       } finally { _pilotResumePending = false; }
     }
@@ -1613,6 +1618,7 @@
       clearTimeout(_autoSaveTimer); clearTimeout(_saveTimer); clearTimeout(_cloudSyncTimer); clearTimeout(_cloudLoadSyncTimer);
       _autoSaveTimer = _saveTimer = _cloudSyncTimer = _cloudLoadSyncTimer = null;
       ++_progressEpoch;
+      _retireChestRewardContext();
       window._retireMinigameContext?.();
       window._resetCloudSync?.();
       try { _writeSaveTombstone('journey'); } catch (e) {
@@ -5210,8 +5216,11 @@
         if (state.chestCorrectCount >= state.chestTarget) {
           state.chestCorrectCount = 0;
           state.chestTarget = Math.floor(Math.random() * 3) + 5;
-          const chestEpoch = _progressEpoch;
-          setTimeout(() => { if (chestEpoch === _progressEpoch && state.gameStarted && typeof triggerChestRewardPopup === 'function') triggerChestRewardPopup(); }, 1200);
+          const chestBinding = _captureChestRewardBinding();
+          const chestReadyAt = performance.now() + 1200;
+          _afterCharacterCommit(() => {
+            if (_chestRewardCurrent(chestBinding)) _queueChestReward(chestBinding, chestReadyAt);
+          });
         }
         const sm = getStreakMultiplier(state.streak);
         const baseXp=5+state.current.d*2+Math.min(state.streak,5)*1+Math.floor(st.kno/3);
@@ -6891,9 +6900,159 @@
       saveGame();
     }
     
-    function triggerChestRewardPopup() {
-      if(state.gameOver){ return; }
+    // Earned chests belong to the answer's committed journey, not whichever
+    // screen happens to be open when the reveal delay ends. This list is local
+    // to this page; it changes neither the saved ledger nor the reward draw.
+    const _pendingChestRewards = [];
+    const _chestPilotTransfers = new WeakMap();
+    const _claimedChestReceipts = new WeakSet();
+    let _chestRewardWatch = null;
+    let _pendingVictoryResults = null;
+    function hasPendingChestReward() {
+      return !state.gameOver && _pendingChestRewards.some(entry => !entry.direct && _chestRewardCurrent(entry.binding));
+    }
+    function hasPendingVictoryResults() {
+      return !!_pendingVictoryResults && _chestRewardCurrent(_pendingVictoryResults.binding) &&
+        state.gameCompleted && state.correctTotal >= 100 && !state.gameOver;
+    }
+    function _requestVictoryResults() {
+      if (!state.gameCompleted || state.correctTotal < 100 || state.gameOver || document.getElementById('victoryModal')) return false;
+      const binding = _captureChestRewardBinding();
+      if (!_chestRewardCurrent(binding)) return false;
+      if (!hasPendingVictoryResults()) _pendingVictoryResults = {binding};
+      _flushChestRewards();
+      return !!document.getElementById('victoryModal');
+    }
+    function _captureChestRewardBinding() {
+      return { journey: _captureJourneyBinding(), sandbox: _progressSandboxMode };
+    }
+    function _chestRewardCurrent(binding) {
+      return !!binding && _matchesJourneyBinding(binding.journey) && binding.sandbox === _progressSandboxMode;
+    }
+    function _chestRewardVisible(element) {
+      if (!element?.isConnected || element.closest('.hidden,[hidden],[inert]') || !element.getClientRects().length) return false;
+      const style = getComputedStyle(element);
+      return style.display !== 'none' && style.visibility !== 'hidden';
+    }
+    function _stopChestRewardWatch() {
+      if (!_chestRewardWatch) return;
+      _chestRewardWatch.disconnect();
+      _chestRewardWatch = null;
+      document.removeEventListener('visibilitychange', _flushChestRewards);
+      document.removeEventListener('focusin', _flushChestRewards);
+      document.removeEventListener('transitionend', _flushChestRewards);
+      window.removeEventListener('pageshow', _flushChestRewards);
+    }
+    function _watchChestRewards() {
+      if (!_pendingChestRewards.length && !_pendingVictoryResults) { _stopChestRewardWatch(); return; }
+      if (!_chestRewardWatch) {
+        _chestRewardWatch = new MutationObserver(_flushChestRewards);
+        document.addEventListener('visibilitychange', _flushChestRewards);
+        document.addEventListener('focusin', _flushChestRewards);
+        document.addEventListener('transitionend', _flushChestRewards);
+        window.addEventListener('pageshow', _flushChestRewards);
+      }
+      _chestRewardWatch.disconnect();
+      _chestRewardWatch.observe(document.body, { childList: true });
+      const roots = new Set([...document.body.children, document.getElementById('mainApp'),
+        ...document.querySelectorAll('[aria-modal="true"],dialog,.modal,[data-nq-dialogo]')]);
+      for (const root of [...roots]) {
+        for (let parent = root?.parentElement; parent && parent !== document.body; parent = parent.parentElement) roots.add(parent);
+      }
+      for (const root of roots) if (root) _chestRewardWatch.observe(root,
+        { attributes: true, attributeFilter: ['class', 'style', 'hidden', 'inert'], childList: true });
+    }
+    function _withdrawChestReward(entry) {
+      clearTimeout(entry.claimTimer);
+      entry.claimTimer = null;
+      entry.popup?.remove();
+      entry.popup = null;
+    }
+    function _retireChestRewardContext() {
+      _pendingVictoryResults = null;
+      const retired = _pendingChestRewards.splice(0);
+      _stopChestRewardWatch();
+      for (const entry of retired) {
+        clearTimeout(entry.timer);
+        _withdrawChestReward(entry);
+      }
+    }
+    function _flushChestRewards() {
+      if (_pendingVictoryResults && !hasPendingVictoryResults()) _pendingVictoryResults = null;
+      for (let index = _pendingChestRewards.length - 1; index >= 0; index--) {
+        const entry = _pendingChestRewards[index];
+        if (!_chestRewardCurrent(entry.binding) || state.gameOver) {
+          _pendingChestRewards.splice(index, 1);
+          clearTimeout(entry.timer);
+          _withdrawChestReward(entry);
+        }
+      }
+      const entry = _pendingChestRewards[0], main = document.getElementById('mainApp');
+      const campaign = !document.hidden && state.gameStarted && !state.gameOver && _chestRewardVisible(main);
+      for (const pending of _pendingChestRewards) {
+        if (pending.popup && !pending.direct && !campaign) _withdrawChestReward(pending);
+      }
+      const dialog = [...document.querySelectorAll('[aria-modal="true"],dialog[open]')].some(_chestRewardVisible);
+      const focused = document.activeElement;
+      const otherFocus = focused && focused !== document.body && !main?.contains(focused) && _chestRewardVisible(focused);
+      if (entry?.ready && !entry.popup && campaign && !dialog && !otherFocus) triggerChestRewardPopup(entry);
+      if (hasPendingVictoryResults() && !hasPendingChestReward() && campaign && !dialog) {
+        const dock = document.getElementById('mobileBottomDock');
+        const nativeDockFocus = _chestRewardVisible(dock) && dock.contains(focused);
+        if (!otherFocus || nativeDockFocus) {
+          _pendingVictoryResults = null;
+          renderVictoryResults();
+        }
+      }
+      _watchChestRewards();
+    }
+    function _queueChestReward(binding, readyAt, receipt = Object.freeze({})) {
+      if (_claimedChestReceipts.has(receipt) || _pendingChestRewards.some(entry => entry.receipt === receipt)) return;
+      const entry = { binding, readyAt, receipt, ready: false, popup: null, timer: null, claimTimer: null };
+      _pendingChestRewards.push(entry);
+      entry.timer = setTimeout(() => {
+        entry.timer = null;
+        entry.ready = true;
+        _flushChestRewards();
+      }, Math.max(0, readyAt - performance.now()));
+      _watchChestRewards();
+    }
+    function _capturePendingChestPilotResume() {
+      const binding = _captureChestRewardBinding(), progress = binding.journey.context;
+      if (binding.sandbox !== null || progress?.domain !== 'pilot' || !window.NQPilot?.writable ||
+          progress.owner !== binding.journey.owner || !_chestRewardCurrent(binding)) return null;
+      const token = Object.freeze({});
+      const entries = _pendingChestRewards.filter(entry => !entry.direct && _chestRewardCurrent(entry.binding))
+        .map(entry => Object.freeze({ readyAt: entry.readyAt, receipt: entry.receipt }));
+      _chestPilotTransfers.set(token, Object.freeze({ owner: progress.owner, journeyId: progress.journeyId,
+        generation: progress.generation, epoch: binding.journey.epoch, entries: Object.freeze(entries) }));
+      return token;
+    }
+    function _restorePendingChestPilotResume(token) {
+      const saved = _chestPilotTransfers.get(token);
+      _chestPilotTransfers.delete(token);
+      const binding = _captureChestRewardBinding(), progress = binding.journey.context;
+      if (!saved || binding.sandbox !== null || progress?.domain !== 'pilot' || !window.NQPilot?.writable ||
+          !_chestRewardCurrent(binding) || binding.journey.owner !== saved.owner || progress.owner !== saved.owner ||
+          progress.journeyId !== saved.journeyId || !(progress.generation > saved.generation) ||
+          !(binding.journey.epoch > saved.epoch)) return false;
+      for (const entry of saved.entries) _queueChestReward(binding, entry.readyAt, entry.receipt);
+      return true;
+    }
+    window.NQPilot?.onContextChange(_retireChestRewardContext);
+
+    function triggerChestRewardPopup(entry = null) {
+      if(state.gameOver || document.getElementById('autoChestPopup')){ return; }
+      // Keep the existing direct render API used by previews and accessibility
+      // checks. Only accepted answer callbacks use the delayed queue above.
+      if (!entry) {
+        entry = { binding: _captureChestRewardBinding(), readyAt: performance.now(), ready: true,
+          receipt: Object.freeze({}), direct: true, popup: null, timer: null, claimTimer: null };
+        _pendingChestRewards.push(entry);
+      }
+      if (!_chestRewardCurrent(entry.binding)) return;
       const popup = document.createElement('div');
+      entry.popup = popup;
       popup.className = 'narrative-popup';
       popup.id = 'autoChestPopup';
       popup.innerHTML = `
@@ -6909,13 +7068,15 @@
       nqDialogo(popup);
       popup.querySelector('.nqch-trigger').focus({ preventScroll: true });
       playSound('chest');
+      _watchChestRewards();
     }
     window.triggerChestRewardPopup = triggerChestRewardPopup;
 
     function _animateAndClaimChest(trigger) {
       const popup = trigger.closest('#autoChestPopup');
+      const entry = _pendingChestRewards.find(candidate => candidate.popup === popup);
       // Ilustração e botão conduzem à mesma abertura, sem recompensa duplicada.
-      if (!popup || popup.dataset.claiming) return;
+      if (!popup || popup.dataset.claiming || !entry || !_chestRewardCurrent(entry.binding) || state.gameOver) return;
       popup.dataset.claiming = '1';
       popup.querySelector('.nqch-dialog').classList.add('opening');
       popup.querySelector('.nqch-dialog').setAttribute('aria-busy', 'true');
@@ -6924,11 +7085,20 @@
       popup.querySelector('.nqch-reading').focus({ preventScroll: true });
       playSound('click');
       const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const binding = _captureJourneyBinding();
-      setTimeout(() => {
+      entry.claimTimer = setTimeout(() => {
+        entry.claimTimer = null;
+        if (!_pendingChestRewards.includes(entry) || !_chestRewardCurrent(entry.binding) || state.gameOver) return;
+        if (!entry.direct && (document.hidden || !_chestRewardVisible(document.getElementById('mainApp')))) {
+          _withdrawChestReward(entry);
+          _watchChestRewards();
+          return;
+        }
+        _pendingChestRewards.splice(_pendingChestRewards.indexOf(entry), 1);
+        _claimedChestReceipts.add(entry.receipt);
+        entry.popup = null;
         popup.remove();
-        if (!_matchesJourneyBinding(binding)) return;
         claimChestReward();
+        _watchChestRewards();
       }, reducedMotion ? 0 : 1150);
     }
     window._animateAndClaimChest = _animateAndClaimChest;

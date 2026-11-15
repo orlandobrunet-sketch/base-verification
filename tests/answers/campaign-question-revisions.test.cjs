@@ -98,6 +98,7 @@ function harness(f) {
   context.questionRevisionCatalog = context.NQQuestionRevisions.createCatalog({manifest: context.NQQuestionRevisionManifest,
     history: context.NQQuestionRevisionHistory, authors: [f.after], sources: {main: [source(f.after)]}, references: f.refs});
   evaluate(section('    let _saveTimer = null;', '    function _savePilotGame()'), 'game.js real revision/save/start helpers');
+  evaluate(section('    const _pendingChestRewards = [];', '    function triggerChestRewardPopup('), 'game.js real transient chest lifecycle');
   evaluate(section('    const state = new Proxy(_stateData, {', '    function isProgressSandbox()'), 'game.js real state Proxy');
   evaluate(section('    const _LIFE_BONUS_ITEMS =', '    function _equipLifeBonus('), 'game.js real equipment life bonus set');
   evaluate(fn('_equipLifeBonus'), 'game.js real equipment life bonus');

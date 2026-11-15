@@ -24,6 +24,8 @@ const canonical = [
     ? [between('isCharacterPilot', '_pilotOrigin')] : []),
   ...(source.includes('function _questionSaveExtras(')
     ? [between('_answerChoice', '_normalCharacterSaveValid')] : []),
+  ...(source.includes('const _pendingChestRewards = [];')
+    ? [source.slice(source.indexOf('    const _pendingChestRewards = [];'), source.indexOf('    function triggerChestRewardPopup('))] : []),
   between('_currentSaveOwner', '_prepareProgressOwner'),
   between('_stopLocalJourney', '_mirrorLegacySave'),
   between('_mirrorLegacySave', '_showGuestSaveRecovery'),

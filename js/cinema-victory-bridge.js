@@ -10,6 +10,7 @@
  function read(){try{return {epoch:_progressEpoch,character:state.character,question:state.current,qid:state.current?.id,
   answer:state.questionAnswer,answered:state.answered,correct:state.correctTotal,hp:getBossHP(),progress:getBossProgress(),
   completed:state.gameCompleted,continued:state.completedGame,over:state.gameOver,started:state.gameStarted,lives:state.lives,level:state.level};}catch(_){return null;}}
+ function nativeResultsPending(){return typeof hasPendingVictoryResults==='function'&&hasPendingVictoryResults();}
  function mainVisible(){const main=document.getElementById('mainApp');return !disposed&&!!main&&!main.hidden&&!main.classList.contains('hidden')&&!!main.getClientRects().length;}
  function eligible(){return mainVisible()&&fine.matches;}
  function matches(rec,complete){const s=read();try{return !!rec&&!rec.cancelled&&mainVisible()&&!!s&&s.epoch===rec.epoch&&s.character===rec.character&&s.question===rec.question&&s.qid===rec.qid&&s.answer===rec.answer&&s.answered===true&&s.correct===100&&s.progress===10&&s.hp===0&&s.started===true&&s.over===false&&s.continued===false&&s.lives>0&&(!complete||s.completed===true)&&_matchesJourneyBinding(rec.binding);}catch(_){return false;}}
@@ -23,7 +24,7 @@
   for(const rec of records.values()){
    const pending=rec.evolution;if(!pending)continue;
    if(rec.evolutionAbandoned||!evolutionCurrent(rec)){clearEvolution(rec,'stale-context');continue;}
-   if(!rec.delivered||active===rec||document.hidden||document.getElementById('victoryModal')||otherOverlay())continue;
+   if(!rec.delivered||active===rec||document.hidden||document.getElementById('victoryModal')||nativeResultsPending()||otherOverlay())continue;
    if(pending.node.dataset.nqDialogo){if(!evolutionFrame)evolutionFrame=requestAnimationFrame(flushEvolution);continue;}
    rec.evolution=null;
    if(document.activeElement===document.body){
@@ -38,7 +39,7 @@
  function holdEvolution(receiver,args){
   const s=read(),rec=s&&records.get(String(s.epoch)+':'+s.character);
   const owned=!!rec&&Number(args[0])===rec.finalLevel&&evolutionCurrent(rec);
-  const holding=owned&&!rec.evolutionAbandoned&&(active===rec||rec.delivered&&!!document.getElementById('victoryModal'));
+  const holding=owned&&!rec.evolutionAbandoned&&(active===rec||rec.delivered&&(!!document.getElementById('victoryModal')||nativeResultsPending()));
   if(!owned||(!holding&&!rec.evolutionAbandoned))return originalEvolution.apply(receiver,args);
   const prior=document.activeElement;
   const result=originalEvolution.apply(receiver,args),node=document.querySelector('.evolution-popup');
@@ -71,7 +72,7 @@
   if(!document.getElementById('victoryModal')){deliveredCount++;originalModal.apply(rec.receiver,rec.args||[]);}
   return true;
  }
- function otherOverlay(){return [...document.querySelectorAll('dialog[open],.nq-overlay,[aria-modal="true"],#arquiQ9Popup')].some(n=>n.id!=='nqVictoryCinema'&&!n.hidden&&n.getClientRects().length&&getComputedStyle(n).visibility!=='hidden');}
+ function otherOverlay(){return (typeof hasPendingChestReward==='function'&&hasPendingChestReward())||[...document.querySelectorAll('dialog[open],.nq-overlay,[aria-modal="true"],#arquiQ9Popup')].some(n=>n.id!=='nqVictoryCinema'&&!n.hidden&&n.getClientRects().length&&getComputedStyle(n).visibility!=='hidden');}
  function terminalVisible(){const n=document.getElementById('nqStaticHpTrack');if(!n||!n.getClientRects().length||document.hidden||otherOverlay())return false;const r=n.getBoundingClientRect(),style=getComputedStyle(n);if(!(r.width>0&&r.height>0&&style.visibility!=='hidden'&&style.display!=='none'&&Number(style.opacity)>0&&r.top>=0&&r.bottom<=innerHeight&&r.left>=0&&r.right<=innerWidth&&n.getAttribute('aria-valuenow')==='0'))return false;const top=document.elementFromPoint(r.left+r.width/2,r.top+r.height/2);return !!top&&(top===n||n.contains(top));}
  function present(rec){
   if(!matches(rec,true))return cancel(rec,'context-before-presentation');

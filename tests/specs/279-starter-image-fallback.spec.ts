@@ -1,8 +1,20 @@
 import { test, expect } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 import { routeTechnicalQuestionBank } from '../helpers/technical-question-bank';
+import { attachFailureEvidence } from '../helpers/failure-evidence';
+import { startStarterContextLifecycle, finishStarterContextLifecycle } from '../helpers/starter-context-lifecycle';
 
 test.use({ serviceWorkers: 'block' });
+
+test.beforeEach(async ({ page }) => {
+  await startStarterContextLifecycle(page);
+});
+
+test.afterEach(async ({ page }, info) => {
+  try {
+    if (info.status !== info.expectedStatus) await attachFailureEvidence(page, info);
+  } finally { await finishStarterContextLifecycle(page, info); }
+});
 
 for (const character of ['glomerulus', 'aquaria', 'nephros']) {
   test(`equipamento inicial de ${character} mantém nomes e atributos quando a imagem falha`, async ({ page, context }, info) => {

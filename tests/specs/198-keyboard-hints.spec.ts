@@ -8,7 +8,7 @@ async function open(page:Page,boss:boolean){
  await page.routeWebSocket('**/*',s=>s.close());
  await page.goto('/jogar/',{waitUntil:'domcontentloaded'});
  if(boss){await page.waitForFunction(()=>typeof (window as any).startBossPreview==='function');await page.evaluate(async()=>await (window as any).startBossPreview());}
- else await injectGameState(page);
+ else await injectGameState(page,{}, {asGuest:true});
  await expect(page.locator('#options .option')).toHaveCount(4);await page.evaluate(()=>document.fonts.ready);
 }
 for(const boss of [false,true]){

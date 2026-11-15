@@ -20,7 +20,7 @@ test.beforeEach(async ({page, context}) => {
   });
   await context.routeWebSocket('**/*', socket => socket.close());
   await page.goto('/jogar/');
-  await injectGameState(page, {gold: 0, streak: 0, narrativeShown: 5});
+  await injectGameState(page, {gold: 0, streak: 0, narrativeShown: 5}, {asGuest: true});
 });
 
 test('the portrait stays still for all three characters, with no pause control', async ({page}, info) => {

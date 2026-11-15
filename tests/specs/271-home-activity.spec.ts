@@ -63,6 +63,9 @@ test('demonstração conserva a etapa ao sair e continua uma única vez ao retor
   await expect(page.locator('.oracle-core')).toHaveClass(/is-thinking/);
   await scrollTo(page, '#hero-title');
   await expect.poll(() => page.locator('.chat').evaluate(node => node.getBoundingClientRect().top > innerHeight)).toBe(true);
+  // Geometry precedes the native observer delivery; observe the pause before
+  // accelerating timers, just as the return below observes its resumption.
+  await expect.poll(() => page.locator('.chat-typing span').first().evaluate(node => getComputedStyle(node).animationPlayState)).toBe('paused');
   const before = await shown(page); expect(before).toBeLessThan(2);
   // The original second stage fires after1300ms. A negative assertion must
   // cross that deadline; this is a correctness check, not a speed benchmark.

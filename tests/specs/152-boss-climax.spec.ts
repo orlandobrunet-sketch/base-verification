@@ -52,9 +52,9 @@ async function abrir(page: Page, width = 1440) {
 }
 
 async function fecharNarrativas(page: Page) {
-  // O 100º acerto encerra este cenário na vitória. Um baú simultâneo pode
-  // continuar atrás dela; não se tenta acionar um controle encoberto.
-  if (await page.evaluate(() => (window as any).state.gameCompleted)) {
+  // No desktop, o helper percorre prêmio, filme e resultados. No fallback,
+  // o mesmo loop nativo abaixo fecha primeiro os prêmios da conclusão.
+  if (await page.evaluate(() => (window as any).state.gameCompleted) && (await bossPresentation(page)).cinematic) {
     await finishBossCinema(page);
     await expect(page.locator('#victoryModal')).toBeVisible();
     return;
@@ -184,13 +184,14 @@ test('baú no décimo estágio mantém a vitória como endpoint sem gravar progr
       await expect(page.locator('#victoryModal')).toHaveCount(0);
       expect(await page.evaluate(() => (window as any).state.gameCompleted)).toBe(true);
       await info.attach('native-reward-before-results', { body: await page.screenshot(), contentType: 'image/png' });
-    } else await expect(page.locator('#victoryModal')).toBeVisible();
+    }
+    await expect(page.locator('#victoryModal')).toHaveCount(0);
     await page.locator('#autoChestPopup').getByRole('button', { name: 'Abrir baú', exact: true }).click();
     await expect(page.locator('#autoChestPopup')).toHaveCount(0);
     await expect(page.locator('#chestModal.show')).toBeVisible();
     await expect.poll(() => page.evaluate(() => (window as any).state.chestsOpened)).toBe(before.chests + 1);
     expect(await page.evaluate(() => (window as any).state.score)).toBeGreaterThan(before.score);
-    if (view.cinematic) await page.locator('#chestModal.show').getByRole('button').last().click();
+    await page.locator('#chestModal.show').getByRole('button').last().click();
     await fecharNarrativas(page);
   } finally {
     await page.evaluate(() => { Math.random = (window as any)._fixtureRandom; delete (window as any)._fixtureRandom; });
