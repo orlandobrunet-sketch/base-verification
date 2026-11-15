@@ -44,6 +44,12 @@ O coletor opt-in em `tests/diagnostics/`, com controles em `tests/probes/`, sele
 
 O filtro atua antes de persistir tanto nos streams do launcher quanto nos eventos do reporter dos workers. Parâmetros, scripts, resultados e stderr bruto não entram nas projeções. **Limite aceito:** o Playwright pode criar por conta própria `artifacts/.../error-context.md`, com erro, snapshot e codeframe; o filtro não controla esse arquivo nativo. Somente estes seis arquivos podem ser enviados pela captura focal: `collector-summary.json`, `results-summary.json`, `protocol-metadata.jsonl`, `child-output-metadata.jsonl`, `worker-protocol-metadata.jsonl` e `worker-output-metadata.jsonl`. A pasta `artifacts` inteira fica fora do upload.
 
+### Captura Linux da CI1094
+
+No HEAD `85b53d47c4962bc65f77bc20d31679ed882fb232`, run `43729727169`, o job focal `132859523674` terminou reprovado: **quatro casos Linux passaram diretamente, sem retry**, mas o coletor saiu com código 70. O processo de testes retornou zero; somente o contador `malformedIdentifiers=3` tornou a captura incompleta. Os demais contadores de perda/parse ficaram em zero; os seis arquivos e os dois erros CDP dos controles foram preservados.
+
+A fonte instalada do transporte usa `id=-9999` nas respostas de fechamento do browser. Três fechamentos reproduziram em Node o mesmo contador: **27 contratos, 26 PASS + 1 RED**, depois **27/27 PASS** com o reparo. Respostas de inteiro seguro sem request rastreado agora são ignoradas antes da validação dos IDs rastreados; objetos, frações, números inseguros e contextos inválidos continuam barrados. Um contador limitado dos ACKs reservados permitirá conferir essa fronteira na próxima captura. Como os três IDs rejeitados antigos foram omitidos, sua atribuição exclusiva ao fechamento continua sendo inferência, não fato recuperado do artefato. Nenhum browser, await, helper ou teste original foi alterado ou reexecutado por esse reparo. A CI1094 e seu resultado focal permanecem intactos; o resultado da CI completa não é deduzido deste job.
+
 ## Investigação de pilha da 193
 
 | Controle externo | Resultado preservado |
@@ -64,7 +70,7 @@ As três rodadas não capturaram o bloqueio histórico da 193. **Nenhum coletor 
 
 Os perfis móveis são emulados. Não houve validação em telefone físico, conta, IA, pagamento ou serviço real. Capturas diagnósticas podem alterar timing. As quantidades de browser, Node e reprojeção são conjuntos distintos, sem total agregado de “testes novos”.
 
-A bateria Node final do coordenador passou **548/548**, já incluindo os 26 contratos do coletor; não são 548 mais 26. Esse resultado local não substitui a CI do HEAD consolidado.
+A bateria Node anterior do coordenador passou **548/548**, incluindo os 26 contratos do coletor. Após o ajuste diagnóstico da CI1094, uma nova bateria passou **549/549**, incluindo os 27 contratos: não são 549 mais 27 nem a reclassificação da rodada anterior. Esses resultados locais não substituem a CI do HEAD consolidado.
 
 ## Recibos e integração pendente
 

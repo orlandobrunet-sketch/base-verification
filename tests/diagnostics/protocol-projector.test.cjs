@@ -150,3 +150,20 @@ test('one combined output budget bounds ordinary stderr metadata and protocol me
   assert.equal(sink.counters.otherLines, 3); assert.equal(sink.counters.otherRecordsWritten, 1);
   assert.equal(sink.counters.otherRecordsDropped, 2); assert.equal(sink.counters.recordsDropped, 1);
 });
+test('reserved replies to untracked browser shutdown commands do not invalidate tracked metadata', () => {
+  const capture = projector();
+  // The installed Playwright transport uses this reserved id for Browser.close.
+  // Three projects reproduce the observed malformed counter, not output loss;
+  // the original CI IDs were omitted and their shutdown origin remains inferred.
+  for (let project = 0; project < 3; project++) {
+    assert.deepEqual(capture.consume(send({id: -9999, method: 'Browser.close', params: {}})).rows, []);
+    assert.deepEqual(capture.consume(receive({id: -9999, result: {}})).rows, []);
+  }
+  assert.equal(capture.counters.malformedIdentifiers, 0);
+  assert.equal(capture.counters.untrackedShutdownRepliesUpToFour, 3);
+  for (let extra = 0; extra < 10; extra++) capture.consume(receive({id: -9999, result: {}}));
+  assert.equal(capture.counters.untrackedShutdownRepliesUpToFour, 4);
+  capture.consume(send({id: 1, method: 'Runtime.evaluate'}));
+  const row = capture.consume(receive({id: 1, error: {code: -32000, message: 'Promise was collected'}})).rows[0];
+  assert.equal(row.status, 'protocol-error'); assert.equal(row.allowedMessage, 'Promise was collected');
+});

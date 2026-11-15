@@ -22,7 +22,7 @@ const safeURL = raw => {
 function projector() {
   const pending = new Map();
   const counters = {protocolLines: 0, parseFailures: 0, unclassifiedErrors: 0,
-    pendingEvictions: 0, malformedIdentifiers: 0};
+    pendingEvictions: 0, malformedIdentifiers: 0, untrackedShutdownRepliesUpToFour: 0};
   const integerID = value => {
     if (Number.isSafeInteger(value) && value >= 0) return value;
     counters.malformedIdentifiers++; return null;
@@ -79,6 +79,14 @@ function projector() {
         method: message.method, parametersOmitted: true}]};
     }
     if (message.id !== undefined) {
+      // Protocol transports may use a reserved negative integer for an
+      // untracked shutdown command. It is not a malformed tracked Runtime ID.
+      // Keep the count bounded:4 means at least4;0..3 remain exact.
+      if (Number.isSafeInteger(message.id) && !pending.has(message.id + ':' + (session || ''))) {
+        if (message.id === -9999) counters.untrackedShutdownRepliesUpToFour =
+          Math.min(4, counters.untrackedShutdownRepliesUpToFour + 1);
+        return {protocol: true, rows: []};
+      }
       const id = integerID(message.id);
       if (id === null) return {protocol: true, rows: []};
       const key = id + ':' + (session || '');
