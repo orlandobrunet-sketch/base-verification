@@ -1,7 +1,11 @@
 import {test,expect} from '@playwright/test';
 import {injectGameState} from '../helpers/game';
 import {routeTechnicalQuestionBank} from '../helpers/technical-question-bank';
+import {attachFailureEvidence} from '../helpers/failure-evidence';
 test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'reduce' }});
+test.afterEach(async({page},info)=>{
+ if(info.status!==info.expectedStatus)await attachFailureEvidence(page,info);
+});
 test('multiplicador só aparece quando efetivo, usa decimal PT-BR e some ao errar',async({page})=>{
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
  await routeTechnicalQuestionBank(page,Array.from({length:4},(_,i)=>({qid:'streak-display-'+i,t:'Sequência técnica',q:'Questão de sequência '+i,opts:['A','B','C','D'],ans:i,exp:'Explicação técnica',cat:'geral',diff:'medium',refs:[]})));
