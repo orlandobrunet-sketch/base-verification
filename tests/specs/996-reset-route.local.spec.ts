@@ -75,7 +75,7 @@ test('real dashboard and account routes do not expose legacy reset modal',async(
  await page.waitForTimeout(500);await inspect('dashboard');
   for(const id of ['nqdTab-skills','nqdTab-mapa','nqdTab-achievements','nqdTab-library']){await page.locator('#'+id).click();await page.waitForTimeout(100);await inspect(id);}
  await page.locator('[data-action="closeDashboard"]:visible').first().click();
- await page.locator('#gameProfileBtn').click();await inspect('guest-profile');
+ await page.getByRole('button',{name:'Menu da conta',exact:true}).click();await inspect('guest-profile');
  await info.attach('real-routes',{contentType:'application/json',body:JSON.stringify(shots)});
  expect(shots.every(s=>s.legacyRoutes===0)).toBe(true);
  console.log(JSON.stringify(shots));

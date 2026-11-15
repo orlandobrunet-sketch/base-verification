@@ -152,6 +152,7 @@
           updateWelcomeUserBadge();
           if (!_guestMode) _showSignedOutPortal();
           _finishAuthStartup();
+          _consumeLoginIntent();
           return;
         }
         const prepareEpoch=_authSessionEpoch;
@@ -160,7 +161,7 @@
           : typeof window._prepareProgressOwner !== 'function' || window._prepareProgressOwner(candidateUser?.id || null);
         if (_authSessionEpoch!==prepareEpoch || _authSessionEventGeneration!==eventGeneration) return;
         if (window.NQ_DURABLE_PROGRESS===true && !progressReady) {
-          _setAuthSessionUser(null);window._stopLocalJourney?.();updateWelcomeUserBadge();_showSignedOutPortal();_finishAuthStartup();return;
+          _setAuthSessionUser(null);window._stopLocalJourney?.();updateWelcomeUserBadge();_showSignedOutPortal();_finishAuthStartup();_consumeLoginIntent();return;
         }
         if ((authUser?.id || null) !== (candidateUser?.id || null) || event === 'SIGNED_OUT') {
           ++_authSessionEpoch;
@@ -194,6 +195,8 @@
         updateWelcomeUserBadge();
         if (!authUser && !_guestMode) _showSignedOutPortal();
         _finishAuthStartup();
+        // The winning auth event owns startup routing when getSession is stale.
+        _consumeLoginIntent();
         // O módulo de pagamentos pode ainda estar na fila de scripts defer.
         if (authUser) _resumePaymentAfterLogin();
       };

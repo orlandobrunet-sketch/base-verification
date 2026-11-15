@@ -3271,7 +3271,8 @@
           document.getElementById('mainApp').focus({ preventScroll: true });
         }
         _flushChestRewards(); // Fresh documents must attach the durable reward scheduler.
-        if (state.gameCompleted && state.correctTotal>=100) _requestVictoryResults();
+        if (state.gameCompleted && state.correctTotal>=100 &&
+            _durableChestStore()?.chestReceipts?.().some(receipt=>receipt.phase!=='consumed')) _requestVictoryResults();
       } catch (error) {
         console.error('continueGame: falha inesperada', error);
         announceError('Não foi possível retomar a jornada. Tente novamente.');

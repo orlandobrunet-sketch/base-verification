@@ -78,15 +78,16 @@ test('account A pending chest survives logout B independent journey logout A res
  const A='00000000-0000-4000-8000-000000009951',B='00000000-0000-4000-8000-000000009952';
  await earnFirstChest(page);const a=await page.evaluate(()=>(window as any).NQNormalProgress.envelope());const aKey=await page.evaluate(()=>(window as any).NQNormalProgress.authority.key);
  expect(a.receipts.filter((r:any)=>r.phase!=='consumed')).toHaveLength(1);
- await page.clock.resume();
- await page.locator('#gameProfileBtn').click();await page.locator('[data-action="authLogout"]:visible').click();
+ // Keep the earned-but-not-presented deadline paused until logout commits.
+ await page.getByRole('button',{name:'Menu da conta',exact:true}).click();await page.locator('[data-action="authLogout"]:visible').click();
  await expect.poll(()=>page.evaluate(()=>(window as any).authUser)).toBeNull();
+ await page.clock.resume();
  expect(await page.evaluate(()=>!!(window as any).NQNormalProgress?.writable)).toBe(false);
  await page.evaluate(id=>(window as any).__fakeLogin(id),B);await expect(page.locator('#welcomeScreen')).toBeVisible();
  await startNormalCharacter(page,'aquaria','easy');
  const b=await page.evaluate(()=>(window as any).NQNormalProgress.envelope());expect(b.save.saveOwner).toBe(B);expect(b.save.score).toBe(0);expect(b.collections).toEqual({articles:[],knowledge:0});expect(b.receipts).toEqual([]);
  expect(b.save.journeyId).not.toBe(a.save.journeyId);
- await page.locator('#gameProfileBtn').click();await page.locator('[data-action="authLogout"]:visible').click();await expect.poll(()=>page.evaluate(()=>(window as any).authUser)).toBeNull();
+ await page.getByRole('button',{name:'Menu da conta',exact:true}).click();await page.locator('[data-action="authLogout"]:visible').click();await expect.poll(()=>page.evaluate(()=>(window as any).authUser)).toBeNull();
  await page.evaluate(id=>(window as any).__fakeLogin(id),A);await expect(page.locator('#welcomeContinueBtn')).toBeVisible();await page.locator('#welcomeContinueBtn').click();await expect(page.locator('#mainApp')).toBeVisible();
  const resumed=await page.evaluate(()=>(window as any).NQNormalProgress.envelope());expect(resumed.save.saveOwner).toBe(A);expect(resumed.save.score).toBe(a.save.score);expect(resumed.save.journeyId).toBe(a.save.journeyId);expect(resumed.collections).toEqual(a.collections);expect(resumed.receipts.map((r:any)=>r.id)).toEqual(a.receipts.map((r:any)=>r.id));
  await expect(page.locator('#autoChestPopup')).toBeVisible();await page.locator('#autoChestPopup .nqch-trigger').click();if(await page.locator('#ecpKeep').isVisible())await page.locator('#ecpKeep').click();
@@ -117,7 +118,7 @@ test('logout refuses changed legacy source without deleting foreign bytes',async
  const foreign=JSON.stringify({schemaVersion:7,saveOwner:'00000000-0000-4000-8000-000000009952',save:null,resetReason:'technical-conflict'});
  // Deliberate local fixture corruption: emulate an older client writing shared source.
  await page.evaluate(v=>localStorage.setItem('nefroquest-save-v7',v),foreign);
- await page.locator('#gameProfileBtn').click();await page.locator('[data-action="authLogout"]:visible').click();
+ await page.getByRole('button',{name:'Menu da conta',exact:true}).click();await page.locator('[data-action="authLogout"]:visible').click();
  await expect.poll(()=>page.evaluate(()=>(window as any)._authLogoutPending)).toBe(false);
  expect(await page.evaluate(()=>(window as any).authUser?.id)).toBe('00000000-0000-4000-8000-000000009951');
  expect(await page.evaluate(()=>localStorage.getItem('nefroquest-save-v7'))).toBe(foreign);expect(await page.evaluate(k=>localStorage.getItem(k),key)).toBe(authority);
