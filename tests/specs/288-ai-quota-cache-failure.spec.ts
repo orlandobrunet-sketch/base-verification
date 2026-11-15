@@ -129,10 +129,27 @@ for (const api of apis) {
     await page.route(`**/functions/v1/${api.endpoint}`, route => { pending = route; });
     await beginUI(page, api);
     await expect.poll(() => !!pending).toBe(true);
+    // Capture the real handler's completion before retiring its view. A
+    // fulfilled response can still have an aborted transport after owner change.
+    const completion = await page.evaluateHandle(endpoint => endpoint === 'ai-mentor'
+      ? { input: document.getElementById('mentorInput'), button: document.querySelector('.mentor-send-btn') }
+      : { promise: (0, eval)('[..._diagPorSessao.values()].find(entry => entry.promessa)?.promessa') }, api.endpoint);
+    expect(await completion.evaluate((ref: any) => ref.promise ? true : ref.input.disabled && ref.button.disabled)).toBe(true);
     await identity(page, ownerB);
-    const response = page.waitForResponse(res => res.url().includes(`/functions/v1/${api.endpoint}`));
     await pending!.fulfill({ json: { reply, diagnosis: reply } });
-    await (await response).finished();
+    if (api.endpoint === 'ai-mentor') {
+      // The detached controls are enabled only by _sendMentorMessage's finally.
+      await page.waitForFunction((ref: any) => !ref.input.disabled && !ref.button.disabled, completion);
+      expect(await page.evaluate(() => (0, eval)('_mentorRequestController'))).toBeNull();
+      expect(await page.evaluate(() => (0, eval)('_mentorHistory'))).toEqual([]);
+    } else {
+      // This is the application's own pending diagnosis, not a test substitute.
+      expect(await completion.evaluate(async (ref: any) => await ref.promise)).toEqual({ estado: 'cancelado' });
+      expect(await page.evaluate(() => (0, eval)('[..._diagPorSessao.values()].filter(entry => entry.texto)'))).toEqual([]);
+    }
+    await completion.dispose();
+    await test.info().attach('quota-handler-completion', { contentType: 'application/json',
+      body: JSON.stringify({ endpoint: api.endpoint, applicationHandlerCompleted: true }) });
     expect((await quota(page, api)).count).toBe(0);
     expect(await canAsk(page, api)).toBe(true);
     await identity(page, ownerA);

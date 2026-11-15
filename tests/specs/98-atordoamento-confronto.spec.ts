@@ -1,7 +1,71 @@
 import { test, expect, type Page } from '@playwright/test';
 import { injectGameState } from '../helpers/game';
 import { medirContraste } from '../helpers/contraste';
+import { attachFailureEvidence } from '../helpers/failure-evidence';
 test.use({serviceWorkers:'block',contextOptions: { reducedMotion:'reduce' }});
+test.beforeEach(async ({page}) => {
+ await page.addInitScript(() => {
+  if (window !== window.top) return;
+  const limit = 48, events: unknown[] = [];
+  const identify = (target: EventTarget | null) => {
+   const element = target instanceof Element ? target : null;
+   return element ? {tag:element.tagName,id:element.id.slice(0,80),classes:[...element.classList].slice(0,8),
+    inStunReader:!!element.closest('.nqstun-card .nqnarr-reading'),inPortal:!!element.closest('#landingScreen')}
+    : {kind:target === document ? 'document' : target === window ? 'window' : 'other'};
+  };
+  const record = (event:Event, phase:string) => {
+   events.push({type:event.type,phase,at:performance.now(),eventAt:event.timeStamp,isTrusted:event.isTrusted,
+    eventPhase:event.eventPhase,defaultPrevented:event.defaultPrevented,target:identify(event.target),
+    activeElement:identify(document.activeElement),documentHasFocus:document.hasFocus(),visibility:document.visibilityState});
+   if (events.length > limit) events.splice(0,events.length-limit);
+  };
+  for (const capture of [true,false]) {
+   for (const type of ['keydown','keyup']) window.addEventListener(type,event => {
+    if ((event as KeyboardEvent).key === 'End') record(event,capture ? 'capture' : 'bubble');
+   },{capture,passive:true});
+  }
+  for (const type of ['focusin','scroll']) window.addEventListener(type,event => record(event,'capture'),{capture:true,passive:true});
+  (window as any).__nq98PassiveEnd = {limit,events};
+ });
+});
+
+async function attachStunEndEvidence(page:Page,info:Parameters<typeof attachFailureEvidence>[1]) {
+ let timer:ReturnType<typeof setTimeout>|undefined;
+ let evidence:unknown = {status:'unavailable',reason:'page-closed'};
+ try {
+  if (!page.isClosed()) {
+   evidence = await Promise.race([page.evaluate(() => {
+    const identify = (element:Element|null) => element && ({tag:element.tagName,id:element.id.slice(0,80),
+     classes:[...element.classList].slice(0,8),inStunReader:!!element.closest('.nqstun-card .nqnarr-reading'),
+     inPortal:!!element.closest('#landingScreen')});
+    const measure = (selector:string) => {
+     const element = document.querySelector<HTMLElement>(selector);
+     if (!element) return {selector,present:false};
+     const rect=element.getBoundingClientRect(),style=getComputedStyle(element);
+     return {selector,present:true,element:identify(element),hiddenAncestor:!!element.closest('[hidden],.hidden'),
+      inertAncestor:!!element.closest('[inert]'),scrollTop:element.scrollTop,scrollHeight:element.scrollHeight,
+      clientHeight:element.clientHeight,rect:{top:rect.top,bottom:rect.bottom,left:rect.left,right:rect.right,width:rect.width,height:rect.height},
+      style:{overflowY:style.overflowY,display:style.display,visibility:style.visibility,fontSize:style.fontSize}};
+    };
+    const ring=(window as any).__nq98PassiveEnd;
+    return {status:'available',phase:'after-failure',at:performance.now(),documentHasFocus:document.hasFocus(),
+     visibility:document.visibilityState,activeElement:identify(document.activeElement),
+     viewport:{width:innerWidth,height:innerHeight},ringLimit:ring?.limit ?? null,events:ring?.events ?? null,
+     regions:['.nqstun-card .nqnarr-reading','.nqstun-card','#landingScreen'].map(measure)};
+   }).catch(() => ({status:'unavailable',reason:'evaluation-failed'})),new Promise(resolve => {
+    timer=setTimeout(() => resolve({status:'unavailable',reason:'evaluation-timeout'}),3000);
+   })]);
+  }
+ } catch { evidence={status:'unavailable',reason:'diagnostic-failed'}; }
+ finally { if (timer) clearTimeout(timer); }
+ try { await info.attach('stun-end-evidence',{contentType:'application/json',body:JSON.stringify({schema:1,readLimitMs:3000,evidence})}); }
+ catch { /* Preserve the original failure if teardown no longer accepts attachments. */ }
+}
+
+test.afterEach(async ({page},info) => {
+ if (info.status !== info.expectedStatus) await Promise.all([attachFailureEvidence(page,info),attachStunEndEvidence(page,info)]);
+});
+
 async function abrir(page:Page){
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
  await page.goto('/jogar/',{waitUntil:'domcontentloaded'});

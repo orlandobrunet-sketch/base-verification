@@ -39,4 +39,16 @@ As seis ocorrências históricas 96/97/191/193/226/279 permanecem sem causa excl
 
 Ficam para um lote posterior: recuperação local da consulta administrativa após falha e investigação, com reprodução, do foco tardio de Oráculo/Diagnóstico e da consulta de sessão anterior ao prazo da confirmação de pagamento. Esses pontos não estão declarados corrigidos nesta etapa.
 
-Publicação e contagens finais devem ser registradas após os testes e a conferência da versão pública.
+## Conferência posterior à CI1089
+
+A CI1089 terminou com 15 grupos aprovados: 3.537 aprovações diretas, três após repetição e 268 pulos previstos em 3.808 casos; smoke 130. As repetições foram 98 móvel (End sem rolagem), 181 móvel (Portal interceptando o clique) e 288 móvel (espera de transporte). A CI1088 e esta rodada ficam preservadas, sem cancelamento ou reclassificação como inteiramente diretas.
+
+- **181:** o SDK nulo entregue durante o preparo reproduziu a alternativa visível e estável sob o Portal. Somente o preparo foi alterado: visitante na seed comum e entrada nativa antes dos confrontos curtos. Quatro REDs controlados passaram com o mesmo SDK e asserções; os 28 casos originais passaram a 20 s, sem retry/skip. Valores, helper e testes de Portal/retomada permaneceram intactos.
+- **288:** a trace oficial mostra resposta 200 seguida de `net::ERR_ABORTED`, enquanto o teste aguardava `Response.finished()`. A espera passou a observar a conclusão real do aplicativo: controles antigos reabilitados pelo `finally` do Oráculo e a promessa real cancelada do Diagnóstico. As asserções anteriores foram preservadas e receberam verificações adicionais de histórico/cache. Os 12 casos passaram em uma única rodada a 20 s, sem retry/skip. Não houve alteração de produto para essa falha.
+- **98:** a trace mostra foco na região correta e End cerca de 6,4 ms depois, mas não registra o alvo efetivo nem o cancelamento da tecla. A região está ativa no registro final e o Portal coexiste no DOM; isso não demonstra interceptação. A causa permanece aberta. Um observador passivo de End/foco/rolagem, limitado a 48 eventos e sem medir layout no gesto, anexa dados somente após falha. Uma única falha deliberada externa após o End original passar comprovou dados reais; os oito originais passaram sem retry. Gesto, preparação, prazos e asserções permanecem iguais.
+
+A auditoria dos helpers encontrou 171 chamadas sintáticas em 124 specs, incluindo usos autenticados, migração e reload. Não são 171 percursos nem 98 defeitos por haver 98 chamadas sem intenção no argumento. O default compartilhado foi conservado para não mascarar esses contratos.
+
+Para o HEAD seguinte, há 70 cenários locais reaproveitados após identidade dos arquivos e 60 verificações novas: 12 da 288, 12 da 33, 28 da 181 e oito da 98. São 130 aprovações locais consideradas, não 130 reexecuções. Os 522 testes de lógica permanecem associados às fontes idênticas. As provas controladas e a falha deliberada dos diagnósticos são registros separados. Produto, helpers compartilhados, estilos e metadados permanecem idênticos à fonte inicial `6a4cdac08fff5cfdbd9b070206953d04ba09cc84`.
+
+Publicação e contagens finais devem ser registradas após a CI do HEAD consolidado e a conferência da versão pública.
