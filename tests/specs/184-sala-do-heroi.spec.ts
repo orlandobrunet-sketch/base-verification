@@ -81,7 +81,14 @@ test('conquistas: cartão baixo, com a arte ao lado do texto', async ({ page }, 
 test('mapa: áreas em grade e detalhe ocupando a linha ao abrir', async ({ page }) => {
   await abrir(page, { width: 1280, height: 800 }, 'mapa');
   const areas = page.locator('[data-map-area]:visible');
-  const [a, b] = [(await areas.nth(0).boundingBox())!, (await areas.nth(1).boundingBox())!];
+  await page.locator('#nqdPane-mapa').evaluate(async pane => {
+    const finite = pane.getAnimations().filter(animation => Number.isFinite(animation.effect?.getComputedTiming().endTime));
+    await Promise.all(finite.map(animation => animation.finished));
+  });
+  const [a, b] = await areas.evaluateAll(elements => elements.slice(0, 2).map(element => {
+    const { y, width } = element.getBoundingClientRect();
+    return { y, width };
+  }));
   expect(a.y).toBe(b.y);
   await areas.nth(0).locator('summary').click();
   await expect.poll(async () => (await areas.nth(0).boundingBox())!.width).toBeGreaterThan(a.width * 1.5);

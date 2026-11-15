@@ -3,7 +3,7 @@ import {injectGameState} from '../helpers/game';
 import {medirContraste} from '../helpers/contraste';
 test.use({serviceWorkers:'block',contextOptions:{reducedMotion:'reduce'}});
 async function enterStudy(page:Page){
- await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await injectGameState(page);await page.waitForLoadState('load');await page.evaluate(()=>(window as any).openGameModesPopup());await page.locator('[data-mode-route="study"]:visible').click();await page.getByRole('button',{name:'Iniciar estudo livre',exact:true}).click();await expect(page.locator('#studyOptions button')).toHaveCount(4);await page.evaluate(()=>document.fonts.ready);
+ await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());await page.goto('/jogar/',{waitUntil:'domcontentloaded'});await injectGameState(page,{},{asGuest:true});await page.waitForLoadState('load');await page.evaluate(()=>(window as any).openGameModesPopup());await page.locator('[data-mode-route="study"]:visible').click();await page.getByRole('button',{name:'Iniciar estudo livre',exact:true}).click();await expect(page.locator('#studyOptions button')).toHaveCount(4);await page.evaluate(()=>document.fonts.ready);
 }
 async function readingFits(page:Page){
  await expect(page.locator('#studyQuestionArea')).toHaveCSS('background-image','none');for(const option of await page.locator('#studyOptions button').all())await expect(option).toHaveCSS('background-image','none');
