@@ -1,12 +1,22 @@
 # NefroQuest — Roadmap ativo
 
-**Última reconciliação operacional:** 14/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
+**Última reconciliação operacional:** 15/11/2026 — [estado atual](CONTINUITY.md) e [sete pedidos com referências visuais](design/NQ_REQUESTS_2026-11-03.md)
 **Versão de referência:** consultar sempre [`version.json`](../version.json)
 **Arquivo anterior:** [`archive/ROADMAP_LEGACY_2026-08.md`](archive/ROADMAP_LEGACY_2026-08.md)
 
 Este documento controla direção, prioridade e critérios de conclusão. Ele não autoriza execução automática: cada frente precisa ser solicitada explicitamente pelo proprietário do produto.
 
-## Estado operacional - 14/11/2026
+## Estado operacional - 15/11/2026
+
+**17.22 em validação:** lote técnico das superfícies 17, 26 e 27: pulso do Julgamento, cache de cota da IA e recuperação de reporte. [Escopo, regressões e limites](design/NQ_RESILIENCE_1722.md). Conteúdo médico preservado; conclusão da publicação depende de CI e conferência pública.
+
+**17.21 publicada e conferida:** [PR970](https://github.com/orlandobrunet-sketch/base-verification/pull/970), merge `434924dafb6797aca788f54f18fd3421be630285`. CI1087 aprovada: 3.510 aprovações diretas, 268 skips previstos, zero falha e zero repetição, além de smoke 130. Pages, doze arquivos públicos e 14 percursos no domínio conferidos. Foco, continuidade do baú e entrega do prêmio antes da vitória corrigidos; conteúdo médico preservado. [Proveniência e limites](design/NQ_RELEASE_1721.md).
+
+**Próxima etapa expressamente autorizada:** continuar os recortes técnicos ainda pendentes nas 35 superfícies, priorizando falhas concretas e continuidade da navegação. As causas históricas 96/97/191/193/226/279 não serão encerradas por mera repetição aprovada. Serviços reais, aparelhos físicos e decisões editoriais conservam seus limites próprios.
+
+## Histórico operacional até 14/11/2026
+
+Os checkpoints de candidata abaixo foram escritos antes da publicação da PR970; o estado atual é o fechamento da 17.21 acima.
 
 **17.16 publicada e conferida:** [PR968](https://github.com/orlandobrunet-sketch/base-verification/pull/968), revisão `70dc16cc123a4957c0aeb35a374fa55d0b181d9e`, integração `125c73b41763c9c855d899bb696ea4298dbaeafa`. CI1080 (`43594460770`): quinze grupos aprovados, 3.320 E2E diretos, dois após repetição automática, 266 skips previstos e nenhuma falha final, de 3.588 casos coletados; smoke 130. Pages `43596736199` aprovado no merge exato e quinze arquivos públicos idênticos. No site, quinze percursos nativos passaram e um controle exclusivo do desktop foi omitido no celular; quatorze contratos gerais do domínio também passaram, sem repetição. As duas falhas iniciais do verificador público e os dois preparos legados repetidos na CI permanecem registrados separadamente. Catálogo cooperativo e continuidade da Câmara publicados, sem alteração médica. [Escopo técnico](design/NQ_LOADING_CONTEXT_PRIORITIES_1716.md).
 

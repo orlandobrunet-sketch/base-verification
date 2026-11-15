@@ -378,6 +378,7 @@
           relogio.textContent = '0 s';
           relogio.classList.add('nq-exam-urgente');
         }
+        pagina.querySelector('#mgRelogio')?.style.setProperty('animation', 'none');
         const q = pool[currentIdx];
         const isCorrect = userAns === q.ans;
 

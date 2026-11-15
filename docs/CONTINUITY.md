@@ -1,6 +1,16 @@
 # Continuidade do NefroQuest
 
-## Estado atual - 14/11/2026
+## Estado atual - 15/11/2026
+
+**17.22 em validação:** recuperação do reporte após espera sem confirmação, cache de cota tolerante a falha no Oráculo/Diagnóstico e encerramento do pulso do Julgamento durante a correção. [Escopo e limites](design/NQ_RESILIENCE_1722.md). A publicação só pode ser declarada após CI e conferência pública.
+
+**17.21 publicada e conferida:** [PR970](https://github.com/orlandobrunet-sketch/base-verification/pull/970), fonte `3132be1cd8ea38eb48f5f34f39c9f1ab5784e0c0`, merge `434924dafb6797aca788f54f18fd3421be630285`. CI1087 com 15 grupos aprovados, 3.510 aprovações diretas, 268 skips previstos e nenhuma falha ou repetição; smoke 130. Pages aprovado no merge exato, doze arquivos públicos idênticos e 14 percursos públicos aprovados com 14 auditorias reais. [Fechamento, proveniência e limites](design/NQ_RELEASE_1721.md).
+
+**Continuidade autorizada:** seguir a revisão técnica das prioridades restantes do relatório das 35 superfícies. Conteúdo médico permanece fora do escopo. As seis intermitências históricas sem causa exclusiva comprovada continuam documentadas; repetir testes aprovados não as encerra. Novos reparos dependem de evidência concreta ou de um recorte ainda não conferido.
+
+## Registro anterior — 14/11/2026
+
+Os estados de candidata abaixo pertencem à preparação anterior à PR970. Não substituem o fechamento publicado acima.
 
 **17.16 publicada e conferida:** [PR968](https://github.com/orlandobrunet-sketch/base-verification/pull/968), revisão `70dc16cc123a4957c0aeb35a374fa55d0b181d9e`, integração `125c73b41763c9c855d899bb696ea4298dbaeafa`. CI1080 (`43594460770`) com quinze grupos aprovados; 3.320 E2E diretos, duas aprovações após repetição automática, 266 skips previstos e zero falhas finais. Smoke 130. Pages `43596736199` aprovado no merge exato e quinze hashes públicos conferidos. Conferência nativa pública: quinze aprovações e um skip móvel previsto; contratos gerais do domínio: quatorze aprovações, sem retry. O verificador público inicial e as duas preparações legadas da CI conservam suas falhas e limites. [Escopo](design/NQ_LOADING_CONTEXT_PRIORITIES_1716.md).
 
