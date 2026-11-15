@@ -73,6 +73,20 @@ jobs:
       - name: Chamber generator consistency
         run: node --test tests/chamber/*.test.cjs
 
+      - name: Setup Node.js for diagnostic contracts
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.22.3'
+          cache: npm
+          cache-dependency-path: tests/package-lock.json
+
+      - name: Install diagnostic contract dependencies (no browsers)
+        working-directory: tests
+        run: npm ci --ignore-scripts
+
+      - name: Protocol diagnostic projection and capture contracts
+        run: node --test tests/diagnostics/*.test.cjs
+
       - name: Editorial batch scope gate
         run: >-
           node scripts/editorial-batch-validator.mjs
@@ -340,7 +354,66 @@ jobs:
             tests/test-results/
           retention-days: 7
 
-  # ── Job separado: Playwright E2E Completo (Informativo) ───────────────────
+  # Captura focal: dois controles técnicos e as entradas originais 226/279.
+  # DEBUG fica restrito ao processo filho; os demais testes mantêm a configuração.
+  entry-protocol:
+    name: Entry protocol diagnostics (Playwright)
+    runs-on: ubuntu-24.04
+    needs: quality
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.22.3'
+          cache: npm
+          cache-dependency-path: tests/package-lock.json
+      - name: Install Playwright deps
+        working-directory: tests
+        run: npm ci
+      - name: Cache Playwright browsers
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ hashFiles('tests/package-lock.json') }}
+      - name: Install Playwright browsers (if cache miss)
+        working-directory: tests
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
+        run: npx playwright install chromium --with-deps
+      - name: Start local server
+        run: |
+          node tests/serve-local.mjs 5500 > /tmp/nq-entry-preview.log 2>&1 &
+          for i in $(seq 1 30); do
+            if curl -sf http://localhost:5500/version.json > /dev/null; then
+              echo "Server ready"
+              exit 0
+            fi
+            sleep 1
+          done
+          echo "Local preview did not start"
+          exit 1
+      - name: Capture original entry protocol once
+        run: node tests/diagnostics/capture-entry-protocol.cjs --base-url http://localhost:5500 --output tests/protocol-results
+      - name: Upload projected metadata only
+        if: always()
+        continue-on-error: true
+        timeout-minutes: 3
+        uses: actions/upload-artifact@v4
+        with:
+          name: entry-protocol-metadata
+          # Playwright pode criar error-context.md nativo ao falhar. Ele e o
+          # diretório artifacts ficam fora desta lista explícita de seis arquivos.
+          path: |
+            tests/protocol-results/collector-summary.json
+            tests/protocol-results/results-summary.json
+            tests/protocol-results/protocol-metadata.jsonl
+            tests/protocol-results/child-output-metadata.jsonl
+            tests/protocol-results/worker-protocol-metadata.jsonl
+            tests/protocol-results/worker-output-metadata.jsonl
+          retention-days: 7
+
+  # ── Job separado: Playwright E2E Completo ─────────────────────────────────
   e2e:
     name: Full E2E Tests (Playwright)
     # ubuntu-latest virou 26.04 em out/2026 e o Playwright 1.60 não instala Chromium nele.

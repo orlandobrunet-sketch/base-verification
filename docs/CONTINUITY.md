@@ -2,11 +2,13 @@
 
 ## Estado atual - 15/11/2026
 
-**17.22 em validação:** recuperação do reporte após espera sem confirmação, cache de cota tolerante a falha no Oráculo/Diagnóstico e encerramento do pulso do Julgamento durante a correção. [Escopo e limites](design/NQ_RESILIENCE_1722.md). A publicação só pode ser declarada após CI e conferência pública.
+**Preparação da 17.23:** corrida de layout após ampliar texto e disputa de foco na Câmara reproduzidas e corrigidas. End: 32 casos locais aprovados; Câmara: 20. Captura focal de contexto adicionada sem modificar os testes originais. A integração e a publicação exigem CI e conferência pública próprias; as causas históricas sem prova exclusiva continuam abertas. [Causas, provas e limites](design/NQ_END_AND_INTERMITTENCIES_1723.md).
+
+**17.22 publicada e conferida:** [PR971](https://github.com/orlandobrunet-sketch/base-verification/pull/971), merge `6246a0b3f0e8f07a80c1a13a3df6f740baa772e6`. CI1090: 15 grupos aprovados, 3.540 aprovações diretas, 268 pulos previstos e nenhuma falha ou repetição; smoke 130. Pages aprovado, oito arquivos públicos idênticos e 22 percursos públicos aprovados com 22 auditorias reais. [Fechamento e limites](design/NQ_RELEASE_1722.md).
 
 **17.21 publicada e conferida:** [PR970](https://github.com/orlandobrunet-sketch/base-verification/pull/970), fonte `3132be1cd8ea38eb48f5f34f39c9f1ab5784e0c0`, merge `434924dafb6797aca788f54f18fd3421be630285`. CI1087 com 15 grupos aprovados, 3.510 aprovações diretas, 268 skips previstos e nenhuma falha ou repetição; smoke 130. Pages aprovado no merge exato, doze arquivos públicos idênticos e 14 percursos públicos aprovados com 14 auditorias reais. [Fechamento, proveniência e limites](design/NQ_RELEASE_1721.md).
 
-**Continuidade autorizada:** seguir a revisão técnica das prioridades restantes do relatório das 35 superfícies. Conteúdo médico permanece fora do escopo. As seis intermitências históricas sem causa exclusiva comprovada continuam documentadas; repetir testes aprovados não as encerra. Novos reparos dependem de evidência concreta ou de um recorte ainda não conferido.
+**Frente atual expressamente autorizada:** investigar e resolver a rolagem por End e as intermitências 96/97/98/191/193/226/279. Sem conteúdo médico. A investigação usa hipóteses e provas causais; repetir baterias verdes não encerra causas antigas. Os demais recortes do relatório das 35 superfícies conservam seu backlog próprio.
 
 ## Registro anterior — 14/11/2026
 
