@@ -1,0 +1,432 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "8071ef90",
+  "family": "A14-litíase-cisto",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Hiperoxalúria Primária Tipo 1 — Diagnóstico e Tratamento",
+    "qid": "8071ef90",
+    "q": "Paciente jovem tem nefrolitíase recorrente por oxalato de cálcio, nefrocalcinose e hiperoxalúria acentuada sem causa entérica clara. Qual abordagem melhor confirma e trata hiperoxalúria primária tipo 1?",
+    "refs": [
+      "eau_urolithiasis_medical_2025",
+      "lumasiran_trial",
+      "brenner_rector"
+    ],
+    "opts": [
+      "Confirmar por dosagem sérica isolada de oxalato e tratar com plasmaférese crônica",
+      "Confirmar por análise genética de AGXT; iniciar medidas anti-oxalato, testar piridoxina e considerar lumasiran ou transplante hepático/hepatorrenal conforme gravidade",
+      "Tratar empiricamente com alopurinol, pois a via das purinas é a fonte primária de oxalato",
+      "Evitar investigação genética, porque biópsia hepática é obrigatória para qualquer decisão terapêutica"
+    ],
+    "ans": 1,
+    "exp": "A hiperoxalúria primária tipo 1 é doença hepática genética, geralmente por variantes em AGXT, com superprodução de oxalato, nefrolitíase, nefrocalcinose e risco de oxalose sistêmica quando a função renal cai. A confirmação moderna é genética quando disponível. O tratamento combina hidratação/medidas de redução de supersaturação, piridoxina em variantes responsivas, lumasiran em cenário apropriado e, em doença avançada, avaliação de transplante hepático ou hepatorrenal. Oxalato plasmático monitora carga em DRC avançada, mas não confirma etiologia; alopurinol não bloqueia produção de oxalato.",
+    "diff": "hard",
+    "cat": "litíase"
+  },
+  "originalSHA256": "sha256:7d4a4b7dc2f3b6f689444174e84b4bd767c460a3644354d240af13a908d6291e",
+  "originalRefs": [
+    {
+      "id": "eau_urolithiasis_medical_2025",
+      "original": {
+        "label": "EAU Guidelines on Urolithiasis 2025 — diagnostic and medical management",
+        "url": "https://uroweb.org/guidelines/urolithiasis",
+        "journal": "European Association of Urology",
+        "ano": 2025,
+        "tipo": "Diretriz internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Base atual para diagnóstico por imagem, prevenção e manejo clínico de cálculos urinários.",
+        "icon": "📋",
+        "resumo": "Diretriz da European Association of Urology sobre urolitíase. Sustenta que a TC sem contraste é o exame de maior acurácia para confirmar cálculo em adulto não gestante com dor aguda no flanco, embora a ultrassonografia seja frequentemente usada como exame inicial por segurança e disponibilidade. Também orienta prevenção por maior volume urinário, avaliação metabólica dos recorrentes, reconhecimento de hiperoxalúria entérica, manejo de cálculo de ácido úrico por alcalinização monitorada, tratamento de cistinúria com diurese elevada/alcalinização e tiopronina quando medidas iniciais são insuficientes, além de piridoxina e lumasiran em hiperoxalúria primária tipo 1 selecionada.",
+        "conclusao": "Para ensino clínico, a mensagem central é fenotipar a litíase: TC sem contraste confirma com maior acurácia no adulto não gestante; ultrassom pode ser exame inicial; prevenção recorrente começa por volume urinário adequado; ácido úrico depende de pH urinário; cistinúria exige diluição/alcalinização intensas; e hiperoxalúria primária tipo 1 deve ser reconhecida como doença hepática genética tratável.",
+        "curiosidade": "A composição do cálculo muda a estratégia: cálculos de ácido úrico podem ser dissolvidos por alcalinização, cistina pede pH ainda mais alto e tiol quando refratária, e cálculos de cálcio exigem prevenção metabólica, não simples aumento universal do pH."
+      },
+      "originalSHA256": "sha256:e9f2c68a8163e914241f5251b7ab7de40c24e887d39f240f13379a3f2815cb62"
+    },
+    {
+      "id": "lumasiran_trial",
+      "original": {
+        "label": "ILLUMINATE-A Trial (Lumasiran)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2022978",
+        "journal": "N Engl J Med 2021;385(19):1737-1746",
+        "ano": 2021,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Lumasiran (RNAi) ↓ 65% oxalato urinário em Hiperoxalúria Primária Tipo 1",
+        "icon": "💊",
+        "resumo": "ECR duplo-cego placebo-controlado de fase III (ILLUMINATE-A, n = 39 pacientes, adultos e crianças com diagnóstico confirmado de Hiperoxalúria Primária Tipo 1 [HP1]). Avaliou a eficácia e segurança do lumasiran, um RNA de interferência (siRNA) de ação prolongada direcionado à enzima glicolato oxidase (GO) hepática. Randomizou os pacientes 2:1 para injeções subcutâneas mensais ou trimestrais de lumasiran vs placebo. Desfecho primário: redução percentual na excreção urinária de oxalato em 24h na semana 6. Resultados: O tratamento com lumasiran induziu uma redução extraordinária e sustentada de 65,4% na excreção urinária de oxalato em relação ao basal (P < 0,001), com 84% dos pacientes alcançando níveis urinários normais ou próximos do normal, associado a marcante redução de crises de nefrolitíase e nefrocalcinose progressiva.",
+        "conclusao": "O lumasiran estabeleceu-se como a primeira terapia genética modificadora de doença altamente eficaz para HP1, revertendo de forma brilhante a hiperprodução sistêmica de oxalato no Reino.",
+        "curiosidade": "A hiperoxalúria primária tipo 1 decorre de deficiência na enzima hepática AGT. Na sua ausência, o glioxilato acumula-se e é oxidado a oxalato, um metabólito insolúvel que precipita com o cálcio no rim, gerando litíase severa e DRC progressiva. Ao silenciar o gene HAO1 hepático que transcreve a GO, o lumasiran impede a oxidação a glioxilato, reduzindo drasticamente o oxalato sem gerar acúmulo deletério no organismo."
+      },
+      "originalSHA256": "sha256:4488c0b68d5409a0a2283a6d9c65d7c64a7f7e2efe2b1e6c3806134d7ee91d1c"
+    },
+    {
+      "id": "brenner_rector",
+      "original": {
+        "label": "Brenner & Rector's The Kidney",
+        "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+        "journal": "Elsevier (Textbook)",
+        "ano": 2024,
+        "tipo": "Livro-texto de referência",
+        "badge": "TEXTBOOK",
+        "badgeColor": "#64748b",
+        "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+        "icon": "📚",
+        "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+        "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+        "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+      },
+      "originalSHA256": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Confirmar molecularmente hiperoxalúria primária tipo1 em paciente com fenótipo sugestivo.",
+    "primaryCompetence": "Interpretação diagnóstica e prevenção fenotipada.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "hard",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — A pergunta agrega confirmação e todas as linhas terapêuticas, com uma única alternativa extensa.",
+      "CRÍTICO NO CARD — ILLUMINATE-A tem DOI/volume/desfecho e extrapolação clínica incorretos; reparo global separado no mesmo lote."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "gene",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK1283/",
+      "access": "GeneReviews autoral integral aberto, última revisão11/12/2025 confirmada no cabeçalho.",
+      "locators": [
+        "Establishing diagnosis: achados sugestivos mais variantes patogênicas/provavelmente patogênicas bialélicas em AGXT; VUS isoladas ou em combinação não confirmam.",
+        "Summary/Diagnosis: herança autossômica recessiva, AGT hepática e oxalato; PH2=GRHPR,PH3=HOGA1.",
+        "Table8/Targeted therapies: lumasiran reduz glicolato oxidase/HAO1; nedosiran atua em lactato desidrogenase A, piridoxina em responsivos."
+      ],
+      "limitations": [
+        "Fonte expert, não ensaio comparativo entre RNAi. Escolha e acesso às terapias dependem de avaliação, genótipo, função renal e contexto regulatório."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Fenótipo sugestivo com variantes patogênicas/provavelmente patogênicas bialélicas em AGXT confirmaPH1; VUS não confirmam.",
+      "source": "gene",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Hiperoxalúria Primária Tipo1 — Confirmação Molecular",
+    "qid": "8071ef90",
+    "q": "Jovem com nefrolitíase recorrente por oxalato de cálcio, nefrocalcinose e hiperoxalúria acentuada é investigado após exclusão de causa entérica. Qual resultado molecular confirma hiperoxalúria primária tipo 1 nesse contexto?",
+    "refs": [
+      "genereviews_ph1_2025"
+    ],
+    "opts": [
+      "Uma única variante patogênica em AGXT, sem alteração no outro alelo.",
+      "Variantes patogênicas ou provavelmente patogênicas bialélicas em AGXT.",
+      "Variantes bialélicas de significado incerto em AGXT, sem outra evidência classificatória.",
+      "Variantes patogênicas bialélicas em GRHPR, sem alteração em AGXT."
+    ],
+    "ans": 1,
+    "exp": "A confirmação integra o fenótipo sugestivo e variantes patogênicas ou provavelmente patogênicas bialélicas em AGXT, doença de herança autossômica recessiva. Uma única variante ou variantes de significado incerto não bastam para confirmar o diagnóstico; investigação especializada pode ser necessária se o estudo inicial não for conclusivo. GRHPR corresponde à hiperoxalúria primária tipo 2. Oxalato plasmático isolado pode aumentar em insuficiência renal de outras causas e não substitui a determinação da etiologia.",
+    "diff": "medium",
+    "cat": "litíase"
+  },
+  "proposedSHA256": "sha256:07bf8eee80681e33e03d89d21c1bca89188dde427005f932b0c5e966befa2ba0",
+  "classificationAfter": {
+    "op": "Confirmar molecularmente hiperoxalúria primária tipo1 em paciente com fenótipo sugestivo.",
+    "primaryCompetence": "Interpretação diagnóstica e prevenção fenotipada.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "genereviews_ph1_2025",
+      "original": {
+        "label": "GeneReviews — Primary Hyperoxaluria Type 1",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK1283/",
+        "journal": "NCBI Bookshelf / GeneReviews",
+        "ano": 2025,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Fonte clínica para AGXT, deficiência de AGT e manejo da hiperoxalúria primária tipo 1.",
+        "icon": "🔬",
+        "resumo": "GeneReviews sobre hiperoxalúria primária tipo 1, doença autossômica recessiva causada por variantes bialélicas em AGXT. A deficiência da alanina-glioxilato aminotransferase peroxissomal hepática impede a conversão eficiente de glioxilato em glicina, desviando-o para oxalato. O excesso de oxalato causa litíase recorrente, nefrocalcinose, perda de função renal e, quando a depuração cai, oxalose sistêmica.",
+        "conclusao": "Na PH1, o defeito nuclear é AGXT/AGT; diagnóstico e tratamento devem integrar confirmação molecular, carga de oxalato, função renal e terapias direcionadas à produção hepática, sem confundir o defeito com GRHPR da PH2.",
+        "curiosidade": "O lumasiran reduz a produção de oxalato por silenciar HAO1, que codifica a glicolato oxidase, ou seja, atua a montante do defeito em AGT em vez de substituir a enzima ausente."
+      },
+      "originalSHA256": "sha256:bee5521429e5e58506a67bb06563384b9239fff9010f167df07e844e898cd4d5",
+      "proposed": {
+        "label": "GeneReviews — Primary Hyperoxaluria Type 1",
+        "url": "https://www.ncbi.nlm.nih.gov/books/NBK1283/",
+        "journal": "NCBI Bookshelf / GeneReviews",
+        "ano": 2025,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Fonte clínica para AGXT, deficiência de AGT e manejo da hiperoxalúria primária tipo 1.",
+        "icon": "🔬",
+        "resumo": "GeneReviews sobre hiperoxalúria primária tipo 1, doença autossômica recessiva causada por variantes bialélicas em AGXT. A deficiência da alanina-glioxilato aminotransferase peroxissomal hepática impede a conversão eficiente de glioxilato em glicina, desviando-o para oxalato. O excesso de oxalato causa litíase recorrente, nefrocalcinose, perda de função renal e, quando a depuração cai, oxalose sistêmica.",
+        "conclusao": "Na PH1, o defeito nuclear é AGXT/AGT; diagnóstico e tratamento devem integrar confirmação molecular, carga de oxalato, função renal e terapias direcionadas à produção hepática, sem confundir o defeito com GRHPR da PH2.",
+        "curiosidade": "O lumasiran reduz a produção de oxalato por silenciar HAO1, que codifica a glicolato oxidase, ou seja, atua a montante do defeito em AGT em vez de substituir a enzima ausente."
+      },
+      "proposedSHA256": "sha256:bee5521429e5e58506a67bb06563384b9239fff9010f167df07e844e898cd4d5",
+      "sourceIDs": [
+        "gene"
+      ],
+      "notes": [
+        "Todos os12campos rechecados; atualização não transfere gate automaticamente a consumidores fora do lote."
+      ]
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "19/20. Preserva OP primário de confirmação em AGXT e remove tarefa terapêutica secundária já coberta por ae31e58e. Não cria qid porque conceito correto e decisão diagnóstica permanecem.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário de confirmação molecular permanece; tratamento era segunda tarefa agregada. Preservar8071ef90, sem transferir histórico para ae31e58e.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

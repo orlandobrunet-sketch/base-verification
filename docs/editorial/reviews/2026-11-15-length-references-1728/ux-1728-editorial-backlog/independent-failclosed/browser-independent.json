@@ -1,0 +1,133 @@
+{
+  "config": {
+    "configFile": "C:\\Users\\orlan\\.codex\\worktrees\\nq-pagamento-atomico\\base-verification\\tests\\playwright.config.ts",
+    "rootDir": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/tests/specs",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/independent-failclosed/browser-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/tests/specs",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/independent-failclosed/browser-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "C:/Users/orlan/.codex/worktrees/nq-pagamento-atomico/base-verification/tests/specs",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.60.0",
+    "workers": 1,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "306-library-catalog.spec.ts",
+      "file": "306-library-catalog.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "missing mandatory catalog blocks cached readers and chest claims, then recovers without losing the pending reward",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 8367,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-16T03:33:37.055Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "mandatory-catalog-unavailable",
+                      "contentType": "image/png",
+                      "body": "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"
+                    },
+                    {
+                      "name": "catalogue-page-errors",
+                      "contentType": "application/json",
+                      "body": "W10="
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "fbffdf58c75c23b8f434-7477b7d0ea38e7c1c4df",
+          "file": "306-library-catalog.spec.ts",
+          "line": 330,
+          "column": 5
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-16T03:33:36.311Z",
+    "duration": 9449.993,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

@@ -13,6 +13,7 @@ type Author = {
 const moduleSources = ['answer-presentation.js', 'question-revisions.js'].map(file => ({
   file, code: readFileSync(resolve(__dirname, '../../js', file), 'utf8'),
 }));
+moduleSources.push({file: 'question-source-positions.js', code: readFileSync(resolve(__dirname, '../../data/question-source-positions.js'), 'utf8')});
 const moduleSourceHash = createHash('sha256').update(JSON.stringify(moduleSources)).digest('hex');
 const runtime = createContext({ TextEncoder });
 for (const {file,code} of moduleSources) runInContext(code,runtime,{filename:file});
@@ -29,6 +30,7 @@ export function technicalQuestionBundle(authors: Author[], references: Record<st
   const sources = { main: [] as any[], exam: [] as any[], study: [] as any[], offline: [] as any[] };
   const current: Record<string, unknown> = {};
   authors.forEach((author, index) => {
+    index = runtime.NQQuestionSourcePositions.position(author.qid, index);
     const plain = { id: author.qid, q: author.q, o: [...author.opts], a: author.ans, e: author.exp || '' };
     const main = { ...plain,
       d: author.diff === 'hard' ? Math.min(12, 8 + Math.floor(index / 30)) : Math.min(12, 4 + Math.floor(index / 25)),

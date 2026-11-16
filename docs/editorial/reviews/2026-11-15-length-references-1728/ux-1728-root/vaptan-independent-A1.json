@@ -1,0 +1,309 @@
+{
+  "schema": "NQ_1728_INDEPENDENT_FORMAL_REVIEW_v1",
+  "date": "2026-11-15",
+  "reviewer": "/root",
+  "role": "INDEPENDENT_OF_CANDIDATE_AUTHOR",
+  "skill": {
+    "file": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+    "sha256": "eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd"
+  },
+  "norms": [
+    {
+      "file": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "file": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "file": "docs/editorial/annex-c-nefrologia.md",
+      "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "sourceCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Mecanismo da tolvaptana na hiponatremia",
+    "qid": "cfeef8e1",
+    "q": "Qual é o mecanismo de ação da tolvaptana no tratamento de hiponatremia euvolêmica ou hipervolêmica selecionada?",
+    "refs": [
+      "hyponatremia_adrogue2000",
+      "hyponatremia_verbalis2022",
+      "salsa_trial"
+    ],
+    "opts": [
+      "Estimula a secreção de ADH para concentrar a urina",
+      "Antagonista seletivo do receptor V2 da vasopressina (no ducto coletor) → impede inserção de AQP2 → aquarese → elevação do sódio",
+      "Aumenta a excreção de sódio pelo néfron distal",
+      "Bloqueia canais de sódio do ducto coletor (ENaC)"
+    ],
+    "ans": 1,
+    "exp": "A tolvaptana antagoniza seletivamente o receptor V2 da vasopressina no ducto coletor, reduz a inserção de aquaporina-2 (AQP2) e aumenta a excreção de água livre, sem natriurese proporcional. Esse efeito de aquarese pode elevar o sódio sérico em hiponatremia euvolêmica ou hipervolêmica selecionada, mas exige monitorização para evitar correção rápida. Ela não estimula ADH, não atua primariamente como natriurético distal e não bloqueia o canal epitelial de sódio (ENaC).",
+    "diff": "medium",
+    "cat": "eletrólitos"
+  },
+  "originalAuthorRevision": "sha256:9fb7e7851f853e86c42ad2d581393300e2fe25f51b8cdd9c5999e2d669b23706",
+  "patch": {
+    "qid": "cfeef8e1",
+    "after": {
+      "t": "Mecanismo de ação da tolvaptana",
+      "qid": "cfeef8e1",
+      "q": "Qual mecanismo explica a aquarese produzida pela tolvaptana?",
+      "refs": [
+        "tolvaptan_teva_label_2025"
+      ],
+      "opts": [
+        "Ativação dos receptores V2, aumentando a inserção de aquaporina-2.",
+        "Bloqueio dos receptores V2, reduzindo a inserção de aquaporina-2.",
+        "Bloqueio do cotransportador de sódio-potássio-cloro, aumentando a natriurese.",
+        "Bloqueio dos canais epiteliais de sódio, aumentando a natriurese."
+      ],
+      "ans": 1,
+      "exp": "A tolvaptana antagoniza receptores V2 da vasopressina e reduz a inserção de aquaporina-2 na membrana, diminuindo a reabsorção de água. O resultado é aquarese: maior excreção de água livre. A ativação de V2 favoreceria o efeito antidiurético; os transportadores e canais de sódio citados não são o alvo da tolvaptana.",
+      "diff": "easy",
+      "cat": "eletrólitos"
+    },
+    "afterAuthorRevision": "sha256:afe24448cfebf9063c4d9af5fe302f44aff3d71709cba4c687b42ed049c3a2ed",
+    "refCardsAfter": {
+      "tolvaptan_teva_label_2025": {
+        "label": "Tolvaptana — mecanismo de ação (bula Teva, 2025)",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=808a9a1f-2f58-4677-9127-e749ad007094",
+        "journal": "DailyMed — Teva Pharmaceuticals, Inc.",
+        "ano": 2025,
+        "tipo": "Bula profissional aprovada pela FDA",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "Antagonismo V2 reduz a inserção de aquaporina-2 e aumenta a excreção de água livre.",
+        "icon": "📋",
+        "resumo": "Documento regulatório revisado em março de 2025. A seção 12.1 descreve como o bloqueio V2 reduz a sinalização por AMP cíclico e a inserção de aquaporina-2. Esta referência sustenta o mecanismo, sem extrapolar indicações ou doses do produto.",
+        "conclusao": "A aquarese decorre do bloqueio da ação antidiurética da vasopressina.",
+        "curiosidade": ""
+      }
+    },
+    "referenceBindings": [
+      {
+        "id": "tolvaptan_teva_label_2025",
+        "referenceRevision": "sha256:275271b9a54e79b616e3af24955300d5dcd84572b3c95e3beec5f77a8b2adb4c",
+        "scope": "all 12 literal fields"
+      }
+    ]
+  },
+  "fullCandidateBundleRevision": "sha256:c842bd36a6c01e04239f005a5d581535ed1bd4b833301a16e28dee31f173717c",
+  "sourcesIndependentlyOpened": [
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=808a9a1f-2f58-4677-9127-e749ad007094",
+      "access": "FULL_REGULATORY_TEXT",
+      "locators": [
+        "Clinical revision 3/2025, lines 230–232",
+        "12.1 paragraphs 1–2, lines 505–507"
+      ],
+      "scope": "V2/cAMP/AQP2/aquarese; document identity and date; no indication or dose extrapolation"
+    },
+    {
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5526617c-c7b9-4556-886d-729bbabbc566",
+      "access": "FULL_REGULATORY_TEXT",
+      "locators": [
+        "SAMSCA label identity and approved indication, lines 174–194"
+      ],
+      "scope": "Corroborates identity; no indication/dose imported into the mechanism-only question"
+    },
+    {
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2008/021697s001lbl.pdf",
+      "access": "FULL_HISTORICAL_REGULATORY_PDF",
+      "locators": [
+        "Page1 description lines8–9",
+        "Page2 clinical pharmacology lines42–50"
+      ],
+      "scope": "Historical counterexample to universal V2 selectivity of all vaptans, not current prescribing guidance"
+    }
+  ],
+  "op": "Reconhecer o antagonismo V2 da tolvaptana e relacioná-lo à menor inserção de aquaporina-2 e à aquarese.",
+  "competency": "Mecanismo farmacológico renal",
+  "bloom": "Lembrar/compreender",
+  "miller": "Sabe",
+  "intrinsicDifficulty": "easy",
+  "reconstruction": "Pergunta conceitual de mecanismo, sem paciente, indicação terapêutica, dose ou monitorização. A reescrita explicita o mesmo alvo e efeito renal do original; não cria outra competência.",
+  "claims": [
+    {
+      "scope": "Resposta B, explicação e card",
+      "status": "VERIFICADA",
+      "locator": "Teva §12.1 parágrafos1–2",
+      "claim": "Alvo V2, menor sinalização por AMP cíclico, menor inserção de aquaporina-2 e aquarese."
+    },
+    {
+      "scope": "Unicidade",
+      "status": "VERIFICADA",
+      "locator": "Teva §12.1",
+      "claim": "Agonismo V2 e alvos de diuréticos natriuréticos não descrevem a ação do fármaco."
+    },
+    {
+      "scope": "Metadados e limites do card",
+      "status": "VERIFICADA",
+      "locator": "Teva cabeçalho e revisão3/2025",
+      "claim": "Card regulatório identificado como bula; mecanismo citado sem transpor a indicação de um produto para outro contexto."
+    }
+  ],
+  "findings": [
+    "Correta deixa de acumular toda a cadeia explicativa; a explicação mantém a relação causal essencial.",
+    "SALSA deixa de ser atribuído a um mecanismo que não é seu objeto.",
+    "Termo aquaporina-2 por extenso; sem nova recomendação de prescrição.",
+    "A/B apresentam contraste agonismo/antagonismo: tell residual aceitável para este OP básico, registrado no score."
+  ],
+  "appeal": {
+    "tests": [
+      {
+        "argument": "O card é de apresentação para doença policística.",
+        "result": "Não invalida o mecanismo do princípio ativo; comando e explicação não ensinam essa indicação nem a importam para hiponatremia."
+      },
+      {
+        "argument": "Duas alternativas podem causar diurese.",
+        "result": "O comando pergunta especificamente a aquarese da tolvaptana; apenas B atribui seu alvo e sentido de ação."
+      },
+      {
+        "argument": "A mesma pergunta permanece duplicada no banco.",
+        "result": "A liberação é inseparável da retirada de4c7d3db3 do banco ativo nesta entrega."
+      }
+    ],
+    "conclusion": "Sem recurso plausível decisivo na configuração final."
+  },
+  "eliminators": [
+    {
+      "id": 1,
+      "triggered": false
+    },
+    {
+      "id": 2,
+      "triggered": false
+    },
+    {
+      "id": 3,
+      "triggered": false
+    },
+    {
+      "id": 4,
+      "triggered": false
+    },
+    {
+      "id": 5,
+      "triggered": false
+    },
+    {
+      "id": 6,
+      "triggered": false
+    },
+    {
+      "id": 7,
+      "triggered": false
+    },
+    {
+      "id": 8,
+      "triggered": false
+    },
+    {
+      "id": 9,
+      "triggered": false
+    },
+    {
+      "id": 10,
+      "triggered": false
+    }
+  ],
+  "score": {
+    "status": "VALID",
+    "dimensions": [
+      {
+        "dimension": "Alinhamento ao OP",
+        "score": 2
+      },
+      {
+        "dimension": "Validade de conteúdo",
+        "score": 2
+      },
+      {
+        "dimension": "Validade de construto",
+        "score": 2
+      },
+      {
+        "dimension": "Qualidade do enunciado",
+        "score": 2
+      },
+      {
+        "dimension": "Alternativas",
+        "score": 2
+      },
+      {
+        "dimension": "Distratores",
+        "score": 1
+      },
+      {
+        "dimension": "Explicação",
+        "score": 2
+      },
+      {
+        "dimension": "Referências",
+        "score": 2
+      },
+      {
+        "dimension": "Ausência de cara de IA",
+        "score": 1
+      },
+      {
+        "dimension": "Valor pedagógico",
+        "score": 1
+      }
+    ],
+    "total": 17,
+    "rationale": "Reconhecimento farmacológico básico e contraste A/B limitam profundidade e autenticidade dos distratores; não há critério eliminatório."
+  },
+  "verdict": "aprovada",
+  "confidence": "alta",
+  "evidence": "VERIFICADA",
+  "pending": "NENHUMA",
+  "publicationAuthorization": "LIBERADA",
+  "derivation": "Handbook§18.4: evidência verificada, nenhuma pendência e veredito de aprovação. A liberação recai somente nos hashes exatos do AFTER e do card acima, com retirada pareada do duplicado.",
+  "qidDecision": "Preservar cfeef8e1: mesmos OP, competência e conceito. Não transferir aprendizagem de4c7d3db3.",
+  "pairedDisposition": {
+    "qid": "4c7d3db3",
+    "destination": "cfeef8e1",
+    "verdict": "fundir",
+    "originalPublication": "BLOQUEADA",
+    "duplicateDimensions": [
+      {
+        "dimension": "decisão/OP",
+        "coincides": true,
+        "reason": "Reconhecer antagonismo V2 e aquarese da tolvaptana; o exemplo Tolvaptan no item de classe exige o mesmo fato."
+      },
+      {
+        "dimension": "estrutura de dados do caso",
+        "coincides": true,
+        "reason": "Ambos perguntas conceituais diretas, sem vinheta, exames, temporalidade, gravidade ou conflito terapêutico; euvolemia/hipervolemia selecionada não é usada para escolha clínica."
+      },
+      {
+        "dimension": "perfil-alvo",
+        "coincides": true,
+        "reason": "Nenhum alvo diferente é declarado; ambos pressupõem a mesma formação e o mesmo conhecimento prévio."
+      },
+      {
+        "dimension": "língua",
+        "coincides": true,
+        "reason": "Português brasileiro em ambos; Tolvaptan é apenas variação terminológica."
+      }
+    ],
+    "action": "Arquivar texto publicado literal e retirar de filas novas; não reescrever/republicar o original. História e FSRS permanecem sob o qid original, sem transferência.",
+    "requiredForCandidatePublication": true
+  },
+  "tree": "0:VERIFICADA/NENHUMA;1:nenhum eliminatório no AFTER final;2:sem recurso decisivo;3:17/20,aprovada. Original parceiro:fundir/retirar, sem liberação de seu texto antigo.",
+  "taxonomyException": {
+    "scope": "ONE_REQUIRED_REGULATORY_LABEL_ONLY",
+    "approvedByParent": true,
+    "meaning": "Exceção pontual de apresentação ao contrato da skill; não constitui aprovação clínica.",
+    "precedent": "data/refs.js: tramadol_fda_label_2019, BULA/#64748b/📋",
+    "type": "Bula profissional aprovada pela FDA",
+    "badge": "BULA",
+    "badgeColor": "#64748b",
+    "icon": "📋",
+    "noSecondRedundantCard": true
+  },
+  "implementation": "Somente integrar com as duas versões anteriores arquivadas, refs novas disponíveis, políticas de retirada autenticadas e quatro modos compatíveis. Banco ativo resultante740, salvo outras disposições formais independentes.",
+  "pendingVerification": []
+}

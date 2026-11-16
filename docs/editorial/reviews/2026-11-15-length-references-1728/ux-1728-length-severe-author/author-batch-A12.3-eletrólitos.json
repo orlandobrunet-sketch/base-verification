@@ -1,0 +1,2275 @@
+{
+  "schema": "NQ_AUTHOR_BATCH_1728_A12.3-eletrólitos",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "count": 5,
+  "readyForImplementation": false,
+  "scope": "Cinco itens doinventário, sem nova identidade. Umnovo card específicoEndotext2026; demais existentesexatos oureparados e totalmente rechecados.",
+  "fourDimensionChecks": [
+    {
+      "pair": [
+        "86ad6fc4",
+        "c58fc63b"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Reconhecer sinal de toxicidade na monitorização versusresponderàbradipneia/toxicidadejáidentificada."
+    },
+    {
+      "pair": [
+        "2f2dc008",
+        "5189c79f"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "InterpretarPTH/PTHrPparaetiologia versus selecionar anti-reabsortivocomdiagnósticoedefiniçãorenal fornecidos."
+    },
+    {
+      "pair": [
+        "81740f2d",
+        "d39cf860"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "IntegrarMggraveealcalosecomCaionizadoparaexplicartetania versusmecanismodehipocalcemiarefratáriaaCa isolado. Não fundirporviaPTHcompartilhada."
+    },
+    {
+      "pair": [
+        "81740f2d",
+        "06df2814"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Mecanismoscoexistentesna deficiênciaMggraveealcalosemetabólica versuspiorasúbitaporhiperventilação/alcaloserespiratória."
+    }
+  ],
+  "neighbors": [
+    {
+      "qid": "d39cf860",
+      "literal": {
+        "t": "Distúrbio do Magnésio e Hipocalcemia",
+        "qid": "d39cf860",
+        "q": "Por que pacientes com hipomagnesemia grave frequentemente apresentam hipocalcemia refratária à reposição de cálcio isolada?",
+        "refs": [
+          "kdigo_ckd",
+          "brenner_rector"
+        ],
+        "opts": [
+          "O magnésio atua como cofator em várias enzimas, mas sua deficiência não afeta diretamente a absorção intestinal de vitamina D ativa",
+          "A deficiência de magnésio pode aumentar a excreção renal de cálcio ao alterar a função da alça de Henle e seus mecanismos de transporte",
+          "A deficiência de magnésio causa resistência periférica ao PTH e inibe a secreção deste hormônio pela paratireoide",
+          "O magnésio interfere na reabsorção tubular proximal do cálcio, competindo pelos mesmos transportadores celulares renais"
+        ],
+        "ans": 2,
+        "exp": "A hipomagnesemia grave causa hipocalcemia refratária principalmente por dois mecanismos: redução da secreção de PTH e resistência periférica ao PTH. Sem corrigir o magnésio, a reposição isolada de cálcio tende a falhar ou ter resposta incompleta. As demais alternativas não descrevem o mecanismo fisiopatológico central dessa associação.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "revision": "sha256:688c40ecfe0d78dfc3b5a1e162e880f365b865fef9b2519d83442e61a93a11f0",
+      "fullMedicalGate": false
+    },
+    {
+      "qid": "06df2814",
+      "literal": {
+        "t": "Síndrome de Gitelman e Parestesias na Alcalose Respiratória",
+        "qid": "06df2814",
+        "q": "Paciente com síndrome de Gitelman e hipomagnesemia crônica apresenta parestesias e tetania durante crise de ansiedade com hiperventilação. Qual mecanismo explica a piora aguda dos sintomas?",
+        "refs": [
+          "brenner_rector",
+          "guyton_and_hall_physiology"
+        ],
+        "opts": [
+          "A alcalose respiratória aumenta a ligação do cálcio à albumina e reduz a fração ionizada, elevando a excitabilidade neuromuscular",
+          "A hiperventilação corrige rapidamente a hipomagnesemia e causa parestesias por efeito rebote",
+          "A alcalose respiratória aumenta diretamente o cálcio ionizado, gerando tetania por hipercalcemia aguda",
+          "A síndrome de Gitelman causa hipertensão maligna episódica, que explica as parestesias"
+        ],
+        "ans": 0,
+        "exp": "A hiperventilação gera alcalose respiratória, que aumenta a ligação do cálcio à albumina e reduz a fração ionizada do cálcio. A queda do cálcio ionizado aumenta a excitabilidade neuromuscular e precipita parestesias/tetania; isso é particularmente sintomático em pacientes com síndrome de Gitelman, que frequentemente já têm hipomagnesemia e hipocalemia crônicas. As demais alternativas invertem o efeito sobre cálcio ionizado ou atribuem ao Gitelman hipertensão, achado que não é típico da síndrome.",
+        "diff": "hard",
+        "cat": "acido_base"
+      },
+      "revision": "sha256:02d09ae4624971445f7a6dee67932208e1fa216b20d9794adc51597ce921d1f7",
+      "fullMedicalGate": false
+    },
+    {
+      "qid": "8f6bbf81",
+      "literal": {
+        "t": "Hipomagnesemia Grave — Hipocalemia Refratária",
+        "qid": "8f6bbf81",
+        "q": "Paciente internado tem magnésio 0,6 mg/dL, fraqueza, hipocalemia persistente apesar de KCl e intolerância à reposição oral de magnésio. Qual é a melhor conduta inicial e o mecanismo da hipocalemia refratária?",
+        "refs": [
+          "hypomagnesemia_review_2019"
+        ],
+        "opts": [
+          "Repor magnésio por via intravenosa e potássio em paralelo; a deficiência de Mg aumenta a perda renal de K+ por ROMK",
+          "Aumentar apenas a dose de KCl; o magnésio não interfere na excreção renal de potássio",
+          "Tratar com carbonato de cálcio e vitamina D; a hipocalcemia é o mecanismo primário da perda urinária de K+",
+          "Aguardar dieta rica em magnésio por 48 horas antes de repor potássio"
+        ],
+        "ans": 0,
+        "exp": "Hipomagnesemia grave ou sintomática, sobretudo com intolerância ou falha da via oral, exige reposição intravenosa de magnésio, com monitorização clínica e laboratorial, além de reposição de potássio conforme gravidade. A deficiência de Mg remove o bloqueio fisiológico dos canais ROMK no néfron distal, mantendo secreção urinária de K+ e tornando a hipocalemia refratária ao KCl isolado. Cálcio/vitamina D não corrigem esse mecanismo, e aguardar dieta é inadequado em quadro grave.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "revision": "sha256:243e4a16509a1fc95edd9e899caba6736e9152f7353012ef3efbc00c440d4a2a",
+      "fullMedicalGate": false
+    },
+    {
+      "qid": "1e2668d6",
+      "literal": {
+        "t": "Síndrome de Gitelman — Padrão Laboratorial e Mecanismo",
+        "qid": "1e2668d6",
+        "q": "Adulto jovem tem câimbras recorrentes, PA normal-baixa, hipocalemia, alcalose metabólica, hipomagnesemia e hipocalciúria. Qual defeito tubular explica melhor esse padrão?",
+        "refs": [
+          "gitelman_kdigo_2017",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Mutação da H+-ATPase do ducto coletor, causando acidose tubular distal",
+          "Mutação inativante de SLC12A3/NCC, o cotransportador NaCl sensível a tiazídicos no túbulo contornado distal",
+          "Ganho de função do ENaC, causando hipertensão com renina e aldosterona suprimidas",
+          "Perda de função de NKCC2 no ramo ascendente espesso, com hipercalciúria típica"
+        ],
+        "ans": 1,
+        "exp": "O padrão descrito é clássico de síndrome de Gitelman: alcalose metabólica hipocalêmica, hipomagnesemia e hipocalciúria, geralmente com pressão normal ou baixa. O defeito é inativação de SLC12A3, que codifica o cotransportador NaCl sensível a tiazídicos (NCC) no túbulo contornado distal. NKCC2 aponta para Bartter, mais associado a hipercalciúria; ENaC ganho de função aponta para Liddle, com hipertensão; defeitos de acidificação distal causam acidose, não alcalose.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "revision": "sha256:640d9504e943e4cbe5dbebbfabe5b00c6e98f46a9441d69f6685fe2a91456d33",
+      "fullMedicalGate": false
+    },
+    {
+      "qid": "940b2835",
+      "literal": {
+        "t": "Bartter vs Gitelman — Cálcio e Magnésio Urinários",
+        "qid": "940b2835",
+        "q": "Dois pacientes têm hipocalemia e alcalose metabólica. O paciente A tem hipercalciúria e nefrocalcinose; o paciente B tem hipomagnesemia e hipocalciúria. Qual associação é a mais provável?",
+        "refs": [
+          "gitelman_kdigo_2017",
+          "brenner_rector"
+        ],
+        "opts": [
+          "A = Gitelman; B = Bartter",
+          "A = acidose tubular renal distal; B = acidose tubular renal proximal",
+          "A = Bartter; B = Gitelman",
+          "A = Liddle; B = Gordon"
+        ],
+        "ans": 2,
+        "exp": "Bartter é uma tubulopatia do ramo ascendente espesso que pode cursar com hipercalciúria e nefrocalcinose; Gitelman envolve o cotransportador NCC no túbulo contornado distal e tipicamente combina hipocalemia, alcalose metabólica, hipomagnesemia e hipocalciúria. As acidoses tubulares produzem acidose metabólica, não alcalose. Liddle cursa com hipertensão por ganho de função de ENaC; Gordon tende a hipercalemia e acidose metabólica.",
+        "diff": "easy",
+        "cat": "eletrólitos"
+      },
+      "revision": "sha256:f1bc037e65b9069b9aed00ba833fd7cdf717028b0f8d36bb5bc18da576fe604d",
+      "fullMedicalGate": false
+    }
+  ],
+  "unchangedConsumerPolicy": "Aprovarcardnãoaprova automaticamente8f6bbf81ououtrosGitelman; mudanças materiais aqui são apenasAHRQ(2consumidores dolote),Endocrine(518e2f2queagoramigraEndotext).",
+  "items": [
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "86ad6fc4",
+      "family": "A12-eletrólitos",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Hipermagnesemia Grave: Manifestações Clínicas",
+        "qid": "86ad6fc4",
+        "q": "Qual é o sinal clínico precoce de toxicidade por magnésio que precede a depressão respiratória?",
+        "refs": [
+          "kdigo_ckd",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Hiperreflexia",
+          "Hipertensão arterial severa",
+          "Taquicardia sinusal",
+          "Abolição dos reflexos tendinosos profundos"
+        ],
+        "ans": 3,
+        "exp": "A manifestação neuromuscular típica mais precoce de toxicidade por magnésio clinicamente relevante é a hiporreflexia, que pode evoluir para abolição dos reflexos tendinosos profundos antes de depressão respiratória e bloqueio neuromuscular mais grave; por isso a alternativa D é a melhor resposta entre as opções. Hiperreflexia não é esperada na hipermagnesemia, e sim na hipomagnesemia ou em estados hiperadrenérgicos. Hipertensão grave e taquicardia sinusal não são marcadores clássicos iniciais de intoxicação magnésica.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "originalSHA256": "sha256:423b723e8bdb0a752a86f7478890ae37290f0a44dffc31c2ec72a3a371f25203",
+      "originalRefs": [
+        {
+          "id": "kdigo_ckd",
+          "original": {
+            "label": "KDIGO CKD 2024",
+            "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "journal": "Kidney International",
+            "ano": 2024,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "icon": "📋",
+            "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+            "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+            "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+          },
+          "originalSHA256": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+        },
+        {
+          "id": "brenner_rector",
+          "original": {
+            "label": "Brenner & Rector's The Kidney",
+            "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+            "journal": "Elsevier (Textbook)",
+            "ano": 2024,
+            "tipo": "Livro-texto de referência",
+            "badge": "TEXTBOOK",
+            "badgeColor": "#64748b",
+            "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+            "icon": "📚",
+            "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+            "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+            "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+          },
+          "originalSHA256": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reconhecer redução de reflexos tendinosos como sinal de toxicidade por magnésio durante monitorização.",
+        "primaryCompetence": "Interpretação fisiopatológica e conduta segura.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "easy"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Referências gerais não foram lidas para toxicidade por magnésio; KDIGOdoença renal não substitui fonte específica.",
+          "MENOR — Abolição completa não deve ser chamada de primeiro sinal obrigatório em toda pessoa; hiporreflexia pode ocorrer antes."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "ahrq",
+          "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+          "access": "Ferramenta clínica oficial integral aberta; última revisão julho2023, criada abril2017, conforme rodapé real.",
+          "locators": [
+            "Monitorização: reflexos tendinosos, respiração/saturação, nível deconsciência e função renal.",
+            "Tabela clínica: perda de reflexo patelar é sinal de toxicidade e podeprecederdepressãorespiratória; níveis séricos nemsemprecorrelacionam comclínica.",
+            "Standingorders: parar infusão, ativarresposta rápida, monitorarrespiração, dosarMg; se depressãorespiratória, oxigênio egluconato de cálcio; suporteventilatório seapneia."
+          ],
+          "limitations": [
+            "É ferramenta operacional perinatal, nãoRCTouprotocolo universal para todo contexto. Não chamar2024depublicaçãosemcomprovante. Não postergar suporte aguardando dosagem."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Redução/perda de reflexoséalerta quepodeprecederdepressãorespiratória; valoresnão substituemavaliaçãoclínica.",
+          "source": "ahrq",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Hipermagnesemia Grave: Manifestações Clínicas",
+        "qid": "86ad6fc4",
+        "q": "Durante uma infusão de sulfato de magnésio, qual achado neuromuscular pode alertar para toxicidade antes da depressão respiratória?",
+        "refs": [
+          "magnesium_sulfate_toxicity_ahrq"
+        ],
+        "opts": [
+          "Aumento dos reflexos tendinosos.",
+          "Redução ou abolição dos reflexos tendinosos.",
+          "Clônus progressivo com hiperreflexia.",
+          "Tetania com espasmo carpopedal."
+        ],
+        "ans": 1,
+        "exp": "A redução dos reflexos tendinosos, podendo chegar à abolição do reflexo patelar, é um alerta de toxicidade por magnésio. Pode aparecer antes da depressão respiratória e deve motivar avaliação imediata da infusão e do paciente. Não é necessário esperar uma sequência rígida de sinais nem um valor sérico específico para agir. Hiperreflexia, clônus e tetania não são o padrão de bloqueio neuromuscular esperado com excesso de magnésio.",
+        "diff": "easy",
+        "cat": "eletrólitos"
+      },
+      "proposedSHA256": "sha256:06396e12ed2999d621991b7b7e7698c4e041ff58867ef33b4d4ef29ba0465724",
+      "classificationAfter": {
+        "op": "Reconhecer redução de reflexos tendinosos como sinal de toxicidade por magnésio durante monitorização.",
+        "primaryCompetence": "Interpretação fisiopatológica e conduta segura.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "proposedRefs": [
+        {
+          "id": "magnesium_sulfate_toxicity_ahrq",
+          "original": {
+            "label": "AHRQ — Safe Medication Administration: Magnesium Sulfate",
+            "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+            "journal": "Agency for Healthcare Research and Quality",
+            "ano": 2024,
+            "tipo": "Guia de Segurança Medicamentosa",
+            "badge": "SAFETY",
+            "badgeColor": "#f97316",
+            "impacto": "Sinais de toxicidade por sulfato de magnésio e resposta com gluconato de cálcio",
+            "icon": "⚠️",
+            "resumo": "Ferramenta de segurança perinatal sobre administração de sulfato de magnésio. Lista faixa terapêutica, progressão clínica da toxicidade e resposta operacional: perda de reflexo patelar como sinal precoce, seguida por sonolência, depressão respiratória, paralisia, alteração de condução cardíaca e parada em níveis muito elevados. Recomenda acesso rápido ao antídoto, gluconato de cálcio, além de suspender a infusão e oferecer suporte ventilatório quando houver toxicidade.",
+            "conclusao": "A monitorização clínica do reflexo patelar e da respiração é central durante MgSO4; toxicidade exige suspender magnésio e administrar gluconato de cálcio se houver depressão significativa.",
+            "curiosidade": "O magnésio é terapêutico na pré-eclâmpsia justamente por modular excitabilidade neuromuscular; quando passa do ponto, a mesma fisiologia vira toxicidade."
+          },
+          "originalSHA256": "sha256:93532d959b6e9bcf6339b39040b231bb248c75e5184ce11451e3393fa26e77ee",
+          "proposed": {
+            "label": "AHRQ — Safe Medication Administration: Magnesium Sulfate",
+            "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+            "journal": "Agency for Healthcare Research and Quality",
+            "ano": 2023,
+            "tipo": "Guia de Segurança Medicamentosa",
+            "badge": "SAFETY",
+            "badgeColor": "#f97316",
+            "impacto": "Reconhecer toxicidade por sulfato de magnésio e responder sem atraso.",
+            "icon": "⚠️",
+            "resumo": "Ferramenta de segurança perinatal da Agency for Healthcare Research and Quality (AHRQ), criada em 2017 e revisada em julho de 2023. Orienta monitorar reflexos tendinosos, nível de consciência, respiração e saturação durante sulfato de magnésio. Perda de reflexo patelar, sonolência e depressão respiratória sugerem toxicidade; os níveis séricos não se correlacionam perfeitamente com os sinais. A resposta inclui interromper a infusão, acionar ajuda, apoiar a respiração e manter gluconato de cálcio acessível para antagonizar toxicidade significativa.",
+            "conclusao": "Na suspeita de toxicidade, suspender magnésio e avaliar imediatamente respiração e circulação. Depressão respiratória exige suporte e cálcio intravenoso conforme avaliação, sem aguardar o resultado laboratorial.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:0e076490bcdeff33f09d57073cecf56c746734cb84fc12981164221e1a415d2b",
+          "sourceIDs": [
+            "ahrq"
+          ],
+          "notes": [
+            "Corrige ano sem mudaridentidade dafonte; retira fraseflorida e evita definir umprimeirosinaluniversal."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Reconhecimento de sinal de segurança, easy; evita afirmar que todos seguem a mesma sequência e substitui referência genérica por fonte operacional primária.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "c58fc63b",
+      "family": "A12-eletrólitos",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Sulfato de Magnésio — Toxicidade e Antídoto",
+        "qid": "c58fc63b",
+        "q": "Paciente com pré-eclâmpsia grave em sulfato de magnésio evolui com sonolência e desaparecimento do reflexo patelar. Qual é a melhor interpretação e conduta imediata?",
+        "refs": [
+          "magnesium_sulfate_toxicity_ahrq"
+        ],
+        "opts": [
+          "É sinal esperado de eficácia; aumentar a infusão.",
+          "É toxicidade por magnésio; suspender MgSO4, avaliar respiração e preparar/administrar gluconato de cálcio se houver depressão significativa.",
+          "É hipocalcemia por quelante de fósforo; tratar apenas com vitamina D.",
+          "É crise eclâmptica iminente; administrar nova dose de ataque de magnésio sem avaliação."
+        ],
+        "ans": 1,
+        "exp": "Perda do reflexo patelar é sinal precoce importante de toxicidade por magnésio. A resposta segura é suspender a infusão, monitorar respiração/saturação, dosar magnésio se disponível e administrar gluconato de cálcio quando houver depressão respiratória, instabilidade ou toxicidade significativa. Como o magnésio é excretado pelos rins, DRC ou LRA aumentam risco de acúmulo.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "originalSHA256": "sha256:27571885fe554c33b45d039e5479dd5e462c8cececd723da0146762f4519d542",
+      "originalRefs": [
+        {
+          "id": "magnesium_sulfate_toxicity_ahrq",
+          "original": {
+            "label": "AHRQ — Safe Medication Administration: Magnesium Sulfate",
+            "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+            "journal": "Agency for Healthcare Research and Quality",
+            "ano": 2024,
+            "tipo": "Guia de Segurança Medicamentosa",
+            "badge": "SAFETY",
+            "badgeColor": "#f97316",
+            "impacto": "Sinais de toxicidade por sulfato de magnésio e resposta com gluconato de cálcio",
+            "icon": "⚠️",
+            "resumo": "Ferramenta de segurança perinatal sobre administração de sulfato de magnésio. Lista faixa terapêutica, progressão clínica da toxicidade e resposta operacional: perda de reflexo patelar como sinal precoce, seguida por sonolência, depressão respiratória, paralisia, alteração de condução cardíaca e parada em níveis muito elevados. Recomenda acesso rápido ao antídoto, gluconato de cálcio, além de suspender a infusão e oferecer suporte ventilatório quando houver toxicidade.",
+            "conclusao": "A monitorização clínica do reflexo patelar e da respiração é central durante MgSO4; toxicidade exige suspender magnésio e administrar gluconato de cálcio se houver depressão significativa.",
+            "curiosidade": "O magnésio é terapêutico na pré-eclâmpsia justamente por modular excitabilidade neuromuscular; quando passa do ponto, a mesma fisiologia vira toxicidade."
+          },
+          "originalSHA256": "sha256:93532d959b6e9bcf6339b39040b231bb248c75e5184ce11451e3393fa26e77ee"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Responder imediatamente à toxicidade significativa por sulfato de magnésio, protegendo a respiração e interrompendo a exposição.",
+        "primaryCompetence": "Interpretação fisiopatológica e conduta segura.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — A correta junta interpretação e toda resposta em texto bem maior que alternativas muito frágeis.",
+          "MENOR — O original não explicita depressãorespiratória; se essa for a razão para administrar antídoto, fornecer esse dado."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "ahrq",
+          "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+          "access": "Ferramenta clínica oficial integral aberta; última revisão julho2023, criada abril2017, conforme rodapé real.",
+          "locators": [
+            "Monitorização: reflexos tendinosos, respiração/saturação, nível deconsciência e função renal.",
+            "Tabela clínica: perda de reflexo patelar é sinal de toxicidade e podeprecederdepressãorespiratória; níveis séricos nemsemprecorrelacionam comclínica.",
+            "Standingorders: parar infusão, ativarresposta rápida, monitorarrespiração, dosarMg; se depressãorespiratória, oxigênio egluconato de cálcio; suporteventilatório seapneia."
+          ],
+          "limitations": [
+            "É ferramenta operacional perinatal, nãoRCTouprotocolo universal para todo contexto. Não chamar2024depublicaçãosemcomprovante. Não postergar suporte aguardando dosagem."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "SuspenderMg,acionarajuda,suporterespiratórioecálcioIVcomdepressãorespiratória,nãoaguardarmagnesemia.",
+          "source": "ahrq",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Sulfato de Magnésio — Toxicidade e Antídoto",
+        "qid": "c58fc63b",
+        "q": "Gestante com pré-eclâmpsia recebe sulfato de magnésio e evolui com sonolência, ausência de reflexo patelar e frequência respiratória de 8/min. Há suspeita de toxicidade significativa. Qual é a resposta imediata mais adequada?",
+        "refs": [
+          "magnesium_sulfate_toxicity_ahrq"
+        ],
+        "opts": [
+          "Reduzir a infusão à metade e observar se a respiração melhora espontaneamente.",
+          "Suspender a infusão e aguardar a magnesemia antes de oferecer suporte.",
+          "Interromper a infusão, acionar ajuda e oferecer suporte respiratório e gluconato de cálcio intravenoso.",
+          "Administrar nova dose de magnésio para prevenir convulsão e reavaliar após a dose."
+        ],
+        "ans": 2,
+        "exp": "A exposição deve ser interrompida imediatamente, com acionamento de ajuda, monitorização e suporte respiratório. A bradipneia já demonstra toxicidade significativa: o gluconato de cálcio intravenoso antagoniza os efeitos do magnésio e deve estar prontamente disponível. A dosagem de magnésio ajuda na avaliação, mas não deve atrasar essas medidas. Apenas reduzir a infusão mantém a exposição, e uma nova dose pode agravar a depressão neuromuscular e respiratória. O plano deve incluir avaliação da função renal e do risco de acúmulo.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "proposedSHA256": "sha256:9b24a963b414002cbdb277d3678dfb1c96475fcf6af75dd0d294b53b39bc8a10",
+      "classificationAfter": {
+        "op": "Responder imediatamente à toxicidade significativa por sulfato de magnésio, protegendo a respiração e interrompendo a exposição.",
+        "primaryCompetence": "Interpretação fisiopatológica e conduta segura.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "magnesium_sulfate_toxicity_ahrq",
+          "original": {
+            "label": "AHRQ — Safe Medication Administration: Magnesium Sulfate",
+            "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+            "journal": "Agency for Healthcare Research and Quality",
+            "ano": 2024,
+            "tipo": "Guia de Segurança Medicamentosa",
+            "badge": "SAFETY",
+            "badgeColor": "#f97316",
+            "impacto": "Sinais de toxicidade por sulfato de magnésio e resposta com gluconato de cálcio",
+            "icon": "⚠️",
+            "resumo": "Ferramenta de segurança perinatal sobre administração de sulfato de magnésio. Lista faixa terapêutica, progressão clínica da toxicidade e resposta operacional: perda de reflexo patelar como sinal precoce, seguida por sonolência, depressão respiratória, paralisia, alteração de condução cardíaca e parada em níveis muito elevados. Recomenda acesso rápido ao antídoto, gluconato de cálcio, além de suspender a infusão e oferecer suporte ventilatório quando houver toxicidade.",
+            "conclusao": "A monitorização clínica do reflexo patelar e da respiração é central durante MgSO4; toxicidade exige suspender magnésio e administrar gluconato de cálcio se houver depressão significativa.",
+            "curiosidade": "O magnésio é terapêutico na pré-eclâmpsia justamente por modular excitabilidade neuromuscular; quando passa do ponto, a mesma fisiologia vira toxicidade."
+          },
+          "originalSHA256": "sha256:93532d959b6e9bcf6339b39040b231bb248c75e5184ce11451e3393fa26e77ee",
+          "proposed": {
+            "label": "AHRQ — Safe Medication Administration: Magnesium Sulfate",
+            "url": "https://www.ahrq.gov/patient-safety/settings/labor-delivery/perinatal-care/modules/strategies/medication/tool-safe-mgso4.html",
+            "journal": "Agency for Healthcare Research and Quality",
+            "ano": 2023,
+            "tipo": "Guia de Segurança Medicamentosa",
+            "badge": "SAFETY",
+            "badgeColor": "#f97316",
+            "impacto": "Reconhecer toxicidade por sulfato de magnésio e responder sem atraso.",
+            "icon": "⚠️",
+            "resumo": "Ferramenta de segurança perinatal da Agency for Healthcare Research and Quality (AHRQ), criada em 2017 e revisada em julho de 2023. Orienta monitorar reflexos tendinosos, nível de consciência, respiração e saturação durante sulfato de magnésio. Perda de reflexo patelar, sonolência e depressão respiratória sugerem toxicidade; os níveis séricos não se correlacionam perfeitamente com os sinais. A resposta inclui interromper a infusão, acionar ajuda, apoiar a respiração e manter gluconato de cálcio acessível para antagonizar toxicidade significativa.",
+            "conclusao": "Na suspeita de toxicidade, suspender magnésio e avaliar imediatamente respiração e circulação. Depressão respiratória exige suporte e cálcio intravenoso conforme avaliação, sem aguardar o resultado laboratorial.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:0e076490bcdeff33f09d57073cecf56c746734cb84fc12981164221e1a415d2b",
+          "sourceIDs": [
+            "ahrq"
+          ],
+          "notes": [
+            "Corrige ano sem mudaridentidade dafonte; retira fraseflorida e evita definir umprimeirosinaluniversal."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Cenário explicita a gravidade que torna antídoto/suporte indicados. A correta ainda é maior porque reúne ações inseparáveis de segurança; não cortar suporte nem inflar distratores para satisfazer uma razão matemática.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "81740f2d",
+      "family": "A12-eletrólitos",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Síndrome de Gitelman — Tetania e Hipomagnesemia",
+        "qid": "81740f2d",
+        "q": "Paciente com síndrome de Gitelman apresenta câimbras, parestesias periorais e episódios de tetania. Qual combinação fisiopatológica explica melhor a irritabilidade neuromuscular?",
+        "refs": [
+          "gitelman_kdigo_2017",
+          "hypomagnesemia_review_2019"
+        ],
+        "opts": [
+          "Hiponatremia moderada isolada por perda renal de sal",
+          "Acidose metabólica hiperclorêmica com lactato normal",
+          "Hipomagnesemia com redução da secreção/ação do PTH, frequentemente agravada pela alcalose metabólica",
+          "Hipercalcemia leve por aumento da reabsorção proximal de cálcio"
+        ],
+        "ans": 2,
+        "exp": "Na síndrome de Gitelman, a hipomagnesemia é uma característica central e pode produzir sintomas neuromusculares, inclusive tetania, por comprometer secreção e ação do PTH e favorecer hipocalcemia funcional. A alcalose metabólica pode reduzir a fração ionizada do cálcio e aumentar a excitabilidade neuromuscular. Hiponatremia isolada, acidose metabólica e hipercalcemia não explicam o padrão típico dessa tubulopatia.",
+        "diff": "hard",
+        "cat": "eletrólitos"
+      },
+      "originalSHA256": "sha256:58c4f342f3a99738a1d81e9cbaa290ddd6145ad5223cd8444156b9f458cf34a1",
+      "originalRefs": [
+        {
+          "id": "gitelman_kdigo_2017",
+          "original": {
+            "label": "Blanchard A et al. - Síndrome de Gitelman: consenso KDIGO (2017)",
+            "url": "https://discovery.ucl.ac.uk/id/eprint/1534450/",
+            "journal": "Kidney Int 2017;91(1):24-33",
+            "ano": 2017,
+            "tipo": "Consenso internacional (KDIGO)",
+            "badge": "CONSENSUS",
+            "badgeColor": "#6366f1",
+            "impacto": "Reconhecer o fenótipo de Gitelman e os limites do diagnóstico clínico",
+            "icon": "📋",
+            "resumo": "Consenso de especialistas de uma conferência KDIGO, publicado em 2017, sobre diagnóstico, manejo e seguimento da síndrome de Gitelman, com evidência de alta qualidade limitada. A forma clássica é uma tubulopatia perdedora de sal, de herança autossômica recessiva, causada por variantes patogênicas bialélicas em SLC12A3, que codifica o cotransportador NaCl sensível a tiazídicos (NCC) no túbulo contornado distal. O fenótipo típico inclui alcalose metabólica hipocalêmica, hipomagnesemia e hipocalciúria, geralmente reconhecido na adolescência ou vida adulta, mas pode variar. O manejo é individualizado, com liberalização de sal e reposição oral de potássio e magnésio conforme necessidade e tolerância, além de seguimento dos sintomas, distúrbios eletrolíticos e complicações.",
+            "conclusao": "O padrão típico sugere Gitelman, mas hipomagnesemia pode estar ausente e a calciúria é variável. Há sobreposição com Bartter associado a CLCNKB; o perfil cálcio-magnésio isolado não confirma o diagnóstico. A confirmação molecular se baseia em variantes patogênicas bialélicas em SLC12A3, com investigação genética orientada pelo diagnóstico diferencial.",
+            "curiosidade": "O fenótipo de Gitelman imita um 'tiazídico genético': o defeito fica no mesmo cotransportador que a hidroclorotiazida bloqueia, mas com consequências crônicas sobre magnésio e cálcio urinário."
+          },
+          "originalSHA256": "sha256:aa02ffc07c33a7bf4b2aeb21c7c32839a9215e67dbd549ee5ff314b656ec361f"
+        },
+        {
+          "id": "hypomagnesemia_review_2019",
+          "original": {
+            "label": "Ahmed F, Mohammed A — Magnesium: The Forgotten Electrolyte (2019)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6524065/",
+            "journal": "Med Sci (Basel) 2019;7(4):56",
+            "ano": 2019,
+            "tipo": "Revisão Clínica",
+            "badge": "REVIEW",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Hipomagnesemia como causa de hipocalemia refratária e hipocalcemia funcional por alteração de ROMK, Na/K-ATPase e PTH",
+            "icon": "📖",
+            "resumo": "Revisão clínica sobre magnésio e hipomagnesemia. Destaca que a hipocalemia associada à deficiência de magnésio pode ser refratária à reposição isolada de potássio, pois o magnésio intracelular normalmente bloqueia o canal ROMK no néfron distal; quando o magnésio está baixo, aumenta a perda urinária de K+. Também descreve hipocalcemia em deficiência moderada a grave por redução da secreção e/ou ação do PTH. O tratamento depende de gravidade, sintomas e tolerância oral, com reposição intravenosa em casos graves ou sintomáticos.",
+            "conclusao": "Na hipocalemia refratária, dosar e corrigir magnésio não é detalhe: sem repor Mg, o rim pode continuar desperdiçando potássio via ROMK.",
+            "curiosidade": "A hipomagnesemia é um pequeno sabotador bioquímico: pode fazer o potássio 'vazar' pela urina e ainda simular hipoparatireoidismo funcional ao atrapalhar o PTH."
+          },
+          "originalSHA256": "sha256:ce7ee2e814586e5d98f2930a6f72de497a2bc3ad0b4b6cf61a7393626253bac9"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Explicar tetania em Gitelman pela combinação de deficiência grave de magnésio e alteração do cálcio ionizado na alcalose.",
+        "primaryCompetence": "Interpretação fisiopatológica e conduta segura.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — A correta concentraPTH/alcalosee é muito mais detalhada.",
+          "MAIOR — NãoquantificaMg/pH;citarapenasGitelmanéinsuficienteparaforçartodososmecanismos."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": true,
+            "rationale": "Gitelmannãogarantehipomagnesemiagraveemcadapessoa;graudedadeficiência/pHnãoforamfornecidosparaatribuirPTH/ionizadoaomecanismo."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "anulado": true
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "gitelman",
+          "url": "https://discovery.ucl.ac.uk/id/eprint/1534450/1/Bockenhauer_1-s2.0-S0085253816306020-main.pdf",
+          "doi": "10.1016/j.kint.2016.09.046",
+          "access": "Artigo primário publicado integral,10páginas, aberto no repositórioUCL. Não resumo de terceiro.",
+          "locators": [
+            "PDF1–2/p24–25: SLC12A3/NCC, fenótipoclássico, variabilidade e sobreposiçãoCLCNKB; tetania/parestesiasentre manifestações.",
+            "PDF4–5: sintomas/complicações e reposiçãoindividualizada deMg/K, limites da evidência."
+          ],
+          "limitations": [
+            "Nem todoGitelman temhipomagnesemia; oAFTERinforma deficiência grave medida. Não infere que todo sintoma seja porPTH."
+          ]
+        },
+        {
+          "id": "hypomag",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6524065/",
+          "doi": "10.3390/medsci7040056",
+          "pmid": "30987399",
+          "access": "Corpo primário da revisão2019 efetivamente aberto e lido nas seções6–10.",
+          "locators": [
+            "§7: excitabilidadeneuromuscular/tetania comdeficiência deMg.",
+            "§8.6.1: baixoMgdesinibeROMKeperdaKrefratária;§8.6.2:deficiênciamoderada/gravepodecomprometer secreção/açãoPTH ecausarhipocalcemia.",
+            "§10: viaindividualizada porgravidade/sintomas;graves/sintomáticos requeremreposiçãoIVconformemonitorização."
+          ],
+          "limitations": [
+            "Revisão narrativa, não ensaio de umplano para todoGitelman. Nãoatribuir concentração/atividadePTH deumindivíduosemmedição."
+          ]
+        },
+        {
+          "id": "endotext",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK279129/",
+          "access": "Capítulo autoral Endotext real integral aberto; atualização19/03/2026; partesdehomeostase,diagnóstico ehipercalcemia humoral lidas.",
+          "locators": [
+            "Definition: alcalose aumenta ligaçãoalbumina-cálcio; quando proteína/pHmudam, medir cálcioionizadoépreferível.",
+            "Abstract/Diagnosis:hipercalcemia comPTHsuprimido sugere mecanismoindependente;PTHrP elevado podeapontarhipercalcemia damalignidade.",
+            "MAHwithElevatedPTHrP: mecanismoshumorais/ósseospodemcoexistir; nãofixarhistologiade tumorapenasporPTHrP."
+          ],
+          "limitations": [
+            "Capítulo expert, não diretrizdeensaio. Asquestõespedemfisiologia/diagnósticomaisprovável,nãoprova histológicadecâncerporensaioisolado."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "HipomagnesemiagravepodecomprometerPTHcontribuindoparahipocalcemia; alcaloseaumentaligaçãoalbumina-Ca.",
+          "source": "hypomag/endotext",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Síndrome de Gitelman — Tetania e Hipomagnesemia",
+        "qid": "81740f2d",
+        "q": "Adulto com síndrome de Gitelman apresenta parestesias periorais e tetania. O magnésio sérico é 0,7 mg/dL, há alcalose metabólica e o cálcio ionizado está reduzido. Qual combinação contribui para a irritabilidade neuromuscular nesse contexto?",
+        "refs": [
+          "gitelman_kdigo_2017",
+          "hypomagnesemia_review_2019",
+          "endotext_hypercalcemia_2026"
+        ],
+        "opts": [
+          "Deficiência de magnésio com alteração da secreção/ação do paratormônio, agravada pela redução do cálcio ionizado na alcalose.",
+          "Perda urinária maciça de cálcio por hipercalciúria, acompanhada de acidose tubular distal.",
+          "Hipercalcemia por maior reabsorção de cálcio, com supressão compensatória do paratormônio.",
+          "Hiponatremia isolada pela perda de sal, sem contribuição das alterações de magnésio e cálcio."
+        ],
+        "ans": 0,
+        "exp": "A deficiência grave de magnésio pode aumentar a excitabilidade neuromuscular e comprometer a secreção e a ação do paratormônio, contribuindo para hipocalcemia. A alcalose também aumenta a ligação do cálcio à albumina e reduz sua fração ionizada, favorecendo parestesias e tetania. Esses mecanismos podem coexistir; não se afirma que todo paciente com Gitelman tenha hipocalcemia ou o mesmo grau de alteração hormonal. O padrão não é explicado por hipercalciúria com acidose, hipercalcemia ou perda isolada de sódio. A avaliação e a reposição devem considerar sintomas, eletrólitos, função renal e monitorização.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "proposedSHA256": "sha256:6c26c6862a196eb3d2dce1ca362e735dcc323fb03580fbea355cba9db335ea68",
+      "classificationAfter": {
+        "op": "Explicar tetania em Gitelman pela combinação de deficiência grave de magnésio e alteração do cálcio ionizado na alcalose.",
+        "primaryCompetence": "Interpretação fisiopatológica e conduta segura.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "gitelman_kdigo_2017",
+          "original": {
+            "label": "Blanchard A et al. - Síndrome de Gitelman: consenso KDIGO (2017)",
+            "url": "https://discovery.ucl.ac.uk/id/eprint/1534450/",
+            "journal": "Kidney Int 2017;91(1):24-33",
+            "ano": 2017,
+            "tipo": "Consenso internacional (KDIGO)",
+            "badge": "CONSENSUS",
+            "badgeColor": "#6366f1",
+            "impacto": "Reconhecer o fenótipo de Gitelman e os limites do diagnóstico clínico",
+            "icon": "📋",
+            "resumo": "Consenso de especialistas de uma conferência KDIGO, publicado em 2017, sobre diagnóstico, manejo e seguimento da síndrome de Gitelman, com evidência de alta qualidade limitada. A forma clássica é uma tubulopatia perdedora de sal, de herança autossômica recessiva, causada por variantes patogênicas bialélicas em SLC12A3, que codifica o cotransportador NaCl sensível a tiazídicos (NCC) no túbulo contornado distal. O fenótipo típico inclui alcalose metabólica hipocalêmica, hipomagnesemia e hipocalciúria, geralmente reconhecido na adolescência ou vida adulta, mas pode variar. O manejo é individualizado, com liberalização de sal e reposição oral de potássio e magnésio conforme necessidade e tolerância, além de seguimento dos sintomas, distúrbios eletrolíticos e complicações.",
+            "conclusao": "O padrão típico sugere Gitelman, mas hipomagnesemia pode estar ausente e a calciúria é variável. Há sobreposição com Bartter associado a CLCNKB; o perfil cálcio-magnésio isolado não confirma o diagnóstico. A confirmação molecular se baseia em variantes patogênicas bialélicas em SLC12A3, com investigação genética orientada pelo diagnóstico diferencial.",
+            "curiosidade": "O fenótipo de Gitelman imita um 'tiazídico genético': o defeito fica no mesmo cotransportador que a hidroclorotiazida bloqueia, mas com consequências crônicas sobre magnésio e cálcio urinário."
+          },
+          "originalSHA256": "sha256:aa02ffc07c33a7bf4b2aeb21c7c32839a9215e67dbd549ee5ff314b656ec361f",
+          "proposed": {
+            "label": "Blanchard A et al. - Síndrome de Gitelman: consenso KDIGO (2017)",
+            "url": "https://discovery.ucl.ac.uk/id/eprint/1534450/",
+            "journal": "Kidney Int 2017;91(1):24-33",
+            "ano": 2017,
+            "tipo": "Consenso de especialistas",
+            "badge": "CONSENSO",
+            "badgeColor": "#6366f1",
+            "impacto": "Reconhecer o fenótipo de Gitelman e os limites do diagnóstico clínico",
+            "icon": "📋",
+            "resumo": "Consenso de especialistas de uma conferência KDIGO, publicado em 2017, sobre diagnóstico, manejo e seguimento da síndrome de Gitelman, com evidência de alta qualidade limitada. A forma clássica é uma tubulopatia perdedora de sal, de herança autossômica recessiva, causada por variantes patogênicas bialélicas em SLC12A3, que codifica o cotransportador NaCl sensível a tiazídicos (NCC) no túbulo contornado distal. O fenótipo típico inclui alcalose metabólica hipocalêmica, hipomagnesemia e hipocalciúria, geralmente reconhecido na adolescência ou vida adulta, mas pode variar. O manejo é individualizado, com liberalização de sal e reposição oral de potássio e magnésio conforme necessidade e tolerância, além de seguimento dos sintomas, distúrbios eletrolíticos e complicações.",
+            "conclusao": "O padrão típico sugere Gitelman, mas hipomagnesemia pode estar ausente e a calciúria é variável. Há sobreposição com Bartter associado a CLCNKB; o perfil cálcio-magnésio isolado não confirma o diagnóstico. A confirmação molecular se baseia em variantes patogênicas bialélicas em SLC12A3, com investigação genética orientada pelo diagnóstico diferencial.",
+            "curiosidade": "O fenótipo de Gitelman imita um 'tiazídico genético': o defeito fica no mesmo cotransportador que a hidroclorotiazida bloqueia, mas com consequências crônicas sobre magnésio e cálcio urinário."
+          },
+          "proposedSHA256": "sha256:051a1578ada4d7ccab85f6bb675132122157ab9bd2b256743098e651fb15cce4",
+          "sourceIDs": [
+            "gitelman"
+          ],
+          "notes": [
+            "Card atual byte-exato; todo conteúdo clínico confrontado com fonte primária."
+          ]
+        },
+        {
+          "id": "hypomagnesemia_review_2019",
+          "original": {
+            "label": "Ahmed F, Mohammed A — Magnesium: The Forgotten Electrolyte (2019)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6524065/",
+            "journal": "Med Sci (Basel) 2019;7(4):56",
+            "ano": 2019,
+            "tipo": "Revisão Clínica",
+            "badge": "REVIEW",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Hipomagnesemia como causa de hipocalemia refratária e hipocalcemia funcional por alteração de ROMK, Na/K-ATPase e PTH",
+            "icon": "📖",
+            "resumo": "Revisão clínica sobre magnésio e hipomagnesemia. Destaca que a hipocalemia associada à deficiência de magnésio pode ser refratária à reposição isolada de potássio, pois o magnésio intracelular normalmente bloqueia o canal ROMK no néfron distal; quando o magnésio está baixo, aumenta a perda urinária de K+. Também descreve hipocalcemia em deficiência moderada a grave por redução da secreção e/ou ação do PTH. O tratamento depende de gravidade, sintomas e tolerância oral, com reposição intravenosa em casos graves ou sintomáticos.",
+            "conclusao": "Na hipocalemia refratária, dosar e corrigir magnésio não é detalhe: sem repor Mg, o rim pode continuar desperdiçando potássio via ROMK.",
+            "curiosidade": "A hipomagnesemia é um pequeno sabotador bioquímico: pode fazer o potássio 'vazar' pela urina e ainda simular hipoparatireoidismo funcional ao atrapalhar o PTH."
+          },
+          "originalSHA256": "sha256:ce7ee2e814586e5d98f2930a6f72de497a2bc3ad0b4b6cf61a7393626253bac9",
+          "proposed": {
+            "label": "Ahmed F, Mohammed A — Magnesium: The Forgotten Electrolyte (2019)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6524065/",
+            "journal": "Med Sci (Basel) 2019;7(4):56",
+            "ano": 2019,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Hipomagnesemia como causa de hipocalemia refratária e hipocalcemia funcional por alteração de ROMK, Na/K-ATPase e paratormônio (PTH)",
+            "icon": "🔬",
+            "resumo": "Revisão clínica sobre magnésio e hipomagnesemia. Destaca que a hipocalemia associada à deficiência de magnésio pode ser refratária à reposição isolada de potássio, pois o magnésio intracelular normalmente bloqueia o canal ROMK no néfron distal; quando o magnésio está baixo, aumenta a perda urinária de K+. Também descreve hipocalcemia em deficiência moderada a grave por redução da secreção e/ou ação do paratormônio (PTH). O tratamento depende de gravidade, sintomas e tolerância oral, com reposição intravenosa em casos graves ou sintomáticos.",
+            "conclusao": "Na hipocalemia refratária, dosar e corrigir magnésio não é detalhe: sem repor Mg, o rim pode continuar desperdiçando potássio via ROMK.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:4552d5a98518a9e2cf51eb6f4c80da8b59fcf0db9a5caa3c79c7fe6ee31506d6",
+          "sourceIDs": [
+            "hypomag"
+          ],
+          "notes": [
+            "Card byte-exato reavaliado; não alterar globalmente os demaisconsumidores nem herdar-lhes gate."
+          ]
+        },
+        {
+          "id": "endotext_hypercalcemia_2026",
+          "original": null,
+          "originalSHA256": null,
+          "proposed": {
+            "label": "Goltzman — Abordagem da hipercalcemia, Endotext (2026)",
+            "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK279129/",
+            "journal": "Endotext/NCBI Bookshelf; atualização em 19 de março de 2026",
+            "ano": 2026,
+            "tipo": "Livro-texto",
+            "badge": "TEXTBOOK",
+            "badgeColor": "#64748b",
+            "icon": "📚",
+            "impacto": "Interpretar cálcio ionizado, paratormônio e proteína relacionada ao paratormônio.",
+            "resumo": "Capítulo autoral sobre homeostase do cálcio e investigação da hipercalcemia. Alterações de albumina e pH podem mudar a relação entre cálcio total e ionizado; a alcalose aumenta a ligação do cálcio à albumina. Paratormônio (PTH) suprimido diante de hipercalcemia favorece investigação de mecanismos independentes de PTH. Elevação da proteína relacionada ao PTH (PTHrP), no contexto clínico adequado, é compatível com hipercalcemia humoral da malignidade, sem identificar sozinha o tumor ou excluir mecanismos associados.",
+            "conclusao": "Interpretar exames em conjunto com clínica, função renal, proteínas e pH. Se houver alterações importantes de pH ou proteínas, a medição direta de cálcio ionizado pode esclarecer a fração biologicamente ativa.",
+            "curiosidade": "Mecanismos tumorais humorais e reabsorção óssea local não são necessariamente exclusivos entre si; um resultado isolado não substitui investigação clínica."
+          },
+          "proposedSHA256": "sha256:494276bda124982db24803074941ea61304f1c46bddbb30d09454c4d87b602af",
+          "sourceIDs": [
+            "endotext"
+          ],
+          "notes": [
+            "Novo card para fonte específica realmente aberta, em vez de herdar o conteúdo não lido do tratadoBrenner. Busca porEndotext/NBK279129 não encontroucardanterior."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Um único fenômeno clínico é explicado por dois mecanismos que interagem; não são duas decisões independentes. Mantém condicionais e qualificadores de segurança, sem exigir medirPTH para declarar que possa contribuir.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "2f2dc008",
+      "family": "A12-eletrólitos",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Hipercalcemia Humoral da Malignidade",
+        "qid": "2f2dc008",
+        "q": "Mulher com perda ponderal, tosse, cálcio corrigido 13,8 mg/dL, PTH suprimido e PTHrP elevado. Qual diagnóstico é mais provável e qual conduta trata a hipercalcemia de forma sustentada?",
+        "refs": [
+          "hypercalcemia_malignancy_endo_2022"
+        ],
+        "opts": [
+          "Hiperparatireoidismo primário; paratireoidectomia imediata",
+          "Hipercalcemia humoral da malignidade; hidratação e anti-reabsortivo, como bisfosfonato IV ou denosumabe, além de tratar o tumor",
+          "Intoxicação por vitamina D; apenas suspender suplementação",
+          "Sarcoidose; prednisona como primeira medida em todo caso de PTHrP elevado"
+        ],
+        "ans": 1,
+        "exp": "PTH suprimido com PTHrP elevado e síndrome constitucional sugere hipercalcemia humoral da malignidade, frequentemente associada a neoplasias como carcinoma escamoso de pulmão. A hidratação corrige depleção de volume e aumenta calciurese, mas o controle sustentado da hipercalcemia depende de anti-reabsortivo, como bisfosfonato intravenoso ou denosumabe, além do tratamento da neoplasia. Calcitonina pode ser adjuvante em hipercalcemia grave, mas tem taquifilaxia em poucos dias. Hiperparatireoidismo primário teria PTH inapropriadamente alto.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "originalSHA256": "sha256:a6291a034fcf04c16bac2c3ee17833cae1ef14d0f1d6eb846a892e8c7aa28a45",
+      "originalRefs": [
+        {
+          "id": "hypercalcemia_malignancy_endo_2022",
+          "original": {
+            "label": "Endocrine Society — Hypercalcemia of Malignancy Guideline (2022/2023)",
+            "url": "https://academic.oup.com/jcem/article/108/3/507/6916871",
+            "journal": "J Clin Endocrinol Metab 2023;108(3):507-528",
+            "ano": 2023,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Tratamento da hipercalcemia da malignidade com hidratação, anti-reabsortivo e calcitonina em casos graves",
+            "icon": "📋",
+            "resumo": "Diretriz da Endocrine Society para tratamento de adultos com hipercalcemia da malignidade. Recomenda anti-reabsortivo — bisfosfonato intravenoso ou denosumabe — em adultos com hipercalcemia da malignidade, além do tratamento da neoplasia de base e suporte clínico. Sugere denosumabe sobre bisfosfonato em algumas situações e, na hipercalcemia grave (cálcio sérico >14 mg/dL), combinação inicial de calcitonina com bisfosfonato IV ou denosumabe; a calcitonina deve ser limitada a 48–72 horas por taquifilaxia.",
+            "conclusao": "Hipercalcemia da malignidade exige controlar volume e osso: hidratação corrige depleção e aumenta calciurese, enquanto bisfosfonato IV ou denosumabe reduzem a reabsorção óssea de forma sustentada.",
+            "curiosidade": "A calcitonina é o 'extintor de incêndio' rápido da hipercalcemia grave, mas perde efeito em poucos dias; o tratamento sustentado depende do anti-reabsortivo e do controle do tumor."
+          },
+          "originalSHA256": "sha256:deb6264d2e052d5df61cb04bfbccdcfc6438255e4540e5cf2bdada2ca4d12dbf"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reconhecer hipercalcemia humoral da malignidade a partir dePTHsuprimido/PTHrPelevado econtextoclínico.",
+        "primaryCompetence": "Interpretação fisiopatológica e conduta segura.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Mistura diagnóstico e tratamento sustentado, este último já cobrado em5189c79f.",
+          "MENOR — PTH/PTHrPnãoexpandidos; a correta é a única opção com múltiplos componentes corretos."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "endotext",
+          "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK279129/",
+          "access": "Capítulo autoral Endotext real integral aberto; atualização19/03/2026; partesdehomeostase,diagnóstico ehipercalcemia humoral lidas.",
+          "locators": [
+            "Definition: alcalose aumenta ligaçãoalbumina-cálcio; quando proteína/pHmudam, medir cálcioionizadoépreferível.",
+            "Abstract/Diagnosis:hipercalcemia comPTHsuprimido sugere mecanismoindependente;PTHrP elevado podeapontarhipercalcemia damalignidade.",
+            "MAHwithElevatedPTHrP: mecanismoshumorais/ósseospodemcoexistir; nãofixarhistologiade tumorapenasporPTHrP."
+          ],
+          "limitations": [
+            "Capítulo expert, não diretrizdeensaio. Asquestõespedemfisiologia/diagnósticomaisprovável,nãoprova histológicadecâncerporensaioisolado."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "HipercalcemiamaisPTHsuprimidoePTHrPelevado favorece mecanismo humoralmaligno nocontexto descrito, semidentificartumor.",
+          "source": "endotext",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Hipercalcemia Humoral da Malignidade",
+        "qid": "2f2dc008",
+        "q": "Mulher com perda ponderal e tosse apresenta cálcio confirmado de 13,8 mg/dL, paratormônio (PTH) suprimido e proteína relacionada ao PTH (PTHrP) elevada. Qual é a hipótese mais provável para a hipercalcemia?",
+        "refs": [
+          "endotext_hypercalcemia_2026"
+        ],
+        "opts": [
+          "Hiperparatireoidismo primário.",
+          "Hipercalcemia humoral da malignidade.",
+          "Intoxicação isolada por vitamina D.",
+          "Hipercalcemia granulomatosa por calcitriol."
+        ],
+        "ans": 1,
+        "exp": "O conjunto favorece hipercalcemia humoral da malignidade mediada por PTHrP. O PTH suprimido torna hiperparatireoidismo primário improvável; intoxicação por vitamina D e produção de calcitriol por doença granulomatosa não são explicadas pela elevação de PTHrP como mecanismo principal. A apresentação exige investigação da neoplasia e avaliação da gravidade da hipercalcemia, mas não identifica um tipo específico de tumor apenas pelos exames. Mecanismos humorais e ósseos podem coexistir.",
+        "diff": "medium",
+        "cat": "eletrólitos"
+      },
+      "proposedSHA256": "sha256:da8681c0b478444b5c472edc298bd184bccda8173b330167f661dbb57f773920",
+      "classificationAfter": {
+        "op": "Reconhecer hipercalcemia humoral da malignidade a partir dePTHsuprimido/PTHrPelevado econtextoclínico.",
+        "primaryCompetence": "Interpretação fisiopatológica e conduta segura.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "endotext_hypercalcemia_2026",
+          "original": null,
+          "originalSHA256": null,
+          "proposed": {
+            "label": "Goltzman — Abordagem da hipercalcemia, Endotext (2026)",
+            "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK279129/",
+            "journal": "Endotext/NCBI Bookshelf; atualização em 19 de março de 2026",
+            "ano": 2026,
+            "tipo": "Livro-texto",
+            "badge": "TEXTBOOK",
+            "badgeColor": "#64748b",
+            "icon": "📚",
+            "impacto": "Interpretar cálcio ionizado, paratormônio e proteína relacionada ao paratormônio.",
+            "resumo": "Capítulo autoral sobre homeostase do cálcio e investigação da hipercalcemia. Alterações de albumina e pH podem mudar a relação entre cálcio total e ionizado; a alcalose aumenta a ligação do cálcio à albumina. Paratormônio (PTH) suprimido diante de hipercalcemia favorece investigação de mecanismos independentes de PTH. Elevação da proteína relacionada ao PTH (PTHrP), no contexto clínico adequado, é compatível com hipercalcemia humoral da malignidade, sem identificar sozinha o tumor ou excluir mecanismos associados.",
+            "conclusao": "Interpretar exames em conjunto com clínica, função renal, proteínas e pH. Se houver alterações importantes de pH ou proteínas, a medição direta de cálcio ionizado pode esclarecer a fração biologicamente ativa.",
+            "curiosidade": "Mecanismos tumorais humorais e reabsorção óssea local não são necessariamente exclusivos entre si; um resultado isolado não substitui investigação clínica."
+          },
+          "proposedSHA256": "sha256:494276bda124982db24803074941ea61304f1c46bddbb30d09454c4d87b602af",
+          "sourceIDs": [
+            "endotext"
+          ],
+          "notes": [
+            "Novo card para fonte específica realmente aberta, em vez de herdar o conteúdo não lido do tratadoBrenner. Busca porEndotext/NBK279129 não encontroucardanterior."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. OPdiagnósticoprimáriopreservado, removida tarefa secundária de tratamento. Dados solicitam interpretação hormonal, não só associação de palavra.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "Mantémqid/OPprimáriode reconhecer hipercalcemiahumoral. Não transferirFSRSparaquestãoterapêutica518; são decisões separadas.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "5189c79f",
+      "family": "A12-eletrólitos",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "qid": "5189c79f",
+        "q": "Após hidratação inicial, qual tratamento medicamentoso é usado para reduzir de forma sustentada a hipercalcemia de origem maligna mediada por reabsorção óssea?",
+        "opts": [
+          "Altas doses contínuas de vitamina D.",
+          "Bisfosfonato intravenoso, como pamidronato ou ácido zoledrônico, ajustado ao contexto renal.",
+          "Tiazídico isolado para reduzir calciúria.",
+          "Mitramicina oral diária como primeira linha habitual."
+        ],
+        "ans": 1,
+        "exp": "Na hipercalcemia maligna, a hidratação com solução salina corrige depleção volêmica e aumenta calciurese; para redução mais sustentada, bisfosfonatos intravenosos inibem reabsorção óssea osteoclástica, com atenção à função renal e ao tempo de início de ação. O título anterior dizia “hipercalemia”, mas o item sempre cobrava hipercalcemia: a correção evita erro de catalogação e confusão de aprendizagem.",
+        "refs": [
+          "brenner_rector"
+        ],
+        "cat": "eletrólitos",
+        "diff": "medium",
+        "t": "Tratamento de Longo Prazo da Hipercalcemia Maligna"
+      },
+      "originalSHA256": "sha256:b97c48c5b4fb094c511ca97b99c25e0476a9d5ff2318d8b25f386c4f08d1ab9b",
+      "originalRefs": [
+        {
+          "id": "brenner_rector",
+          "original": {
+            "label": "Brenner & Rector's The Kidney",
+            "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+            "journal": "Elsevier (Textbook)",
+            "ano": 2024,
+            "tipo": "Livro-texto de referência",
+            "badge": "TEXTBOOK",
+            "badgeColor": "#64748b",
+            "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+            "icon": "📚",
+            "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+            "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+            "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+          },
+          "originalSHA256": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Selecionar um anti-reabsortivo para controle mais sustentado da hipercalcemia humoral da malignidade após suporte inicial.",
+        "primaryCompetence": "Interpretação fisiopatológica e conduta segura.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — FonteBrennernãoaberta; falta fonte específica atual para conduta e função renal.",
+          "MENOR — Explicação contém narrativa de correção do título, que não ajuda o usuário a decidir. A extensão da correta dá pista formal."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "endo",
+          "url": "https://academic.oup.com/jcem/article/108/3/507/6916871",
+          "doi": "10.1210/clinem/dgac621",
+          "access": "Corpo primário publicado online21/12/2022 integral22páginas emcópia da universidade daautora; metadadosediçãoMarço2023corroborados no site oficial daEndocrineSociety.",
+          "additionalURLs": [
+            "https://www.aub.edu.lb/fm/CaMOP/publications/Treatment-Hypercalcemia-Malignancy-Adults-Guidelines.pdf",
+            "https://www.endocrine.org/clinical-practice-guidelines/hypercalcemia"
+          ],
+          "locators": [
+            "Recomendações1–2: IVbisfosfonato ou denosumabe; preferência por denosumabe é sugestão condicional/certeza muito baixa.",
+            "Recomendação3: Ca>14mg/dL,calcitonina+anti-reabsortivo; limitarcalcitonina a48–72horas.",
+            "UGPS1/4/5 eTable1: hidrataçãoconforme função cardíaca, avaliarfunçãorenal/ajustarBP; diuréticodealçanãorotineiro.",
+            "Rec5: glicocorticoide no mecanismo porcalcitriol comanti-reabsortivosepersistente;controle tumoral reduzrecorrência."
+          ],
+          "limitations": [
+            "URLdojournalretornouredirect500; nãofinjoleituradopaginadofinal. A cópia university é aobra primária correta comDOIeautores, não comentário. Não se aplicam doses universais ou BPsemavaliarrim."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "BPIVou denosumabeparaHCM,calcitoninaadjuvantedecurtaação;glicocorticoideprincipalmentecalcitriol;diuréticonãoroutineiro.",
+          "source": "endo",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "qid": "5189c79f",
+        "q": "Adulto com hipercalcemia humoral da malignidade já recebeu hidratação inicial e tem função renal que permite bisfosfonato. Entre as opções, qual fármaco inibe a reabsorção óssea e contribui para controle mais sustentado da hipercalcemia?",
+        "opts": [
+          "Calcitonina subcutânea isolada.",
+          "Ácido zoledrônico intravenoso.",
+          "Furosemida intravenosa isolada.",
+          "Prednisona oral isolada."
+        ],
+        "ans": 1,
+        "exp": "O ácido zoledrônico é um bisfosfonato intravenoso que inibe a reabsorção osteoclástica e contribui para uma redução mais sustentada do cálcio. Denosumabe é outra opção recomendada pela diretriz da Endocrine Society; a escolha exige avaliar função renal, risco de hipocalcemia e contexto oncológico. Calcitonina pode ajudar no controle inicial da hipercalcemia grave, mas perde efeito e deve ser limitada a 48–72 horas. Furosemida não é tratamento anti-reabsortivo de rotina; glicocorticoides têm papel sobretudo nos mecanismos por calcitriol. Hidratação e controle do tumor permanecem componentes do tratamento.",
+        "refs": [
+          "hypercalcemia_malignancy_endo_2022"
+        ],
+        "cat": "eletrólitos",
+        "diff": "medium",
+        "t": "Hipercalcemia da Malignidade — Controle Mais Sustentado"
+      },
+      "proposedSHA256": "sha256:bebdbcfe6ecad173fab8130a26fe14c07d0b5686adfcafa3fac5ff6efae30c2c",
+      "classificationAfter": {
+        "op": "Selecionar um anti-reabsortivo para controle mais sustentado da hipercalcemia humoral da malignidade após suporte inicial.",
+        "primaryCompetence": "Interpretação fisiopatológica e conduta segura.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "hypercalcemia_malignancy_endo_2022",
+          "original": {
+            "label": "Endocrine Society — Hypercalcemia of Malignancy Guideline (2022/2023)",
+            "url": "https://academic.oup.com/jcem/article/108/3/507/6916871",
+            "journal": "J Clin Endocrinol Metab 2023;108(3):507-528",
+            "ano": 2023,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Tratamento da hipercalcemia da malignidade com hidratação, anti-reabsortivo e calcitonina em casos graves",
+            "icon": "📋",
+            "resumo": "Diretriz da Endocrine Society para tratamento de adultos com hipercalcemia da malignidade. Recomenda anti-reabsortivo — bisfosfonato intravenoso ou denosumabe — em adultos com hipercalcemia da malignidade, além do tratamento da neoplasia de base e suporte clínico. Sugere denosumabe sobre bisfosfonato em algumas situações e, na hipercalcemia grave (cálcio sérico >14 mg/dL), combinação inicial de calcitonina com bisfosfonato IV ou denosumabe; a calcitonina deve ser limitada a 48–72 horas por taquifilaxia.",
+            "conclusao": "Hipercalcemia da malignidade exige controlar volume e osso: hidratação corrige depleção e aumenta calciurese, enquanto bisfosfonato IV ou denosumabe reduzem a reabsorção óssea de forma sustentada.",
+            "curiosidade": "A calcitonina é o 'extintor de incêndio' rápido da hipercalcemia grave, mas perde efeito em poucos dias; o tratamento sustentado depende do anti-reabsortivo e do controle do tumor."
+          },
+          "originalSHA256": "sha256:deb6264d2e052d5df61cb04bfbccdcfc6438255e4540e5cf2bdada2ca4d12dbf",
+          "proposed": {
+            "label": "Endocrine Society — Hypercalcemia of Malignancy Guideline (2022/2023)",
+            "url": "https://academic.oup.com/jcem/article/108/3/507/6916871",
+            "journal": "J Clin Endocrinol Metab 2023;108(3):507-528",
+            "ano": 2023,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Tratamento da hipercalcemia da malignidade com hidratação, anti-reabsortivo e calcitonina em casos graves",
+            "icon": "📋",
+            "resumo": "Diretriz da Endocrine Society para adultos com hipercalcemia da malignidade, publicada online em dezembro de 2022 e na edição de março de 2023. Recomenda bisfosfonato intravenoso ou denosumabe; sugere denosumabe sobre bisfosfonato, com recomendação condicional e certeza muito baixa. Em hipercalcemia grave, com cálcio sérico acima de 14 mg/dL, sugere calcitonina inicialmente associada a um anti-reabsortivo. A calcitonina deve ser limitada a 48–72 horas por taquifilaxia. Hidratação deve considerar o estado volêmico e a função cardíaca, e a função renal precisa ser avaliada antes de bisfosfonato intravenoso.",
+            "conclusao": "O anti-reabsortivo contribui para controle mais sustentado, enquanto hidratação e, quando indicada, calcitonina fornecem suporte inicial. A escolha deve considerar rim, risco de hipocalcemia e tratamento da neoplasia.",
+            "curiosidade": "A recomendação geral de usar bisfosfonato intravenoso ou denosumabe é forte; a preferência por denosumabe é condicional. Ambas se baseiam em evidência de certeza muito baixa."
+          },
+          "proposedSHA256": "sha256:81b79512dc72d398ff7f378af5f0de61b22b218f221e296932ee61ae2fd71fcb",
+          "sourceIDs": [
+            "endo"
+          ],
+          "notes": [
+            "Mesmaobra/ID; corrige alcance da recomendação2 eexplicita certeza, sem declarar superioridade universal comprovada."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Preserva a classe e a decisão do original, sem afirmar queBPéaúnicaopção atual. Candidatos são medicamentos reais com papéis distintos; rotas ajudamparalelismo,nãoimpõemdosesuniversais.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    }
+  ],
+  "supersedes": {
+    "file": "author-batch-A12.2-eletrólitos.json",
+    "rawSHA256": "4bfcd272c399331afeaa2376200c98ce1e0a4022be8b52863db999774f7d7eb5",
+    "scope": "Recurso independente: curiosidade Endocrine distingue força (forte versus condicional), mantendo certeza muito baixa para ambas, conforme Table4 PDF16. Cinco questões e demais cards byte-exatos."
+  },
+  "cardConsumerAudit": [
+    {
+      "ref": "gitelman_kdigo_2017",
+      "consumers": [
+        {
+          "qid": "81740f2d",
+          "revision": "sha256:58c4f342f3a99738a1d81e9cbaa290ddd6145ad5223cd8444156b9f458cf34a1",
+          "fullQuestionGateInThisBatch": true
+        },
+        {
+          "qid": "1e2668d6",
+          "revision": "sha256:640d9504e943e4cbe5dbebbfabe5b00c6e98f46a9441d69f6685fe2a91456d33",
+          "fullQuestionGateInThisBatch": false
+        },
+        {
+          "qid": "940b2835",
+          "revision": "sha256:f1bc037e65b9069b9aed00ba833fd7cdf717028b0f8d36bb5bc18da576fe604d",
+          "fullQuestionGateInThisBatch": false
+        }
+      ],
+      "scope": "Normalização factual de tipo/apresentação, expansão de sigla e retirada de curiosidade. Não muda conduta nem dá gate automático a consumidores externos."
+    },
+    {
+      "ref": "hypomagnesemia_review_2019",
+      "consumers": [
+        {
+          "qid": "81740f2d",
+          "revision": "sha256:58c4f342f3a99738a1d81e9cbaa290ddd6145ad5223cd8444156b9f458cf34a1",
+          "fullQuestionGateInThisBatch": true
+        },
+        {
+          "qid": "8f6bbf81",
+          "revision": "sha256:243e4a16509a1fc95edd9e899caba6736e9152f7353012ef3efbc00c440d4a2a",
+          "fullQuestionGateInThisBatch": false
+        }
+      ],
+      "scope": "Normalização factual de tipo/apresentação, expansão de sigla e retirada de curiosidade. Não muda conduta nem dá gate automático a consumidores externos."
+    }
+  ]
+}

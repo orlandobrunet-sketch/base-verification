@@ -1,0 +1,273 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "a4ffbe05",
+  "family": "A8-fusao-160",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "DAPA-CKD — Subanálise de Nefropatia por IgA",
+    "qid": "a4ffbe05",
+    "q": "Na análise pré-especificada do DAPA-CKD em 270 participantes com nefropatia por IgA, o desfecho primário ocorreu em 4% com dapagliflozina e 15% com placebo (HR 0,29; IC95% 0,12–0,73). Qual interpretação é mais adequada?",
+    "refs": [
+      "dapa",
+      "kdigo_igan_2025"
+    ],
+    "opts": [
+      "O resultado apoia iSGLT2 como terapia de suporte em pacientes elegíveis, mas o pequeno número de eventos exige cautela ao comparar magnitudes entre etiologias",
+      "O subgrupo prova que dapagliflozina é imunossupressor específico contra IgA galactose-deficiente",
+      "A magnitude autoriza concluir superioridade definitiva sobre todos os tratamentos específicos da NIgA",
+      "O benefício pode ser extrapolado sem restrições para qualquer TFGe ou nível de albuminúria"
+    ],
+    "ans": 0,
+    "exp": "A subanálise pré-especificada mostrou grande redução relativa do composto renal em participantes com nefropatia por IgA, coerente com o benefício hemodinâmico e cardiorrenal dos iSGLT2. Contudo, ocorreram apenas 26 eventos primários, e comparações de tamanho de efeito entre etiologias não foram o objetivo de um ensaio com poder para superioridade entre subgrupos. Dapagliflozina integra terapia de suporte em pessoas elegíveis; não é imunossupressor específico e a indicação deve respeitar população estudada, TFGe, albuminúria e diretrizes atuais.",
+    "diff": "hard",
+    "cat": "drc"
+  },
+  "originalSHA256": "sha256:b2d317f00dc9a01a41da98c642ff5b7c14e3fcc350598bc8eb16aeeed923418e",
+  "originalRefs": [
+    {
+      "id": "dapa",
+      "original": {
+        "label": "DAPA-CKD Trial",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816",
+        "journal": "New England Journal of Medicine",
+        "ano": 2020,
+        "tipo": "Ensaio Clínico Fase III",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "↓39% desfecho renal composto · ↓31% mortalidade · Interrompido precocemente por eficácia · Benefício independente de diabetes",
+        "icon": "💊",
+        "resumo": "ECR multicêntrico, n=4.304, dapagliflozina 10 mg/dia vs placebo em DRC com ou sem DM2; TFGe 25–75 e ACR 200–5000 mg/g. Desfecho primário: queda sustentada ≥50% da TFGe, DRCT ou morte renal/CV. Resultado: 9,2% vs 14,5%; HR 0,61, IC 95% 0,51–0,72, P<0,001; NNT 19. Também reduziu morte por qualquer causa: 4,7% vs 6,8%; HR 0,69, IC 95% 0,53–0,88.",
+        "conclusao": "DAPA-CKD foi o trial pivô que mostrou nefroproteção dos iSGLT2 independente de diabetes em DRC proteinúrica.",
+        "curiosidade": "32,5% da coorte não tinha DM2, dado que ajudou a deslocar os iSGLT2 de fármacos 'antidiabéticos' para fármacos cardiorrenais."
+      },
+      "originalSHA256": "sha256:c3c5d8694734f2fd713362b7fabfedf1d9c954133e82bb62ed8e897080d0cd28"
+    },
+    {
+      "id": "kdigo_igan_2025",
+      "original": {
+        "label": "KDIGO IgAN 2025 (Guideline Dedicada)",
+        "url": "https://kdigo.org/guidelines/glomerular-diseases/",
+        "journal": "Kidney International",
+        "ano": 2025,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Diretriz dedicada à IgAN: alvo de proteinúria <0,5 g/d e terapias dirigidas ao risco",
+        "icon": "📋",
+        "resumo": "Diretriz KDIGO 2025 dedicada à nefropatia por IgA. Considera proteinúria persistente ≥0,5 g/d um marcador de risco que justifica tratamento adicional. Recomenda IECA ou BRA na dose máxima tolerada para todos os pacientes sem contraindicação (1B), sugere iSGLT2 para pacientes em risco de perda progressiva da função renal (2B) e posiciona Nefecon, sparsentana e glicocorticoide sistêmico reduzido conforme mecanismo, risco, disponibilidade e toxicidade. A meta é manter proteinúria abaixo de 0,5 g/d, idealmente abaixo de 0,3 g/d.",
+        "conclusao": "O manejo combina proteção contra respostas maladaptativas à perda de néfrons com terapias dirigidas à formação de imunocomplexos e à inflamação; iSGLT2 não substitui tratamento específico da IgAN quando este é indicado.",
+        "curiosidade": "Nos subgrupos de IgAN de DAPA-CKD e EMPA-KIDNEY, os participantes eram em geral mais velhos e tinham DRC mais avançada que os incluídos em ensaios específicos de IgAN, o que limita a extrapolação para jovens com TFGe preservada."
+      },
+      "originalSHA256": "sha256:95b9fad785a2a801e27e0e009b9b0f2520bf769de382ef9079e26f0a29cc9d14"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Interpretar o benefício renal do subgrupo IgA do DAPA-CKD sem extrapolar precisão, etiologia e população.",
+    "primaryCompetence": "Mesmo OP primário da canônica correspondente.",
+    "bloom": "Analisar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "hard",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "fundir",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Mesma decisão e mesmos dados essenciais da canônica9fd2cfdb.",
+      "MAIOR — A correta agrupa aplicação, elegibilidade, limites e comparações em um texto muito maior que distratores.",
+      "MENOR — Campo hard não corresponde ao mesmo raciocínio de interpretação apresentado de modo mais claro na canônica medium."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Fundir com9fd2cfdb, canônica literal/hashes deste lote. Não criar outra paráfrase para conservar a contagem."
+  },
+  "sources": [
+    {
+      "id": "dapaIgA",
+      "url": "https://www.gov.br/conitec/pt-br/midias/consultas/contribuicoes/2022/anexos/cp48/519-2.pdf/%40%40display-file/file",
+      "doi": "10.1016/j.kint.2021.03.033",
+      "pmid": "33878338",
+      "access": "Artigo primário integral KidneyInt2021;100:215–224, cópia hospedada no acervo de contribuições Conitec; não é endosso de um parecer Conitec",
+      "locators": [
+        "Métodos/Resultados e Figuras1–2, texto extraído linhas123–158:270,254biópsias,137/133,6/20eventos,HR0,29,IC0,12–0,73,P0,005;TFGe43,8,seguimento2,1anos,UACR900,queda26%.",
+        "Discussion/limitações, linhas339–352: subgrupo pré-especificado, estudo não desenhado especificamente para IgA, poucos participantes/eventos limitam precisão.",
+        "Figura1 e texto: composto primário inclui morteCV; composto renal secundário exclui morteCV."
+      ],
+      "limitations": [
+        "Cópia é a obra primária real, não slides/reescrita de contribuição. URL PubMed retornou página vazia nesta tentativa; não alegar corpo PubMed aberto."
+      ]
+    },
+    {
+      "id": "kdigoIgA",
+      "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+      "access": "PDF oficial integral,71páginas, capaOutubro2025; trechos de síntese e manejo lidos",
+      "locators": [
+        "S18–S25: risco, nefroproteção e manejo dirigido aos mecanismos, terapias adicionais e contraindicações.",
+        "S25, recomendações1.4.4.1–3:IECA/BRA, sparsentana,SGLT2;PP1.4.4.4 limites em jovens/TFGe preservada.",
+        "S22–S24: Nefecon e regime sistêmico reduzido em contexto selecionado.",
+        "Busca textual integral por gluten sem ocorrência; seção nutricional/estilo de vida e resumo terapêutico não estabelecem dieta sem glúten como tratamento universal."
+      ],
+      "limitations": [
+        "O card canônico não afirma contraindicação a glúten nem nega indicação individual por doença celíaca; descreve ausência de recomendação universal no documento."
+      ]
+    }
+  ],
+  "claimVerification": [],
+  "proposed": null,
+  "proposedSHA256": null,
+  "classificationAfter": null,
+  "proposedRefs": [],
+  "candidateReview": null,
+  "identityDecision": {
+    "preserveQid": false,
+    "reason": "Manter histórico pretérito no qid aposentado, sem migração de FSRS, crédito, acertos, domínio ou descobertas.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": "Aposentadoria por fusão para9fd2cfdb, após adjudicação independente dos dois originais e da canônica exata.",
+  "duplicateTest": {
+    "canonicalQid": "9fd2cfdb",
+    "canonicalProposedSHA256": "sha256:80ad4e45f389dcc49b67f0a72e27c9c008751738542470c2e7b30b7d527af9b5",
+    "decision": {
+      "same": true,
+      "value": "Interpretar resultado do mesmo subgrupo IgA com cautela pela precisão e limites."
+    },
+    "caseDataStructure": {
+      "same": true,
+      "value": "DAPA-CKD pré-especificado,270IgA,6/20eventos ou4%/15%,mesmoHR0,29e intervalo. Contagem versus percentual não altera estrutura."
+    },
+    "targetLearnerProfile": {
+      "same": true,
+      "value": "Estudante avançado/residente; não se declara perfil diferente."
+    },
+    "language": {
+      "same": true,
+      "value": "pt-BR"
+    },
+    "allFourCoincide": true
+  },
+  "lifecycleDecision": {
+    "verdict": "fundir",
+    "retiredQid": "a4ffbe05",
+    "canonicalQid": "9fd2cfdb",
+    "retiredStatus": "aposentado",
+    "fsrsTransfer": false,
+    "creditTransfer": false,
+    "history": "Preservar registros pretéritos sob o qid original; não reconhecer resposta à aposentada como crédito na canônica.",
+    "ready": false
+  }
+}

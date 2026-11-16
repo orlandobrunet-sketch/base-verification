@@ -1,0 +1,156 @@
+{
+  "schema": "NQ_1728_LIBRARY_IMPLEMENTATION_RECEIPT_v1",
+  "date": "2026-11-15",
+  "author": "reference_duplicates_1728",
+  "stage": "Local implementation and native verification complete; root coordinates integration/deployment.",
+  "scope": "Explicit publication map and two byte-identical non-title scroll aliases; all different medical payloads and original data array positions preserved.",
+  "files": [
+    {
+      "file": "js/library-catalog.js",
+      "sha256": "d40462c97494690ec751ef4b1e5d03fdea193304e9e35976995f30e83ed2dc9f"
+    },
+    {
+      "file": "js/dashboard.js",
+      "sha256": "d7bdc3893b9da97be47e6a661ddd3c3b81203dac36d0d0e32c5c5b6c57562b1b"
+    },
+    {
+      "file": "js/utils.js",
+      "sha256": "e060f4d3440bf921dcb4dd54a5181b73ab57f09642e94b2712c3a3d12653d254"
+    },
+    {
+      "file": "js/game.js",
+      "sha256": "b858356fa0131a5f2a052eee1d34c3e73a6fc30df421a89f821697a1e1538f39"
+    },
+    {
+      "file": "js/achievements.js",
+      "sha256": "54e826da2e81050e65dc1ccf595c6ca37c37c423fc134b9208e45d0efaf6e82c"
+    },
+    {
+      "file": "tests/answers/library-catalog.test.cjs",
+      "sha256": "3fbea88ee35b35d5ab43bcf01e47db1ccb684122ed48c3ac565619477b025fb0"
+    },
+    {
+      "file": "tests/specs/306-library-catalog.spec.ts",
+      "sha256": "28afdb9fd3b5aa8908c3062dbd5cad7d555f6a526071f47f6137aeff4c7cdabc"
+    }
+  ],
+  "dataWrittenByThisAgent": [],
+  "sourceDataPreservation": {
+    "articlesRawSHA256": "ef37014a39ce6102e6c5614dbe209cc459e20868aa115413af57171c0fb79c26",
+    "articlesPhysicalCount": 191,
+    "expectedArticlesRawSHA256": "ef37014a39ce6102e6c5614dbe209cc459e20868aa115413af57171c0fb79c26",
+    "articlesRawUnchanged": true
+  },
+  "currentWorkingTreeProjection": {
+    "physicalReferenceCards": 376,
+    "physicalScrolls": 191,
+    "logicalScrolls": 189,
+    "verifiedWorkGroups": 29,
+    "distinctContentVariants": 565,
+    "workCards": 534
+  },
+  "primaryIdentityVerification": {
+    "capture": "primary-nlm-metadata.json",
+    "workMap": "work-map-proposal.json",
+    "all29DirectlyReadViaPublicNLMESummary": true,
+    "clinicalApprovalOfAllVariantBodies": false,
+    "retractionDocumentKeptSeparate": true
+  },
+  "validation": {
+    "unit": {
+      "command": "node --test tests/answers/library-catalog.test.cjs",
+      "passed": 11,
+      "failed": 0
+    },
+    "e2e": {
+      "specs": [
+        "tests/specs/306-library-catalog.spec.ts",
+        "tests/specs/245-library-blocked-reader.spec.ts"
+      ],
+      "projects": [
+        "chromium",
+        "mobile"
+      ],
+      "passed": 16,
+      "failed": 0,
+      "retries": 0,
+      "artifacts": "e2e-run-4",
+      "includes": [
+        "legacy favorite aliases",
+        "source/scroll access isolation and forged-call guards",
+        "legacy library fallback",
+        "visible-variant heading and ordering",
+        "all three native chest paths and unchanged reward amounts",
+        "collection condition",
+        "mobile overflow check"
+      ]
+    },
+    "existingTargetConsolidation": {
+      "controllerChanges": false,
+      "proof": "fusion-probe-results.json",
+      "exam": "PASS",
+      "study": "PASS",
+      "plannedPositionsPreserved": true,
+      "existingAnswerPreserved": true,
+      "newPendingAnswerStillNull": true,
+      "noProgressOrFSRSCreditFromChoice": true,
+      "resumeIntact": true
+    },
+    "environmentPreparation": [
+      "Initial isolated browser lookup used a noninstalled per-container path; corrected with existing PLAYWRIGHT_BROWSERS_PATH.",
+      "Local network isolation prevented initial app access; final native runs used server and browser in the same approved nonisolated session. Preparation attempts are not product passes/failures."
+    ]
+  },
+  "coordination": {
+    "rootOwns": [
+      "script linkage",
+      "styles",
+      "service-worker asset list and version bump",
+      "medical data revisions and deployment"
+    ],
+    "remainingBibliographicHolds": [
+      "Captopril URL/citation mismatch",
+      "MDRD intended publication and conflicting years",
+      "shared generic URL scope/edition issues documented in audit"
+    ],
+    "noSilentClinicalSummarySelection": true
+  },
+  "portableArtifacts": [
+    {
+      "file": "inventory.json",
+      "sha256": "c05a797d4dbe0cacb1fb6d9e3dbf6b98452b02ac540119fd4f2420c9b9e1a7e4"
+    },
+    {
+      "file": "summary.json",
+      "sha256": "6ec02cf46b76e061e014c86918643fde912b7eb7ae61b5618a4e35e2be852b9f"
+    },
+    {
+      "file": "title-similarity-candidates.json",
+      "sha256": "c8623aa561885c40045d4e20d441c708d19f696cf0c43fc914d3032bdef210a7"
+    },
+    {
+      "file": "audit-report.json",
+      "sha256": "a9300ed11d02aca2b7f1b7f8380dea2af1df75d2b0f6a1bf65d0392d85d9dfda"
+    },
+    {
+      "file": "safe-pairs-proof.json",
+      "sha256": "f0419824dc1c27acc1541bc30b5132b749cc6c26678cd066c7f20e7f6cb36e9f"
+    },
+    {
+      "file": "work-map-proposal.json",
+      "sha256": "c909f67fb6dafcd2ec9367b04ffd808c4dbed8fcbb7ea0a20790d1bbb97eb4b6"
+    },
+    {
+      "file": "primary-nlm-metadata.json",
+      "sha256": "5c8f495a7d424690d4f58af1d784f68e53d66f377b45a641999cf5cf43fd3936"
+    },
+    {
+      "file": "implementation-plan.md",
+      "sha256": "ff7e9647ea081fc84feee4480ab41f9cb25329e551fbbd4973b499aef18e7767"
+    },
+    {
+      "file": "fusion-probe-results.json",
+      "sha256": "3eeef19b62f008ea7cf51916c5d63d6fb511361b99247566e88631251c1a31a3"
+    }
+  ]
+}

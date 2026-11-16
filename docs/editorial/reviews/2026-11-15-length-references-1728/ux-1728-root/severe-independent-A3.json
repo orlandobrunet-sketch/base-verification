@@ -1,0 +1,2341 @@
+{
+  "schema": "NQ_1728_INDEPENDENT_FORMAL_BATCH_v1",
+  "date": "2026-11-15",
+  "reviewer": "/root",
+  "independentOf": "/root/length_inventory_1728",
+  "sourceCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "sourceFiles": [
+    {
+      "file": "author-batch-A3.json",
+      "rawSHA256": "14ffc9e01cf81dd9b2a3d751a1eee5f6f8779a844c921655e0252c535a4d55fe"
+    },
+    {
+      "file": "author-batch-A3.2.json",
+      "rawSHA256": "63c86d43f032ad9eab00eabf7704819df6c944be699d46a025448ebe55ccd694",
+      "scope": "bb44dfd3 apenas"
+    }
+  ],
+  "skill": "revisar-nefroquest, fonte ativa eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd",
+  "norms": [
+    "NQ_KNOWLEDGE_MODEL_v1",
+    "NQ_EDITORIAL_HANDBOOK_v1§18.4/§19",
+    "annex-c-nefrologia"
+  ],
+  "questions": [
+    {
+      "qid": "3ecb266a",
+      "sourceVersion": "A3",
+      "original": {
+        "t": "Transplante Renal: Nefropatia por BK",
+        "qid": "3ecb266a",
+        "q": "Paciente transplantado renal há 8 meses em uso de tacrolimo apresenta creatinina 1,6 mg/dL (basal 1,2 mg/dL), células decoy na urina, PCR plasmática para BK vírus de 42.000 cópias/mL e biópsia com inclusões virais intranucleares em células tubulares, sem tubulite pronunciada. Qual é o diagnóstico e a conduta inicial mais adequada?",
+        "refs": [
+          "bk_virus_review",
+          "kdigo_tx"
+        ],
+        "opts": [
+          "Nefropatia por vírus BK; reduzir imunossupressão de forma controlada, com ajuste do antimetabólito e/ou do inibidor de calcineurina conforme risco imunológico",
+          "Rejeição celular aguda; pulsoterapia com corticosteroide",
+          "Infecção por CMV renal; ganciclovir IV",
+          "Rejeição mediada por anticorpos; plasmaférese"
+        ],
+        "ans": 0,
+        "exp": "O conjunto de viremia plasmática significativa por BK, células decoy e biópsia com inclusões virais tubulares é compatível com nefropatia por vírus BK. A conduta inicial é reduzir a imunossupressão de modo escalonado e monitorado, equilibrando controle viral e risco de rejeição. Não há antiviral aprovado específico com benefício robusto para uso rotineiro; cidofovir é limitado por nefrotoxicidade. Corticosteroide em pulso, ganciclovir ou plasmaférese tratariam rejeição ou CMV, mas não respondem ao padrão virológico-histológico descrito.",
+        "diff": "medium",
+        "cat": "transplante"
+      },
+      "originalAuthorRevision": "sha256:bd83ea8f837d6e58677c3fec73015351ccd029308f373595d19c286b46b65792",
+      "after": {
+        "t": "Transplante Renal: Nefropatia por BK",
+        "qid": "3ecb266a",
+        "q": "Paciente transplantado renal há 8 meses, em uso de tacrolimo, apresenta creatinina de 1,6 mg/dL (basal 1,2 mg/dL), células decoy na urina, reação em cadeia da polimerase (PCR) plasmática para vírus BK de 42.000 cópias/mL e biópsia com inclusões virais intranucleares em células tubulares, sem tubulite pronunciada. Qual é a hipótese mais provável e a conduta inicial coerente?",
+        "refs": [
+          "bk_virus_review"
+        ],
+        "opts": [
+          "Nefropatia por BK; reduzir a imunossupressão de forma escalonada e monitorada.",
+          "Rejeição celular aguda; administrar pulsoterapia com corticosteroide.",
+          "Nefropatia por citomegalovírus; iniciar ganciclovir intravenoso.",
+          "Rejeição mediada por anticorpos; iniciar plasmaférese."
+        ],
+        "ans": 0,
+        "exp": "O conjunto é mais compatível com nefropatia por BK. A carga viral plasmática elevada, as células decoy e as inclusões tubulares devem ser interpretadas em conjunto; a confirmação histológica emprega imunohistoquímica. A intervenção principal é reduzir imunossupressão por passos predefinidos, conforme esquema e risco imunológico, acompanhando carga viral e função do enxerto. O consenso de 2024 não recomenda cidofovir, leflunomida ou fluoroquinolonas como rotina. Pulsoterapia, ganciclovir ou plasmaférese não respondem ao padrão apresentado e podem tratar equivocadamente outra complicação.",
+        "diff": "medium",
+        "cat": "transplante"
+      },
+      "afterAuthorRevision": "sha256:1520eea0e9856ce254b89357f0e0521f40bd0f1ad2692e85f3c885db630e1472",
+      "classification": {
+        "before": {
+          "op": "Reconhecer provável nefropatia por BK e reduzir imunossupressão de modo escalonado e monitorado.",
+          "primaryCompetence": "Diagnóstico e conduta inicial segura em complicação infecciosa do transplante.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyAuthored": "medium",
+          "difficultyIntrinsic": "medium"
+        },
+        "after": {
+          "op": "Reconhecer provável nefropatia por BK e reduzir imunossupressão de modo escalonado e monitorado.",
+          "primaryCompetence": "Diagnóstico e conduta inicial segura em complicação infecciosa do transplante.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyIntrinsic": "medium",
+          "difficultyAuthored": "medium"
+        }
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "independentlyOpenedSources": [
+        {
+          "id": "bk",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11335089/",
+          "access": "Corpo integral do consenso internacional2024, também arquivado no XML oficial EFetch a3-pmc-primary-corpus.xml",
+          "locators": [
+            "Abstract e recomendações de rastreamento",
+            "Tabelas6–7 e linhas496–545: limiares, redução escalonada, risco imunológico e monitorização2–4semanas"
+          ],
+          "limitations": [
+            "Interpretar cópias por ensaio e contexto. Não apresentar interrupção indiscriminada da imunossupressão como alternativa segura."
+          ]
+        }
+      ],
+      "independentLocators": "BK2024, abstract integral e tabelas6–7 do XML primário NLM, DNAemia>10000uma vez, redução escalonada,2–4semanas, riscoimunológico e contra uso de cidofovir/leflunomida/quinolonas.",
+      "claimAudit": "Caso pede hipótese mais provável, não chama histologia sem imunocoloração de confirmação definitiva. Ausência de tubulite não é exclusão geral de rejeição; o conjunto virológico/morfológico é decisivo.",
+      "appeal": {
+        "argument": "As outras condutas pertencem a complicações reais do transplante, mas não respondem ao conjunto apresentado.",
+        "result": "Sem recurso decisivo residual na versão exata."
+      },
+      "referenceCards": [
+        {
+          "id": "bk_virus_review",
+          "originalRevision": "sha256:3b5c54babd5ff3cf90c71d7a870122407173557c399e4e1ca9a36297ee695cb2",
+          "after": {
+            "label": "Consenso internacional — Poliomavírus BK no transplante renal (2024)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11335089/",
+            "journal": "Transplantation 2024;108(9):1834-1866",
+            "ano": 2024,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Rastrear carga viral plasmática e reduzir imunossupressão de forma escalonada",
+            "icon": "📋",
+            "resumo": "Segundo consenso internacional de 2024 para receptores de transplante renal. Recomenda rastreamento plasmático mensal até o nono mês e, depois, a cada 3 meses até 2 anos em adultos. Carga viral persistente acima de 1.000 cópias/mL, medida acima de 10.000 cópias/mL ou nefropatia comprovada devem motivar redução predefinida e escalonada do antimetabólito, do inibidor de calcineurina ou de ambos, conforme risco. Monitorar carga viral a cada 2–4 semanas. Valores dependem do ensaio e precisam de correlação clínica.",
+            "conclusao": "A redução monitorada da imunossupressão é a intervenção principal na DNAemia relevante por BK; cidofovir, leflunomida e fluoroquinolonas não são recomendados como rotina.",
+            "curiosidade": "Células decoy e vírus na urina podem preceder a carga viral plasmática; virúria isolada não equivale a nefropatia do enxerto."
+          },
+          "afterRevision": "sha256:bfb95a98f6338f30e84b524d3a43e633336e9a0a0744813c2b2c4446382fb3fb",
+          "wholeCardReviewed": true,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "sourceIDs": [
+            "bk"
+          ],
+          "claimAudit": "BK2024, abstract integral e tabelas6–7 do XML primário NLM, DNAemia>10000uma vez, redução escalonada,2–4semanas, riscoimunológico e contra uso de cidofovir/leflunomida/quinolonas. Caso pede hipótese mais provável, não chama histologia sem imunocoloração de confirmação definitiva. Ausência de tubulite não é exclusão geral de rejeição; o conjunto virológico/morfológico é decisivo.",
+          "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+        }
+      ],
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "duplicateAudit": {
+        "scope": "Comparação dirigida por OP, competência, decisão e conceito na vizinhança do banco.",
+        "conclusion": "Sem duplicata nas quatro dimensões nestes9. Calcifilaxia clínica multimodal é distinta de interpretar a metanáliseSTS; anticoagulaçãoHD do circuito é distinta da prescrição emTVP/SAF. Razão delta é interpretação metabólica, não cálculo deAG/compensação isolado."
+      },
+      "score": {
+        "dimensions": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2
+        ],
+        "total": 19,
+        "rationale": "Descontos próprios em pistas formais/distratores; RDN17 reconhece rivais menos sutis, sem lhes atribuir complexidade inexistente."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta no escopo efetivamente conferido",
+      "decisionTree": "Handbook§18.4/§19:VERIFICADA/NENHUMA, nenhum eliminatório nem recurso decisivo,17–19,aprovada; LIBERADA derivada somente para o literal e referências registrados.",
+      "implementation": "Preservar qid/FSRS e arquivar originais17.27. Nenhuma resposta passada é reavaliada.",
+      "pendingVerification": []
+    },
+    {
+      "qid": "a12cb84d",
+      "sourceVersion": "A3",
+      "original": {
+        "t": "Anticoagulação do Circuito na Hemodiálise",
+        "qid": "a12cb84d",
+        "q": "Qual princípio orienta a anticoagulação com heparina não fracionada durante a sessão de hemodiálise?",
+        "opts": [
+          "A heparina de baixo peso molecular é obrigatória e superior à não fracionada em todos os pacientes.",
+          "A anticoagulação é dispensável sempre que a punção é feita por fístula arteriovenosa.",
+          "A anticoagulação visa manter a patência do circuito extracorpóreo; a dose é ajustada ao risco de coagulação do sistema e de sangramento, podendo ser reduzida ou omitida (diálise sem heparina, com lavagens de salina) no alto risco hemorrágico.",
+          "A dose de heparina é fixa e independe do risco hemorrágico do paciente."
+        ],
+        "ans": 2,
+        "exp": "O objetivo da anticoagulação na hemodiálise é impedir a coagulação do sangue no circuito extracorpóreo (linhas e dialisador), e não anticoagular sistemicamente o paciente. A intensidade é individualizada conforme a tendência de coagulação do sistema e o risco de sangramento: em pacientes de alto risco hemorrágico (pós-operatório, sangramento ativo), pode-se reduzir a dose, realizar diálise sem heparina com lavagens periódicas do circuito com solução salina, ou usar anticoagulação regional com citrato. Esquemas com heparina não fracionada empregam um bolus inicial seguido de infusão ajustada pelo tempo de coagulação, mas as doses variam conforme o protocolo local e não devem ser memorizadas como valores universais.",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "daugirdas_handbook_of_dialysis"
+        ]
+      },
+      "originalAuthorRevision": "sha256:848f091050f1b9853bc201e8d25d7270e8fa4a2817fa06fd780df2057060377e",
+      "after": {
+        "t": "Anticoagulação do Circuito na Hemodiálise",
+        "qid": "a12cb84d",
+        "q": "Qual princípio orienta a anticoagulação com heparina não fracionada durante a sessão de hemodiálise?",
+        "opts": [
+          "Ajustar apenas pelo peso corporal, mantendo a estratégia se o risco hemorrágico mudar.",
+          "Ajustar pela presença de fístula ou cateter, omitindo heparina quando houver fístula.",
+          "Individualizar pela patência do circuito e pelo sangramento, reduzindo ou omitindo no alto risco.",
+          "Ajustar apenas pela duração programada da sessão, sem usar os achados do circuito."
+        ],
+        "ans": 2,
+        "exp": "A anticoagulação procura prevenir coagulação do circuito extracorpóreo, mas a heparina não fracionada também tem efeito sistêmico. Dose, infusão e momento de suspensão devem considerar coagulação do sistema e sangramento. Em maior risco hemorrágico, recomenda-se minimizar ou omitir anticoagulação sistêmica, escolhendo técnicas sem heparina ou alternativas regionais conforme recursos. A presença de fístula não elimina coagulação do circuito. Peso ou duração da sessão, isoladamente, não substituem avaliação de patência e sangramento. O princípio é individualização; não há dose universal a memorizar.",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "ukkidney_hd_anticoag_2019"
+        ]
+      },
+      "afterAuthorRevision": "sha256:a47aa5fbd2da722112cc5f7df3076f40aa4a2ddbe9e2a0ec3d5254d9655905ee",
+      "classification": {
+        "before": {
+          "op": "Individualizar anticoagulação da hemodiálise equilibrando coagulação do circuito e sangramento.",
+          "primaryCompetence": "Segurança na prescrição de anticoagulação extracorpórea.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyAuthored": "medium",
+          "difficultyIntrinsic": "medium"
+        },
+        "after": {
+          "op": "Individualizar anticoagulação da hemodiálise equilibrando coagulação do circuito e sangramento.",
+          "primaryCompetence": "Segurança na prescrição de anticoagulação extracorpórea.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyIntrinsic": "medium",
+          "difficultyAuthored": "medium"
+        }
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "independentlyOpenedSources": [
+        {
+          "id": "hd",
+          "url": "https://guidelines.ukkidney.org/haemodialysis/rationale-for-clinical-practice-guidelines/anticoagulation/",
+          "access": "Texto integral oficial Renal Association/UK Kidney Association2019; corpo paralelo da publicação BMC Nephrology2019;20:379 também aberto",
+          "locators": [
+            "Seção4.6, recomendações1A/1C e racional",
+            "Linhas71–82: heparina, efeito sistêmico, individualização e risco hemorrágico"
+          ],
+          "limitations": [
+            "Diretriz do Reino Unido, usada para princípio de segurança, não para impor doses ou protocolo local universal."
+          ]
+        }
+      ],
+      "independentLocators": "UKKidney§4.6 integral, recomendações1A/1C e racional linhas71–86.",
+      "claimAudit": "O objetivo do circuito não apaga efeito sistêmico da heparina. Minimizar/omitir no risco hemorrágico, sem dose universal.",
+      "appeal": {
+        "argument": "Peso, acesso ou duração são fatores possíveis, mas isolados e sem reavaliação não substituem patência/sangramento; ausência de fístula não é critério de omissão.",
+        "result": "Sem recurso decisivo residual na versão exata."
+      },
+      "referenceCards": [
+        {
+          "id": "ukkidney_hd_anticoag_2019",
+          "originalRevision": null,
+          "after": {
+            "label": "UK Kidney Association — Anticoagulação na hemodiálise (2019)",
+            "url": "https://guidelines.ukkidney.org/haemodialysis/rationale-for-clinical-practice-guidelines/anticoagulation/",
+            "journal": "Renal Association/UK Kidney Association; publicação em BMC Nephrology 2019;20:379",
+            "ano": 2019,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "icon": "📋",
+            "impacto": "Prevenir coagulação do circuito equilibrando patência e risco hemorrágico",
+            "resumo": "Diretriz britânica de hemodiálise. Sem maior risco de sangramento, recomenda heparina não fracionada ou de baixo peso molecular para reduzir coagulação do sistema extracorpóreo (1A). Com risco hemorrágico aumentado, recomenda omitir ou minimizar a anticoagulação sistêmica (1C). Dose e término são individualizados pela tendência de coagulação do circuito e sangramento; técnicas sem heparina ou anticoagulação regional podem ser consideradas conforme recursos.",
+            "conclusao": "O objetivo é a patência do circuito, mas a heparina tem efeito sistêmico. Não usar dose fixa universal nem ignorar sangramento ativo ou recente.",
+            "curiosidade": ""
+          },
+          "afterRevision": "sha256:6939136eb39b99a954ca025ccb4075a32c57b6d70164dcd002df4b30e207051e",
+          "wholeCardReviewed": true,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "sourceIDs": [
+            "hd"
+          ],
+          "claimAudit": "UKKidney§4.6 integral, recomendações1A/1C e racional linhas71–86. O objetivo do circuito não apaga efeito sistêmico da heparina. Minimizar/omitir no risco hemorrágico, sem dose universal.",
+          "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+        }
+      ],
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "duplicateAudit": {
+        "scope": "Comparação dirigida por OP, competência, decisão e conceito na vizinhança do banco.",
+        "conclusion": "Sem duplicata nas quatro dimensões nestes9. Calcifilaxia clínica multimodal é distinta de interpretar a metanáliseSTS; anticoagulaçãoHD do circuito é distinta da prescrição emTVP/SAF. Razão delta é interpretação metabólica, não cálculo deAG/compensação isolado."
+      },
+      "score": {
+        "dimensions": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1,
+          2
+        ],
+        "total": 18,
+        "rationale": "Descontos próprios em pistas formais/distratores; RDN17 reconhece rivais menos sutis, sem lhes atribuir complexidade inexistente."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta no escopo efetivamente conferido",
+      "decisionTree": "Handbook§18.4/§19:VERIFICADA/NENHUMA, nenhum eliminatório nem recurso decisivo,17–19,aprovada; LIBERADA derivada somente para o literal e referências registrados.",
+      "implementation": "Preservar qid/FSRS e arquivar originais17.27. Nenhuma resposta passada é reavaliada.",
+      "pendingVerification": []
+    },
+    {
+      "qid": "760901ee",
+      "sourceVersion": "A3",
+      "original": {
+        "t": "Acidose Metabólica com AG Elevado — Delta-Delta",
+        "qid": "760901ee",
+        "q": "Paciente com pH 7,28, pCO2 22 mmHg, HCO3 10 mEq/L e ânion gap 28 mEq/L. A razão delta-delta é (28-12)/(24-10)=1,14. O que esse valor sugere?",
+        "refs": [
+          "acid_base_adroguenejm",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Acidose metabólica com ânion gap elevado sem evidência, por esse cálculo, de distúrbio metabólico adicional importante.",
+          "Acidose hiperclorêmica adicional obrigatória.",
+          "Alcalose metabólica isolada como distúrbio primário.",
+          "Acidose respiratória crônica compensada."
+        ],
+        "ans": 0,
+        "exp": "Na acidose metabólica com ânion gap elevado, a razão delta-delta compara o aumento do AG com a queda do bicarbonato. Valor aproximado entre 1 e 2 é compatível com acidose de AG elevado relativamente pura. Valores baixos sugerem acidose metabólica hiperclorêmica concomitante; valores altos sugerem alcalose metabólica concomitante ou bicarbonato basal elevado. O cálculo não substitui a leitura clínica, mas ajuda a detectar distúrbios mistos.",
+        "diff": "medium",
+        "cat": "acido_base"
+      },
+      "originalAuthorRevision": "sha256:361c04b675614f67880c1c6364f0a504a4959f252f05a8cb103f342e9c693288",
+      "after": {
+        "t": "Acidose com hiato aniônico elevado — Razão delta",
+        "qid": "760901ee",
+        "q": "Paciente com albumina sérica de 4,0 g/dL tem pH 7,28, pCO₂ 22 mmHg, bicarbonato 10 mEq/L e hiato aniônico 28 mEq/L. Com referências de hiato 12 mEq/L e bicarbonato 24 mEq/L, a razão delta é (28−12)/(24−10)=1,14. O que esse cálculo sugere?",
+        "refs": [
+          "achanti_szerlip_acidbase_2023"
+        ],
+        "opts": [
+          "Acidose com hiato elevado, sem componente metabólico adicional importante sugerido pela razão.",
+          "Acidose com hiato elevado associada a acidose metabólica hiperclorêmica.",
+          "Acidose com hiato elevado associada a alcalose metabólica importante.",
+          "Acidose predominantemente hiperclorêmica, sem aumento do hiato aniônico."
+        ],
+        "ans": 0,
+        "exp": "O aumento do hiato é 16 mEq/L e a queda do bicarbonato é 14 mEq/L: variações próximas, com razão de 1,14. Esse modelo não aponta grande desproporção que sugira outro componente metabólico importante. Queda relativamente maior do bicarbonato levantaria acidose hiperclorêmica associada; aumento relativamente maior do hiato levantaria alcalose metabólica ou bicarbonato basal elevado. Albumina e referência laboratorial importam. A razão não diagnostica componente respiratório nem demonstra, sozinha, ausência de todo distúrbio misto; pH, compensação e contexto devem ser avaliados separadamente.",
+        "diff": "medium",
+        "cat": "acido_base"
+      },
+      "afterAuthorRevision": "sha256:e92e5318fae6933b226663338b7f75440b515ba6e4a979e36b0870aeab27c31a",
+      "classification": {
+        "before": {
+          "op": "Interpretar a comparação entre aumento do hiato aniônico e queda do bicarbonato sem concluir ausência global de distúrbios mistos.",
+          "primaryCompetence": "Interpretação quantitativa de componente metabólico ácido-base.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyAuthored": "medium",
+          "difficultyIntrinsic": "medium"
+        },
+        "after": {
+          "op": "Interpretar a comparação entre aumento do hiato aniônico e queda do bicarbonato sem concluir ausência global de distúrbios mistos.",
+          "primaryCompetence": "Interpretação quantitativa de componente metabólico ácido-base.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyIntrinsic": "medium",
+          "difficultyAuthored": "medium"
+        }
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "independentlyOpenedSources": [
+        {
+          "id": "acidbase",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10101555/",
+          "doi": "10.2215/CJN.04500422",
+          "access": "Corpo integral Achanti/Szerlip, CJASN2023;18(1):102–112, publicação eletrônica2022",
+          "locators": [
+            "Abordagem diagnóstica, passos4–5, linhas100–103: corrigir por albumina e comparar aumento do hiato com queda do bicarbonato",
+            "Estrutura da avaliação separa componentes metabólicos de compensação respiratória"
+          ],
+          "limitations": [
+            "Modelo aproximado; referências laboratoriais variam. Não interpretar a razão isolada como prova de ausência de todo distúrbio misto. As duas referências legadas não foram apresentadas como integralmente lidas."
+          ]
+        }
+      ],
+      "independentLocators": "Achanti/Szerlip2023, passos4–5 e tabela de compensação; albumina e referências explicitadas.",
+      "claimAudit": "16/14=1.142857; Winter=23±2 compatível comPaCO2=22. Delta não exclui componente respiratório por si; texto limita conclusão à proporção metabólica.",
+      "appeal": {
+        "argument": "Nenhuma alternativa rival atende à proporção dada. Referência normal doAG varia, por isso o caso fornece12; albumina4evita correção oculta. ",
+        "result": "Sem recurso decisivo residual na versão exata."
+      },
+      "referenceCards": [
+        {
+          "id": "achanti_szerlip_acidbase_2023",
+          "originalRevision": null,
+          "after": {
+            "label": "Achanti & Szerlip — Distúrbios ácido-base no paciente crítico (2023)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10101555/",
+            "journal": "Clinical Journal of the American Society of Nephrology 2023;18(1):102–112",
+            "ano": 2023,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "icon": "🔬",
+            "impacto": "Comparar elevação do hiato aniônico e queda do bicarbonato para buscar mistura metabólica",
+            "resumo": "Revisão clínica que organiza a avaliação ácido-base por pH, componente respiratório, hiato aniônico e comparação das variações metabólicas. A relação aproximada entre aumento do hiato e queda do bicarbonato ajuda a reconhecer distúrbios adicionais. É necessário considerar albumina e valores laboratoriais de referência; a comparação é um modelo, não confirmação isolada de etiologia ou ausência de mistura. Foi escolhida como fonte clínica acessível para o método, sem transferir recomendações terapêuticas não pertinentes.",
+            "conclusao": "Variações próximas favorecem um distúrbio metabólico predominante; desproporção exige procurar componentes adicionais. Integrar compensação respiratória e contexto.",
+            "curiosidade": ""
+          },
+          "afterRevision": "sha256:ca8296db515d3ab024794f5b83f12ed356e9eb0409b3aef4ccabdb6d026a80c6",
+          "wholeCardReviewed": true,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "sourceIDs": [
+            "acidbase"
+          ],
+          "claimAudit": "Achanti/Szerlip2023, passos4–5 e tabela de compensação; albumina e referências explicitadas. 16/14=1.142857; Winter=23±2 compatível comPaCO2=22. Delta não exclui componente respiratório por si; texto limita conclusão à proporção metabólica.",
+          "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+        }
+      ],
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "duplicateAudit": {
+        "scope": "Comparação dirigida por OP, competência, decisão e conceito na vizinhança do banco.",
+        "conclusion": "Sem duplicata nas quatro dimensões nestes9. Calcifilaxia clínica multimodal é distinta de interpretar a metanáliseSTS; anticoagulaçãoHD do circuito é distinta da prescrição emTVP/SAF. Razão delta é interpretação metabólica, não cálculo deAG/compensação isolado."
+      },
+      "score": {
+        "dimensions": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2
+        ],
+        "total": 19,
+        "rationale": "Descontos próprios em pistas formais/distratores; RDN17 reconhece rivais menos sutis, sem lhes atribuir complexidade inexistente."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta no escopo efetivamente conferido",
+      "decisionTree": "Handbook§18.4/§19:VERIFICADA/NENHUMA, nenhum eliminatório nem recurso decisivo,17–19,aprovada; LIBERADA derivada somente para o literal e referências registrados.",
+      "implementation": "Preservar qid/FSRS e arquivar originais17.27. Nenhuma resposta passada é reavaliada.",
+      "pendingVerification": []
+    },
+    {
+      "qid": "731a7b4b",
+      "sourceVersion": "A3",
+      "original": {
+        "t": "Síndrome Antifosfolipídeo — Nefropatia e Anticoagulação",
+        "qid": "731a7b4b",
+        "q": "Paciente com trombose venosa profunda não provocada tem tripla positividade para anticorpos antifosfolipídeos confirmada novamente após 12 semanas. Biópsia renal mostra microangiopatia trombótica e lesões vasculares crônicas. Qual é a interpretação mais adequada?",
+        "refs": [
+          "eular_aps_2019"
+        ],
+        "opts": [
+          "Trata-se de SAF trombótica com nefropatia associada; recomenda-se anticoagulação de longo prazo com antagonista da vitamina K e INR 2–3, além de controle renal e pressórico",
+          "Anticorpos antifosfolipídeos não causam lesão renal e devem ser ignorados",
+          "Tripla positividade favorece rivaroxabana em vez de antagonista da vitamina K",
+          "O diagnóstico exige nefrite lúpica proliferativa, mesmo sem LES"
+        ],
+        "ans": 0,
+        "exp": "A nefropatia da síndrome antifosfolipídeo pode produzir microangiopatia trombótica aguda e vasculopatia crônica com hipertensão, proteinúria e perda de função. Trombose não provocada e perfil aPL persistente, sobretudo triplo positivo, sustentam SAF trombótica de alto risco. A EULAR recomenda antagonista da vitamina K de longo prazo com INR alvo 2–3 após primeira trombose venosa não provocada; rivaroxabana deve ser evitada na tripla positividade. SAF pode ser primária e não exige nefrite lúpica.",
+        "diff": "hard",
+        "cat": "genetica"
+      },
+      "originalAuthorRevision": "sha256:0ee60d695645a23e79a2c610fec90246e172cbb4d7cc6995dae2cdb8915d38c6",
+      "after": {
+        "t": "Síndrome Antifosfolipídeo — Nefropatia e Anticoagulação",
+        "qid": "731a7b4b",
+        "q": "Paciente com trombose venosa profunda não provocada tem tripla positividade para anticorpos antifosfolipídeos, confirmada novamente após 12 semanas. Biópsia renal mostra microangiopatia trombótica e lesões vasculares crônicas. Considerando o conjunto, qual estratégia anticoagulante de longo prazo é mais adequada?",
+        "refs": [
+          "eular_aps_2019",
+          "nochy_aps_nephropathy_1999"
+        ],
+        "opts": [
+          "Antagonista da vitamina K, com razão normalizada internacional (INR) alvo de 2–3.",
+          "Rivaroxabana, preferida pela tripla positividade persistente de anticorpos.",
+          "Ácido acetilsalicílico isolado, por se tratar de um primeiro evento venoso.",
+          "Antagonista da vitamina K por 3 meses, sem prevenção secundária posterior."
+        ],
+        "ans": 0,
+        "exp": "O quadro sustenta síndrome antifosfolipídeo (SAF) trombótica com nefropatia vascular associada. A EULAR recomenda antagonista da vitamina K de longo prazo, com INR 2–3, após primeira trombose venosa não provocada. Rivaroxabana deve ser evitada na tripla positividade; antiplaquetário isolado ou apenas 3 meses não correspondem à estratégia recomendada nesse fenótipo. A nefropatia pode ocorrer na SAF primária, sem exigir nefrite lúpica. Essa indicação anticoagulante decorre da trombose e do risco, não de qualquer microangiopatia renal isolada.",
+        "diff": "medium",
+        "cat": "genetica"
+      },
+      "afterAuthorRevision": "sha256:894a46e35f386b571d4f3d850ce28593fd5426c4635bfd8e4b017d72f301f9b4",
+      "classification": {
+        "before": {
+          "op": "Selecionar anticoagulação de prevenção secundária na SAF venosa de alto risco com contexto renal compatível.",
+          "primaryCompetence": "Conduta de longo prazo orientada pelo fenótipo trombótico e imunológico.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyAuthored": "hard",
+          "difficultyIntrinsic": "medium"
+        },
+        "after": {
+          "op": "Selecionar anticoagulação de prevenção secundária na SAF venosa de alto risco com contexto renal compatível.",
+          "primaryCompetence": "Conduta de longo prazo orientada pelo fenótipo trombótico e imunológico.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyIntrinsic": "medium",
+          "difficultyAuthored": "medium"
+        }
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "independentlyOpenedSources": [
+        {
+          "id": "eular",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11034817/",
+          "doi": "10.1136/annrheumdis-2019-215213",
+          "access": "Corpo integral oficial EFetch PMC, a3-pmc-primary-corpus.xml, identificado por PMCID/DOI/título",
+          "locators": [
+            "Recomendação4A–C: antagonista da vitaminaK, INR2–3, longo prazo após TVP não provocada",
+            "Recomendação4B e TRAPS: evitar rivaroxabana em tripla positividade"
+          ],
+          "limitations": [
+            "Anticoagulação da SAF trombótica venosa, não demonstra benefício de anticoagular toda nefropatia isolada sem trombose."
+          ]
+        },
+        {
+          "id": "apsKidney",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/10073601/",
+          "doi": "10.1681/ASN.V103507",
+          "access": "Abstract primário oficial no XML EFetch PubMed, pubmed-10073601.xml",
+          "locators": [
+            "Abstract:16pacientes multicêntricos com SAF primária, todos biopsiados, acompanhados≥5anos",
+            "Lesões vaso-oclusivas, hiperplasia intimal, trombos recanalizados e microangiopatia aguda em5"
+          ],
+          "limitations": [
+            "Coorte clinicopatológica selecionada, sem grupo-controle; não quantifica prevalência geral nem efeito causal de anticoagulação."
+          ]
+        }
+      ],
+      "independentLocators": "EULAR2019 corpo integral, recomendação4A–C; NochyPMID10073601 abstract integral EFetch,16biopsiados/≥5anos/5TMA.",
+      "claimAudit": "Tratamento decorre daTVPnão provocada eSAF persistente de alto risco, não deTMAisolada. Fonte renal selecionada não demonstra eficácia anticoagulante.",
+      "appeal": {
+        "argument": "Aspirina isolada, prazo3meses ou preferência de rivaroxabana não correspondem à prevenção secundária no fenótipo. Não exige LES.",
+        "result": "Sem recurso decisivo residual na versão exata."
+      },
+      "referenceCards": [
+        {
+          "id": "eular_aps_2019",
+          "originalRevision": "sha256:a09ebba2c5a61d03b7073db06a31bfb5b21e84f74c4c155f6a6f3aa44aab2be9",
+          "after": {
+            "label": "EULAR — Management of Antiphospholipid Syndrome in Adults",
+            "url": "https://ard.bmj.com/content/78/10/1296",
+            "journal": "Ann Rheum Dis 2019;78:1296-1304",
+            "ano": 2019,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Anticoagulação da síndrome antifosfolipídeo e estratificação de anticorpos",
+            "icon": "📋",
+            "resumo": "Recomendações EULAR de 2019 para síndrome antifosfolipídeo (SAF). Perfil de alto risco inclui anticoagulante lúpico, dupla/tripla positividade ou títulos persistentemente altos, confirmados com intervalo mínimo de 12 semanas. Após primeira trombose venosa não provocada na SAF, recomenda antagonista da vitamina K de longo prazo, com razão normalizada internacional (INR) alvo de 2–3. Rivaroxabana não deve ser usada em tripla positividade. Recomendações combinam evidência e consenso; isso não é indicação de anticoagular toda lesão renal isolada.",
+            "conclusao": "Na SAF trombótica venosa de alto risco, selecionar anticoagulação de longo prazo com alvo apropriado e acompanhar segurança e adesão; não substituir por rivaroxabana em tripla positividade.",
+            "curiosidade": "A tripla positividade combina anticoagulante lúpico, anticardiolipina e anti-β2-glicoproteína I e identifica um perfil particularmente associado a recorrência trombótica."
+          },
+          "afterRevision": "sha256:175297a986abd130fe94803e853bbba8489fc5da25e0ab655daf2e9d5570d259",
+          "wholeCardReviewed": true,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "sourceIDs": [
+            "eular"
+          ],
+          "claimAudit": "EULAR2019 corpo integral, recomendação4A–C; NochyPMID10073601 abstract integral EFetch,16biopsiados/≥5anos/5TMA. Tratamento decorre daTVPnão provocada eSAF persistente de alto risco, não deTMAisolada. Fonte renal selecionada não demonstra eficácia anticoagulante.",
+          "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+        },
+        {
+          "id": "nochy_aps_nephropathy_1999",
+          "originalRevision": null,
+          "after": {
+            "label": "Nochy et al. — Nefropatia na síndrome antifosfolipídeo primária (1999)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/10073601/",
+            "journal": "Journal of the American Society of Nephrology 1999;10(3):507–518",
+            "ano": 1999,
+            "tipo": "Coorte",
+            "badge": "COHORT",
+            "badgeColor": "#f59e0b",
+            "icon": "🔬",
+            "impacto": "Nefropatia vascular pode acompanhar a síndrome antifosfolipídeo primária",
+            "resumo": "Estudo clinicopatológico multicêntrico de 16 pacientes com síndrome antifosfolipídeo (SAF) primária, todos com biópsia renal e acompanhamento de pelo menos 5 anos. Descreveu lesões vaso-oclusivas de pequenos vasos, hiperplasia intimal, trombos recanalizados e atrofia cortical focal; cinco tiveram microangiopatia glomerular/arteriolar aguda. É uma coorte selecionada e sem controle, que não estima prevalência geral nem demonstra eficácia de anticoagulação.",
+            "conclusao": "A SAF primária pode causar padrão vascular renal, sem exigir nefrite lúpica. Integrar achados renais com o contexto trombótico e imunológico.",
+            "curiosidade": ""
+          },
+          "afterRevision": "sha256:a3e0678d451ac5be83c0b2e98380a3c624127d308fbfe9f273dfbe4802124952",
+          "wholeCardReviewed": true,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "sourceIDs": [
+            "apsKidney"
+          ],
+          "claimAudit": "EULAR2019 corpo integral, recomendação4A–C; NochyPMID10073601 abstract integral EFetch,16biopsiados/≥5anos/5TMA. Tratamento decorre daTVPnão provocada eSAF persistente de alto risco, não deTMAisolada. Fonte renal selecionada não demonstra eficácia anticoagulante.",
+          "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+        }
+      ],
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "duplicateAudit": {
+        "scope": "Comparação dirigida por OP, competência, decisão e conceito na vizinhança do banco.",
+        "conclusion": "Sem duplicata nas quatro dimensões nestes9. Calcifilaxia clínica multimodal é distinta de interpretar a metanáliseSTS; anticoagulaçãoHD do circuito é distinta da prescrição emTVP/SAF. Razão delta é interpretação metabólica, não cálculo deAG/compensação isolado."
+      },
+      "score": {
+        "dimensions": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2
+        ],
+        "total": 19,
+        "rationale": "Descontos próprios em pistas formais/distratores; RDN17 reconhece rivais menos sutis, sem lhes atribuir complexidade inexistente."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta no escopo efetivamente conferido",
+      "decisionTree": "Handbook§18.4/§19:VERIFICADA/NENHUMA, nenhum eliminatório nem recurso decisivo,17–19,aprovada; LIBERADA derivada somente para o literal e referências registrados.",
+      "implementation": "Preservar qid/FSRS e arquivar originais17.27. Nenhuma resposta passada é reavaliada.",
+      "pendingVerification": []
+    },
+    {
+      "qid": "db4ddc30",
+      "sourceVersion": "A3",
+      "original": {
+        "t": "Calcifilaxia — Reconhecimento e Manejo Multimodal",
+        "qid": "db4ddc30",
+        "q": "Pessoa em hemodiálise de longa duração, em uso de warfarina, desenvolve dor intensa seguida de placas retiformes violáceas e necrose em coxas. Qual abordagem é mais adequada?",
+        "refs": [
+          "era_calciphylaxis_2025",
+          "calciphylaxis_sts_meta_2023"
+        ],
+        "opts": [
+          "Suspeitar de calcifilaxia e coordenar cuidado de feridas, analgesia, avaliação de infecção e metabolismo mineral, revendo warfarina; tiossulfato pode ser considerado off-label, com eficácia ainda incerta",
+          "Diagnosticar celulite simples e manter warfarina sem revisar fatores de risco",
+          "Iniciar tiossulfato como cura comprovada e dispensar cuidado de feridas",
+          "Aguardar elevação extrema do PTH, pois calcifilaxia não ocorre com PTH moderadamente elevado"
+        ],
+        "ans": 0,
+        "exp": "Dor desproporcional, livedo ou placas retiformes que evoluem para necrose em pessoa dialítica sugerem calcifilaxia, mesmo sem PTH extremo. O manejo é multidisciplinar: analgesia, cuidado de feridas, busca e tratamento de infecção, controle de cálcio e fósforo e revisão de fatores modificáveis. Warfarina interfere na ativação da proteína Gla da matriz e deve ser reavaliada, considerando indicação e alternativa anticoagulante. Tiossulfato é frequentemente usado off-label, mas estudos comparativos não comprovam cura ou redução consistente de mortalidade.",
+        "diff": "hard",
+        "cat": "dialise"
+      },
+      "originalAuthorRevision": "sha256:6a10133c516dac20d255ff5cad09d60c358e054e58189c5ec078e19efbcdf8bd",
+      "after": {
+        "t": "Calcifilaxia — Reconhecimento e Manejo Multimodal",
+        "qid": "db4ddc30",
+        "q": "Pessoa em hemodiálise de longa duração, em uso de warfarina, desenvolve dor intensa seguida de placas retiformes violáceas e necrose em coxas. Qual abordagem é mais adequada?",
+        "refs": [
+          "era_calciphylaxis_2025",
+          "calciphylaxis_sts_meta_2023"
+        ],
+        "opts": [
+          "Investigar calcifilaxia e organizar manejo multidisciplinar, revendo os fatores modificáveis.",
+          "Priorizar tiossulfato como terapia isolada e aguardar resposta antes de cuidar das feridas.",
+          "Aguardar hiperparatireoidismo extremo antes de considerar calcifilaxia como hipótese.",
+          "Tratar como celulite isolada e manter a avaliação centrada apenas na antibioticoterapia."
+        ],
+        "ans": 0,
+        "exp": "Dor intensa seguida de lesões retiformes e necrose em pessoa dialítica sugere calcifilaxia. O manejo inclui feridas, analgesia, pesquisa de infecção e avaliação do metabolismo mineral. A warfarina deve ser reavaliada conforme indicação e alternativa segura; não se deve trocá-la por reflexo em qualquer paciente. Tiossulfato pode ser considerado fora de bula, mas dados comparativos não demonstraram benefício consistente em lesões ou sobrevida e não substituem cuidado multimodal. Paratormônio extremamente elevado não é requisito: valores excessivamente baixos também podem coexistir com risco.",
+        "diff": "medium",
+        "cat": "dialise"
+      },
+      "afterAuthorRevision": "sha256:d00d5fa256f2fa32d35de592c572dd80d61ade9a720f0c5732092b97bdef85f5",
+      "classification": {
+        "before": {
+          "op": "Reconhecer suspeita de calcifilaxia e escolher abordagem multimodal sem prometer cura com tiossulfato.",
+          "primaryCompetence": "Reconhecimento e manejo inicial seguro de complicação vascular da diálise.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyAuthored": "hard",
+          "difficultyIntrinsic": "medium"
+        },
+        "after": {
+          "op": "Reconhecer suspeita de calcifilaxia e escolher abordagem multimodal sem prometer cura com tiossulfato.",
+          "primaryCompetence": "Reconhecimento e manejo inicial seguro de complicação vascular da diálise.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyIntrinsic": "medium",
+          "difficultyAuthored": "medium"
+        }
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "independentlyOpenedSources": [
+        {
+          "id": "calciphylaxis",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12683247/",
+          "doi": "10.1093/ckj/sfaf338",
+          "access": "Corpo integral da atualização narrativa do grupo ERA2025, Huish et al.",
+          "locators": [
+            "Risk factors e apresentação clínica",
+            "Management: revisão de warfarina, feridas/infecção e analgesia; Sodium thiosulphate, linhas320–335"
+          ],
+          "limitations": [
+            "Atualização de grupo de trabalho, com base amplamente observacional. Não atribuir cura a uma intervenção isolada nem retirar warfarina sem ponderar indicação e alternativa segura."
+          ]
+        },
+        {
+          "id": "sts",
+          "url": "https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2804210",
+          "doi": "10.1001/jamanetworkopen.2023.10068",
+          "access": "Corpo integral da revisão sistemática e metanálise primária, JAMA Network Open2023",
+          "locators": [
+            "Abstract/Results, linhas181–182:19coortes/422pacientes e estimativas",
+            "Métodos e resultados de heterogeneidade/risco de viés, linhas208–211 e269"
+          ],
+          "limitations": [
+            "Estudos retrospectivos com risco de viés moderado a crítico. Ausência de associação significativa não prova ineficácia absoluta nem causalidade por viés de publicação."
+          ]
+        }
+      ],
+      "independentLocators": "ERA2025 PMC12683247 tabela1/2 e manejo, warfarina/MGP; Wen2023 PMC10134003 integral já conferido,19coortes422 e estimativasRR/HR.",
+      "claimAudit": "Lesões e dor sugerem hipótese. Não exigePTHextremo, nem substitui cuidados de ferida/infecção porSTS. Warfarina é reavaliada conforme indicação e alternativa segura.",
+      "appeal": {
+        "argument": "Antibiótico pode ser necessário se houver infecção, mas tratar como celulite isolada perde o conjunto. Ausência de benefício comparativo não equivale a ineficácia universal.",
+        "result": "Sem recurso decisivo residual na versão exata."
+      },
+      "referenceCards": [
+        {
+          "id": "era_calciphylaxis_2025",
+          "originalRevision": "sha256:e79182ead933619631e5e2fee5b7b02c05d84c8f77042d0a3165141c7683e48d",
+          "after": {
+            "label": "Huish et al. / ERA — Atualização de calcifilaxia (2025)",
+            "url": "https://doi.org/10.1093/ckj/sfaf338",
+            "journal": "Clin Kidney J. 2025;18(12):sfaf338",
+            "ano": 2025,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Diagnóstico clínico, fatores de risco e manejo multimodal da calcifilaxia",
+            "icon": "🔬",
+            "resumo": "Atualização narrativa do grupo de trabalho de distúrbio mineral e ósseo da European Renal Association (ERA), em 2025. Calcifilaxia pode apresentar dor intensa, lesões retiformes e necrose. A abordagem integra cuidado de feridas, analgesia, pesquisa/tratamento de infecção e avaliação do metabolismo mineral. Warfarina é fator modificável que deve ser revista conforme indicação e alternativa segura. O tiossulfato de sódio é usado fora de bula, com evidência clínica limitada; o artigo não demonstra cura por uma modalidade isolada.",
+            "conclusao": "Reconhecer cedo e remover fatores modificáveis é essencial, mas nenhuma intervenção isolada — inclusive tiossulfato de sódio — tem eficácia curativa comprovada; decisões devem ser individualizadas.",
+            "curiosidade": "A warfarina reduz a ativação da proteína Gla da matriz, inibidor dependente de vitamina K da calcificação vascular, fornecendo plausibilidade biológica ao risco observado."
+          },
+          "afterRevision": "sha256:ca84ff35d726031ce3e1f8b554a09c869490e6f03a07e6437115129740f58415",
+          "wholeCardReviewed": true,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "sourceIDs": [
+            "calciphylaxis"
+          ],
+          "claimAudit": "ERA2025 PMC12683247 tabela1/2 e manejo, warfarina/MGP; Wen2023 PMC10134003 integral já conferido,19coortes422 e estimativasRR/HR. Lesões e dor sugerem hipótese. Não exigePTHextremo, nem substitui cuidados de ferida/infecção porSTS. Warfarina é reavaliada conforme indicação e alternativa segura.",
+          "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+        },
+        {
+          "id": "calciphylaxis_sts_meta_2023",
+          "originalRevision": "sha256:1cdf0dbadd1a5a6fd592d996f37562d2ad22f4236e98e32dc150287bcdf38373",
+          "after": {
+            "label": "Wen et al. — Tiossulfato na Calcifilaxia (JAMA Network Open 2023)",
+            "url": "https://doi.org/10.1001/jamanetworkopen.2023.10068",
+            "journal": "JAMA Network Open",
+            "ano": 2023,
+            "tipo": "Metanálise",
+            "badge": "META",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Tiossulfato não teve benefício comparativo demonstrado em lesões ou sobrevida",
+            "icon": "🔬",
+            "resumo": "Revisão sistemática e metanálise de 19 coortes retrospectivas, com 422 adultos com doença renal crônica e calcifilaxia. Tiossulfato intravenoso versus controle não se associou a diferença significativa em melhora das lesões (12 estudos/110 pacientes; risco relativo 1,23; intervalo de confiança de 95% (IC95%): 0,85–1,78), morte (15 estudos/158 pacientes; risco relativo 0,88; IC95%: 0,70–1,10) ou sobrevida por tempo até evento (3 estudos/269 pacientes; razão de riscos (HR) 0,82; IC95%: 0,57–1,18). Não houve heterogeneidade estatística elevada, mas o risco de viés foi moderado a crítico.",
+            "conclusao": "O tiossulfato permanece terapia off-label individualizada dentro de manejo multimodal; não há demonstração comparativa de benefício em cicatrização ou sobrevida.",
+            "curiosidade": "A metanálise não encontrou heterogeneidade estatística elevada nas estimativas, mas os estudos tinham risco de viés moderado a crítico. A meta-regressão por ano não demonstra a causa da variação dos resultados."
+          },
+          "afterRevision": "sha256:d4142078d25354c6e135a999d1a0ea627b97d15c50a7934ca7cc1c53dd82ff5f",
+          "wholeCardReviewed": true,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "sourceIDs": [
+            "sts"
+          ],
+          "claimAudit": "ERA2025 PMC12683247 tabela1/2 e manejo, warfarina/MGP; Wen2023 PMC10134003 integral já conferido,19coortes422 e estimativasRR/HR. Lesões e dor sugerem hipótese. Não exigePTHextremo, nem substitui cuidados de ferida/infecção porSTS. Warfarina é reavaliada conforme indicação e alternativa segura.",
+          "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+        }
+      ],
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "duplicateAudit": {
+        "scope": "Comparação dirigida por OP, competência, decisão e conceito na vizinhança do banco.",
+        "conclusion": "Sem duplicata nas quatro dimensões nestes9. Calcifilaxia clínica multimodal é distinta de interpretar a metanáliseSTS; anticoagulaçãoHD do circuito é distinta da prescrição emTVP/SAF. Razão delta é interpretação metabólica, não cálculo deAG/compensação isolado."
+      },
+      "score": {
+        "dimensions": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1,
+          2
+        ],
+        "total": 18,
+        "rationale": "Descontos próprios em pistas formais/distratores; RDN17 reconhece rivais menos sutis, sem lhes atribuir complexidade inexistente."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta no escopo efetivamente conferido",
+      "decisionTree": "Handbook§18.4/§19:VERIFICADA/NENHUMA, nenhum eliminatório nem recurso decisivo,17–19,aprovada; LIBERADA derivada somente para o literal e referências registrados.",
+      "implementation": "Preservar qid/FSRS e arquivar originais17.27. Nenhuma resposta passada é reavaliada.",
+      "pendingVerification": []
+    },
+    {
+      "qid": "3a0f4a34",
+      "sourceVersion": "A3",
+      "original": {
+        "t": "Denervação Renal — Seleção de Pacientes",
+        "qid": "3a0f4a34",
+        "q": "Paciente mantém hipertensão sistólica e diastólica estágio 2 apesar de terapia otimizada, adesão confirmada e exclusão de causas secundárias. Qual é o papel atual da denervação renal?",
+        "refs": [
+          "aha_acc_hypertension_2025"
+        ],
+        "opts": [
+          "Pode ser considerada como terapia adjunta em paciente cuidadosamente selecionado, por decisão compartilhada; a redução pressórica é modesta e não substitui medicamentos e estilo de vida",
+          "É tratamento curativo que permite suspender todos os anti-hipertensivos",
+          "É indicada antes de confirmar pseudorresistência ou anatomia das artérias renais",
+          "Já demonstrou reduzir eventos cardiovasculares em ensaios de desfecho de longo prazo"
+        ],
+        "ans": 0,
+        "exp": "A denervação renal por radiofrequência ou ultrassom pode ser considerada como adjunta em hipertensão não controlada ou resistente, após confirmar medida adequada, adesão, esquema farmacológico, causas secundárias e anatomia favorável. A decisão deve ser compartilhada porque a resposta é variável e, em média, modesta. O procedimento não cura hipertensão nem substitui estilo de vida e medicamentos. Embora dispositivos tenham aprovação regulatória, ainda faltam ensaios que demonstrem redução de eventos cardiovasculares; função renal e anatomia vascular limitam a extrapolação.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "originalAuthorRevision": "sha256:000b78ad25c6534ea51a32155a7eb5d3156153a854550a60dd39b930b9be1082",
+      "after": {
+        "t": "Denervação Renal — Seleção de Pacientes",
+        "qid": "3a0f4a34",
+        "q": "Adulto com hipertensão resistente confirmada mantém pressão de 158/96 mmHg apesar de terapia otimizada, com adesão e hipertensão fora do consultório confirmadas e causas secundárias excluídas. A taxa de filtração glomerular estimada (TFGe) é 50 mL/min/1,73 m². Segundo a AHA/ACC de 2025, qual é o papel da denervação renal?",
+        "refs": [
+          "aha_acc_hypertension_2025",
+          "aha_renal_denervation_statement_2024"
+        ],
+        "opts": [
+          "Pode ser considerada como adjunta, com avaliação especializada e decisão compartilhada.",
+          "Permite substituir as medicações e o estilo de vida após a realização do procedimento.",
+          "Pode ser indicada sem avaliação anatômica, desde que a pressão no consultório seja elevada.",
+          "É opção de primeira linha para qualquer hipertensão estágio 2, antes de otimizar medicações."
+        ],
+        "ans": 0,
+        "exp": "A denervação renal é uma opção adjunta para pacientes cuidadosamente selecionados, não uma substituição do tratamento clínico. O material oficial da AHA/ACC de 2025 a coloca como classe 2b para redução pressórica em hipertensão resistente, com critérios que incluem pressão sistólica de 140–180 mmHg, diastólica ≥90 mmHg e TFGe ≥40 mL/min/1,73 m². A avaliação deve envolver equipe com experiência em resistência e no procedimento, anatomia apropriada e discussão de benefícios/riscos com o paciente. A recomendação não autoriza usar o procedimento antes da avaliação nem suspender automaticamente as medicações.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "afterAuthorRevision": "sha256:41a3205294085ba04b82c675bdf3ee416833bf07db92d01e3403b0d19475f636",
+      "classification": {
+        "before": {
+          "op": "Reconhecer o papel seletivo e adjunto da denervação renal após confirmar resistência verdadeira.",
+          "primaryCompetence": "Seleção e decisão compartilhada em procedimento para hipertensão resistente.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyAuthored": "hard",
+          "difficultyIntrinsic": "medium"
+        },
+        "after": {
+          "op": "Reconhecer o papel seletivo e adjunto da denervação renal após confirmar resistência verdadeira.",
+          "primaryCompetence": "Seleção e decisão compartilhada em procedimento para hipertensão resistente.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyIntrinsic": "medium",
+          "difficultyAuthored": "medium"
+        }
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "independentlyOpenedSources": [
+        {
+          "id": "aha",
+          "url": "https://professional.heart.org/en/science-news/2025-high-blood-pressure-guideline/",
+          "access": "Página oficial da diretriz aberta; arquivo oficial AHA Clinical Slide Series baixado e lido por XML, aha-2025-official-clinical-slides.pptx",
+          "sourceAssetURL": "https://professional.heart.org/-/media/PHD-Files-2/Science-News/Clinical-Slide-Series/2025-High-Blood-Pressure-Guideline-Clinical-Slides.pptx?sc_lang=en",
+          "rawFileSHA256": "8c04b1ba69a010a5fa235eeaf9a6b83baffb4284d320b203a74c0c3235bb89f0",
+          "locators": [
+            "Slides9–10: pseudorresistência e causas secundárias",
+            "Slide26: tratamento da hipertensão resistente",
+            "Slide27: denervação como adjunta, classe2b; pressão140–180/≥90 e TFGe≥40; equipe multidisciplinar e decisão compartilhada, classe1"
+          ],
+          "limitations": [
+            "O artigo completo no AHA Journals retornou403. O slide set oficial alternativo foi efetivamente aberto, não inferido de snippet. O card proposto limita as afirmações ao que foi conferido nessa fonte primária institucional. Não afirma que houve ensaio com benefício cardiovascular."
+          ]
+        },
+        {
+          "id": "rdnAnatomy",
+          "url": "https://ex.sfmv.fr/sites/default/files/docs/cluett-et-al-2024-renal-denervation-for-the-treatment-of-hypertension-a-scientific-statement-from-the-american-heart.pdf",
+          "doi": "10.1161/HYP.0000000000000240",
+          "access": "PDF integral do artigo primário AHA2024,14páginas, cópia do PDF da editora disponibilizada pela Société Française de Médecine Vasculaire; título/autores/DOI conferidos",
+          "locators": [
+            "Patient Selection: critérios anatômicos que impedem procedimento",
+            "Abstract e decisão compartilhada"
+          ],
+          "limitations": [
+            "É a publicação primária, não uma resenha do site hospedeiro. Cópia early-view ainda sem paginaçãofinal; identidade confirmada por DOI e PMID39101202. Não é apresentada como versão2025 da diretriz."
+          ]
+        }
+      ],
+      "independentLocators": "AHA2025 slides oficiais9/10/26/27 lidos do arquivo primário; Cluett/AHA2024 PDF integral, Table2 e seleção pp7–8.",
+      "claimAudit": "158/96/TFGe50 e resistência confirmada se enquadram no cenário2b. Anatomia e decisão compartilhada continuam necessárias, sem presumir elegibilidade automática.",
+      "appeal": {
+        "argument": "Não se transforma um procedimento adjunto em substituto de medicamentos nem tratamento inicial de qualquer estágio2. Desconto por rivais com negações ostensivas.",
+        "result": "Sem recurso decisivo residual na versão exata."
+      },
+      "referenceCards": [
+        {
+          "id": "aha_acc_hypertension_2025",
+          "originalRevision": "sha256:ed04f2a37e1adaae7cafadc7d35c6ef2edc215d29a2c287eb38e0a2ed26d5b55",
+          "after": {
+            "label": "AHA/ACC — High Blood Pressure Guideline 2025",
+            "url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001356",
+            "journal": "Circulation. 2025",
+            "ano": 2025,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Confirmar resistência; denervação é opção adjunta seletiva e de decisão compartilhada",
+            "icon": "📋",
+            "resumo": "Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, confirmar medidas fora do consultório, adesão, fármacos interferentes e causas secundárias. Segundo o material clínico oficial, denervação renal pode ser considerada como adjunta a medicamentos e estilo de vida (classe 2b) em adultos selecionados com pressão sistólica de 140–180 mmHg, diastólica ≥90 mmHg e taxa de filtração glomerular estimada ≥40 mL/min/1,73 m², apesar de terapia otimizada ou intolerância a fármacos. Exige avaliação por equipe multidisciplinar e decisão compartilhada (classe 1).",
+            "conclusao": "A recomendação é para redução da pressão em pacientes selecionados, mantendo tratamento clínico e avaliação especializada; não autoriza uso automático nem retirada de medicações.",
+            "curiosidade": ""
+          },
+          "afterRevision": "sha256:50fd7d5cbd0bfae2d2cfec292d0737a4531b801de81279547b92400d938f2002",
+          "wholeCardReviewed": true,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "sourceIDs": [
+            "aha"
+          ],
+          "claimAudit": "AHA2025 slides oficiais9/10/26/27 lidos do arquivo primário; Cluett/AHA2024 PDF integral, Table2 e seleção pp7–8. 158/96/TFGe50 e resistência confirmada se enquadram no cenário2b. Anatomia e decisão compartilhada continuam necessárias, sem presumir elegibilidade automática.",
+          "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+        },
+        {
+          "id": "aha_renal_denervation_statement_2024",
+          "originalRevision": null,
+          "after": {
+            "label": "Cluett / AHA — Declaração científica sobre denervação renal (2024)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/39101202/",
+            "journal": "Hypertension 2024;81(10):e135–e148",
+            "ano": 2024,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "icon": "🔬",
+            "impacto": "Seleção anatômica e decisão compartilhada para denervação renal",
+            "resumo": "Declaração científica da American Heart Association (AHA), fundamentada em síntese de ensaios e experiência clínica, sobre denervação renal como tratamento adjunto da hipertensão. Discute benefício pressórico e seleção de pacientes, com critérios anatômicos que podem impedir o procedimento, como estenose relevante, aneurismas e artérias pequenas para os cateteres. Requer conversa informada sobre riscos, benefícios e preferências. É síntese científica e orientação clínica, não um ensaio randomizado em si.",
+            "conclusao": "Avaliar elegibilidade clínica e anatômica antes do procedimento, junto à decisão compartilhada; não substituir avaliação especializada por pressão elevada isoladamente.",
+            "curiosidade": ""
+          },
+          "afterRevision": "sha256:20296435c32601df846b36e7b61d79392d1a08694cb81f7649e08d21e7b5e53a",
+          "wholeCardReviewed": true,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "sourceIDs": [
+            "rdnAnatomy"
+          ],
+          "claimAudit": "AHA2025 slides oficiais9/10/26/27 lidos do arquivo primário; Cluett/AHA2024 PDF integral, Table2 e seleção pp7–8. 158/96/TFGe50 e resistência confirmada se enquadram no cenário2b. Anatomia e decisão compartilhada continuam necessárias, sem presumir elegibilidade automática.",
+          "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+        }
+      ],
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "duplicateAudit": {
+        "scope": "Comparação dirigida por OP, competência, decisão e conceito na vizinhança do banco.",
+        "conclusion": "Sem duplicata nas quatro dimensões nestes9. Calcifilaxia clínica multimodal é distinta de interpretar a metanáliseSTS; anticoagulaçãoHD do circuito é distinta da prescrição emTVP/SAF. Razão delta é interpretação metabólica, não cálculo deAG/compensação isolado."
+      },
+      "score": {
+        "dimensions": [
+          2,
+          2,
+          2,
+          2,
+          1,
+          1,
+          2,
+          2,
+          1,
+          2
+        ],
+        "total": 17,
+        "rationale": "Descontos próprios em pistas formais/distratores; RDN17 reconhece rivais menos sutis, sem lhes atribuir complexidade inexistente."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta no escopo efetivamente conferido",
+      "decisionTree": "Handbook§18.4/§19:VERIFICADA/NENHUMA, nenhum eliminatório nem recurso decisivo,17–19,aprovada; LIBERADA derivada somente para o literal e referências registrados.",
+      "implementation": "Preservar qid/FSRS e arquivar originais17.27. Nenhuma resposta passada é reavaliada.",
+      "pendingVerification": []
+    },
+    {
+      "qid": "bb44dfd3",
+      "sourceVersion": "A3.2",
+      "original": {
+        "t": "Dieta Muito Hipoproteica com Cetoanálogos",
+        "qid": "bb44dfd3",
+        "q": "Paciente com DRC avançada, metabolicamente estável e sem desnutrição deseja dieta de 0,3–0,4 g de proteína/kg/dia com cetoanálogos para adiar terapia renal substitutiva. Qual orientação é mais adequada?",
+        "refs": [
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Pode ser considerada apenas em paciente selecionado, disposto e capaz de aderir, sob supervisão nutricional estreita e monitorização do estado nutricional",
+          "É recomendada rotineiramente para toda DRC G3–G5, mesmo com sarcopenia",
+          "Permite dispensar ingestão calórica adequada e acompanhamento de peso",
+          "Trata hipercalemia aguda e substitui medidas de emergência"
+        ],
+        "ans": 0,
+        "exp": "A KDIGO admite considerar dieta muito hipoproteica suplementada com aminoácidos essenciais ou cetoanálogos em adultos selecionados sob supervisão estreita. A evidência de retardar progressão ou terapia renal substitutiva é heterogênea e a adesão é difícil; benefício potencial não autoriza promessa universal. A estratégia exige energia adequada e monitorização de peso, massa muscular, ingestão e parâmetros metabólicos, devendo ser evitada em instabilidade metabólica, desnutrição, sarcopenia ou incapacidade de acompanhamento. Não é tratamento de hipercalemia aguda.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "originalAuthorRevision": "sha256:9c40a9631b82a93e47858680e1d4734908d813c79fd1eeebe6482627aeb4999a",
+      "after": {
+        "t": "Dieta Muito Hipoproteica com Cetoanálogos",
+        "qid": "bb44dfd3",
+        "q": "Paciente com doença renal crônica avançada, metabolicamente estável e sem desnutrição, deseja dieta de 0,3–0,4 g de proteína/kg/dia com cetoanálogos para adiar terapia renal substitutiva. Qual orientação é mais adequada?",
+        "refs": [
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Pode ser considerada, com suplementação, supervisão estreita e vigilância nutricional.",
+          "É preferível às demais estratégias, pois o benefício de adiar diálise é definitivo.",
+          "Pode dispensar suplementação se o fósforo e o potássio séricos permanecerem normais.",
+          "Deve ser mantida mesmo se surgir sarcopenia, para evitar aumento da carga nitrogenada."
+        ],
+        "ans": 0,
+        "exp": "A KDIGO admite considerar a dieta em adultos selecionados, dispostos e capazes de aderir, sob supervisão estreita. Restrição de 0,3–0,4 g/kg/dia exige suplementação com aminoácidos essenciais ou cetoanálogos e energia adequada, acompanhando peso, massa muscular, ingestão e parâmetros metabólicos. Não se deve prometer adiamento da diálise: estudos têm resultados heterogêneos e desafios de adesão. Instabilidade metabólica, desnutrição ou sarcopenia exigem reavaliar a estratégia. Fósforo e potássio normais não demonstram suficiência proteico-energética nem dispensam suplementação.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "afterAuthorRevision": "sha256:ba6aaba4513390f21b47ffe108d7b729af9eceefa3bd003408da29af7532df73",
+      "classification": {
+        "before": {
+          "op": "Selecionar o contexto seguro de dieta muito hipoproteica suplementada na doença renal crônica.",
+          "primaryCompetence": "Individualização de intervenção nutricional e proteção do estado nutricional.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyAuthored": "hard",
+          "difficultyIntrinsic": "medium"
+        },
+        "after": {
+          "op": "Selecionar o contexto seguro de dieta muito hipoproteica suplementada na doença renal crônica.",
+          "primaryCompetence": "Individualização de intervenção nutricional e proteção do estado nutricional.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyIntrinsic": "medium",
+          "difficultyAuthored": "medium"
+        }
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "independentlyOpenedSources": [
+        {
+          "id": "ckd",
+          "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+          "access": "PDF oficial integral, 199páginas, kdigo-ckd-2024-source.pdf",
+          "rawFileSHA256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0",
+          "locators": [
+            "PDF42/S157 ePDF93/S208: PP3.3.1.2–3.3.1.5",
+            "PDF94–95/S209–210: evidência heterogênea, suplementação, calorias e contraindicações nutricionais",
+            "PDF34/S149, PP1.1.3.2: cronicidade não presumida de medida isolada.",
+            "PDF39/S154, PP1.3.1.1–2: confirmação quantitativa e amostra matinal.",
+            "PDF44/S159, recomendações3.7.1–3.7.2: inibidoresSGLT2 e população.",
+            "PDF53/S168, PP5.4.1 e5.4.3: início clínico de diálise versus planejamento15–20/>40% em2anos."
+          ],
+          "limitations": [
+            "Practice point sem grau para dieta muito hipoproteica. Ensaios heterogêneos; não prometer adiamento de diálise nem usar em instabilidade metabólica."
+          ]
+        }
+      ],
+      "independentLocators": "KDIGO2024 PDF oficial, PP3.3.1.2–.5 e discussão pp208–210; card global integral confrontado com pp149/154/159/168/266.",
+      "claimAudit": "CandidatoA3.2 restaura o card multipropósito literal e corrige os espaços. Nutrição suplementada apenas em selecionados/supervisão, com energia e monitorização; não promete adiar diálise.",
+      "appeal": {
+        "argument": "Fósforo/potássio normais não demonstram suficiência; sarcopenia exige reavaliação. Os rivais de benefício definitivo e retirada de suplemento são erros pertinentes.",
+        "result": "Sem recurso decisivo residual na versão exata."
+      },
+      "referenceCards": [
+        {
+          "id": "kdigo_ckd",
+          "originalRevision": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3",
+          "after": {
+            "label": "KDIGO CKD 2024",
+            "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+            "journal": "Kidney International",
+            "ano": 2024,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+            "icon": "📋",
+            "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+            "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+            "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+          },
+          "afterRevision": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3",
+          "wholeCardReviewed": true,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "sourceIDs": [
+            "ckd"
+          ],
+          "claimAudit": "KDIGO2024 PDF oficial, PP3.3.1.2–.5 e discussão pp208–210; card global integral confrontado com pp149/154/159/168/266. CandidatoA3.2 restaura o card multipropósito literal e corrige os espaços. Nutrição suplementada apenas em selecionados/supervisão, com energia e monitorização; não promete adiar diálise.",
+          "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+        }
+      ],
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "duplicateAudit": {
+        "scope": "Comparação dirigida por OP, competência, decisão e conceito na vizinhança do banco.",
+        "conclusion": "Sem duplicata nas quatro dimensões nestes9. Calcifilaxia clínica multimodal é distinta de interpretar a metanáliseSTS; anticoagulaçãoHD do circuito é distinta da prescrição emTVP/SAF. Razão delta é interpretação metabólica, não cálculo deAG/compensação isolado."
+      },
+      "score": {
+        "dimensions": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1,
+          2
+        ],
+        "total": 18,
+        "rationale": "Descontos próprios em pistas formais/distratores; RDN17 reconhece rivais menos sutis, sem lhes atribuir complexidade inexistente."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta no escopo efetivamente conferido",
+      "decisionTree": "Handbook§18.4/§19:VERIFICADA/NENHUMA, nenhum eliminatório nem recurso decisivo,17–19,aprovada; LIBERADA derivada somente para o literal e referências registrados.",
+      "implementation": "Preservar qid/FSRS e arquivar originais17.27. Nenhuma resposta passada é reavaliada.",
+      "pendingVerification": []
+    },
+    {
+      "qid": "586405f9",
+      "sourceVersion": "A3",
+      "original": {
+        "t": "Aminoglicosídeos na Disfunção Renal — Toxicidade e Monitorização",
+        "qid": "586405f9",
+        "q": "Paciente com doença renal crônica avançada necessita de gentamicina para uma infecção grave por Gram-negativo sensível, como parte de um esquema apropriado. Qual princípio orienta corretamente o uso e a monitorização da gentamicina nesse contexto?",
+        "opts": [
+          "Os aminoglicosídeos não são nefrotóxicos na doença renal crônica, dispensando monitorização da função renal",
+          "A gentamicina é nefro e ototóxica, com risco maior na disfunção renal, em doses altas e no tratamento prolongado; exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade",
+          "Os aminoglicosídeos são absolutamente contraindicados em qualquer grau de doença renal crônica e nunca devem ser usados",
+          "A monitorização deve basear-se apenas na função hepática, pois a gentamicina é eliminada pelo fígado"
+        ],
+        "ans": 1,
+        "exp": "A gentamicina é um aminoglicosídeo bactericida com potencial nefrotóxico e ototóxico. O risco de nefrotoxicidade é maior em pacientes com função renal comprometida, doses altas ou tratamento prolongado, e pode haver ototoxicidade vestibular e auditiva. Por isso, a bula recomenda vigilância da função renal e do oitavo par craniano, determinação periódica de ureia, creatinina ou depuração de creatinina, audiogramas seriados e monitorização dos níveis séricos, com modificação da dose ou suspensão diante de sinais de toxicidade. Afirmar que não há nefrotoxicidade (A), contraindicar de forma absoluta em qualquer doença renal crônica (C) ou basear a monitorização na função hepática (D) são condutas incorretas — a gentamicina é eliminada por via renal e pode ser usada com monitorização e ajuste apropriados.",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "gentamicina_anvisa"
+        ]
+      },
+      "originalAuthorRevision": "sha256:7db3d7db9548808ae5474101a81e9dd0ec7f436a3e07ac6ccc5082462002eedb",
+      "after": {
+        "t": "Aminoglicosídeos na Disfunção Renal — Toxicidade e Monitorização",
+        "qid": "586405f9",
+        "q": "Paciente com doença renal crônica avançada necessita de gentamicina para uma infecção grave por Gram-negativo sensível, como parte de um esquema apropriado. Qual princípio orienta corretamente o uso e a monitorização da gentamicina nesse contexto?",
+        "opts": [
+          "Dosar pico sérico isoladamente e manter o esquema se a atividade bactericida for adequada.",
+          "Combinar níveis séricos, função renal e avaliação auditiva/vestibular para ajustar o esquema.",
+          "Dosar vale sérico isoladamente e dispensar reavaliação renal se ele estiver no alvo.",
+          "Acompanhar creatinina isoladamente e dispensar níveis séricos se a infecção estiver melhorando."
+        ],
+        "ans": 1,
+        "exp": "A gentamicina pode causar nefrotoxicidade e ototoxicidade, especialmente com disfunção renal, maior exposição e tratamento prolongado. A bula recomenda acompanhar função renal, audição/equilíbrio e concentrações séricas, com ajuste do esquema ou suspensão diante de toxicidade. Um pico, um vale ou a melhora da infecção não substituem o conjunto dessa avaliação. A escolha dos alvos e do esquema deve considerar indicação e regime utilizados; a questão não propõe um valor universal de concentração nem uma dose fixa para toda doença renal crônica.",
+        "diff": "medium",
+        "cat": "farmacologia",
+        "refs": [
+          "gentamicina_anvisa"
+        ]
+      },
+      "afterAuthorRevision": "sha256:4e50ef40dce1c201a5e263abb433891f8316f47961eb86642a8b6440c0779d41",
+      "classification": {
+        "before": {
+          "op": "Combinar vigilância renal, auditiva/vestibular e níveis séricos no uso de gentamicina em disfunção renal.",
+          "primaryCompetence": "Monitorização farmacológica segura de medicamento nefro/ototóxico.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyAuthored": "medium",
+          "difficultyIntrinsic": "medium"
+        },
+        "after": {
+          "op": "Combinar vigilância renal, auditiva/vestibular e níveis séricos no uso de gentamicina em disfunção renal.",
+          "primaryCompetence": "Monitorização farmacológica segura de medicamento nefro/ototóxico.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyIntrinsic": "medium",
+          "difficultyAuthored": "medium"
+        }
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "independentlyOpenedSources": [
+        {
+          "id": "gentamicin",
+          "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+          "access": "PDF integral oficial do titular Fresenius Kabi Brasil, 11páginas",
+          "locators": [
+            "PDF5, linhas193–206: riscos renal/oitavo par e níveis séricos",
+            "PDF10: eventos auditivos/vestibulares",
+            "PDF11, linha453: atualização conforme bula padrão Anvisa10/11/2015"
+          ],
+          "limitations": [
+            "Bula brasileira, registroMS1.0041.0210, naturezaBULA. Não extrapolar limites de pico/vale de um regime para todo esquema; a questão não pede dose ou alvo numérico."
+          ]
+        }
+      ],
+      "independentLocators": "Bula profissional oficial Fresenius Kabi11p, pp5/7–11, registro1.0041.0210, rodapé padrão10/11/2015.",
+      "claimAudit": "Risco renal/vestibular/auditivo e concentrações séricas, com ajuste/suspensão. A questão não impõe alvo de pico/vale ou dose universal emDRC.",
+      "appeal": {
+        "argument": "Medida isolada não cobre os riscos; a melhora da infecção não elimina exposição tóxica. Card diz que há dose diária sem recomendá-la para todo paciente renal.",
+        "result": "Sem recurso decisivo residual na versão exata."
+      },
+      "referenceCards": [
+        {
+          "id": "gentamicina_anvisa",
+          "originalRevision": "sha256:91e8f9111b0c552ee6469b8f2f9ca5918120cdb88655b51f33ed2c8093f9a27a",
+          "after": {
+            "label": "Gentamicin (sulfato de gentamicina) — Bula Profissional (ANVISA, Fresenius Kabi Brasil)",
+            "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+            "journal": "ANVISA — Bula Profissional (Fresenius Kabi Brasil Ltda., Reg. MS 1.0041.0210)",
+            "ano": 2015,
+            "tipo": "Bula profissional aprovada pela ANVISA",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Gentamicina — nefro e ototoxicidade na disfunção renal; monitorização de função renal, oitavo par craniano e níveis séricos",
+            "icon": "📋",
+            "resumo": "Bula profissional da Gentamicin (sulfato de gentamicina) aprovada pela ANVISA (Fresenius Kabi Brasil, Reg. MS 1.0041.0210; Bula Padrão de 10/11/2015). Aminoglicosídeo bactericida; o risco de nefrotoxicidade é maior em pacientes com função renal comprometida, dose alta ou tratamento prolongado, podendo haver ototoxicidade vestibular e auditiva. Recomenda vigilância da função renal e do oitavo par craniano, determinação periódica de ureia/creatinina/depuração de creatinina, audiogramas seriados e monitorização dos níveis séricos; sinais de oto ou nefrotoxicidade exigem modificação da dose ou suspensão. Admite esquema de dose única diária.",
+            "conclusao": "Na disfunção renal, a gentamicina exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade.",
+            "curiosidade": ""
+          },
+          "afterRevision": "sha256:91e8f9111b0c552ee6469b8f2f9ca5918120cdb88655b51f33ed2c8093f9a27a",
+          "wholeCardReviewed": true,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "sourceIDs": [
+            "gentamicin"
+          ],
+          "claimAudit": "Bula profissional oficial Fresenius Kabi11p, pp5/7–11, registro1.0041.0210, rodapé padrão10/11/2015. Risco renal/vestibular/auditivo e concentrações séricas, com ajuste/suspensão. A questão não impõe alvo de pico/vale ou dose universal emDRC.",
+          "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+        }
+      ],
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "duplicateAudit": {
+        "scope": "Comparação dirigida por OP, competência, decisão e conceito na vizinhança do banco.",
+        "conclusion": "Sem duplicata nas quatro dimensões nestes9. Calcifilaxia clínica multimodal é distinta de interpretar a metanáliseSTS; anticoagulaçãoHD do circuito é distinta da prescrição emTVP/SAF. Razão delta é interpretação metabólica, não cálculo deAG/compensação isolado."
+      },
+      "score": {
+        "dimensions": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2
+        ],
+        "total": 19,
+        "rationale": "Descontos próprios em pistas formais/distratores; RDN17 reconhece rivais menos sutis, sem lhes atribuir complexidade inexistente."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta no escopo efetivamente conferido",
+      "decisionTree": "Handbook§18.4/§19:VERIFICADA/NENHUMA, nenhum eliminatório nem recurso decisivo,17–19,aprovada; LIBERADA derivada somente para o literal e referências registrados.",
+      "implementation": "Preservar qid/FSRS e arquivar originais17.27. Nenhuma resposta passada é reavaliada.",
+      "pendingVerification": []
+    },
+    {
+      "qid": "45afa9c4",
+      "sourceVersion": "A3",
+      "original": {
+        "t": "Suspeita de PTT Imune",
+        "qid": "45afa9c4",
+        "q": "Paciente de 35 anos apresenta anemia hemolítica microangiopática, plaquetas de 22.000/mm³, alteração neurológica e alta probabilidade clínica de PTT imune. Qual estratégia inicial é mais adequada?",
+        "refs": [
+          "isth_ttp_guidelines_2020"
+        ],
+        "opts": [
+          "Aguardar o resultado de ADAMTS13 antes de iniciar qualquer tratamento",
+          "Colher ADAMTS13 antes de plasma, iniciar imediatamente troca plasmática e corticosteroide e considerar caplacizumabe precoce conforme probabilidade e disponibilidade do teste",
+          "Transfundir plaquetas profilaticamente até acima de 50.000/mm³ e observar",
+          "Iniciar eculizumabe como primeira medida sem investigar deficiência grave de ADAMTS13"
+        ],
+        "ans": 1,
+        "exp": "Na alta probabilidade pré-teste de PTT imune, deve-se colher amostra para atividade/inibidor de ADAMTS13 antes da primeira troca plasmática ou produto sanguíneo, mas o tratamento não deve aguardar o resultado. Troca plasmática terapêutica e corticosteroide são iniciados imediatamente. Caplacizumabe pode ser considerado precocemente quando a probabilidade é alta e o acesso oportuno ao ADAMTS13 permite confirmar ou redirecionar a estratégia; ele não substitui a troca plasmática nem a imunossupressão.",
+        "diff": "hard",
+        "cat": "lra"
+      },
+      "originalAuthorRevision": "sha256:8a1098d627c31b61c82198b7096c2cc3a4ea0bc522deb4da87d0c94bdf15e107",
+      "after": {
+        "t": "Suspeita de púrpura trombocitopênica trombótica imune",
+        "qid": "45afa9c4",
+        "q": "Paciente de 35 anos apresenta anemia hemolítica microangiopática, plaquetas de 22.000/mm³, alteração neurológica e alta probabilidade clínica de púrpura trombocitopênica trombótica (PTT) imune. Qual é a prioridade inicial?",
+        "refs": [
+          "isth_ttp_guidelines_2020"
+        ],
+        "opts": [
+          "Colher ADAMTS13 e aguardar o resultado antes de iniciar troca plasmática.",
+          "Colher ADAMTS13 e iniciar troca plasmática com corticosteroide sem aguardar o resultado.",
+          "Iniciar caplacizumabe isolado e reservar troca plasmática para falta de resposta.",
+          "Iniciar eculizumabe e reservar troca plasmática para resultado de ADAMTS13 não reduzida."
+        ],
+        "ans": 1,
+        "exp": "É necessário colher amostra para atividade/inibidor ou anticorpo anti-ADAMTS13 antes de plasma, mas sem atrasar troca plasmática terapêutica e corticosteroide. A equipe experiente deve avaliar caplacizumabe precocemente conforme probabilidade e acesso oportuno ao teste; ele não substitui automaticamente troca plasmática e imunossupressão. O resultado de ADAMTS13 ajuda a confirmar ou redirecionar o diagnóstico e orientar tratamento adicional. A atualização ISTH de 2025 mantém o papel de caplacizumabe associado ao tratamento da forma imune. Esperar pelo resultado ou tratar como outra microangiopatia pode atrasar uma intervenção urgente.",
+        "diff": "medium",
+        "cat": "lra"
+      },
+      "afterAuthorRevision": "sha256:508eb4c6425fb319e1e0fb143fc532e69acafe649d892bd72d5867db233372c1",
+      "classification": {
+        "before": {
+          "op": "Colher ADAMTS13 antes de plasma sem atrasar troca plasmática e corticosteroide na suspeita alta de PTT imune.",
+          "primaryCompetence": "Prioridade diagnóstica-terapêutica em emergência trombótica.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyAuthored": "hard",
+          "difficultyIntrinsic": "medium"
+        },
+        "after": {
+          "op": "Colher ADAMTS13 antes de plasma sem atrasar troca plasmática e corticosteroide na suspeita alta de PTT imune.",
+          "primaryCompetence": "Prioridade diagnóstica-terapêutica em emergência trombótica.",
+          "bloom": "Aplicar",
+          "miller": "Sabe como",
+          "difficultyIntrinsic": "medium",
+          "difficultyAuthored": "medium"
+        }
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "independentlyOpenedSources": [
+        {
+          "id": "ttp",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146131/",
+          "doi": "10.1111/jth.15006",
+          "access": "Corpo integral da diretriz diagnóstica ISTH2020; também no XML EFetch a3-pmc-primary-corpus.xml",
+          "locators": [
+            "Recomendação1, linhas318–328: probabilidade alta, amostra pré-plasma, troca plasmática/corticoide sem aguardar",
+            "Consideração precoce de caplacizumabe conforme probabilidade e acesso oportuno ao teste"
+          ],
+          "limitations": [
+            "A estratégia diagnóstica é recomendação condicional de baixa certeza; não confundir com indicação de aguardar o teste na emergência."
+          ]
+        },
+        {
+          "id": "ttp2025",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13470878/",
+          "doi": "10.1016/j.jtha.2025.06.002",
+          "access": "Corpo integral da atualização ISTH2025",
+          "locators": [
+            "Tabela de comparação2020/2025, recomendação5, linhas357–358",
+            "Discussão do caplacizumabe precoce, linhas536–540"
+          ],
+          "limitations": [
+            "Confirma coerência contemporânea do núcleo da proposta; não é usada para extrapolar ADAMTS13 recombinante da forma congênita para esta suspeita imune."
+          ]
+        }
+      ],
+      "independentLocators": "ISTH2020 PMC8146131 recomendação1/passos1–3; ISTH2025 PMC13470878 recomendação5 e discussão536–540.",
+      "claimAudit": "Colher antes de plasma, sem aguardar paraTPE/corticoide. Caplacizumabe é associado conforme probabilidade e acesso ao teste; não monoterapia padrão.",
+      "appeal": {
+        "argument": "O dado decisivo é alta probabilidade dePTTimune. Eculizumabe como primeira medida ou esperar pelo teste atrasaria o tratamento apropriado.",
+        "result": "Sem recurso decisivo residual na versão exata."
+      },
+      "referenceCards": [
+        {
+          "id": "isth_ttp_guidelines_2020",
+          "originalRevision": "sha256:889ed6222164fe28fe1dbf2d4613a9624d9d2a7ccaa0714c3eb1102e86d502df",
+          "after": {
+            "label": "ISTH — Diagnóstico da púrpura trombocitopênica trombótica (2020)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146131/",
+            "journal": "J Thromb Haemost. 2020;18(10):2486-2495",
+            "ano": 2020,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Estratégia baseada em probabilidade pré-teste, coleta de ADAMTS13 e tratamento imediato da PTT imune",
+            "icon": "📋",
+            "resumo": "Diretriz da International Society on Thrombosis and Haemostasis para diagnóstico de púrpura trombocitopênica trombótica (PTT). Na probabilidade clínica alta de forma imune, orienta colher atividade/inibidor ou anticorpo anti-ADAMTS13 antes de plasma e iniciar troca plasmática terapêutica com corticosteroide sem aguardar o resultado. Caplacizumabe pode ser considerado precocemente quando há probabilidade alta e acesso oportuno ao teste, cuja resposta direciona continuidade e diagnósticos alternativos. É estratégia diagnóstica condicional, com baixa certeza; não significa adiar tratamento da emergência.",
+            "conclusao": "Suspeita clínica alta de PTT imune é emergência terapêutica: colha ADAMTS13 antes de plasma, mas não atrase troca plasmática e corticosteroide; integre caplacizumabe à probabilidade e à disponibilidade do teste.",
+            "curiosidade": "A diretriz transforma o tempo do ADAMTS13 em parte da decisão: a mesma medicação pode ser apropriada quando o resultado chega rapidamente e inadequada quando não há como confirmar ou redirecionar o diagnóstico."
+          },
+          "afterRevision": "sha256:e6568b79f749216017937871d7e62489c12dd9692a095d55657137dbbd2f2518",
+          "wholeCardReviewed": true,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "sourceIDs": [
+            "ttp",
+            "ttp2025"
+          ],
+          "claimAudit": "ISTH2020 PMC8146131 recomendação1/passos1–3; ISTH2025 PMC13470878 recomendação5 e discussão536–540. Colher antes de plasma, sem aguardar paraTPE/corticoide. Caplacizumabe é associado conforme probabilidade e acesso ao teste; não monoterapia padrão.",
+          "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+        }
+      ],
+      "eliminatories": [
+        {
+          "id": 1,
+          "triggered": false
+        },
+        {
+          "id": 2,
+          "triggered": false
+        },
+        {
+          "id": 3,
+          "triggered": false
+        },
+        {
+          "id": 4,
+          "triggered": false
+        },
+        {
+          "id": 5,
+          "triggered": false
+        },
+        {
+          "id": 6,
+          "triggered": false
+        },
+        {
+          "id": 7,
+          "triggered": false
+        },
+        {
+          "id": 8,
+          "triggered": false
+        },
+        {
+          "id": 9,
+          "triggered": false
+        },
+        {
+          "id": 10,
+          "triggered": false
+        }
+      ],
+      "duplicateAudit": {
+        "scope": "Comparação dirigida por OP, competência, decisão e conceito na vizinhança do banco.",
+        "conclusion": "Sem duplicata nas quatro dimensões nestes9. Calcifilaxia clínica multimodal é distinta de interpretar a metanáliseSTS; anticoagulaçãoHD do circuito é distinta da prescrição emTVP/SAF. Razão delta é interpretação metabólica, não cálculo deAG/compensação isolado."
+      },
+      "score": {
+        "dimensions": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          2
+        ],
+        "total": 19,
+        "rationale": "Descontos próprios em pistas formais/distratores; RDN17 reconhece rivais menos sutis, sem lhes atribuir complexidade inexistente."
+      },
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "confidence": "alta no escopo efetivamente conferido",
+      "decisionTree": "Handbook§18.4/§19:VERIFICADA/NENHUMA, nenhum eliminatório nem recurso decisivo,17–19,aprovada; LIBERADA derivada somente para o literal e referências registrados.",
+      "implementation": "Preservar qid/FSRS e arquivar originais17.27. Nenhuma resposta passada é reavaliada.",
+      "pendingVerification": []
+    }
+  ],
+  "cards": [
+    {
+      "id": "bk_virus_review",
+      "originalRevision": "sha256:3b5c54babd5ff3cf90c71d7a870122407173557c399e4e1ca9a36297ee695cb2",
+      "after": {
+        "label": "Consenso internacional — Poliomavírus BK no transplante renal (2024)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11335089/",
+        "journal": "Transplantation 2024;108(9):1834-1866",
+        "ano": 2024,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Rastrear carga viral plasmática e reduzir imunossupressão de forma escalonada",
+        "icon": "📋",
+        "resumo": "Segundo consenso internacional de 2024 para receptores de transplante renal. Recomenda rastreamento plasmático mensal até o nono mês e, depois, a cada 3 meses até 2 anos em adultos. Carga viral persistente acima de 1.000 cópias/mL, medida acima de 10.000 cópias/mL ou nefropatia comprovada devem motivar redução predefinida e escalonada do antimetabólito, do inibidor de calcineurina ou de ambos, conforme risco. Monitorar carga viral a cada 2–4 semanas. Valores dependem do ensaio e precisam de correlação clínica.",
+        "conclusao": "A redução monitorada da imunossupressão é a intervenção principal na DNAemia relevante por BK; cidofovir, leflunomida e fluoroquinolonas não são recomendados como rotina.",
+        "curiosidade": "Células decoy e vírus na urina podem preceder a carga viral plasmática; virúria isolada não equivale a nefropatia do enxerto."
+      },
+      "afterRevision": "sha256:bfb95a98f6338f30e84b524d3a43e633336e9a0a0744813c2b2c4446382fb3fb",
+      "wholeCardReviewed": true,
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "sourceIDs": [
+        "bk"
+      ],
+      "claimAudit": "BK2024, abstract integral e tabelas6–7 do XML primário NLM, DNAemia>10000uma vez, redução escalonada,2–4semanas, riscoimunológico e contra uso de cidofovir/leflunomida/quinolonas. Caso pede hipótese mais provável, não chama histologia sem imunocoloração de confirmação definitiva. Ausência de tubulite não é exclusão geral de rejeição; o conjunto virológico/morfológico é decisivo.",
+      "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+    },
+    {
+      "id": "ukkidney_hd_anticoag_2019",
+      "originalRevision": null,
+      "after": {
+        "label": "UK Kidney Association — Anticoagulação na hemodiálise (2019)",
+        "url": "https://guidelines.ukkidney.org/haemodialysis/rationale-for-clinical-practice-guidelines/anticoagulation/",
+        "journal": "Renal Association/UK Kidney Association; publicação em BMC Nephrology 2019;20:379",
+        "ano": 2019,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "icon": "📋",
+        "impacto": "Prevenir coagulação do circuito equilibrando patência e risco hemorrágico",
+        "resumo": "Diretriz britânica de hemodiálise. Sem maior risco de sangramento, recomenda heparina não fracionada ou de baixo peso molecular para reduzir coagulação do sistema extracorpóreo (1A). Com risco hemorrágico aumentado, recomenda omitir ou minimizar a anticoagulação sistêmica (1C). Dose e término são individualizados pela tendência de coagulação do circuito e sangramento; técnicas sem heparina ou anticoagulação regional podem ser consideradas conforme recursos.",
+        "conclusao": "O objetivo é a patência do circuito, mas a heparina tem efeito sistêmico. Não usar dose fixa universal nem ignorar sangramento ativo ou recente.",
+        "curiosidade": ""
+      },
+      "afterRevision": "sha256:6939136eb39b99a954ca025ccb4075a32c57b6d70164dcd002df4b30e207051e",
+      "wholeCardReviewed": true,
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "sourceIDs": [
+        "hd"
+      ],
+      "claimAudit": "UKKidney§4.6 integral, recomendações1A/1C e racional linhas71–86. O objetivo do circuito não apaga efeito sistêmico da heparina. Minimizar/omitir no risco hemorrágico, sem dose universal.",
+      "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+    },
+    {
+      "id": "achanti_szerlip_acidbase_2023",
+      "originalRevision": null,
+      "after": {
+        "label": "Achanti & Szerlip — Distúrbios ácido-base no paciente crítico (2023)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10101555/",
+        "journal": "Clinical Journal of the American Society of Nephrology 2023;18(1):102–112",
+        "ano": 2023,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "icon": "🔬",
+        "impacto": "Comparar elevação do hiato aniônico e queda do bicarbonato para buscar mistura metabólica",
+        "resumo": "Revisão clínica que organiza a avaliação ácido-base por pH, componente respiratório, hiato aniônico e comparação das variações metabólicas. A relação aproximada entre aumento do hiato e queda do bicarbonato ajuda a reconhecer distúrbios adicionais. É necessário considerar albumina e valores laboratoriais de referência; a comparação é um modelo, não confirmação isolada de etiologia ou ausência de mistura. Foi escolhida como fonte clínica acessível para o método, sem transferir recomendações terapêuticas não pertinentes.",
+        "conclusao": "Variações próximas favorecem um distúrbio metabólico predominante; desproporção exige procurar componentes adicionais. Integrar compensação respiratória e contexto.",
+        "curiosidade": ""
+      },
+      "afterRevision": "sha256:ca8296db515d3ab024794f5b83f12ed356e9eb0409b3aef4ccabdb6d026a80c6",
+      "wholeCardReviewed": true,
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "sourceIDs": [
+        "acidbase"
+      ],
+      "claimAudit": "Achanti/Szerlip2023, passos4–5 e tabela de compensação; albumina e referências explicitadas. 16/14=1.142857; Winter=23±2 compatível comPaCO2=22. Delta não exclui componente respiratório por si; texto limita conclusão à proporção metabólica.",
+      "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+    },
+    {
+      "id": "eular_aps_2019",
+      "originalRevision": "sha256:a09ebba2c5a61d03b7073db06a31bfb5b21e84f74c4c155f6a6f3aa44aab2be9",
+      "after": {
+        "label": "EULAR — Management of Antiphospholipid Syndrome in Adults",
+        "url": "https://ard.bmj.com/content/78/10/1296",
+        "journal": "Ann Rheum Dis 2019;78:1296-1304",
+        "ano": 2019,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Anticoagulação da síndrome antifosfolipídeo e estratificação de anticorpos",
+        "icon": "📋",
+        "resumo": "Recomendações EULAR de 2019 para síndrome antifosfolipídeo (SAF). Perfil de alto risco inclui anticoagulante lúpico, dupla/tripla positividade ou títulos persistentemente altos, confirmados com intervalo mínimo de 12 semanas. Após primeira trombose venosa não provocada na SAF, recomenda antagonista da vitamina K de longo prazo, com razão normalizada internacional (INR) alvo de 2–3. Rivaroxabana não deve ser usada em tripla positividade. Recomendações combinam evidência e consenso; isso não é indicação de anticoagular toda lesão renal isolada.",
+        "conclusao": "Na SAF trombótica venosa de alto risco, selecionar anticoagulação de longo prazo com alvo apropriado e acompanhar segurança e adesão; não substituir por rivaroxabana em tripla positividade.",
+        "curiosidade": "A tripla positividade combina anticoagulante lúpico, anticardiolipina e anti-β2-glicoproteína I e identifica um perfil particularmente associado a recorrência trombótica."
+      },
+      "afterRevision": "sha256:175297a986abd130fe94803e853bbba8489fc5da25e0ab655daf2e9d5570d259",
+      "wholeCardReviewed": true,
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "sourceIDs": [
+        "eular"
+      ],
+      "claimAudit": "EULAR2019 corpo integral, recomendação4A–C; NochyPMID10073601 abstract integral EFetch,16biopsiados/≥5anos/5TMA. Tratamento decorre daTVPnão provocada eSAF persistente de alto risco, não deTMAisolada. Fonte renal selecionada não demonstra eficácia anticoagulante.",
+      "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+    },
+    {
+      "id": "nochy_aps_nephropathy_1999",
+      "originalRevision": null,
+      "after": {
+        "label": "Nochy et al. — Nefropatia na síndrome antifosfolipídeo primária (1999)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/10073601/",
+        "journal": "Journal of the American Society of Nephrology 1999;10(3):507–518",
+        "ano": 1999,
+        "tipo": "Coorte",
+        "badge": "COHORT",
+        "badgeColor": "#f59e0b",
+        "icon": "🔬",
+        "impacto": "Nefropatia vascular pode acompanhar a síndrome antifosfolipídeo primária",
+        "resumo": "Estudo clinicopatológico multicêntrico de 16 pacientes com síndrome antifosfolipídeo (SAF) primária, todos com biópsia renal e acompanhamento de pelo menos 5 anos. Descreveu lesões vaso-oclusivas de pequenos vasos, hiperplasia intimal, trombos recanalizados e atrofia cortical focal; cinco tiveram microangiopatia glomerular/arteriolar aguda. É uma coorte selecionada e sem controle, que não estima prevalência geral nem demonstra eficácia de anticoagulação.",
+        "conclusao": "A SAF primária pode causar padrão vascular renal, sem exigir nefrite lúpica. Integrar achados renais com o contexto trombótico e imunológico.",
+        "curiosidade": ""
+      },
+      "afterRevision": "sha256:a3e0678d451ac5be83c0b2e98380a3c624127d308fbfe9f273dfbe4802124952",
+      "wholeCardReviewed": true,
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "sourceIDs": [
+        "apsKidney"
+      ],
+      "claimAudit": "EULAR2019 corpo integral, recomendação4A–C; NochyPMID10073601 abstract integral EFetch,16biopsiados/≥5anos/5TMA. Tratamento decorre daTVPnão provocada eSAF persistente de alto risco, não deTMAisolada. Fonte renal selecionada não demonstra eficácia anticoagulante.",
+      "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+    },
+    {
+      "id": "era_calciphylaxis_2025",
+      "originalRevision": "sha256:e79182ead933619631e5e2fee5b7b02c05d84c8f77042d0a3165141c7683e48d",
+      "after": {
+        "label": "Huish et al. / ERA — Atualização de calcifilaxia (2025)",
+        "url": "https://doi.org/10.1093/ckj/sfaf338",
+        "journal": "Clin Kidney J. 2025;18(12):sfaf338",
+        "ano": 2025,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Diagnóstico clínico, fatores de risco e manejo multimodal da calcifilaxia",
+        "icon": "🔬",
+        "resumo": "Atualização narrativa do grupo de trabalho de distúrbio mineral e ósseo da European Renal Association (ERA), em 2025. Calcifilaxia pode apresentar dor intensa, lesões retiformes e necrose. A abordagem integra cuidado de feridas, analgesia, pesquisa/tratamento de infecção e avaliação do metabolismo mineral. Warfarina é fator modificável que deve ser revista conforme indicação e alternativa segura. O tiossulfato de sódio é usado fora de bula, com evidência clínica limitada; o artigo não demonstra cura por uma modalidade isolada.",
+        "conclusao": "Reconhecer cedo e remover fatores modificáveis é essencial, mas nenhuma intervenção isolada — inclusive tiossulfato de sódio — tem eficácia curativa comprovada; decisões devem ser individualizadas.",
+        "curiosidade": "A warfarina reduz a ativação da proteína Gla da matriz, inibidor dependente de vitamina K da calcificação vascular, fornecendo plausibilidade biológica ao risco observado."
+      },
+      "afterRevision": "sha256:ca84ff35d726031ce3e1f8b554a09c869490e6f03a07e6437115129740f58415",
+      "wholeCardReviewed": true,
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "sourceIDs": [
+        "calciphylaxis"
+      ],
+      "claimAudit": "ERA2025 PMC12683247 tabela1/2 e manejo, warfarina/MGP; Wen2023 PMC10134003 integral já conferido,19coortes422 e estimativasRR/HR. Lesões e dor sugerem hipótese. Não exigePTHextremo, nem substitui cuidados de ferida/infecção porSTS. Warfarina é reavaliada conforme indicação e alternativa segura.",
+      "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+    },
+    {
+      "id": "calciphylaxis_sts_meta_2023",
+      "originalRevision": "sha256:1cdf0dbadd1a5a6fd592d996f37562d2ad22f4236e98e32dc150287bcdf38373",
+      "after": {
+        "label": "Wen et al. — Tiossulfato na Calcifilaxia (JAMA Network Open 2023)",
+        "url": "https://doi.org/10.1001/jamanetworkopen.2023.10068",
+        "journal": "JAMA Network Open",
+        "ano": 2023,
+        "tipo": "Metanálise",
+        "badge": "META",
+        "badgeColor": "#0ea5e9",
+        "impacto": "Tiossulfato não teve benefício comparativo demonstrado em lesões ou sobrevida",
+        "icon": "🔬",
+        "resumo": "Revisão sistemática e metanálise de 19 coortes retrospectivas, com 422 adultos com doença renal crônica e calcifilaxia. Tiossulfato intravenoso versus controle não se associou a diferença significativa em melhora das lesões (12 estudos/110 pacientes; risco relativo 1,23; intervalo de confiança de 95% (IC95%): 0,85–1,78), morte (15 estudos/158 pacientes; risco relativo 0,88; IC95%: 0,70–1,10) ou sobrevida por tempo até evento (3 estudos/269 pacientes; razão de riscos (HR) 0,82; IC95%: 0,57–1,18). Não houve heterogeneidade estatística elevada, mas o risco de viés foi moderado a crítico.",
+        "conclusao": "O tiossulfato permanece terapia off-label individualizada dentro de manejo multimodal; não há demonstração comparativa de benefício em cicatrização ou sobrevida.",
+        "curiosidade": "A metanálise não encontrou heterogeneidade estatística elevada nas estimativas, mas os estudos tinham risco de viés moderado a crítico. A meta-regressão por ano não demonstra a causa da variação dos resultados."
+      },
+      "afterRevision": "sha256:d4142078d25354c6e135a999d1a0ea627b97d15c50a7934ca7cc1c53dd82ff5f",
+      "wholeCardReviewed": true,
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "sourceIDs": [
+        "sts"
+      ],
+      "claimAudit": "ERA2025 PMC12683247 tabela1/2 e manejo, warfarina/MGP; Wen2023 PMC10134003 integral já conferido,19coortes422 e estimativasRR/HR. Lesões e dor sugerem hipótese. Não exigePTHextremo, nem substitui cuidados de ferida/infecção porSTS. Warfarina é reavaliada conforme indicação e alternativa segura.",
+      "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+    },
+    {
+      "id": "aha_acc_hypertension_2025",
+      "originalRevision": "sha256:ed04f2a37e1adaae7cafadc7d35c6ef2edc215d29a2c287eb38e0a2ed26d5b55",
+      "after": {
+        "label": "AHA/ACC — High Blood Pressure Guideline 2025",
+        "url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001356",
+        "journal": "Circulation. 2025",
+        "ano": 2025,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Confirmar resistência; denervação é opção adjunta seletiva e de decisão compartilhada",
+        "icon": "📋",
+        "resumo": "Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, confirmar medidas fora do consultório, adesão, fármacos interferentes e causas secundárias. Segundo o material clínico oficial, denervação renal pode ser considerada como adjunta a medicamentos e estilo de vida (classe 2b) em adultos selecionados com pressão sistólica de 140–180 mmHg, diastólica ≥90 mmHg e taxa de filtração glomerular estimada ≥40 mL/min/1,73 m², apesar de terapia otimizada ou intolerância a fármacos. Exige avaliação por equipe multidisciplinar e decisão compartilhada (classe 1).",
+        "conclusao": "A recomendação é para redução da pressão em pacientes selecionados, mantendo tratamento clínico e avaliação especializada; não autoriza uso automático nem retirada de medicações.",
+        "curiosidade": ""
+      },
+      "afterRevision": "sha256:50fd7d5cbd0bfae2d2cfec292d0737a4531b801de81279547b92400d938f2002",
+      "wholeCardReviewed": true,
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "sourceIDs": [
+        "aha"
+      ],
+      "claimAudit": "AHA2025 slides oficiais9/10/26/27 lidos do arquivo primário; Cluett/AHA2024 PDF integral, Table2 e seleção pp7–8. 158/96/TFGe50 e resistência confirmada se enquadram no cenário2b. Anatomia e decisão compartilhada continuam necessárias, sem presumir elegibilidade automática.",
+      "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+    },
+    {
+      "id": "aha_renal_denervation_statement_2024",
+      "originalRevision": null,
+      "after": {
+        "label": "Cluett / AHA — Declaração científica sobre denervação renal (2024)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/39101202/",
+        "journal": "Hypertension 2024;81(10):e135–e148",
+        "ano": 2024,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "icon": "🔬",
+        "impacto": "Seleção anatômica e decisão compartilhada para denervação renal",
+        "resumo": "Declaração científica da American Heart Association (AHA), fundamentada em síntese de ensaios e experiência clínica, sobre denervação renal como tratamento adjunto da hipertensão. Discute benefício pressórico e seleção de pacientes, com critérios anatômicos que podem impedir o procedimento, como estenose relevante, aneurismas e artérias pequenas para os cateteres. Requer conversa informada sobre riscos, benefícios e preferências. É síntese científica e orientação clínica, não um ensaio randomizado em si.",
+        "conclusao": "Avaliar elegibilidade clínica e anatômica antes do procedimento, junto à decisão compartilhada; não substituir avaliação especializada por pressão elevada isoladamente.",
+        "curiosidade": ""
+      },
+      "afterRevision": "sha256:20296435c32601df846b36e7b61d79392d1a08694cb81f7649e08d21e7b5e53a",
+      "wholeCardReviewed": true,
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "sourceIDs": [
+        "rdnAnatomy"
+      ],
+      "claimAudit": "AHA2025 slides oficiais9/10/26/27 lidos do arquivo primário; Cluett/AHA2024 PDF integral, Table2 e seleção pp7–8. 158/96/TFGe50 e resistência confirmada se enquadram no cenário2b. Anatomia e decisão compartilhada continuam necessárias, sem presumir elegibilidade automática.",
+      "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+    },
+    {
+      "id": "kdigo_ckd",
+      "originalRevision": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3",
+      "after": {
+        "label": "KDIGO CKD 2024",
+        "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "journal": "Kidney International",
+        "ano": 2024,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+        "icon": "📋",
+        "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+        "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+        "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+      },
+      "afterRevision": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3",
+      "wholeCardReviewed": true,
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "sourceIDs": [
+        "ckd"
+      ],
+      "claimAudit": "KDIGO2024 PDF oficial, PP3.3.1.2–.5 e discussão pp208–210; card global integral confrontado com pp149/154/159/168/266. CandidatoA3.2 restaura o card multipropósito literal e corrige os espaços. Nutrição suplementada apenas em selecionados/supervisão, com energia e monitorização; não promete adiar diálise.",
+      "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+    },
+    {
+      "id": "gentamicina_anvisa",
+      "originalRevision": "sha256:91e8f9111b0c552ee6469b8f2f9ca5918120cdb88655b51f33ed2c8093f9a27a",
+      "after": {
+        "label": "Gentamicin (sulfato de gentamicina) — Bula Profissional (ANVISA, Fresenius Kabi Brasil)",
+        "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+        "journal": "ANVISA — Bula Profissional (Fresenius Kabi Brasil Ltda., Reg. MS 1.0041.0210)",
+        "ano": 2015,
+        "tipo": "Bula profissional aprovada pela ANVISA",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "Gentamicina — nefro e ototoxicidade na disfunção renal; monitorização de função renal, oitavo par craniano e níveis séricos",
+        "icon": "📋",
+        "resumo": "Bula profissional da Gentamicin (sulfato de gentamicina) aprovada pela ANVISA (Fresenius Kabi Brasil, Reg. MS 1.0041.0210; Bula Padrão de 10/11/2015). Aminoglicosídeo bactericida; o risco de nefrotoxicidade é maior em pacientes com função renal comprometida, dose alta ou tratamento prolongado, podendo haver ototoxicidade vestibular e auditiva. Recomenda vigilância da função renal e do oitavo par craniano, determinação periódica de ureia/creatinina/depuração de creatinina, audiogramas seriados e monitorização dos níveis séricos; sinais de oto ou nefrotoxicidade exigem modificação da dose ou suspensão. Admite esquema de dose única diária.",
+        "conclusao": "Na disfunção renal, a gentamicina exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade.",
+        "curiosidade": ""
+      },
+      "afterRevision": "sha256:91e8f9111b0c552ee6469b8f2f9ca5918120cdb88655b51f33ed2c8093f9a27a",
+      "wholeCardReviewed": true,
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "sourceIDs": [
+        "gentamicin"
+      ],
+      "claimAudit": "Bula profissional oficial Fresenius Kabi11p, pp5/7–11, registro1.0041.0210, rodapé padrão10/11/2015. Risco renal/vestibular/auditivo e concentrações séricas, com ajuste/suspensão. A questão não impõe alvo de pico/vale ou dose universal emDRC.",
+      "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+    },
+    {
+      "id": "isth_ttp_guidelines_2020",
+      "originalRevision": "sha256:889ed6222164fe28fe1dbf2d4613a9624d9d2a7ccaa0714c3eb1102e86d502df",
+      "after": {
+        "label": "ISTH — Diagnóstico da púrpura trombocitopênica trombótica (2020)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146131/",
+        "journal": "J Thromb Haemost. 2020;18(10):2486-2495",
+        "ano": 2020,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Estratégia baseada em probabilidade pré-teste, coleta de ADAMTS13 e tratamento imediato da PTT imune",
+        "icon": "📋",
+        "resumo": "Diretriz da International Society on Thrombosis and Haemostasis para diagnóstico de púrpura trombocitopênica trombótica (PTT). Na probabilidade clínica alta de forma imune, orienta colher atividade/inibidor ou anticorpo anti-ADAMTS13 antes de plasma e iniciar troca plasmática terapêutica com corticosteroide sem aguardar o resultado. Caplacizumabe pode ser considerado precocemente quando há probabilidade alta e acesso oportuno ao teste, cuja resposta direciona continuidade e diagnósticos alternativos. É estratégia diagnóstica condicional, com baixa certeza; não significa adiar tratamento da emergência.",
+        "conclusao": "Suspeita clínica alta de PTT imune é emergência terapêutica: colha ADAMTS13 antes de plasma, mas não atrase troca plasmática e corticosteroide; integre caplacizumabe à probabilidade e à disponibilidade do teste.",
+        "curiosidade": "A diretriz transforma o tempo do ADAMTS13 em parte da decisão: a mesma medicação pode ser apropriada quando o resultado chega rapidamente e inadequada quando não há como confirmar ou redirecionar o diagnóstico."
+      },
+      "afterRevision": "sha256:e6568b79f749216017937871d7e62489c12dd9692a095d55657137dbbd2f2518",
+      "wholeCardReviewed": true,
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "sourceIDs": [
+        "ttp",
+        "ttp2025"
+      ],
+      "claimAudit": "ISTH2020 PMC8146131 recomendação1/passos1–3; ISTH2025 PMC13470878 recomendação5 e discussão536–540. Colher antes de plasma, sem aguardar paraTPE/corticoide. Caplacizumabe é associado conforme probabilidade e acesso ao teste; não monoterapia padrão.",
+      "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+    }
+  ],
+  "rebindings": [
+    {
+      "qid": "9344c1f1",
+      "after": {
+        "t": "Calcifilaxia — Papel do Tiossulfato de Sódio",
+        "qid": "9344c1f1",
+        "q": "Paciente em hemodiálise tem calcifilaxia confirmada. Como deve ser apresentado o papel do tiossulfato de sódio?",
+        "refs": [
+          "calciphylaxis_sts_meta_2023"
+        ],
+        "opts": [
+          "É opção off-label do manejo multimodal, com benefício clínico ainda não estabelecido.",
+          "É opção com benefício de sobrevida demonstrado, mas sem efeito estabelecido na cicatrização.",
+          "É opção com benefício de cicatrização demonstrado, mas sem efeito estabelecido na sobrevida.",
+          "É opção desaconselhada pelas coortes, que demonstraram aumento da mortalidade com seu uso."
+        ],
+        "ans": 0,
+        "exp": "O tiossulfato é usado off-label, mas a metanálise de coortes não demonstrou melhora comparativa de cicatrização ou sobrevida. A evidência observacional tem limitações e não equivale a ensaio randomizado conclusivo. Seu uso, quando escolhido, é individualizado e acompanha o cuidado dos demais fatores da calcifilaxia; não substitui o manejo multimodal.",
+        "diff": "easy",
+        "cat": "dialise"
+      },
+      "afterAuthorRevision": "sha256:db54520191e0f23a3d7ac6b3fae1131b5bfe4b36b6a862975f2743dd42812ee6",
+      "references": [
+        {
+          "id": "calciphylaxis_sts_meta_2023",
+          "originalRevision": "sha256:1cdf0dbadd1a5a6fd592d996f37562d2ad22f4236e98e32dc150287bcdf38373",
+          "after": {
+            "label": "Wen et al. — Tiossulfato na Calcifilaxia (JAMA Network Open 2023)",
+            "url": "https://doi.org/10.1001/jamanetworkopen.2023.10068",
+            "journal": "JAMA Network Open",
+            "ano": 2023,
+            "tipo": "Metanálise",
+            "badge": "META",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Tiossulfato não teve benefício comparativo demonstrado em lesões ou sobrevida",
+            "icon": "🔬",
+            "resumo": "Revisão sistemática e metanálise de 19 coortes retrospectivas, com 422 adultos com doença renal crônica e calcifilaxia. Tiossulfato intravenoso versus controle não se associou a diferença significativa em melhora das lesões (12 estudos/110 pacientes; risco relativo 1,23; intervalo de confiança de 95% (IC95%): 0,85–1,78), morte (15 estudos/158 pacientes; risco relativo 0,88; IC95%: 0,70–1,10) ou sobrevida por tempo até evento (3 estudos/269 pacientes; razão de riscos (HR) 0,82; IC95%: 0,57–1,18). Não houve heterogeneidade estatística elevada, mas o risco de viés foi moderado a crítico.",
+            "conclusao": "O tiossulfato permanece terapia off-label individualizada dentro de manejo multimodal; não há demonstração comparativa de benefício em cicatrização ou sobrevida.",
+            "curiosidade": "A metanálise não encontrou heterogeneidade estatística elevada nas estimativas, mas os estudos tinham risco de viés moderado a crítico. A meta-regressão por ano não demonstra a causa da variação dos resultados."
+          },
+          "afterRevision": "sha256:d4142078d25354c6e135a999d1a0ea627b97d15c50a7934ca7cc1c53dd82ff5f",
+          "wholeCardReviewed": true,
+          "gate": {
+            "verdict": "aprovada",
+            "evidence": "VERIFICADA",
+            "pending": "NENHUMA",
+            "publicationAuthorization": "LIBERADA"
+          },
+          "sourceIDs": [
+            "sts"
+          ],
+          "claimAudit": "ERA2025 PMC12683247 tabela1/2 e manejo, warfarina/MGP; Wen2023 PMC10134003 integral já conferido,19coortes422 e estimativasRR/HR. Lesões e dor sugerem hipótese. Não exigePTHextremo, nem substitui cuidados de ferida/infecção porSTS. Warfarina é reavaliada conforme indicação e alternativa segura.",
+          "consumerBoundary": "A liberação do card não aprova automaticamente os demais consumidores."
+        }
+      ],
+      "claimAudit": "Releitura da questão, explicação e card novo: desenho observacional, ausência de associação comparativa, risco de viés e impossibilidade de provar sua causa permanecem coerentes. Os resultados/RR/HRnão mudaram. Nova curiosidade remove atribuição causal excessiva.",
+      "gate": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA"
+      },
+      "pendingVerification": []
+    }
+  ]
+}

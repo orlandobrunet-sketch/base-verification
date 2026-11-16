@@ -1,0 +1,741 @@
+{
+  "schema": "NQ_NATIVE_UI_FIXTURE_FINAL_RECEIPT_v1",
+  "createdAt": "2026-11-16T03:55:43.719Z",
+  "baseCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "scope": "TECHNICAL_FIXTURES_AND_NATIVE_LOCAL_BROWSER_VERIFICATION_ONLY",
+  "baseURL": "http://127.0.0.1:5501",
+  "networkPolicy": "Same-origin GET only; WebSockets and external writes blocked; anonymous local progress only.",
+  "sourcePins": {
+    "tests/specs/138-exam-reference-only-revisions.spec.ts": "9b7f6ead52820fa8c839f77e1092adc25e81252095e1cbd246caac7d4b24a8da",
+    "tests/specs/257-medical-continuation-history.spec.ts": "169283e3d71a6c27b5c645fb6c7963243e9c9939c60d2c43ffec9e240369429f",
+    "tests/specs/258-study-scheduled-only.spec.ts": "d04fea9ae6c75941598736c85a3a3638bb1447253b34ebf73b96d035e657b1ad",
+    "tests/service-worker/data-release.test.mjs": "75b86a80190673a26479a1cc717752a6bfe4442eb50743703832ebbd90a191c9",
+    "js/game.js": "a8350dd0e80eb67e27aaba40a0f99389a90e47f70a96f7fc53bffd98413b5795",
+    "js/utils.js": "e0f7a44451415cf2fca1a591677f6d514bd324d20dc0a7fdfe5edd39c7d9412c",
+    "js/question-revisions.js": "4cdf46b51310ea9aad5851f8b7ae8a5c793a9715648b1a73f2325e07883e01a9",
+    "js/answer-presentation.js": "c833ef04b1ae9c3b1f3b4aeac7f8c2b94344535d622ef258d93dc38fb63d7a0a",
+    "js/library-catalog.js": "e8b57e6acc22e11f40c0f262c0c0c6565748e9e2daa43ce174c493ad7f8f1822",
+    "js/achievements.js": "6602b0a72144eece1538ac446b71c3bd30c65fd0c041bc740d6ff1c7b1462b0d",
+    "jogar/index.html": "39a22924ed53e67320b6211074923f8d141b5329e00c289be8acb0881f96b0eb",
+    "offline.html": "1e896289749b268e4a4b4f8d42392c6197858657deacdebf6e938849966b5d31",
+    "sw.js": "9edab20a783d0f2f356a6c1a987df54ffab319585ef47a08bc2e0d7d95880be0",
+    "scripts/bump-release.mjs": "4405efc72eabc22232c7d9eb111f56b6874f02b414653a0c870359938be456eb"
+  },
+  "dataAudit": {
+    "report": "final-technical-review-R3.json",
+    "rawSHA256": "78d41d3b279fef0742c64c0f8ccdbc868bc33b69b25d316ac931ffd62ef7d615",
+    "dataChangesSinceR3": []
+  },
+  "runs": [
+    {
+      "report": "ui-fixture-final-R1.json",
+      "rawSHA256": "c54f219753a67cc38dbd9398dbc3b9910466d66399603fad8fcaa95225f24d2b",
+      "stats": {
+        "startTime": "2026-11-16T03:47:04.555Z",
+        "duration": 419127.869,
+        "expected": 52,
+        "skipped": 0,
+        "unexpected": 2,
+        "flaky": 0
+      },
+      "cases": [
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|fresh reference-only 9f887485: 60 current bindings survive native save and resume|chromium",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "fresh reference-only 9f887485: 60 current bindings survive native save and resume",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|fresh reference-only 1e2668d6: 60 current bindings survive native save and resume|chromium",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "fresh reference-only 1e2668d6: 60 current bindings survive native save and resume",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|fresh reference-only 940b2835: 60 current bindings survive native save and resume|chromium",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "fresh reference-only 940b2835: 60 current bindings survive native save and resume",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|fresh reference-only exam holds missing-catalog without changing saved progress or starting its timer|chromium",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "fresh reference-only exam holds missing-catalog without changing saved progress or starting its timer",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|fresh reference-only exam holds missing-current without changing saved progress or starting its timer|chromium",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "fresh reference-only exam holds missing-current without changing saved progress or starting its timer",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|fresh reference-only exam holds incompatible-source without changing saved progress or starting its timer|chromium",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "fresh reference-only exam holds incompatible-source without changing saved progress or starting its timer",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|legacy reference-only save remains ambiguous and preserves its original bytes and grade|chromium",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "legacy reference-only save remains ambiguous and preserves its original bytes and grade",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|explicit published historical binding 9f887485:card-only preserves the recorded answer and archived card|chromium",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "explicit published historical binding 9f887485:card-only preserves the recorded answer and archived card",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|explicit published historical binding 81740f2d:16.19 preserves the recorded answer and archived card|chromium",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "explicit published historical binding 81740f2d:16.19 preserves the recorded answer and archived card",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|explicit published historical binding 81740f2d:17.27 preserves the recorded answer and archived card|chromium",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "explicit published historical binding 81740f2d:17.27 preserves the recorded answer and archived card",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|fresh reference-only 9f887485: 60 current bindings survive native save and resume|mobile",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "fresh reference-only 9f887485: 60 current bindings survive native save and resume",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|fresh reference-only 1e2668d6: 60 current bindings survive native save and resume|mobile",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "fresh reference-only 1e2668d6: 60 current bindings survive native save and resume",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|fresh reference-only 940b2835: 60 current bindings survive native save and resume|mobile",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "fresh reference-only 940b2835: 60 current bindings survive native save and resume",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|fresh reference-only exam holds missing-catalog without changing saved progress or starting its timer|mobile",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "fresh reference-only exam holds missing-catalog without changing saved progress or starting its timer",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|fresh reference-only exam holds missing-current without changing saved progress or starting its timer|mobile",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "fresh reference-only exam holds missing-current without changing saved progress or starting its timer",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|fresh reference-only exam holds incompatible-source without changing saved progress or starting its timer|mobile",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "fresh reference-only exam holds incompatible-source without changing saved progress or starting its timer",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|legacy reference-only save remains ambiguous and preserves its original bytes and grade|mobile",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "legacy reference-only save remains ambiguous and preserves its original bytes and grade",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|explicit published historical binding 9f887485:card-only preserves the recorded answer and archived card|mobile",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "explicit published historical binding 9f887485:card-only preserves the recorded answer and archived card",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|explicit published historical binding 81740f2d:16.19 preserves the recorded answer and archived card|mobile",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "explicit published historical binding 81740f2d:16.19 preserves the recorded answer and archived card",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "138-exam-reference-only-revisions.spec.ts|explicit published historical binding 81740f2d:17.27 preserves the recorded answer and archived card|mobile",
+          "file": "138-exam-reference-only-revisions.spec.ts",
+          "title": "explicit published historical binding 81740f2d:17.27 preserves the recorded answer and archived card",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|actual 17.11 archive retains its42 rewritten cohort and both past card-only versions after a material update|chromium",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "actual 17.11 archive retains its42 rewritten cohort and both past card-only versions after a material update",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|answered retired-card question stays historical with binding and earns no second credit|chromium",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "answered retired-card question stays historical with binding and earns no second credit",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|answered retired-card question stays historical without binding and earns no second credit|chromium",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "answered retired-card question stays historical without binding and earns no second credit",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|answered past card-only save 17.11 uses its bound old summary through result and reload without a second credit|chromium",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "answered past card-only save 17.11 uses its bound old summary through result and reload without a second credit",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|past card-only save 17.11 without binding stays preserved instead of guessing either summary or crediting it again|chromium",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "past card-only save 17.11 without binding stays preserved instead of guessing either summary or crediting it again",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|answered past card-only save 17.27 uses its bound old summary through result and reload without a second credit|chromium",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "answered past card-only save 17.27 uses its bound old summary through result and reload without a second credit",
+          "project": "chromium",
+          "status": "unexpected",
+          "retries": [
+            0
+          ],
+          "errors": [
+            "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\nExpected: not \u001b[32m{\"ano\": 2014, \"badge\": \"CASE_CONTROL\", \"badgeColor\": \"#0ea5e9\", \"conclusao\": \"Os resultados não sustentam transformar uma hipótese imunológica em recomendação universal de dieta sem glúten. Também não excluem que doença celíaca e nefropatia por IgA coexistam em uma pessoa.\", \"curiosidade\": \"O desenho compara casos e controles por seus marcadores; não é uma coorte longitudinal nem um ensaio de tratamento dietético.\", \"icon\": \"🔬\", \"impacto\": \"Sorologia em caso-controle não justifica prescrição universal de dieta sem glúten\", \"journal\": \"PLOS ONE. 2014;9(4):e94677\", \"label\": \"Moeller et al. — Sorologia celíaca e glúten na nefropatia por IgA (2014)\", \"resumo\": \"Estudo caso-controle com 99 pessoas com nefropatia por imunoglobulina A (IgA), 96 controles sem doença e 30 participantes com doença celíaca confirmada por biópsia como controles adicionais. Comparou marcadores sorológicos de reatividade ao glúten e doença celíaca. Não encontrou aumento significativo dos marcadores celíacos específicos ou da reatividade à gliadina no grupo com nefropatia por IgA em relação aos controles sem doença. Foi realizado em centro único, com limitações de população e dieta não controlada; não avaliou intervenção dietética nem desfechos renais longitudinais.\", \"tipo\": \"Estudo caso-controle\", \"url\": \"https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0094677\"}\u001b[39m\n\n\n  216 |   const fixture = await seed(page, '5530b59c', true, true, release), before = await progress(page);\n  217 |   expect(fixture.current.source).not.toEqual(fixture.old.sources.exam);\n> 218 |   expect(fixture.current.references).not.toEqual(fixture.old.references);\n      |                                                               ^\n  219 |   if (release === '17.11')\n  220 |     expect(fixture.current.references.moeller_plosone_2014).not.toEqual(fixture.old.references.moeller_plosone_2014);\n  221 |   else {\n    at C:\\Users\\orlan\\.codex\\worktrees\\nq-pagamento-atomico\\base-verification\\tests\\specs\\257-medical-continuation-history.spec.ts:218:63"
+          ]
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|past card-only save 17.27 without binding stays preserved instead of guessing either summary or crediting it again|chromium",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "past card-only save 17.27 without binding stays preserved instead of guessing either summary or crediting it again",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|pending retired-card answer changes revision only after the native confirmation, preserving prior raw and progress|chromium",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "pending retired-card answer changes revision only after the native confirmation, preserving prior raw and progress",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|actual 17.11 archive retains its42 rewritten cohort and both past card-only versions after a material update|mobile",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "actual 17.11 archive retains its42 rewritten cohort and both past card-only versions after a material update",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|answered retired-card question stays historical with binding and earns no second credit|mobile",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "answered retired-card question stays historical with binding and earns no second credit",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|answered retired-card question stays historical without binding and earns no second credit|mobile",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "answered retired-card question stays historical without binding and earns no second credit",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|answered past card-only save 17.11 uses its bound old summary through result and reload without a second credit|mobile",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "answered past card-only save 17.11 uses its bound old summary through result and reload without a second credit",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|past card-only save 17.11 without binding stays preserved instead of guessing either summary or crediting it again|mobile",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "past card-only save 17.11 without binding stays preserved instead of guessing either summary or crediting it again",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|answered past card-only save 17.27 uses its bound old summary through result and reload without a second credit|mobile",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "answered past card-only save 17.27 uses its bound old summary through result and reload without a second credit",
+          "project": "mobile",
+          "status": "unexpected",
+          "retries": [
+            0
+          ],
+          "errors": [
+            "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mnot\u001b[2m.\u001b[22mtoEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // deep equality\u001b[22m\n\nExpected: not \u001b[32m{\"ano\": 2014, \"badge\": \"CASE_CONTROL\", \"badgeColor\": \"#0ea5e9\", \"conclusao\": \"Os resultados não sustentam transformar uma hipótese imunológica em recomendação universal de dieta sem glúten. Também não excluem que doença celíaca e nefropatia por IgA coexistam em uma pessoa.\", \"curiosidade\": \"O desenho compara casos e controles por seus marcadores; não é uma coorte longitudinal nem um ensaio de tratamento dietético.\", \"icon\": \"🔬\", \"impacto\": \"Sorologia em caso-controle não justifica prescrição universal de dieta sem glúten\", \"journal\": \"PLOS ONE. 2014;9(4):e94677\", \"label\": \"Moeller et al. — Sorologia celíaca e glúten na nefropatia por IgA (2014)\", \"resumo\": \"Estudo caso-controle com 99 pessoas com nefropatia por imunoglobulina A (IgA), 96 controles sem doença e 30 participantes com doença celíaca confirmada por biópsia como controles adicionais. Comparou marcadores sorológicos de reatividade ao glúten e doença celíaca. Não encontrou aumento significativo dos marcadores celíacos específicos ou da reatividade à gliadina no grupo com nefropatia por IgA em relação aos controles sem doença. Foi realizado em centro único, com limitações de população e dieta não controlada; não avaliou intervenção dietética nem desfechos renais longitudinais.\", \"tipo\": \"Estudo caso-controle\", \"url\": \"https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0094677\"}\u001b[39m\n\n\n  216 |   const fixture = await seed(page, '5530b59c', true, true, release), before = await progress(page);\n  217 |   expect(fixture.current.source).not.toEqual(fixture.old.sources.exam);\n> 218 |   expect(fixture.current.references).not.toEqual(fixture.old.references);\n      |                                                               ^\n  219 |   if (release === '17.11')\n  220 |     expect(fixture.current.references.moeller_plosone_2014).not.toEqual(fixture.old.references.moeller_plosone_2014);\n  221 |   else {\n    at C:\\Users\\orlan\\.codex\\worktrees\\nq-pagamento-atomico\\base-verification\\tests\\specs\\257-medical-continuation-history.spec.ts:218:63"
+          ]
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|past card-only save 17.27 without binding stays preserved instead of guessing either summary or crediting it again|mobile",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "past card-only save 17.27 without binding stays preserved instead of guessing either summary or crediting it again",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|pending retired-card answer changes revision only after the native confirmation, preserving prior raw and progress|mobile",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "pending retired-card answer changes revision only after the native confirmation, preserving prior raw and progress",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|a fresh user has no scheduled review and can still enter the twenty-question free-study pool|chromium",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "a fresh user has no scheduled review and can still enter the twenty-question free-study pool",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|future-only schedules and an expired session stay preserved across every zero-review entry|chromium",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "future-only schedules and an expired session stay preserved across every zero-review entry",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|the native review button starts exactly the two due schedules, excluding unseen, future and orphan cards|chromium",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "the native review button starts exactly the two due schedules, excluding unseen, future and orphan cards",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|selected-axis review counts and selects only scheduled due questions in that axis|chromium",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "selected-axis review counts and selects only scheduled due questions in that axis",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|the native Dashboard review action agrees with the study queue and returns to the Dashboard|chromium",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "the native Dashboard review action agrees with the study queue and returns to the Dashboard",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|an ambiguous saved study 17.11 remains consult-only after a material update while zero scheduled reviews do not invent a new session|chromium",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "an ambiguous saved study 17.11 remains consult-only after a material update while zero scheduled reviews do not invent a new session",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|an ambiguous saved study 17.27 remains consult-only after a material update while zero scheduled reviews do not invent a new session|chromium",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "an ambiguous saved study 17.27 remains consult-only after a material update while zero scheduled reviews do not invent a new session",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|Dashboard and Study reject malformed schedules without inventing a review|chromium",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "Dashboard and Study reject malformed schedules without inventing a review",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|Dashboard and Study reject malformed schedules beside real due cards|chromium",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "Dashboard and Study reject malformed schedules beside real due cards",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|a fresh user has no scheduled review and can still enter the twenty-question free-study pool|mobile",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "a fresh user has no scheduled review and can still enter the twenty-question free-study pool",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|future-only schedules and an expired session stay preserved across every zero-review entry|mobile",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "future-only schedules and an expired session stay preserved across every zero-review entry",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|the native review button starts exactly the two due schedules, excluding unseen, future and orphan cards|mobile",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "the native review button starts exactly the two due schedules, excluding unseen, future and orphan cards",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|selected-axis review counts and selects only scheduled due questions in that axis|mobile",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "selected-axis review counts and selects only scheduled due questions in that axis",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|the native Dashboard review action agrees with the study queue and returns to the Dashboard|mobile",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "the native Dashboard review action agrees with the study queue and returns to the Dashboard",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|an ambiguous saved study 17.11 remains consult-only after a material update while zero scheduled reviews do not invent a new session|mobile",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "an ambiguous saved study 17.11 remains consult-only after a material update while zero scheduled reviews do not invent a new session",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|an ambiguous saved study 17.27 remains consult-only after a material update while zero scheduled reviews do not invent a new session|mobile",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "an ambiguous saved study 17.27 remains consult-only after a material update while zero scheduled reviews do not invent a new session",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|Dashboard and Study reject malformed schedules without inventing a review|mobile",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "Dashboard and Study reject malformed schedules without inventing a review",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "258-study-scheduled-only.spec.ts|Dashboard and Study reject malformed schedules beside real due cards|mobile",
+          "file": "258-study-scheduled-only.spec.ts",
+          "title": "Dashboard and Study reject malformed schedules beside real due cards",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        }
+      ]
+    },
+    {
+      "report": "ui-fixture-final-R2.json",
+      "rawSHA256": "95e5ad464fa4b242439136bb0b98283a70668b6b060a6d8d6468e2495f4975d1",
+      "stats": {
+        "startTime": "2026-11-16T03:54:21.863Z",
+        "duration": 41841.515,
+        "expected": 4,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "cases": [
+        {
+          "key": "257-medical-continuation-history.spec.ts|answered past card-only save 17.11 uses its bound old summary through result and reload without a second credit|chromium",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "answered past card-only save 17.11 uses its bound old summary through result and reload without a second credit",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|answered past card-only save 17.27 uses its bound old summary through result and reload without a second credit|chromium",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "answered past card-only save 17.27 uses its bound old summary through result and reload without a second credit",
+          "project": "chromium",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|answered past card-only save 17.11 uses its bound old summary through result and reload without a second credit|mobile",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "answered past card-only save 17.11 uses its bound old summary through result and reload without a second credit",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        },
+        {
+          "key": "257-medical-continuation-history.spec.ts|answered past card-only save 17.27 uses its bound old summary through result and reload without a second credit|mobile",
+          "file": "257-medical-continuation-history.spec.ts",
+          "title": "answered past card-only save 17.27 uses its bound old summary through result and reload without a second credit",
+          "project": "mobile",
+          "status": "expected",
+          "retries": [
+            0
+          ],
+          "errors": []
+        }
+      ]
+    }
+  ],
+  "finalCoverage": {
+    "uniqueCases": 54,
+    "expected": 54,
+    "unexpected": 0,
+    "executions": 58
+  },
+  "serviceWorker": {
+    "log": "final-service-worker-R3.log",
+    "rawSHA256": "f9808bad3cf3f1c440b13fd8b4dfb8305ed61393b85a59d590c579525e369486",
+    "tests": 35,
+    "pass": 35,
+    "fail": 0
+  },
+  "bumpCheck": {
+    "log": "final-bump-check-R3.log",
+    "rawSHA256": "f14b3206120e5647adba5ace0cb16df8c3f57f138f5a02eb29a3b014ccd6abae",
+    "observedExitCode": 0
+  },
+  "checks": {
+    "initial54Cases": true,
+    "recheckCoversBothReleasesOnBothPlatforms": true,
+    "allFinal54CasesExpected": true,
+    "noAutomaticRetries": true,
+    "firstFailuresWereOnlyKnownFixture": true,
+    "dataStillMatchesIndependentR3": true,
+    "serviceWorker35Pass0Fail": true
+  },
+  "issues": [],
+  "fixtureChanges": [
+    "138 retains three genuine current/card-only cohorts using APOL1 9f887485 and separately verifies the two archived Gitelman records in all four profiles and native resume.",
+    "257 preserves the frozen42+1 cohort and172 bindings, compares authors to the published17.27 baseline, and covers both5530 historical bindings before a separate material current revision.",
+    "258 verifies both historical study presentations stay ambiguous without a binding and never create review credit or replace the saved bytes.",
+    "The lazy-loader SW test now exercises refsOnly first and full library loading separately, preserving all real data-URL assertions."
+  ],
+  "priorFailureDisposition": "R1 preserved a stale fixture expectation that the17.27 Moeller card must differ from current. Actual hashes show the Moeller card is unchanged after17.27, while ACG and authored content changed. The test was amended to require exact Moeller equality and ACG inequality for17.27, retaining the original Moeller inequality for17.11. The runner had already transformed its previous test source for both projects; R2 explicitly reruns both branches on both platforms without retries. No production code or medical data changed to satisfy that assertion.",
+  "limits": [
+    "This is final unique-case coverage across an initial run and a documented post-fixture recheck, not a claim that the initial54-test run was entirely green.",
+    "No production deployment, authenticated cloud sync, payment or real browser installation/update lifecycle is inferred from these local anonymous tests.",
+    "Question and card hashes remain governed by the independent medical approvals; this receipt adds no medical gate."
+  ]
+}

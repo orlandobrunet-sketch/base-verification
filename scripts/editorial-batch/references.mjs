@@ -128,13 +128,87 @@ function pointer(document, path) {
   return path.split('/').slice(1).reduce((value, part) => {
     if (/~(?![01])/.test(part)) return undefined;
     const key = part.replaceAll('~1', '/').replaceAll('~0', '~');
-    return object(value) && Object.hasOwn(value, key) ? value[key] : undefined;
+    return (object(value) || Array.isArray(value)) && Object.hasOwn(value, key) ? value[key] : undefined;
   }, document);
 }
 
-function fullCard(card) {
+const safeReviewPath = path => typeof path === 'string' && /^docs\/editorial\/reviews\/[A-Za-z0-9_./-]+\.json$/.test(path) &&
+  !path.split('/').some(part => part === '..' || part === '.');
+
+export function referenceTransportPaths(raw) {
+  try { const report = JSON.parse(raw); return safeReviewPath(report.transport?.report_path) ? [report.transport.report_path] : []; }
+  catch { return []; }
+}
+
+export function fullCard(card) {
   return object(card) && Object.keys(card).length === CARD_FIELDS.length && CARD_FIELDS.every(field =>
     Object.hasOwn(card, field) && (field === 'ano' ? Number.isInteger(card[field]) : typeof card[field] === 'string'));
+}
+
+// Both reference-only changes and historical retention use the same complete,
+// independently reviewed card contract. A historical citation is not a review.
+export function validateFullCardReviews(id, card, declaration, referenceReviewReports = new Map()) {
+  const errors = [], error = (code, message) => errors.push({ code, message });
+  const reviewers = [], originalGates = [];
+  for (const role of ROLES) {
+    const review = declaration?.[role];
+    const axes = validarEixos(`${id}/${role}`, review, 'reference review');
+    if (axes.errors.length || axes.publicacao !== 'LIBERADA') { error('REFERENCE_REVIEW_GATE', `${id}/${role}: approved own axes required`); continue; }
+    if (typeof review.report_path !== 'string' || !/^docs\/editorial\/reviews\/[A-Za-z0-9_./-]+\.json$/.test(review.report_path) ||
+        review.report_path.split('/').some(part => part === '..' || part === '.') ||
+        !/^[a-f0-9]{64}$/.test(review.report_sha256 || '') ||
+        !['version_pointer', 'gate_pointer'].every(field => typeof review[field] === 'string' && review[field].startsWith('/'))) {
+      error('REFERENCE_REVIEW_FILE', `${id}/${role}: safe pinned report descriptor required`); continue;
+    }
+    const raw = referenceReviewReports.get(review.report_path);
+    if (typeof raw !== 'string' || raw.length > 1024 * 1024 || sha256(raw) !== review.report_sha256) { error('REFERENCE_REVIEW_FILE', `${id}/${role}: exact report file unavailable or hash mismatch`); continue; }
+    let report;
+    try { report = JSON.parse(raw); } catch { error('REFERENCE_REVIEW_FILE', `${id}/${role}: invalid report JSON`); continue; }
+    let originalGate = review.report_sha256 + '\n' + review.gate_pointer;
+    const version = pointer(report, review.version_pointer), gate = pointer(report, review.gate_pointer);
+    const declared = Object.fromEntries(['evidencia', 'pendencia', 'veredito', 'publicacao'].map(field => [field, review[field]]));
+    const actual = { evidencia: gate?.evidence, pendencia: gate?.pending, veredito: gate?.verdict ?? gate?.v2, publicacao: gate?.publicationAuthorization };
+    const actualAxes = validarEixos(`${id}/${role}`, actual, review.report_path);
+    if (actualAxes.errors.length || actualAxes.publicacao !== 'LIBERADA' || JSON.stringify(actual) !== JSON.stringify(declared)) error('REFERENCE_REVIEW_GATE', `${id}/${role}: own report gate does not match the approved declaration`);
+    if (Object.hasOwn(report, 'transport')) {
+      const transport = report.transport, sourceRaw = referenceReviewReports.get(transport?.report_path);
+      if (!object(transport) || !safeReviewPath(transport.report_path) || !/^[a-f0-9]{64}$/.test(transport.report_sha256 || '') ||
+          typeof sourceRaw !== 'string' || sourceRaw.length > 1024 * 1024 || sha256(sourceRaw) !== transport.report_sha256 ||
+          !['record_pointer', 'card_pointer', 'gate_pointer'].every(field => typeof transport[field] === 'string' && (transport[field] === '' || transport[field].startsWith('/')))) {
+        error('REFERENCE_REVIEW_TRANSPORT', `${id}/${role}: exact frozen source report and card pointers required`);
+      } else {
+        let source;
+        try { source = JSON.parse(sourceRaw); } catch { error('REFERENCE_REVIEW_TRANSPORT', `${id}/${role}: invalid frozen source JSON`); }
+        if (source) {
+          const record = pointer(source, transport.record_pointer), literal = pointer(source, transport.card_pointer), sourceGate = pointer(source, transport.gate_pointer);
+          const sourceAxes = { evidencia: sourceGate?.evidence, pendencia: sourceGate?.pending,
+            veredito: sourceGate?.verdict ?? sourceGate?.v2, publicacao: sourceGate?.publicationAuthorization ?? sourceGate?.publication };
+          const recordChild = name => transport[name] === transport.record_pointer || transport[name].startsWith(transport.record_pointer + '/');
+          if (Object.hasOwn(source, 'transport') || (record?.id ?? record?.referenceId) !== id || !recordChild('card_pointer') || !recordChild('gate_pointer') ||
+              !fullCard(literal) || referenceDigest(literal) !== referenceDigest(card) ||
+              (typeof source.reviewer === 'string' && source.reviewer.trim() !== report.reviewer?.trim()) ||
+              JSON.stringify(sourceAxes) !== JSON.stringify(actual) || validarEixos(`${id}/${role}/source`, sourceAxes, transport.report_path).errors.length) {
+            error('REFERENCE_REVIEW_TRANSPORT', `${id}/${role}: receipt differs from the frozen own card literal or gate`);
+          }
+          originalGate = transport.report_sha256 + '\n' + transport.gate_pointer;
+        }
+      }
+    }
+    originalGates.push(originalGate);
+    const sorted = version?.sortedCompactPythonSHA256 ?? version?.sortedSHA256;
+    if ((report.referenceId ?? version?.referenceId) !== id || 'sha256:' + sorted !== declaration.after_sha256 ||
+        version?.orderedCompactPythonSHA256 !== sha256(JSON.stringify(card))) error('REFERENCE_REVIEW_VERSION', `${id}/${role}: reviewed full card version does not match`);
+    const coverage = report.wholeCardFieldCoverage ?? report.fieldCoverage;
+    if (!Array.isArray(coverage) || coverage.length !== CARD_FIELDS.length || new Set(coverage.map(row => row.field)).size !== CARD_FIELDS.length ||
+        CARD_FIELDS.some(field => !coverage.some(row => row.field === field))) error('REFERENCE_REVIEW_SCOPE', `${id}/${role}: full 12-field card coverage required`);
+    if (role === 'independent_review' && (!fullCard(version?.fullLiteral) || JSON.stringify(version.fullLiteral) !== JSON.stringify(card))) error('REFERENCE_REVIEW_VERSION', `${id}/${role}: independent full literal differs`);
+    if (typeof report.reviewer !== 'string' || !report.reviewer.trim()) error('REFERENCE_REVIEW_SCOPE', `${id}/${role}: reviewer identity required`);
+    else reviewers.push(report.reviewer.trim());
+  }
+  if (declaration?.author_review?.report_path === declaration?.independent_review?.report_path) error('REFERENCE_REVIEW_SCOPE', `${id}: distinct own author and independent reports required`);
+  if (reviewers.length === 2 && reviewers[0] === reviewers[1]) error('REFERENCE_REVIEW_SCOPE', `${id}: distinct author and independent reviewers required`);
+  if (originalGates.length === 2 && originalGates[0] === originalGates[1]) error('REFERENCE_REVIEW_SCOPE', `${id}: distinct effective original card gates required; receipts cannot duplicate one source gate`);
+  return errors;
 }
 
 function masked(source, spans, ids) {
@@ -164,28 +238,7 @@ export function validateReferenceOnlyBatch(input) {
     if (referenceDigest(old) !== declaration.before_sha256 || referenceDigest(card) !== declaration.after_sha256) error('REFERENCE_CARD_HASH', `${id}: exact card hash mismatch`);
     const expected = [...declaration.consumers].sort(), previous = [...(beforeConsumers.get(id) || [])].sort(), current = [...(afterConsumers.get(id) || [])].sort();
     if (JSON.stringify(expected) !== JSON.stringify(previous) || JSON.stringify(expected) !== JSON.stringify(current)) error('REFERENCE_CONSUMERS', `${id}: consumer sets must be complete and unchanged`);
-    const reviewers = [];
-    for (const role of ROLES) {
-      const review = declaration[role], raw = referenceReviewReports.get(review.report_path);
-      if (typeof raw !== 'string' || raw.length > 1024 * 1024 || sha256(raw) !== review.report_sha256) { error('REFERENCE_REVIEW_FILE', `${id}/${role}: exact report file unavailable or hash mismatch`); continue; }
-      let report;
-      try { report = JSON.parse(raw); } catch { error('REFERENCE_REVIEW_FILE', `${id}/${role}: invalid report JSON`); continue; }
-      const version = pointer(report, review.version_pointer), gate = pointer(report, review.gate_pointer);
-      const declared = Object.fromEntries(['evidencia', 'pendencia', 'veredito', 'publicacao'].map(field => [field, review[field]]));
-      const actual = { evidencia: gate?.evidence, pendencia: gate?.pending, veredito: gate?.verdict ?? gate?.v2, publicacao: gate?.publicationAuthorization };
-      const axes = validarEixos(`${id}/${role}`, actual, review.report_path);
-      if (axes.errors.length || axes.publicacao !== 'LIBERADA' || JSON.stringify(actual) !== JSON.stringify(declared)) error('REFERENCE_REVIEW_GATE', `${id}/${role}: own report gate does not match the approved declaration`);
-      const sorted = version?.sortedCompactPythonSHA256 ?? version?.sortedSHA256;
-      if ((report.referenceId ?? version?.referenceId) !== id || 'sha256:' + sorted !== declaration.after_sha256 ||
-          version?.orderedCompactPythonSHA256 !== sha256(JSON.stringify(card))) error('REFERENCE_REVIEW_VERSION', `${id}/${role}: reviewed full card version does not match`);
-      const coverage = report.wholeCardFieldCoverage ?? report.fieldCoverage;
-      if (!Array.isArray(coverage) || coverage.length !== CARD_FIELDS.length || new Set(coverage.map(row => row.field)).size !== CARD_FIELDS.length ||
-          CARD_FIELDS.some(field => !coverage.some(row => row.field === field))) error('REFERENCE_REVIEW_SCOPE', `${id}/${role}: full 12-field card coverage required`);
-      if (role === 'independent_review' && (!fullCard(version?.fullLiteral) || JSON.stringify(version.fullLiteral) !== JSON.stringify(card))) error('REFERENCE_REVIEW_VERSION', `${id}/${role}: independent full literal differs`);
-      if (typeof report.reviewer !== 'string' || !report.reviewer.trim()) error('REFERENCE_REVIEW_SCOPE', `${id}/${role}: reviewer identity required`);
-      else reviewers.push(report.reviewer.trim());
-    }
-    if (reviewers.length === 2 && reviewers[0] === reviewers[1]) error('REFERENCE_REVIEW_SCOPE', `${id}: distinct author and independent reviewers required`);
+    errors.push(...validateFullCardReviews(id, card, declaration, referenceReviewReports));
   }
   return errors;
 }

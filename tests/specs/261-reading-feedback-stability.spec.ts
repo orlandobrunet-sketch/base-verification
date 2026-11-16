@@ -27,7 +27,7 @@ async function prepare(page: Page, info: TestInfo, reading: boolean) {
   await expect(page.locator('#welcomeScreen')).toBeVisible();
   await page.waitForFunction(() => typeof (window as any)._loadTopics === 'function');
   await page.evaluate(() => (window as any)._loadTopics());
-  await page.waitForFunction(() => (window as any).questionBank?.length === 741 && !!(window as any).questionRevisionCatalog);
+  await page.waitForFunction(() => (window as any).questionBank?.length === 725 && !!(window as any).questionRevisionCatalog);
   expect(await page.evaluate(() => (window as any).authUser)).toBeNull();
   expect(await page.evaluate(() => document.body.classList.contains('reading-mode'))).toBe(reading);
   await fonts(page);

@@ -1,0 +1,2136 @@
+{
+  "schema": "NQ_AUTHOR_BATCH_1728_A18.2-metformina-ARNI",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "count": 4,
+  "readyForImplementation": false,
+  "scope": "Duas últimas questões iniciais do inventário e dois consumidores necessários do card ARNI inconsistente; quatro cards integrais reparados. Sem novo qid e sem novo card.",
+  "globalReferenceRepairs": [
+    {
+      "id": "sacubitril_valsartan_hf",
+      "original": {
+        "label": "Voors AA et al. — LCZ696 renal effects HFpEF (EHJ 2015)",
+        "url": "https://academic.oup.com/eurheartj/article/36/7/408/2293234",
+        "journal": "Eur Heart J 2015;36(7):408-416",
+        "ano": 2015,
+        "tipo": "Análise de RCT",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Sacubitril/valsartan: efeitos renais benéficos em IC, redução de albuminúria e potencial nefroproteção via BNP/neprilisina",
+        "icon": "🔬",
+        "resumo": "Análise renal do PARADIGM-HF (Damman et al., JACC Heart Failure 2018), em pacientes com ICFEr randomizados para sacubitril/valsartan vs enalapril. O declínio anual da TFGe foi menor com sacubitril/valsartan: −1,61 vs −2,04 ml/min/1,73m²/ano (P<0,001). Apesar disso, houve maior aumento de UACR com sacubitril/valsartan, em magnitude pequena, mostrando que preservação de TFGe e albuminúria podem se comportar de forma dissociada nessa intervenção.",
+        "conclusao": "A análise renal do PARADIGM-HF sugere que sacubitril/valsartan desacelera o declínio da TFGe em ICFEr quando comparado ao enalapril, mas não deve ser apresentado como terapia antiproteinúrica.",
+        "curiosidade": "O achado é fisiologicamente interessante porque a inibição da neprilisina aumenta peptídeos natriuréticos e sinalização por cGMP, com efeitos hemodinâmicos renais complexos. A mensagem didática é que nem toda nefroproteção se manifesta como redução de albuminúria."
+      },
+      "originalSHA256": "sha256:f849521b397bffc60605e191930460ec501d5e81558be1359c47fcef41bdb173",
+      "proposed": {
+        "label": "Voors et al. — Análise Renal do PARAMOUNT (2015)",
+        "url": "https://doi.org/10.1002/ejhf.232",
+        "journal": "Eur J Heart Fail. 2015;17(5):510–517. DOI:10.1002/ejhf.232",
+        "ano": 2015,
+        "tipo": "Análise de ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "No PARAMOUNT, menor declínio da filtração estimada coexistiu com aumento da albuminúria.",
+        "icon": "🔬",
+        "resumo": "Análise post hoc de 301 participantes do PARAMOUNT com insuficiência cardíaca e fração de ejeção preservada, comparando LCZ696 (sacubitril/valsartana; dose-alvo histórica de 200 mg) com valsartana 160 mg, ambos por via oral duas vezes ao dia, durante 36 semanas. A taxa de filtração glomerular estimada (TFGe) pela creatinina caiu menos com LCZ696, enquanto a relação albumina/creatinina urinária aumentou. A diferença na ocorrência de piora renal não foi estatisticamente significativa. O ensaio excluiu TFGe abaixo de 30 mL/min/1,73 m² e não foi desenhado originalmente para comprovar desfechos renais.",
+        "conclusao": "Os resultados exploratórios mostram dissociação entre filtração estimada e albuminúria. Não comprovam redução de eventos renais clínicos nem sustentam extrapolação para fração de ejeção reduzida ou insuficiência renal grave.",
+        "curiosidade": ""
+      },
+      "proposedSHA256": "sha256:a688e958d29a655fb6a86ffe830dd1e100d744e97ae75436f4cbe4f5bebd9ad9",
+      "sourceIDs": [
+        "voors",
+        "label"
+      ],
+      "notes": [
+        "Reparo de identidade bibliográfica: original misturava Voors2015/HFpEF com Damman2018/PARADIGM-HF, URL/volume errados e redução de albuminúria falsa. Mantida a obra Voors2015 identificada pelo label original.",
+        "Nenhuma questão de segurança de HFrEF continuará vinculada a esta análise HFpEF. Não transferir identidade de obra para Damman2018.",
+        "Dose-alvo histórica LCZ696 do protocolo explicitada; via oral corroborada pela bula e administração oral da formulação. Não apresentar 200mg históricos como dose inicial moderna na insuficiência renal grave."
+      ]
+    }
+  ],
+  "sharedCardConsumers": [
+    {
+      "qid": "a82aae37",
+      "original": {
+        "qid": "a82aae37",
+        "q": "Paciente de 65 anos com DM2 usa metformina. Está clinicamente estável, mas sua TFGe caiu progressivamente para 25 mL/min/1,73m². Qual conduta é mais adequada em relação à metformina?",
+        "opts": [
+          "Suspender metformina, pois seu uso não é recomendado quando TFGe está abaixo de 30 mL/min/1,73m².",
+          "Manter metformina em dose plena, pois acidose lática é rara e independe da função renal.",
+          "Aumentar a dose para compensar a resistência insulínica da DRC avançada.",
+          "Manter metformina e dosar lactato trimestralmente como estratégia de segurança suficiente."
+        ],
+        "ans": 0,
+        "exp": "A conduta correta é suspender a metformina quando a TFGe está abaixo de 30 mL/min/1,73m². Em DRC, a metformina pode ser usada com segurança em muitos pacientes com TFGe ≥30, com redução de dose e monitorização conforme a faixa; abaixo desse limiar, o risco de acúmulo aumenta. A acidose lática associada à metformina é rara, mas costuma ocorrer quando acúmulo por disfunção renal se combina a doença aguda, hipóxia, choque, sepse ou falência hepática. Dosar lactato de rotina não substitui respeitar o limiar de segurança.",
+        "cat": "farmacologia",
+        "diff": "medium",
+        "refs": [
+          "kdigo_diabetes_in_ckd_guideline",
+          "metformin_mala_minireview_2024"
+        ],
+        "t": "Metformina e DRC — Ajuste de Dose"
+      },
+      "originalSHA256": "sha256:3b2d11d26fa7225fc58c76626527a56964aeb48f96876a1bd1a43b636f6416b2",
+      "proposed": {
+        "qid": "a82aae37",
+        "q": "Paciente de 65 anos com DM2 usa metformina. Está clinicamente estável, mas sua TFGe caiu progressivamente para 25 mL/min/1,73m². Qual conduta é mais adequada em relação à metformina?",
+        "opts": [
+          "Suspender metformina, pois seu uso não é recomendado quando TFGe está abaixo de 30 mL/min/1,73m².",
+          "Manter metformina em dose plena, pois acidose lática é rara e independe da função renal.",
+          "Aumentar a dose para compensar a resistência insulínica da DRC avançada.",
+          "Manter metformina e dosar lactato trimestralmente como estratégia de segurança suficiente."
+        ],
+        "ans": 0,
+        "exp": "A conduta correta é suspender a metformina quando a TFGe está abaixo de 30 mL/min/1,73m². Em DRC, a metformina pode ser usada com segurança em muitos pacientes com TFGe ≥30, com redução de dose e monitorização conforme a faixa; abaixo desse limiar, o risco de acúmulo aumenta. A acidose lática associada à metformina é rara, mas costuma ocorrer quando acúmulo por disfunção renal se combina a doença aguda, hipóxia, choque, sepse ou falência hepática. Dosar lactato de rotina não substitui respeitar o limiar de segurança.",
+        "cat": "farmacologia",
+        "diff": "medium",
+        "refs": [
+          "kdigo_diabetes_in_ckd_guideline",
+          "metformin_mala_minireview_2024"
+        ],
+        "t": "Metformina e DRC — Ajuste de Dose"
+      },
+      "fullMedicalGateRequested": false,
+      "policy": "Arquivar binding histórico por mudança material do card. Este registro não emite gate automático de consumidor inalterado nem de seus outros cards."
+    },
+    {
+      "qid": "96c0c85d",
+      "original": {
+        "t": "iSGLT2 — mecanismo do dip inicial da TFGe",
+        "qid": "96c0c85d",
+        "q": "Paciente com DRC inicia inibidor de SGLT2 e apresenta pequena queda inicial da TFGe nas primeiras semanas, sem sinais de hipovolemia ou lesão renal aguda. Qual mecanismo explica melhor esse “dip” esperado?",
+        "refs": [
+          "kdigo_ckd",
+          "kdigo_diabetes_in_ckd_guideline",
+          "empa_kidney",
+          "dapa"
+        ],
+        "opts": [
+          "Aumento da entrega de sódio à mácula densa, ativando feedback túbulo-glomerular e vasoconstrição aferente",
+          "Toxicidade tubular direta com necrose tubular aguda subclínica",
+          "Vasodilatação eferente idêntica ao efeito dos IECA/BRA",
+          "Aumento da pressão intraglomerular por maior reabsorção proximal de sódio"
+        ],
+        "ans": 0,
+        "exp": "O dip inicial da TFGe com iSGLT2 é predominantemente hemodinâmico: a menor reabsorção proximal de sódio e glicose aumenta a entrega de sódio à mácula densa, restaurando o feedback túbulo-glomerular, com vasoconstrição aferente e queda da pressão intraglomerular. Isso é diferente de toxicidade tubular direta e também não é o mecanismo clássico de vasodilatação eferente dos bloqueadores do sistema renina-angiotensina. A alternativa que aumenta pressão intraglomerular inverte o mecanismo nefroprotetor.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "originalSHA256": "sha256:69f48722cf25315a1716631fdab6ff6ab99cdb97e5aea0ebcf0b63460d8742ac",
+      "proposed": {
+        "t": "iSGLT2 — mecanismo do dip inicial da TFGe",
+        "qid": "96c0c85d",
+        "q": "Paciente com DRC inicia inibidor de SGLT2 e apresenta pequena queda inicial da TFGe nas primeiras semanas, sem sinais de hipovolemia ou lesão renal aguda. Qual mecanismo explica melhor esse “dip” esperado?",
+        "refs": [
+          "kdigo_ckd",
+          "kdigo_diabetes_in_ckd_guideline",
+          "empa_kidney",
+          "dapa"
+        ],
+        "opts": [
+          "Aumento da entrega de sódio à mácula densa, ativando feedback túbulo-glomerular e vasoconstrição aferente",
+          "Toxicidade tubular direta com necrose tubular aguda subclínica",
+          "Vasodilatação eferente idêntica ao efeito dos IECA/BRA",
+          "Aumento da pressão intraglomerular por maior reabsorção proximal de sódio"
+        ],
+        "ans": 0,
+        "exp": "O dip inicial da TFGe com iSGLT2 é predominantemente hemodinâmico: a menor reabsorção proximal de sódio e glicose aumenta a entrega de sódio à mácula densa, restaurando o feedback túbulo-glomerular, com vasoconstrição aferente e queda da pressão intraglomerular. Isso é diferente de toxicidade tubular direta e também não é o mecanismo clássico de vasodilatação eferente dos bloqueadores do sistema renina-angiotensina. A alternativa que aumenta pressão intraglomerular inverte o mecanismo nefroprotetor.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "fullMedicalGateRequested": false,
+      "policy": "Arquivar binding histórico por mudança material do card. Este registro não emite gate automático de consumidor inalterado nem de seus outros cards."
+    },
+    {
+      "qid": "121adcc7",
+      "original": {
+        "t": "Hiperfiltração Diabética — Feedback Túbulo-Glomerular",
+        "qid": "121adcc7",
+        "q": "Na fase inicial do diabetes, qual alteração tubular contribui para vasodilatação aferente e hiperfiltração glomerular?",
+        "refs": [
+          "kdigo_diabetes_in_ckd_guideline",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Maior reabsorção proximal de glicose e sódio por SGLT2, reduzindo a entrega de sódio à mácula densa",
+          "Bloqueio espontâneo de SGLT2, aumentando a entrega de sódio à mácula densa",
+          "Perda completa da reabsorção proximal de glicose sem alteração do sódio",
+          "Aumento primário da secreção distal de potássio"
+        ],
+        "ans": 0,
+        "exp": "A hiperglicemia aumenta a carga filtrada de glicose e a reabsorção proximal conjunta de glicose e sódio, em grande parte por SGLT2. Menos cloreto de sódio chega à mácula densa, o feedback túbulo-glomerular interpreta menor entrega como necessidade de elevar filtração e favorece vasodilatação aferente. O aumento da pressão intraglomerular ajuda a explicar a hiperfiltração inicial e o efeito hemodinâmico dos inibidores de SGLT2, que restauram a entrega distal e o feedback.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "originalSHA256": "sha256:c1de70f24ca262ace09ada7aaf70c08790ff4a1f378228822c31882d5300b533",
+      "proposed": {
+        "t": "Hiperfiltração Diabética — Feedback Túbulo-Glomerular",
+        "qid": "121adcc7",
+        "q": "Na fase inicial do diabetes, qual alteração tubular contribui para vasodilatação aferente e hiperfiltração glomerular?",
+        "refs": [
+          "kdigo_diabetes_in_ckd_guideline",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Maior reabsorção proximal de glicose e sódio por SGLT2, reduzindo a entrega de sódio à mácula densa",
+          "Bloqueio espontâneo de SGLT2, aumentando a entrega de sódio à mácula densa",
+          "Perda completa da reabsorção proximal de glicose sem alteração do sódio",
+          "Aumento primário da secreção distal de potássio"
+        ],
+        "ans": 0,
+        "exp": "A hiperglicemia aumenta a carga filtrada de glicose e a reabsorção proximal conjunta de glicose e sódio, em grande parte por SGLT2. Menos cloreto de sódio chega à mácula densa, o feedback túbulo-glomerular interpreta menor entrega como necessidade de elevar filtração e favorece vasodilatação aferente. O aumento da pressão intraglomerular ajuda a explicar a hiperfiltração inicial e o efeito hemodinâmico dos inibidores de SGLT2, que restauram a entrega distal e o feedback.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "fullMedicalGateRequested": false,
+      "policy": "Arquivar binding histórico por mudança material do card. Este registro não emite gate automático de consumidor inalterado nem de seus outros cards."
+    },
+    {
+      "qid": "113bb49e",
+      "original": {
+        "t": "iSGLT2 — glicosúria e natriurese proximal",
+        "qid": "113bb49e",
+        "q": "Qual alteração tubular explica a glicosúria produzida pelos inibidores de SGLT2?",
+        "refs": [
+          "kdigo_diabetes_in_ckd_guideline"
+        ],
+        "opts": [
+          "Inibição da reabsorção de glicose e sódio no túbulo proximal",
+          "Aumento da secreção de glicose no ducto coletor",
+          "Redução da filtração glomerular de glicose como efeito primário",
+          "Bloqueio da absorção intestinal de glicose por SGLT1"
+        ],
+        "ans": 0,
+        "exp": "Os inibidores de SGLT2 bloqueiam o cotransportador sódio-glicose tipo 2 no túbulo proximal, reduzindo a reabsorção de glicose filtrada e gerando glicosúria. A mesma ação aumenta a entrega distal de sódio, o que ajuda a explicar a restauração do feedback túbulo-glomerular. Não há secreção tubular relevante de glicose no ducto coletor, a queda da filtração não é o mecanismo da glicosúria, e o bloqueio intestinal de SGLT1 não é o principal mecanismo dos iSGLT2 seletivos usados na DRC.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "originalSHA256": "sha256:e30dee640d466eea962fc28cb7045b079c3598ba250cba3a35083b4781a35225",
+      "proposed": {
+        "t": "iSGLT2 — glicosúria e natriurese proximal",
+        "qid": "113bb49e",
+        "q": "Qual alteração tubular explica a glicosúria produzida pelos inibidores de SGLT2?",
+        "refs": [
+          "kdigo_diabetes_in_ckd_guideline"
+        ],
+        "opts": [
+          "Inibição da reabsorção de glicose e sódio no túbulo proximal",
+          "Aumento da secreção de glicose no ducto coletor",
+          "Redução da filtração glomerular de glicose como efeito primário",
+          "Bloqueio da absorção intestinal de glicose por SGLT1"
+        ],
+        "ans": 0,
+        "exp": "Os inibidores de SGLT2 bloqueiam o cotransportador sódio-glicose tipo 2 no túbulo proximal, reduzindo a reabsorção de glicose filtrada e gerando glicosúria. A mesma ação aumenta a entrega distal de sódio, o que ajuda a explicar a restauração do feedback túbulo-glomerular. Não há secreção tubular relevante de glicose no ducto coletor, a queda da filtração não é o mecanismo da glicosúria, e o bloqueio intestinal de SGLT1 não é o principal mecanismo dos iSGLT2 seletivos usados na DRC.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "fullMedicalGateRequested": false,
+      "policy": "Arquivar binding histórico por mudança material do card. Este registro não emite gate automático de consumidor inalterado nem de seus outros cards."
+    },
+    {
+      "qid": "3ea72484",
+      "original": {
+        "t": "Acidose Lática Tipo B — Metformina",
+        "qid": "3ea72484",
+        "q": "Paciente em uso de metformina, com piora aguda da função renal e lactato elevado, apresenta acidose metabólica com ânion gap alto sem evidência inicial de hipoperfusão. Qual mecanismo explica a acidose lática associada à metformina?",
+        "refs": [
+          "metformin_mala_minireview_2024",
+          "kdigo_diabetes_in_ckd_guideline"
+        ],
+        "opts": [
+          "Estimulação da glicólise anaeróbia como efeito terapêutico obrigatório em qualquer dose.",
+          "Inibição da fosforilação oxidativa mitocondrial, incluindo complexo I, com prejuízo do metabolismo/depuração do lactato quando há acúmulo da droga.",
+          "Hemólise induzida por metformina com liberação direta de lactato eritrocitário.",
+          "Bloqueio do receptor V2 no ducto coletor, causando lactato urinário."
+        ],
+        "ans": 1,
+        "exp": "A metformina é eliminada pelos rins e pode se acumular em disfunção renal aguda ou DRC avançada. A acidose lática associada à metformina decorre de disfunção mitocondrial, incluindo inibição do complexo I/fosforilação oxidativa, com aumento de produção e menor depuração de lactato. Na prática, MALA costuma surgir quando acúmulo de metformina se combina a hipóxia, choque, sepse, falência hepática ou queda importante da função renal.",
+        "diff": "medium",
+        "cat": "acido_base"
+      },
+      "originalSHA256": "sha256:6c8ede36a18d8d956280788e459d5c649781306a3333d7d10ae3067e45c6c469",
+      "proposed": {
+        "t": "Metformina — Contribuição à Acidose Lática",
+        "qid": "3ea72484",
+        "q": "Paciente em uso de metformina apresenta piora aguda da função renal, lactato elevado e acidose metabólica com ânion gap alto, sem evidência inicial de hipoperfusão. Considera-se que o acúmulo do fármaco contribuiu para o quadro. Qual mecanismo explica essa contribuição?",
+        "refs": [
+          "metformin_mala_minireview_2024",
+          "kdigo_diabetes_in_ckd_guideline"
+        ],
+        "opts": [
+          "Aumento de lactato por redução da oferta sistêmica de oxigênio aos tecidos.",
+          "Prejuízo da fosforilação oxidativa mitocondrial e da depuração de lactato.",
+          "Acúmulo de corpos cetônicos por deficiência absoluta de insulina.",
+          "Retenção de ácidos não voláteis por redução da filtração glomerular."
+        ],
+        "ans": 1,
+        "exp": "A metformina é eliminada inalterada pelos rins e pode acumular quando a função renal piora. O fármaco pode prejudicar a fosforilação oxidativa mitocondrial e o metabolismo do lactato, mesmo quando a oferta de oxigênio é adequada. Essa contribuição é diferente da acidose lática por hipoperfusão, embora ambas possam coexistir. A exposição à metformina não prova causa única: sepse, hipóxia, choque e disfunção hepática também precisam ser avaliados. Corpos cetônicos e retenção de outros ácidos explicam outros componentes de acidose, sem representar o mecanismo específico perguntado.",
+        "diff": "easy",
+        "cat": "acido_base"
+      },
+      "fullMedicalGateRequested": true,
+      "policy": "Arquivar binding histórico por mudança material do card. Este registro não emite gate automático de consumidor inalterado nem de seus outros cards."
+    },
+    {
+      "qid": "679a2298",
+      "original": {
+        "t": "Albuminúria A2 no Diabetes — Classificação e Conduta",
+        "qid": "679a2298",
+        "q": "Paciente com diabetes mellitus tipo 2 e hipertensão tem relação albumina/creatinina urinária persistente de 180 mg/g. Qual é a classificação e a conduta nefroprotetora inicial mais apropriada?",
+        "refs": [
+          "kdigo_diabetes_in_ckd_guideline",
+          "lewis_ieca_dn_1993",
+          "renaal_trial",
+          "idnt_trial"
+        ],
+        "opts": [
+          "Albuminúria A2; otimizar IECA ou BRA se tolerado, além de controle global de risco",
+          "Albuminúria A3; iniciar imunossupressão empírica",
+          "Resultado normal; repetir apenas em 12 meses sem intervenção",
+          "Proteinúria nefrótica; indicar biópsia renal urgente apenas pelo valor"
+        ],
+        "ans": 0,
+        "exp": "Relação albumina/creatinina urinária de 180 mg/g, quando persistente, corresponde a albuminúria A2 (moderadamente aumentada: 30–300 mg/g). Em paciente com diabetes e hipertensão, a base nefroprotetora inclui controle pressórico e bloqueio do SRAA com IECA ou BRA em dose tolerada, além de manejo glicêmico, cardiovascular e consideração de terapias modificadoras de DRC conforme TFGe e albuminúria. O valor não é normal, não define A3/nefrótica e não justifica imunossupressão ou biópsia urgente isoladamente. A recomendação atual é de diretriz; Lewis, RENAAL e IDNT são os trials históricos que consolidaram a nefroproteção por IECA/BRA na nefropatia diabética albuminúrica.",
+        "diff": "easy",
+        "cat": "nefropatia_diabetica"
+      },
+      "originalSHA256": "sha256:2ef990392fa48183e566fda58073766768ac7dd89dc158b40d8f05b1630f143b",
+      "proposed": {
+        "t": "Albuminúria A2 no Diabetes — Classificação e Conduta",
+        "qid": "679a2298",
+        "q": "Paciente com diabetes mellitus tipo 2 e hipertensão tem relação albumina/creatinina urinária persistente de 180 mg/g. Qual é a classificação e a conduta nefroprotetora inicial mais apropriada?",
+        "refs": [
+          "kdigo_diabetes_in_ckd_guideline",
+          "lewis_ieca_dn_1993",
+          "renaal_trial",
+          "idnt_trial"
+        ],
+        "opts": [
+          "Albuminúria A2; otimizar IECA ou BRA se tolerado, além de controle global de risco",
+          "Albuminúria A3; iniciar imunossupressão empírica",
+          "Resultado normal; repetir apenas em 12 meses sem intervenção",
+          "Proteinúria nefrótica; indicar biópsia renal urgente apenas pelo valor"
+        ],
+        "ans": 0,
+        "exp": "Relação albumina/creatinina urinária de 180 mg/g, quando persistente, corresponde a albuminúria A2 (moderadamente aumentada: 30–300 mg/g). Em paciente com diabetes e hipertensão, a base nefroprotetora inclui controle pressórico e bloqueio do SRAA com IECA ou BRA em dose tolerada, além de manejo glicêmico, cardiovascular e consideração de terapias modificadoras de DRC conforme TFGe e albuminúria. O valor não é normal, não define A3/nefrótica e não justifica imunossupressão ou biópsia urgente isoladamente. A recomendação atual é de diretriz; Lewis, RENAAL e IDNT são os trials históricos que consolidaram a nefroproteção por IECA/BRA na nefropatia diabética albuminúrica.",
+        "diff": "easy",
+        "cat": "nefropatia_diabetica"
+      },
+      "fullMedicalGateRequested": false,
+      "policy": "Arquivar binding histórico por mudança material do card. Este registro não emite gate automático de consumidor inalterado nem de seus outros cards."
+    },
+    {
+      "qid": "21c883d5",
+      "original": {
+        "t": "Indicação de Biópsia Renal no Paciente Diabético",
+        "qid": "21c883d5",
+        "q": "Em paciente com diabetes, qual apresentação deve aumentar a suspeita de doença renal não diabética e justificar considerar biópsia renal?",
+        "opts": [
+          "Albuminúria A2 persistente, estável, em paciente hipertenso com retinopatia diabética",
+          "Queda rápida da TFGe ou síndrome nefrótica de início súbito, especialmente sem retinopatia",
+          "HbA1c elevada isolada, sem alteração urinária ou queda de TFGe",
+          "Albuminúria leve detectada em rastreamento anual, sem sedimento ativo"
+        ],
+        "ans": 1,
+        "exp": "Biópsia renal em paciente diabético deve ser considerada quando a apresentação é atípica para doença renal diabética: queda rápida da taxa de filtração glomerular estimada (TFGe), síndrome nefrótica abrupta, sedimento urinário ativo, curta duração de diabetes ou ausência de retinopatia em contexto sugestivo. Esses achados aumentam a probabilidade de doença renal não diabética ou sobreposta, cujo tratamento pode mudar substancialmente. Albuminúria A2 persistente e estável em paciente com hipertensão/retinopatia é mais compatível com doença renal diabética; HbA1c alta isolada não é indicação de biópsia.",
+        "diff": "medium",
+        "cat": "nefropatia_diabetica",
+        "refs": [
+          "kdigo_diabetes_in_ckd_guideline",
+          "kdigo_gn"
+        ]
+      },
+      "originalSHA256": "sha256:a5cfa564ce4a596c1a7dca169070a2a81f52bed9e3076c7ccb878879251303ed",
+      "proposed": {
+        "t": "Indicação de Biópsia Renal no Paciente Diabético",
+        "qid": "21c883d5",
+        "q": "Em paciente com diabetes, qual apresentação deve aumentar a suspeita de doença renal não diabética e justificar considerar biópsia renal?",
+        "opts": [
+          "Albuminúria A2 persistente, estável, em paciente hipertenso com retinopatia diabética",
+          "Queda rápida da TFGe ou síndrome nefrótica de início súbito, especialmente sem retinopatia",
+          "HbA1c elevada isolada, sem alteração urinária ou queda de TFGe",
+          "Albuminúria leve detectada em rastreamento anual, sem sedimento ativo"
+        ],
+        "ans": 1,
+        "exp": "Biópsia renal em paciente diabético deve ser considerada quando a apresentação é atípica para doença renal diabética: queda rápida da taxa de filtração glomerular estimada (TFGe), síndrome nefrótica abrupta, sedimento urinário ativo, curta duração de diabetes ou ausência de retinopatia em contexto sugestivo. Esses achados aumentam a probabilidade de doença renal não diabética ou sobreposta, cujo tratamento pode mudar substancialmente. Albuminúria A2 persistente e estável em paciente com hipertensão/retinopatia é mais compatível com doença renal diabética; HbA1c alta isolada não é indicação de biópsia.",
+        "diff": "medium",
+        "cat": "nefropatia_diabetica",
+        "refs": [
+          "kdigo_diabetes_in_ckd_guideline",
+          "kdigo_gn"
+        ]
+      },
+      "fullMedicalGateRequested": false,
+      "policy": "Arquivar binding histórico por mudança material do card. Este registro não emite gate automático de consumidor inalterado nem de seus outros cards."
+    }
+  ],
+  "fourDimensionChecks": [
+    {
+      "pair": [
+        "d4393bc2",
+        "7759b493"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Aplicar intervalo de segurança em transição versus explicar a composição farmacológica; compartilhar menção à interação na explicação não torna OP iguais."
+    },
+    {
+      "pair": [
+        "d4393bc2",
+        "3e9e6915"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Decisão anterior ao início versus evento adverso após início e reavaliação de perfusão/volume/potássio."
+    },
+    {
+      "pair": [
+        "3ea72484",
+        "a82aae37"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Fisiopatologia da contribuição da metformina à acidose lática versus limiar renal para suspensão preventiva em paciente estável."
+    }
+  ],
+  "publicationPolicy": "Todas as checagens são autorais. Nenhum gate independente ou autorização de implementação foi inferido. Não transferir FSRS, favorito ou descoberta entre obras.",
+  "items": [
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "3ea72484",
+      "family": "A18-metformina-ARNI",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Acidose Lática Tipo B — Metformina",
+        "qid": "3ea72484",
+        "q": "Paciente em uso de metformina, com piora aguda da função renal e lactato elevado, apresenta acidose metabólica com ânion gap alto sem evidência inicial de hipoperfusão. Qual mecanismo explica a acidose lática associada à metformina?",
+        "refs": [
+          "metformin_mala_minireview_2024",
+          "kdigo_diabetes_in_ckd_guideline"
+        ],
+        "opts": [
+          "Estimulação da glicólise anaeróbia como efeito terapêutico obrigatório em qualquer dose.",
+          "Inibição da fosforilação oxidativa mitocondrial, incluindo complexo I, com prejuízo do metabolismo/depuração do lactato quando há acúmulo da droga.",
+          "Hemólise induzida por metformina com liberação direta de lactato eritrocitário.",
+          "Bloqueio do receptor V2 no ducto coletor, causando lactato urinário."
+        ],
+        "ans": 1,
+        "exp": "A metformina é eliminada pelos rins e pode se acumular em disfunção renal aguda ou DRC avançada. A acidose lática associada à metformina decorre de disfunção mitocondrial, incluindo inibição do complexo I/fosforilação oxidativa, com aumento de produção e menor depuração de lactato. Na prática, MALA costuma surgir quando acúmulo de metformina se combina a hipóxia, choque, sepse, falência hepática ou queda importante da função renal.",
+        "diff": "medium",
+        "cat": "acido_base"
+      },
+      "originalSHA256": "sha256:6c8ede36a18d8d956280788e459d5c649781306a3333d7d10ae3067e45c6c469",
+      "originalRefs": [
+        {
+          "id": "metformin_mala_minireview_2024",
+          "original": {
+            "label": "See KC — Metformin-associated Lactic Acidosis: Pathophysiology and Management (2024)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11229964/",
+            "journal": "World J Diabetes. 2024;15(6):1178-1186",
+            "ano": 2024,
+            "tipo": "Revisão Clínica",
+            "badge": "REVIEW",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Mecanismo, diagnóstico e manejo da acidose lática associada à metformina",
+            "icon": "📖",
+            "resumo": "Mini-revisão sobre acidose lática associada à metformina em pacientes críticos. Explica que a metformina é eliminada inalterada pelos rins e que MALA geralmente surge quando há acúmulo da droga, sobretudo em disfunção renal ou overdose, combinado a fatores como choque, hipóxia, sepse ou falência hepática. O mecanismo envolve inibição da fosforilação oxidativa mitocondrial, incluindo o complexo I, com maior produção e menor depuração de lactato.",
+            "conclusao": "Metformina pode causar acidose lática tipo B por disfunção mitocondrial, mas na prática o risco cresce quando a depuração renal cai ou há doença crítica associada.",
+            "curiosidade": "A MALA raramente é história de uma molécula sozinha; costuma ser um encontro infeliz entre acúmulo de metformina e outra agressão que também prejudica lactato ou mitocôndria."
+          },
+          "originalSHA256": "sha256:0290d5b10e44f6eec2ea3012889af381becca4d81b0a86e239350b6d37af3626"
+        },
+        {
+          "id": "kdigo_diabetes_in_ckd_guideline",
+          "original": {
+            "label": "KDIGO Diabetes in CKD 2022",
+            "url": "https://kdigo.org/guidelines/diabetes-ckd/",
+            "journal": "Kidney International",
+            "ano": 2022,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Manejo integrado do diabetes e DRC — metas glicêmicas, nefroproteção e tratamento",
+            "icon": "📋",
+            "resumo": "Diretriz KDIGO 2022 para manejo do diabetes na DRC. Recomenda controle glicêmico individualizado com alvo de HbA1c 6,5–8% conforme risco de hipoglicemia e expectativa de vida. Posiciona iSGLT2 como primeira adição ao metformim em DRC com TFGe ≥20 e ACR ≥200 mg/g ou IC; GLP-1 RA como segunda linha com benefício CV e renal demonstrado. Finerenona indicada em DRC diabética com TFGe ≥25 e ACR ≥300 mg/g para redução de risco cardiorrenal.",
+            "conclusao": "A diretriz 2022 integrou o manejo glicêmico ao cardiorrenal — iSGLT2, GLP-1 RA e finerenona deixaram de ser apenas antidiabéticos para se tornarem a base da nefroproteção na DRC diabética.",
+            "curiosidade": "A DRC é o principal fator de risco de hipoglicemia grave em DM2: a insulina e as sulfoniluréias acumulam em pacientes com TFGe reduzida. Essa é a razão pela qual o alvo de HbA1c é deliberadamente menos estrito (<8%) em DRC avançada — reduzir hipoglicemia pode ser mais importante que otimizar glicemia."
+          },
+          "originalSHA256": "sha256:d5431ad32cb1b43701ad8e054ab758bac383f2adf038cbd9f317f27d85690cca"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Explicar como acúmulo de metformina pode contribuir para acidose lática por prejuízo da fosforilação oxidativa.",
+        "primaryCompetence": "Explicar toxicidade metabólica de fármaco ou aplicar segurança da farmacoterapia cardiorrenal.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "easy"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Corretacom mecanismo e qualificadores longos frente a distratores sem plausibilidade.",
+          "MAIOR — Card KDIGO contém limiares e síntese clínica incorretos; fonte MALA não explicita complexoI no corpo acessível."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": true,
+            "rationale": "Hemólise obrigatória e lactato urinário por bloqueioV2 são distratores sem plausibilidade para a competência."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "anulado": true
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "mala",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11229964/",
+          "doi": "10.4239/wjd.v15.i6.1178",
+          "pmid": "38983827",
+          "access": "Corpo integral primário real baixado pelo endpoint EuropePMC fullTextXML, com elemento BODY; não apenas abstract.",
+          "localFile": "mala-review-2024.xml",
+          "rawSHA256": "b707e15f761dda2102dbeed2eabeb25cda7851fb95f77b667a8a1c625aa2c10d",
+          "locators": [
+            "Pathophysiology: metformina pode prejudicar fosforilação oxidativa mitocondrial e depuração do lactato mesmo com oferta adequada de oxigênio.",
+            "Metformina eliminada inalterada pelos rins; acúmulo em insuficiência renal grave e doença aguda.",
+            "Diagnóstico e tratamento: causas concorrentes como sepse, choque e hipóxia devem ser procuradas; associação não prova causa única."
+          ],
+          "limitations": [
+            "Não foi localizada a expressão complex I neste corpo. A proposta não depende desse alvo específico nem o repete sem fonte.",
+            "Mini-revisão clínica, não ensaio de causalidade individual nem prescrição de uma dose."
+          ]
+        },
+        {
+          "id": "kdigo",
+          "url": "https://kdigo.org/wp-content/uploads/2022/10/KDIGO-2022-Clinical-Practice-Guideline-for-Diabetes-Management-in-CKD.pdf",
+          "access": "Diretriz oficial final integral de 128 páginas, baixada e extraída localmente. Página institucional atual confirma 2022 como edição publicada vigente; 2026 permanece draft em revisão, não adotado como final.",
+          "localFile": "kdigo-diabetes-2022-primary.pdf",
+          "rawSHA256": "d2889a8b699ea103129c9f8f8df56c53557993741702e3140e3bd37fb96eb1fb",
+          "locators": [
+            "PDF22/S21: recomendação 1.3.1, diabetes tipo 2 e doença renal crônica, TFGe ≥20 para inibidor de SGLT2, 1A; sem exigir albuminúria ≥200.",
+            "PDF23/S22: recomendação 1.4.1, antagonista não esteroidal do receptor mineralocorticoide com benefício demonstrado, TFGe ≥25, potássio normal e albuminúria ≥30 apesar de bloqueio do sistema renina-angiotensina em dose máxima tolerada, 2A.",
+            "PDF24/S23: recomendação 2.2.1, meta de HbA1c individualizada entre <6,5% e <8,0%, exclusivamente sem diálise, 1C.",
+            "PDF27/S26: metformina com TFGe ≥30 (1B), ajustar dose abaixo de45, interromper/não iniciar abaixo de30; GLP-1 de ação longa se alvo não alcançado apesar de metformina/inibidor deSGLT2 ou impossibilidade de uso,1B."
+          ],
+          "limitations": [
+            "O card sintetiza recomendações dessa edição; não converte recomendações graduadas em sequência universal ou em prescrição individual.",
+            "Finerenona não é um antidiabético e albuminúria ≥300 não é o limiar da recomendação 1.4.1."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Acúmulo pode prejudicar fosforilação oxidativa e depuração de lactato; causas concorrentes podem coexistir.",
+          "source": "mala",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Monitorização renal e limiar de suspensão da metformina segundoKDIGO2022.",
+          "source": "kdigo",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Metformina — Contribuição à Acidose Lática",
+        "qid": "3ea72484",
+        "q": "Paciente em uso de metformina apresenta piora aguda da função renal, lactato elevado e acidose metabólica com ânion gap alto, sem evidência inicial de hipoperfusão. Considera-se que o acúmulo do fármaco contribuiu para o quadro. Qual mecanismo explica essa contribuição?",
+        "refs": [
+          "metformin_mala_minireview_2024",
+          "kdigo_diabetes_in_ckd_guideline"
+        ],
+        "opts": [
+          "Aumento de lactato por redução da oferta sistêmica de oxigênio aos tecidos.",
+          "Prejuízo da fosforilação oxidativa mitocondrial e da depuração de lactato.",
+          "Acúmulo de corpos cetônicos por deficiência absoluta de insulina.",
+          "Retenção de ácidos não voláteis por redução da filtração glomerular."
+        ],
+        "ans": 1,
+        "exp": "A metformina é eliminada inalterada pelos rins e pode acumular quando a função renal piora. O fármaco pode prejudicar a fosforilação oxidativa mitocondrial e o metabolismo do lactato, mesmo quando a oferta de oxigênio é adequada. Essa contribuição é diferente da acidose lática por hipoperfusão, embora ambas possam coexistir. A exposição à metformina não prova causa única: sepse, hipóxia, choque e disfunção hepática também precisam ser avaliados. Corpos cetônicos e retenção de outros ácidos explicam outros componentes de acidose, sem representar o mecanismo específico perguntado.",
+        "diff": "easy",
+        "cat": "acido_base"
+      },
+      "proposedSHA256": "sha256:7932e26650fe13c551d25734440c1d5509355d32a1d2b77e33608309ac8ed553",
+      "classificationAfter": {
+        "op": "Explicar como acúmulo de metformina pode contribuir para acidose lática por prejuízo da fosforilação oxidativa.",
+        "primaryCompetence": "Explicar toxicidade metabólica de fármaco ou aplicar segurança da farmacoterapia cardiorrenal.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "proposedRefs": [
+        {
+          "id": "metformin_mala_minireview_2024",
+          "original": {
+            "label": "See KC — Metformin-associated Lactic Acidosis: Pathophysiology and Management (2024)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11229964/",
+            "journal": "World J Diabetes. 2024;15(6):1178-1186",
+            "ano": 2024,
+            "tipo": "Revisão Clínica",
+            "badge": "REVIEW",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Mecanismo, diagnóstico e manejo da acidose lática associada à metformina",
+            "icon": "📖",
+            "resumo": "Mini-revisão sobre acidose lática associada à metformina em pacientes críticos. Explica que a metformina é eliminada inalterada pelos rins e que MALA geralmente surge quando há acúmulo da droga, sobretudo em disfunção renal ou overdose, combinado a fatores como choque, hipóxia, sepse ou falência hepática. O mecanismo envolve inibição da fosforilação oxidativa mitocondrial, incluindo o complexo I, com maior produção e menor depuração de lactato.",
+            "conclusao": "Metformina pode causar acidose lática tipo B por disfunção mitocondrial, mas na prática o risco cresce quando a depuração renal cai ou há doença crítica associada.",
+            "curiosidade": "A MALA raramente é história de uma molécula sozinha; costuma ser um encontro infeliz entre acúmulo de metformina e outra agressão que também prejudica lactato ou mitocôndria."
+          },
+          "originalSHA256": "sha256:0290d5b10e44f6eec2ea3012889af381becca4d81b0a86e239350b6d37af3626",
+          "proposed": {
+            "label": "See KC — Acidose Lática Associada à Metformina (2024)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11229964/",
+            "journal": "World J Diabetes. 2024;15(6):1178-1186",
+            "ano": 2024,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Mecanismo, diagnóstico e manejo da acidose lática associada à metformina",
+            "icon": "🔬",
+            "resumo": "Mini-revisão sobre fisiopatologia, diagnóstico e manejo da acidose lática associada à metformina em pacientes críticos. A metformina é eliminada inalterada pelos rins e pode acumular quando a função renal cai. Pode prejudicar a fosforilação oxidativa mitocondrial e a depuração do lactato, mesmo com oferta de oxigênio adequada. Sepse, choque, hipóxia e outras causas podem coexistir; a exposição à metformina não identifica, sozinha, a causa de toda acidose lática.",
+            "conclusao": "Acúmulo de metformina pode contribuir para acidose lática por disfunção mitocondrial. A avaliação também deve procurar e tratar as causas concorrentes.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:66aff733fef38c29df20f7543d8fadf081643f3a9ab53954181b5c36a40ecfe0",
+          "sourceIDs": [
+            "mala"
+          ],
+          "notes": [
+            "Card inteiro rechecado. Retirado alvo complexo I não localizado no corpo e curiosidade coloquial."
+          ]
+        },
+        {
+          "id": "kdigo_diabetes_in_ckd_guideline",
+          "original": {
+            "label": "KDIGO Diabetes in CKD 2022",
+            "url": "https://kdigo.org/guidelines/diabetes-ckd/",
+            "journal": "Kidney International",
+            "ano": 2022,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Manejo integrado do diabetes e DRC — metas glicêmicas, nefroproteção e tratamento",
+            "icon": "📋",
+            "resumo": "Diretriz KDIGO 2022 para manejo do diabetes na DRC. Recomenda controle glicêmico individualizado com alvo de HbA1c 6,5–8% conforme risco de hipoglicemia e expectativa de vida. Posiciona iSGLT2 como primeira adição ao metformim em DRC com TFGe ≥20 e ACR ≥200 mg/g ou IC; GLP-1 RA como segunda linha com benefício CV e renal demonstrado. Finerenona indicada em DRC diabética com TFGe ≥25 e ACR ≥300 mg/g para redução de risco cardiorrenal.",
+            "conclusao": "A diretriz 2022 integrou o manejo glicêmico ao cardiorrenal — iSGLT2, GLP-1 RA e finerenona deixaram de ser apenas antidiabéticos para se tornarem a base da nefroproteção na DRC diabética.",
+            "curiosidade": "A DRC é o principal fator de risco de hipoglicemia grave em DM2: a insulina e as sulfoniluréias acumulam em pacientes com TFGe reduzida. Essa é a razão pela qual o alvo de HbA1c é deliberadamente menos estrito (<8%) em DRC avançada — reduzir hipoglicemia pode ser mais importante que otimizar glicemia."
+          },
+          "originalSHA256": "sha256:d5431ad32cb1b43701ad8e054ab758bac383f2adf038cbd9f317f27d85690cca",
+          "proposed": {
+            "label": "KDIGO — Diabetes e Doença Renal Crônica (2022)",
+            "url": "https://kdigo.org/wp-content/uploads/2022/10/KDIGO-2022-Clinical-Practice-Guideline-for-Diabetes-Management-in-CKD.pdf",
+            "journal": "Kidney Int. 2022;102(Suppl 5S):S1–S127",
+            "ano": 2022,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Individualizar metas glicêmicas e proteção cardiorrenal conforme função renal, albuminúria e segurança.",
+            "icon": "📋",
+            "resumo": "Diretriz para diabetes e doença renal crônica (DRC). Em diabetes tipo 2 com DRC, recomenda inibidor do cotransportador sódio-glicose tipo 2 (SGLT2) quando a taxa de filtração glomerular estimada (TFGe) é ≥20 mL/min/1,73 m² (1A), sem exigir albuminúria ≥200 mg/g. Metformina é recomendada com TFGe ≥30 (1B), com ajuste abaixo de 45 e suspensão abaixo de 30. Sugere antagonista não esteroidal do receptor mineralocorticoide com benefício demonstrado quando TFGe ≥25, potássio normal e albuminúria ≥30 mg/g persistente apesar de bloqueio do sistema renina-angiotensina em dose máxima tolerada (2A).",
+            "conclusao": "Sem diálise, a meta de hemoglobina glicada é individualizada entre <6,5% e <8,0% (1C). Agonista do receptor do peptídeo semelhante ao glucagon tipo 1 (GLP-1) de ação longa é recomendado se o alvo não for alcançado apesar de metformina e inibidor de SGLT2 ou se não puderem ser usados (1B), priorizando agentes com benefício cardiovascular documentado.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:5aecb4d94ea3d635b3bd710cbe8e0c0dc710221579f8d7e4fd7623d21fc14c02",
+          "sourceIDs": [
+            "kdigo"
+          ],
+          "notes": [
+            "Reparo clínico integral necessário: card original restringia indevidamente SGLT2 por albuminúria e finerenona a≥300; não apresentar finerenona como antidiabético.",
+            "Sem nova identidade de obra. Original arquivado por hash; consumidores atuais listados, sem gate integral automático de seus outros cards."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Compreender mecanismo farmacológico, sem transformar ausência inicial de hipoperfusão em exclusão definitiva de doença crítica. Alternativas são mecanismos reais, sem pista por alvo fictício.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "d4393bc2",
+      "family": "A18-metformina-ARNI",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Sacubitril/Valsartana na DRC Avançada",
+        "qid": "d4393bc2",
+        "q": "Paciente com ICFEr, TFGe de 28 mL/min/1,73 m² e uso de lisinopril será transferido para sacubitril/valsartana. Qual plano é mais seguro?",
+        "refs": [
+          "sacubitril_valsartan_hf",
+          "sacubitril_valsartan_label_fda_2021"
+        ],
+        "opts": [
+          "Suspender o IECA, respeitar intervalo de pelo menos 36 horas, iniciar dose apropriada à função renal e monitorar pressão, creatinina e potássio",
+          "Manter lisinopril junto ao ARNI para ampliar o bloqueio do SRAA",
+          "Considerar TFGe abaixo de 30 contraindicação absoluta e definitiva ao ARNI",
+          "Iniciar dose máxima sem monitorização porque a valsartana impede hipercalemia"
+        ],
+        "ans": 0,
+        "exp": "Sacubitril/valsartana substitui, e não se soma, ao IECA. A associação ou transição sem intervalo eleva o risco de angioedema pela maior carga de bradicinina; a rotulagem exige pelo menos 36 horas entre os fármacos. Insuficiência renal grave não é contraindicação absoluta, mas pede dose inicial menor e vigilância de hipotensão, função renal e potássio. O benefício em ICFEr deve ser individualizado ao estado hemodinâmico e às contraindicações, sem transformar a DRC em exclusão automática.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "originalSHA256": "sha256:d65412861315e19a6710f6edafe029e150affc0493b0760cb6a987803dbb4b09",
+      "originalRefs": [
+        {
+          "id": "sacubitril_valsartan_hf",
+          "original": {
+            "label": "Voors AA et al. — LCZ696 renal effects HFpEF (EHJ 2015)",
+            "url": "https://academic.oup.com/eurheartj/article/36/7/408/2293234",
+            "journal": "Eur Heart J 2015;36(7):408-416",
+            "ano": 2015,
+            "tipo": "Análise de RCT",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Sacubitril/valsartan: efeitos renais benéficos em IC, redução de albuminúria e potencial nefroproteção via BNP/neprilisina",
+            "icon": "🔬",
+            "resumo": "Análise renal do PARADIGM-HF (Damman et al., JACC Heart Failure 2018), em pacientes com ICFEr randomizados para sacubitril/valsartan vs enalapril. O declínio anual da TFGe foi menor com sacubitril/valsartan: −1,61 vs −2,04 ml/min/1,73m²/ano (P<0,001). Apesar disso, houve maior aumento de UACR com sacubitril/valsartan, em magnitude pequena, mostrando que preservação de TFGe e albuminúria podem se comportar de forma dissociada nessa intervenção.",
+            "conclusao": "A análise renal do PARADIGM-HF sugere que sacubitril/valsartan desacelera o declínio da TFGe em ICFEr quando comparado ao enalapril, mas não deve ser apresentado como terapia antiproteinúrica.",
+            "curiosidade": "O achado é fisiologicamente interessante porque a inibição da neprilisina aumenta peptídeos natriuréticos e sinalização por cGMP, com efeitos hemodinâmicos renais complexos. A mensagem didática é que nem toda nefroproteção se manifesta como redução de albuminúria."
+          },
+          "originalSHA256": "sha256:f849521b397bffc60605e191930460ec501d5e81558be1359c47fcef41bdb173"
+        },
+        {
+          "id": "sacubitril_valsartan_label_fda_2021",
+          "original": {
+            "label": "Sacubitril/Valsartana — Rotulagem FDA",
+            "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2021/207620s018lbl.pdf",
+            "journal": "U.S. Food and Drug Administration — Prescribing Information",
+            "ano": 2021,
+            "tipo": "Rotulagem regulatória",
+            "badge": "LABEL",
+            "badgeColor": "#6366f1",
+            "impacto": "Intervalo obrigatório de 36 h após IECA · dose inicial reduzida na insuficiência renal grave",
+            "icon": "📋",
+            "resumo": "A rotulagem de sacubitril/valsartana contraindica uso concomitante com IECA e exige intervalo mínimo de 36 horas na transição, devido ao risco de angioedema. Em insuficiência renal grave, recomenda iniciar com metade da dose inicial usual. Pressão arterial, creatinina e potássio devem ser acompanhados, com redução ou interrupção conforme hipotensão, deterioração renal clinicamente significativa ou hipercalemia.",
+            "conclusao": "DRC não é contraindicação automática ao ARNI, mas muda dose e vigilância; IECA concomitante ou transição sem 36 horas é combinação proibida.",
+            "curiosidade": "O componente valsartana já bloqueia o receptor AT1; por isso, o ARNI substitui IECA ou outro BRA em vez de ser acrescentado a eles."
+          },
+          "originalSHA256": "sha256:b61e8b202640104b277d7af00b7778a8591064cb94459119594108d25eefdf01"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Aplicar intervalo de segurança entre lisinopril e sacubitril/valsartana durante transição em paciente com função renal reduzida.",
+        "primaryCompetence": "Explicar toxicidade metabólica de fármaco ou aplicar segurança da farmacoterapia cardiorrenal.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Corretaintegra todasascondutas, enquanto os distratores negam segurança explicitamente.",
+          "MAIOR — Referência HFpEF misturada com outro ensaio não sustenta segurança na função renal abaixo de30; bula precisa versão oficial identificada."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "label",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?lang=en&setid=000dc81d-ab91-450c-8eae-8eb74e72296f",
+          "access": "Informação oficial de prescrição integral do fabricante Novartis no DailyMed. Página atualizada em 06/07/2026; texto informa Revised 04/2024. Ambos os marcos são distinguidos no card. Corpo HTML baixado e lido.",
+          "localFile": "entresto-dailymed-2026.html",
+          "rawSHA256": "7528ce08dcd3c982ffa7e86e8858680e0856322c1b2934ce9ffa8f4227f685c9",
+          "locators": [
+            "§2.1 e §4: contraindicado com inibidor da enzima conversora de angiotensina; intervalo de36 horas ao trocar em qualquer direção.",
+            "§2.2/2.7 e §3: dose inicial usual adulta49/51mg por via oral duas vezes ao dia; insuficiência renal grave TFGe<30 requer metade, apresentação24/26mg; não é contraindicação absoluta por TFGe isolada.",
+            "§5.3/5.4/5.5: corrigir fatores de hipotensão, monitorar creatinina e potássio, tratar hipercalemia; reduzir dose ou interromper quando necessário.",
+            "§7.1 e §12.1: sacubitril via metabólito LBQ657 inibe neprilisina; valsartana bloqueia receptor AT1. Contraindicação com IECA pelo risco de angioedema; evitar outro bloqueador do receptor por já conter valsartana."
+          ],
+          "limitations": [
+            "Atualização regulatória do mesmo produto no ID legado, adjudicada pelo root; não é troca por outro ensaio ou diretriz.",
+            "Bula exige individualização e não fornece um limiar universal de suspensão definitiva em todo paciente com potássio5,8."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Transição deIECA requer≥36horas;TFGe<30 exige doseinicial reduzida e monitorização, não contraindicação automática.",
+          "source": "label",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Sacubitril/Valsartana — Transição com Função Renal Reduzida",
+        "qid": "d4393bc2",
+        "q": "Adulto com insuficiência cardíaca e fração de ejeção reduzida usa lisinopril e tem taxa de filtração glomerular estimada de 28 mL/min/1,73 m². Foi indicada a troca por sacubitril/valsartana, com dose inicial reduzida e acompanhamento da pressão, creatinina e potássio. Como realizar a transição?",
+        "refs": [
+          "sacubitril_valsartan_label_fda_2021"
+        ],
+        "opts": [
+          "Suspender lisinopril e aguardar pelo menos 36 horas antes da primeira dose.",
+          "Suspender lisinopril e iniciar sacubitril/valsartana na próxima tomada, após 12 horas.",
+          "Suspender lisinopril e aguardar 24 horas antes da primeira dose.",
+          "Reduzir lisinopril gradualmente, sobrepondo os dois fármacos no primeiro dia."
+        ],
+        "ans": 0,
+        "exp": "A associação com inibidor da enzima conversora de angiotensina é contraindicada pelo risco de angioedema. A bula exige pelo menos 36 horas entre a última dose de lisinopril e o início de sacubitril/valsartana; a regra também vale na troca inversa. Função renal abaixo de 30 mL/min/1,73 m² exige metade da dose inicial adulta usual, com pressão, função renal e potássio acompanhados. Essa redução de função renal, isoladamente, não torna o tratamento absolutamente contraindicado.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "proposedSHA256": "sha256:4aed1f2d52ba810fbe3a0def0c142f853d501d3679e5e3ab30bf832392e87e1c",
+      "classificationAfter": {
+        "op": "Aplicar intervalo de segurança entre lisinopril e sacubitril/valsartana durante transição em paciente com função renal reduzida.",
+        "primaryCompetence": "Explicar toxicidade metabólica de fármaco ou aplicar segurança da farmacoterapia cardiorrenal.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "sacubitril_valsartan_label_fda_2021",
+          "original": {
+            "label": "Sacubitril/Valsartana — Rotulagem FDA",
+            "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2021/207620s018lbl.pdf",
+            "journal": "U.S. Food and Drug Administration — Prescribing Information",
+            "ano": 2021,
+            "tipo": "Rotulagem regulatória",
+            "badge": "LABEL",
+            "badgeColor": "#6366f1",
+            "impacto": "Intervalo obrigatório de 36 h após IECA · dose inicial reduzida na insuficiência renal grave",
+            "icon": "📋",
+            "resumo": "A rotulagem de sacubitril/valsartana contraindica uso concomitante com IECA e exige intervalo mínimo de 36 horas na transição, devido ao risco de angioedema. Em insuficiência renal grave, recomenda iniciar com metade da dose inicial usual. Pressão arterial, creatinina e potássio devem ser acompanhados, com redução ou interrupção conforme hipotensão, deterioração renal clinicamente significativa ou hipercalemia.",
+            "conclusao": "DRC não é contraindicação automática ao ARNI, mas muda dose e vigilância; IECA concomitante ou transição sem 36 horas é combinação proibida.",
+            "curiosidade": "O componente valsartana já bloqueia o receptor AT1; por isso, o ARNI substitui IECA ou outro BRA em vez de ser acrescentado a eles."
+          },
+          "originalSHA256": "sha256:b61e8b202640104b277d7af00b7778a8591064cb94459119594108d25eefdf01",
+          "proposed": {
+            "label": "Entresto — Bula Oficial no DailyMed (atualização 2026)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?lang=en&setid=000dc81d-ab91-450c-8eae-8eb74e72296f",
+            "journal": "Novartis Pharmaceuticals Corporation / DailyMed; página atualizada em 06/07/2026; revisão da bula 04/2024",
+            "ano": 2026,
+            "tipo": "Bula",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Transição segura do inibidor da enzima conversora de angiotensina, ajuste renal e monitorização.",
+            "icon": "📋",
+            "resumo": "Sacubitril/valsartana é contraindicado junto a inibidor da enzima conversora de angiotensina (IECA), pelo risco de angioedema; a troca em qualquer direção exige pelo menos 36 horas de intervalo. Em adultos com taxa de filtração glomerular estimada abaixo de 30 mL/min/1,73 m², a dose inicial é metade da usual: 24/26 mg por via oral, duas vezes ao dia. Monitorar pressão arterial, creatinina e potássio; reduzir dose ou interromper conforme hipotensão, deterioração renal clinicamente significativa ou hipercalemia.",
+            "conclusao": "Função renal reduzida exige dose e vigilância apropriadas. Não associar a IECA nem a outro bloqueador do receptor da angiotensina, pois a formulação já contém valsartana.",
+            "curiosidade": "Sacubitril é um pró-fármaco: seu metabólito ativo inibe a neprilisina. A valsartana bloqueia o receptor AT1 da angiotensina II."
+          },
+          "proposedSHA256": "sha256:8dede3b913cd8244516acc55e6703937a5b25efef5101646860a2c41dc1bf3d0",
+          "sourceIDs": [
+            "label"
+          ],
+          "notes": [
+            "Atualização regulatória legítima do mesmo produto autorizada pelo root; preservar ID legado e arquivar versão2021. Ano2026 corresponde à atualização do registro DailyMed, sem fingir revisão clínica da bula em2026."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Segurança da transição preservada; os demais cuidados foram explicitados como condições do caso para avaliar uma decisão principal, sem cortar qualificadores de segurança.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "7759b493",
+      "family": "A18-metformina-ARNI",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "ARNI — Mecanismo Duplo",
+        "qid": "7759b493",
+        "q": "Qual combinação descreve o mecanismo de sacubitril/valsartana e explica por que o fármaco não deve ser associado a um IECA?",
+        "refs": [
+          "sacubitril_valsartan_hf",
+          "sacubitril_valsartan_label_fda_2021"
+        ],
+        "opts": [
+          "Inibição da neprilisina mais bloqueio do receptor AT1; associar IECA aumenta o risco de angioedema",
+          "Inibição direta da renina mais bloqueio de ENaC; associar IECA causa hipocalemia",
+          "Bloqueio de SGLT2 mais antagonismo de aldosterona; associar IECA causa glicosúria",
+          "Agonismo de peptídeos natriuréticos mais bloqueio beta; associar IECA causa bradicardia"
+        ],
+        "ans": 0,
+        "exp": "Sacubitril inibe a neprilisina e aumenta a disponibilidade de peptídeos natriuréticos, enquanto valsartana bloqueia o receptor AT1 da angiotensina II. Como a neprilisina e a ECA participam da degradação de bradicinina, combinar ARNI com IECA aumenta o risco de angioedema e é contraindicado. O intervalo mínimo de 36 horas é obrigatório na transição. A formulação não contém inibidor direto da renina, bloqueador de ENaC, iSGLT2, antagonista mineralocorticoide ou betabloqueador.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "originalSHA256": "sha256:c79e54ef6687a7e58d5fcb14078d3080e1370ce635b0157e4972f1c3c614a1b2",
+      "originalRefs": [
+        {
+          "id": "sacubitril_valsartan_hf",
+          "original": {
+            "label": "Voors AA et al. — LCZ696 renal effects HFpEF (EHJ 2015)",
+            "url": "https://academic.oup.com/eurheartj/article/36/7/408/2293234",
+            "journal": "Eur Heart J 2015;36(7):408-416",
+            "ano": 2015,
+            "tipo": "Análise de RCT",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Sacubitril/valsartan: efeitos renais benéficos em IC, redução de albuminúria e potencial nefroproteção via BNP/neprilisina",
+            "icon": "🔬",
+            "resumo": "Análise renal do PARADIGM-HF (Damman et al., JACC Heart Failure 2018), em pacientes com ICFEr randomizados para sacubitril/valsartan vs enalapril. O declínio anual da TFGe foi menor com sacubitril/valsartan: −1,61 vs −2,04 ml/min/1,73m²/ano (P<0,001). Apesar disso, houve maior aumento de UACR com sacubitril/valsartan, em magnitude pequena, mostrando que preservação de TFGe e albuminúria podem se comportar de forma dissociada nessa intervenção.",
+            "conclusao": "A análise renal do PARADIGM-HF sugere que sacubitril/valsartan desacelera o declínio da TFGe em ICFEr quando comparado ao enalapril, mas não deve ser apresentado como terapia antiproteinúrica.",
+            "curiosidade": "O achado é fisiologicamente interessante porque a inibição da neprilisina aumenta peptídeos natriuréticos e sinalização por cGMP, com efeitos hemodinâmicos renais complexos. A mensagem didática é que nem toda nefroproteção se manifesta como redução de albuminúria."
+          },
+          "originalSHA256": "sha256:f849521b397bffc60605e191930460ec501d5e81558be1359c47fcef41bdb173"
+        },
+        {
+          "id": "sacubitril_valsartan_label_fda_2021",
+          "original": {
+            "label": "Sacubitril/Valsartana — Rotulagem FDA",
+            "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2021/207620s018lbl.pdf",
+            "journal": "U.S. Food and Drug Administration — Prescribing Information",
+            "ano": 2021,
+            "tipo": "Rotulagem regulatória",
+            "badge": "LABEL",
+            "badgeColor": "#6366f1",
+            "impacto": "Intervalo obrigatório de 36 h após IECA · dose inicial reduzida na insuficiência renal grave",
+            "icon": "📋",
+            "resumo": "A rotulagem de sacubitril/valsartana contraindica uso concomitante com IECA e exige intervalo mínimo de 36 horas na transição, devido ao risco de angioedema. Em insuficiência renal grave, recomenda iniciar com metade da dose inicial usual. Pressão arterial, creatinina e potássio devem ser acompanhados, com redução ou interrupção conforme hipotensão, deterioração renal clinicamente significativa ou hipercalemia.",
+            "conclusao": "DRC não é contraindicação automática ao ARNI, mas muda dose e vigilância; IECA concomitante ou transição sem 36 horas é combinação proibida.",
+            "curiosidade": "O componente valsartana já bloqueia o receptor AT1; por isso, o ARNI substitui IECA ou outro BRA em vez de ser acrescentado a eles."
+          },
+          "originalSHA256": "sha256:b61e8b202640104b277d7af00b7778a8591064cb94459119594108d25eefdf01"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Identificar o mecanismo farmacológico duplo de sacubitril/valsartana.",
+        "primaryCompetence": "Explicar toxicidade metabólica de fármaco ou aplicar segurança da farmacoterapia cardiorrenal.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "easy"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Pergunta agregava mecanismo e interação; três combinações de erros pouco plausíveis entregavam a correta.",
+          "MAIOR — Fonte de análise renal HFpEF não é a referência adequada para esse objetivo farmacológico."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "label",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?lang=en&setid=000dc81d-ab91-450c-8eae-8eb74e72296f",
+          "access": "Informação oficial de prescrição integral do fabricante Novartis no DailyMed. Página atualizada em 06/07/2026; texto informa Revised 04/2024. Ambos os marcos são distinguidos no card. Corpo HTML baixado e lido.",
+          "localFile": "entresto-dailymed-2026.html",
+          "rawSHA256": "7528ce08dcd3c982ffa7e86e8858680e0856322c1b2934ce9ffa8f4227f685c9",
+          "locators": [
+            "§2.1 e §4: contraindicado com inibidor da enzima conversora de angiotensina; intervalo de36 horas ao trocar em qualquer direção.",
+            "§2.2/2.7 e §3: dose inicial usual adulta49/51mg por via oral duas vezes ao dia; insuficiência renal grave TFGe<30 requer metade, apresentação24/26mg; não é contraindicação absoluta por TFGe isolada.",
+            "§5.3/5.4/5.5: corrigir fatores de hipotensão, monitorar creatinina e potássio, tratar hipercalemia; reduzir dose ou interromper quando necessário.",
+            "§7.1 e §12.1: sacubitril via metabólito LBQ657 inibe neprilisina; valsartana bloqueia receptor AT1. Contraindicação com IECA pelo risco de angioedema; evitar outro bloqueador do receptor por já conter valsartana."
+          ],
+          "limitations": [
+            "Atualização regulatória do mesmo produto no ID legado, adjudicada pelo root; não é troca por outro ensaio ou diretriz.",
+            "Bula exige individualização e não fornece um limiar universal de suspensão definitiva em todo paciente com potássio5,8."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Sacubitril via metabólito ativo inibe neprilisina e valsartana bloqueia receptorAT1.",
+          "source": "label",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Sacubitril/Valsartana — Mecanismo Duplo",
+        "qid": "7759b493",
+        "q": "Qual combinação descreve o mecanismo farmacológico de sacubitril/valsartana?",
+        "refs": [
+          "sacubitril_valsartan_label_fda_2021"
+        ],
+        "opts": [
+          "Inibição da neprilisina e bloqueio do receptor AT1 da angiotensina II.",
+          "Inibição da enzima conversora e bloqueio do receptor AT1 da angiotensina II.",
+          "Inibição da neprilisina e inibição da enzima conversora de angiotensina.",
+          "Inibição direta da renina e antagonismo do receptor mineralocorticoide."
+        ],
+        "ans": 0,
+        "exp": "Sacubitril é convertido em um metabólito ativo que inibe a neprilisina, aumentando a disponibilidade de peptídeos como os natriuréticos. Valsartana bloqueia o receptor AT1 da angiotensina II. A formulação não contém inibidor da enzima conversora nem inibidor direto da renina. Associá-la a inibidor da enzima conversora é contraindicado pelo risco de angioedema; por isso, a troca exige intervalo mínimo de 36 horas.",
+        "diff": "easy",
+        "cat": "drc"
+      },
+      "proposedSHA256": "sha256:c792650a1dbe352e566fed96f71c042383eb5bea067918dd5e44a9180072b39e",
+      "classificationAfter": {
+        "op": "Identificar o mecanismo farmacológico duplo de sacubitril/valsartana.",
+        "primaryCompetence": "Explicar toxicidade metabólica de fármaco ou aplicar segurança da farmacoterapia cardiorrenal.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "proposedRefs": [
+        {
+          "id": "sacubitril_valsartan_label_fda_2021",
+          "original": {
+            "label": "Sacubitril/Valsartana — Rotulagem FDA",
+            "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2021/207620s018lbl.pdf",
+            "journal": "U.S. Food and Drug Administration — Prescribing Information",
+            "ano": 2021,
+            "tipo": "Rotulagem regulatória",
+            "badge": "LABEL",
+            "badgeColor": "#6366f1",
+            "impacto": "Intervalo obrigatório de 36 h após IECA · dose inicial reduzida na insuficiência renal grave",
+            "icon": "📋",
+            "resumo": "A rotulagem de sacubitril/valsartana contraindica uso concomitante com IECA e exige intervalo mínimo de 36 horas na transição, devido ao risco de angioedema. Em insuficiência renal grave, recomenda iniciar com metade da dose inicial usual. Pressão arterial, creatinina e potássio devem ser acompanhados, com redução ou interrupção conforme hipotensão, deterioração renal clinicamente significativa ou hipercalemia.",
+            "conclusao": "DRC não é contraindicação automática ao ARNI, mas muda dose e vigilância; IECA concomitante ou transição sem 36 horas é combinação proibida.",
+            "curiosidade": "O componente valsartana já bloqueia o receptor AT1; por isso, o ARNI substitui IECA ou outro BRA em vez de ser acrescentado a eles."
+          },
+          "originalSHA256": "sha256:b61e8b202640104b277d7af00b7778a8591064cb94459119594108d25eefdf01",
+          "proposed": {
+            "label": "Entresto — Bula Oficial no DailyMed (atualização 2026)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?lang=en&setid=000dc81d-ab91-450c-8eae-8eb74e72296f",
+            "journal": "Novartis Pharmaceuticals Corporation / DailyMed; página atualizada em 06/07/2026; revisão da bula 04/2024",
+            "ano": 2026,
+            "tipo": "Bula",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Transição segura do inibidor da enzima conversora de angiotensina, ajuste renal e monitorização.",
+            "icon": "📋",
+            "resumo": "Sacubitril/valsartana é contraindicado junto a inibidor da enzima conversora de angiotensina (IECA), pelo risco de angioedema; a troca em qualquer direção exige pelo menos 36 horas de intervalo. Em adultos com taxa de filtração glomerular estimada abaixo de 30 mL/min/1,73 m², a dose inicial é metade da usual: 24/26 mg por via oral, duas vezes ao dia. Monitorar pressão arterial, creatinina e potássio; reduzir dose ou interromper conforme hipotensão, deterioração renal clinicamente significativa ou hipercalemia.",
+            "conclusao": "Função renal reduzida exige dose e vigilância apropriadas. Não associar a IECA nem a outro bloqueador do receptor da angiotensina, pois a formulação já contém valsartana.",
+            "curiosidade": "Sacubitril é um pró-fármaco: seu metabólito ativo inibe a neprilisina. A valsartana bloqueia o receptor AT1 da angiotensina II."
+          },
+          "proposedSHA256": "sha256:8dede3b913cd8244516acc55e6703937a5b25efef5101646860a2c41dc1bf3d0",
+          "sourceIDs": [
+            "label"
+          ],
+          "notes": [
+            "Atualização regulatória legítima do mesmo produto autorizada pelo root; preservar ID legado e arquivar versão2021. Ano2026 corresponde à atualização do registro DailyMed, sem fingir revisão clínica da bula em2026."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Um OP farmacológico, sem carga artificial de uma segunda associação para preservar medium. A interação permanece na explicação, não como segundo gabarito.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "3e9e6915",
+      "family": "A18-metformina-ARNI",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "ICFEr com DRC Avançada — ARNI e Hipercalemia",
+        "qid": "3e9e6915",
+        "q": "Paciente com ICFEr, DRC G4 e congestão grave iniciou sacubitril/valsartana. Em 2 semanas, creatinina sobe de 3,9 para 4,8 mg/dL e K chega a 5,8 mEq/L. Qual manejo é mais seguro?",
+        "refs": [
+          "sacubitril_valsartan_hf",
+          "kdigo_cardiorenal_consensus"
+        ],
+        "opts": [
+          "Suspender definitivamente sacubitril/valsartana apenas porque TFGe é menor que 30, sem reavaliar congestão ou potássio",
+          "Manter obrigatoriamente a medicação sem mudanças, pois qualquer aumento de creatinina menor que 30% e K 5,8 são sempre aceitáveis",
+          "Reavaliar volemia/perfusão e causas de hipercalemia, tratar K de forma ativa e considerar ajuste ou pausa temporária do bloqueio neuro-hormonal até segurança laboratorial",
+          "Iniciar diálise imediatamente apenas pelo aumento de creatinina, mesmo sem indicação clínica de TRS"
+        ],
+        "ans": 2,
+        "exp": "Bloqueio neuro-hormonal em ICFEr pode trazer benefício cardiovascular, mas em DRC avançada a margem de segurança é estreita. Uma elevação moderada de creatinina pode ser hemodinâmica e aceitável em alguns contextos, porém K 5,8 mEq/L exige ação: revisar dieta/fármacos, corrigir fatores precipitantes, otimizar descongestão, considerar quelante de potássio quando apropriado e ajustar ou pausar temporariamente a medicação se a hipercalemia não estiver segura. Não é correto suspender definitivamente por TFGe isolada, nem manter sem reavaliação. Diálise depende de indicações clínicas, não de creatinina isolada.",
+        "diff": "medium",
+        "cat": "uti"
+      },
+      "originalSHA256": "sha256:910a3e9c140b34f89b32bcc7452ed2c3691240acc1a7f35c4efd40c966a5815e",
+      "originalRefs": [
+        {
+          "id": "sacubitril_valsartan_hf",
+          "original": {
+            "label": "Voors AA et al. — LCZ696 renal effects HFpEF (EHJ 2015)",
+            "url": "https://academic.oup.com/eurheartj/article/36/7/408/2293234",
+            "journal": "Eur Heart J 2015;36(7):408-416",
+            "ano": 2015,
+            "tipo": "Análise de RCT",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Sacubitril/valsartan: efeitos renais benéficos em IC, redução de albuminúria e potencial nefroproteção via BNP/neprilisina",
+            "icon": "🔬",
+            "resumo": "Análise renal do PARADIGM-HF (Damman et al., JACC Heart Failure 2018), em pacientes com ICFEr randomizados para sacubitril/valsartan vs enalapril. O declínio anual da TFGe foi menor com sacubitril/valsartan: −1,61 vs −2,04 ml/min/1,73m²/ano (P<0,001). Apesar disso, houve maior aumento de UACR com sacubitril/valsartan, em magnitude pequena, mostrando que preservação de TFGe e albuminúria podem se comportar de forma dissociada nessa intervenção.",
+            "conclusao": "A análise renal do PARADIGM-HF sugere que sacubitril/valsartan desacelera o declínio da TFGe em ICFEr quando comparado ao enalapril, mas não deve ser apresentado como terapia antiproteinúrica.",
+            "curiosidade": "O achado é fisiologicamente interessante porque a inibição da neprilisina aumenta peptídeos natriuréticos e sinalização por cGMP, com efeitos hemodinâmicos renais complexos. A mensagem didática é que nem toda nefroproteção se manifesta como redução de albuminúria."
+          },
+          "originalSHA256": "sha256:f849521b397bffc60605e191930460ec501d5e81558be1359c47fcef41bdb173"
+        },
+        {
+          "id": "kdigo_cardiorenal_consensus",
+          "original": {
+            "label": "Consenso ADQI — Síndromes Cardiorrenais (2010)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/20037146/",
+            "journal": "European Heart Journal",
+            "ano": 2010,
+            "tipo": "Consenso",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Definiu os cinco subtipos de síndrome cardiorrenal por direção e temporalidade",
+            "icon": "🔬",
+            "resumo": "Classificação clínica da síndrome cardiorrenal proposta por Ronco/ADQI, organizando a interação coração-rim em 5 tipos conforme órgão inicial, temporalidade e contexto sistêmico: tipo 1, disfunção cardíaca aguda levando a LRA; tipo 2, disfunção cardíaca crônica levando a DRC; tipo 3, LRA levando a disfunção cardíaca aguda; tipo 4, DRC contribuindo para disfunção cardíaca crônica; tipo 5, doença sistêmica causando disfunção cardíaca e renal simultânea, como sepse, amiloidose ou vasculite.",
+            "conclusao": "A classificação do consenso ADQI organiza a direção e a temporalidade da interação coração–rim; no tipo 2, a disfunção cardíaca crônica antecede e contribui para DRC progressiva.",
+            "curiosidade": "A coexistência de insuficiência cardíaca e DRC não basta para definir o subtipo: a relação temporal e o órgão que iniciou o processo precisam ser estabelecidos."
+          },
+          "originalSHA256": "sha256:ed3c4251ab80e54469b79e17326fd14b47583dc1c0557fa49b86e13adb409002"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reavaliar e tratar hipercalemia e deterioração renal após sacubitril/valsartana em DRC avançada, com ajuste individualizado.",
+        "primaryCompetence": "Explicar toxicidade metabólica de fármaco ou aplicar segurança da farmacoterapia cardiorrenal.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Opções com sempre/obrigatoriamente/semindicação são pistas formais; seguraéaúnica quepropõeavaliação.",
+          "MAIOR — AnáliseHFpEF queexcluiuTFGe<30 econsensodeclassificação2010 não sustentam a conduta atual específica do fármaco."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "label",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?lang=en&setid=000dc81d-ab91-450c-8eae-8eb74e72296f",
+          "access": "Informação oficial de prescrição integral do fabricante Novartis no DailyMed. Página atualizada em 06/07/2026; texto informa Revised 04/2024. Ambos os marcos são distinguidos no card. Corpo HTML baixado e lido.",
+          "localFile": "entresto-dailymed-2026.html",
+          "rawSHA256": "7528ce08dcd3c982ffa7e86e8858680e0856322c1b2934ce9ffa8f4227f685c9",
+          "locators": [
+            "§2.1 e §4: contraindicado com inibidor da enzima conversora de angiotensina; intervalo de36 horas ao trocar em qualquer direção.",
+            "§2.2/2.7 e §3: dose inicial usual adulta49/51mg por via oral duas vezes ao dia; insuficiência renal grave TFGe<30 requer metade, apresentação24/26mg; não é contraindicação absoluta por TFGe isolada.",
+            "§5.3/5.4/5.5: corrigir fatores de hipotensão, monitorar creatinina e potássio, tratar hipercalemia; reduzir dose ou interromper quando necessário.",
+            "§7.1 e §12.1: sacubitril via metabólito LBQ657 inibe neprilisina; valsartana bloqueia receptor AT1. Contraindicação com IECA pelo risco de angioedema; evitar outro bloqueador do receptor por já conter valsartana."
+          ],
+          "limitations": [
+            "Atualização regulatória do mesmo produto no ID legado, adjudicada pelo root; não é troca por outro ensaio ou diretriz.",
+            "Bula exige individualização e não fornece um limiar universal de suspensão definitiva em todo paciente com potássio5,8."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "A bula exige monitorar/tratar hipercalemia e considerar redução ou interrupção; deterioração renal exige avaliação clínica, não contraindicação permanente por estágio isolado.",
+          "source": "label",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Insuficiência Cardíaca — Hipercalemia após Sacubitril/Valsartana",
+        "qid": "3e9e6915",
+        "q": "Paciente com insuficiência cardíaca e fração de ejeção reduzida, doença renal crônica G4 e congestão iniciou sacubitril/valsartana. Após 2 semanas, ainda está congesto; a creatinina passou de 3,9 para 4,8 mg/dL e o potássio confirmado é 5,8 mEq/L. Qual é o próximo passo mais seguro?",
+        "refs": [
+          "sacubitril_valsartan_label_fda_2021"
+        ],
+        "opts": [
+          "Interromper definitivamente sacubitril/valsartana por pertencer ao estágio G4.",
+          "Manter o esquema e repetir creatinina e potássio após 4 semanas.",
+          "Reavaliar perfusão, volume e fármacos, tratar a hipercalemia e ajustar o esquema conforme a evolução.",
+          "Reduzir apenas o diurético, atribuindo a alteração renal à contração de volume."
+        ],
+        "ans": 2,
+        "exp": "A hipercalemia exige avaliação e tratamento, com revisão de fatores precipitantes e dos medicamentos. A creatinina deve ser interpretada junto da perfusão e da congestão; sua variação isolada não determina uma conduta universal. A bula admite reduzir a dose ou interromper temporariamente sacubitril/valsartana conforme hipercalemia ou deterioração renal clinicamente significativa. Não se deve adiar a reavaliação por quatro semanas nem excluir definitivamente o fármaco apenas pelo estágio renal. O manejo da congestão também deve ser individualizado, sem presumir hipovolemia pelo aumento da creatinina.",
+        "diff": "medium",
+        "cat": "uti"
+      },
+      "proposedSHA256": "sha256:022d03577f7b234ba867084e64640775a40a897c9aed58a100d4ee4d054b00f2",
+      "classificationAfter": {
+        "op": "Reavaliar e tratar hipercalemia e deterioração renal após sacubitril/valsartana em DRC avançada, com ajuste individualizado.",
+        "primaryCompetence": "Explicar toxicidade metabólica de fármaco ou aplicar segurança da farmacoterapia cardiorrenal.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "sacubitril_valsartan_label_fda_2021",
+          "original": {
+            "label": "Sacubitril/Valsartana — Rotulagem FDA",
+            "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2021/207620s018lbl.pdf",
+            "journal": "U.S. Food and Drug Administration — Prescribing Information",
+            "ano": 2021,
+            "tipo": "Rotulagem regulatória",
+            "badge": "LABEL",
+            "badgeColor": "#6366f1",
+            "impacto": "Intervalo obrigatório de 36 h após IECA · dose inicial reduzida na insuficiência renal grave",
+            "icon": "📋",
+            "resumo": "A rotulagem de sacubitril/valsartana contraindica uso concomitante com IECA e exige intervalo mínimo de 36 horas na transição, devido ao risco de angioedema. Em insuficiência renal grave, recomenda iniciar com metade da dose inicial usual. Pressão arterial, creatinina e potássio devem ser acompanhados, com redução ou interrupção conforme hipotensão, deterioração renal clinicamente significativa ou hipercalemia.",
+            "conclusao": "DRC não é contraindicação automática ao ARNI, mas muda dose e vigilância; IECA concomitante ou transição sem 36 horas é combinação proibida.",
+            "curiosidade": "O componente valsartana já bloqueia o receptor AT1; por isso, o ARNI substitui IECA ou outro BRA em vez de ser acrescentado a eles."
+          },
+          "originalSHA256": "sha256:b61e8b202640104b277d7af00b7778a8591064cb94459119594108d25eefdf01",
+          "proposed": {
+            "label": "Entresto — Bula Oficial no DailyMed (atualização 2026)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?lang=en&setid=000dc81d-ab91-450c-8eae-8eb74e72296f",
+            "journal": "Novartis Pharmaceuticals Corporation / DailyMed; página atualizada em 06/07/2026; revisão da bula 04/2024",
+            "ano": 2026,
+            "tipo": "Bula",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Transição segura do inibidor da enzima conversora de angiotensina, ajuste renal e monitorização.",
+            "icon": "📋",
+            "resumo": "Sacubitril/valsartana é contraindicado junto a inibidor da enzima conversora de angiotensina (IECA), pelo risco de angioedema; a troca em qualquer direção exige pelo menos 36 horas de intervalo. Em adultos com taxa de filtração glomerular estimada abaixo de 30 mL/min/1,73 m², a dose inicial é metade da usual: 24/26 mg por via oral, duas vezes ao dia. Monitorar pressão arterial, creatinina e potássio; reduzir dose ou interromper conforme hipotensão, deterioração renal clinicamente significativa ou hipercalemia.",
+            "conclusao": "Função renal reduzida exige dose e vigilância apropriadas. Não associar a IECA nem a outro bloqueador do receptor da angiotensina, pois a formulação já contém valsartana.",
+            "curiosidade": "Sacubitril é um pró-fármaco: seu metabólito ativo inibe a neprilisina. A valsartana bloqueia o receptor AT1 da angiotensina II."
+          },
+          "proposedSHA256": "sha256:8dede3b913cd8244516acc55e6703937a5b25efef5101646860a2c41dc1bf3d0",
+          "sourceIDs": [
+            "label"
+          ],
+          "notes": [
+            "Atualização regulatória legítima do mesmo produto autorizada pelo root; preservar ID legado e arquivar versão2021. Ano2026 corresponde à atualização do registro DailyMed, sem fingir revisão clínica da bula em2026."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Decisão de segurança e reavaliação preservada; não impõe manter a droga a qualquer custo nem um limiar universal de suspensão definitiva.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    }
+  ],
+  "supersedes": {
+    "file": "author-batch-A18.1-metformina-ARNI.json",
+    "rawSHA256": "a7a07b5459ba103c298a67fe5a0c8557e107ab8d5aec6b1008effcc36d34157b",
+    "scope": "Acrescenta proveniência e localizadores completos do reparo global Voors. Questões e quatro cards byte-exatos de A18.1."
+  },
+  "globalReferenceSources": [
+    {
+      "id": "voors",
+      "url": "https://onlinelibrary.wiley.com/doi/pdfdirect/10.1002/ejhf.232",
+      "doi": "10.1002/ejhf.232",
+      "pmid": "25657064",
+      "access": "Artigo primário publicado integral de oito páginas efetivamente aberto no PDF Wiley pelo navegador web. Métodos, resultados e limitações lidos. Download local recebeu bloqueio; não há cópia local válida alegada.",
+      "locators": [
+        "PDF1–2: análise post hoc renal do PARAMOUNT,301 participantes com fração de ejeção≥45%, TFGe≥30; duração36semanas.",
+        "PDF2/Study procedures: dose inicial LCZ69650mg duas vezes/dia e valsartana40mg duas vezes/dia, tituladas em2–4semanas até200mg e160mg duas vezes/dia. Via oral corroborada pela bula oficial do mesmo produto.",
+        "PDF3/5/tabelas2/4/5: menor declínio da TFGe e maior relação albumina/creatinina; piora renal12%vs18% sem diferença estatisticamente significativa.",
+        "PDF6–7: análise post hoc com dados incompletos, exclusão de TFGe<30, amostra pequena e ensaio não desenhado originalmente para comprovar desfechos renais."
+      ],
+      "limitations": [
+        "Não é PARADIGM-HF nem Damman2018. A obra Voors2015 é preservada e corrigida, sem extrapolação a fração reduzida ou insuficiência renal grave.",
+        "Abstract e tabela trazem testes/valoresP distintos; nenhumP isolado foi selecionado para o novo card."
+      ]
+    },
+    {
+      "id": "label",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?lang=en&setid=000dc81d-ab91-450c-8eae-8eb74e72296f",
+      "access": "Informação oficial de prescrição integral do fabricante Novartis no DailyMed. Página atualizada em 06/07/2026; texto informa Revised 04/2024. Ambos os marcos são distinguidos no card. Corpo HTML baixado e lido.",
+      "localFile": "entresto-dailymed-2026.html",
+      "rawSHA256": "7528ce08dcd3c982ffa7e86e8858680e0856322c1b2934ce9ffa8f4227f685c9",
+      "locators": [
+        "§2.1 e §4: contraindicado com inibidor da enzima conversora de angiotensina; intervalo de36 horas ao trocar em qualquer direção.",
+        "§2.2/2.7 e §3: dose inicial usual adulta49/51mg por via oral duas vezes ao dia; insuficiência renal grave TFGe<30 requer metade, apresentação24/26mg; não é contraindicação absoluta por TFGe isolada.",
+        "§5.3/5.4/5.5: corrigir fatores de hipotensão, monitorar creatinina e potássio, tratar hipercalemia; reduzir dose ou interromper quando necessário.",
+        "§7.1 e §12.1: sacubitril via metabólito LBQ657 inibe neprilisina; valsartana bloqueia receptor AT1. Contraindicação com IECA pelo risco de angioedema; evitar outro bloqueador do receptor por já conter valsartana."
+      ],
+      "limitations": [
+        "Atualização regulatória do mesmo produto no ID legado, adjudicada pelo root; não é troca por outro ensaio ou diretriz.",
+        "Bula exige individualização e não fornece um limiar universal de suspensão definitiva em todo paciente com potássio5,8."
+      ]
+    }
+  ]
+}

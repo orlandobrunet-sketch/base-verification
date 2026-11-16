@@ -74,8 +74,8 @@ test.describe('Acesso ao Grimório: acervo ausente, atrasado e recuperado', () =
   test('a nova tentativa recupera o acervo inteiro', async ({ page }) => {
     await abrir(page, 'bloqueia');
     await expect(page.locator('[data-action="_dashRetryLoad"]')).toBeVisible();
-    await page.unroute('**/data/refs.js');
-    await page.unroute('**/data/articles.js');
+    await page.unroute('**/data/refs.js*');
+    await page.unroute('**/data/articles.js*');
     await page.locator('[data-action="_dashRetryLoad"]').click();
     await conferirCatalogoRecuperado(page);
     await expect(page.locator('[data-action="_dashRetryLoad"]')).toHaveCount(0);

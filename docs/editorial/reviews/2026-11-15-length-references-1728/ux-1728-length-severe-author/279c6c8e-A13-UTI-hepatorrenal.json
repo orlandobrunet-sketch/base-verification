@@ -1,0 +1,395 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "279c6c8e",
+  "family": "A13-UTI-hepatorrenal",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Síndrome Hepatorrenal — HRS-AKD e HRS-CKD",
+    "qid": "279c6c8e",
+    "q": "Paciente com cirrose e ascite apresenta redução persistente da função renal por mais de 90 dias, sem causa estrutural dominante. Qual interpretação está alinhada à nomenclatura ICA–ADQI atual?",
+    "refs": [
+      "hepatorenal_review"
+    ],
+    "opts": [
+      "O quadro pode ser classificado como HRS-CKD; vasodilatação esplâncnica e redução do volume arterial efetivo favorecem ativação neuro-hormonal e vasoconstrição renal",
+      "Todo distúrbio renal na cirrose deve ser chamado HRS-AKI, independentemente da duração",
+      "HRS-CKD exige necrose tubular comprovada em biópsia",
+      "A ausência de resposta a 48 horas fixas de albumina é obrigatória para definir qualquer forma de HRS"
+    ],
+    "ans": 0,
+    "exp": "A nomenclatura contemporânea distingue HRS-AKI, HRS-AKD e HRS-CKD segundo temporalidade e critérios de função renal. Persistência por mais de 90 dias enquadra HRS-CKD quando o fenótipo hepatorrenal é dominante. A fisiopatologia integra vasodilatação esplâncnica, redução do volume arterial efetivo, inflamação e ativação do sistema renina-angiotensina e simpático, com vasoconstrição renal. Necrose tubular aponta para lesão estrutural concorrente. O consenso não exige administração sistemática de albumina por 48 horas para firmar HRS-AKI; a avaliação volêmica deve ser individualizada e rápida.",
+    "diff": "hard",
+    "cat": "drc"
+  },
+  "originalSHA256": "sha256:12b1a896fd672fdbad8d1caed17d022bc88134bbd282effe495fd467b69f98ac",
+  "originalRefs": [
+    {
+      "id": "hepatorenal_review",
+      "original": {
+        "label": "ICA–ADQI — Lesão Renal e Síndrome Hepatorrenal na Cirrose (2024)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11193657/",
+        "journal": "Journal of Hepatology",
+        "ano": 2024,
+        "tipo": "Consenso",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Atualiza critérios de HRS-AKI e distingue HRS-AKD de HRS-CKD",
+        "icon": "📋",
+        "resumo": "Consenso multidisciplinar conjunto do International Club of Ascites e Acute Disease Quality Initiative. Atualiza a avaliação de LRA na cirrose e a nomenclatura da síndrome hepatorrenal: HRS-AKI para lesão aguda, HRS-AKD para disfunção inferior a 90 dias que não preenche HRS-AKI e HRS-CKD para persistência além de 90 dias. Recomenda avaliar rapidamente responsividade a volume quando clinicamente indicada, sem exigir administração sistemática de albumina por 48 horas para diagnosticar HRS-AKI, e reconhece coexistência de lesão estrutural.",
+        "conclusao": "Temporalidade, contexto cirrótico e exclusão de uma causa alternativa dominante orientam HRS-AKI, HRS-AKD e HRS-CKD; albumina deve ser guiada pela avaliação volêmica, não usada como teste obrigatório fixo.",
+        "curiosidade": "A revisão abandona a ideia de síndrome puramente funcional: inflamação sistêmica e lesão tubular podem coexistir com o fenótipo hemodinâmico hepatorrenal."
+      },
+      "originalSHA256": "sha256:0d0a7e089ef0cbdffbc82cceaeea189b9ecfa6d5abf101a8cf226702e6555282"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Classificar a duração crônica do fenótipo hepatorrenal predominante como HRS-CKD, distinguindo-a de HRS-AKI/AKD.",
+    "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "hard",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Alternativa correta mistura classificação e extensa fisiopatologia, enquanto as demais não.",
+      "MENOR — Redução persistente de função na cirrose não basta por si só para estabelecer etiologia hepatorrenal; tornar a avaliação etiológica explícita."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "hrs",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11193657/",
+      "doi": "10.1016/j.jhep.2024.03.031",
+      "access": "Corpo primário integral ICA–ADQI2024 aberto e lido nas seções diagnóstico, temporalidade e fisiopatologia.",
+      "locators": [
+        "Nomenclature: HRS<90dias=HRS-AKD se não preenche AKI; persistente>90dias=HRS-CKD; lesão aguda sobre DRC pode ser HRS-AKI on CKD.",
+        "Box1: fenótipo hepatorrenal exige contexto e avaliação de causas alternativas; dano estrutural pode coexistir.",
+        "Recomenda não exigir albumina sistemática48h para HRS-AKI; avaliação volêmica orienta ressuscitação individualizada."
+      ],
+      "limitations": [
+        "A duração isolada de qualquer disfunção na cirrose não estabelece etiologia hepatorrenal. A proposta declara fenótipo já investigado e predominante."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Fenótipo hepatorrenal persistente por mais de90dias é HRS-CKD; duração isolada não diagnostica qualquer disfunção da cirrose como hepatorrenal.",
+      "source": "hrs",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Síndrome Hepatorrenal — HRS-AKD e HRS-CKD",
+    "qid": "279c6c8e",
+    "q": "Paciente com cirrose e ascite mantém taxa de filtração glomerular estimada abaixo de 60 mL/min/1,73 m² por quatro meses. Após investigação, o fenótipo hepatorrenal é considerado predominante, sem outra causa que explique melhor a disfunção. Qual nomenclatura corresponde à duração descrita?",
+    "refs": [
+      "hepatorenal_review"
+    ],
+    "opts": [
+      "Síndrome hepatorrenal com doença renal crônica (HRS-CKD).",
+      "Síndrome hepatorrenal com lesão renal aguda (HRS-AKI).",
+      "Síndrome hepatorrenal com doença renal aguda (HRS-AKD).",
+      "Lesão renal aguda sobre doença renal crônica, pela duração isolada."
+    ],
+    "ans": 0,
+    "exp": "O consenso ICA–ADQI 2024 usa HRS-CKD para o fenótipo hepatorrenal persistente por mais de 90 dias. HRS-AKI depende de critérios de alteração aguda; HRS-AKD descreve duração inferior a 90 dias quando não se preenchem critérios de lesão aguda. A duração não estabelece sozinha a causa: cirrose pode coexistir com doença renal estrutural e com episódios agudos. Neste enunciado, a investigação já estabeleceu predominância do fenótipo hepatorrenal; não se presume que toda disfunção crônica na cirrose seja HRS-CKD.",
+    "diff": "medium",
+    "cat": "drc"
+  },
+  "proposedSHA256": "sha256:e565fc498a3ced1ddafccc309c50ed88035ff1cc077b6ff5cba49af3a9b63458",
+  "classificationAfter": {
+    "op": "Classificar a duração crônica do fenótipo hepatorrenal predominante como HRS-CKD, distinguindo-a de HRS-AKI/AKD.",
+    "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "hepatorenal_review",
+      "original": {
+        "label": "ICA–ADQI — Lesão Renal e Síndrome Hepatorrenal na Cirrose (2024)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11193657/",
+        "journal": "Journal of Hepatology",
+        "ano": 2024,
+        "tipo": "Consenso",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Atualiza critérios de HRS-AKI e distingue HRS-AKD de HRS-CKD",
+        "icon": "📋",
+        "resumo": "Consenso multidisciplinar conjunto do International Club of Ascites e Acute Disease Quality Initiative. Atualiza a avaliação de LRA na cirrose e a nomenclatura da síndrome hepatorrenal: HRS-AKI para lesão aguda, HRS-AKD para disfunção inferior a 90 dias que não preenche HRS-AKI e HRS-CKD para persistência além de 90 dias. Recomenda avaliar rapidamente responsividade a volume quando clinicamente indicada, sem exigir administração sistemática de albumina por 48 horas para diagnosticar HRS-AKI, e reconhece coexistência de lesão estrutural.",
+        "conclusao": "Temporalidade, contexto cirrótico e exclusão de uma causa alternativa dominante orientam HRS-AKI, HRS-AKD e HRS-CKD; albumina deve ser guiada pela avaliação volêmica, não usada como teste obrigatório fixo.",
+        "curiosidade": "A revisão abandona a ideia de síndrome puramente funcional: inflamação sistêmica e lesão tubular podem coexistir com o fenótipo hemodinâmico hepatorrenal."
+      },
+      "originalSHA256": "sha256:0d0a7e089ef0cbdffbc82cceaeea189b9ecfa6d5abf101a8cf226702e6555282",
+      "proposed": {
+        "label": "ICA–ADQI — Lesão Renal e Síndrome Hepatorrenal na Cirrose (2024)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11193657/",
+        "journal": "Journal of Hepatology",
+        "ano": 2024,
+        "tipo": "Consenso",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Atualiza critérios de HRS-AKI e distingue HRS-AKD de HRS-CKD",
+        "icon": "📋",
+        "resumo": "Consenso multidisciplinar conjunto do International Club of Ascites e Acute Disease Quality Initiative. Atualiza a avaliação de LRA na cirrose e a nomenclatura da síndrome hepatorrenal: HRS-AKI para lesão aguda, HRS-AKD para disfunção inferior a 90 dias que não preenche HRS-AKI e HRS-CKD para persistência além de 90 dias. Recomenda avaliar rapidamente responsividade a volume quando clinicamente indicada, sem exigir administração sistemática de albumina por 48 horas para diagnosticar HRS-AKI, e reconhece coexistência de lesão estrutural.",
+        "conclusao": "Temporalidade, contexto cirrótico e exclusão de uma causa alternativa dominante orientam HRS-AKI, HRS-AKD e HRS-CKD; albumina deve ser guiada pela avaliação volêmica, não usada como teste obrigatório fixo.",
+        "curiosidade": "A revisão abandona a ideia de síndrome puramente funcional: inflamação sistêmica e lesão tubular podem coexistir com o fenótipo hemodinâmico hepatorrenal."
+      },
+      "proposedSHA256": "sha256:0d0a7e089ef0cbdffbc82cceaeea189b9ecfa6d5abf101a8cf226702e6555282",
+      "sourceIDs": [
+        "hrs"
+      ],
+      "notes": [
+        "Card compartilhado atual byte-exato, rechecado integralmente. Nenhuma alteração global de conteúdo."
+      ]
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "19/20. Retira segunda tarefa fisiopatológica e explicita dado etiológico. Dificuldade medium por aplicação de nomenclatura em caso, sem análise de múltiplos mecanismos.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

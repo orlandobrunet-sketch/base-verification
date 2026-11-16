@@ -1,0 +1,232 @@
+{
+  "schema": "NQ_1728_LIBRARY_IMPLEMENTATION_RECEIPT_v3",
+  "date": "2026-11-15",
+  "author": "reference_duplicates_1728",
+  "stage": "33 grupos e favoritos históricos verificados localmente; publicação coordenada pelo root.",
+  "scope": "Três grupos bibliográficos reparados, pins FIDELIO/ANDROMEDA atualizados e favoritos históricos de conteúdo ainda bloqueado representados sem conceder leitura.",
+  "files": [
+    {
+      "file": "js/library-catalog.js",
+      "sha256": "8e0e5f57ffe30febdd578db4766887c45d27a358e5e73f544adb112811bbade0"
+    },
+    {
+      "file": "js/dashboard.js",
+      "sha256": "fe428bd1de9d9f66c8aeb815af0eeb32fba45b6d2920464daf7edf3362ea8b9b"
+    },
+    {
+      "file": "js/utils.js",
+      "sha256": "24e41449276d8327499db273102c7d23abe47068f073e4f91064e2f9b002cbaa"
+    },
+    {
+      "file": "js/game.js",
+      "sha256": "ae12e0774b86af26e123c6e5e54f0350d4bf1bd6efc3035e0b703e8622a203d4"
+    },
+    {
+      "file": "js/achievements.js",
+      "sha256": "54e826da2e81050e65dc1ccf595c6ca37c37c423fc134b9208e45d0efaf6e82c"
+    },
+    {
+      "file": "tests/answers/library-catalog.test.cjs",
+      "sha256": "870d5c2ddc2ab1c381aab8a7be9c51374da2be1c2cb8d4c327aade570fbfb2a4"
+    },
+    {
+      "file": "tests/specs/306-library-catalog.spec.ts",
+      "sha256": "e211069783123836831a53b607c81fe7236b8effb8721f511595519315691513"
+    }
+  ],
+  "dataWrittenByThisAgent": [],
+  "sourceDataPreservation": {
+    "articlesRawSHA256": "6537e13be03b81feafe661f52fee6d56058bc15a55c702d8b18d7e319b0fcdf3",
+    "articlesPhysicalCount": 191,
+    "priorRawSHA256": "ef37014a39ce6102e6c5614dbe209cc459e20868aa115413af57171c0fb79c26",
+    "changedIndicesAppliedByRoot": [
+      5,
+      6,
+      117,
+      122,
+      125,
+      132
+    ],
+    "unchangedOriginalIndices": 185,
+    "physicalReordering": false,
+    "identicalAliasesStillVerified": true,
+    "reason": "O root aplicou seis corpos de pergaminhos aprovados e preservou os demais. Este agente não escreveu data/*.js; não declarar o arquivo inteiro byte-exato após reparos autorizados."
+  },
+  "currentWorkingTreeProjection": {
+    "physicalReferenceCards": 386,
+    "physicalScrolls": 191,
+    "logicalScrolls": 189,
+    "verifiedWorkGroups": 33,
+    "distinctContentVariants": 575,
+    "workCards": 538,
+    "physicalRows": 577
+  },
+  "primaryIdentityVerification": {
+    "capture": "primary-nlm-metadata.json",
+    "workMap": "work-map-proposal-v3.json",
+    "all29DirectlyReadViaPublicNLMESummary": true,
+    "clinicalApprovalOfAllVariantBodies": false,
+    "retractionDocumentKeptSeparate": true,
+    "additionalFullPrimarySources": [
+      "SHARP2011PMC3145073/PMID21663949/DOI10.1016/S0140-6736(11)60739-3",
+      "KDIGO2024official guideline for third legacy source binding",
+      "Captopril/MDRD cinco registros NLM completos e reprint1994NIDDK; bula oficial captopril"
+    ],
+    "clinicalReviewBoundary": "Gates independentes A2/DRC/regulatório/A56/bibliográfico/A7 dos literais exatos; agrupamento não aprova outros corpos."
+  },
+  "validation": {
+    "unit": {
+      "command": "node --test tests/answers/library-catalog.test.cjs",
+      "passed": 11,
+      "failed": 0,
+      "workGroupsAsserted": 33,
+      "physicalToWorkRowReductionAsserted": 39
+    },
+    "e2e": {
+      "specs": [
+        "tests/specs/306-library-catalog.spec.ts",
+        "tests/specs/245-library-blocked-reader.spec.ts"
+      ],
+      "projects": [
+        "chromium",
+        "mobile"
+      ],
+      "passed": 20,
+      "failed": 0,
+      "retries": 0,
+      "artifacts": "e2e-run-8",
+      "includes": [
+        "legacy favorite aliases",
+        "source/scroll access isolation and forged-call guards",
+        "legacy library fallback",
+        "visible-variant heading and ordering",
+        "all three native chest paths and unchanged reward amounts",
+        "collection condition",
+        "mobile overflow check",
+        "MDRD três pergaminhos, dois ainda bloqueados com favoritos históricos",
+        "Captopril/FIDELIO novos pins e favoritos sem grant de resumo",
+        "remoção de favorito bloqueado e chamada direta sem leitura/crédito",
+        "favorito de fonte bloqueada identificado também no Grimório legado"
+      ],
+      "seconds": 145.617299,
+      "server": "Existing local NodeHTTPserver5501",
+      "rerunReason": "Novos cenários revelaram omissão de favoritos de conteúdos bloqueados. Reparado sem transferir acesso, incluindo título real do favorito no fallback.",
+      "flaky": 0
+    },
+    "existingTargetConsolidation": {
+      "controllerChanges": false,
+      "proof": "fusion-probe-results.json",
+      "exam": "PASS",
+      "study": "PASS",
+      "plannedPositionsPreserved": true,
+      "existingAnswerPreserved": true,
+      "newPendingAnswerStillNull": true,
+      "noProgressOrFSRSCreditFromChoice": true,
+      "resumeIntact": true
+    },
+    "environmentPreparation": [
+      "Initial isolated browser lookup used a noninstalled per-container path; corrected with existing PLAYWRIGHT_BROWSERS_PATH.",
+      "Local network isolation prevented initial app access; final native runs used server and browser in the same approved nonisolated session. Preparation attempts are not product passes/failures."
+    ],
+    "developmentFailuresPreserved": [
+      {
+        "artifacts": "e2e-run-6",
+        "passed": 16,
+        "failed": 4,
+        "reason": "Novas expectativas procuravam botão bloqueado ausente no placeholder; investigação confirmou ainda omissão de favoritos históricos."
+      },
+      {
+        "artifacts": "e2e-run-7",
+        "passed": 18,
+        "failed": 2,
+        "reason": "Favorito legado ainda mostrava rótulo genérico em vez do título salvo; reparado usando metadado bibliográfico já preservado."
+      }
+    ]
+  },
+  "coordination": {
+    "rootOwns": [
+      "script linkage",
+      "styles",
+      "service-worker asset list and version bump",
+      "medical data revisions and deployment"
+    ],
+    "remainingBibliographicHolds": [],
+    "noSilentClinicalSummarySelection": true,
+    "knownTechnicalOutstanding": "Nenhum no escopo do catálogo após run8; não equivale a declarar todo o produto isento de intermitências."
+  },
+  "portableArtifacts": [
+    {
+      "file": "inventory.json",
+      "sha256": "c05a797d4dbe0cacb1fb6d9e3dbf6b98452b02ac540119fd4f2420c9b9e1a7e4"
+    },
+    {
+      "file": "summary.json",
+      "sha256": "6ec02cf46b76e061e014c86918643fde912b7eb7ae61b5618a4e35e2be852b9f"
+    },
+    {
+      "file": "title-similarity-candidates.json",
+      "sha256": "c8623aa561885c40045d4e20d441c708d19f696cf0c43fc914d3032bdef210a7"
+    },
+    {
+      "file": "audit-report.json",
+      "sha256": "a9300ed11d02aca2b7f1b7f8380dea2af1df75d2b0f6a1bf65d0392d85d9dfda"
+    },
+    {
+      "file": "safe-pairs-proof.json",
+      "sha256": "f0419824dc1c27acc1541bc30b5132b749cc6c26678cd066c7f20e7f6cb36e9f"
+    },
+    {
+      "file": "work-map-proposal.json",
+      "sha256": "c909f67fb6dafcd2ec9367b04ffd808c4dbed8fcbb7ea0a20790d1bbb97eb4b6"
+    },
+    {
+      "file": "primary-nlm-metadata.json",
+      "sha256": "5c8f495a7d424690d4f58af1d784f68e53d66f377b45a641999cf5cf43fd3936"
+    },
+    {
+      "file": "implementation-plan.md",
+      "sha256": "ff7e9647ea081fc84feee4480ab41f9cb25329e551fbbd4973b499aef18e7767"
+    },
+    {
+      "file": "fusion-probe-results.json",
+      "sha256": "3eeef19b62f008ea7cf51916c5d63d6fb511361b99247566e88631251c1a31a3"
+    },
+    {
+      "file": "work-map-proposal-v2.json",
+      "sha256": "b252a065bddaf73f43326fb3ba8751b823e78d6d69f0316b7ff087fbac1a05a0"
+    },
+    {
+      "file": "independent-DRC-review.json",
+      "sha256": "a17c3dd57a1d61934f63f5cc1b8f02c8d498d561ef02b77d6fe35c1742d6530f"
+    },
+    {
+      "file": "independent-DRC-fusion-adjudication.json",
+      "sha256": "ff69d2c9e1f273415d4d938fe9a83c803ab25b87f1a5bd449c087e2d744c4f2d"
+    },
+    {
+      "file": "work-map-proposal-v3.json",
+      "sha256": "bf90bb52b76be9277ce75e96880749ebf34273661a5372d02beedb045b390ee9"
+    },
+    {
+      "file": "independent-A56-review.json",
+      "sha256": "cd8e7c6e322726f9d1837ee9bb495dbe8c4badc1fce62912d64db1560a8fcd67"
+    },
+    {
+      "file": "independent-bibliographic-review.json",
+      "sha256": "bf9f98656e185f076600d0fb5d06c3fefd9ad3047c74b9806f6e2606c7461707"
+    },
+    {
+      "file": "independent-A7-review.json",
+      "sha256": "a9ed420015ffb2c24c28517c1d16a045d701121c9239f68aa676233e8fad3114"
+    },
+    {
+      "file": "independent-pharmacology-review.json",
+      "sha256": "0e0e1a38901236f7d4af83d404b2e7c77d8039def0def6d9e33daa4f735ed322"
+    }
+  ],
+  "previousReceipt": {
+    "file": "implementation-receipt-v2.json",
+    "rawSHA256": "0fa806a352961aded0ae23b87b6b703e1b986c222ebfcc5546fe03d090993d45",
+    "preserved": true
+  }
+}

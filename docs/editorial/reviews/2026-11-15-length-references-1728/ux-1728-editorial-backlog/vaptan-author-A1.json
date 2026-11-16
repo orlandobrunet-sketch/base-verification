@@ -1,0 +1,562 @@
+{
+  "schema": "NQ_1728_VAPTAN_AUTHOR_REVIEW_A1_v1",
+  "date": "2026-11-15",
+  "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+  "productionWrites": false,
+  "applied": false,
+  "independentReviewRequired": true,
+  "sourceCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "sourceVersion": "17.27",
+  "skill": {
+    "file": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+    "sha256": "eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd"
+  },
+  "norms": [
+    {
+      "file": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "sha256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "file": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "sha256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "file": "docs/editorial/annex-c-nefrologia.md",
+      "sha256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "file": "data/topics.js",
+      "sha256": "32e76a61e669ad9673370810eb223b303efc4c3e8980a11971f82a11f3cd1e7f"
+    },
+    {
+      "file": "data/refs.js",
+      "sha256": "9874303865b0a9a803eda9cffb7d7034509b1dcecb43f507ad2de1acb86b274b"
+    }
+  ],
+  "originalFormalReview": {
+    "file": "docs/editorial/reviews/2026-11-15-editorial-continuation/duplicate-vaptans-review.json",
+    "sha256": "26acc9123fa6f2ae9917bef5c4b70da19f10800d504a2d549fe62fd00f882560",
+    "originalsStillExact": true,
+    "decisions": [
+      {
+        "qid": "cfeef8e1",
+        "verdict": "revisão maior",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "publication": "BLOQUEADA"
+      },
+      {
+        "qid": "4c7d3db3",
+        "verdict": "fundir",
+        "evidence": "PARCIALMENTE VERIFICADA",
+        "pending": "DECISIVA",
+        "publication": "BLOQUEADA"
+      }
+    ]
+  },
+  "authorOriginal": {
+    "qid": "cfeef8e1",
+    "rawObjectSHA256": "c2a403f15bc1db51d0a2511f2cdfa991a3b525be91bd9bb8e5d0d0ccc2bb6553",
+    "authorRevision": "sha256:9fb7e7851f853e86c42ad2d581393300e2fe25f51b8cdd9c5999e2d669b23706",
+    "question": {
+      "t": "Mecanismo da tolvaptana na hiponatremia",
+      "qid": "cfeef8e1",
+      "q": "Qual é o mecanismo de ação da tolvaptana no tratamento de hiponatremia euvolêmica ou hipervolêmica selecionada?",
+      "refs": [
+        "hyponatremia_adrogue2000",
+        "hyponatremia_verbalis2022",
+        "salsa_trial"
+      ],
+      "opts": [
+        "Estimula a secreção de ADH para concentrar a urina",
+        "Antagonista seletivo do receptor V2 da vasopressina (no ducto coletor) → impede inserção de AQP2 → aquarese → elevação do sódio",
+        "Aumenta a excreção de sódio pelo néfron distal",
+        "Bloqueia canais de sódio do ducto coletor (ENaC)"
+      ],
+      "ans": 1,
+      "exp": "A tolvaptana antagoniza seletivamente o receptor V2 da vasopressina no ducto coletor, reduz a inserção de aquaporina-2 (AQP2) e aumenta a excreção de água livre, sem natriurese proporcional. Esse efeito de aquarese pode elevar o sódio sérico em hiponatremia euvolêmica ou hipervolêmica selecionada, mas exige monitorização para evitar correção rápida. Ela não estimula ADH, não atua primariamente como natriurético distal e não bloqueia o canal epitelial de sódio (ENaC).",
+      "diff": "medium",
+      "cat": "eletrólitos"
+    }
+  },
+  "patch": {
+    "qid": "cfeef8e1",
+    "after": {
+      "t": "Mecanismo de ação da tolvaptana",
+      "qid": "cfeef8e1",
+      "q": "Qual mecanismo explica a aquarese produzida pela tolvaptana?",
+      "refs": [
+        "tolvaptan_teva_label_2025"
+      ],
+      "opts": [
+        "Ativação dos receptores V2, aumentando a inserção de aquaporina-2.",
+        "Bloqueio dos receptores V2, reduzindo a inserção de aquaporina-2.",
+        "Bloqueio do cotransportador de sódio-potássio-cloro, aumentando a natriurese.",
+        "Bloqueio dos canais epiteliais de sódio, aumentando a natriurese."
+      ],
+      "ans": 1,
+      "exp": "A tolvaptana antagoniza receptores V2 da vasopressina e reduz a inserção de aquaporina-2 na membrana, diminuindo a reabsorção de água. O resultado é aquarese: maior excreção de água livre. A ativação de V2 favoreceria o efeito antidiurético; os transportadores e canais de sódio citados não são o alvo da tolvaptana.",
+      "diff": "easy",
+      "cat": "eletrólitos"
+    },
+    "afterAuthorRevision": "sha256:afe24448cfebf9063c4d9af5fe302f44aff3d71709cba4c687b42ed049c3a2ed",
+    "refCardsAfter": {
+      "tolvaptan_teva_label_2025": {
+        "label": "Tolvaptana — mecanismo de ação (bula Teva, 2025)",
+        "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=808a9a1f-2f58-4677-9127-e749ad007094",
+        "journal": "DailyMed — Teva Pharmaceuticals, Inc.",
+        "ano": 2025,
+        "tipo": "Bula profissional aprovada pela FDA",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "Antagonismo V2 reduz a inserção de aquaporina-2 e aumenta a excreção de água livre.",
+        "icon": "📋",
+        "resumo": "Documento regulatório revisado em março de 2025. A seção 12.1 descreve como o bloqueio V2 reduz a sinalização por AMP cíclico e a inserção de aquaporina-2. Esta referência sustenta o mecanismo, sem extrapolar indicações ou doses do produto.",
+        "conclusao": "A aquarese decorre do bloqueio da ação antidiurética da vasopressina.",
+        "curiosidade": ""
+      }
+    },
+    "referenceBindings": [
+      {
+        "id": "tolvaptan_teva_label_2025",
+        "referenceRevision": "sha256:275271b9a54e79b616e3af24955300d5dcd84572b3c95e3beec5f77a8b2adb4c",
+        "scope": "all 12 literal fields"
+      }
+    ]
+  },
+  "fullCandidateBundleRevision": "sha256:c842bd36a6c01e04239f005a5d581535ed1bd4b833301a16e28dee31f173717c",
+  "referenceTaxonomyException": {
+    "scope": "ONE_REQUIRED_REGULATORY_LABEL_ONLY",
+    "approvedByParent": true,
+    "meaning": "Exceção pontual de apresentação ao contrato da skill; não constitui aprovação clínica.",
+    "precedent": "data/refs.js: tramadol_fda_label_2019, BULA/#64748b/📋",
+    "type": "Bula profissional aprovada pela FDA",
+    "badge": "BULA",
+    "badgeColor": "#64748b",
+    "icon": "📋",
+    "noSecondRedundantCard": true
+  },
+  "sources": [
+    {
+      "id": "S1",
+      "role": "SOLE_PRODUCTION_CARD_PRIMARY_REGULATORY_SOURCE",
+      "identity": "TOLVAPTAN kit — Teva Pharmaceuticals, Inc.",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=808a9a1f-2f58-4677-9127-e749ad007094",
+      "setId": "808a9a1f-2f58-4677-9127-e749ad007094",
+      "access": "OPENED_FULL_TEXT",
+      "checked": "2026-11-15",
+      "clinicalRevision": "03/2025",
+      "pageUpdated": "2025-03-09",
+      "splArchivePublished": "2026-09-01",
+      "splVersion": "3 (current)",
+      "marketingApplication": "ANDA216933",
+      "locators": [
+        "Prescribing information: Revised 3/2025",
+        "12.1 Mechanism of Action, paragraphs 1–2",
+        "Labeling Archives: version 3, published Sep 1 2026"
+      ],
+      "shortExactExcerpt": "Decreased cAMP concentrations prevent aquaporin 2 containing vesicles from fusing with the plasma membrane",
+      "excerptWordCount": 14,
+      "scopeLimit": "Mecanismo apenas. O produto rotulado é para doença renal policística; não transpor sua indicação ou posologia para hiponatremia. Ano do card segue revisão clínica 2025, não o arquivamento SPL 2026."
+    },
+    {
+      "id": "S2",
+      "role": "CORROBORATION_ONLY_NO_NEW_CARD",
+      "identity": "SAMSCA — Otsuka America Pharmaceutical, Inc.",
+      "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5526617c-c7b9-4556-886d-729bbabbc566",
+      "access": "OPENED_FULL_TEXT",
+      "checked": "2026-11-15",
+      "clinicalRevision": "04/2021",
+      "pageUpdated": "2026-05-07",
+      "locators": [
+        "12.1 Mechanism of Action",
+        "12.2 Pharmacodynamics"
+      ],
+      "scopeLimit": "Corrobora o mecanismo e impede tratar elevação secundária de vasopressina como prova de agonismo; não se importa qualquer dose."
+    },
+    {
+      "id": "S3",
+      "role": "PARTNER_DISPOSITION_ONLY_NO_NEW_CARD",
+      "identity": "VAPRISOL — conivaptan FDA label, 2008",
+      "url": "https://www.accessdata.fda.gov/drugsatfda_docs/label/2008/021697s001lbl.pdf",
+      "access": "OPENED_FULL_TEXT",
+      "checked": "2026-11-15",
+      "locators": [
+        "PDF page 1 DESCRIPTION, lines 8–9",
+        "PDF page 2 CLINICAL PHARMACOLOGY, lines 42–50"
+      ],
+      "scopeLimit": "Fonte histórica usada somente para confirmar o contraexemplo à generalização de seletividade V2 do parceiro; não é alegada bula atual para prescrição."
+    }
+  ],
+  "claims": [
+    {
+      "id": "C1",
+      "scope": "B; explicação; card",
+      "claim": "Antagonismo V2 explica o mecanismo da tolvaptana.",
+      "sources": [
+        "S1 §12.1",
+        "S2 §12.1"
+      ],
+      "status": "VERIFICADA"
+    },
+    {
+      "id": "C2",
+      "scope": "B; explicação; card",
+      "claim": "Menor inserção de aquaporina-2 liga esse antagonismo à aquarese.",
+      "sources": [
+        "S1 §12.1 parágrafo 2"
+      ],
+      "status": "VERIFICADA"
+    },
+    {
+      "id": "C3",
+      "scope": "card.resumo",
+      "claim": "A etapa intermediária descrita pela fonte é menor AMP cíclico.",
+      "sources": [
+        "S1 §12.1 parágrafos 1–2"
+      ],
+      "status": "VERIFICADA"
+    },
+    {
+      "id": "C4",
+      "scope": "unicidade do gabarito",
+      "claim": "Os alvos de C/D e o agonismo de A não são o mecanismo atribuído à tolvaptana.",
+      "sources": [
+        "S1 §12.1",
+        "S2 §12.1"
+      ],
+      "status": "VERIFICADA"
+    },
+    {
+      "id": "C5",
+      "scope": "disposição do parceiro, não inserida no candidato",
+      "claim": "Conivaptana tem antagonismo V1A/V2, contraexemplo à seletividade V2 universal dos vaptanos.",
+      "sources": [
+        "S3 DESCRIPTION; CLINICAL PHARMACOLOGY"
+      ],
+      "status": "VERIFICADA"
+    }
+  ],
+  "candidateReview": {
+    "configuration": "Candidato exato como único item retido deste par; a aposentadoria do parceiro integra o pacote e é indispensável para resolver a duplicidade.",
+    "qid": "cfeef8e1",
+    "verdict": "aprovada",
+    "confidence": "alta",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publicationAuthorization": "LIBERADA",
+    "authorizationDerivedBy": "Handbook §18.4 Regra 7: evidência verificada + pendência nenhuma + veredito de aprovação. Não deriva do gate anterior.",
+    "op": "Reconhecer o antagonismo V2 e sua ligação com menor ação de aquaporina-2 e aquarese, distinguindo o mecanismo de estímulo antidiurético e natriurese.",
+    "competency": "Mecanismo farmacológico renal",
+    "bloom": "Lembrar, com compreensão da relação mecanismo/efeito",
+    "miller": "Sabe",
+    "intrinsicDifficulty": "easy",
+    "target": "Estudante de medicina/residente; mesmo perfil implícito do original.",
+    "classificationRationale": "Alvo explicitamente nomeado, uma relação causal conhecida, sem integração de vinheta ou escolha terapêutica; medium superestimava a tarefa.",
+    "qidDecision": "Preservar cfeef8e1: mesmos OP, competência e conceito correto, conforme Handbook §18.5. Sem reset de FSRS.",
+    "justification": "Remove-se a atribuição bibliográfica alheia ao objetivo, torna-se a correta concisa e mantém-se somente um item deste OP.",
+    "remainingSubstantiveProblems": [],
+    "appealTests": [
+      {
+        "challenge": "Duas alternativas poderiam explicar a aquarese?",
+        "result": "Não. Somente B atribui ao fármaco o alvo e o sentido de ação documentados."
+      },
+      {
+        "challenge": "A ausência de cenário clínico impede a resposta?",
+        "result": "Não. O comando pede mecanismo, sem recomendação de tratamento."
+      },
+      {
+        "challenge": "O card de produto para doença renal policística é extrapolado para hiponatremia?",
+        "result": "Não. O candidato não pede indicação ou dose; a fonte é usada estritamente no mecanismo compartilhado do princípio ativo."
+      },
+      {
+        "challenge": "B poderia ser escolhida apenas pelo comprimento?",
+        "result": "A pista de correta única mais longa foi retirada; isto não prova discriminação psicométrica em usuários."
+      },
+      {
+        "challenge": "A oposição A/B é artificial?",
+        "result": "É tell residual pontuado. Confundir agonismo e antagonismo é erro farmacológico coerente, sem segunda resposta defensável."
+      }
+    ],
+    "appealConclusion": "Nenhum argumento plausível de anulação do candidato na configuração final de um item retido.",
+    "eliminators": [
+      {
+        "id": 1,
+        "label": "Mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "B é o mecanismo do fármaco; as demais atribuem ações distintas."
+      },
+      {
+        "id": 2,
+        "label": "A referência não sustenta o gabarito",
+        "triggered": false,
+        "rationale": "O novo card aponta diretamente para §12.1, que contém o mecanismo."
+      },
+      {
+        "id": 3,
+        "label": "A questão mede outro OP",
+        "triggered": false,
+        "rationale": "Mesma identidade pedagógica de cfeef8e1; o título foi tornado coerente com o comando."
+      },
+      {
+        "id": 4,
+        "label": "Conduta insegura",
+        "triggered": false,
+        "rationale": "Não se ensinam indicação, dose, escolha de paciente ou protocolo de correção."
+      },
+      {
+        "id": 5,
+        "label": "Distrator absurdo",
+        "triggered": false,
+        "rationale": "As opções representam mecanismos farmacológicos reconhecíveis e confusões plausíveis."
+      },
+      {
+        "id": 6,
+        "label": "Trivia sem consequência clínica",
+        "triggered": false,
+        "rationale": "Distinguir perda de água livre de natriurese tem consequência no entendimento do balanço de água."
+      },
+      {
+        "id": 7,
+        "label": "Explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Explicação e B apontam o mesmo alvo e efeito."
+      },
+      {
+        "id": 8,
+        "label": "Dado decisivo ausente",
+        "triggered": false,
+        "rationale": "Não há decisão de prescrição ou caso que demande dados adicionais."
+      },
+      {
+        "id": 9,
+        "label": "Dependência de protocolo local",
+        "triggered": false,
+        "rationale": "O alvo molecular não depende de protocolo local."
+      },
+      {
+        "id": 10,
+        "label": "Desatualização científica relevante",
+        "triggered": false,
+        "rationale": "A fonte vigente acessível mantém o mecanismo; não se importam recomendações clínicas antigas."
+      }
+    ],
+    "score": {
+      "status": "VALID",
+      "dimensions": [
+        {
+          "id": 1,
+          "dimension": "Alinhamento ao OP",
+          "score": 2,
+          "reason": "Permanece o mesmo alvo farmacológico e o mesmo efeito renal."
+        },
+        {
+          "id": 2,
+          "dimension": "Validade de conteúdo",
+          "score": 2,
+          "reason": "A cadeia essencial é sustentada por documento regulatório primário aberto."
+        },
+        {
+          "id": 3,
+          "dimension": "Validade de construto",
+          "score": 2,
+          "reason": "Reconhecimento de mecanismo, assumidamente básico; não simula decisão clínica avançada."
+        },
+        {
+          "id": 4,
+          "dimension": "Qualidade do enunciado",
+          "score": 2,
+          "reason": "Comando único e suficiente para o objetivo conceitual."
+        },
+        {
+          "id": 5,
+          "dimension": "Alternativas",
+          "score": 2,
+          "reason": "Mesma categoria mecanismo/efeito; B é única correta e não é a mais extensa."
+        },
+        {
+          "id": 6,
+          "dimension": "Distratores",
+          "score": 2,
+          "reason": "Erros nomeados: agonismo/antagonismo e confusão com alvos de diuréticos natriuréticos."
+        },
+        {
+          "id": 7,
+          "dimension": "Explicação",
+          "score": 2,
+          "reason": "Conclui, explicita a consequência renal e distingue os alvos incorretos."
+        },
+        {
+          "id": 8,
+          "dimension": "Referências",
+          "score": 2,
+          "reason": "Um card regulatório pertinente, com documento e seção conferidos; SALSA removida da atribuição."
+        },
+        {
+          "id": 9,
+          "dimension": "Ausência de cara de IA",
+          "score": 1,
+          "reason": "A/B usam oposição agonismo/antagonismo; aceitável como erro farmacológico real, mas é um tell residual."
+        },
+        {
+          "id": 10,
+          "dimension": "Valor pedagógico",
+          "score": 1,
+          "reason": "Base útil para balanço de água; exige conhecimento de um mecanismo e não uma decisão clínica."
+        }
+      ],
+      "total": 18,
+      "band": "Excelente"
+    },
+    "tree": "0: VERIFICADA/NENHUMA permite avaliar. 1: nenhum dos 10 eliminatórios no candidato; duplicidade resolvida pela disposição pareada. 2: nenhum recurso plausível restante. 3:18/20 → aprovada. A transição publicada depende da implementação do pacote após revisão independente.",
+    "lifecycleProposed": "publicado somente após revisão independente e aplicação da disposição pareada; artefato atual não altera ciclo de vida",
+    "reviewerRole": "Autor do candidato; este relatório não é revisão independente."
+  },
+  "pairDisposition": {
+    "sourceQid": "4c7d3db3",
+    "destinationQid": "cfeef8e1",
+    "sourceAuthorRevision": "sha256:3361cb21168c754cadd3fc5e0af3597cfe78d14ddf0e430350dedc0cfde908f1",
+    "sourceRawObjectSHA256": "b6b4d567b8c239cfcbcd65551a4c02e0e1d740008b6dafc175ae6633e8cbf6c7",
+    "sourceOriginal": {
+      "qid": "4c7d3db3",
+      "q": "Qual o mecanismo de ação dos vaptanos (como o Tolvaptan) no manejo da hiponatremia?",
+      "opts": [
+        "Aumentam a reabsorção de sódio na alça de Henle.",
+        "Estimulam a inserção de Aquaporinas 2 na membrana apical.",
+        "Antagonizam os receptores V2 da vasopressina no ducto coletor, gerando aquarese (perda de água livre).",
+        "Bloqueiam a anidrase carbônica no túbulo proximal."
+      ],
+      "ans": 2,
+      "exp": "Os vaptanos, como a tolvaptana, são antagonistas seletivos dos receptores V2 da vasopressina (ADH) nas células principais do ducto coletor. Ao bloquear esses receptores, reduzem a inserção de aquaporinas-2 (AQP2) na membrana apical, diminuem a reabsorção de água livre e produzem aquarese, o que pode elevar a concentração sérica de sódio em hiponatremia euvolêmica ou hipervolêmica selecionada. Eles não aumentam a reabsorção de sódio, não estimulam AQP2 e não atuam como inibidores da anidrase carbônica.",
+      "refs": [
+        "hyponatremia_adrogue2000",
+        "hyponatremia_verbalis2022",
+        "salsa_trial"
+      ],
+      "cat": "eletrólitos",
+      "diff": "medium",
+      "t": "Mecanismo de Ação dos Vaptanos"
+    },
+    "verdict": "fundir",
+    "confidence": "alta",
+    "evidence": "PARCIALMENTE VERIFICADA",
+    "pending": "DECISIVA",
+    "publicationAuthorization": "BLOQUEADA",
+    "gateScope": "Texto original do parceiro, sem nova redação. Reafirmação do veredito original exato; a nova evidência de mecanismo não verifica integralmente suas 3 referências antigas. Não liberar o texto antigo para republicação.",
+    "duplicateTest": {
+      "canonicalDimensions": [
+        {
+          "dimension": "decisão/OP",
+          "coincides": true,
+          "reason": "Reconhecer antagonismo V2 e aquarese da tolvaptana; o exemplo Tolvaptan no item de classe exige o mesmo fato."
+        },
+        {
+          "dimension": "estrutura de dados do caso",
+          "coincides": true,
+          "reason": "Ambos perguntas conceituais diretas, sem vinheta, exames, temporalidade, gravidade ou conflito terapêutico; euvolemia/hipervolemia selecionada não é usada para escolha clínica."
+        },
+        {
+          "dimension": "perfil-alvo",
+          "coincides": true,
+          "reason": "Nenhum alvo diferente é declarado; ambos pressupõem a mesma formação e o mesmo conhecimento prévio."
+        },
+        {
+          "dimension": "língua",
+          "coincides": true,
+          "reason": "Português brasileiro em ambos; Tolvaptan é apenas variação terminológica."
+        }
+      ],
+      "auxiliaryDimensions": {
+        "cognitiveProfile": "Mesmo reconhecimento de mecanismo; nenhum exige aplicar o mecanismo a dados de paciente.",
+        "difficulty": "Ambos medium no banco; ambos easy pela rubrica intrínseca do formato atual."
+      },
+      "conclusion": "DUPLICATAS",
+      "confidence": "alta",
+      "pairDisposition": "FUNDIR 4c7d3db3 EM cfeef8e1, apenas como decisão editorial proposta; nenhum patch aplicado."
+    },
+    "eliminators": [
+      {
+        "id": 2,
+        "label": "A referência não sustenta o gabarito",
+        "reason": "SALSA continua atribuído fora do OP; sua correção não é necessária para aposentar a duplicata."
+      }
+    ],
+    "score": {
+      "status": "anulado por eliminatório"
+    },
+    "appeal": "Duplicidade nas quatro dimensões, generalização de seletividade de classe e atribuição bibliográfica inadequada permanecem no original exato.",
+    "tree": "Evidência parcial+pendência decisiva bloqueia a publicação do original. Duplicidade completa na árvore §19 conduz a fundir; manter cfeef8e1 reparado e aposentar 4c7d3db3.",
+    "implementationOrder": [
+      "Revisar independentemente o AFTER e o card único exatos.",
+      "Somente se aprovados: reter o cfeef8e1 reparado e consolidar o parceiro na mesma entrega.",
+      "Arquivar literalmente 4c7d3db3 e sua justificativa, retirar de novas filas, preservar históricos e registros de usuários.",
+      "Banco atual pode passar a740; nenhum novo OP ou qid é fabricado para preservar contagem."
+    ],
+    "learningState": "Nenhum apagamento, reset, soma, renomeação, cópia ou transferência de FSRS/votos/histórico entre os qids. Dados antigos do parceiro permanecem recuperáveis pelo próprio qid."
+  },
+  "lengthSignal": {
+    "method": "Unicode characters after whitespace collapse; correct/max longest distractor; structural signal only.",
+    "before": {
+      "chars": [
+        50,
+        127,
+        46,
+        48
+      ],
+      "words": [
+        9,
+        21,
+        8,
+        8
+      ],
+      "correctChars": 127,
+      "maxWrongChars": 50,
+      "correctToMaxWrongRatio": 2.54,
+      "correctUniquelyLongest": true
+    },
+    "after": {
+      "chars": [
+        66,
+        65,
+        77,
+        65
+      ],
+      "words": [
+        9,
+        9,
+        8,
+        9
+      ],
+      "correctChars": 65,
+      "maxWrongChars": 77,
+      "correctToMaxWrongRatio": 0.8441558441558441,
+      "correctUniquelyLongest": false
+    }
+  },
+  "validation": {
+    "oneNewCard": true,
+    "cardFields": [
+      "label",
+      "url",
+      "journal",
+      "ano",
+      "tipo",
+      "badge",
+      "badgeColor",
+      "impacto",
+      "icon",
+      "resumo",
+      "conclusao",
+      "curiosidade"
+    ],
+    "cardFieldCount": 12,
+    "referenceIdPreviouslyAbsent": true,
+    "qidPreserved": true,
+    "answerPositionPreserved": true,
+    "catPreserved": true,
+    "noClinicalIndicationDoseMonitoringAdded": true,
+    "noProductionFilesWritten": true
+  }
+}

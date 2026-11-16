@@ -7,7 +7,7 @@ test('email access does not prepare the question bank or change saved progress',
   let requests=0;
   await context.route('**/*',r=>r.request().method()==='GET'&&new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
   await context.routeWebSocket('**/*',s=>s.close());
-  await context.route('**/data/topics.js',r=>{requests++;return r.abort();});
+  await context.route('**/data/topics.js*',r=>{requests++;return r.abort();});
   await page.goto('/jogar/',{waitUntil:'domcontentloaded'});
   const before=await page.evaluate(({save,stats})=>{
     localStorage.setItem('nefroquest-save',JSON.stringify(save));
@@ -29,7 +29,7 @@ test('an unrelated touch leaves gameplay warmup available for the guest action',
   let requests=0;
   await context.route('**/*',r=>r.request().method()==='GET'&&new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
   await context.routeWebSocket('**/*',s=>s.close());
-  await context.route('**/data/topics.js',r=>{requests++;return r.abort();});
+  await context.route('**/data/topics.js*',r=>{requests++;return r.abort();});
   await page.goto('/jogar/',{waitUntil:'domcontentloaded'});
   await page.locator('#portalTitle').dispatchEvent('pointerdown',{bubbles:true,pointerType:'touch'});
   await expect(page.locator('script[src*="data/topics.js"]')).toHaveCount(0);expect(requests).toBe(0);

@@ -1,0 +1,382 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "dc0f89b1",
+  "family": "A13-UTI-hepatorrenal",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Ventilação Mecânica — PEEP e Rim",
+    "qid": "dc0f89b1",
+    "q": "Paciente com SARA grave em ventilação mecânica desenvolve LRA oligúrica. A equipe aumenta a PEEP para melhorar oxigenação. Qual efeito renal potencial do PEEP elevado deve ser lembrado?",
+    "refs": [
+      "kdigo_aki_2026"
+    ],
+    "opts": [
+      "Sempre melhora perfusão renal porque aumenta a oxigenação arterial",
+      "Pode reduzir retorno venoso/débito cardíaco e aumentar pressão venosa renal, piorando o gradiente de filtração em pacientes vulneráveis",
+      "Afeta apenas os pulmões, sem repercussão hemodinâmica sistêmica ou renal",
+      "Causa LRA exclusivamente por hipoxemia, mecanismo que desaparece quando a PaO2 melhora"
+    ],
+    "ans": 1,
+    "exp": "PEEP pode ser necessária para oxigenação na SARA, mas pressões intratorácicas mais altas podem reduzir retorno venoso, diminuir débito cardíaco e aumentar pressão venosa central/renal. O resultado pode ser menor gradiente efetivo de filtração e piora de oligúria em pacientes hemodinamicamente vulneráveis. A lesão renal associada à ventilação é multifatorial: hemodinâmica, pressão venosa, neuro-hormônios e inflamação sistêmica. Portanto, melhorar PaO2 não garante melhora renal, e a estratégia deve equilibrar pulmão e rim.",
+    "diff": "medium",
+    "cat": "uti"
+  },
+  "originalSHA256": "sha256:a48943fe2d6f4e318ddfb771755a504dbbe3cde87de09f5aa5919b977bfda91d",
+  "originalRefs": [
+    {
+      "id": "kdigo_aki_2026",
+      "original": {
+        "label": "KDIGO 2026 AKI/AKD — Public Review Draft",
+        "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+        "journal": "Kidney International (Public Review Draft)",
+        "ano": 2026,
+        "tipo": "Diretriz Internacional — Public Review Draft",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "AKI definição: ↑Cr ≥0,3 em 48h ou ↑Cr/Cistatina-C ≥50% em 7d ou diurese <0,5 mL/kg/h 6h. Estadiamento 3D (C/U/B). AKD: 7–90d. Biomarcadores TIMP-2×IGFBP7/NGAL (2B). MAP >65 (2C). Teste de furosemida (2C). Glicemia 140–180. Aminoglicosídeo dose única (2B). Anfotericina lipídica (2A). Follow-up pós-AKI/AKD.",
+        "icon": "📋",
+        "resumo": "Atualização em draft público da diretriz KDIGO de LRA, primeira grande revisão desde 2012. Expande a definição de AKI para anormalidades funcionais ou estruturais ocorridas em até 7 dias, incluindo creatinina (≥0,3 mg/dL em 48h ou ≥1,5× basal em 7 dias), diurese (<0,5 mL/kg/h por ≥6h), cistatina C (≥1,5× basal em 7 dias) e biomarcadores de dano renal quando validados. Introduz AKD como alteração funcional ou estrutural renal em contexto clínico apropriado com duração ≤3 meses, integrando o contínuo AKI → AKD → DRC.",
+        "conclusao": "O draft de 2026 amplia o conceito de LRA para um contínuo desde a injúria aguda até a progressão para DRC, reforça o seguimento estruturado pós-AKI e incorpora biomarcadores modernos na estratificação de risco.",
+        "curiosidade": "O conceito de AKD formaliza uma janela de disfunção renal subaguda entre LRA e DRC, identificada clinicamente mas sem definição padronizada até este draft — período crítico para intervenção e prevenção de progressão."
+      },
+      "originalSHA256": "sha256:391f6acc25912edb9ee17b9cd88bb1eca592ffc177f5e1f27c83f4432b3909a1"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Explicar como pressão intratorácica elevada pode comprometer a hemodinâmica renal em paciente vulnerável, sem atribuição causal universal.",
+    "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Gabarito longo contrasta com distratores definidos por sempre/apenas/exclusivamente.",
+      "MENOR — Siglas não expandidas; substituir referência genérica por síntese fisiológica específica."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "peep",
+      "url": "https://link.springer.com/article/10.1186/s40635-026-00979-1",
+      "doi": "10.1186/s40635-026-00979-1",
+      "access": "Revisão narrativa primária integral aberta no journal; versão de registro publicada16/10/2026,14:139.",
+      "locators": [
+        "Mechanistic pathways/Hemodynamic alterations: pressão intratorácica pode reduzir retorno venoso/débito e aumentar congestão venosa renal.",
+        "Methodological limitations: grande parte da evidência é observacional; confusão, heterogeneidade e efeito dependente do contexto.",
+        "Não há um limiar único de PEEP que determine lesão em todos, nem equivalência entre melhora da oxigenação e proteção renal."
+      ],
+      "limitations": [
+        "Síntese narrativa e modelo conceitual, não protocolo validado de ventilação protetora renal. Não fazer inferência causal individual a partir da associação populacional."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Elevação da pressão intratorácica pode reduzir retorno venoso/débito e aumentar congestão renal.",
+      "source": "peep",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Ventilação Mecânica — PEEP e Rim",
+    "qid": "dc0f89b1",
+    "q": "Paciente com síndrome do desconforto respiratório agudo apresenta oligúria após aumento da pressão expiratória final positiva (PEEP). Além de outras causas de lesão renal, qual efeito hemodinâmico potencial deve ser considerado?",
+    "refs": [
+      "ventilation_kidney_review_2026"
+    ],
+    "opts": [
+      "Maior retorno venoso e aumento do fluxo renal por elevação da pressão torácica.",
+      "Menor retorno venoso e maior pressão venosa renal, reduzindo a perfusão efetiva.",
+      "Redução da pressão venosa renal pela transmissão da pressão torácica.",
+      "Aumento obrigatório da filtração glomerular quando a oxigenação melhora."
+    ],
+    "ans": 1,
+    "exp": "A pressão intratorácica pode reduzir o retorno venoso e o débito cardíaco e aumentar a pressão venosa central, dificultando a drenagem renal. O efeito depende de volemia, função do ventrículo direito, mecânica pulmonar e demais condições. Melhorar a oxigenação não garante melhora da perfusão renal. A associação temporal com a PEEP não prova que ela seja a única causa da oligúria; é preciso investigar outras causas e equilibrar suporte pulmonar e hemodinâmico, sem reduzir pressão de modo automático.",
+    "diff": "medium",
+    "cat": "uti"
+  },
+  "proposedSHA256": "sha256:b6b3114475508b317dcdee5a49aa1f66928a6368221ef101031bfcd5390b4d00",
+  "classificationAfter": {
+    "op": "Explicar como pressão intratorácica elevada pode comprometer a hemodinâmica renal em paciente vulnerável, sem atribuição causal universal.",
+    "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "ventilation_kidney_review_2026",
+      "original": null,
+      "originalSHA256": null,
+      "proposed": {
+        "label": "Gao et al. — Ventilação mecânica e lesão renal aguda (2026)",
+        "url": "https://link.springer.com/article/10.1186/s40635-026-00979-1",
+        "journal": "Intensive Care Medicine Experimental.2026;14:139. DOI:10.1186/s40635-026-00979-1",
+        "ano": 2026,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "icon": "🔬",
+        "impacto": "Compreender efeitos hemodinâmicos da ventilação sobre perfusão e congestão renal.",
+        "resumo": "Revisão narrativa da interação pulmão–rim na ventilação mecânica. A elevação da pressão intratorácica pode reduzir retorno venoso e débito cardíaco, além de dificultar a drenagem venosa renal. Alterações neuro-hormonais, inflamação e troca gasosa também participam. A relação entre pressão expiratória final positiva (PEEP) e lesão renal depende de volemia, coração direito, mecânica pulmonar e demais exposições; grande parte da evidência clínica é observacional.",
+        "conclusao": "Avaliar oxigenação, perfusão, congestão e resposta clínica em conjunto. A revisão não estabelece uma PEEP universalmente segura nem demonstra que seu modelo proposto previna lesão renal.",
+        "curiosidade": ""
+      },
+      "proposedSHA256": "sha256:5aeee950efde575e3257e42ecb4d7e62855de923774f7baeaf47e718c5218453",
+      "sourceIDs": [
+        "peep"
+      ],
+      "notes": [
+        "Fonte nova específica, realmente lida. Não chama modelo conceitual de diretriz nem inventa limiar terapêutico."
+      ]
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "19/20. Testa mecanismo potencial em contexto, sem fórmula de perfusão simplificada ou alvo ventilatório universal. Mantém a incerteza causal no caso individual.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

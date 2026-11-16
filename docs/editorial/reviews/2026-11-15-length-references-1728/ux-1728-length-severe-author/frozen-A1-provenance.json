@@ -1,0 +1,20 @@
+{
+  "schema": "NQ_FROZEN_AUTHOR_PACKAGE_HASH_CLARIFICATION_1728",
+  "cause": "The initial announcements used b.digest(JSON-string), which hashes its canonical JSON string representation, and incorrectly called this the SHA256 of file bytes. No frozen file was edited after its announcement.",
+  "questionAndCardHashes": "originalSHA256/proposedSHA256 are b.digest(object), the canonical-object digest required by the manifest tool; unaffected.",
+  "files": [
+    {
+      "file": "author-batch-A1.json",
+      "bytes": 123214,
+      "rawFileSHA256": "f5ef634851a3d3919957c863ccdaadd5f93ba376faa1dbffb0f69247cfe8f381",
+      "canonicalJSONStringDigestPreviouslyAnnounced": "sha256:de172ed38e18cdc92c58c7625ad637cd2257f5a26dc6da2d6809f2518258490c"
+    },
+    {
+      "file": "author-batch-A1.1.json",
+      "bytes": 126384,
+      "rawFileSHA256": "abd02ea99094639b1f859c2f4fc41655725e6b5023ed07426ee3591f3fd3ea03",
+      "canonicalJSONStringDigestPreviouslyAnnounced": "sha256:097550f1350dac2deeda587930b8df073fd0cf73d4b3e436166ed292da25411e"
+    }
+  ],
+  "futureAnnouncements": "SHA256 of raw file bytes using crypto.createHash('sha256').update(Buffer).digest('hex'). Canonical-object digests retain the explicit canonical-object name."
+}

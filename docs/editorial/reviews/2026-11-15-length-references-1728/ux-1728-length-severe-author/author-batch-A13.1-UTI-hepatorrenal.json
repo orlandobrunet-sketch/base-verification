@@ -1,0 +1,2239 @@
+{
+  "schema": "NQ_AUTHOR_BATCH_1728_A13.1-UTI-hepatorrenal",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "count": 5,
+  "readyForImplementation": false,
+  "scope": "Cinco questões atuais; fontes específicas finais em vez do draft para vasopressina/PEEP. Um novo card de revisão narrativa para fisiologia pulmão–rim. Demais cards compartilhados permanecem byte-exatos.",
+  "fourDimensionChecks": [
+    {
+      "pair": [
+        "f1d27a8f",
+        "e5f38c55"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Plano preventivo de monitorização da técnica escolhida versus reconhecer acúmulo a partir de achados sistêmicos."
+    },
+    {
+      "pair": [
+        "f1d27a8f",
+        "345321d6"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Plano basal de monitorização versus conduta frente a acúmulo já identificado em choque/hepatopatia."
+    },
+    {
+      "pair": [
+        "279c6c8e",
+        "6b0997fb"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Temporalidade de fenótipo já investigado versus etiologia dominante de LRA pelo sedimento."
+    },
+    {
+      "pair": [
+        "0ffc255a",
+        "11932cea"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Microbiologia usual versus decisão imediata com410neutrófilos/mm³ e cultura pendente."
+    },
+    {
+      "pair": [
+        "e0bbd189",
+        "125cf9bf"
+      ],
+      "decisionSame": false,
+      "caseDataStructureSame": false,
+      "profileSame": true,
+      "languageSame": true,
+      "reason": "Associação de vasopressor no choque versus mecanismo multifatorial da LRA séptica."
+    }
+  ],
+  "neighbors": [
+    {
+      "qid": "e5f38c55",
+      "literal": {
+        "qid": "e5f38c55",
+        "q": "Durante CRRT com anticoagulação regional por citrato, qual conjunto de achados mais sustenta acúmulo sistêmico de citrato, em vez de simples sobrecarga alcalina ou anticoagulação eficaz do circuito?",
+        "opts": [
+          "Alcalose metabólica com relação cálcio total/ionizado normal e cálcio ionizado sistêmico estável",
+          "Cálcio ionizado pós-filtro baixo, com cálcio sistêmico estável e sem aumento da reposição",
+          "Relação cálcio total/ionizado em ascensão para 2,5 ou mais, queda do cálcio ionizado, maior necessidade de reposição e piora da acidose",
+          "Hipofosfatemia isolada após vários dias de terapia contínua, com equilíbrio ácido-base preservado"
+        ],
+        "ans": 2,
+        "exp": "O acúmulo de citrato deve ser reconhecido por um padrão, não por um dado isolado: relação cálcio total/ionizado em elevação para cerca de 2,5 ou mais, hipocalcemia ionizada sistêmica, necessidade crescente de cálcio e acidose metabólica progressiva. Cálcio pós-filtro baixo avalia a anticoagulação no circuito. Alcalose com relação de cálcio normal sugere carga líquida excessiva de citrato já metabolizado, e hipofosfatemia isolada é uma complicação comum da CRRT prolongada, não um marcador específico de acúmulo.",
+        "refs": [
+          "siaarti_sin_citrate_2023"
+        ],
+        "cat": "dialise",
+        "diff": "hard",
+        "t": "CRRT com Citrato — Reconhecimento do Acúmulo"
+      },
+      "revision": "sha256:65d8fa0031f3f2dd51817d6502413812d222172d3b4bb0a7820c4b15e119a3d2",
+      "fullQuestionGate": false
+    },
+    {
+      "qid": "345321d6",
+      "literal": {
+        "qid": "345321d6",
+        "q": "Paciente com insuficiência hepática grave e choque está em terapia renal substitutiva contínua com anticoagulação regional por citrato. A relação cálcio total/cálcio ionizado sobe progressivamente para 2,6, o cálcio ionizado cai apesar de maior reposição e surge acidose metabólica. Qual é a melhor conduta?",
+        "opts": [
+          "Reconhecer provável acúmulo de citrato, reduzir ou interromper sua carga conforme o protocolo, otimizar a depuração e considerar outra estratégia de anticoagulação",
+          "Manter o citrato sem ajustes, pois insuficiência hepática não modifica o risco quando o filtro permanece pérvio",
+          "Dobrar a infusão de citrato para corrigir a acidose por sua conversão em bicarbonato",
+          "Trocar obrigatoriamente para heparina em alta dose, pois hepatopatia é contraindicação absoluta ao citrato"
+        ],
+        "ans": 0,
+        "exp": "A combinação de relação cálcio total/ionizado em ascensão para valor acima de 2,5, hipocalcemia ionizada, necessidade crescente de reposição de cálcio e piora da acidose sugere acúmulo de citrato. Insuficiência hepática grave e choque reduzem a capacidade metabólica, mas hepatopatia isolada não torna o citrato universalmente proibido. A resposta deve seguir protocolo experiente: reduzir ou interromper a carga de citrato, aumentar sua remoção quando viável e usar anticoagulação alternativa se o distúrbio persistir ou o risco for inaceitável. Não existe regra universal de reduzir a dose exatamente pela metade.",
+        "refs": [
+          "siaarti_sin_citrate_2023",
+          "kdigo_aki"
+        ],
+        "cat": "dialise",
+        "diff": "hard",
+        "t": "CRRT com Citrato — Acúmulo e Conduta"
+      },
+      "revision": "sha256:f4c9f14ab92cdd42d46f379e1952248afe5f2578d10fe8380b883c798d8754df",
+      "fullQuestionGate": false
+    },
+    {
+      "qid": "6b0997fb",
+      "literal": {
+        "t": "HRS-AKI versus Lesão Tubular Aguda",
+        "qid": "6b0997fb",
+        "q": "Paciente com cirrose, ascite e LRA apresenta FENa de 0,4%. Qual achado adicional favorece lesão tubular aguda como causa dominante, em vez de um fenótipo predominantemente hepatorrenal?",
+        "refs": [
+          "hepatorenal_review"
+        ],
+        "opts": [
+          "Sódio urinário baixo isolado, porque é específico de HRS-AKI na cirrose",
+          "Cilindros granulares castanho-lamacento e células epiteliais tubulares no sedimento",
+          "Ausência de proteinúria, porque exclui lesão tubular estrutural",
+          "FENa abaixo de 1%, porque exclui lesão tubular em pacientes cirróticos"
+        ],
+        "ans": 1,
+        "exp": "Cilindros granulares castanho-lamacento e células epiteliais tubulares favorecem lesão tubular aguda. Em cirrose, FENa abaixo de 1% e sódio urinário baixo são comuns e não distinguem de forma confiável HRS-AKI de lesão tubular; devem ser integrados ao contexto, ao sedimento e, quando disponíveis, a biomarcadores de dano. O sedimento também tem limitações — hiperbilirrubinemia pode dificultar a leitura — e o consenso reconhece que HRS-AKI e dano tubular podem coexistir, de modo que a pergunta é qual mecanismo predomina.",
+        "diff": "hard",
+        "cat": "lra"
+      },
+      "revision": "sha256:f76693510698a11b0faea54e6200498ee00455986ad71f318d330e834d2fa09e",
+      "fullQuestionGate": false
+    },
+    {
+      "qid": "11932cea",
+      "literal": {
+        "t": "Peritonite Bacteriana Espontânea",
+        "qid": "11932cea",
+        "q": "Paciente com cirrose descompensada e ascite apresenta dor abdominal difusa, febre e piora do estado geral. Paracentese: 410 neutrófilos/mm³ no líquido ascítico; cultura em processamento. Qual é a conduta imediata mais adequada?",
+        "opts": [
+          "Diagnosticar PBE e iniciar antibiótico imediatamente, associando albumina se houver risco renal/hepático elevado.",
+          "Aguardar cultura positiva antes de iniciar antibiótico, para evitar resistência.",
+          "Tratar como peritonite tuberculosa com RHZE, pois neutrófilos acima de 250/mm³ não definem PBE.",
+          "Encaminhar diretamente para laparotomia, pois todo líquido ascítico infectado é peritonite secundária."
+        ],
+        "ans": 0,
+        "exp": "O quadro é peritonite bacteriana espontânea (PBE): em cirrose com ascite, neutrófilos no líquido ascítico ≥250/mm³ bastam para iniciar antibiótico sem aguardar cultura. Albumina intravenosa deve ser considerada, especialmente quando há disfunção renal ou descompensação hepática importante, por reduzir progressão para lesão renal aguda e morte. Peritonite tuberculosa e peritonite secundária exigem pistas adicionais; cirurgia imediata não é o padrão da PBE típica.",
+        "diff": "medium",
+        "cat": "infeccao",
+        "refs": [
+          "aasld_ascites_sbp_2021"
+        ]
+      },
+      "revision": "sha256:6f0a111010c513d04e377f44909ad7696f7e647e3d5d75af7cd52eb50c7552d5",
+      "fullQuestionGate": false
+    },
+    {
+      "qid": "125cf9bf",
+      "literal": {
+        "t": "Sepse e LRA — Mecanismo Multifatorial",
+        "qid": "125cf9bf",
+        "q": "Paciente em UTI com sepse por pneumonia evolui com oligúria e aumento rápido da creatinina. Qual mecanismo descreve melhor a LRA associada à sepse?",
+        "refs": [
+          "kdigo_aki",
+          "brenner_rector"
+        ],
+        "opts": [
+          "Trombose bilateral de artéria renal por microêmbolos sépticos como regra",
+          "Alterações macro e microcirculatórias, inflamação endotelial/tubular e disfunção celular, com perfusão renal heterogênea",
+          "Glomerulonefrite por imunocomplexos como principal mecanismo em todo choque séptico",
+          "Necrose cortical bilateral por coagulação intravascular disseminada como mecanismo típico da maioria dos casos"
+        ],
+        "ans": 1,
+        "exp": "A LRA séptica é multifatorial. Não se resume a 'hipoperfusão simples' nem a necrose tubular direta obrigatória: envolve vasodilatação sistêmica, perfusão renal heterogênea, alterações microcirculatórias, inflamação endotelial/tubular, disfunção mitocondrial e interação com drogas, volemia e pressão de perfusão. Trombose renal bilateral, glomerulonefrite por imunocomplexos e necrose cortical por CIVD podem ocorrer em cenários específicos, mas não são a explicação típica da LRA séptica comum em UTI.",
+        "diff": "easy",
+        "cat": "uti"
+      },
+      "revision": "sha256:c4b593f2ec8096683ac418678058cc9287efb3bef27634ae4a4d5936feb8ab1a",
+      "fullQuestionGate": false
+    }
+  ],
+  "sharedCardPolicy": "Rechecagem dos cards não representa aprovação automática de consumidores externos. Nenhum payload compartilhado existente muda neste lote.",
+  "items": [
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "e0bbd189",
+      "family": "A13-UTI-hepatorrenal",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Choque Séptico com LRA — Vasopressina",
+        "qid": "e0bbd189",
+        "q": "Paciente com choque séptico em norepinefrina e LRA oligúrica permanece hipotenso. Sobre adicionar vasopressina, qual afirmação é mais segura?",
+        "refs": [
+          "kdigo_aki_2026"
+        ],
+        "opts": [
+          "É contraindicada na LRA porque sempre causa vasoconstrição aferente renal intensa",
+          "Pode ser adicionada à norepinefrina para reduzir necessidade de catecolamina e elevar pressão arterial, mas não deve ser vendida como terapia renal específica comprovada",
+          "Deve substituir norepinefrina como vasopressor de primeira linha em todo choque séptico com LRA",
+          "Não tem qualquer efeito hemodinâmico renal ou sistêmico relevante"
+        ],
+        "ans": 1,
+        "exp": "Em choque séptico, vasopressina pode ser associada à norepinefrina como poupadora de catecolamina e para ajudar a restaurar pressão arterial. Seus efeitos renais são complexos e dependem de dose, leito vascular e contexto; por isso é inadequado afirmar benefício renal específico robusto ou contraindicação universal por LRA. A prioridade continua sendo ressuscitação adequada, controle infeccioso, pressão de perfusão suficiente e evitar nefrotóxicos. A vasopressina não substitui norepinefrina como primeira linha universal.",
+        "diff": "medium",
+        "cat": "uti"
+      },
+      "originalSHA256": "sha256:a2e102307ab537c9cc1ec03ef01d38f52e4d5240d6bfb8cab6fe1783ebb474c8",
+      "originalRefs": [
+        {
+          "id": "kdigo_aki_2026",
+          "original": {
+            "label": "KDIGO 2026 AKI/AKD — Public Review Draft",
+            "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+            "journal": "Kidney International (Public Review Draft)",
+            "ano": 2026,
+            "tipo": "Diretriz Internacional — Public Review Draft",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "AKI definição: ↑Cr ≥0,3 em 48h ou ↑Cr/Cistatina-C ≥50% em 7d ou diurese <0,5 mL/kg/h 6h. Estadiamento 3D (C/U/B). AKD: 7–90d. Biomarcadores TIMP-2×IGFBP7/NGAL (2B). MAP >65 (2C). Teste de furosemida (2C). Glicemia 140–180. Aminoglicosídeo dose única (2B). Anfotericina lipídica (2A). Follow-up pós-AKI/AKD.",
+            "icon": "📋",
+            "resumo": "Atualização em draft público da diretriz KDIGO de LRA, primeira grande revisão desde 2012. Expande a definição de AKI para anormalidades funcionais ou estruturais ocorridas em até 7 dias, incluindo creatinina (≥0,3 mg/dL em 48h ou ≥1,5× basal em 7 dias), diurese (<0,5 mL/kg/h por ≥6h), cistatina C (≥1,5× basal em 7 dias) e biomarcadores de dano renal quando validados. Introduz AKD como alteração funcional ou estrutural renal em contexto clínico apropriado com duração ≤3 meses, integrando o contínuo AKI → AKD → DRC.",
+            "conclusao": "O draft de 2026 amplia o conceito de LRA para um contínuo desde a injúria aguda até a progressão para DRC, reforça o seguimento estruturado pós-AKI e incorpora biomarcadores modernos na estratificação de risco.",
+            "curiosidade": "O conceito de AKD formaliza uma janela de disfunção renal subaguda entre LRA e DRC, identificada clinicamente mas sem definição padronizada até este draft — período crítico para intervenção e prevenção de progressão."
+          },
+          "originalSHA256": "sha256:391f6acc25912edb9ee17b9cd88bb1eca592ffc177f5e1f27c83f4432b3909a1"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Identificar vasopressina como adjuvante hemodinâmico em choque séptico com doses crescentes de norepinefrina, sem presumir indicação renal específica.",
+        "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Correta reúne duas ressalvas em extensão muito superior aos distratores absolutos.",
+          "MENOR — Draft KDIGO não é a fonte mais direta para ordem dos vasopressores; fonte oficial2026 final está acessível."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "ssc",
+          "url": "https://www.survivingsepsis.org/clinical-resources/guidelines/guidelines/surviving-sepsis-campaign-international-guidelines-for-management-of-sepsis-and-septic-shock-2026",
+          "access": "Recomendações oficiais de 2026 abertas integralmente no site das sociedades. Não usar a diretriz2021 como se fosse a última.",
+          "locators": [
+            "Vasopressors: norepinefrina primeira linha versus dopamina/epinefrina/selepressina; preferência também versus vasopressina.",
+            "Doses crescentes de norepinefrina: sugestão condicional de adicionar vasopressina, certeza moderada.",
+            "Ressuscitação: cristaloides, reavaliação dinâmica de perfusão e tratamento da infecção."
+          ],
+          "limitations": [
+            "Não estabelece benefício renal específico da associação nem garante sobrevida individual. O uso adjuvante não significa substituir norepinefrina em toda LRA."
+          ]
+        },
+        {
+          "id": "vanish",
+          "url": "https://jamanetwork.com/journals/jama/fullarticle/2540403",
+          "doi": "10.1001/jama.2016.10485",
+          "pmid": "27483065",
+          "access": "Corpo primário integral do ensaio VANISH aberto no JAMA; métodos, resultados e conclusões lidos.",
+          "locators": [
+            "JAMA2016;316:509–518.409 participantes basais;408 na análise primária, por retirada de seguimento de1.",
+            "Distribuição de dias vivos livres de falência renal: P=0,88, sem diferença; menos TRS foi resultado secundário.",
+            "Não sustenta substituir norepinefrina por vasopressina como tratamento inicial por proteção renal presumida."
+          ],
+          "limitations": [
+            "Resultado primário neutro não prova ausência absoluta de efeito renal. Não converti desfecho secundário em indicação renal específica. Fonte de contraprova, sem novo card desnecessário."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Pode associar vasopressina à norepinefrina em doses crescentes; não usar LRA como motivo isolado para primeira linha com vasopressina.",
+          "source": "ssc/vanish",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Choque Séptico com LRA — Vasopressina",
+        "qid": "e0bbd189",
+        "q": "Adulto com choque séptico e lesão renal aguda permanece hipotenso apesar da ressuscitação avaliada como adequada e de doses crescentes de norepinefrina. Qual é o papel mais apropriado da vasopressina nesse contexto?",
+        "refs": [
+          "surviving_sepsis_2026"
+        ],
+        "opts": [
+          "Substituir a norepinefrina para tratar diretamente a lesão renal.",
+          "Associar à norepinefrina para apoiar a pressão e reduzir a necessidade de catecolamina.",
+          "Trocar por terlipressina, pela indicação de qualquer lesão renal no choque.",
+          "Usar isoladamente para induzir diurese antes de corrigir a perfusão."
+        ],
+        "ans": 1,
+        "exp": "A Surviving Sepsis Campaign 2026 sugere adicionar vasopressina quando são necessárias doses crescentes de norepinefrina. O objetivo nesse cenário é hemodinâmico e poupador de catecolamina. A presença de lesão renal aguda não transforma vasopressina em tratamento renal específico nem determina sua escolha como primeira linha. Infecção, perfusão, volemia e efeitos adversos continuam exigindo reavaliação.",
+        "diff": "medium",
+        "cat": "uti"
+      },
+      "proposedSHA256": "sha256:7809becc1e6b6953c4bb92d95a88532b36dc14b224b1e83bbba70f797abf7787",
+      "classificationAfter": {
+        "op": "Identificar vasopressina como adjuvante hemodinâmico em choque séptico com doses crescentes de norepinefrina, sem presumir indicação renal específica.",
+        "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "surviving_sepsis_2026",
+          "original": {
+            "tipo": "Diretriz Clínica",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "icon": "📋",
+            "curiosidade": "",
+            "label": "SCCM/ESICM — Surviving Sepsis Campaign Adult Guidelines (2026)",
+            "url": "https://sccm.org/survivingsepsiscampaign/guidelines-and-resources/surviving-sepsis-campaign-adult-guidelines",
+            "journal": "SCCM/ESICM. Official adult recommendations, 2026",
+            "ano": 2026,
+            "impacto": "Reconhecimento, tratamento da infecção e reavaliação hemodinâmica",
+            "resumo": "Recomendações oficiais para adultos com sepse/choque. Orientam avaliação rápida, antimicrobianos conforme probabilidade e gravidade, cristaloides e reavaliação da perfusão, com interpretação clínica do lactato.",
+            "conclusao": "Tratar infecção provável e hipoperfusão prontamente, reavaliando hipóteses e resposta; não usar pH preservado como sinal isolado de segurança."
+          },
+          "originalSHA256": "sha256:aba39a5d71200ec4f84acc495f107c2e1f1b83988f68f33d4e8fb17457a3907b",
+          "proposed": {
+            "tipo": "Diretriz Clínica",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "icon": "📋",
+            "curiosidade": "",
+            "label": "SCCM/ESICM — Surviving Sepsis Campaign Adult Guidelines (2026)",
+            "url": "https://sccm.org/survivingsepsiscampaign/guidelines-and-resources/surviving-sepsis-campaign-adult-guidelines",
+            "journal": "SCCM/ESICM. Official adult recommendations, 2026",
+            "ano": 2026,
+            "impacto": "Reconhecimento, tratamento da infecção e reavaliação hemodinâmica",
+            "resumo": "Recomendações oficiais para adultos com sepse/choque. Orientam avaliação rápida, antimicrobianos conforme probabilidade e gravidade, cristaloides e reavaliação da perfusão, com interpretação clínica do lactato.",
+            "conclusao": "Tratar infecção provável e hipoperfusão prontamente, reavaliando hipóteses e resposta; não usar pH preservado como sinal isolado de segurança."
+          },
+          "proposedSHA256": "sha256:aba39a5d71200ec4f84acc495f107c2e1f1b83988f68f33d4e8fb17457a3907b",
+          "sourceIDs": [
+            "ssc"
+          ],
+          "notes": [
+            "Card compartilhado atual byte-exato, rechecado integralmente. Nenhuma alteração global de conteúdo."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Preserva decisão clínica e conceito, com cenário hemodinâmico completo. Não confunde ensaio neutro com prova de ausência de qualquer efeito renal; distratores representam uso renal indevido e substituição inadequada.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "dc0f89b1",
+      "family": "A13-UTI-hepatorrenal",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Ventilação Mecânica — PEEP e Rim",
+        "qid": "dc0f89b1",
+        "q": "Paciente com SARA grave em ventilação mecânica desenvolve LRA oligúrica. A equipe aumenta a PEEP para melhorar oxigenação. Qual efeito renal potencial do PEEP elevado deve ser lembrado?",
+        "refs": [
+          "kdigo_aki_2026"
+        ],
+        "opts": [
+          "Sempre melhora perfusão renal porque aumenta a oxigenação arterial",
+          "Pode reduzir retorno venoso/débito cardíaco e aumentar pressão venosa renal, piorando o gradiente de filtração em pacientes vulneráveis",
+          "Afeta apenas os pulmões, sem repercussão hemodinâmica sistêmica ou renal",
+          "Causa LRA exclusivamente por hipoxemia, mecanismo que desaparece quando a PaO2 melhora"
+        ],
+        "ans": 1,
+        "exp": "PEEP pode ser necessária para oxigenação na SARA, mas pressões intratorácicas mais altas podem reduzir retorno venoso, diminuir débito cardíaco e aumentar pressão venosa central/renal. O resultado pode ser menor gradiente efetivo de filtração e piora de oligúria em pacientes hemodinamicamente vulneráveis. A lesão renal associada à ventilação é multifatorial: hemodinâmica, pressão venosa, neuro-hormônios e inflamação sistêmica. Portanto, melhorar PaO2 não garante melhora renal, e a estratégia deve equilibrar pulmão e rim.",
+        "diff": "medium",
+        "cat": "uti"
+      },
+      "originalSHA256": "sha256:a48943fe2d6f4e318ddfb771755a504dbbe3cde87de09f5aa5919b977bfda91d",
+      "originalRefs": [
+        {
+          "id": "kdigo_aki_2026",
+          "original": {
+            "label": "KDIGO 2026 AKI/AKD — Public Review Draft",
+            "url": "https://kdigo.org/wp-content/uploads/2026/03/KDIGO-2026-AKI-AKD-Guideline-Public-Review-Draft-March-2026.pdf",
+            "journal": "Kidney International (Public Review Draft)",
+            "ano": 2026,
+            "tipo": "Diretriz Internacional — Public Review Draft",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "AKI definição: ↑Cr ≥0,3 em 48h ou ↑Cr/Cistatina-C ≥50% em 7d ou diurese <0,5 mL/kg/h 6h. Estadiamento 3D (C/U/B). AKD: 7–90d. Biomarcadores TIMP-2×IGFBP7/NGAL (2B). MAP >65 (2C). Teste de furosemida (2C). Glicemia 140–180. Aminoglicosídeo dose única (2B). Anfotericina lipídica (2A). Follow-up pós-AKI/AKD.",
+            "icon": "📋",
+            "resumo": "Atualização em draft público da diretriz KDIGO de LRA, primeira grande revisão desde 2012. Expande a definição de AKI para anormalidades funcionais ou estruturais ocorridas em até 7 dias, incluindo creatinina (≥0,3 mg/dL em 48h ou ≥1,5× basal em 7 dias), diurese (<0,5 mL/kg/h por ≥6h), cistatina C (≥1,5× basal em 7 dias) e biomarcadores de dano renal quando validados. Introduz AKD como alteração funcional ou estrutural renal em contexto clínico apropriado com duração ≤3 meses, integrando o contínuo AKI → AKD → DRC.",
+            "conclusao": "O draft de 2026 amplia o conceito de LRA para um contínuo desde a injúria aguda até a progressão para DRC, reforça o seguimento estruturado pós-AKI e incorpora biomarcadores modernos na estratificação de risco.",
+            "curiosidade": "O conceito de AKD formaliza uma janela de disfunção renal subaguda entre LRA e DRC, identificada clinicamente mas sem definição padronizada até este draft — período crítico para intervenção e prevenção de progressão."
+          },
+          "originalSHA256": "sha256:391f6acc25912edb9ee17b9cd88bb1eca592ffc177f5e1f27c83f4432b3909a1"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Explicar como pressão intratorácica elevada pode comprometer a hemodinâmica renal em paciente vulnerável, sem atribuição causal universal.",
+        "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Gabarito longo contrasta com distratores definidos por sempre/apenas/exclusivamente.",
+          "MENOR — Siglas não expandidas; substituir referência genérica por síntese fisiológica específica."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "peep",
+          "url": "https://link.springer.com/article/10.1186/s40635-026-00979-1",
+          "doi": "10.1186/s40635-026-00979-1",
+          "access": "Revisão narrativa primária integral aberta no journal; versão de registro publicada16/10/2026,14:139.",
+          "locators": [
+            "Mechanistic pathways/Hemodynamic alterations: pressão intratorácica pode reduzir retorno venoso/débito e aumentar congestão venosa renal.",
+            "Methodological limitations: grande parte da evidência é observacional; confusão, heterogeneidade e efeito dependente do contexto.",
+            "Não há um limiar único de PEEP que determine lesão em todos, nem equivalência entre melhora da oxigenação e proteção renal."
+          ],
+          "limitations": [
+            "Síntese narrativa e modelo conceitual, não protocolo validado de ventilação protetora renal. Não fazer inferência causal individual a partir da associação populacional."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Elevação da pressão intratorácica pode reduzir retorno venoso/débito e aumentar congestão renal.",
+          "source": "peep",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Ventilação Mecânica — PEEP e Rim",
+        "qid": "dc0f89b1",
+        "q": "Paciente com síndrome do desconforto respiratório agudo apresenta oligúria após aumento da pressão expiratória final positiva (PEEP). Além de outras causas de lesão renal, qual efeito hemodinâmico potencial deve ser considerado?",
+        "refs": [
+          "ventilation_kidney_review_2026"
+        ],
+        "opts": [
+          "Maior retorno venoso e aumento do fluxo renal por elevação da pressão torácica.",
+          "Menor retorno venoso e maior pressão venosa renal, reduzindo a perfusão efetiva.",
+          "Redução da pressão venosa renal pela transmissão da pressão torácica.",
+          "Aumento obrigatório da filtração glomerular quando a oxigenação melhora."
+        ],
+        "ans": 1,
+        "exp": "A pressão intratorácica pode reduzir o retorno venoso e o débito cardíaco e aumentar a pressão venosa central, dificultando a drenagem renal. O efeito depende de volemia, função do ventrículo direito, mecânica pulmonar e demais condições. Melhorar a oxigenação não garante melhora da perfusão renal. A associação temporal com a PEEP não prova que ela seja a única causa da oligúria; é preciso investigar outras causas e equilibrar suporte pulmonar e hemodinâmico, sem reduzir pressão de modo automático.",
+        "diff": "medium",
+        "cat": "uti"
+      },
+      "proposedSHA256": "sha256:b6b3114475508b317dcdee5a49aa1f66928a6368221ef101031bfcd5390b4d00",
+      "classificationAfter": {
+        "op": "Explicar como pressão intratorácica elevada pode comprometer a hemodinâmica renal em paciente vulnerável, sem atribuição causal universal.",
+        "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "ventilation_kidney_review_2026",
+          "original": null,
+          "originalSHA256": null,
+          "proposed": {
+            "label": "Gao et al. — Ventilação mecânica e lesão renal aguda (2026)",
+            "url": "https://link.springer.com/article/10.1186/s40635-026-00979-1",
+            "journal": "Intensive Care Medicine Experimental. 2026;14:139. DOI:10.1186/s40635-026-00979-1",
+            "ano": 2026,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "icon": "🔬",
+            "impacto": "Compreender efeitos hemodinâmicos da ventilação sobre perfusão e congestão renal.",
+            "resumo": "Revisão narrativa da interação pulmão–rim na ventilação mecânica. A elevação da pressão intratorácica pode reduzir retorno venoso e débito cardíaco, além de dificultar a drenagem venosa renal. Alterações neuro-hormonais, inflamação e troca gasosa também participam. A relação entre pressão expiratória final positiva (PEEP) e lesão renal depende de volemia, coração direito, mecânica pulmonar e demais exposições; grande parte da evidência clínica é observacional.",
+            "conclusao": "Avaliar oxigenação, perfusão, congestão e resposta clínica em conjunto. A revisão não estabelece uma PEEP universalmente segura nem demonstra que seu modelo proposto previna lesão renal.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:f23fd17de1ad6aef05e11e2c0e35212fb33665680993775fdb97cdffe24e8f13",
+          "sourceIDs": [
+            "peep"
+          ],
+          "notes": [
+            "Fonte nova específica, realmente lida. Não chama modelo conceitual de diretriz nem inventa limiar terapêutico."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Testa mecanismo potencial em contexto, sem fórmula de perfusão simplificada ou alvo ventilatório universal. Mantém a incerteza causal no caso individual.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "f1d27a8f",
+      "family": "A13-UTI-hepatorrenal",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "TRSC — Anticoagulação Regional com Citrato",
+        "qid": "f1d27a8f",
+        "q": "Em paciente crítico com LRA em terapia renal substitutiva contínua, qual afirmação sobre anticoagulação regional com citrato é mais segura e correta?",
+        "refs": [
+          "kdigo_aki"
+        ],
+        "opts": [
+          "Deve ser feita com dose fixa de citrato, sem reposição de cálcio, pois o efeito fica restrito ao filtro",
+          "É uma estratégia preferencial quando não há contraindicação, com alvo de cálcio iônico baixo no circuito e reposição sistêmica de cálcio conforme protocolo",
+          "É contraindicada em toda LRA porque inevitavelmente agrava acidose metabólica",
+          "Pode ser usada sem ajuste ou monitorização em choque grave e insuficiência hepática avançada"
+        ],
+        "ans": 1,
+        "exp": "A anticoagulação regional com citrato é amplamente usada na TRSC por reduzir sangramento em comparação à heparina sistêmica, mas exige protocolo: citrato pré-filtro para quelar cálcio no circuito, monitorização de cálcio iônico no circuito e no paciente, reposição sistêmica de cálcio e vigilância ácido-base. Não é uma dose fixa universal. O risco central é acúmulo de citrato, especialmente em insuficiência hepática grave, hipoperfusão/choque intenso ou metabolismo comprometido, levando a hipocalcemia, aumento da razão cálcio total/cálcio iônico e distúrbios ácido-base. Portanto, a mensagem segura é: preferencial quando apropriada, nunca 'sem monitorização'.",
+        "diff": "medium",
+        "cat": "uti"
+      },
+      "originalSHA256": "sha256:599f7f966edcb70d84de56afc739174d762212e5131ff7b8162355b8518733a3",
+      "originalRefs": [
+        {
+          "id": "kdigo_aki",
+          "original": {
+            "label": "KDIGO AKI 2012",
+            "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+            "journal": "Kidney International Supplements",
+            "ano": 2012,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Diretriz que estabeleceu a definição e o estadiamento universais da lesão renal aguda",
+            "icon": "📋",
+            "resumo": "Define LRA por qualquer uma de três rotas: aumento da creatinina sérica ≥0,3 mg/dL em 48 horas; aumento para ≥1,5 vez o basal, conhecido ou presumido nos sete dias anteriores; ou diurese <0,5 mL/kg/h por seis horas. Estratifica a gravidade em três estágios pela creatinina e pela diurese. O estágio 3 inclui creatinina ≥3 vezes o basal, elevação da creatinina para ≥4,0 mg/dL, início de terapia renal substitutiva ou, em menores de 18 anos, taxa de filtração glomerular estimada (TFGe) <35 mL/min/1,73 m².",
+            "conclusao": "Os critérios de creatinina e diurese da KDIGO 2012 devem ser aplicados de forma independente: basta uma rota diagnóstica, e o maior estágio atingido define a gravidade.",
+            "curiosidade": "A classificação KDIGO harmonizou os sistemas RIFLE e AKIN, permitindo que estudos e serviços comparassem incidência e desfechos de LRA com uma linguagem comum."
+          },
+          "originalSHA256": "sha256:75b0caab14c8159f158db97ba508c135ebc23a15c057ecefbd56df51534927cd"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Escolher monitorização e reposição de cálcio que tornam segura a anticoagulação regional por citrato em terapia renal contínua.",
+        "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — A correta é a única que inclui toda a monitorização e tem extensão muito maior; foco pode ser explicitado no enunciado.",
+          "MENOR — Preferência de anticoagulante e segurança são decisões distintas; o item atual reúne ambas."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "citrate",
+          "url": "https://link.springer.com/article/10.1186/s44158-023-00091-w",
+          "doi": "10.1186/s44158-023-00091-w",
+          "pmid": "37386664",
+          "access": "Posicionamento primário integral SIAARTI–SIN aberto no journal, publicado31/03/2023,3:7.",
+          "locators": [
+            "§2–4: citrato pré-filtro quela cálcio; medir cálcio ionizado do circuito e do paciente, ajustar reposição sistêmica e equilíbrio ácido-base.",
+            "§4: choque/hipoperfusão ou falência hepática aumentam preocupação com metabolismo; não são proibição universal nem permissão para dispensar monitorização.",
+            "Tríade de acúmulo: hipocalcemia ionizada sistêmica, necessidade crescente de cálcio e acidose; relação total/ionizado>2,5 ou tendência ascendente é um sinal a integrar."
+          ],
+          "limitations": [
+            "Opinião de especialistas. Metas e soluções dependem do protocolo; não forneci dose ou alvo numérico universal."
+          ]
+        },
+        {
+          "id": "kdigo",
+          "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+          "access": "PDF oficial integral141p aberto, resumo de recomendações e capítulos2.1/5.3 lidos.",
+          "locators": [
+            "2.1.1 eTable2: definição e estágios por creatinina/diurese, referência atual do card.",
+            "5.3.2.2: em CRRT, sugestão de citrato sobre heparina quando não houver contraindicação,2B."
+          ],
+          "limitations": [
+            "Diretriz final2012. Não chamar draft2026 de recomendação final; questão focada em segurança da técnica, não comparação universal de modalidades."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Cálcio ionizado do circuito avalia anticoagulação, sistêmico orienta segurança/reposição; risco de acúmulo requer vigilância.",
+          "source": "citrate",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "TRSC — Anticoagulação Regional com Citrato",
+        "qid": "f1d27a8f",
+        "q": "A equipe escolheu anticoagulação regional por citrato para terapia renal substitutiva contínua em paciente com lesão renal aguda. Qual plano é mais adequado para manter a técnica segura?",
+        "refs": [
+          "siaarti_sin_citrate_2023",
+          "kdigo_aki"
+        ],
+        "opts": [
+          "Fixar a dose de citrato e ajustar apenas pela pressão do filtro.",
+          "Monitorar cálcio ionizado no circuito e no paciente e ajustar a reposição sistêmica.",
+          "Ajustar a reposição sistêmica apenas pelo cálcio ionizado baixo após o filtro.",
+          "Suspender a monitorização quando o circuito permanecer pérvio por algumas horas."
+        ],
+        "ans": 1,
+        "exp": "O citrato quela cálcio no circuito. O cálcio ionizado após o filtro ajuda a avaliar anticoagulação, enquanto a medida sistêmica orienta segurança e reposição; uma não substitui a outra. O protocolo também deve acompanhar cálcio total, equilíbrio ácido-base e sinais de acúmulo. Hipoperfusão ou disfunção hepática importante exigem avaliação e vigilância ampliadas. Hipocalcemia sistêmica, necessidade crescente de cálcio e aumento da relação cálcio total/ionizado devem ser interpretados em conjunto. Não há dose fixa universal nem autorização para dispensar monitorização pelo bom funcionamento inicial do filtro.",
+        "diff": "medium",
+        "cat": "uti"
+      },
+      "proposedSHA256": "sha256:8549298f68c67f957fff00c2a56defe062accdc2dd0af800c172c73b1ebc86b9",
+      "classificationAfter": {
+        "op": "Escolher monitorização e reposição de cálcio que tornam segura a anticoagulação regional por citrato em terapia renal contínua.",
+        "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "siaarti_sin_citrate_2023",
+          "original": {
+            "label": "SIAARTI-SIN — Anticoagulação Regional por Citrato na TRS",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37386664/",
+            "journal": "J Anesth Analg Crit Care. 2023;3(1):7",
+            "ano": 2023,
+            "tipo": "Opinião de especialistas",
+            "badge": "CONSENSUS",
+            "badgeColor": "#6366f1",
+            "impacto": "Monitorização e manejo seguro da anticoagulação regional por citrato em terapias renais contínuas e prolongadas",
+            "icon": "📋",
+            "resumo": "Documento conjunto das sociedades italianas de anestesia e nefrologia sobre anticoagulação regional por citrato. Recomenda monitorar cálcio ionizado do circuito e do paciente, cálcio total e equilíbrio ácido-base. Acúmulo deve ser suspeitado quando a relação cálcio total/ionizado sobe em direção a 2,5 ou mais, sobretudo junto de hipocalcemia sistêmica, necessidade crescente de reposição de cálcio e piora da acidose. Fígado, músculo esquelético e córtex renal participam do metabolismo; choque e disfunção hepática grave exigem vigilância ampliada, não uma regra fixa universal de dose.",
+            "conclusao": "Na CRRT com citrato, tendência da relação cálcio total/ionizado, cálcio sistêmico, necessidade de reposição e estado ácido-base devem ser interpretados em conjunto; acúmulo requer reduzir a carga, favorecer remoção ou mudar a anticoagulação conforme protocolo e gravidade.",
+            "curiosidade": "Cálcio ionizado pós-filtro baixo informa que o circuito está anticoagulado; ele não diagnostica sozinho acúmulo sistêmico de citrato no paciente."
+          },
+          "originalSHA256": "sha256:9bbeedeb43096407f33d86e1fe862861ae58d6af7ff9c66600773d75f8e68f7a",
+          "proposed": {
+            "label": "SIAARTI-SIN — Anticoagulação Regional por Citrato na TRS",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37386664/",
+            "journal": "J Anesth Analg Crit Care. 2023;3(1):7",
+            "ano": 2023,
+            "tipo": "Opinião de especialistas",
+            "badge": "CONSENSUS",
+            "badgeColor": "#6366f1",
+            "impacto": "Monitorização e manejo seguro da anticoagulação regional por citrato em terapias renais contínuas e prolongadas",
+            "icon": "📋",
+            "resumo": "Documento conjunto das sociedades italianas de anestesia e nefrologia sobre anticoagulação regional por citrato. Recomenda monitorar cálcio ionizado do circuito e do paciente, cálcio total e equilíbrio ácido-base. Acúmulo deve ser suspeitado quando a relação cálcio total/ionizado sobe em direção a 2,5 ou mais, sobretudo junto de hipocalcemia sistêmica, necessidade crescente de reposição de cálcio e piora da acidose. Fígado, músculo esquelético e córtex renal participam do metabolismo; choque e disfunção hepática grave exigem vigilância ampliada, não uma regra fixa universal de dose.",
+            "conclusao": "Na CRRT com citrato, tendência da relação cálcio total/ionizado, cálcio sistêmico, necessidade de reposição e estado ácido-base devem ser interpretados em conjunto; acúmulo requer reduzir a carga, favorecer remoção ou mudar a anticoagulação conforme protocolo e gravidade.",
+            "curiosidade": "Cálcio ionizado pós-filtro baixo informa que o circuito está anticoagulado; ele não diagnostica sozinho acúmulo sistêmico de citrato no paciente."
+          },
+          "proposedSHA256": "sha256:9bbeedeb43096407f33d86e1fe862861ae58d6af7ff9c66600773d75f8e68f7a",
+          "sourceIDs": [
+            "citrate"
+          ],
+          "notes": [
+            "Card compartilhado atual byte-exato, rechecado integralmente. Nenhuma alteração global de conteúdo."
+          ]
+        },
+        {
+          "id": "kdigo_aki",
+          "original": {
+            "label": "KDIGO AKI 2012",
+            "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+            "journal": "Kidney International Supplements",
+            "ano": 2012,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Diretriz que estabeleceu a definição e o estadiamento universais da lesão renal aguda",
+            "icon": "📋",
+            "resumo": "Define LRA por qualquer uma de três rotas: aumento da creatinina sérica ≥0,3 mg/dL em 48 horas; aumento para ≥1,5 vez o basal, conhecido ou presumido nos sete dias anteriores; ou diurese <0,5 mL/kg/h por seis horas. Estratifica a gravidade em três estágios pela creatinina e pela diurese. O estágio 3 inclui creatinina ≥3 vezes o basal, elevação da creatinina para ≥4,0 mg/dL, início de terapia renal substitutiva ou, em menores de 18 anos, taxa de filtração glomerular estimada (TFGe) <35 mL/min/1,73 m².",
+            "conclusao": "Os critérios de creatinina e diurese da KDIGO 2012 devem ser aplicados de forma independente: basta uma rota diagnóstica, e o maior estágio atingido define a gravidade.",
+            "curiosidade": "A classificação KDIGO harmonizou os sistemas RIFLE e AKIN, permitindo que estudos e serviços comparassem incidência e desfechos de LRA com uma linguagem comum."
+          },
+          "originalSHA256": "sha256:75b0caab14c8159f158db97ba508c135ebc23a15c057ecefbd56df51534927cd",
+          "proposed": {
+            "label": "KDIGO AKI 2012",
+            "url": "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf",
+            "journal": "Kidney International Supplements",
+            "ano": 2012,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Diretriz que estabeleceu a definição e o estadiamento universais da lesão renal aguda",
+            "icon": "📋",
+            "resumo": "Define LRA por qualquer uma de três rotas: aumento da creatinina sérica ≥0,3 mg/dL em 48 horas; aumento para ≥1,5 vez o basal, conhecido ou presumido nos sete dias anteriores; ou diurese <0,5 mL/kg/h por seis horas. Estratifica a gravidade em três estágios pela creatinina e pela diurese. O estágio 3 inclui creatinina ≥3 vezes o basal, elevação da creatinina para ≥4,0 mg/dL, início de terapia renal substitutiva ou, em menores de 18 anos, taxa de filtração glomerular estimada (TFGe) <35 mL/min/1,73 m².",
+            "conclusao": "Os critérios de creatinina e diurese da KDIGO 2012 devem ser aplicados de forma independente: basta uma rota diagnóstica, e o maior estágio atingido define a gravidade.",
+            "curiosidade": "A classificação KDIGO harmonizou os sistemas RIFLE e AKIN, permitindo que estudos e serviços comparassem incidência e desfechos de LRA com uma linguagem comum."
+          },
+          "proposedSHA256": "sha256:75b0caab14c8159f158db97ba508c135ebc23a15c057ecefbd56df51534927cd",
+          "sourceIDs": [
+            "kdigo"
+          ],
+          "notes": [
+            "Card compartilhado atual byte-exato, rechecado integralmente. Nenhuma alteração global de conteúdo."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. OP de uso seguro preservado e isolado da comparação de anticoagulantes. Sem dose, alvo ou contraindicação universal não sustentados. Distratores confundem circuito versus paciente e monitorização.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "279c6c8e",
+      "family": "A13-UTI-hepatorrenal",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Síndrome Hepatorrenal — HRS-AKD e HRS-CKD",
+        "qid": "279c6c8e",
+        "q": "Paciente com cirrose e ascite apresenta redução persistente da função renal por mais de 90 dias, sem causa estrutural dominante. Qual interpretação está alinhada à nomenclatura ICA–ADQI atual?",
+        "refs": [
+          "hepatorenal_review"
+        ],
+        "opts": [
+          "O quadro pode ser classificado como HRS-CKD; vasodilatação esplâncnica e redução do volume arterial efetivo favorecem ativação neuro-hormonal e vasoconstrição renal",
+          "Todo distúrbio renal na cirrose deve ser chamado HRS-AKI, independentemente da duração",
+          "HRS-CKD exige necrose tubular comprovada em biópsia",
+          "A ausência de resposta a 48 horas fixas de albumina é obrigatória para definir qualquer forma de HRS"
+        ],
+        "ans": 0,
+        "exp": "A nomenclatura contemporânea distingue HRS-AKI, HRS-AKD e HRS-CKD segundo temporalidade e critérios de função renal. Persistência por mais de 90 dias enquadra HRS-CKD quando o fenótipo hepatorrenal é dominante. A fisiopatologia integra vasodilatação esplâncnica, redução do volume arterial efetivo, inflamação e ativação do sistema renina-angiotensina e simpático, com vasoconstrição renal. Necrose tubular aponta para lesão estrutural concorrente. O consenso não exige administração sistemática de albumina por 48 horas para firmar HRS-AKI; a avaliação volêmica deve ser individualizada e rápida.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "originalSHA256": "sha256:12b1a896fd672fdbad8d1caed17d022bc88134bbd282effe495fd467b69f98ac",
+      "originalRefs": [
+        {
+          "id": "hepatorenal_review",
+          "original": {
+            "label": "ICA–ADQI — Lesão Renal e Síndrome Hepatorrenal na Cirrose (2024)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11193657/",
+            "journal": "Journal of Hepatology",
+            "ano": 2024,
+            "tipo": "Consenso",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Atualiza critérios de HRS-AKI e distingue HRS-AKD de HRS-CKD",
+            "icon": "📋",
+            "resumo": "Consenso multidisciplinar conjunto do International Club of Ascites e Acute Disease Quality Initiative. Atualiza a avaliação de LRA na cirrose e a nomenclatura da síndrome hepatorrenal: HRS-AKI para lesão aguda, HRS-AKD para disfunção inferior a 90 dias que não preenche HRS-AKI e HRS-CKD para persistência além de 90 dias. Recomenda avaliar rapidamente responsividade a volume quando clinicamente indicada, sem exigir administração sistemática de albumina por 48 horas para diagnosticar HRS-AKI, e reconhece coexistência de lesão estrutural.",
+            "conclusao": "Temporalidade, contexto cirrótico e exclusão de uma causa alternativa dominante orientam HRS-AKI, HRS-AKD e HRS-CKD; albumina deve ser guiada pela avaliação volêmica, não usada como teste obrigatório fixo.",
+            "curiosidade": "A revisão abandona a ideia de síndrome puramente funcional: inflamação sistêmica e lesão tubular podem coexistir com o fenótipo hemodinâmico hepatorrenal."
+          },
+          "originalSHA256": "sha256:0d0a7e089ef0cbdffbc82cceaeea189b9ecfa6d5abf101a8cf226702e6555282"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Classificar a duração crônica do fenótipo hepatorrenal predominante como HRS-CKD, distinguindo-a de HRS-AKI/AKD.",
+        "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Alternativa correta mistura classificação e extensa fisiopatologia, enquanto as demais não.",
+          "MENOR — Redução persistente de função na cirrose não basta por si só para estabelecer etiologia hepatorrenal; tornar a avaliação etiológica explícita."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "hrs",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11193657/",
+          "doi": "10.1016/j.jhep.2024.03.031",
+          "access": "Corpo primário integral ICA–ADQI2024 aberto e lido nas seções diagnóstico, temporalidade e fisiopatologia.",
+          "locators": [
+            "Nomenclature: HRS<90dias=HRS-AKD se não preenche AKI; persistente>90dias=HRS-CKD; lesão aguda sobre DRC pode ser HRS-AKI on CKD.",
+            "Box1: fenótipo hepatorrenal exige contexto e avaliação de causas alternativas; dano estrutural pode coexistir.",
+            "Recomenda não exigir albumina sistemática48h para HRS-AKI; avaliação volêmica orienta ressuscitação individualizada."
+          ],
+          "limitations": [
+            "A duração isolada de qualquer disfunção na cirrose não estabelece etiologia hepatorrenal. A proposta declara fenótipo já investigado e predominante."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Fenótipo hepatorrenal persistente por mais de90dias é HRS-CKD; duração isolada não diagnostica qualquer disfunção da cirrose como hepatorrenal.",
+          "source": "hrs",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Síndrome Hepatorrenal — HRS-AKD e HRS-CKD",
+        "qid": "279c6c8e",
+        "q": "Paciente com cirrose e ascite mantém taxa de filtração glomerular estimada abaixo de 60 mL/min/1,73 m² por quatro meses. Após investigação, o fenótipo hepatorrenal é considerado predominante, sem outra causa que explique melhor a disfunção. Qual nomenclatura corresponde à duração descrita?",
+        "refs": [
+          "hepatorenal_review"
+        ],
+        "opts": [
+          "Síndrome hepatorrenal com doença renal crônica (HRS-CKD).",
+          "Síndrome hepatorrenal com lesão renal aguda (HRS-AKI).",
+          "Síndrome hepatorrenal com doença renal aguda (HRS-AKD).",
+          "Lesão renal aguda sobre doença renal crônica, pela duração isolada."
+        ],
+        "ans": 0,
+        "exp": "O consenso do International Club of Ascites e da Acute Disease Quality Initiative (ICA–ADQI), de 2024 usa HRS-CKD para o fenótipo hepatorrenal persistente por mais de 90 dias. HRS-AKI depende de critérios de alteração aguda; HRS-AKD descreve duração inferior a 90 dias quando não se preenchem critérios de lesão aguda. A duração não estabelece sozinha a causa: cirrose pode coexistir com doença renal estrutural e com episódios agudos. Neste enunciado, a investigação já estabeleceu predominância do fenótipo hepatorrenal; não se presume que toda disfunção crônica na cirrose seja HRS-CKD.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "proposedSHA256": "sha256:b00b494f7b1537d1d51b140d9129912d7f0a68f20007cf1cebe20367c4d872bd",
+      "classificationAfter": {
+        "op": "Classificar a duração crônica do fenótipo hepatorrenal predominante como HRS-CKD, distinguindo-a de HRS-AKI/AKD.",
+        "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "hepatorenal_review",
+          "original": {
+            "label": "ICA–ADQI — Lesão Renal e Síndrome Hepatorrenal na Cirrose (2024)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11193657/",
+            "journal": "Journal of Hepatology",
+            "ano": 2024,
+            "tipo": "Consenso",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Atualiza critérios de HRS-AKI e distingue HRS-AKD de HRS-CKD",
+            "icon": "📋",
+            "resumo": "Consenso multidisciplinar conjunto do International Club of Ascites e Acute Disease Quality Initiative. Atualiza a avaliação de LRA na cirrose e a nomenclatura da síndrome hepatorrenal: HRS-AKI para lesão aguda, HRS-AKD para disfunção inferior a 90 dias que não preenche HRS-AKI e HRS-CKD para persistência além de 90 dias. Recomenda avaliar rapidamente responsividade a volume quando clinicamente indicada, sem exigir administração sistemática de albumina por 48 horas para diagnosticar HRS-AKI, e reconhece coexistência de lesão estrutural.",
+            "conclusao": "Temporalidade, contexto cirrótico e exclusão de uma causa alternativa dominante orientam HRS-AKI, HRS-AKD e HRS-CKD; albumina deve ser guiada pela avaliação volêmica, não usada como teste obrigatório fixo.",
+            "curiosidade": "A revisão abandona a ideia de síndrome puramente funcional: inflamação sistêmica e lesão tubular podem coexistir com o fenótipo hemodinâmico hepatorrenal."
+          },
+          "originalSHA256": "sha256:0d0a7e089ef0cbdffbc82cceaeea189b9ecfa6d5abf101a8cf226702e6555282",
+          "proposed": {
+            "label": "ICA–ADQI — Lesão Renal e Síndrome Hepatorrenal na Cirrose (2024)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11193657/",
+            "journal": "Journal of Hepatology",
+            "ano": 2024,
+            "tipo": "Consenso",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Atualiza critérios de HRS-AKI e distingue HRS-AKD de HRS-CKD",
+            "icon": "📋",
+            "resumo": "Consenso multidisciplinar conjunto do International Club of Ascites e Acute Disease Quality Initiative. Atualiza a avaliação de LRA na cirrose e a nomenclatura da síndrome hepatorrenal: HRS-AKI para lesão aguda, HRS-AKD para disfunção inferior a 90 dias que não preenche HRS-AKI e HRS-CKD para persistência além de 90 dias. Recomenda avaliar rapidamente responsividade a volume quando clinicamente indicada, sem exigir administração sistemática de albumina por 48 horas para diagnosticar HRS-AKI, e reconhece coexistência de lesão estrutural.",
+            "conclusao": "Temporalidade, contexto cirrótico e exclusão de uma causa alternativa dominante orientam HRS-AKI, HRS-AKD e HRS-CKD; albumina deve ser guiada pela avaliação volêmica, não usada como teste obrigatório fixo.",
+            "curiosidade": "A revisão abandona a ideia de síndrome puramente funcional: inflamação sistêmica e lesão tubular podem coexistir com o fenótipo hemodinâmico hepatorrenal."
+          },
+          "proposedSHA256": "sha256:0d0a7e089ef0cbdffbc82cceaeea189b9ecfa6d5abf101a8cf226702e6555282",
+          "sourceIDs": [
+            "hrs"
+          ],
+          "notes": [
+            "Card compartilhado atual byte-exato, rechecado integralmente. Nenhuma alteração global de conteúdo."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Retira segunda tarefa fisiopatológica e explicita dado etiológico. Dificuldade medium por aplicação de nomenclatura em caso, sem análise de múltiplos mecanismos.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "0ffc255a",
+      "family": "A13-UTI-hepatorrenal",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Peritonite Bacteriana Espontânea",
+        "qid": "0ffc255a",
+        "q": "Em cirrose com ascite e suspeita de peritonite bacteriana espontânea (PBE), qual padrão microbiológico e interpretação são mais corretos?",
+        "opts": [
+          "Anaeróbios são esperados como causa dominante; sua presença confirma PBE primária.",
+          "Candida é frequente o bastante para justificar antifúngico empírico de rotina.",
+          "Enterobactérias e cocos gram-positivos são causas relevantes; anaeróbios, múltiplos organismos ou fungos devem levantar suspeita de peritonite secundária ou contexto especial.",
+          "Staphylococcus aureus é o agente típico por translocação cutânea, como na peritonite de diálise peritoneal."
+        ],
+        "ans": 2,
+        "exp": "Na PBE, enterobactérias e cocos gram-positivos são causas relevantes, refletindo translocação bacteriana e mudanças epidemiológicas. Anaeróbios, flora polimicrobiana ou fungos não são o padrão de PBE primária e devem fazer pensar em peritonite secundária, perfuração ou contexto especial. Antifúngico empírico de rotina não é indicado na PBE usual. Staphylococcus aureus pode ocorrer, mas não deve ser ensinado como agente típico dominante por analogia com diálise peritoneal.",
+        "diff": "medium",
+        "cat": "infeccao",
+        "refs": [
+          "aasld_ascites_sbp_2021",
+          "harrisons_principles"
+        ]
+      },
+      "originalSHA256": "sha256:2a32b7595f0a285d7fc80cb05a7ff1366a339e254d3083b450588b8625f63220",
+      "originalRefs": [
+        {
+          "id": "aasld_ascites_sbp_2021",
+          "original": {
+            "label": "AASLD — Ascite, PBE e SHR (2021)",
+            "url": "https://onlinelibrary.wiley.com/doi/10.1002/hep.31884",
+            "journal": "Hepatology 2021;74(2):1014-1048",
+            "ano": 2021,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Diagnóstico, tratamento e profilaxia de PBE com foco renal em cirrose",
+            "icon": "📋",
+            "resumo": "Practice Guidance 2021 da American Association for the Study of Liver Diseases (AASLD) para ascite, peritonite bacteriana espontânea (PBE) e síndrome hepatorrenal. Recomenda paracentese diagnóstica em ascite nova ou descompensação, com contagem de neutrófilos no líquido ascítico, cultura e proteína quando profilaxia primária é considerada. PBE é definida por neutrófilos no líquido ascítico ≥250/mm³; antibiótico deve ser iniciado sem aguardar cultura. Albumina intravenosa reduz progressão para lesão renal aguda e morte, especialmente em pacientes com disfunção renal ou descompensação hepática importante. Profilaxia primária é reservada a alto risco, como proteína ascítica baixa associada a disfunção renal ou hepática avançada.",
+            "conclusao": "Sustenta iniciar tratamento imediato da PBE por PMN ≥250/mm³ e reservar profilaxia primária para combinação de baixo teor proteico no líquido com alto risco clínico, não para proteína baixa isolada.",
+            "curiosidade": "A orientação de albumina na PBE nasceu de ensaio em que o benefício foi maior em pacientes já com ureia/creatinina elevadas ou bilirrubina alta — ponte direta entre hepatologia e proteção renal."
+          },
+          "originalSHA256": "sha256:ba61b0fd1f9dd30b0d9d7df5d81f5b8060c7a9956c6d562da4e2f7d2cc64c126"
+        },
+        {
+          "id": "harrisons_principles",
+          "original": {
+            "label": "Harrison's Principles of Internal Medicine",
+            "url": "https://accessmedicine.mhmedical.com/book.aspx?bookid=3095",
+            "journal": "McGraw-Hill (Textbook)",
+            "ano": 2023,
+            "tipo": "Livro-texto de referência",
+            "badge": "TEXTBOOK",
+            "badgeColor": "#64748b",
+            "impacto": "Referência em medicina interna — capítulos de nefrologia cobrem síndromes, distúrbios hidroeletrolíticos e DRC",
+            "icon": "📚",
+            "resumo": "Livro-texto clássico de medicina interna, usado como referência ampla para raciocínio clínico. Nos capítulos de nefrologia, organiza diagnóstico diferencial das síndromes renais — LRA, DRC, síndrome nefrótica, síndrome nefrítica, distúrbios hidroeletrolíticos e ácido-base — além de glomerulopatias, doenças tubulointersticiais, hipertensão renal e acometimento renal de doenças sistêmicas como diabetes, LES, vasculites e gamopatias.",
+            "conclusao": "Harrison's é útil como ponto de entrada clínico e diagnóstico antes das diretrizes específicas; ajuda a construir raciocínio diferencial, mas não substitui guidelines nefrológicas com recomendações graduadas.",
+            "curiosidade": "Os capítulos do Harrison's refletem síntese narrativa de especialistas, não recomendações formais com classe e nível de evidência. Por isso, funcionam melhor como mapa clínico geral do que como fonte final para decisão terapêutica específica."
+          },
+          "originalSHA256": "sha256:804d0c38d625903c02f697f41bcd18e835b9023f6b26142aa3dbddcedb3fd6a3"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reconhecer o padrão microbiológico usual de peritonite bacteriana espontânea na cirrose sem assumir um agente único universal.",
+        "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "easy"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Gabarito contém diagnóstico diferencial e exclusões em uma alternativa muito maior.",
+          "MENOR — Fungos podem causar infecção espontânea em contexto específico; não usar isolamento fúngico como prova isolada de foco secundário."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "aasld",
+          "url": "https://onlinelibrary.wiley.com/doi/full/10.1002/hep.31884",
+          "doi": "10.1002/hep.31884",
+          "access": "Practice Guidance primária integral aberta no journal,2021;74:1014–1048.",
+          "locators": [
+            "SBP and other spontaneous infections: tipicamente monobacterianas, enterobactérias e cocos gram-positivos relevantes; fungos<5% nesse conjunto, sem dominância de Candida.",
+            "Management/Albumin: tratamento não aguarda cultura quando diagnóstico por neutrófilos; benefício de albumina, especialmente alto risco renal/hepático.",
+            "Primary prophylaxis: baixo teor proteico associado a risco renal/hepático, não proteína baixa isolada."
+          ],
+          "limitations": [
+            "Microbiologia varia conforme local, aquisição hospitalar e resistência; não foi proposto esquema empírico universal. Card reavaliado integralmente, sem transferir gate a outros consumidores."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "PBE é tipicamente monobacteriana, com enterobactérias e cocos gram-positivos relevantes e variação epidemiológica.",
+          "source": "aasld",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Peritonite Bacteriana Espontânea",
+        "qid": "0ffc255a",
+        "q": "Na cirrose com ascite, qual descrição corresponde melhor à microbiologia usual da peritonite bacteriana espontânea?",
+        "opts": [
+          "Predomínio de anaeróbios obrigatórios em infecção polimicrobiana.",
+          "Predomínio de Candida em infecção monomicrobiana.",
+          "Infecção geralmente monobacteriana, com enterobactérias e cocos gram-positivos relevantes.",
+          "Infecção causada tipicamente por Staphylococcus aureus, sem participação de bactérias entéricas."
+        ],
+        "ans": 2,
+        "exp": "A peritonite bacteriana espontânea costuma ser monobacteriana. Enterobactérias, como Escherichia coli e Klebsiella, e cocos gram-positivos são causas relevantes; a distribuição muda conforme local, aquisição hospitalar e resistência. Staphylococcus aureus pode ocorrer, mas não é o único agente típico. Fungos e flora polimicrobiana não representam o padrão usual e exigem avaliação específica do contexto. Esta descrição microbiológica não define um esquema antibiótico universal nem autoriza aguardar cultura quando há indicação clínica de tratamento.",
+        "diff": "easy",
+        "cat": "infeccao",
+        "refs": [
+          "aasld_ascites_sbp_2021"
+        ]
+      },
+      "proposedSHA256": "sha256:dbfcd9f2dedd78528a3bf5b2a41b4573754b62fae6c678181217f12d1eb4be15",
+      "classificationAfter": {
+        "op": "Reconhecer o padrão microbiológico usual de peritonite bacteriana espontânea na cirrose sem assumir um agente único universal.",
+        "primaryCompetence": "Interpretação fisiopatológica e manejo seguro de disfunção renal no paciente crítico.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "proposedRefs": [
+        {
+          "id": "aasld_ascites_sbp_2021",
+          "original": {
+            "label": "AASLD — Ascite, PBE e SHR (2021)",
+            "url": "https://onlinelibrary.wiley.com/doi/10.1002/hep.31884",
+            "journal": "Hepatology 2021;74(2):1014-1048",
+            "ano": 2021,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Diagnóstico, tratamento e profilaxia de PBE com foco renal em cirrose",
+            "icon": "📋",
+            "resumo": "Practice Guidance 2021 da American Association for the Study of Liver Diseases (AASLD) para ascite, peritonite bacteriana espontânea (PBE) e síndrome hepatorrenal. Recomenda paracentese diagnóstica em ascite nova ou descompensação, com contagem de neutrófilos no líquido ascítico, cultura e proteína quando profilaxia primária é considerada. PBE é definida por neutrófilos no líquido ascítico ≥250/mm³; antibiótico deve ser iniciado sem aguardar cultura. Albumina intravenosa reduz progressão para lesão renal aguda e morte, especialmente em pacientes com disfunção renal ou descompensação hepática importante. Profilaxia primária é reservada a alto risco, como proteína ascítica baixa associada a disfunção renal ou hepática avançada.",
+            "conclusao": "Sustenta iniciar tratamento imediato da PBE por PMN ≥250/mm³ e reservar profilaxia primária para combinação de baixo teor proteico no líquido com alto risco clínico, não para proteína baixa isolada.",
+            "curiosidade": "A orientação de albumina na PBE nasceu de ensaio em que o benefício foi maior em pacientes já com ureia/creatinina elevadas ou bilirrubina alta — ponte direta entre hepatologia e proteção renal."
+          },
+          "originalSHA256": "sha256:ba61b0fd1f9dd30b0d9d7df5d81f5b8060c7a9956c6d562da4e2f7d2cc64c126",
+          "proposed": {
+            "label": "AASLD — Ascite, PBE e SHR (2021)",
+            "url": "https://onlinelibrary.wiley.com/doi/10.1002/hep.31884",
+            "journal": "Hepatology 2021;74(2):1014-1048",
+            "ano": 2021,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Diagnóstico, tratamento e profilaxia de PBE com foco renal em cirrose",
+            "icon": "📋",
+            "resumo": "Practice Guidance 2021 da American Association for the Study of Liver Diseases (AASLD) para ascite, peritonite bacteriana espontânea (PBE) e síndrome hepatorrenal. Recomenda paracentese diagnóstica em ascite nova ou descompensação, com contagem de neutrófilos no líquido ascítico, cultura e proteína quando profilaxia primária é considerada. PBE é definida por neutrófilos no líquido ascítico ≥250/mm³; antibiótico deve ser iniciado sem aguardar cultura. Albumina intravenosa reduz progressão para lesão renal aguda e morte, especialmente em pacientes com disfunção renal ou descompensação hepática importante. Profilaxia primária é reservada a alto risco, como proteína ascítica baixa associada a disfunção renal ou hepática avançada.",
+            "conclusao": "Sustenta iniciar tratamento imediato da PBE por PMN ≥250/mm³ e reservar profilaxia primária para combinação de baixo teor proteico no líquido com alto risco clínico, não para proteína baixa isolada.",
+            "curiosidade": "A orientação de albumina na PBE nasceu de ensaio em que o benefício foi maior em pacientes já com ureia/creatinina elevadas ou bilirrubina alta — ponte direta entre hepatologia e proteção renal."
+          },
+          "proposedSHA256": "sha256:ba61b0fd1f9dd30b0d9d7df5d81f5b8060c7a9956c6d562da4e2f7d2cc64c126",
+          "sourceIDs": [
+            "aasld"
+          ],
+          "notes": [
+            "Card compartilhado atual byte-exato, rechecado integralmente. Nenhuma alteração global de conteúdo."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Isola reconhecimento microbiológico e preserva contexto, sem transformar Candida em prova obrigatória de perfuração ou inferir empirismo universal.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    }
+  ],
+  "supersedes": {
+    "file": "author-batch-A13-UTI-hepatorrenal.json",
+    "rawSHA256": "57c4c0d5277872e94ac2513990c85d27af71c81def0f1c682d6af8fc74f23a08",
+    "scope": "Acabamento autoral antes da primeira submissão: abre ICA/ADQI, espaço da referência nova, retira detalhe de resultado VANISH da UI para manter foco da explicação nas recomendações oficiais atuais. Contraprova primária permanece no relatório."
+  }
+}

@@ -1,0 +1,485 @@
+{
+  "schema": "NQ_AUTHOR_BATCH_1728_A2.1",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "count": 1,
+  "readyForImplementation": false,
+  "supersedesOneItem": {
+    "file": "author-batch-A2.json",
+    "rawFileSHA256": "1c2c39d8f963ed30eb7fd1706806dd6cccc66bfe5d83df39a5f4b584f5b6bf41",
+    "qid": "cf42455e"
+  },
+  "revisionReason": "Comparador de intensidade inequívoco, após recurso independente.",
+  "items": [
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "cf42455e",
+      "family": "A2-patologia-e-mecanismos",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "qid": "cf42455e",
+        "q": "Na imunofluorescência de uma glomerulonefrite, C3c marca 3+ e IgG marca 1+, sem outro reagente mais intenso. Qual é a interpretação correta?",
+        "opts": [
+          "O padrão atende à definição descritiva de C3 dominante, pois C3 está pelo menos duas ordens de intensidade acima dos demais reagentes; isso levanta C3G, mas exige microscopia eletrônica e exclusão de infecção, imunocomplexos mascarados e outras causas",
+          "C3 dominante exige ausência absoluta de toda imunoglobulina, portanto IgG 1+ exclui C3G",
+          "O padrão confirma sozinho C3 glomerulonefrite e dispensa investigação clínica ou do complemento",
+          "C3 3+ com IgG 1+ define glomerulonefrite pós-infecciosa e exclui desregulação persistente da via alternativa"
+        ],
+        "ans": 0,
+        "exp": "O consenso usa o termo morfológico glomerulonefrite com C3 dominante quando a intensidade de C3c é pelo menos duas ordens de magnitude maior que qualquer outro reagente imune; não é obrigatório que toda imunoglobulina seja zero. Esse padrão aumenta a suspeita de C3 glomerulopatia, mas não fecha etiologia: infecção relacionada, imunoglobulinas mascaradas e outros mimetizadores devem ser avaliados, e a microscopia eletrônica ajuda a classificar os depósitos. A persistência de alterações clínicas ou do complemento após um gatilho infeccioso também pode exigir reavaliação.",
+        "refs": [
+          "kdigo_gn",
+          "c3g_consensus"
+        ],
+        "cat": "glomerular",
+        "diff": "hard",
+        "t": "GN com C3 Dominante — Definição e Limites"
+      },
+      "originalSHA256": "sha256:e5318fc23cbab01f2ae6bcc54fd1bf5642173198290928c35ff0e2815d69f7fe",
+      "originalRefs": [
+        {
+          "id": "kdigo_gn",
+          "original": {
+            "label": "KDIGO Glomerular Diseases 2021",
+            "url": "https://kdigo.org/guidelines/glomerular-diseases/",
+            "journal": "Kidney Int 2021;100(4S):S1-S276",
+            "ano": 2021,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Referência global para diagnóstico e tratamento das glomerulopatias",
+            "icon": "📋",
+            "resumo": "Primeira diretriz KDIGO dedicada às glomerulopatias, cobrindo síndrome nefrótica de lesões mínimas, GESF, nefropatia membranosa, nefropatia por IgA, nefrite lúpica, vasculites ANCA, C3 glomerulopatia e MPGN. Incorpora biomarcadores serológicos no diagnóstico — anti-PLA2R (presente em cerca de 70–80% dos casos de nefropatia membranosa primária) e ANCA-PR3/MPO — e gradua recomendações pelo sistema GRADE. Alguns capítulos foram complementados por atualizações posteriores específicas, como a diretriz dedicada à IgAN 2025; usar em conjunto com fontes mais recentes quando disponíveis.",
+            "conclusao": "Referência unificada para diagnóstico e imunossupressão nas glomerulopatias — substituiu capítulos fragmentados de diretrizes anteriores.",
+            "curiosidade": "O anti-PLA2R, descoberto por Beck et al. em 2009 (NEJM), permite o diagnóstico sorológico da nefropatia membranosa primária em contextos típicos — reduzindo a dependência exclusiva da biópsia renal — e serve como marcador de atividade e resposta ao tratamento pelo título sérico."
+          },
+          "originalSHA256": "sha256:5c4b156432abf6becef975353eb4beedb58498d6f18c2d95b7cb46701483ab13"
+        },
+        {
+          "id": "c3g_consensus",
+          "original": {
+            "label": "Pickering MC et al. — C3 Glomerulopathy Consensus (Kidney Int 2013)",
+            "url": "https://www.kidney-international.org/article/S0085-2538(15)30396-7/fulltext",
+            "journal": "Kidney Int 2013;84(6):1079-1089",
+            "ano": 2013,
+            "tipo": "Consenso Clínico",
+            "badge": "CONSENSO",
+            "badgeColor": "#f59e0b",
+            "impacto": "Definição e classificação da C3G: C3GN (depósito difuso C3) e DDD (depósito denso intramembranoso), papel do complemento",
+            "icon": "⚠️",
+            "resumo": "Consenso internacional que unificou o conceito de C3 glomerulopatia (C3G) como entidade definida por C3 glomerular predominante (≥2+ acima de qualquer imunoglobulina na imunofluorescência) decorrente de disregulação da via alternativa do complemento. Inclui dois subtipos: C3GN (depósitos variados ao ME) e doença de depósitos densos (DDD, depósitos intramembranosos densos ao ME), que compartilham o mecanismo de disregulação do complemento.",
+            "conclusao": "A classificação C3G unificou entidades anteriormente dispersas (MPGN tipo II, MPGN com C3 predominante) sob um marco etiológico comum — a disregulação do complemento — orientando investigação laboratorial e potenciais alvos terapêuticos.",
+            "curiosidade": "O fator nefrítico C3 (C3NeF) é um autoanticorpo IgG que estabiliza a C3-convertase alternativa (C3bBb), impedindo sua inativação e perpetuando a ativação do complemento — presente em ~50% dos casos de DDD e em menor proporção da C3GN."
+          },
+          "originalSHA256": "sha256:4280284294f581e866951a7818386b770c375f2761ce056387729c1eebce5203"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reconhecer o padrão morfológico C3 dominante e o limite de inferência etiológica.",
+        "primaryCompetence": "Interpretação de imunofluorescência com investigação diferencial.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "revisão maior",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — A correta embute definição, exceção e investigação inteira, oferecendo uma pista por completude.",
+          "MENOR — O card é reescrito para distinguir explicitamente critério morfológico e diagnóstico etiológico; não se presume que C3 dominante exija zero imunoglobulina.",
+          "MAIOR — A locução original sem outro reagente mais intenso permite comparador implícito; a proposta exige explicitamente todos os demais reagentes no máximo1+."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+      },
+      "sources": [
+        {
+          "id": "c3consensus",
+          "url": "https://rcastoragev2.blob.core.windows.net/239df1855a0fe38fc8b59e56956744c6/PMC3842953.pdf",
+          "access": "PDF integral do artigo primário de consenso arquivado no PMC, 11 páginas; DOI10.1038/ki.2013.377",
+          "locators": [
+            "PDF5 / Patological recommendations e definição: C3c pelo menos2 intensidades acima de qualquer outro reagente",
+            "PDF5–6 / distinção entre padrão morfológico e processo de C3G; correlação clínica e exclusão de GN pós-infecciosa"
+          ],
+          "limitations": [
+            "Consenso de especialistas, sem recomendação terapêutica contemporânea derivada de ensaio. Taxonomia GUIDELINE identifica orientação por consenso; o resumo explicita esse desenho."
+          ]
+        },
+        {
+          "id": "kdigoGN",
+          "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+          "access": "PDF oficial integral baixado e lido com pypdf; 281 páginas, 11.200.115 bytes",
+          "rawFileSHA256": "ed2a76e68387bbff6e9b71b4749529d176acd1e37452dc581a3a08bbdc3ff9c0",
+          "locators": [
+            "PDF94 / S89: Practice Points1.1.1–1.1.2 e adequação da biópsia",
+            "PDF192–195 / S187–S190: classificação por depósitos, C3 dominante, infecção e depósitos mascarados",
+            "PDF197 / S192: Practice Point8.2.2.1, demonstra inadequação de condenar toda imunossupressão em C3G"
+          ],
+          "limitations": [
+            "Web não abriu por limite de tamanho; download oficial com rede autorizada foi bem-sucedido. Tratamentos recentes de C3G não são inferidos desta diretriz2021: o pacote trata classificação e diagnóstico."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "C3c3+/IgG1+ satisfaz dominância por intensidade",
+          "source": "c3consensus",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "É morfologia, não confirmação etiológica; excluir infecção e maskedIg",
+          "source": "kdigoGN",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "qid": "cf42455e",
+        "q": "Na imunofluorescência de uma glomerulonefrite, C3c marca 3+ e imunoglobulina G (IgG) marca 1+. Nenhum dos demais reagentes ultrapassa 1+. Qual é a interpretação correta?",
+        "opts": [
+          "Há dominância de C3, mas a etiologia exige integração com outros achados.",
+          "IgG 1+ exclui dominância de C3, mesmo quando C3c marca 3+.",
+          "Esse padrão confirma glomerulonefrite C3, sem necessidade de outros achados.",
+          "Esse padrão define glomerulonefrite pós-infecciosa pela presença de IgG."
+        ],
+        "ans": 0,
+        "exp": "O padrão atende à definição morfológica de C3 dominante: C3c está duas categorias de intensidade acima dos demais reagentes na escala de 0 a 3. Não é necessária ausência absoluta de imunoglobulinas. Isso levanta glomerulopatia C3, mas não fecha a etiologia; devem-se integrar clínica, microscopia eletrônica e investigação de complemento. Glomerulonefrite relacionada à infecção e depósitos de imunoglobulinas mascarados são diferenciais importantes. Assim, nem o pequeno depósito de IgG exclui C3 dominante nem esse resultado isolado confirma C3 glomerulonefrite ou uma origem pós-infecciosa.",
+        "refs": [
+          "kdigo_gn",
+          "c3g_consensus"
+        ],
+        "cat": "glomerular",
+        "diff": "medium",
+        "t": "GN com C3 Dominante — Definição e Limites"
+      },
+      "proposedSHA256": "sha256:a05a82cd80d697ae429765af6a99a8b38fb6bee1bed5c2d12d206e9957001b38",
+      "classificationAfter": {
+        "op": "Reconhecer o padrão morfológico C3 dominante e o limite de inferência etiológica.",
+        "primaryCompetence": "Interpretação de imunofluorescência com investigação diferencial.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "kdigo_gn",
+          "original": {
+            "label": "KDIGO Glomerular Diseases 2021",
+            "url": "https://kdigo.org/guidelines/glomerular-diseases/",
+            "journal": "Kidney Int 2021;100(4S):S1-S276",
+            "ano": 2021,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Referência global para diagnóstico e tratamento das glomerulopatias",
+            "icon": "📋",
+            "resumo": "Primeira diretriz KDIGO dedicada às glomerulopatias, cobrindo síndrome nefrótica de lesões mínimas, GESF, nefropatia membranosa, nefropatia por IgA, nefrite lúpica, vasculites ANCA, C3 glomerulopatia e MPGN. Incorpora biomarcadores serológicos no diagnóstico — anti-PLA2R (presente em cerca de 70–80% dos casos de nefropatia membranosa primária) e ANCA-PR3/MPO — e gradua recomendações pelo sistema GRADE. Alguns capítulos foram complementados por atualizações posteriores específicas, como a diretriz dedicada à IgAN 2025; usar em conjunto com fontes mais recentes quando disponíveis.",
+            "conclusao": "Referência unificada para diagnóstico e imunossupressão nas glomerulopatias — substituiu capítulos fragmentados de diretrizes anteriores.",
+            "curiosidade": "O anti-PLA2R, descoberto por Beck et al. em 2009 (NEJM), permite o diagnóstico sorológico da nefropatia membranosa primária em contextos típicos — reduzindo a dependência exclusiva da biópsia renal — e serve como marcador de atividade e resposta ao tratamento pelo título sérico."
+          },
+          "originalSHA256": "sha256:5c4b156432abf6becef975353eb4beedb58498d6f18c2d95b7cb46701483ab13",
+          "proposed": {
+            "label": "KDIGO Glomerular Diseases 2021",
+            "url": "https://kdigo.org/wp-content/uploads/2021/10/KDIGO-2021-Guideline-for-the-Management-of-Glomerular-Diseases.pdf",
+            "journal": "Kidney Int 2021;100(4S):S1-S276",
+            "ano": 2021,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Biópsia e composição dos depósitos orientam o diagnóstico das glomerulopatias",
+            "icon": "📋",
+            "resumo": "Diretriz KDIGO de 2021 para avaliação e manejo das glomerulopatias. O capítulo 1 recomenda integrar clínica e biópsia, cuja adequação depende do padrão suspeito: em geral, pelo menos 8–10 glomérulos, sem limiar universal para todas as doenças. Microscopia óptica, imunofluorescência e microscopia eletrônica são complementares. O capítulo 8 organiza o padrão membranoproliferativo por imunoglobulinas e complemento e recomenda investigar causas subjacentes; C3 dominante exige excluir infecção e considerar depósitos mascarados. São princípios/practice points; capítulos terapêuticos exigem atenção às atualizações específicas posteriores.",
+            "conclusao": "O padrão de lesão não define sozinho a etiologia. A interpretação deve integrar representatividade da amostra, composição e ultraestrutura dos depósitos e dados clínicos.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368",
+          "sourceIDs": [
+            "kdigoGN"
+          ],
+          "notes": []
+        },
+        {
+          "id": "c3g_consensus",
+          "original": {
+            "label": "Pickering MC et al. — C3 Glomerulopathy Consensus (Kidney Int 2013)",
+            "url": "https://www.kidney-international.org/article/S0085-2538(15)30396-7/fulltext",
+            "journal": "Kidney Int 2013;84(6):1079-1089",
+            "ano": 2013,
+            "tipo": "Consenso Clínico",
+            "badge": "CONSENSO",
+            "badgeColor": "#f59e0b",
+            "impacto": "Definição e classificação da C3G: C3GN (depósito difuso C3) e DDD (depósito denso intramembranoso), papel do complemento",
+            "icon": "⚠️",
+            "resumo": "Consenso internacional que unificou o conceito de C3 glomerulopatia (C3G) como entidade definida por C3 glomerular predominante (≥2+ acima de qualquer imunoglobulina na imunofluorescência) decorrente de disregulação da via alternativa do complemento. Inclui dois subtipos: C3GN (depósitos variados ao ME) e doença de depósitos densos (DDD, depósitos intramembranosos densos ao ME), que compartilham o mecanismo de disregulação do complemento.",
+            "conclusao": "A classificação C3G unificou entidades anteriormente dispersas (MPGN tipo II, MPGN com C3 predominante) sob um marco etiológico comum — a disregulação do complemento — orientando investigação laboratorial e potenciais alvos terapêuticos.",
+            "curiosidade": "O fator nefrítico C3 (C3NeF) é um autoanticorpo IgG que estabiliza a C3-convertase alternativa (C3bBb), impedindo sua inativação e perpetuando a ativação do complemento — presente em ~50% dos casos de DDD e em menor proporção da C3GN."
+          },
+          "originalSHA256": "sha256:4280284294f581e866951a7818386b770c375f2761ce056387729c1eebce5203",
+          "proposed": {
+            "label": "Pickering MC et al. — C3 Glomerulopathy Consensus (Kidney Int 2013)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3842953/",
+            "journal": "Kidney Int 2013;84(6):1079-1089",
+            "ano": 2013,
+            "tipo": "Diretriz",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "C3 dominante é um padrão de intensidade, não exigência de imunoglobulinas ausentes",
+            "icon": "📋",
+            "resumo": "Consenso internacional de especialistas (Pickering et al., 2013) sobre definição e investigação da glomerulopatia C3. Propõe o termo morfológico glomerulonefrite com C3 dominante quando a intensidade de C3c está pelo menos duas categorias acima de qualquer outro reagente imune na escala de 0 a 3. Pequenos depósitos de imunoglobulinas podem coexistir. Diagnóstico etiológico exige integração com microscopia óptica, eletrônica e história clínica, incluindo possível infecção. Doença de depósitos densos e glomerulonefrite C3 distinguem-se pela ultraestrutura.",
+            "conclusao": "A dominância de C3 levanta C3 glomerulopatia, mas não substitui investigação clínica nem exclui mimetizadores. É orientação de consenso, sem força terapêutica de ensaio randomizado.",
+            "curiosidade": ""
+          },
+          "proposedSHA256": "sha256:225b9a8a23115f5ae4dc8715493dd1a072bebbf8dad31b560260ec7a01db662e",
+          "sourceIDs": [
+            "c3consensus",
+            "kdigoGN"
+          ],
+          "notes": []
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "As opções representam quatro interpretações do mesmo dado. A ressalva etiológica foi preservada e a definição foi movida à explicação, sem eliminar qualificadores.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente.",
+        "reassessed": true,
+        "reassessment": "Recurso independente aceito: comparador de intensidade agora inequívoco para todos os demais reagentes. Critérios de unicidade, suporte, informação decisiva, OP e10eliminatórios reavaliados autoralmente no literalA2.1; nenhum disparado. Checagem autoral não é independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    }
+  ]
+}

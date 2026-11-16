@@ -11,8 +11,8 @@ for (const bancoPronto of [false, true]) {
     let releaseReferences!: () => void;
     const referencesGate = new Promise<void>(resolve => { releaseReferences = resolve; });
     let referenceRequests = 0, topicRequests = 0;
-    await page.route('**/data/topics.js', route => { topicRequests++; return route.continue(); });
-    await page.route('**/data/refs.js', async route => {
+    await page.route('**/data/topics.js*', route => { topicRequests++; return route.continue(); });
+    await page.route('**/data/refs.js*', async route => {
       referenceRequests++;
       await referencesGate;
       await route.continue();
@@ -74,9 +74,9 @@ test('falha nas referências com questões em voo recupera sem duplicar o banco'
   let releaseTopics!: () => void;
   const topicsGate = new Promise<void>(resolve => { releaseTopics = resolve; });
   let referenceRequests = 0, articleRequests = 0, topicRequests = 0;
-  await page.route('**/data/refs.js', route => ++referenceRequests === 1 ? route.abort() : route.continue());
-  await page.route('**/data/articles.js', route => { articleRequests++; return route.continue(); });
-  await page.route('**/data/topics.js', async route => {
+  await page.route('**/data/refs.js*', route => ++referenceRequests === 1 ? route.abort() : route.continue());
+  await page.route('**/data/articles.js*', route => { articleRequests++; return route.continue(); });
+  await page.route('**/data/topics.js*', async route => {
     topicRequests++;
     await topicsGate;
     await route.continue();

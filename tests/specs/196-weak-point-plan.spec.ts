@@ -46,7 +46,7 @@ test('a first visit waits for the real question bank before presenting the plan'
  const errors:string[]=[];page.on('pageerror',e=>errors.push(e.message));let release!:()=>void,requested=false;
  const ready=new Promise<void>(resolve=>release=resolve);
  await page.route('**/*',r=>new URL(r.request().url()).hostname==='localhost'?r.continue():r.abort());
- await page.route('**/data/topics.js',async route=>{requested=true;await ready;await route.continue();});
+ await page.route('**/data/topics.js*',async route=>{requested=true;await ready;await route.continue();});
  try{
   await page.goto('/jogar/',{waitUntil:'load'});await page.evaluate(categories=>{localStorage.setItem('nefroquest-detailed-stats',JSON.stringify({schemaVersion:1,byCategory:categories}));document.getElementById('landingScreen')?.classList.add('hidden');document.getElementById('welcomeScreen')?.classList.add('hidden');(window as any).openGameModesPopup();},ranked);
   await page.locator('#gameModesOverlay [data-mode-route="weak"]').click();await expect.poll(()=>requested).toBe(true);expect(errors).toEqual([]);await expect(page.locator('#nqWeakPointPlan')).toHaveCount(0);

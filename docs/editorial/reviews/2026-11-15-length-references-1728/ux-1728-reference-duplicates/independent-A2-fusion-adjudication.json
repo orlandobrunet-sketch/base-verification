@@ -1,0 +1,282 @@
+{
+  "schema": "NQ_INDEPENDENT_A2_FUSION_ADJUDICATION_1728_v1",
+  "date": "2026-11-15",
+  "reviewer": "/root/reference_duplicates_1728",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "rootAdjudication": "Root confirmou expressamente a duplicação nas quatro dimensões e selecionou d2a32c19-A2 como canônica, com aposentadoria de87f96e78. Nenhuma nova redação de87 é autorizada.",
+  "comparison": {
+    "retired": {
+      "qid": "87f96e78",
+      "question": {
+        "t": "GNMP — Padrão, não Etiologia",
+        "qid": "87f96e78",
+        "q": "Biópsia renal apresenta duplicação de membrana basal e hipercelularidade, configurando padrão membranoproliferativo. Qual é o próximo passo classificatório mais útil?",
+        "refs": [
+          "mpgn_fervenza",
+          "kdigo_gn",
+          "c3g_consensus"
+        ],
+        "opts": [
+          "Usar a imunofluorescência para separar depósitos com imunoglobulina de C3 predominante e, então, investigar infecção, autoimunidade, gamopatia ou desregulação do complemento",
+          "Manter apenas a classificação tipo I, II ou III, pois ela determina um tratamento universal",
+          "Diagnosticar C3 glomerulopatia sempre que a microscopia óptica mostrar padrão membranoproliferativo",
+          "Prescrever ciclofosfamida antes de definir a composição dos depósitos"
+        ],
+        "ans": 0,
+        "exp": "GNMP é um padrão de lesão, não uma etiologia única. A imunofluorescência orienta o ramo inicial: imunoglobulina com complemento sugere processo por imunocomplexos e demanda busca de infecção, autoimunidade ou gamopatia; C3 claramente predominante levanta C3 glomerulopatia e requer estudo da via alternativa. A microscopia eletrônica complementa a localização e a organização dos depósitos. Essa classificação mecanística evita aplicar o mesmo tratamento a doenças biologicamente diferentes.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "authorRevision": "sha256:9394aa69ca94fd66400258ef6c7507e2927f486d64737da47ada2bc467abafe9",
+      "referenceRevisions": {
+        "mpgn_fervenza": "sha256:c1c15a3b609d3ac40d415b2cd208e49ce5e815dd4e3f1364b2da90e671899251",
+        "kdigo_gn": "sha256:5c4b156432abf6becef975353eb4beedb58498d6f18c2d95b7cb46701483ab13",
+        "c3g_consensus": "sha256:4280284294f581e866951a7818386b770c375f2761ce056387729c1eebce5203"
+      },
+      "recordRevision": "sha256:527481a36def56878461385ed03a2416b24af4a3724ed7f43e2db1117548b07f"
+    },
+    "canonicalOriginal": {
+      "qid": "d2a32c19",
+      "question": {
+        "t": "Padrão MPGN — Classificação por Depósitos",
+        "qid": "d2a32c19",
+        "q": "A biópsia renal mostra hipercelularidade mesangial e endocapilar com duplo contorno da membrana basal, descrita como padrão membranoproliferativo. Qual abordagem classifica melhor esse achado e orienta a investigação?",
+        "refs": [
+          "kdigo_gn",
+          "mpgn_fervenza"
+        ],
+        "opts": [
+          "Reconhecer MPGN como padrão de lesão e usar a imunofluorescência para separar depósitos por imunocomplexos de deposição dominante de complemento, investigando infecção, autoimunidade, gamopatia monoclonal e desregulação do complemento conforme o grupo",
+          "Aplicar apenas a classificação histórica em tipos I, II e III, pois a etiologia não modifica a avaliação nem o tratamento",
+          "Considerar todo padrão MPGN como C3 glomerulopatia mesmo quando imunoglobulinas policlonais predominam",
+          "Definir MPGN primária pela microscopia óptica e dispensar imunofluorescência, microscopia eletrônica e investigação sistêmica"
+        ],
+        "ans": 0,
+        "exp": "MPGN descreve um padrão de lesão na microscopia óptica, não uma etiologia única. A imunofluorescência direciona a classificação: imunoglobulinas com complemento favorecem glomerulonefrite mediada por imunocomplexos, enquanto C3 dominante levanta C3 glomerulopatia e outras doenças com ativação predominante do complemento. Depois disso, a investigação procura causas secundárias, incluindo infecções crônicas, autoimunidade e gamopatia monoclonal, ou anormalidades da via do complemento. Microscopia eletrônica e contexto clínico completam a interpretação; o padrão isolado não autoriza chamar toda MPGN de C3G ou primária.",
+        "diff": "hard",
+        "cat": "glomerular"
+      },
+      "authorRevision": "sha256:bd6c2c5ce6d8f041b68d4cf874c14cc67a991799789d6e84e6d88534a5e41035",
+      "referenceRevisions": {
+        "kdigo_gn": "sha256:5c4b156432abf6becef975353eb4beedb58498d6f18c2d95b7cb46701483ab13",
+        "mpgn_fervenza": "sha256:c1c15a3b609d3ac40d415b2cd208e49ce5e815dd4e3f1364b2da90e671899251"
+      },
+      "recordRevision": "sha256:c0f487e9b000de208e3288de372b7fcc11da30c7fa594cfc8f5dc494308661aa"
+    },
+    "canonicalProposed": {
+      "qid": "d2a32c19",
+      "question": {
+        "t": "Padrão membranoproliferativo — Classificação por depósitos",
+        "qid": "d2a32c19",
+        "q": "A biópsia renal mostra hipercelularidade mesangial e endocapilar com duplo contorno da membrana basal, descrita como padrão de glomerulonefrite membranoproliferativa. Qual abordagem classifica melhor esse achado e orienta a investigação?",
+        "refs": [
+          "kdigo_gn"
+        ],
+        "opts": [
+          "Classificar os depósitos pela imunofluorescência e investigar a causa correspondente.",
+          "Classificar apenas em tipos I, II e III e considerar a doença primária.",
+          "Definir glomerulopatia C3 pelo duplo contorno, antes de avaliar a composição dos depósitos.",
+          "Definir uma causa monoclonal pelo duplo contorno, antes de investigar o clone."
+        ],
+        "ans": 0,
+        "exp": "A glomerulonefrite membranoproliferativa é um padrão de lesão, não uma etiologia única. A imunofluorescência direciona a classificação: imunoglobulinas com complemento levam à investigação de imunocomplexos e eventual monoclonalidade; C3 dominante levanta desregulação do complemento, após excluir mimetizadores como infecção. Microscopia eletrônica e contexto clínico completam a interpretação. Infecção, autoimunidade e gamopatia devem ser pesquisadas conforme os depósitos. Nem o duplo contorno define C3 glomerulopatia ou clone, nem a classificação histórica isolada permite chamar a doença de primária.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "authorRevision": "sha256:3402defa753ae2329e8f23445de8bb2bf79e0e3971426b6937aec371a4dbf034",
+      "referenceRevisions": {
+        "kdigo_gn": "sha256:cfbf684615ac9eea7913bd38e8f318fc3f2d8ab1c68102d10cfc77e4414a0368"
+      },
+      "recordRevision": "sha256:5b40652631f605c3c19be94751d2bf94f050b1d351830059ec2372cb6a3838d1"
+    },
+    "fourDimensions": [
+      {
+        "dimension": "Objetivo pedagógico",
+        "retired": "Reconhecer MPGN como padrão e decidir classificação por IF antes de atribuir etiologia.",
+        "canonical": "Classificar padrão membranoproliferativo pela composição e orientar investigação etiológica.",
+        "equal": true
+      },
+      {
+        "dimension": "Competência primária",
+        "retired": "Interpretação clinicopatológica e investigação etiológica.",
+        "canonical": "Interpretação clinicopatológica e investigação etiológica.",
+        "equal": true
+      },
+      {
+        "dimension": "Decisão/raciocínio central",
+        "retired": "Usar IF para Ig/C3 e em seguida investigar causas.",
+        "canonical": "Usar IF para composição e investigar a causa correspondente.",
+        "equal": true
+      },
+      {
+        "dimension": "Conceito correto",
+        "retired": "Padrão MPGN não define uma doença única; Ig versus complemento direcionam investigação.",
+        "canonical": "Padrão MPGN não define uma doença única; Ig versus complemento direcionam investigação.",
+        "equal": true
+      }
+    ],
+    "benefitOfKeepingBoth": "Nenhum ganho cognitivo demonstrado. Variações de hipercelularidade/duplicação/duplo contorno e de lista de causas não mudam a habilidade.",
+    "reasonForCanonical": "A2 concisa usa quatro alternativas no mesmo nível, expande o termo e se apoia no capítulo8 KDIGO com card integralmente revisto. Evita reaplicar a correta longa de87 e o cardglobalmpgn_fervenza não revisto."
+  },
+  "pairVerdict": {
+    "verdict": "fundir",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "clinicalSources": [
+      "gn"
+    ],
+    "sourceReview": "independent-A2-review.json: d2a32c19 e kdigo_gn; fontes integrais em independent-A2/.",
+    "decisionTree": "Identidade nas quatro dimensões determina fundir (§15/§19); score não permite manter ambas."
+  },
+  "retiredDecision": {
+    "qid": "87f96e78",
+    "verdict": "aposentar",
+    "lifecycle": "aposentado",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publicationAuthorization": "BLOQUEADA",
+    "derived": "Veredito de aposentadoria não é aprovação (§18.4); original87 não pode ser reaplicado.",
+    "implementationAction": "Retirar87f96e78 do banco/futuros sorteios e acrescentar política explícita de substituição para d2a32c19; não transformar aposentadoria em aprovação do texto antigo.",
+    "score": {
+      "anulado": true,
+      "reason": "Duplicidade comprovada; o score não supera a decisão de fusão."
+    }
+  },
+  "canonicalDecision": {
+    "qid": "d2a32c19",
+    "verdict": "aprovada",
+    "lifecycle": "publicado após aplicação autorizada do conjunto atômico",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publicationAuthorization": "LIBERADA",
+    "derived": "Literal e cards sustentados; eliminatórios não disparados; recurso sem argumento residual; score19/20. A duplicidade foi resolvida por decisão explícita de aposentadoria do par na mesma aplicação.",
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19,
+      "rationale": "Versão clínica concisa, sigla expandida e referência específica KDIGO. Nenhum reparo automático do cardglobalmpgn_fervenza."
+    },
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Somente A — composição dos depósitos pela IF e investigação etiológica. corresponde à decisão clínica solicitada; A classificação histórica não é eliminada como descrição, mas não basta isoladamente. Depósito monoclonal não exige que clone seja sempre demonstrável; a correta não faz essa exigência. O problema decisivo para o banco é duplicidade com87f96e78, não correção clínica do literal."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Afirmação decisiva conferida em gn: MPGN é padrão de lesão. IF classifica por Ig/complemento; doença mediada por imunocomplexos pede infecção/autoimunidade/gamopatia; C3 exige diferenciais/complemento. LM isolada não define etiologia."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "OP e competência preservados. Versão clínica concisa, sigla expandida e referência específica KDIGO. Nenhum reparo automático do cardglobalmpgn_fervenza."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Não ordena intervenção insegura nem converte hipótese/biomarcador em obrigação; limites explícitos na explicação."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Distratores traduzem erros de atribuição/fechamento prematuro ou mecanismos/hormônios alternativos; fraquezas residuais pontuam, não são absurdos desligados do caso."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Implica diagnóstico/segurança/fisiologia útil, não trivia."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Explicação inicia pela conclusão e a fundamenta sem contradizer A — composição dos depósitos pela IF e investigação etiológica.."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Enunciado informa os dados necessários à decisão; não exige completar gravidade ou resultados ocultos."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Nenhuma resposta depende de protocolo institucional ou disponibilidade local não declarados."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Conteúdo diagnóstico/mecanístico verificado; fontes antigas não usadas para fazer afirmação terapêutica atual sem suporte."
+      }
+    ],
+    "advogadoDoRecurso": "A classificação histórica não é eliminada como descrição, mas não basta isoladamente. Depósito monoclonal não exige que clone seja sempre demonstrável; a correta não faz essa exigência. O problema decisivo para o banco é duplicidade com87f96e78, não correção clínica do literal.",
+    "identity": {
+      "preserveQid": true,
+      "fsrsReset": false,
+      "reason": "d2 conserva OP/competência/conceito. Não copiar FSRS de87 para d2 nem somar acertos."
+    },
+    "supersedes": "Apenas a decisão de aplicação de d2 no relatório independenteA2v1. Os bytes da questão e do card não mudaram."
+  },
+  "implementation": {
+    "productionWrites": false,
+    "authorizedAction": "Aplicar a canônica e aposentar87 no mesmo conjunto, com manifesto/política/história e testes.",
+    "historicalCompatibility": [
+      "Preservar posições/respostas de provas e estudos já salvos.",
+      "Substituir ocorrência antiga somente por escolha explícita.",
+      "Se d2 já consta da fila antiga, manter posições e avaliação por posição; não apagar resposta nem fundir contadores.",
+      "Não fabricar crédito, desbloqueio, evento de resposta ou FSRS na substituição.",
+      "Não transferir estatística ou agendamento87→d2; disponibilidade futura usa só canônica.",
+      "Manifesto deve reconhecer authorRevision e recordRevision17.27 originais listados acima."
+    ],
+    "probe": "fusion-probe-results.json prova política de posições sem crédito no caso4c7→cfee; root mantém obrigação de teste do novo par real87→d2."
+  }
+}
