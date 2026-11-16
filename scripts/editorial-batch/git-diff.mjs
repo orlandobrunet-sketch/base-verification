@@ -12,8 +12,8 @@ export function runGit(args, cwd) {
 }
 
 export function changedPaths(base, head, cwd) {
-  const output = runGit(['diff', '--name-only', base, head, '--'], cwd);
-  return output ? output.split(/\r?\n/).map((path) => path.replaceAll('\\', '/')).sort() : [];
+  const output = runGit(['diff', '--name-only', '-z', base, head, '--'], cwd);
+  return output ? output.split('\0').filter((path) => path.length > 0).sort() : [];
 }
 
 export function readAtRevision(revision, filePath, cwd, { optional = false } = {}) {
