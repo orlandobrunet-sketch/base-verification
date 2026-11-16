@@ -1,0 +1,397 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "586405f9",
+  "family": "A3-seguranca-e-condutas",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Aminoglicosídeos na Disfunção Renal — Toxicidade e Monitorização",
+    "qid": "586405f9",
+    "q": "Paciente com doença renal crônica avançada necessita de gentamicina para uma infecção grave por Gram-negativo sensível, como parte de um esquema apropriado. Qual princípio orienta corretamente o uso e a monitorização da gentamicina nesse contexto?",
+    "opts": [
+      "Os aminoglicosídeos não são nefrotóxicos na doença renal crônica, dispensando monitorização da função renal",
+      "A gentamicina é nefro e ototóxica, com risco maior na disfunção renal, em doses altas e no tratamento prolongado; exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade",
+      "Os aminoglicosídeos são absolutamente contraindicados em qualquer grau de doença renal crônica e nunca devem ser usados",
+      "A monitorização deve basear-se apenas na função hepática, pois a gentamicina é eliminada pelo fígado"
+    ],
+    "ans": 1,
+    "exp": "A gentamicina é um aminoglicosídeo bactericida com potencial nefrotóxico e ototóxico. O risco de nefrotoxicidade é maior em pacientes com função renal comprometida, doses altas ou tratamento prolongado, e pode haver ototoxicidade vestibular e auditiva. Por isso, a bula recomenda vigilância da função renal e do oitavo par craniano, determinação periódica de ureia, creatinina ou depuração de creatinina, audiogramas seriados e monitorização dos níveis séricos, com modificação da dose ou suspensão diante de sinais de toxicidade. Afirmar que não há nefrotoxicidade (A), contraindicar de forma absoluta em qualquer doença renal crônica (C) ou basear a monitorização na função hepática (D) são condutas incorretas — a gentamicina é eliminada por via renal e pode ser usada com monitorização e ajuste apropriados.",
+    "diff": "medium",
+    "cat": "farmacologia",
+    "refs": [
+      "gentamicina_anvisa"
+    ]
+  },
+  "originalSHA256": "sha256:7db3d7db9548808ae5474101a81e9dd0ec7f436a3e07ac6ccc5082462002eedb",
+  "originalRefs": [
+    {
+      "id": "gentamicina_anvisa",
+      "original": {
+        "label": "Gentamicin (sulfato de gentamicina) — Bula Profissional (ANVISA, Fresenius Kabi Brasil)",
+        "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+        "journal": "ANVISA — Bula Profissional (Fresenius Kabi Brasil Ltda., Reg. MS 1.0041.0210)",
+        "ano": 2015,
+        "tipo": "Bula profissional aprovada pela ANVISA",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "Gentamicina — nefro e ototoxicidade na disfunção renal; monitorização de função renal, oitavo par craniano e níveis séricos",
+        "icon": "📋",
+        "resumo": "Bula profissional da Gentamicin (sulfato de gentamicina) aprovada pela ANVISA (Fresenius Kabi Brasil, Reg. MS 1.0041.0210; Bula Padrão de 10/11/2015). Aminoglicosídeo bactericida; o risco de nefrotoxicidade é maior em pacientes com função renal comprometida, dose alta ou tratamento prolongado, podendo haver ototoxicidade vestibular e auditiva. Recomenda vigilância da função renal e do oitavo par craniano, determinação periódica de ureia/creatinina/depuração de creatinina, audiogramas seriados e monitorização dos níveis séricos; sinais de oto ou nefrotoxicidade exigem modificação da dose ou suspensão. Admite esquema de dose única diária.",
+        "conclusao": "Na disfunção renal, a gentamicina exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade.",
+        "curiosidade": ""
+      },
+      "originalSHA256": "sha256:91e8f9111b0c552ee6469b8f2f9ca5918120cdb88655b51f33ed2c8093f9a27a"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Combinar vigilância renal, auditiva/vestibular e níveis séricos no uso de gentamicina em disfunção renal.",
+    "primaryCompetence": "Monitorização farmacológica segura de medicamento nefro/ototóxico.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Correta contém mecanismo, riscos e toda a monitorização, enquanto as demais negam a nefrotoxicidade ou a eliminação renal de modo pouco plausível.",
+      "MENOR — Retiram-se referências por letra na explicação, mantendo análise conceitual que permanece válida se a interface embaralhar alternativas."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "gentamicin",
+      "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+      "access": "PDF integral oficial do titular Fresenius Kabi Brasil, 11páginas",
+      "locators": [
+        "PDF5, linhas193–206: riscos renal/oitavo par e níveis séricos",
+        "PDF10: eventos auditivos/vestibulares",
+        "PDF11, linha453: atualização conforme bula padrão Anvisa10/11/2015"
+      ],
+      "limitations": [
+        "Bula brasileira, registroMS1.0041.0210, naturezaBULA. Não extrapolar limites de pico/vale de um regime para todo esquema; a questão não pede dose ou alvo numérico."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Riscos renal e oitavo par na disfunção renal/alta exposição",
+      "source": "gentamicin",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Monitorar função, audição/equilíbrio e níveis; ajustar/suspender em toxicidade",
+      "source": "gentamicin",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Aminoglicosídeos na Disfunção Renal — Toxicidade e Monitorização",
+    "qid": "586405f9",
+    "q": "Paciente com doença renal crônica avançada necessita de gentamicina para uma infecção grave por Gram-negativo sensível, como parte de um esquema apropriado. Qual princípio orienta corretamente o uso e a monitorização da gentamicina nesse contexto?",
+    "opts": [
+      "Dosar pico sérico isoladamente e manter o esquema se a atividade bactericida for adequada.",
+      "Combinar níveis séricos, função renal e avaliação auditiva/vestibular para ajustar o esquema.",
+      "Dosar vale sérico isoladamente e dispensar reavaliação renal se ele estiver no alvo.",
+      "Acompanhar creatinina isoladamente e dispensar níveis séricos se a infecção estiver melhorando."
+    ],
+    "ans": 1,
+    "exp": "A gentamicina pode causar nefrotoxicidade e ototoxicidade, especialmente com disfunção renal, maior exposição e tratamento prolongado. A bula recomenda acompanhar função renal, audição/equilíbrio e concentrações séricas, com ajuste do esquema ou suspensão diante de toxicidade. Um pico, um vale ou a melhora da infecção não substituem o conjunto dessa avaliação. A escolha dos alvos e do esquema deve considerar indicação e regime utilizados; a questão não propõe um valor universal de concentração nem uma dose fixa para toda doença renal crônica.",
+    "diff": "medium",
+    "cat": "farmacologia",
+    "refs": [
+      "gentamicina_anvisa"
+    ]
+  },
+  "proposedSHA256": "sha256:4e50ef40dce1c201a5e263abb433891f8316f47961eb86642a8b6440c0779d41",
+  "classificationAfter": {
+    "op": "Combinar vigilância renal, auditiva/vestibular e níveis séricos no uso de gentamicina em disfunção renal.",
+    "primaryCompetence": "Monitorização farmacológica segura de medicamento nefro/ototóxico.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "gentamicina_anvisa",
+      "original": {
+        "label": "Gentamicin (sulfato de gentamicina) — Bula Profissional (ANVISA, Fresenius Kabi Brasil)",
+        "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+        "journal": "ANVISA — Bula Profissional (Fresenius Kabi Brasil Ltda., Reg. MS 1.0041.0210)",
+        "ano": 2015,
+        "tipo": "Bula profissional aprovada pela ANVISA",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "Gentamicina — nefro e ototoxicidade na disfunção renal; monitorização de função renal, oitavo par craniano e níveis séricos",
+        "icon": "📋",
+        "resumo": "Bula profissional da Gentamicin (sulfato de gentamicina) aprovada pela ANVISA (Fresenius Kabi Brasil, Reg. MS 1.0041.0210; Bula Padrão de 10/11/2015). Aminoglicosídeo bactericida; o risco de nefrotoxicidade é maior em pacientes com função renal comprometida, dose alta ou tratamento prolongado, podendo haver ototoxicidade vestibular e auditiva. Recomenda vigilância da função renal e do oitavo par craniano, determinação periódica de ureia/creatinina/depuração de creatinina, audiogramas seriados e monitorização dos níveis séricos; sinais de oto ou nefrotoxicidade exigem modificação da dose ou suspensão. Admite esquema de dose única diária.",
+        "conclusao": "Na disfunção renal, a gentamicina exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade.",
+        "curiosidade": ""
+      },
+      "originalSHA256": "sha256:91e8f9111b0c552ee6469b8f2f9ca5918120cdb88655b51f33ed2c8093f9a27a",
+      "proposed": {
+        "label": "Gentamicin (sulfato de gentamicina) — Bula Profissional (ANVISA, Fresenius Kabi Brasil)",
+        "url": "https://www.fresenius-kabi.com/content/dam/fresenius-kabi/br/documents/bulas/medicamentos/Gentamicin%20(sulfato%20de%20gentamicina)%20-%20Bula%20Profissional%20de%20Sa%C3%BAde%20(332%20KB).pdf.coredownload.inline.pdf",
+        "journal": "ANVISA — Bula Profissional (Fresenius Kabi Brasil Ltda., Reg. MS 1.0041.0210)",
+        "ano": 2015,
+        "tipo": "Bula profissional aprovada pela ANVISA",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "Gentamicina — nefro e ototoxicidade na disfunção renal; monitorização de função renal, oitavo par craniano e níveis séricos",
+        "icon": "📋",
+        "resumo": "Bula profissional da Gentamicin (sulfato de gentamicina) aprovada pela ANVISA (Fresenius Kabi Brasil, Reg. MS 1.0041.0210; Bula Padrão de 10/11/2015). Aminoglicosídeo bactericida; o risco de nefrotoxicidade é maior em pacientes com função renal comprometida, dose alta ou tratamento prolongado, podendo haver ototoxicidade vestibular e auditiva. Recomenda vigilância da função renal e do oitavo par craniano, determinação periódica de ureia/creatinina/depuração de creatinina, audiogramas seriados e monitorização dos níveis séricos; sinais de oto ou nefrotoxicidade exigem modificação da dose ou suspensão. Admite esquema de dose única diária.",
+        "conclusao": "Na disfunção renal, a gentamicina exige monitorização da função renal, do oitavo par craniano e dos níveis séricos, com ajuste ou suspensão diante de sinais de toxicidade.",
+        "curiosidade": ""
+      },
+      "proposedSHA256": "sha256:91e8f9111b0c552ee6469b8f2f9ca5918120cdb88655b51f33ed2c8093f9a27a",
+      "sourceIDs": [
+        "gentamicin"
+      ],
+      "notes": []
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 2
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 1
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "Quatro planos de monitorização comparáveis, com erros parciais plausíveis e extensões naturais. Não inferir níveis-alvo de um regime para todos os demais.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

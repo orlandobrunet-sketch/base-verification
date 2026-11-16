@@ -26,7 +26,7 @@ test.beforeEach(async ({page, context, baseURL}) => {
   await expect(page.locator('#welcomeScreen')).toBeVisible();
   await page.waitForFunction(() => typeof (window as any)._loadTopics === 'function');
   await page.evaluate(() => (window as any)._loadTopics());
-  await page.waitForFunction(() => (window as any).questionBank?.length === 741 && !!(window as any).questionRevisionCatalog);
+  await page.waitForFunction(() => (window as any).questionBank?.length === 725 && !!(window as any).questionRevisionCatalog);
   expect(await page.evaluate(() => (window as any).authUser)).toBeNull();
 });
 test.afterEach(async ({page}, info) => {
@@ -73,9 +73,9 @@ test('a fresh user has no scheduled review and can still enter the twenty-questi
   const before = await progress(page);
   await openHub(page);
   await expect(reviewCard(page)).toContainText('Nenhuma revisão agendada para agora');
-  await expect(reviewCard(page)).not.toContainText('741');
+  await expect(reviewCard(page)).not.toContainText('725');
   await expect(reviewCard(page).getByRole('button', {name: 'Revisar agora', exact: true})).toBeDisabled();
-  expect(await page.evaluate(() => (0, eval)('getSRDueQuestions(topics).length'))).toBe(741);
+  expect(await page.evaluate(() => (0, eval)('getSRDueQuestions(topics).length'))).toBe(725);
   expect(await page.evaluate(() => (0, eval)('getSRScheduledDueQuestions(topics).length'))).toBe(0);
   await page.getByRole('button', {name: 'Iniciar estudo livre', exact: true}).click();
   await expect(page.locator('#studyOptions button')).toHaveCount(4);
@@ -158,17 +158,25 @@ test('the native Dashboard review action agrees with the study queue and returns
   expect(await progress(page)).toEqual(before);
 });
 
-test('an ambiguous saved study remains consult-only while zero scheduled reviews do not invent a new session', async ({page}) => {
-  const original = await page.evaluate(key => {
+for (const release of ['17.11', '17.27']) {
+test('an ambiguous saved study ' + release + ' remains consult-only after a material update while zero scheduled reviews do not invent a new session', async ({page}) => {
+  const original = await page.evaluate(({key, release}) => {
     const w = window as any;
-    const old = w.NQQuestionRevisionHistory.find((row: any) => row.qid === '5530b59c' && row.release === '17.11');
-    if (!old) throw Error('The actual published card-only archive is required');
+    const old = w.NQQuestionRevisionHistory.find((row: any) => row.qid === '5530b59c' && row.release === release);
+    const companion = w.NQQuestionRevisionHistory.find((row: any) => row.qid === '5530b59c' && row.release === (release === '17.11' ? '17.27' : '17.11'));
+    if (!old || !companion) throw Error('Both actual published card-only archives are required');
+    const current = w.questionRevisionCatalog.current(old.qid, 'study');
+    const digest = w.NQQuestionRevisions.digest;
+    if (digest(old.sources.study) !== digest(companion.sources.study) || old.recordRevision === companion.recordRevision ||
+        digest(current.source) === digest(old.sources.study)) throw Error('Expected two distinct past bindings and a separate material current revision');
     const question = w.NQAnswers.present(old.sources.study, {preserveOrder: true});
+    if (w.questionRevisionCatalog.inspect(question, {profile: 'study'}).status !== 'ambiguous')
+      throw Error('The actual past source must remain ambiguous without its binding');
     const raw = JSON.stringify({questions: [old.qid], index: 0, correct: 2, wrong: 1, axisStats: {},
       savedAt: Date.now(), presentationVersion: 1,
       presentations: [{id: old.qid, question, answer: null}]});
     localStorage.setItem(key, raw); return raw;
-  }, STUDY);
+  }, {key: STUDY, release});
   const before = await progress(page);
   await openHub(page);
   await expect(reviewCard(page).getByRole('button', {name: 'Revisar agora', exact: true})).toBeDisabled();
@@ -181,6 +189,7 @@ test('an ambiguous saved study remains consult-only while zero scheduled reviews
   await expect(page.locator('#welcomeScreen')).toBeVisible();
   expect(await page.evaluate(key => localStorage.getItem(key), STUDY)).toBe(original);
 });
+}
 
 for (const mixed of [false, true]) test('Dashboard and Study reject malformed schedules' + (mixed ? ' beside real due cards' : ' without inventing a review'), async ({page}) => {
   const fixture = await page.evaluate(({key, mixed}) => {

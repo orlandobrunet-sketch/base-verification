@@ -1,0 +1,460 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "78be79e7",
+  "family": "A9-HTN-seguranca",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Hipercalemia em DRC sob Bloqueio do SRAA",
+    "qid": "78be79e7",
+    "q": "Paciente estável com DRC G4 usa IECA por albuminúria e espironolactona por hipertensão resistente. Duas amostras mostram potássio de 5,9 mEq/L, sem alteração eletrocardiográfica. Qual abordagem é mais segura?",
+    "refs": [
+      "kdigo_ckd_2024"
+    ],
+    "opts": [
+      "Avaliar urgência e causas reversíveis, suspender ao menos temporariamente a espironolactona e tratar a hipercalemia; após controle, tentar preservar o IECA indicado com monitorização e medidas como correção de acidose, diurético ou quelante conforme o caso",
+      "Manter todos os fármacos sem ajuste, pois potássio abaixo de 6,5 mEq/L não exige intervenção em DRC",
+      "Substituir a espironolactona por patiromer, considerando que o quelante exerce o mesmo efeito anti-hipertensivo do antagonista mineralocorticoide",
+      "Suspender definitivamente todo bloqueio do SRAA antes de revisar dieta, medicamentos, acidose ou volemia"
+    ],
+    "ans": 0,
+    "exp": "Potássio persistentemente em 5,9 mEq/L na DRC G4 exige avaliação de gravidade, confirmação, revisão de medicamentos e correção de fatores contribuintes. A espironolactona aumenta muito o risco nesse contexto e deve ser interrompida ao menos temporariamente; IECA ou BRA com indicação renal não precisam ser abandonados automaticamente se a hipercalemia puder ser controlada. A KDIGO propõe revisar fontes de potássio biodisponível, fármacos, acidose e volemia e considerar diurético e quelantes modernos em hipercalemia não emergente. Quelante não substitui o efeito anti-hipertensivo do antagonista mineralocorticoide, e a estratégia nunca deve atrasar tratamento urgente quando houver ECG alterado, sintomas ou elevação maior.",
+    "diff": "hard",
+    "cat": "hipertensao"
+  },
+  "originalSHA256": "sha256:4c848f9a03c8c41166dad2b822bf4369958906bca9b7b97aff7cc7f170a7a49a",
+  "originalRefs": [
+    {
+      "id": "kdigo_ckd_2024",
+      "original": {
+        "label": "KDIGO — Clinical Practice Guideline for CKD 2024",
+        "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+        "journal": "Kidney Int. 2024;105(Suppl 4S):S117-S314",
+        "ano": 2024,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Manejo sistemático da hipercalemia e preservação de terapias cardiorrenais na DRC",
+        "icon": "📋",
+        "resumo": "Diretriz KDIGO 2024 para avaliação e manejo da DRC. Na hipercalemia não emergente, propõe revisar fármacos e fontes de potássio biodisponível, corrigir acidose e distúrbios de volume e considerar diuréticos ou agentes de troca de potássio. Quelantes modernos podem facilitar o uso essencial de IECA, BRA ou antagonistas mineralocorticoides, mas a segurança imediata e a indicação individual de cada fármaco devem ser reavaliadas.",
+        "conclusao": "Hipercalemia sob bloqueio do SRAA exige abordagem escalonada e correção de fatores reversíveis; preserve terapia cardiorrenal indicada quando for seguro, sem manter automaticamente um antagonista mineralocorticoide em potássio perigosamente alto.",
+        "curiosidade": "A diretriz distingue potássio total de biodisponibilidade: alimentos processados com aditivos de potássio podem ser alvos mais relevantes que restrições indiscriminadas de vegetais."
+      },
+      "originalSHA256": "sha256:a74ba3d7e1cabbebf133cfe8845de4ee2965d493adb82742c9aadbbe5774b2e6"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Ajustar o manejo da hipercalemia em DRC sob IECA e espironolactona, priorizando segurança sem abandonar automaticamente a nefroproteção.",
+    "primaryCompetence": "Conduta inicial e segurança.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "hard",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Correta muito extensa agrega urgência, suspensão, dieta, acidose, diurético e quelante, contra três afirmações curtas e frágeis.",
+      "MAIOR — Explicação torna suspensão da espironolactona obrigatória para todoK5,9, enquanto diretrizUKKA orienta monitorização/reavaliação e considerar redução; decisão depende de risco/contexto."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "kdigo",
+      "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+      "access": "PDF oficial integral,199páginas, trechos decisivos relidos com pypdf",
+      "artifact": "kdigo-ckd-2024-source.pdf",
+      "rawSHA256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0",
+      "locators": [
+        "PDF44/S159, PP3.6.3,3.6.5,3.6.7: tentar controlarK, reduzir/pararIECA/BRA seKnão controlado apesar do tratamento; TFGe<30 isolada não impõe abandono.",
+        "PDF45/S160, PP3.8.5: MRA esteroidal pode tratar hipertensão refratária mas aumentaK/declínio reversível da filtração sobretudo comTFGbaixa.",
+        "PDF111–113/S226–228, Tabela26, Figura32 e PP3.11.5: revisão de medicações/dieta biodisponível, diurético, bicarbonato quandoindicado e agentes ligantes; reduzir/pararSRAAcomoúltimorecurso seoutrosnãoresolvem."
+      ],
+      "limitations": [
+        "Figura32 é manejo sistemático, não autorização de manutenção de todos os fármacos diante de risco imediato. Não atribuo suspensão obrigatória de todaespironolactonaemK5,9àKDIGO."
+      ]
+    },
+    {
+      "id": "ukka",
+      "url": "https://guidelines.ukkidney.org/hyperkalaemia/",
+      "access": "Texto clínico oficial completo das seções2.1–2.7,4.1–4.2 e14.1–14.2 efetivamente aberto; página oficial atualizadajulho2026",
+      "additionalURLs": [
+        "https://guidelines.ukkidney.org/hyperkalaemia/10-1-i-hyperkalaemia-in-the-community-guidelines-1-1-12-1/10-1-2-i-hyperkalaemia-in-the-community-guidelines-2-1-2-7/",
+        "https://guidelines.ukkidney.org/hyperkalaemia/10-1-i-hyperkalaemia-in-the-community-guidelines-1-1-12-1/10-1-4-i-hyperkalaemia-in-the-community-guidelines-4-1-4-2/",
+        "https://guidelines.ukkidney.org/hyperkalaemia/11-1-ii-hyperkalaemia-in-hospital/11-1-2-ii-hyperkalaemia-in-hospital-14-1-14-2/"
+      ],
+      "locators": [
+        "2.2 evitar inícioMRAemTFGe<30ouK>5;2.5 comK5,5–5,9aumentarmonitorização e considerarreduçãoSRAA, semsuspensãoobrigatóriauniversal.",
+        "4.1–4.2: hospitalurgentecomK≥6,5; pacientesagudamentedoentespodemexigirhospitalmesmocomKmenor.",
+        "14.1–14.2: ECGhospitalarcomK≥6,0;monitorizaçãocontínuaemK≥6,5/ECGalterado/risco. Rationale: ECGnormalnãoexcluiperigo."
+      ],
+      "limitations": [
+        "A página de recomendações ainda cita rascunhoKDIGO2023 no rationale histórico; a afirmação de preservaçãoIECAfoi checada na diretrizfinalKDIGO2024.",
+        "URLPDFjulho2026nãoabriuno navegador; não alegoPDFintegral. Useiotextoweboficialprimário."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "K5,9persistente exige revisão e acompanhamento; ajuste deMRA podeincluir redução oupausaindividualizada; não ignorar por ser<6,5.",
+      "source": "ukka",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "É desejável preservarIECAindicado quandoKpodesercontrolado; seKpermaneceincontrolávelapesardotratamento, reduzir/suspenderpodesernecessário.",
+      "source": "kdigo",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Hipercalemia em DRC sob Bloqueio do SRAA",
+    "qid": "78be79e7",
+    "q": "Adulto clinicamente estável com doença renal crônica G4 usa inibidor da enzima conversora de angiotensina (IECA) por albuminúria e espironolactona por hipertensão resistente, sem insuficiência cardíaca. Duas amostras sem hemólise mostram potássio de 5,9 mEq/L. Não há alteração no eletrocardiograma nem doença aguda intercorrente. Qual estratégia inicial é mais adequada?",
+    "refs": [
+      "kdigo_ckd_2024",
+      "ukka_hyperkalemia_2026"
+    ],
+    "opts": [
+      "Manter as duas medicações sem intervenção, pois potássio abaixo de 6,5 mEq/L é seguro.",
+      "Reduzir ou pausar a espironolactona e tratar o potássio, preservando o IECA se o controle permitir.",
+      "Retirar definitivamente o IECA e manter a espironolactona por sua maior nefroproteção.",
+      "Trocar a espironolactona por patiromer, que fornece o mesmo efeito anti-hipertensivo."
+    ],
+    "ans": 1,
+    "exp": "Hipercalemia confirmada de 5,9 mEq/L exige avaliação clínica, revisão de medicamentos e fatores reversíveis e monitorização mais frequente. A espironolactona aumenta o risco sobretudo com filtração baixa: deve-se reavaliar sua dose e necessidade, considerando redução ou pausa conforme o contexto. O IECA indicado por albuminúria não precisa ser abandonado de forma definitiva se o potássio puder ser controlado. Conforme o caso, corrigir acidose, ajustar diurético e usar um agente ligante de potássio podem ajudar; patiromer reduz potássio, mas não substitui o efeito anti-hipertensivo da espironolactona. Se a hipercalemia persistir apesar do tratamento, reduzir ou interromper o IECA também pode ser necessário. Eletrocardiograma normal não elimina risco: piora clínica, elevação rápida ou maior do potássio exige reavaliação urgente.",
+    "diff": "medium",
+    "cat": "hipertensao"
+  },
+  "proposedSHA256": "sha256:a1a4f9b3f10feeeb23d9a711d7b3aaed32ed6eefeb9173b902d5433f0489950e",
+  "classificationAfter": {
+    "op": "Ajustar o manejo da hipercalemia em DRC sob IECA e espironolactona, priorizando segurança sem abandonar automaticamente a nefroproteção.",
+    "primaryCompetence": "Conduta inicial e segurança.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "kdigo_ckd_2024",
+      "original": {
+        "label": "KDIGO — Clinical Practice Guideline for CKD 2024",
+        "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+        "journal": "Kidney Int. 2024;105(Suppl 4S):S117-S314",
+        "ano": 2024,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Manejo sistemático da hipercalemia e preservação de terapias cardiorrenais na DRC",
+        "icon": "📋",
+        "resumo": "Diretriz KDIGO 2024 para avaliação e manejo da DRC. Na hipercalemia não emergente, propõe revisar fármacos e fontes de potássio biodisponível, corrigir acidose e distúrbios de volume e considerar diuréticos ou agentes de troca de potássio. Quelantes modernos podem facilitar o uso essencial de IECA, BRA ou antagonistas mineralocorticoides, mas a segurança imediata e a indicação individual de cada fármaco devem ser reavaliadas.",
+        "conclusao": "Hipercalemia sob bloqueio do SRAA exige abordagem escalonada e correção de fatores reversíveis; preserve terapia cardiorrenal indicada quando for seguro, sem manter automaticamente um antagonista mineralocorticoide em potássio perigosamente alto.",
+        "curiosidade": "A diretriz distingue potássio total de biodisponibilidade: alimentos processados com aditivos de potássio podem ser alvos mais relevantes que restrições indiscriminadas de vegetais."
+      },
+      "originalSHA256": "sha256:a74ba3d7e1cabbebf133cfe8845de4ee2965d493adb82742c9aadbbe5774b2e6",
+      "proposed": {
+        "label": "KDIGO — Clinical Practice Guideline for CKD 2024",
+        "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+        "journal": "Kidney Int. 2024;105(Suppl 4S):S117-S314",
+        "ano": 2024,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Manejo sistemático da hipercalemia e preservação de terapias cardiorrenais na DRC",
+        "icon": "📋",
+        "resumo": "Diretriz KDIGO 2024 para avaliação e manejo da DRC. Na hipercalemia não emergente, propõe revisar fármacos e fontes de potássio biodisponível, corrigir acidose e distúrbios de volume e considerar diuréticos ou agentes de troca de potássio. Quelantes modernos podem facilitar o uso essencial de IECA, BRA ou antagonistas mineralocorticoides, mas a segurança imediata e a indicação individual de cada fármaco devem ser reavaliadas.",
+        "conclusao": "Hipercalemia sob bloqueio do SRAA exige abordagem escalonada e correção de fatores reversíveis; preserve terapia cardiorrenal indicada quando for seguro, sem manter automaticamente um antagonista mineralocorticoide em potássio perigosamente alto.",
+        "curiosidade": "A diretriz distingue potássio total de biodisponibilidade: alimentos processados com aditivos de potássio podem ser alvos mais relevantes que restrições indiscriminadas de vegetais."
+      },
+      "proposedSHA256": "sha256:a74ba3d7e1cabbebf133cfe8845de4ee2965d493adb82742c9aadbbe5774b2e6",
+      "sourceIDs": [
+        "kdigo"
+      ],
+      "notes": [
+        "Card integral atual preservado; PP3.6.3/5/7,3.8.5 e seção3.11 rechecados no corpo oficial."
+      ]
+    },
+    {
+      "id": "ukka_hyperkalemia_2026",
+      "original": {
+        "label": "UK Kidney Association — Treatment of Acute Hyperkalaemia in Adults (updated July 2026)",
+        "url": "https://guidelines.ukkidney.org/hyperkalaemia/",
+        "journal": "UK Kidney Association Clinical Practice Guideline. Updated July 2026",
+        "ano": 2026,
+        "tipo": "Diretriz Clínica",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Urgência, ECG e monitorização conforme gravidade da hipercalemia",
+        "icon": "📋",
+        "resumo": "Diretriz oficial de hipercalemia atualizada em julho de 2026. Recomenda ECG urgente no hospital com K⁺ ≥ 6,0 mmol/L e monitorização contínua com K⁺ ≥ 6,5, alterações eletrocardiográficas ou outros sinais de risco. ECG normal não exclui perigo.",
+        "conclusao": "Tratar conforme gravidade, evolução e contexto; rever fármacos e plano de prevenção de recorrência, sem substituir manejo da emergência por medidas crônicas.",
+        "curiosidade": "Os critérios de ECG/monitorização estão nas recomendações14.1 e14.2; decisões sobre RAASi exigem avaliar a situação clínica."
+      },
+      "originalSHA256": "sha256:6f41098d441a55c6544104a29674bf4437050b4e2738b76f0e6c691e433e6888",
+      "proposed": {
+        "label": "UK Kidney Association — Treatment of Acute Hyperkalaemia in Adults (updated July 2026)",
+        "url": "https://guidelines.ukkidney.org/hyperkalaemia/",
+        "journal": "UK Kidney Association Clinical Practice Guideline. Updated July 2026",
+        "ano": 2026,
+        "tipo": "Diretriz Clínica",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Urgência, ECG e monitorização conforme gravidade da hipercalemia",
+        "icon": "📋",
+        "resumo": "Diretriz oficial de hipercalemia atualizada em julho de 2026. Recomenda ECG urgente no hospital com K⁺ ≥ 6,0 mmol/L e monitorização contínua com K⁺ ≥ 6,5, alterações eletrocardiográficas ou outros sinais de risco. ECG normal não exclui perigo.",
+        "conclusao": "Tratar conforme gravidade, evolução e contexto; rever fármacos e plano de prevenção de recorrência, sem substituir manejo da emergência por medidas crônicas.",
+        "curiosidade": "Os critérios de ECG/monitorização estão nas recomendações14.1 e14.2; decisões sobre RAASi exigem avaliar a situação clínica."
+      },
+      "proposedSHA256": "sha256:6f41098d441a55c6544104a29674bf4437050b4e2738b76f0e6c691e433e6888",
+      "sourceIDs": [
+        "ukka"
+      ],
+      "notes": [
+        "Card integral existente preservado; não criar outro card da mesma atualização. Fonte oficial web indica julho2026 e recomendações clínicas foram lidas no corpo."
+      ]
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "ManterIECAécondicionalaocontrole, nãoalvogarantido. A opção correta não obriga a suspensão de todoMRAemK5,9nemproíbereduzirIECAseKrefratário. EmTFGbaixaespironolactonaexigerevisãoindividualizadamesmosemECGalterado."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "19/20. Balanço entre risco imediato e manutenção de tratamento indicado é uma decisãoAplicar/Sabecomo, medium. A alternativa correta ainda é ligeiramente maior por conter a condição de segurança; não cortar essa condição nem inflar as demais.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

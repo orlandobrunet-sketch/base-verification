@@ -1,0 +1,386 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "03b3db65",
+  "family": "A5-gadolinio-HD",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Gadolínio e Fibrose Sistêmica Nefrogênica",
+    "qid": "03b3db65",
+    "q": "Paciente com doença renal crônica estágio 5 em hemodiálise necessita de ressonância magnética com contraste de gadolínio. Qual afirmação está correta quanto ao risco renal e à conduta?",
+    "opts": [
+      "O principal risco é a fibrose sistêmica nefrogênica; deve-se preferir um agente do Grupo II, cujo risco é muito baixo, sem necessidade de iniciar ou intensificar a diálise apenas por causa do exame.",
+      "O principal risco renal dos agentes de gadolínio nas doses usuais é uma lesão renal aguda tubular dose-dependente semelhante à causada pelo contraste iodado.",
+      "Os agentes lineares do Grupo I são preferidos por apresentarem menor risco de fibrose sistêmica nefrogênica na doença renal avançada.",
+      "Deve-se agendar uma sessão adicional de hemodiálise imediatamente após o exame para remover o gadolínio e prevenir a fibrose sistêmica nefrogênica."
+    ],
+    "ans": 0,
+    "exp": "O principal risco do gadolínio na doença renal avançada é a fibrose sistêmica nefrogênica (FSN); nas doses usuais, o gadolínio não causa lesão tubular dose-dependente como o contraste iodado (por isso B é incorreta). O ACR Manual on Contrast Media (2026) classifica os agentes por risco de FSN: o Grupo I (lineares — gadodiamida, gadopentetato, gadoversetamida) concentra o maior número de casos e é contraindicado na doença renal avançada, sendo incorreto preferi-lo (C). O Grupo II (macrocíclicos — gadobutrol, gadoterato, gadoteridol —, o gadobenato e, desde 2024, o gadoxetato e o gadopiclenol) é fortemente preferido em pacientes de risco, com risco de FSN muito baixo independentemente da função renal ou do status de diálise. Em pacientes em hemodiálise, recomenda-se realizar o exame o mais próximo possível de uma sessão regular, mas não se deve iniciar, intensificar nem acrescentar sessões de diálise apenas para remover o gadolínio (por isso D é incorreta).",
+    "diff": "medium",
+    "cat": "farmacologia",
+    "refs": [
+      "gadolinio_acr_manual_2026"
+    ]
+  },
+  "originalSHA256": "sha256:cf841def437960a129362ebf54d5ca82ea440ba6d11f73fe83fe1da8e9b2adf2",
+  "originalRefs": [
+    {
+      "id": "gadolinio_acr_manual_2026",
+      "original": {
+        "label": "ACR Manual on Contrast Media (2026) — FSN e agentes de gadolínio",
+        "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+        "journal": "American College of Radiology",
+        "ano": 2026,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Grupo II preferido em DRC avançada, LRA e diálise; risco de FSN muito baixo; não iniciar ou alterar a diálise pelo exame",
+        "icon": "📋",
+        "resumo": "ACR Manual on Contrast Media, edição 2026 (capítulo Fibrose Sistêmica Nefrogênica, atualização de 2025, Tabela 1). Grupo I (gadodiamida, gadopentetato, gadoversetamida — maior número de casos de FSN; contraindicados em DRC avançada, LRA e diálise). Grupo II (gadobenato, gadobutrol, gadoterato, gadoteridol, gadopiclenol* e gadoxetato dissódico — poucos ou nenhum caso não confundido). O Grupo III está vazio ('nenhum agente', desde abril de 2024): gadoxetato e gadopiclenol foram reclassificados para o Grupo II no início de 2024, com o gadopiclenol em status provisório (Grupo II*). O Grupo II é fortemente preferido em pacientes de risco, com risco de FSN muito baixo independentemente da função renal ou do status de diálise. Em doença renal terminal em hemodiálise, recomenda-se realizar o exame o mais próximo possível de uma sessão regular, mas não se deve iniciar nem alterar o esquema de diálise (nem sessões diárias ou múltiplas por dia) apenas pela administração — recomendação conjunta com a National Kidney Foundation.",
+        "conclusao": "Em DRC avançada, LRA ou diálise, prefira um agente de gadolínio do Grupo II, cujo risco de FSN é muito baixo; não se deve iniciar, intensificar nem acrescentar sessões de diálise apenas para remover o gadolínio.",
+        "curiosidade": "A classificação de risco depende do quelato específico, não apenas da palavra “gadolínio”; tratar todos os agentes como equivalentes perpetua restrições baseadas nos antigos agentes lineares do Grupo I."
+      },
+      "originalSHA256": "sha256:d4e1704f6d01be4f76cbd172c5bf5ecfc7233871dc5ccb2060ac69b56e1d337c"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Escolher a conduta dialítica após ressonância necessária com agente de gadolínio do grupo II em paciente já em hemodiálise.",
+    "primaryCompetence": "Planejamento seguro do exame contrastado na terapia dialítica de manutenção.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Risco, escolha do agente e modificação da diálise se acumulam na correta.",
+      "CRÍTICO — A explicação generaliza risco de lesão tubular do iodado e omite o caráter provisório do gadopiclenol.",
+      "MENOR — A discussão depende das letras das alternativas."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": true,
+        "rationale": "A explicação trata gadopiclenol como grupo II sem qualificar o status provisório e a decisão local."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": true,
+        "rationale": "A comparação causal genérica com lesão tubular pelo contraste iodado é indevida e não é necessária ao OP."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "anulado": true
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "gadolinium",
+      "url": "https://edge.sitecorecloud.io/americancoldf5f-acrorgf92a-productioncb02-3650/media/ACR/Files/Clinical/Contrast-Manual/ACR-Manual-on-Contrast-Media.pdf",
+      "access": "PDF integral oficial ACR, 126 páginas, obtido pelo link4 da página do Manual",
+      "date": "2026-11-15",
+      "locators": [
+        "NSF, pp84–86 / grupoII, dose diagnóstica, DRC4–5 e diálise",
+        "pp86 e89 / Tabela1 e atualização janeiro2025, grupoII* gadopiclenol",
+        "Tabela 1, PDF p.86, linha3615: gadobutrol explicitamente classificado no grupo II.",
+        "Reabertura oficial em 2026-11-15: capa 2026; capítulo FSN atualizado em 2025. PDF84–85, linhas3568–3579: RM eletiva antes da sessão regular quando possível; não iniciar nem alterar diálise."
+      ],
+      "verified": [
+        "grupoII preferido e risco muito baixo em DRC avançada",
+        "não reduzir abaixo da qualidade diagnóstica",
+        "não iniciar/alterar diálise só pelo contraste",
+        "gadopiclenol tem status provisório; grupoIII vazio; gadoxetato reclassificado em2024"
+      ],
+      "limitations": [
+        "Não confundir página consultada em2026 com nova evidência clínica de2026: o capítulo aberto identifica atualização janeiro2025. Referência proposta explicita essa data."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Gadobutrol é agente do grupo II; o risco de FSN é muito baixo na dose apropriada.",
+      "source": "gadolinium",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Coordenar exame eletivo para pouco antes da sessão regular, quando possível, sem iniciar ou intensificar diálise somente pelo contraste.",
+      "source": "gadolinium",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Gadolínio em hemodiálise — Programação do exame",
+    "qid": "03b3db65",
+    "q": "Paciente com doença renal crônica em hemodiálise de manutenção precisa de ressonância contrastada eletiva, clinicamente necessária. A radiologia selecionou gadobutrol, agente do grupo II, em dose diagnóstica. Sem outra indicação para alterar a diálise, qual planejamento é adequado?",
+    "opts": [
+      "Manter o esquema habitual; se viável, fazer o exame pouco antes da sessão regular.",
+      "Acrescentar uma sessão imediata após o exame, além das sessões habituais.",
+      "Passar a sessões diárias na semana do exame, para aumentar a remoção do contraste.",
+      "Dobrar a duração das sessões na semana do exame, para aumentar a remoção do contraste."
+    ],
+    "ans": 0,
+    "exp": "O American College of Radiology (ACR) recomenda, quando possível, realizar a ressonância eletiva com gadolínio pouco antes de uma sessão já programada de hemodiálise. O gadobutrol pertence ao grupo II, cujo risco de fibrose sistêmica nefrogênica (FSN) é muito baixo nas doses apropriadas. A hemodiálise remove contraste, mas não se deve acrescentar sessões, aumentar sua frequência ou modificar o esquema apenas por causa do exame. A decisão de alterar a diálise por outra indicação clínica é independente. A recomendação não deve ser extrapolada sem ressalva ao gadopiclenol, classificado como II* provisório, com manejo conforme a prática local.",
+    "diff": "medium",
+    "cat": "farmacologia",
+    "refs": [
+      "gadolinio_acr_manual_2026"
+    ]
+  },
+  "proposedSHA256": "sha256:cbcbae3b69db12b40e7f59ab00746f7e888198df3e3bbe1c1162e3ddbf72c017",
+  "classificationAfter": {
+    "op": "Escolher a conduta dialítica após ressonância necessária com agente de gadolínio do grupo II em paciente já em hemodiálise.",
+    "primaryCompetence": "Planejamento seguro do exame contrastado na terapia dialítica de manutenção.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "gadolinio_acr_manual_2026",
+      "original": {
+        "label": "ACR Manual on Contrast Media (2026) — FSN e agentes de gadolínio",
+        "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+        "journal": "American College of Radiology",
+        "ano": 2026,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Grupo II preferido em DRC avançada, LRA e diálise; risco de FSN muito baixo; não iniciar ou alterar a diálise pelo exame",
+        "icon": "📋",
+        "resumo": "ACR Manual on Contrast Media, edição 2026 (capítulo Fibrose Sistêmica Nefrogênica, atualização de 2025, Tabela 1). Grupo I (gadodiamida, gadopentetato, gadoversetamida — maior número de casos de FSN; contraindicados em DRC avançada, LRA e diálise). Grupo II (gadobenato, gadobutrol, gadoterato, gadoteridol, gadopiclenol* e gadoxetato dissódico — poucos ou nenhum caso não confundido). O Grupo III está vazio ('nenhum agente', desde abril de 2024): gadoxetato e gadopiclenol foram reclassificados para o Grupo II no início de 2024, com o gadopiclenol em status provisório (Grupo II*). O Grupo II é fortemente preferido em pacientes de risco, com risco de FSN muito baixo independentemente da função renal ou do status de diálise. Em doença renal terminal em hemodiálise, recomenda-se realizar o exame o mais próximo possível de uma sessão regular, mas não se deve iniciar nem alterar o esquema de diálise (nem sessões diárias ou múltiplas por dia) apenas pela administração — recomendação conjunta com a National Kidney Foundation.",
+        "conclusao": "Em DRC avançada, LRA ou diálise, prefira um agente de gadolínio do Grupo II, cujo risco de FSN é muito baixo; não se deve iniciar, intensificar nem acrescentar sessões de diálise apenas para remover o gadolínio.",
+        "curiosidade": "A classificação de risco depende do quelato específico, não apenas da palavra “gadolínio”; tratar todos os agentes como equivalentes perpetua restrições baseadas nos antigos agentes lineares do Grupo I."
+      },
+      "originalSHA256": "sha256:d4e1704f6d01be4f76cbd172c5bf5ecfc7233871dc5ccb2060ac69b56e1d337c",
+      "proposed": {
+        "label": "Manual de contraste — Fibrose sistêmica nefrogênica (2025)",
+        "url": "https://www.acr.org/Clinical-Resources/Clinical-Tools-and-Reference/Contrast-Manual",
+        "journal": "American College of Radiology",
+        "ano": 2025,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Grupo II preferido na doença renal crônica avançada; não acrescentar diálise pelo exame",
+        "icon": "📋",
+        "resumo": "Manual do American College of Radiology (ACR), consultado em 2026, capítulo sobre fibrose sistêmica nefrogênica (FSN) atualizado em 2025. O grupo II é preferido em pacientes sob risco de FSN, na menor dose que preserve qualidade diagnóstica; inclui gadobutrol. O grupo I é contraindicado na doença renal crônica avançada. Não iniciar nem alterar diálise apenas pelo contraste. Gadopiclenol permanece no grupo II* provisório, com decisão local sobre manejo como grupo II ou III.",
+        "conclusao": "Se a ressonância contrastada é necessária em doença renal crônica avançada, selecionar agente apropriado do grupo II e dose diagnóstica, ponderando riscos de não realizar o exame.",
+        "curiosidade": "A classificação depende do agente específico. A atualização distingue gadopiclenol provisório dos agentes do grupo II com maior experiência clínica."
+      },
+      "proposedSHA256": "sha256:88daa011b4ff1ee92a6ca6dfe562457da3f59972aa455d1d86937687cb6495b5"
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "Quatro planejamentos dialíticos comparáveis e sem qualificador clínico exclusivo na correta. Três distratores representam intensificação desnecessária em modalidades diferentes; essa proximidade limita sua diversidade, sem criar segunda resposta correta.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "Preserva o OP original de conduta em paciente já em hemodiálise e o conceito correto de não intensificar diálise pelo contraste; a seleção do agente é fornecida para retirar a pista composta. Manter qid e FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [
+    "O card comum é byte-exato A1.1: não há mudança global de referência neste lote."
+  ],
+  "hold": null,
+  "neighborComparison": {
+    "neighborQid": "190676b8",
+    "neighborProposedSHA256": "sha256:ec08844eed2db7cb30fb389ce03f3cfde42401882bf2cd0f61cabebe826ed623",
+    "decision": {
+      "same": false,
+      "neighbor": "Selecionar agente e dose diagnóstica em DRC avançada pré-diálise.",
+      "candidate": "Programar exame eletivo com agente já selecionado no paciente em HD."
+    },
+    "caseDataStructure": {
+      "same": false,
+      "neighbor": "TFGe24 e necessidade diagnóstica; não está em diálise.",
+      "candidate": "HD de manutenção e gadobutrol já definido; pergunta sobre programação."
+    },
+    "targetLearnerProfile": {
+      "same": true,
+      "value": "Estudante avançado/R1–R2."
+    },
+    "language": {
+      "same": true,
+      "value": "pt-BR"
+    },
+    "allFourCoincide": false,
+    "reason": "A variação muda a decisão assistencial e os dados necessários, não apenas idade/sexo ou redação."
+  }
+}

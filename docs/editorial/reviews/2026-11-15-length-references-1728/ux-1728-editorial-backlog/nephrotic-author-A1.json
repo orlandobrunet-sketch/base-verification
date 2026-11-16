@@ -1,0 +1,1931 @@
+{
+  "schema": "NQ_1728_NEPHROTIC_AUTHOR_A1",
+  "role": "AUTHORIAL_NOT_INDEPENDENT",
+  "productionWrites": false,
+  "date": "2026-11-15",
+  "items": [
+    {
+      "qid": "ede008ca",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:560a66cc552985c880656c63805179fc61985fb36b100554e9f61395a072ef45",
+        "question": {
+          "t": "Síndrome Nefrótica — Edema por Overfill",
+          "qid": "ede008ca",
+          "q": "Paciente com síndrome nefrótica, albumina de 3,2 g/dL e volume intravascular preservado mantém edema e baixa excreção urinária de sódio. Qual mecanismo é mais coerente?",
+          "refs": [
+            "brenner_rector"
+          ],
+          "opts": [
+            "Retenção intrarrenal primária de sódio, com ativação do ENaC no ducto coletor por proteases filtradas, compatível com o modelo overfill",
+            "Queda oncótica extrema com contração obrigatória do volume circulante",
+            "Hipoaldosteronismo com perda renal de sódio",
+            "Obstrução linfática como consequência direta da albuminúria"
+          ],
+          "ans": 0,
+          "exp": "Quando a albumina está apenas moderadamente reduzida e o volume intravascular está preservado ou expandido, o modelo overfill explica melhor o edema: o rim retém sódio primariamente, inclusive por ativação proteolítica do canal epitelial de sódio no ducto coletor. O mecanismo pode coexistir com alterações das forças de Starling. Já o modelo underfill predomina em alguns pacientes com hipoalbuminemia intensa e volume arterial efetivo reduzido; portanto, a avaliação de volemia é necessária e nenhum modelo é universal.",
+          "diff": "hard",
+          "cat": "glomerular"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Síndrome Nefrótica — Edema por Overfill",
+          "qid": "ede008ca",
+          "q": "Paciente com síndrome nefrótica, albumina de 3,2 g/dL e volume intravascular preservado mantém edema e baixa excreção de sódio. Qual mecanismo é mais coerente?",
+          "refs": [
+            "nephrotic_edema_thrombosis_busuioc_2022"
+          ],
+          "opts": [
+            "Retenção renal primária de sódio, favorecida por ativação proteolítica do canal epitelial de sódio.",
+            "Retenção secundária de sódio por contração intravascular decorrente de queda intensa da pressão oncótica.",
+            "Retenção secundária de água por estímulo de vasopressina desencadeado por hipovolemia persistente.",
+            "Retenção de sódio por ativação neuro-hormonal decorrente de baixo volume arterial efetivo."
+          ],
+          "ans": 0,
+          "exp": "O volume preservado favorece o modelo overfill: retenção renal primária de sódio participa do edema, inclusive pela ativação do canal epitelial de sódio por proteases filtradas. As outras opções descrevem retenção secundária à redução de volume, ausente no cenário. Nenhum modelo explica todos os pacientes, e os mecanismos podem coexistir ou mudar ao longo da doença.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "afterAuthorRevision": "sha256:3f53931d4e5f408f0da55aae4ddd15dae51bfdb877289f924160e11ed23b6760",
+        "refCardsAfter": {
+          "nephrotic_edema_thrombosis_busuioc_2022": {
+            "label": "Busuioc e Mircescu — Edema e trombose na síndrome nefrótica (2022)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168581/",
+            "journal": "Maedica (Bucur). 2022;17(1):153–168",
+            "ano": 2022,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Retenção primária e secundária de sódio podem coexistir; hipercoagulabilidade é multifatorial.",
+            "icon": "🔬",
+            "resumo": "Revisão narrativa sobre edema e tromboembolismo na síndrome nefrótica. Diferencia redução do volume arterial efetivo, com retenção secundária, de retenção renal primária de sódio, associada à ativação do canal epitelial de sódio por proteases. Discute perdas variáveis de anticoagulantes, maior síntese de fatores pró-coagulantes, alterações de fibrinólise, plaquetas e estase.",
+            "conclusao": "Os modelos de edema não são universais nem fixos. Antitrombina isolada não resume o risco trombótico nem define profilaxia.",
+            "curiosidade": "A avaliação da volemia é clinicamente mais útil do que presumir contração intravascular em todo paciente edemaciado."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "nephrotic_edema_thrombosis_busuioc_2022",
+            "revision": "sha256:7b174cc983ee52ae4e72cf1e14fc9ebe521194206321f2648808d4415290e02b",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:10095f958b6daa537f2b9b4ccf16d8a4d11498743c91664ba0f5999861b21bcc",
+      "classificationBeforeAndAfter": {
+        "op": "Reconhecer retenção renal primária de sódio no edema nefrótico com volume intravascular preservado.",
+        "competency": "Fisiopatologia e complicações de síndromes glomerulares",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo OP e conceito correto. Enunciado/alternativas reparados; a substituição de fonte não atribui gate ao livro não aberto."
+      },
+      "evidenceSources": [
+        {
+          "id": "BUSUIOC_PART1",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168581/",
+          "access": "PRIMARY_PUBLISHED_REVIEW_FULL_BODY_OPENED_ON_WEB",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/nephrotic-complications-part1.xml",
+          "bytesSHA256": "fe265b3913c957d4ccf705518a1e747766699416e3f4e249393e7d5003ed8d71",
+          "scope": "XML local contém somente abstract, sem corpo. Texto integral efetivamente aberto pelo navegador: Nephrotic edema/Underfill/Overfill e Thromboembolic complications; mecanismos e limites conferidos. Não se importam sugestões farmacológicas de profilaxia do artigo."
+        }
+      ],
+      "claimsVerified": [
+        "XML local contém somente abstract, sem corpo. Texto integral efetivamente aberto pelo navegador: Nephrotic edema/Underfill/Overfill e Thromboembolic complications; mecanismos e limites conferidos. Não se importam sugestões farmacológicas de profilaxia do artigo."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Retenção renal primária de sódio, favorecida por ativação proteolítica do canal epitelial de sódio.",
+            "judgment": "CORRETA: retenção primária."
+          },
+          {
+            "letter": "B",
+            "text": "Retenção secundária de sódio por contração intravascular decorrente de queda intensa da pressão oncótica.",
+            "judgment": "Modelo underfill, que depende de contração não demonstrada."
+          },
+          {
+            "letter": "C",
+            "text": "Retenção secundária de água por estímulo de vasopressina desencadeado por hipovolemia persistente.",
+            "judgment": "Presume hipovolemia para estímulo não osmótico de vasopressina."
+          },
+          {
+            "letter": "D",
+            "text": "Retenção de sódio por ativação neuro-hormonal decorrente de baixo volume arterial efetivo.",
+            "judgment": "Presume queda do volume efetivo e ativação secundária."
+          }
+        ],
+        "attemptToDefendDistractor": "Baixa excreção de sódio sozinha não distingue os modelos. O dado discriminativo é volume intravascular preservado; a albumina moderadamente reduzida não obriga contração.",
+        "result": "RECURSO REJEITADO no contexto fornecido; revisão independente pendente."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Baixa excreção de sódio sozinha não distingue os modelos. O dado discriminativo é volume intravascular preservado; a albumina moderadamente reduzida não obriga contração."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Baixa excreção de sódio sozinha não distingue os modelos. O dado discriminativo é volume intravascular preservado; a albumina moderadamente reduzida não obriga contração."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Baixa excreção de sódio sozinha não distingue os modelos. O dado discriminativo é volume intravascular preservado; a albumina moderadamente reduzida não obriga contração."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Baixa excreção de sódio sozinha não distingue os modelos. O dado discriminativo é volume intravascular preservado; a albumina moderadamente reduzida não obriga contração."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Baixa excreção de sódio sozinha não distingue os modelos. O dado discriminativo é volume intravascular preservado; a albumina moderadamente reduzida não obriga contração."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Baixa excreção de sódio sozinha não distingue os modelos. O dado discriminativo é volume intravascular preservado; a albumina moderadamente reduzida não obriga contração."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Baixa excreção de sódio sozinha não distingue os modelos. O dado discriminativo é volume intravascular preservado; a albumina moderadamente reduzida não obriga contração."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Baixa excreção de sódio sozinha não distingue os modelos. O dado discriminativo é volume intravascular preservado; a albumina moderadamente reduzida não obriga contração."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Baixa excreção de sódio sozinha não distingue os modelos. O dado discriminativo é volume intravascular preservado; a albumina moderadamente reduzida não obriga contração."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Baixa excreção de sódio sozinha não distingue os modelos. O dado discriminativo é volume intravascular preservado; a albumina moderadamente reduzida não obriga contração."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 10. Revisão formal autoral exata, fonte publicada aberta no alcance declarado; sem pendência decisiva. Aplicação depende de revisão independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "4adc13fd",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:1eb64c547bf86b4337cb459f3f13e5fbd6953c966cee0a3aa8d7c7bb8d923943",
+        "question": {
+          "t": "Síndrome Nefrótica — Edema por Underfill",
+          "qid": "4adc13fd",
+          "q": "Criança com síndrome nefrótica apresenta albumina de 1,8 g/dL, edema intenso, extremidades frias e taquicardia. Qual sequência explica melhor esse fenótipo?",
+          "refs": [
+            "kdigo_gn",
+            "brenner_rector"
+          ],
+          "opts": [
+            "Queda da pressão oncótica plasmática favorece passagem de líquido ao interstício, reduz o volume arterial efetivo e ativa retenção neuro-hormonal de sódio e água",
+            "Retenção renal primária de sódio sempre precede a hipoalbuminemia e exclui contração intravascular",
+            "Obstrução linfática generalizada causa proteinúria glomerular",
+            "Supressão de vasopressina e aldosterona mantém o edema"
+          ],
+          "ans": 0,
+          "exp": "Hipoalbuminemia intensa reduz a pressão oncótica plasmática e pode deslocar líquido para o interstício. Quando isso diminui o volume arterial efetivo, simpático, sistema renina-angiotensina-aldosterona e vasopressina promovem retenção de sal e água, ampliando o edema: é o fenótipo underfill. Ele não explica todos os casos; no overfill, retenção renal primária de sódio ocorre com volume preservado ou expandido. Os sinais de perfusão e a avaliação de volemia distinguem os cenários e orientam o manejo.",
+          "diff": "hard",
+          "cat": "glomerular"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Síndrome Nefrótica — Edema por Underfill",
+          "qid": "4adc13fd",
+          "q": "Criança com síndrome nefrótica, albumina de 1,8 g/dL, edema intenso, extremidades frias e taquicardia tem sinais de volume arterial efetivo reduzido. Qual sequência explica melhor esse fenótipo?",
+          "refs": [
+            "nephrotic_edema_thrombosis_busuioc_2022"
+          ],
+          "opts": [
+            "Queda oncótica, redução do volume efetivo e retenção secundária de sódio e água.",
+            "Retenção renal primária de sódio, expansão intravascular e supressão neuro-hormonal.",
+            "Elevação da pressão venosa sistêmica, com congestão e volume efetivo preservado.",
+            "Aumento da permeabilidade capilar, com expansão intravascular e ausência de resposta neuro-hormonal."
+          ],
+          "ans": 0,
+          "exp": "No fenótipo underfill, a queda da pressão oncótica favorece deslocamento de líquido para o interstício e pode reduzir o volume arterial efetivo. A resposta neuro-hormonal retém sódio e água. Os sinais de baixa perfusão foram explicitados; edema não prova expansão intravascular. Retenção primária com volume preservado ou expandido caracteriza outro fenótipo e não deve ser imposta a este caso.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "afterAuthorRevision": "sha256:55cf1f1f9a5b24a62fabb585812b3674e203c2bc31f44f24526c1462d5496d7e",
+        "refCardsAfter": {
+          "nephrotic_edema_thrombosis_busuioc_2022": {
+            "label": "Busuioc e Mircescu — Edema e trombose na síndrome nefrótica (2022)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168581/",
+            "journal": "Maedica (Bucur). 2022;17(1):153–168",
+            "ano": 2022,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Retenção primária e secundária de sódio podem coexistir; hipercoagulabilidade é multifatorial.",
+            "icon": "🔬",
+            "resumo": "Revisão narrativa sobre edema e tromboembolismo na síndrome nefrótica. Diferencia redução do volume arterial efetivo, com retenção secundária, de retenção renal primária de sódio, associada à ativação do canal epitelial de sódio por proteases. Discute perdas variáveis de anticoagulantes, maior síntese de fatores pró-coagulantes, alterações de fibrinólise, plaquetas e estase.",
+            "conclusao": "Os modelos de edema não são universais nem fixos. Antitrombina isolada não resume o risco trombótico nem define profilaxia.",
+            "curiosidade": "A avaliação da volemia é clinicamente mais útil do que presumir contração intravascular em todo paciente edemaciado."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "nephrotic_edema_thrombosis_busuioc_2022",
+            "revision": "sha256:7b174cc983ee52ae4e72cf1e14fc9ebe521194206321f2648808d4415290e02b",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:162e4ee729a15b023e0bb2b2b345ad9c835f2aadc009a4adcbc5b13511568a2a",
+      "classificationBeforeAndAfter": {
+        "op": "Explicar fenótipo underfill no edema nefrótico com sinais de baixa perfusão.",
+        "competency": "Fisiopatologia e complicações de síndromes glomerulares",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo OP e conceito correto. Enunciado/alternativas reparados; a substituição de fonte não atribui gate ao livro não aberto."
+      },
+      "evidenceSources": [
+        {
+          "id": "BUSUIOC_PART1",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168581/",
+          "access": "PRIMARY_PUBLISHED_REVIEW_FULL_BODY_OPENED_ON_WEB",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/nephrotic-complications-part1.xml",
+          "bytesSHA256": "fe265b3913c957d4ccf705518a1e747766699416e3f4e249393e7d5003ed8d71",
+          "scope": "XML local contém somente abstract, sem corpo. Texto integral efetivamente aberto pelo navegador: Nephrotic edema/Underfill/Overfill e Thromboembolic complications; mecanismos e limites conferidos. Não se importam sugestões farmacológicas de profilaxia do artigo."
+        }
+      ],
+      "claimsVerified": [
+        "XML local contém somente abstract, sem corpo. Texto integral efetivamente aberto pelo navegador: Nephrotic edema/Underfill/Overfill e Thromboembolic complications; mecanismos e limites conferidos. Não se importam sugestões farmacológicas de profilaxia do artigo."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Queda oncótica, redução do volume efetivo e retenção secundária de sódio e água.",
+            "judgment": "CORRETA: underfill contextualizado."
+          },
+          {
+            "letter": "B",
+            "text": "Retenção renal primária de sódio, expansão intravascular e supressão neuro-hormonal.",
+            "judgment": "Modelo overfill, discordante dos sinais de baixa perfusão."
+          },
+          {
+            "letter": "C",
+            "text": "Elevação da pressão venosa sistêmica, com congestão e volume efetivo preservado.",
+            "judgment": "Mecanismo congestivo com volume preservado, não o dado fornecido."
+          },
+          {
+            "letter": "D",
+            "text": "Aumento da permeabilidade capilar, com expansão intravascular e ausência de resposta neuro-hormonal.",
+            "judgment": "Confunde extravasamento intersticial com expansão intravascular sem resposta."
+          }
+        ],
+        "attemptToDefendDistractor": "A albumina isolada não define volemia; o enunciado fornece sinais e redução de volume efetivo. Não se ensina underfill como explicação universal da síndrome.",
+        "result": "RECURSO REJEITADO no contexto fornecido; revisão independente pendente."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A albumina isolada não define volemia; o enunciado fornece sinais e redução de volume efetivo. Não se ensina underfill como explicação universal da síndrome."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A albumina isolada não define volemia; o enunciado fornece sinais e redução de volume efetivo. Não se ensina underfill como explicação universal da síndrome."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A albumina isolada não define volemia; o enunciado fornece sinais e redução de volume efetivo. Não se ensina underfill como explicação universal da síndrome."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A albumina isolada não define volemia; o enunciado fornece sinais e redução de volume efetivo. Não se ensina underfill como explicação universal da síndrome."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A albumina isolada não define volemia; o enunciado fornece sinais e redução de volume efetivo. Não se ensina underfill como explicação universal da síndrome."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A albumina isolada não define volemia; o enunciado fornece sinais e redução de volume efetivo. Não se ensina underfill como explicação universal da síndrome."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A albumina isolada não define volemia; o enunciado fornece sinais e redução de volume efetivo. Não se ensina underfill como explicação universal da síndrome."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A albumina isolada não define volemia; o enunciado fornece sinais e redução de volume efetivo. Não se ensina underfill como explicação universal da síndrome."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A albumina isolada não define volemia; o enunciado fornece sinais e redução de volume efetivo. Não se ensina underfill como explicação universal da síndrome."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A albumina isolada não define volemia; o enunciado fornece sinais e redução de volume efetivo. Não se ensina underfill como explicação universal da síndrome."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 10. Revisão formal autoral exata, fonte publicada aberta no alcance declarado; sem pendência decisiva. Aplicação depende de revisão independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "0eb0386d",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:1772e78901a59b462694c8445742196bcfed8f5464811895558aba3e9d9d1142",
+        "question": {
+          "t": "Hipoalbuminemia — Interpretação de Fármacos",
+          "qid": "0eb0386d",
+          "q": "Paciente com síndrome nefrótica usa um fármaco altamente ligado à albumina. Como a hipoalbuminemia deve influenciar a interpretação da concentração plasmática?",
+          "refs": [
+            "brenner_rector"
+          ],
+          "opts": [
+            "A fração não ligada tende a aumentar, de modo que a concentração total pode parecer baixa sem refletir proporcionalmente a exposição ativa; quando relevante, deve-se interpretar ou medir a fração livre",
+            "A fração não ligada obrigatoriamente diminui e exige duplicar toda dose",
+            "A biodisponibilidade oral desaparece apenas pela perda urinária de albumina",
+            "A concentração total permanece sempre válida porque ligação proteica não altera distribuição nem depuração"
+          ],
+          "ans": 0,
+          "exp": "Menos albumina oferece menos sítios de ligação, aumentando inicialmente a fração livre de fármacos muito ligados. Essa fração também se distribui e pode ser depurada mais rapidamente; portanto, não se deve assumir que a concentração livre ficará permanentemente elevada nem ajustar dose por uma regra única. Concentrações totais, como as de fenitoína, podem subestimar a fração farmacologicamente ativa. Efeito clínico, função renal e hepática e, quando disponível, nível livre devem orientar a decisão.",
+          "diff": "hard",
+          "cat": "glomerular"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Hipoalbuminemia — Interpretação de Fármacos",
+          "qid": "0eb0386d",
+          "q": "Paciente com síndrome nefrótica usa um medicamento muito ligado à albumina. O nível plasmático total caiu com a hipoalbuminemia, sem perda evidente de efeito clínico. Qual interpretação é mais adequada?",
+          "refs": [
+            "nephrotic_lipids_infection_busuioc_2022",
+            "drug_binding_nephrotic_gugler_1976"
+          ],
+          "opts": [
+            "O nível total pode subestimar a exposição ativa; interpretar a fração livre e a eliminação antes de ajustar a dose.",
+            "O nível total baixo comprova menor concentração livre e justifica aumento proporcional imediato da dose.",
+            "A fração livre maior comprova acúmulo persistente e exige redução de dose proporcional à queda da albumina.",
+            "A resposta clínica preservada permite usar o nível total como se a ligação à albumina permanecesse normal."
+          ],
+          "ans": 0,
+          "exp": "Com menos ligação à albumina, a fração livre tende a aumentar, mas a concentração livre absoluta também depende do total, da distribuição e da depuração. Ela pode permanecer semelhante no equilíbrio; não há regra automática de aumento ou redução de dose. Considerar resposta clínica, eliminação e, quando relevante e disponível, concentração livre. Fração livre maior e concentração livre absoluta maior não são sinônimos.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "afterAuthorRevision": "sha256:1225e32f6092ba3dbe3fba7554c86f7421d6388807bf511ded247838cf2693f4",
+        "refCardsAfter": {
+          "nephrotic_lipids_infection_busuioc_2022": {
+            "label": "Busuioc e Mircescu — Lipídios e infecções na síndrome nefrótica (2022)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9375898/",
+            "journal": "Maedica (Bucur). 2022;17(2):404–414",
+            "ano": 2022,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Produção e depuração lipídicas se alteram; perda de proteínas humorais aumenta suscetibilidade infecciosa.",
+            "icon": "🔬",
+            "resumo": "Revisão narrativa das complicações da síndrome nefrótica. A dislipidemia envolve aumento da produção e redução do catabolismo de lipoproteínas. Perda urinária de imunoglobulinas e alterações de proteínas do complemento podem comprometer defesa humoral; edema, desnutrição e imunossupressores acrescentam risco. A hipoalbuminemia também modifica a ligação e a interpretação de níveis totais de medicamentos.",
+            "conclusao": "Concentração total baixa de fármaco ligado à albumina não prova baixa concentração livre. O risco infeccioso e o perfil lipídico dependem do contexto; a revisão não é um ensaio de profilaxia ou tratamento.",
+            "curiosidade": "O PDF do periódico identifica o artigo como revisão. O DOI impresso no PDF termina em .404, enquanto o registro NLM apresenta .395; o link do card usa o texto da PMC e a paginação confirmada, sem escolher silenciosamente um DOI conflitante."
+          },
+          "drug_binding_nephrotic_gugler_1976": {
+            "label": "Gugler e Azarnoff — Ligação de fármacos na síndrome nefrótica (1976)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/797490/",
+            "journal": "Clin Pharmacokinet. 1976;1(1):25–35",
+            "ano": 1976,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Fração livre e concentração livre absoluta são conceitos diferentes.",
+            "icon": "🔬",
+            "resumo": "Revisão farmacocinética sobre redução da ligação à albumina na síndrome nefrótica. O aumento da fração não ligada pode acompanhar redução da concentração total e aumento da depuração, sem elevação proporcional da concentração livre no estado de equilíbrio. Discute fenitoína e flutuações entre doses.",
+            "conclusao": "Não ajustar automaticamente a dose por albumina ou nível total isolados. Interpretar concentração livre, resposta clínica e eliminação do medicamento. A revisão não autoriza regra universal para doença renal ou hepática concomitante.",
+            "curiosidade": "Uma fração livre maior pode coexistir com concentração livre absoluta semelhante, porque o total também muda."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "nephrotic_lipids_infection_busuioc_2022",
+            "revision": "sha256:fb8509b5bca1772e27b28665312352473994018ce952988ca07e40e129c08623",
+            "fieldCount": 12
+          },
+          {
+            "id": "drug_binding_nephrotic_gugler_1976",
+            "revision": "sha256:9ce41a23d6d0fc082fbff7a053e85d7c59049a6692603349103eeb32357b9aca",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:f768ef283817ed3ed1b0be9d16a743ba68312381dac1704e462c06fdaa095501",
+      "classificationBeforeAndAfter": {
+        "op": "Interpretar concentração total de fármaco muito ligado à albumina na hipoalbuminemia.",
+        "competency": "Fisiopatologia e complicações de síndromes glomerulares",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo OP e conceito correto. Enunciado/alternativas reparados; a substituição de fonte não atribui gate ao livro não aberto."
+      },
+      "evidenceSources": [
+        {
+          "id": "BUSUIOC_PART2",
+          "url": "https://www.maedica.ro/articles/2022/2/2022_17%2820%29_No2_pg404-414.pdf",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/nephrotic-part2.pdf",
+          "bytesSHA256": "b226f31c03acdf30e8dcc28e8ced0b6529aae7ab53e732a3b6a0f86689453a31",
+          "scope": "PDF oficial de11 páginas integral aberto, identificado como Review. Pp405–406 dislipidemia, p412 infecção/IgG/complemento e interpretação farmacocinética. Metadados NLM e DOI do PDF divergem no último número; identidade/autores/páginas coincidem. URL PMC usada, conflito explicitado. Não se reutilizam afirmações terapêuticas fora do escopo verificado."
+        },
+        {
+          "id": "GUGLER_1976",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/797490/",
+          "access": "PRIMARY_PUBLISHED_REVIEW_ABSTRACT_OPENED",
+          "scope": "Abstract primário completo efetivamente aberto: fração livre maior, concentração livre absoluta essencialmente preservada por compensação do total, maior depuração e flutuação entre doses. Não foi lido o corpo integral e não se atribuem a ele detalhes adicionais."
+        }
+      ],
+      "claimsVerified": [
+        "PDF oficial de11 páginas integral aberto, identificado como Review. Pp405–406 dislipidemia, p412 infecção/IgG/complemento e interpretação farmacocinética. Metadados NLM e DOI do PDF divergem no último número; identidade/autores/páginas coincidem. URL PMC usada, conflito explicitado. Não se reutilizam afirmações terapêuticas fora do escopo verificado.",
+        "Abstract primário completo efetivamente aberto: fração livre maior, concentração livre absoluta essencialmente preservada por compensação do total, maior depuração e flutuação entre doses. Não foi lido o corpo integral e não se atribuem a ele detalhes adicionais."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "O nível total pode subestimar a exposição ativa; interpretar a fração livre e a eliminação antes de ajustar a dose.",
+            "judgment": "CORRETA: interpreta nível total sem assumir direção obrigatória da concentração livre."
+          },
+          {
+            "letter": "B",
+            "text": "O nível total baixo comprova menor concentração livre e justifica aumento proporcional imediato da dose.",
+            "judgment": "Confunde concentração total com ativa e usa ajuste automático."
+          },
+          {
+            "letter": "C",
+            "text": "A fração livre maior comprova acúmulo persistente e exige redução de dose proporcional à queda da albumina.",
+            "judgment": "Confunde fração com concentração absoluta e ignora compensação por depuração."
+          },
+          {
+            "letter": "D",
+            "text": "A resposta clínica preservada permite usar o nível total como se a ligação à albumina permanecesse normal.",
+            "judgment": "Ignora a mudança de ligação para interpretar o nível total."
+          }
+        ],
+        "attemptToDefendDistractor": "A queda da albumina não garante toxicidade persistente nem subexposição. A resposta pede interpretação, não uma dose específica que dependeria do fármaco e de função renal/hepática.",
+        "result": "RECURSO REJEITADO no contexto fornecido; revisão independente pendente."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A queda da albumina não garante toxicidade persistente nem subexposição. A resposta pede interpretação, não uma dose específica que dependeria do fármaco e de função renal/hepática."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A queda da albumina não garante toxicidade persistente nem subexposição. A resposta pede interpretação, não uma dose específica que dependeria do fármaco e de função renal/hepática."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A queda da albumina não garante toxicidade persistente nem subexposição. A resposta pede interpretação, não uma dose específica que dependeria do fármaco e de função renal/hepática."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A queda da albumina não garante toxicidade persistente nem subexposição. A resposta pede interpretação, não uma dose específica que dependeria do fármaco e de função renal/hepática."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A queda da albumina não garante toxicidade persistente nem subexposição. A resposta pede interpretação, não uma dose específica que dependeria do fármaco e de função renal/hepática."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A queda da albumina não garante toxicidade persistente nem subexposição. A resposta pede interpretação, não uma dose específica que dependeria do fármaco e de função renal/hepática."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A queda da albumina não garante toxicidade persistente nem subexposição. A resposta pede interpretação, não uma dose específica que dependeria do fármaco e de função renal/hepática."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A queda da albumina não garante toxicidade persistente nem subexposição. A resposta pede interpretação, não uma dose específica que dependeria do fármaco e de função renal/hepática."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A queda da albumina não garante toxicidade persistente nem subexposição. A resposta pede interpretação, não uma dose específica que dependeria do fármaco e de função renal/hepática."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A queda da albumina não garante toxicidade persistente nem subexposição. A resposta pede interpretação, não uma dose específica que dependeria do fármaco e de função renal/hepática."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 10. Revisão formal autoral exata, fonte publicada aberta no alcance declarado; sem pendência decisiva. Aplicação depende de revisão independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "bdcaa30c",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:d5cae05d180765ed554dd9aad960b153eb592961b415cf8bf71ae22e2b12f74b",
+        "question": {
+          "t": "Síndrome Nefrótica — Risco Infeccioso",
+          "qid": "bdcaa30c",
+          "q": "Por que a síndrome nefrótica pode aumentar a suscetibilidade a infecções bacterianas, especialmente quando se associa a imunossupressão?",
+          "refs": [
+            "brenner_rector",
+            "kdigo_gn"
+          ],
+          "opts": [
+            "Perdas urinárias de imunoglobulinas e proteínas do complemento prejudicam opsonização; edema, acessos e imunossupressores acrescentam risco",
+            "A proteinúria produz neutropenia profunda obrigatória em todos os pacientes",
+            "O fígado interrompe completamente a síntese de complemento",
+            "A albumina urinária estimula diretamente crescimento bacteriano no sangue"
+          ],
+          "ans": 0,
+          "exp": "Proteinúria intensa pode remover imunoglobulinas e componentes ou reguladores do complemento, reduzindo a defesa humoral e a opsonização. Edema, desnutrição, dispositivos e tratamento imunossupressor podem ampliar o risco. O mecanismo não é neutropenia universal nem interrupção completa da síntese hepática. A magnitude clínica varia com idade, etiologia, atividade da síndrome, vacinação e intensidade da imunossupressão.",
+          "diff": "hard",
+          "cat": "glomerular"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Síndrome Nefrótica — Risco Infeccioso",
+          "qid": "bdcaa30c",
+          "q": "Na síndrome nefrótica ativa, qual alteração contribui para maior suscetibilidade a infecções bacterianas, mesmo antes de acrescentar imunossupressores?",
+          "refs": [
+            "nephrotic_lipids_infection_busuioc_2022"
+          ],
+          "opts": [
+            "Perda urinária de imunoglobulinas e proteínas do complemento, com prejuízo da opsonização.",
+            "Defeito hereditário da explosão oxidativa dos fagócitos, como mecanismo da proteinúria.",
+            "Falha congênita de maturação dos linfócitos T, responsável pelo padrão infeccioso nefrótico.",
+            "Ausência de produção de todas as classes de anticorpos, como na agamaglobulinemia congênita."
+          ],
+          "ans": 0,
+          "exp": "Perda urinária de imunoglobulinas e alterações de proteínas do complemento podem comprometer defesa humoral e opsonização. Edema, desnutrição, dispositivos e imunossupressores podem acrescentar risco. Os demais mecanismos descrevem imunodeficiências distintas; não são o mecanismo adquirido de perda proteica na síndrome nefrótica.",
+          "diff": "easy",
+          "cat": "glomerular"
+        },
+        "afterAuthorRevision": "sha256:bb01842a05b96473f427ba639416d2b738c2444dfb65a8f221f44cf865191b1a",
+        "refCardsAfter": {
+          "nephrotic_lipids_infection_busuioc_2022": {
+            "label": "Busuioc e Mircescu — Lipídios e infecções na síndrome nefrótica (2022)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9375898/",
+            "journal": "Maedica (Bucur). 2022;17(2):404–414",
+            "ano": 2022,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Produção e depuração lipídicas se alteram; perda de proteínas humorais aumenta suscetibilidade infecciosa.",
+            "icon": "🔬",
+            "resumo": "Revisão narrativa das complicações da síndrome nefrótica. A dislipidemia envolve aumento da produção e redução do catabolismo de lipoproteínas. Perda urinária de imunoglobulinas e alterações de proteínas do complemento podem comprometer defesa humoral; edema, desnutrição e imunossupressores acrescentam risco. A hipoalbuminemia também modifica a ligação e a interpretação de níveis totais de medicamentos.",
+            "conclusao": "Concentração total baixa de fármaco ligado à albumina não prova baixa concentração livre. O risco infeccioso e o perfil lipídico dependem do contexto; a revisão não é um ensaio de profilaxia ou tratamento.",
+            "curiosidade": "O PDF do periódico identifica o artigo como revisão. O DOI impresso no PDF termina em .404, enquanto o registro NLM apresenta .395; o link do card usa o texto da PMC e a paginação confirmada, sem escolher silenciosamente um DOI conflitante."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "nephrotic_lipids_infection_busuioc_2022",
+            "revision": "sha256:fb8509b5bca1772e27b28665312352473994018ce952988ca07e40e129c08623",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:25e2ea5602a4de0c88cb5e41df3eb6b9041ad33228d1014ba03fd00769f57414",
+      "classificationBeforeAndAfter": {
+        "op": "Relacionar perda de proteínas humorais à suscetibilidade bacteriana da síndrome nefrótica.",
+        "competency": "Fisiopatologia e complicações de síndromes glomerulares",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "easy",
+        "identity": "Mesmo OP e conceito correto. Enunciado/alternativas reparados; a substituição de fonte não atribui gate ao livro não aberto."
+      },
+      "evidenceSources": [
+        {
+          "id": "BUSUIOC_PART2",
+          "url": "https://www.maedica.ro/articles/2022/2/2022_17%2820%29_No2_pg404-414.pdf",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/nephrotic-part2.pdf",
+          "bytesSHA256": "b226f31c03acdf30e8dcc28e8ced0b6529aae7ab53e732a3b6a0f86689453a31",
+          "scope": "PDF oficial de11 páginas integral aberto, identificado como Review. Pp405–406 dislipidemia, p412 infecção/IgG/complemento e interpretação farmacocinética. Metadados NLM e DOI do PDF divergem no último número; identidade/autores/páginas coincidem. URL PMC usada, conflito explicitado. Não se reutilizam afirmações terapêuticas fora do escopo verificado."
+        }
+      ],
+      "claimsVerified": [
+        "PDF oficial de11 páginas integral aberto, identificado como Review. Pp405–406 dislipidemia, p412 infecção/IgG/complemento e interpretação farmacocinética. Metadados NLM e DOI do PDF divergem no último número; identidade/autores/páginas coincidem. URL PMC usada, conflito explicitado. Não se reutilizam afirmações terapêuticas fora do escopo verificado."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Perda urinária de imunoglobulinas e proteínas do complemento, com prejuízo da opsonização.",
+            "judgment": "CORRETA: perda adquirida de proteínas humorais."
+          },
+          {
+            "letter": "B",
+            "text": "Defeito hereditário da explosão oxidativa dos fagócitos, como mecanismo da proteinúria.",
+            "judgment": "Confusão com imunodeficiência primária de fagócitos."
+          },
+          {
+            "letter": "C",
+            "text": "Falha congênita de maturação dos linfócitos T, responsável pelo padrão infeccioso nefrótico.",
+            "judgment": "Confusão com imunodeficiência primária celular."
+          },
+          {
+            "letter": "D",
+            "text": "Ausência de produção de todas as classes de anticorpos, como na agamaglobulinemia congênita.",
+            "judgment": "Confusão entre perda urinária adquirida e ausência congênita global de produção."
+          }
+        ],
+        "attemptToDefendDistractor": "Imunossupressores também aumentam o risco, mas a questão explicita o componente já presente antes deles. Não afirma que toda infecção resulte somente da perda humoral.",
+        "result": "RECURSO REJEITADO no contexto fornecido; revisão independente pendente."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Imunossupressores também aumentam o risco, mas a questão explicita o componente já presente antes deles. Não afirma que toda infecção resulte somente da perda humoral."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Imunossupressores também aumentam o risco, mas a questão explicita o componente já presente antes deles. Não afirma que toda infecção resulte somente da perda humoral."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Imunossupressores também aumentam o risco, mas a questão explicita o componente já presente antes deles. Não afirma que toda infecção resulte somente da perda humoral."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Imunossupressores também aumentam o risco, mas a questão explicita o componente já presente antes deles. Não afirma que toda infecção resulte somente da perda humoral."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Imunossupressores também aumentam o risco, mas a questão explicita o componente já presente antes deles. Não afirma que toda infecção resulte somente da perda humoral."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Imunossupressores também aumentam o risco, mas a questão explicita o componente já presente antes deles. Não afirma que toda infecção resulte somente da perda humoral."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Imunossupressores também aumentam o risco, mas a questão explicita o componente já presente antes deles. Não afirma que toda infecção resulte somente da perda humoral."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Imunossupressores também aumentam o risco, mas a questão explicita o componente já presente antes deles. Não afirma que toda infecção resulte somente da perda humoral."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Imunossupressores também aumentam o risco, mas a questão explicita o componente já presente antes deles. Não afirma que toda infecção resulte somente da perda humoral."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Imunossupressores também aumentam o risco, mas a questão explicita o componente já presente antes deles. Não afirma que toda infecção resulte somente da perda humoral."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 10. Revisão formal autoral exata, fonte publicada aberta no alcance declarado; sem pendência decisiva. Aplicação depende de revisão independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "44f1204f",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:bfbe35798ee659535e4e884db27a6ef2ff970bad8981caba306bedec31b1004a",
+        "question": {
+          "t": "Síndrome Nefrótica — Dislipidemia",
+          "qid": "44f1204f",
+          "q": "Paciente com síndrome nefrótica apresenta LDL e triglicerídeos elevados. Qual explicação integra melhor esse perfil?",
+          "refs": [
+            "brenner_rector"
+          ],
+          "opts": [
+            "Aumento da produção hepática de lipoproteínas combinado a redução de seu catabolismo, elevando sobretudo LDL e VLDL",
+            "Perda urinária seletiva de colesterol, que reduz a síntese de LDL",
+            "Deficiência obrigatória de insulina causada pela proteinúria",
+            "Aumento isolado de HDL por ativação da lipoproteína lipase"
+          ],
+          "ans": 0,
+          "exp": "A dislipidemia nefrótica é multifatorial. O fígado aumenta a produção de apolipoproteínas e lipoproteínas em resposta à perda proteica, enquanto alterações em receptores e enzimas do metabolismo lipídico reduzem a depuração. O resultado comum é elevação de colesterol total, LDL, VLDL e triglicerídeos, cuja intensidade acompanha a atividade da síndrome. Não se trata de simples perda urinária de colesterol nem de aumento protetor isolado de HDL.",
+          "diff": "hard",
+          "cat": "glomerular"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Síndrome Nefrótica — Dislipidemia",
+          "qid": "44f1204f",
+          "q": "A síndrome nefrótica elevou o colesterol em lipoproteínas de baixa densidade e os triglicerídeos. Qual combinação de processos melhor explica esse perfil?",
+          "refs": [
+            "nephrotic_lipids_infection_busuioc_2022"
+          ],
+          "opts": [
+            "Aumento da produção hepática e redução do catabolismo de lipoproteínas.",
+            "Aumento da produção hepática e aumento proporcional do catabolismo de lipoproteínas.",
+            "Redução da produção hepática e aumento do catabolismo de lipoproteínas.",
+            "Redução da produção hepática, com preservação da depuração de lipoproteínas."
+          ],
+          "ans": 0,
+          "exp": "O perfil nefrótico envolve produção aumentada e catabolismo ou remoção reduzidos de lipoproteínas. Alterações de receptores e enzimas contribuem para o acúmulo de partículas aterogênicas e triglicerídeos. Maior produção com remoção proporcional não explica o mesmo acúmulo; menor produção com remoção preservada ou aumentada aponta no sentido oposto. O quadro é multifatorial e varia com a atividade da doença.",
+          "diff": "easy",
+          "cat": "glomerular"
+        },
+        "afterAuthorRevision": "sha256:0388b2496316d9637821ba718b1b0935b17a11dcf07d8aef74ce7f9d6c1ecdc9",
+        "refCardsAfter": {
+          "nephrotic_lipids_infection_busuioc_2022": {
+            "label": "Busuioc e Mircescu — Lipídios e infecções na síndrome nefrótica (2022)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9375898/",
+            "journal": "Maedica (Bucur). 2022;17(2):404–414",
+            "ano": 2022,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Produção e depuração lipídicas se alteram; perda de proteínas humorais aumenta suscetibilidade infecciosa.",
+            "icon": "🔬",
+            "resumo": "Revisão narrativa das complicações da síndrome nefrótica. A dislipidemia envolve aumento da produção e redução do catabolismo de lipoproteínas. Perda urinária de imunoglobulinas e alterações de proteínas do complemento podem comprometer defesa humoral; edema, desnutrição e imunossupressores acrescentam risco. A hipoalbuminemia também modifica a ligação e a interpretação de níveis totais de medicamentos.",
+            "conclusao": "Concentração total baixa de fármaco ligado à albumina não prova baixa concentração livre. O risco infeccioso e o perfil lipídico dependem do contexto; a revisão não é um ensaio de profilaxia ou tratamento.",
+            "curiosidade": "O PDF do periódico identifica o artigo como revisão. O DOI impresso no PDF termina em .404, enquanto o registro NLM apresenta .395; o link do card usa o texto da PMC e a paginação confirmada, sem escolher silenciosamente um DOI conflitante."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "nephrotic_lipids_infection_busuioc_2022",
+            "revision": "sha256:fb8509b5bca1772e27b28665312352473994018ce952988ca07e40e129c08623",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:bd551ef4d99345dd13a76a5160f8679c2cc59b688073468dcb35230cfc02dbe2",
+      "classificationBeforeAndAfter": {
+        "op": "Integrar aumento de produção e redução de depuração na dislipidemia nefrótica.",
+        "competency": "Fisiopatologia e complicações de síndromes glomerulares",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "easy",
+        "identity": "Mesmo OP e conceito correto. Enunciado/alternativas reparados; a substituição de fonte não atribui gate ao livro não aberto."
+      },
+      "evidenceSources": [
+        {
+          "id": "BUSUIOC_PART2",
+          "url": "https://www.maedica.ro/articles/2022/2/2022_17%2820%29_No2_pg404-414.pdf",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/nephrotic-part2.pdf",
+          "bytesSHA256": "b226f31c03acdf30e8dcc28e8ced0b6529aae7ab53e732a3b6a0f86689453a31",
+          "scope": "PDF oficial de11 páginas integral aberto, identificado como Review. Pp405–406 dislipidemia, p412 infecção/IgG/complemento e interpretação farmacocinética. Metadados NLM e DOI do PDF divergem no último número; identidade/autores/páginas coincidem. URL PMC usada, conflito explicitado. Não se reutilizam afirmações terapêuticas fora do escopo verificado."
+        }
+      ],
+      "claimsVerified": [
+        "PDF oficial de11 páginas integral aberto, identificado como Review. Pp405–406 dislipidemia, p412 infecção/IgG/complemento e interpretação farmacocinética. Metadados NLM e DOI do PDF divergem no último número; identidade/autores/páginas coincidem. URL PMC usada, conflito explicitado. Não se reutilizam afirmações terapêuticas fora do escopo verificado."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Aumento da produção hepática e redução do catabolismo de lipoproteínas.",
+            "judgment": "CORRETA: os dois processos favorecem acúmulo."
+          },
+          {
+            "letter": "B",
+            "text": "Aumento da produção hepática e aumento proporcional do catabolismo de lipoproteínas.",
+            "judgment": "Presume compensação de depuração proporcional à produção."
+          },
+          {
+            "letter": "C",
+            "text": "Redução da produção hepática e aumento do catabolismo de lipoproteínas.",
+            "judgment": "Dois processos que reduzem o acúmulo."
+          },
+          {
+            "letter": "D",
+            "text": "Redução da produção hepática, com preservação da depuração de lipoproteínas.",
+            "judgment": "Redução de oferta com remoção preservada não explica o perfil."
+          }
+        ],
+        "attemptToDefendDistractor": "Algumas vias lipídicas podem variar, mas o comando pede a combinação geral que integra o perfil, não uma enzima isolada. Não atribui todo o fenótipo a uma única via.",
+        "result": "RECURSO REJEITADO no contexto fornecido; revisão independente pendente."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Algumas vias lipídicas podem variar, mas o comando pede a combinação geral que integra o perfil, não uma enzima isolada. Não atribui todo o fenótipo a uma única via."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Algumas vias lipídicas podem variar, mas o comando pede a combinação geral que integra o perfil, não uma enzima isolada. Não atribui todo o fenótipo a uma única via."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Algumas vias lipídicas podem variar, mas o comando pede a combinação geral que integra o perfil, não uma enzima isolada. Não atribui todo o fenótipo a uma única via."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Algumas vias lipídicas podem variar, mas o comando pede a combinação geral que integra o perfil, não uma enzima isolada. Não atribui todo o fenótipo a uma única via."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Algumas vias lipídicas podem variar, mas o comando pede a combinação geral que integra o perfil, não uma enzima isolada. Não atribui todo o fenótipo a uma única via."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Algumas vias lipídicas podem variar, mas o comando pede a combinação geral que integra o perfil, não uma enzima isolada. Não atribui todo o fenótipo a uma única via."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Algumas vias lipídicas podem variar, mas o comando pede a combinação geral que integra o perfil, não uma enzima isolada. Não atribui todo o fenótipo a uma única via."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Algumas vias lipídicas podem variar, mas o comando pede a combinação geral que integra o perfil, não uma enzima isolada. Não atribui todo o fenótipo a uma única via."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Algumas vias lipídicas podem variar, mas o comando pede a combinação geral que integra o perfil, não uma enzima isolada. Não atribui todo o fenótipo a uma única via."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Algumas vias lipídicas podem variar, mas o comando pede a combinação geral que integra o perfil, não uma enzima isolada. Não atribui todo o fenótipo a uma única via."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 10. Revisão formal autoral exata, fonte publicada aberta no alcance declarado; sem pendência decisiva. Aplicação depende de revisão independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "b9f66cbc",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:6eca9f3e4c16c328fcda793ee36651c380c4f3f09b19d62e04a6bf11f3458ef9",
+        "question": {
+          "t": "Síndrome Nefrótica — Estado Pró-trombótico",
+          "qid": "b9f66cbc",
+          "q": "Paciente com síndrome nefrótica e albumina de 2,2 g/dL pergunta por que seu risco de trombose aumentou. Qual resposta é mais precisa?",
+          "refs": [
+            "brenner_rector",
+            "vte_nephrotic_lim"
+          ],
+          "opts": [
+            "O risco é multifatorial: perda urinária de anticoagulantes, aumento hepático de fatores pró-coagulantes, alterações plaquetárias e estase contribuem; a hipoalbuminemia marca maior risco",
+            "A perda urinária de antitrombina isoladamente determina todo o risco e define por si só indicação de anticoagulação",
+            "A síndrome reduz fibrinogênio e fator VIII, produzindo simultaneamente tendência hemorrágica obrigatória",
+            "O risco ocorre apenas quando há trombose de veia renal já documentada"
+          ],
+          "ans": 0,
+          "exp": "A hipercoagulabilidade da síndrome nefrótica resulta de vários mecanismos: perdas urinárias variáveis de proteínas anticoagulantes, aumento da síntese hepática de fibrinogênio e outros fatores, menor fibrinólise, ativação plaquetária, hemoconcentração e estase. Antitrombina pode estar reduzida, mas um valor isolado não explica todo o risco nem decide profilaxia. Em nefropatia membranosa, albumina mais baixa se associou gradualmente a maior incidência de tromboembolismo; decisão preventiva ainda depende de etiologia, gravidade, risco hemorrágico e fatores adicionais.",
+          "diff": "hard",
+          "cat": "glomerular"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Síndrome Nefrótica — Estado Pró-trombótico",
+          "qid": "b9f66cbc",
+          "q": "Paciente com síndrome nefrótica e albumina de 2,2 g/dL pergunta por que aumentou seu risco de trombose. Qual explicação é mais precisa?",
+          "refs": [
+            "nephrotic_edema_thrombosis_busuioc_2022",
+            "vte_nephrotic_lim"
+          ],
+          "opts": [
+            "Desequilíbrio multifatorial entre anticoagulantes, fatores pró-coagulantes, plaquetas e estase.",
+            "Deficiência isolada de antitrombina, suficiente para explicar o risco e decidir profilaxia.",
+            "Elevação de anticoagulantes urinários no sangue, produzindo um estado de coagulação aumentada.",
+            "Elevação de fatores pró-coagulantes que torna a albumina irrelevante para a avaliação do risco."
+          ],
+          "ans": 0,
+          "exp": "Perdas variáveis de anticoagulantes, maior síntese de fatores pró-coagulantes, alterações plaquetárias, fibrinólise e estase contribuem. Antitrombina isolada não resume esse estado nem define profilaxia. Em coortes de nefropatia membranosa, albumina mais baixa associou-se a maior risco tromboembólico; isso é associação observacional, não uma regra preventiva universal. A decisão clínica também pondera etiologia e risco de sangramento.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "afterAuthorRevision": "sha256:e5b8a1081669b2d3fc6f0a104f5b14ed9e16f219038a218782d1341ec4eb466d",
+        "refCardsAfter": {
+          "nephrotic_edema_thrombosis_busuioc_2022": {
+            "label": "Busuioc e Mircescu — Edema e trombose na síndrome nefrótica (2022)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168581/",
+            "journal": "Maedica (Bucur). 2022;17(1):153–168",
+            "ano": 2022,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Retenção primária e secundária de sódio podem coexistir; hipercoagulabilidade é multifatorial.",
+            "icon": "🔬",
+            "resumo": "Revisão narrativa sobre edema e tromboembolismo na síndrome nefrótica. Diferencia redução do volume arterial efetivo, com retenção secundária, de retenção renal primária de sódio, associada à ativação do canal epitelial de sódio por proteases. Discute perdas variáveis de anticoagulantes, maior síntese de fatores pró-coagulantes, alterações de fibrinólise, plaquetas e estase.",
+            "conclusao": "Os modelos de edema não são universais nem fixos. Antitrombina isolada não resume o risco trombótico nem define profilaxia.",
+            "curiosidade": "A avaliação da volemia é clinicamente mais útil do que presumir contração intravascular em todo paciente edemaciado."
+          },
+          "vte_nephrotic_lim": {
+            "label": "Lionaki et al. — Tromboembolismo Venoso na Nefropatia Membranosa (CJASN 2012)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/22076873/",
+            "journal": "Clinical Journal of the American Society of Nephrology 2012;7(1):43-51",
+            "ano": 2012,
+            "tipo": "Coorte",
+            "badge": "COORTE",
+            "badgeColor": "#0ea5e9",
+            "impacto": "Quantificou tromboembolismo venoso clinicamente aparente e identificou hipoalbuminemia como principal preditor independente na membranosa.",
+            "icon": "📊",
+            "resumo": "Coorte de pacientes com nefropatia membranosa primária que avaliou frequência e fatores associados a tromboembolismo venoso. Eventos clinicamente aparentes ocorreram em cerca de 7% e concentraram-se nos primeiros meses após o diagnóstico. Cada redução de 1 g/dL na albumina associou-se a aumento de 2,13 vezes no risco; albumina abaixo de 2,8 g/dL marcou a faixa de maior risco no conjunto estudado.",
+            "conclusao": "A hipoalbuminemia é um marcador independente e graduado de risco trombótico na nefropatia membranosa, mas o estudo observacional não define sozinho quem deve receber profilaxia.",
+            "curiosidade": "O estudo encontrou trombose de veia renal e embolia pulmonar entre as manifestações, lembrando que a complicação pode ser renal ou sistêmica."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "nephrotic_edema_thrombosis_busuioc_2022",
+            "revision": "sha256:7b174cc983ee52ae4e72cf1e14fc9ebe521194206321f2648808d4415290e02b",
+            "fieldCount": 12
+          },
+          {
+            "id": "vte_nephrotic_lim",
+            "revision": "sha256:15c4031aeb1d0d01cdf0b0b2e51e25cdaab40ddf9f364d267178ba03fc454af1",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:f860748360a221e3e32a577eda60ea2d76e005a2465e6d3d1a4ce9a5a446a2f9",
+      "classificationBeforeAndAfter": {
+        "op": "Interpretar a hipercoagulabilidade nefrótica como multifatorial, sem usar antitrombina isolada para profilaxia.",
+        "competency": "Fisiopatologia e complicações de síndromes glomerulares",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo OP e conceito correto. Enunciado/alternativas reparados; a substituição de fonte não atribui gate ao livro não aberto."
+      },
+      "evidenceSources": [
+        {
+          "id": "BUSUIOC_PART1",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168581/",
+          "access": "PRIMARY_PUBLISHED_REVIEW_FULL_BODY_OPENED_ON_WEB",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/nephrotic-complications-part1.xml",
+          "bytesSHA256": "fe265b3913c957d4ccf705518a1e747766699416e3f4e249393e7d5003ed8d71",
+          "scope": "XML local contém somente abstract, sem corpo. Texto integral efetivamente aberto pelo navegador: Nephrotic edema/Underfill/Overfill e Thromboembolic complications; mecanismos e limites conferidos. Não se importam sugestões farmacológicas de profilaxia do artigo."
+        },
+        {
+          "id": "LIONAKI_2012",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/22076873/",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/glomerular-remaining-pubmed.xml",
+          "bytesSHA256": "a3242cd4a7740ad9cbe1a66c73dd6b45500f0a7de4606d6578b19660f9647bf4",
+          "scope": "Abstract primário integral NLM lido. N898 de duas coortes;65 eventos(7,2%), mediana3,8 meses; albumina preditor independente, risco2,13 por redução1g/dL; limiar2,8g/dL. Card completo atual conferido; estudo não define sozinho profilaxia."
+        }
+      ],
+      "claimsVerified": [
+        "XML local contém somente abstract, sem corpo. Texto integral efetivamente aberto pelo navegador: Nephrotic edema/Underfill/Overfill e Thromboembolic complications; mecanismos e limites conferidos. Não se importam sugestões farmacológicas de profilaxia do artigo.",
+        "Abstract primário integral NLM lido. N898 de duas coortes;65 eventos(7,2%), mediana3,8 meses; albumina preditor independente, risco2,13 por redução1g/dL; limiar2,8g/dL. Card completo atual conferido; estudo não define sozinho profilaxia."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Desequilíbrio multifatorial entre anticoagulantes, fatores pró-coagulantes, plaquetas e estase.",
+            "judgment": "CORRETA: integração de mecanismos."
+          },
+          {
+            "letter": "B",
+            "text": "Deficiência isolada de antitrombina, suficiente para explicar o risco e decidir profilaxia.",
+            "judgment": "Supervaloriza um componente e transforma-o em decisão automática."
+          },
+          {
+            "letter": "C",
+            "text": "Elevação de anticoagulantes urinários no sangue, produzindo um estado de coagulação aumentada.",
+            "judgment": "Inverte o efeito da perda de anticoagulantes e seu sentido fisiológico."
+          },
+          {
+            "letter": "D",
+            "text": "Elevação de fatores pró-coagulantes que torna a albumina irrelevante para a avaliação do risco.",
+            "judgment": "Ignora a associação graduada com hipoalbuminemia nas coortes."
+          }
+        ],
+        "attemptToDefendDistractor": "A perda de antitrombina é relevante, mas variável; a coorte não randomizou profilaxia nem sustenta uma indicação automática por um marcador.",
+        "result": "RECURSO REJEITADO no contexto fornecido; revisão independente pendente."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A perda de antitrombina é relevante, mas variável; a coorte não randomizou profilaxia nem sustenta uma indicação automática por um marcador."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A perda de antitrombina é relevante, mas variável; a coorte não randomizou profilaxia nem sustenta uma indicação automática por um marcador."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A perda de antitrombina é relevante, mas variável; a coorte não randomizou profilaxia nem sustenta uma indicação automática por um marcador."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A perda de antitrombina é relevante, mas variável; a coorte não randomizou profilaxia nem sustenta uma indicação automática por um marcador."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A perda de antitrombina é relevante, mas variável; a coorte não randomizou profilaxia nem sustenta uma indicação automática por um marcador."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A perda de antitrombina é relevante, mas variável; a coorte não randomizou profilaxia nem sustenta uma indicação automática por um marcador."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A perda de antitrombina é relevante, mas variável; a coorte não randomizou profilaxia nem sustenta uma indicação automática por um marcador."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A perda de antitrombina é relevante, mas variável; a coorte não randomizou profilaxia nem sustenta uma indicação automática por um marcador."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A perda de antitrombina é relevante, mas variável; a coorte não randomizou profilaxia nem sustenta uma indicação automática por um marcador."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: A perda de antitrombina é relevante, mas variável; a coorte não randomizou profilaxia nem sustenta uma indicação automática por um marcador."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 10. Revisão formal autoral exata, fonte publicada aberta no alcance declarado; sem pendência decisiva. Aplicação depende de revisão independente."
+      },
+      "independentReviewRequired": true
+    },
+    {
+      "qid": "7888b974",
+      "role": "AUTHORIAL_FORMAL_REVIEW_NOT_INDEPENDENT",
+      "original": {
+        "authorRevision": "sha256:01b7ade41e9b2153bfe6113d9bf5aed0521a8afc31ec893ad8c8a0d6fb469e14",
+        "question": {
+          "t": "Crescentes Glomerulares — Mecanismo",
+          "qid": "7888b974",
+          "q": "Biópsia de paciente com glomerulonefrite rapidamente progressiva mostra crescentes celulares. Qual sequência melhor explica sua formação?",
+          "refs": [
+            "brenner_rector",
+            "kdigo_gn"
+          ],
+          "opts": [
+            "Ruptura grave da barreira capilar permite fibrina no espaço de Bowman, recrutando macrófagos e estimulando proliferação do epitélio parietal",
+            "Depósitos subepiteliais isolados aumentam síntese de colágeno sem romper capilares",
+            "Proliferação mesangial migra intacta para a pelve renal",
+            "Necrose tubular forma diretamente camadas de podócitos no espaço urinário"
+          ],
+          "ans": 0,
+          "exp": "Lesão intensa da parede capilar glomerular permite extravasamento de fibrinogênio e fibrina para o espaço de Bowman. Fibrina, mediadores inflamatórios e macrófagos estimulam proliferação de células epiteliais parietais, originando o crescente celular. Com o tempo, organização e matriz podem produzir crescentes fibrocelulares e fibrosos. Crescente é marcador de gravidade morfológica, mas sua etiologia depende da imunofluorescência e da sorologia: anti-MBG, imunocomplexos e doença pauci-imune podem gerar o mesmo padrão.",
+          "diff": "hard",
+          "cat": "glomerular"
+        }
+      },
+      "patch": {
+        "after": {
+          "t": "Crescentes Glomerulares — Mecanismo",
+          "qid": "7888b974",
+          "q": "Biópsia em glomerulonefrite rapidamente progressiva mostra crescentes celulares. Qual sequência melhor explica sua formação?",
+          "refs": [
+            "crescent_formation_2020"
+          ],
+          "opts": [
+            "Lesão capilar, coagulação no espaço de Bowman e proliferação de células epiteliais parietais.",
+            "Depósitos subepiteliais, remodelação da parede capilar e espículas da membrana basal.",
+            "Expansão mesangial, acúmulo de matriz e formação de nódulos intercapilares.",
+            "Perda de podócitos, aderência do tufo e cicatrização segmentar da alça capilar."
+          ],
+          "ans": 0,
+          "exp": "Lesão da parede capilar pode permitir entrada de componentes plasmáticos no espaço de Bowman, coagulação com fibrina e ativação proliferativa do epitélio parietal. A composição muda com a evolução e pode adquirir matriz fibrosa. As demais sequências descrevem outros padrões glomerulares, não o crescente celular. Crescente não determina etiologia: doenças anti-membrana basal, pauci-imunes e por imunocomplexos podem convergir nessa lesão.",
+          "diff": "medium",
+          "cat": "glomerular"
+        },
+        "afterAuthorRevision": "sha256:911f18565a23bf50059053d5fcef153a76583098a9833deae4447f5172aeff63",
+        "refCardsAfter": {
+          "crescent_formation_2020": {
+            "label": "Anguiano, Kain e Anders — Formação e evolução do crescente glomerular (2020)",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7170443/",
+            "journal": "Curr Opin Nephrol Hypertens. 2020;29(3):302–309",
+            "ano": 2020,
+            "tipo": "Revisão",
+            "badge": "REVIEW",
+            "badgeColor": "#8b5cf6",
+            "impacto": "Lesão capilar e coagulação no espaço de Bowman ativam o epitélio parietal.",
+            "icon": "🔬",
+            "resumo": "Revisão sobre crescentes glomerulares. Rupturas da membrana basal glomerular permitem coagulação plasmática no espaço de Bowman, com fibrina e ativação proliferativa de células epiteliais parietais. O componente celular pode evoluir para matriz fibrosa. Etiologias distintas convergem nesse padrão morfológico.",
+            "conclusao": "Crescente não define a causa da glomerulonefrite. Integrar imunofluorescência, sorologia e contexto para identificar o processo a montante.",
+            "curiosidade": "O termo rapidamente progressiva descreve a evolução clínica; crescente descreve uma lesão histológica, não uma etiologia."
+          }
+        },
+        "referenceBindings": [
+          {
+            "id": "crescent_formation_2020",
+            "revision": "sha256:c37bf6565e698017cadbdff454660a8bec8ef0ba907b465bef0461821f7a5a09",
+            "fieldCount": 12
+          }
+        ]
+      },
+      "bundleRevision": "sha256:b0124e249e7f5bc2e011c68f995a5623d5dadd86b628cd5cbe76dd3943356705",
+      "classificationBeforeAndAfter": {
+        "op": "Explicar a formação do crescente celular por lesão capilar e ativação do epitélio parietal.",
+        "competency": "Fisiopatologia e complicações de síndromes glomerulares",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyBefore": "hard",
+        "difficultyAfter": "medium",
+        "identity": "Mesmo OP e conceito correto. Enunciado/alternativas reparados; a substituição de fonte não atribui gate ao livro não aberto."
+      },
+      "evidenceSources": [
+        {
+          "id": "ANGUIANO_2020",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7170443/",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/crescents-2020.xml",
+          "bytesSHA256": "a2b4ab3a284a658c2a097d8f2636d48062ae75ab9c238e208be6353dfe865865",
+          "scope": "Corpo XML integral efetivamente lido, Abstract/Introduction/Molecular pathways/vascular injury. Verificados autoria, ano, periódico, volume/páginas pelo front; fibrina, epitélio parietal, fibrose e etiologias distintas."
+        }
+      ],
+      "claimsVerified": [
+        "Corpo XML integral efetivamente lido, Abstract/Introduction/Molecular pathways/vascular injury. Verificados autoria, ano, periódico, volume/páginas pelo front; fibrina, epitélio parietal, fibrose e etiologias distintas."
+      ],
+      "appeal": {
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Lesão capilar, coagulação no espaço de Bowman e proliferação de células epiteliais parietais.",
+            "judgment": "CORRETA: mecanismo extracapilar."
+          },
+          {
+            "letter": "B",
+            "text": "Depósitos subepiteliais, remodelação da parede capilar e espículas da membrana basal.",
+            "judgment": "Padrão de remodelação associado a depósitos subepiteliais."
+          },
+          {
+            "letter": "C",
+            "text": "Expansão mesangial, acúmulo de matriz e formação de nódulos intercapilares.",
+            "judgment": "Padrão de expansão mesangial nodular."
+          },
+          {
+            "letter": "D",
+            "text": "Perda de podócitos, aderência do tufo e cicatrização segmentar da alça capilar.",
+            "judgment": "Padrão de cicatrização segmentar do tufo."
+          }
+        ],
+        "attemptToDefendDistractor": "Células e vias adicionais participam da lesão, mas isso não torna os outros padrões uma explicação do crescente celular. A questão não reduz toda composição a uma célula exclusiva.",
+        "result": "RECURSO REJEITADO no contexto fornecido; revisão independente pendente."
+      },
+      "eliminatoryCriteria": [
+        {
+          "criterion": "Mais de uma resposta defensável",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Células e vias adicionais participam da lesão, mas isso não torna os outros padrões uma explicação do crescente celular. A questão não reduz toda composição a uma célula exclusiva."
+        },
+        {
+          "criterion": "Referência não sustenta o gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Células e vias adicionais participam da lesão, mas isso não torna os outros padrões uma explicação do crescente celular. A questão não reduz toda composição a uma célula exclusiva."
+        },
+        {
+          "criterion": "Mede outro OP",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Células e vias adicionais participam da lesão, mas isso não torna os outros padrões uma explicação do crescente celular. A questão não reduz toda composição a uma célula exclusiva."
+        },
+        {
+          "criterion": "Conduta insegura",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Células e vias adicionais participam da lesão, mas isso não torna os outros padrões uma explicação do crescente celular. A questão não reduz toda composição a uma célula exclusiva."
+        },
+        {
+          "criterion": "Distrator absurdo",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Células e vias adicionais participam da lesão, mas isso não torna os outros padrões uma explicação do crescente celular. A questão não reduz toda composição a uma célula exclusiva."
+        },
+        {
+          "criterion": "Trivia sem consequência",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Células e vias adicionais participam da lesão, mas isso não torna os outros padrões uma explicação do crescente celular. A questão não reduz toda composição a uma célula exclusiva."
+        },
+        {
+          "criterion": "Explicação contradiz gabarito",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Células e vias adicionais participam da lesão, mas isso não torna os outros padrões uma explicação do crescente celular. A questão não reduz toda composição a uma célula exclusiva."
+        },
+        {
+          "criterion": "Dado decisivo ausente",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Células e vias adicionais participam da lesão, mas isso não torna os outros padrões uma explicação do crescente celular. A questão não reduz toda composição a uma célula exclusiva."
+        },
+        {
+          "criterion": "Protocolo local não informado",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Células e vias adicionais participam da lesão, mas isso não torna os outros padrões uma explicação do crescente celular. A questão não reduz toda composição a uma célula exclusiva."
+        },
+        {
+          "criterion": "Desatualização relevante",
+          "result": "NÃO PRESENTE NO AFTER",
+          "basis": "OP e quatro opções confrontados: Células e vias adicionais participam da lesão, mas isso não torna os outros padrões uma explicação do crescente celular. A questão não reduz toda composição a uma célula exclusiva."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "dimension": "Alinhamento ao OP",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de conteúdo",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Validade de construto",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Enunciado",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Alternativas",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Distratores",
+            "points": 1,
+            "max": 2
+          },
+          {
+            "dimension": "Explicação",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Referências",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Ausência de cara de IA",
+            "points": 2,
+            "max": 2
+          },
+          {
+            "dimension": "Valor pedagógico",
+            "points": 2,
+            "max": 2
+          }
+        ],
+        "total": 19,
+        "max": 20
+      },
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 10. Revisão formal autoral exata, fonte publicada aberta no alcance declarado; sem pendência decisiva. Aplicação depende de revisão independente."
+      },
+      "independentReviewRequired": true
+    }
+  ],
+  "referenceCandidates": [
+    {
+      "id": "nephrotic_edema_thrombosis_busuioc_2022",
+      "beforeRevision": null,
+      "after": {
+        "label": "Busuioc e Mircescu — Edema e trombose na síndrome nefrótica (2022)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168581/",
+        "journal": "Maedica (Bucur). 2022;17(1):153–168",
+        "ano": 2022,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Retenção primária e secundária de sódio podem coexistir; hipercoagulabilidade é multifatorial.",
+        "icon": "🔬",
+        "resumo": "Revisão narrativa sobre edema e tromboembolismo na síndrome nefrótica. Diferencia redução do volume arterial efetivo, com retenção secundária, de retenção renal primária de sódio, associada à ativação do canal epitelial de sódio por proteases. Discute perdas variáveis de anticoagulantes, maior síntese de fatores pró-coagulantes, alterações de fibrinólise, plaquetas e estase.",
+        "conclusao": "Os modelos de edema não são universais nem fixos. Antitrombina isolada não resume o risco trombótico nem define profilaxia.",
+        "curiosidade": "A avaliação da volemia é clinicamente mais útil do que presumir contração intravascular em todo paciente edemaciado."
+      },
+      "afterRevision": "sha256:7b174cc983ee52ae4e72cf1e14fc9ebe521194206321f2648808d4415290e02b",
+      "fieldCount": 12,
+      "sources": [
+        {
+          "id": "BUSUIOC_PART1",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9168581/",
+          "access": "PRIMARY_PUBLISHED_REVIEW_FULL_BODY_OPENED_ON_WEB",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/nephrotic-complications-part1.xml",
+          "bytesSHA256": "fe265b3913c957d4ccf705518a1e747766699416e3f4e249393e7d5003ed8d71",
+          "scope": "XML local contém somente abstract, sem corpo. Texto integral efetivamente aberto pelo navegador: Nephrotic edema/Underfill/Overfill e Thromboembolic complications; mecanismos e limites conferidos. Não se importam sugestões farmacológicas de profilaxia do artigo."
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 10. Revisão formal autoral exata, fonte publicada aberta no alcance declarado; sem pendência decisiva. Aplicação depende de revisão independente."
+      },
+      "currentConsumerQids": [],
+      "noQuestionApprovalInherited": true
+    },
+    {
+      "id": "nephrotic_lipids_infection_busuioc_2022",
+      "beforeRevision": null,
+      "after": {
+        "label": "Busuioc e Mircescu — Lipídios e infecções na síndrome nefrótica (2022)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9375898/",
+        "journal": "Maedica (Bucur). 2022;17(2):404–414",
+        "ano": 2022,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Produção e depuração lipídicas se alteram; perda de proteínas humorais aumenta suscetibilidade infecciosa.",
+        "icon": "🔬",
+        "resumo": "Revisão narrativa das complicações da síndrome nefrótica. A dislipidemia envolve aumento da produção e redução do catabolismo de lipoproteínas. Perda urinária de imunoglobulinas e alterações de proteínas do complemento podem comprometer defesa humoral; edema, desnutrição e imunossupressores acrescentam risco. A hipoalbuminemia também modifica a ligação e a interpretação de níveis totais de medicamentos.",
+        "conclusao": "Concentração total baixa de fármaco ligado à albumina não prova baixa concentração livre. O risco infeccioso e o perfil lipídico dependem do contexto; a revisão não é um ensaio de profilaxia ou tratamento.",
+        "curiosidade": "O PDF do periódico identifica o artigo como revisão. O DOI impresso no PDF termina em .404, enquanto o registro NLM apresenta .395; o link do card usa o texto da PMC e a paginação confirmada, sem escolher silenciosamente um DOI conflitante."
+      },
+      "afterRevision": "sha256:fb8509b5bca1772e27b28665312352473994018ce952988ca07e40e129c08623",
+      "fieldCount": 12,
+      "sources": [
+        {
+          "id": "BUSUIOC_PART2",
+          "url": "https://www.maedica.ro/articles/2022/2/2022_17%2820%29_No2_pg404-414.pdf",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/nephrotic-part2.pdf",
+          "bytesSHA256": "b226f31c03acdf30e8dcc28e8ced0b6529aae7ab53e732a3b6a0f86689453a31",
+          "scope": "PDF oficial de11 páginas integral aberto, identificado como Review. Pp405–406 dislipidemia, p412 infecção/IgG/complemento e interpretação farmacocinética. Metadados NLM e DOI do PDF divergem no último número; identidade/autores/páginas coincidem. URL PMC usada, conflito explicitado. Não se reutilizam afirmações terapêuticas fora do escopo verificado."
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 10. Revisão formal autoral exata, fonte publicada aberta no alcance declarado; sem pendência decisiva. Aplicação depende de revisão independente."
+      },
+      "currentConsumerQids": [],
+      "noQuestionApprovalInherited": true
+    },
+    {
+      "id": "drug_binding_nephrotic_gugler_1976",
+      "beforeRevision": null,
+      "after": {
+        "label": "Gugler e Azarnoff — Ligação de fármacos na síndrome nefrótica (1976)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/797490/",
+        "journal": "Clin Pharmacokinet. 1976;1(1):25–35",
+        "ano": 1976,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Fração livre e concentração livre absoluta são conceitos diferentes.",
+        "icon": "🔬",
+        "resumo": "Revisão farmacocinética sobre redução da ligação à albumina na síndrome nefrótica. O aumento da fração não ligada pode acompanhar redução da concentração total e aumento da depuração, sem elevação proporcional da concentração livre no estado de equilíbrio. Discute fenitoína e flutuações entre doses.",
+        "conclusao": "Não ajustar automaticamente a dose por albumina ou nível total isolados. Interpretar concentração livre, resposta clínica e eliminação do medicamento. A revisão não autoriza regra universal para doença renal ou hepática concomitante.",
+        "curiosidade": "Uma fração livre maior pode coexistir com concentração livre absoluta semelhante, porque o total também muda."
+      },
+      "afterRevision": "sha256:9ce41a23d6d0fc082fbff7a053e85d7c59049a6692603349103eeb32357b9aca",
+      "fieldCount": 12,
+      "sources": [
+        {
+          "id": "GUGLER_1976",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/797490/",
+          "access": "PRIMARY_PUBLISHED_REVIEW_ABSTRACT_OPENED",
+          "scope": "Abstract primário completo efetivamente aberto: fração livre maior, concentração livre absoluta essencialmente preservada por compensação do total, maior depuração e flutuação entre doses. Não foi lido o corpo integral e não se atribuem a ele detalhes adicionais."
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 10. Revisão formal autoral exata, fonte publicada aberta no alcance declarado; sem pendência decisiva. Aplicação depende de revisão independente."
+      },
+      "currentConsumerQids": [],
+      "noQuestionApprovalInherited": true
+    },
+    {
+      "id": "crescent_formation_2020",
+      "beforeRevision": null,
+      "after": {
+        "label": "Anguiano, Kain e Anders — Formação e evolução do crescente glomerular (2020)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7170443/",
+        "journal": "Curr Opin Nephrol Hypertens. 2020;29(3):302–309",
+        "ano": 2020,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Lesão capilar e coagulação no espaço de Bowman ativam o epitélio parietal.",
+        "icon": "🔬",
+        "resumo": "Revisão sobre crescentes glomerulares. Rupturas da membrana basal glomerular permitem coagulação plasmática no espaço de Bowman, com fibrina e ativação proliferativa de células epiteliais parietais. O componente celular pode evoluir para matriz fibrosa. Etiologias distintas convergem nesse padrão morfológico.",
+        "conclusao": "Crescente não define a causa da glomerulonefrite. Integrar imunofluorescência, sorologia e contexto para identificar o processo a montante.",
+        "curiosidade": "O termo rapidamente progressiva descreve a evolução clínica; crescente descreve uma lesão histológica, não uma etiologia."
+      },
+      "afterRevision": "sha256:c37bf6565e698017cadbdff454660a8bec8ef0ba907b465bef0461821f7a5a09",
+      "fieldCount": 12,
+      "sources": [
+        {
+          "id": "ANGUIANO_2020",
+          "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7170443/",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/crescents-2020.xml",
+          "bytesSHA256": "a2b4ab3a284a658c2a097d8f2636d48062ae75ab9c238e208be6353dfe865865",
+          "scope": "Corpo XML integral efetivamente lido, Abstract/Introduction/Molecular pathways/vascular injury. Verificados autoria, ano, periódico, volume/páginas pelo front; fibrina, epitélio parietal, fibrose e etiologias distintas."
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 10. Revisão formal autoral exata, fonte publicada aberta no alcance declarado; sem pendência decisiva. Aplicação depende de revisão independente."
+      },
+      "currentConsumerQids": [],
+      "noQuestionApprovalInherited": true
+    },
+    {
+      "id": "vte_nephrotic_lim",
+      "beforeRevision": "sha256:15c4031aeb1d0d01cdf0b0b2e51e25cdaab40ddf9f364d267178ba03fc454af1",
+      "after": {
+        "label": "Lionaki et al. — Tromboembolismo Venoso na Nefropatia Membranosa (CJASN 2012)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/22076873/",
+        "journal": "Clinical Journal of the American Society of Nephrology 2012;7(1):43-51",
+        "ano": 2012,
+        "tipo": "Coorte",
+        "badge": "COORTE",
+        "badgeColor": "#0ea5e9",
+        "impacto": "Quantificou tromboembolismo venoso clinicamente aparente e identificou hipoalbuminemia como principal preditor independente na membranosa.",
+        "icon": "📊",
+        "resumo": "Coorte de pacientes com nefropatia membranosa primária que avaliou frequência e fatores associados a tromboembolismo venoso. Eventos clinicamente aparentes ocorreram em cerca de 7% e concentraram-se nos primeiros meses após o diagnóstico. Cada redução de 1 g/dL na albumina associou-se a aumento de 2,13 vezes no risco; albumina abaixo de 2,8 g/dL marcou a faixa de maior risco no conjunto estudado.",
+        "conclusao": "A hipoalbuminemia é um marcador independente e graduado de risco trombótico na nefropatia membranosa, mas o estudo observacional não define sozinho quem deve receber profilaxia.",
+        "curiosidade": "O estudo encontrou trombose de veia renal e embolia pulmonar entre as manifestações, lembrando que a complicação pode ser renal ou sistêmica."
+      },
+      "afterRevision": "sha256:15c4031aeb1d0d01cdf0b0b2e51e25cdaab40ddf9f364d267178ba03fc454af1",
+      "fieldCount": 12,
+      "sources": [
+        {
+          "id": "LIONAKI_2012",
+          "url": "https://pubmed.ncbi.nlm.nih.gov/22076873/",
+          "artifact": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1728-editorial-backlog/glomerular-remaining-pubmed.xml",
+          "bytesSHA256": "a3242cd4a7740ad9cbe1a66c73dd6b45500f0a7de4606d6578b19660f9647bf4",
+          "scope": "Abstract primário integral NLM lido. N898 de duas coortes;65 eventos(7,2%), mediana3,8 meses; albumina preditor independente, risco2,13 por redução1g/dL; limiar2,8g/dL. Card completo atual conferido; estudo não define sozinho profilaxia."
+        }
+      ],
+      "formalReview": {
+        "verdict": "aprovada",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derived": "Handbook §18.4 Regra 10. Revisão formal autoral exata, fonte publicada aberta no alcance declarado; sem pendência decisiva. Aplicação depende de revisão independente."
+      },
+      "currentConsumerQids": [
+        "68cb9c42",
+        "6fb809f3",
+        "b9f66cbc"
+      ],
+      "noQuestionApprovalInherited": true
+    }
+  ],
+  "neighborAnalysis": [
+    {
+      "qids": [
+        "ede008ca",
+        "4adc13fd"
+      ],
+      "decision": "MANTER VARIAÇÃO ÚTIL",
+      "dimensions": {
+        "decision": "Reconhecer modelos diferentes de edema.",
+        "caseDataStructure": "Volume preservado/albumina3,2 versus sinais de baixa perfusão/albumina1,8.",
+        "targetProfile": "Mesmo público.",
+        "language": "Português."
+      },
+      "utility": "A avaliação do volume muda o mecanismo selecionado; não se ensina um modelo universal."
+    }
+  ],
+  "referenceBoundary": "Brenner não foi aberto: removido somente das questões deste pacote, sem reparar/aprovar o card global. Não se transfere gate do livro para as novas fontes.",
+  "implementationBoundary": {
+    "noRootWrites": true,
+    "noFSRSCopy": true,
+    "independentGateRequired": true
+  }
+}

@@ -1,0 +1,421 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "3ecb266a",
+  "family": "A3-seguranca-e-condutas",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Transplante Renal: Nefropatia por BK",
+    "qid": "3ecb266a",
+    "q": "Paciente transplantado renal há 8 meses em uso de tacrolimo apresenta creatinina 1,6 mg/dL (basal 1,2 mg/dL), células decoy na urina, PCR plasmática para BK vírus de 42.000 cópias/mL e biópsia com inclusões virais intranucleares em células tubulares, sem tubulite pronunciada. Qual é o diagnóstico e a conduta inicial mais adequada?",
+    "refs": [
+      "bk_virus_review",
+      "kdigo_tx"
+    ],
+    "opts": [
+      "Nefropatia por vírus BK; reduzir imunossupressão de forma controlada, com ajuste do antimetabólito e/ou do inibidor de calcineurina conforme risco imunológico",
+      "Rejeição celular aguda; pulsoterapia com corticosteroide",
+      "Infecção por CMV renal; ganciclovir IV",
+      "Rejeição mediada por anticorpos; plasmaférese"
+    ],
+    "ans": 0,
+    "exp": "O conjunto de viremia plasmática significativa por BK, células decoy e biópsia com inclusões virais tubulares é compatível com nefropatia por vírus BK. A conduta inicial é reduzir a imunossupressão de modo escalonado e monitorado, equilibrando controle viral e risco de rejeição. Não há antiviral aprovado específico com benefício robusto para uso rotineiro; cidofovir é limitado por nefrotoxicidade. Corticosteroide em pulso, ganciclovir ou plasmaférese tratariam rejeição ou CMV, mas não respondem ao padrão virológico-histológico descrito.",
+    "diff": "medium",
+    "cat": "transplante"
+  },
+  "originalSHA256": "sha256:bd83ea8f837d6e58677c3fec73015351ccd029308f373595d19c286b46b65792",
+  "originalRefs": [
+    {
+      "id": "bk_virus_review",
+      "original": {
+        "label": "Kotton CN et al. — 2º Consenso Internacional BKPyV (2024)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11335089/",
+        "journal": "Transplantation 2024;108(9):1834-1866",
+        "ano": 2024,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Rastreamento e redução escalonada da imunossupressão na DNAemia por BK",
+        "icon": "📋",
+        "resumo": "Segundo consenso internacional sobre BK poliomavírus em transplante renal, publicado em 2024. Recomenda rastreamento mensal da DNAemia plasmática até o 9º mês e, depois, a cada 3 meses até 2 anos. DNAemia persistente acima de 1.000 cópias/mL ou uma medida acima de 10.000 cópias/mL deve levar à redução predefinida e escalonada do antimetabólito, do inibidor de calcineurina ou de ambos, com monitorização da DNAemia a cada 2 a 4 semanas. A interpretação deve considerar variabilidade entre ensaios e risco imunológico.",
+        "conclusao": "A redução monitorada da imunossupressão é a intervenção principal na DNAemia relevante por BK; cidofovir, leflunomida e fluoroquinolonas não são recomendados como rotina.",
+        "curiosidade": "A sequência típica é virúria de alto nível, seguida semanas depois por DNAemia; virúria isolada não equivale a nefropatia do enxerto."
+      },
+      "originalSHA256": "sha256:3b5c54babd5ff3cf90c71d7a870122407173557c399e4e1ca9a36297ee695cb2"
+    },
+    {
+      "id": "kdigo_tx",
+      "original": {
+        "label": "KDIGO Transplant Recipient Care 2009",
+        "url": "https://kdigo.org/guidelines/transplant-recipient-care/",
+        "journal": "Am J Transplant 2009;9(Suppl 3):S1-S155",
+        "ano": 2009,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Manejo do receptor de transplante renal — imunossupressão, infecções e complicações",
+        "icon": "📋",
+        "resumo": "Diretriz abrangente para manejo do receptor de transplante renal, cobrindo imunossupressão (esquemas baseados em inibidor de calcineurina e antiproliferativo, com ou sem corticoide, individualizados por risco imunológico), monitorização do enxerto, rejeição aguda e crônica, infecções oportunistas (CMV, BK, PCP), doença cardiovascular, neoplasia e complicações metabólicas a longo prazo.",
+        "conclusao": "Referência-base para o acompanhamento do transplantado renal — da imunossupressão de indução ao manejo das complicações tardias.",
+        "curiosidade": "A introdução do tacrolimo marcou a consolidação dos inibidores de calcineurina como eixo da imunossupressão moderna, reduzindo a rejeição aguda e melhorando a sobrevida inicial do enxerto renal de forma expressiva."
+      },
+      "originalSHA256": "sha256:d45289e9fb4e493b136589950688622820db5f6e081dc9f16214b9062c026747"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Reconhecer provável nefropatia por BK e reduzir imunossupressão de modo escalonado e monitorado.",
+    "primaryCompetence": "Diagnóstico e conduta inicial segura em complicação infecciosa do transplante.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "PARCIALMENTE VERIFICADA",
+    "pending": "NÃO DECISIVA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Correta contém diagnóstico, individualização e escolha de classes, enquanto as demais só trazem diagnóstico e ação.",
+      "MENOR — A formulação distingue hipótese mais provável de confirmação histológica estrita; não transforma inclusões isoladas em prova específica.",
+      "MENOR — Referência genérica de transplante2009 é dispensada em favor do consenso específico2024."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "bk",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11335089/",
+      "access": "Corpo integral do consenso internacional2024, também arquivado no XML oficial EFetch a3-pmc-primary-corpus.xml",
+      "locators": [
+        "Abstract e recomendações de rastreamento",
+        "Tabelas6–7 e linhas496–545: limiares, redução escalonada, risco imunológico e monitorização2–4semanas"
+      ],
+      "limitations": [
+        "Interpretar cópias por ensaio e contexto. Não apresentar interrupção indiscriminada da imunossupressão como alternativa segura."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "DNAemia42.000 com achados tubulares favorece BK",
+      "source": "bk",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Redução escalonada, risco e monitorização",
+      "source": "bk",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Drogas não recomendadas como rotina pelo consenso2024",
+      "source": "bk",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Transplante Renal: Nefropatia por BK",
+    "qid": "3ecb266a",
+    "q": "Paciente transplantado renal há 8 meses, em uso de tacrolimo, apresenta creatinina de 1,6 mg/dL (basal 1,2 mg/dL), células decoy na urina, reação em cadeia da polimerase (PCR) plasmática para vírus BK de 42.000 cópias/mL e biópsia com inclusões virais intranucleares em células tubulares, sem tubulite pronunciada. Qual é a hipótese mais provável e a conduta inicial coerente?",
+    "refs": [
+      "bk_virus_review"
+    ],
+    "opts": [
+      "Nefropatia por BK; reduzir a imunossupressão de forma escalonada e monitorada.",
+      "Rejeição celular aguda; administrar pulsoterapia com corticosteroide.",
+      "Nefropatia por citomegalovírus; iniciar ganciclovir intravenoso.",
+      "Rejeição mediada por anticorpos; iniciar plasmaférese."
+    ],
+    "ans": 0,
+    "exp": "O conjunto é mais compatível com nefropatia por BK. A carga viral plasmática elevada, as células decoy e as inclusões tubulares devem ser interpretadas em conjunto; a confirmação histológica emprega imunohistoquímica. A intervenção principal é reduzir imunossupressão por passos predefinidos, conforme esquema e risco imunológico, acompanhando carga viral e função do enxerto. O consenso de 2024 não recomenda cidofovir, leflunomida ou fluoroquinolonas como rotina. Pulsoterapia, ganciclovir ou plasmaférese não respondem ao padrão apresentado e podem tratar equivocadamente outra complicação.",
+    "diff": "medium",
+    "cat": "transplante"
+  },
+  "proposedSHA256": "sha256:1520eea0e9856ce254b89357f0e0521f40bd0f1ad2692e85f3c885db630e1472",
+  "classificationAfter": {
+    "op": "Reconhecer provável nefropatia por BK e reduzir imunossupressão de modo escalonado e monitorado.",
+    "primaryCompetence": "Diagnóstico e conduta inicial segura em complicação infecciosa do transplante.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "bk_virus_review",
+      "original": {
+        "label": "Kotton CN et al. — 2º Consenso Internacional BKPyV (2024)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11335089/",
+        "journal": "Transplantation 2024;108(9):1834-1866",
+        "ano": 2024,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Rastreamento e redução escalonada da imunossupressão na DNAemia por BK",
+        "icon": "📋",
+        "resumo": "Segundo consenso internacional sobre BK poliomavírus em transplante renal, publicado em 2024. Recomenda rastreamento mensal da DNAemia plasmática até o 9º mês e, depois, a cada 3 meses até 2 anos. DNAemia persistente acima de 1.000 cópias/mL ou uma medida acima de 10.000 cópias/mL deve levar à redução predefinida e escalonada do antimetabólito, do inibidor de calcineurina ou de ambos, com monitorização da DNAemia a cada 2 a 4 semanas. A interpretação deve considerar variabilidade entre ensaios e risco imunológico.",
+        "conclusao": "A redução monitorada da imunossupressão é a intervenção principal na DNAemia relevante por BK; cidofovir, leflunomida e fluoroquinolonas não são recomendados como rotina.",
+        "curiosidade": "A sequência típica é virúria de alto nível, seguida semanas depois por DNAemia; virúria isolada não equivale a nefropatia do enxerto."
+      },
+      "originalSHA256": "sha256:3b5c54babd5ff3cf90c71d7a870122407173557c399e4e1ca9a36297ee695cb2",
+      "proposed": {
+        "label": "Consenso internacional — Poliomavírus BK no transplante renal (2024)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11335089/",
+        "journal": "Transplantation 2024;108(9):1834-1866",
+        "ano": 2024,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Rastrear carga viral plasmática e reduzir imunossupressão de forma escalonada",
+        "icon": "📋",
+        "resumo": "Segundo consenso internacional de 2024 para receptores de transplante renal. Recomenda rastreamento plasmático mensal até o nono mês e, depois, a cada 3 meses até 2 anos em adultos. Carga viral persistente acima de 1.000 cópias/mL, medida acima de 10.000 cópias/mL ou nefropatia comprovada devem motivar redução predefinida e escalonada do antimetabólito, do inibidor de calcineurina ou de ambos, conforme risco. Monitorar carga viral a cada 2–4 semanas. Valores dependem do ensaio e precisam de correlação clínica.",
+        "conclusao": "A redução monitorada da imunossupressão é a intervenção principal na DNAemia relevante por BK; cidofovir, leflunomida e fluoroquinolonas não são recomendados como rotina.",
+        "curiosidade": "Células decoy e vírus na urina podem preceder a carga viral plasmática; virúria isolada não equivale a nefropatia do enxerto."
+      },
+      "proposedSHA256": "sha256:bfb95a98f6338f30e84b524d3a43e633336e9a0a0744813c2b2c4446382fb3fb",
+      "sourceIDs": [
+        "bk"
+      ],
+      "notes": []
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "Quatro pares diagnóstico-conduta paralelos. As particularidades do ajuste ficam na explicação; mantido o caráter probabilístico do caso e a necessidade de confirmação adequada.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

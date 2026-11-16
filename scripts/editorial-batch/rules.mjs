@@ -1,6 +1,7 @@
 import { changedQuestionIds, equalExceptRefs } from './questions.mjs';
 import { validateReferenceOnlyBatch } from './references.mjs';
 import { validateChamberBatch } from './chamber.mjs';
+import { validateHistoricalReferenceRetention } from './historical-references.mjs';
 
 const FORBIDDEN = [
   /(^|\/)\.playwright-mcp\//,
@@ -49,6 +50,15 @@ export function validateBatch(input) {
         if (!effectiveAfterConsumers.has(id)) effectiveAfterConsumers.set(id, new Set());
         for (const consumer of values) effectiveAfterConsumers.get(id).add(consumer);
       }
+    }
+  }
+  const historical = validateHistoricalReferenceRetention(input);
+  errors.push(...historical.errors);
+  if (!historical.errors.length && historical.consumers.size) {
+    effectiveAfterConsumers = new Map([...effectiveAfterConsumers].map(([id, values]) => [id, new Set(values)]));
+    for (const [id, values] of historical.consumers) {
+      if (!effectiveAfterConsumers.has(id)) effectiveAfterConsumers.set(id, new Set());
+      for (const consumer of values) effectiveAfterConsumers.get(id).add(consumer);
     }
   }
 

@@ -1,0 +1,727 @@
+{
+  "schema": "NQ_INDEPENDENT_A7_FIDELIO_REVIEW_1728_v1",
+  "date": "2026-11-15",
+  "reviewer": "/root/reference_duplicates_1728",
+  "author": "/root/length_inventory_1728",
+  "productionWrites": false,
+  "authorPackage": {
+    "file": "author-batch-A7.1-FIDELIO.json",
+    "rawSHA256": "5de613d111b3dd3376e2716ace4e165a471f0f7a1b9f85e0a7ac25ed5156c53f"
+  },
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "normativeDocuments": [
+    {
+      "file": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "rawSHA256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "file": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "rawSHA256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "file": "docs/editorial/annex-c-nefrologia.md",
+      "rawSHA256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "skill": {
+    "file": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+    "rawSHA256": "eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd",
+    "outputContract": "references/output-contract.md",
+    "verificationProtocol": "references/verification-protocol.md"
+  },
+  "sources": {
+    "F": {
+      "url": "https://diposit.ub.edu/bitstreams/d83771e6-4737-4c37-8e49-21196b8cf338/download",
+      "doi": "10.1056/NEJMoa2025845",
+      "access": "Artigo primário integral de11páginas efetivamente aberto no depósito institucional Universitat de Barcelona, metadados também no NLM33264825.",
+      "locators": [
+        "PDF1:população,compostos,mediana2,6anos,eventos/HR/IC/P,segurança",
+        "PDF2–3:elegibilidade,K≤4,8,bloqueioRAS tolerado,oral10–20mg1x/dia;falência renal e confirmação4semanas",
+        "PDF3–4:análiseCox/censura;5734randomizados,60excluídos prospectivamente,5674analisados",
+        "PDF4:3,4ppestimadosa3anos≠diferençabruta3,3pp;primário e secundário-chave",
+        "PDF7Figura2:estimativas/incertezasporcomponente",
+        "PDF9Tabela2:interrupçãopermanentehipercalemia64/2827(2,3%)vs25/2831(0,9%)"
+      ],
+      "limits": "Análise primária2020, população selecionada e conjunto modificado após exclusõesGCP. Não inferir efeito idêntico em componentes, benefício individual fixo ou queRRcumulativo é oHR."
+    },
+    "G": {
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34449181/",
+      "doi": "10.1056/NEJMoa2110956",
+      "access": "Registro oficial NLM e abstract primário integral efetivamente abertos e lidos.",
+      "locators": [
+        "Methods:FIGAROprimárioCVsobRASdosemáximatolerada",
+        "Results:HR0,87/IC0,76–0,98/P0,03e maiorretirada porhipercalemia"
+      ],
+      "limits": "Usado somente para conferir a afirmação factual deFIGARO na explicação legada de d7ac22f6; não introduz novos números no item/card."
+    },
+    "K": {
+      "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+      "access": "PDF oficial integral199páginas congelado e reaberto; extração independente já disponível.",
+      "rawSHA256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0",
+      "proof": "independent-DRC/kdigo-ckd-2024.pdf.pages.json; fonte autoral kdigo-ckd-2024-source.pdf",
+      "locators": [
+        "PDF105/S220:Rec3.8.1(2A),PP3.8.1–4,albuminúriapersistente/TFGe/K/bloqueioRAS;figura26monitorização",
+        "PDF34/39/44/53/76/99/107/119/151:campos do card globalCGA,cronicidade,ACR,SGLT2,acidose,estatinas,planejamentoKRT"
+      ],
+      "limits": "Versãofinal2024; rechecagem de cada campo do card legado no escopo proposto, sem herdar gate doID. Não trata minuta2027 como final."
+    }
+  },
+  "items": [
+    {
+      "qid": "40c5f770",
+      "kind": "new_question",
+      "proposed": {
+        "qid": "40c5f770",
+        "t": "FIDELIO-DKD — Interpretação do benefício renal",
+        "q": "Ao discutir nefroproteção, você revisa o FIDELIO-DKD: adultos com diabetes tipo 2 e doença renal crônica albuminúrica receberam finerenona ou placebo, além de bloqueio do sistema renina-angiotensina. O composto primário incluiu falência renal, queda sustentada ≥40% da taxa de filtração glomerular estimada ou morte renal. Em mediana de 2,6 anos, houve eventos em 17,8% versus 21,1%, com razão de riscos instantâneos (hazard ratio, HR) de 0,82 e intervalo de confiança de 95% de 0,73–0,93. Qual interpretação é adequada para comunicar esse benefício?",
+        "opts": [
+          "Representa queda de 18 pontos percentuais na chance de falência renal durante o seguimento.",
+          "Favorece a finerenona no composto, sem demonstrar o mesmo benefício em cada componente.",
+          "Demonstra redução de 18% da mortalidade renal isolada e da necessidade de diálise.",
+          "Mostra que 18% dos pacientes tratados evitaram um evento renal graças à finerenona."
+        ],
+        "ans": 1,
+        "exp": "A estimativa favorece a finerenona para o composto renal primário. O HR compara os riscos instantâneos até o primeiro evento durante o seguimento; não equivale a 18 pontos percentuais de redução absoluta nem à proporção de pessoas que individualmente se beneficiaram. O resultado global do composto também não demonstra, por si só, a mesma redução em falência renal, diálise e morte renal isoladamente: cada componente tem sua estimativa e incerteza. As proporções observadas diferem em 3,3 pontos percentuais, mas essa diferença bruta não deve ser confundida com estimativa de risco em um horizonte fixo. Na prática, comunique o benefício no desfecho estudado e seus limites, sem prometer proteção individual de magnitude fixa.",
+        "cat": "nefropatia_diabetica",
+        "diff": "medium",
+        "refs": [
+          "fidelio_dkd"
+        ]
+      },
+      "proposedSHA256": "sha256:c0ea0b0b85174325f8b226c186866b4d791acceb6f2ddc2a9351bad9e64fd055",
+      "referenceRevisions": {
+        "fidelio_dkd": "sha256:2468109a10461ef826f261906a3951b57e80e372d6c72461c9882b70174c7ebe"
+      },
+      "bundleRevision": "sha256:05aa47ced5465d5518ffeb8458033805db6031292801cda0039d03210dcf73e1",
+      "classification": {
+        "op": "Ser capaz de interpretar o alcance do composto renal e do HR fornecidos no FIDELIO-DKD ao comunicar benefício, evitando confusão com redução absoluta, efeito de componentes isolados ou benefício individual fixo.",
+        "primaryCompetence": "interpretação",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "intrinsic": "Intermediária",
+        "diff": "medium",
+        "audience": "Estudante avançado e residente de Nefrologia."
+      },
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Gateformal independente de aprovação+VERIFICADA/NENHUMA. A criação nasceuBLOQUEADA; esta avaliação dosbytesA7.1é a autorização derivada (§18.4).",
+      "claims": {
+        "sourceIDs": [
+          "F"
+        ],
+        "claim": "FIDELIO-DKD2020 forneceu0,82/IC0,73–0,93 para tempo até primeiro evento do composto renal. HRé razão de hazards, não diferençaabsoluta. Compósito não garante redução igual em componentes ou benefício individual fixo."
+      },
+      "advogadoDoRecurso": "O enunciado forneceHR/IC/composto, logo não exige memorizar18%. Bnão afirma ausência de efeito dos componentes; diz que o resultado composto não demonstra benefício igual em cada um, e a figura2exibe estimativas/incertezas distintas. AconfundeHRcom18pontospercentuais;Caplica18%a morte/diálise isoladas;Dconfundeefeito causalindividual com percentual relativo. Diferençabruta21,1−17,8=3,3pp não é estimativa em tempo fixo, como confirma o artigo(3,4ppa3anos). Não há segunda resposta defensável.",
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "mais de uma resposta defensável",
+          "triggered": false,
+          "rationale": "O enunciado forneceHR/IC/composto, logo não exige memorizar18%. Bnão afirma ausência de efeito dos componentes; diz que o resultado composto não demonstra benefício igual em cada um, e a figura2exibe estimativas/incertezas distintas. AconfundeHRcom18pontospercentuais;Caplica18%a morte/diálise isoladas;Dconfundeefeito causalindividual com percentual relativo. Diferençabruta21,1−17,8=3,3pp não é estimativa em tempo fixo, como confirma o artigo(3,4ppa3anos). Não há segunda resposta defensável."
+        },
+        {
+          "number": 2,
+          "criterion": "referência sem suporte ao gabarito",
+          "triggered": false,
+          "rationale": "FIDELIO-DKD2020 forneceu0,82/IC0,73–0,93 para tempo até primeiro evento do composto renal. HRé razão de hazards, não diferençaabsoluta. Compósito não garante redução igual em componentes ou benefício individual fixo."
+        },
+        {
+          "number": 3,
+          "criterion": "desvio de objetivo pedagógico",
+          "triggered": false,
+          "rationale": "O comando e a explicação medem o OP declarado; não desviam para recordar o percentual."
+        },
+        {
+          "number": 4,
+          "criterion": "conduta insegura tratada como correta/aceitável",
+          "triggered": false,
+          "rationale": "Não recomenda terapia insegura ou universal; interpretação/safety são limitadas ao cenário."
+        },
+        {
+          "number": 5,
+          "criterion": "distrator sem plausibilidade",
+          "triggered": false,
+          "rationale": "Distratores são confusões nomeadas entre efeito relativo/absoluto/componente/benefício individual ou indicação/monitorização."
+        },
+        {
+          "number": 6,
+          "criterion": "trivia sem consequência",
+          "triggered": false,
+          "rationale": "Comunicar magnitude e limites altera decisão/consentimento, não trivia."
+        },
+        {
+          "number": 7,
+          "criterion": "explicação contradiz o gabarito",
+          "triggered": false,
+          "rationale": "Gabarito e explicação concordam e explicitam o erro de cada opção útil."
+        },
+        {
+          "number": 8,
+          "criterion": "informação decisiva ausente",
+          "triggered": false,
+          "rationale": "O enunciado forneceHR/IC/composto, logo não exige memorizar18%. Bnão afirma ausência de efeito dos componentes; diz que o resultado composto não demonstra benefício igual em cada um, e a figura2exibe estimativas/incertezas distintas. AconfundeHRcom18pontospercentuais;Caplica18%a morte/diálise isoladas;Dconfundeefeito causalindividual com percentual relativo. Diferençabruta21,1−17,8=3,3pp não é estimativa em tempo fixo, como confirma o artigo(3,4ppa3anos). Não há segunda resposta defensável."
+        },
+        {
+          "number": 9,
+          "criterion": "protocolo local não declarado",
+          "triggered": false,
+          "rationale": "Não há protocolo local oculto."
+        },
+        {
+          "number": 10,
+          "criterion": "ciência relevantemente desatualizada",
+          "triggered": false,
+          "rationale": "Fontes finais e específicas abertas; não há recomendação superada no literal."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "name": "validade de conteúdo",
+            "value": 2
+          },
+          {
+            "name": "validade de construto",
+            "value": 2
+          },
+          {
+            "name": "enunciado",
+            "value": 2
+          },
+          {
+            "name": "alternativas",
+            "value": 2
+          },
+          {
+            "name": "distratores",
+            "value": 2
+          },
+          {
+            "name": "explicação",
+            "value": 2
+          },
+          {
+            "name": "referências",
+            "value": 2
+          },
+          {
+            "name": "ausência de pistas formais",
+            "value": 2
+          },
+          {
+            "name": "valor pedagógico",
+            "value": 2
+          }
+        ],
+        "total": 20,
+        "rationale": "20/20: dados e incerteza fornecidos, quatro inferências de comprimento semelhante, erros estatísticos reais e conclusão clinicamente útil sem nova memorização. Enunciado extenso contém os dados necessários ao OP de interpretação."
+      },
+      "decisionTree": {
+        "step0": "VERIFICADA/NENHUMA válida.",
+        "step1": "Nenhum eliminatório; vizinhos não têm mesma decisão/estrutura.",
+        "step2": "Nenhum recurso plausível residual.",
+        "step3": "20/20→aprovada.",
+        "lifecycle": "novo/publicado após integração autorizada exata."
+      },
+      "implementation": {
+        "ready": true,
+        "newQid": true,
+        "preserveOldHistory": true,
+        "transferFSRS": false,
+        "oldItemDisposition": "13e53210aposentado, não alias/fusão de aprendizagem.",
+        "constraints": [
+          "Não transferir acertos/FSRS/crédito/domínio do antigo para o novo.",
+          "Sessões antigas preservam posições/respostas; substituição pendente só por escolha explícita, sem crédito ao trocar."
+        ]
+      }
+    },
+    {
+      "qid": "d7ac22f6",
+      "kind": "unchanged_question_new_reference_binding",
+      "proposed": {
+        "t": "Finerenona na DRC Diabética Albuminúrica",
+        "qid": "d7ac22f6",
+        "q": "Paciente com diabetes tipo 2 e doença renal crônica albuminúrica mantém relação albumina/creatinina urinária elevada apesar de inibidor da enzima conversora de angiotensina (IECA) ou bloqueador do receptor de angiotensina (BRA) na maior dose tolerada. A taxa de filtração glomerular estimada e o potássio permitem o uso. Qual afirmação sobre finerenona é correta?",
+        "refs": [
+          "fidelio_dkd",
+          "kdigo_ckd"
+        ],
+        "opts": [
+          "Acrescenta proteção cardiorrenal, com vigilância do potássio",
+          "Substitui IECA ou BRA quando a albuminúria persiste",
+          "Fica reservada à doença renal diabética já em diálise",
+          "Dispensa seleção pelo potássio por ser não esteroidal"
+        ],
+        "ans": 0,
+        "exp": "A finerenona foi estudada como tratamento adicional ao bloqueio do sistema renina-angiotensina-aldosterona (SRAA) na maior dose tolerada em pessoas com diabetes tipo 2 e doença renal crônica albuminúrica. O FIDELIO-DKD reduziu o desfecho renal composto e o FIGARO-DKD reduziu o composto cardiovascular. Isso não a torna substituta automática de IECA ou BRA nem uma terapia reservada à diálise. É preciso selecionar quem tem potássio adequado e acompanhar potássio e função renal: ser não esteroidal não elimina o risco de hipercalemia.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "proposedSHA256": "sha256:da49c3accb358f865295eb15de5c45ebea8bf2300a99e161c2e592682067253d",
+      "referenceRevisions": {
+        "fidelio_dkd": "sha256:2468109a10461ef826f261906a3951b57e80e372d6c72461c9882b70174c7ebe",
+        "kdigo_ckd": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3"
+      },
+      "bundleRevision": "sha256:1ddc97c3e398aaf5ec3b099e346226ae71100ace299999bdd044ac9ca0eddf5d",
+      "classification": {
+        "op": "Escolher papel adicional da finerenona e vigilância de potássio em DRC diabética albuminúrica elegível sobRAS.",
+        "primaryCompetence": "Conduta/segurança farmacológica",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium"
+      },
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "derived": "Novo gate independente para o binding do cardA7.1,semherança do gate anteriorA1.",
+      "claims": {
+        "sourceIDs": [
+          "F",
+          "G",
+          "K"
+        ],
+        "claim": "Finerenona é adicional aIECA/BRA tolerados emDM2/DRCalbuminúrica elegível; monitorarK/função renal. FIDELIOdemonstroucompostorenal eFIGAROcompostoCV; estrutura não esteroidal não removehipercalemia."
+      },
+      "advogadoDoRecurso": "O caso declaraTFGe/Kcompatíveis e albuminúria persistente sobRASotimizado; o comando é papel adicional e vigilância, não escolher dose nem um limite laboratorial. Afonte2A condiciona elegibilidade. FIGARO é citado factualmentena explicação e conferido no abstract primário eKDIGO; não está sendo atribuído aoFIDELIO. Nenhum outro plano é defensável: não substituiRAS,não fica restrita àdiálise,não dispensaK.",
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "mais de uma resposta defensável",
+          "triggered": false,
+          "rationale": "O caso declaraTFGe/Kcompatíveis e albuminúria persistente sobRASotimizado; o comando é papel adicional e vigilância, não escolher dose nem um limite laboratorial. Afonte2A condiciona elegibilidade. FIGARO é citado factualmentena explicação e conferido no abstract primário eKDIGO; não está sendo atribuído aoFIDELIO. Nenhum outro plano é defensável: não substituiRAS,não fica restrita àdiálise,não dispensaK."
+        },
+        {
+          "number": 2,
+          "criterion": "referência sem suporte ao gabarito",
+          "triggered": false,
+          "rationale": "Finerenona é adicional aIECA/BRA tolerados emDM2/DRCalbuminúrica elegível; monitorarK/função renal. FIDELIOdemonstroucompostorenal eFIGAROcompostoCV; estrutura não esteroidal não removehipercalemia."
+        },
+        {
+          "number": 3,
+          "criterion": "desvio de objetivo pedagógico",
+          "triggered": false,
+          "rationale": "O comando e a explicação medem o OP declarado; não desviam para recordar o percentual."
+        },
+        {
+          "number": 4,
+          "criterion": "conduta insegura tratada como correta/aceitável",
+          "triggered": false,
+          "rationale": "Não recomenda terapia insegura ou universal; interpretação/safety são limitadas ao cenário."
+        },
+        {
+          "number": 5,
+          "criterion": "distrator sem plausibilidade",
+          "triggered": false,
+          "rationale": "Distratores são confusões nomeadas entre efeito relativo/absoluto/componente/benefício individual ou indicação/monitorização."
+        },
+        {
+          "number": 6,
+          "criterion": "trivia sem consequência",
+          "triggered": false,
+          "rationale": "Comunicar magnitude e limites altera decisão/consentimento, não trivia."
+        },
+        {
+          "number": 7,
+          "criterion": "explicação contradiz o gabarito",
+          "triggered": false,
+          "rationale": "Gabarito e explicação concordam e explicitam o erro de cada opção útil."
+        },
+        {
+          "number": 8,
+          "criterion": "informação decisiva ausente",
+          "triggered": false,
+          "rationale": "O caso declaraTFGe/Kcompatíveis e albuminúria persistente sobRASotimizado; o comando é papel adicional e vigilância, não escolher dose nem um limite laboratorial. Afonte2A condiciona elegibilidade. FIGARO é citado factualmentena explicação e conferido no abstract primário eKDIGO; não está sendo atribuído aoFIDELIO. Nenhum outro plano é defensável: não substituiRAS,não fica restrita àdiálise,não dispensaK."
+        },
+        {
+          "number": 9,
+          "criterion": "protocolo local não declarado",
+          "triggered": false,
+          "rationale": "Não há protocolo local oculto."
+        },
+        {
+          "number": 10,
+          "criterion": "ciência relevantemente desatualizada",
+          "triggered": false,
+          "rationale": "Fontes finais e específicas abertas; não há recomendação superada no literal."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "name": "validade de conteúdo",
+            "value": 2
+          },
+          {
+            "name": "validade de construto",
+            "value": 2
+          },
+          {
+            "name": "enunciado",
+            "value": 2
+          },
+          {
+            "name": "alternativas",
+            "value": 2
+          },
+          {
+            "name": "distratores",
+            "value": 1
+          },
+          {
+            "name": "explicação",
+            "value": 2
+          },
+          {
+            "name": "referências",
+            "value": 2
+          },
+          {
+            "name": "ausência de pistas formais",
+            "value": 2
+          },
+          {
+            "name": "valor pedagógico",
+            "value": 2
+          }
+        ],
+        "total": 19,
+        "rationale": "19/20: uma única conduta adicional correta; distratores expressam erros comuns, embora mais fáceis. Aausência de valores exatos não impede esseOP porque a elegibilidade é explicitamente fornecida."
+      },
+      "decisionTree": {
+        "step0": "VERIFICADA/NENHUMA.",
+        "step1": "Sem eliminatório ou duplicidade nasquatro dimensões com nova40.",
+        "step2": "Sem recurso residual.",
+        "step3": "19/20→aprovada."
+      },
+      "implementation": {
+        "ready": true,
+        "preserveQid": true,
+        "resetFSRS": false,
+        "questionLiteralUnchanged": true,
+        "reason": "Somente referência global revisada; manter reconhecimento de resposta antiga sem fingir aprovação do novo corpo por gate anterior."
+      }
+    }
+  ],
+  "referenceCards": [
+    {
+      "id": "fidelio_dkd",
+      "original": {
+        "label": "FIDELIO-DKD Trial (Finerenona)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2025845",
+        "journal": "N Engl J Med 2020;383(23):2219-2229",
+        "ano": 2020,
+        "tipo": "Ensaio Clínico Fase III",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Finerenona ↓18% desfecho renal composto · ↓14% eventos CV · Antagonista não-esteroidal do receptor mineralocorticoide",
+        "icon": "💊",
+        "resumo": "ECR fase III, duplo-cego, placebo-controlado (FIDELIO-DKD, n=5.734), em DM2 com DRC albuminúrica, potássio controlado e uso de IECA ou BRA em dose máxima tolerada. Finerenona 10–20 mg/dia reduziu o desfecho renal primário composto — queda sustentada de TFGe ≥40%, DRCT ou morte renal — com HR 0,82 (IC 95% 0,73–0,93; P=0,001). O desfecho cardiovascular secundário também foi reduzido: HR 0,86 (IC 95% 0,75–0,99; P=0,03). Descontinuação por hipercalemia foi mais frequente com finerenona: 2,3% vs 0,9%.",
+        "conclusao": "FIDELIO-DKD estabeleceu a finerenona como terapia nefroprotetora e cardioprotetora adicional ao bloqueio do SRAA em DRC diabética albuminúrica, com necessidade de seleção por potássio e monitorização laboratorial.",
+        "curiosidade": "A finerenona é um antagonista não esteroidal do receptor mineralocorticoide. Diferencia-se dos MRAs esteroidais por estrutura, distribuição tecidual e ausência de atividade androgênica/progestagênica relevante, mas não elimina o principal cuidado clínico da classe: hipercalemia."
+      },
+      "proposed": {
+        "label": "FIDELIO-DKD — Finerenona e desfechos renais",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/33264825/",
+        "journal": "N Engl J Med 2020;383(23):2219–2229",
+        "ano": 2020,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Menos eventos do composto renal com finerenona na doença renal diabética albuminúrica",
+        "icon": "🔬",
+        "resumo": "FIDELIO-DKD 2020: ensaio fase 3, duplo-cego, de finerenona 10–20 mg por via oral, uma vez ao dia, versus placebo em adultos com diabetes tipo 2 e doença renal crônica albuminúrica, sob inibidor da enzima conversora de angiotensina ou bloqueador do receptor de angiotensina na maior dose tolerada. Foram 5.734 randomizados e 5.674 analisados após exclusões prospectivas por violações críticas de boas práticas. Em mediana de 2,6 anos, o composto primário de falência renal, queda sustentada ≥40% da taxa de filtração glomerular estimada ou morte renal ocorreu em 17,8% versus 21,1%: razão de riscos instantâneos (HR) 0,82; intervalo de confiança de 95%: 0,73–0,93; P=0,001. O composto cardiovascular secundário teve HR 0,86 (intervalo de confiança de 95%: 0,75–0,99; P=0,03). Interrupção por hipercalemia: 2,3% versus 0,9%. Limite: população selecionada e efeito do composto não equivalente a igual benefício em cada componente.",
+        "conclusao": "A finerenona acrescentou proteção cardiorrenal na população estudada, com seleção e vigilância do potássio. Interpretar o desfecho composto, o tempo até evento e a incerteza antes de comunicar a magnitude do benefício.",
+        "curiosidade": ""
+      },
+      "revision": "sha256:2468109a10461ef826f261906a3951b57e80e372d6c72461c9882b70174c7ebe",
+      "wholeCardReviewed": true,
+      "claimsVerified": [
+        "IdentidadeNEJM2020;383(23):2219–2229/DOI/PMIDabertos.",
+        "RCTfase3duplo-cego,DM2/DRCalbuminúrica,RASdosemáximatolerada;oral10–20mg1x/dia.",
+        "5734randomizados,60excluídos prospectivamenteGCP,5674analisados; não chamarITTintegral.",
+        "2,6anos;primáriofalência/TFGe≥40%morte renal,17,8/21,1%;HR0,82/IC0,73–0,93/P0,001.",
+        "Secundário-chaveCVHR0,86/IC0,75–0,99/P0,03;interrupçãopermanenteporK2,3/0,9%.",
+        "Limites de seleção,componentesdistintos,semnovaafirmaçãotissular/hormonal; curiosidadevaziaé válida."
+      ],
+      "sourceIDs": [
+        "F"
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Card não recebe score de questão; revisão integral doscampos científicos."
+    },
+    {
+      "id": "kdigo_ckd",
+      "proposed": {
+        "label": "KDIGO CKD 2024",
+        "url": "https://kdigo.org/guidelines/ckd-evaluation-and-management/",
+        "journal": "Kidney International",
+        "ano": 2024,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Padrão global de avaliação e manejo da DRC — SGLT2i, finerenona, rastreamento, progressão e tratamento multidisciplinar",
+        "icon": "📋",
+        "resumo": "A KDIGO 2024 mantém a classificação da DRC por causa, categoria de TFGe (G1–G5) e albuminúria (A1–A3). Recomenda confirmar fita positiva com relação albumina/creatinina (RAC), preferencialmente em amostra matinal, e não presumir cronicidade a partir de um único resultado. Recomenda iSGLT2 para diabetes tipo 2 com DRC e TFGe ≥20 mL/min/1,73 m², e para adultos com DRC, TFGe ≥20 e RAC ≥200 mg/g ou insuficiência cardíaca. O início de diálise deve considerar sintomas, sinais, qualidade de vida, preferências, TFGe e alterações laboratoriais; não deve decorrer de um número isolado.",
+        "conclusao": "Diagnóstico, estratificação e tratamento da DRC exigem confirmar albuminúria e cronicidade, aplicar terapias modificadoras de risco e separar planejamento de terapia renal substitutiva do momento clínico de iniciar diálise.",
+        "curiosidade": "A diretriz propõe planejar transplante preemptivo ou acesso dialítico em adultos quando a TFGe é inferior a 15–20 mL/min/1,73 m² ou o risco de falência renal supera 40% em 2 anos, antes de surgir indicação clínica de diálise."
+      },
+      "revision": "sha256:372fce7b3277b70fdd5c63d9412a154cf9f42d51a3d717756a6c013bcc4c24c3",
+      "wholeCardReviewed": true,
+      "claimsVerified": [
+        "Corpo legado completo rechecado:metadados,diretrizCGA/cronicidade,ACR,DM2SGLT2,finerenona,multidisciplinaridade e planejamento deKRT.",
+        "Rec3.8.1(2A)ePP3.8.1–4 sustentam adicionalfinerenona/eligibilidade/monitorização; não virar indicaçãouniversal.",
+        "Literal372fce7permaneceigual; fonte primária oficial lida,preservandoamplitudedo card emvez deestreitá-loaumaquestão."
+      ],
+      "sourceIDs": [
+        "K"
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Card não recebe score de questão; revisão integral doscampos científicos."
+    }
+  ],
+  "retired": {
+    "qid": "13e53210",
+    "original": {
+      "t": "FIDELIO-DKD — Finerenona na DKD",
+      "qid": "13e53210",
+      "q": "No FIDELIO-DKD, a finerenona reduziu aproximadamente quanto o risco relativo do desfecho renal composto primário em pacientes com diabetes tipo 2 e DRC albuminúrica?",
+      "opts": [
+        "10,5%",
+        "18% (HR 0,82; IC95% 0,73–0,93)",
+        "39,69%",
+        "55,0%"
+      ],
+      "ans": 1,
+      "exp": "No FIDELIO-DKD, a finerenona reduziu em cerca de 18% o risco relativo do desfecho renal primário composto — insuficiência renal, queda sustentada ≥40% da TFGe ou morte renal — em comparação ao placebo, com HR 0,82 (IC95% 0,73–0,93; P=0,001). O benefício ocorreu em pacientes com diabetes tipo 2 e DRC albuminúrica sobre IECA ou BRA em dose tolerada. As demais alternativas subestimam ou exageram o efeito e não correspondem ao resultado do ensaio.",
+      "diff": "medium",
+      "cat": "nefropatia_diabetica",
+      "refs": [
+        "fidelio_dkd"
+      ]
+    },
+    "authorRevision": "sha256:d9875997a6a59b45052ab254e00649686a8038b4a6065ae979607a962d4ff5ae",
+    "referenceRevisions": {
+      "fidelio_dkd": "sha256:3934cb5fccff3343e72207aa16b9cc41842e73b6291ce7c87d0f58fbb35ea84c"
+    },
+    "recordRevision": "sha256:071bfd054a10d208b178b9037461775376291b0af096a8c0cd541c11ebb3dfc1",
+    "classification": {
+      "op": "Recordar a redução relativa percentual do composto primário do FIDELIO-DKD.",
+      "primaryCompetence": "Interpretação pretendida, mas a tarefa original é memorização numérica.",
+      "bloom": "Lembrar",
+      "miller": "Sabe",
+      "difficultyAuthored": "medium",
+      "difficultyIntrinsic": "easy"
+    },
+    "verdict": "aposentar",
+    "lifecycle": "aposentado",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publicationAuthorization": "BLOQUEADA",
+    "derived": "Aposentar não é aprovação. Eliminatório6trivia e pista formal; novo OP requer outraidentidade.",
+    "advogadoDoRecurso": "O percentual correto estácientificamentenoartigo,mas recordar umnúmero fora de decisão não é habilidade a preservar. Aúnica opção comHR/ICentrega a resposta. Transformar em interpretação muda o construto e não deve conservarqid/maestria.",
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Não é causa adicional deaposentadoria; o defeitodeexistência/forma já édecisivo."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Não é causa adicional deaposentadoria; o defeitodeexistência/forma já édecisivo."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Não é causa adicional deaposentadoria; o defeitodeexistência/forma já édecisivo."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Não é causa adicional deaposentadoria; o defeitodeexistência/forma já édecisivo."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Não é causa adicional deaposentadoria; o defeitodeexistência/forma já édecisivo."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": true,
+        "rationale": "Memoriza18%semconsequência e usa números arbitrários nosdistratores."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Não é causa adicional deaposentadoria; o defeitodeexistência/forma já édecisivo."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Não é causa adicional deaposentadoria; o defeitodeexistência/forma já édecisivo."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Não é causa adicional deaposentadoria; o defeitodeexistência/forma já édecisivo."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Não é causa adicional deaposentadoria; o defeitodeexistência/forma já édecisivo."
+      }
+    ],
+    "score": {
+      "anulado": true,
+      "reason": "Eliminatório6anula score."
+    },
+    "replacement": {
+      "newQid": "40c5f770",
+      "notFusion": true,
+      "noFSRSTransfer": true,
+      "noCreditTransfer": true
+    }
+  },
+  "uniqueness": {
+    "neighborCount": 11,
+    "comparisons": [
+      {
+        "qid": "3d8fc3fe",
+        "op": "Classe farmacológica.",
+        "sameDecision": false,
+        "reason": "Não interpreta alcance decomposto/HRfornecido: Classe farmacológica.",
+        "notClinicalApprovalOfNeighbor": true
+      },
+      {
+        "qid": "86949ab7",
+        "op": "Critério de potássio do ensaio e adiamento com hipercalemia.",
+        "sameDecision": false,
+        "reason": "Não interpreta alcance decomposto/HRfornecido: Critério de potássio do ensaio e adiamento com hipercalemia.",
+        "notClinicalApprovalOfNeighbor": true
+      },
+      {
+        "qid": "f9976e40",
+        "op": "Segurança de início, potássio e TFGe.",
+        "sameDecision": false,
+        "reason": "Não interpreta alcance decomposto/HRfornecido: Segurança de início, potássio e TFGe.",
+        "notClinicalApprovalOfNeighbor": true
+      },
+      {
+        "qid": "d7ac22f6",
+        "op": "Indicação adicional e monitorização clínica.",
+        "sameDecision": false,
+        "reason": "Não interpreta alcance decomposto/HRfornecido: Indicação adicional e monitorização clínica.",
+        "notClinicalApprovalOfNeighbor": true
+      },
+      {
+        "qid": "65fcdeae",
+        "op": "Monitorização/interações após transplante.",
+        "sameDecision": false,
+        "reason": "Não interpreta alcance decomposto/HRfornecido: Monitorização/interações após transplante.",
+        "notClinicalApprovalOfNeighbor": true
+      },
+      {
+        "qid": "b86f4e37",
+        "op": "Albuminúria como desfecho substituto no CONFIDENCE.",
+        "sameDecision": false,
+        "reason": "Não interpreta alcance decomposto/HRfornecido: Albuminúria como desfecho substituto no CONFIDENCE.",
+        "notClinicalApprovalOfNeighbor": true
+      },
+      {
+        "qid": "13e53210",
+        "op": "Memorizar percentual; identidade aposentada.",
+        "sameDecision": false,
+        "reason": "Não interpreta alcance decomposto/HRfornecido: Memorizar percentual; identidade aposentada.",
+        "notClinicalApprovalOfNeighbor": true
+      },
+      {
+        "qid": "e3f0e529",
+        "op": "Seletividade farmacológica vs espironolactona.",
+        "sameDecision": false,
+        "reason": "Não interpreta alcance decomposto/HRfornecido: Seletividade farmacológica vs espironolactona.",
+        "notClinicalApprovalOfNeighbor": true
+      },
+      {
+        "qid": "b81a3c8a",
+        "op": "Identificar o desfecho primário cardiovascular do FIGARO.",
+        "sameDecision": false,
+        "reason": "Não interpreta alcance decomposto/HRfornecido: Identificar o desfecho primário cardiovascular do FIGARO.",
+        "notClinicalApprovalOfNeighbor": true
+      },
+      {
+        "qid": "73030d16",
+        "op": "Viés de seleção e interpretação de pequena coorte de transplante.",
+        "sameDecision": false,
+        "reason": "Não interpreta alcance decomposto/HRfornecido: Viés de seleção e interpretação de pequena coorte de transplante.",
+        "notClinicalApprovalOfNeighbor": true
+      },
+      {
+        "qid": "5906012f",
+        "op": "Classe farmacológica e indicação, candidata à duplicidade de3d8.",
+        "sameDecision": false,
+        "reason": "Não interpreta alcance decomposto/HRfornecido: Classe farmacológica e indicação, candidata à duplicidade de3d8.",
+        "notClinicalApprovalOfNeighbor": true
+      }
+    ],
+    "candidatePairsNotAdjudicated": [
+      {
+        "qids": [
+          "5906012f",
+          "3d8fc3fe"
+        ],
+        "status": "Candidato separado; sem autorização de retirar ou redigirpor estegate."
+      },
+      {
+        "qids": [
+          "a4ffbe05",
+          "9fd2cfdb"
+        ],
+        "status": "Candidato separado; sem autorização de retirar ou redigirpor estegate."
+      }
+    ],
+    "newQidAbsentAtReview": true
+  },
+  "summary": {
+    "newQuestionsReleased": 1,
+    "existingConsumerReboundReleased": 1,
+    "retired": 1,
+    "wholeCardsReleased": 2,
+    "productionWrites": false
+  },
+  "boundaries": [
+    "Integração médica exclusiva do root pelos hashesexatos.",
+    "A7criaçãoBLOQUEADA não era aprovação; A7.1 foiavaliado inteiro emtermos clínicos/editoriais.",
+    "Nãoherdargate do cardFIDELIO para osoutros10vizinhos; apenasd7recebeu reavaliaçãoformalaqui.",
+    "Atualizar pinbibliográficodocatálogo para novotítulo/docorpoCIDsem alterar variantes/favoritos.",
+    "Novaidentidade40não recebeFSRS/crédito/descobertada13aposentada."
+  ]
+}

@@ -1,0 +1,1499 @@
+{
+  "schema": "NQ_INDEPENDENT_A9_HTN_REVIEW_1728_v1",
+  "date": "2026-11-15",
+  "reviewer": "/root/reference_duplicates_1728",
+  "author": "/root/length_inventory_1728",
+  "productionWrites": false,
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "authorPackage": {
+    "file": "author-batch-A9-HTN.json",
+    "rawSHA256": "cdce919418885d123bcb6516ee185bfee49a772bf82e3b36745725e6112e9104"
+  },
+  "normativeDocuments": [
+    {
+      "file": "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+      "rawSHA256": "4091dc76cadf6299e5da46333c23cf47abf79274612c9c47a1e181832347f913"
+    },
+    {
+      "file": "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+      "rawSHA256": "1b71d58a80811fd0cdcc04551f50f2f110cda4b1b7c518e6166779cb540bf9df"
+    },
+    {
+      "file": "docs/editorial/annex-c-nefrologia.md",
+      "rawSHA256": "d38f8df3102b2967de442902d6f81627ac28c1a733b831e186153a49de1972fe"
+    }
+  ],
+  "skill": {
+    "file": "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+    "rawSHA256": "eeaa053b3a5a9bafd349aaf5bc763c160befb531d627a5b262ec456968c4b4dd",
+    "outputContract": "references/output-contract.md",
+    "verificationProtocol": "references/verification-protocol.md"
+  },
+  "sources": {
+    "aha2025": {
+      "url": "https://professional.heart.org/-/media/PHD-Files-2/Science-News/Clinical-Slide-Series/2025-High-Blood-Pressure-Guideline-Clinical-Slides.pptx?sc_lang=en",
+      "access": "Arquivo oficial primário efetivamente lido localmente; hash de bytes conferido. Webnão interpretaPPTX; publisherfullretornou403.",
+      "file": "../ux-1728-length-severe-author/aha-2025-official-clinical-slides.pptx",
+      "rawSHA256": "8c04b1ba69a010a5fa235eeaf9a6b83baffb4284d320b203a74c0c3235bb89f0",
+      "extraction": "independent-bibliographic/aha-2025-selected-slides.json",
+      "locators": [
+        "9: avental branco fora do consultório.",
+        "26: pseudorresistência/interferentes/causas secundárias/otimização.",
+        "27: critérios e classesdenervação.",
+        "29: algoritmo dePAS, nãoPAM; primeira hora/próximas6h/24–48h."
+      ],
+      "limits": [
+        "Não alego leitura do corpo editorialAHA inacessível. Recomendações decisivas estão completas no material clínico oficial primário.",
+        "Gabarito de2a não foi sustentado por memória ou por trocar silenciosamentePAM ePAS."
+      ]
+    },
+    "kdigo2024": {
+      "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+      "access": "PDF oficial199p efetivamente lido; trechos decisivos relidos nesta revisão.",
+      "file": "../ux-1728-length-severe-author/kdigo-ckd-2024-source.pdf",
+      "rawSHA256": "b18db280f7dc889a1a99447b779c0312cd536f939a5180b38894a5d68e4410c0",
+      "extraction": "independent-bibliographic/A9-kdigo-2024-pages.json",
+      "locators": [
+        "PDF44/S159: PP3.6.3/5/7.",
+        "PDF45/S160: PP3.8.5 e ressalva daFig26.",
+        "PDF111–113/S226–228: Tab26,Fig32 e dieta biodisponível."
+      ],
+      "limits": [
+        "Não há obrigação universal de suspender espironolactona em todoK5,9. A correta aceita redução ou pausa conforme contexto."
+      ]
+    },
+    "ukka2026": {
+      "url": "https://guidelines.ukkidney.org/hyperkalaemia/",
+      "access": "Páginas oficiais web efetivamente abertas integralmente nas seções decisivas; cabeçalhoUpdatedJuly2026 conferido.",
+      "additionalURLs": [
+        "https://guidelines.ukkidney.org/hyperkalaemia/10-1-i-hyperkalaemia-in-the-community-guidelines-1-1-12-1/10-1-2-i-hyperkalaemia-in-the-community-guidelines-2-1-2-7/",
+        "https://guidelines.ukkidney.org/hyperkalaemia/10-1-i-hyperkalaemia-in-the-community-guidelines-1-1-12-1/10-1-4-i-hyperkalaemia-in-the-community-guidelines-4-1-4-2/",
+        "https://guidelines.ukkidney.org/hyperkalaemia/11-1-ii-hyperkalaemia-in-hospital/11-1-2-ii-hyperkalaemia-in-hospital-14-1-14-2/"
+      ],
+      "locators": [
+        "2.2: evitar iniciarMRA seTFGe<30/K>5;2.5: K5,5–5,9 monitorar mais e considerar redução.",
+        "4.1–4.2: hospitalK≥6,5; doençaaguda pode exigir avaliação mesmo emKmenor.",
+        "14.1–14.2 e rationale: limiaresECG/monitorização eECGnormal não exclui risco."
+      ],
+      "limits": [
+        "Usei texto weboficial, sem alegarPDF2026 aberto. O rationale histórico não substitui a diretriz finalKDIGO2024."
+      ]
+    },
+    "rdn2024": {
+      "url": "https://ex.sfmv.fr/sites/default/files/docs/cluett-et-al-2024-renal-denervation-for-the-treatment-of-hypertension-a-scientific-statement-from-the-american-heart.pdf",
+      "access": "Artigo primárioAHA14p aberto; cópia early-view hospedada por associação médica. Abstract e seção de seleção/anatomia lidos.",
+      "file": "independent-bibliographic/A9-RDN-primary-early-view.pdf",
+      "rawSHA256": "7806c47585feeef5ae138b9d4cdfb2cb5b6f00059aafb2c7670caacd972e89dd",
+      "locators": [
+        "PDF1: benefício modesto/heterogêneo, adjunta e equipe compartilhada.",
+        "PDF7–8: seleção, causas secundárias, contraindicações anatômicas/ramos pequenos e cautela emTFGbaixa."
+      ],
+      "limits": [
+        "Cópia early-view tem paginaçãoe00; metadados finais conferidos separadamente no registroNLM.",
+        "Scientific Statement é síntese/posição, nãoRCT."
+      ]
+    },
+    "rdnNLM": {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=39101202&retmode=xml",
+      "access": "EFetchNLMHTTP200 efetivamente lido e congelado apósPubMedweb retornarHHS.",
+      "file": "independent-bibliographic/A9-RDN-pubmed.xml",
+      "rawSHA256": "47a583e01085030905e88f63d6b0251d97319a9f7c7450179c8dac22e3deb763",
+      "identity": {
+        "pmid": "39101202",
+        "doi": "10.1161/HYP.0000000000000240",
+        "journal": "Hypertension",
+        "year": 2024,
+        "volume": 81,
+        "issue": 10,
+        "pages": "e135–e148",
+        "online": "2024-08-05",
+        "publicationType": "Review"
+      }
+    }
+  },
+  "items": [
+    {
+      "qid": "2a07de55",
+      "original": {
+        "question": {
+          "t": "Encefalopatia Hipertensiva — Redução Inicial da Pressão",
+          "qid": "2a07de55",
+          "q": "Paciente com pressão de 230/140 mmHg e encefalopatia hipertensiva, sem dissecção de aorta, gestação ou outra condição com meta específica, é admitido na UTI. Qual estratégia inicial é mais segura?",
+          "refs": [
+            "aha_acc_hypertension_2025"
+          ],
+          "opts": [
+            "Usar agente intravenoso de ação curta e titulável, reduzindo a pressão média em cerca de 20% a 25% na primeira hora e prosseguindo de forma gradual",
+            "Normalizar a pressão para menos de 120/80 mmHg nos primeiros 30 minutos",
+            "Administrar nifedipina sublingual para obter queda máxima e imediata",
+            "Reduzir pelo menos 50% da pressão na primeira hora com dose fixa de nitroprussiato"
+          ],
+          "ans": 0,
+          "exp": "Na encefalopatia hipertensiva sem uma condição que imponha meta própria, a pressão deve ser reduzida de modo controlado em ambiente intensivo, com agente intravenoso de ação curta e titulável, como nicardipina, clevidipina ou labetalol conforme o contexto. A meta inicial é redução aproximada de 20% a 25% da pressão arterial média na primeira hora, seguida de redução gradual nas horas seguintes. Normalização abrupta pode ultrapassar a autorregulação adaptada e precipitar isquemia cerebral, coronariana ou renal. Nifedipina sublingual e quedas fixas muito intensas são imprevisíveis e inseguras.",
+          "diff": "medium",
+          "cat": "hipertensao"
+        },
+        "authorRevision": "sha256:5ff51d3294fc3bf66eb463c2e4b380b7986f470fb3e65592fd0b9570f3aa8881",
+        "referenceRevisions": {
+          "aha_acc_hypertension_2025": "sha256:ed04f2a37e1adaae7cafadc7d35c6ef2edc215d29a2c287eb38e0a2ed26d5b55"
+        },
+        "recordRevision": "sha256:c056a2a6d341147374ae9841cd5aacab8adad7e42210fa2b491246bcad2b97dd"
+      },
+      "proposed": {
+        "t": "Encefalopatia Hipertensiva — Redução Inicial da Pressão",
+        "qid": "2a07de55",
+        "q": "Adulto com pressão de 230/140 mmHg e encefalopatia hipertensiva é tratado em unidade de terapia intensiva com anti-hipertensivo intravenoso titulável. Foram excluídos acidente vascular cerebral, dissecção de aorta, crise de feocromocitoma e gestação. Segundo o algoritmo da American Heart Association/American College of Cardiology de 2025, qual estratégia de redução da pressão sistólica é mais segura?",
+        "refs": [
+          "aha_acc_hypertension_2025"
+        ],
+        "opts": [
+          "Reduzir pelo menos 50% da pressão sistólica durante a primeira hora de tratamento.",
+          "Normalizar a pressão para menos de 120/80 mmHg ainda nos primeiros 30 minutos.",
+          "Limitar a queda sistólica a até 25% na primeira hora e depois reduzir gradualmente.",
+          "Adiar a redução pressórica por 24 horas, mesmo com encefalopatia persistente."
+        ],
+        "ans": 2,
+        "exp": "Na emergência hipertensiva com encefalopatia, a redução deve ser controlada e monitorada. O algoritmo oficial de 2025 orienta reduzir a pressão sistólica em até cerca de 25% na primeira hora; se estável, prosseguir para menos de 160/100–110 mmHg nas horas seguintes e continuar gradualmente nas próximas 24–48 horas. Normalização imediata ou queda de 50% pode causar hipoperfusão, enquanto aguardar sem tratar mantém a lesão de órgão-alvo. Esta é uma meta para o contexto descrito: eventos cerebrovasculares específicos, dissecção, gestação e outras emergências exigem protocolos próprios.",
+        "diff": "medium",
+        "cat": "hipertensao"
+      },
+      "proposedSHA256": "sha256:6dc073bf1204a953dd85a08a1314ed9199c4cf2528b8bdffd1e45fa3535e0b60",
+      "referenceRevisions": {
+        "aha_acc_hypertension_2025": "sha256:50fd7d5cbd0bfae2d2cfec292d0737a4531b801de81279547b92400d938f2002"
+      },
+      "bundleRevision": "sha256:45beac3e1a881838f4430eb5054915c6418cd44c47832fbf21f456254a2eea87",
+      "classification": {
+        "op": "Selecionar redução pressórica inicial controlada na encefalopatia hipertensiva, sem aplicar metas de outras emergências.",
+        "primaryCompetence": "Conduta inicial e segurança.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "legacyEquivalent": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Veredito de aprovação + Evidência VERIFICADA/Pendência NENHUMA, sem eliminatório ou recurso decisivo residual (§18.4).",
+        "justification": "O algoritmo oficial refere pressão sistólica: queda inicial de aproximadamente 25% na primeira hora, seguida de menos de 160/100–110 nas próximas seis horas e redução gradual em24–48h. A proposta declara a métrica e exclui cenários com metas próprias.",
+        "problems": "Nenhum problema substantivo identificado no literal proposto.",
+        "advogadoDoRecurso": "PAM e PAS não são intercambiáveis. O enunciado pede explicitamente a PAS do algoritmo2025, que foi lido diretamente no slide29; não atribui a esse slide uma meta de PAM. A expressão “até25%” é limite de segurança da fase inicial, não licença para deixar a encefalopatia sem tratamento: o caso já está em UTI sob agente IV titulável e a explicação define progressão. Os outros três planos mantêm atraso lesivo ou queda excessiva. Não surgiu recurso plausível residual.",
+        "sourceIDs": [
+          "aha2025"
+        ],
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Reduzir pelo menos 50% da pressão sistólica durante a primeira hora de tratamento.",
+            "correct": false,
+            "judgment": "Queda de pelo menos50% excede a redução inicial controlada e arrisca hipoperfusão."
+          },
+          {
+            "letter": "B",
+            "text": "Normalizar a pressão para menos de 120/80 mmHg ainda nos primeiros 30 minutos.",
+            "correct": false,
+            "judgment": "Normalização imediata para120/80 não respeita a redução gradual."
+          },
+          {
+            "letter": "C",
+            "text": "Limitar a queda sistólica a até 25% na primeira hora e depois reduzir gradualmente.",
+            "correct": true,
+            "judgment": "Correta: limite inicial de cerca de25% sistólica, com progressão monitorada."
+          },
+          {
+            "letter": "D",
+            "text": "Adiar a redução pressórica por 24 horas, mesmo com encefalopatia persistente.",
+            "correct": false,
+            "judgment": "Atraso de24h não é conduta para encefalopatia hipertensiva persistente."
+          }
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "PAM e PAS não são intercambiáveis. O enunciado pede explicitamente a PAS do algoritmo2025, que foi lido diretamente no slide29; não atribui a esse slide uma meta de PAM. A expressão “até25%” é limite de segurança da fase inicial, não licença para deixar a encefalopatia sem tratamento: o caso já está em UTI sob agente IV titulável e a explicação define progressão. Os outros três planos mantêm atraso lesivo ou queda excessiva. Não surgiu recurso plausível residual."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "O algoritmo oficial refere pressão sistólica: queda inicial de aproximadamente 25% na primeira hora, seguida de menos de 160/100–110 nas próximas seis horas e redução gradual em24–48h. A proposta declara a métrica e exclui cenários com metas próprias."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Decisão e competência originais reconhecíveis; o comando foi delimitado para reduzir pistas formais."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "A correta mantém as condições de segurança e não generaliza o tratamento urgente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Erros representam escalada, atraso ou seleção imprópria no mesmo domínio; score reconhece sutileza limitada."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Muda confirmação diagnóstica, seleção terapêutica ou segurança, sem trivia numérica isolada."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Gabarito e explicação têm a mesma conclusão e ressalvas."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "PAM e PAS não são intercambiáveis. O enunciado pede explicitamente a PAS do algoritmo2025, que foi lido diretamente no slide29; não atribui a esse slide uma meta de PAM. A expressão “até25%” é limite de segurança da fase inicial, não licença para deixar a encefalopatia sem tratamento: o caso já está em UTI sob agente IV titulável e a explicação define progressão. Os outros três planos mantêm atraso lesivo ou queda excessiva. Não surgiu recurso plausível residual."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte/diretriz identificada; sem regra institucional não declarada."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Versões oficiais2024–2026 efetivamente conferidas; não se usa diretriz histórica como única situação atual."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "band": "18–20: candidata à aprovação, após eliminatórios e recurso",
+          "rationale": "Decisão clínica útil e comando com métrica explícita; distratores incluem erros perigosos reconhecíveis, com discriminação limitada para alunos avançados."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA: combinação válida.",
+          "step1": "Nenhum eliminatório.",
+          "step2": "Nenhum recurso plausível residual após checagem das alternativas e contexto.",
+          "step3": "19/20 → aprovada.",
+          "lifecycle": "publicado após integração da versão exata; canônica depende da aposentadoria no mesmo conjunto."
+        }
+      },
+      "implementation": {
+        "ready": true,
+        "preserveQid": true,
+        "resetFSRS": false,
+        "transferCredit": false,
+        "replaceQuestion": true,
+        "canonicalQuestionLiteralUnchanged": false,
+        "conditionalAtomicRetirement": null
+      }
+    },
+    {
+      "qid": "b20162c7",
+      "original": {
+        "question": {
+          "t": "Hipertensão Aparente Resistente — Confirmar Pseudorresistência",
+          "qid": "b20162c7",
+          "q": "Paciente apresenta pressão acima do alvo apesar de três anti-hipertensivos de classes complementares. Antes de rotular hipertensão resistente e acrescentar uma quarta droga, qual é a melhor próxima etapa?",
+          "refs": [
+            "aha_acc_hypertension_2025"
+          ],
+          "opts": [
+            "Confirmar técnica de medida, adesão, doses, fármacos interferentes e efeito do avental branco com medida fora do consultório, além de pesquisar causas secundárias",
+            "Adicionar imediatamente clonidina, sem revisar adesão ou medidas domiciliares",
+            "Trocar todos os fármacos por betabloqueador em monoterapia e reavaliar em um ano",
+            "Solicitar denervação renal antes de confirmar se a pressão permanece elevada fora do consultório"
+          ],
+          "ans": 0,
+          "exp": "Hipertensão aparentemente resistente pode resultar de medida inadequada, efeito do avental branco, baixa adesão, doses insuficientes, interações ou substâncias que elevam a pressão. A avaliação deve confirmar pressão fora do consultório, técnica e adesão, otimizar o esquema e procurar causas secundárias antes de acrescentar outra droga ou indicar procedimento. Só então se define resistência verdadeira e se escolhe, em geral, um antagonista do receptor mineralocorticoide quando função renal e potássio permitem.",
+          "diff": "medium",
+          "cat": "hipertensao"
+        },
+        "authorRevision": "sha256:e509c1ce5a55d60ecf752fb9801c40a8ee6324617c2da3e0173165ff2212b208",
+        "referenceRevisions": {
+          "aha_acc_hypertension_2025": "sha256:ed04f2a37e1adaae7cafadc7d35c6ef2edc215d29a2c287eb38e0a2ed26d5b55"
+        },
+        "recordRevision": "sha256:01e6f01db4110175021d198836da1db17414c129f200c92a9e4fd327d23e83ca"
+      },
+      "proposed": {
+        "t": "Hipertensão Aparente Resistente — Confirmar Pseudorresistência",
+        "qid": "b20162c7",
+        "q": "Adulto mantém pressão de 154/94 mmHg em consultas, apesar de três classes complementares, incluindo diurético, em doses máximas toleradas. Técnica, adesão e medicamentos interferentes foram revisados; a avaliação de causas secundárias não identificou uma causa. Ainda não há medidas fora do consultório. Antes de acrescentar uma quarta droga, qual etapa falta para confirmar hipertensão resistente verdadeira?",
+        "refs": [
+          "aha_acc_hypertension_2025"
+        ],
+        "opts": [
+          "Confirmar a pressão com monitorização ambulatorial ou medidas residenciais padronizadas.",
+          "Adicionar um antagonista mineralocorticoide com base apenas nos valores das consultas.",
+          "Encaminhar para denervação renal, pois o uso de três classes já confirma resistência.",
+          "Aumentar as doses além das toleradas para testar se a pressão responde ao esquema."
+        ],
+        "ans": 0,
+        "exp": "A pressão elevada apenas no consultório não confirma resistência verdadeira: o efeito do avental branco é uma forma de pseudorresistência. Monitorização ambulatorial da pressão arterial ou medidas residenciais padronizadas ajudam a verificar se a pressão também está elevada fora do consultório. O caso já informa revisão da técnica, adesão, doses e interferentes, além de avaliação secundária; a lacuna é a confirmação fora do consultório. Intensificar ou indicar um procedimento antes dessa etapa pode tratar excessivamente quem não tem hipertensão sustentada.",
+        "diff": "medium",
+        "cat": "hipertensao"
+      },
+      "proposedSHA256": "sha256:15c047da75e7f40808015fdba130779910b83bfd65ec83d164f5dc42070daee8",
+      "referenceRevisions": {
+        "aha_acc_hypertension_2025": "sha256:50fd7d5cbd0bfae2d2cfec292d0737a4531b801de81279547b92400d938f2002"
+      },
+      "bundleRevision": "sha256:7ceb4dc4dde03692262eeb5645d84981071b807b4c7ee268dfba2dd91d09f0f6",
+      "classification": {
+        "op": "Confirmar resistência verdadeira, excluindo efeito do avental branco antes de intensificar o tratamento.",
+        "primaryCompetence": "Conduta inicial e segurança.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "legacyEquivalent": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Veredito de aprovação + Evidência VERIFICADA/Pendência NENHUMA, sem eliminatório ou recurso decisivo residual (§18.4).",
+        "justification": "Medidas fora do consultório excluem efeito do avental branco antes de confirmar resistência e intensificar. O caso já fornece revisão de técnica, adesão, doses/interferentes e causas secundárias, deixando uma lacuna específica.",
+        "problems": "Nenhum problema substantivo identificado no literal proposto.",
+        "advogadoDoRecurso": "Não há obrigação de escolher quarta droga neste momento: resistência verdadeira ainda não foi confirmada fora do consultório. A avaliação prévia fornecida não elimina o efeito do avental branco. Monitorização ambulatorial ou medidas domiciliares padronizadas são meios adequados; a alternativa não os trata como exames simultaneamente obrigatórios. Denervação e escalada além da tolerância não são alternativas igualmente defensáveis.",
+        "sourceIDs": [
+          "aha2025"
+        ],
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Confirmar a pressão com monitorização ambulatorial ou medidas residenciais padronizadas.",
+            "correct": true,
+            "judgment": "Correta: confirmar pressão sustentada fora do consultório."
+          },
+          {
+            "letter": "B",
+            "text": "Adicionar um antagonista mineralocorticoide com base apenas nos valores das consultas.",
+            "correct": false,
+            "judgment": "Quarta droga antes de excluir avental branco pode intensificar desnecessariamente."
+          },
+          {
+            "letter": "C",
+            "text": "Encaminhar para denervação renal, pois o uso de três classes já confirma resistência.",
+            "correct": false,
+            "judgment": "Três classes prescritas isoladamente não confirmam resistência verdadeira."
+          },
+          {
+            "letter": "D",
+            "text": "Aumentar as doses além das toleradas para testar se a pressão responde ao esquema.",
+            "correct": false,
+            "judgment": "Doses além das toleradas não são etapa diagnóstica segura."
+          }
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Não há obrigação de escolher quarta droga neste momento: resistência verdadeira ainda não foi confirmada fora do consultório. A avaliação prévia fornecida não elimina o efeito do avental branco. Monitorização ambulatorial ou medidas domiciliares padronizadas são meios adequados; a alternativa não os trata como exames simultaneamente obrigatórios. Denervação e escalada além da tolerância não são alternativas igualmente defensáveis."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Medidas fora do consultório excluem efeito do avental branco antes de confirmar resistência e intensificar. O caso já fornece revisão de técnica, adesão, doses/interferentes e causas secundárias, deixando uma lacuna específica."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Decisão e competência originais reconhecíveis; o comando foi delimitado para reduzir pistas formais."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "A correta mantém as condições de segurança e não generaliza o tratamento urgente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Erros representam escalada, atraso ou seleção imprópria no mesmo domínio; score reconhece sutileza limitada."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Muda confirmação diagnóstica, seleção terapêutica ou segurança, sem trivia numérica isolada."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Gabarito e explicação têm a mesma conclusão e ressalvas."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Não há obrigação de escolher quarta droga neste momento: resistência verdadeira ainda não foi confirmada fora do consultório. A avaliação prévia fornecida não elimina o efeito do avental branco. Monitorização ambulatorial ou medidas domiciliares padronizadas são meios adequados; a alternativa não os trata como exames simultaneamente obrigatórios. Denervação e escalada além da tolerância não são alternativas igualmente defensáveis."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte/diretriz identificada; sem regra institucional não declarada."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Versões oficiais2024–2026 efetivamente conferidas; não se usa diretriz histórica como única situação atual."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "band": "18–20: candidata à aprovação, após eliminatórios e recurso",
+          "rationale": "Aplicação de etapa diagnóstica em caso clínico; a lacuna explicitada torna o item acessível e os distratores pouco sutis. A dificuldade não decorre da extensão do texto."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA: combinação válida.",
+          "step1": "Nenhum eliminatório.",
+          "step2": "Nenhum recurso plausível residual após checagem das alternativas e contexto.",
+          "step3": "19/20 → aprovada.",
+          "lifecycle": "publicado após integração da versão exata; canônica depende da aposentadoria no mesmo conjunto."
+        }
+      },
+      "implementation": {
+        "ready": true,
+        "preserveQid": true,
+        "resetFSRS": false,
+        "transferCredit": false,
+        "replaceQuestion": true,
+        "canonicalQuestionLiteralUnchanged": false,
+        "conditionalAtomicRetirement": null
+      }
+    },
+    {
+      "qid": "78be79e7",
+      "original": {
+        "question": {
+          "t": "Hipercalemia em DRC sob Bloqueio do SRAA",
+          "qid": "78be79e7",
+          "q": "Paciente estável com DRC G4 usa IECA por albuminúria e espironolactona por hipertensão resistente. Duas amostras mostram potássio de 5,9 mEq/L, sem alteração eletrocardiográfica. Qual abordagem é mais segura?",
+          "refs": [
+            "kdigo_ckd_2024"
+          ],
+          "opts": [
+            "Avaliar urgência e causas reversíveis, suspender ao menos temporariamente a espironolactona e tratar a hipercalemia; após controle, tentar preservar o IECA indicado com monitorização e medidas como correção de acidose, diurético ou quelante conforme o caso",
+            "Manter todos os fármacos sem ajuste, pois potássio abaixo de 6,5 mEq/L não exige intervenção em DRC",
+            "Substituir a espironolactona por patiromer, considerando que o quelante exerce o mesmo efeito anti-hipertensivo do antagonista mineralocorticoide",
+            "Suspender definitivamente todo bloqueio do SRAA antes de revisar dieta, medicamentos, acidose ou volemia"
+          ],
+          "ans": 0,
+          "exp": "Potássio persistentemente em 5,9 mEq/L na DRC G4 exige avaliação de gravidade, confirmação, revisão de medicamentos e correção de fatores contribuintes. A espironolactona aumenta muito o risco nesse contexto e deve ser interrompida ao menos temporariamente; IECA ou BRA com indicação renal não precisam ser abandonados automaticamente se a hipercalemia puder ser controlada. A KDIGO propõe revisar fontes de potássio biodisponível, fármacos, acidose e volemia e considerar diurético e quelantes modernos em hipercalemia não emergente. Quelante não substitui o efeito anti-hipertensivo do antagonista mineralocorticoide, e a estratégia nunca deve atrasar tratamento urgente quando houver ECG alterado, sintomas ou elevação maior.",
+          "diff": "hard",
+          "cat": "hipertensao"
+        },
+        "authorRevision": "sha256:4c848f9a03c8c41166dad2b822bf4369958906bca9b7b97aff7cc7f170a7a49a",
+        "referenceRevisions": {
+          "kdigo_ckd_2024": "sha256:a74ba3d7e1cabbebf133cfe8845de4ee2965d493adb82742c9aadbbe5774b2e6"
+        },
+        "recordRevision": "sha256:d8d6201cebe45c6b475d746f933909452fff76e0f52a9483defebac89eed6ebc"
+      },
+      "proposed": {
+        "t": "Hipercalemia em DRC sob Bloqueio do SRAA",
+        "qid": "78be79e7",
+        "q": "Adulto clinicamente estável com doença renal crônica G4 usa inibidor da enzima conversora de angiotensina (IECA) por albuminúria e espironolactona por hipertensão resistente, sem insuficiência cardíaca. Duas amostras sem hemólise mostram potássio de 5,9 mEq/L. Não há alteração no eletrocardiograma nem doença aguda intercorrente. Qual estratégia inicial é mais adequada?",
+        "refs": [
+          "kdigo_ckd_2024",
+          "ukka_hyperkalemia_2026"
+        ],
+        "opts": [
+          "Manter as duas medicações sem intervenção, pois potássio abaixo de 6,5 mEq/L é seguro.",
+          "Reduzir ou pausar a espironolactona e tratar o potássio, preservando o IECA se o controle permitir.",
+          "Retirar definitivamente o IECA e manter a espironolactona por sua maior nefroproteção.",
+          "Trocar a espironolactona por patiromer, que fornece o mesmo efeito anti-hipertensivo."
+        ],
+        "ans": 1,
+        "exp": "Hipercalemia confirmada de 5,9 mEq/L exige avaliação clínica, revisão de medicamentos e fatores reversíveis e monitorização mais frequente. A espironolactona aumenta o risco sobretudo com filtração baixa: deve-se reavaliar sua dose e necessidade, considerando redução ou pausa conforme o contexto. O IECA indicado por albuminúria não precisa ser abandonado de forma definitiva se o potássio puder ser controlado. Conforme o caso, corrigir acidose, ajustar diurético e usar um agente ligante de potássio podem ajudar; patiromer reduz potássio, mas não substitui o efeito anti-hipertensivo da espironolactona. Se a hipercalemia persistir apesar do tratamento, reduzir ou interromper o IECA também pode ser necessário. Eletrocardiograma normal não elimina risco: piora clínica, elevação rápida ou maior do potássio exige reavaliação urgente.",
+        "diff": "medium",
+        "cat": "hipertensao"
+      },
+      "proposedSHA256": "sha256:a1a4f9b3f10feeeb23d9a711d7b3aaed32ed6eefeb9173b902d5433f0489950e",
+      "referenceRevisions": {
+        "kdigo_ckd_2024": "sha256:a74ba3d7e1cabbebf133cfe8845de4ee2965d493adb82742c9aadbbe5774b2e6",
+        "ukka_hyperkalemia_2026": "sha256:6f41098d441a55c6544104a29674bf4437050b4e2738b76f0e6c691e433e6888"
+      },
+      "bundleRevision": "sha256:969a77ee068e3df395d1f6145151150b081ededd484ee0e148640d7d3ff11c4b",
+      "classification": {
+        "op": "Ajustar o manejo da hipercalemia em DRC sob IECA e espironolactona, priorizando segurança sem abandonar automaticamente a nefroproteção.",
+        "primaryCompetence": "Conduta inicial e segurança.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "legacyEquivalent": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Veredito de aprovação + Evidência VERIFICADA/Pendência NENHUMA, sem eliminatório ou recurso decisivo residual (§18.4).",
+        "justification": "Em K5,5–5,9 confirmado, a UKKA recomenda maior frequência de monitorização e considerar redução de RAASi. KDIGO orienta controlar fatores reversíveis e potássio para preservar IECA/BRA indicado, mas admite redução/suspensão se o controle falha. MRA esteroidal aumenta risco sobretudo em filtração baixa.",
+        "problems": "Nenhum problema substantivo identificado no literal proposto.",
+        "advogadoDoRecurso": "Redução ou pausa da espironolactona é individualizada; a correta não impõe suspensão obrigatória universal emK5,9. A ausência de insuficiência cardíaca retira uma indicação prognóstica concorrente e a albuminúria sustenta o IECA. A preservação é condicional, não manutenção a qualquer custo. ECG normal não exclui perigo, e a explicação exige reavaliação urgente se houver piora, subida rápida ou maior doK. Não se trata este quadro estável como indicação automática de medidas de ressuscitação.",
+        "sourceIDs": [
+          "kdigo2024",
+          "ukka2026"
+        ],
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Manter as duas medicações sem intervenção, pois potássio abaixo de 6,5 mEq/L é seguro.",
+            "correct": false,
+            "judgment": "K abaixo de6,5 não é sinônimo de segurança nem ausência de intervenção."
+          },
+          {
+            "letter": "B",
+            "text": "Reduzir ou pausar a espironolactona e tratar o potássio, preservando o IECA se o controle permitir.",
+            "correct": true,
+            "judgment": "Correta: reavaliar MRA e tratarK, preservando IECA quando seguro."
+          },
+          {
+            "letter": "C",
+            "text": "Retirar definitivamente o IECA e manter a espironolactona por sua maior nefroproteção.",
+            "correct": false,
+            "judgment": "Não há superioridade nefroprotetora da espironolactona que justifique retirar definitivamente IECA por reflexo."
+          },
+          {
+            "letter": "D",
+            "text": "Trocar a espironolactona por patiromer, que fornece o mesmo efeito anti-hipertensivo.",
+            "correct": false,
+            "judgment": "Patiromer controlaK; não substitui a ação anti-hipertensiva da espironolactona."
+          }
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Redução ou pausa da espironolactona é individualizada; a correta não impõe suspensão obrigatória universal emK5,9. A ausência de insuficiência cardíaca retira uma indicação prognóstica concorrente e a albuminúria sustenta o IECA. A preservação é condicional, não manutenção a qualquer custo. ECG normal não exclui perigo, e a explicação exige reavaliação urgente se houver piora, subida rápida ou maior doK. Não se trata este quadro estável como indicação automática de medidas de ressuscitação."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Em K5,5–5,9 confirmado, a UKKA recomenda maior frequência de monitorização e considerar redução de RAASi. KDIGO orienta controlar fatores reversíveis e potássio para preservar IECA/BRA indicado, mas admite redução/suspensão se o controle falha. MRA esteroidal aumenta risco sobretudo em filtração baixa."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Decisão e competência originais reconhecíveis; o comando foi delimitado para reduzir pistas formais."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "A correta mantém as condições de segurança e não generaliza o tratamento urgente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Erros representam escalada, atraso ou seleção imprópria no mesmo domínio; score reconhece sutileza limitada."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Muda confirmação diagnóstica, seleção terapêutica ou segurança, sem trivia numérica isolada."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Gabarito e explicação têm a mesma conclusão e ressalvas."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Redução ou pausa da espironolactona é individualizada; a correta não impõe suspensão obrigatória universal emK5,9. A ausência de insuficiência cardíaca retira uma indicação prognóstica concorrente e a albuminúria sustenta o IECA. A preservação é condicional, não manutenção a qualquer custo. ECG normal não exclui perigo, e a explicação exige reavaliação urgente se houver piora, subida rápida ou maior doK. Não se trata este quadro estável como indicação automática de medidas de ressuscitação."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte/diretriz identificada; sem regra institucional não declarada."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Versões oficiais2024–2026 efetivamente conferidas; não se usa diretriz histórica como única situação atual."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "band": "18–20: candidata à aprovação, após eliminatórios e recurso",
+          "rationale": "Equilibra segurança imediata e manutenção de terapia indicada sem retirar ressalvas para encurtar a correta; distratores reproduzem atalhos clínicos, mas são relativamente diretos."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA: combinação válida.",
+          "step1": "Nenhum eliminatório.",
+          "step2": "Nenhum recurso plausível residual após checagem das alternativas e contexto.",
+          "step3": "19/20 → aprovada.",
+          "lifecycle": "publicado após integração da versão exata; canônica depende da aposentadoria no mesmo conjunto."
+        }
+      },
+      "implementation": {
+        "ready": true,
+        "preserveQid": true,
+        "resetFSRS": false,
+        "transferCredit": false,
+        "replaceQuestion": true,
+        "canonicalQuestionLiteralUnchanged": false,
+        "conditionalAtomicRetirement": null
+      }
+    },
+    {
+      "qid": "3a0f4a34",
+      "original": {
+        "question": {
+          "t": "Denervação Renal — Seleção de Pacientes",
+          "qid": "3a0f4a34",
+          "q": "Paciente mantém hipertensão sistólica e diastólica estágio 2 apesar de terapia otimizada, adesão confirmada e exclusão de causas secundárias. Qual é o papel atual da denervação renal?",
+          "refs": [
+            "aha_acc_hypertension_2025"
+          ],
+          "opts": [
+            "Pode ser considerada como terapia adjunta em paciente cuidadosamente selecionado, por decisão compartilhada; a redução pressórica é modesta e não substitui medicamentos e estilo de vida",
+            "É tratamento curativo que permite suspender todos os anti-hipertensivos",
+            "É indicada antes de confirmar pseudorresistência ou anatomia das artérias renais",
+            "Já demonstrou reduzir eventos cardiovasculares em ensaios de desfecho de longo prazo"
+          ],
+          "ans": 0,
+          "exp": "A denervação renal por radiofrequência ou ultrassom pode ser considerada como adjunta em hipertensão não controlada ou resistente, após confirmar medida adequada, adesão, esquema farmacológico, causas secundárias e anatomia favorável. A decisão deve ser compartilhada porque a resposta é variável e, em média, modesta. O procedimento não cura hipertensão nem substitui estilo de vida e medicamentos. Embora dispositivos tenham aprovação regulatória, ainda faltam ensaios que demonstrem redução de eventos cardiovasculares; função renal e anatomia vascular limitam a extrapolação.",
+          "diff": "hard",
+          "cat": "drc"
+        },
+        "authorRevision": "sha256:000b78ad25c6534ea51a32155a7eb5d3156153a854550a60dd39b930b9be1082",
+        "referenceRevisions": {
+          "aha_acc_hypertension_2025": "sha256:ed04f2a37e1adaae7cafadc7d35c6ef2edc215d29a2c287eb38e0a2ed26d5b55"
+        },
+        "recordRevision": "sha256:8e5120fa4db573212a0d381ca133d9951e1ebce4857565fcb2beb792610c9061"
+      },
+      "proposed": {
+        "t": "Denervação Renal — Seleção de Pacientes",
+        "qid": "3a0f4a34",
+        "q": "Adulto com hipertensão resistente confirmada mantém pressão de 158/96 mmHg apesar de terapia otimizada, com adesão e hipertensão fora do consultório confirmadas e causas secundárias excluídas. A taxa de filtração glomerular estimada (TFGe) é 50 mL/min/1,73 m². Segundo a AHA/ACC de 2025, qual é o papel da denervação renal?",
+        "refs": [
+          "aha_acc_hypertension_2025",
+          "aha_renal_denervation_statement_2024"
+        ],
+        "opts": [
+          "Pode ser considerada como adjunta, com avaliação especializada e decisão compartilhada.",
+          "Permite substituir as medicações e o estilo de vida após a realização do procedimento.",
+          "Pode ser indicada sem avaliação anatômica, desde que a pressão no consultório seja elevada.",
+          "É opção de primeira linha para qualquer hipertensão estágio 2, antes de otimizar medicações."
+        ],
+        "ans": 0,
+        "exp": "A denervação renal é uma opção adjunta para pacientes cuidadosamente selecionados, não uma substituição do tratamento clínico. O material oficial da AHA/ACC de 2025 a coloca como classe 2b para redução pressórica em hipertensão resistente, com critérios que incluem pressão sistólica de 140–180 mmHg, diastólica ≥90 mmHg e TFGe ≥40 mL/min/1,73 m². A avaliação deve envolver equipe com experiência em resistência e no procedimento, anatomia apropriada e discussão de benefícios/riscos com o paciente. A recomendação não autoriza usar o procedimento antes da avaliação nem suspender automaticamente as medicações.",
+        "diff": "medium",
+        "cat": "drc"
+      },
+      "proposedSHA256": "sha256:41a3205294085ba04b82c675bdf3ee416833bf07db92d01e3403b0d19475f636",
+      "referenceRevisions": {
+        "aha_acc_hypertension_2025": "sha256:50fd7d5cbd0bfae2d2cfec292d0737a4531b801de81279547b92400d938f2002",
+        "aha_renal_denervation_statement_2024": "sha256:20296435c32601df846b36e7b61d79392d1a08694cb81f7649e08d21e7b5e53a"
+      },
+      "bundleRevision": "sha256:862248c20ac81ffc32858153e1edb5b9ba9897da49c35466d2dcba151d0337a1",
+      "classification": {
+        "op": "Selecionar o papel adjunto e seletivo da denervação renal após resistência verdadeira e terapia otimizada.",
+        "primaryCompetence": "Seleção terapêutica e segurança.",
+        "bloom": "Aplicar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "review": {
+        "verdict": "aprovada",
+        "legacyEquivalent": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Veredito de aprovação + Evidência VERIFICADA/Pendência NENHUMA, sem eliminatório ou recurso decisivo residual (§18.4).",
+        "justification": "Adulto com158/96, TFGe50 e resistência verdadeira otimizada está no perfil em que AHA/ACC2025 admite denervação como adjunta classe2b, com avaliação multidisciplinar e decisão compartilhada classe1; anatomia precisa avaliação.",
+        "problems": "Nenhum problema substantivo identificado no literal proposto.",
+        "advogadoDoRecurso": "A alternativa diz “pode ser considerada”, não indicação obrigatória nem substituição do tratamento. Os números satisfazem os critérios do material oficial; não se presume anatomia normal, pois a avaliação especializada antecede a execução. Não há alternativa igualmente defensável que dispense anatomia ou suspenda medicações. A paráfrasef847 não mede outra decisão e será aposentada atomicamente.",
+        "sourceIDs": [
+          "aha2025",
+          "rdn2024"
+        ],
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Pode ser considerada como adjunta, com avaliação especializada e decisão compartilhada.",
+            "correct": true,
+            "judgment": "Correta: opção adjunta seletiva com avaliação e decisão compartilhada."
+          },
+          {
+            "letter": "B",
+            "text": "Permite substituir as medicações e o estilo de vida após a realização do procedimento.",
+            "correct": false,
+            "judgment": "O procedimento não libera suspensão automática de medicamentos/estilo de vida."
+          },
+          {
+            "letter": "C",
+            "text": "Pode ser indicada sem avaliação anatômica, desde que a pressão no consultório seja elevada.",
+            "correct": false,
+            "judgment": "Pressão de consultório isolada não dispensa confirmação nem anatomia."
+          },
+          {
+            "letter": "D",
+            "text": "É opção de primeira linha para qualquer hipertensão estágio 2, antes de otimizar medicações.",
+            "correct": false,
+            "judgment": "Denervação não é primeira linha universal antes da otimização."
+          }
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "A alternativa diz “pode ser considerada”, não indicação obrigatória nem substituição do tratamento. Os números satisfazem os critérios do material oficial; não se presume anatomia normal, pois a avaliação especializada antecede a execução. Não há alternativa igualmente defensável que dispense anatomia ou suspenda medicações. A paráfrasef847 não mede outra decisão e será aposentada atomicamente."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Adulto com158/96, TFGe50 e resistência verdadeira otimizada está no perfil em que AHA/ACC2025 admite denervação como adjunta classe2b, com avaliação multidisciplinar e decisão compartilhada classe1; anatomia precisa avaliação."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Decisão e competência originais reconhecíveis; o comando foi delimitado para reduzir pistas formais."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "A correta mantém as condições de segurança e não generaliza o tratamento urgente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Erros representam escalada, atraso ou seleção imprópria no mesmo domínio; score reconhece sutileza limitada."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Muda confirmação diagnóstica, seleção terapêutica ou segurança, sem trivia numérica isolada."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Gabarito e explicação têm a mesma conclusão e ressalvas."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "A alternativa diz “pode ser considerada”, não indicação obrigatória nem substituição do tratamento. Os números satisfazem os critérios do material oficial; não se presume anatomia normal, pois a avaliação especializada antecede a execução. Não há alternativa igualmente defensável que dispense anatomia ou suspenda medicações. A paráfrasef847 não mede outra decisão e será aposentada atomicamente."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte/diretriz identificada; sem regra institucional não declarada."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Versões oficiais2024–2026 efetivamente conferidas; não se usa diretriz histórica como única situação atual."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "band": "18–20: candidata à aprovação, após eliminatórios e recurso",
+          "rationale": "Seleção clínica útil, critérios fornecidos e sem garantia de resposta; distratores ainda relativamente fáceis. Canônica é reavaliada com seus bytes e vínculos atuais, sem herdar gateA3."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA: combinação válida.",
+          "step1": "Duplicata identificada e resolvida por aposentadoria atômica de f847386a; sem outro eliminatório.",
+          "step2": "Nenhum recurso plausível residual após checagem das alternativas e contexto.",
+          "step3": "19/20 → aprovada.",
+          "lifecycle": "publicado após integração da versão exata; canônica depende da aposentadoria no mesmo conjunto."
+        }
+      },
+      "implementation": {
+        "ready": true,
+        "preserveQid": true,
+        "resetFSRS": false,
+        "transferCredit": false,
+        "replaceQuestion": false,
+        "canonicalQuestionLiteralUnchanged": true,
+        "conditionalAtomicRetirement": "f847386a"
+      }
+    }
+  ],
+  "referenceCards": [
+    {
+      "id": "aha_acc_hypertension_2025",
+      "proposed": {
+        "label": "AHA/ACC — High Blood Pressure Guideline 2025",
+        "url": "https://www.ahajournals.org/doi/full/10.1161/CIR.0000000000001356",
+        "journal": "Circulation. 2025",
+        "ano": 2025,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Confirmar resistência; denervação é opção adjunta seletiva e de decisão compartilhada",
+        "icon": "📋",
+        "resumo": "Diretriz multissocietária AHA/ACC de 2025. Na hipertensão aparentemente resistente, confirmar medidas fora do consultório, adesão, fármacos interferentes e causas secundárias. Segundo o material clínico oficial, denervação renal pode ser considerada como adjunta a medicamentos e estilo de vida (classe 2b) em adultos selecionados com pressão sistólica de 140–180 mmHg, diastólica ≥90 mmHg e taxa de filtração glomerular estimada ≥40 mL/min/1,73 m², apesar de terapia otimizada ou intolerância a fármacos. Exige avaliação por equipe multidisciplinar e decisão compartilhada (classe 1).",
+        "conclusao": "A recomendação é para redução da pressão em pacientes selecionados, mantendo tratamento clínico e avaliação especializada; não autoriza uso automático nem retirada de medicações.",
+        "curiosidade": ""
+      },
+      "revision": "sha256:50fd7d5cbd0bfae2d2cfec292d0737a4531b801de81279547b92400d938f2002",
+      "literalUnchanged": true,
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "aha2025"
+      ],
+      "claimsVerified": [
+        "Título/ano/DOI identificam a diretriz multissocietária2025. Material clínico oficial primário sustenta o texto inteiro do card atual.",
+        "Slides9/26: medidas fora do consultório, adesão, interferentes e causas secundárias.",
+        "Slide27: adjunta classe2b comPAS140–180/PAD≥90/TFGe≥40; equipe/decisão compartilhada classe1.",
+        "Não promete benefício de mortalidade nem retirada de medicamentos. Curiosidade vazia."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Card sem alternativas não recebe score de questão."
+    },
+    {
+      "id": "aha_renal_denervation_statement_2024",
+      "proposed": {
+        "label": "Cluett / AHA — Declaração científica sobre denervação renal (2024)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/39101202/",
+        "journal": "Hypertension 2024;81(10):e135–e148",
+        "ano": 2024,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "icon": "🔬",
+        "impacto": "Seleção anatômica e decisão compartilhada para denervação renal",
+        "resumo": "Declaração científica da American Heart Association (AHA), fundamentada em síntese de ensaios e experiência clínica, sobre denervação renal como tratamento adjunto da hipertensão. Discute benefício pressórico e seleção de pacientes, com critérios anatômicos que podem impedir o procedimento, como estenose relevante, aneurismas e artérias pequenas para os cateteres. Requer conversa informada sobre riscos, benefícios e preferências. É síntese científica e orientação clínica, não um ensaio randomizado em si.",
+        "conclusao": "Avaliar elegibilidade clínica e anatômica antes do procedimento, junto à decisão compartilhada; não substituir avaliação especializada por pressão elevada isoladamente.",
+        "curiosidade": ""
+      },
+      "revision": "sha256:20296435c32601df846b36e7b61d79392d1a08694cb81f7649e08d21e7b5e53a",
+      "literalUnchanged": true,
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "rdn2024",
+        "rdnNLM"
+      ],
+      "claimsVerified": [
+        "Scientific Statement deCluett/AHA, DOI0240; NLM aberto viaEFetch confirmaHypertension2024;81(10):e135–e148 e categoriaReview.",
+        "PDF early-view integral, resumo e seleção/anatomia, sustenta benefício pressórico seletivo e avaliação especializada.",
+        "Estenose significativa, aneurisma e ramos pequenos podem impedir procedimento; decisão compartilhada é essencial.",
+        "Não é apresentado comoRCT nem como diretriz2025."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Card sem alternativas não recebe score de questão."
+    },
+    {
+      "id": "kdigo_ckd_2024",
+      "proposed": {
+        "label": "KDIGO — Clinical Practice Guideline for CKD 2024",
+        "url": "https://kdigo.org/wp-content/uploads/2024/03/KDIGO-2024-CKD-Guideline.pdf",
+        "journal": "Kidney Int. 2024;105(Suppl 4S):S117-S314",
+        "ano": 2024,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Manejo sistemático da hipercalemia e preservação de terapias cardiorrenais na DRC",
+        "icon": "📋",
+        "resumo": "Diretriz KDIGO 2024 para avaliação e manejo da DRC. Na hipercalemia não emergente, propõe revisar fármacos e fontes de potássio biodisponível, corrigir acidose e distúrbios de volume e considerar diuréticos ou agentes de troca de potássio. Quelantes modernos podem facilitar o uso essencial de IECA, BRA ou antagonistas mineralocorticoides, mas a segurança imediata e a indicação individual de cada fármaco devem ser reavaliadas.",
+        "conclusao": "Hipercalemia sob bloqueio do SRAA exige abordagem escalonada e correção de fatores reversíveis; preserve terapia cardiorrenal indicada quando for seguro, sem manter automaticamente um antagonista mineralocorticoide em potássio perigosamente alto.",
+        "curiosidade": "A diretriz distingue potássio total de biodisponibilidade: alimentos processados com aditivos de potássio podem ser alvos mais relevantes que restrições indiscriminadas de vegetais."
+      },
+      "revision": "sha256:a74ba3d7e1cabbebf133cfe8845de4ee2965d493adb82742c9aadbbe5774b2e6",
+      "literalUnchanged": true,
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "kdigo2024"
+      ],
+      "claimsVerified": [
+        "Diretriz final2024; PP3.6.3/5/7 orientam preservarRASi quandoKcontrolável e reduzir/suspender quando não controlado apesar do tratamento.",
+        "PP3.8.5 ressalta hipercalemia/queda reversível da filtração comMRAesteroidal, sobretudo emTFGbaixa.",
+        "Seção3.11/Tab26/Fig32: medicamentos/dieta biodisponível, acidose, volume, diuréticos e ligantes; segurança imediata precede manutenção automática.",
+        "PP3.11.5 eFig33 distinguem potássio biodisponível/processados de restrição indiscriminada de vegetais."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Card sem alternativas não recebe score de questão."
+    },
+    {
+      "id": "ukka_hyperkalemia_2026",
+      "proposed": {
+        "label": "UK Kidney Association — Treatment of Acute Hyperkalaemia in Adults (updated July 2026)",
+        "url": "https://guidelines.ukkidney.org/hyperkalaemia/",
+        "journal": "UK Kidney Association Clinical Practice Guideline. Updated July 2026",
+        "ano": 2026,
+        "tipo": "Diretriz Clínica",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Urgência, ECG e monitorização conforme gravidade da hipercalemia",
+        "icon": "📋",
+        "resumo": "Diretriz oficial de hipercalemia atualizada em julho de 2026. Recomenda ECG urgente no hospital com K⁺ ≥ 6,0 mmol/L e monitorização contínua com K⁺ ≥ 6,5, alterações eletrocardiográficas ou outros sinais de risco. ECG normal não exclui perigo.",
+        "conclusao": "Tratar conforme gravidade, evolução e contexto; rever fármacos e plano de prevenção de recorrência, sem substituir manejo da emergência por medidas crônicas.",
+        "curiosidade": "Os critérios de ECG/monitorização estão nas recomendações14.1 e14.2; decisões sobre RAASi exigem avaliar a situação clínica."
+      },
+      "revision": "sha256:6f41098d441a55c6544104a29674bf4437050b4e2738b76f0e6c691e433e6888",
+      "literalUnchanged": true,
+      "wholeCardReviewed": true,
+      "sourceIDs": [
+        "ukka2026"
+      ],
+      "claimsVerified": [
+        "Página oficial efetivamente aberta declara atualizaçãojulho2026.",
+        "14.1: ECG urgente em hospitalizados comK≥6,0;14.2: monitorização contínuaK≥6,5/alteraçõesECG ou risco especificado.",
+        "Rationale14.1–2: ECG pode permanecer normal mesmo em hipercalemia grave.",
+        "Corpo do card mantém urgência e prevenção em contextos distintos; não oferece manejo crônico como substituto de emergência."
+      ],
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA",
+      "score": null,
+      "scoreReason": "Card sem alternativas não recebe score de questão."
+    }
+  ],
+  "fusions": [
+    {
+      "verdict": "fundir",
+      "rootAdjudication": "Root leu os dois originais e a canônica integralmente e confirmou expressamente identidade em15/11/2026; intolerância vs números dePA/TFGe não criam decisão independente.",
+      "comparison": {
+        "retired": {
+          "qid": "f847386a",
+          "question": {
+            "t": "Denervação Renal — Seleção de Pacientes",
+            "qid": "f847386a",
+            "q": "Paciente com hipertensão resistente verdadeira permanece acima da meta apesar de tratamento otimizado e tem efeitos adversos que impedem novas escaladas. Qual afirmação resume melhor o papel atual da denervação renal?",
+            "refs": [
+              "aha_acc_hypertension_2025"
+            ],
+            "opts": [
+              "Pode ser considerada em paciente selecionado após excluir causas secundárias e contraindicações anatômicas, com avaliação multidisciplinar e decisão compartilhada sobre benefício pressórico modesto e riscos do procedimento",
+              "Substitui a investigação de pseudorresistência e deve ser oferecida antes da otimização farmacológica",
+              "Produz redução uniforme de 30 a 40 mmHg e já demonstrou diminuir mortalidade cardiovascular em ensaios de desfecho",
+              "É indicada rotineiramente na DRC avançada, embora os principais ensaios tenham excluído função renal reduzida"
+            ],
+            "ans": 0,
+            "exp": "Ensaios contemporâneos controlados por procedimento simulado demonstram redução modesta da pressão com denervação renal, mas a resposta é variável e ainda não há comprovação de redução de eventos cardiovasculares. A diretriz AHA/ACC 2025 exige confirmar resistência, revisar medicamentos e causas secundárias, avaliar anatomia renal e discutir o procedimento em equipe experiente e decisão compartilhada. A maioria dos trials incluiu TFGe de pelo menos 40 mL/min/1,73m² e excluiu estenose, aneurisma, stent e displasia fibromuscular; portanto, benefício e segurança na DRC avançada permanecem incertos.",
+            "diff": "medium",
+            "cat": "hipertensao"
+          },
+          "authorRevision": "sha256:696e7e8bf885f7f3b5440820c70eb893f445a9c19147542c80712249515845bc",
+          "referenceRevisions": {
+            "aha_acc_hypertension_2025": "sha256:ed04f2a37e1adaae7cafadc7d35c6ef2edc215d29a2c287eb38e0a2ed26d5b55"
+          },
+          "recordRevision": "sha256:579033b60d021171c2a49b8225b77e2728ed1cbaede52db03928910815ba1a01"
+        },
+        "canonicalOriginal": {
+          "question": {
+            "t": "Denervação Renal — Seleção de Pacientes",
+            "qid": "3a0f4a34",
+            "q": "Paciente mantém hipertensão sistólica e diastólica estágio 2 apesar de terapia otimizada, adesão confirmada e exclusão de causas secundárias. Qual é o papel atual da denervação renal?",
+            "refs": [
+              "aha_acc_hypertension_2025"
+            ],
+            "opts": [
+              "Pode ser considerada como terapia adjunta em paciente cuidadosamente selecionado, por decisão compartilhada; a redução pressórica é modesta e não substitui medicamentos e estilo de vida",
+              "É tratamento curativo que permite suspender todos os anti-hipertensivos",
+              "É indicada antes de confirmar pseudorresistência ou anatomia das artérias renais",
+              "Já demonstrou reduzir eventos cardiovasculares em ensaios de desfecho de longo prazo"
+            ],
+            "ans": 0,
+            "exp": "A denervação renal por radiofrequência ou ultrassom pode ser considerada como adjunta em hipertensão não controlada ou resistente, após confirmar medida adequada, adesão, esquema farmacológico, causas secundárias e anatomia favorável. A decisão deve ser compartilhada porque a resposta é variável e, em média, modesta. O procedimento não cura hipertensão nem substitui estilo de vida e medicamentos. Embora dispositivos tenham aprovação regulatória, ainda faltam ensaios que demonstrem redução de eventos cardiovasculares; função renal e anatomia vascular limitam a extrapolação.",
+            "diff": "hard",
+            "cat": "drc"
+          },
+          "authorRevision": "sha256:000b78ad25c6534ea51a32155a7eb5d3156153a854550a60dd39b930b9be1082",
+          "referenceRevisions": {
+            "aha_acc_hypertension_2025": "sha256:ed04f2a37e1adaae7cafadc7d35c6ef2edc215d29a2c287eb38e0a2ed26d5b55"
+          },
+          "recordRevision": "sha256:8e5120fa4db573212a0d381ca133d9951e1ebce4857565fcb2beb792610c9061"
+        },
+        "canonicalProposed": {
+          "qid": "3a0f4a34",
+          "question": {
+            "t": "Denervação Renal — Seleção de Pacientes",
+            "qid": "3a0f4a34",
+            "q": "Adulto com hipertensão resistente confirmada mantém pressão de 158/96 mmHg apesar de terapia otimizada, com adesão e hipertensão fora do consultório confirmadas e causas secundárias excluídas. A taxa de filtração glomerular estimada (TFGe) é 50 mL/min/1,73 m². Segundo a AHA/ACC de 2025, qual é o papel da denervação renal?",
+            "refs": [
+              "aha_acc_hypertension_2025",
+              "aha_renal_denervation_statement_2024"
+            ],
+            "opts": [
+              "Pode ser considerada como adjunta, com avaliação especializada e decisão compartilhada.",
+              "Permite substituir as medicações e o estilo de vida após a realização do procedimento.",
+              "Pode ser indicada sem avaliação anatômica, desde que a pressão no consultório seja elevada.",
+              "É opção de primeira linha para qualquer hipertensão estágio 2, antes de otimizar medicações."
+            ],
+            "ans": 0,
+            "exp": "A denervação renal é uma opção adjunta para pacientes cuidadosamente selecionados, não uma substituição do tratamento clínico. O material oficial da AHA/ACC de 2025 a coloca como classe 2b para redução pressórica em hipertensão resistente, com critérios que incluem pressão sistólica de 140–180 mmHg, diastólica ≥90 mmHg e TFGe ≥40 mL/min/1,73 m². A avaliação deve envolver equipe com experiência em resistência e no procedimento, anatomia apropriada e discussão de benefícios/riscos com o paciente. A recomendação não autoriza usar o procedimento antes da avaliação nem suspender automaticamente as medicações.",
+            "diff": "medium",
+            "cat": "drc"
+          },
+          "authorRevision": "sha256:41a3205294085ba04b82c675bdf3ee416833bf07db92d01e3403b0d19475f636",
+          "referenceRevisions": {
+            "aha_acc_hypertension_2025": "sha256:50fd7d5cbd0bfae2d2cfec292d0737a4531b801de81279547b92400d938f2002",
+            "aha_renal_denervation_statement_2024": "sha256:20296435c32601df846b36e7b61d79392d1a08694cb81f7649e08d21e7b5e53a"
+          },
+          "recordRevision": "sha256:862248c20ac81ffc32858153e1edb5b9ba9897da49c35466d2dcba151d0337a1"
+        }
+      },
+      "fourDimensions": [
+        {
+          "dimension": "Decisão",
+          "same": true,
+          "reason": "Considerar denervação como adjunta seletiva após resistência verdadeira otimizada, com avaliação e decisão compartilhada."
+        },
+        {
+          "dimension": "Estrutura essencial dos dados",
+          "same": true,
+          "reason": "Hipertensão resistente persistente sob terapia otimizada. Intolerância nof847 ePA158/96/TFGe50 no3a especificam elegibilidade; nenhuma opção mede decisão adicional própria."
+        },
+        {
+          "dimension": "Perfil-alvo",
+          "same": true,
+          "reason": "Estudante avançado/residente em seleção terapêutica da hipertensão resistente."
+        },
+        {
+          "dimension": "Língua",
+          "same": true,
+          "reason": "pt-BR."
+        }
+      ],
+      "retiredDecision": {
+        "qid": "f847386a",
+        "verdict": "aposentar",
+        "lifecycle": "aposentado",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "BLOQUEADA",
+        "derived": "Aposentar não é veredito de aprovação; original retirado não pode ser reaplicado por aprovação da canônica.",
+        "score": {
+          "anulado": true,
+          "reason": "Duplicidade em quatro dimensões prevalece sobre score."
+        }
+      },
+      "canonicalDecision": {
+        "qid": "3a0f4a34",
+        "verdict": "aprovada",
+        "legacyEquivalent": "MANTER",
+        "confidence": "alta",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publicationAuthorization": "LIBERADA",
+        "derivation": "Veredito de aprovação + Evidência VERIFICADA/Pendência NENHUMA, sem eliminatório ou recurso decisivo residual (§18.4).",
+        "justification": "Adulto com158/96, TFGe50 e resistência verdadeira otimizada está no perfil em que AHA/ACC2025 admite denervação como adjunta classe2b, com avaliação multidisciplinar e decisão compartilhada classe1; anatomia precisa avaliação.",
+        "problems": "Nenhum problema substantivo identificado no literal proposto.",
+        "advogadoDoRecurso": "A alternativa diz “pode ser considerada”, não indicação obrigatória nem substituição do tratamento. Os números satisfazem os critérios do material oficial; não se presume anatomia normal, pois a avaliação especializada antecede a execução. Não há alternativa igualmente defensável que dispense anatomia ou suspenda medicações. A paráfrasef847 não mede outra decisão e será aposentada atomicamente.",
+        "sourceIDs": [
+          "aha2025",
+          "rdn2024"
+        ],
+        "optionAudit": [
+          {
+            "letter": "A",
+            "text": "Pode ser considerada como adjunta, com avaliação especializada e decisão compartilhada.",
+            "correct": true,
+            "judgment": "Correta: opção adjunta seletiva com avaliação e decisão compartilhada."
+          },
+          {
+            "letter": "B",
+            "text": "Permite substituir as medicações e o estilo de vida após a realização do procedimento.",
+            "correct": false,
+            "judgment": "O procedimento não libera suspensão automática de medicamentos/estilo de vida."
+          },
+          {
+            "letter": "C",
+            "text": "Pode ser indicada sem avaliação anatômica, desde que a pressão no consultório seja elevada.",
+            "correct": false,
+            "judgment": "Pressão de consultório isolada não dispensa confirmação nem anatomia."
+          },
+          {
+            "letter": "D",
+            "text": "É opção de primeira linha para qualquer hipertensão estágio 2, antes de otimizar medicações.",
+            "correct": false,
+            "judgment": "Denervação não é primeira linha universal antes da otimização."
+          }
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "A alternativa diz “pode ser considerada”, não indicação obrigatória nem substituição do tratamento. Os números satisfazem os critérios do material oficial; não se presume anatomia normal, pois a avaliação especializada antecede a execução. Não há alternativa igualmente defensável que dispense anatomia ou suspenda medicações. A paráfrasef847 não mede outra decisão e será aposentada atomicamente."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Adulto com158/96, TFGe50 e resistência verdadeira otimizada está no perfil em que AHA/ACC2025 admite denervação como adjunta classe2b, com avaliação multidisciplinar e decisão compartilhada classe1; anatomia precisa avaliação."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Decisão e competência originais reconhecíveis; o comando foi delimitado para reduzir pistas formais."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "A correta mantém as condições de segurança e não generaliza o tratamento urgente."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Erros representam escalada, atraso ou seleção imprópria no mesmo domínio; score reconhece sutileza limitada."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Muda confirmação diagnóstica, seleção terapêutica ou segurança, sem trivia numérica isolada."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Gabarito e explicação têm a mesma conclusão e ressalvas."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "A alternativa diz “pode ser considerada”, não indicação obrigatória nem substituição do tratamento. Os números satisfazem os critérios do material oficial; não se presume anatomia normal, pois a avaliação especializada antecede a execução. Não há alternativa igualmente defensável que dispense anatomia ou suspenda medicações. A paráfrasef847 não mede outra decisão e será aposentada atomicamente."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Fonte/diretriz identificada; sem regra institucional não declarada."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Versões oficiais2024–2026 efetivamente conferidas; não se usa diretriz histórica como única situação atual."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19,
+          "band": "18–20: candidata à aprovação, após eliminatórios e recurso",
+          "rationale": "Seleção clínica útil, critérios fornecidos e sem garantia de resposta; distratores ainda relativamente fáceis. Canônica é reavaliada com seus bytes e vínculos atuais, sem herdar gateA3."
+        },
+        "decisionTree": {
+          "step0": "VERIFICADA/NENHUMA: combinação válida.",
+          "step1": "Duplicata identificada e resolvida por aposentadoria atômica de f847386a; sem outro eliminatório.",
+          "step2": "Nenhum recurso plausível residual após checagem das alternativas e contexto.",
+          "step3": "19/20 → aprovada.",
+          "lifecycle": "publicado após integração da versão exata; canônica depende da aposentadoria no mesmo conjunto."
+        }
+      },
+      "implementation": {
+        "atomic": true,
+        "retire": "f847386a",
+        "canonical": "3a0f4a34",
+        "constraints": [
+          "Preservar original17.27, histórico, favoritos e FSRS sob oIDantigo.",
+          "Não transferir FSRS, acertos, crédito, descobertas ou favoritos entre questões.",
+          "Excluir aposentada apenas de sorteios futuros; conservar posições e respostas de sessões antigas.",
+          "Substituição de posição pendente exige escolha explícita; não reavaliar respondidas nem apagar destino que já apareça em outra posição.",
+          "Não aumentar total planejado nem gerar evento/crédito antes de resposta."
+        ]
+      }
+    }
+  ],
+  "neighborAssessment": {
+    "mode": "Quatro dimensões somente; não libera conteúdo vizinho por proximidade.",
+    "neighbors": [
+      {
+        "qid": "bc95bd5f",
+        "decision": "Escolher quarta droga após resistência confirmada, diferente da confirmaçãofora do consultório de b201.",
+        "independentVerdict": "Decisão distinta das quatro liberadas; não recebe gate médico neste pacote."
+      },
+      {
+        "qid": "0bc2e7aa",
+        "decision": "Cautela para iniciar/considerarMRA emDRCavançada, diferente do ajuste quandohipercalemiajáconfirmada em78.",
+        "independentVerdict": "Decisão distinta das quatro liberadas; não recebe gate médico neste pacote."
+      },
+      {
+        "qid": "13109735",
+        "decision": "Meta pressórica crônica e técnicapadronizada, diferente da emergênciaencefalopática2a.",
+        "independentVerdict": "Decisão distinta das quatro liberadas; não recebe gate médico neste pacote."
+      },
+      {
+        "qid": "9d1943bf",
+        "decision": "Triagem hormonal de hiperaldosteronismo, diferente da confirmação deaventalbranco.",
+        "independentVerdict": "Decisão distinta das quatro liberadas; não recebe gate médico neste pacote."
+      },
+      {
+        "qid": "0b54d5b8",
+        "decision": "Reconhecer apneia como causaassociada, diferente de confirmar resistência verdadeira.",
+        "independentVerdict": "Decisão distinta das quatro liberadas; não recebe gate médico neste pacote."
+      }
+    ],
+    "knownIndependentWork": "0bc2e7aa exige revisão própria; não foi declarado resolvido por análise deOP. AHAcardestreito atual não é aprovação automática de todos os antigos consumidores."
+  },
+  "summary": {
+    "questionsReleased": 4,
+    "oldQuestionsRewritten": 3,
+    "canonicalQuestionUnchanged": 1,
+    "atomicRetirements": 1,
+    "wholeCardsReleased": 4,
+    "newCards": 0,
+    "productionWrites": false
+  },
+  "boundary": "Autorização de publicação aplica-se apenas aos literais/hashes e vínculos exatos documentados. Nenhuma aplicação pelo revisor."
+}

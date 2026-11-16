@@ -1,0 +1,582 @@
+{
+  "schema": "NQ_INDEPENDENT_PHYSIOLOGY_PATHOLOGY_1728_A1",
+  "role": "INDEPENDENT_REVIEWER_NOT_AUTHOR_OF_THIS_BATCH",
+  "reviewer": "/root/editorial_backlog_1728",
+  "date": "2026-11-15",
+  "sourcePackage": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-length-severe-author/author-batch-A17.1-fisiologia-patologia.json",
+  "sourcePackageRawSHA256": "9eb8ac935930df18eeead07d26a137a263506dd6f6af7f6f3d568b765b2f3630",
+  "normativeSources": [
+    "AGENTS.md",
+    "C:/Users/orlan/GitHub/base-verification/.agents/skills/revisar-nefroquest/SKILL.md",
+    "references/output-contract.md",
+    "references/verification-protocol.md",
+    "docs/editorial/NQ_KNOWLEDGE_MODEL_v1.md",
+    "docs/editorial/NQ_EDITORIAL_HANDBOOK_v1.md",
+    "docs/editorial/annex-c-nefrologia.md"
+  ],
+  "questions": [
+    {
+      "qid": "1867db90",
+      "question": {
+        "t": "Medula Renal — Vulnerabilidade à Hipóxia",
+        "qid": "1867db90",
+        "q": "Qual combinação ajuda a explicar a vulnerabilidade da medula renal externa à hipóxia durante redução da perfusão?",
+        "refs": [
+          "renal_oxygenation_liu_2017"
+        ],
+        "opts": [
+          "Oferta relativa de oxigênio limitada e demanda elevada pelo transporte tubular de sódio.",
+          "Oferta relativa de oxigênio elevada e consumo desprezível no ramo ascendente espesso.",
+          "Perfusão uniforme com o córtex e ausência de desvio de oxigênio entre os vasos.",
+          "Predomínio da glicólise anaeróbia no ramo ascendente espesso, com baixa dependência de oxigênio."
+        ],
+        "ans": 0,
+        "exp": "A medula tem fluxo relativo menor que o córtex, e a circulação em contracorrente permite desvio de oxigênio entre vasos. Ao mesmo tempo, o ramo ascendente espesso da alça de Henle consome energia para reabsorção ativa de sódio. A relação entre entrega limitada e demanda elevada reduz a reserva na medula externa. Isso não significa que as células não tenham mitocôndrias, nem que a distribuição de oxigênio seja uniforme. A magnitude da lesão depende do contexto e não é atribuída a uma única substância vasoativa.",
+        "diff": "easy",
+        "cat": "nefrologia_geral"
+      },
+      "questionRevision": "sha256:3e6a2c68ddb5fa4d3a72ef109bcee812e9ec1c6e226e6c5d655339fda5f03a6e",
+      "beforeRevision": "sha256:aeae9a792348f093753194d0ec71bf92b998bdf3795a004e0df20567e68a026b",
+      "currentRevision": "sha256:aeae9a792348f093753194d0ec71bf92b998bdf3795a004e0df20567e68a026b",
+      "currentEqualsBefore": true,
+      "classification": {
+        "op": "Explicar a vulnerabilidade da medula externa à hipóxia pelo balanço entre oferta limitada e demanda tubular elevada.",
+        "primaryCompetence": "Explicar fisiologia e reconhecer padrão histológico renal.",
+        "bloom": "Compreender",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "derivation": "Handbook §18.4: veredito de aprovação, VERIFICADA/NENHUMA, sem eliminatório ou recurso plausível não resolvido.",
+      "justification": "A oferta relativamente limitada e o alto consumo relacionado ao transporte de sódio explicam a baixa reserva da medula externa. A pergunta não atribui toda hipoperfusão a lesão obrigatória nem promete correção por uma intervenção isolada. A17.1 substituiu a ausência de metabolismo oxidativo por erro plausível de extrapolação metabólica entre segmentos.",
+      "problems": [
+        "Nenhum problema substantivo identificado na versão final. Distratores simples são compatíveis com dificuldade easy, sem negar fatos biológicos básicos como na versão rejeitada."
+      ],
+      "advogadoDoRecurso": [
+        {
+          "argument": "A redução de filtração também pode diminuir carga tubular e consumo, e maior fluxo pode aumentar a demanda.",
+          "decision": "Verdade; o item pergunta qual combinação ajuda a explicar a vulnerabilidade e a explicação preserva dependência do contexto. Não afirma demanda fixa ou que toda alteração de fluxo produza necessariamente o mesmo efeito sobre oxigenação."
+        },
+        {
+          "argument": "A medula interna pode usar glicólise; entãoDseria defensável?",
+          "decision": "Não no ramo ascendente espesso da medula externa, explicitamente indicado emD e sustentado como segmento de alta demanda relacionada ao transporte na fonte. Não se nega metabolismo glicolítico em outros segmentos."
+        }
+      ],
+      "optionReview": [
+        "A correta: entrega relativamente limitada coexiste com demanda elevada do transporte tubular, particularmente no ramo ascendente espesso.",
+        "B inverte a oferta e minimiza indevidamente o consumo do segmento de transporte ativo.",
+        "C transfere a boa perfusão cortical para distribuição medular uniforme e ignora o desvio de oxigênio em contracorrente.",
+        "D extrapola a maior capacidade glicolítica de outros segmentos para baixa dependência de oxigênio do ramo ascendente espesso; esse não é o mecanismo que explica sua vulnerabilidade."
+      ],
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "Mais de uma resposta defensável",
+          "triggered": false,
+          "rationale": "As quatro alternativas foram examinadas com o comando e os limites do caso; única melhor resposta."
+        },
+        {
+          "number": 2,
+          "criterion": "A referência não sustenta o gabarito",
+          "triggered": false,
+          "rationale": "Revisões originais específicas efetivamente abertas e lidas sustentam conceito e ressalvas."
+        },
+        {
+          "number": 3,
+          "criterion": "A questão mede outro OP",
+          "triggered": false,
+          "rationale": "Competência e conceito corretos principais preservados; classificação de dificuldade corrigida sem inventar tarefa nova."
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura premiada ou ensinada como aceitável",
+          "triggered": false,
+          "rationale": "Não se deriva tratamento ou etiologia exclusiva da fisiologia ou da morfologia isoladas."
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false,
+          "rationale": "Alternativas representam erros de distribuição/perfusão, metabolismo segmentar ou identificação de padrões; ausência de metabolismo oxidativo foi removida antes do gate."
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia sem consequência clínica",
+          "triggered": false,
+          "rationale": "Conceito fisiológico ou morfológico tem aplicação na compreensão de lesão renal, não trivia numérica de estudo."
+        },
+        {
+          "number": 7,
+          "criterion": "A explicação contradiz o gabarito",
+          "triggered": false,
+          "rationale": "Explicação alinhada ao conceito correto e às limitações da fonte."
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false,
+          "rationale": "Dados suficientes para explicação fisiológica ou reconhecimento de padrão."
+        },
+        {
+          "number": 9,
+          "criterion": "Dependência de protocolo local não informado",
+          "triggered": false,
+          "rationale": "Não há protocolo institucional oculto."
+        },
+        {
+          "number": 10,
+          "criterion": "Desatualização científica relevante",
+          "triggered": false,
+          "rationale": "Conceitos básicos permanecem vigentes; a revisão2017 não é usada para prescrever terapias históricas ou negar avanços clínicos."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "Alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "name": "Validade de conteúdo",
+            "value": 2
+          },
+          {
+            "name": "Validade de construto",
+            "value": 2
+          },
+          {
+            "name": "Qualidade do enunciado",
+            "value": 2
+          },
+          {
+            "name": "Alternativas",
+            "value": 2
+          },
+          {
+            "name": "Distratores",
+            "value": 1
+          },
+          {
+            "name": "Explicação",
+            "value": 2
+          },
+          {
+            "name": "Referências",
+            "value": 2
+          },
+          {
+            "name": "Ausência de cara de IA",
+            "value": 2
+          },
+          {
+            "name": "Valor pedagógico",
+            "value": 2
+          }
+        ],
+        "total": 19,
+        "band": "Excelente"
+      },
+      "decisionTree": "OP preservado → fontes verificadas → nenhum eliminatório/recurso pendente → variações úteis → score19/20 → aprovada.",
+      "lifeCycle": {
+        "before": "em_revisão",
+        "intendedAfterRootIntegration": "publicado",
+        "appliedByReviewer": false
+      },
+      "verifiedClaims": [
+        "Perfusão medular relativa menor que cortical; arquitetura permite desvio arteriovenoso de oxigênio.",
+        "Transporte ativo de sódio consome energia; alta demanda do ramo ascendente espesso contribui especialmente para hipóxia da medula externa.",
+        "Relação de fluxo, filtração e consumo é dinâmica, sem limiar ou terapia universal derivados da revisão."
+      ],
+      "sourceIDs": [
+        "LIU2017"
+      ],
+      "referenceBindings": [
+        {
+          "id": "renal_oxygenation_liu_2017",
+          "revision": "sha256:fffead1be1171f871cb49fb0cec16dd483cae9cda7581bded0575f42241b28d0"
+        }
+      ],
+      "identity": {
+        "preserveQid": true,
+        "noFSRSChanges": true,
+        "noHistoryTransfer": true
+      }
+    },
+    {
+      "qid": "c187c49d",
+      "question": {
+        "t": "Hipertensão Grave — Arteriolosclerose Hiperplásica",
+        "qid": "c187c49d",
+        "q": "Biópsia renal de paciente com hipertensão grave mostra espessamento arteriolar concêntrico por proliferação miointimal, com estreitamento do lúmen e aparência em casca de cebola. Como se denomina esse padrão?",
+        "refs": [
+          "malignant_htn_boulestreau_2024"
+        ],
+        "opts": [
+          "Arteriolosclerose hiperplásica.",
+          "Arteriolosclerose hialina.",
+          "Glomeruloesclerose nodular.",
+          "Vasculite granulomatosa."
+        ],
+        "ans": 0,
+        "exp": "O padrão concêntrico em casca de cebola corresponde à arteriolosclerose hiperplásica, que pode acompanhar lesão vascular da hipertensão grave. O estreitamento luminal contribui para isquemia; necrose fibrinoide pode coexistir. Hialinose é depósito de material hialino na parede, e não o mesmo padrão proliferativo. Glomeruloesclerose nodular e vasculite granulomatosa representam outros compartimentos ou processos. A morfologia não deve ser usada como prova exclusiva da causa, pois contextos microangiopáticos distintos podem produzir lesões semelhantes.",
+        "diff": "easy",
+        "cat": "drc"
+      },
+      "questionRevision": "sha256:e55a9732eb7ac342f01767371b1f09b35ba48f9321c5be01702f516f4c0fa01d",
+      "beforeRevision": "sha256:3004cea18d1edb8386720e2f4f5c65a553260c2677b879ab3d6545864a066b24",
+      "currentRevision": "sha256:3004cea18d1edb8386720e2f4f5c65a553260c2677b879ab3d6545864a066b24",
+      "currentEqualsBefore": true,
+      "classification": {
+        "op": "Reconhecer arteriolosclerose hiperplásica pelo padrão miointimal concêntrico emcasca decebola.",
+        "primaryCompetence": "Explicar fisiologia e reconhecer padrão histológico renal.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "verdict": "aprovada",
+      "legacy": "MANTER",
+      "confidence": "alta",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "derivation": "Handbook §18.4: veredito de aprovação, VERIFICADA/NENHUMA, sem eliminatório ou recurso plausível não resolvido.",
+      "justification": "O padrão miointimal concêntrico em casca de cebola corresponde ao padrão hiperplásico. Caso e explicação distinguem o reconhecimento morfológico da atribuição causal exclusiva e da classificação de emergência por pressão isolada.",
+      "problems": [
+        "Nenhum problema substantivo identificado na versão final. Distratores simples são compatíveis com dificuldade easy, sem negar fatos biológicos básicos como na versão rejeitada."
+      ],
+      "advogadoDoRecurso": [
+        {
+          "argument": "Casca de cebola também ocorre em outras microangiopatias e não prova que hipertensão foi a causa inicial.",
+          "decision": "Correto, e a explicação declara isso. A pergunta pede nome do padrão, não etiologia exclusiva, diagnóstico histológico de emergência ou tratamento automático."
+        },
+        {
+          "argument": "Necrose fibrinoide seria uma alternativa mais correta na hipertensão grave?",
+          "decision": "Pode coexistir e é morfologia distinta; o dado fornecido é proliferação miointimal concêntrica. Não há segunda correta nas quatro alternativas nem exigência de necrose para nomear esse padrão."
+        }
+      ],
+      "optionReview": [
+        "A correta: proliferação miointimal concêntrica com estreitamento em casca de cebola caracteriza o padrão hiperplásico.",
+        "B hialinose é depósito hialino na parede, diferente do padrão proliferativo concêntrico descrito.",
+        "C glomeruloesclerose nodular descreve lesão glomerular, não o padrão arteriolar dado.",
+        "D vasculite granulomatosa exigiria outro processo inflamatório/morfológico; a descrição fornecida é proliferativa concêntrica."
+      ],
+      "eliminatories": [
+        {
+          "number": 1,
+          "criterion": "Mais de uma resposta defensável",
+          "triggered": false,
+          "rationale": "As quatro alternativas foram examinadas com o comando e os limites do caso; única melhor resposta."
+        },
+        {
+          "number": 2,
+          "criterion": "A referência não sustenta o gabarito",
+          "triggered": false,
+          "rationale": "Revisões originais específicas efetivamente abertas e lidas sustentam conceito e ressalvas."
+        },
+        {
+          "number": 3,
+          "criterion": "A questão mede outro OP",
+          "triggered": false,
+          "rationale": "Competência e conceito corretos principais preservados; classificação de dificuldade corrigida sem inventar tarefa nova."
+        },
+        {
+          "number": 4,
+          "criterion": "Conduta insegura premiada ou ensinada como aceitável",
+          "triggered": false,
+          "rationale": "Não se deriva tratamento ou etiologia exclusiva da fisiologia ou da morfologia isoladas."
+        },
+        {
+          "number": 5,
+          "criterion": "Distrator absurdo",
+          "triggered": false,
+          "rationale": "Alternativas representam erros de distribuição/perfusão, metabolismo segmentar ou identificação de padrões; ausência de metabolismo oxidativo foi removida antes do gate."
+        },
+        {
+          "number": 6,
+          "criterion": "Trivia sem consequência clínica",
+          "triggered": false,
+          "rationale": "Conceito fisiológico ou morfológico tem aplicação na compreensão de lesão renal, não trivia numérica de estudo."
+        },
+        {
+          "number": 7,
+          "criterion": "A explicação contradiz o gabarito",
+          "triggered": false,
+          "rationale": "Explicação alinhada ao conceito correto e às limitações da fonte."
+        },
+        {
+          "number": 8,
+          "criterion": "Dado decisivo ausente",
+          "triggered": false,
+          "rationale": "Dados suficientes para explicação fisiológica ou reconhecimento de padrão."
+        },
+        {
+          "number": 9,
+          "criterion": "Dependência de protocolo local não informado",
+          "triggered": false,
+          "rationale": "Não há protocolo institucional oculto."
+        },
+        {
+          "number": 10,
+          "criterion": "Desatualização científica relevante",
+          "triggered": false,
+          "rationale": "Conceitos básicos permanecem vigentes; a revisão2017 não é usada para prescrever terapias históricas ou negar avanços clínicos."
+        }
+      ],
+      "score": {
+        "dimensions": [
+          {
+            "name": "Alinhamento ao OP",
+            "value": 2
+          },
+          {
+            "name": "Validade de conteúdo",
+            "value": 2
+          },
+          {
+            "name": "Validade de construto",
+            "value": 2
+          },
+          {
+            "name": "Qualidade do enunciado",
+            "value": 2
+          },
+          {
+            "name": "Alternativas",
+            "value": 2
+          },
+          {
+            "name": "Distratores",
+            "value": 1
+          },
+          {
+            "name": "Explicação",
+            "value": 2
+          },
+          {
+            "name": "Referências",
+            "value": 2
+          },
+          {
+            "name": "Ausência de cara de IA",
+            "value": 2
+          },
+          {
+            "name": "Valor pedagógico",
+            "value": 2
+          }
+        ],
+        "total": 19,
+        "band": "Excelente"
+      },
+      "decisionTree": "OP preservado → fontes verificadas → nenhum eliminatório/recurso pendente → variações úteis → score19/20 → aprovada.",
+      "lifeCycle": {
+        "before": "em_revisão",
+        "intendedAfterRootIntegration": "publicado",
+        "appliedByReviewer": false
+      },
+      "verifiedClaims": [
+        "Pequenas artérias/arteríolas podem apresentar proliferação miointimal e aparência em casca de cebola, com estreitamento e isquemia.",
+        "Necrose fibrinoide pode coexistir, mas é menos frequente no recorte do artigo.",
+        "Lesão vascular deve ser interpretada com clínica e diagnóstico diferencial, sem depender só de número pressórico."
+      ],
+      "sourceIDs": [
+        "BOULESTREAU2024"
+      ],
+      "referenceBindings": [
+        {
+          "id": "malignant_htn_boulestreau_2024",
+          "revision": "sha256:595544c4fcf89d82060f997fe2b1ec303437401db2c7fe558272033a92d7f5cb"
+        }
+      ],
+      "identity": {
+        "preserveQid": true,
+        "noFSRSChanges": true,
+        "noHistoryTransfer": true
+      }
+    }
+  ],
+  "cards": [
+    {
+      "id": "renal_oxygenation_liu_2017",
+      "card": {
+        "label": "Liu et al. — Oxigenação Renal e Doença Renal Crônica (2017)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5487476/",
+        "journal": "Front Physiol. 2017;8:385. DOI:10.3389/fphys.2017.00385",
+        "ano": 2017,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "icon": "🔬",
+        "impacto": "Compreender o equilíbrio entre oferta de oxigênio e demanda do transporte tubular.",
+        "resumo": "Mini-revisão dos determinantes de oxigenação renal. A medula recebe menor fluxo relativo que o córtex, e a arquitetura vascular permite desvio de oxigênio entre vasos em contracorrente. Na medula externa, o ramo ascendente espesso demanda energia para transporte ativo de sódio. A combinação reduz a reserva de oxigenação quando a oferta cai ou a demanda aumenta.",
+        "conclusao": "A vulnerabilidade medular depende da relação entre oferta e consumo, sem significar ausência de mitocôndrias ou distribuição uniforme de perfusão. A revisão não fornece um limiar terapêutico universal nem comprova benefício de tratar um marcador isolado.",
+        "curiosidade": ""
+      },
+      "revision": "sha256:fffead1be1171f871cb49fb0cec16dd483cae9cda7581bded0575f42241b28d0",
+      "beforeRevision": null,
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "review": "Doze campos conferidos no corpo integral da mini-revisão: autores/ano/DOI/PMID, oferta medular, contracorrente, demanda tubular e limites. Classificada honestamente como revisão, sem converter mecanismos em benefício de intervenção ou terapia vigente em2026.",
+      "duplicateReferenceCheck": "Pesquisa em refs.js e articles.js por DOI, PMCID/título/autores não encontrou outra identidade correspondente antes da integração."
+    },
+    {
+      "id": "malignant_htn_boulestreau_2024",
+      "card": {
+        "label": "Boulestreau et al. — Hipertensão Maligna como Doença Sistêmica (2024)",
+        "url": "https://doi.org/10.1016/j.jacc.2024.02.037",
+        "journal": "J Am Coll Cardiol. 2024;83(17):1688–1701. DOI:10.1016/j.jacc.2024.02.037",
+        "ano": 2024,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "icon": "🔬",
+        "impacto": "Relacionar lesão microvascular renal ao contexto de hipertensão grave.",
+        "resumo": "Revisão clínica da hipertensão maligna e de suas repercussões sistêmicas. No rim, descreve proliferação miointimal e aspecto concêntrico em casca de cebola de pequenas artérias e arteríolas, com estreitamento luminal e sinais de isquemia. Necrose fibrinoide pode coexistir, mas é menos frequente. Lesões vasculares precisam ser interpretadas com clínica e diagnóstico diferencial de microangiopatia.",
+        "conclusao": "O padrão histológico ajuda a caracterizar lesão vascular, sem definir sozinho sua causa. Emergência hipertensiva exige considerar dano de órgão e o contexto, e não apenas um número de pressão.",
+        "curiosidade": ""
+      },
+      "revision": "sha256:595544c4fcf89d82060f997fe2b1ec303437401db2c7fe558272033a92d7f5cb",
+      "beforeRevision": null,
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publication": "LIBERADA",
+      "review": "Doze campos conferidos na revisão publicada integral, com identidade corroborada no NLM. Descreve morfologia renal e contexto de dano de órgão, sem prescrição universal, etiologia exclusiva ou diagnóstico apenas pelo valor da pressão.",
+      "duplicateReferenceCheck": "Pesquisa em refs.js e articles.js por DOI, PMCID/título/autores não encontrou outra identidade correspondente antes da integração."
+    }
+  ],
+  "sources": [
+    {
+      "id": "LIU2017",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5487476/",
+      "doi": "10.3389/fphys.2017.00385",
+      "pmid": "28701959",
+      "access": "Corpo integral da mini-revisão pessoalmente aberto no PMC e XML próprio HTTP200.",
+      "artifact": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/independent-physiology/liu2017.xml",
+      "locators": [
+        "Tubular transport",
+        "Renal oxygenation, parágrafos de perfusão medular/desvio/demanda do ramo ascendente espesso",
+        "Relação de fluxo/filtração/carga tubular e demanda de oxigênio"
+      ],
+      "limits": "Revisão fisiológica, não experimento único nem evidência de terapia clínica universal. Alegações históricas de tratamento no abstract2017 não foram transportadas para o card."
+    },
+    {
+      "id": "BOULESTREAU2024",
+      "url": "https://iris.unibs.it/retrieve/c1763ee2-b358-4cf8-9226-aa83a22159bc/malignant%20HT%20JACC%202024.pdf",
+      "doi": "10.1016/j.jacc.2024.02.037",
+      "pmid": "38658108",
+      "access": "Publicado integral de14p pessoalmente aberto via ferramenta web; seções pertinentes efetivamente lidas, identidade confirmada no NLM. Requisição independente direta retornou403; arquivo local é resposta de erro e NÃO evidência de PDF clínico.",
+      "locators": [
+        "JACC2024;83(17):1688–1701",
+        "Pathophysiology;Fig1 renal biopsy",
+        "Kidneys, página1696/PDF9:myointimalproliferation,onionskin,fibrinoidlesscommon",
+        "Workup/management: contexto de órgão-alvo e diagnóstico diferencial"
+      ],
+      "limits": "A leitura clínica usou o corpo original efetivamente aberto pela rota web, não o arquivo403. Revisão não fornece prova etiológica exclusiva do padrão nem substitui algoritmo de tratamento individual."
+    }
+  ],
+  "primaryAccess": [
+    {
+      "file": "liu2017.xml",
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=5487476",
+      "status": 200,
+      "bytes": 146569,
+      "sha256": "7580047ea948cec9a9d2c6940a724384024510f9ddc9d95608ceedd347195f61"
+    },
+    {
+      "file": "boulestreau2024.pdf",
+      "url": "https://iris.unibs.it/retrieve/c1763ee2-b358-4cf8-9226-aa83a22159bc/malignant%20HT%20JACC%202024.pdf",
+      "status": 403,
+      "bytes": 5797,
+      "sha256": "882b63e01b0b02666dc9a7c0a61a2a7aa44009762bc1eb9a4ff9a51df9763f56"
+    }
+  ],
+  "fourDimensionChecks": [
+    {
+      "pair": [
+        "1867db90",
+        "dc0f89b1"
+      ],
+      "sameDecision": false,
+      "sameCaseDataStructure": false,
+      "sameTargetProfile": true,
+      "sameLanguage": true,
+      "disposition": "Variação útil: fisiologia intrarrenal oferta/demanda medular versus efeito hemodinâmico da ventilação/PEEP sobre retorno venoso e congestão."
+    },
+    {
+      "pair": [
+        "c187c49d",
+        "f40c533c"
+      ],
+      "sameDecision": false,
+      "sameCaseDataStructure": false,
+      "sameTargetProfile": true,
+      "sameLanguage": true,
+      "disposition": "Variação útil: nomear padrão proliferativo concêntrico versus reconhecer necrose fibrinoide como lesão vascular aguda. Possível coexistência não torna os dois OPs idênticos."
+    },
+    {
+      "pair": [
+        "c187c49d",
+        "09748d98"
+      ],
+      "sameDecision": false,
+      "sameCaseDataStructure": false,
+      "sameTargetProfile": true,
+      "sameLanguage": true,
+      "disposition": "Variação útil: padrão já descrito na biópsia para nomenclatura versus inferir lesões vasculares esperadas em síndrome de emergência hipertensiva multiorgânica."
+    },
+    {
+      "pair": [
+        "c187c49d",
+        "bcc592b1"
+      ],
+      "sameDecision": false,
+      "sameCaseDataStructure": false,
+      "sameTargetProfile": true,
+      "sameLanguage": true,
+      "disposition": "Variação útil: morfologia hiperplásica versus interpretação de arterionefroesclerose/hialinose crônica e seus limites causais."
+    }
+  ],
+  "consumerReview": {
+    "newCards": true,
+    "externalConsumersBeforeIntegration": [],
+    "consumersInThisBatch": [
+      {
+        "qid": "1867db90",
+        "references": [
+          {
+            "id": "renal_oxygenation_liu_2017",
+            "revision": "sha256:fffead1be1171f871cb49fb0cec16dd483cae9cda7581bded0575f42241b28d0"
+          }
+        ]
+      },
+      {
+        "qid": "c187c49d",
+        "references": [
+          {
+            "id": "malignant_htn_boulestreau_2024",
+            "revision": "sha256:595544c4fcf89d82060f997fe2b1ec303437401db2c7fe558272033a92d7f5cb"
+          }
+        ]
+      }
+    ],
+    "neighborComparisonIsNotFullQuestionApproval": true
+  },
+  "scope": {
+    "fullQuestionGates": 2,
+    "fullCardGates": 2,
+    "productionWrites": 0,
+    "ledgerWrites": 0
+  },
+  "unresolvedDecisivePending": [],
+  "implementation": "Aplicar somente os dois AFTERs e dois cards12campos exatos, após conferir BEFORE. Não herdar gate deA17anterior; Dfoireparado antes da aprovação. Não aprova nem modifica os vizinhos ou dados de usuário."
+}

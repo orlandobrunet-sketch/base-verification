@@ -1,0 +1,86 @@
+{
+  "schema": "NQ_INDEPENDENT_TECHNICAL_INTEGRATION_REVIEW_v1",
+  "date": "2026-11-16T03:16:41.500Z",
+  "baseCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "role": "TECHNICAL_REVIEW_ONLY_NOT_MEDICAL_APPROVAL",
+  "snapshot": {
+    "data/topics.js": "4a880894123a83a174544a93b51dff04ae1e99c2c94f7fa21b17f46d854bed05",
+    "data/refs.js": "a7c2694ce44be7a6393970fdf54b0df3e5aa038682f22b096d4a998fd565eaa9",
+    "data/articles.js": "6537e13be03b81feafe661f52fee6d56058bc15a55c702d8b18d7e319b0fcdf3",
+    "data/question-source-positions.js": "effb5fca98b30c1aa1704e026649f02e419e609b42fb8d815f69007a585b70c3",
+    "data/question-replacements.json": "2bbb0697a83cd28126d4ec975a6a4b6c290d0f09fe137d5792641665c14b4853",
+    "data/question-revision-manifest.js": "938ef3ed23def4e3fb7e4806c4a0405eb7facdb7c48d8aa58cca076f9f950fca",
+    "data/question-revision-history.js": "a48faeaac5995763a39861bcc68c888c7424c722c7e97f4164ebc04c6dda76fe",
+    "tools/build-question-revision-manifest.cjs": "4fc501def630d21ba4422cbe9876a75bbc899522cae9a2a02a7219ece0d36176",
+    "js/game.js": "e85628eed61bd7353f6403f7c77641573ca4e71ec0fa5096891c70810343954b",
+    "js/answer-presentation.js": "c833ef04b1ae9c3b1f3b4aeac7f8c2b94344535d622ef258d93dc38fb63d7a0a",
+    "js/question-revisions.js": "4cdf46b51310ea9aad5851f8b7ae8a5c793a9715648b1a73f2325e07883e01a9",
+    "jogar/index.html": "39a22924ed53e67320b6211074923f8d141b5329e00c289be8acb0881f96b0eb",
+    "sw.js": "9edab20a783d0f2f356a6c1a987df54ffab319585ef47a08bc2e0d7d95880be0",
+    "version.json": "64cdd2189debc6b5db0d470bc6b9cd5b3d2adf8c6c1f6c7c23c96c3362fc4276",
+    "tests/specs/136-question-revisions.spec.ts": "f737352c5d56ba556f94aa2b5b2e875e501dd8899f2e49b3371d98149dc7f2a1",
+    "docs/editorial/reviews/2026-11-15-length-references-1728/state/test-count-contracts.json": "3178de9be638e080f8663aefdd409b1c0278053fcfb50746f47573002d5178bf",
+    "docs/editorial/reviews/2026-11-15-length-references-1728/state/clinical-approval-ledger.json": "bfb796ae4fb8a199d2e2cdd8ece88a836781280ebfe8953e9c66c07635fbb287"
+  },
+  "snapshotStableDuringRead": true,
+  "filesChangedDuringRead": [],
+  "counts": {
+    "questions": 727,
+    "references": 405,
+    "history": 496,
+    "currentProfiles": 2908,
+    "historicalProfiles": 1984,
+    "replacements": 17,
+    "sourcePositions": 743,
+    "sourcePositionBase": 741,
+    "baseReferences": 373,
+    "baseHistory": 181,
+    "ledgerQuestions": 166
+  },
+  "proofs": {
+    "publishedHistoryPrefix": "sha256:b726b3d1b54ccdd3cf75f5b8b6a9fde4f4c0c0bd90f6135c603ab4be6b6b9ed4",
+    "publishedSourcePositionPrefixMatches": true,
+    "restored353ReferenceCount": 353,
+    "restored353ReferenceSHA256": "c35ba55bca3cec0ca1c51f2efffaee27ad86e8eaae1fa894030a38035ef99e56"
+  },
+  "issues": [
+    {
+      "message": "Changed current question has no matching exact ledger entry",
+      "details": "d4393bc2"
+    },
+    {
+      "message": "Changed current question has no matching exact ledger entry",
+      "details": "7759b493"
+    },
+    {
+      "message": "Changed current question has no matching exact ledger entry",
+      "details": "3ea72484"
+    },
+    {
+      "message": "Changed current question has no matching exact ledger entry",
+      "details": "3e9e6915"
+    },
+    {
+      "message": "Changed current full card has no matching exact ledger entry",
+      "details": "kdigo_diabetes_in_ckd_guideline"
+    },
+    {
+      "message": "Changed current full card has no matching exact ledger entry",
+      "details": "sacubitril_valsartan_hf"
+    },
+    {
+      "message": "Changed current full card has no matching exact ledger entry",
+      "details": "sacubitril_valsartan_label_fda_2021"
+    },
+    {
+      "message": "Changed current full card has no matching exact ledger entry",
+      "details": "metformin_mala_minireview_2024"
+    }
+  ],
+  "scopeLimits": [
+    "Reads exact current integration; source files can change after these pins.",
+    "No independent medical approval of my authored text. Exact ledger hash checks are only integrity checks.",
+    "No browser E2E, authenticated/cloud synchronization, payment or real installation lifecycle in this report.",
+    "Catalog JavaScript/favorites placeholders are assigned to the reference agent; no duplicate ownership."
+  ]
+}

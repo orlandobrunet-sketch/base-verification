@@ -4,6 +4,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
+const libraryCatalog = require('../../js/library-catalog.js');
 const source = fs.readFileSync(path.join(__dirname, '../../js/game.js'), 'utf8').replace(/\r\n/g, '\n');
 function section(start, end) {
   const a = source.indexOf(start), b = source.indexOf(end, a + start.length);
@@ -42,7 +43,7 @@ function fixture() {
   const body = new Node('body'), main = new Node('mainApp', body);
   class Observer { observe() { this.connected = true; } disconnect() { this.connected = false; } }
   const progress = () => ({domain: pilot ? 'pilot' : 'normal', journeyId: pilot ? journeyId : null, owner, generation});
-  const ctx = {console, Object, Math, WeakMap, WeakSet, Set,
+  const ctx = {console, Object, Math, WeakMap, WeakSet, Set, NQLibraryCatalog: libraryCatalog, nefroArticles: [],
     _progressEpoch: 1, _progressSandboxMode: null, _pilotAnswerTransaction: null,
     state: {gameStarted: true, gameOver: false, gameCompleted: false, correctTotal: 0},
     _currentSaveOwner: () => owner, isCharacterPilot: () => pilot,
@@ -54,7 +55,7 @@ function fixture() {
       querySelectorAll: () => [...nodes.values()].filter(node => node.dialog && node.isConnected)},
     ...events, setTimeout(fn, delay) { const timer = ++id; timers.set(timer, {fn, at: now + delay}); return timer; },
     clearTimeout: timer => timers.delete(timer),
-    playSound() {}, nqDialogo() {}, claimChestReward() { claims++; },
+    playSound() {}, nqDialogo() {}, _toast() {}, claimChestReward() { claims++; },
     renderVictoryResults() {
       if (!ctx.state.gameCompleted || ctx.state.correctTotal < 100 || nodes.has('victoryModal')) return false;
       presentations++; const result = new Node('victoryModal', body); result.dialog = true; return true;
@@ -302,4 +303,30 @@ test('an external control with a native-looking action does not become campaign 
   const f = fixture(), control = f.control(); control.dataset.action = 'showForjaModal';
   Object.assign(f.ctx.state, {gameCompleted:true,correctTotal:100}); control.focus();
   f.ctx.showGameCompletionModal(); assert.equal(f.presentations(), 0);
+});
+
+for (const timing of ['before-popup', 'before-click', 'during-animation']) test('missing library catalog '+timing+' suspends the earned chest and recovers its same receipt once', () => {
+  const f=fixture(); f.queue(0);
+  if(timing==='before-popup') f.ctx.NQLibraryCatalog=undefined;
+  f.advance(0);
+  if(timing==='before-click'){f.ctx.NQLibraryCatalog=undefined;f.click();}
+  if(timing==='during-animation'){f.click();f.ctx.NQLibraryCatalog=undefined;f.advance(1150);}
+  assert.equal(f.popup(),undefined);assert.equal(f.claims(),0);assert.equal(f.eval('_pendingChestRewards.length'),1);assert.equal(f.ctx.hasPendingChestReward(),false);
+  const receipt=f.eval('_pendingChestRewards[0].receipt');
+  f.ctx.NQLibraryCatalog=libraryCatalog;f.main.focus();f.flush();assert.ok(f.popup());assert.equal(f.eval('_pendingChestRewards[0].receipt'),receipt);
+  f.click();f.advance(1150);f.flush();assert.equal(f.claims(),1);assert.equal(f.eval('_pendingChestRewards.length'),0);assert.equal(f.popup(),undefined);
+});
+
+test('missing library does not trap victory and its retained final chest can be recovered without repeating results',()=>{
+  const f=fixture();Object.assign(f.ctx.state,{gameCompleted:true,correctTotal:100});f.queue(0);f.ctx.NQLibraryCatalog=undefined;f.advance(0);
+  f.ctx.showGameCompletionModal();assert.equal(f.presentations(),1);assert.equal(f.claims(),0);assert.equal(f.eval('_pendingChestRewards.length'),1);
+  f.nodes.get('victoryModal').remove();f.ctx.NQLibraryCatalog=libraryCatalog;f.main.focus();f.flush();assert.ok(f.popup());
+  f.click();f.advance(1150);f.flush();assert.equal(f.claims(),1);assert.equal(f.presentations(),1);assert.equal(f.eval('_pendingChestRewards.length'),0);
+});
+
+test('a fast earned chest waits for lazy article execution without ReferenceError and keeps its own receipt',()=>{
+  const f=fixture();delete f.ctx.nefroArticles;f.queue(0);f.advance(0);
+  assert.equal(f.popup(),undefined);assert.equal(f.claims(),0);assert.equal(f.eval('_pendingChestRewards.length'),1);
+  const receipt=f.eval('_pendingChestRewards[0].receipt');f.ctx.nefroArticles=[];f.main.focus();f.flush();assert.ok(f.popup());assert.equal(f.eval('_pendingChestRewards[0].receipt'),receipt);
+  f.click();f.advance(1150);assert.equal(f.claims(),1);assert.equal(f.eval('_pendingChestRewards.length'),0);
 });

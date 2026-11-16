@@ -1,0 +1,117 @@
+{
+  "schema": "NQ_CACHE_RELEASE_IMPLEMENTATION_RECEIPT_R1",
+  "date": "2026-11-16T03:18:02.085Z",
+  "role": "TECHNICAL_AUTHOR_NOT_MEDICAL_APPROVAL",
+  "authorizedScope": "Root authorized confirmed cache defect, lazy refs/articles loaders, offline HTML, release generator and meaningful regression tests. No data/*.js medical edits by this agent.",
+  "files": {
+    "sw.js": "9edab20a783d0f2f356a6c1a987df54ffab319585ef47a08bc2e0d7d95880be0",
+    "jogar/index.html": "39a22924ed53e67320b6211074923f8d141b5329e00c289be8acb0881f96b0eb",
+    "offline.html": "1e896289749b268e4a4b4f8d42392c6197858657deacdebf6e938849966b5d31",
+    "js/game.js": "e85628eed61bd7353f6403f7c77641573ca4e71ec0fa5096891c70810343954b",
+    "js/utils.js": "c05b263098459e0458567ff4deec6d3e9f00f57199cf5ce290ca08de56366403",
+    "scripts/bump-release.mjs": "4405efc72eabc22232c7d9eb111f56b6874f02b414653a0c870359938be456eb",
+    "tests/service-worker/data-release.test.mjs": "86db24b74a10dff0f370c4cf0d0650bbdc264a705ef040e7f7ee0cf6afed2a07",
+    "tests/service-worker/data-release-bump.test.mjs": "f5906eaf353949d795741c8ebb868d9c6b0f07cee6b963ae3dcba78b2b5f062f",
+    "tests/service-worker/fixtures/sw-17.27.js": "f39cbbfdc5fc6500f055959c3bd844320a99cacdf24bb77fdc44021a7354f38c",
+    "tests/specs/119-carregamento-referencias.spec.ts": "1da4f13133212866285bdea3c89dddf53f797a6444a5fcf200340efd14dfe002",
+    "tests/specs/194-chamber-source-recovery.spec.ts": "f887d772550792239e3f84aba0d7c391b83976d69e9e08dcb9e3a8790d2fa85f",
+    "tests/specs/196-weak-point-plan.spec.ts": "de02e4122f561862dd2dd366c9382073a4d1e805f147cdd636632645ac7d41ee",
+    "tests/specs/224-portal-loading-intent.spec.ts": "9ff269ec9deb75086dce3d18c8923da2aab28bd65e4ffc9ba0ae9db9f48823a6",
+    "tests/specs/56-grimorio-recuperacao.spec.ts": "5943677468542926f5348a49abc1503563681ee51b537e0a2dd72255d29fccda",
+    "tests/specs/57-grimorio-legado-carga.spec.ts": "468c957eddb18f14ed15e6b491fb40dd515522de37e621d9c49c9bf408a85df1"
+  },
+  "release": {
+    "version": "17.28",
+    "displayVersion": "2.0"
+  },
+  "beforeProof": {
+    "file": "technical-review-sw-proof.json",
+    "rawSHA256": "cfe98631220f655b0fee2d0fced291a7751c10c0f90903fcd94942547a8d4733",
+    "publishedSWFixtureSHA256": "f39cbbfdc5fc6500f055959c3bd844320a99cacdf24bb77fdc44021a7354f38c"
+  },
+  "behavior": [
+    "The old17.27 worker cannot satisfy new ?release URLs from its unversioned/v-canonical cache, so first new-page data loads reach the network.",
+    "The current worker canonicalizes data release URLs, precaches identical versioned requests and serves approved cached data offline.",
+    "A newer data release bypasses an older known canonical asset; no automatic active-session reload was added.",
+    "The bump generator updates changed data consumers and their loader JavaScript busters; unchanged data retains prior busters. Regenerated manifest release metadata receives its own new URL.",
+    "The check mode rejects stale changed-asset URLs even when a SW map was synchronized to those stale URLs."
+  ],
+  "tests": {
+    "serviceWorker": {
+      "total": 35,
+      "passed": 35,
+      "failed": 0
+    },
+    "targetedAnswerCatalog": {
+      "total": 159,
+      "passed": 159,
+      "failed": 0
+    },
+    "releaseCheck": {
+      "command": "node scripts/bump-release.mjs --check --base HEAD",
+      "exitCode": 0
+    },
+    "syntax": [
+      {
+        "file": "js/game.js",
+        "exitCode": 0
+      },
+      {
+        "file": "js/utils.js",
+        "exitCode": 0
+      },
+      {
+        "file": "sw.js",
+        "exitCode": 0
+      },
+      {
+        "file": "scripts/bump-release.mjs",
+        "exitCode": 0
+      }
+    ],
+    "diffCheck": {
+      "exitCode": 0
+    },
+    "logs": {
+      "cache-service-worker-final.log": "e80e4fb36e994f87b9f0664eccb654dbc71e0979480dda845385a94ff6f18ee9",
+      "cache-targeted-unit-final.log": "818d5e4c89bf93c572e6c0738c6c3c559ea0121291bdf17ddff8be8529f44d9e",
+      "cache-targeted-unit-recheck.log": "0203861179db83748995673a8d484598f6762c87d9ae1bc896e55b17a569854f"
+    }
+  },
+  "earlierFailures": "The initial broader unit run found7 real stale test-fixture assumptions (5530current equality and817reference-only ambiguity). Root repaired them with stronger archival checks, not relaxed assertions; recheck now159/159. The original failed log remains preserved.",
+  "technicalIntegrity": {
+    "report": "technical-integration-review-R2.json",
+    "rawSHA256": "3ac3b1f588877f13cd67874125f62e12e4b236da881d7b5b5f1e4fbb2085d6c4",
+    "published181HistoryPrefix": "sha256:b726b3d1b54ccdd3cf75f5b8b6a9fde4f4c0c0bd90f6135c603ab4be6b6b9ed4",
+    "sourcePositionPrefix741Unchanged": true,
+    "restored353ReferenceIDs": "c35ba55bca3cec0ca1c51f2efffaee27ad86e8eaae1fa894030a38035ef99e56",
+    "snapshotCounts": {
+      "questions": 727,
+      "references": 405,
+      "history": 496,
+      "currentProfiles": 2908,
+      "historicalProfiles": 1984
+    },
+    "limitation": "The docs ledger copy still had166question entries during R2 while ART gate ledger had newly approved A18; root notified to refresh the copied proof before final packaging. Integrity of manifests/history/profile digests was separately checked."
+  },
+  "guardFindings": [
+    {
+      "proof": "technical-transport-independence-proof.json",
+      "issue": "Two differently named receipts reused one identical frozen source gate and were accepted.",
+      "owner": "reference_duplicates_1728",
+      "status": "Reported for repair; no change by this agent."
+    },
+    {
+      "proof": "technical-historical-rollback-proof.json",
+      "issue": "A change from trusted-base B to older archive A bypassed full-card review because comparison used only archived A.",
+      "owner": "reference_duplicates_1728",
+      "status": "Reported for repair; no change by this agent."
+    }
+  ],
+  "limits": [
+    "Root/reference-agent will re-pin shared JS after later fail-closed work; these hashes bind this handoff only.",
+    "Updated browser interception patterns preserve assertions, but the six affected browser suites have not been rerun by this agent while medical data is still being integrated.",
+    "Deterministic worker and loader tests use the real worker/native function slices with Cache/DOM IO adapters; they are not a full browser installation lifecycle test.",
+    "Final full suite, deployment and production verification remain with root."
+  ]
+}

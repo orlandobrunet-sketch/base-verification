@@ -1,0 +1,91 @@
+{
+  "schema": "NQ_TECHNICAL_METADATA_ONLY_BINDING_RECEIPT_IKMG_A1",
+  "role": "TECHNICAL_TRANSPORT_NOT_NEW_MEDICAL_REVIEW",
+  "date": "2026-11-15",
+  "issuer": "/root/editorial_backlog_1728",
+  "referenceId": "ikmg_mgrs_consensus_2019",
+  "beforeReferenceRevision": "sha256:e9fb149473de0f1a1c1df1bf7e6e7393e2bf2d74cc263eb76f2a23b6f677426a",
+  "afterReferenceRevision": "sha256:2dc7e8fa00da0a032ffa0e5e591b0cb61d67bc8331c42443b198f50013b8d5bd",
+  "changedFields": [
+    "badge",
+    "tipo"
+  ],
+  "changes": [
+    {
+      "field": "badge",
+      "before": "GUIDELINE",
+      "after": "CONSENSO"
+    },
+    {
+      "field": "tipo",
+      "before": "Diretriz",
+      "after": "Consenso de especialistas"
+    }
+  ],
+  "unchangedFields": [
+    "label",
+    "url",
+    "journal",
+    "ano",
+    "badgeColor",
+    "impacto",
+    "icon",
+    "resumo",
+    "conclusao",
+    "curiosidade"
+  ],
+  "clinicalBodyChanged": false,
+  "question": {
+    "qid": "2be4ea1f",
+    "literal": {
+      "t": "Amiloidose Renal — Confirmação e Tipagem",
+      "qid": "2be4ea1f",
+      "q": "Paciente com síndrome nefrótica tem depósitos glomerulares que coram pelo vermelho Congo e exibem birrefringência verde-maçã sob luz polarizada. Qual é o próximo princípio diagnóstico?",
+      "refs": [
+        "renal_amyloidosis_diagnosis_2022",
+        "ikmg_mgrs_consensus_2019"
+      ],
+      "opts": [
+        "Tipar a proteína amiloide, recorrendo à proteômica se necessário.",
+        "Definir o tipo cadeia leve apenas pela positividade do vermelho Congo.",
+        "Definir o tipo amiloide A pela intensidade da birrefringência verde.",
+        "Usar um pico monoclonal concomitante para atribuir diretamente o tipo."
+      ],
+      "ans": 0,
+      "exp": "É necessário identificar a proteína precursora do amiloide. Vermelho Congo e birrefringência verde-maçã confirmam a natureza do depósito, mas não distinguem amiloidose por cadeia leve de outras formas. Imunofluorescência ou imuno-histoquímica validadas podem tipar a proteína; microdissecção a laser com espectrometria de massa é referência quando o resultado é indeterminado ou discordante. Um componente monoclonal concomitante, sozinho, não prova que o amiloide deriva dele. Essa distinção muda o tratamento e evita terapia dirigida ao clone em uma amiloidose de outra origem.",
+      "diff": "medium",
+      "cat": "glomerular"
+    },
+    "revision": "sha256:72d24d858347b64d37c56513cd8aa5f448b4b246426f2a08c09dbe068f1f0a51",
+    "priorGate": {
+      "verdict": "aprovada",
+      "evidence": "VERIFICADA",
+      "pending": "NENHUMA",
+      "publicationAuthorization": "LIBERADA"
+    },
+    "priorIndependentReport": "ux-1728-reference-duplicates/independent-A2-review.json",
+    "originalClinicalGatePreserved": true,
+    "newClinicalGate": false,
+    "newAuthoredText": false
+  },
+  "fullCardGateAfter": {
+    "report": "C:/Users/orlan/.codex/visualizations/2026/11/03/01a19f2d-0745-73d0-8277-eb5569ee888b/ux-1728-editorial-backlog/independent-hematology/independent-hematology-review.json",
+    "reportRawSHA256": "32552dae0c6a83b0a10cfc983f8b7ac1e850f815c5411e86114e6b8e6a968001",
+    "revision": "sha256:2dc7e8fa00da0a032ffa0e5e591b0cb61d67bc8331c42443b198f50013b8d5bd"
+  },
+  "technicalDecision": {
+    "bindingTransportAuthorized": true,
+    "reason": "A questão coincide byte a byte com a versão previamente liberada. Os dez campos não alterados do card, inclusive corpo clínico e URL, são idênticos. Mudaram somente tipo e badge para o desenho real, e o card integral novo tem receipt formal próprio.",
+    "scope": "Transportar apenas o binding de2be4ea1f do carde9fb para2dc7. Nenhum outro card ou campo da questão muda.",
+    "doesNotIncreaseFullQuestionReviewCount": true,
+    "doesNotCreateMedicalVerdict": true
+  },
+  "otherConsumersNotGrantedClinicalGate": [
+    "644cb809",
+    "048435a5"
+  ],
+  "noProductionWrites": true,
+  "noLedgerWrites": true,
+  "noFSRSChanges": true,
+  "noHistoryTransfer": true
+}

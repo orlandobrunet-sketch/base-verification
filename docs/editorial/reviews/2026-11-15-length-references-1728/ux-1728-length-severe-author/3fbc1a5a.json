@@ -1,0 +1,392 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v1",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "3fbc1a5a",
+  "family": "A1-interpretacao-e-seguranca",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Imlifidase — Clivagem de IgG e Rebote",
+    "qid": "3fbc1a5a",
+    "q": "Candidato altamente sensibilizado recebe oferta de rim de doador falecido contra o qual o crossmatch é positivo. A imlifidase converte rapidamente o teste em negativo, mas a equipe mantém imunossupressão padrão e vigilância para rejeição mediada por anticorpos. Qual mecanismo explica tanto o efeito rápido quanto seu caráter transitório?",
+    "opts": [
+      "Clivagem de todas as subclasses de IgG circulante, inclusive DSA, sem eliminar as células que continuam produzindo anticorpos",
+      "Depleção irreversível de plasmócitos por bloqueio de CD20",
+      "Inibição permanente de C5 e de toda produção de complemento",
+      "Bloqueio seletivo de IgM, preservando IgG anti-HLA"
+    ],
+    "ans": 0,
+    "exp": "A imlifidase é uma protease derivada de Streptococcus pyogenes que cliva as cadeias pesadas de todas as subclasses de IgG humana. Isso reduz rapidamente DSA e pode converter o crossmatch, abrindo uma janela para o transplante. Como não elimina de forma duradoura linfócitos B ou plasmócitos produtores, a IgG pode reaparecer; por isso é necessário confirmar a conversão antes do implante, manter o esquema imunossupressor e monitorar rebote e rejeição mediada por anticorpos. CD20, C5 e IgM correspondem a mecanismos diferentes.",
+    "diff": "hard",
+    "cat": "transplante",
+    "refs": [
+      "ema_imlifidase_2020"
+    ]
+  },
+  "originalSHA256": "sha256:c700ae4cda16d29760d02ebd91951c3be72e10919d0c16a67bc54b7195f32f6e",
+  "originalRefs": [
+    {
+      "id": "ema_imlifidase_2020",
+      "original": {
+        "label": "EMA — Idefirix (Imlifidase) EPAR",
+        "url": "https://www.ema.europa.eu/en/medicines/human/EPAR/idefirix",
+        "journal": "European Medicines Agency",
+        "ano": 2020,
+        "tipo": "Avaliação Regulatória",
+        "badge": "REGULATORY",
+        "badgeColor": "#64748b",
+        "impacto": "Mecanismo, seleção de pacientes e limites da dessensibilização com imlifidase",
+        "icon": "📋",
+        "resumo": "Avaliação regulatória da imlifidase para adultos altamente sensibilizados com crossmatch positivo contra um doador falecido disponível e baixa probabilidade de transplante pelos programas de alocação. A enzima derivada de Streptococcus pyogenes cliva as IgG, incluindo anticorpos doador-específicos, e pode converter rapidamente o crossmatch. A autorização é condicional, baseada em dados limitados, e o paciente continua necessitando imunossupressão padrão.",
+        "conclusao": "A imlifidase cria uma janela rápida e transitória ao remover IgG circulante; não elimina sua fonte celular, exige confirmação de crossmatch negativo antes do implante e não dispensa prevenção e vigilância de rejeição.",
+        "curiosidade": "A mesma especificidade bacteriana que ajuda Streptococcus pyogenes a escapar da imunidade foi transformada em ferramenta terapêutica para clivar todas as subclasses de IgG humana."
+      },
+      "originalSHA256": "sha256:335f6c7594bf5ff2206407f9d5b3a870dc82fc67f9353b8311019a3dea02184e"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Relacionar clivagem de IgG pela imlifidase à janela transitória e persistência da produção de anticorpos.",
+    "primaryCompetence": "Mecanismo terapêutico aplicado à dessensibilização do transplante.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "hard",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Alternativa correta é a única que explica o mecanismo com ressalva; os distratores usam permanência/irreversibilidade como pista.",
+      "MENOR — Bula atual é suficiente para o mecanismo; o documento UK30/07/2026 sustenta o mecanismo; não foi apresentado como SmPC vigente da UniãoEuropeia."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "múltiplas respostas defensáveis",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência não sustenta o gabarito",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio do OP",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura correta ou aceitável",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator absurdo",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais/AI-tells",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "OP e conceito correto preservados; reescrita de forma e correção das referências/metadados antes de nova aprovação."
+  },
+  "sources": [
+    {
+      "id": "imlifidase",
+      "url": "https://www.medicines.org.uk/emc/product/13155/smpc",
+      "access": "corpo integral da bula profissional do fabricante publicada no emc",
+      "date": "2026-11-15",
+      "locators": [
+        "§4.1–4.2, linhas249–263 / indicação, crossmatch e imunossupressão padrão",
+        "§5.1, linhas418–426 / protease, todas subclasses IgG, DSA e retorno1–2semanas",
+        "§7–10, linhas518–537: titular Hansa Biopharma AB, PLGB46323/0002; revisão30/07/2026"
+      ],
+      "verified": [
+        "cliva IgG, não outras imunoglobulinas",
+        "reduz DSA e converte crossmatch rapidamente",
+        "não elimina necessidade de imunossupressão padrão",
+        "retorno endógeno da IgG em1–2semanas",
+        "confirmar conversão antes do implante"
+      ],
+      "limitations": [
+        "É bula UK publicada pelo titular, não documento EMA nem bulaFDA. Página EMA abriu e confirma indicação, imunossupressão e autorização condicional; atualização16/10/2026, titularUE SERBSA. PDFs EMA retornaram429. Nenhuma equivalência automática de vigência UK/UE foi presumida.",
+        "Taxonomia BULA/SmPC autorizada pontualmente pelo parent em15/11/2026; não equivale a liberação clínica."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Todas subclassesIgG e DSA, nãoIgM",
+      "source": "imlifidase",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Retorno de IgG e manutenção da imunossupressão",
+      "source": "imlifidase",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Crossmatch antes do implante e população",
+      "source": "imlifidase",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Imlifidase — Clivagem de IgG e Rebote",
+    "qid": "3fbc1a5a",
+    "q": "Candidato altamente sensibilizado recebe oferta de rim de doador falecido contra o qual o crossmatch é positivo. A imlifidase converte rapidamente o teste em negativo, mas a equipe mantém imunossupressão padrão e vigilância para rejeição mediada por anticorpos. Qual mecanismo explica tanto o efeito rápido quanto seu caráter transitório?",
+    "opts": [
+      "Clivagem enzimática de IgG, inclusive DSA, com persistência das células produtoras.",
+      "Depleção de linfócitos B e plasmócitos, com supressão duradoura da produção de DSA.",
+      "Inibição de C5, preservando anticorpos e bloqueando a lise mediada por complemento.",
+      "Remoção de IgG por adsorção extracorpórea, sem impedir a síntese de novos anticorpos."
+    ],
+    "ans": 0,
+    "exp": "A imlifidase cliva enzimaticamente todas as subclasses de IgG, inclusive DSA, e permite rápida conversão do crossmatch. Não é uma terapia de depleção das células produtoras: a IgG endógena começa a retornar em 1–2 semanas. Por isso, é necessário confirmar a conversão antes do implante, manter a imunossupressão padrão e vigiar rejeição. Depleção celular, bloqueio de C5 e adsorção extracorpórea representam estratégias diferentes e não descrevem a ação da imlifidase.",
+    "diff": "medium",
+    "cat": "transplante",
+    "refs": [
+      "hansa_imlifidase_smpc_2026"
+    ]
+  },
+  "proposedSHA256": "sha256:008910712bdbb0d9fb1fe14ab6846ebc561bf51284b5a0389c3f20f8bd31e28f",
+  "classificationAfter": {
+    "op": "Relacionar clivagem de IgG pela imlifidase à janela transitória e persistência da produção de anticorpos.",
+    "primaryCompetence": "Mecanismo terapêutico aplicado à dessensibilização do transplante.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "hansa_imlifidase_smpc_2026",
+      "original": null,
+      "originalSHA256": null,
+      "proposed": {
+        "label": "Idefirix — SmPC UK (revisão30/07/2026)",
+        "url": "https://www.medicines.org.uk/emc/product/13155/smpc",
+        "journal": "Hansa Biopharma AB — SmPC UK, PLGB46323/0002 (emc)",
+        "ano": 2026,
+        "tipo": "Resumo das Características do Medicamento (SmPC)",
+        "badge": "BULA",
+        "badgeColor": "#64748b",
+        "impacto": "Clivagem rápida e transitória de IgG/DSA; manter imunossupressão e vigilância",
+        "icon": "📋",
+        "resumo": "Bula profissional de imlifidase para dessensibilização de adultos altamente sensibilizados, com crossmatch positivo contra doador falecido e baixa chance por alocação. A protease de Streptococcus pyogenes cliva as cadeias pesadas de todas as subclasses de IgG, incluindo DSA, sem clivar outras imunoglobulinas. A IgG endógena começa a retornar em 1–2 semanas. Não dispensa imunossupressão padrão.",
+        "conclusao": "Confirmar crossmatch negativo antes do transplante e manter imunossupressão e vigilância de rejeição: a clivagem não equivale a suprimir permanentemente a produção de anticorpos.",
+        "curiosidade": "A clivagem elimina funções dependentes de Fc, incluindo citotoxicidade dependente de complemento e de células."
+      },
+      "proposedSHA256": "sha256:30086ed56851b7e06bd23feb195bf4fa8c40de7889cc40379707562f8b9f0a06"
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na checagem autoral da versão proposta."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "múltiplas respostas defensáveis",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência não sustenta o gabarito",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio do OP",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura correta ou aceitável",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator absurdo",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado no contexto deste item; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 2
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais/AI-tells",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 1
+        }
+      ],
+      "total": 19
+    },
+    "decision": "Versão proposta aprovada na checagem autoral pela árvore§19; ciclo pretendido publicado somente após revisão independente do pacote exato."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; nenhum reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Pacote AUTORAL. LIBERADA, quando presente, é resultado autoral derivado para a proposta exata; não equivale a revisão independente. O parent exigiu revisão independente antes de escrever data/topics.js ou data/refs.js."
+  },
+  "hold": null
+}

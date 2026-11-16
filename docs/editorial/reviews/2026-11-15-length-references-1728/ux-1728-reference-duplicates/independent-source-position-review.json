@@ -1,0 +1,97 @@
+{
+  "schema": "NQ_1728_INDEPENDENT_SOURCE_POSITION_TECH_REVIEW_v1",
+  "date": "2026-11-15",
+  "reviewer": "/root/reference_duplicates_1728",
+  "productionWrites": false,
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "files": [
+    {
+      "file": "data/topics.js",
+      "sha256": "827e3463098e43b7532a1dfd95acf9c6396f1b4496154496e60274c3c1e55d27"
+    },
+    {
+      "file": "data/refs.js",
+      "sha256": "6b1d57b7d4d58495c9945bdeaa04a086dfc29741d4822b284bb37c5cf598ae0b"
+    },
+    {
+      "file": "data/question-source-positions.js",
+      "sha256": "0fecb02daa1b8867520f7f8e84cd912cee356f1274c9525d03b02d16aaf99b22"
+    },
+    {
+      "file": "data/question-revision-manifest.js",
+      "sha256": "5f7cd9657bff32d7cffc125e2245336484c2e72b88f5ffc5c0ab5708948863a3"
+    },
+    {
+      "file": "data/question-revision-history.js",
+      "sha256": "0c620b08725ac2e8c8ae940b696320fbe9d88241d46e7e189da1c059fd1d6ae8"
+    },
+    {
+      "file": "js/game.js",
+      "sha256": "ae12e0774b86af26e123c6e5e54f0350d4bf1bd6efc3035e0b703e8622a203d4"
+    },
+    {
+      "file": "js/question-revisions.js",
+      "sha256": "4cdf46b51310ea9aad5851f8b7ae8a5c793a9715648b1a73f2325e07883e01a9"
+    },
+    {
+      "file": "tools/build-question-revision-manifest.cjs",
+      "sha256": "4fc501def630d21ba4422cbe9876a75bbc899522cae9a2a02a7219ece0d36176"
+    },
+    {
+      "file": "jogar/index.html",
+      "sha256": "162b584142868717777f39dadb729db0a6b156befeccc053b6cd907c6e2bda5d"
+    },
+    {
+      "file": "sw.js",
+      "sha256": "fd39a3092831d482e1a45e29be1cf287db8c1bd942672db746efd45c1f3a810c"
+    }
+  ],
+  "findings": [],
+  "verdict": "PASS_WITH_DOCUMENTED_DEPENDENCY",
+  "checks": {
+    "baselineOriginalIdentitiesPreservedInExactOrder": 741,
+    "registeredPositions": 742,
+    "currentQuestions": 732,
+    "newIdsAppended": [
+      "40c5f770"
+    ],
+    "uniquePositions": true,
+    "allCurrentIdsRegistered": true,
+    "nativeBuildDeckComparedAgainstBuilder": true,
+    "mainAndExamDigestsMatchCurrentManifestForEntireBank": true,
+    "studyAndOfflineDigestsMatchCurrentManifestForEntireBank": true,
+    "unchangedQuestionDamageMatches1727": true,
+    "removalAndReorderProjections": [
+      692,
+      488,
+      732,
+      50
+    ],
+    "allProjectionPayloadsPreserved": true,
+    "normalCatalogActuallyCreated": true,
+    "missingRegistryActuallyRejected": {
+      "name": "TypeError",
+      "message": "Runtime source differs from published manifest."
+    },
+    "scriptLoadedBeforeGame": true,
+    "serviceWorkerPrecacheIncludesRegistry": true,
+    "frozenRegistry": true,
+    "snapshotUnchangedDuringReview": true
+  },
+  "dependency": {
+    "moduleRequiredInProduction": true,
+    "ifModuleAbsent": "4 main/exam payloads differ; actual createCatalog rejected them with Runtime source differs from published manifest.",
+    "mismatchedQidsWithoutRegistry": [
+      "1f962c0e",
+      "051a5d1b",
+      "ebea50d5",
+      "ddb4938a"
+    ],
+    "classification": "Documented load dependency, not a demonstrated defect in the normal registry-loaded path. Actual createCatalog source-hash validation was exercised and failed closed. A direct explicit missing-file guard would improve diagnostics but is not required for this deterministic correctness conclusion."
+  },
+  "limits": [
+    "No browser E2E run in this review, per coordinator instruction while medical data changes.",
+    "No controllers or source-position file were edited by this reviewer.",
+    "This is a technical identity/payload review, not a clinical approval of bank contents."
+  ]
+}

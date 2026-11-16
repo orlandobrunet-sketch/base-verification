@@ -1,0 +1,424 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "5705f74c",
+  "family": "A11-litio",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Lítio — Diabetes Insipidus Nefrogênico",
+    "qid": "5705f74c",
+    "q": "Paciente em uso crônico de lítio apresenta poliúria, polidipsia e baixa osmolaridade urinária apesar de desmopressina. Qual alteração renal é mais característica?",
+    "refs": [
+      "lithium_ndi_amiloride_bedford",
+      "brenner_rector"
+    ],
+    "opts": [
+      "Hipercalciúria isolada com nefrolitíase como manifestação principal.",
+      "Diabetes insipidus nefrogênico por entrada de lítio via ENaC no ducto coletor e redução da resposta/AQP2 mediada por vasopressina.",
+      "Acidose tubular renal tipo 4 por hipoaldosteronismo hiporreninêmico.",
+      "Glomerulonefrite membranosa por imunocomplexos induzidos por lítio."
+    ],
+    "ans": 1,
+    "exp": "O efeito renal clássico do lítio é diabetes insipidus nefrogênico. O lítio entra nas células principais do ducto coletor via ENaC e reduz a resposta à vasopressina, incluindo expressão/tráfego de aquaporina-2, levando a defeito de concentração urinária. O cuidado prático é monitorar função renal, lítio sérico, sintomas de poliúria/desidratação e interações que aumentam litemia; amilorida pode ser considerada em cenários selecionados por reduzir entrada tubular de lítio.",
+    "diff": "medium",
+    "cat": "eletrólitos"
+  },
+  "originalSHA256": "sha256:ff6e9fbdfa3d29734e01f868e2db5236093b15d953866f265e0d5588abf2a0e2",
+  "originalRefs": [
+    {
+      "id": "lithium_ndi_amiloride_bedford",
+      "original": {
+        "label": "Bedford JJ et al. — Lithium-induced Nephrogenic Diabetes Insipidus: Renal Effects of Amiloride",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2518801/",
+        "journal": "Clin J Am Soc Nephrol 2008;3(5):1324-1331",
+        "ano": 2008,
+        "tipo": "Estudo Clínico",
+        "badge": "CLINICAL",
+        "badgeColor": "#0ea5e9",
+        "impacto": "Mecanismo e tratamento do diabetes insipidus nefrogênico induzido por lítio com amilorida",
+        "icon": "🔬",
+        "resumo": "Estudo clínico em pacientes em uso de lítio mostrando defeito de concentração urinária, redução de aquaporina 2 urinária e relação com duração da exposição. Em subestudo randomizado, duplo-cego, cruzado, amilorida por 6 semanas aumentou a osmolaridade urinária máxima após desmopressina e a excreção de aquaporina 2. O racional é bloquear ENaC nas células principais do ducto coletor, reduzindo a entrada de lítio e melhorando a resposta tubular à vasopressina.",
+        "conclusao": "No diabetes insipidus nefrogênico por lítio, a amilorida é uma estratégia fisiologicamente dirigida porque reduz a entrada de lítio no ducto coletor; deve ser acompanhada de monitorização clínica, renal e dos níveis de lítio.",
+        "curiosidade": "O mesmo canal epitelial de sódio que permite ao néfron ajustar a reabsorção fina de sódio também é a porta de entrada do lítio na célula principal — uma bela tragédia tubular em miniatura."
+      },
+      "originalSHA256": "sha256:30e9c1b9ef28dcfa339e1f62c4510eee4ac08d14e2f8d546aee4f1a01d5a31e4"
+    },
+    {
+      "id": "brenner_rector",
+      "original": {
+        "label": "Brenner & Rector's The Kidney",
+        "url": "https://www.elsevier.com/books/brenner-and-rectors-the-kidney/yu/978-0-323-53265-5",
+        "journal": "Elsevier (Textbook)",
+        "ano": 2024,
+        "tipo": "Livro-texto de referência",
+        "badge": "TEXTBOOK",
+        "badgeColor": "#64748b",
+        "impacto": "Livro-texto de referência em nefrologia — fisiologia, fisiopatologia e manejo clínico das doenças renais",
+        "icon": "📚",
+        "resumo": "Tratado enciclopédico de nefrologia em dois volumes, cobrindo fisiologia glomerular e tubular, fisiopatologia e manejo clínico de LRA, DRC, glomerulopatias, distúrbios hidroeletrolíticos, hipertensão renal, transplante e diálise. A edição de 2024 incorpora atualizações em iSGLT2, novos biomarcadores e imunossupressão nas glomerulopatias.",
+        "conclusao": "Referência fundamental da nefrologia — base para compreensão fisiopatológica antes de interpretar qualquer diretriz clínica.",
+        "curiosidade": "Barry Brenner formulou a hipótese do néfron único: a redução da massa nefrônica induz hiperfiltração compensatória nos néfrons remanescentes, acelerando a progressão da DRC — conceito que fundamenta o uso de IECA e BRA na nefroproteção."
+      },
+      "originalSHA256": "sha256:b45a36b7000fe71ffe6b96291979c9d53cdd590de9b2377526a75f03f144e142"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Reconhecer resistência renal àvasopressina como mecanismo da poliúria hipotônica associada ao lítio.",
+    "primaryCompetence": "Fisiopatologia e farmacologia renal.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "PARCIALMENTE VERIFICADA",
+    "pending": "NÃO DECISIVA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Corretaexplicaodiagnósticoeaprotéina,contraalternativascurtas quenãofazemo mesmotipoderaciocínio.",
+      "MENOR — SiglasENaC/AQP2semexpansão eBrennernãoabertoparaesteescopo."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "bedford",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2518801/",
+      "doi": "10.2215/CJN.01640408",
+      "pmid": "18596116",
+      "access": "Corpo primário publicado lido em cópia pública enviada por coautora noResearchGate, identificada por título/autores/DOI/paginação; não é resumo deoutroautor",
+      "additionalURLs": [
+        "https://www.researchgate.net/publication/5257487_Lithium-induced_Nephrogenic_Diabetes_Insipidus_Renal_Effects_of_Amiloride"
+      ],
+      "locators": [
+        "Methods/Participants,p1325:45lítio/42controles;semhistóriadedoençarenal;excluiurodose?Não:doençarenalconhecida,diurético/IECAeinstabilidade.",
+        "Subestudo11pacientes,randomizado/duplocego/crossover;6semanascomwashout6semanas;5mg/dia2semanas,10mg/dia4semanas.",
+        "Results/Tables3–4/Figure3: maiorcapacidadeconcentradoraapósdesmopressinaemaiorexcreçãourináriaAQP2.",
+        "Discussion/Conclusion,p1329–1330: bloqueioENaCeentradalítioéracionalinferido,nãoprova diretadomecanismonessessereshumanos; mecanismosprecisamoutrosestudos."
+      ],
+      "limitations": [
+        "PMCwebdeurecaptcha; EFetchPMCbedford-2008-pmc.xml(49ebb391...) contém apenasfront/abstract, sembody. Não o apresentei comocorpointegral. EuropePMCfullTextXMLretornou500.",
+        "DownloadPDFda cópiaResearchGatefalhou404; a transcrição integral pública do artigo primário foi efetivamente aberta, sem confundir trechos deoutrostrabalhos exibidos abaixo das referências.",
+        "CadastroANZCTRretrospectivo2010commesmoCRG060500004temdiferençasdeprotocolo(5mgprimeirasemanaeoutroscritérios); nãofoiusadopara substituir oregimerelatadonopaper2008."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Lítio associa-seàrespostareduzidaàvasopressinaedefeitodeconcentração;AQP2urináriacommarcadorsubstitutoeinferênciacelular.",
+      "source": "bedford",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Lítio — Diabetes Insipidus Nefrogênico",
+    "qid": "5705f74c",
+    "q": "Adulto em uso crônico de lítio apresenta poliúria hipotônica, glicemia normal e sódio de 149 mEq/L. Em avaliação supervisionada, a osmolaridade urinária permanece baixa, com aumento mínimo após desmopressina. Qual mecanismo é mais compatível com esse quadro?",
+    "refs": [
+      "lithium_ndi_amiloride_bedford"
+    ],
+    "opts": [
+      "Deficiência central da secreção de vasopressina.",
+      "Resistência do ducto coletor à ação da vasopressina.",
+      "Diurese osmótica pelo aumento da carga filtrada de glicose.",
+      "Ingestão primária excessiva de água com supressão de vasopressina."
+    ],
+    "ans": 1,
+    "exp": "O quadro é compatível com resistência renal à vasopressina, tradicionalmente chamada de diabetes insipidus nefrogênico. O lítio interfere na resposta do ducto coletor e na regulação da aquaporina-2 (AQP2), dificultando a concentração da urina. A resposta mínima à desmopressina favorece resistência renal; na deficiência central, a resposta costuma ser maior. Glicemia normal desfavorece diurese por glicose, e sódio elevado não favorece polidipsia primária isolada. A avaliação deve integrar o contexto e a segurança hídrica, sem transformar um teste isolado em diagnóstico absoluto.",
+    "diff": "medium",
+    "cat": "eletrólitos"
+  },
+  "proposedSHA256": "sha256:444c96206342327093bf45be8df9569a09e9b1f459ebdf8e15cfc1016a29da84",
+  "classificationAfter": {
+    "op": "Reconhecer resistência renal àvasopressina como mecanismo da poliúria hipotônica associada ao lítio.",
+    "primaryCompetence": "Fisiopatologia e farmacologia renal.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "lithium_ndi_amiloride_bedford",
+      "original": {
+        "label": "Bedford JJ et al. — Lithium-induced Nephrogenic Diabetes Insipidus: Renal Effects of Amiloride",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2518801/",
+        "journal": "Clin J Am Soc Nephrol 2008;3(5):1324-1331",
+        "ano": 2008,
+        "tipo": "Estudo Clínico",
+        "badge": "CLINICAL",
+        "badgeColor": "#0ea5e9",
+        "impacto": "Mecanismo e tratamento do diabetes insipidus nefrogênico induzido por lítio com amilorida",
+        "icon": "🔬",
+        "resumo": "Estudo clínico em pacientes em uso de lítio mostrando defeito de concentração urinária, redução de aquaporina 2 urinária e relação com duração da exposição. Em subestudo randomizado, duplo-cego, cruzado, amilorida por 6 semanas aumentou a osmolaridade urinária máxima após desmopressina e a excreção de aquaporina 2. O racional é bloquear ENaC nas células principais do ducto coletor, reduzindo a entrada de lítio e melhorando a resposta tubular à vasopressina.",
+        "conclusao": "No diabetes insipidus nefrogênico por lítio, a amilorida é uma estratégia fisiologicamente dirigida porque reduz a entrada de lítio no ducto coletor; deve ser acompanhada de monitorização clínica, renal e dos níveis de lítio.",
+        "curiosidade": "O mesmo canal epitelial de sódio que permite ao néfron ajustar a reabsorção fina de sódio também é a porta de entrada do lítio na célula principal — uma bela tragédia tubular em miniatura."
+      },
+      "originalSHA256": "sha256:30e9c1b9ef28dcfa339e1f62c4510eee4ac08d14e2f8d546aee4f1a01d5a31e4",
+      "proposed": {
+        "label": "Bedford et al. — Diabetes insipidus nefrogênico por lítio e amilorida (2008)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2518801/",
+        "journal": "Clin J Am Soc Nephrol 2008;3(5):1324-1331",
+        "ano": 2008,
+        "tipo": "Estudo transversal com subestudo randomizado cruzado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Pequeno ensaio de amilorida melhorou medidas de concentração urinária.",
+        "icon": "🔬",
+        "resumo": "Estudo transversal com 45 pessoas em uso de lítio e 42 sob outros psicotrópicos, seguido de subestudo randomizado, duplo-cego e cruzado com 11 participantes. Amilorida oral, uma vez ao dia, foi usada por seis semanas: 5 mg nas primeiras duas e 10 mg nas quatro seguintes, comparada a placebo. Houve melhora da osmolaridade urinária máxima após desmopressina e aumento da excreção urinária de aquaporina-2 (AQP2). Pessoas com doença renal conhecida foram excluídas.",
+        "conclusao": "O bloqueio do canal epitelial de sódio (ENaC), reduzindo a entrada de lítio nas células principais, é o racional para a amilorida. O pequeno estudo avalia medidas de concentração, sem comprovar prevenção ou reversão de fibrose renal nem justificar seu uso automático na insuficiência renal.",
+        "curiosidade": "Os autores tratam o mecanismo como inferência: a melhora de AQP2 urinária não demonstra diretamente toda a sequência celular no ser humano."
+      },
+      "proposedSHA256": "sha256:95e816f8b0530b7da94ca629e9c95c9020e869aedd69d436ab3771f215aed659",
+      "sourceIDs": [
+        "bedford",
+        "amiloride"
+      ],
+      "notes": [
+        "Mesmaobra/IDfavorito; corrigeescala/seleção/alcancedossubstitutos e troca frasefloridaporlimiteútil. Viaoralcorroboradanabula,regimeextraídodopaper,nãodoregistroretrospectivo."
+      ]
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "19/20. Distingue mecanismos reais de poliúria com dados coerentes, sem perguntar simultaneamente medicamento. Correta paralela; mantémOPrenal do original.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [
+    "Brennerremovidopornãoserdeterminantenemcorpoacessadoparaestarevisão; não emitir gate de seu payload. Não resetarFSRS."
+  ],
+  "hold": null
+}

@@ -3,10 +3,11 @@ import { resolve } from 'node:path';
 import { changedPaths, readAtRevision } from './editorial-batch/git-diff.mjs';
 import { findChangedManifest, isEditorialManifestPath, validateManifest } from './editorial-batch/manifest.mjs';
 import { parseQuestions } from './editorial-batch/questions.mjs';
-import { parseReferenceIds, referenceConsumers, referenceReviewPaths } from './editorial-batch/references.mjs';
+import { parseReferenceIds, referenceConsumers, referenceReviewPaths, referenceTransportPaths } from './editorial-batch/references.mjs';
 import { extractVersions } from './editorial-batch/versions.mjs';
 import { validateBatch } from './editorial-batch/rules.mjs';
 import { CHAMBER_SOURCE } from './editorial-batch/chamber.mjs';
+import { historicalReferenceReviewPaths } from './editorial-batch/historical-references.mjs';
 
 function parseArgs(argv) {
   const options = { cwd: process.cwd() };
@@ -62,11 +63,21 @@ function main() {
   if (manifest.reference_only === true) {
     for (const path of referenceReviewPaths(manifest)) referenceReviewReports.set(path, readAtRevision(head, path, cwd));
   }
+  for (const path of historicalReferenceReviewPaths(manifest)) referenceReviewReports.set(path, readAtRevision(head, path, cwd));
+  for (const raw of [...referenceReviewReports.values()]) {
+    for (const path of referenceTransportPaths(raw)) if (!referenceReviewReports.has(path)) referenceReviewReports.set(path, readAtRevision(head, path, cwd));
+  }
+  const historicalSources = manifest.historical_reference_retention ? {
+    baseRevisionManifestText: readAtRevision(base, 'data/question-revision-manifest.js', cwd),
+    baseRevisionHistoryText: readAtRevision(base, 'data/question-revision-history.js', cwd),
+    afterRevisionHistoryText: readAtRevision(head, 'data/question-revision-history.js', cwd),
+  } : {};
   const chamberReview = manifest.chamber_only === true ? {
     chamberSource: readAtRevision(head, CHAMBER_SOURCE, cwd),
     chamberReport: readAtRevision(head, manifest.chamber.report_path, cwd),
   } : {};
   const errors = validateBatch({
+    ...historicalSources,
     ...chamberReview,
     manifest, manifestPath, changedPaths: paths,
     beforeQuestions, afterQuestions, beforeReferenceIds, afterReferenceIds,

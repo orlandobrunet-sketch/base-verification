@@ -1,0 +1,136 @@
+{
+  "schema": "NQ_1728_FINAL_REAL_HISTORICAL_RETENTION_PROOF_V4",
+  "date": "2026-11-16",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "fragment": {
+    "file": "historical-retention-manifest-fragment-v3.json",
+    "rawSHA256": "aa50b818732bfe9962fc01e284d2c81769f104ccd4eaa9c32bee2067cd267f97",
+    "retentions": 13,
+    "preservedUnchanged": true
+  },
+  "previousProof": {
+    "file": "historical-retention-real-proof-v3.json",
+    "rawSHA256": "1bb2e4883dafa0382d9d2cf07925d9642a5f6984bf1d9e534325c3245af4a369",
+    "preserved": true
+  },
+  "snapshot": {
+    "questions": 725,
+    "references": 406,
+    "history": 500
+  },
+  "inputBytes": {
+    "baseManifest": "7dcafa5835490395968a900f9ffb45705a43cdca34d2ed68ae9888a0eeef88a4",
+    "baseHistory": "16cec6ac0a347ab7ce9f19a53a7336f86a8df8a9d244a4f15eb5a6f03aa7a901",
+    "headHistory": "91e2a614df372a567901576c76188cba03cd750b8bca999ad577758e13fb7546",
+    "headReferences": "2b0a6844667057ad36ee784aac5e500fe326417ff60bebb58794eccc4db38a62",
+    "headTopics": "20e2d95131876c3cfc6d91472af003a8049f60d89f0007361c0a7e2f5b4b8132"
+  },
+  "allPreexistingCurrentOrphansExactlyCovered": [
+    "atrasentan_igan",
+    "dapa_hf",
+    "daugirdas_handbook_of_dialysis",
+    "deliver_trial",
+    "drug_induced_ain_perazella_2010",
+    "ema_imlifidase_2020",
+    "harrisons_principles",
+    "kdigo_transplant",
+    "ktv_daugirdas1993",
+    "mpgn_fervenza",
+    "sacubitril_valsartan_hf",
+    "statin_cyp3a4_rhabdo_review",
+    "visionary_egfr_otsuka_2026"
+  ],
+  "errors": [],
+  "authenticatedConsumers": [
+    {
+      "id": "mpgn_fervenza",
+      "consumers": [
+        "history:d2a32c19:sha256:c0f487e9b000de208e3288de372b7fcc11da30c7fa594cfc8f5dc494308661aa"
+      ]
+    },
+    {
+      "id": "statin_cyp3a4_rhabdo_review",
+      "consumers": [
+        "history:a493996a:sha256:96e340b6f2d3b1128be4f3f37e3fd4a02b9cd818214b6dc92fbab94349439427"
+      ]
+    },
+    {
+      "id": "ktv_daugirdas1993",
+      "consumers": [
+        "history:f77abde0:sha256:d3eff0d4bab1f05fb2cf46fe590a177d19bfe3cbc2bf923e7bd69e2a9ba9e79a"
+      ]
+    },
+    {
+      "id": "drug_induced_ain_perazella_2010",
+      "consumers": [
+        "history:0408b280:sha256:cbfb4bf1e2cb66fbba6266ad0fae5ed69fe2ea2cb13cdcea6637b92ada56d121"
+      ]
+    },
+    {
+      "id": "daugirdas_handbook_of_dialysis",
+      "consumers": [
+        "history:a12cb84d:sha256:f5b6bb6b8293a581f50e9d98bd7c83fc0eb96bf9606f5871dde2d5f1476f24ee"
+      ]
+    },
+    {
+      "id": "visionary_egfr_otsuka_2026",
+      "consumers": [
+        "history:aa732568:sha256:482680c5af5b58245c47db7dfa3eff562e1495879af5d8ba78b8c8fa787173ce"
+      ]
+    },
+    {
+      "id": "atrasentan_igan",
+      "consumers": [
+        "history:2793701a:sha256:8f309d6a6fbe2d1d960d1af01c8e273ce4eaa3f564107e24c8ee56a4791575df"
+      ]
+    },
+    {
+      "id": "ema_imlifidase_2020",
+      "consumers": [
+        "history:3fbc1a5a:sha256:ee91ed330a9256b6795844f07f1fecfeae3cf68fe9b4255ae23683d4c7664bf4"
+      ]
+    },
+    {
+      "id": "harrisons_principles",
+      "consumers": [
+        "history:0ffc255a:sha256:792338e3848a968b5477f7faf53e054f970818bf7850b7a4014e52ba33ef702d"
+      ]
+    },
+    {
+      "id": "kdigo_transplant",
+      "consumers": [
+        "history:86b6b9c9:sha256:dfd83cdbc9ac13f6ec9e36cfe302129e2d5a57b91671411518da45a67e644938"
+      ]
+    },
+    {
+      "id": "dapa_hf",
+      "consumers": [
+        "history:ee219394:sha256:0b5c85ecda93629f471e072c0d06e92bb02dbcc5a9118de52f141d9f6d2fade8"
+      ]
+    },
+    {
+      "id": "deliver_trial",
+      "consumers": [
+        "history:ee219394:sha256:0b5c85ecda93629f471e072c0d06e92bb02dbcc5a9118de52f141d9f6d2fade8"
+      ]
+    },
+    {
+      "id": "sacubitril_valsartan_hf",
+      "consumers": [
+        "history:d4393bc2:sha256:b6e60292a0acdd3931c4dc8cc610c775daf215a6194b96cf0ae16854d9e99e80"
+      ]
+    }
+  ],
+  "elapsedMs": 3059.866,
+  "validatorBytes": {
+    "historical-references.mjs": "e02c94444679349b61b57250686030cc461c6f60301e20e1a93f9ccaa9cb4fd9",
+    "references.mjs": "f218b8f55f907bc588cdd71a208c53c970008eda2daf67e2ee62636f1742e53d"
+  },
+  "noDataFilesWritten": true,
+  "boundaries": [
+    "New orphans were recomputed against published BASE consumers, not an ID whitelist. Exactly the13 declared retained references require historical proof.",
+    "Removed fictitious CMV is not a retained active reference. Its original literal remains in history and its UI placeholder carries no clinical body.",
+    "The four changed retained cards retain two exact own frozen card gates; MPGN remains PARTIALLY VERIFIED/NON-DECISIVE for bibliographic metadata only, not a verified clinical summary.",
+    "No alias, favorite, unlock, clinical approval or FSRS is transferred."
+  ]
+}

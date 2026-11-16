@@ -1,0 +1,470 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "47ac614f",
+  "family": "A6-AL-tratamento-consolidacao",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "qid": "47ac614f",
+    "q": "Paciente com amiloidose de cadeias leves (AL) sistêmica recém-diagnosticada, com acometimento renal e cardíaco não avançado (elegível a terapia sistêmica padrão). Qual é o esquema de primeira linha preferencial atual?",
+    "opts": [
+      "Daratumumabe associado a bortezomibe, ciclofosfamida e dexametasona (dara-VCd).",
+      "Melfalano em altas doses seguido de transplante autólogo de células-tronco em todos os pacientes, independentemente do risco cardíaco.",
+      "Colchicina isolada, como na febre familiar do Mediterrâneo e na amiloidose AA.",
+      "Ciclofosfamida venosa isolada em pulsos mensais."
+    ],
+    "ans": 0,
+    "exp": "Na amiloidose de cadeias leves (AL) recém-diagnosticada elegível a tratamento sistêmico padrão, o esquema de primeira linha é o dara-VCd — daratumumabe associado a bortezomibe, ciclofosfamida e dexametasona. No ensaio ANDROMEDA, acrescentar daratumumabe ao VCd elevou a resposta hematológica completa de 18,1% para 53,3%. O transplante autólogo de células-tronco é restrito a uma minoria elegível e é contraindicado na cardiopatia avançada ou em pacientes frágeis — não é conduta universal. A colchicina não trata a amiloidose AL (tem papel na febre familiar do Mediterrâneo e na amiloidose AA). A ciclofosfamida isolada é insuficiente para controlar a doença de base. Observação: o comprometimento cardíaco avançado (estágio Mayo IIIb) foi excluído do ANDROMEDA e exige esquemas com ajuste de dose e manejo especializado.",
+    "refs": [
+      "andromeda_kastritis_2021"
+    ],
+    "cat": "farmacologia",
+    "diff": "hard",
+    "t": "Amiloidose AL — Tratamento Farmacológico"
+  },
+  "originalSHA256": "sha256:582208eda5808350e23375cef050ef9b2b477475e55c67e8f6ad7d2fd4d7fcdc",
+  "originalRefs": [
+    {
+      "id": "andromeda_kastritis_2021",
+      "original": {
+        "label": "ANDROMEDA — Daratumumabe na amiloidose AL (Kastritis et al.)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2028631",
+        "journal": "N Engl J Med 2021;385(1):46-58",
+        "ano": 2021,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Daratumumabe + VCd elevou a resposta hematológica completa (53,3% vs 18,1%) — base da 1ª linha atual na amiloidose AL",
+        "icon": "💊",
+        "resumo": "ECR fase III (ANDROMEDA, n=388) em amiloidose de cadeias leves (AL) recém-diagnosticada, comparando bortezomibe, ciclofosfamida e dexametasona (VCd) isolado versus VCd acrescido de daratumumabe subcutâneo. O desfecho primário — resposta hematológica completa — foi significativamente maior com daratumumabe (53,3% vs 18,1%; razão de risco relativo 2,9). Pacientes com comprometimento cardíaco avançado (estágio Mayo IIIb / NYHA III-IV) foram excluídos do ensaio.",
+        "conclusao": "O acréscimo de daratumumabe ao VCd estabeleceu o esquema dara-VCd como terapia de primeira linha na amiloidose AL elegível a tratamento sistêmico padrão; a doença cardíaca avançada (estágio Mayo IIIb), não representada no ensaio, exige esquemas com ajuste de dose e manejo especializado.",
+        "curiosidade": "O daratumumabe é um anticorpo anti-CD38 que depleta os plasmócitos clonais produtores das cadeias leves amiloidogênicas, reduzindo rapidamente a carga de cadeias leves livres circulantes."
+      },
+      "originalSHA256": "sha256:e039b9d551faf00f6e4380d8c859a8caf4594e9579a740f677d691bc503c3785"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Escolher tratamento inicial dirigido ao clone plasmocitário na AL sistêmica confirmada, recém-diagnosticada e elegível.",
+    "primaryCompetence": "Conduta.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "hard",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Duplica a decisão de c4e8b495, sem variação útil em perfil, língua ou estrutura decisória.",
+      "MAIOR — Distrator de transplante autólogo universal contém absoluto que denuncia erro; alternativas misturam primeira linha plausível com monoterapias muito fracas.",
+      "MAIOR — O card compartilhado informa NYHAIII–IV, mas o artigo exclui IIIB/IV."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "andromeda",
+      "url": "https://discovery.ucl.ac.uk/id/eprint/10131167/1/nejmoa2028631.pdf",
+      "doi": "10.1056/NEJMoa2028631",
+      "access": "Artigo primário integral de13páginas, cópia depositada na University College London; NEJM direto retornou403",
+      "locators": [
+        "PDF1 / NEJM46: desenho, n388, desfecho primário e resultados com intervalos de confiança.",
+        "PDF2 / NEJM47: mecanismo CD38, randomização aberta e exclusões na triagem (TFGe<20, NYHAIIIB/IV e cardiopatia avançada).",
+        "PDF4–8 / NEJM49–53: resposta hematológica, eventos, critérios e limitações; sobrevida global não demonstrada na análise de2021.",
+        "PDF6 / NEJM51, nota da Tabela1: alguns pacientes mudaram para estágio cardíacoIIIB entre triagem e dia1; não afirmar ausência absoluta desse estágio em toda avaliação basal."
+      ],
+      "limitations": [
+        "Resultados da análise primária de2021, mediana11,4meses. Não confundir com seguimento prolongado comunicado em2025."
+      ]
+    },
+    {
+      "id": "typing",
+      "url": "https://www.scielo.br/j/bjmbr/a/n5NpNHMsvkwjnBV4rmzgQ3L/?format=pdf&lang=en",
+      "doi": "10.1590/1414-431X2022e12284",
+      "access": "Revisão narrativa integral de15páginas no periódico primário, Feitosa etal, BrazJMedBiolRes2022;55:e12284",
+      "locators": [
+        "PDF1–2: identificar proteína precursora; microdissecção a laser/espectrometria de massa como padrão para tipagem, especialmente inconclusivos.",
+        "PDF7–9: Congo positivo não define subtipo; gamopatia não prova que o depósito seja AL."
+      ],
+      "limitations": [
+        "Fonte de diagnóstico e tipagem; não usada para atribuir efeito de tratamento ao estudo de2021."
+      ]
+    },
+    {
+      "id": "fda",
+      "url": "https://www.fda.gov/drugs/cancer-approvals/fda-grants-traditional-approval-daratumumab-and-hyaluronidase-fihj-newly-diagnosed-light-chain",
+      "access": "Comunicado regulatório oficial integral,19/11/2025",
+      "locators": [
+        "Linhas61–69: daratumumabe/hialuronidase + bortezomibe, ciclofosfamida e dexametasona em AL recém-diagnosticada; restrição NYHAIIIB/IV ou MayoIIIB fora de estudo."
+      ],
+      "limitations": [
+        "Regulação dos EUA; não afirma disponibilidade, cobertura ou aprovação Anvisa. Os novos resultados de61,4meses não foram misturados ao card do ensaio de2021."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Tipagem das fibrilas identifica AL; pico monoclonal e Congo positivo isolados não são suficientes.",
+      "source": "typing",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Daratumumabe com bortezomibe/ciclofosfamida/dexametasona melhora resposta hematológica completa na AL elegível recém-diagnosticada.",
+      "source": "andromeda",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "A indicação combinada permanece confirmada pelo comunicado regulatório de2025, com restrições cardíacas.",
+      "source": "fda",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "qid": "47ac614f",
+    "q": "Paciente com síndrome nefrótica tem amiloidose renal confirmada por Congo vermelho. A tipagem por microdissecção a laser e espectrometria de massa identifica cadeias leves kappa, com clone plasmocitário correspondente na avaliação hematológica: amiloidose de cadeias leves (AL). Não recebeu tratamento, tem taxa de filtração glomerular estimada de 45 mL/min/1,73 m², sem cardiopatia avançada, e é elegível ao esquema combinado. Qual estratégia inicial tem melhor sustentação para tratar a produção da proteína amiloidogênica?",
+    "opts": [
+      "Daratumumabe, bortezomibe, ciclofosfamida e dexametasona.",
+      "Plasmaférese seriada, mantendo observação do clone plasmocitário.",
+      "Prednisona e micofenolato, guiados pela resposta da proteinúria.",
+      "Suporte renal isolado, adiando terapia clonal até iniciar diálise."
+    ],
+    "ans": 0,
+    "exp": "Na AL confirmada, o tratamento precisa reduzir a produção de cadeias leves pelo clone plasmocitário. No ANDROMEDA, acrescentar daratumumabe ao esquema com bortezomibe, ciclofosfamida e dexametasona aumentou a resposta hematológica completa em pacientes recém-diagnosticados elegíveis. A tipagem explícita evita presumir AL apenas por gamopatia associada a Congo positivo. Remover proteínas circulantes por plasmaférese não substitui suprimir o clone; prednisona e micofenolato não são o esquema antiplasmocitário fundamentado para esse cenário. O suporte renal acompanha a terapia e não justifica adiá-la até a diálise. A escolha e as doses exigem avaliação hematológica, especialmente da cardiopatia; o caso foi delimitado à população elegível.",
+    "refs": [
+      "andromeda_kastritis_2021",
+      "renal_amyloidosis_diagnosis_2022"
+    ],
+    "cat": "farmacologia",
+    "diff": "medium",
+    "t": "Amiloidose AL — Tratamento inicial"
+  },
+  "proposedSHA256": "sha256:4e59c33627f5528a3161cdfbf7b21996bd096bf5112f5db7dce4480004da4227",
+  "classificationAfter": {
+    "op": "Escolher tratamento inicial dirigido ao clone plasmocitário na AL sistêmica confirmada, recém-diagnosticada e elegível.",
+    "primaryCompetence": "Conduta.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "andromeda_kastritis_2021",
+      "original": {
+        "label": "ANDROMEDA — Daratumumabe na amiloidose AL (Kastritis et al.)",
+        "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2028631",
+        "journal": "N Engl J Med 2021;385(1):46-58",
+        "ano": 2021,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Daratumumabe + VCd elevou a resposta hematológica completa (53,3% vs 18,1%) — base da 1ª linha atual na amiloidose AL",
+        "icon": "💊",
+        "resumo": "ECR fase III (ANDROMEDA, n=388) em amiloidose de cadeias leves (AL) recém-diagnosticada, comparando bortezomibe, ciclofosfamida e dexametasona (VCd) isolado versus VCd acrescido de daratumumabe subcutâneo. O desfecho primário — resposta hematológica completa — foi significativamente maior com daratumumabe (53,3% vs 18,1%; razão de risco relativo 2,9). Pacientes com comprometimento cardíaco avançado (estágio Mayo IIIb / NYHA III-IV) foram excluídos do ensaio.",
+        "conclusao": "O acréscimo de daratumumabe ao VCd estabeleceu o esquema dara-VCd como terapia de primeira linha na amiloidose AL elegível a tratamento sistêmico padrão; a doença cardíaca avançada (estágio Mayo IIIb), não representada no ensaio, exige esquemas com ajuste de dose e manejo especializado.",
+        "curiosidade": "O daratumumabe é um anticorpo anti-CD38 que depleta os plasmócitos clonais produtores das cadeias leves amiloidogênicas, reduzindo rapidamente a carga de cadeias leves livres circulantes."
+      },
+      "originalSHA256": "sha256:e039b9d551faf00f6e4380d8c859a8caf4594e9579a740f677d691bc503c3785",
+      "proposed": {
+        "label": "ANDROMEDA — Daratumumabe na amiloidose de cadeias leves (AL)",
+        "url": "https://discovery.ucl.ac.uk/id/eprint/10131167/1/nejmoa2028631.pdf",
+        "journal": "N Engl J Med 2021;385(1):46–58",
+        "ano": 2021,
+        "tipo": "Ensaio clínico randomizado",
+        "badge": "RCT",
+        "badgeColor": "#10b981",
+        "impacto": "Adicionar daratumumabe aumentou a resposta hematológica completa na AL elegível",
+        "icon": "🔬",
+        "resumo": "ANDROMEDA 2021: ensaio fase 3, aberto e randomizado, com 388 pacientes com amiloidose de cadeias leves (AL) recém-diagnosticada. Comparou bortezomibe, ciclofosfamida e dexametasona com ou sem daratumumabe subcutâneo. Desfecho primário: resposta hematológica completa, 53,3% versus 18,1% (risco relativo 2,9; intervalo de confiança de 95%: 2,1–4,1; P<0,001), em mediana de 11,4 meses. A triagem excluiu taxa de filtração glomerular estimada <20 mL/min/1,73 m² e doença cardiovascular avançada, incluindo classe funcional IIIB/IV da New York Heart Association. Limites: estudo aberto e aplicabilidade restrita à população elegível; a análise não demonstrou benefício de sobrevida global.",
+        "conclusao": "O esquema combinado oferece tratamento inicial dirigido ao clone em pacientes elegíveis com AL confirmada. Não extrapolar automaticamente a doença cardíaca avançada ou a pacientes fora dos critérios estudados.",
+        "curiosidade": "O daratumumabe é anticorpo dirigido a CD38, expresso nos plasmócitos. A resposta hematológica indica redução da produção de cadeias leves e não equivale, por si só, à remoção imediata de todos os depósitos de amiloide."
+      },
+      "proposedSHA256": "sha256:6aa843c6ce6bc02fd8c490403272aafccb6079489e832d7c910bd295a9cdcb70",
+      "sourceIDs": [
+        "andromeda"
+      ],
+      "notes": [
+        "Card revisto integralmente com artigo primário aberto. NYHAIII–IV do legado é impreciso: o critério publicado era IIIB/IV.",
+        "Mesma obra e mesmo ID; preservar favoritos e descobertas."
+      ]
+    },
+    {
+      "id": "renal_amyloidosis_diagnosis_2022",
+      "original": {
+        "label": "Said et al. — Diagnóstico Completo da Amiloidose Renal (2022)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9529046/",
+        "journal": "Clinical Kidney Journal 2022;15(10):1817-1826",
+        "ano": 2022,
+        "tipo": "Revisão clinicopatológica",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Confirmação por vermelho Congo e tipagem obrigatória da proteína amiloide",
+        "icon": "🔬",
+        "resumo": "Revisão clinicopatológica do diagnóstico renal de amiloidose. Vermelho Congo com birrefringência verde-maçã confirma material amiloide, mas não identifica seu precursor. A tipagem usa imunofluorescência ou imuno-histoquímica e, diante de resultado negativo, ambíguo ou discordante, microdissecção a laser com espectrometria de massa.",
+        "conclusao": "Diagnosticar amiloide e definir seu tipo são etapas diferentes; tratamento seguro exige identificar a proteína precursora em vez de inferi-la apenas pela presença de uma gamopatia.",
+        "curiosidade": "Na série discutida, imunofluorescência deixou de identificar a proteína amiloide em parte dos casos, ilustrando por que a proteômica é decisiva nos espécimes indeterminados."
+      },
+      "originalSHA256": "sha256:0e4fd3bebf1f3abfe486c4be72db380adea244c769bf38bfb0d1c1264728b3e9",
+      "proposed": {
+        "label": "Feitosa et al. — Diagnóstico completo da amiloidose renal (2022)",
+        "url": "https://www.scielo.br/j/bjmbr/a/n5NpNHMsvkwjnBV4rmzgQ3L/",
+        "journal": "Brazilian Journal of Medical and Biological Research 2022;55:e12284",
+        "ano": 2022,
+        "tipo": "Revisão",
+        "badge": "REVIEW",
+        "badgeColor": "#8b5cf6",
+        "impacto": "Confirmar amiloide e identificar a proteína precursora são etapas distintas",
+        "icon": "🔬",
+        "resumo": "Revisão clinicopatológica de Feitosa, Neves, Jorge, Noronha e Onuchic sobre diagnóstico de amiloidose renal. Vermelho Congo com birrefringência verde-maçã confirma depósito amiloide, mas não define o precursor. Métodos de imunofluorescência e imuno-histoquímica podem tipar a proteína; microdissecção a laser com espectrometria de massa é referência nos casos inconclusivos ou discordantes. A tipagem é necessária porque as diferentes proteínas precursoras exigem abordagens distintas.",
+        "conclusao": "Não atribuir amiloidose a cadeia leve apenas por uma gamopatia concomitante. Definir o precursor antes de escolher tratamento dirigido.",
+        "curiosidade": "Anticorpos comerciais podem não reconhecer regiões alteradas das cadeias leves presentes nos depósitos; isso ajuda a explicar resultados indeterminados."
+      },
+      "proposedSHA256": "sha256:37f9500f8c242eafb18da98e824142791e659bf819ff82fc9cd5f408702817cd",
+      "sourceIDs": [
+        "amyloid"
+      ],
+      "notes": []
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 18
+    },
+    "scoreRationale": "18/20: OP e segurança sustentados. O diagnóstico e a elegibilidade são fornecidos para avaliar tratamento; a diferenciação entre terapia clonal e medidas não clonais ainda oferece menor desafio, sem simular dificuldade avançada. Três erros reconhecíveis: remoção circulante como substituto de supressão do clone; imunossupressão de glomerulopatia como terapia de AL; atraso até falência renal.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "47ac614f preserva seu OP de primeira linha em AL elegível e o mesmo conceito correto. É a canônica escolhida para consolidar c4e8b495, sem receber FSRS, crédito ou domínio do qid retirado.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

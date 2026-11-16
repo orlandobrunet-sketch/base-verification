@@ -1,0 +1,139 @@
+{
+  "schema": "NQ_1728_LOCAL_VERIFICATION_CANDIDATE_v1",
+  "date": "2026-11-16T03:52:24.785Z",
+  "status": "LOCAL_VERIFIED_NOT_COMMITTED_OR_PUBLISHED",
+  "sourceBase": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "node": {
+    "command": "node --test --test-concurrency=2 [all eight CI quality directories]",
+    "counts": {
+      "tests": 643,
+      "pass": 643,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0
+    },
+    "report": "ux-1728-root/node-quality-final.log",
+    "rawSHA256": "cb91b258ec96acc77154c9a3ede66bfbc0d1549411678c82be66dca5391a0cf6"
+  },
+  "native": {
+    "report": "ux-1728-reference-duplicates/e2e-final-catalog-run-4.json",
+    "rawSHA256": "1d2f804a1a24ab18c4ed0f902435241891620934535a8f8578ef61b112a4c506",
+    "stats": {
+      "startTime": "2026-11-16T03:44:18.092Z",
+      "duration": 257778.012,
+      "expected": 22,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    },
+    "attempts": 22,
+    "retries": 0,
+    "profiles": [
+      "chromium",
+      "mobile"
+    ],
+    "scope": "Final library/history/locks/favorites/earned-chest and missing-catalog recovery; CI must still verify the complete suite."
+  },
+  "technicalReceipt": {
+    "path": "ux-1728-reference-duplicates/implementation-receipt-v4.json",
+    "rawSHA256": "6278fc5eafbdf6d0fd79b1d260c63e0d1fb509a60b49dff8b7c299bd0ec608a5"
+  },
+  "runtimeFiles": [
+    {
+      "file": "index.html",
+      "rawSHA256": "65aa0588b0daad457d2c7b5337e5241f311506d5c49ec1bf8d3411a1b4a6150a",
+      "lfSHA256": "48781b35771a4c5fd4903e83a56118d38281c78394ea870f53a3ca80c8e3da87"
+    },
+    {
+      "file": "jogar/index.html",
+      "rawSHA256": "39a22924ed53e67320b6211074923f8d141b5329e00c289be8acb0881f96b0eb",
+      "lfSHA256": "aa1b33ded2061f24443f20b20cf1d120f7f3e5fa3c07db5e91e5cac0cf5ce213"
+    },
+    {
+      "file": "offline.html",
+      "rawSHA256": "1e896289749b268e4a4b4f8d42392c6197858657deacdebf6e938849966b5d31",
+      "lfSHA256": "93b202431729cb15164a270fb069a4396f6119d9f7ae90e4458af9363202d300"
+    },
+    {
+      "file": "style.css",
+      "rawSHA256": "ab849ffb7e418d1d48c2c80b2965b2250f57ccde2e911125df51037b0deb729a",
+      "lfSHA256": "e724d1cc3479aa76d2fdfeb296fcd994fe9770fda86f8bd4509fc3a11b9bdac0"
+    },
+    {
+      "file": "sw.js",
+      "rawSHA256": "9edab20a783d0f2f356a6c1a987df54ffab319585ef47a08bc2e0d7d95880be0",
+      "lfSHA256": "277c8879a4b0d3b483a279204c31fc02892351b9331d0eda4bac482adf764e27"
+    },
+    {
+      "file": "version.json",
+      "rawSHA256": "64cdd2189debc6b5db0d470bc6b9cd5b3d2adf8c6c1f6c7c23c96c3362fc4276",
+      "lfSHA256": "64cdd2189debc6b5db0d470bc6b9cd5b3d2adf8c6c1f6c7c23c96c3362fc4276"
+    },
+    {
+      "file": "data/articles.js",
+      "rawSHA256": "6537e13be03b81feafe661f52fee6d56058bc15a55c702d8b18d7e319b0fcdf3",
+      "lfSHA256": "6537e13be03b81feafe661f52fee6d56058bc15a55c702d8b18d7e319b0fcdf3"
+    },
+    {
+      "file": "data/topics.js",
+      "rawSHA256": "20e2d95131876c3cfc6d91472af003a8049f60d89f0007361c0a7e2f5b4b8132",
+      "lfSHA256": "20e2d95131876c3cfc6d91472af003a8049f60d89f0007361c0a7e2f5b4b8132"
+    },
+    {
+      "file": "data/refs.js",
+      "rawSHA256": "2b0a6844667057ad36ee784aac5e500fe326417ff60bebb58794eccc4db38a62",
+      "lfSHA256": "2b0a6844667057ad36ee784aac5e500fe326417ff60bebb58794eccc4db38a62"
+    },
+    {
+      "file": "data/question-revision-history.js",
+      "rawSHA256": "91e2a614df372a567901576c76188cba03cd750b8bca999ad577758e13fb7546",
+      "lfSHA256": "91e2a614df372a567901576c76188cba03cd750b8bca999ad577758e13fb7546"
+    },
+    {
+      "file": "data/question-revision-manifest.js",
+      "rawSHA256": "daa77e54896dcb6b0f4293e4db06e2b8c2542f36452327f064799030551b63d2",
+      "lfSHA256": "daa77e54896dcb6b0f4293e4db06e2b8c2542f36452327f064799030551b63d2"
+    },
+    {
+      "file": "data/question-source-positions.js",
+      "rawSHA256": "effb5fca98b30c1aa1704e026649f02e419e609b42fb8d815f69007a585b70c3",
+      "lfSHA256": "effb5fca98b30c1aa1704e026649f02e419e609b42fb8d815f69007a585b70c3"
+    },
+    {
+      "file": "data/question-replacements.json",
+      "rawSHA256": "45192ed96fab3042472fedcb9c0acd17327374e343c1a74dff3330c7a5b88b1f",
+      "lfSHA256": "45192ed96fab3042472fedcb9c0acd17327374e343c1a74dff3330c7a5b88b1f"
+    },
+    {
+      "file": "js/achievements.js",
+      "rawSHA256": "6602b0a72144eece1538ac446b71c3bd30c65fd0c041bc740d6ff1c7b1462b0d",
+      "lfSHA256": "6602b0a72144eece1538ac446b71c3bd30c65fd0c041bc740d6ff1c7b1462b0d"
+    },
+    {
+      "file": "js/dashboard.js",
+      "rawSHA256": "83d23509d090ff903c866f78c840be72a994233a96751d432d444719e4a18893",
+      "lfSHA256": "8393b795b259328139272fa8a27df398ff4b0a85e1d627c2a49b6391c15cf987"
+    },
+    {
+      "file": "js/game.js",
+      "rawSHA256": "a8350dd0e80eb67e27aaba40a0f99389a90e47f70a96f7fc53bffd98413b5795",
+      "lfSHA256": "f13e8fc5f0e843bedf3af5cfbd6b36df712791f29b5669b5ccd933e6ce429326"
+    },
+    {
+      "file": "js/utils.js",
+      "rawSHA256": "e0f7a44451415cf2fca1a591677f6d514bd324d20dc0a7fdfe5edd39c7d9412c",
+      "lfSHA256": "bbbcb25a52ee9e95ec64aaee3cd764569ef908f9f48878a5cc846cb3269de255"
+    },
+    {
+      "file": "js/library-catalog.js",
+      "rawSHA256": "e8b57e6acc22e11f40c0f262c0c0c6565748e9e2daa43ce174c493ad7f8f1822",
+      "lfSHA256": "e8b57e6acc22e11f40c0f262c0c0c6565748e9e2daa43ce174c493ad7f8f1822"
+    }
+  ],
+  "limits": [
+    "These are local source snapshots, not proof of publication.",
+    "The163 targeted unit checks and independent50-unit checks overlap this643-test suite; they are not added as unique tests.",
+    "Previously failed developer tests remain recorded separately, with causal fixture/product fixes.",
+    "The final54-case UI fixture review is tracked independently; no success is inferred here."
+  ]
+}

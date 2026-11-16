@@ -1,0 +1,364 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "6d6d8d57",
+  "family": "A15-transplante-CMV",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "qid": "6d6d8d57",
+    "q": "Paciente masculino, 45 anos, transplantado renal há 3 dias, receptor CMV negativo de doador CMV positivo (D+/R-), sem febre, leucopenia ou evidência de infecção ativa. Qual é a estratégia mais adequada de prevenção da infecção por CMV nesse cenário?",
+    "opts": [
+      "Iniciar valganciclovir profilático ajustado à função renal, em esquema prolongado para alto risco D+/R-.",
+      "Não iniciar profilaxia, apenas monitorar a carga viral por PCR quinzenalmente e iniciar tratamento se houver sintomas.",
+      "Iniciar profilaxia com aciclovir e realizar PCR quantitativo mensal para diagnóstico precoce da reativação.",
+      "Iniciar valganciclovir profilático por apenas 3 meses, pois o status D+/R- não altera a duração da prevenção."
+    ],
+    "ans": 0,
+    "exp": "No transplante renal D+/R-, o receptor não tem imunidade prévia contra CMV e recebe órgão de doador soropositivo, configurando o maior risco sorológico para infecção e doença por CMV. Na ausência de infecção ativa, a estratégia adequada é profilaxia universal com valganciclovir ajustado à função renal, geralmente por período prolongado nesse perfil de alto risco. Monitorização isolada sem profilaxia deixa o paciente vulnerável; aciclovir não é profilaxia adequada para CMV; e tratar D+/R- como se exigisse apenas curso curto ignora a estratificação de risco.",
+    "cat": "transplante",
+    "diff": "medium",
+    "refs": [
+      "cmv_kdigo_tx",
+      "kdigo_tx"
+    ],
+    "t": "CMV no Transplante — Profilaxia"
+  },
+  "originalSHA256": "sha256:a4344cac81787f2794c0dc9b604a6b47bb899cbe93e8d91b07883e1731b88861",
+  "originalRefs": [
+    {
+      "id": "cmv_kdigo_tx",
+      "original": {
+        "label": "KDIGO CMV in Transplant 2022",
+        "url": "https://kdigo.org/guidelines/transplant-recipient-care/",
+        "journal": "American Journal of Transplantation 2022",
+        "ano": 2022,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Profilaxia, diagnóstico e tratamento de CMV em receptores de transplante renal",
+        "icon": "📋",
+        "resumo": "Diretriz especializada integrada ao manejo de infecções pós-transplante, detalhando a prevenção e controle do Citomegalovírus (CMV), o patógeno oportunista mais comum. Define a estratificação de risco pelo status sorológico do Doador (D) e Receptor (R), sendo o cenário D+/R- o de maior risco. Apresenta duas estratégias preventivas validadas: profilaxia universal (uso de valganciclovir por 3 a 6 meses pós-transplante, especialmente se uso de ATG) versus terapia preemptiva (monitoramento semanal da carga viral por PCR quantitativo e início imediato de tratamento se viremia detectada). O tratamento de escolha é valganciclovir oral para quadros leves a moderados e ganciclovir intravenoso para doença grave ou invasiva pulmonar/gastrointestinal.",
+        "conclusao": "Padroniza o uso sistemático de valganciclovir/ganciclovir e a monitorização por PCR como defesas cruciais para conter o CMV, mitigando o risco de rejeição e perda do enxerto sob a tempestade viral.",
+        "curiosidade": "O CMV não apenas causa sintomas sistêmicos e invasivos diretos, mas possui um potente efeito imunomodulador indireto ('sombra da infecção'), que aumenta o risco de outras infecções oportunistas, rejeição aguda do enxerto e desenvolvimento de vasculopatia crônica do transplante."
+      },
+      "originalSHA256": "sha256:ca06aa6a0a767a7a3b2285c51fd355e0e7bfca771019f310d18cd0f4107ae2cd"
+    },
+    {
+      "id": "kdigo_tx",
+      "original": {
+        "label": "KDIGO Transplant Recipient Care 2009",
+        "url": "https://kdigo.org/guidelines/transplant-recipient-care/",
+        "journal": "Am J Transplant 2009;9(Suppl 3):S1-S155",
+        "ano": 2009,
+        "tipo": "Diretriz Internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Manejo do receptor de transplante renal — imunossupressão, infecções e complicações",
+        "icon": "📋",
+        "resumo": "Diretriz abrangente para manejo do receptor de transplante renal, cobrindo imunossupressão (esquemas baseados em inibidor de calcineurina e antiproliferativo, com ou sem corticoide, individualizados por risco imunológico), monitorização do enxerto, rejeição aguda e crônica, infecções oportunistas (CMV, BK, PCP), doença cardiovascular, neoplasia e complicações metabólicas a longo prazo.",
+        "conclusao": "Referência-base para o acompanhamento do transplantado renal — da imunossupressão de indução ao manejo das complicações tardias.",
+        "curiosidade": "A introdução do tacrolimo marcou a consolidação dos inibidores de calcineurina como eixo da imunossupressão moderna, reduzindo a rejeição aguda e melhorando a sobrevida inicial do enxerto renal de forma expressiva."
+      },
+      "originalSHA256": "sha256:d45289e9fb4e493b136589950688622820db5f6e081dc9f16214b9062c026747"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Escolher profilaxia adequada entre opções para receptor renal D+/R−, sem negar alternativa preemptiva estruturada.",
+    "primaryCompetence": "Manejo seguro do receptor e interpretação clinicopatológica.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "medium",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "CRÍTICO — Explicação transforma ausência de profilaxia em vulnerabilidade inevitável, ignorando estratégia preemptiva semanal válida.",
+      "CRÍTICO — Referência CMV2022 não é obra identificável.",
+      "MAIOR — Alternativas misturam várias estratégias, mas a correta não define duração nem contexto de monitorização."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": true,
+        "rationale": "A explicação original rejeita monitorização sem profilaxia de forma ampla, mas estratégia preemptiva estruturada é alternativa válida; opção quinzenal continua inadequada."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "anulado": true
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "cmv",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12180710/",
+      "doi": "10.1097/TP.0000000000005374",
+      "pmid": "40200403",
+      "access": "Consenso primário2025 integral obtido em XML EuropePMC, BODY completo,852646bytes. Página PMC web exibiu captcha nesta tentativa, não fingir corpo web aberto.",
+      "artifact": "cmv-consensus-2025.xml",
+      "rawSHA256": "5e9508b814eadde6b06cc1cabbd96f2f1ed23dcb1e783718c8c5fd2f619759a9",
+      "locators": [
+        "CMV Treatment/Consensus: valganciclovir oral em leve/moderada com absorção/adesão; ganciclovirIV em grave/ameaçaàvida; não toda doença invasiva exige automaticamenteIV.",
+        "Treatment/Monitoring: ajustar pela função renal absoluta, controlar DNAemia semanal, leucopenia isolada não justifica subdose antiviral.",
+        "Table5: ganciclovirIV tratamento,CrCl25–49mL/min=2,5mg/kg a cada24h;50–69=2,5mg/kg q12h;10–24=1,25mg/kg q24h.",
+        "Prevention/Table3: rimD+/R− alto risco, profilaxia valganciclovir ou letermovir6meses ou estratégia preemptiva; preemptiva requer pelo menos semanal, limiar local/ensaio."
+      ],
+      "limitations": [
+        "Não existe um limiar universal de DNAemia; dose/estratégia depende de função renal, órgão, risco e capacidade de monitorização. A nova fonte não é KDIGO2022 nem herda esse ID fictício."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "D+/R− renal: valganciclovirprofilaxia6meses é opção; preemptivasemanal/ouletermovir são alternativasemcontextoadequado.",
+      "source": "cmv",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "qid": "6d6d8d57",
+    "q": "Receptor de transplante renal com doador soropositivo e receptor soronegativo para citomegalovírus (CMV), D+/R−, está no terceiro dia após o transplante, sem infecção ativa. Entre as opções abaixo, qual estratégia de prevenção é adequada?",
+    "opts": [
+      "Valganciclovir profilático por seis meses, ajustado à função renal.",
+      "Apenas DNAemia quinzenal, iniciando tratamento somente quando surgirem sintomas.",
+      "Aciclovir em dose usual como única profilaxia específica de CMV.",
+      "Valganciclovir por três meses, sem considerar o alto risco sorológico."
+    ],
+    "ans": 0,
+    "exp": "Doador positivo e receptor negativo conferem alto risco sorológico. No transplante renal, valganciclovir ajustado à função renal por seis meses é uma opção recomendada. Letermovir profilático e estratégia preemptiva estruturada também podem ser alternativas; a preemptiva exige pelo menos monitorização semanal, limiar de intervenção definido e capacidade de agir antes da doença clínica. Portanto, não se deve afirmar que toda prevenção sem profilaxia é inadequada. A opção quinzenal com espera por sintomas não cumpre esses requisitos.",
+    "cat": "transplante",
+    "diff": "medium",
+    "refs": [
+      "cmv_consensus_tts_2025"
+    ],
+    "t": "CMV no Transplante — Profilaxia"
+  },
+  "proposedSHA256": "sha256:4500a0dfcdbcac0d140084f9e62f8293135d0e3d3022268c117a8a5b5a406ba9",
+  "classificationAfter": {
+    "op": "Escolher profilaxia adequada entre opções para receptor renal D+/R−, sem negar alternativa preemptiva estruturada.",
+    "primaryCompetence": "Manejo seguro do receptor e interpretação clinicopatológica.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "cmv_consensus_tts_2025",
+      "original": null,
+      "originalSHA256": null,
+      "proposed": {
+        "label": "Kotton et al. — Quarto Consenso Internacional sobre CMV no Transplante (2025)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12180710/",
+        "journal": "Transplantation. 2025;109(7):1066–1110. DOI:10.1097/TP.0000000000005374",
+        "ano": 2025,
+        "tipo": "Consenso de especialistas",
+        "badge": "CONSENSO",
+        "badgeColor": "#6366f1",
+        "icon": "📋",
+        "impacto": "Estratificar risco, prevenir e tratar citomegalovírus (CMV) após transplante de órgão sólido.",
+        "resumo": "Consenso internacional da Transplantation Society sobre citomegalovírus. Integra sorologia de doador e receptor, órgão transplantado e imunossupressão na prevenção. Em rim com doador positivo e receptor negativo, recomenda profilaxia prolongada ou estratégia preemptiva estruturada; esta exige monitorização pelo menos semanal e limiar de intervenção definido pelo ensaio e serviço. Para doença leve a moderada com via oral viável, valganciclovir é primeira linha; ganciclovir intravenoso é recomendado em doença grave ou ameaçadora à vida.",
+        "conclusao": "Ajustar antivirais à função renal, acompanhar resposta clínica, DNAemia e toxicidade hematológica. Leucopenia isolada não deve levar a subdose antiviral; revisar outros mielossupressores e opções de suporte. Redução da imunossupressão requer avaliar gravidade, resposta e risco de rejeição, sem suspensão indiscriminada.",
+        "curiosidade": ""
+      },
+      "proposedSHA256": "sha256:e58c62d08cdd2e95601735289654c99342364ad4e856802d98ef5e71dbff1686",
+      "sourceIDs": [
+        "cmv"
+      ],
+      "notes": [
+        "Novo ID para obra real2025. Não é a mesma obra que o card fictício KDIGO2022; nenhuma transferência de favorito/desbloqueio."
+      ]
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "19/20. MantémOPde prevenção e correta valganciclovir, corrige alcance da explicação sem forçar que seja a única estratégia atual.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

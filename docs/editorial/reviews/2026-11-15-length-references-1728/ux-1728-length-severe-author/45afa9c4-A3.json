@@ -1,0 +1,416 @@
+{
+  "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "qid": "45afa9c4",
+  "family": "A3-seguranca-e-condutas",
+  "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+  "original": {
+    "t": "Suspeita de PTT Imune",
+    "qid": "45afa9c4",
+    "q": "Paciente de 35 anos apresenta anemia hemolítica microangiopática, plaquetas de 22.000/mm³, alteração neurológica e alta probabilidade clínica de PTT imune. Qual estratégia inicial é mais adequada?",
+    "refs": [
+      "isth_ttp_guidelines_2020"
+    ],
+    "opts": [
+      "Aguardar o resultado de ADAMTS13 antes de iniciar qualquer tratamento",
+      "Colher ADAMTS13 antes de plasma, iniciar imediatamente troca plasmática e corticosteroide e considerar caplacizumabe precoce conforme probabilidade e disponibilidade do teste",
+      "Transfundir plaquetas profilaticamente até acima de 50.000/mm³ e observar",
+      "Iniciar eculizumabe como primeira medida sem investigar deficiência grave de ADAMTS13"
+    ],
+    "ans": 1,
+    "exp": "Na alta probabilidade pré-teste de PTT imune, deve-se colher amostra para atividade/inibidor de ADAMTS13 antes da primeira troca plasmática ou produto sanguíneo, mas o tratamento não deve aguardar o resultado. Troca plasmática terapêutica e corticosteroide são iniciados imediatamente. Caplacizumabe pode ser considerado precocemente quando a probabilidade é alta e o acesso oportuno ao ADAMTS13 permite confirmar ou redirecionar a estratégia; ele não substitui a troca plasmática nem a imunossupressão.",
+    "diff": "hard",
+    "cat": "lra"
+  },
+  "originalSHA256": "sha256:8a1098d627c31b61c82198b7096c2cc3a4ea0bc522deb4da87d0c94bdf15e107",
+  "originalRefs": [
+    {
+      "id": "isth_ttp_guidelines_2020",
+      "original": {
+        "label": "ISTH — Diretriz de Diagnóstico da PTT",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146131/",
+        "journal": "J Thromb Haemost. 2020;18(10):2486-2495",
+        "ano": 2020,
+        "tipo": "Diretriz internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Estratégia baseada em probabilidade pré-teste, coleta de ADAMTS13 e tratamento imediato da PTT imune",
+        "icon": "📋",
+        "resumo": "Diretriz da International Society on Thrombosis and Haemostasis para diagnóstico de púrpura trombocitopênica trombótica. Na alta probabilidade de PTT imune, orienta colher atividade e inibidor ou anticorpo anti-ADAMTS13 antes de troca plasmática ou produto sanguíneo e iniciar troca plasmática terapêutica e corticosteroide sem aguardar o resultado. Caplacizumabe pode ser considerado precocemente quando a probabilidade é alta e há acesso oportuno ao teste; o resultado de ADAMTS13 direciona sua continuidade e a busca de diagnósticos alternativos.",
+        "conclusao": "Suspeita clínica alta de PTT imune é emergência terapêutica: colha ADAMTS13 antes de plasma, mas não atrase troca plasmática e corticosteroide; integre caplacizumabe à probabilidade e à disponibilidade do teste.",
+        "curiosidade": "A diretriz transforma o tempo do ADAMTS13 em parte da decisão: a mesma medicação pode ser apropriada quando o resultado chega rapidamente e inadequada quando não há como confirmar ou redirecionar o diagnóstico."
+      },
+      "originalSHA256": "sha256:889ed6222164fe28fe1dbf2d4613a9624d9d2a7ccaa0714c3eb1102e86d502df"
+    }
+  ],
+  "classificationBefore": {
+    "op": "Colher ADAMTS13 antes de plasma sem atrasar troca plasmática e corticosteroide na suspeita alta de PTT imune.",
+    "primaryCompetence": "Prioridade diagnóstica-terapêutica em emergência trombótica.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyAuthored": "hard",
+    "difficultyIntrinsic": "medium"
+  },
+  "originalReview": {
+    "verdict": "revisão maior",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "BLOQUEADA",
+    "confidence": "moderada",
+    "problems": [
+      "MAIOR — Correta reúne coleta, duas terapias e caplacizumabe; distratores são planos mais curtos e de categorias pouco paralelas.",
+      "MENOR — Prioridade inicial é separada de todo o plano posterior, sem remover as ressalvas de caplacizumabe da explicação."
+    ],
+    "appeal": [],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 1
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 1
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 1
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 0
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 14
+    },
+    "decision": "Objetivo e conceito correto preservados; a forma e os vínculos precisam reparo antes de nova publicação."
+  },
+  "sources": [
+    {
+      "id": "ttp",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146131/",
+      "doi": "10.1111/jth.15006",
+      "access": "Corpo integral da diretriz diagnóstica ISTH2020; também no XML EFetch a3-pmc-primary-corpus.xml",
+      "locators": [
+        "Recomendação1, linhas318–328: probabilidade alta, amostra pré-plasma, troca plasmática/corticoide sem aguardar",
+        "Consideração precoce de caplacizumabe conforme probabilidade e acesso oportuno ao teste"
+      ],
+      "limitations": [
+        "A estratégia diagnóstica é recomendação condicional de baixa certeza; não confundir com indicação de aguardar o teste na emergência."
+      ]
+    },
+    {
+      "id": "ttp2025",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13470878/",
+      "doi": "10.1016/j.jtha.2025.06.002",
+      "access": "Corpo integral da atualização ISTH2025",
+      "locators": [
+        "Tabela de comparação2020/2025, recomendação5, linhas357–358",
+        "Discussão do caplacizumabe precoce, linhas536–540"
+      ],
+      "limitations": [
+        "Confirma coerência contemporânea do núcleo da proposta; não é usada para extrapolar ADAMTS13 recombinante da forma congênita para esta suspeita imune."
+      ]
+    }
+  ],
+  "claimVerification": [
+    {
+      "claim": "Coletar pré-plasma sem aguardar resultado para TPE/corticosteroide",
+      "source": "ttp",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Caplacizumabe precoce conforme probabilidade e teste",
+      "source": "ttp",
+      "status": "VERIFICADA"
+    },
+    {
+      "claim": "Atualização2025 preserva terapia adjunta na forma imune",
+      "source": "ttp2025",
+      "status": "VERIFICADA"
+    }
+  ],
+  "proposed": {
+    "t": "Suspeita de púrpura trombocitopênica trombótica imune",
+    "qid": "45afa9c4",
+    "q": "Paciente de 35 anos apresenta anemia hemolítica microangiopática, plaquetas de 22.000/mm³, alteração neurológica e alta probabilidade clínica de púrpura trombocitopênica trombótica (PTT) imune. Qual é a prioridade inicial?",
+    "refs": [
+      "isth_ttp_guidelines_2020"
+    ],
+    "opts": [
+      "Colher ADAMTS13 e aguardar o resultado antes de iniciar troca plasmática.",
+      "Colher ADAMTS13 e iniciar troca plasmática com corticosteroide sem aguardar o resultado.",
+      "Iniciar caplacizumabe isolado e reservar troca plasmática para falta de resposta.",
+      "Iniciar eculizumabe e reservar troca plasmática para resultado de ADAMTS13 não reduzida."
+    ],
+    "ans": 1,
+    "exp": "É necessário colher amostra para atividade/inibidor ou anticorpo anti-ADAMTS13 antes de plasma, mas sem atrasar troca plasmática terapêutica e corticosteroide. A equipe experiente deve avaliar caplacizumabe precocemente conforme probabilidade e acesso oportuno ao teste; ele não substitui automaticamente troca plasmática e imunossupressão. O resultado de ADAMTS13 ajuda a confirmar ou redirecionar o diagnóstico e orientar tratamento adicional. A atualização ISTH de 2025 mantém o papel de caplacizumabe associado ao tratamento da forma imune. Esperar pelo resultado ou tratar como outra microangiopatia pode atrasar uma intervenção urgente.",
+    "diff": "medium",
+    "cat": "lra"
+  },
+  "proposedSHA256": "sha256:508eb4c6425fb319e1e0fb143fc532e69acafe649d892bd72d5867db233372c1",
+  "classificationAfter": {
+    "op": "Colher ADAMTS13 antes de plasma sem atrasar troca plasmática e corticosteroide na suspeita alta de PTT imune.",
+    "primaryCompetence": "Prioridade diagnóstica-terapêutica em emergência trombótica.",
+    "bloom": "Aplicar",
+    "miller": "Sabe como",
+    "difficultyIntrinsic": "medium",
+    "difficultyAuthored": "medium"
+  },
+  "proposedRefs": [
+    {
+      "id": "isth_ttp_guidelines_2020",
+      "original": {
+        "label": "ISTH — Diretriz de Diagnóstico da PTT",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146131/",
+        "journal": "J Thromb Haemost. 2020;18(10):2486-2495",
+        "ano": 2020,
+        "tipo": "Diretriz internacional",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Estratégia baseada em probabilidade pré-teste, coleta de ADAMTS13 e tratamento imediato da PTT imune",
+        "icon": "📋",
+        "resumo": "Diretriz da International Society on Thrombosis and Haemostasis para diagnóstico de púrpura trombocitopênica trombótica. Na alta probabilidade de PTT imune, orienta colher atividade e inibidor ou anticorpo anti-ADAMTS13 antes de troca plasmática ou produto sanguíneo e iniciar troca plasmática terapêutica e corticosteroide sem aguardar o resultado. Caplacizumabe pode ser considerado precocemente quando a probabilidade é alta e há acesso oportuno ao teste; o resultado de ADAMTS13 direciona sua continuidade e a busca de diagnósticos alternativos.",
+        "conclusao": "Suspeita clínica alta de PTT imune é emergência terapêutica: colha ADAMTS13 antes de plasma, mas não atrase troca plasmática e corticosteroide; integre caplacizumabe à probabilidade e à disponibilidade do teste.",
+        "curiosidade": "A diretriz transforma o tempo do ADAMTS13 em parte da decisão: a mesma medicação pode ser apropriada quando o resultado chega rapidamente e inadequada quando não há como confirmar ou redirecionar o diagnóstico."
+      },
+      "originalSHA256": "sha256:889ed6222164fe28fe1dbf2d4613a9624d9d2a7ccaa0714c3eb1102e86d502df",
+      "proposed": {
+        "label": "ISTH — Diagnóstico da púrpura trombocitopênica trombótica (2020)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8146131/",
+        "journal": "J Thromb Haemost. 2020;18(10):2486-2495",
+        "ano": 2020,
+        "tipo": "Diretriz",
+        "badge": "GUIDELINE",
+        "badgeColor": "#6366f1",
+        "impacto": "Estratégia baseada em probabilidade pré-teste, coleta de ADAMTS13 e tratamento imediato da PTT imune",
+        "icon": "📋",
+        "resumo": "Diretriz da International Society on Thrombosis and Haemostasis para diagnóstico de púrpura trombocitopênica trombótica (PTT). Na probabilidade clínica alta de forma imune, orienta colher atividade/inibidor ou anticorpo anti-ADAMTS13 antes de plasma e iniciar troca plasmática terapêutica com corticosteroide sem aguardar o resultado. Caplacizumabe pode ser considerado precocemente quando há probabilidade alta e acesso oportuno ao teste, cuja resposta direciona continuidade e diagnósticos alternativos. É estratégia diagnóstica condicional, com baixa certeza; não significa adiar tratamento da emergência.",
+        "conclusao": "Suspeita clínica alta de PTT imune é emergência terapêutica: colha ADAMTS13 antes de plasma, mas não atrase troca plasmática e corticosteroide; integre caplacizumabe à probabilidade e à disponibilidade do teste.",
+        "curiosidade": "A diretriz transforma o tempo do ADAMTS13 em parte da decisão: a mesma medicação pode ser apropriada quando o resultado chega rapidamente e inadequada quando não há como confirmar ou redirecionar o diagnóstico."
+      },
+      "proposedSHA256": "sha256:e6568b79f749216017937871d7e62489c12dd9692a095d55657137dbbd2f2518",
+      "sourceIDs": [
+        "ttp",
+        "ttp2025"
+      ],
+      "notes": []
+    }
+  ],
+  "candidateReview": {
+    "verdict": "aprovada",
+    "evidence": "VERIFICADA",
+    "pending": "NENHUMA",
+    "publication": "LIBERADA",
+    "confidence": "moderada",
+    "appeal": [
+      "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+    ],
+    "eliminatories": [
+      {
+        "number": 1,
+        "criterion": "mais de uma resposta defensável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 2,
+        "criterion": "referência sem suporte ao gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 3,
+        "criterion": "desvio de objetivo pedagógico",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 4,
+        "criterion": "conduta insegura tratada como correta/aceitável",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 5,
+        "criterion": "distrator sem plausibilidade",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 6,
+        "criterion": "trivia sem consequência",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 7,
+        "criterion": "explicação contradiz o gabarito",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 8,
+        "criterion": "informação decisiva ausente",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 9,
+        "criterion": "protocolo local não declarado",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      },
+      {
+        "number": 10,
+        "criterion": "ciência relevantemente desatualizada",
+        "triggered": false,
+        "rationale": "Checado na versão literal e no OP declarados; não disparado."
+      }
+    ],
+    "score": {
+      "dimensions": [
+        {
+          "name": "alinhamento ao OP",
+          "value": 2
+        },
+        {
+          "name": "validade de conteúdo",
+          "value": 2
+        },
+        {
+          "name": "validade de construto",
+          "value": 2
+        },
+        {
+          "name": "enunciado",
+          "value": 2
+        },
+        {
+          "name": "alternativas",
+          "value": 2
+        },
+        {
+          "name": "distratores",
+          "value": 1
+        },
+        {
+          "name": "explicação",
+          "value": 2
+        },
+        {
+          "name": "referências",
+          "value": 2
+        },
+        {
+          "name": "ausência de pistas formais",
+          "value": 2
+        },
+        {
+          "name": "valor pedagógico",
+          "value": 2
+        }
+      ],
+      "total": 19
+    },
+    "scoreRationale": "Os planos comparam a mesma decisão de sequência e urgência. O objetivo não muda para memorização de dose ou manejo da forma congênita.",
+    "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+  },
+  "identityDecision": {
+    "preserveQid": true,
+    "reason": "OP primário, competência e conceito correto continuam reconhecíveis; manter qid e histórico, sem transferência nem reset de FSRS.",
+    "fsrsChange": false
+  },
+  "implementationAuthorization": {
+    "ready": false,
+    "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+  },
+  "notes": [],
+  "hold": null
+}

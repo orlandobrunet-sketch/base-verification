@@ -1,0 +1,1440 @@
+{
+  "schema": "NQ_AUTHOR_BATCH_1728_A8.1",
+  "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+  "count": 4,
+  "readyForImplementation": false,
+  "scope": "Autoria de disposição formal de dois pares dos160; canônicas e fullcards são byte-exatos do snapshot, sem herdar aprovação anterior.",
+  "retiredIds": [
+    "5906012f",
+    "a4ffbe05"
+  ],
+  "keepExactIds": [
+    "3d8fc3fe",
+    "9fd2cfdb"
+  ],
+  "items": [
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "3d8fc3fe",
+      "family": "A8-finerenona-canonica-exata",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Finerenona — Classe e Indicação na DRC Diabética",
+        "qid": "3d8fc3fe",
+        "q": "Qual é a classe farmacológica da finerenona, utilizada na doença renal crônica associada ao diabetes tipo 2?",
+        "refs": [
+          "finerenone_label_dailymed"
+        ],
+        "opts": [
+          "Antagonista não esteroidal do receptor mineralocorticoide",
+          "Inibidor direto da renina",
+          "Antagonista esteroidal do receptor mineralocorticoide",
+          "Inibidor do cotransportador de sódio e glicose tipo 2"
+        ],
+        "ans": 0,
+        "exp": "A finerenona é um antagonista não esteroidal e seletivo do receptor mineralocorticoide. A espironolactona pertence ao grupo esteroidal; alisquireno inibe diretamente a renina, enquanto empagliflozina e dapagliflozina inibem o cotransportador de sódio e glicose tipo 2 (SGLT2). Em adultos com doença renal crônica associada ao diabetes tipo 2, a finerenona tem benefício cardiorrenal demonstrado, mas exige seleção e monitorização de potássio e função renal. Sua estrutura não esteroidal não elimina a hipercalemia.",
+        "diff": "easy",
+        "cat": "nefropatia_diabetica"
+      },
+      "originalSHA256": "sha256:f042d0cd03edb19cc684f3885f235e2f4ce3e1aa9dea70bdeb6ce75c9e574788",
+      "originalRefs": [
+        {
+          "id": "finerenone_label_dailymed",
+          "original": {
+            "label": "Kerendia (finerenona) — Prescribing Information (DailyMed)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c",
+            "journal": "DailyMed/FDA label",
+            "ano": 2026,
+            "tipo": "Bula/rotulagem",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Potássio, TFGe e interações CYP3A4 na prescrição de finerenona",
+            "icon": "📋",
+            "resumo": "Rotulagem profissional da finerenona. Antes de iniciar, recomenda medir potássio sérico e TFGe; não iniciar se K+ >5,0 mEq/L, e a dose inicial depende da TFGe, com início não recomendado se TFGe <25 mL/min/1,73m². A finerenona pode causar hipercalemia, com risco maior quanto menor a função renal, maior o potássio basal ou quando há fármacos que aumentam potássio. É substrato do CYP3A4: uso concomitante com inibidores fortes de CYP3A4 é contraindicado, e inibidores moderados/fracos exigem monitorização de potássio e ajuste.",
+            "conclusao": "A prescrição segura de finerenona exige checar K+, TFGe e interações CYP3A4; em cenários de risco, como DRC e fármacos que elevam potássio, a monitorização deve ser mais estreita.",
+            "curiosidade": "A bula norte-americana revisada em setembro de 2026 orienta evitar grapefruit e seu suco: a inibição intestinal de CYP3A4 pode aumentar a exposição à finerenona e o risco de reações adversas, incluindo hipercalemia."
+          },
+          "originalSHA256": "sha256:c6d9a4abf3fb81a3b5f5a337ec6f9c902d841a798138f72e1b9b566b5110f12e"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reconhecer finerenona como antagonista mineralocorticoide não esteroidal, distinguindo-a de outras classes nefroprotetoras e anti-hipertensivas.",
+        "primaryCompetence": "Mecanismo.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyAuthored": "easy",
+        "difficultyIntrinsic": "easy"
+      },
+      "originalReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "problems": [],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 2
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "decision": "Manter como canônica byte-exata, após conferir o literal e o card completo nas fontes. Não receber histórico do item redundante5906012f."
+      },
+      "sources": [
+        {
+          "id": "label",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c",
+          "access": "Rotulagem oficial profissional integral, revisão9/2026, aberta no DailyMed",
+          "locators": [
+            "§1 indicação em DRC/diabetes; §2.1–2.3 potássio e TFGe; §5.1 hipercalemia; §7.1 CYP3A4/grapefruit; §12.1 classe não esteroidal/seletiva."
+          ],
+          "limitations": [
+            "Regulação norte-americana, sem inferir Anvisa ou cobertura. O item canônico não afirma ser a única indicação atual."
+          ]
+        },
+        {
+          "id": "otherClasses",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=41c0e5e0-eb26-4d9e-bcd2-d0f2cc8fc6db",
+          "access": "Rotulagem oficial alisquireno aberta; também PDFs oficiais FDA de espironolactona, empagliflozina e dapagliflozina",
+          "locators": [
+            "Alisquireno §12.1: inibidor direto da renina.",
+            "Espironolactona FDA2025,012151s080lbl.pdf: §11 estrutura esteroidal e §12.1 antagonismo de aldosterona.",
+            "Empagliflozina FDA2022,204629s039lbl.pdf: §12.1 inibição SGLT2; usado apenas para classe, não para indicação vigente.",
+            "Dapagliflozina FDA2026,202293s035lbl.pdf: classe SGLT2 nos highlights/§12.1."
+          ],
+          "additionalURLs": [
+            "https://www.accessdata.fda.gov/drugsatfda_docs/label/2025/012151s080lbl.pdf",
+            "https://www.accessdata.fda.gov/drugsatfda_docs/label/2022/204629s039lbl.pdf?matchtype=e",
+            "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/202293s035lbl.pdf"
+          ],
+          "limitations": [
+            "Nenhuma nova indicação ou dose dessas drogas é acrescentada; conferência somente dos exemplos de classe na explicação."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Finerenona é antagonista não esteroidal/seletivo do receptor mineralocorticoide, com risco de hipercalemia e necessidade de seleção e monitorização.",
+          "source": "label",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Exemplos da explicação: espironolactona esteroidal, alisquireno inibidor direto da renina, empagliflozina/dapagliflozina SGLT2.",
+          "source": "otherClasses",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "Finerenona — Classe e Indicação na DRC Diabética",
+        "qid": "3d8fc3fe",
+        "q": "Qual é a classe farmacológica da finerenona, utilizada na doença renal crônica associada ao diabetes tipo 2?",
+        "refs": [
+          "finerenone_label_dailymed"
+        ],
+        "opts": [
+          "Antagonista não esteroidal do receptor mineralocorticoide",
+          "Inibidor direto da renina",
+          "Antagonista esteroidal do receptor mineralocorticoide",
+          "Inibidor do cotransportador de sódio e glicose tipo 2"
+        ],
+        "ans": 0,
+        "exp": "A finerenona é um antagonista não esteroidal e seletivo do receptor mineralocorticoide. A espironolactona pertence ao grupo esteroidal; alisquireno inibe diretamente a renina, enquanto empagliflozina e dapagliflozina inibem o cotransportador de sódio e glicose tipo 2 (SGLT2). Em adultos com doença renal crônica associada ao diabetes tipo 2, a finerenona tem benefício cardiorrenal demonstrado, mas exige seleção e monitorização de potássio e função renal. Sua estrutura não esteroidal não elimina a hipercalemia.",
+        "diff": "easy",
+        "cat": "nefropatia_diabetica"
+      },
+      "proposedSHA256": "sha256:f042d0cd03edb19cc684f3885f235e2f4ce3e1aa9dea70bdeb6ce75c9e574788",
+      "classificationAfter": {
+        "op": "Reconhecer finerenona como antagonista mineralocorticoide não esteroidal, distinguindo-a de outras classes nefroprotetoras e anti-hipertensivas.",
+        "primaryCompetence": "Mecanismo.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyIntrinsic": "easy",
+        "difficultyAuthored": "easy"
+      },
+      "proposedRefs": [
+        {
+          "id": "finerenone_label_dailymed",
+          "original": {
+            "label": "Kerendia (finerenona) — Prescribing Information (DailyMed)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c",
+            "journal": "DailyMed/FDA label",
+            "ano": 2026,
+            "tipo": "Bula/rotulagem",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Potássio, TFGe e interações CYP3A4 na prescrição de finerenona",
+            "icon": "📋",
+            "resumo": "Rotulagem profissional da finerenona. Antes de iniciar, recomenda medir potássio sérico e TFGe; não iniciar se K+ >5,0 mEq/L, e a dose inicial depende da TFGe, com início não recomendado se TFGe <25 mL/min/1,73m². A finerenona pode causar hipercalemia, com risco maior quanto menor a função renal, maior o potássio basal ou quando há fármacos que aumentam potássio. É substrato do CYP3A4: uso concomitante com inibidores fortes de CYP3A4 é contraindicado, e inibidores moderados/fracos exigem monitorização de potássio e ajuste.",
+            "conclusao": "A prescrição segura de finerenona exige checar K+, TFGe e interações CYP3A4; em cenários de risco, como DRC e fármacos que elevam potássio, a monitorização deve ser mais estreita.",
+            "curiosidade": "A bula norte-americana revisada em setembro de 2026 orienta evitar grapefruit e seu suco: a inibição intestinal de CYP3A4 pode aumentar a exposição à finerenona e o risco de reações adversas, incluindo hipercalemia."
+          },
+          "originalSHA256": "sha256:c6d9a4abf3fb81a3b5f5a337ec6f9c902d841a798138f72e1b9b566b5110f12e",
+          "proposed": {
+            "label": "Kerendia (finerenona) — Prescribing Information (DailyMed)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c",
+            "journal": "DailyMed/FDA label",
+            "ano": 2026,
+            "tipo": "Bula/rotulagem",
+            "badge": "BULA",
+            "badgeColor": "#64748b",
+            "impacto": "Potássio, TFGe e interações CYP3A4 na prescrição de finerenona",
+            "icon": "📋",
+            "resumo": "Rotulagem profissional da finerenona. Antes de iniciar, recomenda medir potássio sérico e TFGe; não iniciar se K+ >5,0 mEq/L, e a dose inicial depende da TFGe, com início não recomendado se TFGe <25 mL/min/1,73m². A finerenona pode causar hipercalemia, com risco maior quanto menor a função renal, maior o potássio basal ou quando há fármacos que aumentam potássio. É substrato do CYP3A4: uso concomitante com inibidores fortes de CYP3A4 é contraindicado, e inibidores moderados/fracos exigem monitorização de potássio e ajuste.",
+            "conclusao": "A prescrição segura de finerenona exige checar K+, TFGe e interações CYP3A4; em cenários de risco, como DRC e fármacos que elevam potássio, a monitorização deve ser mais estreita.",
+            "curiosidade": "A bula norte-americana revisada em setembro de 2026 orienta evitar grapefruit e seu suco: a inibição intestinal de CYP3A4 pode aumentar a exposição à finerenona e o risco de reações adversas, incluindo hipercalemia."
+          },
+          "proposedSHA256": "sha256:c6d9a4abf3fb81a3b5f5a337ec6f9c902d841a798138f72e1b9b566b5110f12e",
+          "sourceIDs": [
+            "label"
+          ],
+          "notes": [
+            "Reavaliado integralmente; literal e hash preservados, sem alteração global de card."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 2
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 19
+        },
+        "scoreRationale": "19/20. Reconhecimento básico de classe; a utilidade é diferenciar mecanismos e riscos farmacológicos, não recordar número de ensaio. Não há conduta nova ou terceira indicação a memorizar. O limite cognitivo de recall é declarado, sem rotular hard.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "Canônica3d8fc3fe mantém bytes e identidade. O qid5906012f tem disposição própria de fusão, sem transferência de FSRS/crédito.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "5906012f",
+      "family": "A8-fusao-160",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "Finerenona — Classe Farmacológica",
+        "qid": "5906012f",
+        "q": "A finerenona pertence a qual classe farmacológica e qual é sua principal indicação aprovada?",
+        "opts": [
+          "Inibidor de SGLT2; DM2 com ou sem DRC",
+          "Antagonista do receptor mineralocorticoide não-esteroidal (ARM); DRC com DM2",
+          "Inibidor da ECA de longa ação; hipertensão",
+          "Inibidor direto da renina; nefropatia diabética"
+        ],
+        "ans": 1,
+        "exp": "A finerenona é um antagonista não-esteroidal do receptor mineralocorticoide (ARM), com efeito anti-inflamatório e antifibrótico mediado pelo bloqueio seletivo desse receptor. Sua principal indicação aprovada é a DRC associada ao DM2, com redução de progressão renal e de eventos cardiovasculares (FIDELIO-DKD, NEJM 2020; FIGARO-DKD, NEJM 2021). Inibidores de SGLT2 (dapagliflozina, empagliflozina) têm mecanismo distinto — bloqueio da reabsorção tubular de glicose — e constituem outra classe nefroprotetora. A finerenona não é IECA nem inibidor direto da renina; embora todos atuem no eixo SRAA, os sítios farmacológicos e as indicações aprovadas são distintos.",
+        "diff": "easy",
+        "cat": "farmacologia",
+        "refs": [
+          "fidelio_dkd"
+        ]
+      },
+      "originalSHA256": "sha256:4c508ac001ca2e1fef0d76c2c330ea24084bcd7f491438005573d6b5797b9dcc",
+      "originalRefs": [
+        {
+          "id": "fidelio_dkd",
+          "original": {
+            "label": "FIDELIO-DKD Trial (Finerenona)",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2025845",
+            "journal": "N Engl J Med 2020;383(23):2219-2229",
+            "ano": 2020,
+            "tipo": "Ensaio Clínico Fase III",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Finerenona ↓18% desfecho renal composto · ↓14% eventos CV · Antagonista não-esteroidal do receptor mineralocorticoide",
+            "icon": "💊",
+            "resumo": "ECR fase III, duplo-cego, placebo-controlado (FIDELIO-DKD, n=5.734), em DM2 com DRC albuminúrica, potássio controlado e uso de IECA ou BRA em dose máxima tolerada. Finerenona 10–20 mg/dia reduziu o desfecho renal primário composto — queda sustentada de TFGe ≥40%, DRCT ou morte renal — com HR 0,82 (IC 95% 0,73–0,93; P=0,001). O desfecho cardiovascular secundário também foi reduzido: HR 0,86 (IC 95% 0,75–0,99; P=0,03). Descontinuação por hipercalemia foi mais frequente com finerenona: 2,3% vs 0,9%.",
+            "conclusao": "FIDELIO-DKD estabeleceu a finerenona como terapia nefroprotetora e cardioprotetora adicional ao bloqueio do SRAA em DRC diabética albuminúrica, com necessidade de seleção por potássio e monitorização laboratorial.",
+            "curiosidade": "A finerenona é um antagonista não esteroidal do receptor mineralocorticoide. Diferencia-se dos MRAs esteroidais por estrutura, distribuição tecidual e ausência de atividade androgênica/progestagênica relevante, mas não elimina o principal cuidado clínico da classe: hipercalemia."
+          },
+          "originalSHA256": "sha256:3934cb5fccff3343e72207aa16b9cc41842e73b6291ce7c87d0f58fbb35ea84c"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Reconhecer a classe da finerenona, com indicação agregada à mesma tarefa.",
+        "primaryCompetence": "Mesmo OP primário da canônica correspondente.",
+        "bloom": "Lembrar",
+        "miller": "Sabe",
+        "difficultyAuthored": "easy",
+        "difficultyIntrinsic": "easy"
+      },
+      "originalReview": {
+        "verdict": "fundir",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Duplica a decisão de classe farmacológica de3d8fc3fe.",
+          "MAIOR — A pergunta soma classe e indicação sem cenário clínico; a especificidade adicional da correta é pista formal.",
+          "MENOR — Abreviações não expandidas e indicação tratada como principal, sem delimitar contexto regulatório. A canônica não depende desse rótulo."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Fundir com3d8fc3fe, canônica literal/hashes deste lote. Não criar outra paráfrase para conservar a contagem."
+      },
+      "sources": [
+        {
+          "id": "label",
+          "url": "https://dailymed.nlm.nih.gov/dailymed/fda/fdaDrugXsl.cfm?setid=fc726765-5d5a-4d6e-b037-b847bda9fb7c",
+          "access": "Rotulagem oficial profissional integral, revisão9/2026, aberta no DailyMed",
+          "locators": [
+            "§1 indicação em DRC/diabetes; §2.1–2.3 potássio e TFGe; §5.1 hipercalemia; §7.1 CYP3A4/grapefruit; §12.1 classe não esteroidal/seletiva."
+          ],
+          "limitations": [
+            "Regulação norte-americana, sem inferir Anvisa ou cobertura. O item canônico não afirma ser a única indicação atual."
+          ]
+        }
+      ],
+      "claimVerification": [],
+      "proposed": null,
+      "proposedSHA256": null,
+      "classificationAfter": null,
+      "proposedRefs": [],
+      "candidateReview": null,
+      "identityDecision": {
+        "preserveQid": false,
+        "reason": "Manter histórico pretérito no qid aposentado, sem migração de FSRS, crédito, acertos, domínio ou descobertas.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": "Aposentadoria por fusão para3d8fc3fe, após adjudicação independente dos dois originais e da canônica exata.",
+      "duplicateTest": {
+        "canonicalQid": "3d8fc3fe",
+        "canonicalProposedSHA256": "sha256:f042d0cd03edb19cc684f3885f235e2f4ce3e1aa9dea70bdeb6ce75c9e574788",
+        "decision": {
+          "same": true,
+          "value": "Reconhecer classe farmacológica da finerenona."
+        },
+        "caseDataStructure": {
+          "same": true,
+          "value": "Nome do fármaco no contexto DRC/diabetes; pedir indicação como segunda tarefa não cria outro caso decisório."
+        },
+        "targetLearnerProfile": {
+          "same": true,
+          "value": "Estudante avançado/residente; não se declara perfil diferente."
+        },
+        "language": {
+          "same": true,
+          "value": "pt-BR"
+        },
+        "allFourCoincide": true
+      },
+      "lifecycleDecision": {
+        "verdict": "fundir",
+        "retiredQid": "5906012f",
+        "canonicalQid": "3d8fc3fe",
+        "retiredStatus": "aposentado",
+        "fsrsTransfer": false,
+        "creditTransfer": false,
+        "history": "Preservar registros pretéritos sob o qid original; não reconhecer resposta à aposentada como crédito na canônica.",
+        "ready": false
+      }
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "9fd2cfdb",
+      "family": "A8-IgA-canonica-exata",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "DAPA-CKD na IgAN — Benefício e Cautela",
+        "qid": "9fd2cfdb",
+        "q": "Na análise pré-especificada do DAPA-CKD, 270 participantes com nefropatia por imunoglobulina A (IgA) tiveram 6 eventos do composto primário com dapagliflozina e 20 com placebo: razão de riscos 0,29, com intervalo de confiança de 95% de 0,12–0,73. Qual interpretação é mais adequada?",
+        "refs": [
+          "dapa_ckd_igan_2021",
+          "kdigo_igan_igav_2025"
+        ],
+        "opts": [
+          "Há sinal de nefroproteção, com precisão limitada pelo número de eventos do subgrupo",
+          "A estimativa identifica ação imune específica, pois a produção patogênica de IgA foi o desfecho",
+          "O intervalo confirma benefício de igual magnitude em qualquer estágio de função renal",
+          "Por ser análise de subgrupo, o resultado não contribui para decisões de nefroproteção"
+        ],
+        "ans": 0,
+        "exp": "A análise apoia nefroproteção, com incerteza sobre a magnitude exata do efeito pelo número limitado de eventos. O composto primário incluía queda sustentada ≥50% da taxa de filtração glomerular estimada (TFGe), falência renal ou morte renal/cardiovascular; não era produção de IgA nem hematúria. Houve 26 eventos entre 270 participantes, em mediana de 2,1 anos. A TFGe média era 43,8 mL/min/1,73 m², e 94% tinham confirmação por biópsia. Ser pré-especificada aumenta a relevância dessa análise, mas não a transforma em ensaio autônomo com poder próprio para toda população de IgA. Nem a estimativa pontual nem o intervalo provam efeito idêntico em todos os estágios ou mecanismo imune direto.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "originalSHA256": "sha256:80ad4e45f389dcc49b67f0a72e27c9c008751738542470c2e7b30b7d527af9b5",
+      "originalRefs": [
+        {
+          "id": "dapa_ckd_igan_2021",
+          "original": {
+            "label": "Wheeler et al. — DAPA-CKD na nefropatia por IgA (2021)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/33878338/",
+            "journal": "Kidney Int. 2021;100(1):215–224",
+            "ano": 2021,
+            "tipo": "Análise pré-especificada de ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Dapagliflozina reduziu o composto renal/CV no subgrupo de IgA, com poucos eventos",
+            "icon": "🔬",
+            "resumo": "Subgrupo pré-especificado do DAPA-CKD com 270 participantes com nefropatia por imunoglobulina A (IgA), 254 confirmados por biópsia. Taxa de filtração glomerular estimada (TFGe) média de 43,8 mL/min/1,73 m² e relação albumina/creatinina urinária mediana de 900 mg/g. Dapagliflozina 10 mg/dia versus placebo, além do suporte. O composto primário incluía queda sustentada ≥50% da TFGe, falência renal ou morte renal/cardiovascular: 6/137 versus 20/133 eventos em mediana de 2,1 anos; razão de riscos (HR) 0,29, intervalo de confiança de 95% 0,12–0,73; P=0,005. A relação albumina/creatinina caiu 26% frente a placebo.",
+            "conclusao": "O resultado apoia nefroproteção na população estudada, com precisão limitada por apenas 26 eventos. Não prova mecanismo imune específico, benefício exclusivo da IgA ou efeito idêntico em toda população.",
+            "curiosidade": "O composto renal secundário excluía morte cardiovascular; não deve ser confundido com o composto primário descrito acima."
+          },
+          "originalSHA256": "sha256:81eb4f74d92b3871753b52579eebe9a894e2f88f2965c40f2e1c1b26a5d2655e"
+        },
+        {
+          "id": "kdigo_igan_igav_2025",
+          "original": {
+            "label": "KDIGO 2025 IgAN/IgAV Guideline",
+            "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+            "journal": "Kidney International",
+            "ano": 2025,
+            "tipo": "Diretriz clínica",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Referência central atual para manejo da NIgA.",
+            "icon": "📋",
+            "resumo": "Diretriz KDIGO 2025 específica para nefropatia por IgA e vasculite por IgA. Atualiza o capítulo de NIgA da diretriz KDIGO 2021 e organiza recomendações sobre avaliação de risco, terapia de suporte e terapias adicionais. Não estabelece dieta isenta de glúten como tratamento rotineiro da NIgA primária.",
+            "conclusao": "Na NIgA, a base do manejo é nefroproteção e tratamento guiado por risco; dieta sem glúten não é recomendação universal.",
+            "curiosidade": "A atualização de 2025 reflete a transição da NIgA de uma abordagem centrada apenas em suporte para um modelo com terapias direcionadas em pacientes selecionados."
+          },
+          "originalSHA256": "sha256:56893bce2b6969f6a369432efe14a3214d5697fa552d55620d4231beea9754b2"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Interpretar o benefício observado no subgrupo IgA do DAPA-CKD respeitando a precisão limitada e sem inferir mecanismo imune específico.",
+        "primaryCompetence": "Interpretação.",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "medium",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "problems": [],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 2
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 20
+        },
+        "decision": "Manter byte-exata como canônica do par, com fullcards conferidos; não transferir o histórico de a4ffbe05."
+      },
+      "sources": [
+        {
+          "id": "dapaIgA",
+          "url": "https://www.gov.br/conitec/pt-br/midias/consultas/contribuicoes/2022/anexos/cp48/519-2.pdf/%40%40display-file/file",
+          "doi": "10.1016/j.kint.2021.03.033",
+          "pmid": "33878338",
+          "access": "Artigo primário integral lido na extração local congelada do PDF válido obtido pelo revisor independente, sem herdar seu parecer clínico.",
+          "locators": [
+            "Métodos/Resultados e Figuras1–2, texto extraído linhas123–158:270,254biópsias,137/133,6/20eventos,HR0,29,IC0,12–0,73,P0,005;TFGe43,8,seguimento2,1anos,UACR900,queda26%.",
+            "Discussion/limitações, linhas339–352: subgrupo pré-especificado, estudo não desenhado especificamente para IgA, poucos participantes/eventos limitam precisão.",
+            "Figura1 e texto: composto primário inclui morteCV; composto renal secundário exclui morteCV.",
+            "PDF2/p216:10mgonce daily, comprimido ativo/placebo idênticos. PDF1/3/4/8–9: resultados e limites rechecados."
+          ],
+          "limitations": [
+            "Cópia é a obra primária real, não slides/reescrita de contribuição. URL PubMed retornou página vazia nesta tentativa; não alegar corpo PubMed aberto.",
+            "A nova tentativa de download próprio Conitec retornou HTML e foi descartada; nenhuma alegação de leitura foi baseada nele. Viaoral lida na capa/§2.3 da bulaFDA, sem inferir por ela o desenho ou a dose do subgrupo."
+          ],
+          "localReceipt": {
+            "path": "../ux-1728-reference-duplicates/independent-bibliographic/dapa-igan-2021-primary.pdf",
+            "rawSHA256": "a6eecabb5a4b3f00145427bc09c4ad074b7b5d0a47b6ae67fddea198ccf56a0e",
+            "pages": 10
+          },
+          "additionalURLs": [
+            "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/202293s035lbl.pdf"
+          ]
+        },
+        {
+          "id": "kdigoIgA",
+          "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+          "access": "PDF oficial integral,71páginas, capaOutubro2025; trechos de síntese e manejo lidos",
+          "locators": [
+            "S18–S25: risco, nefroproteção e manejo dirigido aos mecanismos, terapias adicionais e contraindicações.",
+            "S25, recomendações1.4.4.1–3:IECA/BRA, sparsentana,SGLT2;PP1.4.4.4 limites em jovens/TFGe preservada.",
+            "S22–S24: Nefecon e regime sistêmico reduzido em contexto selecionado.",
+            "Busca textual integral por gluten sem ocorrência; seção nutricional/estilo de vida e resumo terapêutico não estabelecem dieta sem glúten como tratamento universal."
+          ],
+          "limitations": [
+            "O card canônico não afirma contraindicação a glúten nem nega indicação individual por doença celíaca; descreve ausência de recomendação universal no documento."
+          ]
+        }
+      ],
+      "claimVerification": [
+        {
+          "claim": "Amostra, eventos,HR/intervalo e demais números da questão e do card correspondem ao artigo.",
+          "source": "dapaIgA",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Subgrupo pré-especificado limitado em precisão; não mede produção patogênicaIgA nem prova efeito idêntico em todos os estágios.",
+          "source": "dapaIgA",
+          "status": "VERIFICADA"
+        },
+        {
+          "claim": "Uso de SGLT2 como nefroproteção em IgA sob risco, sem substituir automaticamente terapias específicas e com limites populacionais.",
+          "source": "kdigoIgA",
+          "status": "VERIFICADA"
+        }
+      ],
+      "proposed": {
+        "t": "DAPA-CKD na IgAN — Benefício e Cautela",
+        "qid": "9fd2cfdb",
+        "q": "Na análise pré-especificada do DAPA-CKD, 270 participantes com nefropatia por imunoglobulina A (IgA) tiveram 6 eventos do composto primário com dapagliflozina e 20 com placebo: razão de riscos 0,29, com intervalo de confiança de 95% de 0,12–0,73. Qual interpretação é mais adequada?",
+        "refs": [
+          "dapa_ckd_igan_2021",
+          "kdigo_igan_igav_2025"
+        ],
+        "opts": [
+          "Há sinal de nefroproteção, com precisão limitada pelo número de eventos do subgrupo",
+          "A estimativa identifica ação imune específica, pois a produção patogênica de IgA foi o desfecho",
+          "O intervalo confirma benefício de igual magnitude em qualquer estágio de função renal",
+          "Por ser análise de subgrupo, o resultado não contribui para decisões de nefroproteção"
+        ],
+        "ans": 0,
+        "exp": "A análise apoia nefroproteção, com incerteza sobre a magnitude exata do efeito pelo número limitado de eventos. O composto primário incluía queda sustentada ≥50% da taxa de filtração glomerular estimada (TFGe), falência renal ou morte renal/cardiovascular; não era produção de IgA nem hematúria. Houve 26 eventos entre 270 participantes, em mediana de 2,1 anos. A TFGe média era 43,8 mL/min/1,73 m², e 94% tinham confirmação por biópsia. Ser pré-especificada aumenta a relevância dessa análise, mas não a transforma em ensaio autônomo com poder próprio para toda população de IgA. Nem a estimativa pontual nem o intervalo provam efeito idêntico em todos os estágios ou mecanismo imune direto.",
+        "diff": "medium",
+        "cat": "glomerular"
+      },
+      "proposedSHA256": "sha256:80ad4e45f389dcc49b67f0a72e27c9c008751738542470c2e7b30b7d527af9b5",
+      "classificationAfter": {
+        "op": "Interpretar o benefício observado no subgrupo IgA do DAPA-CKD respeitando a precisão limitada e sem inferir mecanismo imune específico.",
+        "primaryCompetence": "Interpretação.",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "difficultyIntrinsic": "medium",
+        "difficultyAuthored": "medium"
+      },
+      "proposedRefs": [
+        {
+          "id": "dapa_ckd_igan_2021",
+          "original": {
+            "label": "Wheeler et al. — DAPA-CKD na nefropatia por IgA (2021)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/33878338/",
+            "journal": "Kidney Int. 2021;100(1):215–224",
+            "ano": 2021,
+            "tipo": "Análise pré-especificada de ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Dapagliflozina reduziu o composto renal/CV no subgrupo de IgA, com poucos eventos",
+            "icon": "🔬",
+            "resumo": "Subgrupo pré-especificado do DAPA-CKD com 270 participantes com nefropatia por imunoglobulina A (IgA), 254 confirmados por biópsia. Taxa de filtração glomerular estimada (TFGe) média de 43,8 mL/min/1,73 m² e relação albumina/creatinina urinária mediana de 900 mg/g. Dapagliflozina 10 mg/dia versus placebo, além do suporte. O composto primário incluía queda sustentada ≥50% da TFGe, falência renal ou morte renal/cardiovascular: 6/137 versus 20/133 eventos em mediana de 2,1 anos; razão de riscos (HR) 0,29, intervalo de confiança de 95% 0,12–0,73; P=0,005. A relação albumina/creatinina caiu 26% frente a placebo.",
+            "conclusao": "O resultado apoia nefroproteção na população estudada, com precisão limitada por apenas 26 eventos. Não prova mecanismo imune específico, benefício exclusivo da IgA ou efeito idêntico em toda população.",
+            "curiosidade": "O composto renal secundário excluía morte cardiovascular; não deve ser confundido com o composto primário descrito acima."
+          },
+          "originalSHA256": "sha256:81eb4f74d92b3871753b52579eebe9a894e2f88f2965c40f2e1c1b26a5d2655e",
+          "proposed": {
+            "label": "Wheeler et al. — DAPA-CKD na nefropatia por IgA (2021)",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/33878338/",
+            "journal": "Kidney Int. 2021;100(1):215–224",
+            "ano": 2021,
+            "tipo": "Análise pré-especificada de ensaio clínico randomizado",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "Dapagliflozina reduziu o composto renal/CV no subgrupo de IgA, com poucos eventos",
+            "icon": "🔬",
+            "resumo": "Subgrupo pré-especificado do DAPA-CKD com 270 participantes com nefropatia por imunoglobulina A (IgA), 254 confirmados por biópsia. Taxa de filtração glomerular estimada (TFGe) média de 43,8 mL/min/1,73 m² e relação albumina/creatinina urinária mediana de 900 mg/g. Dapagliflozina 10 mg por via oral, uma vez ao dia, versus placebo, além do suporte. O composto primário incluía queda sustentada ≥50% da TFGe, falência renal ou morte renal/cardiovascular: 6/137 versus 20/133 eventos em mediana de 2,1 anos; razão de riscos (HR) 0,29, intervalo de confiança de 95% 0,12–0,73; P=0,005. A relação albumina/creatinina caiu 26% frente a placebo.",
+            "conclusao": "O resultado apoia nefroproteção na população estudada, com precisão limitada por apenas 26 eventos. Não prova mecanismo imune específico, benefício exclusivo da IgA ou efeito idêntico em toda população.",
+            "curiosidade": "O composto renal secundário excluía morte cardiovascular; não deve ser confundido com o composto primário descrito acima."
+          },
+          "proposedSHA256": "sha256:ccd958b627cbcafc234b52517026e87e42874e9b97592818bf7c66248752c347",
+          "sourceIDs": [
+            "dapaIgA"
+          ],
+          "notes": [
+            "A8.1: dose e intervalo conferidos no primário, PDF2/p216, seção Randomization and study procedures; forma de comprimido idêntica. Via oral corroborada na rotulagem profissional FDA FARXIGA revisão06/2026, capa e§2.3. Os outros11campos e o restante do resumo permanecem exatos."
+          ]
+        },
+        {
+          "id": "kdigo_igan_igav_2025",
+          "original": {
+            "label": "KDIGO 2025 IgAN/IgAV Guideline",
+            "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+            "journal": "Kidney International",
+            "ano": 2025,
+            "tipo": "Diretriz clínica",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Referência central atual para manejo da NIgA.",
+            "icon": "📋",
+            "resumo": "Diretriz KDIGO 2025 específica para nefropatia por IgA e vasculite por IgA. Atualiza o capítulo de NIgA da diretriz KDIGO 2021 e organiza recomendações sobre avaliação de risco, terapia de suporte e terapias adicionais. Não estabelece dieta isenta de glúten como tratamento rotineiro da NIgA primária.",
+            "conclusao": "Na NIgA, a base do manejo é nefroproteção e tratamento guiado por risco; dieta sem glúten não é recomendação universal.",
+            "curiosidade": "A atualização de 2025 reflete a transição da NIgA de uma abordagem centrada apenas em suporte para um modelo com terapias direcionadas em pacientes selecionados."
+          },
+          "originalSHA256": "sha256:56893bce2b6969f6a369432efe14a3214d5697fa552d55620d4231beea9754b2",
+          "proposed": {
+            "label": "KDIGO 2025 IgAN/IgAV Guideline",
+            "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+            "journal": "Kidney International",
+            "ano": 2025,
+            "tipo": "Diretriz clínica",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Referência central atual para manejo da NIgA.",
+            "icon": "📋",
+            "resumo": "Diretriz KDIGO 2025 específica para nefropatia por IgA e vasculite por IgA. Atualiza o capítulo de NIgA da diretriz KDIGO 2021 e organiza recomendações sobre avaliação de risco, terapia de suporte e terapias adicionais. Não estabelece dieta isenta de glúten como tratamento rotineiro da NIgA primária.",
+            "conclusao": "Na NIgA, a base do manejo é nefroproteção e tratamento guiado por risco; dieta sem glúten não é recomendação universal.",
+            "curiosidade": "A atualização de 2025 reflete a transição da NIgA de uma abordagem centrada apenas em suporte para um modelo com terapias direcionadas em pacientes selecionados."
+          },
+          "proposedSHA256": "sha256:56893bce2b6969f6a369432efe14a3214d5697fa552d55620d4231beea9754b2",
+          "sourceIDs": [
+            "kdigoIgA"
+          ],
+          "notes": [
+            "Reavaliado integralmente; literal e hash preservados, sem alteração global de card."
+          ]
+        }
+      ],
+      "candidateReview": {
+        "verdict": "aprovada",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "LIBERADA",
+        "confidence": "moderada",
+        "appeal": [
+          "Nenhum argumento plausível de anulação identificado na avaliação autoral."
+        ],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 2
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 2
+            },
+            {
+              "name": "distratores",
+              "value": 2
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 2
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 2
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 20
+        },
+        "scoreRationale": "20/20 autoral para esseOPdelimitado. Os números estão fornecidos; a tarefa é interpretar precisão e não decorarHR. As quatro interpretações correspondem a erros de inferência distintos.",
+        "decision": "OP clinicamente útil; gabarito único sustentado pelas fontes. Versão exata aprovada apenas na checagem autoral. Ciclo pretendido: publicado após revisão independente."
+      },
+      "identityDecision": {
+        "preserveQid": true,
+        "reason": "9fd2cfdb permanece com seu qid, texto e histórico próprios. A fusão não transporta FSRS, crédito ou domínio de a4ffbe05.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": null
+    },
+    {
+      "schema": "NQ_AUTHOR_REVIEW_1728_v2",
+      "role": "AUTHOR_NOT_INDEPENDENT_REVIEWER",
+      "qid": "a4ffbe05",
+      "family": "A8-fusao-160",
+      "baselineCommit": "34d9d6ccc674c5210eaed6578dd88161ec9ad1a3",
+      "original": {
+        "t": "DAPA-CKD — Subanálise de Nefropatia por IgA",
+        "qid": "a4ffbe05",
+        "q": "Na análise pré-especificada do DAPA-CKD em 270 participantes com nefropatia por IgA, o desfecho primário ocorreu em 4% com dapagliflozina e 15% com placebo (HR 0,29; IC95% 0,12–0,73). Qual interpretação é mais adequada?",
+        "refs": [
+          "dapa",
+          "kdigo_igan_2025"
+        ],
+        "opts": [
+          "O resultado apoia iSGLT2 como terapia de suporte em pacientes elegíveis, mas o pequeno número de eventos exige cautela ao comparar magnitudes entre etiologias",
+          "O subgrupo prova que dapagliflozina é imunossupressor específico contra IgA galactose-deficiente",
+          "A magnitude autoriza concluir superioridade definitiva sobre todos os tratamentos específicos da NIgA",
+          "O benefício pode ser extrapolado sem restrições para qualquer TFGe ou nível de albuminúria"
+        ],
+        "ans": 0,
+        "exp": "A subanálise pré-especificada mostrou grande redução relativa do composto renal em participantes com nefropatia por IgA, coerente com o benefício hemodinâmico e cardiorrenal dos iSGLT2. Contudo, ocorreram apenas 26 eventos primários, e comparações de tamanho de efeito entre etiologias não foram o objetivo de um ensaio com poder para superioridade entre subgrupos. Dapagliflozina integra terapia de suporte em pessoas elegíveis; não é imunossupressor específico e a indicação deve respeitar população estudada, TFGe, albuminúria e diretrizes atuais.",
+        "diff": "hard",
+        "cat": "drc"
+      },
+      "originalSHA256": "sha256:b2d317f00dc9a01a41da98c642ff5b7c14e3fcc350598bc8eb16aeeed923418e",
+      "originalRefs": [
+        {
+          "id": "dapa",
+          "original": {
+            "label": "DAPA-CKD Trial",
+            "url": "https://www.nejm.org/doi/full/10.1056/NEJMoa2024816",
+            "journal": "New England Journal of Medicine",
+            "ano": 2020,
+            "tipo": "Ensaio Clínico Fase III",
+            "badge": "RCT",
+            "badgeColor": "#10b981",
+            "impacto": "↓39% desfecho renal composto · ↓31% mortalidade · Interrompido precocemente por eficácia · Benefício independente de diabetes",
+            "icon": "💊",
+            "resumo": "ECR multicêntrico, n=4.304, dapagliflozina 10 mg/dia vs placebo em DRC com ou sem DM2; TFGe 25–75 e ACR 200–5000 mg/g. Desfecho primário: queda sustentada ≥50% da TFGe, DRCT ou morte renal/CV. Resultado: 9,2% vs 14,5%; HR 0,61, IC 95% 0,51–0,72, P<0,001; NNT 19. Também reduziu morte por qualquer causa: 4,7% vs 6,8%; HR 0,69, IC 95% 0,53–0,88.",
+            "conclusao": "DAPA-CKD foi o trial pivô que mostrou nefroproteção dos iSGLT2 independente de diabetes em DRC proteinúrica.",
+            "curiosidade": "32,5% da coorte não tinha DM2, dado que ajudou a deslocar os iSGLT2 de fármacos 'antidiabéticos' para fármacos cardiorrenais."
+          },
+          "originalSHA256": "sha256:c3c5d8694734f2fd713362b7fabfedf1d9c954133e82bb62ed8e897080d0cd28"
+        },
+        {
+          "id": "kdigo_igan_2025",
+          "original": {
+            "label": "KDIGO IgAN 2025 (Guideline Dedicada)",
+            "url": "https://kdigo.org/guidelines/glomerular-diseases/",
+            "journal": "Kidney International",
+            "ano": 2025,
+            "tipo": "Diretriz Internacional",
+            "badge": "GUIDELINE",
+            "badgeColor": "#6366f1",
+            "impacto": "Diretriz dedicada à IgAN: alvo de proteinúria <0,5 g/d e terapias dirigidas ao risco",
+            "icon": "📋",
+            "resumo": "Diretriz KDIGO 2025 dedicada à nefropatia por IgA. Considera proteinúria persistente ≥0,5 g/d um marcador de risco que justifica tratamento adicional. Recomenda IECA ou BRA na dose máxima tolerada para todos os pacientes sem contraindicação (1B), sugere iSGLT2 para pacientes em risco de perda progressiva da função renal (2B) e posiciona Nefecon, sparsentana e glicocorticoide sistêmico reduzido conforme mecanismo, risco, disponibilidade e toxicidade. A meta é manter proteinúria abaixo de 0,5 g/d, idealmente abaixo de 0,3 g/d.",
+            "conclusao": "O manejo combina proteção contra respostas maladaptativas à perda de néfrons com terapias dirigidas à formação de imunocomplexos e à inflamação; iSGLT2 não substitui tratamento específico da IgAN quando este é indicado.",
+            "curiosidade": "Nos subgrupos de IgAN de DAPA-CKD e EMPA-KIDNEY, os participantes eram em geral mais velhos e tinham DRC mais avançada que os incluídos em ensaios específicos de IgAN, o que limita a extrapolação para jovens com TFGe preservada."
+          },
+          "originalSHA256": "sha256:95b9fad785a2a801e27e0e009b9b0f2520bf769de382ef9079e26f0a29cc9d14"
+        }
+      ],
+      "classificationBefore": {
+        "op": "Interpretar o benefício renal do subgrupo IgA do DAPA-CKD sem extrapolar precisão, etiologia e população.",
+        "primaryCompetence": "Mesmo OP primário da canônica correspondente.",
+        "bloom": "Analisar",
+        "miller": "Sabe como",
+        "difficultyAuthored": "hard",
+        "difficultyIntrinsic": "medium"
+      },
+      "originalReview": {
+        "verdict": "fundir",
+        "evidence": "VERIFICADA",
+        "pending": "NENHUMA",
+        "publication": "BLOQUEADA",
+        "confidence": "moderada",
+        "problems": [
+          "MAIOR — Mesma decisão e mesmos dados essenciais da canônica9fd2cfdb.",
+          "MAIOR — A correta agrupa aplicação, elegibilidade, limites e comparações em um texto muito maior que distratores.",
+          "MENOR — Campo hard não corresponde ao mesmo raciocínio de interpretação apresentado de modo mais claro na canônica medium."
+        ],
+        "appeal": [],
+        "eliminatories": [
+          {
+            "number": 1,
+            "criterion": "mais de uma resposta defensável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 2,
+            "criterion": "referência sem suporte ao gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 3,
+            "criterion": "desvio de objetivo pedagógico",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 4,
+            "criterion": "conduta insegura tratada como correta/aceitável",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 5,
+            "criterion": "distrator sem plausibilidade",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 6,
+            "criterion": "trivia sem consequência",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 7,
+            "criterion": "explicação contradiz o gabarito",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 8,
+            "criterion": "informação decisiva ausente",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 9,
+            "criterion": "protocolo local não declarado",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          },
+          {
+            "number": 10,
+            "criterion": "ciência relevantemente desatualizada",
+            "triggered": false,
+            "rationale": "Checado na versão literal e no OP declarados; não disparado."
+          }
+        ],
+        "score": {
+          "dimensions": [
+            {
+              "name": "alinhamento ao OP",
+              "value": 2
+            },
+            {
+              "name": "validade de conteúdo",
+              "value": 2
+            },
+            {
+              "name": "validade de construto",
+              "value": 1
+            },
+            {
+              "name": "enunciado",
+              "value": 2
+            },
+            {
+              "name": "alternativas",
+              "value": 1
+            },
+            {
+              "name": "distratores",
+              "value": 1
+            },
+            {
+              "name": "explicação",
+              "value": 2
+            },
+            {
+              "name": "referências",
+              "value": 1
+            },
+            {
+              "name": "ausência de pistas formais",
+              "value": 0
+            },
+            {
+              "name": "valor pedagógico",
+              "value": 2
+            }
+          ],
+          "total": 14
+        },
+        "decision": "Fundir com9fd2cfdb, canônica literal/hashes deste lote. Não criar outra paráfrase para conservar a contagem."
+      },
+      "sources": [
+        {
+          "id": "dapaIgA",
+          "url": "https://www.gov.br/conitec/pt-br/midias/consultas/contribuicoes/2022/anexos/cp48/519-2.pdf/%40%40display-file/file",
+          "doi": "10.1016/j.kint.2021.03.033",
+          "pmid": "33878338",
+          "access": "Artigo primário integral lido na extração local congelada do PDF válido obtido pelo revisor independente, sem herdar seu parecer clínico.",
+          "locators": [
+            "Métodos/Resultados e Figuras1–2, texto extraído linhas123–158:270,254biópsias,137/133,6/20eventos,HR0,29,IC0,12–0,73,P0,005;TFGe43,8,seguimento2,1anos,UACR900,queda26%.",
+            "Discussion/limitações, linhas339–352: subgrupo pré-especificado, estudo não desenhado especificamente para IgA, poucos participantes/eventos limitam precisão.",
+            "Figura1 e texto: composto primário inclui morteCV; composto renal secundário exclui morteCV.",
+            "PDF2/p216:10mgonce daily, comprimido ativo/placebo idênticos. PDF1/3/4/8–9: resultados e limites rechecados."
+          ],
+          "limitations": [
+            "Cópia é a obra primária real, não slides/reescrita de contribuição. URL PubMed retornou página vazia nesta tentativa; não alegar corpo PubMed aberto.",
+            "A nova tentativa de download próprio Conitec retornou HTML e foi descartada; nenhuma alegação de leitura foi baseada nele. Viaoral lida na capa/§2.3 da bulaFDA, sem inferir por ela o desenho ou a dose do subgrupo."
+          ],
+          "localReceipt": {
+            "path": "../ux-1728-reference-duplicates/independent-bibliographic/dapa-igan-2021-primary.pdf",
+            "rawSHA256": "a6eecabb5a4b3f00145427bc09c4ad074b7b5d0a47b6ae67fddea198ccf56a0e",
+            "pages": 10
+          },
+          "additionalURLs": [
+            "https://www.accessdata.fda.gov/drugsatfda_docs/label/2026/202293s035lbl.pdf"
+          ]
+        },
+        {
+          "id": "kdigoIgA",
+          "url": "https://kdigo.org/wp-content/uploads/2024/08/KDIGO-2025-IgAN-IgAV-Guideline.pdf",
+          "access": "PDF oficial integral,71páginas, capaOutubro2025; trechos de síntese e manejo lidos",
+          "locators": [
+            "S18–S25: risco, nefroproteção e manejo dirigido aos mecanismos, terapias adicionais e contraindicações.",
+            "S25, recomendações1.4.4.1–3:IECA/BRA, sparsentana,SGLT2;PP1.4.4.4 limites em jovens/TFGe preservada.",
+            "S22–S24: Nefecon e regime sistêmico reduzido em contexto selecionado.",
+            "Busca textual integral por gluten sem ocorrência; seção nutricional/estilo de vida e resumo terapêutico não estabelecem dieta sem glúten como tratamento universal."
+          ],
+          "limitations": [
+            "O card canônico não afirma contraindicação a glúten nem nega indicação individual por doença celíaca; descreve ausência de recomendação universal no documento."
+          ]
+        }
+      ],
+      "claimVerification": [],
+      "proposed": null,
+      "proposedSHA256": null,
+      "classificationAfter": null,
+      "proposedRefs": [],
+      "candidateReview": null,
+      "identityDecision": {
+        "preserveQid": false,
+        "reason": "Manter histórico pretérito no qid aposentado, sem migração de FSRS, crédito, acertos, domínio ou descobertas.",
+        "fsrsChange": false
+      },
+      "implementationAuthorization": {
+        "ready": false,
+        "reason": "Autoria e checagem autoral não são revisão independente. Parent exige gate independente do literal/hash exatos antes de implementação."
+      },
+      "notes": [],
+      "hold": "Aposentadoria por fusão para9fd2cfdb, após adjudicação independente dos dois originais e da canônica exata.",
+      "duplicateTest": {
+        "canonicalQid": "9fd2cfdb",
+        "canonicalProposedSHA256": "sha256:80ad4e45f389dcc49b67f0a72e27c9c008751738542470c2e7b30b7d527af9b5",
+        "decision": {
+          "same": true,
+          "value": "Interpretar resultado do mesmo subgrupo IgA com cautela pela precisão e limites."
+        },
+        "caseDataStructure": {
+          "same": true,
+          "value": "DAPA-CKD pré-especificado,270IgA,6/20eventos ou4%/15%,mesmoHR0,29e intervalo. Contagem versus percentual não altera estrutura."
+        },
+        "targetLearnerProfile": {
+          "same": true,
+          "value": "Estudante avançado/residente; não se declara perfil diferente."
+        },
+        "language": {
+          "same": true,
+          "value": "pt-BR"
+        },
+        "allFourCoincide": true
+      },
+      "lifecycleDecision": {
+        "verdict": "fundir",
+        "retiredQid": "a4ffbe05",
+        "canonicalQid": "9fd2cfdb",
+        "retiredStatus": "aposentado",
+        "fsrsTransfer": false,
+        "creditTransfer": false,
+        "history": "Preservar registros pretéritos sob o qid original; não reconhecer resposta à aposentada como crédito na canônica.",
+        "ready": false
+      }
+    }
+  ],
+  "supersedes": {
+    "rawFile": "author-batch-A8-pairs.json",
+    "rawSHA256": "e8828e48b2a1d90128a9839439158ad1aba2fa7f99773e5dcb8dc7cc63fc61bd",
+    "scope": "Somente detalhe da posologia no card dapa_ckd_igan_2021 e seus bindings. Todas as questões preservadas byte a byte."
+  }
+}
