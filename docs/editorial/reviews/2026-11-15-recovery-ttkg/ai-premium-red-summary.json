@@ -1,0 +1,60 @@
+{
+  "phase": "VALID_PREMIUM_COPY_RED",
+  "stats": {
+    "startTime": "2026-11-15T20:41:06.241Z",
+    "duration": 30964.955,
+    "expected": 0,
+    "skipped": 0,
+    "unexpected": 4,
+    "flaky": 0
+  },
+  "sourceSHA256": "5a3b962ab68e480abad029c53726a9566991a60e89ae0293e95d02ac2f44223d",
+  "reportSHA256": "6aeba048628ce216048bd0812b455309bd85b1c82c1ed452b8b4ad3a4d3b49a2",
+  "fixture": "Synthetic authenticated identity with native signed entitlement cache and app_metadata; real isPremium, no role/predicate override.",
+  "rows": [
+    {
+      "title": "oracle: Premium timeout restores controls without daily quota or upgrade copy",
+      "project": "chromium",
+      "results": [
+        {
+          "retry": 0,
+          "status": "failed",
+          "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#mentorPanel')\nExpected pattern: not \u001b[32m/limite diário|restantes hoje|upgrade|cota/i\u001b[39m\nReceived string: \u001b[31m\"\u001b[39m\n\u001b[31m        Vamos entender juntosTraga sua dúvida ou explique como chegou à resposta.\u001b[39m\n\u001b[31m        \u001b[39m\n\u001b[31m          \u001b[39m\n\u001b[31m        Dúvida técnica que deve continuar disponível.A resposta demorou mais do que o esperado. Sua dúvida foi preservada. Tente novamente quando quiser. Uma nova tentativa pode usar outra pergunta do \u001b[7mlimite diário\u001b[27m.\u001b[39m\n\u001b[31m        \u001b[39m\n\u001b[31m          \u001b[39m\n\u001b[31m          \u001b[39m\n\u001b[31m            Sua dúvida sobre esta questão\u001b[39m\n\u001b[31m            \u001b[39m\n\u001b[31m            Enviar\u001b[39m\n\u001b[31m            Enter envia · Shift + Enter cria uma nova linha\u001b[39m\n\u001b[31m          \u001b[39m\n\u001b[31m        \u001b[39m\n\u001b[31m        \"\u001b[39m\nTimeout: 3000ms\n\nCall log:\n\u001b[2m  - Expect \"not toContainText\" with timeout 3000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mentorPanel')\u001b[22m\n\u001b[2m    10 × locator resolved to <section role=\"region\" id=\"mentorPanel\" class=\"mentor-panel visible\" aria-label=\"Conversa com o Oráculo\">…</section>\u001b[22m\n\u001b[2m       - unexpected value \"\u001b[22m\n\u001b[2m        Vamos entender juntosTraga sua dúvida ou explique como chegou à resposta.\u001b[22m\n\u001b[2m        \u001b[22m\n\u001b[2m          \u001b[22m\n\u001b[2m        Dúvida técnica que deve continuar disponível.A resposta demorou mais do que o esperado. Sua dúvida foi preservada. Tente novamente quando quiser. Uma nova tentativa pode usar outra pergunta do limite diário.\u001b[22m\n\u001b[2m        \u001b[22m\n\u001b[2m          \u001b[22m\n\u001b[2m          \u001b[22m\n\u001b[2m            Sua dúvida sobre esta questão\u001b[22m\n\u001b[2m            \u001b[22m\n\u001b[2m            Enviar\u001b[22m\n\u001b[2m            Enter envia · Shift + Enter cria uma nova linha\u001b[22m\n\u001b[2m          \u001b[22m\n\u001b[2m        \u001b[22m\n\u001b[2m        \"\u001b[22m\n\n\n  289 |   await page.clock.runFor(30000); await failed(page, surface);\n  290 |   await expect(page.locator(surface === 'oracle' ? '#mentorPanel' : '#aiDiagnosisCard'))\n> 291 |     .not.toContainText(/limite diário|restantes hoje|upgrade|cota/i);\n      |          ^\n  292 |   expect(await quota(page, surface)).toBe(0);\n  293 |   expect(await page.evaluate(() => (window as any).isPremium())).toBe(true);\n  294 | });\n    at C:\\Users\\orlan\\.codex\\worktrees\\nq-pagamento-atomico\\base-verification\\tests\\specs\\302-ai-request-recovery.spec.ts:291:10"
+        }
+      ]
+    },
+    {
+      "title": "diagnosis: Premium timeout restores controls without daily quota or upgrade copy",
+      "project": "chromium",
+      "results": [
+        {
+          "retry": 0,
+          "status": "failed",
+          "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#aiDiagnosisCard')\nExpected pattern: not \u001b[32m/limite diário|restantes hoje|upgrade|cota/i\u001b[39m\nReceived string: \u001b[31m\"\u001b[39m\n\u001b[31m        \u001b[39m\n\u001b[31m          Diagnóstico da sessão\u001b[39m\n\u001b[31m          \u001b[39m\n\u001b[31m        \u001b[39m\n\u001b[31m        A resposta demorou mais do que o esperado. Você pode tentar novamente. Uma nova tentativa pode usar outra consulta do seu \u001b[7mlimite diário\u001b[27m.\u001b[39m\n\u001b[31m          Tentar novamente\"\u001b[39m\nTimeout: 3000ms\n\nCall log:\n\u001b[2m  - Expect \"not toContainText\" with timeout 3000ms\u001b[22m\n\u001b[2m  - waiting for locator('#aiDiagnosisCard')\u001b[22m\n\u001b[2m    10 × locator resolved to <section tabindex=\"-1\" aria-busy=\"false\" data-estado=\"falha\" id=\"aiDiagnosisCard\" class=\"ai-diagnosis-card\" aria-labelledby=\"aiDiagnosisTitle\">…</section>\u001b[22m\n\u001b[2m       - unexpected value \"\u001b[22m\n\u001b[2m        \u001b[22m\n\u001b[2m          Diagnóstico da sessão\u001b[22m\n\u001b[2m          \u001b[22m\n\u001b[2m        \u001b[22m\n\u001b[2m        A resposta demorou mais do que o esperado. Você pode tentar novamente. Uma nova tentativa pode usar outra consulta do seu limite diário.\u001b[22m\n\u001b[2m          Tentar novamente\"\u001b[22m\n\n\n  289 |   await page.clock.runFor(30000); await failed(page, surface);\n  290 |   await expect(page.locator(surface === 'oracle' ? '#mentorPanel' : '#aiDiagnosisCard'))\n> 291 |     .not.toContainText(/limite diário|restantes hoje|upgrade|cota/i);\n      |          ^\n  292 |   expect(await quota(page, surface)).toBe(0);\n  293 |   expect(await page.evaluate(() => (window as any).isPremium())).toBe(true);\n  294 | });\n    at C:\\Users\\orlan\\.codex\\worktrees\\nq-pagamento-atomico\\base-verification\\tests\\specs\\302-ai-request-recovery.spec.ts:291:10"
+        }
+      ]
+    },
+    {
+      "title": "oracle: Premium timeout restores controls without daily quota or upgrade copy",
+      "project": "mobile",
+      "results": [
+        {
+          "retry": 0,
+          "status": "failed",
+          "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#mentorPanel')\nExpected pattern: not \u001b[32m/limite diário|restantes hoje|upgrade|cota/i\u001b[39m\nReceived string: \u001b[31m\"\u001b[39m\n\u001b[31m        Vamos entender juntosTraga sua dúvida ou explique como chegou à resposta.\u001b[39m\n\u001b[31m        \u001b[39m\n\u001b[31m          \u001b[39m\n\u001b[31m        Dúvida técnica que deve continuar disponível.A resposta demorou mais do que o esperado. Sua dúvida foi preservada. Tente novamente quando quiser. Uma nova tentativa pode usar outra pergunta do \u001b[7mlimite diário\u001b[27m.\u001b[39m\n\u001b[31m        \u001b[39m\n\u001b[31m          \u001b[39m\n\u001b[31m          \u001b[39m\n\u001b[31m            Sua dúvida sobre esta questão\u001b[39m\n\u001b[31m            \u001b[39m\n\u001b[31m            Enviar\u001b[39m\n\u001b[31m            Enter envia · Shift + Enter cria uma nova linha\u001b[39m\n\u001b[31m          \u001b[39m\n\u001b[31m        \u001b[39m\n\u001b[31m        \"\u001b[39m\nTimeout: 3000ms\n\nCall log:\n\u001b[2m  - Expect \"not toContainText\" with timeout 3000ms\u001b[22m\n\u001b[2m  - waiting for locator('#mentorPanel')\u001b[22m\n\u001b[2m    10 × locator resolved to <section role=\"region\" id=\"mentorPanel\" class=\"mentor-panel visible\" aria-label=\"Conversa com o Oráculo\">…</section>\u001b[22m\n\u001b[2m       - unexpected value \"\u001b[22m\n\u001b[2m        Vamos entender juntosTraga sua dúvida ou explique como chegou à resposta.\u001b[22m\n\u001b[2m        \u001b[22m\n\u001b[2m          \u001b[22m\n\u001b[2m        Dúvida técnica que deve continuar disponível.A resposta demorou mais do que o esperado. Sua dúvida foi preservada. Tente novamente quando quiser. Uma nova tentativa pode usar outra pergunta do limite diário.\u001b[22m\n\u001b[2m        \u001b[22m\n\u001b[2m          \u001b[22m\n\u001b[2m          \u001b[22m\n\u001b[2m            Sua dúvida sobre esta questão\u001b[22m\n\u001b[2m            \u001b[22m\n\u001b[2m            Enviar\u001b[22m\n\u001b[2m            Enter envia · Shift + Enter cria uma nova linha\u001b[22m\n\u001b[2m          \u001b[22m\n\u001b[2m        \u001b[22m\n\u001b[2m        \"\u001b[22m\n\n\n  289 |   await page.clock.runFor(30000); await failed(page, surface);\n  290 |   await expect(page.locator(surface === 'oracle' ? '#mentorPanel' : '#aiDiagnosisCard'))\n> 291 |     .not.toContainText(/limite diário|restantes hoje|upgrade|cota/i);\n      |          ^\n  292 |   expect(await quota(page, surface)).toBe(0);\n  293 |   expect(await page.evaluate(() => (window as any).isPremium())).toBe(true);\n  294 | });\n    at C:\\Users\\orlan\\.codex\\worktrees\\nq-pagamento-atomico\\base-verification\\tests\\specs\\302-ai-request-recovery.spec.ts:291:10"
+        }
+      ]
+    },
+    {
+      "title": "diagnosis: Premium timeout restores controls without daily quota or upgrade copy",
+      "project": "mobile",
+      "results": [
+        {
+          "retry": 0,
+          "status": "failed",
+          "error": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).not.\u001b[22mtoContainText\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: locator('#aiDiagnosisCard')\nExpected pattern: not \u001b[32m/limite diário|restantes hoje|upgrade|cota/i\u001b[39m\nReceived string: \u001b[31m\"\u001b[39m\n\u001b[31m        \u001b[39m\n\u001b[31m          Diagnóstico da sessão\u001b[39m\n\u001b[31m          \u001b[39m\n\u001b[31m        \u001b[39m\n\u001b[31m        A resposta demorou mais do que o esperado. Você pode tentar novamente. Uma nova tentativa pode usar outra consulta do seu \u001b[7mlimite diário\u001b[27m.\u001b[39m\n\u001b[31m          Tentar novamente\"\u001b[39m\nTimeout: 3000ms\n\nCall log:\n\u001b[2m  - Expect \"not toContainText\" with timeout 3000ms\u001b[22m\n\u001b[2m  - waiting for locator('#aiDiagnosisCard')\u001b[22m\n\u001b[2m    10 × locator resolved to <section tabindex=\"-1\" aria-busy=\"false\" data-estado=\"falha\" id=\"aiDiagnosisCard\" class=\"ai-diagnosis-card\" aria-labelledby=\"aiDiagnosisTitle\">…</section>\u001b[22m\n\u001b[2m       - unexpected value \"\u001b[22m\n\u001b[2m        \u001b[22m\n\u001b[2m          Diagnóstico da sessão\u001b[22m\n\u001b[2m          \u001b[22m\n\u001b[2m        \u001b[22m\n\u001b[2m        A resposta demorou mais do que o esperado. Você pode tentar novamente. Uma nova tentativa pode usar outra consulta do seu limite diário.\u001b[22m\n\u001b[2m          Tentar novamente\"\u001b[22m\n\n\n  289 |   await page.clock.runFor(30000); await failed(page, surface);\n  290 |   await expect(page.locator(surface === 'oracle' ? '#mentorPanel' : '#aiDiagnosisCard'))\n> 291 |     .not.toContainText(/limite diário|restantes hoje|upgrade|cota/i);\n      |          ^\n  292 |   expect(await quota(page, surface)).toBe(0);\n  293 |   expect(await page.evaluate(() => (window as any).isPremium())).toBe(true);\n  294 | });\n    at C:\\Users\\orlan\\.codex\\worktrees\\nq-pagamento-atomico\\base-verification\\tests\\specs\\302-ai-request-recovery.spec.ts:291:10"
+        }
+      ]
+    }
+  ]
+}

@@ -18,17 +18,24 @@ const source = author => ({ id: author.qid, q: author.q, o: [...author.opts], a:
 const beforeSource = source(beforeAuthor), currentSource = source(currentAuthor);
 const oldRefs = { 'synthetic-card': { label: 'Earlier synthetic card' } };
 const currentRefs = { 'synthetic-card': { label: 'Current synthetic card' } };
-function fixture({ sameSource = false } = {}) {
-  const author = sameSource ? beforeAuthor : currentAuthor, current = source(author);
+function fixture({ sameSource = false, replacement = false } = {}) {
+  const author = replacement ? {...currentAuthor, qid: 'technical-new-objective'} : sameSource ? beforeAuthor : currentAuthor, current = source(author);
   const authorRevision = revisions.digest(author);
   const referenceRevisions = { 'synthetic-card': revisions.digest(currentRefs['synthetic-card']) };
   const recordRevision = revisions.digest({ authorRevision, referenceRevisions });
-  const manifest = { version: 1, release: 'technical-current', current: { 'technical-1': {
+  const manifest = { version: 1, release: 'technical-current', current: { [author.qid]: {
     authorRevision, referenceRevisions, recordRevision,
     sourceRevisions: { main: revisions.digest(current), exam: revisions.digest(current) } } } };
   const history = [{ qid: 'technical-1', release: 'technical-earlier', author: clone(beforeAuthor),
     sources: { main: clone(beforeSource), exam: clone(beforeSource) }, references: clone(oldRefs),
     policy: { material: true, pending: 'update-required' } }];
+  if (replacement) {
+    for (const p of ['study', 'offline']) {
+      history[0].sources[p] = clone(beforeSource); manifest.current[author.qid].sourceRevisions[p] = revisions.digest(current);
+    }
+    manifest.replacements = {[beforeAuthor.qid]: {qid: author.qid, recordRevision: revisions.digest({authorRevision: revisions.digest(beforeAuthor),
+      referenceRevisions: {'synthetic-card': revisions.digest(oldRefs['synthetic-card'])}})}};
+  }
   const catalog = revisions.createCatalog({ manifest, history, authors: [author],
     sources: { main: [current], exam: [current] }, references: currentRefs });
   const question = answers.present(beforeSource, { random: () => 0 });
@@ -118,6 +125,19 @@ test('pending material exam blocks answer/advance until explicit update and pres
   await h.run('_examRetomar()'); assert.equal(h.run('_examNeedsCurrentRevision()'), false);
   h.run('_examAnswer(_examState.questions[0].a)'); assert.equal(h.events.tracks, 1);
   await h.run('_examRetomar()'); assert.equal(h.events.tracks, 1);
+});
+
+test('exam new-objective confirmation preserves time, original identity and grade until a fresh answer', async () => {
+  const f = fixture({replacement: true}), h = harness({f}), raw = h.map.get(KEY), before = JSON.parse(raw);
+  await h.run('_examRetomar()'); assert.equal(h.events.writes, 0);
+  h.run('_examUseCurrentRevision()');
+  const stored = JSON.parse(h.map.get(KEY));
+  assert.equal(stored.questions[0].id, 'technical-new-objective');
+  assert.equal(stored.questionRevisionOriginalRaw, raw);
+  assert.equal(stored.questionRevisionOrigins[0].question.id, 'technical-1');
+  assert.deepEqual(stored.answers, before.answers); assert.equal(stored.startTime, before.startTime); assert.equal(h.events.tracks, 0);
+  await h.run('_examRetomar()'); assert.equal(h.state().questions[0].id, 'technical-new-objective');
+  h.run('_examAnswer(_examState.questions[0].a)'); assert.equal(h.events.tracks, 1);
 });
 
 for (const failure of ['refuse', 'diverge']) test(`pending update ${failure} rolls runtime back and gives no credit`, async () => {

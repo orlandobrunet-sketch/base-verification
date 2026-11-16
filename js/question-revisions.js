@@ -178,6 +178,20 @@
         yield;
       }
     }
+    // A different objective has a different identity. A declared successor is
+    // available only for an explicit user choice; old bindings never alias it.
+    const replacements = own(manifest, 'replacements') ? manifest.replacements : {};
+    if (!object(replacements)) throw new TypeError('Invalid replacement policy.');
+    for (const [previous, replacement] of Object.entries(replacements)) {
+      const next = replacement?.qid;
+      if (!previous.trim() || !object(replacement) || typeof next !== 'string' || !next.trim() || previous === next ||
+          !hashPattern.test(replacement.recordRevision) || own(manifest.current, previous) || !own(manifest.current, next) ||
+          !profiles.every(profile => (entries.get(previous + '\n' + profile) || []).some(entry => entry.historical &&
+            entry.recordRevision === replacement.recordRevision) &&
+            (entries.get(next + '\n' + profile) || []).some(entry => !entry.historical))) {
+        throw new TypeError('Invalid replacement identity.');
+      }
+    }
     function result(entry, question) {
       return {...(question ? {question: copy(question)} : {}),
         ...(entry.source ? {source: copy(entry.source)} : {}),
@@ -209,10 +223,21 @@
       if (!profiles.includes(profile)) return {status: 'unknown', candidates: []};
       return choose(entries.get(String(qid) + '\n' + profile) || [], binding, String(qid), profile);
     }
+    function current(qid, profile) {
+      const entry = (entries.get(String(qid) + '\n' + profile) || []).find(item => !item.historical);
+      return entry ? result(entry) : null;
+    }
     return Object.freeze({inspect, inspectLegacy,
       restoreKnown(snapshot, options) { const checked = inspect(snapshot, options); return checked.status === 'known' ? checked.value : null; },
       resolveLegacy(qid, options) { const checked = inspectLegacy(qid, options); return checked.status === 'known' ? checked.value : null; },
-      current(qid, profile) { const entry = (entries.get(String(qid) + '\n' + profile) || []).find(item => !item.historical); return entry ? result(entry) : null; }});
+      current,
+      replacement(qid, profile) { return own(replacements, String(qid)) ? current(replacements[String(qid)].qid, profile) : null; },
+      retired(qid, profile) {
+        const policy = own(replacements, String(qid)) ? replacements[String(qid)] : null;
+        const entry = policy && (entries.get(String(qid) + '\n' + profile) || []).find(value =>
+          value.historical && value.recordRevision === policy.recordRevision);
+        return entry ? result(entry) : null;
+      }});
   }
   function createCatalog(options = {}) {
     return constructionDigests(identityDigest => drainSteps(catalogSteps(options, identityDigest)));
@@ -270,6 +295,8 @@
       return checked;
     }
     return Object.freeze({current, inspect, inspectLegacy,
+      replacement(qid, profile) { const value = verifier.replacement(qid, profile); return value ? hydrate(value, profile) : null; },
+      retired(qid, profile) { const value = verifier.retired(qid, profile); return value ? hydrate(value, profile) : null; },
       resolve(snapshot, options) { const checked = inspect(snapshot, options); return checked.status === 'known' ? checked.value : null; },
       restoreKnown(snapshot, options) { return verifier.restoreKnown(snapshot, options); },
       resolveLegacy(qid, options) { const checked = inspectLegacy(qid, options); return checked.status === 'known' ? checked.value : null; }});

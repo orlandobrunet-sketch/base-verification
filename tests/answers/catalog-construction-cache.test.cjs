@@ -179,8 +179,8 @@ test('async and sync published catalogs retain every current and historical valu
     historicalProfiles++;
   }
   assert.equal(authors.length, 741); assert.equal(currentProfiles, 2964);
-  assert.equal(history.length, 180); assert.equal(historicalProfiles, 720);
-  assert.equal(Object.keys(references).length, 372);
+  assert.equal(history.length, 181); assert.equal(historicalProfiles, 724);
+  assert.equal(Object.keys(references).length, 373);
   assert.deepEqual(history.filter(archived => archived.release === '17.25').map(archived => archived.qid).sort(),
     ['b35be598', 'e0853fac', 'ebea50d5']);
 });

@@ -11,7 +11,7 @@ test.beforeEach(async ({ context, baseURL, page }) => {
 });
 
 test('L1 com sete acertos aplica70% do limiar, sem prometer nível com barra cheia', async ({ page }) => {
-  await injectGameState(page, { level: 1, xp: 200, correctTotal: 7, streak: 0 });
+  await injectGameState(page, { level: 1, xp: 200, correctTotal: 7, streak: 0 }, {asGuest:true});
   await page.waitForFunction(() => !(0, eval)('_loadingNextQuestion'));
   await page.evaluate(() => (window as any).renderHUD());
   await test.info().attach('progress-before-assertion', { body: await page.screenshot(), contentType: 'image/png' });
@@ -22,7 +22,7 @@ test('L1 com sete acertos aplica70% do limiar, sem prometer nível com barra che
 });
 
 test('XP excedente permanece guardado quando o teto por acertos impede evolução', async ({ page }) => {
-  await injectGameState(page, { level: 1, xp: 127, correctTotal: 5, streak: 0 });
+  await injectGameState(page, { level: 1, xp: 127, correctTotal: 5, streak: 0 }, {asGuest:true});
   await page.waitForFunction(() => !(0, eval)('_loadingNextQuestion'));
   await page.evaluate(() => { (window as any).gainXP(50); (window as any).renderHUD(); });
   const result = await page.evaluate(() => (0, eval)('({level:state.level,xp:state.xp,correct:state.correctTotal})'));
@@ -37,7 +37,7 @@ test('XP excedente permanece guardado quando o teto por acertos impede evoluçã
 for (const [level, correctTotal] of [[1, 9], [2, 19], [9, 89]]) {
   test(`limiar${correctTotal}/${correctTotal + 1} sobe somente após o acerto e conserva o saldo`, async ({ page }) => {
     const xp = await page.evaluate(level => (window as any).xpForLevel(level), level);
-    await injectGameState(page, { level, xp, correctTotal, streak: 0, gold: 0, lives: 5, maxLives: 5, bossIntroShown: true, battleFinalShown: true });
+    await injectGameState(page, { level, xp, correctTotal, streak: 0, gold: 0, lives: 5, maxLives: 5, bossIntroShown: true, battleFinalShown: true }, {asGuest:true});
     await page.waitForFunction(() => !(0, eval)('_loadingNextQuestion'));
     expect(await page.locator('#xpFill').evaluate(e => parseFloat((e as HTMLElement).style.width))).toBeLessThan(100);
     const answer = await page.evaluate(() => (0, eval)('state.current.a'));
@@ -50,7 +50,7 @@ for (const [level, correctTotal] of [[1, 9], [2, 19], [9, 89]]) {
 }
 
 test('save legado reconcilia níveis já conquistados e não consome XP ou vidas duas vezes', async ({ page }) => {
-  await injectGameState(page, { schemaVersion: 6, level: 4, xp: 658, xpToNext: 1, correctTotal: 60, gold: 500, score: 9876, lives: 1, maxLives: 5, extraLifeGiven: false });
+  await injectGameState(page, { schemaVersion: 6, level: 4, xp: 658, xpToNext: 1, correctTotal: 60, gold: 500, score: 9876, lives: 1, maxLives: 5, extraLifeGiven: false }, {asGuest:true});
   await page.waitForFunction(() => !(0, eval)('_loadingNextQuestion'));
   const read = () => page.evaluate(() => (0, eval)('({level:state.level,xp:state.xp,cost:state.xpToNext,lives:state.lives,gold:state.gold,score:state.score,correct:state.correctTotal})'));
   const before = await read();
@@ -77,7 +77,7 @@ test('prévias projetam o nível ganho sem reescrever o save', async ({ page }) 
 
 test('vidas e Sequência usam valores reais, quatro campos no rodapé e refluem sem sobreposição', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 720 });
-  await injectGameState(page, { level: 1, xp: 200, correctTotal: 7, lives: 1, maxLives: 5, streak: 12 });
+  await injectGameState(page, { level: 1, xp: 200, correctTotal: 7, lives: 1, maxLives: 5, streak: 12 }, {asGuest:true});
   await expect(page.locator('.hud .tile')).toHaveCount(4);
   await expect(page.locator('.hud .tile').nth(2)).toContainText('Sequência');
   await expect(page.locator('#streak')).toHaveText('12');
@@ -121,7 +121,7 @@ test('acertos consecutivos avançam valor e barra juntos e guardam todos os bôn
 });
 
 test('vida máxima inclui equipamento e zero vidas continua legível sem inventar preenchimento', async ({ page }) => {
-  await injectGameState(page, { level: 1, xp: 20, correctTotal: 3, lives: 1, maxLives: 5 });
+  await injectGameState(page, { level: 1, xp: 20, correctTotal: 3, lives: 1, maxLives: 5 }, {asGuest:true});
   const max = await page.evaluate(() => (0, eval)(`(() => {
     const [slot, equipment] = Object.entries(items).flatMap(([slot, list]) => list.map(item => [slot,item])).find(([, item]) => _LIFE_BONUS_ITEMS.has(item.n));
     state.equipment[slot] = {...equipment}; state.lives=0; renderHUD(); return effectiveMaxLives();
@@ -136,7 +136,7 @@ test('vida máxima inclui equipamento e zero vidas continua legível sem inventa
 
 test('painel do personagem continua alcançável no celular com texto200% e foco restaurado', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 744 });
-  await injectGameState(page, { level: 1, xp: 200, correctTotal: 7, lives: 1, maxLives: 5 });
+  await injectGameState(page, { level: 1, xp: 200, correctTotal: 7, lives: 1, maxLives: 5 }, {asGuest:true});
   const dock = page.locator('#mobileBottomDock > .mdock-btn.personagem[data-action="openMobileDrawer"]');
   const trigger = await dock.isVisible() ? dock : page.locator('#mobileHeroBtn');
   await trigger.click();

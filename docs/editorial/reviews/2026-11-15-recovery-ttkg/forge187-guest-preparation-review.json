@@ -1,0 +1,719 @@
+{
+  "schema": "NQ_1727_187_FORGE_GUEST_CAUSAL_REVIEW_v1",
+  "author": "/root/ttkg_creation_1727",
+  "atUTC": "2026-11-15T21:37:54.355Z",
+  "status": "CONTROLLED_RED_GREEN_AND_NATIVE_REGRESSION_VERIFIED",
+  "sourceCommit": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+  "originalCI": {
+    "run": 1100,
+    "source": "dcc6fd6c8f2e95da9e905f03f4ccaa43e0556349",
+    "checkout": "cdfd35b303c10b7db49ce6d64dd81bf3d6aad6cb",
+    "project": "chromium",
+    "spec": "187-forja-e-vitoria.spec.ts",
+    "title": "com movimento reduzido a forja mostra o item sem martelada",
+    "attempts": [
+      {
+        "retry": 0,
+        "status": "timedOut",
+        "duration": 20969,
+        "startTime": "2026-11-16T12:35:11.028Z"
+      },
+      {
+        "retry": 1,
+        "status": "passed",
+        "duration": 3001,
+        "startTime": "2026-11-16T12:35:32.815Z"
+      }
+    ],
+    "outcome": "flaky",
+    "errorFile": "ux-1727-ci-review/ci1100/incidents/shard3-187-forja-chromium/attempt0-error.txt",
+    "errorSHA256": "1e699d30b368294dff824e895047dfe83b8840aae8ae021d1d9e76ab65daf274",
+    "priorOutcomeNotReclassified": true
+  },
+  "hypothesis": {
+    "fixturePrecondition": "187 hides Portal through injectGameState/enterGame without choosing Guest.",
+    "legitimateAuthBehavior": "A late null getSession/INITIAL_SESSION shows signed-out Portal when authUser is null and guest mode is false.",
+    "controlledMechanismConfirmed": true,
+    "historicalExactCallbackExclusivelyObserved": false,
+    "observedBoundary": "Native Forge mounted; delayed initial session made landingScreen visible and Dra.Aquaria intercepted original forge click.",
+    "controls": "Only remote SDK boundary held/delivered initial null session; native product controllers, bank, forge action and answer/reward rules remain real."
+  },
+  "controlledRed": {
+    "directFailures": 2,
+    "delivery": [
+      "promise",
+      "event"
+    ],
+    "timeoutMs": 20000,
+    "frameworkRetries": 0,
+    "report": {
+      "file": "baseline/results.json",
+      "sha256": "170ee5c4d23b2454ad4a50dbe0bf115631c759b33c0348d88460236999d51ada",
+      "stats": {
+        "startTime": "2026-11-15T21:27:27.078Z",
+        "duration": 43891.038,
+        "expected": 0,
+        "skipped": 0,
+        "unexpected": 2,
+        "flaky": 0
+      },
+      "rows": [
+        {
+          "title": "com movimento reduzido a forja mostra o item sem martelada",
+          "project": "chromium-promise",
+          "status": "timedOut",
+          "retry": 0,
+          "durationMs": 20808,
+          "timeoutMs": 20000,
+          "errors": [
+            {
+              "message": "\u001b[31mTest timeout of 20000ms exceeded.\u001b[39m"
+            },
+            {
+              "location": {
+                "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis\\baseline\\specs\\187-forja-e-vitoria.spec.ts",
+                "column": 69,
+                "line": 18
+              },
+              "message": "Error: locator.click: Test timeout of 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Forjar item aleatório' })\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" class=\"btn gold\" data-arg=\"comum\" data-action=\"forjarNaPagina\">Forjar item aleatório</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <strong>Dra. Aquaria</strong> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <strong>Dra. Aquaria</strong> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    13 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <strong>Dra. Aquaria</strong> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n  16 |   await botao.focus();\n  17 |   await botao.press('Enter');\n> 18 |   await page.getByRole('button', { name: 'Forjar item aleatório' }).click();\n     |                                                                     ^\n  19 |   const resultado = page.locator('#forjaResultado');\n  20 |   await expect(resultado.getByRole('heading', { name: 'Forja concluída' })).toBeVisible();\n  21 |   return resultado;\n    at forjar (C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis\\baseline\\specs\\187-forja-e-vitoria.spec.ts:18:69)\n    at C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis\\baseline\\specs\\187-forja-e-vitoria.spec.ts:38:21"
+            }
+          ],
+          "audit": {
+            "audit": {
+              "errors": [],
+              "nonGET": [],
+              "sockets": 0,
+              "sdkBlocked": 2
+            },
+            "state": {
+              "gate": {
+                "delivery": "promise",
+                "delivered": true,
+                "observerAttached": false,
+                "calls": [
+                  {
+                    "phase": "before-initial-delivery-after-native-forge-mounted",
+                    "guest": null,
+                    "game": {
+                      "gold": 5000,
+                      "xp": 150,
+                      "lives": 3,
+                      "correctTotal": 15
+                    },
+                    "landingHidden": true,
+                    "forgeMounted": true
+                  },
+                  {
+                    "phase": "after-initial-delivery",
+                    "guest": null,
+                    "game": {
+                      "gold": 5000,
+                      "xp": 150,
+                      "lives": 3,
+                      "correctTotal": 15
+                    },
+                    "landingHidden": false,
+                    "forgeMounted": true
+                  }
+                ]
+              },
+              "guest": null,
+              "authUser": null,
+              "landingClass": "",
+              "mainClass": "app hidden",
+              "forgeMounted": true,
+              "resultMounted": false,
+              "game": {
+                "gold": 5000,
+                "xp": 150,
+                "lives": 3,
+                "correctTotal": 15
+              }
+            }
+          }
+        },
+        {
+          "title": "com movimento reduzido a forja mostra o item sem martelada",
+          "project": "chromium-event",
+          "status": "timedOut",
+          "retry": 0,
+          "durationMs": 20807,
+          "timeoutMs": 20000,
+          "errors": [
+            {
+              "message": "\u001b[31mTest timeout of 20000ms exceeded.\u001b[39m"
+            },
+            {
+              "location": {
+                "file": "C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis\\baseline\\specs\\187-forja-e-vitoria.spec.ts",
+                "column": 69,
+                "line": 18
+              },
+              "message": "Error: locator.click: Test timeout of 20000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('button', { name: 'Forjar item aleatório' })\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" class=\"btn gold\" data-arg=\"comum\" data-action=\"forjarNaPagina\">Forjar item aleatório</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <strong>Dra. Aquaria</strong> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is visible, enabled and stable\u001b[22m\n\u001b[2m      - scrolling into view if needed\u001b[22m\n\u001b[2m      - done scrolling\u001b[22m\n\u001b[2m      - <strong>Dra. Aquaria</strong> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    12 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is visible, enabled and stable\u001b[22m\n\u001b[2m       - scrolling into view if needed\u001b[22m\n\u001b[2m       - done scrolling\u001b[22m\n\u001b[2m       - <strong>Dra. Aquaria</strong> from <div class=\"\" id=\"landingScreen\" data-nq-ui=\"lumen\" data-lumen-state=\"reasoning\">…</div> subtree intercepts pointer events\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n\n\n  16 |   await botao.focus();\n  17 |   await botao.press('Enter');\n> 18 |   await page.getByRole('button', { name: 'Forjar item aleatório' }).click();\n     |                                                                     ^\n  19 |   const resultado = page.locator('#forjaResultado');\n  20 |   await expect(resultado.getByRole('heading', { name: 'Forja concluída' })).toBeVisible();\n  21 |   return resultado;\n    at forjar (C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis\\baseline\\specs\\187-forja-e-vitoria.spec.ts:18:69)\n    at C:\\Users\\orlan\\.codex\\visualizations\\2026\\11\\03\\01a19f2d-0745-73d0-8277-eb5569ee888b\\ux-1727-forge-entry-diagnosis\\baseline\\specs\\187-forja-e-vitoria.spec.ts:38:21"
+            }
+          ],
+          "audit": {
+            "audit": {
+              "errors": [],
+              "nonGET": [],
+              "sockets": 0,
+              "sdkBlocked": 2
+            },
+            "state": {
+              "gate": {
+                "delivery": "event",
+                "delivered": true,
+                "observerAttached": false,
+                "calls": [
+                  {
+                    "phase": "before-initial-delivery-after-native-forge-mounted",
+                    "guest": null,
+                    "game": {
+                      "gold": 5000,
+                      "xp": 150,
+                      "lives": 3,
+                      "correctTotal": 15
+                    },
+                    "landingHidden": true,
+                    "forgeMounted": true
+                  },
+                  {
+                    "phase": "after-initial-delivery",
+                    "guest": null,
+                    "game": {
+                      "gold": 5000,
+                      "xp": 150,
+                      "lives": 3,
+                      "correctTotal": 15
+                    },
+                    "landingHidden": false,
+                    "forgeMounted": true
+                  }
+                ]
+              },
+              "guest": null,
+              "authUser": null,
+              "landingClass": "",
+              "mainClass": "app hidden",
+              "forgeMounted": true,
+              "resultMounted": false,
+              "game": {
+                "gold": 5000,
+                "xp": 150,
+                "lives": 3,
+                "correctTotal": 15
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "controlledGreen": {
+    "directPasses": 2,
+    "onlyCohortDifference": "injectGameState third argument {asGuest:true}",
+    "sameBodiesAssertionsActionsAndTimeout": true,
+    "frameworkRetries": 0,
+    "report": {
+      "file": "guest/results.json",
+      "sha256": "86ef95bd189c764fa51cba133f76a49e168299539f422374f9545580c7576fa3",
+      "stats": {
+        "startTime": "2026-11-15T21:28:37.425Z",
+        "duration": 29986.999,
+        "expected": 2,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "rows": [
+        {
+          "title": "com movimento reduzido a forja mostra o item sem martelada",
+          "project": "chromium-promise",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 14343,
+          "timeoutMs": 20000,
+          "errors": [],
+          "audit": {
+            "audit": {
+              "errors": [],
+              "nonGET": [],
+              "sockets": 0,
+              "sdkBlocked": 2
+            },
+            "state": {
+              "gate": {
+                "delivery": "promise",
+                "delivered": true,
+                "observerAttached": false,
+                "calls": [
+                  {
+                    "phase": "before-initial-delivery-after-native-forge-mounted",
+                    "guest": "1",
+                    "game": {
+                      "gold": 5000,
+                      "xp": 150,
+                      "lives": 3,
+                      "correctTotal": 15
+                    },
+                    "landingHidden": true,
+                    "forgeMounted": true
+                  },
+                  {
+                    "phase": "after-initial-delivery",
+                    "guest": "1",
+                    "game": {
+                      "gold": 5000,
+                      "xp": 150,
+                      "lives": 3,
+                      "correctTotal": 15
+                    },
+                    "landingHidden": true,
+                    "forgeMounted": true
+                  }
+                ]
+              },
+              "guest": "1",
+              "authUser": null,
+              "landingClass": "hidden",
+              "mainClass": "app hidden",
+              "forgeMounted": true,
+              "resultMounted": true,
+              "game": {
+                "gold": 4700,
+                "xp": 150,
+                "lives": 3,
+                "correctTotal": 15
+              }
+            }
+          }
+        },
+        {
+          "title": "com movimento reduzido a forja mostra o item sem martelada",
+          "project": "chromium-event",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 14083,
+          "timeoutMs": 20000,
+          "errors": [],
+          "audit": {
+            "audit": {
+              "errors": [],
+              "nonGET": [],
+              "sockets": 0,
+              "sdkBlocked": 2
+            },
+            "state": {
+              "gate": {
+                "delivery": "event",
+                "delivered": true,
+                "observerAttached": false,
+                "calls": [
+                  {
+                    "phase": "before-initial-delivery-after-native-forge-mounted",
+                    "guest": "1",
+                    "game": {
+                      "gold": 5000,
+                      "xp": 150,
+                      "lives": 3,
+                      "correctTotal": 15
+                    },
+                    "landingHidden": true,
+                    "forgeMounted": true
+                  },
+                  {
+                    "phase": "after-initial-delivery",
+                    "guest": "1",
+                    "game": {
+                      "gold": 5000,
+                      "xp": 150,
+                      "lives": 3,
+                      "correctTotal": 15
+                    },
+                    "landingHidden": true,
+                    "forgeMounted": true
+                  }
+                ]
+              },
+              "guest": "1",
+              "authUser": null,
+              "landingClass": "hidden",
+              "mainClass": "app hidden",
+              "forgeMounted": true,
+              "resultMounted": true,
+              "game": {
+                "gold": 4700,
+                "xp": 150,
+                "lives": 3,
+                "correctTotal": 15
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "applied": {
+    "file": "tests/specs/187-forja-e-vitoria.spec.ts",
+    "line": 10,
+    "onlyDelta": "await injectGameState(page, { gold }, {asGuest: true});",
+    "authorization": "Root authorized conditional application only after causalGREEN; applied after2PASS.",
+    "beforeRawSHA256": "9e2938885f0ab4ba745a3a6f06772d77d4ffb584d1fea2e67b8b84e27260f0e7",
+    "afterRawSHA256": "3466bea0b9769532fc38908eac8a646c9beeac2ca4de4650868f3c9be3c6af1b",
+    "inverseReplacementRestoresBeforeBytes": true,
+    "noGlobalHelperOrRuntimeEdits": true,
+    "helperRawSHA256": "20cb81107b3426d3b68e738ed0ede2888bc934c3089433beb6a52ed5793fabe2",
+    "authWorktreeRawSHA256": "89e2c6d931fd694cd1e680949f1520c060e8fec0449ce4a3a89eb12e3b151d02",
+    "authGitBlobSHA256": "fe10cc6f86d9aac294d758bb972050531a9a928856dc71fadfb44da7635497ae",
+    "authNormalizedLFEqual": true
+  },
+  "nativeRegression": {
+    "directPasses": 6,
+    "projects": {
+      "chromium": 3,
+      "mobile": 3
+    },
+    "frameworkRetries": 0,
+    "failures": 0,
+    "flaky": 0,
+    "skipped": 0,
+    "timeoutEachMs": 20000,
+    "realSDKNoMock": true,
+    "originalCompleteSpecBodies": true,
+    "importNormalizationAndExtraTransportAuditsOnly": true,
+    "report": {
+      "file": "native-r2/results.json",
+      "sha256": "c1c5c1ff56913b487e972c6c4ac549847a81b1baf5d6662ee429fe971641e205",
+      "stats": {
+        "startTime": "2026-11-15T21:33:52.243Z",
+        "duration": 92089.265,
+        "expected": 6,
+        "skipped": 0,
+        "unexpected": 0,
+        "flaky": 0
+      },
+      "rows": [
+        {
+          "title": "a forja martela antes de mostrar o item, só uma vez",
+          "project": "chromium",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 14784,
+          "timeoutMs": 20000,
+          "errors": [],
+          "audit": {
+            "audit": {
+              "errors": [],
+              "nonGET": [],
+              "sockets": 0
+            },
+            "state": {
+              "guest": "1",
+              "authUser": null,
+              "landingClass": "hidden",
+              "nativeSupabaseCreateClient": "function",
+              "initialSDKGatePresent": false,
+              "resources": {
+                "gold": 4700,
+                "xp": 150,
+                "lives": 3,
+                "correctTotal": 15
+              }
+            }
+          }
+        },
+        {
+          "title": "com movimento reduzido a forja mostra o item sem martelada",
+          "project": "chromium",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 14140,
+          "timeoutMs": 20000,
+          "errors": [],
+          "audit": {
+            "audit": {
+              "errors": [],
+              "nonGET": [],
+              "sockets": 0
+            },
+            "state": {
+              "guest": "1",
+              "authUser": null,
+              "landingClass": "hidden",
+              "nativeSupabaseCreateClient": "function",
+              "initialSDKGatePresent": false,
+              "resources": {
+                "gold": 4700,
+                "xp": 150,
+                "lives": 3,
+                "correctTotal": 15
+              }
+            }
+          }
+        },
+        {
+          "title": "na vitória, Compartilhar vem logo depois de Continuar e com o mesmo peso",
+          "project": "chromium",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 14353,
+          "timeoutMs": 20000,
+          "errors": [],
+          "audit": {
+            "audit": {
+              "errors": [],
+              "nonGET": [],
+              "sockets": 0
+            },
+            "state": {
+              "guest": "1",
+              "authUser": null,
+              "landingClass": "hidden",
+              "nativeSupabaseCreateClient": "function",
+              "initialSDKGatePresent": false,
+              "resources": {
+                "gold": 800,
+                "xp": 150,
+                "lives": 3,
+                "correctTotal": 100
+              }
+            }
+          }
+        },
+        {
+          "title": "a forja martela antes de mostrar o item, só uma vez",
+          "project": "mobile",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 15930,
+          "timeoutMs": 20000,
+          "errors": [],
+          "audit": {
+            "audit": {
+              "errors": [],
+              "nonGET": [],
+              "sockets": 0
+            },
+            "state": {
+              "guest": "1",
+              "authUser": null,
+              "landingClass": "hidden",
+              "nativeSupabaseCreateClient": "function",
+              "initialSDKGatePresent": false,
+              "resources": {
+                "gold": 4700,
+                "xp": 150,
+                "lives": 3,
+                "correctTotal": 15
+              }
+            }
+          }
+        },
+        {
+          "title": "com movimento reduzido a forja mostra o item sem martelada",
+          "project": "mobile",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 14511,
+          "timeoutMs": 20000,
+          "errors": [],
+          "audit": {
+            "audit": {
+              "errors": [],
+              "nonGET": [],
+              "sockets": 0
+            },
+            "state": {
+              "guest": "1",
+              "authUser": null,
+              "landingClass": "hidden",
+              "nativeSupabaseCreateClient": "function",
+              "initialSDKGatePresent": false,
+              "resources": {
+                "gold": 4700,
+                "xp": 150,
+                "lives": 3,
+                "correctTotal": 15
+              }
+            }
+          }
+        },
+        {
+          "title": "na vitória, Compartilhar vem logo depois de Continuar e com o mesmo peso",
+          "project": "mobile",
+          "status": "passed",
+          "retry": 0,
+          "durationMs": 16843,
+          "timeoutMs": 20000,
+          "errors": [],
+          "audit": {
+            "audit": {
+              "errors": [],
+              "nonGET": [],
+              "sockets": 0
+            },
+            "state": {
+              "guest": "1",
+              "authUser": null,
+              "landingClass": "hidden",
+              "nativeSupabaseCreateClient": "function",
+              "initialSDKGatePresent": false,
+              "resources": {
+                "gold": 800,
+                "xp": 150,
+                "lives": 3,
+                "correctTotal": 100
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "interruptedNativeAttempt": {
+    "launcher": {
+      "name": "native",
+      "status": null,
+      "signal": "SIGTERM",
+      "error": "Error: spawnSync C:\\Program Files\\nodejs\\node.exe ETIMEDOUT",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "finishedAtUTC": "2026-11-15T21:32:41.329Z"
+    },
+    "stdoutBytes": 0,
+    "notACompletedTestReport": true,
+    "notProductFailureOrSixPasses": true,
+    "preserved": true,
+    "correction": "External supervisor budget100s could not contain full6-case run plus startup. Repeated full suite with external180s; per-test20s and retry0 unchanged."
+  },
+  "networkEvidence": {
+    "controlledCases": 4,
+    "nativeCases": 6,
+    "allActualAddedAuditCounters": {
+      "pageErrors": 0,
+      "nonGETAttempts": 0,
+      "webSocketAttempts": 0
+    },
+    "counterOrigin": "Additional ART boundary fixtures, not counters retroactively attributed to the original187 spec.",
+    "sameOriginGETOnly": true,
+    "allowedGETFallbackToOriginalGuard": true,
+    "causalSDKOnlyMocked": true,
+    "nativeSDKLocalBundleAllowed": true,
+    "noRealRemoteWrites": true
+  },
+  "preflightAndCleanup": {
+    "initialCIMSetupFailureBeforeBrowser": true,
+    "note": "preflight-note.json",
+    "firstCloseRefusal": "Safety script compared a string with an ISO date auto-parsed to DateTime by ConvertFrom-Json. Paths/command/creation instant were independently reconfirmed; comparison corrected to exact UTC ticks before stopping. Original close script preserved.",
+    "serverClosed": {
+      "port": 5524,
+      "pid": 28908,
+      "processAbsent": true,
+      "listenerCount": 0,
+      "checkedAtUTC": "2026-11-15T21:36:45.6894925Z"
+    }
+  },
+  "ROOTWrites": [
+    "tests/specs/187-forja-e-vitoria.spec.ts: one explicit Guest option"
+  ],
+  "medicalDataChanged": false,
+  "evidence": [
+    {
+      "file": "source-receipt.json",
+      "bytes": 1111,
+      "sha256": "5adaf2108acb3291b6f8a1b97f0cf901505f3cbf745c482a6aa50bed50ae4378"
+    },
+    {
+      "file": "applied-and-native-source.json",
+      "bytes": 760,
+      "sha256": "c601b046ef780137d216831c0b468e5d77004deef9f691fbd45d2e0aa7bfd5b6"
+    },
+    {
+      "file": "boundary.ts",
+      "bytes": 4481,
+      "sha256": "07c69e72e4190ed01217c8f5a9ebe5aab5b29638a21fe59dcc6bd662bb62416e"
+    },
+    {
+      "file": "native-boundary.ts",
+      "bytes": 2044,
+      "sha256": "891f6fab44e17563d64364fb2649105aec8e8c9017eef93f09b41a64e6042ca3"
+    },
+    {
+      "file": "baseline/results.json",
+      "bytes": 18616,
+      "sha256": "170ee5c4d23b2454ad4a50dbe0bf115631c759b33c0348d88460236999d51ada"
+    },
+    {
+      "file": "baseline/launcher.json",
+      "bytes": 202,
+      "sha256": "7eef4505a3410fb7eb082131ea03816bbc8142d3508aa585b803c06990b16736"
+    },
+    {
+      "file": "guest/results.json",
+      "bytes": 8132,
+      "sha256": "86ef95bd189c764fa51cba133f76a49e168299539f422374f9545580c7576fa3"
+    },
+    {
+      "file": "guest/launcher.json",
+      "bytes": 199,
+      "sha256": "0514ed1b1c42d1f6bce9be6d00ca490f38f4efa85850c54081d2576e8e68abbf"
+    },
+    {
+      "file": "guest/proof-summary.json",
+      "bytes": 3120,
+      "sha256": "f7a1be9748b1cd9538dff55bfd2356620c4c02824fadb405c64d066427faeeeb"
+    },
+    {
+      "file": "native/launcher.json",
+      "bytes": 268,
+      "sha256": "150ab41c4728baba8c4f6e876da598563099cdd4600eb0f82d221f3a08cab6d8"
+    },
+    {
+      "file": "native/results.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "native-r2/results.json",
+      "bytes": 13045,
+      "sha256": "c1c5c1ff56913b487e972c6c4ac549847a81b1baf5d6662ee429fe971641e205"
+    },
+    {
+      "file": "native-r2/launcher.json",
+      "bytes": 203,
+      "sha256": "2422d25bad9df52d6d985f188b15524757b0a71a61c4d90f37153c905d5a3380"
+    },
+    {
+      "file": "native-r2/playwright.config.cjs",
+      "bytes": 1020,
+      "sha256": "57540e2170d14daf4c5699aa268e95899c78b8eef51da55188ccf08de60dafd3"
+    },
+    {
+      "file": "server-start.json",
+      "bytes": 549,
+      "sha256": "2216cf3488d5bf1bbde17f905c5fdd6e79fb0b340645ee45f4329e66c1db6086"
+    },
+    {
+      "file": "server-closed.json",
+      "bytes": 137,
+      "sha256": "0abcf9b924be46dffc96b10fa441b4c5c3b512f2370fe96f201a258a5c389c5c"
+    },
+    {
+      "file": "preflight-note.json",
+      "bytes": 427,
+      "sha256": "4a509dd1c8ac21d31760f58cf3c9827352bfb33035ea260fa60024849234cf8e"
+    },
+    {
+      "file": "PLAN_AND_MECHANISM.md",
+      "bytes": 3041,
+      "sha256": "6a43be6144d70bbe762ec75954e624fa22723bb79d542b59f6db7993aad8e0cf"
+    }
+  ],
+  "limits": [
+    "This reproduces and repairs a fixture precondition, not a newly established production Forge defect.",
+    "OriginalCI retry remains recorded; exact historical promise/event trigger was not logged.",
+    "Controlled SDK/frontier tests and native local SDK tests do not certify real-account, payment or physical-device behavior.",
+    "First100s supervisor interruption and earlierCIM setup refusal remain distinct from actual test results.",
+    "No timestamp/latency comparisons across local and CI provider clocks.",
+    "Final full CI and post-Pages public58 evidence remain root responsibilities."
+  ]
+}

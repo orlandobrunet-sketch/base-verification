@@ -26,18 +26,25 @@ function fn(name) {
   return game.slice(matched.index, matched.index + matched[0].length + next.index);
 }
 const source = (raw, index = 0) => builder.sources(raw, index).main;
-function technicalFixture({cardOnly = false} = {}) {
+function technicalFixture({cardOnly = false, replacement = false} = {}) {
   const before = {qid: 'technical-campaign-question', t: 'Technical before', q: 'Choose the original token.',
     opts: ['original token', 'plain token', 'square token', 'round token'], ans: 0, exp: 'Technical original explanation.',
     cat: 'technical-before', diff: 'medium', refs: ['technical-card']};
   const after = cardOnly ? clone(before) : {...clone(before), q: 'Choose the current token.',
     opts: ['plain token', 'square token', 'round token', 'current token'], ans: 3, exp: 'Technical current explanation.', cat: 'technical-current', diff: 'hard'};
   const oldRefs = {'technical-card': {label: 'Technical old card', badge: 'fixture'}}, refs = {'technical-card': {label: 'Technical current card', badge: 'fixture'}};
+  if (replacement) after.qid = 'technical-new-objective';
   const authorRevision = builder.digest(after), referenceRevisions = {'technical-card': builder.digest(refs['technical-card'])};
   const manifest = {version: 1, release: '16.10', current: {[after.qid]: {authorRevision, referenceRevisions,
     recordRevision: builder.digest({authorRevision, referenceRevisions}), sourceRevisions: {main: builder.digest(source(after))}}}};
   const history = [{qid: before.qid, release: '16.09', author: before, sources: {main: source(before)}, references: oldRefs,
     policy: {material: true, pending: 'update-required'}}];
+  if (replacement) {
+    history[0].sources = builder.sources(before, 0);
+    manifest.current[after.qid].sourceRevisions = Object.fromEntries(Object.entries(builder.sources(after, 0)).map(([p,s]) => [p,builder.digest(s)]));
+    manifest.replacements = {[before.qid]: {qid: after.qid, recordRevision: builder.digest({authorRevision: builder.digest(before),
+      referenceRevisions: {'technical-card': builder.digest(oldRefs['technical-card'])}})}};
+  }
   const catalog = revisions.createCatalog({manifest, history, authors: [after], sources: {main: [source(after)]}, references: refs});
   return {before, after, oldRefs, refs, manifest, history, catalog};
 }
@@ -144,6 +151,17 @@ function cloudPayload(save) {
     unlockedArticles: ['remote-article'], unlockedRefs: ['remote-ref'], arquiDefeated: true, hardcoreCompleted: true,
     detailedStats: {totalCorrect: 999}, acidBaseProgress: {completed: ['remote-act']}, srData: {remote: {reps: 999}}};
 }
+
+test('campaign new-objective confirmation preserves original raw, ledger and resources with a new identity', () => {
+  const f = technicalFixture({replacement: true}), h = harness(f), saved = h.prepare();
+  assert.equal(h.restore(saved.saved), true); h.render();
+  assert.equal(h.state().current.id, f.before.qid); assert.equal(h.writes.length, 0);
+  assert.equal(h.context.useCurrentCampaignQuestionRevision(), true);
+  assert.equal(h.state().current.id, f.after.qid); assert.deepEqual(resourceFields(h.state()), resourceFields(saved.saved));
+  const stored = JSON.parse(h.values.get(h.canonicalKey));
+  assert.equal(stored.questionRevisionOriginRaw, saved.raw); assert.equal(stored.currentQuestionId, f.after.qid);
+  assert.equal(stored.questionRevisionBinding.qid, f.after.qid); assert.equal(stored.answered, false);
+});
 
 test('campaign real restore/render replays historical answers without writes, remapping or resource credit', t => {
   t.diagnostic('game.js sha256:' + sourceHash);

@@ -13,6 +13,20 @@ const sources = Object.fromEntries(profiles.map(profile =>
 const catalog = revisions.createCatalog({manifest, history, authors: topics, sources, references});
 const publishedBefore = history.filter(entry => entry.release === '17.09');
 
+test('new objective retires the old identity without rewriting any of the 180 published archives', () => {
+  assert.equal(builder.digest(history.slice(0, 180)), 'sha256:1fce3c20bc7a49e63b36a7f028deab9ce2c2940166c392e0c88ad8578c36d1d6');
+  const retired = history.filter(row => row.release === '17.26');
+  assert.equal(retired.length, 1); assert.equal(retired[0].qid, '6474ec20');
+  assert.equal(topics.some(q => q.qid === '6474ec20'), false);
+  assert.equal(topics.filter(q => q.qid === 'b515e1c7').length, 1);
+  for (const profile of profiles) {
+    assert.equal(catalog.current('6474ec20', profile), null);
+    assert.deepEqual(catalog.retired('6474ec20', profile).author, retired[0].author);
+    assert.deepEqual(catalog.retired('6474ec20', profile).references, retired[0].references);
+    assert.equal(catalog.replacement('6474ec20', profile).binding.qid, 'b515e1c7');
+  }
+});
+
 test('saved answers before the alternative revision retain their published wording and cards in every mode', () => {
   assert.equal(publishedBefore.length, 110);
   for (const old of publishedBefore) {

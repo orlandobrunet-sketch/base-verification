@@ -83,9 +83,11 @@
         const originIndices = new Set();
         if (!Array.isArray(origins) || !origins.every(origin => {
           if (!origin || !Number.isInteger(origin.index) || origin.index < 0 || origin.index >= questions.length ||
-              originIndices.has(origin.index) || origin.question?.id !== questions[origin.index].id) return false;
+              originIndices.has(origin.index)) return false;
           originIndices.add(origin.index);
           const original = _examQuestionRevision(origin.question, origin.binding);
+          if (origin.question?.id !== questions[origin.index].id &&
+              _examRevisionCatalog()?.replacement?.(origin.question?.id, 'exam')?.binding.qid !== questions[origin.index].id) return false;
           return !!original && (!_examRequiresRevisions() || (original.historical && original.policy?.material &&
             original.binding.recordRevision !== revisionViews[origin.index].binding.recordRevision));
         })) return null;
@@ -112,15 +114,17 @@
     }
     function _examRevisionHtml(view, answered, review = false) {
       if (!view?.historical) return '';
-      const current = _examRevisionCatalog()?.current(view.binding.qid, 'exam');
+      const catalog = _examRevisionCatalog();
+      const current = catalog?.current(view.binding.qid, 'exam') || catalog?.replacement?.(view.binding.qid, 'exam');
+      const replacement = current && current.binding.qid !== view.binding.qid;
       const updated = current?.source;
       return `<aside class="nq-exam-aviso" data-question-revision="historical">
         <p>${answered ? (review ? `Avaliação registrada na versão ${escapeHtml(view.release)}. Sua resposta e sua nota permanecem as registradas.` : `Resposta registrada na versão ${escapeHtml(view.release)}. A correção ficará disponível ao final da prova.`)
-          : 'Esta questão mudou desde a versão salva. Confirme a versão atual antes de responder.'}</p>
-        ${review && answered && updated ? `<details><summary>Conteúdo atual, separado da avaliação registrada</summary>
+          : replacement ? 'Esta questão foi substituída. Confirme a nova pergunta antes de responder; seu progresso anterior permanece preservado.' : 'Esta questão mudou desde a versão salva. Confirme a versão atual antes de responder.'}</p>
+        ${review && answered && updated ? `<details><summary>${replacement ? 'Nova questão, separada da avaliação registrada' : 'Conteúdo atual, separado da avaliação registrada'}</summary>
           <p>${escapeHtml(updated.q)}</p><ol>${updated.o.map((text, index) => `<li>${escapeHtml(text)}${index === updated.a ? ' <strong>Resposta correta atual</strong>' : ''}</li>`).join('')}</ol>
           <p>${escapeHtml(updated.e || '')}</p></details>` : ''}
-        ${!answered ? '<button type="button" class="btn gold" data-action="_examUseCurrentRevision">Usar versão atual desta questão</button>' : ''}</aside>`;
+        ${!answered ? `<button type="button" class="btn gold" data-action="_examUseCurrentRevision">${replacement ? 'Responder nova questão' : 'Usar versão atual desta questão'}</button>` : ''}</aside>`;
     }
     function _examProgressStorage() {
       if (typeof window.nqProgressStorage === 'function') return window.nqProgressStorage(_examProgressBinding || undefined);
@@ -508,16 +512,19 @@
       if (!_examBindingCurrent() || _examRevisionBlocked || !_examNeedsCurrentRevision()) return;
       if (_examRestante() <= 0) { _examEsgotarTempo(); return; }
       const prior = _examState, idx = prior.idx;
-      const current = _examRevisionCatalog()?.current(prior.questions[idx].id, 'exam');
+      const catalog = _examRevisionCatalog(), qid = prior.questions[idx].id;
+      const current = catalog?.current(qid, 'exam') || catalog?.replacement?.(qid, 'exam');
       const question = current?.source && window.NQAnswers?.present(current.source);
       if (!question) { _examRevisionHold('A versão atual desta questão está indisponível.'); return; }
       const questions = [...prior.questions], bindings = [...prior.questionRevisionBindings];
+      const answers = [...prior.answers];
+      if (answers[idx]?.answered === false && question.id !== qid) answers[idx] = {...answers[idx], qId: question.id};
       const origins = [...(prior.questionRevisionOrigins || [])];
       if (!origins.some(origin => origin.index === idx)) origins.push({ index: idx, question: prior.questions[idx], binding: bindings[idx] });
       questions[idx] = question; bindings[idx] = current.binding;
-      const checked = _examValidateSaved({ ...prior, questions, questionRevisionBindings: bindings, questionRevisionOrigins: origins });
+      const checked = _examValidateSaved({ ...prior, questions, answers, questionRevisionBindings: bindings, questionRevisionOrigins: origins });
       if (!checked) { _examRevisionHold('Não foi possível conferir a versão atual.'); return; }
-      _examState = { ...prior, ...checked, questionRevisionOriginalRaw: prior.questionRevisionOriginalRaw ?? _examSavedRaw };
+      _examState = { ...prior, ...checked, answers, questionRevisionOriginalRaw: prior.questionRevisionOriginalRaw ?? _examSavedRaw };
       if (!_saveExamState()) {
         _examState = prior;
         _examRevisionHold('Não foi possível confirmar o salvamento da alteração. Confira a versão salva antes de continuar.'); return;

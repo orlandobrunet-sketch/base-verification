@@ -1164,13 +1164,15 @@
       }
       if (saved.presentationVersion !== undefined && saved.presentationVersion !== 1) return false;
       if (saved.index >= saved.questions.length) { _clearStudyState(loaded.raw); return false; }
+      const catalog = _studyRevisionCatalog();
+      if (catalog === null) { _toast('O catálogo de revisões ainda não está disponível. Seu estudo foi preservado.', 'warning'); return false; }
       const byId = new Map(topics.map(question => [_studyQuestionId(question), question]));
-      const restoredEntries = saved.questions.map((id, savedIndex) => ({question: byId.get(id), savedIndex})).filter(entry => entry.question);
+      const restoredEntries = saved.questions.map((id, savedIndex) => ({
+        question: byId.get(id) || catalog?.retired?.(id, 'study')?.author, savedIndex
+      })).filter(entry => entry.question);
       if (!restoredEntries.length) return false;
       if (saved.presentationVersion === 1 && (restoredEntries.length !== saved.questions.length ||
           !Array.isArray(saved.presentations) || saved.presentations.length !== saved.questions.length)) return false;
-      const catalog = _studyRevisionCatalog();
-      if (catalog === null) { _toast('O catálogo de revisões ainda não está disponível. Seu estudo foi preservado.', 'warning'); return false; }
       const raw = _studyProgressStorage().getItem(STUDY_SAVE_KEY);
       if (raw !== loaded.raw) return false;
       if (_studySelectionRaw !== raw) { _studyResumeSelections.clear(); _studySelectionRaw = raw; }
@@ -1251,7 +1253,7 @@
       if (!_studyBindingCurrent() || !studyModeActive || _studyConsultationOnly || _studyAnswers[studyModeIndex]) return false;
       const previous = _studyRevisions[studyModeIndex], catalog = _studyRevisionCatalog();
       if (!previous?.historical || previous.policy.pending !== 'update-required' || !catalog) return false;
-      const current = catalog.current(previous.binding.qid, 'study');
+      const current = catalog.current(previous.binding.qid, 'study') || catalog.replacement?.(previous.binding.qid, 'study');
       if (!current) return false;
       try { if (_studyProgressStorage().getItem(STUDY_SAVE_KEY) !== _studySavedRaw) return false; }
       catch (_) { return false; }
@@ -1274,12 +1276,14 @@
     function viewCurrentStudyRevision() {
       if (!_studyBindingCurrent() || !studyModeActive) return;
       const revision = _studyRevisions[studyModeIndex], catalog = _studyRevisionCatalog();
-      const current = catalog?.current(_studyQuestionId(studyModeQuestions[studyModeIndex]), 'study');
+      const qid = _studyQuestionId(studyModeQuestions[studyModeIndex]);
+      const current = catalog?.current(qid, 'study') || catalog?.replacement?.(qid, 'study');
       if (!revision || !current) return;
+      const replaced = current.binding.qid !== revision.binding.qid;
       document.getElementById('studyCurrentRevision')?.remove();
       const panel = document.createElement('section');
       panel.id = 'studyCurrentRevision';
-      panel.innerHTML = `<h3>Atualização publicada (${escapeHtml(current.release)})</h3><p>Consulta separada; sua avaliação histórica permanece preservada.</p><p>${escapeHtml(current.author.q)}</p><p>${escapeHtml(current.source.e || '')}</p>` +
+      panel.innerHTML = `<h3>${replaced ? 'Nova questão publicada' : 'Atualização publicada'} (${escapeHtml(current.release)})</h3><p>${replaced ? 'Esta questão foi substituída. Você pode responder à nova questão; a resposta anterior continua preservada.' : 'Consulta separada; sua avaliação histórica permanece preservada.'}</p><p>${escapeHtml(current.author.q)}</p><p>${escapeHtml(current.source.e || '')}</p>` +
         Object.values(current.references || {}).filter(Boolean).map(ref => `<p>${escapeHtml(ref.label || '')}</p>`).join('');
       document.getElementById('studyQuestionArea')?.appendChild(panel);
     }
@@ -1301,6 +1305,30 @@
     let _mentorContextVersion = 0;
     let _mentorRequestController = null;
     let _mentorContextKey = null;
+
+    // One budget covers authentication, response headers and body. Aborting the
+    // transport alone cannot settle an SDK promise that ignores AbortSignal.
+    async function _withAIRequestDeadline(controller, request) {
+      const signal = controller.signal;
+      let timer, onAbort;
+      const check = () => {
+        if (signal.aborted) throw signal.reason || new DOMException('Consulta cancelada.', 'AbortError');
+      };
+      const stopped = new Promise((_, reject) => {
+        onAbort = () => reject(signal.reason || new DOMException('Consulta cancelada.', 'AbortError'));
+        if (signal.aborted) onAbort();
+        else {
+          signal.addEventListener('abort', onAbort, { once: true });
+          timer = setTimeout(() => controller.abort(new DOMException('Prazo da consulta encerrado.', 'TimeoutError')), 30000);
+        }
+      });
+      try {
+        return await Promise.race([Promise.resolve().then(() => { check(); return request(check); }), stopped]);
+      } finally {
+        clearTimeout(timer);
+        signal.removeEventListener('abort', onAbort);
+      }
+    }
 
     async function startFreeStudyMode() {
       const binding = _studyCaptureBinding();
@@ -1643,6 +1671,7 @@
       document.querySelectorAll('.study-mode-popup').forEach(element => element.remove());
       
       // Remover página anterior se existir
+      _retireStudyDiagnosis();
       document.getElementById('studyModePage')?.remove();
       
       const page = document.createElement('div');
@@ -1726,13 +1755,16 @@
       const presentation = _studyPresentations[studyModeIndex];
       if (!presentation) return;
       const revision = _studyRevisions[studyModeIndex];
+      const catalog = revision?.historical ? _studyRevisionCatalog() : null;
+      const current = catalog?.current(revision.binding.qid, 'study') || catalog?.replacement?.(revision?.binding.qid, 'study');
+      const replaced = !!current && current.binding.qid !== revision.binding.qid;
       const held = _studyConsultationOnly || (revision?.historical && revision.policy.pending === 'update-required' && !_studyAnswers[studyModeIndex]);
       const area = document.getElementById('studyQuestionArea');
       
       area.innerHTML = `
-        ${revision?.historical ? `<p role="status">Versão histórica (${escapeHtml(revision.release)}). ${_studyAnswers[studyModeIndex] ? 'Avaliação preservada; esta explicação pertence à versão respondida.' : 'Esta questão foi atualizada. Use a versão atual antes de responder.'}</p><button class="btn sec" data-action="viewCurrentStudyRevision">Consultar atualização publicada</button>` : ''}
+        ${revision?.historical ? `<p role="status">Versão histórica (${escapeHtml(revision.release)}). ${_studyAnswers[studyModeIndex] ? 'Avaliação preservada; esta explicação pertence à versão respondida.' : replaced ? 'Esta questão foi substituída. Confirme a nova questão antes de responder.' : 'Esta questão foi atualizada. Use a versão atual antes de responder.'}</p><button class="btn sec" data-action="viewCurrentStudyRevision">${replaced ? 'Consultar nova questão publicada' : 'Consultar atualização publicada'}</button>` : ''}
         ${_studyConsultationOnly ? '<p role="status">Consulta de uma revisão escolhida. Respostas e progresso da sessão salva permanecem intactos.</p>' : ''}
-        ${held && !_studyConsultationOnly ? '<button class="btn gold" data-action="useCurrentStudyRevision">Confirmar troca para a versão atual, sem consumir resposta</button>' : ''}
+        ${held && !_studyConsultationOnly ? `<button class="btn gold" data-action="useCurrentStudyRevision">Confirmar troca para a ${replaced ? 'nova questão' : 'versão atual'}, sem consumir resposta</button>` : ''}
         <div class="nq-study-question-meta"><span class="nq-study-topic">${escapeHtml(q.t || 'Geral')}</span><span>Escolha uma alternativa</span></div>
         <h2 class="nq-study-question-title">${escapeHtml(q.q)}</h2>
         <div id="studyOptions">
@@ -1971,6 +2003,13 @@
     const _studyDiagnosisControllers = new Set();
     let _diagUltimoPedido = null;
 
+    function _retireStudyDiagnosis() {
+      _studyDiagnosisControllers.forEach(controller => controller.abort());
+      _studyDiagnosisControllers.clear();
+      _diagPorSessao.forEach((entry, key) => { if (entry.promessa) _diagPorSessao.delete(key); });
+      _diagUltimoPedido = null;
+    }
+
     function _assinaturaDaSessao(correct, wrong) {
       return JSON.stringify([studyModeQuestions.map(q => q.qid || q.id || q.q.substring(0, 40)), correct, wrong]);
     }
@@ -1978,7 +2017,7 @@
     function _desenharDiagnostico(resultado) {
       const card = document.getElementById('aiDiagnosisCard');
       if (!card) return;
-      const { estado, texto } = resultado;
+      const { estado, texto, motivo } = resultado;
       const cota = !isPremium() && estado !== 'visitante' ? _diagRemainingText() : '';
       const upgrade = `<button type="button" class="mentor-inline-action" data-action="showPaywallModal">faça upgrade para Premium</button>`;
       let corpo = '';
@@ -1996,7 +2035,7 @@
         corpo = `<p class="ai-diagnosis-status">Sua sessão expirou, então o diagnóstico não pôde ser gerado. Entre de novo para recebê-lo.</p>
           <div class="ai-diagnosis-actions"><button type="button" class="btn sec" data-action="showLoginFromDiagnosis">Entrar</button></div>`;
       } else if (estado === 'falha') {
-        corpo = `<p class="ai-diagnosis-status ai-diagnosis-erro">O diagnóstico não pôde ser gerado agora — falha de conexão ou do serviço de IA. Nenhum diagnóstico do seu limite diário foi descontado.</p>
+        corpo = `<p class="ai-diagnosis-status ai-diagnosis-erro">${motivo === 'tempo' ? 'A resposta demorou mais do que o esperado.' : 'O diagnóstico não pôde ser gerado agora.'} Você pode tentar novamente.${!isPremium() ? ' Uma nova tentativa pode usar outra consulta do seu limite diário.' : ''}</p>
           <div class="ai-diagnosis-actions"><button type="button" class="btn sec" data-action="tentarDiagnosticoNovamente">Tentar novamente</button></div>`;
       } else if (estado === 'pronto') {
         const weakCats = _getWeakCats();
@@ -2021,27 +2060,35 @@
         return { name: axis ? axis.label : cat, correct: stats.correct, wrong: stats.wrong };
       });
       try {
-        const _diagToken = (typeof window.getAuthToken === 'function') ? (await window.getAuthToken()) : null;
-        if (!_studyBindingCurrent(binding) || controller.signal.aborted) return { estado: 'cancelado' };
-        const res = await fetch(`${SUPA_URL}/functions/v1/ai-diagnosis`, {
-          signal: controller.signal,
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${_diagToken || SUPA_KEY}` },
-          body: JSON.stringify({ axes, totalCorrect: correct, totalWrong: wrong, accuracy }),
+        const result = await _withAIRequestDeadline(controller, async check => {
+          const _diagToken = (typeof window.getAuthToken === 'function') ? (await window.getAuthToken()) : null;
+          check();
+          if (!_studyBindingCurrent(binding)) return { estado: 'cancelado' };
+          const res = await fetch(`${SUPA_URL}/functions/v1/ai-diagnosis`, {
+            signal: controller.signal,
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${_diagToken || SUPA_KEY}` },
+            body: JSON.stringify({ axes, totalCorrect: correct, totalWrong: wrong, accuracy }),
+          });
+          check();
+          if (!_studyBindingCurrent(binding)) return { estado: 'cancelado' };
+          if (res.status === 429) return { estado: 'recusado' };
+          if (res.status === 401) return { estado: 'sessao' };
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          const { diagnosis } = await res.json();
+          check();
+          if (!_studyBindingCurrent(binding)) return { estado: 'cancelado' };
+          if (!diagnosis) throw new Error('empty');
+          return { estado: 'pronto', texto: diagnosis };
         });
         if (!_studyBindingCurrent(binding) || controller.signal.aborted) return { estado: 'cancelado' };
-        if (res.status === 429) { _esgotarDiagQuotaLocal(); return { estado: 'recusado' }; }
-        if (res.status === 401) return { estado: 'sessao' };
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const { diagnosis } = await res.json();
-        if (!_studyBindingCurrent(binding) || controller.signal.aborted) return { estado: 'cancelado' };
-        if (!diagnosis) throw new Error('empty');
-        _incrementDiagQuota();
-        return { estado: 'pronto', texto: diagnosis };
+        if (result.estado === 'recusado') _esgotarDiagQuotaLocal();
+        if (result.estado === 'pronto') _incrementDiagQuota();
+        return result;
       } catch (err) {
-        if (!_studyBindingCurrent(binding) || controller.signal.aborted) return { estado: 'cancelado' };
+        if (!_studyBindingCurrent(binding) || (controller.signal.aborted && err?.name !== 'TimeoutError')) return { estado: 'cancelado' };
         _track('error_diagnosis', { msg: String(err) });
-        return { estado: 'falha' };
+        return { estado: 'falha', ...(err?.name === 'TimeoutError' ? { motivo: 'tempo' } : {}) };
       }
     }
 
@@ -2174,6 +2221,7 @@
     }
     
     function exitStudyMode() {
+      _retireStudyDiagnosis();
       resetMentorQuestion();
       const nextIndex = studyModeIndex + (document.querySelector('#studyModePage [data-action="nextStudyQuestion"]') ? 1 : 0);
       if (_studyConsultationOnly) { /* Read-only consultation preserves the original saved bytes. */ }
@@ -2378,25 +2426,32 @@
       const requestController = new AbortController();
       _mentorRequestController = requestController;
       try {
-        const _mentorToken = (typeof window.getAuthToken === 'function') ? (await window.getAuthToken()) : null;
-        // A autenticação pode demorar: não enviar se a questão já mudou.
-        if (!_studyBindingCurrent(binding) || !_mentorContextValid(q) || contextVersion !== _mentorContextVersion || !input.isConnected) return;
-        const res = await fetch(`${SUPA_URL}/functions/v1/ai-mentor`, {
-          signal: requestController.signal,
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${_mentorToken || SUPA_KEY}` },
-          body: JSON.stringify({
-            questionText: q.q,
-            options: q.opts,
-            correctOption: q.opts?.[q.ans],
-            explanation: q.exp,
-            userQuestion: text,
-            history: _mentorHistory,
-          }),
+        const response = await _withAIRequestDeadline(requestController, async check => {
+          const _mentorToken = (typeof window.getAuthToken === 'function') ? (await window.getAuthToken()) : null;
+          check();
+          // A autenticação pode demorar: não enviar se a questão já mudou.
+          if (!_studyBindingCurrent(binding) || !_mentorContextValid(q) || contextVersion !== _mentorContextVersion || !input.isConnected) return null;
+          const res = await fetch(`${SUPA_URL}/functions/v1/ai-mentor`, {
+            signal: requestController.signal,
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'apikey': SUPA_KEY, 'Authorization': `Bearer ${_mentorToken || SUPA_KEY}` },
+            body: JSON.stringify({
+              questionText: q.q,
+              options: q.opts,
+              correctOption: q.opts?.[q.ans],
+              explanation: q.exp,
+              userQuestion: text,
+              history: _mentorHistory,
+            }),
+          });
+          check();
+          if (!_studyBindingCurrent(binding) || !_mentorContextValid(q) || contextVersion !== _mentorContextVersion || !chat.isConnected) return null;
+          const data = await res.json();
+          check();
+          return { res, data };
         });
-
-        const data = await res.json();
-        if (!_studyBindingCurrent(binding) || !_mentorContextValid(q) || contextVersion !== _mentorContextVersion || !chat.isConnected) return;
+        if (!response || requestController.signal.aborted || !_studyBindingCurrent(binding) || !_mentorContextValid(q) || contextVersion !== _mentorContextVersion || !chat.isConnected) return;
+        const { res, data } = response;
         if (res.status === 429) throw new Error('quota_exceeded');
         if (!res.ok || !data.reply) throw new Error(data.error || 'Erro ao contatar o mentor.');
 
@@ -2417,7 +2472,7 @@
           document.querySelector('[data-action="openMentorModal"]')?.remove();
         }
       } catch (err) {
-        if (!_studyBindingCurrent(binding) || !_mentorContextValid(q) || contextVersion !== _mentorContextVersion || requestController.signal.aborted) return;
+        if (!_studyBindingCurrent(binding) || !_mentorContextValid(q) || contextVersion !== _mentorContextVersion || (requestController.signal.aborted && err?.name !== 'TimeoutError')) return;
         _track('error_mentor_send', { msg: String(err) });
         // Keep the failed question ready to edit or send again in this context.
         if (input.isConnected && !input.value) input.value = text;
@@ -2428,7 +2483,10 @@
           _esgotarMentorQuotaLocal();
           thinkingEl.innerHTML = `Limite diário atingido. <button type="button" class="mentor-inline-action" data-action="closeMentorModalAndUpgrade">Faça upgrade para Premium</button> para perguntas ilimitadas.`;
         } else {
-          thinkingEl.textContent = 'Oráculo indisponível no momento. Tente novamente em instantes.';
+          thinkingEl.textContent = (err?.name === 'TimeoutError'
+            ? 'A resposta demorou mais do que o esperado. Sua dúvida foi preservada. Tente novamente quando quiser.'
+            : 'Oráculo indisponível no momento. Tente novamente em instantes.') +
+            (!isPremium() ? ' Uma nova tentativa pode usar outra pergunta do limite diário.' : '');
         }
         thinkingEl.style.color = '#fb7185';
       } finally {
@@ -2507,8 +2565,7 @@
     window.NQPilot?.onContextChange(() => {
       closeWeakPointPlan(false);
       resetMentorQuestion();
-      _studyDiagnosisControllers.forEach(controller => controller.abort());
-      _studyDiagnosisControllers.clear();
+      _retireStudyDiagnosis();
       _diagPorSessao.clear();
       _diagUltimoPedido = null;
       studyModeActive = false;
