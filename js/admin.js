@@ -70,12 +70,16 @@
               <input id="wlEmailInput" type="email" placeholder="email@exemplo.com">
               <button class="btn gold" style="white-space:nowrap;padding:8px 16px" data-action="adminAddWhitelist">+ Adicionar</button>
             </div>
-            <div id="wlList" class="whitelist-list"><div class="whitelist-empty">Carregando...</div></div>
-            <div class="modal-actions" style="margin-top:16px">
+            <div id="wlList" class="whitelist-list" role="region" aria-label="E-mails com acesso" tabindex="-1"><div class="whitelist-empty">Carregando...</div></div>
+            <div class="modal-actions" style="margin-top:16px;flex-wrap:wrap">
+              <button type="button" id="wlRetry" hidden>Tentar novamente</button>
               <button data-action="closeAdminPanel" style="background:rgba(255,255,255,0.06);color:#c8d8f0;border:1px solid var(--blue-dark);">Fechar</button>
             </div>
           </div>
         `;
+        modal.querySelector('#wlRetry').addEventListener('click', event => {
+          if (event.currentTarget.getAttribute('aria-disabled') !== 'true') adminLoadWhitelist();
+        });
         document.body.appendChild(modal);
       }
       _adminOpenings.set(modal, {});
@@ -405,14 +409,27 @@
       const view = _captureAdminView('adminModal', true);
       if (!view) return;
       const list = view.modal.querySelector('#wlList');
-      if (!list) return;
-      list.innerHTML = '<div class="whitelist-empty">Carregando...</div>';
+      const retry = view.modal.querySelector('#wlRetry');
+      if (!list || !retry) return;
+      retry.hidden = document.activeElement !== retry;
+      retry.setAttribute('aria-disabled', 'true');
+      list.innerHTML = '<div class="whitelist-empty" role="status">Carregando...</div>';
+      const controller = new AbortController();
+      let timer, failed = false;
       try {
         if (!_supaClient) throw new Error('Cliente indisponível.');
-        const { data, error } = await _supaClient
+        const query = _supaClient
           .from('access_whitelist')
           .select('email, added_at')
           .order('added_at', { ascending: false });
+        const read = typeof query.abortSignal === 'function' ? query.abortSignal(controller.signal) : query;
+        const deadline = new Promise((_, reject) => {
+          timer = setTimeout(() => {
+            controller.abort();
+            reject(new Error('Prazo da lista de acesso encerrado.'));
+          }, 10000);
+        });
+        const { data, error } = await Promise.race([read, deadline]);
         if (!view.current()) return;
         if (error) throw error;
         if (!data || data.length === 0) {
@@ -434,8 +451,21 @@
         });
       } catch(e) {
         if (!view.current()) return;
+        failed = true;
         if (typeof _reportError === 'function') _reportError(e, { action: 'adminLoadWhitelist' });
-        list.innerHTML = '<div class="whitelist-empty" style="color:#fb7185">Erro ao carregar. Verifique a tabela no Supabase.</div>';
+        const error = document.createElement('div');
+        error.className = 'whitelist-empty';
+        error.setAttribute('role', 'status');
+        error.textContent = controller.signal.aborted
+          ? 'A lista demorou para carregar.' : 'Não foi possível carregar a lista agora.';
+        list.replaceChildren(error);
+      } finally {
+        clearTimeout(timer);
+        if (view.current()) {
+          retry.removeAttribute('aria-disabled');
+          if (!failed && document.activeElement === retry) list.focus({ preventScroll: true });
+          retry.hidden = !failed;
+        }
       }
     }
     async function adminAddWhitelist() {
